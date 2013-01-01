@@ -1,0 +1,55 @@
+.TH chr 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+chr - character count
+.SH SYNOPSIS
+.BR chr
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.RI [> file ]
+.PP
+.BR chr
+.RI [ options ]
+.RI [< file ]
+.RI [> file ]
+.SH DESCRIPTION
+.PP
+Print all words in a file on stdout. Users can specify the characters that comprise a word.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+.RB -a
+Count or display all 256 ASCII characters. 
+.TP
+.RB -d
+Display ASCII character codes in decimal format. 
+.TP
+.RB -l
+Count or display lower 128 ASCII characters only.
+.TP
+.RB -o
+Display ASCII character codes in octal format. 
+.TP
+.RB -u
+Count or display upper 128 ASCII characters only.
+.TP
+.RB -x
+Display ASCII character code in hexadecimal format.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of an input text file. This file is not modified.
+.SH EXAMPLES
+.SH SEE ALSO
+.BR case ( 7 ),
+.BR wl ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

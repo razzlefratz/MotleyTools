@@ -1,0 +1,88 @@
+.TH cblock 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+cblock - C Language code blocker
+.SH SYNOPSIS
+.BR cblock
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.PP
+.BR call
+.RI [ options ]
+.RI [< file ]
+.RI [> file ]
+.SH DESCRIPTION
+.PP
+Read a C language source file. Place braces around lone conditional statements for \fBdo\fR, \fBif\fR, \fBelse\fR, \fBfor\fR and \fBwhile\fR statements. Place parenthesis around expressions for \fBexit\fR and \fBreturn\fR statements.
+.PP
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of a C or C++ language source file. This file is not modified.
+.SH EXAMPLES
+The following file, \fBmain.c\fR, contains valid C Language statements that omit optional braces and parenthesis. 
+.PP
+   # cat main.c 
+   int main (int argc, char const * argv []) 
+   
+   {
+           if (a == b) if (y) exit 3; else b++;
+           do a = 3; while (c++);
+           return 4 + strlen ( "abc" );
+   }
+.PP
+The next example read file \fBmain.c\fR and inserts optional braces ('\fB{}\fR') and parenthesis ('\fB()\fR') where missing. Thefile can then be formatted to clearly expose the program structure.
+.PP
+   # cblock < main.c 
+   int main (int argc, char const * argv []) 
+   
+   {
+           if (a == b) { if (y) { exit (3); } else { b++; }
+           do { a = 3; } while (c++); }
+           return (4 + strlen ( "abc" ));
+   }
+.PP
+The next example does the same thing but pipes the content into language formatter, \fBcfm\fR, which relies on punctuation to determine the proper indent level. Some readers find this layout easier to read.
+.PP
+   # cblock < main.c | cfm
+   int main (int argc, char const * argv []) 
+   
+   {
+           if (a == b) 
+           {
+                   if (y) 
+                   {
+                           exit (3);
+                   }
+                   else 
+                   {
+                           b++;
+                   }
+                   do 
+                   {
+                           a = 3;
+                   }
+                   while (c++);
+           }
+           return (4 + strlen ("abc"));
+   }
+.SH SEE ALSO
+.BR call ( 7 ),
+.BR cbrief ( 7 ),
+.BR cedit ( 7 ),
+.BR cfm ( 7 ),
+.BR cinc ( 7 ),
+.BR cmerge ( 7 ),
+.BR ctar ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

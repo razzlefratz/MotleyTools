@@ -1,0 +1,124 @@
+.TH call 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+call - print C language call dependencies
+.SH SYNOPSIS
+.BR call
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.PP
+.BR call
+.RI [ options ]
+.RI [< file ]
+.RI [> file ]
+.SH DESCRIPTION
+.PP
+Read a C language source file and print function call relationships on stdout. 
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+.RB - x
+Exchange input order. This inverts relationships on output.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of a C or C++ language source file. This file is not modified.
+.SH EXAMPLES
+This example reads the source file for this program, \vBcall.c\fR, and prints the function call relationships on stdout.
+.PP
+   # call call.c
+   function:getc;
+   function:isspace;
+   function:getc;
+   function:getc;
+   function:nobreak;
+   function:getc;
+   function:getc;
+   function:nocomment;
+   function:isquote;
+   function:noliteral;
+   function:isalpha;
+   function:getc;
+   function:isalnum;
+   function:printf;
+   function:svindex;
+   function:isspace;
+   function:getc;
+   function:memcpy;
+   function:_anyset;
+   function:printf;
+   function:printf;
+   function:isdigit;
+   function:getc;
+   function:isdigit;
+   function:getc;
+   function:isxdigit;
+   function:getc;
+   function:getc;
+   function:isdigit;
+   function:getc;
+   function:getc;
+   main:getoptv;
+   main:_setbits;
+   main:function;
+   main:efreopen;
+   main:function;
+.PP
+This example does the same as above but sorts relationships and removes dulicates. This makes it easier to see that function \fBmain\fR calls function \fBfunction\fR which calls function \fBgetc\fR.
+.PP
+   # call call.c | sort | uniq
+   function:_anyset;
+   function:getc;
+   function:isalnum;
+   function:isalpha;
+   function:isdigit;
+   function:isquote;
+   function:isspace;
+   function:isxdigit;
+   function:memcpy;
+   function:nobreak;
+   function:nocomment;
+   function:noliteral;
+   function:printf;
+   function:svindex;
+   main:_setbits;
+   main:efreopen;
+   main:function;
+   main:getoptv;
+.PP
+This example does the same a above but pipes the output into program \fBorder\fR to display the program call structure.
+.PP
+   # call call.c | sort | uniq | order
+   main
+           _setbits
+           efreopen
+           function
+                   _anyset
+                   getc
+                   isalnum
+                   isalpha
+                   isdigit
+                   isquote
+                   isspace
+                   isxdigit
+                   memcpy
+                   nobreak
+                   nocomment
+                   noliteral
+                   printf
+                   svindex
+           getoptv
+.SH SEE ALSO
+.BR cedit ( 7 ),
+.BR order ( 7 ),
+.BR relate ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

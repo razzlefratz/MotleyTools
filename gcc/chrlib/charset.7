@@ -1,0 +1,79 @@
+.TH charset 7 "" "cmassoc-tools-1.5.10" "Motley Tools"
+.SH NAME
+Character set specification rules
+.SH SYNOPSIS
+.BR tr
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.PP
+.BR tr
+.RI [ options ]
+.RI [< file ] 
+.RI [ file >]
+.SH DESCRIPTION
+Character set notation is used to describe character ranges or chracters that cannot be easily expressed using a computer keyboard.
+.SH TRADITIONAL NOTATION
+.TP
+.IR c
+A specific UTF-8 character. Only the occurance of this specific character sill satisfy the expression. 
+.SH CHARACTER SET
+.TP
+.BI [ charset ]
+A set of characters. The occurance of any character in this set will satisfy the expression.
+.TP
+.BI [- charset]
+A set of characters. The occurance of any character not in this set will satisfy the expression. The hyphen must be the first character of the set.
+.TP
+.IR c1 - c2
+A character range.  Any character from \fBc1\fR through \fBc2\fR inclusive will satisfy this expression. Character range expressions are only valid with a character set expression.
+.SH WILDCARD CHARACTERS
+.TP
+.BR ?
+Any UTF-8 character. Any single UTF-8 character will satisfy this expression.
+.TP
+.BR .
+An optional UTF-8 character. Any sequence of UTF-8 characters, including an empty sequence, will satify this expresion.
+.TP
+.BR +
+One or more of the previous character expression.
+.TP
+.BR *
+Zero or more of the previous character expression.
+.SH ANSI NOTATION
+.TP
+.BR [:alpha:]
+The letters "A-Za-z". Same as "[:upper"][:lower:]".
+.TP
+.BR [:blank:]
+The characters space and horizontal tab.
+.TP
+.BR [:digit:]
+The decimal digits "0-9".
+.TP
+.BR [:graph:]
+.TP
+.BR [:lower:]
+The lower case letters "a-z".
+.TP  
+.BR [:print:]
+.TP
+.BR [:punct:]
+.TP
+.BR [:space:]
+The characters space, horizontal tab, carriage return, linefeed and formfeed.
+.TP
+.BR [:upper:]
+The upper case letters "A-Z".
+.SH EXAMPLES
+None.
+.SH FILES
+None. 
+.SH SEE ALSO
+.BR tr ( 7 ),
+.BR wc ( 7 ),
+.BR wl ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

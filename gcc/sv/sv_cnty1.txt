@@ -1,0 +1,68 @@
+Avon
+Bedfordshire
+Berkshire
+Borders
+Buckinghamshire
+Cambridgeshire
+Central
+Cheshire
+Cleveland
+Clwyd
+Cornwall
+Cumbria
+Derbyshire
+Devon
+Dorset
+Dumfries & Galloway
+Durham
+Dyfed
+East Susses
+Essex
+Fife
+Gloucestershire
+Grampian
+Greater London
+Greater Manchester
+Gwent
+Gwynedd
+Hampshire
+Hereford & Worcester
+Hertfordshire
+Highland
+Humberside
+Isle of Man
+Isle of Wight
+Isles of Scilly
+Kent
+Lancashire
+Leicester
+Lincolnshire
+Lothian
+Merseyside
+Mid Glamorgan
+Middlesex
+Norfolk
+North Yorkshire
+Northamptonshire
+Northumbria
+Nottinghamshire
+Orkney
+Oxfordshire
+Powys
+Shetland
+Shropshire
+Somerset
+South Glamorgan
+South Yorkshire
+Staffordshire
+Strathclyde
+Suffolk
+Surrey
+Tayside
+Tyne & Wear
+Warwickshire
+West Glamorgan
+West Midlands
+West Sussex
+West Yorkshire
+Western Isles

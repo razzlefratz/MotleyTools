@@ -1,0 +1,37 @@
+.TH timer 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+timer - echo system time
+.SH SYNOPSIS
+.B timer 
+.RB [ options ] 
+.SH DESCRIPTION
+Print system time in seconds. A common use is to define two variables, at differnt times, such that their difference in seconds can be computed by simple subtraction. The output is truncated to six digits since most shells and scripting languages cannot handle extremely large integers. If you need to measure long time intervals, find some other way or recompile this program with different constants.
+.SH OPTIONS
+None.
+.SH EXAMPLES
+The following example prints the system timer in seconds truncated to 6 digits.
+.PP
+   # timer
+   945667#
+.PP
+Use the \fBecho\fR utility to append a newline to the output.
+.PP
+   # echo $(timer)
+   945672
+   #
+.PP
+The following example is a script segment where \fBT1\fR is defined when some operation begins and \fBT2\fR is define when it ends. The two variable are then printed to a file for processing as shown below.
+.PP
+   T1=$(timer)
+   ...
+   ...
+   T2=$(timer)
+   echo ${T1} ${T2} >> timer.log
+.PP
+Assuming that file \fBtimer.log\fR was created as shown above and contains lots of \fBT1\fR and \fBT2\fR pairs, the following commands can be used to produce a distribution of the times taken to perform the process.
+.PP
+   awk '{ print $2 - $1; }' timer.log | sort | uniq -c 
+.SH SEE ALSO
+.BR stamp ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>

@@ -1,0 +1,43 @@
+.TH hexcmp 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+hexcmp - compare two binary files
+.SH SYNOPSIS
+.BR hexcmp
+.RI [ options ]
+.IR file1
+.IR file2
+.RI [> stdout ]
+.SH DESCRIPTION
+Compare two binary files and print a hex dump showing byte values where files match and "XX" where they do not.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+.RB - q
+Quiet mode. This option has no effect at this time.
+.TP
+.RB - v
+Verbose mode. Insert periodic column headers.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file1
+The name of a binary file.
+.TP
+.IR file2
+The name of a binary file.
+.SH EXAMPLES
+The following example compares file \fBabc.exe\fR to \fBdef.exe\fR and prints a hex dump showing where any differences occur.
+.PP
+   # hexcmp abc.exe def.exe
+None.
+.SH SEE ALSO
+.BR dump ( 7 ),
+.BR efsu ( 7 ),
+.BR hexcat ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>

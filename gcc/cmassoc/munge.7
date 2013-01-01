@@ -1,0 +1,44 @@
+.TH munge 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+munge - mangle filenames to satisfy your perverse wishes
+.SH SYNOPSIS
+.BR munge 
+.RI [ options ]
+.IR file
+.RI [ file ]
+.RI [ ... ]
+.SH DESCRIPTION
+Rename files by altering character case, replacing or removing unwanted characters or stripping unwanted prefixes. For example, some systems name files using all upper case letters, insert odd punctuation (like spaces) in filenames or prepend strange prefixes. All this can complicate file reference and management in a Linux command line environment. Help is here.
+.SH OPTIONS
+.TP
+.RB - s
+Replace spaces with underscores. Rename files created on systems, like Microsoft Windows, that encourage the use of spaces in filenames.
+.TP
+.RB - d
+Replace underscores with hyphens. Rename files, like GNU software packages, that contain mixed underscores and hyphens. We like hyphens.
+.TP
+.RB - l
+Convert letters to lower case.
+.TP
+-\fBp \fIstring\fR
+Prefix to remove. If present, this prefix is removed before other character transformations or deletions are performed.
+.TP
+.RB - u
+Convert letters to upper case.
+.TP
+-\fBx\fI string\fR
+Characters to discard. Remove unwanted punctuation, like spaces, unserscores, hyphens, etc., from filenames.
+.SH ARGUMENTS
+.TP
+.RB file
+The file to rename. Typically, this is a wildcard. File content is not modified and no backup is created.
+.SH EXAMPLES
+The next example removes the prefix "abc-" from all files starting with 'abc-'.
+.PP
+   # munge -p "abc-" abc-*.c 
+None.
+.SH SEE ALSO
+None.
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

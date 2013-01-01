@@ -1,0 +1,105 @@
+.TH align 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+align - align character to column
+.SH SYNOPSIS
+.BR align
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.PP
+.BR align
+.RI [ options ]
+.RI [< file ]
+.RI [> file ]
+.SH DESCRIPTION
+.SH OPTIONS
+All options are single letters.
+Long options are not supported.
+.TP
+-\fBc\fI character\fR
+The alignment character.
+This option is mandatory.
+There is no default character.
+If a string is specified, the first character is used.
+.TP
+-\fBt\fI column\fR
+Alignment column. The alignment character is moved to this column provided it can be moved. The default column is 0.
+.TP
+-\fBa\fI column\fR
+The "after" column. The first alignment character after this column is aligned to the the aligment column.
+.TP
+-\fBb\fI column\fR
+THe "before" column. The first alignment character before this column is aligned to the alignment column.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of a text file. This file is replaced and a numbered backup is created. Use program \fBrex\fR to recover a prior version.
+.SH EXAMPLES
+Given file \fBabc.txt\fR as follows:
+.PP
+   123456789012345678901234567890
+   ;234567890;234567890;234567890
+   1;345678901;345678901;34567890
+   12;456789012;456789012;4567890
+   123;567890123;567890123;567890
+   1234;678901234;678901234;67890
+   12345;789012345;789012345;7890
+   123456;890123456;890123456;890
+   1234567;901234567;901234567;90
+   12345678;012345678;012345678;0
+   123456789;123456789;123456789;
+            ;123456789;123456789;
+   123456789;         ;1234567890
+   123456789;123456789;
+.PP
+The following example aligns the first semicolon to column \fB20\fR. The first semicolon is moved because the default after column is \fB0\fR.
+.PP
+   # align < abc.txt -c ";" -t 20
+   123456789012345678901234567890
+                      ;234567890;234567890;234567890
+   1                  ;345678901;345678901;34567890
+   12                 ;456789012;456789012;4567890
+   123                ;567890123;567890123;567890
+   1234               ;678901234;678901234;67890
+   12345              ;789012345;789012345;7890
+   123456             ;890123456;890123456;890
+   1234567            ;901234567;901234567;90
+   12345678           ;012345678;012345678;0
+   123456789          ;123456789;123456789;
+                      ;123456789;123456789;
+   123456789          ;;1234567890
+   123456789          ;123456789;
+.PP
+The following example does the same but only when the semicolon occurs after column \fB12\rR.
+.PP
+   # align < abc.txt -c ";" -t 20 -a 12
+   123456789012345678901234567890
+   ;234567890;234567890;234567890
+   1;345678901;345678901;34567890
+   12;456789012       ;456789012;4567890
+   123;567890123      ;567890123;567890
+   1234;678901234     ;678901234;67890
+   12345;789012345    ;789012345;7890
+   123456;890123456   ;890123456;890
+   1234567;901234567  ;901234567;90
+   12345678;012345678 ;012345678;0
+   123456789;123456789;123456789;
+            ;123456789;123456789;
+   123456789;         ;1234567890
+   123456789;123456789;
+.SH SEE ALSO
+.BR afm ( 7 ),
+.BR detab ( 7 ),
+.BR entab ( 7 ),
+.BR rex ( 7 ),
+.BR trim ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

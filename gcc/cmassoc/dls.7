@@ -1,0 +1,50 @@
+.TH dls 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+dls - directory list
+.SH SYNOPSIS
+.BR dls
+.RI [ options ]
+.IR path
+.RI [ path ] 
+.RI [> file ]
+.SH DESCRIPTION
+.PP
+None.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+-\fBc\fI column\fR
+Number of columns to display. The default is \fB0fR which means columns are computed from the screen width and length of longest file name.
+.TP
+.RB - d
+Display directory files.
+.TP
+.RB - f
+Display standard files.
+.TP
+.RB - l
+Display symbolic links.
+.TP
+-\fBw\fI columns\fR
+The screen width. The default is the number of columns supported by the console window.
+.TP
+.RB - n
+Number each item.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR path
+The name of a folder file.
+.SH EXAMPLES
+None.
+.SH SEE ALSO
+.BR ff ( 7 ),
+.BR tls ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

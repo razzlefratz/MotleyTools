@@ -1,0 +1,53 @@
+.TH wl 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+wl - word list
+.SH SYNOPSIS
+.BR wl
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.RI [> file ]
+.PP
+.BR wl
+.RI [ options ]
+.RI [< file ]
+.RI [> file ]
+.SH DESCRIPTION
+.PP
+Print all words in a file on stdout. Users can specify the characters that comprise a word.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+.RB -f
+The character set "_A-Za-z0-9.-\fR" or, using the newer notation "\fB_[:alnum:].-\fR", which matches most file basenames.
+.TP
+.RB -l
+Convert words to lower case on output.
+.TP
+.RB -u
+Convert words to upper case on output.
+.TP
+-\fBw\fI charset\fR
+The character set that comprises a word. The default character set is "\fB_A-Za-z$\fR" or, using the newer notation "\fB_[:alpha:]$]\fR".
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of an input text file. This file is not modified.
+.SH EXAMPLES
+The following example produces an aphabetical list of all words found in file \fBabc.txt\fR.
+.PP
+   # wl | sort | uniq
+.SH SEE ALSO
+.BR cedit ( 7 ),
+.BR change ( 7 ),
+.BR search ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

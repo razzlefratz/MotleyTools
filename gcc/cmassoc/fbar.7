@@ -1,0 +1,47 @@
+.TH fbar 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+fbar - format comment bars
+.SH SYNOPSIS
+.BR fbar
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.PP
+.BR fbar
+.RI [ options ]
+.RI [< file ] 
+.RI [> file ]
+.SH DESCRIPTION
+Format fortran-style comment bars. Fortran-style comments start in column one.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+-\fBc\fI c\fR
+Comment character.
+.TP
+-\fBw\fI n\fR 
+Column width.
+.TP
+.RB - x
+Make file executable.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of a text file. This file is replaced and a numbered backup is created. Use program \fBrex\fR to recover a prior version.
+.SH EXAMPLES
+None.
+.SH FILES
+None. 
+.SH SEE ALSO
+.BR blank ( 7 ),
+.BR sbar ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

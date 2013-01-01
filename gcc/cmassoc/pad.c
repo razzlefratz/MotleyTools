@@ -1,0 +1,139 @@
+/*====================================================================*
+ *
+ *   pad.c - file pad program;
+ *
+ *   copy one or more files to stdout; if no files are specified 
+ *   then copy stdin to stdout;
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+#define _GETOPT_H
+
+/*====================================================================*
+ *   system header files;
+ *--------------------------------------------------------------------*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <limits.h>
+
+/*====================================================================*
+ *   custom header files;
+ *--------------------------------------------------------------------*/
+
+#include "../tools/cmassoc.h"
+
+/*====================================================================*
+ *   custom source files;
+ *--------------------------------------------------------------------*/
+
+#ifndef MAKEFILE
+#include "../tools/getoptv.c"
+#include "../tools/putoptv.c"
+#include "../tools/version.c"
+#include "../tools/efreopen.c"
+#include "../tools/uintspec.c"
+#include "../tools/todigit.c"
+#include "../tools/error.c"
+#endif
+
+/*====================================================================*
+ *   program constants;
+ *--------------------------------------------------------------------*/
+
+#define BLOCKSIZE 1
+
+/*====================================================================*
+ *
+ *   signed function (signed blocksize);
+ *
+ *   copy file using fixed blocksize so that the output is always a
+ *   multiple of the blocksize;
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+static signed function (signed blocksize) 
+
+{
+	void * memory = malloc (blocksize);
+	if (memory) 
+	{
+		memset (memory, 0, blocksize);
+		while (read (STDIN_FILENO, memory, blocksize) > 0) 
+		{
+			write (STDOUT_FILENO, memory, blocksize);
+			memset (memory, 0, blocksize);
+		}
+		free (memory);
+	}
+	return (0);
+}
+
+
+/*====================================================================*
+ *
+ *   int main (int argc, char const * argv []);
+ *
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+int main (int argc, char const * argv []) 
+
+{
+	static char const * optv [] = 
+	{
+		"b:u",
+		PUTOPTV_S_FUNNEL,
+		"copy one or more files to stdout",
+		"b n\tblock size is (n) bytes [" LITERAL (BLOCKSIZE) "]",
+		"u\tunbuffered copy",
+		(char const *)(0)
+	};
+	signed blocksize = BLOCKSIZE;
+	signed c;
+	while ((c = getoptv (argc, argv, optv)) != -1) 
+	{
+		switch (c) 
+		{
+		case 'b':
+			blocksize = uintspec (optarg, 1, SHRT_MAX);
+			break;
+		case 'u':
+			blocksize = 1;
+			break;
+		default:
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (!argc) 
+	{
+		function (blocksize);
+	}
+	while ((argc) && (* argv)) 
+	{
+		if (efreopen (* argv, "rb", stdin)) 
+		{
+			function (blocksize);
+		}
+		argc--;
+		argv++;
+	}
+	exit (0);
+}
+

@@ -1,0 +1,41 @@
+.TH import 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+import - File Import Utility
+.SH SYNOPSIS
+.BR import
+.RI [ options ]
+.IR findspec
+.RI [ findspec ]  
+.RI [ ... ]
+.SH DESCRIPTION
+.PP
+Recursively search for and copy diverse files to the local folder.
+.SH OPTIONS
+.TP
+.RB - r
+Recurively search each findspec.
+.TP
+.RB - v
+Quiet mode. This option has no effect.
+.TP
+.RB - v
+Verbose mode. Report the name of each file as it is imported.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH FILES
+.TP 
+None. 
+.SH EXAMPLES
+.PP
+   # import ../*.c ../*.h -r
+.SH SEE ALSO
+.IR 
+.BR ff ( 7 ),
+.BR purge ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

@@ -1,0 +1,53 @@
+.TH ctar 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+ctar - C language tar program
+.SH SYNOPSIS
+.BR ctar
+.RI [ options ]
+.IR archive
+.IR program
+.RB [ -I
+.IR path ] 
+.RB [ -I
+.IR path ] 
+.RI [ ... ]
+.SH DESCRIPTION
+Create a tape archive file that contains one or more C programs and supporting include files and preserve the relative directory structure. 
+.PP
+This program assumes that the program file explicitly includes all custom source and header files needed to compile the program. It distinguishes between system and custom include files. System include files are enclosed in angle brackets and reside in standard system folders. Custom include files are enclosed in quotes and reside in local folders created by the user.
+.PP
+This program is a front-end to the \fBtar\fR utility and the \fB-I\fR option is the only one handled by this program. All other options and arguments are passed directly to \fBtar\fR.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+.IR options
+Linux \fBtar\fR utility options. Any option that is supported by that utility may be entered here and will be passed directly to the utility. See the \fBtar\fR man page for more information on these options.
+.TP
+-\fBf\fI archive
+The name of the tape archive file. This file will contain the program file and custom include files. The \fB-f\fR option is actually a \fBtar\fR utility option but it is required so mentioned here.
+.TP
+-\fBI\fI path
+A path that might contain custom source or header files needed by the C language program or any component. This path is searched for custom include files that have no pathname. If a program relies on environment variables or compiler options to locate custom include files then those pathnames should be specified here.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.BR program
+The name of a C language source code file. This file should probably be the main program and should explicitly reference all required C language modules required to compile the program.
+.SH EXAMPLES
+The following command creates \fBtar\fR archive file \fBwidget.tar.gz\fR that contains program file \fBwidget.c\fR and any required custom include files. The relative directory structure is preserved. 
+.PP
+   # ctar -vzcf widget.tar.gz widget.c
+.PP
+Asuming that \fBwidget.c\fR explicitily includes required source and header files then \fBwidget.tar.gz\fR can be unpacked and compiled in another location provided all required system include files are accessible from that location..
+.SH FILES
+None. 
+.SH SEE ALSO
+.BR cinc ( 7 ),
+.BR cmerge ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

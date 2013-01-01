@@ -1,0 +1,41 @@
+.TH log 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+log - multi-file logger
+.SH SYNOPSIS
+.BR log
+.RI [ options ]
+.RI [< stdin ]
+.RI [ file ]
+.RI [ file ]
+.RI [ ... ]
+.RI [> stdout]
+.SH DESCRIPTION
+Echo stdin to stdout and to each named file. It is the reverse of \fBcat\fR and can be use to record output being displayed on the console. It is an alternative to program \fBtee\fR.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+.RB - a
+Append output to log files. If this option is omitted then log files are over-written.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of a log file.
+.SH EXAMPLES
+The following example echos makefile output to the console and file \fBmyfile.log\fR. Previous information in that file is lost.
+.PP
+   # make | log myfile.log
+.PP
+The rext example does the same but preserves previous file content.
+.PP
+   # make | log -a myfile.log
+.SH SEE ALSO
+.BR syslog ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

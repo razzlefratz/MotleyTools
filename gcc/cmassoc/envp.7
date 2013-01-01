@@ -1,0 +1,72 @@
+.TH envp 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+envp - display environment vector
+.SH SYNOPSIS
+.BR envp 
+.RI [ options ]
+.RI [ ... ]
+.SH DESCRIPTION
+Print the C program environment vector on stdout. This program is intended for programmers who want to see exactly what environment variables are passed to the main program. This is important when programs rely on rely on environment variables for processing.
+.SH OPTIONS
+There are no program options. 
+.SH ARGUMENTS
+There are no program arguments. 
+.SH EXAMPLES
+The following command displays the program environment vector. Your enviroment vector may differ depending on your host operating system. Some environment string have been truncated in this example because they were to long.
+.PP
+   # envp 
+    envp[ 0] = [HOMEPATH=\Documents and Settings\Administrator]
+    envp[ 1] = [MANPATH=/usr/local/man:/usr/man:/usr/share/man:
+    envp[ 2] = [APPDATA=C:\Documents and Settings\Administrator
+    envp[ 3] = [HOSTNAME=VENUS]
+    envp[ 4] = [TERM=cygwin]
+    envp[ 5] = [PROCESSOR_IDENTIFIER=x86 Family 6 Model 8 Stepp
+    envp[ 6] = [WINDIR=C:\WINNT]
+    envp[ 7] = [VSCOMNTOOLS="C:\Program Files\Microsoft Visual 
+    envp[ 8] = [CVSROOT=abc]
+    envp[ 9] = [OLDPWD=/home/cmaier/build]
+    envp[10] = [USERDOMAIN=VENUS]
+    envp[11] = [OS=Windows_NT]
+    envp[12] = [ALLUSERSPROFILE=C:\Documents and Settings\All U
+    envp[13] = [OS2LIBPATH=C:\WINNT\system32\os2\dll;]
+    envp[14] = [USER=Administrator]
+    envp[15] = [!::=::\]
+    envp[16] = [TEMP=/cygdrive/c/DOCUME~1/ADMINI~1/LOCALS~1/Tem
+    envp[17] = [COMMONPROGRAMFILES=C:\Program Files\Common File
+    envp[18] = [LIB=C:\Program Files\Microsoft Visual Studio .N
+    envp[19] = [USERNAME=Administrator]
+    envp[20] = [PROCESSOR_LEVEL=6]
+    envp[21] = [PATH=/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bi
+    envp[22] = [PWD=/home/cmaier/build/cmassoc-tools-1.5.10/gcc
+    envp[23] = [SYSTEMDRIVE=C:]
+    envp[24] = [USERPROFILE=C:\Documents and Settings\Administr
+    envp[25] = [PS1=\u@\h:\w$ ]
+    envp[26] = [LOGONSERVER=\\VENUS]
+    envp[27] = [PROCESSOR_ARCHITECTURE=x86]
+    envp[28] = [!C:=C:\cygwin\bin]
+    envp[29] = [SHLVL=1]
+    envp[30] = [HOME=/home/Administrator]
+    envp[31] = [PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;
+    envp[32] = [HOMEDRIVE=C:]
+    envp[33] = [PROMPT=$P$G]
+    envp[34] = [COMSPEC=C:\WINNT\system32\cmd.exe]
+    envp[35] = [TMP=/cygdrive/c/DOCUME~1/ADMINI~1/LOCALS~1/Temp
+    envp[36] = [SYSTEMROOT=C:\WINNT]
+    envp[37] = [CVS_RSH=/bin/ssh]
+    envp[38] = [PROCESSOR_REVISION=0803]
+    envp[39] = [PKG_CONFIG_PATH=:/usr/X11R6/lib/pkgconfig]
+    envp[40] = [MAKE_MODE=unix]
+    envp[41] = [INFOPATH=/usr/local/info:/usr/info:/usr/share/i
+    envp[42] = [PROGRAMFILES=C:\Program Files]
+    envp[43] = [TEXMF={/usr/share/lilypond/2.0.1,/usr/share/tex
+    envp[44] = [NUMBER_OF_PROCESSORS=1]
+    envp[45] = [INCLUDE=C:\Program Files\Microsoft Visual Studi
+    envp[46] = [COMPUTERNAME=VENUS]
+    envp[47] = [_=/usr/local/bin/cmassoc/envp]
+    envp[48] = NULL
+.SH SEE ALSO
+.BR argvesc ( 7 ),
+.BR sizeof ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

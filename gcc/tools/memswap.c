@@ -1,0 +1,41 @@
+/*====================================================================*
+ *
+ *   void memswap (void * memory1, void * memory2, unsigned extent);
+ *
+ *   memory.h
+ *   
+ *   exchange the contents of one memory region with that of another; 
+ *   return no value; 
+ *
+ *   one application for this function is to exchange the source and
+ *   destination addresses in an Ethernet frame to form a response
+ *   message;
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *   
+ *--------------------------------------------------------------------*/
+
+#ifndef MEMSWAP_SOURCE
+#define MEMSWAP_SOURCE
+
+#include "../tools/memory.h"
+
+void memswap (void * memory1, void * memory2, unsigned extent) 
+
+{
+	register byte * byte1 = (byte *)(memory1);
+	register byte * byte2 = (byte *)(memory2);
+	if (memory1 != memory2) while (extent--) 
+	{
+		byte byte = *byte1;
+		*byte1++ = *byte2;
+		*byte2++ = byte;
+	}
+	return;
+}
+
+
+#endif
+

@@ -1,0 +1,50 @@
+.TH case 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+case - character case conversion
+.SH SYNOPSIS
+.BR case
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.PP
+.BR case
+.RI [ options ]
+.RI [< file ]
+.RI [> file ]
+.SH DESCRIPTION
+.PP
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+.RB - l
+Convert to lower case. Letters [A-Z] are converted to [a-z]. Options \fB-d\fR and \fB-s\fR can be used to prevent conversion of literal text.
+.TP
+.RB - u
+Convert to upper case. Letters [a-z] are converted to [A-Z]. Options \fB-d\fR and \fB-s\fR can be used to prevent conversion of literal text.
+.TP
+.RB - t
+Convert to title case. The first letter of each word is converted to upper case. A word, in this case, consists of "[A-Za-z][A-Za-z0-9]+" and so an identifier suc as "abc123def_ghi" becomes "Abc123def_Ghi".
+.TP
+.RB - d
+Exclude double quoted text. A double quote is quote.
+.TP
+.RB - s
+Exclude single quoted text. A single quote is apostrophe.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of a text file. This file is replaced and a numbered backup is created. Use program \fBrex\fR to recover a prior version.
+.SH EXAMPLES
+None.
+.SH SEE ALSO
+.BR rex ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

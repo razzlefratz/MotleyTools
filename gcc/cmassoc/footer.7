@@ -1,0 +1,51 @@
+.TH footer 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+footer - print file footer
+.SH SYNOPSIS
+.BR footer
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.PP
+.BR footer
+.RI [< file ]
+.RI [> file ]
+.SH DESCRIPTION
+Print the last n lines of a file on stdout. This program is similar to the Linux \fBtail\fR utility but has the option to truncate lines on output.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+-\fBl\fI lines\fR
+Maximum number of lines to print. On Linux systems, the default is the number of lines supported by the console window; otherwise, it is \fB52\fR lines.
+.TP
+-\fBw\fI chars\fR
+Maximum number of columns to print. Longer lines are truncated. On Linux systems, the default is the number of columns supported by the console window; otherwise, it is \fB80\fR characters.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of a text file. The file is not modified.
+.SH EXAMPLES
+This example prints the last \fB52\fB line of file \fBabc.txt\fR on the console. Lines are truncated to \fB80\fR columns.
+.PP
+   # footer abc.txt
+.PP
+The next example does the same but will limit output to \fB24\fR lines and truncate lines longer than \fB40\fR characters.
+.PP
+   # footer abc.txt -l 24 -w 40
+.PP
+The next exampe appends the last 5 lines from the three files \fBabc.txt\fR, \fBdef.txt\fR and \fBghi.txt\fR and writes them to file \fBjkl.txt\fR.
+.PP
+   $ footer abc.txt def.txt ghi.txt -l5 > jkl.txt
+.SH SEE ALSO
+.BR header ( 7 ),
+.BR lam ( 7 ) 
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

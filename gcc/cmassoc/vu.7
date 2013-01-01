@@ -1,0 +1,55 @@
+.TH vu 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+vu - view control characters
+.SH SYNOPSIS
+.BR vu
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.RI [> file ]
+.PP
+.BR vu
+.RI [ options ]
+.RI [< file ]
+.RI [> file ]
+.SH DESCRIPTION
+.PP
+Print text files on stdout showing control characters is any of several visible formats. 
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+.RB - a
+Replace control characters with the two or three letter ASCII abbreviation.
+.TP
+.RB - b
+Display control characters in bold when printed on the console.
+.TP
+.RB - c
+Replace control characters with the ANSI control sequence.
+.TP
+.RB - g
+Replace control characters with the ISO Glyph.
+.TP
+.RB - o
+Replace control characters with UNIX octal notation.
+.TP
+.RB - x
+Replace control characters with IETF hex notation.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of an existing text file. The file is not modified.
+.SH EXAMPLES
+None.
+.SH SEE ALSO
+.BR wl ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

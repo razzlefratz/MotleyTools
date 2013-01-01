@@ -1,0 +1,41 @@
+.TH cbrief 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+cbrief - remove C/C++ commentd
+.SH SYNOPSIS
+.BR cbrief
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.PP
+.BR cbrief
+.RI [ options ]
+.RI [< file ]
+.RI [> file ]
+.SH DESCRIPTION
+.PP
+Remove C and C++ comments from a source code file.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of an C or C++ Language source file. This file is replaced and a numbered backup is created. Use program \fBrex\fR to recover a prior version.
+.SH EXAMPLES
+None
+.SH SEE ALSO
+.BR call ( 7 ),
+.BR cblock ( 7 ),
+.BR cedit ( 7 ),
+.BR cinc ( 7 ),
+.BR cmerge ( 7 ),
+.BR ctar ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

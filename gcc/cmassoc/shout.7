@@ -1,0 +1,53 @@
+.TH shout 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+shout - broadcast a message to all terminals
+.SH SYNOPSIS
+.BR shout
+.RI [ options ]
+.IR message
+.RI [ message ]
+.RI [ ... ]
+.SH DESCRIPTION
+Broadcast a message to all active consoles.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+.RB - b
+Treat each message as sentence or bullet point. If this option is omitted then message arguments are concatenated to form one long message. If this option is present then each argument appears on a separate output line.
+.TP
+.RB - c
+Display a count of terminals that were notified. This is an approximate indication of how many users are on the system. It is inaccurate when users have multiple login sessions.
+.TP
+.RB - n
+Suppress the preamble that identifies the sender. This option is only available to the root user because it can otherwise be abused.
+.TP
+.RB - r
+Broadcast on remote terminals only. Do not broadcast on the sending terminal.
+.TP
+.RB - t
+Display terminal names as each one is notified.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.BR message
+The broadcast message text. If option \fB-f\fR is omitted then message arguments are treated as words and concatenated to form one message. If option \fB-b\fR is present then message arguments are treated as sentences and each appears on a separate line. 
+.SH EXAMPLES
+The following example broadcasts the message "Goodbye cruel world" on all active terminals. Observe that message arguments are concatenated to form one message.
+.PP
+   # shout Goodbye cruel world
+.PP
+The rext example broadcasts several messages, one per output line.
+.PP
+   # shout "System going down" "Brad messed up" "Give him hell"
+.SH SEE ALSO
+.BR quiet ( 7 )
+.SH CREDITS
+The idea for this program came from the \fBwall\fR program.
+.PP
+ Charles Maier <cmaier@cmassoc.net>
+

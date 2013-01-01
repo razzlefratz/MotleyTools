@@ -1,0 +1,67 @@
+.TH trim 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+trim - discard character columns
+.SH SYNOPSIS
+.BR trim
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.PP
+.BR trim
+.RI [ options ]
+.RI [< file ]
+.RI [> file ]
+.SH DESCRIPTION
+.PP
+Discard character columns from a text file. The user may specify both a \fBbefore\fR and an \fBafter\fR column. Text falling outside, or inside, that range is discarded.           
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+-\fBa\fI column\fR
+Discard text occuring after this column. The default column is UINT_MAX, defined in limits.h.
+.TP
+-\fBb\fI column\fR
+Discard text occuring before this column. The default column is 0.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of an assembly language source file. This file is replaced and a numbered backup is created. Use program \fBrex\fR to recover a prior version.
+.SH EXAMPLES
+The following illustrates an example text file name \fBmyfile.txt\fR.
+.PP
+   # cat myfile.txt
+   12345678901234567890
+   123456789012345
+   12345678901234567890
+   1234567890
+.PP
+The rext example discards characters occuring before column 8 and after column 15. Observe the text missing from the start of each line and at the end of lines longer than 15 characters.
+.PP
+   # trim -b 8 -a 15 < myfile.txt
+   89012345
+   89012345
+   89012345
+   890
+.PP
+The rext example reverses the request, discarding characters occuring after column 8 and before column 15. Observe that columns 9 through 14 are now missing from each line.
+.PP
+   # trim -a 8 -b 15 < myfile.txt
+   12345678567890
+   123456785
+   12345678567890
+   12345678
+.SH SEE ALSO
+.BR blank ( 7 ),
+.BR crlf ( 7 ),
+.BR lam ( 7 ),
+.BR space ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

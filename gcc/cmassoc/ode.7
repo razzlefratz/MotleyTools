@@ -1,0 +1,123 @@
+.TH ode 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+ode - offset driven editor
+.SH SYNOPSIS
+.BR ode 
+.IR file 
+.IR base 
+[ 
+.IR type 
+.IR item
+]
+[ 
+.IR type 
+.IR item 
+]
+[...] 
+.SH DESCRIPTION
+Insert values into a binary file. Values are specified as a sequence of \fBtype\fR/\fBitem\fR pairs. Users must know the offset and format or length of the values they want to change because small mistakes can cause big problems. This program makes absolutely no effort to validate the offset, format or length of values.
+.SH OPTIONS
+.TP
+.BR -q
+Enable quiet mode which has not effect.
+.TP
+.BR -v
+Print a small hexadecimal dump of the edited region after the specified changes have been applied. The extent of displayed region may changed using option \fB-w\fR. This option provides feedback that specified edit were applied correctly.
+.TP
+\fB-w \fIwindow\fR
+The display window in bytes. When option \fB-v\fR is present, information surrounding the edited region is displayed to provide some sort of context. The edited region appears in the middle of this window. The default \fBwindow\fR is \fB32\fR bytes. This means that the 32 bytes before and the 32 bytes after the edited region are ncluded in the display.
+.TP
+\fB-?\fR, \fB--help\fR
+Print program help summary on stdout. This option takes precedence over other options on the command line. 
+.TP
+\fB-!\fR, \fB--version\fR
+Print program version information on stdout. This option takes precedence over other options on the command line. 
+.SH ARGUMENTS
+.TP
+.BR file
+The binary filename. The file must exist and will be re-written. No assumptions are made based on filename and no filename conventions are enforced. This argument is required and must be the first command line argument.
+.TP
+.BR base
+The byte offset where changes start. The offset is always specified in hexadecimal format, with or without the leading "\fB0x\fR". Changes are applied in order, left to right, and the offset will automatically increment by the correct amount after each change is applied. This permits consectutive locations to be changed with one command. You must use multiple commands to change non-consecutive locations. This argument is required and must be the second command line argument. 
+.TP
+.BR type
+The name of the data type, The type determines input and output properties of the \fBitem\fR that follows. Recognized types are "\fBbyte\fR", "\fBword\fR", "\fBlong\fR", "\fBhuge\fR", "\fBdata\fR", "\fBtext\fR", "\fBfill\fR", "\fBzero\fR" and "\fBskip\fR". They are described in detail in the next section.
+.TP
+.BR item
+The data written to the current byte offset. Integer items may be expressed in decimal, hexadecimal or binary but the value may not exceed the size of their \fBtype\fR. Hexadecimal values start with \fB0x\fR or \fB0X\fR. Binary items start with \fB0b\fR or \fB0B\fR. Text and data items are variable length. 
+.SH TYPES
+.TP
+.BR byte
+An unsigned 8 bit integer stored as 1 byte. 
+The value is expressed in decimal by default. 
+A hexadecimal value may be expressed using a \fB0x\fR prefix. 
+A binary value may be expressed using a \fB0b\fR prefix.
+The file offset will increment by 1 pending another insert.
+.TP
+.BR word
+An unsigned 16 bit integer stored as 2 bytes. 
+The value is expressed in decimal by default. 
+A hexadecimal value may be expressed using a \fB0x\fR prefix. 
+A binary value may be expressed using a \fB0b\fR prefix.
+The file offset will increment by 2 pending another insert.
+.TP
+.BR long
+An unsigned 32 bit integer stored as 4 bytes. 
+The value is expressed in decimal by default. 
+A hexadecimal value may be expressed using a \fB0x\fR prefix. 
+A binary value may be expressed using a \fB0b\fR prefix.
+The file offset will increment by 4 pending another insert.
+.TP
+.BR huge
+An unsigned 64 bit integer stored as 8 bytes. 
+The value is expressed in decimal by default. 
+A hexadecimal value may be expressed using a \fB0x\fR prefix. 
+A binary value may be expressed using a \fB0b\fR prefix.
+The file offset will increment by 4 pending another insert.
+This type is only available on hosts that support 64 bit values.
+.TP
+.BR data
+A sequence of hexadecimal octets.
+Individual octets may be separated by a colon for clarity. 
+Leading, trailing and paired colons are illegal. 
+The number of octets determines the number of bytes written. 
+The file offset will increment by the number of bytes written. 
+.TP
+.BR text
+A sequence of characters to be stored as bytes. 
+Text may include any character that can be typed on the keyboard but must be enclosed in quotes if white space is included. 
+The number of characters determines the number of bytes written. 
+The file offset will increment by the number of bytes written.
+.TP
+.BR fill
+An unsigned integer indicating the number of consecutive bytes to write with \fB0xff\fR. 
+The file offset will increment by the number of bytes written. 
+This can be used to erase a data region.
+.TP
+.BR zero
+An unsigned integer indicating the number of consecutive bytes to write with \fB0x00\fR. 
+The file offset will increment by the number of bytes written. 
+This can be used to erase a data region.
+.TP
+.BR skip
+An unsigned integer indicating the number of consecutive bytes to skip over. 
+The file offset will increment by the number of bytes skipped. 
+Skipped bytes are not changed.
+.SH EXAMPLES
+The following example edits binary file \fBabc.bin\fR by writing decimal value \fB1\fR at offset \fB01F7\fR followed by hexadecimal value \fB00B052BABE01\fR. A partial dump is printed showing 16 bytes before and after the edited data. The dump can be suppressed with option \fB-q\fR.
+.PP
+   # ode abc.bin 01F7 byte 1 data 00:B0:52:BA:BE:01
+   000001D0                       00 00 00 00 00 00 00 00 00         .........
+   000001E0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+   000001F0  00 00 00 00 00 00 00 01 00 B0 52 BA BE 01 00 00  ..........R.....
+   00000200  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+   00000210  00 00 00 00 00 00 00 00 00 00 00 00 00 00        ..............
+.SH SEE ALSO
+.BR block ( 7 ),
+.BR grab ( 7 ),
+.BR odd ( 7 ),
+.BR odc ( 7 ),
+.BR offset ( 7 ),
+.BR xde ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>

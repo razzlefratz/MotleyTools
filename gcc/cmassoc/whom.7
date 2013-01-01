@@ -1,0 +1,59 @@
+.TH whom 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+whom - tabulate user and group names
+.SH SYNOPSIS
+.BR whom 
+.RI [ options ]
+.RI [> file ]
+.SH DESCRIPTION
+Print a alphabetical, multi-column list of user and/or group names on stdout.
+.PP
+This program needs read access to /etc/passwd and /etc/groups to function properly.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+-\fBc\fI count\fR
+The column count. Process names are displayed in columns. The program automatically detects console screen width and computes the optimum column count but this option over-rides that value. 
+.TP
+-\fBe\fI expression\fR
+A regular expression. Only user and group names that match this expression will be displayed. The default expression is ".+". 
+.TP
+.BR - g
+List group names. The default is both user and group names.
+.TP
+.BR - u
+List user names. The default is both user and group names. 
+.TP
+.BR - n
+Number each list item.
+.TP
+.BR - R
+Display regular expression rules on stdout. This option takes precedence over previous command line arguments.
+.TP
+-\fBw\fI width\fR
+The screen width in columns. The program automatically detects console screen width and cmomputes the optimum presentation but this option over-rides that value.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+None
+.SH EXAMPLES
+The following example prints an alphabetical list of users and groups on stdout.
+.PP
+   # whom
+.PP
+The next example prints an alphabetical list of user names that start with the letter 'a' through 'm'.
+.PP
+   # whom -u -e "[a-m].*"
+.PP
+The next example does the same but numbers each name and displays them using two columns. The output is directed to file \fBinfo.txt\fR.
+.PP
+   # whom -ue "[a-m].*" -nc 2 > info.txt
+.SH SEE ALSO
+.BR what ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

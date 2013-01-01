@@ -1,0 +1,71 @@
+.TH shakeys 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+shakey - SHA256 Key Generator
+.SH SYNOPSIS
+.B shakey 
+.RI [ options ] 
+.IR file 
+.RI [ file ] 
+[...]
+.SH DESCRIPTION
+Convert blocks of phrases to encrypted SHA256 keys. Phrases are read from one or more files, converted to keys and printed on stdout. By default, only keys are printed, one per line, but both keys and phrases can be printed, one pair per line.
+.SH OPTIONS
+.TP
+.RB - e
+Enforce length and content rules for phrases. Non-compliant phrases are reported and ignored. Compliant phrases are 12 to 64 7-bit ASCII characters in the range 0x20 (SP) through 0x7F (DEL). Essentially, this includes any character that can be typed on a standard US or UK keyboard, excluding horizontal tab (HT). Be aware that some command shells intercept and act on special characters instead of passing them to the application. In such cases, you may need to include meta characters.
+.TP
+.RB - q
+Enable quiet mode which, for this application, has no effect.  This behavior has changed from earlier program versions.
+.TP
+.RB - v
+Enable verbose mode which, for this application, prints the input phrase after each key. This behavior has changed from earlier program versions.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over other options on the command line. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over other options on the command line. 
+.SH ARGUMENTS
+.TP
+.BR file
+Any valid filename. Each file on the command line is read in turn and output is written to stdout, much like the \fBcat\fR utility. Input is read from the console when no filenames are specified.
+.SH EXAMPLES
+The following command reads file \fBexample.keys\fR and prints the SHA256 key for each phrase in that file. An SHA256 key is 128 bits or 32 bytes expressed as 32 hexadecimal digits. SHA256 keys are the default output when no key type is specified. SHA256 is a public domain standard, not a HomePlug AV standard.
+.PP
+   # shakey example.keys
+   EA41A2383355FA7CA3B467DF0848A8EB9C41591BE53696C5F45DDAF621784F07
+   4E76AD8354461437C04EF9B9B242540B6406D782FF2C3FB28AFDAB5B423F88FE
+   71C480DF93D6AE2F1EFAD1447C66C9525E316218CF51FC8D9ED832F2DAF18B73
+   7257DF11A035A49119FD881F20AA7FE88970F1A034E4BBBF2D50FAB0D0239F25
+   FAC202F439E47EB5EACF6B9CC4151BF6B2B6E736A79BCAB0F589C63BCB78D16B
+.PP
+The following command reads file \fBexample.keys\fR and prints the DAK for each phrase in that file. Input phrases are checked for compliance and illegal phrases are reported then ignored. A legal pass phrase is 12 to 64 characters consisting of ASCII characters ' ' through '~'. Essentially, these are the only characters that one can enter on a standard English keyboard. 
+.PP
+   # shakey example.keys
+   4E76AD8354461437C04EF9B9B242540B6406D782FF2C3FB28AFDAB5B423F88FE
+   71C480DF93D6AE2F1EFAD1447C66C9525E316218CF51FC8D9ED832F2DAF18B73
+   58339CD93D07F32A39D034E939E150803E40CE33886BEFB3D74903C5E2E0DE74
+   FAC202F439E47EB5EACF6B9CC4151BF6B2B6E736A79BCAB0F589C63BCB78D16B
+   250451F133BE24719D932FC77B2F3FF0F67E024520297A13AE1F8EA9890119E9
+   8210ADD9ABCD5F04206BD1D6FDB44100A27488D16BF47368B7477BFDB230582E
+   68B1282B91DE2C054C36629CB8DD447F12F096D3E3C587978DC2248444633483
+   C31804CC260D05BA802402106F83ED3EAC97C5605F21E576BBC22749C7F96B8A
+.PP
+The following command reads the same file as above but prints the pass phrase because the \fB-v\fR option is specified.  Keys are printed as 32 hex digits then one space then the phrase. Spaces are significant within the phrase. Printed phrases start in column 66 and continue to the end of the line. The keys shown here are abbreviated due to formatting limitations.
+.PP
+   # shakey example.keys -v
+   4E76AD83...5B423F88FE 01234567890123456789
+   71C480DF...F2DAF18B73 abcdefghijklmnopqrstuvwxyz
+   58339CD9...C5E2E0DE74     I     love     my    dog   .
+   FAC202F4...3BCB78D16B A.B.C.D.E.F.G.H.I.J.K.L.M.N.O.P.Q.R.S.T.U.V.W.X.Y.Z
+   250451F1...A9890119E9 ~!@#$%^&*()_-`{}[]":;'\|<>./?
+   8210ADD9...FDB230582E QWRT-YPSD-FGHJ-KLZX
+   68B1282B...8444633483 The quick brown fox jumped over the lazy dog.
+   C31804CC...49C7F96B8A A = 3 * (5+2) - 1045
+.SH REFERENCES
+See standard \fBFIPS180-2 sec 5.3.2\fR for more information on SHA256 encoding.
+.SH SEE ALSO
+.BR shakey ( 7 ),
+.BR key ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>

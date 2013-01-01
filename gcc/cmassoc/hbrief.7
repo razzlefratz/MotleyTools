@@ -1,0 +1,36 @@
+.TH hbrief 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+hbrief - remove HTML attributes
+.SH SYNOPSIS
+.BR hbrief
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.PP
+.BR hbrief
+.RI [ options ]
+.RI [< file ]
+.RI [> file ]
+.SH DESCRIPTION
+.PP
+Remove HTML and XML attributes from markup;
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of an HTML or XML source file. This file is replaced and a numbered backup is created. Use program \fBrex\fR to recover a prior version.
+.SH EXAMPLES
+None
+.SH SEE ALSO
+.BR xml ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

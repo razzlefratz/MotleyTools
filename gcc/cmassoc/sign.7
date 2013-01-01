@@ -1,0 +1,65 @@
+.TH sign 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+sign - print a sign on stdout
+.SH SYNOPSIS
+.BR sign
+.RI [ options ]
+.RI [> file ]
+.SH DESCRIPTION
+Print a sign on stdout. 
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+-\fBc\fI character\fR
+The fill character. This character is used to generate letters as a 5 by 7 matrix. The default is hash (\fB'#'\fR).
+.TP
+-\fBw\fI width\fR
+The page width in columns. Output lines will be truncated at this column. The default is UCHAR_MAX, defined in limits.h.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+None.
+.SH EXAMPLES
+The following example prints the strings "Hello" and "World" on stdout. Letters are formed using a 5 by 7 matrix of the fill character. Each argument starts a new output line. 
+.PP
+   # sign Hello World
+    #   #        ##    ##        
+    #   #         #     #        
+    #   #  ###    #     #    ### 
+    ##### #   #   #     #   #   #
+    #   # #####   #     #   #   #
+    #   # #       #     #   #   #
+    #   #  ####  ###   ###   ### 
+                                 
+                                 
+    #   #              ##       #
+    #   #               #       #
+    #   #  ###  # ##    #    ####
+    # # # #   #  #  #   #   #   #
+    # # # #   #  #      #   #   #
+    # # # #   #  #      #   #   #
+     # #   ###   #     ###   ####
+                                 
+                                 
+.PP
+The next example does the same but outputs one line using fill character '@'. Output is truncated to 64 columns to fit this man page.
+.PP
+   # sign "Hello World" -c "@' -w 64
+    @   @        @@    @@               @   @              @@      
+    @   @         @     @               @   @               @      
+    @   @  @@@    @     @    @@@        @   @  @@@  @ @@    @    @@
+    @@@@@ @   @   @     @   @   @       @ @ @ @   @  @  @   @   @  
+    @   @ @@@@@   @     @   @   @       @ @ @ @   @  @      @   @  
+    @   @ @       @     @   @   @       @ @ @ @   @  @      @   @  
+    @   @  @@@@  @@@   @@@   @@@         @ @   @@@   @     @@@   @@
+                                                                     
+                                                                     
+.SH SEE ALSO
+.BR tr ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

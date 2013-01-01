@@ -1,0 +1,71 @@
+.TH respond 7 "November 2012" "plc-utils-2.1.2" "Qualcomm Atheros Powerline Toolkit"
+.SH NAME
+respond - Qualcomm Atheros Network Responder
+.SH SYNOPSIS
+.BR respond
+.RI [ options ] 
+.SH DESCRIPTION
+Respond to topology requests from a powerline network solicitor. 
+.PP
+This program is part of the Qualcomm Atheros Powerline Toolkit. See the \fBplc\fR man page for an overview and installation instructions.
+.SH OPTIONS
+.TP
+.RB - i
+Select the host Ethernet interface. All requests are sent via this host interface and only reponses received via this host interface are recognized. The default interface is \fBeth1\fR because most people use \fBeth0\fR as their principle network connection; however, if environment string "PLC" is defined then it takes precedence over the default interface. This option then takes precedence over either default.
+.TP
+-\fBp \fIfilename\fR
+The configuration profile name. This .ini file has two sections named "\fBStandard\fR" and "\fBSpecific\fR". Profile elements must conform to the TLV descriptions provided in the Simple \fINetwork Discovery Protocol Programmers Guide\fR. The default profile is "\fBrespond.ini\fR". See the example profile, below.
+.TP
+.RB - q
+Enter quiet mode. Progress messages are suppressed.
+.TP
+-\fBw \fImilliseconds\fR
+Announcement frequency in milliseconds. This is the time between announcements. During this time, the program listens for requests from a network solicitor.  Values range from 0 through UINT_MAX. The default is forever.
+.TP
+.RB - v 
+Enter verbose mode. All Etherenet frames sent or received by the program are displayed on stdout.
+.TP
+-\fB?\fR, --\fBhelp\fR
+Print program help summary on stdout. This option takes precedence over other options on the command line. 
+.TP
+-\fB!\fR, --\fBversion\fR
+Print program version information on stdout. This option takes precedence over other options on the command line. Use this option when sending screen dumps to Atheros Technical Support so that they know exactly which version of the Linux Toolkit you are using.
+.SH REFERENCES
+See the Qualcomm Atheros Simple Network Discovery Protocol for more information about \fBsolicitors\fR, \fBresponders\fR and \fBTLVs\fR.
+.SH EXAMPLES
+The following command starts a responder on the local host. The responder will announce and listen on interface \fBeth0\fR. The responder will announce values defined in profile "\fBrespond.ini\fR" by default because option \fB-p\fR is absent.
+.PP
+   # respond -i eth0
+.PP
+An example profile, "\fBrespond.ini\R", looks something like this.
+.PP
+   # file: respond.ini
+ 
+   # ====================================================================
+   # This is an example profile for use by program respond; it supports 
+   # the Qualcomm Atheros Simple Network Discovery protocol;
+   # --------------------------------------------------------------------
+   
+   [Standard]
+   Chassis ID = 04AABBCCDDEEFF
+   Port ID = 03112233445566
+   Time To Live = 3600 
+   Port Description = The Internet of Things
+   System Name = WNC Hybrid Router
+   System Description = Shanghai Public Library Wireless Network
+   System Capabilities = FF:FF:FF:FF
+   
+   [Specific]
+   Manufacturer = Qualcomm Atheros
+   Hardware Model = QCA7000
+   Serial Number = QCA7000-ND25B-0003
+   HOST MAC = 88:77:66:55:44:33
+   PLC MAC = 00:B0:52:00:BA:BE
+   WIFI MAC = AA:BB:CC:DD:EE:FF
+   WIFI IP = 00:FF:FF:AB:CD
+   
+.SH SEE ALSO
+.BR plc ( 7 ),
+.BR solicit ( 7 ),
+.SH CREDITS
+ Charles Maier <charles.maier@qca.qualcomm.com>

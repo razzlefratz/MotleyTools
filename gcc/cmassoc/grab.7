@@ -1,0 +1,48 @@
+.TH grab 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+grab - byte grabber
+.SH SYNOPSIS
+.BR grab
+.RI [ options ]
+.RI [ file ]
+.RI [< stdin ]
+.RI [> stdout ]
+.SH DESCRIPTION
+Extract a range of bytes from a file.
+.SH OPTIONS
+.TP
+-\fBl\fR \fIlength\fR
+The number of consective bytes to read. The \fIlength\fR may be expressed in decimal, hexadecimal or binary. Decimal is the default. Hexadecimal values start with \fB0x\fR. Binary values start with \fB0b\fR. If \fBoffset\fR plus \fIlength\fR exceeds the file size then an error will occur.
+.TP
+-\fBo\fR \fIoffset\fR
+The \fBfile\fR offset of the first byte read. The offset may be expressed in hexadecimal or binary. Hexadecimal is the default. Binary values start with \fB0b\fR.  If \fBoffset\fR plus \fIlength\fR exceeds the file size then an error will occur.
+.TP
+.BR -q
+Enable quiet mode which has not effect.
+.TP
+.RB - s
+Display the output as a text string instead of a hexadecimal character stream. If the selected data contains control characters then output may be unreadable or cause unwanted console behavior.
+.TP
+.RB - v
+Enable verbose mode which has no effect.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over other options on the command line. 
+.TP
+.RB - ? ,-- version
+Print program version information on stdout. This option takes precedence over other options on the command line. 
+.SH ARGUMENTS
+.TP
+.IR file
+A filename. No assumptions are made based on filename and no filename conventions are enforced. More than one filename may appear on the command line. If no filename appears then input is read from stdin.
+.SH EXAMPLES
+None.
+.SH SEE ALSO
+.BR block ( 7 ),
+.BR odd ( 7 ),
+.BR odc ( 7 ),
+.BR ode ( 7 ),
+.BR offset ( 7 ),
+.BR xde ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>

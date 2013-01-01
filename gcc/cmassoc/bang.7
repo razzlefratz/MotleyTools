@@ -1,0 +1,43 @@
+.TH bang 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+bang - insert bang path preamble
+.SH SYNOPSIS
+.BR bang
+.RI [ options ]
+.IR file
+.RI [ file ] 
+[...]
+.PP
+.BR bang
+.RI [ options ]
+.RI [< stdin ] 
+.RI [> stdout ]
+.SH DESCRIPTION
+Insert a custom bang path and preamble in script files.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+-\fBe \fIvariable\fR
+Replace the path portion of the filename identification string with the definition of a named environment variable. This provide some degree of portability between hosts where the actual path may vary.
+.TP
+-\fBp \fIpath\fR
+Replace the path portion of the filename identification string with the specified path.
+.TP
+.RB - x
+Make files executable by owner, group and world. File permissions becom \fB0755\fR for each file processed.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of a shell script file. This file is replaced and a numbered backup is created. Use program \fBrex\fR to recover a prior version.
+.SH EXAMPLES
+None.
+.SH SEE ALSO
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

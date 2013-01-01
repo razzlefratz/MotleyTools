@@ -1,0 +1,37 @@
+.TH what 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+what - tabulate active processes
+.SH SYNOPSIS
+.BR what 
+.RI [ options ]
+.RI [> file ]
+.SH DESCRIPTION
+Print a alphabetical, multi-column list of running processes on stdout. Duplicate processes appear once.
+.PP
+This program needs a mounted proc filesystem to function properly.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+-\fBc\fI count\fR
+The column count. Process names are displayed in columns. The program automatically detects console screen width and computes the optimum column count but this option over-rides that value. 
+.TP
+.BR - n
+Number each list item.
+.TP
+-\fBw\fI width\fR
+The screen width in columns. The program automatically detects console screen width and cmomputes the optimum presentation but this option over-rides that value.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+None
+.SH EXAMPLES
+None.
+.SH SEE ALSO
+.BR whom ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

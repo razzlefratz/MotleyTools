@@ -1,0 +1,43 @@
+.TH cmerge 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+cmerge - include C language source files
+.SH SYNOPSIS
+.BR cmerge
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.RI [> file ]
+.SH DESCRIPTION
+Convert modular C language source files to monolithic ones by recursively replacing local include statements with the custom source or header files that they reference. The monolithic output file then contains all custom source code needed to compile the program.
+.PP
+Local include filenames are enclosed in quotes. System include filenames are enclosed in angle brackets. System include files are not merged because they are generally available on other systems.
+.PP
+This program is simlar to \fBcinc\fR but the internal implementation and program output are different. This program annotates the output with additional comment statements.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of C language source file. This file is not modified.
+.SH EXAMPLES
+The following reads C language source file \fBabc.c\fR and outputs monolithic file \fBabc1.c\fR that includes all the C language source and header files referenced by include statements.
+.PP
+   # cmerge abc.c > abc1.c
+.SH SEE ALSO
+.BR call ( 7 ),
+.BR cblock ( 7 ),
+.BR cbrief ( 7 ),
+.BR cdep ( 7 ),
+.BR cinc ( 7 ),
+.BR cmerge ( 7 ),
+.BR ctar ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

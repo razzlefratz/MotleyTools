@@ -1,0 +1,428 @@
+.TH RECYCLE 8 "03 August 2005" "" "CMLinux User's Manual"
+.UC 4
+.SH NAME
+recycle \- rename, compress, mail, remove and restart system logs
+.SH SYNOPSIs
+\fBrecycle\fR [-dvf] [-s \fIstate-file\fR] [\fIconfig-file\fR]+
+.SH DESCRIPTION
+\fBrecycle\fR automates the administration of system log files on systems that generate them
+in large numbers. It can schedule the restarting, renaming, compression, mailing  and removal of 
+individual files and groups of files at daily, weekly, monthly or other intervals or when 
+files exceed a given size. By default, \fBrecycle\fR reads rules and criteria from 
+configuration file \fB/etc/recycle.conf\fR and acts on them when it runs. Users may specify 
+one or more alternative configuration files on the command line and each configuraton file may 
+include other configuration files.
+.P
+After each execution, \fBrecycle\fR updates the state file \fB/var/state/recycle\fR 
+with the date and time of the last rotation for each file mentioned in any
+configuration file read at any time, either past or present. 
+State file records have a structure that simplifies searching and sorting
+with tools like \fBsort\fR, \fBawk\fR or \fBgrep\fR. 
+.P
+\fBrecycle\fR is normally scheduled as a daily cron job but can be scheduled more 
+often or may be run manually at any time. It will not perform time-based rotations more than 
+once each day but will execute size-based rules when needed, regardless of execution 
+date or frequency. The \fBforce\fR option can be used to rotate all referenced files now. 
+.P
+When no configuration file is specified on the command line then the default 
+configuration file, \fB/etc/recycle.conf\fR, is read if present. When one or more 
+configuration files are specified on the command line then each one is read in  
+turn (as they appear) instead of the default configuration file. Of course, the
+default configuration file can be specified on the command line like any other configuration file.
+.P 
+Some rotation rules stored in configuration files take immediate effect when read and 
+remain in effect unless changed. This means that later rules may replace earlier 
+ones of the same type and so order is significant.
+Configuration files can include other configurations so system administrators 
+often create one configuration file, usually \fB/etc/recycle.conf\fR that includes 
+the others that are needed. 
+.P
+Configuration files may be included explicity, by name, or implicitly, by location. 
+If a directory is included, instead of a regular file, then \fBrecycle\fR will 
+read each file in that directory as a configuration file. 
+See the \fBinclude\fR option below for more information. 
+.P
+If no command line arguments are given, \fBrecycle\fR will print
+version and copyright information, along with a short usage summary.  If
+any errors occur while rotating logs, \fBrecycle\fR will exit with
+non-zero status.
+.SH OPTIONS
+.TP
+\fB-c\fR
+Runs \fBrecycle\fR in the check mode which prints verbose messages but does
+not rotate files or update the state file. This mode is useful for
+checking configuration file syntax, identifying missing files, seeing 
+when logs will be rotated next or why they are (or are not) being 
+rotated now.
+
+.TP
+\fB-f\fR
+Tells \fBrecycle\fR to force the rotation, even if it doesn't think
+this is necessary.  Sometimes this is useful after adding new entries to
+\fBrecycle\fR, or if old log files have been removed by hand, as the
+new files will be created, and logging will continue correctly.
+
+.TP
+\fB-s <statefile>\fR
+Tells \fBrecycle\fR to use an alternate state file.  This is useful
+if recycle is being run as a different user for various sets of
+log files.  The default state file is \fB/var/lib/recycle.status\fR.
+
+.TP
+\fB-\-usage\fR
+Prints a short usage message.
+
+.SH CONFIGURATION FILE
+
+\fBrecycle\fR behavior is controlled by configuration files. At least
+one configuration file must be specified on the command line.
+
+Each configuration file has a global section followed by one or more
+local sections. The global section defines default options and values 
+that are used if subsequent local sections omit them. Local sections
+define options and values that apply to one or more named log files. 
+A sample configuration file appears below. 
+
+.nf
+.ta +3i
+# sample recycle configuration file
+compress
+
+/var/log/messages {
+    rotate 5
+    weekly tuesday
+    postrotate
+	/sbin/killall -HUP syslogd
+    endscript
+}
+
+"/var/log/httpd/access.log" /var/log/httpd/error.log {
+    rotate 5
+    mail www@my.org
+    size=100k
+    sharedscripts
+    postrotate
+	/sbin/killall -HUP httpd
+    endscript
+}
+
+/var/log/news/* { monthly; rotate 2; missingok; postrotate
+kill -HUP `cat /var/run/inn.pid
+endscript; nocompress }
+.fi
+
+.pp
+Earlier versions of \fBrecycle\fR only recognized newline as an option
+terminator. This meant that only one option could appear on each line and 
+so each option had to appear on a separate line. Also a left brace ('{') 
+could not appear on a separate line but a right brace ('}') had to appear 
+on a separate line. These rules were too restrictive. 
+
+The latest version still permits that convention but also recognizes left 
+brace ('{'), semicolon (';') and right brace ('}') as option terminators. 
+This permits multiple options per line when seperated by these delimiters; 
+however, arguments must still appear on the same line as their option. 
+
+The first few lines set global options; in the example, logs are
+compressed after they are rotated.  Note that comments may appear
+anywhere in the config file as long as the first non-whitespace
+character on the line is a #.
+
+The next section of the config files defined how to handle the log file
+\fI/var/log/messages\fR. The log will go through five weekly rotations before
+being removed. After the log file has been rotated (but before the old
+version of the log has been compressed), the command 
+\fI/sbin/killall -HUP syslogd\fR will be executed.
+
+The next section defines the parameters for both
+\fI/var/log/httpd/access.log\fRand \fI/var/log/httpd/error.log\fR.
+They are rotated whenever is grows over 100k is size, and the old logs
+files are mailed (uncompressed) to www@my.org after going through 5
+rotations, rather then being removed. The \fBsharedscripts\fR means that
+the \fBpostrotate\fR script will only be run once, not once for each
+log which is rotated. Note that the double quotes around the first filename
+at the beginning of this section allows recycle to rotate logs with
+spaces in the name. Normal shell quoting rules apply, with ', ", and \\
+characters supported.
+
+The last section definest the parameters for all of the files in
+\fI/var/log/news\fR. Each file is rotated on a monthly basis.  This is
+considered a single rotation directive and if errors occur for more then
+one file, the log files are not compressed.
+
+Here is more information on the directives which may be included in
+a \fBrecycle\fR configuration file:
+
+.TP
+\fBcompress\fR [;]
+Old versions of log files are compressed with \fBgzip\fR by default. See also
+\fBnocompress\fR. 
+
+.TP
+\fBcompresscmd\fR [;]
+Specifies which command to use to compress log files.  The default is
+\fBgzip\fR.  See also \fBcompress\fR.
+
+.TP
+\fBuncompresscmd\fR [;]
+Specifies which command to use to uncompress log files.  The default is
+\fBgunzip\fR.
+
+.TP
+\fBcompressext\fR [;]
+Specifies which extension to use on compressed logfiles, if compression
+is enabled.  The default follows that of the configured compression
+command.
+
+.TP
+\fBcompressoptions\fR [;]
+Command line options may be passed to the compression program, if one is
+in use.  The default, for \fBgzip\fR, is "-9" (maximum compression).
+
+.TP
+\fBcopytruncate\fR [;]
+Truncate the original log file in place after creating a copy,
+instead of moving the old log file and optionally creating a new one,
+It can be used when some program can not be told to close its logfile
+and thus might continue writing (appending) to the previous log file forever.
+Note that there is a very small time slice between copying the file and
+truncating it, so some logging data might be lost.
+When this option is used, the \fBcreate\fR option will have no effect,
+as the old log file stays in place.
+
+.TP
+\fBcreate\fR [\fImode\fR] [\fIowner\fR][:\fIgroup\fR] [;]
+Immediately after rotation (before the \fBpostrotate\fR script is run)
+the log file is created (with the same name as the log file just rotated).
+\fImode\fR specifies the mode for the log file in octal (the same
+as \fBchmod(2)\fR), \fIowner\fR specifies the user name who will own the
+log file, and \fIgroup\fR specifies the group the log file will belong
+to. Any of the log file attributes may be omitted, in which case those
+attributes for the new file will use the same values as the original log
+file for the omitted attributes. This option can be disabled using the
+\fBnocreate\fR option.
+
+.TP
+\fBdaily\fR [\fIperiod date\fR] [;]
+Log files are rotated every day unless a period and a reference date are 
+specified. In that case, they are rotated at regular daily intervals 
+relative to that date. The reference date may be past or future. 
+
+The period is specified as an integer from 1 to 365. The start date
+is specified using integer YYYY-MM-DD format. Neither or both must be
+specified. For example, "daily 28 2005-02-05;" means every 28 days 
+relative to 5 Feb 2005. 
+
+If, for any reason, one or more daily rotations are missed then files 
+are rotated immediately but rotation will resume on the normal cycle.
+
+.TP
+\fBdelaycompress\fR [;]
+This option takes effect when used with \fBcompress\fR by postponing
+file compression until the next rotation cycle.
+It allows slower programs to continue writing to the old file and lets 
+applications view the old file without having to uncompress it.
+
+.TP
+\fBextension \fIext\fR [;]
+Log files are given the final extension \fIext\fR after rotation. If 
+compression is used, the compression extension (normally \fB.gz\fR)
+appears after \fIext\fR.
+
+.TP
+\fBifempty\fR [;]
+Rotate the log file even if it is empty, overiding the \fBnotifempty\fR
+option (ifempty is the default).
+
+.TP
+\fBinclude \fIfile_or_directory\fR [;]
+Reads the file given as an argument as if it was included inline where
+the \fBinclude\fR directive appears. If a directory is given, most of the
+files in that directory are read before processing of the including file
+continues. The only files which are ignored are files which are not regular
+files (such as directories and named pipes) and files whose names end
+with one of the taboo extensions, as specified by the \fBtabooext\fR
+directive.  The \fBinclude\fR directive may not appear inside of a log
+file definition.
+
+.TP
+\fBkeep \fIcount\fR [;]
+Keep the last <count> versions available before removing them or mailing 
+them to the address specified by the \fBmail\fR option. If \fIcount\fR is 0 
+then old versions are removed or mailed instead of being kept. This option 
+replaces the deprecated \fBrotate\fR option.
+
+.TP
+\fBmail \fIaddress\fR [;]
+The email address of the recipient. The recipient will receive whatever 
+files are mailed when the \fBmailfirst\fR or \fBmaillast\fR option is specified; 
+otherwise, the address is ignored. Including this option in the header
+will address all mail to the recipient unless another recipient is explcilty named in 
+a ruleset. Specifying an empty address, with "", supresses mail as does
+the \fBnomail\fR option. The default address is the empty address and specifying
+\fBnomail\fR is the preferred means of suppressing mail.
+
+.TP
+\fBmailfirst\fR [;]
+When using the \fBmail\fR command, mail the just-rotated file,
+instead of the about-to-expire file.
+
+.TP
+\fBmaillast\fR [;]
+When using the \fBmail\fR command, mail the about-to-expire file,
+instead of the just-rotated file (this is the default).
+
+.TP
+\fBmissingok\fR [;]
+This option is deprecated but still functions. Use the \fBoptional\fR option
+to prevent unecessary syntax error messages. 
+
+.TP
+\fBmonthly\fR \fI[day]\fR [;]
+Files are rotated each month (on the last day) unless a day of the month
+is specified an integer from 1 to 31. The day will adjust to accomodate 
+shorter months. If, for any reason, one or more monthly rotations are 
+missed then files are rotated immediately but rotation will resume 
+on the normal cycle.
+
+.TP
+\fBnocompress\fR [;]
+Old versions of log files are not compressed with \fBgzip\fR. See also
+\fBcompress\fR. 
+
+.TP
+\fBnocopytruncate\fR [;]
+Do not truncate the original log file in place after creating a copy
+(this overrides the \fBcopytruncate\fR option).
+
+.TP
+\fBnocreate\fR [;]
+New log files are not created (this overrides the \fBcreate\fR option).
+
+.TP
+\fBnodelaycompress\fR [;]
+Do not postpone compression of the previous log file to the next rotation cycle
+(this overrides the \fBdelaycompress\fR option).
+
+.TP
+\fBnomail\fR [;]
+don't mail old log files to any address.
+
+.TP
+\fBnomissingok\fR [;]
+This option is deprecated but still functions. Use the \fBrequired\fR option
+to prevent unecessary syntax error messages. 
+
+.TP
+\fBnoolddir\fR [;]
+Logs are rotated in the same directory the log normally resides in (this 
+overrides the \fBolddir\fR option).
+
+.TP
+\fBnosharedscripts\fR [;]
+Run \fBprerotate\fR and \fBpostrotate\fR scripts for every script which
+is rotated (this is the default, and overrides the \fBsharedscripts\fR
+option).
+
+.TP
+\fBnotifempty\fR [;]
+Do not rotate the log if it is empty (this overrides the \fBifempty\fR option).
+
+.TP
+\fBolddir \fIdirectory\fR [;]
+Logs are moved into \fIdirectory\fR for rotation. The \fIdirectory\fR must
+be on the same physical device as the log file being rotated. When this
+option is used all old versions of the log end up in \fIdirectory\fR.  This
+option may be overriden by the \fBnoolddir\fR option.
+
+.TP
+\fBoptional\fR [;]
+Do not issue a warning message it the log file is missing. Use the 
+\fBrequired\fR option to force warning messages. This option replaces the 
+deprecated \fBmissingok\fR option.
+
+.TP
+\fBpostrotate\fR [;] ... \fBendscript\fR [;]
+The lines between \fIpostrotate\fR and \fIendscript\fR (both of which
+must appear on lines by themselves) are executed after the log file is
+rotated. These directives may only appear inside of a log file definition.
+See \fBprerotate\fR as well.
+
+.TP
+\fBprerotate\fR [;] ... \fBendscript\fR [;]
+The lines between \fBprerotate\fR and \fBendscript\fR (both of which
+must appear on lines by themselves) are executed before the log file is
+rotated. These directives may only appear inside of a log file definition.
+See \fBpostrotate\fR as well.
+
+.TP
+\fBrequired\fR [;]
+Issue a warning message if the log file is missing. Use the \fBoptional\fR
+option to suppress the warning message. This is the default.
+
+.TP
+\fBrotate \fIcount\fR [;]
+This option is deprecated but still functions. Use \fBkeep\fR instead to
+avoid warning messages.
+
+.TP
+\fBsize \fIsize\fR [;]
+Log files are rotated when they grow bigger then \fIsize\fR bytes. If
+\fIsize\fR is followed by \fIM\fR, the size if assumed to be in megabytes.
+If the \fIk\fR is used, the size is in kilobytes. So \fBsize 100\fR,
+\fIsize 100k\fR, and \fIsize 100M\fR are all valid. 
+
+.TP
+\fBsharedscripts\fR [;]
+Normally, \fBprescript\fR and \fBpostscript\fR scripts are run for each
+log which is rotated, meaning that a single script may be run multiple
+times for log file entries which match multiple files (such as the 
+/var/log/news/* example). If \fBsharedscript\fR is specified, the scripts
+are only run once, no matter how many logs match the wildcarded pattern.
+A side effect of this option is that the scripts are always executed, even
+if no logs are rotated (if it is not specified, the scripts are run only
+if logs are actually rotated) (this overrides the \fbnosharedscripts\fR
+option).
+
+.TP
+\fBtabooext\fR [+] \fIlist\fR [;]
+The current taboo extension list is changed (see the \fBinclude\fR directive
+for information on the taboo extensions). If a + precedes the list of
+extensions, the current taboo extension list is augmented, otherwise it
+is replaced. At startup, the taboo extension list 
+contains .rpmorig, .rpmsave, ,v, .swp, .rpmnew, and ~.
+
+.TP
+\fBweekly\fR \fI[sunday|monday|tuesday|thursday|friday|saturday]\fR [;]
+Files are rotated every week (on sunday) unless a weekday is specified.
+
+Weekdays may be specified by three-letter abbeviation or full name, all
+in lower case. For example, "daily thu;" or "daily thursday;" means
+just that.
+
+If, for any reason, one or more weekly rotations are missed then files  
+are rotated immediately but rotation should resume on the normal cycle. 
+
+.SH FILES
+.PD 0
+.TP 27
+\fI/var/state/recycle.status\fR
+Default state file. The latest FHS moves this file from /var/lib to /var/state.
+.TP 27
+\fI/etc/recycle.conf\fR
+Configuration options.
+
+.SH SEE ALSO
+.IR gzip (1), logrotate (8)
+
+.SH CREDITS
+\fBrecycle\fR is a total re-write of the popular \fBlogrotate\fR program 
+written and maintained by Erik Troan <ewt@redhat.com> and Preston Brown <pbrown@redhat.com> 
+at Red Hat Inc. That program contained (or alluded to) some great ideas 
+that have now been implemented.
+
+.SH AUTHORS
+.nf
+Charles Maier <cmaier@cmassoc.net>
+.fi
+

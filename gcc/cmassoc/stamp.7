@@ -1,0 +1,30 @@
+.TH stamp 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+stamp - echo a system time stamp
+.SH SYNOPSIS
+.BR stamp 
+.SH DESCRIPTION
+Echo the system time as an alphanumeric label. Use this program to generate  distinct, chronological filenames for archive files and so forth. 
+.SH OPTIONS
+None.
+.SH ARGUMENTS
+None.
+.SH EXAMPLES
+The following example prints a system time stamp. The command line prompt appears at the end because program output is not terminated with a newline.
+.PP
+   # stamp
+   00K0KRI6#
+.PP
+Use the \fBecho\fR utility to append a newline to the output.
+.PP
+   # echo $(stamp)
+   00K0KRIX
+   #
+.PP
+The rext example creates a tarball having a distict name based on the system time. Such files have compact filenames that can be sorted chronologically and weeded out based on substrings.
+.PP
+   # tar -vxcf backup-$(stamp).tar.gz  ...
+.SH SEE ALSO
+.BR timer ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>

@@ -1,0 +1,40 @@
+.TH sizeof 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+sizeof - host variable information
+.SH SYNOPSIS
+.BR sizeof  
+.SH DESCRIPTION
+Print information about host variable types and sizes on stdout.
+.SH OPTIONS
+None.
+.SH ARGUMENTS
+None.
+.SH EXAMPLES
+The following command displays information about host variable types on stdout.
+.PP
+   # sizeof
+   true          is 1
+   false         is 0
+   order         is 67452301
+   
+   double        is  8 octets
+   long long     is  8 octets
+   float         is  4 octets
+   long          is  4 octets
+   int           is  4 octets
+   short         is  2 octets
+   char          is  1 octets
+   
+   (double *)    is  4 octets
+   (long long *) is  4 octets
+   (float *)     is  4 octets
+   (long *)      is  4 octets
+   (int *)       is  4 octets
+   (short *)     is  4 octets
+   (char *)      is  4 octets
+.SH SEE ALSO
+.BR argv ( 7 ),
+.BR argvesc ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

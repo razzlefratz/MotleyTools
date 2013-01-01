@@ -1,0 +1,48 @@
+.TH enfix 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+enfix - prepend and/or append text to each line of a text file
+.SH SYNOPSIS
+.BR enfix
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.PP
+.BR enfix
+.RI [ options ]
+.RI [< file ]
+.RI [> file ]
+.SH DESCRIPTION
+.PP
+Prepend and/or append text to each line of a text file. Either the prefix text or suffix text or both may be omitted but omitting both is pointless.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+-\fBp\fI prefix\fR
+The prefix string. Prepend this string to every line of the file. Escape sequences are permitted.
+.TP
+-\fBs\fI suffix\fR
+The suffix string. Append this string to every line of the file. Escape sequences are permitted.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of an assembly language source file. This file is replaced and a numbered backup is created. Use program \fBrex\fR to recover a prior version.
+.SH EXAMPLES
+The following example prepends prefix "\fBabc\fR" and appends suffix "\fBdef\fR" to each line in file \fBabc.txt\fR.
+.PP
+   # enfix abc.txt -p abc -s def
+.SH SEE ALSO
+.BR crlf ( 7 ),
+.BR lam ( 7 ),
+.BR preamble ( 7 ),
+.BR rex ( 7 ),
+.BR trim ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

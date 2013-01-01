@@ -1,0 +1,47 @@
+.TH np 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+np - new paragraph
+.SH SYNOPSIS
+.BR np
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.PP
+.BR np
+.RI [ options ]
+.RI [< file ]
+.RI [> file ]
+.SH DESCRIPTION
+.PP
+Replace all lines starting with a given prefix.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+-\fBp\fI prefix\fR
+The prefix. Replace lines starting with this string. Escape characters are permitted.
+.TP
+-\fBs\fI string\fR
+The string. Replace lines with this string. Escape characters are permitted.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of a text file. This file is replaced and a numbered backup is created. Use program \fBdetype\fR to recover a prior version.
+.SH EXAMPLES
+The following example replaces lines starting with "\fBThe cost of oparations\fR" with "\fBThe overall cost of operations cannot be determined at this time.\fB".
+.PP
+   # np -p "The cost of operations" -s "The overall cost of operations cannot be determined at this time
+.SH SEE ALSO
+.BR change ( 7 ),
+.BR detype ( 7 ),
+.BR enfix ( 7 ),
+.BR search ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

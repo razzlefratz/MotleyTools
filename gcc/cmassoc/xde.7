@@ -1,0 +1,126 @@
+.TH xde 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+xde - XML Driven Editor              
+.SH SYNOPSIS
+.BR xde 
+.RI [ options ] 
+.IR datafile 
+.IR xmlfile 
+.RI [ xmlfile ] 
+[...]
+.SH DESCRIPTION
+Modify a data file based on XML instructions defined in one or more instruction files. Instruction files must be valid XML and conform to schema file \fBdata.xsd\fR or errors will occur. Always validate XML files against this schema with a validating parser before submitting them to this program. Firefox or Internet Explorer are suitable for validation purposes purpose.
+.SH OPTIONS
+.TP
+.RB - q
+Suppresses printing of progress messages. This option has no effect at this time.
+.TP
+.RB - v
+Print additional information. This option has no effect at this time.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over other options on the command line. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over other options on the command line. 
+.SH ARGUMENTS
+.TP
+.IR datafile
+The name of a data file. Only one data file can be edited at a time and so care must be taken to avoid the use of wildcard filenames. This program makes no assumption based on filename and does not enforce any filename conventions.
+.TP
+.IR xmlfile
+The name of an XML instruction file. XML instruction files must conform to the scheme designed for this purpose. When more that one \fB.xml\fR file is specified on the command line, edits are applied in order such that later edistover-write eariler edits. Instruction files usually have a \fB.xml\fR extension but this program makes no assumption based on filename and does not enforce any filename conventions.
+.SH SCHEMA
+The following XML schema defines instruction file structure. Instruction files should be validated against this schema before using them to edit a data file. An explanation of this file appears below.
+.PP
+   <?xml version="1.0" encoding="UTF-8"?>
+   <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+           <xs:element name="object">
+                   <xs:complexType>
+                           <xs:sequence>
+                                   <xs:element maxOccurs="unbounded" ref="region"/>
+                                   </xs:sequence>
+                           </xs:complexType>
+                   </xs:element>
+           <xs:element name="region">
+                   <xs:complexType>
+                           <xs:sequence>
+                                   <xs:choice maxOccurs="unbounded">
+                                           <xs:element ref="offset"/>
+                                           <xs:element ref="length"/>
+                                           </xs:choice>
+                                   <xs:choice>
+                                           <xs:element ref="byte"/>
+                                           <xs:element ref="list"/>
+                                           <xs:element ref="text"/>
+                                           </xs:choice>
+                                   </xs:sequence>
+                           <xs:attribute name="name" use="optional" type="xs:NCName"/>
+                           </xs:complexType>
+                   </xs:element>
+           <xs:element name="length" type="xs:positiveInteger"/>
+           <xs:element name="offset" type="xs:hexBinary"/>
+           <xs:element name="list">
+                   <xs:complexType>
+                           <xs:choice maxOccurs="unbounded">
+                                   <xs:element ref="byte"/>
+                                   <xs:element ref="data"/>
+                                   </xs:choice>
+                           </xs:complexType>
+                   </xs:element>
+           <xs:element name="text" type="xs:string"/>
+           <xs:element name="data" type="xs:hexBinary"/>
+           <xs:element name="byte" type="xs:unsignedByte"/>
+           </xs:schema>
+.SH ELEMENTS
+.TP
+.RB < object >
+The name of the data object.There is exactly one data object in an instruction file.
+.TP
+.RB < region >
+A named region withn the \fBobject\fR. There must be at least one \fBregion\fR defined inside a data \fBobject\fR. Each \fBregion\fR has an \fBoffset\fR and \fBlength\fR and some type of data definition. THe data may defined using a \fBtext\fR, \fBbyte\fR, \fBlist\fR or \fBdata\fR element as described below. The name attribute is optional but may be used for clarity or for error reporting purposes. 
+.TP
+.RB < offset >
+The relative position of the \fRregion\fB within the \fBobject\fR in bytes expressed in hexadecimal. The \fBoffset\fR plus the \fBlength\fR of a \fBregion\fR cannot exceed the \fBobject\fR length or an error will occur. The \fBoffset\fR and \fBlength\fR element can appear in either order but both must appear before the region data element.
+.TP
+.RB < length >
+The extent of the \fBregion\fR in bytes expressed in decimal. The \fBoffset\fR plus the \fBlength\fR of a \fBregion\fR cannot exceed the \fBobject\fR length. The \fBoffset\fR and \fBlength\fR element can occur in either order but both must appear before region the data element.
+.TP
+.RB < list >
+A sequence of \fBbyte\fR and/or \fBdata\fR elements. A \fBtext\fR element is illegal inside a \fBlist\fR element. The total length of all \fBlist\fR item must equal the region \fBlength\fR or an error will occur.  
+.TP
+.RB < text >
+A sequence of printable characters. It will occupy the exact number of bytes specified by the region \fBlength\fR plus one NUL byte. The value is truncated or padded with NUL bytes, as necessary, to match the region \fBlength\fR. A length of 0 will result in one NUL byte being written. A \fBtext\fR element is illegal within an \fBlist\fR element.
+.TP
+.RB < byte >
+An 8-bit value expressed in decimal. It can have any number of leading 0's but the value cannot exceed 255 or an error will occur. 
+.TP
+.RB < data >
+A hexadecimal digit string that represents one byte for each digit pair (octet) present. There must be an even number of hexadecimal digits or an error will occur. The resulting length must equal the region \fBlength\fR unless the value appears inside a \fBlist\fR. Inside an \fBlist\fR, the resulting length must not exceed the remaining \fBlist\fR length. 
+.SH INSTRUCTIONS
+An example instruction file follows. It references the data schema shown above so that a validating parser can find the schema and perform checks. The remainder of the file describes a series of region names, offsets, lengths and values that describe the edits to be performed.
+.PP
+(No Example)
+.SH EXAMPLES
+The following example reads data file \fBabc.bin\fR and edits it according to instructions found in XML file \fBlocal.xml\fR. The data file is specified first, followed by one or more XML instruction files.
+.PP
+        # xde abc.bin local.xml
+.PP
+The following example reads data file \fBabc.bin\fR and edits it according to three XML instruction files, in the order specified. Order can be critical since later edits could over-write earlier edits. 
+.PP
+        # xde abc.bin standard.xml custom.xml errata.xml
+.PP
+THe following example does nothing because no instruction files are specified.
+.PP
+        # xde abc.bin
+.PP
+.SH SEE ALSO
+.BR block ( 7 ),
+.BR grab ( 7 ),
+.BR odc ( 7 ),
+.BR odd ( 7 ),
+.BR ode ( 7 ),
+.BR offset ( 7 ),
+.BR xml ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.com>

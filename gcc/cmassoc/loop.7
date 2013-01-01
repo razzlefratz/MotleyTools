@@ -1,0 +1,41 @@
+.TH loop 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+loop - repeat shell command sequence with pause;
+.SH SYNOPSIS
+.BR loop
+.RI [ options ]
+.IR command
+.RI [ command ] 
+.RI [ ... ]
+.RI [> stdout ]
+.SH DESCRIPTION
+Execute each command line argument as an independent shell command then pause before repeating the sequence. Any program output is produced by the individual commands. 
+None.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+.RB - e
+Direct stderr to stdout. By default stdout and stderr are independent streams. This option combines them on stdout.
+.TP
+-\fBl\fI count\fR
+The iteration count. The default count is \fB1\fR.
+.TP
+-\fBw\fI seconds\fR
+The wait period in seconds. The pause occurs one all commands are executed for an iteration, except the last iteration. The default pause is \fB1\fR second.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR command
+A shell command to be executed. Multiple command are permitted. Commands containing whitespace must be enclosed in quotes and special characters should be escaped. Use program \vBargv\fR to inspec command line arguments when in doubt. There is no default command. 
+.SH EXAMPLES
+None.
+.SH SEE ALSO
+.BR try ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

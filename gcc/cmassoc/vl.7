@@ -1,0 +1,49 @@
+.TH vl 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+vl - convert lines to fixed or variable length
+.SH SYNOPSIS
+.BR vl
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.RI [> file ]
+.PP
+.BR vl
+.RI [ options ]
+.RI [< file ]
+.RI [> file ]
+.SH DESCRIPTION
+Convert text files to variable length or fixed length line format.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+.RB - c
+Count truncated lines.
+.TP
+.RB - p
+Pad short lines to \fBlength\fR with spaces. This option effectively forces all lines are the same length.
+.TP
+-\fBl\fI length\fR
+The line length. Short lines are padded to \fBlength\fR with spaces when option \fB-p\fR is present. Long lines are truncated to \fBlength\fR unless option \fB-w\fR is present.
+.TP
+.RB - w
+Wrap long lines at length. This option prevents text from being discarded when lines exceed \fBlength\fR.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of a text file. This file is replaced and a numbered backup is created. Use program \fBrex\fR to recover a prior version.
+.SH EXAMPLES
+None.
+.SH SEE ALSO
+.BR paginate ( 7 ),
+.BR trim ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

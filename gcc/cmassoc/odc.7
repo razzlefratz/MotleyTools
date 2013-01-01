@@ -1,0 +1,42 @@
+.TH odc 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+odc - object driven compare
+.SH SYNOPSIS
+.BR odc 
+.RI [ options ]
+.IR file
+.IR file
+.RI [> file ]
+.PP
+.BR odc
+.RI [ options ]
+.RI [< definitions ] 
+.IR file
+.SH DESCRIPTION
+Compare two binary files, object by object, and print the objects that differ on stdout for analysis. This program requires a corresponding object definition file that contains the size and name of file objects.
+.SH OPTIONS
+.TP
+-\fBf\fI definitions\fR
+The name of the object definition file. This files defines the size, name and description of objects within a binary file. If this option is omitted then object definitions are read from stdin. This file is not modified.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over other options on the command line. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over other options on the command line. 
+.SH ARGUMENTS
+.TP
+.IR file
+The name of a binary file. Two binary files are required for comparison. Each file should conform to the object definition file or the output will be incorrect. 
+.SH EXAMPLES
+None.
+.SH SEE ALSO
+.BR block ( 7 ),
+.BR grab ( 7 ),
+.BR odd ( 7 ),
+.BR ode ( 7 ),
+.BR offset ( 7 ),
+.BR xde ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+ Nathan Houghton <nathan@brainwerk.org>

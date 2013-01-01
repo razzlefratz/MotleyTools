@@ -1,0 +1,12 @@
+biz
+com
+coop
+edu
+info
+mil
+museum
+name
+net
+org
+pro
+firm

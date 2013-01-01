@@ -1,0 +1,50 @@
+.TH srt 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+srt - sort files
+.SH SYNOPSIS
+.BR srt
+.RI [ options ]
+.IR file
+.RI [ file ]
+.RI [ ... ]
+.PP
+.BR mrg
+.RI [ options ]
+.RI [< stdin ]
+.RI [> stdout]
+.SH DESCRIPTION
+Sort one or more files.
+.SH OPTIONS
+All options are single letters. Long options are not supported.
+.TP
+-/fBb \fIblocksize\fR
+The sort blocksize. This is the maximum number of lines that will be read and sorted at one time. If an input file contains more than \fBblocksize\fR lines, sorting will continue in blocks until the input file is exhausted and the program will report the number of lines read and sort blocks used.
+.TP
+.RB -d
+Output lines in descending order. The default order is ascending.
+.TP
+.RB - r
+Maximum line length in bytes. The minimum is 1 and maximum is UINT_MAX as defined in \fBlimits.h\fR. The default is \fB1024\fR.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over other command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over other command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of a text file. This file is replaced and a numbered backup is created. Use program \fBrex\fR to recover a prior version.
+.SH EXAMPLES 
+The following example sorts files \vBabc.txt\fR, \fBdef.txt\fR and \fBghi.txt\fR.
+.PP
+   # srt abc.txt def.txt ghi.txt
+.PP
+The next example does the same thing but duplicate input lines are reduced to one output line.
+.PP
+   # srt abc.txt def.txt ghi.txt
+.SH SEE ALSO
+.BR mrg ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

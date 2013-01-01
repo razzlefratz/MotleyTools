@@ -1,0 +1,49 @@
+.TH try 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+try - log and execute command sequences
+.SH SYNOPSIS
+.BR try
+.RI [ options ]
+.IR command
+.RI [ command ] 
+.RI [ ... ]
+.SH DESCRIPTION
+None.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+-\fBc\fI comment\fR
+A comment to be printed. The comment appears within a standard script break to offset all commands on this command line. No script break is printed if this option is omitted. There is no default comment.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR command
+A shell command to be executed. Multiple command are permitted. Commands containing whitespace must be enclosed in quotes and special characters should be escaped. Use program \vBargv\fR to inspec command line arguments when in doubt. There is no default command. 
+.SH EXAMPLES
+The following example comments and executes a single \fBecho\fR command. It prints the command in quotes on stdout, preceded by a hash character, and then executes it.
+.PP
+   # try "echo hello world." 
+   # echo hello world.
+   hello world.
+.PP
+The next command executes two different \fBecho\fR commands, one after the other. Option \vB-c\fR defines a title that appears in the script break that precedes the commands on output. This option can be used to clearly seperate a group of commands that appear on one command line.
+.PP
+   # try "echo hello world."  -c "Demonstrate the echo command" "echo goodbye cruel world."
+   # ====================================================================
+   # Demonstrate the echo command
+   # --------------------------------------------------------------------
+   # echo hello world.
+   hello world.
+   # echo goodbye cruel world.
+   goodbye cruel world.
+   
+.SH SEE ALSO
+.BR argv ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

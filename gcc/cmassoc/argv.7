@@ -1,0 +1,41 @@
+.TH argv 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+argv - display argument vector
+.SH SYNOPSIS
+.BR argv 
+.RI [ options ]
+.RI [ ... ]
+.SH DESCRIPTION
+Print the command line argument vector on stdout. This program is intended for programmers who want to see exactly how command line arguments are parsed by their preferred shell. This is important when programs rely on escape sequences that may be intercepted by the shell before the program sees them.
+.SH OPTIONS
+There are no program options. All options entered on the command line are displayed as parsed by the shell and passed to the program.
+.SH ARGUMENTS
+There are no program arguments. All arguments entered on the command line are displayed as parsed by the shell and passed to the program.
+.SH EXAMPLES
+The following command displays the command line arguments. Observe that arguments are not always as entered by the user due to symbol expansion and globbing.
+.PP
+   # argv $PATH "hello\tworld" "hello\\tworld" "hello\\\tworld"
+
+    argv[0] = "argv"
+    argv[1] = "/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin"
+    argv[2] = "hello\tworld"
+    argv[3] = "hello\tworld"
+    argv[4] = "hello\\tworld"
+    argv[5] = NULL
+
+   # argv a*.c
+
+    argv[0] = "argv"
+    argv[1] = "afm.c"
+    argv[2] = "align.c"
+    argv[3] = "argv.c"
+    argv[4] = "argvesc.c"
+    argv[5] = "auth.c"
+    argv[6] = NULL
+
+.SH SEE ALSO
+.BR argvesc ( 7 ),
+.BR sizeof ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

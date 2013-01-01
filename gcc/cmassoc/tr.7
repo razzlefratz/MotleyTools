@@ -1,0 +1,43 @@
+.TH tr 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+tr - translate characters
+.SH SYNOPSIS
+.BR tr
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.PP
+.BR tr
+.RI [ options ]
+.RI [< file ] 
+.RI [> file ]
+.SH DESCRIPTION
+Replace occurances of characters found in one character set with the corresponding characters in another character set.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+-\fBf\fI charset\fR
+The search character set. Characters in this set are replaced by the corresponding character in the replace, if one exists; otherwise, the character is deleted.The default is \fB""\fR meaning no characters are replaced.
+.TP
+-\fBt\fI charset\fR
+The replace character set. Characters in this set replace the corresponding characters in the search character set. The default is \fB""\fR meaning all characters are deleted.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over previous command line options. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over previous command line options.
+.SH ARGUMENTS
+.TP
+.IR file
+The name of a text file. This file is replaced and a numbered backup is created. Use program \fBrex\fR to recover a prior version.
+.SH EXAMPLES
+None.
+.SH FILES
+None. 
+.SH SEE ALSO
+.BR space ( 7 )
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+
