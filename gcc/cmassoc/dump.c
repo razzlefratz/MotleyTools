@@ -2,9 +2,9 @@
  *
  *   dump.cc - file dump program;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -55,9 +55,9 @@
  *   digits within the specified field; left truncate or pad as needed to
  *   satisfy the width specification; use c to pad the field;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -93,9 +93,9 @@ static void fputx (unsigned value, unsigned radix, int width, char c, FILE * ofp
  *   read from stdin and write to stdout; display input file contents as
  *   specified by various combinations of base and flag;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 

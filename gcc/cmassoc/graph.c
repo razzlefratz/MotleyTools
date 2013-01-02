@@ -7,9 +7,9 @@
  *   histogram; input consists of two integers per line seperated by
  *   whitespace; negative values are converted to zero;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -80,9 +80,9 @@ GRAPH;
  *   display datasets x and y as a histogram; level and scale dataset 
  *   y;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -126,9 +126,9 @@ static void display (signed x [], signed y [], signed count, struct graph * grap
  *   arrange datasets x and y in ascending order by x values using
  *   a bridge player sort; return no value;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -163,9 +163,9 @@ static void arrange (signed x [], signed y [], signed count)
  *
  *   read stdin; parse x and y components; arrange and display;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -290,9 +290,9 @@ static void collect (char const * filename, signed limit, struct graph * graph, 
  *   int main (int argc, char const * argv []);
  *
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 

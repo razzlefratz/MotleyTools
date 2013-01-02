@@ -7,9 +7,9 @@
  *   a #define statement for each name; write a switch statement with
  *   a case statement for each list item;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -109,9 +109,9 @@ static signed count = 0;
  *   void function1 (flag_t flags);
  *
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -144,9 +144,9 @@ void function1 (flag_t flags)
  *   void function3 (flag_t flags);
  *
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -181,9 +181,9 @@ void function2 (flag_t flags)
  *   void function3 (flag_t flags);
  *
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -217,9 +217,9 @@ void function3 (flag_t flags)
  *   void function (flag_t flags);
  *
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 

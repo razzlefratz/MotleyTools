@@ -2,9 +2,9 @@
  *
  *   import.c - import files; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -77,9 +77,9 @@ static void testfile (FIND * find, FIND * home, flag_t flags);
  *   display and/or remove a file or link based on criteria in struct 
  *   search, including the pathname, wildcard and flagword;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -127,9 +127,9 @@ static void function (struct _find_ *find, struct _find_ * home, flag_t flags)
  *
  *   void testfile (FIND *find, flag_t flags);
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -190,9 +190,9 @@ static void testfile (FIND * find, FIND * home, flag_t flags)
  *
  *   void findfile (FIND *find, FIND * home, flag_t flags);
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 

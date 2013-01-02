@@ -2,9 +2,9 @@
  *
  *   catalog.c - 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -83,9 +83,9 @@ page;
  *   void pagelink (unsigned level, struct page * page);
  *
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -102,9 +102,9 @@ void pagelink (unsigned level, struct page * page, char const * name)
  *   signed header (signed margin, struct page * page);
  *
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -139,9 +139,9 @@ static signed header (signed margin, struct page * page, char const * stylesheet
  *   signed footer (signed margin, struct page * page);
  *
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -165,9 +165,9 @@ static signed footer (signed margin, struct page * page)
  *
  *   traverse a page list and write an index page on stdout;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -231,9 +231,9 @@ void htmlindex (struct page * page, char const * stylesheet, unsigned group, fla
  *   the original input file enclosed in an html <pre>...</pre> block
  *   with upper and lower navigation links; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -326,9 +326,9 @@ void htmltopic (struct page * page, char const * stylesheet, flag_t flags)
  *   traverse a page list and produce a set of linked html pages plus 
  *   an index;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -366,9 +366,9 @@ void function (struct page * page, char const * stylesheet, unsigned group, flag
  *   int main (int argc, char const * argv []);
  *
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 

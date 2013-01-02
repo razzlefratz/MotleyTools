@@ -4,9 +4,9 @@
  *
  *   this program is similar to	the UNIX grep utility;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -145,9 +145,9 @@ static void findfile (FIND * find, EDIT * edit, flag_t flags);
  *   if	bit field SEARCH_B_INVERT is set, input	lines that do not match	any
  *   list item are output; otherwise, lines match any list are output;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -217,9 +217,9 @@ static void editfile (FIND * find, EDIT * edit, flag_t flags)
  *
  *   void openfile (FIND * find, EDIT *	edit, flag_t flags);
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -242,9 +242,9 @@ static void openfile (FIND * find, EDIT * edit, flag_t flags)
  *
  *   void testfile (FIND * find, EDIT *	edit, flag_t flags);
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -298,9 +298,9 @@ static void testfile (FIND * find, EDIT * edit, flag_t flags)
  *
  *   void findfile (FIND * find, EDIT *	edit, flag_t flags);
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -339,9 +339,9 @@ static void findfile (FIND * find, EDIT * edit, flag_t flags)
  *   
  *    th use of	".*(s).* here is opposite of that needed by search;
  *
- *.  Motley Tools by Charles Maier
- *;  Licensed under the Internet Software Consortium License
- *:  Published 1982-2005 by Charles Maier for personal use
+ *.  Motley Tools by Charles Maier;
+ *;  Licensed under the Internet Software Consortium License;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *   
  *--------------------------------------------------------------------*/
 

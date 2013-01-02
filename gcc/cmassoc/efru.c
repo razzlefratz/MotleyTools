@@ -2,9 +2,9 @@
  *
  *   efru.c - 802.2 Ethernet Frame Data Capture
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -79,9 +79,9 @@
  *   
  *   int main (int argc, char * argv[]);
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -108,7 +108,7 @@ int main (int argc, char const * argv [])
 		channel.ifname = strdup (getenv (ETHDEVICE));
 	}
 	channel.type = ETH_P_802_2;
-	channel[.]timer = -1;
+	channel.timer = -1;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
@@ -123,7 +123,7 @@ int main (int argc, char const * argv [])
 			_setbits (channel.flags, CHANNEL_SILENCE);
 			break;
 		case 't':
-			channel[.]timer = (unsigned)(uintspec (optarg, 0, UINT_MAX));
+			channel.timer = (unsigned)(uintspec (optarg, 0, UINT_MAX));
 			break;
 		case 'v':
 			_setbits (channel.flags, CHANNEL_VERBOSE);
