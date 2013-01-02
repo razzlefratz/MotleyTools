@@ -1,0 +1,128 @@
+.TH cfm 7 "Nov 2011" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+cfm - format C language source code
+.SH SYNOPSIS
+.BR cfm
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.PP
+.BR cfm
+.RI [ options ]
+.RI [< stdin ]
+.RI [> stdout ]
+.SH DESCRIPTION
+.PP
+Format C Language source code files and expand or update selected comment text.
+.SH OPTIONS
+Long options are not supported. All options are single letters.
+.TP
+.RB - b
+Indent lines using 3 spaces (blanks) instead of one tab.
+.TP
+.RB - c
+Convert C++ comments to C style comments.
+.TP
+.RB - C
+Format comments only. Leave source code unformatted.
+.TP
+-\fBf\fI profile
+The name of the profile to use. The presence of this option may affect option \fB-g\fR. The default profile is \fB/etc/cfm.ini\fR.
+.TP
+-\fBg\fI heading\fR
+The profile heading that defines the expansion text to be used. If this option is omitted or the named heading is absent then default text will be used.
+.TP
+.RB - h
+Insert an include guard before the first processor statement in the file. The include guard name is the source file basename in upper case suffixed by "_HEADER".
+.TP
+.RB - k
+Protect preamble license, publish and/or release comment lines by discarding their distinguishing character. 
+This prevents future line modification by discarding the distinguishing character after updating the line.
+Use option \fB-l\fR, \fB-p\fR and/or \fB-f\fR to specify the type of comment lines to protect.
+.TP
+.RB - l
+Expand preamble licence comment lines starting with "\fB *.\fR" using the license string. 
+If this option is present with option \fB-x\fR then license comment lines are discarded.
+If this option is present with option \fB-k\fR then license comment lines are protected.
+If this option is omitted then preamble license lines are not updated.
+.TP
+.RB - m
+Convert single-line comments to multi-line comments.
+.TP
+.RB - o
+Print a default profile on stdout. This option can be used to create a new profile which can then be modified.
+.TP
+.RB - p
+Expand preamble publish comments lines starting with "\fB *:\fR" using the publish string. 
+If this option is present with option \fB-x\fR then publish comment lines are discarded.
+If this option is present with option \fB-k\fR then publish comment lines are protected.
+If this option is omitted then preamble publish lines are not updated.
+.TP
+.RB - r
+Expand preamble release comments lines starting with "\fB *;\fR" using the release string. 
+If this option is present with option \fB-x\fR then release comment lines are discarded.
+If this option is present with option \fB-k\fR then release comment lines are protected.
+If this option is omitted then release comment lines are not updated.
+.TP
+.RB - s
+Insert an include guard before the first processor statement in the file. The include guard name is the source file basename in upper case suffixed by "_SOURCE".
+.TP
+.RB - S
+Format comments and source code.
+.TP
+.RB - t
+Indent text using one tab instead of 3 spaces.
+.TP
+.RB - q
+Quite mode. This option has no effect at this time.
+.TP
+.RB - v
+Verbose mode. This option has no effect at this time.
+.TP
+-\Fbw\fI width\fR
+The width of comment bars. The default width is 68 columns which exactly matches the width of a vi editor line when numbering is enabled.
+.TP
+.RB - x
+Discard license, publish and/or release comment lines and their distinguishing characters. 
+One blank comment line remains in place of each discarded comment line.
+Use option \fB-l\fR, \fB-p\fR and/or \fB-f\fR to specify the type of comment lines to discard.
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over other options on the command line. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over other options on the command line. Usethis option when sending screen dumps to Intellon Technical Support so that they know exactly which version of the Linux Toolkit you are using.
+.SH ARGUMENTS
+.TP
+.BR file
+The name of a C Language source file. This file is replaced with the formatted output and a numbered backup file is created. Attempts to format syntactically incorrect source files may result in unpredictable output or program errors.
+.SH FILES
+.TP
+/etc/cfm.ini
+The default profile containing named groups of definitions for "package", "release", "license", "include" and "special" strings. The derault profile can be printed using option \fB-o\fR and modified. 
+.SH EXAMPLES
+The following example formats source file \fBabc.c\fR. The backup file \fBabc.c.nnn\fR is automaticallu created in case recovery is required.
+.PP
+   # cfm abc.c
+.PP
+The following example prints the default profile on stdout. The \fBpackage\fR string appears on comment lines starting with period. The \fBrelease\fR string appears on comment lines starting with colon. The \fBlicense\fR string appears on comment lines starting with semicolon. Other strings that may be defined have special application that that shall remain undocumented.
+.PP
+   # cfm -o > /etc/cfm.ini
+   [default]
+   package=Motley Tools by Charles Maier; cmaier@cmassoc.net;
+   release=Published 1982-2005 by Charles Maier for personal use;
+   license=Released under GNU General Public License v2 and later;
+.PP
+The following example creates the default profile, \fB/etc/cfm.ini\fR. You can then edit the file by redefining properties or adding additional sections that can be referenced by name using option \fB-g\fR.
+.PP
+   # cfm -o > /etc/cfm.ini
+.SH SEE ALSO
+.BR afm ( 7 ),
+.BR ctidy ( 7 ),
+.BR csstidy ( 7 ),
+.BR phptidy ( 7 ),
+.BR xmltidy ( 7 )
+.SH AUTHORS
+ Charles Maier <cmaier@cmassoc.net>
+

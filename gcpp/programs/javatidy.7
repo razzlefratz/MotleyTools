@@ -1,0 +1,48 @@
+.TH javatidy 7 "Nov 2011" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+javatidy - format java source code
+.SH SYNOPSIS
+.BR javatidy
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+.PP
+.BR javatidy
+.RI [ options ]
+.RI [< stdin ]
+.RI [> stdout ]
+.SH DESCRIPTION
+.PP
+Format java source code. Formatting is highly stylized and customized to suit the authors preferences. If you do not like the format then do not used the program.
+.PP
+This program uses the otidy object to format language constructs. The otidy object is also used by programs \fBctidy\fR, \fBcsstidy\fR, \fBdnstidy\fR and \fBphptidy\fR.
+.SH OPTIONS
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout. This option takes precedence over other options on the command line. 
+.TP
+.RB - ! ,-- version
+Print program version information on stdout. This option takes precedence over other options on the command line. Usethis option when sending screen dumps to Intellon Technical Support so that they know exactly which version of the Linux Toolkit you are using.
+.SH ARGUMENTS
+.TP
+.BR file
+The name of a java source file. This file is replaced with the formatted output and a numbered backup file is created. Attempts to format syntactically incorrect source files may result in unpredictable output or program errors.
+.SH EXAMPLES
+The next example formats source file \fBabc.j\fR. Backup file \fBabc.j.nnn\fR is automatically created in case recovery is required.
+.PP
+   # javatidy abc.j
+.PP
+The next example reads file \fBabc.j\fR from stdin and writes formatted output to \fBdef.j\fR on stdout. This preserves the input file and allows program output to be viewed on the console or piped into another application.
+.PP
+   # javatidy < abc.j > def.j
+.PP
+.SH SEE ALSO
+.BR afm ( 7 ),
+.BR csstidy ( 7 ),
+.BR dnstidy ( 7 ),
+.BR phptidy ( 7 ),
+.BR xmltidy ( 7 )
+.SH AUTHORS
+ Charles Maier <cmaier@cmassoc.net>
+

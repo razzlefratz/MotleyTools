@@ -1,0 +1,16 @@
+oattribute.demo.cpp;
+odocument.cpp;
+ofileopen.demo.cpp;
+ofilespec.demo.cpp;
+oformat.demo.cpp;
+oglossary.demo.cpp;
+oheap.demo.cpp;
+okeep.demo.cpp;
+olist.demo.cpp;
+oprefix.demo.cpp;
+oprofile.demo.cpp;
+oregex.demo.cpp;
+osorter.demo.cpp;
+osuffix.demo.cpp;
+otruth.demo.cpp oagenda.cpp oattribute.cpp ocatalog.cpp obuffer.cpp ochrclass.cpp ochrhex.cpp ochrlwr.cpp ochroct.cpp ochrtable.cpp ochrtbl.cpp ochrupr.cpp ocontext.cpp ocontext.demo.cpp ocursor.cpp odepend.cpp odict.cpp oedge.cpp oedges.cpp oenviron.cpp oerror.cpp oescape.cpp ofileopen.cpp ofileset.cpp ofilespec.cpp ofindfile.cpp ofindspec.cpp oflagword.cpp oformat.cpp ogetopt.cpp ogetoptv.cpp oglossary.cpp ograph.cpp oheap.cpp ohexencode.cpp ohexencoder.cpp oindent.cpp oindex.cpp oitem.cpp okeep.cpp okeyword.cpp olist.cpp omacro.cpp omakefile.cpp omemory.cpp onode.cpp onodes.cpp ooctencode.cpp ooctencoder.cpp ooutline.cpp opackage.cpp opathspec.cpp oprefix.cpp oprofile.cpp oputopt.cpp oputoptv.cpp oqueue.cpp oregex.cpp oroster.cpp oscanfile.cpp oscantext.cpp osection.cpp osorter.cpp ostring.cpp osuffix.cpp osymbol.cpp otabrule.cpp othread.cpp otidy.cpp otodo.cpp otree.cpp oversion.cpp owildcard.cpp ocode.cpp oswitch.cpp otext.cpp opage.cpp omarkup.cpp oSHA256.cpp opassword.cpp 
+

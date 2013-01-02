@@ -1,0 +1,74 @@
+/*====================================================================*
+ *
+ *   ocgotowords.cpp - definition of ocgotowords class.
+ *
+ *   symbol table of C Language labels;
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+#ifndef oCGOTOWORD_SOURCE
+#define oCGOTOWORD_SOURCE
+
+/*====================================================================*
+ *   custom header files;
+ *--------------------------------------------------------------------*/
+
+#include "../classes/ocgotowords.hpp"
+
+/*====================================================================*
+ *
+ *   ocgotowords();
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+ocgotowords::ocgotowords () 
+
+{
+	static char const * table [] = 
+	{
+		"case",
+		"default",
+		"private",
+		"protected",
+		"public",
+		(char const *)(0)
+	};
+	okeywords::mtitle = "cgotowords";
+	okeywords::mcount = sizeof (table) / sizeof (table [0]) - 1;
+	okeywords::mtable = table;
+	okeywords::mcheck ();
+	return;
+}
+
+
+/*====================================================================*
+ *
+ *   ~ocgotowords();
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+ocgotowords::~ocgotowords () 
+
+{
+	return;
+}
+
+
+/*====================================================================*
+ *   end definition
+ *--------------------------------------------------------------------*/
+
+#endif
+
