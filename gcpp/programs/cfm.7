@@ -42,7 +42,7 @@ This prevents future line modification by discarding the distinguishing characte
 Use option \fB-l\fR, \fB-p\fR and/or \fB-f\fR to specify the type of comment lines to protect.
 .TP
 .RB - l
-Expand preamble licence comment lines starting with "\fB *.\fR" using the license string. 
+Expand preamble comment lines starting with "\fB *.\fR" using the \fBlicense\fR string. 
 If this option is present with option \fB-x\fR then license comment lines are discarded.
 If this option is present with option \fB-k\fR then license comment lines are protected.
 If this option is omitted then preamble license lines are not updated.
@@ -54,13 +54,19 @@ Convert single-line comments to multi-line comments.
 Print a default profile on stdout. This option can be used to create a new profile which can then be modified.
 .TP
 .RB - p
-Expand preamble publish comments lines starting with "\fB *:\fR" using the publish string. 
+Expand preamble comments lines starting with "\fB *:\fR" using the \fBpublish\fR string. 
+If this option is present with option \fB-x\fR then publish comment lines are discarded.
+If this option is present with option \fB-k\fR then publish comment lines are protected.
+If this option is omitted then preamble publish lines are not updated.
+.TP
+.RB - P
+Expand preamble comments lines starting with "\fB *~\fR" using the \fBpreamble\fR string. 
 If this option is present with option \fB-x\fR then publish comment lines are discarded.
 If this option is present with option \fB-k\fR then publish comment lines are protected.
 If this option is omitted then preamble publish lines are not updated.
 .TP
 .RB - r
-Expand preamble release comments lines starting with "\fB *;\fR" using the release string. 
+Expand preamble comments lines starting with "\fB *;\fR" using the \fBrelease\fR string. 
 If this option is present with option \fB-x\fR then release comment lines are discarded.
 If this option is present with option \fB-k\fR then release comment lines are protected.
 If this option is omitted then release comment lines are not updated.

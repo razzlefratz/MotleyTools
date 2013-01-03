@@ -88,24 +88,25 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"34acf:g:hlLmopPrstw:x",
+		"34acf:g:hklLmopPrstw:x",
 		oPUTOPTV_S_FILTER,
 		"format C/C++ source code with preamble annotations",
 		"3\tindent is 3 blanks",
 		"4\tindent is 4 blanks",
 		"a\tatheros standard format",
 		"c\tconvert C++ comments to standard C comments",
-		"m\tconvert single-line comments to multi-line comments",
 		"f s\tuse profile (s) [" OPTSTR (CFM_S_PROFILE) "]",
 		"g s\tuse profile section (s) [" OPTSTR (CFM_S_SECTION) "]",
-		"o\toutput profile to stdout",
 		"h\tinsert header include guard",
-		"s\tinsert source include guard",
+		"k\tmake comments permanent",
+		"l\tupdate " LITERAL (oCOMMENT_S_LICENSE) " comment",
+		"L\tupdate " LITERAL (oCOMMENT_S_SPECIAL) " comment",
+		"m\tconvert single-line comments to multi-line comments",
+		"o\toutput profile to stdout",
 		"p\tupdate " LITERAL (oCOMMENT_S_PACKAGE) " comment",
 		"P\tupdate " LITERAL (oCOMMENT_S_PREFACE) " comment",
 		"r\tupdate " LITERAL (oCOMMENT_S_RELEASE) " comment",
-		"l\tupdate " LITERAL (oCOMMENT_S_LICENSE) " comment",
-		"L\tupdate " LITERAL (oCOMMENT_S_SPECIAL) " comment",
+		"s\tinsert source include guard",
 		"t\tindent is 1 tab",
 		"w n\tbar width is (n)",
 		"x\terase markers",
@@ -141,9 +142,6 @@ int main (int argc, char const * argv [])
 		case 'c':
 			object.setbits (oCOMMENT_B_DOUBLE);
 			break;
-		case 'm':
-			object.setbits (oCOMMENT_B_TRIPLE);
-			break;
 		case 'f':
 			profile = getopt.args ();
 			break;
@@ -153,8 +151,8 @@ int main (int argc, char const * argv [])
 		case 'h':
 			object.label ("HEADER").state (1);
 			break;
-		case 's':
-			object.label ("SOURCE").state (1);
+		case 'k':
+			object.setbits (oCOMMENT_B_PERMANENT);
 			break;
 		case 'l':
 			object.setbits (oCOMMENT_B_LICENSE);
@@ -162,20 +160,8 @@ int main (int argc, char const * argv [])
 		case 'L':
 			object.setbits (oCOMMENT_B_SPECIAL);
 			break;
-		case 'p':
-			object.setbits (oCOMMENT_B_PACKAGE);
-			break;
-		case 'P':
-			object.setbits (oCOMMENT_B_PREFACE);
-			break;
-		case 'r':
-			object.setbits (oCOMMENT_B_RELEASE);
-			break;
-		case 't':
-			object.indent ("\t");
-			break;
-		case 'w':
-			object.width (std::atoi (getopt.args ()));
+		case 'm':
+			object.setbits (oCOMMENT_B_TRIPLE);
 			break;
 		case 'o':
 			config.write (CFM_S_SECTION);
@@ -186,8 +172,26 @@ int main (int argc, char const * argv [])
 			config.write (oCOMMENT_S_SPECIAL, CFM_S_SPECIAL);
 			std::cout << std::endl;
 			std::exit (0);
+		case 'p':
+			object.setbits (oCOMMENT_B_PACKAGE);
+			break;
+		case 'P':
+			object.setbits (oCOMMENT_B_PREFACE);
+			break;
+		case 'r':
+			object.setbits (oCOMMENT_B_RELEASE);
+			break;
+		case 's':
+			object.label ("SOURCE").state (1);
+			break;
+		case 't':
+			object.indent ("\t");
+			break;
+		case 'w':
+			object.width (std::atoi (getopt.args ()));
+			break;
 		case 'x':
-			object.setbits (oCOMMENT_B_PERMANENT);
+			object.setbits (oCOMMENT_B_DISCARD);
 			break;
 		default:
 			break;

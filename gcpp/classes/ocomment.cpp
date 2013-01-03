@@ -587,12 +587,20 @@ signed ocomment::clang (signed c)
 signed ocomment::message (signed c, char const * string) 
 
 {
-	*this->mstring++ = ocomment::anyset (oCOMMENT_B_PERMANENT)? ' ': c;
-	*this->mstring++ = ' ';
-	*this->mstring++ = ' ';
-	while (*string) 
+	if (ocomment::anyset (oCOMMENT_B_DISCARD))
 	{
-		*this->mstring++ = *string++;
+		do {c = std::cin.get (); } while (oascii::isblank (c));
+		while (c == *string++) { c = std::cin.get (); };
+	}
+	else
+	{
+		*this->mstring++ = ocomment::anyset (oCOMMENT_B_PERMANENT)? ' ': c;
+		*this->mstring++ = ' ';
+		*this->mstring++ = ' ';
+		while (*string) 
+		{
+			*this->mstring++ = *string++;
+		}
 	}
 	while (oascii::nobreak (c)) 
 	{
