@@ -1,0 +1,125 @@
+000 Success
+001 Operation not permitted
+002 No such file or directory
+003 No such process
+004 Interrupted system call
+005 Input/output error
+006 No such device or address
+007 Argument list too long
+008 Exec format error
+009 Bad file descriptor
+010 No child processes
+011 Resource temporarily unavailable
+012 Cannot allocate memory
+013 Permission denied
+014 Bad address
+015 Block device required
+016 Device or resource busy
+017 File exists
+018 Invalid cross-device link
+019 No such device
+020 Not a directory
+021 Is a directory
+022 Invalid argument
+023 Too many open files in system
+024 Too many open files
+025 Inappropriate ioctl for device
+026 Text file busy
+027 File too large
+028 No space left on device
+029 Illegal seek
+030 Read-only file system
+031 Too many links
+032 Broken pipe
+033 Numerical argument out of domain
+034 Numerical result out of range
+035 Resource deadlock avoided
+036 File name too long
+037 No locks available
+038 Function not implemented
+039 Directory not empty
+040 Too many levels of symbolic links
+041 Unknown error 41
+042 No message of desired type
+043 Identifier removed
+044 Channel number out of range
+045 Level 2 not synchronized
+046 Level 3 halted
+047 Level 3 reset
+048 Link number out of range
+049 Protocol driver not attached
+050 No CSI structure available
+051 Level 2 halted
+052 Invalid exchange
+053 Invalid request descriptor
+054 Exchange full
+055 No anode
+056 Invalid request code
+057 Invalid slot
+058 Unknown error 58
+059 Bad font file format
+060 Device not a stream
+061 No data available
+062 Timer expired
+063 Out of streams resources
+064 Machine is not on the network
+065 Package not installed
+066 Object is remote
+067 Link has been severed
+068 Advertise error
+069 Srmount error
+070 Communication error on send
+071 Protocol error
+072 Multihop attempted
+073 RFS specific error
+074 Bad message
+075 Value too large for defined data type
+076 Name not unique on network
+077 File descriptor in bad state
+078 Remote address changed
+079 Can not access a needed shared library
+080 Accessing a corrupted shared library
+081 .lib section in a.out corrupted
+082 Attempting to link in too many shared libraries
+083 Cannot exec a shared library directly
+084 Invalid or incomplete multibyte or wide character
+085 Interrupted system call should be restarted
+086 Streams pipe error
+087 Too many users
+088 Socket operation on non-socket
+089 Destination address required
+090 Message too long
+091 Protocol wrong type for socket
+092 Protocol not available
+093 Protocol not supported
+094 Socket type not supported
+095 Operation not supported
+096 Protocol family not supported
+097 Address family not supported by protocol
+098 Address already in use
+099 Cannot assign requested address
+100 Network is down
+101 Network is unreachable
+102 Network dropped connection on reset
+103 Software caused connection abort
+104 Connection reset by peer
+105 No buffer space available
+106 Transport endpoint is already connected
+107 Transport endpoint is not connected
+108 Cannot send after transport endpoint shutdown
+109 Too many references: cannot splice
+110 Connection timed out
+111 Connection refused
+112 Host is down
+113 No route to host
+114 Operation already in progress
+115 Operation now in progress
+116 Stale NFS file handle
+117 Structure needs cleaning
+118 Not a XENIX named type file
+119 No XENIX semaphores available
+120 Is a named type file
+121 Remote I/O error
+122 Disk quota exceeded
+123 No medium found
+124 Wrong medium type
