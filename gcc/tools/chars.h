@@ -16,7 +16,7 @@
  *--------------------------------------------------------------------*/
 
 #ifndef isblank
-#define isblank(c) (((char)(c) == ' ') || ((char)(c) == '\t'))
+// #define isblank(c) (((char)(c) == ' ') || ((char)(c) == '\t'))
 #endif
 
 #ifndef isbreak

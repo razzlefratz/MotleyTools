@@ -17,7 +17,7 @@
 *.app
 
 # Folders
-CSV/
+CVS/
 
 # Microsoft Files
 *.[Ee]xe
