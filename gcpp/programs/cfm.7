@@ -37,9 +37,10 @@ The profile heading that defines the expansion text to be used. If this option i
 Insert an include guard before the first processor statement in the file. The include guard name is the source file basename in upper case suffixed by "_HEADER".
 .TP
 .RB - k
-Protect preamble license, publish and/or release comment lines by discarding their distinguishing character. 
-This prevents future line modification by discarding the distinguishing character after updating the line.
-Use option \fB-l\fR, \fB-p\fR and/or \fB-f\fR to specify the type of comment lines to protect.
+Prevent future modification of the preamble, license, publish and/or release comment lines by discarding the distinguishing character that identifies them. 
+The associated comments are updated but the distinguishing characters are not replaced.
+This means that successive passes of this program cannot detect those lines will not modify them.
+Use option \fB-l\fR, \fB-p\fR, \fBP\fR and/or \fB-f\fR to specify the type of comment lines to protect.
 .TP
 .RB - l
 Expand preamble comment lines starting with "\fB *.\fR" using the \fBlicense\fR string. 
@@ -90,9 +91,9 @@ Verbose mode. This option has no effect at this time.
 The width of comment bars. The default width is 68 columns which exactly matches the width of a vi editor line when numbering is enabled.
 .TP
 .RB - x
-Discard license, publish and/or release comment lines and their distinguishing characters. 
+Discard the preamble, license, publish and/or release comment lines and their distinguishing characters. 
 One blank comment line remains in place of each discarded comment line.
-Use option \fB-l\fR, \fB-p\fR and/or \fB-f\fR to specify the type of comment lines to discard.
+Use option \fB-l\fR, \fB-p\fR, \fBP\fR and/or \fB-f\fR to specify the type of comment lines to discard.
 .TP
 .RB - ? ,-- help
 Print program help summary on stdout. This option takes precedence over other options on the command line. 
