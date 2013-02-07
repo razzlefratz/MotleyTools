@@ -67,7 +67,15 @@ __attribute__ ((format (printf, 3, 4)))
 
 #endif
 
-void error (int status, errno_t number, char const *format, ...);
+void error (int status, errno_t number, char const * format, ...);
+
+#ifdef __GNUC__
+
+__attribute__ ((format (printf, 3, 4))) 
+
+#endif
+
+void debug (int status, char const * string, char const * format, ...);
 
 #ifdef __GNUC__
 
@@ -75,10 +83,10 @@ __attribute__ ((format (printf, 5, 6)))
 
 #endif
 
-void error_on_line (int status, errno_t number, char const *filename, unsigned lineno, char const *format, ...);
+void error_on_line (int status, errno_t number, char const * filename, unsigned lineno, char const * format, ...);
 
 /*====================================================================*
- *   declare custom alternative error() function;  
+ *   declare custom alternative error () function;  
  *--------------------------------------------------------------------*/
 
 #ifdef __GNUC__
@@ -95,7 +103,7 @@ __attribute__ ((format (printf, 3, 4)))
 
 #endif
 
-void event (int status, signo_t number, char const *format, ...);
+void event (int status, signo_t number, char const * format, ...);
 
 /*====================================================================*
  *   error message functions;
@@ -107,7 +115,7 @@ __attribute__ ((format (printf, 1, 2)))
 
 #endif
 
-void eprintf (char const *format, ...);
+void eprintf (char const * format, ...);
 
 #ifdef __GNUC__
 
@@ -115,7 +123,7 @@ __attribute__ ((format (printf, 1, 2)))
 
 #endif
 
-void eperror (char const *format, ...);
+void eperror (char const * format, ...);
 
 /*====================================================================*
  *   memory allocation functions (also declared in memory.h);
@@ -128,8 +136,8 @@ void * erealloc (void *address, size_t nbytes);
  *   file open functions (also declared in files.h);
  *--------------------------------------------------------------------*/
 
-FILE * efopen (char const *pathname, char const *openmode);
-FILE * efreopen (char const *pathname, char const *openmode, FILE * fp);
+FILE * efopen (char const * pathname, char const * openmode);
+FILE * efreopen (char const * pathname, char const * openmode, FILE * fp);
 
 /*====================================================================*
  *   end definitions and declarations;

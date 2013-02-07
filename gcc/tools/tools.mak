@@ -29,6 +29,7 @@ console.o: console.c tools.h
 cread.o: cread.c tools.h types.h sizes.h
 cwrite.o: cwrite.c tools.h types.h sizes.h
 dataspec.o: dataspec.c memory.h number.h error.h
+debug.o: debug.c types.h error.h
 decdecode.o: decdecode.c types.h number.h tools.h sizes.h
 decencode.o: decencode.c number.h tools.h types.h sizes.h
 decout.o: decout.c number.h 
@@ -63,7 +64,7 @@ getclass.o: getclass.c tools.h types.h sizes.h
 getclass.demo.o: getclass.demo.c getclass.c tools.h types.h sizes.h
 getopt.o: getopt.c error.h getopt.h version.h types.h
 getopt1.o: getopt1.c
-getargv.o: getargv.c symbol.h chars.h
+getargv.o: getargv.c chars.h symbol.h
 getoptv.o: getoptv.c getoptv.h putoptv.h version.h
 getst.o: getst.c unget.h
 getvalue.o: getvalue.c tools.h types.h sizes.h
@@ -152,4 +153,5 @@ info.h: sizes.h date.h
 
 codename.o: codename.c tools.h types.h
 typename.o: typename.c tools.h types.h
+
 

@@ -23,6 +23,7 @@
 #include <stdarg.h>
 #include <string.h>
 
+#include "../linux/signals.h"
 #include "../tools/error.h"
 #include "../tools/types.h"
 
@@ -42,7 +43,7 @@ void event (int status, signo_t number, char const *format, ...)
 	}
 	if (number) 
 	{
-		fprintf (stderr, "%s: ", strsignal (number));
+		fprintf (stderr, "%s: ", signalname (number));
 	}
 	if ((format) && (*format)) 
 	{

@@ -85,6 +85,7 @@
  *   endian conversion functions;
  *--------------------------------------------------------------------*/
 
+
 #if defined (WIN32)
 
 uint16_t __bswap_16 (uint16_t x);
@@ -103,6 +104,7 @@ uint64_t __bswap_64 (uint64_t x);
 #define __bswap_32(x) OSSwapInt32(x)
 #define __bswap_64(x) OSSwapInt64(x)
 
+#elif defined (__linux__)
 #else
 #error "Unknown Environment"
 #endif

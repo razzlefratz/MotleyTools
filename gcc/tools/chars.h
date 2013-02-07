@@ -15,8 +15,10 @@
  *
  *--------------------------------------------------------------------*/
 
-#ifndef isblank
-// #define isblank(c) (((char)(c) == ' ') || ((char)(c) == '\t'))
+#ifdef __GNUC__
+// #ifndef isblank
+#define isblank(c) (((char)(c) == ' ') || ((char)(c) == '\t'))
+// #endif
 #endif
 
 #ifndef isbreak

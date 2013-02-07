@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   void error (signed status, errno_t number, char const * format, ...);
+ *   void debug (signed status, errno_t number, char const * format, ...);
  *
  *   error.h
  *
@@ -13,8 +13,8 @@
  *
  *--------------------------------------------------------------------*/
 
-#ifndef ERROR_SOURCE
-#define ERROR_SOURCE
+#ifndef DEBUG_SOURCE
+#define DEBUG_SOURCE
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -30,45 +30,25 @@ __attribute__ ((format (printf, 3, 4)))
 
 #endif
 
-void error (signed status, errno_t number, char const * format, ...) 
+void debug (signed status, char const * string, char const * format, ...) 
 
 {
-	extern char const *program_name;
-	if ((program_name) && (*program_name)) 
+	extern char const * program_name;
+	if ((program_name) && (* program_name)) 
 	{
 		fprintf (stderr, "%s: ", program_name);
 	}
-
-#if 1
-
-	if ((format) && (* format)) 
+	if ((string) && (* string)) 
+	{
+		fprintf (stderr, "%s: ", string);
+	}
+	if ((format) && (*format)) 
 	{
 		va_list arglist;
 		va_start (arglist, format);
 		vfprintf (stderr, format, arglist);
 		va_end (arglist);
 	}
-	if (number) 
-	{
-		fprintf (stderr, ": %s", strerror (number));
-	}
-
-#else
-
-	if (number) 
-	{
-		fprintf (stderr, "%s: ", strerror (number));
-	}
-	if ((format) && (* format)) 
-	{
-		va_list arglist;
-		va_start (arglist, format);
-		vfprintf (stderr, format, arglist);
-		va_end (arglist);
-	}
-
-#endif
-
 	fprintf (stderr, "\n");
 	fflush (stderr);
 	if (status) 

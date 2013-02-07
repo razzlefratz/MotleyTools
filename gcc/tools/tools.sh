@@ -39,6 +39,7 @@ gcc -Wall -Wextra -Wno-unused-parameter -c config.c
 gcc -Wall -Wextra -Wno-unused-parameter -c cread.c
 gcc -Wall -Wextra -Wno-unused-parameter -c cwrite.c
 gcc -Wall -Wextra -Wno-unused-parameter -c dataspec.c
+gcc -Wall -Wextra -Wno-unused-parameter -c debug.c
 gcc -Wall -Wextra -Wno-unused-parameter -c decdecode.c
 gcc -Wall -Wextra -Wno-unused-parameter -c decencode.c
 gcc -Wall -Wextra -Wno-unused-parameter -c decout.c
