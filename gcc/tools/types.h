@@ -70,8 +70,8 @@ bool;
  *   macros;
  *--------------------------------------------------------------------*/
 
-#define _OPTSTR(x) #x
-#define LITERAL(x) _OPTSTR(x)
+#define _SYMBOL(x) #x
+#define LITERAL(x) _SYMBOL(x)
 
 #define SIZEOF(list) (sizeof(list)/sizeof(list[0]))
 
