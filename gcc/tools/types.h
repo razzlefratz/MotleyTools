@@ -70,8 +70,8 @@ bool;
  *   macros;
  *--------------------------------------------------------------------*/
 
-#define _SYMBOL(x) #x
-#define LITERAL(x) _SYMBOL(x)
+#define MONIKER(x) #x
+#define LITERAL(x) MONIKER(x)
 
 #define SIZEOF(list) (sizeof(list)/sizeof(list[0]))
 
