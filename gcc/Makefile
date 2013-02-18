@@ -12,7 +12,7 @@ FOLDERS=cmassoc calc chrlib clang crypt date ether files libgen link linux list 
 # targets;
 # -------------------------------------------------------------------
 
-compile install scripts manuals uninstall check fresh clean:
+compile install scripts manuals uninstall check fresh clean ignore:
 	@for folder in ${FOLDERS}; do ${MAKE} -C $${folder} ${@}; if [ $${?} -ne 0 ]; then exit 1; fi; done
 
 

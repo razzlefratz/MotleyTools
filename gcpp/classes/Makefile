@@ -39,7 +39,7 @@ check:
 clean:
 	rm -f ${GLOBAL} ${TOOLS} ${TRASH}
 ignore:
-#	echo ${TOOLS} | tr " " "\n" > .gitignore
+	echo ${TOOLS} | tr " " "\n" > .gitignore
 
 
 # ====================================================================

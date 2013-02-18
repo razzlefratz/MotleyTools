@@ -12,7 +12,7 @@ FOLDERS=programs classes
 # targets;
 # -------------------------------------------------------------------
 
-compile install scripts manuals uninstall fresh check clean:
+compile install scripts manuals uninstall fresh check clean ignore:
 	@for folder in ${FOLDERS}; do ${MAKE} -C $${folder} ${@}; if [ $${?} -ne 0 ]; then exit 1; fi; done
 
 
