@@ -40,7 +40,8 @@ clean:
 	rm -f ${TRASH} ${TOOLS}
 	chmod 0755 Makefile *.sh
 	chmod 0644 *.c *.h
-	touch version.h
+ignore:
+	echo ${TOOLS} | tr " " "\n" > .gitignore
 
 # ====================================================================
 # files;

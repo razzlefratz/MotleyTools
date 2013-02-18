@@ -48,6 +48,8 @@ clean:
 	rm -f ${TRASH} ${DAEMONS}
 	chmod 0755 Makefile *.sh
 	chmod 0644 *.c *.h
+ignore:
+	echo ${TOOLS} | tr " " "\n" > .gitignore
 
 # ====================================================================
 # programs;

@@ -31,8 +31,6 @@ install: compile
 	install -m 0555 -o ${OWNER} -g ${GROUP} ${TOOLS} ${BIN}
 library:
 	install -m 6755 -o ${OWNER} -g ${GROUP} -d ${BIN}
-cygwin: compile
-	cp ${TOOLS} ${BIN}
 fresh: clean compile
 check:
 	${SH} programs.sh
@@ -40,6 +38,8 @@ clean:
 	rm -f ${TOOLS} ${TRASH}
 	chmod 0644 *.cpp *.txt *.7
 	chmod 0755 Makefile *.sh 
+ignore:
+	echo ${TOOLS} | tr " " "\n" > .gitignore
 
 # ====================================================================
 # targets;

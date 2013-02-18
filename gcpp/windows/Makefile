@@ -1,8 +1,8 @@
 #!/bin/make -f
-# file: files/Makefile
+# file: windows/Makefile
 
 # ====================================================================
-# environment;
+# folders;
 # --------------------------------------------------------------------
 
 include ../make.def
@@ -11,10 +11,8 @@ include ../make.def
 # symbols;
 # --------------------------------------------------------------------
 
-CFLAGS=-Wall -Wextra -Wno-unused-parameter -DMAKEFILE
-LFLAGS=
-VPATH=../tools
-TRASH=*.exe *.obj *.o t t.c *~ *.[0-9][0-9][0-9]
+VPATH=../windows
+TRASH=*.exe *.obj *.o t t.c *~ *.[0-9][0-9][0-9] 
 TOOLS=
 PAGES=
 
@@ -22,30 +20,25 @@ PAGES=
 # targets;
 # --------------------------------------------------------------------
 
-all compile: ${TOOLS}
+all: compile install compare
+compile: 
 scripts:
 manuals:
-#	install -m 0444 -o ${OWNER} -g ${GROUP} ${PAGES} ${MAN}
-install: all compile library
+	install -m 0444 -o ${OWNER} -g ${GROUP} ${PAGES} ${MAN}
+library: 
+	install -m 2755 -o ${OWNER} -g ${GROUP} -d ${BIN}
+install: compile library
 #	install -m 0755 -o ${OWNER} -g ${GROUP} ${TOOLS} ${BIN}
-library:
-	install -m 6775 -o ${OWNER} -g ${GROUP} -d ${BIN}
 uninstall:
 	cd ${BIN}; rm -fv ${TOOLS}
 	cd ${MAN}; rm -fv ${PAGES}
 fresh: clean compile
-check:
-	${SH} files.sh
 clean:
-	rm -f ${TRASH} ${TOOLS}
-	chmod 0755 Makefile *.sh
-	chmod 0644 *.c *.h
-ignore:
-	echo ${TOOLS} | tr " " "\n" > .gitignore
+	rm -f ${GLOBAL} ${TOOLS} ${TRASH}
 
 # ====================================================================
 # files;
 # --------------------------------------------------------------------
 
-include ../files/files.mak
+include ../windows/windows.mak
 
