@@ -18,14 +18,14 @@ FOLDERS := gcc gcpp
 # pseudo targets;
 # -------------------------------------------------------------------
 
-.PHONY: all compile install scripts manuals uninstall check fresh clean
+.PHONY: all compile install scripts manuals uninstall fresh clean check ignore
 .PHONY: archive private control nightly
 
 # ===================================================================
 # common targets;
 # -------------------------------------------------------------------
 
-compile install scripts manuals uninstall check fresh clean ignore:
+compile install scripts manuals uninstallfresh clean check ignore:
 	for folder in ${FOLDERS}; do ${MAKE} -C $${folder} ${@}; if [ $${?} -ne 0 ]; then exit 1; fi; done
 
 # ===================================================================

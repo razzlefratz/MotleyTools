@@ -36,6 +36,7 @@ pthread-variable: pthread-variable.c
 
 clean:
 	rm -f ${MODULES} *.o *~ *.[0-9][0-9][0-9]
+check:
 ignore:
 	echo ${TOOLS} | tr " " "\n" > .gitignore
 

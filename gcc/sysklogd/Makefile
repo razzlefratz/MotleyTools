@@ -42,12 +42,12 @@ install1: all compile library
 uninstall:
 	rm -fv ${SYS} ${DAEMONS}
 fresh: clean compile
-check:
-	${SH} sysklogd.sh
 clean:
 	rm -f ${TRASH} ${DAEMONS}
 	chmod 0755 Makefile *.sh
 	chmod 0644 *.c *.h
+check:
+	${SH} sysklogd.sh
 ignore:
 	echo ${TOOLS} | tr " " "\n" > .gitignore
 

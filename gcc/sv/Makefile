@@ -34,12 +34,12 @@ uninstall:
 	cd ${BIN}; rm -fv ${TOOLS}
 	cd ${MAN}; rm -fv ${PAGES}
 fresh: clean compile
-check:
-	${SH} sv.sh
 clean:
 	rm -f ${TRASH} ${TOOLS}
 	chmod 0755 Makefile *.sh
 	chmod 0644 *.c *.h
+check:
+	${SH} sv.sh
 ignore:
 	echo ${TOOLS} | tr " " "\n" > .gitignore
 

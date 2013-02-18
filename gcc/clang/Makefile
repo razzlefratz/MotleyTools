@@ -35,12 +35,12 @@ uninstall:
 	cd ${BIN}; rm -fv ${TOOLS}
 	cd ${MAN}; rm -fv ${PAGES}
 fresh: clean compile
-check:
-	${SH} clang.sh
 clean:
 	rm -f ${TRASH} ${TOOLS}
 	chmod 0755 Makefile *.sh
 	chmod 0644 *.c *.h
+check:
+	${SH} clang.sh
 ignore:
 	echo ${TOOLS} | tr " " "\n" > .gitignore
 

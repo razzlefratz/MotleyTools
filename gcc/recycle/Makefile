@@ -45,12 +45,12 @@ uninstall:
 	cd ${MAN}; rm -fv ${PAGES}
 	rm -frv ${DIR} /etc/recycle.conf
 fresh: clean compile
-check:
-	${SH} recycle.sh
 clean:
 	rm -f ${TRASH} ${TOOLS}
 	chmod 0755 Makefile *.sh
 	chmod 0644 *.c *.h
+check:
+	${SH} recycle.sh
 ignore:
 	echo ${TOOLS} | tr " " "\n" > .gitignore
 

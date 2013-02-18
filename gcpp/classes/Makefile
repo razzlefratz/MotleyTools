@@ -34,10 +34,10 @@ uninstall:
 	cd ${BIN}; rm -fv ${TOOLS}
 	cd ${MAN}; rm -fv ${PAGES}
 fresh: clean compile
-check:
-	${SH} classes.sh
 clean:
 	rm -f ${GLOBAL} ${TOOLS} ${TRASH}
+check:
+	${SH} classes.sh
 ignore:
 	echo ${TOOLS} | tr " " "\n" > .gitignore
 

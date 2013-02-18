@@ -32,12 +32,12 @@ install: compile
 library:
 	install -m 6755 -o ${OWNER} -g ${GROUP} -d ${BIN}
 fresh: clean compile
-check:
-	${SH} programs.sh
 clean:
 	rm -f ${TOOLS} ${TRASH}
 	chmod 0644 *.cpp *.txt *.7
 	chmod 0755 Makefile *.sh 
+check:
+	${SH} programs.sh
 ignore:
 	echo ${TOOLS} | tr " " "\n" > .gitignore
 

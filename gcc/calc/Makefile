@@ -33,13 +33,13 @@ library:
 uninstall:
 	cd ${BIN}; rm -fv ${TOOLS}
 	cd ${MAN}; rm -fv ${PAGES}
-check:
-	${SH} calc.sh
 fresh: clean compile
 clean:
 	rm -f ${TRASH} ${TOOLS}
 	chmod 0755 Makefile *.sh
 	chmod 0644 *.c *.h
+check:
+	${SH} calc.sh
 ignore:
 	echo ${TOOLS} | tr " " "\n" > .gitignore
 

@@ -51,13 +51,13 @@ library:
 uninstall:
 	cd ${BIN}; rm -fv ${TOOLS}
 	cd ${MAN}; rm -fv ${PAGES}
-check:
-	${SH} cmassoc.sh
 fresh: clean compile
 clean:
 	rm -f ${TRASH} ${TOOLS}
 	chmod 0755 Makefile *.sh
 	chmod 0644 *.c *.h
+check:
+	${SH} cmassoc.sh
 ignore:
 	echo ${TOOLS} | tr " " "\n" > .gitignore
 

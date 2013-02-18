@@ -11,7 +11,7 @@ include ../make.def
 #
 # --------------------------------------------------------------------
 
-compile install manuals scripts fresh clean:
+compile install manuals scripts fresh clean check ignore:
 check:
 	${SH} cgi.sh
 
