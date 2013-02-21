@@ -50,16 +50,23 @@ bool;
 #endif
 
 #if defined (WIN32)
-#define SIZE_T_SPEC "%I64d"
-#define OFF_T_SPEC "%I64d"
-#elif defined (__APPLE__) || defined (__OpenBSD__)
-#define SIZE_T_SPEC "%zu"
-#define OFF_T_SPEC "%llu"
+	#define SIZE_T_SPEC "%I64d"
+	#define ADDR_T_SPEC "%04X"
+	#define OFF_T_SPEC "%I64d"
+#elif defined (__APPLE__) 
+	#define SIZE_T_SPEC "%zu"
+	#define ADDR_T_SPEC "%04Xzu"
+	#define OFF_T_SPEC "%lld"
+#elif defined (__OpenBSD__)
+	#define SIZE_T_SPEC "%zu"
+	#define ADDR_T_SPEC "%04Xzu"
+	#define OFF_T_SPEC "%ld"
 #elif defined (__linux__)
-#define SIZE_T_SPEC "%zu"
-#define OFF_T_SPEC "%llu"
+	#define SIZE_T_SPEC "%zu"
+	#define ADDR_T_SPEC "%04Xzu"
+	#define OFF_T_SPEC "%ld"
 #else
-#error "Unknown Environment"
+#error "Unknown Environment!"
 #endif
 
 #if defined (WIN32)
@@ -72,7 +79,6 @@ bool;
 
 #define MONIKER(x) #x
 #define LITERAL(x) MONIKER(x)
-
 #define SIZEOF(list) (sizeof(list)/sizeof(list[0]))
 
 /*====================================================================*

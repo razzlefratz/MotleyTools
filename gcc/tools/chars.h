@@ -16,9 +16,9 @@
  *--------------------------------------------------------------------*/
 
 #ifdef __GNUC__
-// #ifndef isblank
+#ifndef isblank
 #define isblank(c) (((char)(c) == ' ') || ((char)(c) == '\t'))
-// #endif
+#endif
 #endif
 
 #ifndef isbreak
