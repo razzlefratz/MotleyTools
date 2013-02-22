@@ -82,7 +82,7 @@ void *erealloc (void * memory, size_t extent);
  *   memory increment/decrement functions;
  *--------------------------------------------------------------------*/
 
-void endian (void * memory, size_t extent);
+void reverse (void * memory, size_t extent);
 void memwrap (void * memory, size_t extent, ssize_t offset);
 void memswap (void *, void *, size_t extent);
 void memcopy (void *, void const *, size_t extent);

@@ -37,7 +37,6 @@ digit.o: digit.c number.h
 efopen.o: efopen.c tools.h error.h types.h sizes.h
 efreopen.o: efreopen.c tools.h error.h types.h sizes.h
 emalloc.o: emalloc.c tools.h error.h types.h sizes.h
-endian.o: endian.c memory.h types.h
 eperror.o: eperror.c tools.h types.h sizes.h
 eprintf.o: eprintf.c tools.h types.h sizes.h
 equate.o: equate.c number.h tools.h types.h sizes.h
@@ -112,6 +111,7 @@ profile.o: profile.c tools.h chars.h number.h types.h sizes.h
 putopt.o: putopt.c getopt.h putopt.h
 putoptv.o: putoptv.c getoptv.h putoptv.h
 readtoken.o: readtoken.c tools.h types.h sizes.h
+reverse.o: reverse.c memory.h types.h
 serial.o: serial.c number.h tools.h types.h sizes.h
 setinfo.o: setinfo.c info.h version.h strlib.h linux.h date.h sizes.h types.h
 scatter.o: scatter.c memory.h

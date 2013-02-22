@@ -47,7 +47,6 @@ gcc -Wall -Wextra -Wno-unused-parameter -c dehex.c
 gcc -Wall -Wextra -Wno-unused-parameter -c efopen.c
 gcc -Wall -Wextra -Wno-unused-parameter -c efreopen.c
 gcc -Wall -Wextra -Wno-unused-parameter -c emalloc.c
-gcc -Wall -Wextra -Wno-unused-parameter -c endian.c
 gcc -Wall -Wextra -Wno-unused-parameter -c enhex.c
 gcc -Wall -Wextra -Wno-unused-parameter -c eperror.c
 gcc -Wall -Wextra -Wno-unused-parameter -c eprintf.c
@@ -122,6 +121,7 @@ gcc -Wall -Wextra -Wno-unused-parameter -c profile.c
 gcc -Wall -Wextra -Wno-unused-parameter -c putoptv.c
 gcc -Wall -Wextra -Wno-unused-parameter -c readtoken.c
 gcc -Wall -Wextra -Wno-unused-parameter -c regview.c
+gcc -Wall -Wextra -Wno-unused-parameter -c reverse.c
 gcc -Wall -Wextra -Wno-unused-parameter -c scatter.c
 gcc -Wall -Wextra -Wno-unused-parameter -c serial.c
 gcc -Wall -Wextra -Wno-unused-parameter -c set32bitmap.c
