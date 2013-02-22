@@ -69,6 +69,7 @@ gcc -Wall -Wextra -Wno-unused-parameter -c fputline.c
 gcc -Wall -Wextra -Wno-unused-parameter -c fputn.c
 gcc -Wall -Wextra -Wno-unused-parameter -c fputv.c
 gcc -Wall -Wextra -Wno-unused-parameter -c fvalue.c
+gcc -Wall -Wextra -Wno-unused-parameter -c gather.c
 gcc -Wall -Wextra -Wno-unused-parameter -c getch.c
 # gcc -Wall -Wextra -Wno-unused-parameter -c getopt.c
 # gcc -Wall -Wextra -Wno-unused-parameter -c getopt1.c
@@ -121,6 +122,7 @@ gcc -Wall -Wextra -Wno-unused-parameter -c profile.c
 gcc -Wall -Wextra -Wno-unused-parameter -c putoptv.c
 gcc -Wall -Wextra -Wno-unused-parameter -c readtoken.c
 gcc -Wall -Wextra -Wno-unused-parameter -c regview.c
+gcc -Wall -Wextra -Wno-unused-parameter -c scatter.c
 gcc -Wall -Wextra -Wno-unused-parameter -c serial.c
 gcc -Wall -Wextra -Wno-unused-parameter -c set32bitmap.c
 gcc -Wall -Wextra -Wno-unused-parameter -c setinfo.c

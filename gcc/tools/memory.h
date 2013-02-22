@@ -64,7 +64,7 @@
 typedef struct field 
 
 {
-	byte type;
+	signed type;
 	void * base;
 	size_t size;
 }
@@ -132,8 +132,8 @@ char * hexoffset (char buffer [], size_t length, off_t offset);
 size_t hexread (signed fd, void * memory, size_t extent);
 size_t hexload (void * memory, size_t extent, FILE * fp);
 void hexwrite (signed fd, void const * memory, size_t extent, size_t column);
-size_t gather (void * memory, size_t extent, const struct field *, unsigned fields);
-size_t scatter (void * memory, size_t extent, const struct field *, unsigned fields);
+size_t gather (void * memory, size_t extent, struct field const *, unsigned fields);
+size_t scatter (void const * memory, size_t extent, struct field const *, unsigned fields);
 
 /*====================================================================*
  *   memory print functions;

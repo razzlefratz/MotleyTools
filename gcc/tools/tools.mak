@@ -59,6 +59,7 @@ fputline.o: fputline.c tools.h types.h sizes.h
 fputn.o: fputn.c tools.h number.h types.h sizes.h
 fputv.o: fputv.c tools.h types.h sizes.h
 fvalue.o: fvalue.c
+gather.o: gather.c memory.h
 getch.o: getch.c unget.h tools.h types.h sizes.h
 getclass.o: getclass.c tools.h types.h sizes.h
 getclass.demo.o: getclass.demo.c getclass.c tools.h types.h sizes.h
@@ -113,6 +114,7 @@ putoptv.o: putoptv.c getoptv.h putoptv.h
 readtoken.o: readtoken.c tools.h types.h sizes.h
 serial.o: serial.c number.h tools.h types.h sizes.h
 setinfo.o: setinfo.c info.h version.h strlib.h linux.h date.h sizes.h types.h
+scatter.o: scatter.c memory.h
 signf.o: signf.c tools.h types.h sizes.h
 sintspec.o: sintspec.c tools.h types.h sizes.h
 sockspec.o: sockspec.c tools.h sizes.h types.h
