@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   void memwrap (void * memory, unsigned extent, signed offset);
+ *   void memwrap (void * memory, size_t extent, ssize_t offset);
  *
  *   memory.h 
  *
@@ -21,7 +21,7 @@
 
 #include "../tools/memory.h"
 
-void memwrap (void * memory, unsigned extent, signed offset) 
+void memwrap (void * memory, size_t extent, ssize_t offset) 
 
 {
 	byte * buffer = (byte *)(memory);

@@ -100,6 +100,7 @@ gcc -Wall -Wextra -Wno-unused-parameter -c lookup.c
 gcc -Wall -Wextra -Wno-unused-parameter -c markup.c
 gcc -Wall -Wextra -Wno-unused-parameter -c memdecr.c
 gcc -Wall -Wextra -Wno-unused-parameter -c memencode.c
+gcc -Wall -Wextra -Wno-unused-parameter -c memfold.c
 gcc -Wall -Wextra -Wno-unused-parameter -c memincr.c
 gcc -Wall -Wextra -Wno-unused-parameter -c memout.c
 gcc -Wall -Wextra -Wno-unused-parameter -c memswap.c

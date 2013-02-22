@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   signed memdecr (void * memory, unsigned extent);
+ *   signed memdecr (void * memory, size_t extent);
  *
  *   memory.h
  *
@@ -24,7 +24,7 @@
 
 #include "../tools/memory.h"
 
-signed memdecr (void * memory, register unsigned extent) 
+signed memdecr (void * memory, register size_t extent) 
 
 {
 	register byte * offset = (byte *)(memory);

@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   signed strdecr (void * memory, unsigned extent, byte min, byte max);
+ *   signed strdecr (void * memory, size_t extent, byte min, byte max);
  *
  *   memory.h
  *
@@ -18,7 +18,7 @@
 
 #include "../tools/memory.h"
 
-signed strdecr (void * memory, register unsigned extent, register byte min, register byte max) 
+signed strdecr (void * memory, register size_t extent, register byte min, register byte max) 
 
 {
 	register byte * offset = (byte *)(memory);

@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   void endian (void * memory, unsigned extent);
+ *   void endian (void * memory, size_t extent);
  *
  *   memory.h
  *
@@ -18,7 +18,7 @@
 
 #include "../tools/memory.h"
 
-void endian (void * memory, unsigned extent) 
+void endian (void * memory, size_t extent) 
 
 {
 	register byte * first = (byte *)(memory);

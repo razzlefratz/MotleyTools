@@ -8,7 +8,7 @@
  *   character c; normally, character c will be HEX_EXTENDER as 
  *   defined in number.h;
  *
- *   for example, hexout (memory, 6, ':', stdout) would print:
+ *   for example, hexout (memory, 6, ':', '\n', stdout) would print:
  *
  *      00:B0:52:00:00:01
  *

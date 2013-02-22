@@ -90,7 +90,8 @@ itosn.o: itosn.c number.h tools.h types.h sizes.h
 memdecr.o: memdecr.c memory.h
 memincr.o: memincr.c memory.h
 memout.o: memout.c memory.h 
-memswap.o: memswap.c memory.h types.h
+memfold.o: memswap.c memory.h 
+memswap.o: memswap.c memory.h
 memwrap.o: memwrap.c memory.h
 modespec.o: modespec.c tools.h error.h chars.h types.h sizes.h
 more.o: more.c

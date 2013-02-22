@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   signed strincr (void * memory, unsigned extent, byte min, byte max);
+ *   signed strincr (void * memory, size_t extent, byte min, byte max);
  *
  *   memory.h
  *
@@ -18,7 +18,7 @@
 
 #include "../tools/memory.h"
 
-signed strincr (void * memory, register unsigned extent, register byte min, register byte max) 
+signed strincr (void * memory, register size_t extent, register byte min, register byte max) 
 
 {
 	register byte * offset = (byte *)(memory);

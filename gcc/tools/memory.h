@@ -35,15 +35,13 @@
 #define STR(length) (char *)(emalloc(sizeof(char)*(length+1)))
 #define LST(object, length) (object*)(emalloc(sizeof(object)*(length)))
 
-#ifndef offset
-#define offset(struct, member) (signed)(&struct.member)-(signed)(&struct)
-#endif
-
 /*====================================================================*
  *  
  *--------------------------------------------------------------------*/
 
+#ifndef offset
 #define offset(struct, member) (signed)(&struct.member)-(signed)(&struct)
+#endif
 
 /*====================================================================*
  *  header strings for memory dump functions;
@@ -60,6 +58,20 @@
 #define IPv6_LEN 16
 
 /*====================================================================*
+ *   variables;
+ *--------------------------------------------------------------------*/
+
+typedef struct field 
+
+{
+	byte type;
+	void * base;
+	size_t size;
+}
+
+field;
+
+/*====================================================================*
  *   memory allocation functions (also declared in error.h);
  *--------------------------------------------------------------------*/
 
@@ -70,13 +82,15 @@ void *erealloc (void * memory, size_t extent);
  *   memory increment/decrement functions;
  *--------------------------------------------------------------------*/
 
-void endian (void * memory, unsigned extent);
-void memswap (void *, void *, unsigned extent);
-void memwrap (void *, unsigned extent, signed offset);
-signed strincr (void * memory, unsigned extent, byte min, byte max);
-signed strdecr (void * memory, unsigned extent, byte min, byte max);
-signed memincr (void * memory, unsigned extent);
-signed memdecr (void * memory, unsigned extent);
+void endian (void * memory, size_t extent);
+void memwrap (void * memory, size_t extent, ssize_t offset);
+void memswap (void *, void *, size_t extent);
+void memcopy (void *, void const *, size_t extent);
+void memfold (void *, void const *, size_t extent);
+signed strincr (void * memory, size_t extent, byte min, byte max);
+signed strdecr (void * memory, size_t extent, byte min, byte max);
+signed memincr (void * memory, size_t extent);
+signed memdecr (void * memory, size_t extent);
 
 /*====================================================================*
  *   memory validation functions;
@@ -118,6 +132,8 @@ char * hexoffset (char buffer [], size_t length, off_t offset);
 size_t hexread (signed fd, void * memory, size_t extent);
 size_t hexload (void * memory, size_t extent, FILE * fp);
 void hexwrite (signed fd, void const * memory, size_t extent, size_t column);
+size_t gather (void * memory, size_t extent, const struct field *, unsigned fields);
+size_t scatter (void * memory, size_t extent, const struct field *, unsigned fields);
 
 /*====================================================================*
  *   memory print functions;

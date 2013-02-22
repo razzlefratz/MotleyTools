@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   void memswap (void * memory1, void * memory2, unsigned extent);
+ *   void * memswap (void * memory1, void * memory2, size_t extent);
  *
  *   memory.h
  *   
@@ -22,7 +22,7 @@
 
 #include "../tools/memory.h"
 
-void memswap (void * memory1, void * memory2, unsigned extent) 
+void memswap (void * memory1, void * memory2, size_t extent) 
 
 {
 	register byte * byte1 = (byte *)(memory1);
