@@ -56,7 +56,8 @@
 #define OFFSET_HTML (1 << 0)
 #define OFFSET_PAGE (1 << 1)
 #define OFFSET_TEXT (1 << 2)
-#define OFFSET_ZERO (1 << 3)
+#define OFFSET_EFSU (1 << 3)
+#define OFFSET_ZERO (1 << 4)
 
 #define COLUMN 0
 #define MARGIN 0
@@ -423,6 +424,76 @@ static void text (flag_t flags)
 
 /*====================================================================*
  *   
+ *   void efsu (flag_t flags);
+ *   
+ *   
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+static void efsu (flag_t flags) 
+
+{
+	extern unsigned lineno;
+	extern unsigned margin;
+	extern unsigned column;
+	extern unsigned origin;
+	extern unsigned offset;
+	extern unsigned length;
+	extern char * symbol;
+	extern char * string;
+	extern signed c;
+	lineno = 1;
+	origin = 0;
+	offset = 0;
+	length = 0;
+	while ((c = getc (stdin)) != EOF) 
+	{
+		if (isspace (c)) 
+		{
+			if (c == '\n') 
+			{
+				lineno++;
+			}
+			continue;
+		}
+		if ((c == '#') || (c == ';')) 
+		{
+			do 
+			{
+				c = getc (stdin);
+			}
+			while (nobreak (c));
+			lineno++;
+			continue;
+		}
+		entity ();
+		if (length) 
+		{
+			unsigned column = 0;
+			putc ('\n', stdout);
+			printf ("# %s\n", symbol);
+			putc ('\n', stdout);
+			while (column++ < length)
+			{
+				putc ('0', stdout);
+				putc ('0', stdout);
+				putc (column%16? ' ': '\n', stdout);
+			}
+			putc (column%16? ' ': '\n', stdout);
+			putc ('\n', stdout);
+		}
+		offset += length;
+		lineno++;
+	}
+	return;
+}
+
+
+/*====================================================================*
+ *   
  *   void tabs (flag_t flags);
  *   
  *   
@@ -551,6 +622,10 @@ static void function (char const * colors [], unsigned count, flag_t flags)
 	{
 		tabs (flags);
 	}
+	else if (_anyset (flags, (OFFSET_EFSU))) 
+	{
+		efsu (flags);
+	}
 	else if (_anyset (flags, (OFFSET_ZERO))) 
 	{
 		zero (flags);
@@ -581,10 +656,11 @@ int main (int argc, char const * argv [])
 	extern unsigned column;
 	static char const * optv [] = 
 	{
-		"c:hl:stz",
+		"c:ehl:stz",
 		PUTOPTV_S_FUNNEL,
 		"print offset table",
 		"c n\talign descriptions to column (n) [" LITERAL (COLUMN) "]",
+		"e\tprint efsu format",
 		"h\tprint HTML table on stdout",
 		"l n\tindent level is (n) [" LITERAL (MARGIN) "]",
 		"s\tprint CSS2 stylesheet on stdout",
@@ -608,6 +684,9 @@ int main (int argc, char const * argv [])
 		{
 		case 'c':
 			column = uintspec (optarg, 0, UCHAR_MAX);
+			break;
+		case 'e':
+			_setbits (flags, OFFSET_EFSU);
 			break;
 		case 'h':
 			_setbits (flags, OFFSET_HTML);
