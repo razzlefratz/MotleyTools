@@ -57,8 +57,87 @@
 #define ODD_SILENCE  (1 << 1)
 
 /*====================================================================*
+ *   program variables;
+ *--------------------------------------------------------------------*/
+
+static unsigned object = 0;
+static unsigned lineno = 0;
+static unsigned offset = 0;
+static signed length = 0;
+static signed column = 0;
+static char memory [_ADDRSIZE + 1];
+static char symbol [_NAMESIZE];
+static char string [_LINESIZE];
+static char * sp;
+static signed c;
+
+/*====================================================================*
+ *
+ *   static void dump (struct _file_ const * file, signed length);
+ *
+ *--------------------------------------------------------------------*/
+
+static void dump (struct _file_ const * file, signed length) 
+
+{
+	byte buffer [length];
+	if (read (file->file, buffer, length) == length) 
+	{
+		if (!object++) 
+		{
+			for (c = 0; c < _ADDRSIZE + 65; c++) 
+			{
+				putc ('-', stdout);
+			}
+			putc ('\n', stdout);
+		}
+		printf ("%s %u %s\n", hexoffset (memory, sizeof (memory), offset), length, symbol);
+		hexview (buffer, offset, length, stdout);
+		for (c = 0; c < _ADDRSIZE + 65; c++) 
+		{
+			putc ('-', stdout);
+		}
+		putc ('\n', stdout);
+	}
+	return;
+}
+
+
+/*====================================================================*
+ *
+ *   static void efsu (struct _file_ const * file, signed length);
+ *
+ *   print fields in efsu format;
+ *
+ *--------------------------------------------------------------------*/
+
+static void efsu (struct _file_ const * file, signed length) 
+
+{
+	byte buffer [length];
+	if (read (file->file, buffer, length) == length) 
+	{
+		column = 0;
+		printf ("# %s\n", symbol);
+		putc ('\n', stdout);
+		while (column < length) 
+		{
+			printf ("%02X", buffer [column++]);
+			putc (column%16? ' ': '\n', stdout);
+		}
+		if (column%16) 
+		{
+			putc ('\n', stdout);
+		}
+		putc ('\n', stdout);
+	}
+	return;
+}
+
+
+/*====================================================================*
  *   
- *   void function (file const * file, off_t extent, flag_t flags);
+ *   void function (struct _file_ const * file, off_t extent, void output (struct _file_ const *, signed), flag_t flags);
  *   
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -66,18 +145,13 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function (file const * file, off_t extent, flag_t flags) 
+static void function (struct _file_ const * file, off_t extent, void output (struct _file_ const *, signed), flag_t flags) 
 
 {
-	unsigned object = 0;
-	unsigned lineno = 0;
-	unsigned offset = 0;
-	unsigned length = 0;
-	char memory [_ADDRSIZE + 1];
-	char symbol [_NAMESIZE];
-	char string [_LINESIZE];
-	char * sp;
-	signed c;
+	object = 0;
+	lineno = 0;
+	offset = 0;
+	length = 0;
 	while ((c = getc (stdin)) != EOF) 
 	{
 		if ((c == '#') || (c == ';')) 
@@ -162,25 +236,7 @@ static void function (file const * file, off_t extent, flag_t flags)
 		*sp = (char)(0);
 		if (length) 
 		{
-			byte buffer [length];
-			if (read (file->file, buffer, length) == (signed)(length)) 
-			{
-				if (!object++) 
-				{
-					for (c = 0; c < _ADDRSIZE + 65; c++) 
-					{
-						putc ('-', stdout);
-					}
-					putc ('\n', stdout);
-				}
-				printf ("%s %u %s\n", hexoffset (memory, sizeof (memory), offset), length, symbol);
-				hexview (buffer, offset, length, stdout);
-				for (c = 0; c < _ADDRSIZE + 65; c++) 
-				{
-					putc ('-', stdout);
-				}
-				putc ('\n', stdout);
-			}
+			output (file, length);
 		}
 		offset += length;
 		lineno++;
@@ -212,9 +268,11 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"f:qv",
+		"def:qv",
 		"file [file] [...]",
 		"object driven dump",
+		"d\toutput in dump format",
+		"e\toutput in efsu format",
 		"f f\tobject definition file",
 		"q\tquiet mode",
 		"v\tverbose mode",
@@ -225,12 +283,18 @@ int main (int argc, char const * argv [])
 		STDIN_FILENO,
 		"stdin"
 	};
+	void (* output) (struct _file_ const *, signed) = dump;
 	flag_t flags = (flag_t)(0);
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
+		case 'd':
+			output = dump;
+			break;
+		case 'e':
+			output = efsu;
 		case 'f':
 			if (!freopen (optarg, "rb", stdin)) 
 			{
@@ -263,7 +327,7 @@ int main (int argc, char const * argv [])
 		}
 		else 
 		{
-			function (&file, statinfo.st_size, flags);
+			function (&file, statinfo.st_size, output, flags);
 			close (file.file);
 		}
 		argc--;

@@ -69,7 +69,7 @@ typedef struct field
 	size_t size;
 }
 
-field;
+FIELD;
 
 /*====================================================================*
  *   memory allocation functions (also declared in error.h);
