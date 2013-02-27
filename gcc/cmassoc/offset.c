@@ -57,7 +57,8 @@
 #define OFFSET_PAGE (1 << 1)
 #define OFFSET_TEXT (1 << 2)
 #define OFFSET_EFSU (1 << 3)
-#define OFFSET_ZERO (1 << 4)
+#define OFFSET_BOOK (1 << 4)
+#define OFFSET_ZERO (1 << 5)
 
 #define COLUMN 0
 #define MARGIN 0
@@ -88,15 +89,36 @@ static signed c;
 
 /*====================================================================*
  *   
- *   unsigned entity ();
+ *   unsigned object ();
+ *
+ *   scan and parse an object definition;
+ *
+ *   <definition> := <offset> <symbol> <string>
+ *
+ *   <symbol> := <alpha> | '_'
+ *   <symbol> := <symbol> <alpha> 
+ *   <symbol> := <symbol> '-' 
+ *   <symbol> := <symbol> '_' 
+ *   <symbol> := <symbol> '.' 
+ *   <symbol> := <symbol> ':' 
+ *   <symbol> := <symbol> '[' <number> ']'
+ *
+ *   <string> := <alpha> | <digit> | <punct>
+ *   <string> := <string> <alpha>
+ *   <string> := <string> <digit>
+ *   <string> := <string> <punct>
+ *   <string> := <string> <blank>
  *   
+ *   <number> := <digit>
+ *   <number> := <number> <digit>
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
-static unsigned entity () 
+static unsigned object () 
 
 {
 	extern unsigned lineno;
@@ -285,7 +307,7 @@ static void html (char const * colors [], unsigned count, flag_t flags)
 			lineno++;
 			continue;
 		}
-		index = entity () % count;
+		index = object () % count;
 		if (!length) 
 		{
 			if (offset) 
@@ -387,7 +409,7 @@ static void text (flag_t flags)
 			lineno++;
 			continue;
 		}
-		entity ();
+		object ();
 		if (length) 
 		{
 			unsigned output = printf (" %08X %10d %s", offset, length, symbol);
@@ -469,25 +491,25 @@ static void efsu (flag_t flags)
 			lineno++;
 			continue;
 		}
-		entity ();
+		object ();
 		if (length) 
 		{
 			unsigned column = 0;
 			putc ('\n', stdout);
 			printf ("# %s\n", symbol);
 			putc ('\n', stdout);
-			while (column++ < length)
+			while (column < length)
 			{
 				putc ('0', stdout);
 				putc ('0', stdout);
-				putc (column%16? ' ': '\n', stdout);
+				putc (++column%16? ' ': '\n', stdout);
 			}
-			putc (column%16? ' ': '\n', stdout);
-			putc ('\n', stdout);
+			putc (column%16? '\n': ' ', stdout);
 		}
 		offset += length;
 		lineno++;
 	}
+	putc ('\n', stdout);
 	return;
 }
 
@@ -536,7 +558,7 @@ static void tabs (flag_t flags)
 			lineno++;
 			continue;
 		}
-		entity ();
+		object ();
 		if (length) 
 		{
 			printf ("%08X\t%6d\t%s\t%s\n", offset, length, symbol, string);
@@ -656,9 +678,10 @@ int main (int argc, char const * argv [])
 	extern unsigned column;
 	static char const * optv [] = 
 	{
-		"c:ehl:stz",
+		"bc:ehl:stz",
 		PUTOPTV_S_FUNNEL,
 		"print offset table",
+		"b\tprint docbook format",
 		"c n\talign descriptions to column (n) [" LITERAL (COLUMN) "]",
 		"e\tprint efsu format",
 		"h\tprint HTML table on stdout",
@@ -682,6 +705,9 @@ int main (int argc, char const * argv [])
 	{
 		switch (c) 
 		{
+		case 'b':
+			_setbits (flags, OFFSET_BOOK);
+			break;
 		case 'c':
 			column = uintspec (optarg, 0, UCHAR_MAX);
 			break;
