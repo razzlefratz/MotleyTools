@@ -495,21 +495,21 @@ static void efsu (flag_t flags)
 		if (length) 
 		{
 			unsigned column = 0;
-			putc ('\n', stdout);
 			printf ("# %s\n", symbol);
-			putc ('\n', stdout);
 			while (column < length)
 			{
 				putc ('0', stdout);
 				putc ('0', stdout);
 				putc (++column%16? ' ': '\n', stdout);
 			}
-			putc (column%16? '\n': ' ', stdout);
+			if (column%16)
+			{
+				putc ('\n', stdout);
+			}
 		}
 		offset += length;
 		lineno++;
 	}
-	putc ('\n', stdout);
 	return;
 }
 

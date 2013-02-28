@@ -102,7 +102,6 @@ static void efsu (int fd, char const * symbol, off_t offset, byte const * buffer
 {
 	signed column = 0;
 	printf ("# %s\n", symbol);
-	putc ('\n', stdout);
 	while (column < length) 
 	{
 		printf ("%02X", buffer [column++]);
@@ -112,7 +111,6 @@ static void efsu (int fd, char const * symbol, off_t offset, byte const * buffer
 	{
 		putc ('\n', stdout);
 	}
-	putc ('\n', stdout);
 	return;
 }
 
@@ -320,7 +318,7 @@ int main (int argc, char const * argv [])
 	{
 		error (1, 0, ERROR_TOOMANY);
 	}
-	while ((argc) && (* argv)) 
+	if ((argc) && (* argv)) 
 	{
 		off_t offset;
 		if ((fd = open (* argv, O_BINARY|O_RDONLY)) == -1) 
