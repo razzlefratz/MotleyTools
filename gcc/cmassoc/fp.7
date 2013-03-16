@@ -1,4 +1,4 @@
-.TH fp 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH fp 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 fp - file finger-printer 
 .SH SYNOPSIS
@@ -9,35 +9,50 @@ fp - file finger-printer
 .RI [ ... ]
 .RI [> stdout ]
 .SH DESCRIPTION
-Print the SHA256 digest for one or more files on stdout. The digest is 64 hexadecimal characters representing the 256-bit encrypted value of the file content. Two files having identical digests also have identical content. Conversely, if the file digest has changed then the content has changed. 
+Print the SHA256 digest for one or more files on stdout.
+The digest is 64 hexadecimal characters representing the 256-bit encrypted value of the file content.
+Two files having identical digests also have identical content.
+Conversely, if the file digest has changed then the content has changed.
+
 .PP
-This program can be used to create a finger-print registry for later identification of files based on content, despite any filename changes. A finger-print registry can be searched using program \fBds\fR.
+This program can be used to create a finger-print registry for later identification of files based on content, despite any filename changes.
+A finger-print registry can be searched using program \fBds\fR.
 .SH OPTIONS
 .TP
 .RB - v
-Verbose mode. Print filename after each digest.
+Verbose mode.
+Print filename after each digest.
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over other options on the command line. 
+Print program help summary on stdout.
+This option takes precedence over other options on the command line.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over other options on the command line. 
+Print program version information on stdout.
+This option takes precedence over other options on the command line.
+
 .SH ARGUMENTS
 .TP
 .IR file
-The name of a binary or text file. File format and size are not important. This file is not modified.
+The name of a binary or text file.
+File format and size are not important.
+This file is not modified.
 .SH EXAMPLES
-The following example reads file \fBmyfile.dat\fR from stdin and prints the SHA256 digest on stdout. Piping from stdin is useful in some cases.
+The following example reads file \fBmyfile.dat\fR from stdin and prints the SHA256 digest on stdout.
+Piping from stdin is useful in some cases.
 .PP
    # fp < myfile.dat
    AC679385445B15C6B766DD69ACBC8A362D04293679461E993475D29C83BCC5AE 
 .PP
-The next example does the same thing in a different way. 
+The next example does the same thing in a different way.
+
 .PP
    # fp myfile.dat
    AC679385445B15C6B766DD69ACBC8A362D04293679461E993475D29C83BCC5AE 
 .PP
-The next example does the same thing as above but prints the SHA256 digest and input filename because option \fB-v\fR is present. 
+The next example does the same thing as above but prints the SHA256 digest and input filename because option \fB-v\fR is present.
+
 .PP
    # fp  -v myfile.dat
    AC679385445B15C6B766DD69ACBC8A362D04293679461E993475D29C83BCC5AE myfile.dat 
@@ -50,7 +65,9 @@ The next example prints the SHA256 digest for each file named or specified on th
    A978DF3E94FB98A99C18D5D7E0FFB2646D31CD3A021298693B85D530B6C413E9 
    63E823915FEE928F59482D43172AABE210CB1D35FD0773B56D7C37AFC7190976 
 .PP
-The next example does the same thing as above but includes filenames. The digests and filenames can be saved and used to identify the original files in the future, despite any filename changes. This this form of output comprises a registry that can be used by program \fBds\fR.
+The next example does the same thing as above but includes filenames.
+The digests and filenames can be saved and used to identify the original files in the future, despite any filename changes.
+This this form of output comprises a registry that can be used by program \fBds\fR.
 .PP
    # fp -v /usr/local/bin/{myfile.dat,fixit.exe,pp.conf} fp.o 
    AC679385445B15C6B766DD69ACBC8A362D04293679461E993475D29C83BCC5AE myfile.dat

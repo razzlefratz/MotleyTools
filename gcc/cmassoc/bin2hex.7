@@ -1,4 +1,4 @@
-.TH bin2hex 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH bin2hex 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 bin2hex - binary to hexadecimal contactinate
 .SH SYNOPSIS
@@ -13,28 +13,44 @@ bin2hex - binary to hexadecimal contactinate
 .RI [< stdin ]
 .RI [> stdout ]
 .SH DESCRIPTION
-Read one or more files and write one hexadecimal octet stream. Octets are separated by a space and octet groups are separated by a carriage, by default, return but this can be suppressed. Use program \fBhex2bin\fR to reverse the process.
+Read one or more files and write one hexadecimal octet stream.
+Octets are separated by a space and octet groups are separated by a carriage, by default, return but this can be suppressed.
+Use program \fBhex2bin\fR to reverse the process.
 .SH OPTIONS
-Long options are not supported. All options are single letters.
+Long options are not supported.
+All options are single letters.
 .TP
 .RB - q
-Quiet mode. This option has no effect at this time.
+Quiet mode.
+This option has no effect at this time.
 .TP
 .RB - v
-Verbose mode. This option has no effect at this time. 
+Verbose mode.
+This option has no effect at this time.
+
 .TP
 -\fBw \fIcount\fR
-Octet wrap count. Insert a carriage return every so many octets. Valid values are \fB0\fR though \fB255\fR. The default value is \fB16\fR octets. A value of \fB0\fR will suppress all spaces and carriage returns resulting in a continuous string of hexadecimal digits.
+Octet wrap count.
+Insert a carriage return every so many octets.
+Valid values are \fB0\fR though \fB255\fR.
+The default value is \fB16\fR octets.
+A value of \fB0\fR will suppress all spaces and carriage returns resulting in a continuous string of hexadecimal digits.
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over previous command line options. 
+Print program help summary on stdout.
+This option takes precedence over previous command line options.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over previous command line options.
+Print program version information on stdout.
+This option takes precedence over previous command line options.
 .SH ARGUMENTS
 .TP
 .IR file
-The name of a file. Files may be either text or binary. Input files are not modified. One output stream is written.
+The name of a file.
+Files may be either text or binary.
+Input files are not modified.
+One output stream is written.
 .SH EXAMPLES
 The following command coverts files \fBabc.exe\fR and \fBdef.exe\fR to hexadecimal format and prints them on stdout.
 .PP

@@ -100,6 +100,28 @@ static void function (char const * program, char const * project, char const * p
 		}
 		while (nobreak (c)) 
 		{
+			if (isquote (c))
+			{	
+				char quote = c;
+				do { putc (c, stdout); c = getc (stdin); } while (c != quote);
+			}
+			else if (c == '[')
+			{	
+				do { putc (c, stdout); c = getc (stdin); } while (c != ']');
+			}
+			else if (c == '.')
+			{
+				putc (c, stdout);
+				c = getc (stdin);
+				if (isblank(c)) 
+				{ 
+					do { c = getc (stdin); } while (isblank(c));
+					if (c != '\n')
+					{
+						putc ('\n', stdout);
+					}
+				}
+			}	
 			putc (c, stdout);
 			c = getc (stdin);
 		}
@@ -169,6 +191,10 @@ int main (int argc, char const * argv [])
 	project = profilestring (profile, section, "project", project);
 	package = profilestring (profile, section, "package", package);
 	release = profilestring (profile, section, "release", release);
+	if ((!argc) || (!*argv))
+	{
+		function ("", project, package, release);
+	}
 	while ((argc) && (* argv)) 
 	{
 		if (vfopen (* argv)) 

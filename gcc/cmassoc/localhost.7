@@ -1,32 +1,44 @@
-.TH localhost 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH localhost 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 localhost - manage host/domain name
 .SH SYNOPSIS
 .BR localhost
 .RI [ options ]
 .SH DESCRIPTION
-Set the local host and/or domain name. The fully qualified domain name, of \fBfdqn\fR, for any computer consists of the local hostname and the network domain name.  
+Set the local host and/or domain name.
+The fully qualified domain name, of \fBfdqn\fR, for any computer consists of the local hostname and the network domain name.
+
 .SH OPTIONS
-Long options are not supported. All options are single letters.
+Long options are not supported.
+All options are single letters.
 .TP
 -\fBd\fI domain\fR
-The network domain name. This string is written to file \fB/proc/sys/kernel/domainname\fR and will remain in effect until reboot. On reboot, the hostname is read from parameter \fBkernel.domainname\fR in file \fB/etc/sysctl.conf\fR.
+The network domain name.
+This string is written to file \fB/proc/sys/kernel/domainname\fR and will remain in effect until reboot.
+On reboot, the hostname is read from parameter \fBkernel.domainname\fR in file \fB/etc/sysctl.conf\fR.
 .TP
 -\fBh\fI host\fR
-The local hostname. This string is written to file \fB/proc/sys/kernel/hostname\fR and will remain in effect until reboot. On reboot, the domainname is read from parameter \fBkernel.domainname\fR in file \fB/etc/sysctl.conf\fR.
+The local hostname.
+This string is written to file \fB/proc/sys/kernel/hostname\fR and will remain in effect until reboot.
+On reboot, the domainname is read from parameter \fBkernel.domainname\fR in file \fB/etc/sysctl.conf\fR.
 .TP
 .RB - l
-Create symlink \fB/etc/hostname\fR --> \fB/proc/sys/kernel/hostname\fR for use by dependent boot scripts. 
+Create symlink \fB/etc/hostname\fR --> \fB/proc/sys/kernel/hostname\fR for use by dependent boot scripts.
+
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over previous command line options. 
+Print program help summary on stdout.
+This option takes precedence over previous command line options.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over previous command line options.
+Print program version information on stdout.
+This option takes precedence over previous command line options.
 .SH FILES    
 .TP
 /etc/hostname
-Constains the hostname on many Linux distributions. Option \fB-l\fR replaces this file with a symlink to /proc/sys/kernel/hostname which is used by the newer Linux kernels.
+Constains the hostname on many Linux distributions.
+Option \fB-l\fR replaces this file with a symlink to /proc/sys/kernel/hostname which is used by the newer Linux kernels.
 .TP
 /proc/sys/kernel/hostname
 .TP

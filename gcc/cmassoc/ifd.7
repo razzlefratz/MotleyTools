@@ -1,4 +1,4 @@
-.TH ifd 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH ifd 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 ifd - Interface Diagram Generator
 .SH SYNOPSIS
@@ -18,40 +18,61 @@ None.
 .SH OPTIONS
 .TP
 .RB - a
-Number transactions at the start instead of at both ends. This results in fewer numbers and a less congested diagram.
+Number transactions at the start instead of at both ends.
+This results in fewer numbers and a less congested diagram.
 .TP
 .RB - l
-Draw the first transaction \fBleft-to-right\fR. 
-This is the default direction. 
+Draw the first transaction \fBleft-to-right\fR.
+
+This is the default direction.
+
 .TP
 .RB - r
 Draw the first transaction \fBright-to-left\fR.
-The default direction is \fBleft-to-right\fR. 
+The default direction is \fBleft-to-right\fR.
+
 .TP
 -\fBn\fR step\fR
-The starting step number. 
-Permitted values are \fB1\fR through \fB512\fR. The default is \fB1\fR.
+The starting step number.
+
+Permitted values are \fB1\fR through \fB512\fR.
+The default is \fB1\fR.
 .TP
 .RB - q
-Quiet mode. Suppress normal progress or status information on stdout.
+Quiet mode.
+Suppress normal progress or status information on stdout.
 .TP
 .RB - v
-Verbose mode. Print additional progress or status information on stdout.
+Verbose mode.
+Print additional progress or status information on stdout.
 .TP
 -\fBw\fI width\fR
-Transaction width in columns. The default is \fB40\fR columns. 
+Transaction width in columns.
+The default is \fB40\fR columns.
+
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over other options on the command line. 
+Print program help summary on stdout.
+This option takes precedence over other options on the command line.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over other options on the command line. 
+Print program version information on stdout.
+This option takes precedence over other options on the command line.
+
 .SH ARGUMENTS
 .TP
 .IR file
-The name of an inteface definition file. The file is read but not modified. Interface definition files contain one or more text lines where each line represents a transaction. Blank lines are ignored. Interface definition files end in \fB.ifd\fR by convention. 
+The name of an inteface definition file.
+The file is read but not modified.
+Interface definition files contain one or more text lines where each line represents a transaction.
+Blank lines are ignored.
+Interface definition files end in \fB.ifd\fR by convention.
+
 .SH EXAMPLES
-This is an example interface definition file, \fBtest.ifd\fR. It consists of 9 lines that name 6 transactions. Consecutive blank lines are output as one line and introduce a gap between otherwise adjacent transactions.
+This is an example interface definition file, \fBtest.ifd\fR.
+It consists of 9 lines that name 6 transactions.
+Consecutive blank lines are output as one line and introduce a gap between otherwise adjacent transactions.
 .PP
    Step1
        Step2
@@ -63,7 +84,9 @@ This is an example interface definition file, \fBtest.ifd\fR. It consists of 9 l
       Step5
    Step6
 .PP
-The following example reads file \fBtest.ifd\fR and prints the corresponding interface diagram on stdout. Observe that the first transaction is \fBleft-to\right\fR and steps are labeled \fB1\fR through \fB12\fR. You, as an author, must describe for each step so that readers understand the diagram.
+The following example reads file \fBtest.ifd\fR and prints the corresponding interface diagram on stdout.
+Observe that the first transaction is \fBleft-to\right\fR and steps are labeled \fB1\fR through \fB12\fR.
+You, as an author, must describe for each step so that readers understand the diagram.
 .PP
    # ifd test.ifd
 
@@ -91,7 +114,9 @@ The next example reverses the direction of all transactions because option \fB-l
      [13] |------------------- Step6 ------------------->| [14]
     
 .PP
-The next example is identical to the first except that transactions ar only numbered at their start instead of at both ends because option \fB-a\fR is present. We call this "alternate" numbering because it appears to alternate. This minimizes the number of steps that must be documented.
+The next example is identical to the first except that transactions ar only numbered at their start instead of at both ends because option \fB-a\fR is present.
+We call this "alternate" numbering because it appears to alternate.
+This minimizes the number of steps that must be documented.
 .PP
    # ifd -a test.ifd
    

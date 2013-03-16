@@ -1,4 +1,4 @@
-.TH mp 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH mp 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 mp - format man page header
 .SH SYNOPSIS
@@ -14,39 +14,59 @@ mp - format man page header
 .RI [> file ]
 .SH DESCRIPTION
 .PP
-Format a man page header. The man page header is the first line and starts with command ".TH". The remainder of the line consists of the program name, man section and three title strings. The file basename becomes the program name. The file extension becomes the man section and should be one digit [0-9]. The three titles are read from a named profile, the default profile or internal program constants. The profile section can be specified.
+Format a man page header.
+The man page header is the first line and starts with command ".TH".
+The remainder of the line consists of the program name, man section and three title strings.
+The file basename becomes the program name.
+The file extension becomes the man section and should be one digit [0-9].
+The three titles are read from a named profile, the default profile or internal program constants.
+The profile section can be specified.
 .SH OPTIONS
-Long options are not supported. All options are single letters.
+Long options are not supported.
+All options are single letters.
 .TP
 .RB - o
-Print a template profile on stdout. 
-The template uses default program values. 
-Output can be directed to a file, edited and read back whenever the program is next executed. 
+Print a template profile on stdout.
+
+The template uses default program values.
+
+Output can be directed to a file, edited and read back whenever the program is next executed.
+
 This option takes precedence over normal formatting operations.
 .TP
 -\fBp\fI profile\fR
-The profile name. 
-If this option is present then the program attempts to open and read the profile. 
+The profile name.
+
+If this option is present then the program attempts to open and read the profile.
+
 The program will report an error and terminated if the named profile file does not exist.
 If this option is omitted the program attempts to read the default profile.
 The program does not report an error when the default profile is missing.
 THe default profile is "\fB/etc/mp.ini\fR".
 .TP
 -\fBs\fI section\fR
-The profile section name. 
+The profile section name.
+
 If this option is present the the program will search the named profile or default profile for the named section.
-If this option is omitted the progam will search for the default section, instead. 
-The default section is named "\fBdefault\fR". 
+If this option is omitted the progam will search for the default section, instead.
+
+The default section is named "\fBdefault\fR".
+
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over previous command line options. 
+Print program help summary on stdout.
+This option takes precedence over previous command line options.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over previous command line options.
+Print program version information on stdout.
+This option takes precedence over previous command line options.
 .SH ARGUMENTS
 .TP
 .IR file
-The name of man page. This file is replaced and a numbered backup is created. Use program \fBrex\fR to recover a prior version.
+The name of man page.
+This file is replaced and a numbered backup is created.
+Use program \fBrex\fR to recover a prior version.
 .SH PROFILE
 The default profile looks like:
 .PP
@@ -56,15 +76,23 @@ The default profile looks like:
    release=Feb 2004
 .TP
 .BR project
-The project name appears at the top center of the page. A reasonable value is the company or project name. The default is "Motley Tools".
+The project name appears at the top center of the page.
+A reasonable value is the company or project name.
+The default is "Motley Tools".
 .TP
 .BR package
-The package name appears in the lower left of the page. A reasonable value is the archive name with revision numbers. The default is "cmassoc-tools-x.x.x".        
+The package name appears in the lower left of the page.
+A reasonable value is the archive name with revision numbers.
+The default is "cmassoc-tools-x.x.x".
+
 .TP
 .BR release
-The release data appears at the bottom center of the page. A reasonable value is the current month and year. The default is the current month and year.
+The release data appears at the bottom center of the page.
+A reasonable value is the current month and year.
+The default is the current month and year.
 .SH EXAMPLES
-The following example formats the ".TH" line of man page \fBmp.7\fR using default program values. 
+The following example formats the ".TH" line of man page \fBmp.7\fR using default program values.
+
 .PP
    # mp afm.7
 .SH SEE ALSO

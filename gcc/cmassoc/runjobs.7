@@ -1,4 +1,4 @@
-.TH runjobs 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH runjobs 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 runjobs - run executable scripts 
 .SH SYNOPSIS
@@ -8,49 +8,82 @@ runjobs - run executable scripts
 .RI [ filespec ]
 .RI [ ... ]
 .SH DESCRIPTION
-Search one or more folders and run selected files as shell scripts. Ignore files that do not match script filename criteria, that are not executable or do not have the correct bang path.  
+Search one or more folders and run selected files as shell scripts.
+Ignore files that do not match script filename criteria, that are not executable or do not have the correct bang path.
+
 .SH SEARCH SPECIFICATIONS
-A search specification looks like a normal filename specification with a \fBpathname\fR and a \fBbasename\fR part. Either part may be ommitted or abbreviated. The basename part can be a filename or a \fBwildcard\fR pattern.  When more than one search specification appears on the command line then each search is performed in order.
+A search specification looks like a normal filename specification with a \fBpathname\fR and a \fBbasename\fR part.
+Either part may be ommitted or abbreviated.
+The basename part can be a filename or a \fBwildcard\fR pattern.
+When more than one search specification appears on the command line then each search is performed in order.
 .PP
-A single search starts in the folder specified by the pathname component and iterates through files in that folder looking for regular files that match the filename or wildcard specified by the basename component. Special files, such as devices, fifos and sockets are always ignored. Symbolic links are ignored unless enabled.  Matching files are executed as shell scripts if they are executable and contain a valid script header. The folder search resumes after script completion and ends when all the files in the folder have been inspected. 
+A single search starts in the folder specified by the pathname component and iterates through files in that folder looking for regular files that match the filename or wildcard specified by the basename component.
+Special files, such as devices, fifos and sockets are always ignored.
+Symbolic links are ignored unless enabled.
+Matching files are executed as shell scripts if they are executable and contain a valid script header.
+The folder search resumes after script completion and ends when all the files in the folder have been inspected.
+
 .SH OPTIONS
-Long options are not supported. All options are single letters.
+Long options are not supported.
+All options are single letters.
 .TP
 -\fBa \fIargument\fR
-Specifies an argument that will be passed to the shell when executing each script.  This argument will be passed on to the script unless it is shell specific. 
+Specifies an argument that will be passed to the shell when executing each script.
+This argument will be passed on to the script unless it is shell specific.
+
 More that one shell argument may be specified but each must be preceded by by \fB-a\fR.
 .TP
 .RB - e
-Enables exit mode. In this mode the current search terminates on the first error thus preventing any remaining scripts from executing. Any remaining searches are still executed.
+Enables exit mode.
+In this mode the current search terminates on the first error thus preventing any remaining scripts from executing.
+Any remaining searches are still executed.
 .TP
 .RB - l
-Allows symbolic links to be executed when their symbolic name matches the search specification and the file they reference meets all other execution criteria. This option is disabled by default because it could have security implications.  
+Allows symbolic links to be executed when their symbolic name matches the search specification and the file they reference meets all other execution criteria.
+This option is disabled by default because it could have security implications.
+
 .TP
 .RB - r
-Extends the normal folder search to include subfolders. This option only is userful for executing scripts of having a given name, or naming convention, that are distriuted throughout a particular directory structure. Users might elect to store scripts in the same folders as the files they process. Recursion is diabled by default.  
+Extends the normal folder search to include subfolders.
+This option only is userful for executing scripts of having a given name, or naming convention, that are distriuted throughout a particular directory structure.
+Users might elect to store scripts in the same folders as the files they process.
+Recursion is diabled by default.
+
 .TP
 .RB - t
-Enables test mode. In this mode, scripts are not actually executed but are reported as though they were. This mode is useful for checking the effects of a particular search specification. This option is disabled by default.
+Enables test mode.
+In this mode, scripts are not actually executed but are reported as though they were.
+This mode is useful for checking the effects of a particular search specification.
+This option is disabled by default.
 .TP
 -\fBu \fImode\fR
-Set the umask mode value. The default mode is \fB022\fR.
+Set the umask mode value.
+The default mode is \fB022\fR.
 .TP
 .RB - v
-Verbose mode. Normally, only errors are reported but when verbose messages are enabled then many normal events are reported. This option is disabled by default. It is automatically enabled when the \fBtest mode\fR is enabled.
+Verbose mode.
+Normally, only errors are reported but when verbose messages are enabled then many normal events are reported.
+This option is disabled by default.
+It is automatically enabled when the \fBtest mode\fR is enabled.
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over previous command line options. 
+Print program help summary on stdout.
+This option takes precedence over previous command line options.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over previous command line options.
+Print program version information on stdout.
+This option takes precedence over previous command line options.
 .SH FILES
 .TP 
 .BR /etc/runjobs.d
-The default search folder. By convention, this folder contains subfolders \fBnever\fR, \fBhourly\fR, \fBdaily\fR, \fBweekly\fR and \fBmonthly\fR that are searched by runjobs statements in /etc/crontab.
+The default search folder.
+By convention, this folder contains subfolders \fBnever\fR, \fBhourly\fR, \fBdaily\fR, \fBweekly\fR and \fBmonthly\fR that are searched by runjobs statements in /etc/crontab.
 .SH VARIABLES
 .TP
 .BR SHELL      
-The path to the preferred command line shell. 
+The path to the preferred command line shell.
+
 .SH SEE ALSO
 .BR run-parts ( 7 )
 .SH CREDITS

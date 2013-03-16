@@ -1,4 +1,4 @@
-.TH crlf 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH crlf 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 crlf - convert text line endings
 .SH SYNOPSIS
@@ -13,9 +13,13 @@ crlf - convert text line endings
 .RI [< file ] 
 .RI [> file ]
 .SH DESCRIPTION
-Convert text files created on one operating system to a format that can be read and displayed on another. Apple Computer systems end lines with a carriage return. Unix and linux systems end lines with a linefeed. Micsosoft and IBM systems end lines with a carriage return and linefeed.
+Convert text files created on one operating system to a format that can be read and displayed on another.
+Apple Computer systems end lines with a carriage return.
+Unix and linux systems end lines with a linefeed.
+Micsosoft and IBM systems end lines with a carriage return and linefeed.
 .SH OPTIONS
-Long options are not supported. All options are single letters.
+Long options are not supported.
+All options are single letters.
 .TP
 .RB - a
 Convert to Apple Computer format where lines end with "\\r".
@@ -27,18 +31,24 @@ Convert to Microsoft Windows or IBM format where lines end with "\\r\\n".
 Convert to Unix or Linux format where lines end with "\\n".
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over previous command line options. 
+Print program help summary on stdout.
+This option takes precedence over previous command line options.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over previous command line options.
+Print program version information on stdout.
+This option takes precedence over previous command line options.
 .SH ARGUMENTS
 .TP
 .IR file
-The name of a text file. This file is replaced and a numbered backup is created. Use program \fBrex\fR to recover a prior version.
+The name of a text file.
+This file is replaced and a numbered backup is created.
+Use program \fBrex\fR to recover a prior version.
 .SH EXAMPLES
 None.
 .SH FILES
-None. 
+None.
+
 .SH SEE ALSO
 .BR blank ( 7 ), 
 .BR lam ( 7 ),

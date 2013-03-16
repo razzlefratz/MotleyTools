@@ -1,4 +1,4 @@
-.TH calend 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH calend 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 calend - console calendar   
 .SH SYNOPSIS
@@ -6,25 +6,41 @@ calend - console calendar
 .RI [ options ]
 .SH DESCRIPTION
 .PP
-Print a browseable catalog of text files. The catalog consists of one HTML page for each file with the file forming the page body. The HTML pages are linked so that they can be browsed, either forward or backward, using a web browser. A multi-column index page can also be produced. This program can be used to catalog large numbers of source code files, for example.
+Print a browseable catalog of text files.
+The catalog consists of one HTML page for each file with the file forming the page body.
+The HTML pages are linked so that they can be browsed, either forward or backward, using a web browser.
+A multi-column index page can also be produced.
+This program can be used to catalog large numbers of source code files, for example.
 .SH OPTIONS
-Long options are not supported. All options are single letters.
+Long options are not supported.
+All options are single letters.
 .TP
 -\fBy\fI [+|-]year\fR
-The display year. An unsigned value indicates an absolute year. A signed value indicates an offset that is added to or subtracted from the current year. If this option is omitted then the current year is assumed.
+The display year.
+An unsigned value indicates an absolute year.
+A signed value indicates an offset that is added to or subtracted from the current year.
+If this option is omitted then the current year is assumed.
 .TP
 -\fBm\fI [+|-]month\fR
-The display month. An unsigned value indicates an absolute month. A signed value indicates an offset that is added to or subtracted from the current month. It this option is omitted then the current month is assumed. 
+The display month.
+An unsigned value indicates an absolute month.
+A signed value indicates an offset that is added to or subtracted from the current month.
+It this option is omitted then the current month is assumed.
+
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over previous command line options. 
+Print program help summary on stdout.
+This option takes precedence over previous command line options.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over previous command line options.
+Print program version information on stdout.
+This option takes precedence over previous command line options.
 .SH ARGUMENTS
 None.
 .SH EXAMPLES
-The following example displays a calendar on the console. Three months are displayed with the current date appearing somewhere in the center month.
+The following example displays a calendar on the console.
+Three months are displayed with the current date appearing somewhere in the center month.
 .PP
    # calend
 

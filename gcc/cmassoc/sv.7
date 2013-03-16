@@ -1,4 +1,4 @@
-.TH sv 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH sv 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 sv - string vector source coder
 .SH SYNOPSIS
@@ -14,30 +14,44 @@ sv - string vector source coder
 .RI [< file ]
 .RI [> file ]
 .SH DESCRIPTION
-Generate C Language constant definitions, string vector data declaration and/or switch statement from a list of strings. Assist programmers by generating C language source code to support symbol table searching.
+Generate C Language constant definitions, string vector data declaration and/or switch statement from a list of strings.
+Assist programmers by generating C language source code to support symbol table searching.
 .SH OPTIONS
 .TP
 -\fBt\fI title\fR
 The title used to generate constant names, string vectors and switch case labels.
 .TP
 .RB - d
-Print constant definitions. Each input line becomes a preprocessor constant definition whose value is the line number. The constant name is derived by prepending the title (option \fB-t\fR) to each line of text. Spaces are replaced with underscores and characters are converted to upper case. 
+Print constant definitions.
+Each input line becomes a preprocessor constant definition whose value is the line number.
+The constant name is derived by prepending the title (option \fB-t\fR) to each line of text.
+Spaces are replaced with underscores and characters are converted to upper case.
+
 .TP
 .RB - s
-Print switch statement. The statement includes one case label for each constant that is (or would be) defined using option \fB-d\fR. 
+Print switch statement.
+The statement includes one case label for each constant that is (or would be) defined using option \fB-d\fR.
+
 .TP
 .RB - v
-Print string vector data declaration. Vector strings are the input lines as read.
+Print string vector data declaration.
+Vector strings are the input lines as read.
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over other options on the command line. 
+Print program help summary on stdout.
+This option takes precedence over other options on the command line.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over other options on the command line. 
+Print program version information on stdout.
+This option takes precedence over other options on the command line.
+
 .SH ARGUMENTS
 .TP
 .IR file
-The name of symbol definition file. One or more files may appear on the command line. Each file should be syntactically correct or errors can occur.
+The name of symbol definition file.
+One or more files may appear on the command line.
+Each file should be syntactically correct or errors can occur.
 .SH EXAMPLES
 None.
 .SH SEE ALSO

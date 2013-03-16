@@ -1,4 +1,4 @@
-.TH shakey 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH shakey 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 shakey - SHA256 Key Generator
 .SH SYNOPSIS
@@ -8,11 +8,18 @@ shakey - SHA256 Key Generator
 .RI [ phrase ] 
 [...]
 .SH DESCRIPTION
-Convert one or more phrases to encrypted SHA256 keys. Phrases are read as command line arguments, converted keys and printed on stdout. By default, only keys are printed, one key per line, but keys and phrases can both be printed, one pair per line.
+Convert one or more phrases to encrypted SHA256 keys.
+Phrases are read as command line arguments, converted keys and printed on stdout.
+By default, only keys are printed, one key per line, but keys and phrases can both be printed, one pair per line.
 .SH OPTIONS
 .TP
 .RB - e
-Enforce length and content rules for phrases. Non-compliant phrases are reported and ignored. Compliant phrases are 12 to 64 7-bit ASCII characters in the range 0x20 (SP) through 0x7F (DEL). Essentially, this includes any character that can be typed on a standard US or UK keyboard, excluding horizontal tab (HT). Be aware that some command shells intercept and act on special characters instead of passing them to the application. In such cases, you may need to include meta characters.
+Enforce length and content rules for phrases.
+Non-compliant phrases are reported and ignored.
+Compliant phrases are 12 to 64 7-bit ASCII characters in the range 0x20 (SP) through 0x7F (DEL).
+Essentially, this includes any character that can be typed on a standard US or UK keyboard, excluding horizontal tab (HT).
+Be aware that some command shells intercept and act on special characters instead of passing them to the application.
+In such cases, you may need to include meta characters.
 .TP
 .RB - q
 Enable quiet mode which, for this application, has no effect.
@@ -21,14 +28,23 @@ Enable quiet mode which, for this application, has no effect.
 Enable verbose mode which, for this application, prints the pass phrase after each key.
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over other options on the command line. 
+Print program help summary on stdout.
+This option takes precedence over other options on the command line.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over other options on the command line. 
+Print program version information on stdout.
+This option takes precedence over other options on the command line.
+
 .SH ARGUMENTS
 .TP
 .BR phrase
-A pass phrase to be converted to key. More than one pass phrase can be entered on the command line. Each phrase will be converted to a key and printed in the order specified. Phrases that contain quotes or special delimiters should be enclosed in quotes or apostrophes. By default, phrases can be any length and contain any ASCII chracter except ASCII NUL. Use option \fB-e\fR to enforce HomePlug AV password character and length rules.
+A pass phrase to be converted to key.
+More than one pass phrase can be entered on the command line.
+Each phrase will be converted to a key and printed in the order specified.
+Phrases that contain quotes or special delimiters should be enclosed in quotes or apostrophes.
+By default, phrases can be any length and contain any ASCII chracter except ASCII NUL.
+Use option \fB-e\fR to enforce HomePlug AV password character and length rules.
 .SH EXAMPLES
 The following example prints the SHA256 key for the phrase, "california", entered on the command line. An SHA256 key is 256 bits or 32 bytes expressed as 64 hexadecimal characters. SHA256 is a public domain standard.
 .PP

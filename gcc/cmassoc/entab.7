@@ -1,4 +1,4 @@
-.TH entab 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH entab 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 entab - replace spaces with tabs
 .SH SYNOPSIS
@@ -14,22 +14,30 @@ entab - replace spaces with tabs
 .RI [> file ]
 .SH DESCRIPTION
 .PP
-Replace space characters with an equivalent number of tab characters based on a variable tab specifiction. Use program \fBdetab\fR to convert tabs back to spaces.
+Replace space characters with an equivalent number of tab characters based on a variable tab specifiction.
+Use program \fBdetab\fR to convert tabs back to spaces.
 .SH OPTIONS
-Long options are not supported. All options are single letters.
+Long options are not supported.
+All options are single letters.
 .TP
 -\fBt\fI n.m\fR
-The tab specification where (n) is the first column and (m) is the interval thereafter. The default tab specification is 8.8.
+The tab specification where (n) is the first column and (m) is the interval thereafter.
+The default tab specification is 8.8.
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over previous command line options. 
+Print program help summary on stdout.
+This option takes precedence over previous command line options.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over previous command line options.
+Print program version information on stdout.
+This option takes precedence over previous command line options.
 .SH ARGUMENTS
 .TP
 .IR file
-The name of a text file. This file is replaced and a numbered backup is created. Use program \fBrex\fR to recover a prior version.
+The name of a text file.
+This file is replaced and a numbered backup is created.
+Use program \fBrex\fR to recover a prior version.
 .SH EXAMPLES
 None.
 .SH SEE ALSO

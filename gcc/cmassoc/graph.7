@@ -1,4 +1,4 @@
-.TH graph 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH graph 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 graph - print a histogram 
 .SH SYNOPSIS
@@ -14,38 +14,68 @@ graph - print a histogram
 .RI [< file ]
 .RI [> file ]
 .SH DESCRIPTION
-Print a text-based histogram on stdout. The histogram consists of x and y values printed vertically as pairs. Each pair is followed by a string of hash ('#') characters that represent the magnitude of the y value. In principle, the program can display an unlimited number of data pairs.
+Print a text-based histogram on stdout.
+The histogram consists of x and y values printed vertically as pairs.
+Each pair is followed by a string of hash ('#') characters that represent the magnitude of the y value.
+In principle, the program can display an unlimited number of data pairs.
 .PP
-This program merely displays data. Data can be generated in many ways and manipulated by selection, sorting and grouping prior to presentation. It is left to the user to generate, manipulate and interpret the data that is displayed. 
+This program merely displays data.
+Data can be generated in many ways and manipulated by selection, sorting and grouping prior to presentation.
+It is left to the user to generate, manipulate and interpret the data that is displayed.
+
 .SH OPTIONS
-Long options are not supported. All options are single letters.
+Long options are not supported.
+All options are single letters.
 .TP
 -\fBc\fI pairs\fR
-The maximum number of data pairs accepted by the program. The default is \fB5000\fR. The range is \fB1\fR to \fBINT_MAX\fR as defined in header limits.h.
+The maximum number of data pairs accepted by the program.
+The default is \fB5000\fR.
+The range is \fB1\fR to \fBINT_MAX\fR as defined in header limits.h.
 .TP
 -\fBo\fI [+|-]offset\fR
-The data offset expressed as a positive or negative integer value. All y values are are adjusted by this amount before scaling. A positive offset shifts data values higher so that negative values can be seen. A negative offset shits data values lower so that data variations can be accentuated using a larger scale factor. The default offset is \fB0\fR. The effective range is \fB-INT_MAX\fR to \fBINT_MAX\fR as defined in header limits.h.
+The data offset expressed as a positive or negative integer value.
+All y values are are adjusted by this amount before scaling.
+A positive offset shifts data values higher so that negative values can be seen.
+A negative offset shits data values lower so that data variations can be accentuated using a larger scale factor.
+The default offset is \fB0\fR.
+The effective range is \fB-INT_MAX\fR to \fBINT_MAX\fR as defined in header limits.h.
 .TP
 -\fBs\fI scale\fR
-The graph scale expressed as a positive integer value. All y values are divided by this amount. The larger this value the shorter the horizontal bars. The default scale is \fB1\fR. The range is \fB1\fR to \fBINT_MAX\fR as defined in header limits.h.
+The graph scale expressed as a positive integer value.
+All y values are divided by this amount.
+The larger this value the shorter the horizontal bars.
+The default scale is \fB1\fR.
+The range is \fB1\fR to \fBINT_MAX\fR as defined in header limits.h.
 .TP
 -\fBt\fI title\fR
-The graph title. Enclose the title in quotes or apostrophes if it contains spaces. The default title is "\fBDistribution\fR". 
+The graph title.
+Enclose the title in quotes or apostrophes if it contains spaces.
+The default title is "\fBDistribution\fR".
+
 .TP
 .RB - x
 Exchange x and y values read from the input.
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over previous command line options. 
+Print program help summary on stdout.
+This option takes precedence over previous command line options.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over previous command line options.
+Print program version information on stdout.
+This option takes precedence over previous command line options.
 .SH ARGUMENTS
 .TP
 .IR file
-The name of a data file. Data files consist of decimal integer pairs, one pair per line, separated by white space. A hash ('#') or semicolon (';') causes remaining text on the line to be ignored. 
+The name of a data file.
+Data files consist of decimal integer pairs, one pair per line, separated by white space.
+A hash ('#') or semicolon (';') causes remaining text on the line to be ignored.
+
 .SH EXAMPLES
-The following is an example data file, \fBpowers.txt\fR, containing powers of two. The first column contains the exponent. The second column contains the value. Three comment lines start the file and will be ignored.
+The following is an example data file, \fBpowers.txt\fR, containing powers of two.
+The first column contains the exponent.
+The second column contains the value.
+Three comment lines start the file and will be ignored.
 .PP
    # ===============
    # powers of two;
@@ -61,7 +91,10 @@ The following is an example data file, \fBpowers.txt\fR, containing powers of tw
    8 256
    9 512
 .PP
-The following example graphs the file shown above. The x values appear outside the brackets and the y values appear inside the brackets. The bars represent the y value but some bars have been truncated in this example because long bars do not format well. 
+The following example graphs the file shown above.
+The x values appear outside the brackets and the y values appear inside the brackets.
+The bars represent the y value but some bars have been truncated in this example because long bars do not format well.
+
 .PP
    # graph powers.txt
    Distribution
@@ -77,7 +110,11 @@ The following example graphs the file shown above. The x values appear outside t
         9[   512]###################################################
    total=1023 level=0 scale=1
 .PP
-The rext example scales the output to improve the display. Observe the default graph title of "Distribution". The total is the sum of y values because this is a histogram program and mathematicians like to know the sample size. The level is 0 so nothing has been subtracted from y values. The scale is 16 so each hash represents 16 units but the true y value is still displayed.
+The rext example scales the output to improve the display.
+Observe the default graph title of "Distribution".
+The total is the sum of y values because this is a histogram program and mathematicians like to know the sample size.
+The level is 0 so nothing has been subtracted from y values.
+The scale is 16 so each hash represents 16 units but the true y value is still displayed.
 .PP
    # graph powers.txt -s 16
    Distribution

@@ -1,4 +1,4 @@
-.TH change 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH change 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 change - search and replace text
 .SH SYNOPSIS
@@ -14,41 +14,53 @@ change - search and replace text
 .SH DESCRIPTION
 Search files and print lines that match or contain any of several regular expressions.
 .SH OPTIONS:
-Long options are not supported. All options are single letters.
+Long options are not supported.
+All options are single letters.
 .TP
 .BR - c
 Report replacement counts.
 .TP
 -\fBe\fI expression\fR
-A regular expression. File sub-strings that match this expression are replaced. 
+A regular expression.
+File sub-strings that match this expression are replaced.
+
 .TP
 .RB - f
 Report replacements by filename.
 .TP
 -\fBl\fI expression\fR
-A regular expression. File lines that match this expression are replaced.
+A regular expression.
+File lines that match this expression are replaced.
 .TP
 -\fBt\fI string\fR
-The replacement text. This option is required and cannot be omitted. The text is literal, not a regular expression.
+The replacement text.
+This option is required and cannot be omitted.
+The text is literal, not a regular expression.
 .TP
 .BR - H
 Review expression expansion.
 .TP
 .BR - R
-Display regular expression rules on stdout. This option takes precedence over previous command line arguments.
+Display regular expression rules on stdout.
+This option takes precedence over previous command line arguments.
 .TP
 .BR - T 
 Display escape sequence rules on stdout.
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over previous command line options. 
+Print program help summary on stdout.
+This option takes precedence over previous command line options.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over previous command line options.
+Print program version information on stdout.
+This option takes precedence over previous command line options.
 .SH ARGUMENTS
 .TP
 .IR file
-The name of a text file. This file is replaced and a numbered backup is created. Use program \fBdetype\fR to recover a prior version.
+The name of a text file.
+This file is replaced and a numbered backup is created.
+Use program \fBdetype\fR to recover a prior version.
 .SH EXAMPLES
 None.
 .SH SEE ALSO

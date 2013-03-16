@@ -1,4 +1,4 @@
-.TH filesize 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH filesize 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 filesize - print filesizes on stdout
 .SH SYNOPSIS
@@ -8,25 +8,36 @@ filesize - print filesizes on stdout
 .RI [ file ] 
 .RI [ ... ]
 .SH DESCRIPTION
-Print the name and size of one or more files on stdout. The filename and filesize are shown in fixed-column format followed by a scaled bar consisting of hash characters. When multiple files are specified, the output forms a histogram showing the relative filesizes.
+Print the name and size of one or more files on stdout.
+The filename and filesize are shown in fixed-column format followed by a scaled bar consisting of hash characters.
+When multiple files are specified, the output forms a histogram showing the relative filesizes.
 .SH OPTIONS
-Long options are not supported. All options are single letters.
+Long options are not supported.
+All options are single letters.
 .TP
 -\fBd\fI digits\fR
-The maximum number of digits used to display the file size in bytes. The default is \fB8\fR digits.
+The maximum number of digits used to display the file size in bytes.
+The default is \fB8\fR digits.
 .TP
 -\fBw\fI width\fR
-The maximum number of characters used to display the file name. Longer names are truncated. The default is \fB16\fR characters.
+The maximum number of characters used to display the file name.
+Longer names are truncated.
+The default is \fB16\fR characters.
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over previous command line options. 
+Print program help summary on stdout.
+This option takes precedence over previous command line options.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over previous command line options.
+Print program version information on stdout.
+This option takes precedence over previous command line options.
 .SH ARGUMENTS
 .TP
 .IR file
-The name of a file. The file is not modified. The file name is display along with the file size in bytes and a scaled horizontal bar.
+The name of a file.
+The file is not modified.
+The file name is display along with the file size in bytes and a scaled horizontal bar.
 .SH EXAMPLES
 None.
 .SH SEE ALSO

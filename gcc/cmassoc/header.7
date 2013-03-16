@@ -1,4 +1,4 @@
-.TH header 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH header 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 header - print file header
 .SH SYNOPSIS
@@ -12,27 +12,37 @@ header - print file header
 .RI [< file ]
 .RI [> file ]
 .SH DESCRIPTION
-Print the first n lines of a file on stdout. This program is similar to the Linux \fBhead\fR utility but has the option to truncate lines on output.
+Print the first n lines of a file on stdout.
+This program is similar to the Linux \fBhead\fR utility but has the option to truncate lines on output.
 .SH OPTIONS
-Long options are not supported. All options are single letters.
+Long options are not supported.
+All options are single letters.
 .TP
 -\fBl\fI lines\fR
-Maximum number of lines to print. On Linux systems, the default is the number of lines supported by the console window; otherwise, it is \fB52\fR lines.
+Maximum number of lines to print.
+On Linux systems, the default is the number of lines supported by the console window; otherwise, it is \fB52\fR lines.
 .TP
 -\fBw\fI chars\fR
-Maximum number of columns to print. Longer lines are truncated. On Linux systems, the default is the number of columns supported by the console window; otherwise, it is \fB80\fR characters.
+Maximum number of columns to print.
+Longer lines are truncated.
+On Linux systems, the default is the number of columns supported by the console window; otherwise, it is \fB80\fR characters.
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over previous command line options. 
+Print program help summary on stdout.
+This option takes precedence over previous command line options.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over previous command line options.
+Print program version information on stdout.
+This option takes precedence over previous command line options.
 .SH ARGUMENTS
 .TP
 .IR file
-The name of a text file. The file is not modified.
+The name of a text file.
+The file is not modified.
 .SH EXAMPLES
-This example prints the first \fB52\fR lines of file \fBabc.txt\fR on the console. Lines are truncated to \fB80\fR columns.
+This example prints the first \fB52\fR lines of file \fBabc.txt\fR on the console.
+Lines are truncated to \fB80\fR columns.
 .PP
    # header abc.txt
 .PP

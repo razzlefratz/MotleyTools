@@ -1,4 +1,4 @@
-.TH xde 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH xde 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 xde - XML Driven Editor              
 .SH SYNOPSIS
@@ -9,29 +9,45 @@ xde - XML Driven Editor
 .RI [ xmlfile ] 
 [...]
 .SH DESCRIPTION
-Modify a data file based on XML instructions defined in one or more instruction files. Instruction files must be valid XML and conform to schema file \fBdata.xsd\fR or errors will occur. Always validate XML files against this schema with a validating parser before submitting them to this program. Firefox or Internet Explorer are suitable for validation purposes purpose.
+Modify a data file based on XML instructions defined in one or more instruction files.
+Instruction files must be valid XML and conform to schema file \fBdata.xsd\fR or errors will occur.
+Always validate XML files against this schema with a validating parser before submitting them to this program.
+Firefox or Internet Explorer are suitable for validation purposes purpose.
 .SH OPTIONS
 .TP
 .RB - q
-Suppresses printing of progress messages. This option has no effect at this time.
+Suppresses printing of progress messages.
+This option has no effect at this time.
 .TP
 .RB - v
-Print additional information. This option has no effect at this time.
+Print additional information.
+This option has no effect at this time.
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over other options on the command line. 
+Print program help summary on stdout.
+This option takes precedence over other options on the command line.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over other options on the command line. 
+Print program version information on stdout.
+This option takes precedence over other options on the command line.
+
 .SH ARGUMENTS
 .TP
 .IR datafile
-The name of a data file. Only one data file can be edited at a time and so care must be taken to avoid the use of wildcard filenames. This program makes no assumption based on filename and does not enforce any filename conventions.
+The name of a data file.
+Only one data file can be edited at a time and so care must be taken to avoid the use of wildcard filenames.
+This program makes no assumption based on filename and does not enforce any filename conventions.
 .TP
 .IR xmlfile
-The name of an XML instruction file. XML instruction files must conform to the scheme designed for this purpose. When more that one \fB.xml\fR file is specified on the command line, edits are applied in order such that later edistover-write eariler edits. Instruction files usually have a \fB.xml\fR extension but this program makes no assumption based on filename and does not enforce any filename conventions.
+The name of an XML instruction file.
+XML instruction files must conform to the scheme designed for this purpose.
+When more that one \fB.xml\fR file is specified on the command line, edits are applied in order such that later edistover-write eariler edits.
+Instruction files usually have a \fB.xml\fR extension but this program makes no assumption based on filename and does not enforce any filename conventions.
 .SH SCHEMA
-The following XML schema defines instruction file structure. Instruction files should be validated against this schema before using them to edit a data file. An explanation of this file appears below.
+The following XML schema defines instruction file structure.
+Instruction files should be validated against this schema before using them to edit a data file.
+An explanation of this file appears below.
 .PP
    <?xml version="1.0" encoding="UTF-8"?>
    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">

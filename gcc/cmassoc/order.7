@@ -1,4 +1,4 @@
-.TH order 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH order 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 order - topological sort
 .SH SYNOPSIS
@@ -13,7 +13,9 @@ order - topological sort
 .RI [< stdin ]
 .RI [> stdout ]
 .SH DESCRIPTION
-Read object relationships from stdin and print object names on stdout in topological order. Relationships are expressed as object name pairs with the names separated by a colon. The nature of the relationship is unspecified and left to the user's imagination. 
+Read object relationships from stdin and print object names on stdout in topological order.
+Relationships are expressed as object name pairs with the names separated by a colon.
+The nature of the relationship is unspecified and left to the user's imagination. 
 .PP
 In mathematical terms, the \fBobjects\fR are \fBnodes\fR and the \fBrelationships\fR are \fBdirected edges\fR that connect nodes. Collectively, they form a \fBDirected Acyclic Graph\fR (\fBDAG\fR). The term \fBacyclic\fR means no circular relationships exist.
 .PP

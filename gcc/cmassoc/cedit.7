@@ -1,4 +1,4 @@
-.TH cedit 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH cedit 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 cedit - C language name editor
 .SH SYNOPSIS
@@ -14,28 +14,43 @@ cedit - C language name editor
 .RI [> file ]
 .SH DESCRIPTION
 .PP
-Search a C language source file and replace one constant or variable name with another. The program understands C language constant and variable name conventions and will skip over comments and literals when searching. 
+Search a C language source file and replace one constant or variable name with another.
+The program understands C language constant and variable name conventions and will skip over comments and literals when searching.
+
 .SH OPTIONS
-Long options are not supported. All options are single letters.
+Long options are not supported.
+All options are single letters.
 .TP
 .RB - c
-Report the number of replacements on stdout by filename. This option can be used to confirm that replacements occured or to determine which files where changed.
+Report the number of replacements on stdout by filename.
+This option can be used to confirm that replacements occured or to determine which files where changed.
 .TP
 -\fBo\fI name\fR
-The old constant or variable name. All occurances of this name are replaced with the new name. Matching is case sensisitive. A complete match is required for replacment. There is no provision for partial or wildcard matchng. 
+The old constant or variable name.
+All occurances of this name are replaced with the new name.
+Matching is case sensisitive.
+A complete match is required for replacment.
+There is no provision for partial or wildcard matchng.
+
 .TP
 -\fBn\fI name\fR
-The new constant or variable name. This option is required and cannot be an empty string.
+The new constant or variable name.
+This option is required and cannot be an empty string.
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over previous command line options. 
+Print program help summary on stdout.
+This option takes precedence over previous command line options.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over previous command line options.
+Print program version information on stdout.
+This option takes precedence over previous command line options.
 .SH ARGUMENTS
 .TP
 .IR file
-The name of a C or C++ language source file. This file is replaced and a numbered backup is created. Use program \fBrex\fR to recover a prior version.
+The name of a C or C++ language source file.
+This file is replaced and a numbered backup is created.
+Use program \fBrex\fR to recover a prior version.
 .SH EXAMPLES
 The following example searches file \fBabc.c\fR and replaces the old variable name "\fBfd\fR" with the new variable name "\fBfileno\fR".
 .PP

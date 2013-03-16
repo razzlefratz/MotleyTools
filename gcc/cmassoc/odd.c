@@ -93,7 +93,7 @@ static void dump (int fd, char const * symbol, off_t offset, byte const * buffer
  *
  *   static void efsu (int fd, char const * symbol, off_t offset, byte const * buffer, signed length);
  *
- *   print fields in efsu format;
+ *   print objects in efsu format;
  *
  *--------------------------------------------------------------------*/
 
@@ -119,8 +119,8 @@ static void efsu (int fd, char const * symbol, off_t offset, byte const * buffer
  *   
  *   void function (int fd, char const * filename, void output (int, off_t, char const *, byte const *, signed));
  *
- *   read offset description file and output binary fields in dump or
- *   efsu format;
+ *   read offset description file and output binary objects in dump 
+ *   or efsu format;
  *   
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -235,7 +235,7 @@ static size_t function (int fd, char const * filename, void output (int, char co
  *
  *   void report (char const * filename, off_t offset);
  *
- *   compare file offset to file size and report any discrepency;
+ *   compare current offset to file size and report any difference;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;

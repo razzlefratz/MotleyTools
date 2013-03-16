@@ -1,4 +1,4 @@
-.TH align 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH align 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
 .SH NAME
 align - align character to column
 .SH SYNOPSIS
@@ -24,23 +24,32 @@ There is no default character.
 If a string is specified, the first character is used.
 .TP
 -\fBt\fI column\fR
-Alignment column. The alignment character is moved to this column provided it can be moved. The default column is 0.
+Alignment column.
+The alignment character is moved to this column provided it can be moved.
+The default column is 0.
 .TP
 -\fBa\fI column\fR
-The "after" column. The first alignment character after this column is aligned to the the aligment column.
+The "after" column.
+The first alignment character after this column is aligned to the the aligment column.
 .TP
 -\fBb\fI column\fR
-THe "before" column. The first alignment character before this column is aligned to the alignment column.
+THe "before" column.
+The first alignment character before this column is aligned to the alignment column.
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over previous command line options. 
+Print program help summary on stdout.
+This option takes precedence over previous command line options.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over previous command line options.
+Print program version information on stdout.
+This option takes precedence over previous command line options.
 .SH ARGUMENTS
 .TP
 .IR file
-The name of a text file. This file is replaced and a numbered backup is created. Use program \fBrex\fR to recover a prior version.
+The name of a text file.
+This file is replaced and a numbered backup is created.
+Use program \fBrex\fR to recover a prior version.
 .SH EXAMPLES
 Given file \fBabc.txt\fR as follows:
 .PP
@@ -59,7 +68,8 @@ Given file \fBabc.txt\fR as follows:
    123456789;         ;1234567890
    123456789;123456789;
 .PP
-The following example aligns the first semicolon to column \fB20\fR. The first semicolon is moved because the default after column is \fB0\fR.
+The following example aligns the first semicolon to column \fB20\fR.
+The first semicolon is moved because the default after column is \fB0\fR.
 .PP
    # align < abc.txt -c ";" -t 20
    123456789012345678901234567890
