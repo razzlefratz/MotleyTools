@@ -103,29 +103,32 @@ static void function (char const * program, char const * project, char const * p
 			if (isquote (c))
 			{	
 				char quote = c;
-				do { putc (c, stdout); c = getc (stdin); } while (c != quote);
+				do { putc (c, stdout); c = getc (stdin); } while ((c != quote) && (c != EOF));
+				continue;
 			}
-			else if (c == '[')
+			if (c == '[')
 			{	
-				do { putc (c, stdout); c = getc (stdin); } while (c != ']');
+				do { putc (c, stdout); c = getc (stdin); } while ((c != ']') && (c != EOF));
+				continue;
 			}
-			else if (c == '.')
+			if (c == '.')
 			{
 				putc (c, stdout);
 				c = getc (stdin);
 				if (isblank(c)) 
 				{ 
-					do { c = getc (stdin); } while (isblank(c));
-					if (c != '\n')
-					{
-						putc ('\n', stdout);
-					}
+					do { c = getc (stdin); } while (isblank (c));
+					putc ('\n', stdout);
 				}
+				continue;
 			}	
 			putc (c, stdout);
 			c = getc (stdin);
 		}
-		putc (c, stdout);
+		if (c != EOF)
+		{
+			putc (c, stdout);
+		}
 	}
 	return;
 }
