@@ -23,7 +23,7 @@ struct _find_ find =
 
 {
 	{
-		0
+		0,
 	},
 	"",
 	FILE_S_EXTENDER,

@@ -62,6 +62,7 @@ struct channel channel =
 #endif
 
 	CHANNEL_TIMEOUT,
+	CHANNEL_TIMER,
 	CHANNEL_OPTIONS
 };
 

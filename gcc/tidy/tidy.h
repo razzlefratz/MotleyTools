@@ -29,9 +29,9 @@
  *--------------------------------------------------------------------*/
 
 #ifndef isblank
-#if ! defined (__GNUC__) && ! defined (__APPLE__)
+// #if ! defined (__GNUC__) && ! defined (__APPLE__)
 #define isblank(c) (((char)(c) == ' ') || ((char)(c) == '\t'))
-#endif
+// #endif
 #endif
 
 #ifndef nobreak
@@ -75,7 +75,7 @@ signed escaped (signed c);
 signed fortran (signed c);
 signed comment (signed c);
 signed mention (signed c);
-signed advance (signed c);
+// signed advance (signed c);
 signed nothing (signed c);
 signed literal (signed c, signed e);
 signed context (signed c, signed e);

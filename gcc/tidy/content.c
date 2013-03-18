@@ -22,7 +22,7 @@ signed content (signed c)
 	{
 		c = comment (c);
 	}
-	else if ((c == '\'') || (c == '\"')) 
+	else if (isquote (c)) 
 	{
 		c = literal (c, c);
 	}

@@ -16,7 +16,15 @@ Read stdin and write stdout. Replace whitespace with character c unless the whit
 
 .TP
 .BR collect ( c )
-Read stdin and write stdout. Write character c then read and write trailing e characters; Discard intervening whitespace.
+Write character c to stdout then read and write trailing e characters; Discard intervening whitespace.
+
+.TP
+.BR find ( c )
+Write character c to stdout then read stdin and discard whitespace. Return the next non-space character from stdin.
+
+.TP
+.BR keep ( c )
+Write character c to stdout then read and return the next character from stdin. 
 
 .SH EXAMPLES
 
