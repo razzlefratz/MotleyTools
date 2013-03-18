@@ -1,4 +1,4 @@
-.TH phptidy 7 "Nov 2011" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH phptidy 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
 .SH NAME
 phptidy - format PHP source code
 .SH SYNOPSIS
@@ -14,30 +14,45 @@ phptidy - format PHP source code
 .RI [> stdout ]
 .SH DESCRIPTION
 .PP
-Format PHP source code without disturbing surrounding text or markup language. Formatting is highly stylized and customized to suit the authors preferences. If you do not like the format then do not use the program. 
+Format PHP source code without disturbing surrounding text or markup language.
+Formatting is highly stylized and customized to suit the authors preferences.
+If you do not like the format then do not use the program.
+
 .PP
-This program uses the \fBotidy\fR class to format language constructs. 
+This program uses the \fBotidy\fR class to format language constructs.
+
 .SH OPTIONS
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over other options on the command line. 
+Print program help summary on stdout.
+This option takes precedence over other options on the command line.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over other options on the command line. Usethis option when sending screen dumps to Intellon Technical Support so that they know exactly which version of the Linux Toolkit you are using.
+Print program version information on stdout.
+This option takes precedence over other options on the command line.
+Usethis option when sending screen dumps to Intellon Technical Support so that they know exactly which version of the Linux Toolkit you are using.
 .SH ARGUMENTS
 .TP
 .BR file
-The name of a PHP or HTML source file. This file is replaced with the formatted output and a numbered backup file is created. Attempts to format syntactically incorrect source files may result in unpredictable output or program errors.
+The name of a PHP or HTML source file.
+This file is replaced with the formatted output and a numbered backup file is created.
+Attempts to format syntactically incorrect source files may result in unpredictable output or program errors.
 .SH EXAMPLES
-This example formats source file \fBabc.php\fR. Backup file \fBabc.php.nnn\fR is automatically created in case recovery is required.
+This example formats source file \fBabc.php\fR.
+Backup file \fBabc.php.nnn\fR is automatically created in case recovery is required.
 .PP
    # phptidy abc.php
 .PP
-The next example reads file \fBabc.php\fR from stdin and writes formatted output to \fBdef.php\fR on stdout. This will prevent the input file from being overwritten. Program output may now be piped into another application.
+The next example reads file \fBabc.php\fR from stdin and writes formatted output to \fBdef.php\fR on stdout.
+This will prevent the input file from being overwritten.
+Program output may now be piped into another application.
 .PP
    # phptidy < abc.php > def.php
 .PP
-The next example reads file \fBabc.html\fR from stdin and formats embedded PHP source without disturbing surrounding text or markup. Output is then piped into program \fBhtmltidy\fR to format the HTML source without disturbing embedded PHP source. Of course, formatting could be done in the opposite order to obtain the same or similar results.
+The next example reads file \fBabc.html\fR from stdin and formats embedded PHP source without disturbing surrounding text or markup.
+Output is then piped into program \fBhtmltidy\fR to format the HTML source without disturbing embedded PHP source.
+Of course, formatting could be done in the opposite order to obtain the same or similar results.
 .PP
    # phptidy < abc.html | htmltidy > def.html
 .SH SEE ALSO

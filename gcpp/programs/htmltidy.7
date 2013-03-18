@@ -1,4 +1,4 @@
-.TH htmltidy 7 "Nov 2011" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH htmltidy 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
 .SH NAME
 htmltidy - format HTML/XHTML source code
 .SH SYNOPSIS
@@ -14,45 +14,67 @@ htmltidy - format HTML/XHTML source code
 .RI [> stdout ]
 .SH DESCRIPTION
 .PP
-Format HTML/XHTML source code without disturbing higher level text. Formatting is highly stylized and customized to suit the authors preferences. If you do not like the format then do not use the program. 
+Format HTML/XHTML source code without disturbing higher level text.
+Formatting is highly stylized and customized to suit the authors preferences.
+If you do not like the format then do not use the program.
+
 .PP
-This program uses the \fBotidy\fR and \fBohtml\fR classes to format language constructs. 
+This program uses the \fBotidy\fR and \fBohtml\fR classes to format language constructs.
+
 .SH OPTIONS
 .TP
 -\fBm \fIstring\fR
-The margin string. This string is printed once prior to each line of text, effectively creating a left margin. The default margin is an empty string, causing unindented text to appear flush against the left side of the output page.
+The margin string.
+This string is printed once prior to each line of text, effectively creating a left margin.
+The default margin is an empty string, causing unindented text to appear flush against the left side of the output page.
 .TP
 -\fBo \fIstring\fR
-The offset string. This string is used to indent each level of text. The default offset is one horizontal tab, effectively indenting each text level by 8 spaces on most systems.
+The offset string.
+This string is used to indent each level of text.
+The default offset is one horizontal tab, effectively indenting each text level by 8 spaces on most systems.
 .TP
 .RB - r
-Repair legacy markup. Currently this consist of addeing a trailing slash to empty HTML elements, such as meta and image, so that they conform to the new XHTML recommendataions from W3C.
+Repair legacy markup.
+Currently this consist of addeing a trailing slash to empty HTML elements, such as meta and image, so that they conform to the new XHTML recommendataions from W3C.
 .TP
 .RB - s
-Indent using 3 spaces. This option is equivalent to -o "   ".
+Indent using 3 spaces.
+This option is equivalent to -o "   ".
 .TP
 .RB - t
-Indent using 1 tab. This option is equivalent to -o "\\t".
+Indent using 1 tab.
+This option is equivalent to -o "\\t".
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over other options on the command line. 
+Print program help summary on stdout.
+This option takes precedence over other options on the command line.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over other options on the command line. Usethis option when sending screen dumps to Intellon Technical Support so that they know exactly which version of the Linux Toolkit you are using.
+Print program version information on stdout.
+This option takes precedence over other options on the command line.
+Usethis option when sending screen dumps to Intellon Technical Support so that they know exactly which version of the Linux Toolkit you are using.
 .SH ARGUMENTS
 .TP
 .BR file
-The name of an HTML or XHTML source file. The file is replaced with formatted output and a numbered backup file is created. Attempts to format badly formed or syntactically incorrect markup files may result in unpredictable output or program errors.
+The name of an HTML or XHTML source file.
+The file is replaced with formatted output and a numbered backup file is created.
+Attempts to format badly formed or syntactically incorrect markup files may result in unpredictable output or program errors.
 .SH EXAMPLES
-This example formats source file \fBabc.html\fR. Backup file \fBabc.html.001\fR is automatically created in case recovery is required.
+This example formats source file \fBabc.html\fR.
+Backup file \fBabc.html.001\fR is automatically created in case recovery is required.
 .PP
    # htmltidy abc.html
 .PP
-The next example reads file \fBabc.php\fR from stdin and writes formatted output to \fBdef.php\fR on stdout. This prevents the input file from being overwritten. Program output may be piped into another application.
+The next example reads file \fBabc.php\fR from stdin and writes formatted output to \fBdef.php\fR on stdout.
+This prevents the input file from being overwritten.
+Program output may be piped into another application.
 .PP
    # phptidy < abc.php > def.php
 .PP
-The next example reads file \fBabc.html\fR from stdin and formats embedded PHP source without disturbing surrounding HTML source. That output is then piped into program \fBhtmltidy\fR to format surrounding HTML source without disturbing the embedded PHP source. Of course, formatting could be done in the opposite order to obtain the same or similar results.
+The next example reads file \fBabc.html\fR from stdin and formats embedded PHP source without disturbing surrounding HTML source.
+That output is then piped into program \fBhtmltidy\fR to format surrounding HTML source without disturbing the embedded PHP source.
+Of course, formatting could be done in the opposite order to obtain the same or similar results.
 .PP
    # htmltidy < abc.html | htmltidy > def.html
 .SH SEE ALSO

@@ -1,4 +1,4 @@
-.TH space 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+.TH space 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
 .SH NAME
 space - minimize whitespace
 .SH SYNOPSIS
@@ -33,20 +33,28 @@ An empty string is equivalent to NUL or '\0' or 0x00.
 Replace leading white space with one space.
 .TP
 .BR - t
-Replace leading white space with one tab.  This option is useful for repairing makefiles where lines must either start in column 1 or start with a tab.
+Replace leading white space with one tab.
+This option is useful for repairing makefiles where lines must either start in column 1 or start with a tab.
 .TP
 .BR - n
-Replace leading white space with nothing. This is the same as specifying a character value of '\0'.   
+Replace leading white space with nothing.
+This is the same as specifying a character value of '\0'.
+
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over previous command line options. 
+Print program help summary on stdout.
+This option takes precedence over previous command line options.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over previous command line options.
+Print program version information on stdout.
+This option takes precedence over previous command line options.
 .SH ARGUMENTS
 .TP
 .IR file
-The name of a text file. This file is replaced and a numbered backup is created. Use program \fBrex\fR to recover a prior version.
+The name of a text file.
+This file is replaced and a numbered backup is created.
+Use program \fBrex\fR to recover a prior version.
 .SH EXAMPLES
 None.
 .SH SEE ALSO

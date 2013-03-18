@@ -1,4 +1,4 @@
-.TH xde 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+.TH xde 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
 .SH NAME
 xde - XML Driven Editor              
 .SH SYNOPSIS
@@ -94,22 +94,39 @@ An explanation of this file appears below.
 The name of the data object.There is exactly one data object in an instruction file.
 .TP
 .RB < region >
-A named region withn the \fBobject\fR. There must be at least one \fBregion\fR defined inside a data \fBobject\fR. Each \fBregion\fR has an \fBoffset\fR and \fBlength\fR and some type of data definition. THe data may defined using a \fBtext\fR, \fBbyte\fR, \fBlist\fR or \fBdata\fR element as described below. The name attribute is optional but may be used for clarity or for error reporting purposes. 
+A named region withn the \fBobject\fR.
+There must be at least one \fBregion\fR defined inside a data \fBobject\fR.
+Each \fBregion\fR has an \fBoffset\fR and \fBlength\fR and some type of data definition.
+THe data may defined using a \fBtext\fR, \fBbyte\fR, \fBlist\fR or \fBdata\fR element as described below.
+The name attribute is optional but may be used for clarity or for error reporting purposes.
+
 .TP
 .RB < offset >
-The relative position of the \fRregion\fB within the \fBobject\fR in bytes expressed in hexadecimal. The \fBoffset\fR plus the \fBlength\fR of a \fBregion\fR cannot exceed the \fBobject\fR length or an error will occur. The \fBoffset\fR and \fBlength\fR element can appear in either order but both must appear before the region data element.
+The relative position of the \fRregion\fB within the \fBobject\fR in bytes expressed in hexadecimal.
+The \fBoffset\fR plus the \fBlength\fR of a \fBregion\fR cannot exceed the \fBobject\fR length or an error will occur.
+The \fBoffset\fR and \fBlength\fR element can appear in either order but both must appear before the region data element.
 .TP
 .RB < length >
-The extent of the \fBregion\fR in bytes expressed in decimal. The \fBoffset\fR plus the \fBlength\fR of a \fBregion\fR cannot exceed the \fBobject\fR length. The \fBoffset\fR and \fBlength\fR element can occur in either order but both must appear before region the data element.
+The extent of the \fBregion\fR in bytes expressed in decimal.
+The \fBoffset\fR plus the \fBlength\fR of a \fBregion\fR cannot exceed the \fBobject\fR length.
+The \fBoffset\fR and \fBlength\fR element can occur in either order but both must appear before region the data element.
 .TP
 .RB < list >
-A sequence of \fBbyte\fR and/or \fBdata\fR elements. A \fBtext\fR element is illegal inside a \fBlist\fR element. The total length of all \fBlist\fR item must equal the region \fBlength\fR or an error will occur.  
+A sequence of \fBbyte\fR and/or \fBdata\fR elements.
+A \fBtext\fR element is illegal inside a \fBlist\fR element.
+The total length of all \fBlist\fR item must equal the region \fBlength\fR or an error will occur.
+
 .TP
 .RB < text >
-A sequence of printable characters. It will occupy the exact number of bytes specified by the region \fBlength\fR plus one NUL byte. The value is truncated or padded with NUL bytes, as necessary, to match the region \fBlength\fR. A length of 0 will result in one NUL byte being written. A \fBtext\fR element is illegal within an \fBlist\fR element.
+A sequence of printable characters.
+It will occupy the exact number of bytes specified by the region \fBlength\fR plus one NUL byte.
+The value is truncated or padded with NUL bytes, as necessary, to match the region \fBlength\fR.
+A length of 0 will result in one NUL byte being written.
+A \fBtext\fR element is illegal within an \fBlist\fR element.
 .TP
 .RB < byte >
-An 8-bit value expressed in decimal. It can have any number of leading 0's but the value cannot exceed 255 or an error will occur. 
+An 8-bit value expressed in decimal.
+It can have any number of leading 0's but the value cannot exceed 255 or an error will occur. 
 .TP
 .RB < data >
 A hexadecimal digit string that represents one byte for each digit pair (octet) present. There must be an even number of hexadecimal digits or an error will occur. The resulting length must equal the region \fBlength\fR unless the value appears inside a \fBlist\fR. Inside an \fBlist\fR, the resulting length must not exceed the remaining \fBlist\fR length. 

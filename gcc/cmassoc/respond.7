@@ -1,4 +1,4 @@
-.TH respond 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+.TH respond 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
 .SH NAME
 respond - Qualcomm Atheros Network Responder
 .SH SYNOPSIS
@@ -15,29 +15,46 @@ See the \fBplc\fR man page for an overview and installation instructions.
 .RB - i
 Select the host Ethernet interface.
 All requests are sent via this host interface and only reponses received via this host interface are recognized.
-The default interface is \fBeth1\fR because most people use \fBeth0\fR as their principle network connection; however, if environment string "PLC" is defined then it takes precedence over the default interface. This option then takes precedence over either default.
+The default interface is \fBeth1\fR because most people use \fBeth0\fR as their principle network connection; however, if environment string "PLC" is defined then it takes precedence over the default interface.
+This option then takes precedence over either default.
 .TP
 -\fBp \fIfilename\fR
-The configuration profile name. This .ini file has two sections named "\fBStandard\fR" and "\fBSpecific\fR". Profile elements must conform to the TLV descriptions provided in the Simple \fINetwork Discovery Protocol Programmers Guide\fR. The default profile is "\fBrespond.ini\fR". See the example profile, below.
+The configuration profile name.
+This .ini file has two sections named "\fBStandard\fR" and "\fBSpecific\fR".
+Profile elements must conform to the TLV descriptions provided in the Simple \fINetwork Discovery Protocol Programmers Guide\fR.
+The default profile is "\fBrespond.ini\fR".
+See the example profile, below.
 .TP
 .RB - q
-Enter quiet mode. Progress messages are suppressed.
+Enter quiet mode.
+Progress messages are suppressed.
 .TP
 -\fBw \fImilliseconds\fR
-Announcement frequency in milliseconds. This is the time between announcements. During this time, the program listens for requests from a network solicitor.  Values range from 0 through UINT_MAX. The default is forever.
+Announcement frequency in milliseconds.
+This is the time between announcements.
+During this time, the program listens for requests from a network solicitor.
+Values range from 0 through UINT_MAX.
+The default is forever.
 .TP
 .RB - v 
-Enter verbose mode. All Etherenet frames sent or received by the program are displayed on stdout.
+Enter verbose mode.
+All Etherenet frames sent or received by the program are displayed on stdout.
 .TP
 -\fB?\fR, --\fBhelp\fR
-Print program help summary on stdout. This option takes precedence over other options on the command line. 
+Print program help summary on stdout.
+This option takes precedence over other options on the command line.
+
 .TP
 -\fB!\fR, --\fBversion\fR
-Print program version information on stdout. This option takes precedence over other options on the command line. Use this option when sending screen dumps to Atheros Technical Support so that they know exactly which version of the Linux Toolkit you are using.
+Print program version information on stdout.
+This option takes precedence over other options on the command line.
+Use this option when sending screen dumps to Atheros Technical Support so that they know exactly which version of the Linux Toolkit you are using.
 .SH REFERENCES
 See the Qualcomm Atheros Simple Network Discovery Protocol for more information about \fBsolicitors\fR, \fBresponders\fR and \fBTLVs\fR.
 .SH EXAMPLES
-The following command starts a responder on the local host. The responder will announce and listen on interface \fBeth0\fR. The responder will announce values defined in profile "\fBrespond.ini\fR" by default because option \fB-p\fR is absent.
+The following command starts a responder on the local host.
+The responder will announce and listen on interface \fBeth0\fR.
+The responder will announce values defined in profile "\fBrespond.ini\fR" by default because option \fB-p\fR is absent.
 .PP
    # respond -i eth0
 .PP
