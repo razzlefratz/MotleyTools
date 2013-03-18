@@ -24,8 +24,13 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../tools/cmassoc.h"
+#include "../tools/console.h"
 #include "../tools/profile.h"
+#include "../tools/error.h"
+#include "../tools/sizes.h"
+#include "../tools/chars.h"
+#include "../files/files.h"
+#include "../tidy/tidy.h"
 
 /*====================================================================*
  *   custom source files;
@@ -35,6 +40,7 @@
 #include "../tools/console.c"
 #include "../tools/profile.c"
 #include "../tools/totruth.c"
+#include "../tools/error.c"
 #endif
 
 #ifndef MAKEFILE
@@ -42,6 +48,12 @@
 #include "../files/splitpath.c"
 #include "../files/mergepath.c"
 #include "../files/makepath.c"
+#endif
+
+#ifndef MAKEFILE
+#include "../tidy/keep.c"
+#include "../tidy/literal.c"
+#include "../tidy/escaped.c"
 #endif
 
 /*====================================================================*
@@ -69,16 +81,14 @@
 static void function (char const * program, char const * project, char const * package, char const * release) 
 
 {
-	char symbol [256];
-	char *sp;
-	signed c;
-	for (c = getc (stdin); c != EOF; c = getc (stdin)) 
+	signed c = getc (stdin);
+	while (c != EOF) 
 	{
 		if (c == '.') 
 		{
-			sp = symbol;
-			putc (c, stdout);
-			c = getc (stdin);
+			char symbol [SYMBOLSIZE];
+			char * sp = symbol;
+			c = keep (c);
 			while (isalpha (c)) 
 			{
 				*sp++ = c;
@@ -102,19 +112,17 @@ static void function (char const * program, char const * project, char const * p
 		{
 			if (isquote (c))
 			{	
-				char quote = c;
-				do { putc (c, stdout); c = getc (stdin); } while ((c != quote) && (c != EOF));
+				c = literal (c, c);
 				continue;
 			}
 			if (c == '[')
 			{	
-				do { putc (c, stdout); c = getc (stdin); } while ((c != ']') && (c != EOF));
+				c = literal (c, ']');
 				continue;
 			}
 			if (c == '.')
 			{
-				putc (c, stdout);
-				c = getc (stdin);
+				c = keep (c);
 				if (isblank(c)) 
 				{ 
 					do { c = getc (stdin); } while (isblank (c));
@@ -122,13 +130,9 @@ static void function (char const * program, char const * project, char const * p
 				}
 				continue;
 			}	
-			putc (c, stdout);
-			c = getc (stdin);
+			c = keep (c);
 		}
-		if (c != EOF)
-		{
-			putc (c, stdout);
-		}
+		c = keep (c);
 	}
 	return;
 }
@@ -196,7 +200,7 @@ int main (int argc, char const * argv [])
 	release = profilestring (profile, section, "release", release);
 	if ((!argc) || (!*argv))
 	{
-		function ("", project, package, release);
+		function ("utility 7", project, package, release);
 	}
 	while ((argc) && (* argv)) 
 	{

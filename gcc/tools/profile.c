@@ -55,7 +55,7 @@ static signed c;
 
 /*====================================================================*
  *
- *   void newchar (FILE * fp);
+ *   void _newchar (FILE * fp);
  *
  *   read and discard spaces and tabs;
  *
@@ -65,7 +65,7 @@ static signed c;
  *
  *--------------------------------------------------------------------*/
 
-static void newchar (FILE * fp) 
+static void _newchar (FILE * fp) 
 
 {
 	do 
@@ -79,7 +79,7 @@ static void newchar (FILE * fp)
 
 /*====================================================================*
  *
- *   void newline (FILE * fp);
+ *   void _newline (FILE * fp);
  *
  *   read and discard characters until end-of-line or end-of-file 
  *   is detected; read the first character of next line if end of 
@@ -91,14 +91,14 @@ static void newchar (FILE * fp)
  *
  *--------------------------------------------------------------------*/
 
-static void newline (FILE * fp) 
+static void _newline (FILE * fp) 
 
 {
 	while (nobreak (c)) 
 	{
 		c = getc (fp);
 	}
-	newchar (fp);
+	_newchar (fp);
 	return;
 }
 
@@ -135,7 +135,7 @@ static bool compare (FILE * fp, char const * sp)
 			sp++;
 		}
 		while (isblank (*sp));
-		newchar (fp);
+		_newchar (fp);
 	}
 	return (!*sp);
 }
@@ -143,7 +143,7 @@ static bool compare (FILE * fp, char const * sp)
 
 /*====================================================================*
  *
- *   void collect (FILE * fp);
+ *   void _collect (FILE * fp);
  *
  *   collect text to end of line; remove leading and trailing space
  *   but preserve embedded space; replace escape sequences;
@@ -154,7 +154,7 @@ static bool compare (FILE * fp, char const * sp)
  *
  *--------------------------------------------------------------------*/
 
-static void collect (FILE * fp) 
+static void _collect (FILE * fp) 
 
 {
 	char *bp = buffer;
@@ -230,13 +230,13 @@ char const * profilestring (char const * profile, char const * section, char con
 
 	if ((fp = fopen (profile, "rb"))) 
 	{
-		for (newchar (fp); c != EOF; newline (fp)) 
+		for (_newchar (fp); c != EOF; _newline (fp)) 
 		{
 			if (c != '[') 
 			{
 				continue;
 			}
-			newchar (fp);
+			_newchar (fp);
 			if (!compare (fp, section)) 
 			{
 				continue;
@@ -245,7 +245,7 @@ char const * profilestring (char const * profile, char const * section, char con
 			{
 				continue;
 			}
-			for (newline (fp); (c != '[') && (c != EOF); newline (fp)) 
+			for (_newline (fp); (c != '[') && (c != EOF); _newline (fp)) 
 			{
 				if (c == ';') 
 				{
@@ -259,8 +259,8 @@ char const * profilestring (char const * profile, char const * section, char con
 				{
 					continue;
 				}
-				newchar (fp);
-				collect (fp);
+				_newchar (fp);
+				_collect (fp);
 				content = strdup (buffer);
 				break;
 			}

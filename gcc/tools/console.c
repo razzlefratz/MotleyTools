@@ -9,8 +9,8 @@
  *
  *--------------------------------------------------------------------*/
 
-#ifndef CONSOLE_HEADER
-#define CONSOLE_HEADER
+#ifndef CONSOLE_SOURCE
+#define CONSOLE_SOURCE
 
 #include "../tools/getoptv.c"
 #include "../tools/putoptv.c"

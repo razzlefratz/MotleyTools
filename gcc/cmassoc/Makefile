@@ -21,7 +21,7 @@ MAKEFIND=makefind.o partpath.o partfile.o find.o
 MAKEPATH=makepath.o splitpath.o mergepath.o
 VFOPEN=vfopen.o ${MAKEPATH}
 
-TOOLS=afm align argv argvesc b64 bang bin2hex blank calend call envp ether case catalog cblock cbrief cdep cedit change chr cinc cmerge cpp2c crlf csv2html ctar defix delta detab detag dls dmp2hex ds efru efsu enbrace enfix englyph entab errno fbar ff filesize footer fp go grab graph grope hbrief header hex hex2bin hexcmp hexdmp html ifd import iplist ipsort key l2p lp2824 lam log loop matrix mmf mp mrg munge rex nics np ocomp odc odd ode odump odx oedit offset order pad paginate preamble purge radix relate remove sbar sbrief search shakey shakeys sign sizeof space srt stamp sv sweep symlinks timer typelist tls trim try ts unique vl vu wl xde xml 
+TOOLS=afm align argv argvesc b64 bang bin2hex blank calend call envp ether case catalog cblock cbrief cdep cedit change chr cinc cmerge cpp2c crlf csv2html ctar defix delta detab detag dls dmp2hex dump ds efru efsu enbrace enfix englyph entab errno fbar ff filesize footer fp go grab graph grope hbrief header hex hex2bin hexcmp hexdmp html ifd import iplist ipsort key l2p lp2824 lam log loop matrix mmf mp mrg munge rex nics np ocomp odc odd ode odump odx oedit offset order pad paginate preamble purge radix relate remove sbar sbrief search shakey shakeys sign sizeof space srt stamp sv sweep symlinks timer typelist tls trim try ts unique vl vu wl xde xml 
 
 PAGES=toolkit.7 afm.7 align.7 argv.7 b64.7 bang.7 bin2hex.7 blank.7 calend.7 call.7 case.7 catalog.7 cblock.7 cbrief.7 cdep.7 cedit.7 change.7 chr.7 cinc.7 cmerge.7 crlf.7 csv2html.7 ctar.7 defix.7 delta.7 detab.7 detag.7 dls.7 dmp2hex.7 ds.7 efsu.7 enbrace.7 enfix.7 englyph.7 entab.7 envp.7 fbar.7 ff.7 filesize.7 footer.7 fp.7 grab.7 graph.7 grope.7 hbrief.7 header.7 hex.7 hex2bin.7 hexcmp.7 hexdmp.7 html.7 ifd.7 import.7 key.7 l2p.7 lam.7 log.7 loop.7 matrix.7 mp.7 mrg.7 munge.7 nics.7 np.7 ocomp.7 odc.7 odd.7 ode.7 odump.7 odx.7 oedit.7 offset.7 order.7 preamble.7 relate.7 remove.7 rex.7 sbrief.7 search.7 shakey.7 shakeys.7 sizeof.7 space.7 srt.7 stamp.7 sweep.7 sv.7 symlinks.7 timer.7 typelist.7 tls.7 trim.7 try.7 unique.7 vl.7 vu.7 wl.7 xde.7 xml.7
 
@@ -35,6 +35,8 @@ endif
 
 # TOOLS+=mycat mytr mywc 
 # PAGES+=tr.7 
+
+OTHER=auth cat checkmode chkbld chperm clear define dif dump ff-bld ff-elf localhostlong main mvpkg octal pkg pkgdep pkgopt qc quiet rexp rmpkg runjobs setmode shout tr undash wc what whom
 
 # ====================================================================
 # targets;
@@ -59,7 +61,7 @@ clean:
 check:
 	${SH} cmassoc.sh
 ignore:
-	echo ${TOOLS} | tr " " "\n" > .gitignore
+	echo ${TOOLS} ${OTHER} | tr " " "\n" > .gitignore
 
 # ====================================================================
 # targets;
@@ -152,7 +154,7 @@ lp2824: lp2824.o console.o efopen.o
 main: main.o getoptv.o putoptv.o version.o
 matrix: matrix.o efreopen.o error.o getoptv.o getusername.o hostname.o indent.o putoptv.o todigit.o uintspec.o username.o version.o
 mmf: mmf.o arctime.o ccollect.o cinclude.o efopen.o emalloc.o erealloc.o error.o error_on_line.o fgetline.o filename.o getoptv.o havebreak.o havetoken.o isbreak.o isclass.o istoken.o listappend.o listcreate.o listdelete.o listdetect.o listexpand.o listinsert.o listload.o listsort.o makepath.o mergepath.o nextbreak.o nexttoken.o partfile.o partpath.o putoptv.o scanalnum.o scanbreak.o scandigit.o scanflush.o scaninput.o scanspace.o scanstart.o scantoken.o scanuntil.o setfiletype.o splitpath.o strwcmp.o tokentext.o version.o
-mp: mp.o console.o makepath.o mergepath.o profile.o splitpath.o totruth.o vfopen.o
+mp: mp.o console.o makepath.o mergepath.o profile.o splitpath.o totruth.o vfopen.o literal.o escaped.o keep.o
 mrg: mrg.o adheap.o console.o efopen.o emalloc.o enheap.o reheap.o swap.o todigit.o uintspec.o
 munge: munge.o console.o makepath.o match.o mergepath.o splitpath.o vfopen.o
 mvpkg: mvpkg.o error.o error_on_line.o getoptv.o makepath.o mergepath.o putoptv.o splitpath.o strpkgcmp.o version.o

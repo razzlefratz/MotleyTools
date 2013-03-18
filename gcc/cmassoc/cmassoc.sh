@@ -71,7 +71,6 @@ gcc -Wall -Wextra -Wno-unused-parameter -o lam lam.c
 gcc -Wall -Wextra -Wno-unused-parameter -o log log.c
 gcc -Wall -Wextra -Wno-unused-parameter -o long long.c
 gcc -Wall -Wextra -Wno-unused-parameter -o mmf mmf.c
-gcc -Wall -Wextra -Wno-unused-parameter -o mmff mmff.c
 gcc -Wall -Wextra -Wno-unused-parameter -o mp mp.c
 gcc -Wall -Wextra -Wno-unused-parameter -o mrg mrg.c
 gcc -Wall -Wextra -Wno-unused-parameter -o munge munge.c

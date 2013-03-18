@@ -76,7 +76,7 @@ void position (char const * format, size_t extent)
 
 /*====================================================================*
  *
- *   signed xmlinteger (unsigned radix);
+ *   signed _xmlinteger (unsigned radix);
  *
  *   convert numeric string to an unsigned integer; all string digits
  *   string digits must be valid for the specifid radix; radix can be
@@ -88,30 +88,30 @@ void position (char const * format, size_t extent)
  *
  *--------------------------------------------------------------------*/
 
-static unsigned xmlinteger (unsigned radix) 
+static unsigned _xmlinteger (unsigned radix) 
 
 {
 	unsigned digit;
-	unsigned value = 0;
+	unsigned myvalue = 0;
 	while ((digit = todigit (*string)) < radix) 
 	{
-		value *= radix;
-		value += digit;
+		myvalue *= radix;
+		myvalue += digit;
 		string++;
 	}
 	if (*string) 
 	{
 		error (bailout, EINVAL, "%s %s is not an number", DATA_MEMBER, member);
 	}
-	return (value);
+	return (myvalue);
 }
 
 
 /*====================================================================*
  *
- *   void xmlstring (void * memory, size_t extent);
+ *   void _xmlstring (void * memory, size_t extent);
  *   
- *   xmlstring is expressed as character text;  truncate string and
+ *   _xmlstring is expressed as character text;  truncate string and
  *   pad memory with NULs as needed;
  *
  *   per the schema, an series cannot have a string member;
@@ -122,7 +122,7 @@ static unsigned xmlinteger (unsigned radix)
  *
  *--------------------------------------------------------------------*/
 
-static void xmlstring (void * memory, size_t extent) 
+static void _xmlstring (void * memory, size_t extent) 
 
 {
 	char * buffer = (char *)(memory);
@@ -155,13 +155,13 @@ static void xmlstring (void * memory, size_t extent)
 
 /*====================================================================*
  *
- *   void xmlmemory (void * memory, size_t extent);
+ *   void _xmlmemory (void * memory, size_t extent);
  *   
- *   xmlmemory is a hexadecimal string of variable extent; an empty 
+ *   _xmlmemory is a hexadecimal string of variable extent; an empty 
  *   string increments offset and decrements length but nothing is
  *   written to the memory;
  *   
- *   per the schema, if xmlmemory is not inside an series then it must
+ *   per the schema, if _xmlmemory is not inside an series then it must
  *   match the object extent;
  *
  *.  Motley Tools by Charles Maier
@@ -170,7 +170,7 @@ static void xmlstring (void * memory, size_t extent)
  *
  *--------------------------------------------------------------------*/
 
-static void xmlmemory (void * memory, size_t extent) 
+static void _xmlmemory (void * memory, size_t extent) 
 
 {
 	uint8_t * buffer = (uint8_t *)(memory);
@@ -205,9 +205,9 @@ static void xmlmemory (void * memory, size_t extent)
 
 /*====================================================================*
  *
- *   void xmlnumber (void * memory, size_t extent);
+ *   void _xmlnumber (void * memory, size_t extent);
  *   
- *   xmlnumber is a decimal integer string of variable length; the
+ *   _xmlnumber is a decimal integer string of variable length; the
  *   value cannot exceed length bytes and offset is incremented by
  *   length bytes;
  *   
@@ -217,7 +217,7 @@ static void xmlmemory (void * memory, size_t extent)
  *
  *--------------------------------------------------------------------*/
 
-static void xmlnumber (void * memory, size_t extent) 
+static void _xmlnumber (void * memory, size_t extent) 
 
 {
 	uint64_t number = 0;
@@ -258,13 +258,13 @@ static void xmlnumber (void * memory, size_t extent)
 
 /*====================================================================*
  *
- *   void xmlbyte (void * memory, size_t extent);
+ *   void _xmlbyte (void * memory, size_t extent);
  *   
- *   xmlbyte is a decimal integer string of variable extent; the
+ *   _xmlbyte is a decimal integer string of variable extent; the
  *   value cannot exceed 255; an empty string increments offset and 
  *   decrements length but nothing is written to the memory;
  *   
- *   per the schema, if xmlbyte is not inside an series then it must
+ *   per the schema, if _xmlbyte is not inside an series then it must
  *   it must match the object extent which must be 1 by implication;
  *
  *.  Motley Tools by Charles Maier
@@ -273,7 +273,7 @@ static void xmlnumber (void * memory, size_t extent)
  *
  *--------------------------------------------------------------------*/
 
-static void xmlbyte (void * memory, size_t extent) 
+static void _xmlbyte (void * memory, size_t extent) 
 
 {
 	if (*string) 
@@ -319,7 +319,7 @@ static void xmlbyte (void * memory, size_t extent)
  *
  *--------------------------------------------------------------------*/
 
-static char const * content (NODE * node) 
+static char const * _xmlcontent (NODE * node) 
 
 {
 	if (node) 
@@ -340,7 +340,7 @@ static char const * content (NODE * node)
 
 /*====================================================================*
  *
- *   char const * value (NODE * node);
+ *   char const * myvalue (NODE * node);
  *
  *   nodes.h
  *
@@ -352,7 +352,7 @@ static char const * content (NODE * node)
  *
  *--------------------------------------------------------------------*/
 
-static char const * value (NODE * node) 
+static char const * myvalue (NODE * node) 
 
 {
 	if (node) 
@@ -373,7 +373,7 @@ static char const * value (NODE * node)
 
 /*====================================================================*
  *
- *   char const * attribute (NODE * node, char const * name);
+ *   char const * myattribute (NODE * node, char const * name);
  *
  *   nodes.h
  *   
@@ -386,7 +386,7 @@ static char const * value (NODE * node)
  *   
  *--------------------------------------------------------------------*/
 
-static char const * attribute (NODE * node, char const * name) 
+static char const * myattribute (NODE * node, char const * name) 
 
 {
 	if (node) 
@@ -399,7 +399,7 @@ static char const * attribute (NODE * node, char const * name)
 		{
 			if (!strcmp (node->text, name)) 
 			{
-				name = value (node);
+				name = myvalue (node);
 				return (name);
 			}
 		}
@@ -433,20 +433,20 @@ signed xmledit (NODE * node, void * memory, size_t extent)
 		{
 			if (!strcmp (node->text, DATA_MEMBER)) 
 			{
-				member = attribute (node, DATA_NAME);
+				member = myattribute (node, DATA_NAME);
 				offset = (unsigned)(-1);
 				length = (unsigned)(-1);
 				series = false;
 			}
 			else if (!strcmp (node->text, DATA_OFFSET)) 
 			{
-				string = content (node);
-				offset = xmlinteger (16);
+				string = _xmlcontent (node);
+				offset = _xmlinteger (16);
 			}
 			else if (!strcmp (node->text, DATA_LENGTH)) 
 			{
-				string = content (node);
-				length = xmlinteger (10);
+				string = _xmlcontent (node);
+				length = _xmlinteger (10);
 			}
 			else if (!strcmp (node->text, DATA_STRUCT)) 
 			{
@@ -454,42 +454,42 @@ signed xmledit (NODE * node, void * memory, size_t extent)
 			}
 			else if (!strcmp (node->text, DATA_STRING)) 
 			{
-				string = content (node);
+				string = _xmlcontent (node);
 				position (node->text, extent);
-				xmlstring (memory, extent);
+				_xmlstring (memory, extent);
 			}
 			else if (!strcmp (node->text, DATA_MEMORY)) 
 			{
-				string = content (node);
+				string = _xmlcontent (node);
 				position (node->text, extent);
-				xmlmemory (memory, extent);
+				_xmlmemory (memory, extent);
 			}
 			else if (!strcmp (node->text, DATA_HUGE)) 
 			{
 				length = sizeof (uint64_t);
 				position (node->text, extent);
-				string = content (node);
-				xmlnumber (memory, extent);
+				string = _xmlcontent (node);
+				_xmlnumber (memory, extent);
 			}
 			else if (!strcmp (node->text, DATA_LONG)) 
 			{
 				length = sizeof (uint32_t);
 				position (node->text, extent);
-				string = content (node);
-				xmlnumber (memory, extent);
+				string = _xmlcontent (node);
+				_xmlnumber (memory, extent);
 			}
 			else if (!strcmp (node->text, DATA_WORD)) 
 			{
 				length = sizeof (uint16_t);
 				position (node->text, extent);
-				string = content (node);
-				xmlnumber (memory, extent);
+				string = _xmlcontent (node);
+				_xmlnumber (memory, extent);
 			}
 			else if (!strcmp (node->text, DATA_BYTE)) 
 			{
 				position (node->text, extent);
-				string = content (node);
-				xmlbyte (memory, extent);
+				string = _xmlcontent (node);
+				_xmlbyte (memory, extent);
 			}
 			xmledit (node, memory, extent);
 		}
