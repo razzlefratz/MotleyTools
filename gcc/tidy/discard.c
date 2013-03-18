@@ -2,6 +2,8 @@
  *
  *   void discard (int c, int e);
  *
+ *   tidy.h
+ *
  *   read stdin and write stdout; output current character c then
  *   discard and output trailing e characters while discading any
  *   white space;
