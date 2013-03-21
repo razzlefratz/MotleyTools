@@ -58,9 +58,47 @@
 
 /*====================================================================*
  *
+ *   void report (char const * filename, off_t offset);
+ *
+ *   compare current offset to file size and report any difference;
+ *
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+static void report (char const * filename, off_t offset) 
+
+{
+	struct stat statinfo;
+	if (stat (filename, &statinfo) == -1)
+	{
+		error (1, errno, "can't stat %s", filename);
+	}
+	if (offset < statinfo.st_size) 
+	{
+		error (0, 0, "file %s exceeds definition by " OFF_T_SPEC " bytes.", filename, statinfo.st_size - offset);
+	}
+	if (offset > statinfo.st_size) 
+	{
+		error (0, 0, "definition exceeds file %s by " OFF_T_SPEC " bytes.", filename, offset - statinfo.st_size);
+	}
+	if (offset != statinfo.st_size) 
+	{
+		error (0, 0, "file %s is " OFF_T_SPEC " bytes not " OFF_T_SPEC " bytes.", filename, statinfo.st_size, offset);
+	}
+	return;
+}
+
+
+/*====================================================================*
+ *
  *   static void dump (int fd, char const * symbol, off_t offset, byte const * buffer, signed length);
  *
- *
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -87,7 +125,6 @@ static void dump (int fd, char const * symbol, off_t offset, byte const * buffer
 	putc ('\n', stdout);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -117,7 +154,7 @@ static void efsu (int fd, char const * symbol, off_t offset, byte const * buffer
 
 /*====================================================================*
  *   
- *   void function (int fd, char const * filename, void output (int, off_t, char const *, byte const *, signed));
+ *   void function (char const * filename, void output (int, off_t, char const *, byte const *, signed), flag_t flags);
  *
  *   read offset description file and output binary objects in dump 
  *   or efsu format;
@@ -128,15 +165,20 @@ static void efsu (int fd, char const * symbol, off_t offset, byte const * buffer
  *
  *--------------------------------------------------------------------*/
 
-static size_t function (int fd, char const * filename, void output (int, char const *, off_t, byte const *, signed)) 
+static void function (char const * filename, void output (int, char const *, off_t, byte const *, signed), flag_t flags) 
 
 {
-	size_t offset = 0;
+	off_t offset = 0;
 	signed length = 0;
 	signed lineno = 0;
 	char symbol [_NAMESIZE];
 	char * sp;
+	file_t fd;
 	signed c;
+	if ((fd = open (filename, O_BINARY|O_RDONLY)) == -1) 
+	{
+		error (1, errno, "can't open %s", filename);
+	}
 	while ((c = getc (stdin)) != EOF) 
 	{
 		if ((c == '#') || (c == ';')) 
@@ -227,31 +269,11 @@ static size_t function (int fd, char const * filename, void output (int, char co
 		offset += length;
 		lineno++;
 	}
-	return (offset);
-}
-
-
-/*====================================================================*
- *
- *   void report (char const * filename, off_t offset);
- *
- *   compare current offset to file size and report any difference;
- *
- *.  Motley Tools by Charles Maier;
- *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
- *;  Licensed under the Internet Software Consortium License;
- *
- *--------------------------------------------------------------------*/
-
-static void report (char const * filename, off_t offset) 
-
-{
-	struct stat statinfo;
-	stat (filename, &statinfo);
-	if (offset != statinfo.st_size) 
+	if (_allclr (flags, ODD_SILENCE)) 
 	{
-		error (0, 0, "file %s has " OFF_T_SPEC " bytes, not " OFF_T_SPEC " bytes.", filename, statinfo.st_size, offset);
+		report (filename, offset);
 	}
+	close (fd);
 	return;
 }
 
@@ -284,7 +306,6 @@ int main (int argc, char const * argv [])
 	};
 	void (* output) (int, char const *, off_t, byte const *, signed) = dump;
 	flag_t flags = (flag_t)(0);
-	signed fd = -1;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
@@ -320,17 +341,7 @@ int main (int argc, char const * argv [])
 	}
 	if ((argc) && (* argv)) 
 	{
-		off_t offset;
-		if ((fd = open (* argv, O_BINARY|O_RDONLY)) == -1) 
-		{
-			error (1, errno, "%s", * argv);
-		}
-		offset = function (fd, * argv, output);
-		if (_allclr (flags, ODD_SILENCE)) 
-		{
-			report (* argv, offset);
-		}
-		close (fd);
+		function (* argv, output, flags);
 		argc--;
 		argv++;
 	}

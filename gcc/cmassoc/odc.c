@@ -58,6 +58,49 @@
 #define ODC_VERBOSE (1 << 0)
 #define ODC_SILENCE (1 << 1)
 
+/*=*
+ *
+void report (char const * filename [], off_t offset []);
+ *
+ *
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *-*/
+
+static void report (char const * filename [], off_t offset [])
+{
+	off_t extent [2];
+	unsigned file;
+	for (file = 0; file < 2; file++) 
+	{
+		struct stat statinfo;
+		if (stat (filename [file], &statinfo) == -1)
+		{
+			error (1, errno, FILE_CANTSIZE, filename [file]);
+		}
+		extent [file] = statinfo.st_size;
+		if (offset [file] < extent [file]) 
+		{
+			error (0, 0, "file %s exceeds definition by " OFF_T_SPEC " bytes", filename [file], extent [file] - offset [file]);
+		}
+		if (offset [file] > extent [file]) 
+		{
+			error (0, 0, "definition exceeds file %s by " OFF_T_SPEC " bytes", filename [file], offset [file] - extent [file]);
+		}
+	}
+	if (extent [0] > extent [1]) 
+	{
+		error (0, 0, "file %s exceeds file %s by " OFF_T_SPEC " bytes", filename [0], filename [1], extent [0] - extent [1]);
+	}
+	if (extent [1] > extent [0]) 
+	{
+		error (0, 0, "file %s exceeds file %s by " OFF_T_SPEC " bytes", filename [1], filename [0], extent [1] - extent [0]);
+	}
+	return;
+}
+
 /*====================================================================*
  *   
  *   void function (char const * filename [], flag_t flags);
@@ -75,21 +118,24 @@
 void function (char const * filename [], flag_t flags) 
 
 {
+	off_t origin [2];
+	off_t offset [2];
+	file_t fd [2];
 	unsigned object = 0;
 	unsigned lineno = 1;
-	unsigned offset = 0;
+	unsigned file;
 	signed length = 0;
-	file_t file [2];
+	signed c;
 	char memory [_ADDRSIZE+1];
 	char symbol [_NAMESIZE];
 	char string [_LINESIZE];
 	char * sp;
-	signed c;
-	for (c = 0; c < 2; c++) 
+	memset (origin, 0, sizeof (origin));
+	for (file = 0; file < 2; file++) 
 	{
-		if ((file [c] = open (filename [c], O_BINARY|O_RDONLY)) == -1) 
+		if ((fd [file] = open (filename [file], O_BINARY|O_RDONLY)) == -1) 
 		{
-			error (1, errno, "%s", filename [c]);
+			error (1, errno, "%s", filename [file]);
 		}
 	}
 	while ((c = getc (stdin)) != EOF) 
@@ -189,7 +235,7 @@ void function (char const * filename [], flag_t flags)
 
 #endif
 
-			if ((read (file [0], buffer [0], length) == length) && (read (file [1], buffer [1], length) == length)) 
+			if ((read (fd [0], buffer [0], length) == length) && (read (fd [1], buffer [1], length) == length)) 
 			{
 				if (memcmp (buffer [0], buffer [1], length)) 
 				{
@@ -201,19 +247,19 @@ void function (char const * filename [], flag_t flags)
 						}
 						putc ('\n', stdout);
 					}
-					printf ("%s %d %s\n", hexoffset (memory, sizeof (memory), offset), length, symbol);
+					printf ("%s %d %s\n", hexoffset (memory, sizeof (memory), offset [0]), length, symbol);
 					for (c = 0; c < _ADDRSIZE; c++) 
 					{
 						putc ('-', stdout);
 					}
 					printf (" %s\n", filename [0]);
-					hexview (buffer [0], offset, length, stdout);
+					hexview (buffer [0], offset [0], length, stdout);
 					for (c = 0; c < _ADDRSIZE; c++) 
 					{
 						putc ('-', stdout);
 					}
 					printf (" %s\n", filename [1]);
-					hexview (buffer [1], offset, length, stdout);
+					hexview (buffer [1], offset [1], length, stdout);
 					for (c = 0; c < _ADDRSIZE + 65; c++) 
 					{
 						putc ('-', stdout);
@@ -230,41 +276,20 @@ void function (char const * filename [], flag_t flags)
 #endif
 
 		}
-		offset += length;
+		offset [0] += length;
+		offset [1] += length;
 		lineno++;
 	}
+	offset [0] += origin [0];
+	offset [1] += origin [1];
 	if (_allclr (flags, ODC_SILENCE)) 
 	{
-		unsigned extent [2];
-		for (c = 0; c < 2; c++) 
-		{
-			if ((signed)(extent [c] = lseek (file [c], 0, SEEK_END)) == -1) 
-			{
-				error (1, errno, FILE_CANTSIZE, filename [c]);
-			}
-			if (offset < extent [c]) 
-			{
-				error (0, 0, "%s exceeds definition by " SIZE_T_SPEC " bytes", filename [c], (size_t)(extent [c] - offset));
-			}
-			if (offset > extent [c]) 
-			{
-				error (0, 0, "definition exceeds %s by " SIZE_T_SPEC " bytes", filename [c], (size_t)(offset - extent [c]));
-			}
-		}
-		if (extent [0] > extent [1]) 
-		{
-			error (0, 0, "%s exceeds %s by " SIZE_T_SPEC " bytes", filename [0], filename [1], (size_t)(extent [0] - extent [1]));
-		}
-		if (extent [1] > extent [0]) 
-		{
-			error (0, 0, "%s exceeds %s by " SIZE_T_SPEC " bytes", filename [1], filename [0], (size_t)(extent [1] - extent [0]));
-		}
+		report (filename, offset);
 	}
-	close (file [0]);
-	close (file [1]);
+	close (fd [0]);
+	close (fd [1]);
 	return;
 }
-
 
 /*====================================================================*
  *   
