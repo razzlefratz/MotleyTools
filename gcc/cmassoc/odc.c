@@ -73,7 +73,7 @@ static void report (char const * filename [], off_t offset [])
 {
 	off_t extent [2];
 	unsigned file;
-	for (file = 0; file < 2; file++) 
+	for (file = 0; file < SIZEOF (extent); file++) 
 	{
 		struct stat statinfo;
 		if (stat (filename [file], &statinfo) == -1)
@@ -131,7 +131,7 @@ void function (char const * filename [], flag_t flags)
 	char string [_LINESIZE];
 	char * sp;
 	memset (origin, 0, sizeof (origin));
-	for (file = 0; file < 2; file++) 
+	for (file = 0; file < SIZEOF (fd); file++) 
 	{
 		if ((fd [file] = open (filename [file], O_BINARY|O_RDONLY)) == -1) 
 		{
