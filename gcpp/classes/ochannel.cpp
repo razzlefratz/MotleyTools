@@ -677,7 +677,7 @@ ochannel & ochannel::Close ()
 
 #else
 
-	close (this->mfd);
+	::close (this->mfd);
 
 #endif
 

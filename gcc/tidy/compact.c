@@ -2,8 +2,10 @@
  *
  *   int compact (int c, int e);
  *
- *   read stdin and write stdout; replace spaces and tabs with c
- *   unless terminated with e; 
+ *   tidy.h
+ *
+ *   read stdin and write stdout; replace white space and character
+ *   c unless the whitespace is terminated by character e; 
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

@@ -2,6 +2,8 @@
  *
  *   void divider (int c, unsigned width);
  *
+ *   tidy.h
+ *
  *   read stdin and write stdout; 
  *
  *.  Motley Tools by Charles Maier

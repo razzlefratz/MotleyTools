@@ -2,6 +2,7 @@
  *   
  *   void endline (signed space);
  *   
+ *   tidy.h
  *   
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -18,6 +19,7 @@
 
 char const * finish = TIDY_S_FINISH;
 char const * record = TIDY_S_RECORD;
+
 void endline (signed space) 
 
 {

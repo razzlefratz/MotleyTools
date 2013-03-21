@@ -1,4 +1,4 @@
-.TH ctidy 7 "Nov 2011" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.TH ctidy 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
 .SH NAME
 ctidy - format C/C++ source code
 .SH SYNOPSIS
@@ -14,26 +14,37 @@ ctidy - format C/C++ source code
 .RI [> stdout ]
 .SH DESCRIPTION
 .PP
-Format C/C++ source code. Formatting is highly stylized and customized to suit the authors preferences. If you do not like the format then do not used the program.
+Format C/C++ source code.
+Formatting is highly stylized and customized to suit the authors preferences.
+If you do not like the format then do not used the program.
 .PP
-This program uses the otidy object to format language constructs. The otidy object is also used by programs \fBcsstidy\fR, \fBdnstidy\fR and \fBphptidy\fR.
+This program uses the otidy object to format language constructs.
+The otidy object is also used by programs \fBcsstidy\fR, \fBdnstidy\fR and \fBphptidy\fR.
 .SH OPTIONS
 .TP
 .RB - ? ,-- help
-Print program help summary on stdout. This option takes precedence over other options on the command line. 
+Print program help summary on stdout.
+This option takes precedence over other options on the command line.
+
 .TP
 .RB - ! ,-- version
-Print program version information on stdout. This option takes precedence over other options on the command line. Usethis option when sending screen dumps to Intellon Technical Support so that they know exactly which version of the Linux Toolkit you are using.
+Print program version information on stdout.
+This option takes precedence over other options on the command line.
+Usethis option when sending screen dumps to Intellon Technical Support so that they know exactly which version of the Linux Toolkit you are using.
 .SH ARGUMENTS
 .TP
 .BR file
-The name of a C or C++ source file. This file is replaced with the formatted output and a numbered backup file is created. Attempts to format syntactically incorrect source files may result in unpredictable output or program errors.
+The name of a C or C++ source file.
+This file is replaced with the formatted output and a numbered backup file is created.
+Attempts to format syntactically incorrect source files may result in unpredictable output or program errors.
 .SH EXAMPLES
-The next example formats source file \fBabc.cpp\fR. Backup file \fBabc.cpp.nnn\fR is automatically created in case recovery is required.
+The next example formats source file \fBabc.cpp\fR.
+Backup file \fBabc.cpp.nnn\fR is automatically created in case recovery is required.
 .PP
    # ctidy abc.cpp
 .PP
-The next example reads file \fBabc.cpp\fR from stdin and writes formatted output to \fBdef.cpp\fR on stdout. This preserves the input file and allows program output to be viewed on the console or piped into another application.
+The next example reads file \fBabc.cpp\fR from stdin and writes formatted output to \fBdef.cpp\fR on stdout.
+This preserves the input file and allows program output to be viewed on the console or piped into another application.
 .PP
    # ctidy < abc.cpp > def.cpp
 .PP

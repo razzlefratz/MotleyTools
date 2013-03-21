@@ -323,7 +323,7 @@ ointerface & ointerface::lookup ()
 			struct sockaddr_in * sockaddr_in = (struct sockaddr_in *)(&ifreq.ifr_ifru.ifru_addr);
 			std::memcpy (this->mipaddr, &sockaddr_in->sin_addr.s_addr, sizeof (this->mipaddr));
 		}
-		close (fd);
+		::close (fd);
 	}
 
 #elif defined (__linux__) || defined (__APPLE__) || defined (__OpenBSD__) 

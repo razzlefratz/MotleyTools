@@ -67,9 +67,14 @@
 #define MP_PACKAGE ARCHIVE "-" VERSION "." RELEASE
 #define MP_PUBLISH "%b %Y"
 
+#define MP_VERBOSE (1 << 0)
+#define MP_SILENCE (1 << 1)
+#define MP_TITLE (1 << 2)
+#define MP_FORMAT (1 << 3)
+
 /*====================================================================*
  *
- *   void function (char const * program, char const * project, char const * package, char const * release);
+ *   void function (char const * program, char const * project, char const * package, char const * release, flag_t flags);
  *
  *
  *.  Motley Tools by Charles Maier;
@@ -78,7 +83,7 @@
  * 
  *--------------------------------------------------------------------*/
 
-static void function (char const * program, char const * project, char const * package, char const * release) 
+static void function (char const * program, char const * project, char const * package, char const * release, flag_t flags) 
 
 {
 	signed c = getc (stdin);
@@ -171,6 +176,7 @@ int main (int argc, char const * argv [])
 	char const * package = MP_PACKAGE;
 	char const * release = buffer;
 	char * sp;
+	flag_t flags;
 	signed c;
 	strftime (buffer, sizeof (buffer), MP_PUBLISH, localtime (&now));
 	while ((c = getoptv (argc, argv, optv)) != -1) 
@@ -200,7 +206,7 @@ int main (int argc, char const * argv [])
 	release = profilestring (profile, section, "release", release);
 	if ((!argc) || (!*argv))
 	{
-		function ("utility 7", project, package, release);
+		function ("unamed 7", project, package, release, flags);
 	}
 	while ((argc) && (* argv)) 
 	{
@@ -218,7 +224,7 @@ int main (int argc, char const * argv [])
 					*sp = ' ';
 				}
 			}
-			function (program, project, package, release);
+			function (program, project, package, release, flags);
 		}
 		argc--;
 		argv++;

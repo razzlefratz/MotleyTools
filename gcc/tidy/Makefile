@@ -16,7 +16,7 @@ LFLAGS=
 VPATH=../tidy
 TRASH=*.exe *.obj *.o t t.c *~ *.[0-9][0-9][0-9]
 TOOLS=
-PAGES=
+PAGES=tidy.7
 
 # ====================================================================
 # targets;
@@ -25,7 +25,7 @@ PAGES=
 all compile: ${TOOLS}
 scripts:
 manuals:
-#	install -m 0444 -o ${OWNER} -g ${GROUP} ${PAGES} ${MAN}
+	install -m 0444 -o ${OWNER} -g ${GROUP} ${PAGES} ${MAN}
 install: all compile library
 #	install -m 0755 -o ${OWNER} -g ${GROUP} ${TOOLS} ${BIN}
 library:

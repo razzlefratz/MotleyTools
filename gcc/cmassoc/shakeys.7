@@ -1,4 +1,4 @@
-.TH shakeys 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+.TH shakeys 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
 .SH NAME
 shakey - SHA256 Key Generator
 .SH SYNOPSIS
@@ -59,7 +59,9 @@ SHA256 is a public domain standard, not a HomePlug AV standard.
 .PP
 The following command reads file \fBexample.keys\fR and prints the DAK for each phrase in that file.
 Input phrases are checked for compliance and illegal phrases are reported then ignored.
-A legal pass phrase is 12 to 64 characters consisting of ASCII characters ' ' through '~'. Essentially, these are the only characters that one can enter on a standard English keyboard. 
+A legal pass phrase is 12 to 64 characters consisting of ASCII characters ' ' through '~'.
+Essentially, these are the only characters that one can enter on a standard English keyboard.
+
 .PP
    # shakey example.keys
    4E76AD8354461437C04EF9B9B242540B6406D782FF2C3FB28AFDAB5B423F88FE
@@ -71,7 +73,11 @@ A legal pass phrase is 12 to 64 characters consisting of ASCII characters ' ' th
    68B1282B91DE2C054C36629CB8DD447F12F096D3E3C587978DC2248444633483
    C31804CC260D05BA802402106F83ED3EAC97C5605F21E576BBC22749C7F96B8A
 .PP
-The following command reads the same file as above but prints the pass phrase because the \fB-v\fR option is specified.  Keys are printed as 32 hex digits then one space then the phrase. Spaces are significant within the phrase. Printed phrases start in column 66 and continue to the end of the line. The keys shown here are abbreviated due to formatting limitations.
+The following command reads the same file as above but prints the pass phrase because the \fB-v\fR option is specified.
+Keys are printed as 32 hex digits then one space then the phrase.
+Spaces are significant within the phrase.
+Printed phrases start in column 66 and continue to the end of the line.
+The keys shown here are abbreviated due to formatting limitations.
 .PP
    # shakey example.keys -v
    4E76AD83...5B423F88FE 01234567890123456789

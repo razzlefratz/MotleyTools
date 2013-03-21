@@ -10,7 +10,7 @@
 
 #ifndef TIDY_SOURCE
 #define TIDY_SOURCE
-#include "../tidy/advance.c"
+// #include "../tidy/advance.c"
 #include "../tidy/divider.c"
 #include "../tidy/collect.c"
 #include "../tidy/discard.c"

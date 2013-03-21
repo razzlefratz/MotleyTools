@@ -381,7 +381,7 @@ osyslog::~osyslog ()
 
 {
 	delete [] this->midentity;
-	close (this->mfile);
+	::close (this->mfile);
 	return;
 }
 

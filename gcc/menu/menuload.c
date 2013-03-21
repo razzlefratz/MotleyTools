@@ -25,7 +25,7 @@
 #include <ctype.h>
 
 #include "../menu/menu.h"
-#include "../tools/chars.h"
+#include "../tidy/tidy.h"
 
 MENU * menuload (MENU * menu, char buffer [], size_t length) 
 

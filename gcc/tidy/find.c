@@ -4,7 +4,8 @@
  *
  *   tidy.h
  *
- *   write (c) then return next non-blank character;
+ *   read stdin; write character c then return the next non-space
+ *   character;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

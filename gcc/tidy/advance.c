@@ -2,9 +2,10 @@
  *
  *   void advance (int c);
  *
- *   read stdin and write stdout; output current character c then
- *   advance and output trailing e characters while discading any
- *   white space;
+ *   tidy.h
+ *
+ *   read stdin and write stdout; write character c the read and
+ *   discard whitespace until next character is found;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

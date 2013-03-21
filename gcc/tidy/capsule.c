@@ -1,6 +1,10 @@
 /*====================================================================*
  *   
  *   signed capsule (signed c);
+ *
+ *   tidy.h
+ *
+ *   read stdin and write stdout; 
  *   
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

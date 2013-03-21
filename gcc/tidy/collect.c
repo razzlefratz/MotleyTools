@@ -2,9 +2,10 @@
  *
  *   void collect (int c, int e);
  *
- *   read stdin and write stdout; output current character c then
- *   collect and output trailing e characters while discading any
- *   white space;
+ *   tidy.h
+ *
+ *   read stdin and write stdout; output character c then read and 
+ *   write trailing e characters; discard intervening whitespace;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

@@ -2,9 +2,9 @@
  *
  *   void comment (int c);
  *
- *   read stdin and write stadout; pass entire C style comment block
- *   enclosed by an inverted pair; extern int c contains the outside
- *   character and int e contains the inside character;
+ *   tidy.h
+ *
+ *   read stdin and write stdout; pass C style comment block;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
