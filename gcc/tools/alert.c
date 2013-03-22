@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   void alert (char const *format, ...);
+ *   signed alert (char const *format, ...);
  *
  *   error.h
  *
@@ -28,7 +28,7 @@ __attribute__ ((format (printf, 1, 2)))
 
 #endif
 
-void alert (char const *format, ...) 
+signed alert (char const *format, ...) 
 
 {
 	extern char const *program_name;
@@ -45,7 +45,7 @@ void alert (char const *format, ...)
 	}
 	fprintf (stderr, "\n");
 	fflush (stderr);
-	return;
+	return (-1);
 }
 
 

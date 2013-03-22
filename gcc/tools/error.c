@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   void error (signed status, errno_t number, char const * format, ...);
+ *   signed error (signed status, errno_t number, char const * format, ...);
  *
  *   error.h
  *
@@ -30,7 +30,7 @@ __attribute__ ((format (printf, 3, 4)))
 
 #endif
 
-void error (signed status, errno_t number, char const * format, ...) 
+signed error (signed status, errno_t number, char const * format, ...) 
 
 {
 	extern char const *program_name;
@@ -75,7 +75,7 @@ void error (signed status, errno_t number, char const * format, ...)
 	{
 		exit (status);
 	}
-	return;
+	return (-1);
 }
 
 

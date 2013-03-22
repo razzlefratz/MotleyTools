@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   void error_on_line (int status, errno_t number, char const *filename, unsigned lineno, char const *format, ...);
+ *   signed error_on_line (int status, errno_t number, char const *filename, unsigned lineno, char const *format, ...);
  *
  *   error.h
  *
@@ -30,7 +30,7 @@ __attribute__ ((format (printf, 5, 6)))
 
 #endif
 
-void error_on_line (int status, errno_t number, char const *filename, unsigned lineno, char const *format, ...) 
+signed error_on_line (int status, errno_t number, char const *filename, unsigned lineno, char const *format, ...) 
 
 {
 	extern char const *program_name;
@@ -55,11 +55,11 @@ void error_on_line (int status, errno_t number, char const *filename, unsigned l
 	}
 	fprintf (stderr, "\n");
 	fflush (stderr);
-	if (status != (int)(0)) 
+	if (status) 
 	{
 		exit (status);
 	}
-	return;
+	return (-1);
 }
 
 
