@@ -535,11 +535,20 @@ signed ocomment::clang (signed c)
 			*this->mstring++ = c;
 		}
 		while ((c != '*') && (c != EOF));
-		do 
+		c = std::cin.get ();
+
+#if 1
+
+		if (ocomment::anyset (oCOMMENT_B_SHORT))
 		{
-			c = std::cin.get ();
+			while (c == '*')
+			{
+				c = std::cin.get ();
+			}
 		}
-		while (ocomment::anyset (oCOMMENT_B_SHORT) && c == '*');
+
+#endif
+
 	}
 	if (ocomment::anyset (oCOMMENT_B_TRIPLE) && !this->mcount) 
 	{
