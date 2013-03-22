@@ -521,13 +521,14 @@ signed ocomment::clang (signed c)
 					c = std::cin.get ();
 				}
 				while (oascii::isblank (c));
-				if (c != '*') 
+				if (c == '*') 
 				{
-					*this->mstring++ = '*';
-					*this->mstring++ = ' ';
-					*this->mstring++ = ' ';
-					*this->mstring++ = ' ';
+					continue;
 				}
+				*this->mstring++ = '*';
+				*this->mstring++ = ' ';
+				*this->mstring++ = ' ';
+				*this->mstring++ = ' ';
 			}
 
 #endif
