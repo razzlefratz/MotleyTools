@@ -182,10 +182,10 @@ static void function (char const * target, size_t length, oflagword * flags)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
-	static char const *optv [] = 
+	static char const * optv [] = 
 	{
 		"csmnfI",
 		oPUTOPTV_S_FUNNEL,

@@ -61,7 +61,7 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
 	static char const * optv [] = 
@@ -69,8 +69,8 @@ int main (int argc, char const *argv [])
 		"m:o:st",
 		oPUTOPTV_S_FILTER,
 		"format C/C++ source code",
-		"m s\tmargin string [" OPTSTR (oINDENT_MARGIN) "]",
-		"o s\toffset string [" OPTSTR (oINDENT_OFFSET) "]",
+		"m s\tmargin string [" LITERAL (oINDENT_MARGIN) "]",
+		"o s\toffset string [" LITERAL (oINDENT_OFFSET) "]",
 		"s\toffset is space",
 		"t\toffset is tabs",
 		(char const *) (0)

@@ -55,10 +55,10 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
-	static char const *optv [] = 
+	static char const * optv [] = 
 	{
 		"e",
 		oPUTOPTV_S_FUNNEL,

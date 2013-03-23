@@ -40,16 +40,16 @@
  *   boiler-plate main program; file is loaded at the very bottom;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
-	static char const *optv [] = 
+	static char const * optv [] = 
 	{
 		"c:f:iomps",
 		oPUTOPTV_S_DIVINE,
 		"extract and format prefix or suffix from string arguments",
-		"c c\tcomponent separator is (c) [" OPTSTR (CBREAK) "]",
-		"f s\tformat string is (s) [" OPTSTR (FORMAT) "]",
+		"c c\tcomponent separator is (c) [" LITERAL (CBREAK) "]",
+		"f s\tformat string is (s) [" LITERAL (FORMAT) "]",
 		"i\tbreak on initial separator",
 		"m\tseparator is mandatory",
 		"o\tseparator is optional",
@@ -94,7 +94,7 @@ int main (int argc, char const *argv [])
 			break;
 		}
 	}
-	while ((getopt.argc () > 0) && (* getopt.argv () != (char *) (0))) 
+	while (getopt.argc () && * getopt.argv ()) 
 	{
 		string.split (* getopt.argv (), character, initial, optional);
 		std::printf (format, (prefix)? string.prefix (): string.suffix ());

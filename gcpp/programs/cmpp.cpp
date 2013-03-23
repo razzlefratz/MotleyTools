@@ -293,10 +293,10 @@ static void process (char const *pathname, char const * command, oflagword * fla
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv [], char const *envp []) 
+int main (int argc, char const * argv [], char const *envp []) 
 
 {
-	static char const *optv [] = 
+	static char const * optv [] = 
 	{
 		"c:dev",
 		oPUTOPTV_S_FUNNEL,

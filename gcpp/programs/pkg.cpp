@@ -88,10 +88,10 @@ static void function (char const *string, oflagword * flags)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
-	static char const *optv [] = 
+	static char const * optv [] = 
 	{
 		"apkrex:",
 		oPUTOPTV_S_DIVINE,

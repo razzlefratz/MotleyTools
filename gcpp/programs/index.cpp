@@ -65,10 +65,10 @@ oHTMLIndex page;
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
-	static char const *optv [] = 
+	static char const * optv [] = 
 	{
 		"c:s:t:",
 		oPUTOPTV_S_FUNNEL,

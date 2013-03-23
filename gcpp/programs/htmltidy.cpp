@@ -69,16 +69,16 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
-	static char const *optv [] = 
+	static char const * optv [] = 
 	{
 		"m:o:st",
 		oPUTOPTV_S_FILTER,
 		"tidy html and xhtml source files",
-		"m s\tmargin string is (s) [" OPTSTR (MARGIN) "]",
-		"o s\tindent string is (c) [" OPTSTR (OFFSET) "]",
+		"m s\tmargin string is (s) [" LITERAL (MARGIN) "]",
+		"o s\tindent string is (c) [" LITERAL (OFFSET) "]",
 		"s\tindent is 3 spaces",
 		"t\tindent is 1 tab",
 		(char const *) (0)

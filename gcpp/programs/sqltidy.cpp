@@ -146,16 +146,16 @@ void function (oflagword * flags)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
-	static char const *optv [] = 
+	static char const * optv [] = 
 	{
 		"m:o:st",
 		oPUTOPTV_S_FILTER,
 		"tidy SQL source files",
-		"m s\tmargin string [" OPTSTR (MARGIN) "]",
-		"o s\toffset string [" OPTSTR (OFFSET) "]",
+		"m s\tmargin string [" LITERAL (MARGIN) "]",
+		"o s\toffset string [" LITERAL (OFFSET) "]",
 		"s\toffset is 3 spaces",
 		"t\toffset is 1 tab",
 		(char const *) (0)

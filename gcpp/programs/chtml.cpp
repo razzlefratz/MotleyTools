@@ -70,15 +70,15 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
-	static char const *optv [] = 
+	static char const * optv [] = 
 	{
 		"s:S",
 		oPUTOPTV_S_FUNNEL,
 		"c to html file formatter having absolutely no features !",
-		"s f\tdefault stylesheet is (f) [" OPTSTR (STYLESHEET) "]",
+		"s f\tdefault stylesheet is (f) [" LITERAL (STYLESHEET) "]",
 		"S\tprint default stylesheet on stdout",
 		(char const *) (0)
 	};

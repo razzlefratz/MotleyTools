@@ -87,10 +87,10 @@ static void mysyslogtest (unsigned priority)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
-	static char const *optv [] = 
+	static char const * optv [] = 
 	{
 		"b:ef:i:np:t",
 		"[message]",

@@ -122,17 +122,17 @@ static signed function (signed c, signed e)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
-	static char const *optv [] = 
+	static char const * optv [] = 
 	{
 		"cm:o:st",
 		oPUTOPTV_S_FILTER,
 		"program CSS functions",
 		"c\tcompact stylesheet",
-		"m s\tmargin string [" OPTSTR (oINDENT_MARGIN) "]",
-		"o s\toffset string [" OPTSTR (oINDENT_OFFSET) "]",
+		"m s\tmargin string [" LITERAL (oINDENT_MARGIN) "]",
+		"o s\toffset string [" LITERAL (oINDENT_OFFSET) "]",
 		"s\toffset is space",
 		"t\toffset is tabs",
 		(char const *) (0)
