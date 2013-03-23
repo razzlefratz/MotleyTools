@@ -196,6 +196,7 @@ shakey: shakey.o SHA256Block.o SHA256Fetch.o SHA256Print.o SHA256Reset.o SHA256W
 shakeys: shakeys.o SHA256Block.o SHA256Fetch.o SHA256Print.o SHA256Reset.o SHA256Write.o error.o getoptv.o putoptv.o version.o
 shout: shout.o broadcast.o emalloc.o error.o getoptv.o putoptv.o syslog_basic.o syslog_error.o version.o
 sign: sign.o console.o signf.o todigit.o uintspec.o
+single: single.o console.o makepath.o mergepath.o splitpath.o todigit.o uintspec.o vfopen.o
 sizeof: sizeof.o
 space: space.o chruesc.o console.o escaped.o keep.o literal.o makepath.o mergepath.o splitpath.o struesc.o todigit.o vfopen.o
 srt: srt.o adheap.o console.o deheap.o emalloc.o enheap.o makepath.o mergepath.o reheap.o splitpath.o swap.o todigit.o uintspec.o vfopen.o
@@ -245,6 +246,7 @@ include ../math/math.mak
 include ../sort/sort.mak
 include ../tree/tree.mak
 include ../scan/scan.mak
+
 
 
 

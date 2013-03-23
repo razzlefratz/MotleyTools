@@ -137,6 +137,7 @@ shakey.o: shakey.c SHA256.h SHA256Block.c SHA256Fetch.c SHA256Print.c SHA256Rese
 shakeys.o: shakeys.c SHA256.h SHA256Block.c SHA256Fetch.c SHA256Print.c SHA256Reset.c SHA256Write.c cmassoc.h error.c getoptv.c putoptv.c version.c
 shout.o: shout.c broadcast.c broadcast.h cmassoc.h emalloc.c error.c getoptv.c linux.h putoptv.c syslog.h syslog_basic.c syslog_error.c version.c
 sign.o: sign.c cmassoc.h console.c signf.c todigit.c uintspec.c
+single.o: single.c cmassoc.h 
 sizeof.o: sizeof.c
 space.o: space.c chrlib.h chruesc.c cmassoc.h console.c escaped.c keep.c literal.c makepath.c mergepath.c splitpath.c strlib.h struesc.c tidy.h todigit.c vfopen.c
 srt.o: srt.c adheap.c cmassoc.h console.c deheap.c emalloc.c enheap.c makepath.c mergepath.c reheap.c sort.h splitpath.c swap.c todigit.c uintspec.c vfopen.c
@@ -166,6 +167,4 @@ whom.o: whom.c charset.c chrlib.h chruesc.c chruescmap.c cmassoc.h console.c ema
 wl.o: wl.c charset.c chrdef.c chrlib.h chrlwr.c chrset.c chrupr.c cmassoc.h efreopen.c error.c getoptv.c putoptv.c strcomp.c strconv.c version.c
 xde.o: xde.c cmassoc.h console.c emalloc.c hexdump.c indent.c nodes.h reorder.c svindex.c todigit.c uintspec.c xmledit.c xmlfree.c xmlnode.c xmlopen.c xmlsample.c xmlscan.c xmlschema.c
 xml.o: xml.c _xmlattribute.c _xmlvalue.c cmassoc.h console.c emalloc.c indent.c nodes.h reorder.c xmlfree.c xmlindent.c xmlnode.c xmlread.c xmlscan.c xmlstream.c xmltree.c
-
-
 

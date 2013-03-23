@@ -1,0 +1,84 @@
+.TH single 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
+.SH NAME
+single - manage duplicate lines
+
+.SH SYNOPSIS
+.BR single
+.RI [ options ]
+.IR file
+.RI [ file ]
+.RI [ ... ]
+.PP
+.BR single
+.RI [ options ]
+.RI [< file ]
+.RI [> file ]
+
+.SH DESCRIPTION
+Read lines from stdin and write them to stdout.
+By default, only lines that differ from their predecessor are output.
+Alternately, the last in a sequence of identical lines can be output.
+This may be applied to sorted files where identical lines are bunched together.
+It may also be used to remove duplicate lines from other types of files.
+
+.SH OPTIONS
+Long options are not supported.
+All options are single letters.
+
+.TP
+.RB - c
+Count occurences.
+Output lines are preceeded by the number of occurances found in the input.
+
+.TP
+.RB - d
+Output only duplicate ocurances.
+Unique input lines are omitted from the output.
+This option excludes option \fB-u\fR.
+
+.TP
+-\fBr\fI length\fR
+Length of input buffer.
+
+.TP
+.RB - u
+Output only unique ocurrances.
+Duplicate input lines are omitted from the output.
+This is the default program behavior.    
+This option excludes option \fB-d\fR.
+
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout.
+This option takes precedence over previous command line options.
+
+.TP
+.RB - ! ,-- version
+Print program version information on stdout.
+This option takes precedence over previous command line options.
+
+.SH ARGUMENTS
+
+.TP
+.IR file
+The name of a text file.
+The file is modified unless redirection is specified on the command line.
+
+.SH EXAMPLES
+The following example removes duplicate lines from file \fBabc.txt\fR. A backup file is created. 
+.PP
+   # single abc.txt
+.PP
+The next example reads from file \fBabc.txt\fR and writes to file \fBdef.txt\fR. File \fBabc.txt\fR is not modified.
+.PP
+   # single < abc.txt > def.txt
+
+.SH SEE ALSO
+.BR footer ( 7 ),
+.BR header ( 7 ),
+.BR unique ( 7 ),
+.BR lam ( 7 )
+
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>

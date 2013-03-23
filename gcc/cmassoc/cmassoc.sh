@@ -105,6 +105,7 @@ gcc -Wall -Wextra -Wno-unused-parameter -o setmode setmode.c
 gcc -Wall -Wextra -Wno-unused-parameter -o shakey shakey.c
 gcc -Wall -Wextra -Wno-unused-parameter -o shakeys shakeys.c
 gcc -Wall -Wextra -Wno-unused-parameter -o sign sign.c
+gcc -Wall -Wextra -Wno-unused-parameter -o single single.c
 gcc -Wall -Wextra -Wno-unused-parameter -o sizeof sizeof.c
 gcc -Wall -Wextra -Wno-unused-parameter -o space space.c
 gcc -Wall -Wextra -Wno-unused-parameter -o srt srt.c
