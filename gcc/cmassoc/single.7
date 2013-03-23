@@ -1,4 +1,4 @@
-.TH single 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH single 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Toolkit"
 
 .SH NAME
 single - manage duplicate lines
@@ -38,15 +38,20 @@ Unique input lines are omitted from the output.
 This option excludes option \fB-u\fR.
 
 .TP
+.RB - p
+Ignore consecutive preprocessor directives in C language files.
+This prevents removal of consecutive "\fB#endif\fR" statements.
+
+.TP
 -\fBr\fI length\fR
-Length of input buffer.
+Length of input buffer in characters.
+The default is \fB4096\fR characters.
 
 .TP
 .RB - u
 Output only unique ocurrances.
 Duplicate input lines are omitted from the output.
 This is the default program behavior.
-
 This option excludes option \fB-d\fR.
 
 .TP
@@ -69,7 +74,6 @@ The file is modified unless redirection is specified on the command line.
 .SH EXAMPLES
 The following example removes duplicate lines from file \fBabc.txt\fR.
 A backup file is created.
-
 .PP
    # single abc.txt
 .PP

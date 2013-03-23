@@ -51,6 +51,7 @@
 #define UNIQ_B_NUMBER (1 << 0)
 #define UNIQ_B_UNIQUE (1 << 1)
 #define UNIQ_B_MULT   (1 << 2)
+#define UNIQ_B_PROC   (1 << 3)
 
 /*====================================================================*
  *
@@ -138,6 +139,14 @@ static void function (size_t length, flag_t flags)
 			}
 			count = 0;
 		}
+		else if ((*new->text == '#') || (*old->text == '#'))
+		{
+			if (_anyset (flags, UNIQ_B_PROC))
+			{
+				put (count, new->text, flags, stdout);
+				count = 0;
+			}
+		} 
 		old = old->next;
 		new = new->next;
 		count++;
@@ -162,11 +171,12 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"cdr:u",
+		"cdpr:u",
 		PUTOPTV_S_FUNNEL,
 		"output single lines",
 		"c\tcount occurances",
 		"d\toutput duplicate lines",
+		"p\tignore consecutive C preprocessor directives",
 		"r n\tmaximum line length is (n) bytes [" LITERAL (_LINESIZE) "]",
 		"u\toutput unique lines",
 		(char const *) (0)
@@ -178,6 +188,9 @@ int main (int argc, char const * argv [])
 	{
 		switch (c) 
 		{
+		case 'p':
+			_setbits (flags, UNIQ_B_PROC);
+			break;
 		case 'r':
 			length = uintspec (optarg, 1, SHRT_MAX);
 			break;
