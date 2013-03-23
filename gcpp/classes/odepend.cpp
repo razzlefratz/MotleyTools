@@ -219,11 +219,11 @@ odepend * odepend::fetch (char const *nodename)
 odepend & odepend::enumerate () 
 
 {
-	if (this->mprior) 
+	if (this->mprior != (odepend *)(0)) 
 	{
 		this->mprior->enumerate ();
 	}
-	std::cout << this->mstring << "\n";
+	std::cout << this->mstring << std::endl;
 	if (this->mafter) 
 	{
 		this->mafter->enumerate ();
@@ -248,15 +248,15 @@ odepend & odepend::enumerate ()
 odepend & odepend::structure () 
 
 {
-	if (this->mprior) 
+	if (this->mprior != (odepend *)(0)) 
 	{
 		this->mprior->structure ();
 	}
-	std::cout << this->mstring << "\n";
+	std::cout << this->mstring << std::endl;
 	if (this->mbelow) 
 	{
 		this->mbelow->component ();
-		std::cout << "\n";
+		std::cout << std::endl;
 	}
 	if (this->mafter) 
 	{
@@ -282,11 +282,11 @@ odepend & odepend::structure ()
 odepend & odepend::component () 
 
 {
-	if (this->mprior) 
+	if (this->mprior != (odepend *)(0)) 
 	{
 		this->mprior->component ();
 	}
-	std::cout << "\t" << this->mstring << "\n";
+	std::cout << "\t" << this->mstring << std::endl;
 	if (this->mafter) 
 	{
 		this->mafter->component ();
@@ -311,7 +311,7 @@ odepend & odepend::component ()
 odepend & odepend::targets () 
 
 {
-	if (this->mprior) 
+	if (this->mprior != (odepend *)(0)) 
 	{
 		this->mprior->targets ();
 	}
@@ -321,7 +321,7 @@ odepend & odepend::targets ()
 	{
 		this->mbelow->sources ();
 	}
-	std::cout << "\n";
+	std::cout << std::endl;
 	if (this->mafter) 
 	{
 		this->mafter->targets ();
@@ -345,7 +345,7 @@ odepend & odepend::targets ()
 odepend & odepend::sources () 
 
 {
-	if (this->mprior) 
+	if (this->mprior != (odepend *)(0)) 
 	{
 		this->mprior->sources ();
 	}

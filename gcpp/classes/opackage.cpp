@@ -292,12 +292,12 @@ char * opackage::extract (char string [], char const *start, char const *limit)
 opackage & opackage::peek () 
 
 {
-	std::cout << "archive=[" << this->marchive << "]\n";
-	std::cout << "package=[" << this->mpackage << "]\n";
-	std::cout << "product=[" << this->mproduct << "]\n";
-	std::cout << "release=[" << this->mrelease << "]\n";
-	std::cout << "trailer=[" << this->mtrailer << "]\n";
-	std::cout << "\n";
+	std::cout << "archive=[" << this->marchive << "]" << std::endl;
+	std::cout << "package=[" << this->mpackage << "]" << std::endl;
+	std::cout << "product=[" << this->mproduct << "]" << std::endl;
+	std::cout << "release=[" << this->mrelease << "]" << std::endl;
+	std::cout << "trailer=[" << this->mtrailer << "]" << std::endl;
+	std::cout << std::endl;
 	return (*this);
 }
 

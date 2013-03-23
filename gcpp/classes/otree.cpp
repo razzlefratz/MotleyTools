@@ -929,7 +929,7 @@ otree & otree::outline ()
 		{
 			std::cout << "\t";
 		}
-		std::cout << node->msymbol << "\n";
+		std::cout << node->msymbol << std::endl;
 		if (node->mbelow) 
 		{
 			margin++;

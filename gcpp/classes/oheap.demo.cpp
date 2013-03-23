@@ -6,7 +6,7 @@ void heaptest ()
 
 {
 	oheap heap;
-	cout << "heap test ..." << endl;
+	cout << "heap test ..." << std::endl;
 	heap.store ("456", (void *) (0));
 	heap.store ("jkl", (void *) (0));
 	heap.store ("mno", (void *) (0));

@@ -37,7 +37,7 @@ void osortertest ()
 	list += "stu";
 	for (unsigned index = 0; index < list.count (); ++index) 
 	{
-		cout << index << " " << list [index] << endl;
+		cout << index << " " << list [index] << std::endl;
 	}
 }
 

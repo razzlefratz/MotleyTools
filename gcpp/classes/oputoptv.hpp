@@ -37,11 +37,13 @@
 #define oPUTOPTV_S_DIVINE "[> stdout]"
 
 /*====================================================================*
- *   helper macros;
+ *
  *--------------------------------------------------------------------*/
 
-#define _OPTSTR(x) #x
-#define OPTSTR(x) _OPTSTR(x)
+#ifndef LITERAL
+#define MONIKER(x) #x
+#define LITERAL(x) MONIKER(x)
+#endif
 
 /*====================================================================*
  *

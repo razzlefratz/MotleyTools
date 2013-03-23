@@ -47,12 +47,12 @@ static ocontext context;
 static void show (char const *literal, unsigned c, bool mode) 
 
 {
-	std::cout << "literal=[" << literal << "]\n";
-	std::cout << "charset=[" << c << "]\n";
-	std::cout << "require=[" << mode << "]\n";
-	std::cout << "prefix=[" << context.prefix () << "]\n";
-	std::cout << "suffix=[" << context.suffix () << "]\n";
-	std::cout << "\n";
+	std::cout << "literal=[" << literal << "]" << std::endl;
+	std::cout << "charset=[" << c << "]" << std::endl;
+	std::cout << "require=[" << mode << "]" << std::endl;
+	std::cout << "prefix=[" << context.prefix () << "]" << std::endl;
+	std::cout << "suffix=[" << context.suffix () << "]" << std::endl;
+	std::cout << std::endl;
 	return;
 }
 
@@ -95,7 +95,7 @@ int main (int argc, char const *argv [])
 	}
 	while ((getopt.argc () > 0) && (*getopt.argv () != (char *) (0))) 
 	{
-		std::cout << "first\n";
+		std::cout << "first" << std::endl;
 		context.split (*getopt.argv (), prefix, true, true);
 		show (*getopt.argv (), prefix, true);
 		context.split (*getopt.argv (), prefix, true, false);
@@ -104,7 +104,7 @@ int main (int argc, char const *argv [])
 		show (*getopt.argv (), suffix, true);
 		context.split (*getopt.argv (), suffix, true, false);
 		show (*getopt.argv (), suffix, false);
-		std::cout << "split\n";
+		std::cout << "split" << std::endl;
 		context.split (*getopt.argv (), prefix, false, true);
 		show (*getopt.argv (), prefix, true);
 		context.split (*getopt.argv (), prefix, false, false);
@@ -113,7 +113,7 @@ int main (int argc, char const *argv [])
 		show (*getopt.argv (), suffix, true);
 		context.split (*getopt.argv (), suffix, false, false);
 		show (*getopt.argv (), suffix, false);
-		std::cout << "\n";
+		std::cout << std::endl;
 		getopt++;
 	}
 	exit (0);

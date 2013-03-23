@@ -11,13 +11,13 @@ void oprefixtest ()
  * char buffer[1024];
  */
 
-	cout << "prefix test ..." << endl;
+	cout << "prefix test ..." << std::endl;
 	prefix.define ("ab", "%2%");
 	prefix.define ("abc", "%1%");
 	prefix.define ("abcde", "%3%");
 	prefix.define ("abcd", "5");
 	prefix.define ("a", "4");
-	cout << "prefix=[" << prefix.prefix ("abcdefg") << "]" << endl;
+	cout << "prefix=[" << prefix.prefix ("abcdefg") << "]" << std::endl;
 
 /*
  * prefix.report(buffer, 12, stdout);

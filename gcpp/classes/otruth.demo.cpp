@@ -9,8 +9,8 @@ int main (int argc, char const *argv [])
 
 {
 	otruth truth;
-	cout << truth.value ("true", -1) << "\n";
-	cout << truth.value ("false", -1) << "\n";
+	cout << truth.value ("true", -1) << std::endl;
+	cout << truth.value ("false", -1) << std::endl;
 	return (0);
 }
 

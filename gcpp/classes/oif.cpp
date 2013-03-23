@@ -218,7 +218,7 @@ oif & oif::Print (void)
 	std::cout << this->HardwareAddress () << " ";
 	std::cout << this->InternetAddress () << " ";
 	std::cout << this->Name () << " ";
-	std::cout << this->Text () << "\n";
+	std::cout << this->Text () << std::endl;
 	return (*this);
 }
 

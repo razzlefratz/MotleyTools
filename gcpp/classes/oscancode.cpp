@@ -241,37 +241,37 @@ oscancode & oscancode::elaborate ()
 		switch (this->nexttoken ().tokentype ()) 
 		{
 		case CL_T_NOTHING:
-			std::cout << "[NOTHING[" << this->tokentext () << "]]" << "\n";
+			std::cout << "[NOTHING[" << this->tokentext () << "]]" << std::endl;
 			break;
 		case CL_T_COMMENTS:
-			std::cout << "[COMMENT[" << this->tokentext () << "]]" << "\n";
+			std::cout << "[COMMENT[" << this->tokentext () << "]]" << std::endl;
 			break;
 		case CL_T_COMPILER:
-			std::cout << "[COMPILER[" << this->tokentext () << "]]" << "\n";
+			std::cout << "[COMPILER[" << this->tokentext () << "]]" << std::endl;
 			break;
 		case CL_T_LANGUAGE:
-			std::cout << "[LANGUAGE[" << this->tokentext () << "]]" << "\n";
+			std::cout << "[LANGUAGE[" << this->tokentext () << "]]" << std::endl;
 			break;
 		case CL_T_CONSTANT:
-			std::cout << "[CONSTANT[" << this->tokentext () << "]]" << "\n";
+			std::cout << "[CONSTANT[" << this->tokentext () << "]]" << std::endl;
 			break;
 		case CL_T_VARIABLE:
-			std::cout << "[VARIABLE[" << this->tokentext () << "]]" << "\n";
+			std::cout << "[VARIABLE[" << this->tokentext () << "]]" << std::endl;
 			break;
 		case CL_T_OPERATOR:
-			std::cout << "[OPERATOR[" << this->tokentext () << "]]" << "\n";
+			std::cout << "[OPERATOR[" << this->tokentext () << "]]" << std::endl;
 			break;
 		case CL_T_FUNCTION:
-			std::cout << "[FUNCTION[" << this->tokentext () << "]]" << "\n";
+			std::cout << "[FUNCTION[" << this->tokentext () << "]]" << std::endl;
 			break;
 		case CL_T_RESERVED:
-			std::cout << "[RESERVED[" << this->tokentext () << "]]" << "\n";
+			std::cout << "[RESERVED[" << this->tokentext () << "]]" << std::endl;
 			break;
 		case CL_T_STANDARD:
-			std::cout << "[STANDARD[" << this->tokentext () << "]]" << "\n";
+			std::cout << "[STANDARD[" << this->tokentext () << "]]" << std::endl;
 			break;
 		default:
-			std::cout << "[SEPARATE[" << this->tokentext () << "]]" << "\n";
+			std::cout << "[SEPARATE[" << this->tokentext () << "]]" << std::endl;
 			break;
 		}
 	}

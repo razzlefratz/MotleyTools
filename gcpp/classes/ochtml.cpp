@@ -62,22 +62,22 @@ ofilespec ochtml::filespec;
 ochtml & ochtml::stylesheet () 
 
 {
-	std::cout << "a:hover { text-decoration: underline; }\n";
-	std::cout << "a { text-decoration: none; }\n";
-	std::cout << "a:link { color: #000080; }\n";
-	std::cout << "a:active { } ";
-	std::cout << "a:visited { color: #000080; }\n";
-	std::cout << "body { background:white; color:black; font:normal 10pt courier; margin: 10px 20px 10px 20px; }\n";
-	std::cout << "pre  { background:white; color:black; font:normal 10pt courier; margin: 10px 20px 10px 20px; } \n";
-	std::cout << "span.comments { color: green; }\n";
-	std::cout << "span.compiler { color: black; }\n";
-	std::cout << "span.language { color: black; }\n";
-	std::cout << "span.reserved { color: black; }\n";
-	std::cout << "span.standard { color: black; }\n";
-	std::cout << "span.constant { color: red; }\n";
-	std::cout << "span.variable { color: blue; }\n";
-	std::cout << "span.operator { color: black; }\n";
-	std::cout << "span.function { color: fuschia; }\n";
+	std::cout << "a:hover { text-decoration: underline; }" << std::endl;
+	std::cout << "a { text-decoration: none; }" << std::endl;
+	std::cout << "a:link { color: #000080; }" << std::endl;
+	std::cout << "a:active { }" << std::endl;
+	std::cout << "a:visited { color: #000080; }" << std::endl;
+	std::cout << "body { background:white; color:black; font:normal 10pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
+	std::cout << "pre  { background:white; color:black; font:normal 10pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
+	std::cout << "span.comments { color: green; }" << std::endl;
+	std::cout << "span.compiler { color: black; }" << std::endl;
+	std::cout << "span.language { color: black; }" << std::endl;
+	std::cout << "span.reserved { color: black; }" << std::endl;
+	std::cout << "span.standard { color: black; }" << std::endl;
+	std::cout << "span.constant { color: red; }" << std::endl;
+	std::cout << "span.variable { color: blue; }" << std::endl;
+	std::cout << "span.operator { color: black; }" << std::endl;
+	std::cout << "span.function { color: fuschia; }" << std::endl;
 	return (*this);
 }
 
@@ -253,7 +253,7 @@ ochtml & ochtml::html (char const *filename)
 			break;
 		}
 	}
-	std::cout << "</pre>\r\n";
+	std::cout << "</pre>" << std::endl;
 	ochtml::botPage ();
 	this->mfile.clear ();
 	std::cout.rdbuf (buf);

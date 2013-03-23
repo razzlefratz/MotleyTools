@@ -28,19 +28,19 @@ int main ()
 	};
 	ochrlwr *p = new ochrlwr;
 	ochrupr *q = new ochrupr;
-	cout << p->convert (strdup (gcsAlnum)) << endl;
-	cout << q->convert (strdup (gcsAlnum)) << endl;
-	cout << endl;
+	cout << p->convert (strdup (gcsAlnum)) << std::endl;
+	cout << q->convert (strdup (gcsAlnum)) << std::endl;
+	cout << std::endl;
 	for (int n = 0; list [n]; ++n, ++n) 
 	{
-		cout << list [n] << " " << list [n + 1] << " " << p->compare (list [n], list [n + 1]) << endl;
+		cout << list [n] << " " << list [n + 1] << " " << p->compare (list [n], list [n + 1]) << std::endl;
 	}
-	cout << endl;
+	cout << std::endl;
 	for (int n = 0; list [n]; ++n, ++n) 
 	{
-		cout << list [n] << " " << list [n + 1] << " " << q->compare (list [n], list [n + 1]) << endl;
+		cout << list [n] << " " << list [n + 1] << " " << q->compare (list [n], list [n + 1]) << std::endl;
 	}
-	cout << endl;
+	cout << std::endl;
 	return (0);
 }
 

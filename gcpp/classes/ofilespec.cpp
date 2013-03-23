@@ -472,17 +472,17 @@ char const *ofilespec::savename (unsigned number, unsigned length)
 ofilespec & ofilespec::peek () 
 
 {
-	std::cout << "fullpath=[" << this->fullpath () << "]\n";
-	std::cout << "pathname=[" << this->pathname () << "]\n";
-	std::cout << "filename=[" << this->filename () << "]\n";
-	std::cout << "basename=[" << this->basename () << "]\n";
-	std::cout << "extender=[" << this->extender () << "]\n";
-	std::cout << "longname=[" << this->longname () << "]\n";
-	std::cout << "tempname=[" << this->tempname ("/home/abc.new") << "]\n";
-	std::cout << "likename=[" << this->likename ("/home/abc.new") << "]\n";
-	std::cout << "savename=[" << this->savename ("/home/abc.new") << "]\n";
-	std::cout << "savename=[" << this->savename (5, 3) << "]\n";
-	std::cout << "\n";
+	std::cout << "fullpath=[" << this->fullpath () << "]" << std::endl;
+	std::cout << "pathname=[" << this->pathname () << "]" << std::endl;
+	std::cout << "filename=[" << this->filename () << "]" << std::endl;
+	std::cout << "basename=[" << this->basename () << "]" << std::endl;
+	std::cout << "extender=[" << this->extender () << "]" << std::endl;
+	std::cout << "longname=[" << this->longname () << "]" << std::endl;
+	std::cout << "tempname=[" << this->tempname ("/home/abc.new") << "]" << std::endl;
+	std::cout << "likename=[" << this->likename ("/home/abc.new") << "]" << std::endl;
+	std::cout << "savename=[" << this->savename ("/home/abc.new") << "]" << std::endl;
+	std::cout << "savename=[" << this->savename (5, 3) << "]" << std::endl;
+	std::cout << std::endl;
 	return (*this);
 }
 

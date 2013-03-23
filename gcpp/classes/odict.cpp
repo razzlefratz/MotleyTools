@@ -179,7 +179,7 @@ odict & odict::enumerate ()
 	{
 		this->mprior->enumerate ();
 	}
-	std::cout << this->msymbol << "=" << this->mstring << "\n";
+	std::cout << this->msymbol << "=" << this->mstring << std::endl;
 	if (this->mafter != (odict *) (0)) 
 	{
 		this->mafter->enumerate ();

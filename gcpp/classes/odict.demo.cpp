@@ -20,7 +20,7 @@ void main (int argc, char *argv [])
 	dict.define ("Broadcast", "FF:FF:FF:FF:FF:FF");
 	dict.define ("abandom", "9");
 	dict.define ("McDonald", "14");
-	std::cout << "lookup=[" << dict.lookup ("local") << "]" << endl;
+	std::cout << "lookup=[" << dict.lookup ("local") << "]" << std::endl;
 	dict.enumerate ();
 	return (0);
 }

@@ -296,8 +296,8 @@ ocalendar & ocalendar::print (unsigned index)
 {
 	omonth *month = this->mmonth [index];
 	month->encode (this->mtitle, HEADERSIZE);
-	std::cout << " " << this->mtitle << "\n";
-	std::cout << "  S  M  T  W  T  F  S\n";
+	std::cout << " " << this->mtitle << std::endl;
+	std::cout << "  S  M  T  W  T  F  S" << std::endl;
 	for (unsigned week = 0; week < WEEKS_IN_MONTH; week++) 
 	{
 		for (unsigned weekday = 0; weekday < DAYS_IN_WEEK; weekday++) 
@@ -305,9 +305,9 @@ ocalendar & ocalendar::print (unsigned index)
 			unsigned date = month->date (week, weekday);
 			std::cout << " " << ocalendar::mdate1 [date];
 		}
-		std::cout << "\n";
+		std::cout << std::endl;
 	}
-	std::cout << "\n";
+	std::cout << std::endl;
 	return (*this);
 }
 

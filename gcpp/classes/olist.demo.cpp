@@ -27,7 +27,7 @@ int main ()
 
 {
 	olist list;
-	cout << "list test ..." << "\n";
+	cout << "list test ..." << std::endl;
 	list.insertitem (new oitem ("abc"));
 	list.insertitem (new oitem ("789"));
 	list.insertitem (new oitem ("ghi"));
@@ -54,7 +54,8 @@ int main ()
 	list.insertitem (new oitem ("123"));
 	for (unsigned index = 0; index < list.count (); index++) 
 	{
-		cout << list.items (index) ->name () << "\n";
+		cout << list.items (index) ->name () << std::endl;
 	}
+	return;
 }
 

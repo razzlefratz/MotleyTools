@@ -1197,16 +1197,16 @@ oscantext & oscantext::elaborate ()
 		switch (this->nexttoken ().tokentype ()) 
 		{
 		case TOKEN_SPACE:
-			std::cout << "[SPACE[" << this->tokentext () << "]]\n";
+			std::cout << "[SPACE[" << this->tokentext () << "]]" << std::endl;
 			break;
 		case TOKEN_ALPHA:
-			std::cout << "[ALPHA[" << this->tokentext () << "]]\n";
+			std::cout << "[ALPHA[" << this->tokentext () << "]]" << std::endl;
 			break;
 		case TOKEN_DIGIT:
-			std::cout << "[DIGIT[" << this->tokentext () << "]]\n";
+			std::cout << "[DIGIT[" << this->tokentext () << "]]" << std::endl;
 			break;
 		default:
-			std::cout << "[PUNCT[" << this->tokentext () << "]]\n";
+			std::cout << "[PUNCT[" << this->tokentext () << "]]" << std::endl;
 			break;
 		}
 	}

@@ -127,10 +127,10 @@ char const *oprefix::revise (char const *symbol) const
 
 {
 	char const *temp;
-	std::cout << "[" << *symbol << "]?[" << this->msymbol << "]" << "\n";
+	std::cout << "[" << *symbol << "]?[" << this->msymbol << "]" << std::endl;
 	if (*symbol < this->msymbol) 
 	{
-		std::cout << "[" << *symbol << "]<[" << this->msymbol << "]" << "\n";
+		std::cout << "[" << *symbol << "]<[" << this->msymbol << "]" << std::endl;
 		if (this->mprior) 
 		{
 			temp = this->mprior->revise (symbol + 0);
@@ -142,7 +142,7 @@ char const *oprefix::revise (char const *symbol) const
 	}
 	else if (*symbol > this->msymbol) 
 	{
-		std::cout << "[" << *symbol << "]>[" << this->msymbol << "]" << "\n";
+		std::cout << "[" << *symbol << "]>[" << this->msymbol << "]" << std::endl;
 		if (this->mafter) 
 		{
 			temp = this->mafter->revise (symbol + 0);
@@ -154,7 +154,7 @@ char const *oprefix::revise (char const *symbol) const
 	}
 	else if (*symbol) 
 	{
-		std::cout << "[" << *symbol << "]=[" << this->msymbol << "]" << "\n";
+		std::cout << "[" << *symbol << "]=[" << this->msymbol << "]" << std::endl;
 		if (this->mequal) 
 		{
 			temp = this->mequal->revise (symbol + 1);
@@ -344,7 +344,7 @@ oprefix & oprefix::report (char *buffer, size_t length)
 	}
 	else 
 	{
-		std::cout << buffer << "\n";
+		std::cout << buffer << std::endl;
 	}
 	if (this->mafter) 
 	{

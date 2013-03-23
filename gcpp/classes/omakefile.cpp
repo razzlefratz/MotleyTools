@@ -230,43 +230,46 @@ omakefile & omakefile::includefile (char const *pathname)
 omakefile & omakefile::publish () 
 
 {
-	std::cout << "#!/usr/bin/make -f\n";
+	std::cout << "#!/usr/bin/make -f" << std::endl;
 	this->title ("compile constants");
-	std::cout << "cc=" << this->mcompiler << "\n";
+	std::cout << "cc=" << this->mcompiler << std::endl;
 	switch (omakefile::getbits (oMAKEFILE_LIBRARY|oMAKEFILE_UTILITY)) 
 	{
 	case oMAKEFILE_UTILITY:
-		std::cout << "src=" << this->msourcedir << "\n";
-		std::cout << "bin=" << this->msourcedir << "\n";
+		std::cout << "src=" << this->msourcedir << std::endl;
+		std::cout << "bin=" << this->msourcedir << std::endl;
 		break;
 	case oMAKEFILE_LIBRARY:
-		std::cout << "src=" << this->msourcedir << "\n";
-		std::cout << "bin=" << this->msourcedir << "\n";
+		std::cout << "src=" << this->msourcedir << std::endl;
+		std::cout << "bin=" << this->msourcedir << std::endl;
 		break;
 	default:
-		std::cout << "src=" << this->msourcedir << "\n";
-		std::cout << "bin=" << this->mtargetdir << "\n";
+		std::cout << "src=" << this->msourcedir << std::endl;
+		std::cout << "bin=" << this->mtargetdir << std::endl;
 		break;
 	}
-	std::cout << "ccflags=" << this->mccflags << "\n";
-	std::cout << "ldflags=" << this->mldflags << "\n";
+	std::cout << "ccflags=" << this->mccflags << std::endl;
+	std::cout << "ldflags=" << this->mldflags << std::endl;
 	this->title ("build instructions");
-	std::cout << ".PHONY: compile library scripts manuals install uninstall clean fresh\n";
+	std::cout << ".PHONY: compile library scripts manuals install uninstall clean fresh" << std::endl;
 	std::cout << "compile:";
 	for (size_t index = 0; index < list.count (); index++) 
 	{
 		std::cout << " " << this->mlinebreak << this->filespec.filespec (list.items (index) ->name ()).likename (".o");
 	}
-	std::cout << "\n";
-	std::cout << "library:\n";
-	std::cout << "scripts:\n";
-	std::cout << "manuals:\n";
-	std::cout << "install:\n";
-	std::cout << "uninstall:\n";
-	std::cout << "clean:\n\trm -f a.out *.o *~ *.[0-9][0-9][0-9] t t.*\n";
-	std::cout << "fresh: clean compile\n";
-	std::cout << ".cpp.o:\n\t${cc} ${ccflags} -c ${<}\n";
-	std::cout << ".o:\n\t${cc} ${ldflags} -o ${@} ${^}\n";
+	std::cout << std::endl;
+	std::cout << "library:" << std::endl;
+	std::cout << "scripts:" << std::endl;
+	std::cout << "manuals:" << std::endl;
+	std::cout << "install:" << std::endl;
+	std::cout << "uninstall:" << std::endl;
+	std::cout << "clean:" << std::endl;
+	std::cout << "\trm -f a.out *.o *~ *.[0-9][0-9][0-9] t t.*" << std::endl;
+	std::cout << "fresh: clean compile" << std::endl;
+	std::cout << ".cpp.o:" << std::endl;
+	std::cout << "\t${cc} ${ccflags} -c ${<}" << std::endl;
+	std::cout << ".o:" << std::endl;
+	std::cout << "\t${cc} ${ldflags} -o ${@} ${^}" << std::endl;
 	this->title ("build instructions");
 	for (size_t index = 0; index < list.count (); index++) 
 	{

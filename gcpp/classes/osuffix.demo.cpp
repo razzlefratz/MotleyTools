@@ -6,6 +6,6 @@ void osuffixtext ()
 
 {
 	osuffix suffix;
-	cout << "suffix test ..." << endl;
+	cout << "suffix test ..." << std::endl;
 }
 

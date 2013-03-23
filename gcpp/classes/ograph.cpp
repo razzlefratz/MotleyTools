@@ -304,7 +304,7 @@ ograph & ograph::traverse (onode *node)
 	{
 		std::cout << "\t";
 	}
-	std::cout << node->name () << "\n";
+	std::cout << node->name () << std::endl;
 	node->level (node->level () + 1);
 	return (*this);
 }

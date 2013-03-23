@@ -206,9 +206,9 @@ oinclude & oinclude::header ()
 	if (this->mstate > 0) 
 	{
 		this->mstate = -this->mstate;
-		std::cout << "#ifndef " << this->mtitle << "_" << this->mclass << "\n";
-		std::cout << "#define " << this->mtitle << "_" << this->mclass << "\n";
-		std::cout << "\n";
+		std::cout << "#ifndef " << this->mtitle << "_" << this->mclass << std::endl;
+		std::cout << "#define " << this->mtitle << "_" << this->mclass << std::endl;
+		std::cout << std::endl;
 	}
 	return (*this);
 }
@@ -233,8 +233,8 @@ oinclude & oinclude::footer ()
 	if (this->mstate < 0) 
 	{
 		this->mstate = -this->mstate;
-		std::cout << "#endif\n";
-		std::cout << "\n";
+		std::cout << "#endif" << std::endl;
+		std::cout << std::endl;
 	}
 	return (*this);
 }

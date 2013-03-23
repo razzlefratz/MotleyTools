@@ -68,11 +68,11 @@ osection & osection::width (size_t width)
 osection & osection::title (char const *title) 
 
 {
-	std::cout << "\n";
-	std::cout << this->mstart << " " << this->mupper << "\n";
-	std::cout << this->mstart << " " << title << ";\n";
-	std::cout << this->mstart << " " << this->mlower << "\n";
-	std::cout << "\n";
+	std::cout << std::endl;
+	std::cout << this->mstart << " " << this->mupper << std::endl;
+	std::cout << this->mstart << " " << title << ";" << std::endl;
+	std::cout << this->mstart << " " << this->mlower << std::endl;
+	std::cout << std::endl;
 	return (*this);
 }
 

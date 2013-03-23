@@ -36,7 +36,10 @@
 obreak & obreak::print (char const *string) 
 
 {
-	std::cout << "# " << this->mupper <<"\n# " << string << ";\n# " << this->mlower << "\n\n";
+	std::cout << "# " << this->mupper << std::endl;
+	std::cout << "# " << string << ";" << std::endl;
+	std::cout << "# " << this->mlower << std::endl;
+	std::cout << std::endl;
 	return (*this);
 }
 

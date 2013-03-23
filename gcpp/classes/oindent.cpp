@@ -286,7 +286,7 @@ void oindent::newline (char const *margin, char const *indent, signed level)
 
 /*====================================================================*
  *   
- *   oindent & endline (char const *finish, char const *record, signed space);
+ *   oindent & std::endline (char const *finish, char const *record, signed space);
  *   
  *   output the finish string followed by count record strings;
  *   

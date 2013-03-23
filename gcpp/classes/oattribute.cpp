@@ -18,7 +18,7 @@
  *
  *   ..., abc=def, ghi=123, ...
  *
- *   there endless variations on this format;
+ *   there std::endless variations on this format;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

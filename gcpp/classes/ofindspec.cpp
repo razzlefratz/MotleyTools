@@ -439,16 +439,16 @@ char const *ofindspec::serial (unsigned number, unsigned length)
 ofindspec & ofindspec::peek () 
 
 {
-	std::cout << "fullname=[" << this->fullname () << "]\n";
-	std::cout << "pathname=[" << this->pathname () << "]\n";
-	std::cout << "filename=[" << this->filename () << "]\n";
-	std::cout << "basename=[" << this->basename () << "]\n";
-	std::cout << "extender=[" << this->extender () << "]\n";
-	std::cout << "longname=[" << this->longname () << "]\n";
-	std::cout << "altextender=[" << this->altextender ("tmp") << "]\n";
-	std::cout << "addextender=[" << this->addextender ("tmp") << "]\n";
-	std::cout << "serial=[" << this->serial (0, 3) << "]\n";
-	std::cout << "\n";
+	std::cout << "fullname=[" << this->fullname () << "]" << std::endl;
+	std::cout << "pathname=[" << this->pathname () << "]" << std::endl;
+	std::cout << "filename=[" << this->filename () << "]" << std::endl;
+	std::cout << "basename=[" << this->basename () << "]" << std::endl;
+	std::cout << "extender=[" << this->extender () << "]" << std::endl;
+	std::cout << "longname=[" << this->longname () << "]" << std::endl;
+	std::cout << "altextender=[" << this->altextender ("tmp") << "]" << std::endl;
+	std::cout << "addextender=[" << this->addextender ("tmp") << "]" << std::endl;
+	std::cout << "serial=[" << this->serial (0, 3) << "]" << std::endl;
+	std::cout << std::endl;
 	return (*this);
 }
 

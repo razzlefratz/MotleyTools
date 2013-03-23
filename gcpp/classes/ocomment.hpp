@@ -56,6 +56,7 @@
 #define oCOMMENT_C_LOWER ('-')
 
 #define oCOMMENT_S_PREFACE "preface"
+#define oCOMMENT_S_PROJECT "project"
 #define oCOMMENT_S_PACKAGE "package"
 #define oCOMMENT_S_RELEASE "release"
 #define oCOMMENT_S_LICENSE "license"

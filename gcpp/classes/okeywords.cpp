@@ -178,28 +178,45 @@ okeywords & okeywords::enumerate ()
 
 {
 	unsigned index;
-	std::cout << "/*=*\n *   " << this->mtitle << " table definitions;\n *-*/\n\n";
+	std::cout << "/*=*" << std::endl;
+	std::cout << " *   " << this->mtitle << " table definitions;" << std::endl;
+	std::cout << " *-*/" << std::endl;
+	std::cout << std::endl;
 	for (index = 0; index < this->mcount; index++) 
 	{
-		std::cout << "#define " << this->mtitle << "_o_" << this->mtable [index] << " " << index << "\n";
+		std::cout << "#define " << this->mtitle << "_o_" << this->mtable [index] << " " << index << std::endl;
 	}
-	std::cout << "#define " << this->mtitle << " " << this->mcount << "\n\n";
-	std::cout << "/*=*\n *   " << this->mtitle << " table declaration;\n *-*/\n\n";
-	std::cout << "\tconst size_t " << this->mtitle << "::count = " << this->mtitle << "\n";
-	std::cout << "\tchar const * " << this->mtitle << "::table [" << this->mtitle << "+1] = \n\t{\n";
+	std::cout << "#define " << this->mtitle << " " << this->mcount << std::endl;
+	std::cout << std::endl;
+	std::cout << "/*=*\n *   " << this->mtitle << " table declaration;\n *-*/" << std::endl;
+	std::cout << std::endl;
+	std::cout << "\tconst size_t " << this->mtitle << "::count = " << this->mtitle << std::endl;
+	std::cout << "\tchar const * " << this->mtitle << "::table [" << this->mtitle << "+1] = " << std::endl;
+	std::cout << "\t{" << std::endl;
 	for (index = 0; index < this->mcount; index++) 
 	{
-		std::cout << "\t\t\"" << this->mtable [index] << "\",\n";
+		std::cout << "\t\t\"" << this->mtable [index] << "\"," << std::endl;
 	}
-	std::cout << "\t\t(char const *)(0)\n\t};\n\n";
-	std::cout << "/*=*\n *   " << this->mtitle << " table enumeration;\n *-*/\n\n";
-	std::cout << "\toffset = object->indexof(this->mtitle);\n\n";
-	std::cout << "\tswitch(offset)\n\t{\n";
+	std::cout << "\t\t(char const *)(0)" << std::cout;
+	std::cout << "\t};" << std::endl;
+	std::cout << std::endl;
+	std::cout << "/*=*" << std::endl;
+	std::cout << " *   " << this->mtitle << " table enumeration;" << std::endl;
+	std::cout << " *-*/" << std::endl;
+	std::cout << std::endl;
+	std::cout << "\toffset = object->indexof(this->mtitle);" << std::endl;
+	std::cout << std::endl;
+	std::cout << "\tswitch(offset)" << std::endl;
+	std::cout << "\t{" << std::endl;
 	for (index = 0; index < this->mcount; index++) 
 	{
-		std::cout << "\t\tcase " << this->mtitle << "_o_" << this->mtable [index] << ":\n\t\t\tbreak;\n";
+		std::cout << "\t\tcase " << this->mtitle << "_o_" << this->mtable [index] << ":" << std::endl;
+		std::cout << "\t\t\tbreak;" << std::endl;
 	}
-	std::cout << "\t\tdefault:\n\t\t\tbreak;\n\t}\n\n";
+	std::cout << "\t\tdefault:" << std::endl;
+	std::cout << "\t\t\tbreak;" << std::endl;
+	std::cout << "\t}" << std::endl;
+	std::cout << std::endl;
 	return (*this);
 }
 

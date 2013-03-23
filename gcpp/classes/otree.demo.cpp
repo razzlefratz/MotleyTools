@@ -15,7 +15,7 @@ int main (signed argc, char const * argv [])
 	node = node->appendafter ("node3");
 	node->appendbelow ("child1");
 	node = node->appendbelow ("child2");
-	std::cout << node->pathname (buffer, sizeof (buffer), '.') << "\n";
+	std::cout << node->pathname (buffer, sizeof (buffer), '.') << std::endl;
 
 // tree.createpath ("node2.child1.test1", '.');
 
