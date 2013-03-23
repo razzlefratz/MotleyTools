@@ -1,38 +1,48 @@
-.TH shout 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH shout 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
 .SH NAME
 shout - broadcast a message to all terminals
+
 .SH SYNOPSIS
 .BR shout
 .RI [ options ]
 .IR message
 .RI [ message ]
 .RI [ ... ]
+
 .SH DESCRIPTION
 Broadcast a message to all active consoles.
+
 .SH OPTIONS
 Long options are not supported.
 All options are single letters.
+
 .TP
 .RB - b
 Treat each message as sentence or bullet point.
 If this option is omitted then message arguments are concatenated to form one long message.
 If this option is present then each argument appears on a separate output line.
+
 .TP
 .RB - c
 Display a count of terminals that were notified.
 This is an approximate indication of how many users are on the system.
 It is inaccurate when users have multiple login sessions.
+
 .TP
 .RB - n
 Suppress the preamble that identifies the sender.
 This option is only available to the root user because it can otherwise be abused.
+
 .TP
 .RB - r
 Broadcast on remote terminals only.
 Do not broadcast on the sending terminal.
+
 .TP
 .RB - t
 Display terminal names as each one is notified.
+
 .TP
 .RB - ? ,-- help
 Print program help summary on stdout.
@@ -42,7 +52,9 @@ This option takes precedence over previous command line options.
 .RB - ! ,-- version
 Print program version information on stdout.
 This option takes precedence over previous command line options.
+
 .SH ARGUMENTS
+
 .TP
 .BR message
 The broadcast message text.
@@ -58,10 +70,11 @@ Observe that message arguments are concatenated to form one message.
 The rext example broadcasts several messages, one per output line.
 .PP
    # shout "System going down" "Brad messed up" "Give him hell"
+
 .SH SEE ALSO
 .BR quiet ( 7 )
+
 .SH CREDITS
 The idea for this program came from the \fBwall\fR program.
 .PP
  Charles Maier <cmaier@cmassoc.net>
-

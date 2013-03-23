@@ -1,14 +1,18 @@
-.TH envp 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH envp 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
 .SH NAME
 envp - display environment vector
+
 .SH SYNOPSIS
 .BR envp 
 .RI [ options ]
 .RI [ ... ]
+
 .SH DESCRIPTION
 Print the C program environment vector on stdout.
 This program is intended for programmers who want to see exactly what environment variables are passed to the main program.
 This is important when programs rely on rely on environment variables for processing.
+
 .SH OPTIONS
 There are no program options.
 
@@ -70,9 +74,10 @@ Some environment string have been truncated in this example because they were to
     envp[46] = [COMPUTERNAME=VENUS]
     envp[47] = [_=/usr/local/bin/cmassoc/envp]
     envp[48] = NULL
+
 .SH SEE ALSO
 .BR argvesc ( 7 ),
 .BR sizeof ( 7 )
+
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>
-

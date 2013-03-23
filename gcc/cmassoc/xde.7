@@ -1,6 +1,8 @@
-.TH xde 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH xde 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
 .SH NAME
 xde - XML Driven Editor              
+
 .SH SYNOPSIS
 .BR xde 
 .RI [ options ] 
@@ -8,20 +10,25 @@ xde - XML Driven Editor
 .IR xmlfile 
 .RI [ xmlfile ] 
 [...]
+
 .SH DESCRIPTION
 Modify a data file based on XML instructions defined in one or more instruction files.
 Instruction files must be valid XML and conform to schema file \fBdata.xsd\fR or errors will occur.
 Always validate XML files against this schema with a validating parser before submitting them to this program.
 Firefox or Internet Explorer are suitable for validation purposes purpose.
+
 .SH OPTIONS
+
 .TP
 .RB - q
 Suppresses printing of progress messages.
 This option has no effect at this time.
+
 .TP
 .RB - v
 Print additional information.
 This option has no effect at this time.
+
 .TP
 .RB - ? ,-- help
 Print program help summary on stdout.
@@ -33,17 +40,20 @@ Print program version information on stdout.
 This option takes precedence over other options on the command line.
 
 .SH ARGUMENTS
+
 .TP
 .IR datafile
 The name of a data file.
 Only one data file can be edited at a time and so care must be taken to avoid the use of wildcard filenames.
 This program makes no assumption based on filename and does not enforce any filename conventions.
+
 .TP
 .IR xmlfile
 The name of an XML instruction file.
 XML instruction files must conform to the scheme designed for this purpose.
 When more that one \fB.xml\fR file is specified on the command line, edits are applied in order such that later edistover-write eariler edits.
 Instruction files usually have a \fB.xml\fR extension but this program makes no assumption based on filename and does not enforce any filename conventions.
+
 .SH SCHEMA
 The following XML schema defines instruction file structure.
 Instruction files should be validated against this schema before using them to edit a data file.
@@ -88,10 +98,13 @@ An explanation of this file appears below.
            <xs:element name="data" type="xs:hexBinary"/>
            <xs:element name="byte" type="xs:unsignedByte"/>
            </xs:schema>
+
 .SH ELEMENTS
+
 .TP
 .RB < object >
 The name of the data object.There is exactly one data object in an instruction file.
+
 .TP
 .RB < region >
 A named region withn the \fBobject\fR.
@@ -105,11 +118,13 @@ The name attribute is optional but may be used for clarity or for error reportin
 The relative position of the \fRregion\fB within the \fBobject\fR in bytes expressed in hexadecimal.
 The \fBoffset\fR plus the \fBlength\fR of a \fBregion\fR cannot exceed the \fBobject\fR length or an error will occur.
 The \fBoffset\fR and \fBlength\fR element can appear in either order but both must appear before the region data element.
+
 .TP
 .RB < length >
 The extent of the \fBregion\fR in bytes expressed in decimal.
 The \fBoffset\fR plus the \fBlength\fR of a \fBregion\fR cannot exceed the \fBobject\fR length.
 The \fBoffset\fR and \fBlength\fR element can occur in either order but both must appear before region the data element.
+
 .TP
 .RB < list >
 A sequence of \fBbyte\fR and/or \fBdata\fR elements.
@@ -123,6 +138,7 @@ It will occupy the exact number of bytes specified by the region \fBlength\fR pl
 The value is truncated or padded with NUL bytes, as necessary, to match the region \fBlength\fR.
 A length of 0 will result in one NUL byte being written.
 A \fBtext\fR element is illegal within an \fBlist\fR element.
+
 .TP
 .RB < byte >
 An 8-bit value expressed in decimal.

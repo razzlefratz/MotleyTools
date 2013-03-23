@@ -1,6 +1,8 @@
-.TH hexdmp 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH hexdmp 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
 .SH NAME
 hexdmp - hexadecimal dump utility
+
 .SH SYNOPSIS
 .BR hexdmp
 .RI [ options ]
@@ -11,20 +13,25 @@ hexdmp - hexadecimal dump utility
 .BR hexdmp
 .RI [< stdin ]
 .RI [> stdout ]
+
 .SH DESCRIPTION
 Read one or more files and print them on stdout in hexadecimal dump format.
 Ouput consists of three vertical sections: relative offset, hexadecimal data and ASCII data.
+
 .SH OPTIONS
 Long options are not supported.
 All options are single letters.
+
 .TP
 .RB - q
 Quiet mode.
 This option has no effect at this time.
+
 .TP
 .RB - v
 Verbose mode.
 Insert periodic column headers.
+
 .TP
 .RB - ? ,-- help
 Print program help summary on stdout.
@@ -34,12 +41,16 @@ This option takes precedence over previous command line options.
 .RB - ! ,-- version
 Print program version information on stdout.
 This option takes precedence over previous command line options.
+
 .SH ARGUMENTS
+
 .TP
 .IR file 
 The name of file.
 Input files are not modified.
+
 .TP
+
 .SH EXAMPLES
 The following command prints file \fBerror.o\fR on stdout in hexadecimal dump format.
 .PP
@@ -97,9 +108,11 @@ The following command prints file \fBerror.o\fR on stdout in hexadecimal dump fo
    00000300  73 74 72 65 72 72 6F 72 00 5F 70 72 69 6E 74 66  strerror._printf
    00000310  00 5F 6D 61 69 6E 2E 65 68 00 4C 43 30 00 45 48  ._main.eh.LC0.EH
    00000320  5F 66 72 61 6D 65 31 00                          _frame1.
+
 .SH SEE ALSO
 .BR bin2hex ( 7 ),
 .BR hex2bin ( 7 ),
 .BR hexcmp ( 7 )
+
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>

@@ -1,6 +1,8 @@
-.TH html 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH html 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
 .SH NAME
 html - print HTML template page
+
 .SH SYNOPSIS
 .BR html
 .RI [ options ]
@@ -13,56 +15,56 @@ html - print HTML template page
 .RI [ options ]
 .RI [< stdin ]
 .RI [> stdout ]
+
 .SH DESCRIPTION
 Read one or more text files and write them to stdout.
 Prefix the text ststream with an HTML file header and suffix it with an HTML file footer.
 This effectively insertsw the text stream into an HTML page, ready to display.
+
 .SH OPTIONS
 Long options are not supported.
 All options are single letters.
+
 .TP
 .RB - o
 Print a template profile on stdout.
-
 The template uses default program values.
 Output can be directed to a file, edited and read back when the program is next executed.
-
 This option takes precedence over normal formatting operations.
+
 .TP
 -\fBp\fI profile\fR
 The profile name.
-
 If this option is present then the program attempts to open and read the profile.
-
 The program will report an error and terminated if the named profile file does not exist.
 If this option is omitted the program attempts to read the default profile.
 The program does not report an error when the default profile is missing.
 The default profile is "\fB/etc/html.ini\fR".
+
 .TP
 -\fBs\fI section\fR
 The profile section name.
-
 If this option is present the the program will search the named profile or default profile for the named section.
 If this option is omitted the progam will search for the default section, instead.
-
 The default section is named "\fBdefault\fR".
 
 .TP
 .RB - ? ,-- help
 Print program help summary on stdout.
-
 This option takes precedence over previous command line options.
 
 .TP
 .RB - ! ,-- version
 Print program version information on stdout.
-
 This option takes precedence over previous command line options.
+
 .SH ARGUMENTS
+
 .TP
 \fIfile\fR
 The name of a text file.
 This file is copied, unmodified, to the stdout.
+
 .SH PROFILE
 The default profile looks like:
 .PP
@@ -71,19 +73,24 @@ The default profile looks like:
    contact=cmaier@cmassoc.net
    cssfile=/styles/cmassoc.css
    charset=iso-8859-1
+
 .TP
 .BR subject
 The page title and level 1 heading.
+
 .TP
 .BR contact
 The person or organization preparing the page.
+
 .TP
 .BR cssfile
 The absolute or relative path to the CSS2 stylesheet.
+
 .TP
 .BR charset
 The character set used to display the page.
 This specification is appended to the content type specification in the XML process instruction and/or the HTML meta tag.
+
 .SH EXAMPLES
 The following example reads file \fBabc.txt\fR and writes it to stdout.
 The file contains three numbered lines in this example.
@@ -125,8 +132,10 @@ Ouput appears on the console because we have not directed stdout to a file.
                            </div>
                    </body>
            </html>
+
 .SH SEE ALSO
 .BR matrix ( 7 )
 .BR offset ( 7 )
+
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>

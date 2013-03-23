@@ -1,6 +1,8 @@
-.TH ifd 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH ifd 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
 .SH NAME
 ifd - Interface Diagram Generator
+
 .SH SYNOPSIS
 .BR ifd
 .RI [ options ]
@@ -13,17 +15,20 @@ ifd - Interface Diagram Generator
 .RI [ options ]
 .RI [< stdin ]
 .RI [> stdout ]
+
 .SH DESCRIPTION
 None.
+
 .SH OPTIONS
+
 .TP
 .RB - a
 Number transactions at the start instead of at both ends.
 This results in fewer numbers and a less congested diagram.
+
 .TP
 .RB - l
 Draw the first transaction \fBleft-to-right\fR.
-
 This is the default direction.
 
 .TP
@@ -34,17 +39,19 @@ The default direction is \fBleft-to-right\fR.
 .TP
 -\fBn\fR step\fR
 The starting step number.
-
 Permitted values are \fB1\fR through \fB512\fR.
 The default is \fB1\fR.
+
 .TP
 .RB - q
 Quiet mode.
 Suppress normal progress or status information on stdout.
+
 .TP
 .RB - v
 Verbose mode.
 Print additional progress or status information on stdout.
+
 .TP
 -\fBw\fI width\fR
 Transaction width in columns.
@@ -61,6 +68,7 @@ Print program version information on stdout.
 This option takes precedence over other options on the command line.
 
 .SH ARGUMENTS
+
 .TP
 .IR file
 The name of an inteface definition file.
@@ -89,7 +97,6 @@ Observe that the first transaction is \fBleft-to\right\fR and steps are labeled 
 You, as an author, must describe for each step so that readers understand the diagram.
 .PP
    # ifd test.ifd
-
     [01] |------------------- Step1 ------------------->| [02]
     [04] |<------------------ Step2 --------------------| [03]
     [05] |------------------- Step3 ------------------->| [06]
@@ -98,7 +105,6 @@ You, as an author, must describe for each step so that readers understand the di
          |                                              |     
     [09] |------------------- Step5 ------------------->| [10]
     [12] |<------------------ Step6 --------------------| [11]
-
 .PP
 The next example reverses the direction of all transactions because option \fB-l\fR is present and numbering starts with step \fB3\fR because option \fB-n\fR is present.
 .PP
@@ -129,7 +135,9 @@ This minimizes the number of steps that must be documented.
     [05] |------------------- Step5 ------------------->|     
          |<------------------ Step6 --------------------| [06]
    
+
 .SH SEE ALSO
 None.
+
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>

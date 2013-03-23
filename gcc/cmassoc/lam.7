@@ -1,6 +1,8 @@
-.TH lam 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH lam 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
 .SH NAME
 lam - laminate files
+
 .SH SYNOPSIS
 .BR lam
 .RI [ options ]
@@ -8,15 +10,18 @@ lam - laminate files
 .IR file
 .RI [ file ] 
 .RI [ ... ]
+
 .SH DESCRIPTION
 Either concatenate or interleave lines from multiple files.
 Input lines may be quoted and separated by user defined delimiters on output.
 If input files have different line counts then empty fields or blank lines will appear in the output.
 .PP
 This program is similar to the Linux \fBpaste\fR utility by can quote input lines to produce comma separated value (csv) files.
+
 .SH OPTIONS
 Long options are not supported.
 All options are single letters.
+
 .TP
 -\fBf\fI character\fR
 Separate input lines using the given character on output.
@@ -29,25 +34,30 @@ Common characters are comma, colon and semicolon.
 Separate input lines with a newline (lf) on output.
 This causes input lines to be interleaved on output.
 It is equivalent to option \fB-f '\\n'\fR but is easier to specify.
+
 .TP
 -\fBq\fI character\fR
 Enclose input lines with the given character on output.
 This converts input lines to literal strings.
 The first character is used if multiple characters are specified.
 Common characters are quote and apostrophe.
+
 .TP
 .RB - s
 Separate input lines with a space (sp) on output.
 It is equivalent to option \fB-f ' '\fR but is easier to specify.
+
 .TP
 .RB - t
 Separate input lines with a horizontal tab (ht) on output.
 It is equivalent to option \fB-f '\\t'\fR but is easier to specify.
+
 .TP
 .RB - v
 Separate input lines with a comma and enclose them in quotes on output.
 This produces a robust comma separated value (csv) file.
 It is equivalent to option \fB-f ','\fR plus \fB-q '\\"'\fR but is easier to specify.
+
 .TP
 .RB - ? ,-- help
 Print program help summary on stdout.
@@ -57,7 +67,9 @@ This option takes precedence over previous command line options.
 .RB - ! ,-- version
 Print program version information on stdout.
 This option takes precedence over previous command line options.
+
 .SH ARGUMENTS
+
 .TP
 .IR file
 The name of a text file.
@@ -87,7 +99,6 @@ The line numbers shown are are for reference and are not part of file content.
 This example concatenates corresponding lines from each file.
 The number of lines output is the same as the longest input file.
 No delimiters are output in this example and so it is difficult to see where empty input lines occur.
-
 .PP
    # lam abc.txt def.txt ghi.txt
    1234567890ABCDEFabcdef
@@ -111,7 +122,6 @@ The comma is enclosed in quotes so that the shell does not attempt to interpret 
 .PP
 The next example uses option \fB-v\fR to enclose input lines in quotes and separate them with comma on output.
 This creates a comma separated value file that can be loaded into a database or spreadsheet.
-
 .PP
    # lam abc.txt def.txt ghi.txt -v
    "1234567890","ABCDEF","abcdef"
@@ -121,11 +131,12 @@ This creates a comma separated value file that can be loaded into a database or 
    "1234567890","","abcdef"
    "","","abcdef"
    "","",""
+
 .SH SEE ALSO
 .BR blank (7 ),
 .BR crlf ( 7 ), 
 .BR enfix ( 7 ),
 .BR trim ( 7 )
+
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>
-

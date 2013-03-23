@@ -1,6 +1,8 @@
-.TH enbrace 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH enbrace 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
 .SH NAME
 enbrace - enclose script symbols in braces
+
 .SH SYNOPSIS
 .BR enbrace
 .RI [ options ]
@@ -12,12 +14,15 @@ enbrace - enclose script symbols in braces
 .RI [ options ]
 .RI [< file ]
 .RI [> file ]
+
 .SH DESCRIPTION
 Search one or more text files for symbolic references starting with "\fB$\fR" and enclose those references them in paired braces, unless they are already enclosed.
 For example, symbolic reference "\fB$PWD\fR" will become "\fB${PWD}\fR" on the first pass but will not change on subsequent passes.
 .PP
 The use of braces to enclose symbolic constants makes global search-and-replace operations easy and, in some cases, makes scripts easier to read.
+
 .SH OPTIONS
+
 .TP
 .RB - ? ,-- help
 Print program help summary on stdout.
@@ -27,16 +32,20 @@ This option takes precedence over previous command line options.
 .RB - ! ,-- version
 Print program version information on stdout.
 This option takes precedence over previous command line options.
+
 .SH ARGUMENTS
+
 .TP
 .IR file
 The name of a text file.
 This file is replaced and a numbered backup is created.
 Use program \fBrex\fR to recover a prior version.
+
 .SH EXAMPLES
 None.
+
 .SH SEE ALSO
 .BR rex ( 7 )
+
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>
-

@@ -1,6 +1,8 @@
-.TH csstidy 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH csstidy 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
 .SH NAME
 csstidy - format CSS2 stylesheet
+
 .SH SYNOPSIS
 .BR csstidy
 .RI [ options ]
@@ -12,33 +14,40 @@ csstidy - format CSS2 stylesheet
 .RI [ options ]
 .RI [< stdin ]
 .RI [> stdout ]
+
 .SH DESCRIPTION
 .PP
 Format CSS2 source code.
 
 .SH OPTIONS
+
 .TP
 .RB - c
 Print a compact stylesheet.
 The entire stylesheet is printed on one line with no indenting.
+
 .TP
 -\fBm \fImargin\fR
 Defines the margin string.
 This string is printed at the start of every line before any indent strings are printed.
 The default is an empty string.
+
 .TP
 -\fBo \fIoffset\fR
 Defines the offset string.
 This string is used to offset indented text.
 The default is one horizontal tab.
+
 .TP
 .RB - s
 Indent level is 3 spaces.
 This option is equivalent to \fB-o "\ \ \ "\fR.
+
 .TP
 .RB - t
 Indent level is horizontal tab.
 This option is equivalent to \fB-o "\\t"\fR
+
 .TP
 .RB - ? ,-- help
 Print program help summary on stdout.
@@ -49,12 +58,15 @@ This option takes precedence over other options on the command line.
 Print program version information on stdout.
 This option takes precedence over other options on the command line.
 Usethis option when sending screen dumps to Intellon Technical Support so that they know exactly which version of the Linux Toolkit you are using.
+
 .SH ARGUMENTS
+
 .TP
 .BR file
 The name of a C or C++ source file.
 This file is replaced with the formatted output and a numbered backup file is created.
 Attempts to format syntactically incorrect source files may result in unpredictable output or program errors.
+
 .SH EXAMPLES
 This example prints stylesheet \fBstyle.css\fR on stdout using the default format.
 .PP
@@ -76,12 +88,13 @@ The next example prints the stylesheet in compact format.
 .PP
    # ctidy -c style.css
    a:hover {text-decoration: underline;} body {background:white;color:black;font:normal 10pt courier;margin: 10px 20px 10px 20px;} 
+
 .SH SEE ALSO
 .BR afm ( 7 ),
 .BR ctidy ( 7 ),
 .BR dnstidy ( 7 ),
 .BR phptidy ( 7 ),
 .BR xmltidy ( 7 )
+
 .SH AUTHORS
  Charles Maier <cmaier@cmassoc.net>
-

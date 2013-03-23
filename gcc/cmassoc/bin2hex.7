@@ -1,6 +1,8 @@
-.TH bin2hex 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH bin2hex 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
 .SH NAME
 bin2hex - binary to hexadecimal contactinate
+
 .SH SYNOPSIS
 .BR bin2hex
 .RI [ options ]
@@ -12,17 +14,21 @@ bin2hex - binary to hexadecimal contactinate
 .BR bin2hex
 .RI [< stdin ]
 .RI [> stdout ]
+
 .SH DESCRIPTION
 Read one or more files and write one hexadecimal octet stream.
 Octets are separated by a space and octet groups are separated by a carriage, by default, return but this can be suppressed.
 Use program \fBhex2bin\fR to reverse the process.
+
 .SH OPTIONS
 Long options are not supported.
 All options are single letters.
+
 .TP
 .RB - q
 Quiet mode.
 This option has no effect at this time.
+
 .TP
 .RB - v
 Verbose mode.
@@ -35,6 +41,7 @@ Insert a carriage return every so many octets.
 Valid values are \fB0\fR though \fB255\fR.
 The default value is \fB16\fR octets.
 A value of \fB0\fR will suppress all spaces and carriage returns resulting in a continuous string of hexadecimal digits.
+
 .TP
 .RB - ? ,-- help
 Print program help summary on stdout.
@@ -44,21 +51,26 @@ This option takes precedence over previous command line options.
 .RB - ! ,-- version
 Print program version information on stdout.
 This option takes precedence over previous command line options.
+
 .SH ARGUMENTS
+
 .TP
 .IR file
 The name of a file.
 Files may be either text or binary.
 Input files are not modified.
 One output stream is written.
+
 .SH EXAMPLES
 The following command coverts files \fBabc.exe\fR and \fBdef.exe\fR to hexadecimal format and prints them on stdout.
 .PP
    # bin2hex abc.exe def.exe
+
 .SH SEE ALSO
 .BR dmp2hex ( 7 ),
 .BR hex2bin ( 7 ),
 .BR hexcmp ( 7 ),
 .BR hexdmp ( 7 )
+
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>

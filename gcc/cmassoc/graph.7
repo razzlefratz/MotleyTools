@@ -1,6 +1,8 @@
-.TH graph 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH graph 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
 .SH NAME
 graph - print a histogram 
+
 .SH SYNOPSIS
 .BR graph
 .RI [ options ]
@@ -13,6 +15,7 @@ graph - print a histogram
 .RI [ options ]
 .RI [< file ]
 .RI [> file ]
+
 .SH DESCRIPTION
 Print a text-based histogram on stdout.
 The histogram consists of x and y values printed vertically as pairs.
@@ -26,11 +29,13 @@ It is left to the user to generate, manipulate and interpret the data that is di
 .SH OPTIONS
 Long options are not supported.
 All options are single letters.
+
 .TP
 -\fBc\fI pairs\fR
 The maximum number of data pairs accepted by the program.
 The default is \fB5000\fR.
 The range is \fB1\fR to \fBINT_MAX\fR as defined in header limits.h.
+
 .TP
 -\fBo\fI [+|-]offset\fR
 The data offset expressed as a positive or negative integer value.
@@ -39,6 +44,7 @@ A positive offset shifts data values higher so that negative values can be seen.
 A negative offset shits data values lower so that data variations can be accentuated using a larger scale factor.
 The default offset is \fB0\fR.
 The effective range is \fB-INT_MAX\fR to \fBINT_MAX\fR as defined in header limits.h.
+
 .TP
 -\fBs\fI scale\fR
 The graph scale expressed as a positive integer value.
@@ -46,6 +52,7 @@ All y values are divided by this amount.
 The larger this value the shorter the horizontal bars.
 The default scale is \fB1\fR.
 The range is \fB1\fR to \fBINT_MAX\fR as defined in header limits.h.
+
 .TP
 -\fBt\fI title\fR
 The graph title.
@@ -55,6 +62,7 @@ The default title is "\fBDistribution\fR".
 .TP
 .RB - x
 Exchange x and y values read from the input.
+
 .TP
 .RB - ? ,-- help
 Print program help summary on stdout.
@@ -64,7 +72,9 @@ This option takes precedence over previous command line options.
 .RB - ! ,-- version
 Print program version information on stdout.
 This option takes precedence over previous command line options.
+
 .SH ARGUMENTS
+
 .TP
 .IR file
 The name of a data file.
@@ -94,7 +104,6 @@ Three comment lines start the file and will be ignored.
 The following example graphs the file shown above.
 The x values appear outside the brackets and the y values appear inside the brackets.
 The bars represent the y value but some bars have been truncated in this example because long bars do not format well.
-
 .PP
    # graph powers.txt
    Distribution
@@ -129,8 +138,9 @@ The scale is 16 so each hash represents 16 units but the true y value is still d
         8[   256]################
         9[   512]################################
    total=1023 level=0 scale=16
+
 .SH SEE ALSO
 .BR delta ( 7 )
+
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>
-

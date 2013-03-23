@@ -1,18 +1,23 @@
-.TH cdep 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH cdep 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
 .SH NAME
 cdep - Display C Language file dependencies
+
 .SH SYNOPSIS
 .BR cdep 
 .IR file 
 .RI [ file ]
 .RI [ ... ] 
 .RI [> file ]
+
 .SH DESCRIPTION
 Search C language source files and print relationships defined by the pre-processor \fB#include\fR statements.
 Relationsips are printed in alphabetical order by file.
 Relationships have two forms: \fBneed\fR where one file needs another and \fBfeed\fR where one file feeds another.
 These forms are merely the inverse of each other.
+
 .SH OPTIONS
+
 .TP
 .RB - c
 Consider only custom files.
@@ -25,16 +30,19 @@ Display an alphabetical list of files with files that they feed.
 One file feeds another if it must be included by that file.
 This display can be viewed as a "where used" list.
 This option excludes option \fB-n\fR.
+
 .TP
 .RB - n
 Display an alphabetical list of files with files that they need.
 One file needs another if it must include that file.
 This option excludes option \fB-f\fR.
+
 .TP
 .RB - s 
 Consider only system files.
 System files are those enclosed in angle brackets.
 This option excludes option \fB-c\fR.
+
 .TP
 .RB - ? ,-- help
 Print program help summary on stdout.
@@ -46,15 +54,16 @@ Print program version information on stdout.
 This option takes precedence over other options on the command line.
 
 .SH ARGUMENTS
+
 .TP
 .IR file
 The name of a C language file.
 One or more files may appear on the command line.
 Each file should be syntactically correct or errors can occur.
+
 .SH EXAMPLES
 The following example prints a list of system files used by program \fBabc.c\fR.
 This list is essentially an inventory of required system files.
-
 .PP
    # cdep abc.c
 .PP
@@ -67,6 +76,7 @@ The following example prints an analysis of custom files needed by program \fBab
 Files are listed in alphabetical order and each file is followed by an indented list of the files that it needs.
 .PP
    # cdep abc.c -c -n
+
 .SH SEE ALSO
 .BR call ( 7 ),
 .BR cblock ( 7 ),
@@ -74,5 +84,6 @@ Files are listed in alphabetical order and each file is followed by an indented 
 .BR cinc ( 7 ),
 .BR cmerge ( 7 ),
 .BR ctar ( 7)
+
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>

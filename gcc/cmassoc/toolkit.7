@@ -1,87 +1,114 @@
-.TH toolkit 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH toolkit 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
 .SH NAME
 Motley Tools
+
 .SH SYNOPSIS
 Motley Tools are a collection of C/C++ programs written and maintained by Charles Maier.
 Some implement ideas presented by Brian Kernighan in \fISoftware Tools\fR and \fIUnix System Programming\fR.
 Others are re-writes of standard Linux, Unix or Posix system utilities or well-known Open Source Software by authors such as Miguel van Smoorenburg.
 The rest perform routine development or maintenance chores for the author.
 If you like them, use them.
+
 .SH PROGRAMS
+
 .TP
 .BR afm
 Format assembly language source files.
+
 .TP
 .BR align
 Align character to column.
+
 .TP
 .BR argv
 Echo argument vector on stdout.
 This is a companion to the \fBenvp\fR program.
+
 .TP
 .BR b64
 Base64 encoder/decoder.
 This is a custom implementation of the Linux \fBbase64\fR utility.
+
 .TP
 .BR blank
 Blank line minimizer and trailing space eliminator.
 This is a companion to the \fBspace\fR program.
+
 .TP
 .BR calend
 Print three-month calendar on stdout.
+
 .TP
 .BR call
 Print C language functional dependencies.
+
 .TP
 .BR case
 Converts files to upper or lower case.
+
 .TP
 .BR catalog
 Produce a set of linked html pages with index page.
+
 .TP
 .BR cbrief
 Remove C/C++ language comments.
+
 .TP
 .BR cdep
 List supporting c language include files on stdout.
+
 .TP
 .BR cedit
 Rename a C Language variable or constant.
+
 .TP
 .BR change
 Replace text matching a regular expression with fixed text.
+
 .TP
 .BR cinc
 Merge c language source files onto one independent file
+
 .TP
 .BR cmerge
 Merge c language source files into one source file.
+
 .TP
 .BR crlf
 Change text line termination.
+
 .TP
 .BR csv2html
 Convert .csv data to .html file.
+
 .TP
 .BR ctar
 Create custom .tar.gz files fro source code.
+
 .TP
 .BR define
 Generate C source code for a type table.
+
 .TP
 .BR defix
 Extract prefix or suffix part of delimited argument.
+
 .TP
 .BR delta
 Print difference between consecutive unsigned decimal integers.
 This is a companion to the \fBgraph\fR program.
+
 .TP
 .BR detab
 Replace horizontal tabs with equivalent number of spaces.
 This is an implementation of the \fBdetab\fR utility described by Kernighan and Plaugher and a companion to the \fBentab\fR program.
+
 .TP
 .BR detag
 Remove sgml/html/xhtml/xml markup.
+
 .TP
 .BR dls
 List folders or links or standard files.
@@ -90,150 +117,193 @@ List folders or links or standard files.
 .BR ds
 File based dactyloscope.
 This is a companion to the \fBfp\fR program.
+
 .TP
 .BR efsu
 Send custom Ethernet frames.
+
 .TP
 .BR enbrace
 Enclose symbols in braces.
+
 .TP
 .BR enfix
 Add prefix and/or suffix to each line of file.
+
 .TP
 .BR entab
 Replace spaces with horizontal tabs.
 This is an implementation of the \fBentab\fR utility described by Kernighan and Plaugher and a companion to the \fBdetab\fR program.
+
 .TP
 .BR envp
 Echo envionment vector on stdout.
 This is a companion to the \fBargv\fR program.
+
 .TP
 .BR fbar
 Extend FORTRAN style comment bars.
+
 .TP
 .BR ff
 Search folders and/or standard paths for files.
 This is an alternative to the Linux \fBfind\fR utility.
+
 .TP
 .BR filesize
 Display files sizes.
+
 .TP
 .BR footer
 Copy one or more file footers to stdout.
 This is an alternative to the Linux/Unix/Posix \fBtail\fR utility.
+
 .TP
 .BR fp
 File finger printer.
 This is a companion to the \fBds\fR program.
+
 .TP
 .BR grab
 Byte stream grabber.
+
 .TP
 .BR graph
 Print a histogram.
 This is a companion to the \fBdelta\fR program.
+
 .TP
 .BR header
 Copy one or more file headers to stdout.
 This is an alternative to the Linux/Unix/Posix \fBhead\fR utility.
+
 .TP
 .BR hex
 Encode or decode text files in IETF hexidecimal octet format.
+
 .TP
 .BR hexcmp
 Compare two binary files byte by byte.
+
 .TP
 .BR ifd
 Interface diagram generator.
+
 .TP
 .BR import
 Copy remote files to local folder.
+
 .TP
 .BR key
 Generate random SHA256 keys.
+
 .TP
 .BR lam
 Laminate files.
 This is an implementation of the \fBlam\fR utility described by Kernighan and Plaugher.
+
 .TP
 .BR localhost
 Manage system hostname and domainname.
 This is an alternative to the Linux \fBhostname\fR utility.
+
 .TP
 .BR log
 Write stdin to stdout plus named files.
 This is a custom verstion of the Linux \fBtee\fR utility.
+
 .TP
 .BR loop
 Command sequence repeater.
+
 .TP
 .BR _manpage
 A man page template.
+
 .TP
 .BR mp
 Man page header editor.
+
 .TP
 .BR mrg
 Merge sorted files into one output stream.
+
 .TP
 .BR munge
 Mangle filenames to satisfy your perverse wishes.
 This is a companion to the \fBrex\fR program.
+
 .TP
 .BR odc
 Object driven compare.
+
 .TP
 .BR odd
 Object driven hex dump.
+
 .TP
 .BR ode
 Object driven editor.
+
 .TP
 .BR odx
 Object driven XML dump.
+
 .TP
 .BR offset
 Offset table generator.
+
 .TP
 .BR order
 Topological sort program
+
 .TP
 .BR paginate
 Paginate text files.
+
 .TP
 .BR quiet
 Permit or restrict public access to your terminal.
+
 .TP
 .BR relate
 Organize dependency information.
+
 .TP
 .BR remove
 Remove lines that match any of several regular expressions.
 This is an alternative to the Linux/Unix/Posix \fBgrep\fR utility \fB-v\fR option.
+
 .TP
 .BR rex
 Replace file extensions.
 This is a companion to the \fBmunge\fR program.
+
 .TP
 .BR runjobs
 Execute named scripts.
 This is an alternative to the Debian \fBrun-jobs\fR utility.
+
 .TP
 .BR sbrief
 Abbreviate a script file.
 Remove comments, concatenate continuation lines and condense space.
+
 .TP
 .BR search
 Output lines matching any of several regular expressions.
 This is an alternative to the Linux/Unix/Posix \fBgrep\fR utility.
+
 .TP
 .BR shakey
 SHA256 key generator.
 Phrases are entered as arguments.
+
 .TP
 .BR shakeys
 SHA256 key generator.
 Phrases are read from a file.
+
 .TP
 .BR shout
 Broadcast a message on all terminals.
@@ -242,75 +312,97 @@ This is an alternative to the Linux \fBwall\fR utility.
 .TP
 .BR sign
 Print a simple sign on stdout.
+
 .TP
 .BR sizeof
 Print size of C language data types.
+
 .TP
 .BR space
 White space minimizer.
 This is a companion to the \fBblank\fR program.
+
 .TP
 .BR srt
 Sort files in ascending order.
+
 .TP
 .BR stamp
 Echo an 8 character system time stamp.
+
 .TP
 .BR sv
 Create c language string vector declaration and definitions from list.
 This is a companion to the \fBtypelist\fR program.
+
 .TP
 .BR sweep
 Remove files/folders from target-path that exist in any source-path.
+
 .TP
 .BR symlinks
 Search folders and subfolders for symbolic links
+
 .TP
 .BR timer
 Echo system time in seconds.
+
 .TP
 .BR tls
 Print folder hierarchy on stdout.
+
 .TP
 .BR tr
 Translate characters.
 This is a custom version of the Linux/Unix/Posix \fBtr\fR utility.
+
 .TP
 .BR trim
 Discard character columns.
+
 .TP
 .BR try
 Log and execute command sequences.
+
 .TP
 .BR typelist
 Generate C source code for a type table.
 This is a companion to the \fBsv\fR program.
+
 .TP
 .BR unique
 Remove duplicate records from sorted file.
 This is a custom version of the Linux/Unix/Posix \fBuniq\fR utility.
+
 .TP
 .BR vl
 Convert lines to fixed or variable length.
+
 .TP
 .BR vu
 Display control characters in visible formats.
+
 .TP
 .BR what
 Print alphabetical list of processes on stdout.
 This is an alternative to the Linux \fBps\fR utility.
+
 .TP
 .BR whom
 Print user/group names in alphabetcial order in columns.
+
 .TP
 .BR wl
 Print a list of words read from the input stream.
+
 .TP
 .BR xde
 XML driven editor.
+
 .TP
 .BR xml
 Enumerate html/xhtml/xml document fragments.
+
 .SH SEE ALSO
 .BR afm ( 7 ),
 .BR align ( 7 ),
@@ -403,7 +495,7 @@ Enumerate html/xhtml/xml document fragments.
 .BR wl ( 7 ),
 .BR xde ( 7 ),
 .BR xml ( 7 )
+
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>
  Nathan Houghton <nathan@brainwerks.org>
-

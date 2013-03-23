@@ -1,6 +1,8 @@
-.TH ds 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH ds 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
 .SH NAME
 ds - digital dactyloscope
+
 .SH SYNOPSIS
 .BR ds 
 .RI [ options ]
@@ -13,6 +15,7 @@ ds - digital dactyloscope
 .RI [ options ]
 .RI [< stdin ]
 .RI [> stdout ]
+
 .SH DESCRIPTION
 \fBDactyloscopy\fR is the study of fingerprints for identification purposes.
 There is no definition for the word \fBdactyloscope\fR so we built one and this is it.
@@ -24,20 +27,25 @@ A registry can be created using program \fBfp\fR.
 .PP
 The main use is confirmation that a file is both registered and unchanged since unregistered or changed files cannot match.
 Some toolkit programs use a registry to identity and either accept or reject critical files because the means of file identification depends on current content, not filename and modification date.
+
 .SH OPTIONS
+
 .TP
 -\fBf\fI registry\fR
 The name of a registry file.
 This file contains the SHA256 digest strings of registered filed.
 A simple registry file can be created with program \fBfp\fR.
+
 .TP
 .RB - q
 Suppress routine messages.
 This option has no effect at present.
+
 .TP
 .RB - v
 Print additional information.
 In this case, print the short filename after each SHA256 digest.
+
 .TP
 .RB - ? ,-- help
 Print program help summary on stdout.
@@ -49,6 +57,7 @@ Print program version information on stdout.
 This option takes precedence over other options on the command line.
 
 .SH ARGUMENTS
+
 .TP
 .IR file
 The name of a file.
@@ -57,9 +66,12 @@ This file is not modified.
 The SHA256 digest is computed and compared to those in the registry file.
 If a match is found then this filename is printed with a leading plus sign.
 If not, this filename is printed prefixed th a leading minus sign.
+
 .SH EXAMPLES
 None.
+
 .SH SEE ALSO
 .BR fp ( 7 )
+
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>

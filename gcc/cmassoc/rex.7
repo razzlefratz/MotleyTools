@@ -1,12 +1,15 @@
-.TH rex 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH rex 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
 .SH NAME
 rex - remove and replace file extension 
+
 .SH SYNOPSIS
 .BR rex 
 .RI [ options ]
 .IR file
 .RI [ file ] 
 .RI [ ... ]
+
 .SH DESCRIPTION
 Remove an old file extension and replace it with another.
 Candidate files having the old extension are renamed by removing the old extension and appending the new one.
@@ -14,24 +17,29 @@ Candidate files having the old extension are renamed by removing the old extensi
 This program can be used to remove numeric file extensions added to backup files created by some Motley Tools programs.
 Some, but not all, of those programs are listed under the "SEE ALSO" section.
 None
+
 .SH OPTIONS
 Long options are not supported.
 All options are single letters.
+
 .TP
 -\fBo\fI extension\fR
 The old file extension.
 This must match the \fBright-most\fR extension of candidate files for replacement to occur.
 Consequently, this \fIextension\fR must start with period and cannot include additional periods.
 There is no default extension.
+
 .TP
 -\fBn\fI extension\fR
 The new file extension.
 This is appended to the filename after the old file extension is removed.
 Unlike the old file extension, this \fIextension\fR need not start with period and may include multiple periods.
 The default is "" which effectively replaces the old extension with nothing.
+
 .TP
 .RB - v
 Display filenames on stderr as they are renamed.
+
 .TP
 .RB - ? ,-- help
 Print program help summary on stdout.
@@ -41,12 +49,15 @@ This option takes precedence over previous command line options.
 .RB - ! ,-- version
 Print program version information on stdout.
 This option takes precedence over previous command line options.
+
 .SH ARGUMENTS
+
 .TP
 .IR file
 The name of a file.
 This file is renamed only if the \fBright-most\fR extenion matches the argument specified by option \fB-o\fR.
 The new filename is then the old filename less the old file extension plus the new file extention.
+
 .SH EXAMPLES
 The following example adds an extra extension to files ending in "\fB.txt\fR".
 A wildcard is used to select files but only those having the old extension are renamed.
@@ -60,7 +71,6 @@ Option \fB-v\fR confirms filename changes.
 The next example removes the \fB.002\fR extension from C language header files.
 We search for files ending in "\fB.h.002\fR" to avoid renaming other file types that might also have a "\fB.002\fR" extension.
 The default new extension is "" but we specified it anyway.
-
 .PP
    # rex *.h.002 -v -o ".002" -n ""
    rex: chars.h <-- chars.h.002
@@ -71,6 +81,7 @@ The default new extension is "" but we specified it anyway.
    rex: trace.h <-- trace.h.002
    rex: types.h <-- types.h.002
    rex: vtdef.h <-- vtdef.h.002
+
 .SH SEE ALSO
 .BR afm ( 7 ),
 .BR blank ( 7 ),
@@ -84,6 +95,6 @@ The default new extension is "" but we specified it anyway.
 .BR space ( 7 ),
 .BR rex ( 7 ),
 .BR trim ( 7 )
+
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>
-

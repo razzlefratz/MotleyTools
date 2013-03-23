@@ -1,36 +1,46 @@
-.TH key 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH key 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
 .SH NAME
 key - Random Key Generator
+
 .SH SYNOPSIS
 .BR key 
 .RI [ options ] 
+
 .SH DESCRIPTION
 Dynamically generate distinct SHA256 keys.
 A different key is printed on stdout with each program invocation or iteration, unless this is suppressed.
 Key computation is seeded using a 64 ASCII character string stored in a user created seedfile.
 The program automatically increments the seedfile string to preserve continuity and uniqueness across program invocations, program iterations, console sessions, host reboots and production sites.
+
 .SH OPTIONS
+
 .TP
 -\fBf \fIfilename\fR
 The seed filename.
 The default seed filename is "\fBseedfile.txt\fR".
+
 .TP
 -\fBn \fIcount\fR
 The number of keys to generate and print.
 This program prints the specified number of distinct keys of the specified type, one key per line.
 Normally, program output is directed to a file or a pipe when this option is used.
 It is useful for creating a file of random keys.
+
 .TP
 -\fBo\fR
 Use the \fBold\fR seedfile string.
 This option prevents the seedfile string from being incremented before a \fBnew\fR key is computed.
 This feature allows additional key types to be computed from the same seedfile string.
+
 .TP
 .RB - q
 Enable quiet mode which, for this application, has no effect.
+
 .TP
 .RB - v
 Enable verbose mode which, for this application, prints the pass phrase for each key.
+
 .TP
 .RB - ? ,-- help
 Print program help summary on stdout.
@@ -54,7 +64,6 @@ The following example prints a SHA256 key on stdout.
 An SHA256 key is 256 bits or 32 bytes expressed as 64 hexadecimal digits.
 An SHA256 key is the default output when no key type is specified.
 SHA256 is a public domain standard.
-
 .PP
    # key -f secret.key
    BFF0F6E3C83CE13829EA7F1F6D25042F4B05052E44C0B801EEA7CD6317F3622E
@@ -75,7 +84,6 @@ The key shown here has been abbreviated to prevent formatting errors.
 .PP
 The following command prints 10 random keys on stdout.
 Program output could have been directed to a file or a pipe for futther processing such as extracting a substring to obtain a shorter key.
-
 .PP
    # key -f secret.key -n 10
    780AC153CD47AB01520B5B0246DE7B78584C0413393EDA4430773DED80DDF01A
@@ -102,6 +110,7 @@ This utterly useless example demonstrates how to generate 10 identical keys by s
    7E7A10DF5DCAE9D02CBE71C6BD7C8342C33BBA71DE1116CD1B84B11986DF2A13
    7E7A10DF5DCAE9D02CBE71C6BD7C8342C33BBA71DE1116CD1B84B11986DF2A13
    7E7A10DF5DCAE9D02CBE71C6BD7C8342C33BBA71DE1116CD1B84B11986DF2A13
+
 .SH RECOMMENDATIONS
 The seed file is critical to the continuity and uniqueness of generated keys.
 The 64 character string stored in the seedfile is incremented, character by character, right to left, with each file access unless that behavior is suppressed using the \fB-o\fR option.
@@ -116,9 +125,12 @@ If a seedfile is lost, merely replace it with another one, as though you are ope
 Mathematically, the shorter the start string the longer it will take for two different seedfiles to coincidentally produce identical output.
 From 12 to 24 character is a reasonable length but this is not a restriction.
 If you have several production lines, you may want to maintain a record of the start strings used on each line in case a new seedfile must be created.
+
 .SH REFERENCES
 See FIPS180-2 sec 5.3.2 for information on SHA256 encoding.
+
 .SH SEE ALSO
 None.
+
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>

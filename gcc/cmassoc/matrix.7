@@ -1,6 +1,8 @@
-.TH matrix 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH matrix 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
 .SH NAME
 matrix - print parse matrix table
+
 .SH SYNOPSIS
 .BR matrix
 .RI [ options ]
@@ -13,9 +15,9 @@ matrix - print parse matrix table
 .RI [ options ]
 .RI [< stdin ]
 .RI [> stdout ]
+
 .SH DESCRIPTION
 Read a matrix definition file and print an HTML or DOCBOOK table on stdout.
-
 The output is suitable for use in the body of another HTML page or DOCBOOK section.
 Use program \fBhtml\fR to embed HTML output from this program inside a template HTML page.
 .PP
@@ -25,50 +27,51 @@ The first line of the file defines table column headings.
 .SH OPTIONS
 Long options are not supported.
 All options are single letters.
+
 .TP
 .RB - d
 Print a table on stdout using DOCBOOK elements \fBtable\fR, \fBtitle\fR, \fBrow\fR and \fBentry\fR.
-
 The indent level can be varied using option \fB-i\fR.
+
 .TP
 -\fBe\fI string\fR
 The string displayed inside empty table cells.
-
 The default is "\fB&nbsp;\fR" which displays as an empty cell.
+
 .TP
 .RB - h
 Print table on stdout using HTML elements \fBtable\fR, \fBtr\fR and \fBtd\fR.
-
 The indent level can be varied using option \fB-i\fR.
 
 .TP
 -\fBl\fI level\fR
 The starting indent level.
-
 This option may be used to match the indent level of companion documents or document fragments.
 Indents are implemented using horizontal tabs.
-
 Valid values are \fB0\fR through \fB16\fR.
-
 The default is \fB0\fR.
+
 .TP
 -\fBe\fI string\fR
 The string displayed inside matching cells.
-
 This option is useful for short tables where the table header does not scroll off the screen.
 The default is the column title.
+
 .TP
 .RB - q
 Quiet mode.
 This option has no effect at this time.
+
 .TP
 .RB - s
 Print a CSS stylesheet on stdout where class names match those in the HTML table.
 The stylesheet may be used to create new CSS stylesheets, included in existing CSS stylesheets or included in the HTML section.
+
 .TP
 .RB - v
 Verbose mode.
 This option has no effect at this time.
+
 .TP
 .RB - ? ,-- help
 Print program help summary on stdout.
@@ -78,18 +81,20 @@ This option takes precedence over previous command line options.
 .RB - ! ,-- version
 Print program version information on stdout.
 This option takes precedence over previous command line options.
+
 .SH ARGUMENTS
+
 .TP
 \fIfile\fR
 The name of a matrix definition file.
 A matrix definition file consists of one table column definition and many table row definitions.
 Table column and row definitions have the same format but distinguished by file position.
 The first is the table column definition while successive ones are row definitions.
-
 A definition consists of one or more fields separated by white space.
 Definitions are separated from each other by one semi-colon.
 This means that a definition can straddle multiple lines and that a semi-colon must appear between the last field of a definition and the first field of the next definition.
 A semicolon need not appear after the last field of the last definition in a file and should be omitted to avoid creating an empty table row at the bottom of the output.
+
 .SH EXAMPLES
 An example matrix definition file, \fBmatrix.txt\fR, appears below.
 The first line is the table column definition.
@@ -188,13 +193,9 @@ See \fBhttp://www.w3.org/MarkUp/\fR for more information on HTML.
    	</table>
 .PP
 The next example pipes program output into program \fBhtml\fR to bracket the output with an HTML header and footer.
-
 Option \fB-h\fR is present to ensure output is in HTML format.
-
 Option \fB-l\fR is used to adjust the indent level to match that expected of program \fBhtml\fR.
-
 The result is saved in file \fBmatrix.html\fR.
-
 .PP
    # matrix -h -l2 matrix.txt | html > matrix.html
 .PP
@@ -273,8 +274,10 @@ See \fBhttp://www.docbook.org\fR for more information on DOCBOOK.
    			</tbody>
    		</tgroup>
    	</table>
+
 .SH SEE ALSO
 .BR html ( 7 ),
 .BR offset ( 7 )
+
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>

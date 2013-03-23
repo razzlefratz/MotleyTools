@@ -1,12 +1,15 @@
-.TH ff 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH ff 7 "December 2012" "plc-utils-2.1.3" "Qualcomm Atheros Powerline Toolkit"
+
 .SH NAME
 ff - find files
+
 .SH SYNOPSIS
 .BR ff
 .RI [ options ]
 .IR filespec
 .RI [ filespec ]
 [...]
+
 .SH DESCRIPTION
 Recursively searche a root folder for files that match wildcard filename specification and print the fullpath to each matching file on stdout.
 Optionally, the file date and time may be printed or just the pathname or just the basename.
@@ -28,6 +31,7 @@ The folder search resumes after script completion and ends when all the files in
 .SH OPTIONS
 Long options are not supported.
 All options are single letters.
+
 .TP
 .RB - B
 Search binary folders \fB{,/usr}{/bin,/sbin}\fR and \fB/usr{/local}/bin\fR, in that order, for matching files.
@@ -62,12 +66,13 @@ This option takes precedence over previous command line options.
 .RB - ! ,-- version
 Print program version information on stdout.
 This option takes precedence over previous command line options.
+
 .SH FILES
 None.
 
 .SH SEE ALSO
 .BR import ( 7 ),
 .BR purge ( 7 )
+
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>
-
