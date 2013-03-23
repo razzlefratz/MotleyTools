@@ -69,8 +69,6 @@
 
 #define MP_VERBOSE (1 << 0)
 #define MP_SILENCE (1 << 1)
-#define MP_TITLE (1 << 2)
-#define MP_FORMAT (1 << 3)
 
 /*====================================================================*
  *
@@ -89,18 +87,22 @@ static void function (char const * program, char const * project, char const * p
 	signed c = getc (stdin);
 	while (c != EOF) 
 	{
+		while ((c == '\r') || (c == '\n')) 
+		{
+			c = getc (stdin);
+		}
 		if (c == '.') 
 		{
 			char symbol [SYMBOLSIZE];
 			char * sp = symbol;
-			c = keep (c);
-			while (isalpha (c)) 
+			do 
 			{
 				*sp++ = c;
 				c = getc (stdin);
 			}
+			while (isalpha (c));
 			*sp = (char) (0);
-			if (!strcmp (symbol, "TH")) 
+			if (!strcmp (symbol, ".TH")) 
 			{
 				while (nobreak (c)) 
 				{
@@ -111,30 +113,42 @@ static void function (char const * program, char const * project, char const * p
 				sp += snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", package);
 				sp += snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", project);
 			}
+			else if (!strcmp (symbol, ".SH")) 
+			{
+				putc ('\n', stdout);
+			}
+			else if (!strcmp (symbol, ".TP")) 
+			{
+				putc ('\n', stdout);
+			}
 			fputs (symbol, stdout);
 		}
 		while (nobreak (c)) 
 		{
-			if (isquote (c))
-			{	
+			if (isquote (c)) 
+			{
 				c = literal (c, c);
 				continue;
 			}
-			if (c == '[')
-			{	
+			if (c == '[') 
+			{
 				c = literal (c, ']');
 				continue;
 			}
-			if (c == '.')
+			if (c == '.') 
 			{
 				c = keep (c);
-				if (isblank(c)) 
-				{ 
-					do { c = getc (stdin); } while (isblank (c));
+				if (isblank (c)) 
+				{
+					do 
+					{
+						c = getc (stdin);
+					}
+					while (isblank (c));
 					putc ('\n', stdout);
 				}
 				continue;
-			}	
+			}
 			c = keep (c);
 		}
 		c = keep (c);
@@ -204,7 +218,7 @@ int main (int argc, char const * argv [])
 	project = profilestring (profile, section, "project", project);
 	package = profilestring (profile, section, "package", package);
 	release = profilestring (profile, section, "release", release);
-	if ((!argc) || (!*argv))
+	if ((!argc) || (!*argv)) 
 	{
 		function ("unamed 7", project, package, release, flags);
 	}
