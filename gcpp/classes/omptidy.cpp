@@ -113,7 +113,7 @@ omptidy & omptidy::release (char const * release)
 
 /*====================================================================*
  *
- *   signed omptidy::page (signed c);
+ *   omptidy & omptidy::page ();
  *
  *   search for PHP source; ignore asp source; 
  *
@@ -123,9 +123,10 @@ omptidy & omptidy::release (char const * release)
  *
  *--------------------------------------------------------------------*/
 
-signed omptidy::page (signed c) 
+omptidy & omptidy::page () 
 
 {
+	signed c = std::cin.get ();
 	while (c != EOF) 
 	{
 		while ((c == '\r') || (c == '\n')) 
@@ -134,8 +135,7 @@ signed omptidy::page (signed c)
 		}
 		if (c == '.') 
 		{
-			char symbol [SYMBOLSIZE];
-			char * sp = symbol;
+			char * sp = this->mstring;
 			do 
 			{
 				*sp++ = c;
@@ -143,30 +143,34 @@ signed omptidy::page (signed c)
 			}
 			while (oascii::isalpha (c));
 			*sp = (char) (0);
-			if (!std::strcmp (symbol, ".TH")) 
+			if (!std::strcmp (this->mstring, ".TH")) 
 			{
 				while (oascii::nobreak (c)) 
 				{
 					c = std::cin.get ();
 				}
-				sp += std::snprintf (sp, sizeof (symbol) + sp - symbol, " %s", program);
-				sp += std::snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", release);
-				sp += std::snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", package);
-				sp += snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", project);
+				std::cout << this->mstring;
+				std::cout << " " << this->mprogram;
+				std::cout << " \"" << this->mrelease << "\"";
+				std::cout << " \"" << this->mpackage << "\"";
+				std::cout << " \"" << this->mproject << "\"";
 			}
-			else if (!std::strcmp (symbol, ".SH")) 
+			else 
 			{
-				std::cout.put ('\n');
+				if (!std::strcmp (this->mstring, ".SH")) 
+				{
+					std::cout << std::endl;
+				}
+				else if (!std::strcmp (this->mstring, ".TP")) 
+				{
+					std::cout << std::endl;
+				}
+				else if (!std::strcmp (this->mstring, ".PP")) 
+				{
+					std::cout << std::endl;
+				}
+				std::cout << this->mstring;
 			}
-			else if (!std::strcmp (symbol, ".TP")) 
-			{
-				std::cout.put ('\n');
-			}
-			else if (!std::strcmp (symbol, ".PP")) 
-			{
-				std::cout.put ('\n');
-			}
-			std::sout.put (symbol);
 		}
 		while (oascii::nobreak (c)) 
 		{
@@ -198,30 +202,8 @@ signed omptidy::page (signed c)
 		}
 		c = ocollect::keep (c);
 	}
-	return;
+	return (*this);
 }
-
-
-/*====================================================================*
- *
- *   signed find (signed c);
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
- *--------------------------------------------------------------------*/
-
-signed omptidy::find (signed c) 
-
-{
-	while (oascii::isspace (c)) 
-	{
-		c = std::cin.get ();
-	}
-	return (c);
-}
-
 
 /*====================================================================*
  *
@@ -244,6 +226,8 @@ omptidy::omptidy ()
 	this->mpackage [0] = (char)(0);
 	this->mrelease = new char [1];
 	this->mrelease [0] = (char)(0);
+	this->mstring = new char [oMPTIDY_SYMBOLSIZE];
+	this->mstring [0] = (char)(0);
 	return;
 }
 
@@ -265,7 +249,7 @@ omptidy::~omptidy ()
 	delete [] this->mprogram;
 	delete [] this->mpackage;
 	delete [] this->mrelease;
-	delete [] this->mbuffer;
+	delete [] this->mstring;
 	return;
 }
 

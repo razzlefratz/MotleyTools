@@ -24,6 +24,7 @@
  *   class constants;
  *--------------------------------------------------------------------*/
 
+#define oMPTIDY_SYMBOLSIZE 4096
 #define oMPTIDY_S_PROJECT "project"
 #define oMPTIDY_S_PROGRAM "program"
 #define oMPTIDY_S_PACKAGE "package"
@@ -43,17 +44,17 @@ public:
 	char const * program () const;
 	char const * package () const;
 	char const * release () const;
-	ocomment & project (char const * project);
-	ocomment & program (char const * program);
-	ocomment & package (char const * package);
-	ocomment & release (char const * release);
-	signed page (signed c);
-	signed keep (signed c);
+	omptidy & project (char const * project);
+	omptidy & program (char const * program);
+	omptidy & package (char const * package);
+	omptidy & release (char const * release);
+	omptidy & page ();
 private:
 	char * mproject;
 	char * mprogram;
 	char * mpackage;
 	char * mrelease;
+	char * mstring;
 };
 
 

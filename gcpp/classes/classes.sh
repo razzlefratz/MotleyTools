@@ -73,6 +73,7 @@ g++ -Wall -c olist.cpp
 g++ -Wall -c omacro.cpp
 g++ -Wall -c omakefile.cpp
 g++ -Wall -c omemory.cpp
+g++ -Wall -c omptidy.cpp
 g++ -Wall -c onode.cpp
 g++ -Wall -c onodes.cpp
 # g++ -Wall -c ooctencode.cpp
