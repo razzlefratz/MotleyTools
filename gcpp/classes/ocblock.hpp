@@ -22,7 +22,7 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ocblock: public ocollect 
+class __declspec (dllexport) ocblock: private ocollect 
 
 {
 public:

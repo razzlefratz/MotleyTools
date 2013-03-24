@@ -34,7 +34,7 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) omptidy: private otext, private ocollect, private oascii 
+class __declspec (dllexport) omptidy: private otext, private oascii, private ocollect
 
 {
 public:

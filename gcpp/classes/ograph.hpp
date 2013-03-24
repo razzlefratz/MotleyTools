@@ -40,7 +40,7 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ograph: public oflagword, private oascii, private otext 
+class __declspec (dllexport) ograph: private otext, private oascii, public oflagword
 
 {
 public:

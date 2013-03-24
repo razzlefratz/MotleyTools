@@ -66,7 +66,7 @@
  *
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ocomment: public oflagword, private otext 
+class __declspec (dllexport) ocomment: private otext, public oflagword
 
 {
 public:

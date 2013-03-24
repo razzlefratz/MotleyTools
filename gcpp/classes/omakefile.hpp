@@ -41,7 +41,7 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) omakefile: public oflagword, private osection, private otext 
+class __declspec (dllexport) omakefile: private otext, private osection, public oflagword
 
 {
 public:
