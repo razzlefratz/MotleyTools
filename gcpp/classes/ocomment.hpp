@@ -63,7 +63,7 @@
 #define oCOMMENT_S_SPECIAL "special"
 
 /*====================================================================*
- *
+ *   interface declaration
  *--------------------------------------------------------------------*/
 
 class __declspec (dllexport) ocomment: private otext, public oflagword
@@ -133,7 +133,7 @@ private:
 
 
 /*====================================================================*
- *   end signederface definition;
+ *   end interface declaration;
  *--------------------------------------------------------------------*/
 
 #endif

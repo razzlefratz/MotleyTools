@@ -16,37 +16,62 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
+#include "../classes/otext.hpp"
 
 /*====================================================================*
- *
+ *  class constants;
  *--------------------------------------------------------------------*/
 
+#define PROGRAM "untitled"
 #define COMPANY "Charles Maier"
 #define PROJECT "Motley Toolkit"
 #define PACKAGE "motley-tools"
-#define VERSION "1.8"
-#define RELEASE "3"
-#define COMPILE __TIME__ " " __DATE__
+#define VERSION "1.9.0"
+#define RELEASE __TIME__ " " __DATE__
 #define CONTACT "cmaier@cmassoc.net"
-#define LICENSE "Internet Software Consortium License"
+#define LICENSE "Internet Software Consortium (ISC) License"
 
 /*====================================================================*
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oversion 
+class __declspec (dllexport) oversion: private otext
 
 {
 public:
 	oversion ();
 	virtual ~ oversion ();
+	char const * program () const;
+	char const * company () const;
+	char const * project () const;
+	char const * package () const;
+	char const * version () const;
+	char const * release () const;
+	char const * license () const;
+	char const * contact () const;
+	oversion & program (char const *);
+	oversion & company (char const *);
+	oversion & project (char const *);
+	oversion & package (char const *);
+	oversion & version (char const *);
+	oversion & release (char const *);
+	oversion & license (char const *);
+	oversion & contact (char const *);
 	oversion & print ();
 private:
+	char * mprogram;
+	char * mcompany;
+	char * mproject;
+	char * mpackage;
+	char * mversion;
+	char * mrelease;
+	char * mlicense;
+	char * mcontact;
 };
 
 
 /*====================================================================*
- *   end declarations
+ *   end class declaration;
  *--------------------------------------------------------------------*/
 
 #endif
