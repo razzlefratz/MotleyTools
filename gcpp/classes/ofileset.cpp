@@ -154,11 +154,11 @@ ofileset & ofileset::filespec (char const *filespec)
 {
 	std::strcpy (this->mfullname, filespec);
 	this->mcontext->split (this->mfullname, PATH_C_EXTENDER, false, false);
-	this->mpathname = ofileset::replace (this->mpathname, this->mcontext->prefix ());
-	this->mfilename = ofileset::replace (this->mfilename, this->mcontext->suffix ());
+	this->mpathname = otext::replace (this->mpathname, this->mcontext->prefix ());
+	this->mfilename = otext::replace (this->mfilename, this->mcontext->suffix ());
 	this->mcontext->split (this->mbasename, FILE_C_EXTENDER, false, true);
-	this->mbasename = ofileset::replace (this->mbasename, mcontext->prefix ());
-	this->mextender = ofileset::replace (this->mextender, mcontext->suffix ());
+	this->mbasename = otext::replace (this->mbasename, mcontext->prefix ());
+	this->mextender = otext::replace (this->mextender, mcontext->suffix ());
 	return (*this);
 }
 
@@ -191,7 +191,7 @@ ofileset & ofileset::pathname (char const *filespec)
 
 {
 	ofileset example (filespec);
-	this->mpathname = ofileset::replace (this->mpathname, example.pathname ());
+	this->mpathname = otext::replace (this->mpathname, example.pathname ());
 	return (*this);
 }
 
@@ -224,7 +224,7 @@ ofileset & ofileset::filename (char const *filespec)
 
 {
 	ofileset example (filespec);
-	this->mfilename = ofileset::replace (this->mfilename, example.filename ());
+	this->mfilename = otext::replace (this->mfilename, example.filename ());
 	return (*this);
 }
 
@@ -257,7 +257,7 @@ ofileset & ofileset::basename (char const *filespec)
 
 {
 	ofileset example (filespec);
-	this->mbasename = ofileset::replace (this->mbasename, example.basename ());
+	this->mbasename = otext::replace (this->mbasename, example.basename ());
 	return (*this);
 }
 
@@ -290,7 +290,7 @@ ofileset & ofileset::extender (char const *filespec)
 
 {
 	ofileset example (filespec);
-	this->mextender = ofileset::replace (this->mextender, example.extender ());
+	this->mextender = otext::replace (this->mextender, example.extender ());
 	return (*this);
 }
 
@@ -309,11 +309,11 @@ ofileset::ofileset (char const *filespec)
 	this->mfullname = new char [FILENAME_MAX+1];
 	std::strcpy (this->mfullname, filespec);
 	this->mcontext->split (this->mfullname, PATH_C_EXTENDER, false, false);
-	this->mpathname = ofileset::replace (this->mpathname, this->mcontext->prefix ());
-	this->mfilename = ofileset::replace (this->mfilename, this->mcontext->suffix ());
+	this->mpathname = otext::replace (this->mpathname, this->mcontext->prefix ());
+	this->mfilename = otext::replace (this->mfilename, this->mcontext->suffix ());
 	this->mcontext->split (this->mfilename, FILE_C_EXTENDER, false, true);
-	this->mbasename = ofileset::replace (this->mbasename, mcontext->prefix ());
-	this->mextender = ofileset::replace (this->mextender, mcontext->suffix ());
+	this->mbasename = otext::replace (this->mbasename, mcontext->prefix ());
+	this->mextender = otext::replace (this->mextender, mcontext->suffix ());
 	this->mindex = 0;
 	this->mfield = 3;
 	return;
@@ -335,11 +335,11 @@ ofileset::ofileset ()
 	this->mfullname = new char [FILENAME_MAX+1];
 	std::strcpy (this->mfullname, "temp.txt");
 	this->mcontext->split (this->mfullname, PATH_C_EXTENDER, false, true);
-	this->mpathname = ofileset::replace (this->mpathname, this->mcontext->prefix ());
-	this->mfilename = ofileset::replace (this->mfilename, this->mcontext->suffix ());
+	this->mpathname = otext::replace (this->mpathname, this->mcontext->prefix ());
+	this->mfilename = otext::replace (this->mfilename, this->mcontext->suffix ());
 	this->mcontext->split (this->mfilename, FILE_C_EXTENDER, false, false);
-	this->mbasename = ofileset::replace (this->mbasename, mcontext->prefix ());
-	this->mextender = ofileset::replace (this->mbasename, mcontext->suffix ());
+	this->mbasename = otext::replace (this->mbasename, mcontext->prefix ());
+	this->mextender = otext::replace (this->mbasename, mcontext->suffix ());
 	this->mindex = 0;
 	this->mfield = 3;
 	return;

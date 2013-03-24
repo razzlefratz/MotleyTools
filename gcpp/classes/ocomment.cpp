@@ -141,7 +141,7 @@ char const * ocomment::preface () const
 ocomment & ocomment::preface (char const * preface) 
 
 {
-	this->mpreface = ocomment::replace (this->mpreface, preface);
+	this->mpreface = otext::replace (this->mpreface, preface);
 	return (*this);
 }
 
@@ -173,7 +173,7 @@ char const * ocomment::package () const
 ocomment & ocomment::package (char const * package) 
 
 {
-	this->mpackage = ocomment::replace (this->mpackage, package);
+	this->mpackage = otext::replace (this->mpackage, package);
 	return (*this);
 }
 
@@ -205,7 +205,7 @@ char const * ocomment::release () const
 ocomment & ocomment::release (char const * release) 
 
 {
-	this->mrelease = ocomment::replace (this->mrelease, release);
+	this->mrelease = otext::replace (this->mrelease, release);
 	return (*this);
 }
 
@@ -237,7 +237,7 @@ char const * ocomment::license () const
 ocomment & ocomment::license (char const * license) 
 
 {
-	this->mlicense = ocomment::replace (this->mlicense, license);
+	this->mlicense = otext::replace (this->mlicense, license);
 	return (*this);
 }
 
@@ -269,7 +269,7 @@ char const * ocomment::special () const
 ocomment & ocomment::special (char const * special) 
 
 {
-	this->mspecial = ocomment::replace (this->mspecial, special);
+	this->mspecial = otext::replace (this->mspecial, special);
 	return (*this);
 }
 

@@ -195,12 +195,13 @@ void oerror::error_at_line (int status, errno_t number, char const *file, unsign
 oerror::oerror () 
 
 {
+	extern char const * program_name;
 	if (!program_name) 
 	{
 
 #if defined (__linux__)
 
-		program_name = getlogin ();
+		program_name = std::getlogin ();
 
 #else
 
