@@ -321,7 +321,7 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 			{
 				this->moptopt = *this->mstring++;
 				this->moptarg = (char *)(0);
-				for (char const *option = optv [oPUTOPTV_I_OPTIONS]; *option != (char) (0); option++) 
+				for (char const * option = optv [oPUTOPTV_I_OPTIONS]; * option; option++) 
 				{
 					if (this->moptopt == oGETOPTV_C_OPERAND) 
 					{
@@ -386,18 +386,18 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 				this->margv [this->moptind++] = this->mstring++;
 				if (*this->mstring == oGETOPTV_C_OPTIONS) 
 				{
-					if (*++this->mstring == (char) (0)) 
+					if (!*++this->mstring) 
 					{
 						this->moptarg = (char *) (0);
 						this->moptopt = (char) (0);
 						return (-1);
 					}
-					if (std::strcmp (this->mstring, "version") == 0) 
+					if (!std::strcmp (this->mstring, "version")) 
 					{
-						oversion::version ();
+						oversion::print ();
 						std::exit (0);
 					}
-					if (std::strcmp (this->mstring, "help") == 0) 
+					if (!std::strcmp (this->mstring, "help")) 
 					{
 						oputoptv::putoptv (optv);
 						std::exit (0);
@@ -407,7 +407,7 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 				}
 				if (*this->mstring == oGETOPTV_C_VERSION) 
 				{
-					oversion::version ();
+					oversion::print ();
 					std::exit (0);
 				}
 				if (*this->mstring == oGETOPTV_C_SUMMARY) 

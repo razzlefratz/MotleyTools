@@ -25,10 +25,10 @@
 #define PROJECT "Motley Toolkit"
 #define PACKAGE "motley-tools"
 #define VERSION "1.8"
-#define RELEASE "2"
+#define RELEASE "3"
 #define COMPILE __TIME__ " " __DATE__
 #define CONTACT "cmaier@cmassoc.net"
-#define LICENSE "GNU General Public License Version 2 Only; Only;"
+#define LICENSE "Internet Software Consortium License"
 
 /*====================================================================*
  *   class declaration;
@@ -40,7 +40,7 @@ class __declspec (dllexport) oversion
 public:
 	oversion ();
 	virtual ~ oversion ();
-	oversion & version ();
+	oversion & print ();
 private:
 };
 

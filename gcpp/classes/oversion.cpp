@@ -27,16 +27,13 @@
 
 /*====================================================================*
  *
- *   oversion & version (void);
+ *   oversion & print (void);
  *
- *   print usage vector on stderr; this presents the user with a help
- *   summary; program_name is defined in ogetoptv::getoptv() but it could be
- *   defined in main or another component; getoptv.h is included above
- *   for GETOPTV_C_OPTIONS which is normally '-' but could be anything; 
+ *   print full version information on stdout;
  *
  *--------------------------------------------------------------------*/
 
-oversion & oversion::version (void) 
+oversion & oversion::print (void) 
 
 {
 	extern char const * program_name;

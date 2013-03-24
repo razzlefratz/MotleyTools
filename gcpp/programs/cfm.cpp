@@ -64,8 +64,8 @@
  *   program constants;
  *--------------------------------------------------------------------*/
 
-#define CFM_S_PROFILE "/etc/cfm.ini"     
-#define CFM_S_SECTION "default"     
+#define PROFILE_NAME "/etc/cfm.ini"     
+#define SECTION_NAME "default"     
 #define CFM_S_PACKAGE "Motley Tools by Charles Maier <cmaier@cmassoc.net>"
 #define CFM_S_RELEASE "Copyright (c) 2001-2006 by Charles Maier."
 #define CFM_S_LICENSE "Permission to use, copy, modify, and/or distribute this software\n *   for any purpose with or without fee is hereby granted, provided\n *   that the above copyright notice and this permission notice appear\n *   in all copies.\n *\n *   THE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL\n *   WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED\n *   WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL\n *   THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR\n *   CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM\n *   LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,\n *   NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN\n *   CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE."
@@ -95,8 +95,8 @@ int main (int argc, char const * argv [])
 		"4\tindent is 4 blanks",
 		"a\tatheros standard format",
 		"c\tconvert C++ comments to standard C comments",
-		"f s\tuse profile (s) [" LITERAL (CFM_S_PROFILE) "]",
-		"g s\tuse profile section (s) [" LITERAL (CFM_S_SECTION) "]",
+		"f s\tuse profile (s) [" LITERAL (PROFILE_NAME) "]",
+		"g s\tuse profile section (s) [" LITERAL (SECTION_NAME) "]",
 		"h\tinsert header include guard",
 		"k\tmake comments permanent",
 		"l\tupdate " LITERAL (oCOMMENT_S_LICENSE) " comment",
@@ -118,13 +118,8 @@ int main (int argc, char const * argv [])
 	oprofile config;
 	octidy object;
 	int (octidy::* method) (signed, signed) = &octidy::charlie;
-	char const * profile = CFM_S_PROFILE;
-	char const * section = CFM_S_SECTION;
-	char const * package = CFM_S_PACKAGE;
-	char const * release = CFM_S_RELEASE;
-	char const * license = CFM_S_LICENSE;
-	char const * preface = CFM_S_PREFACE;
-	char const * special = CFM_S_SPECIAL;
+	char const * profile = PROFILE_NAME;
+	char const * section = SECTION_NAME;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
 	{
@@ -164,13 +159,12 @@ int main (int argc, char const * argv [])
 			object.setbits (oCOMMENT_B_TRIPLE);
 			break;
 		case 'o':
-			config.write (CFM_S_SECTION);
+			config.write (SECTION_NAME);
+			config.write (oCOMMENT_S_PREFACE, CFM_S_PREFACE);
 			config.write (oCOMMENT_S_PACKAGE, CFM_S_PACKAGE);
 			config.write (oCOMMENT_S_RELEASE, CFM_S_RELEASE);
 			config.write (oCOMMENT_S_LICENSE, CFM_S_LICENSE);
-			config.write (oCOMMENT_S_PREFACE, CFM_S_PREFACE);
 			config.write (oCOMMENT_S_SPECIAL, CFM_S_SPECIAL);
-			std::cout << std::endl;
 			std::exit (0);
 		case 'p':
 			object.setbits (oCOMMENT_B_PACKAGE);
@@ -197,16 +191,11 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	package = config.string (profile, section, oCOMMENT_S_PACKAGE, package);
-	release = config.string (profile, section, oCOMMENT_S_RELEASE, release);
-	license = config.string (profile, section, oCOMMENT_S_LICENSE, license);
-	preface = config.string (profile, section, oCOMMENT_S_PREFACE, preface);
-	special = config.string (profile, section, oCOMMENT_S_SPECIAL, special);
-	object.package (package);
-	object.release (release);
-	object.license (license);
-	object.preface (preface);
-	object.special (special);
+	object.preface (config.string (profile, section, oCOMMENT_S_PREFACE, CFM_S_PREFACE));
+	object.package (config.string (profile, section, oCOMMENT_S_PACKAGE, CFM_S_PACKAGE));
+	object.release (config.string (profile, section, oCOMMENT_S_RELEASE, CFM_S_RELEASE));
+	object.license (config.string (profile, section, oCOMMENT_S_LICENSE, CFM_S_LICENSE));
+	object.special (config.string (profile, section, oCOMMENT_S_SPECIAL, CFM_S_SPECIAL));
 	if (!getopt.argc ()) 
 	{
 		c = (object.*method) (std::cin.get (), EOF);

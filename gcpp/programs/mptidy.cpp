@@ -53,8 +53,8 @@
 #include "../classes/omptidy.cpp"
 #endif
 
-#define MPTIDY_S_PROFILE "/etc/mp.ini"     
-#define MPTIDY_S_SECTION "default"     
+#define PROFILE_NAME "/etc/mp.ini"     
+#define SECTION_NAME "default"     
 #define MPTIDY_S_PROJECT "Motley Tools"     
 #define MPTIDY_S_PACKAGE "mtools-1.8.1"     
 #define MPTIDY_S_PROGRAM "program"     
@@ -80,8 +80,8 @@ int main (int argc, char const * argv [])
 		oPUTOPTV_S_FILTER,
 		"format C/C++ source code with preamble annotations",
 		"o\toutput configuration profile on stdout",
-		"p s\tprofile is (s) [" LITERAL (MPTIDY_S_PROFILE) "]",
-		"s s\tsection is (s) [" LITERAL (MPTIDY_S_SECTION) "]",
+		"p s\tprofile is (s) [" LITERAL (PROFILE_NAME) "]",
+		"s s\tsection is (s) [" LITERAL (SECTION_NAME) "]",
 		(char const *) (0)
 	};
 	ogetoptv getopt;
@@ -90,37 +90,34 @@ int main (int argc, char const * argv [])
 	oprofile config;
 	omptidy object;
 	omptidy & (omptidy::* method) () = &omptidy::page;
-	char const * profile = MPTIDY_S_PROFILE;
-	char const * section = MPTIDY_S_SECTION;
-	char const * project = MPTIDY_S_PROJECT;
-	char const * package = MPTIDY_S_PACKAGE;
-	char const * program = MPTIDY_S_PROGRAM;
-	char const * release = MPTIDY_S_RELEASE;
+	char const * profile = PROFILE_NAME;
+	char const * section = SECTION_NAME;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
 		case 'o':
-			config.write (MPTIDY_S_SECTION);
+			config.write (SECTION_NAME);
 			config.write (oMPTIDY_S_PROJECT, MPTIDY_S_PROJECT);
 			config.write (oMPTIDY_S_PACKAGE, MPTIDY_S_PACKAGE);
 			config.write (oMPTIDY_S_PROGRAM, MPTIDY_S_PROGRAM);
 			config.write (oMPTIDY_S_RELEASE, MPTIDY_S_RELEASE);
-			std::cout << std::endl;
 			std::exit (0);
+		case 'p':
+			profile = getopt.optarg ();
+			break;
+		case 's':
+			section = getopt.optarg ();
+			break;
 		default:
 			break;
 		}
 	}
-	project = config.string (profile, section, oMPTIDY_S_PROJECT, project);
-	package = config.string (profile, section, oMPTIDY_S_PACKAGE, package);
-	program = config.string (profile, section, oMPTIDY_S_PROGRAM, program);
-	release = config.string (profile, section, oMPTIDY_S_RELEASE, release);
-	object.project (project);
-	object.package (package);
-	object.program (program);
-	object.release (release);
+	object.project (config.string (profile, section, oMPTIDY_S_PROJECT, MPTIDY_S_PROJECT));
+	object.package (config.string (profile, section, oMPTIDY_S_PACKAGE, MPTIDY_S_PACKAGE));
+	object.program (config.string (profile, section, oMPTIDY_S_PROGRAM, MPTIDY_S_PROGRAM));
+	object.release (config.string (profile, section, oMPTIDY_S_RELEASE, MPTIDY_S_RELEASE));
 	if (!getopt.argc ()) 
 	{
 		(object.*method) ();
@@ -131,7 +128,9 @@ int main (int argc, char const * argv [])
 		pathspec.fullpath (filename, * getopt.argv ());
 		if (fileopen.openedit (filename)) 
 		{
-//			object.filename (filename);
+
+// object.filename (filename);
+
 			(object.*method) ();
 			fileopen.close ();
 		}
