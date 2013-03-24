@@ -1,9 +1,9 @@
 /*====================================================================*
  *
- *   mptidy.cpp - tidy man page files;
+ *   mptidy.cpp - man page tidy program;
  *
  *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
- *:  Copyright 2001-2006 by Charles Maier Associates;
+ *:  Copyright 2010-2013 by Charles Maier Associates;
  *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
@@ -13,18 +13,14 @@
  *--------------------------------------------------------------------*/
 
 #include <cstdlib>
-#include <cstring>
-#include <iostream>            
 
 /*====================================================================*
  *   custom header files;
  *--------------------------------------------------------------------*/
 
 #include "../classes/ogetoptv.hpp"
-#include "../classes/oerror.hpp"
-#include "../classes/oescape.hpp"
-#include "../classes/ofileopen.hpp"
 #include "../classes/opathspec.hpp"
+#include "../classes/ofileopen.hpp"
 #include "../classes/oprofile.hpp"
 #include "../classes/omptidy.hpp"
 

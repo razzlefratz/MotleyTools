@@ -15,16 +15,12 @@
  *--------------------------------------------------------------------*/
 
 #include <cstdlib>
-#include <cstring>
-#include <iostream>            
 
 /*====================================================================*
  *   custom header files;
  *--------------------------------------------------------------------*/
 
 #include "../classes/ogetoptv.hpp"
-#include "../classes/oerror.hpp"
-#include "../classes/oescape.hpp"
 #include "../classes/ofileopen.hpp"
 #include "../classes/opathspec.hpp"
 #include "../classes/oprofile.hpp"
@@ -49,6 +45,7 @@
 #include "../classes/owildcard.cpp"
 #include "../classes/oescape.cpp"
 #include "../classes/oswitch.cpp"
+#include "../classes/ocollect.cpp"
 #include "../classes/otext.cpp"
 #include "../classes/oascii.cpp"
 #include "../classes/oinclude.cpp"
@@ -57,7 +54,6 @@
 #include "../classes/ocexitwords.cpp"
 #include "../classes/oindent.cpp"
 #include "../classes/octidy.cpp"
-#include "../classes/ocollect.cpp"
 #endif
 
 /*====================================================================*
