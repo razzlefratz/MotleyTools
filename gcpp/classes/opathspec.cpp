@@ -26,8 +26,8 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "files.h"
-#include "find.h"
+#include "../classes/files.h"
+#include "../classes/find.h"
 
 #include "../classes/oerror.hpp"
 #include "../classes/opathspec.hpp"
@@ -40,7 +40,7 @@ struct stat mstatinfo;
 
 /*====================================================================*
  *
- *   bool isdotdir (cchar const *filename);
+ *   bool isdotdir (char const * filename);
  *
  *   return true if filename is a dotted directory; treat NULL,  
  *   NIL,  "." and ".." as dotted directory names;
@@ -51,7 +51,7 @@ struct stat mstatinfo;
  *
  *--------------------------------------------------------------------*/
 
-bool opathspec::isdotdir (char const *filename) 
+bool opathspec::isdotdir (char const * filename) 
 
 {
 	if (filename == (char *) (0)) 
@@ -72,7 +72,7 @@ bool opathspec::isdotdir (char const *filename)
 
 /*====================================================================*
  *
- *   bool exists (char const *filename);
+ *   bool exists (char const * filename);
  *
  *   return true of the filename exists; the basename portion can 
  *   have wildcard characters but the pathname portion many not; 
@@ -83,7 +83,7 @@ bool opathspec::isdotdir (char const *filename)
  *
  *--------------------------------------------------------------------*/
 
-bool opathspec::exists (char const *filename) 
+bool opathspec::exists (char const * filename) 
 
 {
 	return (!stat (filename, &this->mstatinfo));
@@ -92,7 +92,7 @@ bool opathspec::exists (char const *filename)
 
 /*====================================================================*
  *
- *   bool infolder (char pathname[], char const *wildcard, bool recurse);
+ *   bool infolder (char pathname[], char const * wildcard, bool recurse);
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -100,7 +100,7 @@ bool opathspec::exists (char const *filename)
  *
  *--------------------------------------------------------------------*/
 
-bool opathspec::infolder (char pathname [], char const *wildcard, bool recurse) 
+bool opathspec::infolder (char pathname [], char const * wildcard, bool recurse) 
 
 {
 	DIR *dir;
@@ -153,7 +153,7 @@ bool opathspec::infolder (char pathname [], char const *wildcard, bool recurse)
 
 /*====================================================================*
  *
- *   bool invector (char fullname[], char const *pathname[], char const *filename);
+ *   bool invector (char fullname[], char const * pathname[], char const * filename);
  *
  *   return true if filename is present in any folder listed in
  *   NULL terminated vector pathname; otherwise, return false; use 
@@ -165,7 +165,7 @@ bool opathspec::infolder (char pathname [], char const *wildcard, bool recurse)
  *
  *--------------------------------------------------------------------*/
 
-bool opathspec::invector (char fullname [], char const *pathname [], char const *filename) 
+bool opathspec::invector (char fullname [], char const * pathname [], char const * filename) 
 
 {
 
@@ -200,7 +200,7 @@ bool opathspec::invector (char fullname [], char const *pathname [], char const 
 
 /*====================================================================*
  *
- *   bool invector (char fullname[], char const *pathname[], char const *filename);
+ *   bool invector (char fullname[], char const * pathname[], char const * filename);
  *
  *   return true if filename is present in any folder listed in
  *   NULL teminated vector pathname; otherwise, return false; 
@@ -211,7 +211,7 @@ bool opathspec::invector (char fullname [], char const *pathname [], char const 
  *
  *--------------------------------------------------------------------*/
 
-bool opathspec::invector (char fullname [], char const *pathname [], char const *filename, bool recurse) 
+bool opathspec::invector (char fullname [], char const * pathname [], char const * filename, bool recurse) 
 
 {
 
@@ -248,7 +248,7 @@ bool opathspec::invector (char fullname [], char const *pathname [], char const 
 
 /*====================================================================*
  *
- *   bool instring (char *fullname[], char const *pathname, char const *filename);
+ *   bool instring (char *fullname[], char const * pathname, char const * filename);
  *
  *   return true if the named file is present in one of the folders listed 
  *   in the NUL terminated path string; 
@@ -259,7 +259,7 @@ bool opathspec::invector (char fullname [], char const *pathname [], char const 
  *
  *--------------------------------------------------------------------*/
 
-bool opathspec::instring (char fullname [], char const *pathname, char const *filename) 
+bool opathspec::instring (char fullname [], char const * pathname, char const * filename) 
 
 {
 
@@ -304,7 +304,7 @@ bool opathspec::instring (char fullname [], char const *pathname, char const *fi
 
 /*====================================================================*
  *
- *   bool instring (char *fullname[], char const *pathname, char const *filename);
+ *   bool instring (char *fullname[], char const * pathname, char const * filename);
  *
  *   return true if the named file is present in one of the folders listed 
  *   in the NUL terminated path string; 
@@ -315,7 +315,7 @@ bool opathspec::instring (char fullname [], char const *pathname, char const *fi
  *
  *--------------------------------------------------------------------*/
 
-bool opathspec::instring (char fullname [], char const *pathname, char const *filename, bool recurse) 
+bool opathspec::instring (char fullname [], char const * pathname, char const * filename, bool recurse) 
 
 {
 
@@ -362,7 +362,7 @@ bool opathspec::instring (char fullname [], char const *pathname, char const *fi
 
 /*====================================================================*
  *
- *   char const *dirname (char const *filespec);
+ *   char const * dirname (char const * filespec);
  *
  *   return directory portion of filespec; 
  *
@@ -372,12 +372,12 @@ bool opathspec::instring (char fullname [], char const *pathname, char const *fi
  *
  *--------------------------------------------------------------------*/
 
-char const *opathspec::dirname (char const *filespec) 
+char const * opathspec::dirname (char const * filespec) 
 
 {
 	static char buffer [FILENAME_MAX];
 	char *pathname = std::strcpy (buffer, filespec);
-	for (filespec = (char const *) (buffer); *filespec; filespec++) 
+	for (filespec = (char const * ) (buffer); *filespec; filespec++) 
 	{
 		if (*filespec == PATH_C_EXTENDER) 
 		{
@@ -395,7 +395,7 @@ char const *opathspec::dirname (char const *filespec)
 
 /*====================================================================*
  *
- *   char const *basename (char const *filespec);
+ *   char const * basename (char const * filespec);
  *
  *   return filename portion of filespec; 
  *
@@ -405,10 +405,10 @@ char const *opathspec::dirname (char const *filespec)
  *
  *--------------------------------------------------------------------*/
 
-char const *opathspec::basename (char const *filespec) 
+char const * opathspec::basename (char const * filespec) 
 
 {
-	char const *filename = filespec;
+	char const *  filename = filespec;
 	while (*filespec) 
 	{
 		if (*filespec++ == PATH_C_EXTENDER) 
@@ -422,7 +422,7 @@ char const *opathspec::basename (char const *filespec)
 
 /*====================================================================*
  *
- *   void findpath (char const *filespec, char *pathname, char *filename);
+ *   void findpath (char const * filespec, char *pathname, char *filename);
  *
  *   scan filespec and copy the path component into the pathname
  *   buffer and file component into the filename buffer; missing
@@ -435,7 +435,7 @@ char const *opathspec::basename (char const *filespec)
  *
  *--------------------------------------------------------------------*/
 
-void opathspec::findpath (char const *filespec, char *pathname, char *filename) 
+void opathspec::findpath (char const * filespec, char *pathname, char *filename) 
 
 {
 	this->partpath (filespec, pathname, filename);
@@ -455,7 +455,7 @@ void opathspec::findpath (char const *filespec, char *pathname, char *filename)
 
 /*====================================================================*
  *
- *   void partpath (char const *filespec, char *pathname, char *filename);
+ *   void partpath (char const * filespec, char *pathname, char *filename);
  *
  *   scan filespec and copy the path component into the pathname
  *   buffer and file component into the filename buffer; missing
@@ -468,10 +468,10 @@ void opathspec::findpath (char const *filespec, char *pathname, char *filename)
  *
  *--------------------------------------------------------------------*/
 
-void opathspec::partpath (char const *filespec, char *pathname, char *filename) 
+void opathspec::partpath (char const * filespec, char *pathname, char *filename) 
 
 {
-	char const *string;
+	char const * string;
 
 #ifdef CMASSOC_SAFEMODE
 
@@ -516,7 +516,7 @@ void opathspec::partpath (char const *filespec, char *pathname, char *filename)
 
 /*====================================================================*
  *
- *   void partfile (char const *filespec, char filename[], char extender[]);
+ *   void partfile (char const * filespec, char filename[], char extender[]);
  *
  *   scan filespec and copy the name component into the filename
  *   buffer and type component into the extender buffer; missing
@@ -529,10 +529,10 @@ void opathspec::partpath (char const *filespec, char *pathname, char *filename)
  *
  *--------------------------------------------------------------------*/
 
-void opathspec::partfile (char const *filespec, char filename [], char extender []) 
+void opathspec::partfile (char const * filespec, char filename [], char extender []) 
 
 {
-	char const *string;
+	char const * string;
 
 #ifdef CMASSOC_SAFEMODE
 
@@ -584,7 +584,7 @@ void opathspec::partfile (char const *filespec, char filename [], char extender 
 
 /*====================================================================*
  *
- *   void fullpath (char fullname[], char const *filespec);
+ *   void fullpath (char fullname[], char const * filespec);
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -592,7 +592,7 @@ void opathspec::partfile (char const *filespec, char filename [], char extender 
  *
  *--------------------------------------------------------------------*/
 
-void opathspec::fullpath (char fullname [], char const *filespec) 
+void opathspec::fullpath (char fullname [], char const * filespec) 
 
 {
 	this->makepath (fullname, getenv ("PWD"), filespec);
@@ -602,7 +602,7 @@ void opathspec::fullpath (char fullname [], char const *filespec)
 
 /*====================================================================*
  *
- *   void makepath (char fullname[], char const *pathname, char const *filename);
+ *   void makepath (char fullname[], char const * pathname, char const * filename);
  *
  *   split the pathname string and filename string into constituent;
  *   weed through the stack and write a clean pathname string in the 
@@ -626,7 +626,7 @@ void opathspec::fullpath (char fullname [], char const *filespec)
  *
  *--------------------------------------------------------------------*/
 
-void opathspec::makepath (char fullname [], char const *pathname, char const *filename) 
+void opathspec::makepath (char fullname [], char const * pathname, char const * filename) 
 
 {
 	char mpathname [FILENAME_MAX];
