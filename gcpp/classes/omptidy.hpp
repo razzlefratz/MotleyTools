@@ -44,11 +44,12 @@ public:
 	char const * program () const;
 	char const * package () const;
 	char const * release () const;
-	omptidy & project (char const * project);
-	omptidy & program (char const * program);
-	omptidy & package (char const * package);
-	omptidy & release (char const * release);
-	omptidy & page ();
+	omptidy & project (char const *);
+	omptidy & program (char const *);
+	omptidy & package (char const *);
+	omptidy & release (char const *);
+	omptidy & filename (char const *);
+	omptidy & tidy ();
 private:
 	char * mproject;
 	char * mprogram;

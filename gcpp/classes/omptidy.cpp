@@ -44,7 +44,7 @@ char const * omptidy::program () const
 omptidy & omptidy::program (char const * program) 
 
 {
-	this->mprogram = omptidy::replace (this->mprogram, program);
+	this->mprogram = otext::replace (this->mprogram, program);
 	return (*this);
 }
 
@@ -65,7 +65,7 @@ char const * omptidy::project () const
 omptidy & omptidy::project (char const * project) 
 
 {
-	this->mproject = omptidy::replace (this->mproject, project);
+	this->mproject = otext::replace (this->mproject, project);
 	return (*this);
 }
 
@@ -86,7 +86,7 @@ char const * omptidy::package () const
 omptidy & omptidy::package (char const * package) 
 
 {
-	this->mpackage = omptidy::replace (this->mpackage, package);
+	this->mpackage = otext::replace (this->mpackage, package);
 	return (*this);
 }
 
@@ -107,23 +107,46 @@ char const * omptidy::release () const
 omptidy & omptidy::release (char const * release) 
 
 {
-	this->mrelease = omptidy::replace (this->mrelease, release);
+	this->mrelease = otext::replace (this->mrelease, release);
 	return (*this);
+}
+
+/*=*
+ *
+ *   omptidy & filename (char const * filename);
+ *
+ *-*/
+
+omptidy & omptidy::filename (char const * filename)
+{
+	char const * basename;
+	for (basename = filename; * filename; filename++)
+	{
+		if ((* filename == '\\') && (* filename == '/'))
+		{
+			basename = filename + 1;
+		}
+	}
+	this->mprogram = otext::replace (this->mprogram, basename);
+	for (filename = filename; * filename; filename++)
+	{
+		if (* filename == '.')
+		{
+			this->mprogram [filename - basename] = ' ';
+		}
+	}
+ 	return (*this);	
 }
 
 /*====================================================================*
  *
- *   omptidy & omptidy::page ();
+ *   omptidy & omptidy::tidy ();
  *
- *   search for PHP source; ignore asp source; 
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *   tidy man page source file;
  *
  *--------------------------------------------------------------------*/
 
-omptidy & omptidy::page () 
+omptidy & omptidy::tidy () 
 
 {
 	signed c = std::cin.get ();
@@ -209,10 +232,6 @@ omptidy & omptidy::page ()
  *
  *   omptidy()
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 omptidy::omptidy () 
@@ -235,10 +254,6 @@ omptidy::omptidy ()
 /*====================================================================*
  *
  *   ~omptidy()
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
