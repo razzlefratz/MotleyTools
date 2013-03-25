@@ -1,4 +1,4 @@
-.TH program "Internet Software Consortium License" "cmassoc-utils-1.8.2" "Motley Toolkit"
+.TH mptidy 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
 
 .SH NAME
 mptidy - Linux man page tidy program
@@ -7,8 +7,7 @@ mptidy - Linux man page tidy program
 .BR mptidy
 .RI [ options ]
 .IR file
-.RI [ file ] 
-.RI [ ... ]
+.RI [ file ] .RI [ ... ]
 
 .PP
 .BR mptidy
@@ -76,10 +75,10 @@ Use program \fBrex\fR to recover a prior version.
 The default profile looks like:
 
 .PP
-   [default]
-   project=Motley Tools
-   package=cmassoc-tools-1.5.9
-   release=Feb 2004
+ [default]
+ project=Motley Tools
+ package=cmassoc-tools-1.5.9
+ release=Feb 2004
 
 .TP
 .BR project
@@ -104,18 +103,18 @@ The following example formats man page \fBabc.7\fR using default program values 
 In that event, values will be read from there.
 
 .PP
-   # mptidy abc.7
+ # mptidy abc.7
 
 .PP
 The following example output a template configuration profile section.
 
 .PP
-   # mptidy -o
-   [default]
-   project=Motley Tools
-   package=mtools-1.8.1
-   program=program
-   release=data/time
+ # mptidy -o
+ [default]
+ project=Motley Tools
+ package=mtools-1.8.1
+ program=program
+ release=data/time
 
 .SH SEE ALSO
 .BR afm ( 7 ),

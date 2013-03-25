@@ -201,7 +201,7 @@ oerror::oerror ()
 
 #if defined (__linux__)
 
-		program_name = std::getlogin ();
+		program_name = ::getlogin ();
 
 #else
 

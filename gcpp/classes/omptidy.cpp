@@ -33,6 +33,10 @@
  *   
  *   get and set the program comment string;
  *   
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
 char const * omptidy::program () const 
@@ -48,12 +52,17 @@ omptidy & omptidy::program (char const * program)
 	return (*this);
 }
 
+
 /*====================================================================*
  *   
  *   char const * project () const;
  *   
  *   get and set the project comment string;
  *   
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
 char const * omptidy::project () const 
@@ -69,12 +78,17 @@ omptidy & omptidy::project (char const * project)
 	return (*this);
 }
 
+
 /*====================================================================*
  *   
  *   char const * package () const;
  *   
  *   get and set the package comment string;
  *   
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
 char const * omptidy::package () const 
@@ -90,12 +104,17 @@ omptidy & omptidy::package (char const * package)
 	return (*this);
 }
 
+
 /*====================================================================*
  *   
  *   char const * release () const;
  *   
  *   get and set the release comment string;
  *   
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
 char const * omptidy::release () const 
@@ -111,38 +130,49 @@ omptidy & omptidy::release (char const * release)
 	return (*this);
 }
 
-/*=*
+
+/*====================================================================*
  *
  *   omptidy & filename (char const * filename);
  *
- *-*/
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
 
-omptidy & omptidy::filename (char const * filename)
+omptidy & omptidy::filename (char const * filename) 
+
 {
 	char const * basename;
-	for (basename = filename; * filename; filename++)
+	for (basename = filename; * filename; filename++) 
 	{
-		if ((* filename == '\\') && (* filename == '/'))
+		if ((* filename == '\\') || (* filename == '/')) 
 		{
 			basename = filename + 1;
 		}
 	}
 	this->mprogram = otext::replace (this->mprogram, basename);
-	for (filename = filename; * filename; filename++)
+	for (filename = basename; * filename; filename++) 
 	{
-		if (* filename == '.')
+		if (* filename == '.') 
 		{
 			this->mprogram [filename - basename] = ' ';
 		}
 	}
- 	return (*this);	
+	return (*this);
 }
+
 
 /*====================================================================*
  *
  *   omptidy & omptidy::tidy ();
  *
  *   tidy man page source file;
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -197,9 +227,13 @@ omptidy & omptidy::tidy ()
 		}
 		while (oascii::nobreak (c)) 
 		{
-			if (oascii::isspace (c))
+			if (oascii::isspace (c)) 
 			{
-				do { c = std::cin.get(); } while (oascii::isspace (c));
+				do 
+				{
+					c = std::cin.get ();
+				}
+				while (oascii::isspace (c));
 				std::cout.put (' ');
 				continue;
 			}
@@ -218,7 +252,11 @@ omptidy & omptidy::tidy ()
 				c = ocollect::keep (c);
 				if (oascii::isblank (c)) 
 				{
-					do { c = std::cin.get (); } while (oascii::isblank (c));
+					do 
+					{
+						c = std::cin.get ();
+					}
+					while (oascii::isblank (c));
 					std::cout.put ('\n');
 				}
 				continue;
@@ -230,9 +268,14 @@ omptidy & omptidy::tidy ()
 	return (*this);
 }
 
+
 /*====================================================================*
  *
  *   omptidy()
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -256,6 +299,10 @@ omptidy::omptidy ()
 /*====================================================================*
  *
  *   ~omptidy()
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
