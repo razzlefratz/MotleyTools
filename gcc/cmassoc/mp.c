@@ -129,30 +129,25 @@ static void function (char const * program, char const * project, char const * p
 		}
 		while (nobreak (c)) 
 		{
-			if (isspace (c)) 
+			if (c == '.') 
 			{
-				do { c = getc (stdin); } while (isspace (c));
-				putc (' ', stdout);
+				c = keep (c);
+				if (c == '.')
+				{
+					do { c = keep (c); } while (c == '.');
+					continue;
+				}
+				if (isblank (c)) 
+				{
+					do { c = getc (stdin); } while (isblank (c));
+					putc ('\n', stdout);
+					continue;
+				}
 				continue;
 			}
 			if (isquote (c)) 
 			{
 				c = literal (c, c);
-				continue;
-			}
-			if (c == '[') 
-			{
-				c = literal (c, ']');
-				continue;
-			}
-			if (c == '.') 
-			{
-				c = keep (c);
-				if (isblank (c)) 
-				{
-					do { c = getc (stdin); } while (isblank (c));
-					putc ('\n', stdout);
-				}
 				continue;
 			}
 			c = keep (c);

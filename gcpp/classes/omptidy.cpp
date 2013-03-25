@@ -227,38 +227,25 @@ omptidy & omptidy::tidy ()
 		}
 		while (oascii::nobreak (c)) 
 		{
-			if (oascii::isspace (c)) 
+			if (c == '.') 
 			{
-				do 
+				c = ocollect::keep (c);
+				if (c == '.')
 				{
-					c = std::cin.get ();
+					do { c = ocollect::keep (c); } while (c == '.');
+					continue;
 				}
-				while (oascii::isspace (c));
-				std::cout.put (' ');
+				if (oascii::isblank (c)) 
+				{
+					do { c = std::cin.get (); } while (oascii::isblank (c));
+					std::cout.put ('\n');
+					continue;
+				}
 				continue;
 			}
 			if (oascii::isquote (c)) 
 			{
 				c = ocollect::literal (c, c);
-				continue;
-			}
-			if (c == '[') 
-			{
-				c = ocollect::literal (c, ']');
-				continue;
-			}
-			if (c == '.') 
-			{
-				c = ocollect::keep (c);
-				if (oascii::isblank (c)) 
-				{
-					do 
-					{
-						c = std::cin.get ();
-					}
-					while (oascii::isblank (c));
-					std::cout.put ('\n');
-				}
 				continue;
 			}
 			c = ocollect::keep (c);
