@@ -20,11 +20,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/ogetoptv.hpp"
-#include "../classes/oflagword.hpp"
-#include "../classes/ocontext.hpp"
-#include "../classes/owildcard.hpp"
 #include "../classes/ofileopen.hpp"
-#include "../classes/ofilespec.hpp"
 #include "../classes/opathspec.hpp"
 #include "../classes/oescape.hpp"
 #include "../classes/oprogram.hpp"
@@ -49,6 +45,7 @@
 #include "../classes/oascii.cpp"
 #include "../classes/oprogram.cpp"
 #include "../classes/ocollect.cpp"
+#include "../classes/otext.cpp"
 #endif
 
 /*====================================================================*

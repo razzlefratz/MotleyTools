@@ -31,13 +31,20 @@
 #include "../classes/oputoptv.cpp"
 #include "../classes/oversion.cpp"
 #include "../classes/ocontext.cpp"
+#include "../classes/otext.cpp"
 #endif
+
+/*====================================================================*
+ *   program constants;
+ *--------------------------------------------------------------------*/
 
 #define FORMAT "%s\n"
 #define CBREAK '.'
 
 /*====================================================================*
- *   boiler-plate main program; file is loaded at the very bottom;
+ *
+ *   int main (int argc, char const * argv []);
+ *
  *--------------------------------------------------------------------*/
 
 int main (int argc, char const * argv []) 

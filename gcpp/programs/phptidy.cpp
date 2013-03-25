@@ -21,10 +21,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/ogetoptv.hpp"
-#include "../classes/ocontext.hpp"
-#include "../classes/owildcard.hpp"
 #include "../classes/ofileopen.hpp"
-#include "../classes/ofilespec.hpp"
 #include "../classes/opathspec.hpp"
 #include "../classes/ophptidy.hpp"
 
@@ -47,6 +44,7 @@
 #include "../classes/oascii.cpp"
 #include "../classes/ocollect.cpp"
 #include "../classes/ophptidy.cpp"
+#include "../classes/otext.cpp"
 #endif
 
 /*====================================================================*

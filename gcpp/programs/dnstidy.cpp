@@ -21,12 +21,8 @@
 
 #include "../classes/ogetoptv.hpp"
 #include "../classes/oflagword.hpp"
-#include "../classes/ocontext.hpp"
-#include "../classes/owildcard.hpp"
-#include "../classes/ofileopen.hpp"
-#include "../classes/ofilespec.hpp"
 #include "../classes/opathspec.hpp"
-#include "../classes/tools.h"
+#include "../classes/ofileopen.hpp"
 #include "../classes/oindent.hpp"
 #include "../classes/oescape.hpp"
 #include "../classes/ocollect.hpp"
@@ -34,9 +30,6 @@
 /*====================================================================*
  *   custom source files;
  *--------------------------------------------------------------------*/
-
-#ifndef MAKEFILE
-#endif
 
 #ifndef MAKEFILE
 #include "../classes/ogetoptv.cpp"
@@ -53,6 +46,7 @@
 #include "../classes/oindent.cpp"
 #include "../classes/oascii.cpp"
 #include "../classes/ocollect.cpp"
+#include "../classes/otext.cpp"
 #endif
 
 /*====================================================================*

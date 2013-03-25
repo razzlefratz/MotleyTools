@@ -28,6 +28,7 @@
 #include "../classes/oputoptv.cpp"
 #include "../classes/oversion.cpp"
 #include "../classes/oerror.cpp"
+#include "../classes/otext.cpp"
 #include "../classes/oflagword.cpp"
 #include "../classes/oscantext.cpp"
 #include "../classes/oascii.cpp"

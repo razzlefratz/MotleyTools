@@ -16,7 +16,6 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/ogetoptv.hpp"
-#include "../classes/oputoptv.hpp"
 #include "../classes/oflagword.hpp"
 #include "../classes/oscancode.hpp"
 
@@ -43,6 +42,7 @@
 #include "../classes/oconstants.cpp"
 #include "../classes/ofunctions.cpp"
 #include "../classes/oscancode.cpp"
+#include "../classes/otext.cpp"
 #endif
 
 /*====================================================================*

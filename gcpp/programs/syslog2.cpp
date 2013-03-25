@@ -22,6 +22,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/ogetoptv.hpp"
+#include "../classes/oflagword.hpp"
 #include "../classes/osyslog.hpp"
 #include "../classes/osyslogspec.hpp"
 

@@ -85,7 +85,7 @@ int main (int argc, char const * argv [])
 	opathspec pathspec;
 	oprofile config;
 	omptidy object;
-	omptidy & (omptidy::* method) () = &omptidy::page;
+	omptidy & (omptidy::* method) () = &omptidy::tidy;
 	char const * profile = PROFILE_NAME;
 	char const * section = SECTION_NAME;
 	signed c;
@@ -116,7 +116,7 @@ int main (int argc, char const * argv [])
 	object.release (config.string (profile, section, oMPTIDY_S_RELEASE, MPTIDY_S_RELEASE));
 	if (!getopt.argc ()) 
 	{
-		(object.*method) ();
+		(object.* method) ();
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
@@ -124,10 +124,8 @@ int main (int argc, char const * argv [])
 		pathspec.fullpath (filename, * getopt.argv ());
 		if (fileopen.openedit (filename)) 
 		{
-
-// object.filename (filename);
-
-			(object.*method) ();
+ 			object.filename (filename);
+			(object.* method) ();
 			fileopen.close ();
 		}
 		getopt++;

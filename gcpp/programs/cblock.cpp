@@ -47,6 +47,7 @@
 #include "../classes/ocollect.cpp"
 #include "../classes/ocblock.cpp"
 #include "../classes/oascii.cpp"
+#include "../classes/otext.cpp"
 #endif
 
 /*====================================================================*

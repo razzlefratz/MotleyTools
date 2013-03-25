@@ -53,6 +53,7 @@
 #include "../classes/opathspec.cpp"
 #include "../classes/ocontext.cpp"
 #include "../classes/odiscard.cpp"
+#include "../classes/otext.cpp"
 #endif
 
 /*====================================================================*

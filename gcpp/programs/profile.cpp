@@ -21,8 +21,6 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/ogetoptv.hpp"
-#include "../classes/oputoptv.hpp"
-#include "../classes/oversion.hpp"
 #include "../classes/oprofile.hpp"
 #include "../classes/oerror.hpp"
 
@@ -38,6 +36,7 @@
 #include "../classes/oswitch.cpp"
 #include "../classes/oerror.cpp"
 #include "../classes/oascii.cpp"
+#include "../classes/otext.cpp"
 #endif
 
 /*====================================================================*

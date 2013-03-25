@@ -21,12 +21,9 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/ogetoptv.hpp"
-#include "../classes/ocontext.hpp"
-#include "../classes/owildcard.hpp"
-#include "../classes/ofileopen.hpp"
-#include "../classes/ofilespec.hpp"
 #include "../classes/opathspec.hpp"
-#include "../classes/ocgotowords.hpp"
+#include "../classes/ofileopen.hpp"
+#include "../classes/oflagword.hpp"
 #include "../classes/oescape.hpp"
 #include "../classes/octidy.hpp"
 
@@ -49,6 +46,7 @@
 #include "../classes/okeywords.cpp"
 #include "../classes/oindent.cpp"
 #include "../classes/ocgotowords.cpp"
+#include "../classes/ocexitwords.cpp"
 #include "../classes/oascii.cpp"
 #include "../classes/ocollect.cpp"
 #include "../classes/oinclude.cpp"

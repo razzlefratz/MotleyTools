@@ -22,8 +22,6 @@
 
 #include "../classes/ogetoptv.hpp"
 #include "../classes/oflagword.hpp"
-#include "../classes/ocontext.hpp"
-#include "../classes/owildcard.hpp"
 #include "../classes/ofileopen.hpp"
 #include "../classes/ofilespec.hpp"
 #include "../classes/opathspec.hpp"
@@ -40,6 +38,7 @@
 #include "../classes/oputoptv.cpp"
 #include "../classes/oversion.cpp"
 #include "../classes/oerror.cpp"
+#include "../classes/otext.cpp"
 #include "../classes/oflagword.cpp"
 #include "../classes/ofileopen.cpp"
 #include "../classes/ofilespec.cpp"

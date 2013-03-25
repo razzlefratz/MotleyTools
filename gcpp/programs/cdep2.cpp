@@ -46,6 +46,7 @@
 #include "../classes/ofilespec.cpp"
 #include "../classes/opathspec.cpp"
 #include "../classes/ochrtbl.cpp"
+#include "../classes/otext.cpp"
 #endif
 
 /*====================================================================*

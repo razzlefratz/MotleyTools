@@ -36,6 +36,7 @@
 #include "../classes/ocalendar.cpp"
 #include "../classes/omonth.cpp"
 #include "../classes/odate.cpp"
+#include "../classes/otext.cpp"
 #endif
 
 /*====================================================================*

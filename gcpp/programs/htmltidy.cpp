@@ -20,14 +20,10 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/ogetoptv.hpp"
-#include "../classes/oputoptv.hpp"
-#include "../classes/oversion.hpp"
-#include "../classes/oerror.hpp"
-#include "../classes/owildcard.hpp"
 #include "../classes/ofileopen.hpp"
 #include "../classes/ofilespec.hpp"
 #include "../classes/opathspec.hpp"
-#include "../classes/oescape.hpp"
+ #include "../classes/oescape.hpp"
 #include "../classes/ohtmltidy.hpp"
 
 /*====================================================================*
