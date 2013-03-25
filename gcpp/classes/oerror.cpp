@@ -69,7 +69,7 @@ void oerror::print (char const *format, ...)
 
 /*====================================================================*
  *
- *   void oerror::perror (char const *format, ...);
+ *   void oerror::error (char const * format, ...);
  *
  *   print an error message using variable argument list; prefix all
  *   messages with program_name; append strerror() message text when
@@ -77,7 +77,7 @@ void oerror::print (char const *format, ...)
  *
  *--------------------------------------------------------------------*/
 
-void oerror::error (char const *format, ...) 
+void oerror::error (char const * format, ...) 
 
 {
 	if ((program_name) && (*program_name)) 
@@ -96,7 +96,7 @@ void oerror::error (char const *format, ...)
 		std::vfprintf (stderr, format, argp);
 		va_end (argp);
 	}
-	std::cerr << "\n";
+	std::cerr << std::endl;
 	return;
 }
 
@@ -132,7 +132,47 @@ void oerror::error (int status, errno_t number, char const *format, ...)
 		std::vfprintf (stderr, format, arglist);
 		va_end (arglist);
 	}
-	std::cerr << "\n";
+	std::cerr << std::endl;
+	if (status) 
+	{
+		std::exit (status);
+	}
+	return;
+}
+
+
+/*====================================================================*
+ *
+ *   void error (int status, char const * string, char const * format, ...);
+ *
+ *   print an error message using variable argument list; prefix all
+ *   messages with program_name; append strerror() message text when
+ *   number is not non-zero; exit with status if status is non-zero;
+ *
+ *   included for compatibility with the GNU C library;
+ *
+ *--------------------------------------------------------------------*/
+
+void oerror::error (int status, char const * string, char const * format, ...) 
+
+{
+	if ((program_name) && (* program_name)) 
+	{
+		std::cerr << program_name << ": ";
+	}
+	if ((string) && (* string)) 
+	{
+		std::cerr << string << ": ";
+		errno = 0;
+	}
+	if ((format) && (*format)) 
+	{
+		va_list arglist;
+		va_start (arglist, format);
+		std::vfprintf (stderr, format, arglist);
+		va_end (arglist);
+	}
+	std::cerr << std::endl;
 	if (status) 
 	{
 		std::exit (status);
