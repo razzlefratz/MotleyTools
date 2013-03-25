@@ -64,7 +64,7 @@
 #define MP_SECTION "default"
 #define MP_PROGRAM ""
 #define MP_PROJECT PROJECT
-#define MP_PACKAGE ARCHIVE "-" VERSION "." RELEASE
+#define MP_ARCHIVE PACKAGE "-" VERSION "." RELEASE
 #define MP_PUBLISH "%b %Y"
 
 #define MP_VERBOSE (1 << 0)
@@ -187,7 +187,7 @@ int main (int argc, char const * argv [])
 	char const * section = MP_SECTION;
 	char const * program = MP_PROGRAM;
 	char const * project = MP_PROJECT;
-	char const * package = MP_PACKAGE;
+	char const * package = MP_ARCHIVE;
 	char const * release = buffer;
 	char * sp;
 	flag_t flags;
@@ -206,7 +206,7 @@ int main (int argc, char const * argv [])
 		case 'o':
 			printf ("[%s]\n", MP_SECTION);
 			printf ("project=%s\n", MP_PROJECT);
-			printf ("package=%s\n", MP_PACKAGE);
+			printf ("package=%s\n", MP_ARCHIVE);
 			printf ("release=%s\n", buffer);
 			return (0);
 		default:

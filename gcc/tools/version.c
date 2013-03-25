@@ -25,32 +25,11 @@ void version ()
 {
 	extern char const *program_name;
 	printf ("%s ", program_name);
-
-#if 0
-
-	printf (PACKAGE " ");
-
-#else
-
-	printf (ARCHIVE "-");
-
-#endif
-
-	printf (VERSION ".");
-	printf (RELEASE " ");
+	printf (PACKAGE "-");
+	printf (VERSION " ");
 	printf ("ISO C ");
-
-#if 0
-
-	printf (CONTACT " ");
-
-#else
-
 	printf (COMPANY " ");
-
-#endif
-
-	printf (COMPILE "\n");
+	printf (RELEASE "\n");
 	return;
 }
 

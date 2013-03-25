@@ -18,11 +18,9 @@
 #define COMPANY "Charles Maier"
 #define PROJECT "Motley Toolkit"
 #define PURPOSE "personal use"
-#define PACKAGE "Motley Tools"
-#define ARCHIVE "cmassoc-tools"
-#define VERSION "1.8"
-#define RELEASE "2"
-#define COMPILE __TIME__ " " __DATE__
+#define PACKAGE "motley-tools"
+#define VERSION "1.8.2"
+#define RELEASE __TIME__ " " __DATE__
 #define CONTACT "cmaier@cmassoc.net"
 #define LICENSE "GNU General Public License Version 2 Only;"
 
