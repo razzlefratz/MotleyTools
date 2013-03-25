@@ -64,7 +64,7 @@
 #define MP_SECTION "default"
 #define MP_PROGRAM ""
 #define MP_PROJECT PROJECT
-#define MP_ARCHIVE PACKAGE "-" VERSION "." RELEASE
+#define MP_ARCHIVE PACKAGE "-" VERSION 
 #define MP_PUBLISH "%b %Y"
 
 #define MP_VERBOSE (1 << 0)
