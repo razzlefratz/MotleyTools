@@ -39,6 +39,10 @@ ochrupr ostring::chrupr;
  *
  *   return the current string length;
  *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
 const size_t ostring::length () const 
@@ -50,13 +54,17 @@ const size_t ostring::length () const
 
 /*====================================================================*
  *
- *   char const *string () const;
+ *   char const * string () const;
  *
  *   return the current string as a string constant;
  *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
-char const *ostring::string () const 
+char const * ostring::string () const 
 
 {
 	return ((char const *) (this->mstring));
@@ -65,13 +73,17 @@ char const *ostring::string () const
 
 /*====================================================================*
  *
- *   ostring & string (char const *string);
+ *   ostring & string (char const * string);
  *
  *   replace the current string with a new string;
  *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::string (char const *string) 
+ostring & ostring::string (char const * string) 
 
 {
 	if (std::strcmp (string, this->mstring)) 
@@ -92,9 +104,13 @@ ostring & ostring::string (char const *string)
  *   return the first count characters of the current string as a 
  *   string constant;
  * 
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
-char const *ostring::first (size_t count) 
+char const * ostring::first (size_t count) 
 
 {
 	delete [] this->mbuffer;
@@ -115,9 +131,13 @@ char const *ostring::first (size_t count)
  *
  *   return the final (right most) count characters as a string constant;
  * 
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
-char const *ostring::final (size_t count) 
+char const * ostring::final (size_t count) 
 
 {
 	delete [] this->mbuffer;
@@ -134,13 +154,17 @@ char const *ostring::final (size_t count)
 
 /*====================================================================*
  *
- *   char const *operator << (size_t count);
+ *   char const * operator << (size_t count);
  *
  *   shift the current string count characters to the left; 
  *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
-char const *ostring::operator << (size_t count) 
+char const * ostring::operator << (size_t count) 
 
 {
 	if (count > this->mlength) 
@@ -157,13 +181,17 @@ char const *ostring::operator << (size_t count)
 
 /*====================================================================*
  *
- *   char const *operator >> (size_t count);
+ *   char const * operator >> (size_t count);
  *
  *   shift the string count characters to the right; 
  *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
-char const *ostring::operator >> (size_t count) 
+char const * ostring::operator >> (size_t count) 
 
 {
 	if (count > this->mlength) 
@@ -180,13 +208,17 @@ char const *ostring::operator >> (size_t count)
 
 /*====================================================================*
  *
- *   ostring & operator = (char const *string);
+ *   ostring & operator = (char const * string);
  *
  *
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::operator = (char const *string) 
+ostring & ostring::operator = (char const * string) 
 
 {
 	return (this->string (string));
@@ -195,13 +227,17 @@ ostring & ostring::operator = (char const *string)
 
 /*====================================================================*
  *
- *   ostring & operator == (char const *string);
+ *   ostring & operator == (char const * string);
  *
  *
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
-bool ostring::operator == (char const *string) const 
+bool ostring::operator == (char const * string) const 
 
 {
 	return (std::strcmp (this->mstring, string) == 0);
@@ -210,13 +246,17 @@ bool ostring::operator == (char const *string) const
 
 /*====================================================================*
  *
- *   ostring & operator != (char const *string);
+ *   ostring & operator != (char const * string);
  *
  *
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
-bool ostring::operator != (char const *string) const 
+bool ostring::operator != (char const * string) const 
 
 {
 	return (std::strcmp (this->mstring, string) != 0);
@@ -225,13 +265,17 @@ bool ostring::operator != (char const *string) const
 
 /*====================================================================*
  *
- *   ostring & operator <= (char const *string);
+ *   ostring & operator <= (char const * string);
  *
  *
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
-bool ostring::operator <= (char const *string) const 
+bool ostring::operator <= (char const * string) const 
 
 {
 	return (std::strcmp (this->mstring, string) <= 0);
@@ -240,13 +284,17 @@ bool ostring::operator <= (char const *string) const
 
 /*====================================================================*
  *
- *   ostring & operator >= (char const *string);
+ *   ostring & operator >= (char const * string);
  *
  *
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
-bool ostring::operator >= (char const *string) const 
+bool ostring::operator >= (char const * string) const 
 
 {
 	return (std::strcmp (this->mstring, string) >= 0);
@@ -255,13 +303,17 @@ bool ostring::operator >= (char const *string) const
 
 /*====================================================================*
  *
- *   ostring & operator <= (char const *string);
+ *   ostring & operator <= (char const * string);
  *
  *
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
-bool ostring::operator < (char const *string) const 
+bool ostring::operator < (char const * string) const 
 
 {
 	return (std::strcmp (this->mstring, string) < 0);
@@ -270,13 +322,17 @@ bool ostring::operator < (char const *string) const
 
 /*====================================================================*
  *
- *   ostring & operator >= (char const *string);
+ *   ostring & operator >= (char const * string);
  *
  *
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
-bool ostring::operator > (char const *string) const 
+bool ostring::operator > (char const * string) const 
 
 {
 	return (std::strcmp (this->mstring, string) > 0);
@@ -285,13 +341,17 @@ bool ostring::operator > (char const *string) const
 
 /*====================================================================*
  *
- *   bool operator * (char const *charset) const;
+ *   bool operator * (char const * charset) const;
  *
  *   return true if string contains only characters from charset;
  *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
-bool ostring::operator * (char const *charset) const 
+bool ostring::operator * (char const * charset) const 
 
 {
 	return (this->ischarset (charset));
@@ -300,13 +360,17 @@ bool ostring::operator * (char const *charset) const
 
 /*====================================================================*
  *
- *   bool ischarset (char const *charset) const;
+ *   bool ischarset (char const * charset) const;
  *
  *   return true if string contains only characters from charset;
  *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
-bool ostring::ischarset (char const *charset) const 
+bool ostring::ischarset (char const * charset) const 
 
 {
 	for (unsigned mindex = 0; mindex < this->mlength; ++mindex) 
@@ -322,13 +386,17 @@ bool ostring::ischarset (char const *charset) const
 
 /*====================================================================*
  *
- *   bool incharset (char const *charset) const;
+ *   bool incharset (char const * charset) const;
  *
  *   return true if string contains any characters from charset;
  *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
-bool ostring::incharset (char const *charset) const 
+bool ostring::incharset (char const * charset) const 
 
 {
 	for (unsigned mindex = 0; mindex < this->mlength; ++mindex) 
@@ -344,7 +412,7 @@ bool ostring::incharset (char const *charset) const
 
 /*====================================================================*
  *
- *   ostring & read (char const *filename);
+ *   ostring & read (char const * filename);
  * 
  *   read an entire input stream into the input buffer; 
  *
@@ -354,7 +422,7 @@ bool ostring::incharset (char const *charset) const
  *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::read (char const *filename) 
+ostring & ostring::read (char const * filename) 
 
 {
 	if ((filename) && (*filename)) 
@@ -427,14 +495,18 @@ ostring & ostring::read (std::ifstream * stream)
 
 /*====================================================================*
  *
- *   char const *field (size_t start, size_t count);
+ *   char const * field (size_t start, size_t count);
  *
  *   return up to count characters from the start position as a string
  *   constant;
  *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
-char const *ostring::field (size_t start, size_t count) 
+char const * ostring::field (size_t start, size_t count) 
 
 {
 	if (start > this->mlength) 
@@ -455,13 +527,17 @@ char const *ostring::field (size_t start, size_t count)
 
 /*====================================================================*
  *
- *   ostring & trim (char const *charset);
+ *   ostring & trim (char const * charset);
  *
  *   remove leading and trailing in charset from string;
  *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::trim (char const *charset) 
+ostring & ostring::trim (char const * charset) 
 
 {
 	char *first = this->mstring;
@@ -487,7 +563,7 @@ ostring & ostring::trim (char const *charset)
 
 /*====================================================================*
  *
- *   ostring & enclose (char const *example);
+ *   ostring & enclose (char const * example);
  *
  *   enclose the current string with the first and final characters from
  *   the example string argument; 
@@ -495,6 +571,10 @@ ostring & ostring::trim (char const *charset)
  *   for example, wrap ("[]") or wrap ("[...]") encloses the current string 
  *   in brackets and wrap ("|") or wrap ("||") encloses it in vertical bars; 
  *   also, wrap ("/", wrap ("*")) creates a C language comment string;
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -518,13 +598,17 @@ ostring & ostring::enclose (char const * example)
 
 /*====================================================================*
  *
- *   ostring & prefix (char const *string);
+ *   ostring & prefix (char const * string);
  *
  *   prefix the current string with the character string argument;
  *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::prefix (char const *string) 
+ostring & ostring::prefix (char const * string) 
 
 {
 	char *buffer = this->mstring;
@@ -539,13 +623,17 @@ ostring & ostring::prefix (char const *string)
 
 /*====================================================================*
  *
- *   ostring & suffix (char const *string);
+ *   ostring & suffix (char const * string);
  *
  *   suffix the current string with the character string argument;
  *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::suffix (char const *string) 
+ostring & ostring::suffix (char const * string) 
 
 {
 	char *buffer = this->mstring;
@@ -560,19 +648,23 @@ ostring & ostring::suffix (char const *string)
 
 /*====================================================================*
  *
- *   ostring & reduce (char const *charset);
+ *   ostring & reduce (char const * charset);
  *
  *   replace stings of characters from the charset string argument with 
  *   the first character of the charset string argument;
  *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::reduce (char const *charset) 
+ostring & ostring::reduce (char const * charset) 
 
 {
 	if ((charset) && (*charset)) 
 	{
-		char *sp = this->mstring;
+		char * sp = this->mstring;
 		while (*sp) 
 		{
 			if (std::strchr (charset, *sp)) 
@@ -588,14 +680,18 @@ ostring & ostring::reduce (char const *charset)
 
 /*====================================================================*
  *
- *   ostring & select (char const *charset);
+ *   ostring & select (char const * charset);
  *
  *   remove characters from the current string if they are not from the 
  *   charset string argument;
  *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::select (char const *charset) 
+ostring & ostring::select (char const * charset) 
 
 {
 	if ((charset) && (*charset)) 
@@ -617,14 +713,18 @@ ostring & ostring::select (char const *charset)
 
 /*====================================================================*
  *
- *   ostring & remove (char const *charset);
+ *   ostring & remove (char const * charset);
  *
  *   remove characters from the current string if they are from the 
  *   charset string argument;
  *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::remove (char const *charset) 
+ostring & ostring::remove (char const * charset) 
 
 {
 	if ((charset) && (*charset)) 
@@ -650,6 +750,10 @@ ostring & ostring::remove (char const *charset)
  *
  *   convert all letters in the current string to lower case;
  *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
 ostring & ostring::tolower () 
@@ -665,6 +769,10 @@ ostring & ostring::tolower ()
  *   ostring & toupper ();
  *
  *   convert all letters in the current string to upper case;
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -682,6 +790,10 @@ ostring & ostring::toupper ()
  *
  *   
  *   
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
 ostring & ostring::clear () 
@@ -697,7 +809,7 @@ ostring & ostring::clear ()
 
 /*====================================================================*
  *
- *   signed compare (register char const *sp1, register char const *sp2, register const unsigned char ct[])
+ *   signed compare (register char const * string1, register char const * string2, register const unsigned char ct[])
  *
  *   compare two strings and return -1, 0 or 1 to indicate that the first
  *   string lexographically precedes, matches or follows the second using
@@ -715,43 +827,47 @@ ostring & ostring::clear ()
  *
  *--------------------------------------------------------------------*/
 
-signed ostring::compare (register char const *sp1, register char const *sp2, register const unsigned char ct []) 
+signed ostring::compare (register char const * string1, register char const * string2, register const unsigned char ct []) 
 
 {
-	if (sp1 == sp2) 
+	if (string1 == string2) 
 	{
 		return (0);
 	}
-	if (!sp1) 
+	if (!string1) 
 	{
 		return (-1);
 	}
-	if (!sp2) 
+	if (!string2) 
 	{
 		return (+1);
 	}
-	while (ct [(unsigned) (*sp1)] == ct [(unsigned) (*sp2)]) 
+	while (ct [(unsigned) (*string1)] == ct [(unsigned) (*string2)]) 
 	{
-		if (ct [(unsigned) (*sp1)] == (char) (0)) 
+		if (ct [(unsigned) (*string1)] == (char) (0)) 
 		{
 			return (0);
 		}
-		sp1++;
-		sp2++;
+		string1++;
+		string2++;
 	}
-	return (ct [(unsigned) (*sp1)] < ct [(unsigned) (*sp2)]? -1: +1);
+	return (ct [(unsigned) (*string1)] < ct [(unsigned) (*string2)]? -1: +1);
 }
 
 
 /*====================================================================*
  *
- *   ostring::ostring (char const *string, size_t start, size_t count);
+ *   ostring::ostring (char const * string, size_t start, size_t count);
  *
  *
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
-ostring::ostring (char const *string, size_t start, size_t count) 
+ostring::ostring (char const * string, size_t start, size_t count) 
 
 {
 	unsigned limit = std::strlen (string);
@@ -772,13 +888,17 @@ ostring::ostring (char const *string, size_t start, size_t count)
 
 /*====================================================================*
  *
- *   ostring::ostring (char const *string);
+ *   ostring::ostring (char const * string);
  *
  *
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
-ostring::ostring (char const *string) 
+ostring::ostring (char const * string) 
 
 {
 	this->mbuffer = new char [1];
@@ -794,6 +914,10 @@ ostring::ostring (char const *string)
  *   ostring::ostring ();
  *
  *
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -813,6 +937,10 @@ ostring::ostring ()
  *   ostring::~ostring ();
  *
  *
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 

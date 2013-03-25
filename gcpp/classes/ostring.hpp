@@ -34,18 +34,18 @@ class __declspec (dllexport) ostring
 {
 public:
 	ostring ();
-	ostring (char const *string);
-	ostring (char const *string, size_t start, size_t count);
+	ostring (char const * string);
+	ostring (char const * string, size_t start, size_t count);
 	virtual ~ ostring ();
 	const size_t length () const;
-	char const *string () const;
+	char const * string () const;
 	ostring & string (char const * string);
-	char const *first (size_t count);
-	char const *final (size_t count);
-	char const *field (size_t start, size_t count);
-	char const *operator << (size_t count);
-	char const *operator >> (size_t count);
-	ostring & operator = (char const *string);
+	char const * first (size_t count);
+	char const * final (size_t count);
+	char const * field (size_t start, size_t count);
+	char const * operator << (size_t count);
+	char const * operator >> (size_t count);
+	ostring & operator = (char const * string);
 	bool operator == (char const * string) const;
 	bool operator != (char const * string) const;
 	bool operator < (char const * string) const;
