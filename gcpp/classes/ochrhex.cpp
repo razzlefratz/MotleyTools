@@ -26,10 +26,6 @@ char const *ochrhex::digits = "0123456789ABCDEF";
 /*====================================================================*
  *
  *   char *ochrhex::tohex(char *string, unsigned c)
- *   char *ochrhex::toietf(char *string, unsigned c)
- *   char *ochrhex::toiso(char *string, unsigned c)
- *   char *ochrhex::tow3c(char *string, unsigned c)
- *   char *ochrhex::toconst(char *string, unsigned c)
  *
  *   encode string with NUL terminated representation of character value
  *   c and return the terminator address;
@@ -40,7 +36,7 @@ char const *ochrhex::digits = "0123456789ABCDEF";
  *
  *--------------------------------------------------------------------*/
 
-char *ochrhex::tohex (char *string, unsigned c) 
+char * ochrhex::tohex (char * string, unsigned c) 
 
 {
 	*string++ = ochrhex::digits [(c >> 4) & 0x000F];
@@ -49,7 +45,18 @@ char *ochrhex::tohex (char *string, unsigned c)
 	return (string);
 }
 
-char *ochrhex::toietf (char *string, unsigned c) 
+
+/*====================================================================*
+ *   
+ *   char * toietf (char * string, unsigned c);
+ *   
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+char * ochrhex::toietf (char * string, unsigned c) 
 
 {
 	*string++ = '%';
@@ -57,7 +64,18 @@ char *ochrhex::toietf (char *string, unsigned c)
 	return (string);
 }
 
-char *ochrhex::toiso (char *string, unsigned c) 
+
+/*====================================================================*
+ *   
+ *   char * toiso (char * string, unsigned c);
+ *   
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+char * ochrhex::toiso (char * string, unsigned c) 
 
 {
 	*string++ = '#';
@@ -66,7 +84,18 @@ char *ochrhex::toiso (char *string, unsigned c)
 	return (string);
 }
 
-char *ochrhex::tohtml (char *string, unsigned c) 
+
+/*====================================================================*
+ *   
+ *   char * tohtml (char * string, unsigned c);
+ *   
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+char * ochrhex::tohtml (char * string, unsigned c) 
 
 {
 	*string++ = '&';
@@ -76,7 +105,18 @@ char *ochrhex::tohtml (char *string, unsigned c)
 	return (string);
 }
 
-char *ochrhex::toconst (char *string, unsigned c) 
+
+/*====================================================================*
+ *   
+ *   char * toconst (char * string, unsigned c);
+ *   
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+char * ochrhex::toconst (char * string, unsigned c) 
 
 {
 	*string++ = '0';
@@ -88,13 +128,30 @@ char *ochrhex::toconst (char *string, unsigned c)
 
 /*====================================================================*
  *   
+ *   ochrhex ();
+ *   
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
 ochrhex::ochrhex () 
 
 {
 	return;
-};
+}
+
+
+/*====================================================================*
+ *   
+ *   ~ochrhex ();
+ *   
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
 
 ochrhex::~ochrhex () 
 

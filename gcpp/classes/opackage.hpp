@@ -41,24 +41,24 @@ public:
 	opackage ();
 	opackage (char const *filespec);
 	virtual ~ opackage ();
-	char const *archive () const;
-	char const *package () const;
-	char const *product () const;
-	char const *release () const;
-	char const *trailer () const;
-	opackage & operator= (char const *filespec);
-	opackage & filespec (char const *filespec);
-	opackage & extender (char const *extender);
+	char const * archive () const;
+	char const * package () const;
+	char const * product () const;
+	char const * release () const;
+	char const * trailer () const;
+	opackage & operator= (char const * filespec);
+	opackage & filespec (char const * filespec);
+	opackage & extender (char const * extender);
 	opackage & peek ();
 protected:
 private:
 	static char const *extenders [];
-	static char *extract (char string [], char const *start, char const *limit);
-	char *marchive;
-	char *mpackage;
-	char *mproduct;
-	char *mrelease;
-	char *mtrailer;
+	static char * extract (char string [], char const *start, char const *limit);
+	char * marchive;
+	char * mpackage;
+	char * mproduct;
+	char * mrelease;
+	char * mtrailer;
 };
 
 

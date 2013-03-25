@@ -121,10 +121,20 @@ static void function (char const * program, char const * project, char const * p
 			{
 				putc ('\n', stdout);
 			}
+			else if (!strcmp (symbol, ".PP")) 
+			{
+				putc ('\n', stdout);
+			}
 			fputs (symbol, stdout);
 		}
 		while (nobreak (c)) 
 		{
+			if (isspace (c)) 
+			{
+				do { c = getc (stdin); } while (isspace (c));
+				putc (' ', stdout);
+				continue;
+			}
 			if (isquote (c)) 
 			{
 				c = literal (c, c);
@@ -140,11 +150,7 @@ static void function (char const * program, char const * project, char const * p
 				c = keep (c);
 				if (isblank (c)) 
 				{
-					do 
-					{
-						c = getc (stdin);
-					}
-					while (isblank (c));
+					do { c = getc (stdin); } while (isblank (c));
 					putc ('\n', stdout);
 				}
 				continue;

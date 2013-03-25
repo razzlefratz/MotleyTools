@@ -197,6 +197,12 @@ omptidy & omptidy::tidy ()
 		}
 		while (oascii::nobreak (c)) 
 		{
+			if (oascii::isspace (c))
+			{
+				do { c = std::cin.get(); } while (oascii::isspace (c));
+				std::cout.put (' ');
+				continue;
+			}
 			if (oascii::isquote (c)) 
 			{
 				c = ocollect::literal (c, c);
@@ -212,11 +218,7 @@ omptidy & omptidy::tidy ()
 				c = ocollect::keep (c);
 				if (oascii::isblank (c)) 
 				{
-					do 
-					{
-						c = std::cin.get ();
-					}
-					while (oascii::isblank (c));
+					do { c = std::cin.get (); } while (oascii::isblank (c));
 					std::cout.put ('\n');
 				}
 				continue;
