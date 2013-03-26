@@ -24,7 +24,7 @@ signed content (signed c)
 	}
 	else if (isquote (c)) 
 	{
-		c = literal (c, c);
+		c = literal (c);
 	}
 	else if (c == '{') 
 	{

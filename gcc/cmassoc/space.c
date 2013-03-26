@@ -118,7 +118,7 @@ void function (char newline, char endline)
 			}
 			if (isquote (c)) 
 			{
-				c = literal (c, c);
+				c = literal (c);
 				continue;
 			}
 			if (isblank (c)) 

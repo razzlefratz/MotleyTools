@@ -157,7 +157,7 @@ static signed markup (signed c)
 		}
 		if (isquote (c)) 
 		{
-			c = noliteral (c, c);
+			c = noliteral (c);
 			continue;
 		}
 		c = getc (stdin);

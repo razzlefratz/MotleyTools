@@ -208,44 +208,52 @@ omptidy & omptidy::tidy ()
 				std::cout << " \"" << this->mpackage << "\"";
 				std::cout << " \"" << this->mproject << "\"";
 			}
-			else 
+			else if (!std::strcmp (this->mstring, ".SH")) 
 			{
-				if (!std::strcmp (this->mstring, ".SH")) 
-				{
-					std::cout << std::endl;
-				}
-				else if (!std::strcmp (this->mstring, ".TP")) 
-				{
-					std::cout << std::endl;
-				}
-				else if (!std::strcmp (this->mstring, ".PP")) 
-				{
-					std::cout << std::endl;
-				}
+				std::cout << std::endl << this->mstring;
+			}
+			else if (!std::strcmp (this->mstring, ".TP")) 
+			{
+				std::cout << std::endl << this->mstring;
+			}
+			else if (!std::strcmp (this->mstring, ".PP")) 
+			{
+				std::cout << std::endl << this->mstring;
+			}
+			else
+			{
 				std::cout << this->mstring;
 			}
 		}
 		while (oascii::nobreak (c)) 
 		{
+			if (oascii::isquote (c)) 
+			{
+				c = ocollect::literal (c, c);
+				continue;
+			}
 			if (c == '.') 
 			{
 				c = ocollect::keep (c);
-				if (c == '.')
+				if (c == '.') 
 				{
-					do { c = ocollect::keep (c); } while (c == '.');
+					do 
+					{
+						c = ocollect::keep (c);
+					}
+					while (c == '.');
 					continue;
 				}
 				if (oascii::isblank (c)) 
 				{
-					do { c = std::cin.get (); } while (oascii::isblank (c));
+					do 
+					{
+						c = std::cin.get ();
+					}
+					while (oascii::isblank (c));
 					std::cout.put ('\n');
 					continue;
 				}
-				continue;
-			}
-			if (oascii::isquote (c)) 
-			{
-				c = ocollect::literal (c, c);
 				continue;
 			}
 			c = ocollect::keep (c);

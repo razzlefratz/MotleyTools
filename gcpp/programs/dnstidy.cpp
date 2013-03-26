@@ -68,9 +68,9 @@ static ocollect tidy;
  *   void function (oflagword * flags);
  *
  *   read from stdin and write to stdout; indent C style text based
- *   on '{', ';' and '}' characters; leave '#' comments alone; this
- *   program is suitable for css stylesheets, awk programs and bind 
- *   name.conf files;
+ *   only on '{', ';' and '}' characters; leave '#' comments alone; 
+ *   this program is suitable for css stylesheets, awk programs and  
+ *   bind name.conf files;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

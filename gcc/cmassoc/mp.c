@@ -129,6 +129,11 @@ static void function (char const * program, char const * project, char const * p
 		}
 		while (nobreak (c)) 
 		{
+			if (isquote (c)) 
+			{
+				c = literal (c);
+				continue;
+			}
 			if (c == '.') 
 			{
 				c = keep (c);
@@ -143,11 +148,6 @@ static void function (char const * program, char const * project, char const * p
 					putc ('\n', stdout);
 					continue;
 				}
-				continue;
-			}
-			if (isquote (c)) 
-			{
-				c = literal (c, c);
 				continue;
 			}
 			c = keep (c);

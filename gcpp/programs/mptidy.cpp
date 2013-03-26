@@ -52,9 +52,9 @@
 #define PROFILE_NAME "/etc/mp.ini"     
 #define SECTION_NAME "default"     
 #define MPTIDY_S_PROJECT "Motley Tools"     
-#define MPTIDY_S_PACKAGE "mtools-1.8.1"     
-#define MPTIDY_S_PROGRAM "program"     
-#define MPTIDY_S_RELEASE "data/time"     
+#define MPTIDY_S_PACKAGE "mtools-1.9.0"     
+#define MPTIDY_S_PROGRAM "mtools.7"     
+#define MPTIDY_S_RELEASE __DATE__
 
 /*====================================================================*
  *   
