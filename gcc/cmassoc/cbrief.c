@@ -73,7 +73,7 @@ void function (signed c, flag_t flags)
 		}
 		if (isquote (c)) 
 		{
-			c = literal (c, c);
+			c = literal (c);
 			continue;
 		}
 		c = keep (c);

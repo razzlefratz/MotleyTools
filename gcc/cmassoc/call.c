@@ -166,7 +166,7 @@ static void function (flag_t flags)
 		}
 		if (isquote (c)) 
 		{
-			c = noliteral (c, c);
+			c = noliteral (c);
 			continue;
 		}
 		if (isalpha (c) || (c == '_')) 

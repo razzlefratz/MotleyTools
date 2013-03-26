@@ -18,15 +18,16 @@
 
 #include "../tidy/tidy.h"
 
-signed literal (signed c, signed e) 
+signed literal (signed c) 
 
 {
-	c = keep (c);
+	signed e = c;
+	c = keep (e);
 	while ((c != e) && (c != EOF)) 
 	{
 		c = escaped (c);
 	}
-	c = keep (c);
+	c = keep (e);
 	return (c);
 }
 

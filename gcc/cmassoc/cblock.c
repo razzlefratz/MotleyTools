@@ -173,7 +173,7 @@ static signed program (signed c, signed e)
 		}
 		if (isquote (c)) 
 		{
-			c = literal (c, c);
+			c = literal (c);
 			continue;
 		}
 		if (isalpha (c) || (c == '_')) 

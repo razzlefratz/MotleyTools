@@ -115,43 +115,29 @@ void function (signed c, flag_t flags)
 		{
 			if (_anyset (flags, CASE_B_UPPER)) 
 			{
-				do 
-				{
-					putc (toupper (c), stdout);
-					c = getc (stdin);
-				}
-				while (isalpha (c));
+				do { c = keep (toupper (c)); } while (isalpha (c));
 				continue;
 			}
 			if (_anyset (flags, CASE_B_LOWER)) 
 			{
-				do 
-				{
-					putc (tolower (c), stdout);
-					c = getc (stdin);
-				}
-				while (isalpha (c));
+				do { c = keep (tolower (c)); } while (isalpha (c));
 				continue;
 			}
 			if (_anyset (flags, CASE_B_TITLE)) 
 			{
 				c = toupper (c);
 			}
-			do 
-			{
-				c = keep (c);
-			}
-			while (isalnum (c));
+			do { c = keep (c); } while (isalnum (c));
 			continue;
 		}
 		if ((c == '\"') && _anyset (flags, CASE_B_QUOTE)) 
 		{
-			c = literal (c, c);
+			c = literal (c);
 			continue;
 		}
 		if ((c == '\'') && _anyset (flags, CASE_B_APOST)) 
 		{
-			c = literal (c, c);
+			c = literal (c);
 			continue;
 		}
 		c = escaped (c);
@@ -218,15 +204,13 @@ int main (int argc, char const * argv [])
 	argv += optind;
 	if (!argc) 
 	{
-		c = getc (stdin);
-		function (c, flags);
+		function (getc (stdin), flags);
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (vfopen (* argv)) 
 		{
-			c = getc (stdin);
-			function (c, flags);
+			function (getc (stdin), flags);
 		}
 		argv++;
 		argc--;
