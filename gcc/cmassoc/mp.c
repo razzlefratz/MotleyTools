@@ -104,7 +104,7 @@ static void template ()
 		"SEE ALSO",
 		(char const *)(0)
 	};
-	char ** subject = &subjects;
+	char const ** subject = subjects;
 	printf (".TH program 7 package");
 	while (*subject) 
 	{
@@ -116,7 +116,7 @@ static void template ()
 
 /*====================================================================*
  *
- *   void configure (char const * section, char const * project, char const * archve, char const * release) 
+ *   void configure (char const * section, char const * project, char const * archive, char const * release) 
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -124,7 +124,7 @@ static void template ()
  * 
  *--------------------------------------------------------------------*/
 
-static void configure (char const * section, char const * project, char const * archve, char const * release) 
+static void configure (char const * section, char const * project, char const * archive, char const * release) 
 
 {
 	printf ("[%s]\n", section);
@@ -220,20 +220,12 @@ static void function (char const * program, char const * project, char const * p
 				c = keep (c);
 				if (c == '.') 
 				{
-					do 
-					{
-						c = keep (c);
-					}
-					while (c == '.');
+					do { c = keep (c); } while (c == '.');
 					continue;
 				}
 				if (isblank (c)) 
 				{
-					do 
-					{
-						c = getc (stdin);
-					}
-					while (isblank (c));
+					do { c = getc (stdin); } while (isblank (c));
 					putc ('\n', stdout);
 					continue;
 				}
@@ -311,7 +303,7 @@ int main (int argc, char const * argv [])
 			section = optarg;
 			break;
 		case 'm':
-			example (release);
+			template (release);
 			return (0);
 		case 'o':
 			configure (section, project, archive, release);
@@ -323,11 +315,11 @@ int main (int argc, char const * argv [])
 	argc -= optind;
 	argv += optind;
 	project = profilestring (profile, section, "project", project);
-	package = profilestring (profile, section, "package", package);
+	archive = profilestring (profile, section, "archive", archive);
 	release = profilestring (profile, section, "release", release);
 	if ((!argc) || (!*argv)) 
 	{
-		function ("unamed 7", project, package, release, flags);
+		function ("unamed 7", project, archive, release, flags);
 	}
 	while ((argc) && (* argv)) 
 	{
@@ -345,7 +337,7 @@ int main (int argc, char const * argv [])
 					*sp = ' ';
 				}
 			}
-			function (program, project, package, release, flags);
+			function (program, project, archive, release, flags);
 		}
 		argc--;
 		argv++;
