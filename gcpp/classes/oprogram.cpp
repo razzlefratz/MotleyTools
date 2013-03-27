@@ -172,6 +172,10 @@ signed oprogram::context (signed c) const
 	else if (oascii::isalpha (c) || (c == '_')) 
 	{
 		c = oprogram::moniker (c);
+		if ((c == '(') || (c == '[') || (c == '{')) 
+		{
+			std::cout.put (' ');
+		}
 	}
 	else if (oascii::isquote (c)) 
 	{
