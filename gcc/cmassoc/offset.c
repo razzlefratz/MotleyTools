@@ -218,6 +218,19 @@ static unsigned object ()
  *   print css stylesheet on stdout; this ensures that element class 
  *   names agree;
  *   
+ *   table.offset { border: solid 1pt black; border-spacing: 1px; background: white; } 
+ *   th.offset, td.offset { border: solid 1pt silver; text-align: right; width: 080px; }
+ *   th.length, td.length { border: solid 1pt silver; text-align: right; width: 080px; }
+ *   th.symbol, td.symbol { border: solid 1pt silver; text-align: right; width: 300px; }
+ *   th.string, td.string { border: solid 1pt silver; }
+ *   
+ *   table.data { border: solid 1pt black; border-spacing: 1px; background: white; } 
+ *   th.base, td.base { border: solid 1pt silver; text-align: right; width: 080px; }
+ *   th.size, td.size { border: solid 1pt silver; text-align: right; width: 080px; }
+ *   th.name, td.name { border: solid 1pt silver; text-align: right; width: 300px; }
+ *   th.text, td.text { border: solid 1pt silver; }
+ *   div.posted { text-align: center; margin: 10px; }
+ *   
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -230,7 +243,7 @@ static unsigned stylesheet (unsigned margin)
 	indent (margin, "table { table-layout: fixed; background: transparent; border: solid 1pt black; border-collapse: separate; border-spacing: 1px; font: normal 10pt verdana; }");
 	indent (margin, "th { background: inherit; border: solid 1pt silver; padding: 2px 10px; text-align: center; vertical-align: middle; }");
 	indent (margin, "td { background: inherit; border: solid 1pt silver; padding: 2px 10px; text-align: left; vertical-align: top; }");
-	indent (margin, "td.%s { text-align: right; }", style_offset);
+	indent (margin, "td.%s { text-align: right; width: 080px; }", style_offset);
 	indent (margin, "td.%s { text-align: right; }", style_length);
 	indent (margin, "td.%s { text-align: right; }", style_symbol);
 	indent (margin, "td.%s { text-align: left;  }", style_string);
@@ -496,13 +509,13 @@ static void efsu (flag_t flags)
 		{
 			unsigned column = 0;
 			printf ("# %s\n", symbol);
-			while (column < length)
+			while (column < length) 
 			{
 				putc ('0', stdout);
 				putc ('0', stdout);
 				putc (++column%16? ' ': '\n', stdout);
 			}
-			if (column%16)
+			if (column%16) 
 			{
 				putc ('\n', stdout);
 			}

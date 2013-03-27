@@ -36,7 +36,7 @@ double _floor (double x);
 
 double _e ();
 double _exp (double x);
-double frexp (double x, signed *exponent);
+double frexp (double x, signed * exponent);
 double ldexp (double x, signed exponent);
 double _log10 (double x);
 double _log (double x);
@@ -75,7 +75,7 @@ double arctan2 (double y, double x);
  *--------------------------------------------------------------------*/
 
 double fmod (double x, double y);
-double modf (double x, double *intpart);
+double modf (double x, double * intpart);
 
 /*====================================================================*
  *   quotient/remainder macros and functions;

@@ -212,7 +212,19 @@ omptidy & omptidy::tidy ()
 			{
 				std::cout << std::endl << this->mstring;
 			}
+			else if (!std::strcmp (this->mstring, ".SS")) 
+			{
+				std::cout << std::endl << this->mstring;
+			}
 			else if (!std::strcmp (this->mstring, ".TP")) 
+			{
+				std::cout << std::endl << this->mstring;
+			}
+			else if (!std::strcmp (this->mstring, ".HP")) 
+			{
+				std::cout << std::endl << this->mstring;
+			}
+			else if (!std::strcmp (this->mstring, ".IP")) 
 			{
 				std::cout << std::endl << this->mstring;
 			}
@@ -220,7 +232,11 @@ omptidy & omptidy::tidy ()
 			{
 				std::cout << std::endl << this->mstring;
 			}
-			else
+			else if (!std::strcmp (this->mstring, ".P")) 
+			{
+				std::cout << std::endl << this->mstring;
+			}
+			else 
 			{
 				std::cout << this->mstring;
 			}
@@ -256,6 +272,22 @@ omptidy & omptidy::tidy ()
 				}
 				continue;
 			}
+
+#if 1
+
+			if (c == '\\') 
+			{
+				c = ocollect::keep (c);
+				if (c == 'v') 
+				{
+					c = 'f';
+				}
+				c = ocollect::keep (c);
+				continue;
+			}
+
+#endif
+
 			c = ocollect::keep (c);
 		}
 		c = ocollect::keep (c);

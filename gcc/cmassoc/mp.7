@@ -17,9 +17,16 @@ mp - format man page header
 
 .SH DESCRIPTION
 .PP
-Update linux man page header and format man page text.
-The man page header is the first line and starts with command ".TH".
-The remainder of the line consists of the program name, man section and three title strings.
+Format Linux man pages to update header information, simplify text maintenance and correct common mistakes.
+.PP
+The man page filename, taken from the command line, used to generate the program name and man page folder number.
+The title header, starting with "\fB.TH\fR", is updated using information from a user-defined configuration profile.
+An empty line is inserted prior to each ".SH", ".TP" and ".PP" tag. 
+Sentences are move to a new line so that they can be easily edited.
+
+Selected headers are detected and updated or preceded with one blank line;
+The title header line, starting with tarts with command ".TH".
+The remainder of the line consists of the program name, man section and three title strings. 
 The file basename becomes the program name.
 The file extension becomes the man section and should be one digit [0-9].
 The three titles are read from a named profile, the default profile or internal program constants.

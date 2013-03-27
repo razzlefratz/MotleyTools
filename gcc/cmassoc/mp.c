@@ -72,6 +72,71 @@
 
 /*====================================================================*
  *
+ *   void template ()
+ *
+ *   print a template manpage on stdout;
+ *
+ *--------------------------------------------------------------------*/
+
+static void template () 
+
+{
+	char const * subjects [] = 
+	{
+		"NAME",
+		"SYNTAX",
+		"SYNOPSIS",
+		"AVAILABILITY",
+		"DESCRIPTION",
+		"OPTIONS",
+		"EXAMPLES",
+		"NOTES",
+		"MESSAGES",
+		"AUTHOR",
+		"HISTORY",
+		"RESOURCES",
+		"FILES",
+		"BUGS",
+		"CAVEATS",
+		"AUTHOR",
+		"AUTHOR",
+		"CREDITS",
+		"SEE ALSO",
+		(char const *)(0)
+	};
+	char ** subject = &subjects;
+	printf (".TH program 7 package");
+	while (*subject) 
+	{
+		printf ("\n.SH %s\n", *subject++);
+	}
+	return;
+}
+
+
+/*====================================================================*
+ *
+ *   void configure (char const * section, char const * project, char const * archve, char const * release) 
+ *
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ * 
+ *--------------------------------------------------------------------*/
+
+static void configure (char const * section, char const * project, char const * archve, char const * release) 
+
+{
+	printf ("[%s]\n", section);
+	printf ("project=%s\n", project);
+	printf ("archive=%s\n", archive);
+	printf ("release=%s\n", release);
+	return;
+}
+
+
+/*====================================================================*
+ *
  *   void function (char const * program, char const * project, char const * package, char const * release, flag_t flags);
  *
  *
@@ -117,11 +182,27 @@ static void function (char const * program, char const * project, char const * p
 			{
 				putc ('\n', stdout);
 			}
+			else if (!strcmp (symbol, ".SS")) 
+			{
+				putc ('\n', stdout);
+			}
 			else if (!strcmp (symbol, ".TP")) 
 			{
 				putc ('\n', stdout);
 			}
+			else if (!strcmp (symbol, ".HP")) 
+			{
+				putc ('\n', stdout);
+			}
+			else if (!strcmp (symbol, ".IP")) 
+			{
+				putc ('\n', stdout);
+			}
 			else if (!strcmp (symbol, ".PP")) 
+			{
+				putc ('\n', stdout);
+			}
+			else if (!strcmp (symbol, ".P")) 
 			{
 				putc ('\n', stdout);
 			}
@@ -137,18 +218,42 @@ static void function (char const * program, char const * project, char const * p
 			if (c == '.') 
 			{
 				c = keep (c);
-				if (c == '.')
+				if (c == '.') 
 				{
-					do { c = keep (c); } while (c == '.');
+					do 
+					{
+						c = keep (c);
+					}
+					while (c == '.');
 					continue;
 				}
 				if (isblank (c)) 
 				{
-					do { c = getc (stdin); } while (isblank (c));
+					do 
+					{
+						c = getc (stdin);
+					}
+					while (isblank (c));
 					putc ('\n', stdout);
 					continue;
 				}
 				continue;
+			}
+
+#if 1
+
+			if (c == '\\') 
+			{
+				c = keep (c);
+				if (c == 'v') 
+				{
+					c = 'f';
+				}
+				c = keep (c);
+				continue;
+
+#endif
+
 			}
 			c = keep (c);
 		}
@@ -174,9 +279,10 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"op:s:",
-		"man page group editor",
+		"mop:s:",
+		"tidy Linux manpage",
 		PUTOPTV_S_FILTER,
+		"m\tprint example manpage on stdout",
 		"o\tprint default profile on stdout",
 		"p f\tuse profile (s) [" MP_PROFILE "]",
 		"s s\tuse profile section (s) [" MP_SECTION "]",
@@ -188,7 +294,7 @@ int main (int argc, char const * argv [])
 	char const * section = MP_SECTION;
 	char const * program = MP_PROGRAM;
 	char const * project = MP_PROJECT;
-	char const * package = MP_ARCHIVE;
+	char const * archive = MP_ARCHIVE;
 	char const * release = buffer;
 	char * sp;
 	flag_t flags;
@@ -204,11 +310,11 @@ int main (int argc, char const * argv [])
 		case 's':
 			section = optarg;
 			break;
+		case 'm':
+			example (release);
+			return (0);
 		case 'o':
-			printf ("[%s]\n", MP_SECTION);
-			printf ("project=%s\n", MP_PROJECT);
-			printf ("package=%s\n", MP_ARCHIVE);
-			printf ("release=%s\n", buffer);
+			configure (section, project, archive, release);
 			return (0);
 		default:
 			break;
