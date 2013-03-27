@@ -520,6 +520,10 @@ signed octidy::context (signed c) const
 	else if (oascii::isalpha (c) || (c == '_')) 
 	{
 		c = octidy::moniker (c);
+		if ((c == '(') || (c == '[') || (c == '{')) 
+		{
+			std::cout.put (' ');
+		}
 	}
 	else if (c == '/') 
 	{
@@ -601,10 +605,6 @@ signed octidy::moniker (signed c) const
 		c = octidy::keep (c);
 	}
 	while (oascii::isalnum (c) || (c == '_'));
-	if ((c == '(') || (c == '[') || (c == '{')) 
-	{
-		std::cout.put (' ');
-	}
 	return (c);
 }
 
