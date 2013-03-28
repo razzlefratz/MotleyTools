@@ -1,4 +1,4 @@
-.TH np 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH np 7 "March 2013" "motley-tools-1.8.2" "Qualcomm Atheros Powerline Toolkit"
 
 .SH NAME
 np - new paragraph
@@ -9,6 +9,7 @@ np - new paragraph
 .IR file
 .RI [ file ] 
 .RI [ ... ]
+
 .PP
 .BR np
 .RI [ options ]
@@ -16,8 +17,12 @@ np - new paragraph
 .RI [> file ]
 
 .SH DESCRIPTION
+
 .PP
-Replace all lines starting with a given prefix.
+Replace text lines starting with a given prefix.
+
+.PP
+This program can be used with program \fBmp\fR, for example, to peform global changes across multiple man pages.
 
 .SH OPTIONS
 Long options are not supported.
@@ -55,13 +60,17 @@ Use program \fBdetype\fR to recover a prior version.
 
 .SH EXAMPLES
 The following example replaces lines starting with "\fBThe cost of oparations\fR" with "\fBThe overall cost of operations cannot be determined at this time.\fB".
+
 .PP
    # np -p "The cost of operations" -s "The overall cost of operations cannot be determined at this time
 .SH SEE ALSO
 .BR change ( 7 ),
 .BR detype ( 7 ),
 .BR enfix ( 7 ),
+.BR mp ( 7),
 .BR search ( 7 )
+
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>
 
+"
