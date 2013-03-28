@@ -331,7 +331,7 @@ int main (int argc, char const * argv [])
 			template (release);
 			return (0);
 		case 'o':
-			configure (section, project, archive, release);
+			configure (section, project, package, release);
 			return (0);
 		default:
 			break;
@@ -340,11 +340,11 @@ int main (int argc, char const * argv [])
 	argc -= optind;
 	argv += optind;
 	project = profilestring (profile, section, "project", project);
-	archive = profilestring (profile, section, "archive", archive);
+	package = profilestring (profile, section, "package", package);
 	release = profilestring (profile, section, "release", release);
 	if ((!argc) || (!*argv)) 
 	{
-		function ("unamed 7", project, archive, release, flags);
+		function ("unamed 7", project, package, release, flags);
 	}
 	while ((argc) && (* argv)) 
 	{
@@ -362,7 +362,7 @@ int main (int argc, char const * argv [])
 					*sp = ' ';
 				}
 			}
-			function (program, project, archive, release, flags);
+			function (program, project, package, release, flags);
 		}
 		argc--;
 		argv++;
