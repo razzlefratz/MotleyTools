@@ -64,7 +64,7 @@
 #define MP_SECTION "default"
 #define MP_PROGRAM ""
 #define MP_PROJECT PROJECT
-#define MP_ARCHIVE PACKAGE "-" VERSION 
+#define MP_PACKAGE PACKAGE "-" VERSION 
 #define MP_PUBLISH "%b %Y"
 
 #define MP_VERBOSE (1 << 0)
@@ -74,7 +74,11 @@
  *
  *   void template ()
  *
- *   print a template manpage on stdout;
+ *   print a skeleton manpage template on stdout;
+ *
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
@@ -116,7 +120,7 @@ static void template ()
 
 /*====================================================================*
  *
- *   void configure (char const * section, char const * project, char const * archive, char const * release) 
+ *   void configure (char const * section, char const * project, char const * package, char const * release) 
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -124,12 +128,12 @@ static void template ()
  * 
  *--------------------------------------------------------------------*/
 
-static void configure (char const * section, char const * project, char const * archive, char const * release) 
+static void configure (char const * section, char const * project, char const * package, char const * release) 
 
 {
 	printf ("[%s]\n", section);
 	printf ("project=%s\n", project);
-	printf ("archive=%s\n", archive);
+	printf ("package=%s\n", package);
 	printf ("release=%s\n", release);
 	return;
 }
@@ -139,6 +143,27 @@ static void configure (char const * section, char const * project, char const * 
  *
  *   void function (char const * program, char const * project, char const * package, char const * release, flag_t flags);
  *
+ *
+ *   by convention, man pages are placed in /usr/share/man/man(n) 
+ *   where (n) is one of the following topics. Consequently, name
+ *   your manpage as <topic>.<n> where <n> is the folder number;
+ *
+ *   1 Executable Shell Commands
+ *   2 System Calls
+ *   3 Library Calls
+ *   4 Devices, Network Interfaces
+ *   5 File Formats, Conventions
+ *   6 Games, Demonstration Software
+ *   7 Miscellaneous
+ *   8 Maintenance Commands (for root user only)
+ *   9 Kernel/X Windows Information
+ *
+ *
+ *   to format man pages use one of the following Linux commands.
+ *
+ *   nroff -man <manpage> > <text_file>
+ *   groff -man -Tascii <manpage> <ascii_text_file>
+ *   groff -man <manpage> <postscript_file>
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -286,7 +311,7 @@ int main (int argc, char const * argv [])
 	char const * section = MP_SECTION;
 	char const * program = MP_PROGRAM;
 	char const * project = MP_PROJECT;
-	char const * archive = MP_ARCHIVE;
+	char const * package = MP_PACKAGE;
 	char const * release = buffer;
 	char * sp;
 	flag_t flags;

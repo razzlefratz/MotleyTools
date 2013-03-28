@@ -8,7 +8,7 @@
  *   table arranged in ascending order by type; return the table name
  *   if the type is found or argument name if not;
  *
- *   typedef type_t and struct _type_ are defined in list.h; 
+ *   typedefs type_t and struct _type_ are defined in list.h; 
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

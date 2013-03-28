@@ -8,7 +8,7 @@
  *   list arranged in ascending order by code; return the codename if
  *   the code is found or the name argument if not;
  *
- *   typedef code_t and struct _code_ are defined in types.h; 
+ *   typedefs code_t and struct _code_ are defined in types.h; 
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
