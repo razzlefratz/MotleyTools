@@ -59,7 +59,8 @@
 #define OFFSET_EFSU (1 << 3)
 #define OFFSET_BOOK (1 << 4)
 #define OFFSET_FOLD (1 << 5)
-#define OFFSET_ZERO (1 << 6)
+#define OFFSET_HOLE (1 << 6)
+#define OFFSET_ZERO (1 << 7)
 
 #define COLUMN 0
 #define MARGIN 0
@@ -134,9 +135,9 @@ static unsigned object ()
 	char * sp;
 	char * cp;
 	length = 0;
-	while (c == '+')
+	if (c == '+')
 	{
-		c = getc (stdin);
+		do { c = getc (stdin); } while (isblank (c));
 	}
 	while (c == '0') 
 	{
@@ -593,6 +594,25 @@ static void tabs (flag_t flags)
 }
 
 
+/*=*
+ *
+void number (unsigned length);
+ *
+ *   print length with one leading zero;
+ *
+ *-*/
+
+static void number (unsigned length)
+{
+	if (length)
+	{
+		number (length/10);
+		length %= 10;
+	}
+	putc ('0' + length, stdout);
+	return;
+}
+
 /*====================================================================*
  *   
  *   void fold (flag_t flags);
@@ -632,42 +652,46 @@ static void fold (flag_t flags)
 				length += digit;
 				c = getc (stdin);
 			}
-			extent += length;
-			offset += length;
-			if (length) 
+			if (!length) 
 			{
+				if (_anyset (flags, OFFSET_HOLE)) {
+				if (extent) 
+				{
+					number (extent);
+					printf (" RSVD\n", extent);
+					extent = 0;
+				}
+				if (offset)
+				{
+					putc ('\n', stdout);
+				}
+				printf ("%4d", length);
 				while (nobreak (c)) 
 				{
+					putc (c, stdout);
 					c = getc (stdin);
 				}
-				continue;
-			}
-			if (extent) 
-			{
-				printf ("%4d RSVD\n", extent);
-				extent = 0;
-			}
-			if (offset)
-			{
 				putc ('\n', stdout);
+				continue;
+				}
 			}
-			printf ("%4d", length);
+			extent += length;
+			offset += length;
 			while (nobreak (c)) 
 			{
-				putc (c, stdout);
 				c = getc (stdin);
 			}
-			putc ('\n', stdout);
 			continue;
 		}
 		if (extent) 
 		{
-			printf ("%4d RSVD\n", extent);
+			number (extent);
+			printf (" RSVD\n", extent);
 			extent = 0;
 		}
 		if (c == '+')
 		{
-			c = getc (stdin);
+			do { c = getc (stdin); } while (isblank (c));
 			while ((digit = todigit (c)) < radix) 
 			{
 				length *= radix;
@@ -685,7 +709,8 @@ static void fold (flag_t flags)
 	}
 	if (extent) 
 	{
-		printf ("%4d RSVD\n", extent);
+		number (extent);
+		printf (" RSVD\n", extent);
 		extent = 0;
 	}
 	return;
@@ -795,7 +820,7 @@ int main (int argc, char const * argv [])
 	extern unsigned column;
 	static char const * optv [] = 
 	{
-		"bc:ehl:stxz",
+		"bc:ehl:stxz0",
 		PUTOPTV_S_FUNNEL,
 		"print offset table",
 		"b\tprint docbook format",
@@ -805,8 +830,9 @@ int main (int argc, char const * argv [])
 		"l n\tindent level is (n) [" LITERAL (MARGIN) "]",
 		"s\tprint CSS2 stylesheet on stdout",
 		"t\tprint text with TAB seperated columns",
-		"x\tremove unmarked objects",
+		"x\thide unmarked objects",
 		"z\tremove leading zeros",
+		"0\tremove leading zeros",
 		(char const *)(0)
 	};
 	char const * colors [] = 
@@ -848,6 +874,9 @@ int main (int argc, char const * argv [])
 			_setbits (flags, OFFSET_FOLD);
 			break;
 		case 'z':
+			_setbits (flags, OFFSET_HOLE);
+			break;
+		case '0':
 			_setbits (flags, OFFSET_ZERO);
 			break;
 		default:
