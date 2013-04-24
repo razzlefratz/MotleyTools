@@ -58,7 +58,8 @@
 #define OFFSET_TEXT (1 << 2)
 #define OFFSET_EFSU (1 << 3)
 #define OFFSET_BOOK (1 << 4)
-#define OFFSET_ZERO (1 << 5)
+#define OFFSET_HIDE (1 << 5)
+#define OFFSET_ZERO (1 << 6)
 
 #define COLUMN 0
 #define MARGIN 0
@@ -83,6 +84,7 @@ static unsigned lineno = 0;
 static unsigned origin = 0;
 static unsigned offset = 0;
 static unsigned length = 0;
+static unsigned extent = 0;
 static char * symbol = (char *)(0);
 static char * string = (char *)(0);
 static signed c;
@@ -603,33 +605,128 @@ static void tabs (flag_t flags)
 static void zero (flag_t flags) 
 
 {
-	extern signed c;
-	while ((c = getc (stdin)) != EOF) 
+	signed c = getc (stdin);
+	while (c != EOF) 
 	{
-		if (isspace (c)) 
-		{
-			putc (c, stdout);
-			continue;
-		}
-		if (c == '0') 
-		{
-			do 
-			{
-				c = getc (stdin);
-			}
-			while (c == '0');
-			if (!isdigit (c)) 
-			{
-				putc ('0', stdout);
-			}
-		}
-		do 
+		while (isspace (c)) 
 		{
 			putc (c, stdout);
 			c = getc (stdin);
 		}
-		while (nobreak (c));
-		putc (c, stdout);
+		while (c == '0') 
+		{
+			c = getc (stdin);
+			if (!isdigit (c)) 
+			{
+				putc ('0', stdout);
+				break;
+			}
+		}
+		while (nobreak (c)) 
+		{
+			putc (c, stdout);
+			c = getc (stdin);
+		}
+	}
+	return;
+}
+
+
+/*====================================================================*
+ *   
+ *   void hide (flag_t flags);
+ *   
+ *   read object description file and remove leading 0's from length
+ *   specifications to remove color coding;
+ *   
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+static void hide (flag_t flags) 
+
+{
+	extern unsigned extent;
+	extern unsigned length;
+	unsigned radix = 10;
+	unsigned digit = 0;
+	signed c = getc (stdin);
+	extent = 0;
+	length = 0;
+	while (c != EOF) 
+	{
+		length = 0;
+		while (isspace (c)) 
+		{
+			putc (c, stdout);
+			c = getc (stdin);
+		}
+		if (c == '+') 
+		{
+			if (extent) 
+			{
+				printf ("%4d RSVD\n", extent);
+				extent = 0;
+			}
+			c = getc (stdin);
+			while ((digit = todigit (c)) < radix) 
+			{
+				length *= radix;
+				length += digit;
+				c = getc (stdin);
+			}
+			printf ("%4d", length);
+			while (nobreak (c)) 
+			{
+				putc (c, stdout);
+				c = getc (stdin);
+			}
+			if (c != EOF)
+			{
+				putc (c, stdout);
+				c = getc (stdin);
+			}
+			continue;
+		}
+		while ((digit = todigit (c)) < radix) 
+		{
+			length *= radix;
+			length += digit;
+			c = getc (stdin);
+		}
+		if (length)
+		{
+			extent += length;
+			while (nobreak (c)) 
+			{
+				c = getc (stdin);
+			}
+			c = getc (stdin);
+			continue;
+		}
+		if (extent)
+		{
+			printf ("%4d RSVD\n", extent);
+			extent = 0;
+		}
+		printf ("%4d", length);
+		while (nobreak (c)) 
+		{
+			putc (c, stdout);
+			c = getc (stdin);
+		}
+		if (c != EOF)
+		{
+			putc (c, stdout);
+			c = getc (stdin);
+		}
+	}
+	if (extent)
+	{
+		printf ("%4d RSVD\n", extent);
+		extent = 0;
 	}
 	return;
 }
@@ -661,6 +758,10 @@ static void function (char const * colors [], unsigned count, flag_t flags)
 	{
 		efsu (flags);
 	}
+	else if (_anyset (flags, (OFFSET_HIDE))) 
+	{
+		hide (flags);
+	}
 	else if (_anyset (flags, (OFFSET_ZERO))) 
 	{
 		zero (flags);
@@ -691,7 +792,7 @@ int main (int argc, char const * argv [])
 	extern unsigned column;
 	static char const * optv [] = 
 	{
-		"bc:ehl:stz",
+		"bc:ehl:stxz",
 		PUTOPTV_S_FUNNEL,
 		"print offset table",
 		"b\tprint docbook format",
@@ -701,6 +802,7 @@ int main (int argc, char const * argv [])
 		"l n\tindent level is (n) [" LITERAL (MARGIN) "]",
 		"s\tprint CSS2 stylesheet on stdout",
 		"t\tprint text with TAB seperated columns",
+		"x\tremove unmarked objects",
 		"z\tremove leading zeros",
 		(char const *)(0)
 	};
@@ -738,6 +840,9 @@ int main (int argc, char const * argv [])
 			return (0);
 		case 't':
 			_setbits (flags, OFFSET_TEXT);
+			break;
+		case 'x':
+			_setbits (flags, OFFSET_HIDE);
 			break;
 		case 'z':
 			_setbits (flags, OFFSET_ZERO);
