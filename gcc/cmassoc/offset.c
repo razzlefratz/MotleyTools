@@ -58,7 +58,7 @@
 #define OFFSET_TEXT (1 << 2)
 #define OFFSET_EFSU (1 << 3)
 #define OFFSET_BOOK (1 << 4)
-#define OFFSET_HIDE (1 << 5)
+#define OFFSET_FOLD (1 << 5)
 #define OFFSET_ZERO (1 << 6)
 
 #define COLUMN 0
@@ -83,8 +83,8 @@ static unsigned column = COLUMN;
 static unsigned lineno = 0;
 static unsigned origin = 0;
 static unsigned offset = 0;
-static unsigned length = 0;
 static unsigned extent = 0;
+static unsigned length = 0;
 static char * symbol = (char *)(0);
 static char * string = (char *)(0);
 static signed c;
@@ -134,6 +134,10 @@ static unsigned object ()
 	char * sp;
 	char * cp;
 	length = 0;
+	while (c == '+')
+	{
+		c = getc (stdin);
+	}
 	while (c == '0') 
 	{
 		c = getc (stdin);
@@ -591,6 +595,105 @@ static void tabs (flag_t flags)
 
 /*====================================================================*
  *   
+ *   void fold (flag_t flags);
+ *   
+ *   fold unmarked objects into single objects;
+ *   
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+static void fold (flag_t flags) 
+
+{
+	extern unsigned offset;
+	extern unsigned extent;
+	extern unsigned length;
+	unsigned radix = 10;
+	unsigned digit = 0;
+	signed c = getc (stdin);
+	offset = 0;
+	extent = 0;
+	length = 0;
+	while (c != EOF) 
+	{
+		length = 0;
+		while (isspace (c)) 
+		{
+			c = getc (stdin);
+		}
+		if (isdigit (c)) 
+		{
+			while ((digit = todigit (c)) < radix) 
+			{
+				length *= radix;
+				length += digit;
+				c = getc (stdin);
+			}
+			extent += length;
+			offset += length;
+			if (length) 
+			{
+				while (nobreak (c)) 
+				{
+					c = getc (stdin);
+				}
+				continue;
+			}
+			if (extent) 
+			{
+				printf ("%4d RSVD\n", extent);
+				extent = 0;
+			}
+			if (offset)
+			{
+				putc ('\n', stdout);
+			}
+			printf ("%4d", length);
+			while (nobreak (c)) 
+			{
+				putc (c, stdout);
+				c = getc (stdin);
+			}
+			putc ('\n', stdout);
+			continue;
+		}
+		if (extent) 
+		{
+			printf ("%4d RSVD\n", extent);
+			extent = 0;
+		}
+		if (c == '+')
+		{
+			c = getc (stdin);
+			while ((digit = todigit (c)) < radix) 
+			{
+				length *= radix;
+				length += digit;
+				c = getc (stdin);
+			}
+			printf ("%4d", length);
+		}
+		while (nobreak (c)) 
+		{
+			putc (c, stdout);
+			c = getc (stdin);
+		}
+		putc ('\n', stdout);
+	}
+	if (extent) 
+	{
+		printf ("%4d RSVD\n", extent);
+		extent = 0;
+	}
+	return;
+}
+
+
+/*====================================================================*
+ *   
  *   void zero (flag_t flags);
  *   
  *   read object description file and remove leading 0's from length
@@ -633,106 +736,6 @@ static void zero (flag_t flags)
 
 
 /*====================================================================*
- *   
- *   void hide (flag_t flags);
- *   
- *   read object description file and remove leading 0's from length
- *   specifications to remove color coding;
- *   
- *.  Motley Tools by Charles Maier;
- *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
- *;  Licensed under the Internet Software Consortium License;
- *
- *--------------------------------------------------------------------*/
-
-static void hide (flag_t flags) 
-
-{
-	extern unsigned extent;
-	extern unsigned length;
-	unsigned radix = 10;
-	unsigned digit = 0;
-	signed c = getc (stdin);
-	extent = 0;
-	length = 0;
-	while (c != EOF) 
-	{
-		length = 0;
-		while (isspace (c)) 
-		{
-			putc (c, stdout);
-			c = getc (stdin);
-		}
-		if (c == '+') 
-		{
-			if (extent) 
-			{
-				printf ("%4d RSVD\n", extent);
-				extent = 0;
-			}
-			c = getc (stdin);
-			while ((digit = todigit (c)) < radix) 
-			{
-				length *= radix;
-				length += digit;
-				c = getc (stdin);
-			}
-			printf ("%4d", length);
-			while (nobreak (c)) 
-			{
-				putc (c, stdout);
-				c = getc (stdin);
-			}
-			if (c != EOF)
-			{
-				putc (c, stdout);
-				c = getc (stdin);
-			}
-			continue;
-		}
-		while ((digit = todigit (c)) < radix) 
-		{
-			length *= radix;
-			length += digit;
-			c = getc (stdin);
-		}
-		if (length)
-		{
-			extent += length;
-			while (nobreak (c)) 
-			{
-				c = getc (stdin);
-			}
-			c = getc (stdin);
-			continue;
-		}
-		if (extent)
-		{
-			printf ("%4d RSVD\n", extent);
-			extent = 0;
-		}
-		printf ("%4d", length);
-		while (nobreak (c)) 
-		{
-			putc (c, stdout);
-			c = getc (stdin);
-		}
-		if (c != EOF)
-		{
-			putc (c, stdout);
-			c = getc (stdin);
-		}
-	}
-	if (extent)
-	{
-		printf ("%4d RSVD\n", extent);
-		extent = 0;
-	}
-	return;
-}
-
-
-/*====================================================================*
  *
  *   void function (char const * colors [], unsigned count, flag_t flags);
  *
@@ -758,9 +761,9 @@ static void function (char const * colors [], unsigned count, flag_t flags)
 	{
 		efsu (flags);
 	}
-	else if (_anyset (flags, (OFFSET_HIDE))) 
+	else if (_anyset (flags, (OFFSET_FOLD))) 
 	{
-		hide (flags);
+		fold (flags);
 	}
 	else if (_anyset (flags, (OFFSET_ZERO))) 
 	{
@@ -842,7 +845,7 @@ int main (int argc, char const * argv [])
 			_setbits (flags, OFFSET_TEXT);
 			break;
 		case 'x':
-			_setbits (flags, OFFSET_HIDE);
+			_setbits (flags, OFFSET_FOLD);
 			break;
 		case 'z':
 			_setbits (flags, OFFSET_ZERO);
