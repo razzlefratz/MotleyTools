@@ -84,7 +84,6 @@ static unsigned column = COLUMN;
 static unsigned lineno = 0;
 static unsigned origin = 0;
 static unsigned offset = 0;
-static unsigned extent = 0;
 static unsigned length = 0;
 static char * symbol = (char *)(0);
 static char * string = (char *)(0);
@@ -124,26 +123,29 @@ static signed c;
 static unsigned object () 
 
 {
+	extern signed c;
 	extern unsigned lineno;
 	extern unsigned length;
 	extern char * symbol;
 	extern char * string;
-	extern signed c;
-	unsigned digit = 0;
 	unsigned count = 0;
 	char * sp;
 	char * cp;
 	length = 0;
-	if (c == '+')
+	if (c == '+') 
 	{
-		do { c = getc (stdin); } while (isblank (c));
+		do 
+		{
+			c = getc (stdin);
+		}
+		while (isblank (c));
 	}
 	while (c == '0') 
 	{
 		c = getc (stdin);
 		count++;
 	}
-	while (isdigit(c)) 
+	while (isdigit (c)) 
 	{
 		length *= 10;
 		length += c - '0';
@@ -588,24 +590,25 @@ static void tabs (flag_t flags)
 }
 
 
-/*=*
+/*====================================================================*
  *
-void number (unsigned length);
+ *   void number (unsigned length);
  *
  *   print length with one leading zero;
  *
- *-*/
+ *--------------------------------------------------------------------*/
 
-static void number (unsigned length)
+static void number (unsigned length) 
+
 {
-	if (length)
+	if (length) 
 	{
 		number (length/10);
-		length %= 10;
 	}
-	putc ('0' + length, stdout);
+	putc ('0' + length%10, stdout);
 	return;
 }
+
 
 /*====================================================================*
  *   
@@ -622,69 +625,28 @@ static void number (unsigned length)
 static void fold (flag_t flags) 
 
 {
-	extern unsigned offset;
-	extern unsigned extent;
-	extern unsigned length;
-	unsigned digit = 0;
+	unsigned offset = 0;
+	unsigned extent = 0;
+	unsigned length = 0;
 	signed c = getc (stdin);
-	offset = 0;
-	extent = 0;
-	length = 0;
 	while (c != EOF) 
 	{
-		length = 0;
 		while (isspace (c)) 
 		{
 			c = getc (stdin);
 		}
-		if (isdigit (c)) 
+		if (c == '+') 
 		{
-			while (isdigit (c)) 
+			if (extent) 
 			{
-				length *= 10;
-				length += c = '0';
-				c = getc (stdin);
+				printf ("0%d RSVD\n", extent);
+				extent = 0;
 			}
-			if (!length) 
-			{
-				if (_anyset (flags, OFFSET_HOLE)) {
-				if (extent) 
-				{
-					number (extent);
-					printf (" RSVD\n", extent);
-					extent = 0;
-				}
-				if (offset)
-				{
-					putc ('\n', stdout);
-				}
-				printf ("%4d", length);
-				while (nobreak (c)) 
-				{
-					putc (c, stdout);
-					c = getc (stdin);
-				}
-				putc ('\n', stdout);
-				continue;
-				}
-			}
-			extent += length;
-			offset += length;
-			while (nobreak (c)) 
+			do 
 			{
 				c = getc (stdin);
 			}
-			continue;
-		}
-		if (extent) 
-		{
-			number (extent);
-			printf (" RSVD\n", extent);
-			extent = 0;
-		}
-		if (c == '+')
-		{
-			do { c = getc (stdin); } while (isblank (c));
+			while (isblank (c));
 			while (isdigit (c)) 
 			{
 				length *= 10;
@@ -692,6 +654,55 @@ static void fold (flag_t flags)
 				c = getc (stdin);
 			}
 			printf ("%4d", length);
+			while (nobreak (c)) 
+			{
+				putc (c, stdout);
+				c = getc (stdin);
+			}
+			putc ('\n', stdout);
+			offset += length;
+			length = 0;
+			continue;
+		}
+		if (isdigit (c)) 
+		{
+			while (isdigit (c)) 
+			{
+				length *= 10;
+				length += c - '0';
+				c = getc (stdin);
+			}
+			if (!length) 
+			{
+				if (_anyset (flags, OFFSET_HOLE)) 
+				{
+					if (extent) 
+					{
+						printf ("0%d RSVD\n", extent);
+						extent = 0;
+					}
+					if (offset) 
+					{
+						putc ('\n', stdout);
+					}
+					printf ("%4d", length);
+					while (nobreak (c)) 
+					{
+						putc (c, stdout);
+						c = getc (stdin);
+					}
+					putc ('\n', stdout);
+					continue;
+				}
+			}
+			while (nobreak (c)) 
+			{
+				c = getc (stdin);
+			}
+			extent += length;
+			offset += length;
+			length = 0;
+			continue;
 		}
 		while (nobreak (c)) 
 		{
@@ -702,8 +713,7 @@ static void fold (flag_t flags)
 	}
 	if (extent) 
 	{
-		number (extent);
-		printf (" RSVD\n", extent);
+		printf ("0%d RSVD\n", extent);
 		extent = 0;
 	}
 	return;
@@ -813,7 +823,7 @@ int main (int argc, char const * argv [])
 	extern unsigned column;
 	static char const * optv [] = 
 	{
-		"bc:ehl:stxz0",
+		"bc:ehl:rstxz",
 		PUTOPTV_S_FUNNEL,
 		"print offset table",
 		"b\tprint docbook format",
@@ -821,11 +831,11 @@ int main (int argc, char const * argv [])
 		"e\tprint efsu format",
 		"h\tprint HTML table on stdout",
 		"l n\tindent level is (n) [" LITERAL (MARGIN) "]",
+		"r\treset at headings",
 		"s\tprint CSS2 stylesheet on stdout",
 		"t\tprint text with TAB seperated columns",
 		"x\thide unmarked objects",
 		"z\tremove leading zeros",
-		"0\tremove leading zeros",
 		(char const *)(0)
 	};
 	char const * colors [] = 
@@ -857,6 +867,9 @@ int main (int argc, char const * argv [])
 		case 'l':
 			margin = (unsigned) (uintspec (optarg, 0, 16));
 			break;
+		case 'r':
+			_setbits (flags, OFFSET_HOLE);
+			break;
 		case 's':
 			stylesheet (margin);
 			return (0);
@@ -867,9 +880,6 @@ int main (int argc, char const * argv [])
 			_setbits (flags, OFFSET_FOLD);
 			break;
 		case 'z':
-			_setbits (flags, OFFSET_HOLE);
-			break;
-		case '0':
 			_setbits (flags, OFFSET_ZERO);
 			break;
 		default:
