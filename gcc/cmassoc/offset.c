@@ -591,26 +591,6 @@ static void tabs (flag_t flags)
 
 
 /*====================================================================*
- *
- *   void number (unsigned length);
- *
- *   print length with one leading zero;
- *
- *--------------------------------------------------------------------*/
-
-static void number (unsigned length) 
-
-{
-	if (length) 
-	{
-		number (length/10);
-	}
-	putc ('0' + length%10, stdout);
-	return;
-}
-
-
-/*====================================================================*
  *   
  *   void fold (flag_t flags);
  *   
@@ -709,7 +689,6 @@ static void fold (flag_t flags)
 			putc (c, stdout);
 			c = getc (stdin);
 		}
-		putc ('\n', stdout);
 	}
 	if (extent) 
 	{
