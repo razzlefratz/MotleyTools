@@ -199,6 +199,10 @@ static void function (char const * filename, void output (int, char const *, off
 			}
 			continue;
 		}
+		if (c == '+')
+		{
+			do { c = getc (stdin); } while (isblank (c));
+		}
 		length = 0;
 		while (isdigit (c)) 
 		{

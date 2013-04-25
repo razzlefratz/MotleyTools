@@ -129,7 +129,6 @@ static unsigned object ()
 	extern char * symbol;
 	extern char * string;
 	extern signed c;
-	unsigned radix = 10;
 	unsigned digit = 0;
 	unsigned count = 0;
 	char * sp;
@@ -144,15 +143,10 @@ static unsigned object ()
 		c = getc (stdin);
 		count++;
 	}
-	if ((c == 'x') || (c == 'X')) 
+	while (isdigit(c)) 
 	{
-		c = getc (stdin);
-		radix = 16;
-	}
-	while ((digit = todigit (c)) < radix) 
-	{
-		length *= radix;
-		length += digit;
+		length *= 10;
+		length += c - '0';
 		c = getc (stdin);
 	}
 	while (isblank (c)) 
@@ -631,7 +625,6 @@ static void fold (flag_t flags)
 	extern unsigned offset;
 	extern unsigned extent;
 	extern unsigned length;
-	unsigned radix = 10;
 	unsigned digit = 0;
 	signed c = getc (stdin);
 	offset = 0;
@@ -646,10 +639,10 @@ static void fold (flag_t flags)
 		}
 		if (isdigit (c)) 
 		{
-			while ((digit = todigit (c)) < radix) 
+			while (isdigit (c)) 
 			{
-				length *= radix;
-				length += digit;
+				length *= 10;
+				length += c = '0';
 				c = getc (stdin);
 			}
 			if (!length) 
@@ -692,10 +685,10 @@ static void fold (flag_t flags)
 		if (c == '+')
 		{
 			do { c = getc (stdin); } while (isblank (c));
-			while ((digit = todigit (c)) < radix) 
+			while (isdigit (c)) 
 			{
-				length *= radix;
-				length += digit;
+				length *= 10;
+				length += c - '0';
 				c = getc (stdin);
 			}
 			printf ("%4d", length);
