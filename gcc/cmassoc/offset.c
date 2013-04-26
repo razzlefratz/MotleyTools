@@ -132,7 +132,7 @@ static unsigned object ()
 	char * sp;
 	char * cp;
 	length = 0;
-	if (c == '+') 
+	if ((c == '+') || (c == '-')) 
 	{
 		do 
 		{
@@ -594,7 +594,7 @@ static void tabs (flag_t flags)
  *   
  *   void fold (flag_t flags);
  *   
- *   fold unmarked objects into single objects;
+ *   fold unmarked objects into single reserved objects;
  *   
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -615,13 +615,8 @@ static void fold (flag_t flags)
 		{
 			c = getc (stdin);
 		}
-		if (c == '+') 
+		if ((c == '+') || (c == '-'))
 		{
-			if (extent) 
-			{
-				printf ("0%d RSVD\n", extent);
-				extent = 0;
-			}
 			do 
 			{
 				c = getc (stdin);
@@ -632,6 +627,11 @@ static void fold (flag_t flags)
 				length *= 10;
 				length += c - '0';
 				c = getc (stdin);
+			}
+			if (extent) 
+			{
+				printf ("0%d RSVD\n", extent);
+				extent = 0;
 			}
 			printf ("%4d", length);
 			while (nobreak (c)) 
@@ -722,6 +722,10 @@ static void zero (flag_t flags)
 		{
 			putc (c, stdout);
 			c = getc (stdin);
+		}
+		if ((c == '+') || (c == '-'))
+		{
+			do { c = getc (stdin); } while (isblank (c));
 		}
 		while (c == '0') 
 		{
