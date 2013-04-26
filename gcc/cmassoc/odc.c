@@ -58,25 +58,26 @@
 #define ODC_VERBOSE (1 << 0)
 #define ODC_SILENCE (1 << 1)
 
-/*=*
+/*====================================================================*
  *
-void report (char const * filename [], off_t offset []);
+ *   void report (char const * filename [], off_t offset []);
  *
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
  *
- *-*/
+ *--------------------------------------------------------------------*/
 
-static void report (char const * filename [], off_t offset [])
+static void report (char const * filename [], off_t offset []) 
+
 {
 	off_t extent [2];
 	unsigned file;
 	for (file = 0; file < SIZEOF (extent); file++) 
 	{
 		struct stat statinfo;
-		if (stat (filename [file], &statinfo) == -1)
+		if (stat (filename [file], &statinfo) == -1) 
 		{
 			error (1, errno, FILE_CANTSIZE, filename [file]);
 		}
@@ -100,6 +101,7 @@ static void report (char const * filename [], off_t offset [])
 	}
 	return;
 }
+
 
 /*====================================================================*
  *   
@@ -158,9 +160,13 @@ void function (char const * filename [], flag_t flags)
 			}
 			continue;
 		}
-		if (c == '+')
+		if ((c == '+') || (c == '-')) 
 		{
-			do { c = getc (stdin); } while (isblank (c));
+			do 
+			{
+				c = getc (stdin);
+			}
+			while (isblank (c));
 		}
 		length = 0;
 		while (isdigit (c)) 
@@ -294,6 +300,7 @@ void function (char const * filename [], flag_t flags)
 	close (fd [1]);
 	return;
 }
+
 
 /*====================================================================*
  *   

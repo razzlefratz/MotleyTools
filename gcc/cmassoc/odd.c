@@ -72,7 +72,7 @@ static void report (char const * filename, off_t offset)
 
 {
 	struct stat statinfo;
-	if (stat (filename, &statinfo) == -1)
+	if (stat (filename, &statinfo) == -1) 
 	{
 		error (1, errno, "can't stat %s", filename);
 	}
@@ -125,6 +125,7 @@ static void dump (int fd, char const * symbol, off_t offset, byte const * buffer
 	putc ('\n', stdout);
 	return;
 }
+
 
 /*====================================================================*
  *
@@ -199,9 +200,13 @@ static void function (char const * filename, void output (int, char const *, off
 			}
 			continue;
 		}
-		if (c == '+')
+		if ((c == '+') || (c == '-')) 
 		{
-			do { c = getc (stdin); } while (isblank (c));
+			do 
+			{
+				c = getc (stdin);
+			}
+			while (isblank (c));
 		}
 		length = 0;
 		while (isdigit (c)) 

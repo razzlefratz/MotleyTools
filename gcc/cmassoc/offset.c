@@ -132,7 +132,7 @@ static unsigned object ()
 	char * sp;
 	char * cp;
 	length = 0;
-	if (c == '+') 
+	if ((c == '+') || (c == '-'))
 	{
 		do 
 		{
@@ -615,7 +615,7 @@ static void fold (flag_t flags)
 		{
 			c = getc (stdin);
 		}
-		if (c == '+') 
+		if ((c == '+') || (c == '-'))
 		{
 			if (extent) 
 			{
@@ -722,6 +722,10 @@ static void zero (flag_t flags)
 		{
 			putc (c, stdout);
 			c = getc (stdin);
+		}
+		if ((c == '+') || (c == '-'))
+		{
+			do { putc (c, stdout); c = getc (stdin); } while (isblank (c));
 		}
 		while (c == '0') 
 		{

@@ -93,7 +93,14 @@ static void function (file const * file, char const * schema, off_t extent, flag
 			}
 			continue;
 		}
-		if (c == '+') { do { c = getc (stdin); } while (isblank (c)); }
+		if ((c == '+') || (c == '-')) 
+		{
+			do 
+			{
+				c = getc (stdin);
+			}
+			while (isblank (c));
+		}
 		length = 0;
 		while (isdigit (c)) 
 		{
