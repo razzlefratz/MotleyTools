@@ -132,11 +132,7 @@ static unsigned object ()
 	char * sp;
 	char * cp;
 	length = 0;
-<<<<<<< HEAD
 	if ((c == '+') || (c == '-'))
-=======
-	if ((c == '+') || (c == '-')) 
->>>>>>> f0028dc324a31e73023ed8ba52ad6b31a3e9cf0c
 	{
 		do 
 		{
