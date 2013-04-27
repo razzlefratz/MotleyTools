@@ -246,7 +246,11 @@ static unsigned stylesheet (unsigned margin)
 	indent (margin, "table { table-layout: fixed; background: transparent; border: solid 1pt black; border-collapse: separate; border-spacing: 1px; font: normal 10pt verdana; }");
 	indent (margin, "th { background: inherit; border: solid 1pt silver; padding: 2px 10px; text-align: center; vertical-align: middle; }");
 	indent (margin, "td { background: inherit; border: solid 1pt silver; padding: 2px 10px; text-align: left; vertical-align: top; }");
-	indent (margin, "td.%s { text-align: right; width: 080px; }", style_offset);
+	indent (margin, "th.%s { width: 080px; }", style_offset);
+	indent (margin, "th.%s { width: 080px; }", style_length);
+	indent (margin, "th.%s { width: 300px; }", style_symbol);
+	indent (margin, "th.%s { }", style_string);
+	indent (margin, "td.%s { text-align: right; }", style_offset);
 	indent (margin, "td.%s { text-align: right; }", style_length);
 	indent (margin, "td.%s { text-align: right; }", style_symbol);
 	indent (margin, "td.%s { text-align: left;  }", style_string);
@@ -257,7 +261,7 @@ static unsigned stylesheet (unsigned margin)
 
 /*====================================================================*
  *
- *   void posted ();
+ *   unsigned posted (unsigned margin);
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -265,7 +269,7 @@ static unsigned stylesheet (unsigned margin)
  *
  *--------------------------------------------------------------------*/
 
-static void posted () 
+static unsigned posted (unsigned margin) 
 
 {
 	time_t now = time (&now);
@@ -274,7 +278,7 @@ static void posted ()
 	indent (margin++, "<div class='%s'>", style_posted);
 	indent (margin, "Posted %s on %s by %s", datetime, hostname (), username (getuid ()));
 	indent (margin--, "</div>");
-	return;
+	return (margin);
 }
 
 
@@ -302,6 +306,18 @@ static void html (char const * colors [], unsigned count, flag_t flags)
 	lineno = 1;
 	offset = 0;
 	length = 0;
+	if (_anyset (flags, OFFSET_PAGE))
+	{
+		indent (margin++, "<html>");
+		indent (margin++, "<title>");
+		indent (margin--, "</title>");
+		indent (margin++, "<head>");
+		indent (margin++, "<style>");
+		margin = stylesheet (margin);
+		indent (margin--, "</style>");
+		indent (margin--, "</head>");
+		indent (margin++, "<body>");
+	}
 	while ((c = getc (stdin)) != EOF) 
 	{
 		unsigned index;
@@ -373,10 +389,14 @@ static void html (char const * colors [], unsigned count, flag_t flags)
 	{
 		indent (margin--, "</table>");
 	}
-	posted ();
+	posted (margin);
+	if (_anyset (flags, OFFSET_PAGE))
+	{
+		indent (margin--, "</body>");
+		indent (margin--, "</html>");
+	}
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -806,7 +826,7 @@ int main (int argc, char const * argv [])
 	extern unsigned column;
 	static char const * optv [] = 
 	{
-		"bc:ehl:rstxz",
+		"bc:ehl:prstxz",
 		PUTOPTV_S_FUNNEL,
 		"print offset table",
 		"b\tprint docbook format",
@@ -814,6 +834,7 @@ int main (int argc, char const * argv [])
 		"e\tprint efsu format",
 		"h\tprint HTML table on stdout",
 		"l n\tindent level is (n) [" LITERAL (MARGIN) "]",
+		"p\tprint HTML page on stdout",
 		"r\treset at headings",
 		"s\tprint CSS2 stylesheet on stdout",
 		"t\tprint text with TAB seperated columns",
@@ -846,6 +867,9 @@ int main (int argc, char const * argv [])
 			break;
 		case 'h':
 			_setbits (flags, OFFSET_HTML);
+			break;
+		case 'p':
+			_setbits (flags, OFFSET_PAGE);
 			break;
 		case 'l':
 			margin = (unsigned) (uintspec (optarg, 0, 16));
