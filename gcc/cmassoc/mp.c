@@ -314,7 +314,7 @@ int main (int argc, char const * argv [])
 	char const * package = MP_PACKAGE;
 	char const * release = buffer;
 	char * sp;
-	flag_t flags;
+	flag_t flags = (flag_t)(0);
 	signed c;
 	strftime (buffer, sizeof (buffer), MP_PUBLISH, localtime (&now));
 	while ((c = getoptv (argc, argv, optv)) != -1) 
