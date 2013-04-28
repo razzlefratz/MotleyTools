@@ -260,32 +260,11 @@ static unsigned stylesheet (unsigned margin)
 
 
 /*====================================================================*
- *
- *   unsigned posted (unsigned margin);
- *
- *.  Motley Tools by Charles Maier;
- *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
- *;  Licensed under the Internet Software Consortium License;
- *
- *--------------------------------------------------------------------*/
-
-static unsigned posted (unsigned margin) 
-
-{
-	time_t now = time (&now);
-	static char datetime [LOGTIME_LEN];
-	strftime (datetime, sizeof (datetime), LOGTIME, localtime (&now));
-	indent (margin++, "<div class='%s'>", style_posted);
-	indent (margin, "Posted %s on %s by %s", datetime, hostname (), username (getuid ()));
-	indent (margin--, "</div>");
-	return (margin);
-}
-
-
-/*====================================================================*
  *   
  *   void html (char const * colors [], unsigned count, flag_t flags);
- *   
+ *
+ *   print object definitions in HTML format with headings and color
+ *   coded backgrounds;
  *   
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -296,6 +275,8 @@ static unsigned posted (unsigned margin)
 static void html (char const * colors [], unsigned count, flag_t flags) 
 
 {
+	time_t now = time (&now);
+	static char datetime [LOGTIME_LEN];
 	extern unsigned lineno;
 	extern unsigned margin;
 	extern unsigned offset;
@@ -303,6 +284,7 @@ static void html (char const * colors [], unsigned count, flag_t flags)
 	extern char * symbol;
 	extern char * string;
 	extern signed c;
+	strftime (datetime, sizeof (datetime), LOGTIME, localtime (&now));
 	lineno = 1;
 	offset = 0;
 	length = 0;
@@ -317,6 +299,7 @@ static void html (char const * colors [], unsigned count, flag_t flags)
 		indent (margin--, "</style>");
 		indent (margin--, "</head>");
 		indent (margin++, "<body>");
+		indent (0, "<!-- BEGIN CONTENT -->");
 	}
 	while ((c = getc (stdin)) != EOF) 
 	{
@@ -389,7 +372,10 @@ static void html (char const * colors [], unsigned count, flag_t flags)
 	{
 		indent (margin--, "</table>");
 	}
-	posted (margin);
+	indent (margin++, "<div class='%s'>", style_posted);
+	indent (margin, "Posted %s on %s by %s", datetime, hostname (), username (getuid ()));
+	indent (margin--, "</div>");
+	indent (0, "<!-- END CONTENT -->");
 	if (_anyset (flags, OFFSET_PAGE))
 	{
 		indent (margin--, "</body>");
