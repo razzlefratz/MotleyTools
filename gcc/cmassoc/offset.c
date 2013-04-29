@@ -621,7 +621,7 @@ static void fold (flag_t flags)
 		{
 			c = getc (stdin);
 		}
-		if ((c == '+') || (c == '-'))
+		if (c == '+') 
 		{
 			do 
 			{
