@@ -891,7 +891,7 @@ int main (int argc, char const * argv [])
 	{
 		if (efreopen (* argv, "rb", stdin)) 
 		{
-			function (colors, sizeof (colors) / sizeof (const char *), flags);
+			function (colors, SIZEOF (colors), flags);
 		}
 		argc--;
 		argv++;
