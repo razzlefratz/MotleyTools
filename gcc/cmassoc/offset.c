@@ -350,6 +350,28 @@ static void html (char const * colors [], unsigned count, flag_t flags)
 		}
 		else 
 		{
+			if (!offset)
+			{
+				indent (margin++, "<h2 class='%s'>", style);
+				indent (margin, "No Title");
+				indent (margin--, "</h2>");
+				indent (margin++, "<table>");
+				indent (margin++, "<table class='%s'>", style);
+				indent (margin++, "<tr class='%s'>", style);
+				indent (margin++, "<th class='%s'>", style_offset);
+				indent (margin, "%s", label_offset);
+				indent (margin--, "</th>");
+				indent (margin++, "<th class='%s'>", style_length);
+				indent (margin, "%s", label_length);
+				indent (margin--, "</th>");
+				indent (margin++, "<th class='%s'>", style_symbol);
+				indent (margin, "%s", label_symbol);
+				indent (margin--, "</th>");
+				indent (margin++, "<th class='%s'>", style_string);
+				indent (margin, "%s", label_string);
+				indent (margin--, "</th>");
+				indent (margin--, "</tr>");
+			}
 			indent (margin++, "<tr class='%s'>", style);
 			indent (margin++, "<td class='%s' style='background: %s;'>", style_offset, colors [index]);
 			indent (margin, "%08X", offset);

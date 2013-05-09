@@ -23,18 +23,18 @@ VFOPEN=vfopen.o ${MAKEPATH}
 
 TOOLS=afm align argv argvesc b64 bang bin2hex blank calend call envp ether case catalog cblock cbrief cdep cedit change chr cinc cmerge cpp2c crlf csv2html ctar defix delta detab detag dls dmp2hex dump ds efru efsu enbrace enfix englyph entab errno fbar ff filesize footer fp go grab graph grope hbrief header hex hex2bin hexcmp hexdmp html ifd import iplist ipsort key l2p lp2824 lam log loop matrix mmf mp mrg munge rex nics np ocomp odc odd ode odump odx oedit offset order pad paginate preamble purge radix relate remove sbar sbrief search shakey shakeys sign single sizeof space srt stamp sv sweep symlinks timer typelist tls trim try ts unique vl vu wl xde xml 
 
-PAGES=toolkit.7 afm.7 align.7 argv.7 b64.7 bang.7 bin2hex.7 blank.7 calend.7 call.7 case.7 catalog.7 cblock.7 cbrief.7 cdep.7 cedit.7 change.7 chr.7 cinc.7 cmerge.7 crlf.7 csv2html.7 ctar.7 defix.7 delta.7 detab.7 detag.7 dls.7 dmp2hex.7 ds.7 efsu.7 enbrace.7 enfix.7 englyph.7 entab.7 envp.7 fbar.7 ff.7 filesize.7 footer.7 fp.7 grab.7 graph.7 grope.7 hbrief.7 header.7 hex.7 hex2bin.7 hexcmp.7 hexdmp.7 html.7 ifd.7 import.7 key.7 l2p.7 lam.7 log.7 loop.7 matrix.7 mp.7 mrg.7 munge.7 nics.7 np.7 ocomp.7 odc.7 odd.7 ode.7 odump.7 odx.7 oedit.7 offset.7 order.7 preamble.7 relate.7 remove.7 rex.7 sbrief.7 search.7 shakey.7 shakeys.7 single.7 sizeof.7 space.7 srt.7 stamp.7 sweep.7 sv.7 symlinks.7 timer.7 typelist.7 tls.7 trim.7 try.7 unique.7 vl.7 vu.7 wl.7 xde.7 xml.7
+PAGES=toolkit.1 afm.1 align.1 argv.1 b64.1 bang.1 bin2hex.1 blank.1 calend.1 call.1 case.1 catalog.1 cblock.1 cbrief.1 cdep.1 cedit.1 change.1 chr.1 cinc.1 cmerge.1 crlf.1 csv2html.1 ctar.1 defix.1 delta.1 detab.1 detag.1 dls.1 dmp2hex.1 ds.1 efsu.1 enbrace.1 enfix.1 englyph.1 entab.1 envp.1 fbar.1 ff.1 filesize.1 footer.1 fp.1 grab.1 graph.1 grope.1 hbrief.1 header.1 hex.1 hex2bin.1 hexcmp.1 hexdmp.1 html.1 ifd.1 import.1 key.1 l2p.1 lam.1 log.1 loop.1 matrix.1 mp.1 mrg.1 munge.1 nics.1 np.1 ocomp.1 odc.1 odd.1 ode.1 odump.1 odx.1 oedit.1 offset.1 order.1 preamble.1 relate.1 remove.1 rex.1 sbrief.1 search.1 shakey.1 shakeys.1 single.1 sizeof.1 space.1 srt.1 stamp.1 sweep.1 sv.1 symlinks.1 timer.1 typelist.1 tls.1 trim.1 try.1 unique.1 vl.1 vu.1 wl.1 xde.1 xml.1
 
 ifeq (${OS},linux)
 TOOLS+=localhost quiet runjobs shout syslog what whom
-PAGES+=localhost.7 quiet.7 runjobs.7 shout.7 what.7 whom.7
+PAGES+=localhost.1 quiet.1 runjobs.1 shout.1 what.1 whom.1
 endif
 
 # TOOLS+=long mvpkg octal pkgdep pkgopt qc rexp rmpkg chkbld chperm checkmode dif ff-bld ff-elf setmode undash 
-# PAGES+=long.7 mvpkg.7 octal.7 pkgdep.7 pkgopt.7 qc.7 rexp.7 rmpkg.7 chkbld.7 chperm.7 checkmode.7 dif.7 ff-bld.7 ff-elf.7 setmode.7 undash.7 
+# PAGES+=long.1 mvpkg.1 octal.1 pkgdep.1 pkgopt.1 qc.1 rexp.1 rmpkg.1 chkbld.1 chperm.1 checkmode.1 dif.1 ff-bld.1 ff-elf.1 setmode.1 undash.1 
 
 # TOOLS+=mycat mytr mywc 
-# PAGES+=tr.7 
+# PAGES+=tr.1 
 
 OTHER=auth cat checkmode chkbld chperm clear define dif dump ff-bld ff-elf localhostlong main mvpkg octal pkg pkgdep pkgopt qc quiet rexp rmpkg runjobs setmode shout tr undash wc what whom
 

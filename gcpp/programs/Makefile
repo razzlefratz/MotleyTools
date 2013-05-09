@@ -17,7 +17,7 @@ TOOLS=call2 cblock cdep2 cfm cmpp csstidy ctidy ctokens dnstidy javatidy mmf2 or
 # TOOLS+=syslog2 
 VPATH=../classes:../linux
 TRASH=*~ *.[0-9][0-9][0-9] t t.* *.exe *.o *.html *.css
-PAGES=cfm.7 ctidy.7 javatidy.7 csstidy.7 htmltidy.7 mptidy.7 phptidy.7
+PAGES=cfm.1 ctidy.1 javatidy.1 csstidy.1 htmltidy.1 mptidy.1 phptidy.1
 
 # ====================================================================
 # targets;
@@ -34,7 +34,7 @@ library:
 fresh: clean compile
 clean:
 	rm -f ${TOOLS} ${TRASH}
-	chmod 0644 *.cpp *.txt *.7
+	chmod 0644 *.cpp *.txt *.1
 	chmod 0755 Makefile *.sh 
 check:
 	${SH} programs.sh
