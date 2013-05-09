@@ -1,4 +1,4 @@
-.TH cfm 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH cfm 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 cfm - format C language source code
@@ -9,6 +9,7 @@ cfm - format C language source code
 .IR file
 .RI [ file ] 
 .RI [ ... ]
+
 .PP
 .BR cfm
 .RI [ options ]
@@ -16,6 +17,7 @@ cfm - format C language source code
 .RI [> stdout ]
 
 .SH DESCRIPTION
+
 .PP
 Format C Language source code files and expand or update selected comment text.
 
@@ -159,23 +161,28 @@ The derault profile can be printed using option \fB-o\fR and modified.
 .SH EXAMPLES
 The following example formats source file \fBabc.c\fR.
 The backup file \fBabc.c.nnn\fR is automaticallu created in case recovery is required.
+
 .PP
    # cfm abc.c
+
 .PP
 The following example prints the default profile on stdout.
 The \fBpackage\fR string appears on comment lines starting with period.
 The \fBrelease\fR string appears on comment lines starting with colon.
 The \fBlicense\fR string appears on comment lines starting with semicolon.
 Other strings that may be defined have special application that that shall remain undocumented.
+
 .PP
    # cfm -o > /etc/cfm.ini
    [default]
    package=Motley Tools by Charles Maier; cmaier@cmassoc.net;
    release=Published 1982-2005 by Charles Maier for personal use;
    license=Released under GNU General Public License v2 and later;
+
 .PP
 The following example creates the default profile, \fB/etc/cfm.ini\fR.
 You can then edit the file by redefining properties or adding additional sections that can be referenced by name using option \fB-g\fR.
+
 .PP
    # cfm -o > /etc/cfm.ini
 

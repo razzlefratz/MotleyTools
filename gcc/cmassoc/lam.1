@@ -1,4 +1,4 @@
-.TH lam 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH lam 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 lam - laminate files
@@ -15,6 +15,7 @@ lam - laminate files
 Either concatenate or interleave lines from multiple files.
 Input lines may be quoted and separated by user defined delimiters on output.
 If input files have different line counts then empty fields or blank lines will appear in the output.
+
 .PP
 This program is similar to the Linux \fBpaste\fR utility by can quote input lines to produce comma separated value (csv) files.
 
@@ -78,16 +79,19 @@ The file is not modified by this program.
 .SH EXAMPLES
 Assume that we have the following three files named \fBabc.txt\fR, \fBdef.txt\fR and \fBghi.txt\fR.
 The line numbers shown are are for reference and are not part of file content.
+
 .PP
    1 1234567890
    2  
    3 1234567890
    4 1234567890
    5 1234567890
+
 .PP
    1 ABCDEF
    2 ABCDEF
    3 ABCDEF
+
 .PP
    1 abcdef
    2 abcdef
@@ -95,10 +99,12 @@ The line numbers shown are are for reference and are not part of file content.
    4 abcdef
    5 abcdef
    6 abcdef
+
 .PP
 This example concatenates corresponding lines from each file.
 The number of lines output is the same as the longest input file.
 No delimiters are output in this example and so it is difficult to see where empty input lines occur.
+
 .PP
    # lam abc.txt def.txt ghi.txt
    1234567890ABCDEFabcdef
@@ -107,10 +113,12 @@ No delimiters are output in this example and so it is difficult to see where emp
    1234567890abcdef
    1234567890abcdef
    abcdef
+
 .PP
 The next example uses the \fB-f\fR option to separate input lines with a comma on output.
 This preserves the relative position of empty input lines.
 The comma is enclosed in quotes so that the shell does not attempt to interpret it.
+
 .PP
    # lam abc.txt def.txt ghi.txt -f ","
    1234567890,ABCDEF,abcdef
@@ -119,9 +127,11 @@ The comma is enclosed in quotes so that the shell does not attempt to interpret 
    1234567890,,abcdef
    1234567890,,abcdef
    ,,abcdef
+
 .PP
 The next example uses option \fB-v\fR to enclose input lines in quotes and separate them with comma on output.
 This creates a comma separated value file that can be loaded into a database or spreadsheet.
+
 .PP
    # lam abc.txt def.txt ghi.txt -v
    "1234567890","ABCDEF","abcdef"

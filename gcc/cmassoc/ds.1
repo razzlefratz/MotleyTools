@@ -1,4 +1,4 @@
-.TH ds 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH ds 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 ds - digital dactyloscope
@@ -10,6 +10,7 @@ ds - digital dactyloscope
 .RI [ file ]
 .RI [ ... ]
 .RI [> stdout ]
+
 .PP
 .BR ds 
 .RI [ options ]
@@ -19,11 +20,13 @@ ds - digital dactyloscope
 .SH DESCRIPTION
 \fBDactyloscopy\fR is the study of fingerprints for identification purposes.
 There is no definition for the word \fBdactyloscope\fR so we built one and this is it.
+
 .PP
 This program computes the SHA256 digest (fingerprint) if each file argument and searches a registry file for the matching digest.
 If a match is found then a plus (+) is printed before the filename.
 If not then a minus (-) is printed before the filename.
 A registry can be created using program \fBfp\fR.
+
 .PP
 The main use is confirmation that a file is both registered and unchanged since unregistered or changed files cannot match.
 Some toolkit programs use a registry to identity and either accept or reject critical files because the means of file identification depends on current content, not filename and modification date.

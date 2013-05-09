@@ -1,4 +1,4 @@
-.TH catalog 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH catalog 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 catalog - catalog text files
@@ -11,6 +11,7 @@ catalog - catalog text files
 .RI [ ... ]
 
 .SH DESCRIPTION
+
 .PP
 Print a browseable catalog of text files.
 The catalog consists of one HTML page for each file with the file forming the page body.
@@ -84,13 +85,16 @@ The original file is not modified.
 The following example creates an HTML page for each header and source file in the current folder.
 Page names are the original file name plus the \fB.html\fR extension.
 One can open any page and navigate to any other using PREV and NEXT links provided on each page.
+
 .PP
    # catalog *.c *.h
+
 .PP
 The rext example does the same but also writes an HTML index page to stdout because option \fB-i\fR is specified.
 The ouput is redirected to \fBindex.html\fR.
 The index page contains links to each page created.
 One can move to the index page from any other page using the HOME link provided on each page.
+
 .PP
    # catalog *.c *.h -i > index.html 
 

@@ -1,4 +1,4 @@
-.TH trim 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH trim 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 trim - discard character columns
@@ -9,6 +9,7 @@ trim - discard character columns
 .IR file
 .RI [ file ] 
 .RI [ ... ]
+
 .PP
 .BR trim
 .RI [ options ]
@@ -16,6 +17,7 @@ trim - discard character columns
 .RI [> file ]
 
 .SH DESCRIPTION
+
 .PP
 Discard character columns from a text file.
 The user may specify both a \fBbefore\fR and an \fBafter\fR column.
@@ -55,24 +57,29 @@ Use program \fBrex\fR to recover a prior version.
 
 .SH EXAMPLES
 The following illustrates an example text file name \fBmyfile.txt\fR.
+
 .PP
    # cat myfile.txt
    12345678901234567890
    123456789012345
    12345678901234567890
    1234567890
+
 .PP
 The rext example discards characters occuring before column 8 and after column 15.
 Observe the text missing from the start of each line and at the end of lines longer than 15 characters.
+
 .PP
    # trim -b 8 -a 15 < myfile.txt
    89012345
    89012345
    89012345
    890
+
 .PP
 The rext example reverses the request, discarding characters occuring after column 8 and before column 15.
 Observe that columns 9 through 14 are now missing from each line.
+
 .PP
    # trim -a 8 -b 15 < myfile.txt
    12345678567890

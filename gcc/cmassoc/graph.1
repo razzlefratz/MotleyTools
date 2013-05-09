@@ -1,4 +1,4 @@
-.TH graph 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH graph 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 graph - print a histogram 
@@ -10,6 +10,7 @@ graph - print a histogram
 .RI [ file ]
 .RI [ ... ]
 .RI [> file ]
+
 .PP
 .BR graph
 .RI [ options ]
@@ -21,6 +22,7 @@ Print a text-based histogram on stdout.
 The histogram consists of x and y values printed vertically as pairs.
 Each pair is followed by a string of hash ('#') characters that represent the magnitude of the y value.
 In principle, the program can display an unlimited number of data pairs.
+
 .PP
 This program merely displays data.
 Data can be generated in many ways and manipulated by selection, sorting and grouping prior to presentation.
@@ -86,6 +88,7 @@ The following is an example data file, \fBpowers.txt\fR, containing powers of tw
 The first column contains the exponent.
 The second column contains the value.
 Three comment lines start the file and will be ignored.
+
 .PP
    # ===============
    # powers of two;
@@ -100,10 +103,12 @@ Three comment lines start the file and will be ignored.
    7 128
    8 256
    9 512
+
 .PP
 The following example graphs the file shown above.
 The x values appear outside the brackets and the y values appear inside the brackets.
 The bars represent the y value but some bars have been truncated in this example because long bars do not format well.
+
 .PP
    # graph powers.txt
    Distribution
@@ -118,12 +123,14 @@ The bars represent the y value but some bars have been truncated in this example
         8[   256]###################################################
         9[   512]###################################################
    total=1023 level=0 scale=1
+
 .PP
 The rext example scales the output to improve the display.
 Observe the default graph title of "Distribution".
 The total is the sum of y values because this is a histogram program and mathematicians like to know the sample size.
 The level is 0 so nothing has been subtracted from y values.
 The scale is 16 so each hash represents 16 units but the true y value is still displayed.
+
 .PP
    # graph powers.txt -s 16
    Distribution

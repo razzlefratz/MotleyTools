@@ -1,4 +1,4 @@
-.TH cdep 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH cdep 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 cdep - Display C Language file dependencies
@@ -64,16 +64,21 @@ Each file should be syntactically correct or errors can occur.
 .SH EXAMPLES
 The following example prints a list of system files used by program \fBabc.c\fR.
 This list is essentially an inventory of required system files.
+
 .PP
    # cdep abc.c
+
 .PP
 The rext example does the same as above but lists custom files, instead.
 If all these files were stored in an archive file then the program should be complete.
+
 .PP
    # cdep abc.c -c
+
 .PP
 The following example prints an analysis of custom files needed by program \fBabc.c\fR.
 Files are listed in alphabetical order and each file is followed by an indented list of the files that it needs.
+
 .PP
    # cdep abc.c -c -n
 

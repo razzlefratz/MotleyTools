@@ -1,4 +1,4 @@
-.TH cinc 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH cinc 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 cinc - include C language source files
@@ -14,10 +14,12 @@ cinc - include C language source files
 .SH DESCRIPTION
 Convert modular C language source files to monolithic ones by recursively replacing local include statements with the custom source or header files that they reference.
 The monolithic output file then contains all custom source code needed to compile the program.
+
 .PP
 Local include filenames are enclosed in quotes.
 System include filenames are enclosed in angle brackets.
 System include files are not merged because they are generally available on other systems.
+
 .PP
 This program is similar to \fBcmerge\fR but the internal implementation and program output are different.
 This program does not annotate the output with additional comment statements.
@@ -45,6 +47,7 @@ This file is not modified.
 
 .SH EXAMPLES
 The following reads C language source file \fBabc.c\fR and outputs monolithic file \fBabc1.c\fR that includes all the C language source and header files referenced by include statements.
+
 .PP
    # cinc abc.c > abc1.c
 

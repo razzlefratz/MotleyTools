@@ -1,4 +1,4 @@
-.TH try 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH try 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 try - log and execute command sequences
@@ -41,20 +41,23 @@ This option takes precedence over previous command line options.
 A shell command to be executed.
 Multiple command are permitted.
 Commands containing whitespace must be enclosed in quotes and special characters should be escaped.
-Use program \vBargv\fR to inspec command line arguments when in doubt.
+Use program \fBargv\fR to inspec command line arguments when in doubt.
 There is no default command.
 
 .SH EXAMPLES
 The following example comments and executes a single \fBecho\fR command.
 It prints the command in quotes on stdout, preceded by a hash character, and then executes it.
+
 .PP
    # try "echo hello world." 
    # echo hello world.
    hello world.
+
 .PP
 The next command executes two different \fBecho\fR commands, one after the other.
-Option \vB-c\fR defines a title that appears in the script break that precedes the commands on output.
+Option \fB-c\fR defines a title that appears in the script break that precedes the commands on output.
 This option can be used to clearly seperate a group of commands that appear on one command line.
+
 .PP
    # try "echo hello world."  -c "Demonstrate the echo command" "echo goodbye cruel world."
    # ====================================================================

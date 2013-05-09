@@ -1,4 +1,4 @@
-.TH enfix 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH enfix 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 enfix - prepend and/or append text to each line of a text file
@@ -9,6 +9,7 @@ enfix - prepend and/or append text to each line of a text file
 .IR file
 .RI [ file ] 
 .RI [ ...]
+
 .PP
 .BR enfix
 .RI [ options ]
@@ -16,6 +17,7 @@ enfix - prepend and/or append text to each line of a text file
 .RI [> file ]
 
 .SH DESCRIPTION
+
 .PP
 Prepend and/or append text to each line of a text file.
 Either the prefix text or suffix text or both may be omitted but omitting both is pointless.
@@ -56,6 +58,7 @@ Use program \fBrex\fR to recover a prior version.
 
 .SH EXAMPLES
 The following example prepends prefix "\fBabc\fR" and appends suffix "\fBdef\fR" to each line in file \fBabc.txt\fR.
+
 .PP
    # enfix abc.txt -p abc -s def
 

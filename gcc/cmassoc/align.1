@@ -1,4 +1,4 @@
-.TH align 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH align 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 align - align character to column
@@ -9,6 +9,7 @@ align - align character to column
 .IR file
 .RI [ file ] 
 .RI [ ... ]
+
 .PP
 .BR align
 .RI [ options ]
@@ -64,6 +65,7 @@ Use program \fBrex\fR to recover a prior version.
 
 .SH EXAMPLES
 Given file \fBabc.txt\fR as follows:
+
 .PP
    123456789012345678901234567890
    ;234567890;234567890;234567890
@@ -79,9 +81,11 @@ Given file \fBabc.txt\fR as follows:
             ;123456789;123456789;
    123456789;         ;1234567890
    123456789;123456789;
+
 .PP
 The following example aligns the first semicolon to column \fB20\fR.
 The first semicolon is moved because the default after column is \fB0\fR.
+
 .PP
    # align < abc.txt -c ";" -t 20
    123456789012345678901234567890
@@ -98,8 +102,10 @@ The first semicolon is moved because the default after column is \fB0\fR.
                       ;123456789;123456789;
    123456789          ;;1234567890
    123456789          ;123456789;
+
 .PP
 The following example does the same but only when the semicolon occurs after column \fB12\rR.
+
 .PP
    # align < abc.txt -c ";" -t 20 -a 12
    123456789012345678901234567890

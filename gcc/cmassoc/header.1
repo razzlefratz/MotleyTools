@@ -1,4 +1,4 @@
-.TH header 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH header 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 header - print file header
@@ -9,6 +9,7 @@ header - print file header
 .IR file
 .RI [ file ] 
 .RI [ ... ]
+
 .PP
 .BR header
 .RI [< file ]
@@ -53,14 +54,19 @@ The file is not modified.
 .SH EXAMPLES
 This example prints the first \fB52\fR lines of file \fBabc.txt\fR on the console.
 Lines are truncated to \fB80\fR columns.
+
 .PP
    # header abc.txt
+
 .PP
 The next example does the same but will limit output to \fB24\fR lines and truncate lines longer than \fB40\fR characters.
+
 .PP
    # header abc.txt -l 24 -w 40
+
 .PP
 The next exampe appends the firt 5 lines from the three files \fBabc.txt\fR, \fBdef.txt\fR and \fBghi.txt\fR and writes them to file \fBjkl.txt\fR.
+
 .PP
    $ header abc.txt def.txt ghi.txt -l5 > jkl.txt
 

@@ -1,4 +1,4 @@
-.TH sign 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH sign 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 sign - print a sign on stdout
@@ -44,6 +44,7 @@ None.
 The following example prints the strings "Hello" and "World" on stdout.
 Letters are formed using a 5 by 7 matrix of the fill character.
 Each argument starts a new output line.
+
 .PP
    # sign Hello World
     #   #        ##    ##        
@@ -64,9 +65,11 @@ Each argument starts a new output line.
      # #   ###   #     ###   ####
                                  
                                  
+
 .PP
 The next example does the same but outputs one line using fill character '@'.
 Output is truncated to 64 columns to fit this man page.
+
 .PP
    # sign "Hello World" -c "@' -w 64
     @   @        @@    @@               @   @              @@      
@@ -83,3 +86,4 @@ Output is truncated to 64 columns to fit this man page.
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>
 
+"

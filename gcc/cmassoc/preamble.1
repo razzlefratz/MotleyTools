@@ -1,4 +1,4 @@
-.TH preamble 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH preamble 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 preamble - prepend/append text to files
@@ -9,6 +9,7 @@ preamble - prepend/append text to files
 .IR file
 .RI [ file ] 
 [...]
+
 .PP
 .BR preamble
 .RI [ options ]
@@ -55,6 +56,7 @@ Use program \fBrex\fR to recover a prior version.
 
 .SH EXAMPLES
 The following example prepends the contents of file \fBprefix.txt\fR and appends the contents of file \fBsuffix.txt\fR to all C language source and header files in the current folder.
+
 .PP
    # preamble -p prefix.txt -s suffix.txt *.c *.h
 

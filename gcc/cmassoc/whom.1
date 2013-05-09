@@ -1,4 +1,4 @@
-.TH whom 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH whom 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 whom - tabulate user and group names
@@ -10,6 +10,7 @@ whom - tabulate user and group names
 
 .SH DESCRIPTION
 Print a alphabetical, multi-column list of user and/or group names on stdout.
+
 .PP
 This program needs read access to /etc/passwd and /etc/groups to function properly.
 
@@ -68,15 +69,20 @@ None
 
 .SH EXAMPLES
 The following example prints an alphabetical list of users and groups on stdout.
+
 .PP
    # whom
+
 .PP
 The next example prints an alphabetical list of user names that start with the letter 'a' through 'm'.
+
 .PP
    # whom -u -e "[a-m].*"
+
 .PP
 The next example does the same but numbers each name and displays them using two columns.
 The output is directed to file \fBinfo.txt\fR.
+
 .PP
    # whom -ue "[a-m].*" -nc 2 > info.txt
 

@@ -1,4 +1,4 @@
-.TH mp 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH mp 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 mp - format man page header
@@ -9,6 +9,7 @@ mp - format man page header
 .IR file
 .RI [ file ] 
 .RI [ ... ]
+
 .PP
 .BR mp
 .RI [ options ]
@@ -16,12 +17,15 @@ mp - format man page header
 .RI [> file ]
 
 .SH DESCRIPTION
+
 .PP
 Format Linux man pages to update header information, simplify text maintenance and correct common mistakes.
+
 .PP
 The man page filename, taken from the command line, used to generate the program name and man page folder number.
 The title header, starting with "\fB.TH\fR", is updated using information from a user-defined configuration profile.
-An empty line is inserted prior to each ".SH", ".TP" and ".PP" tag. 
+An empty line is inserted prior to each ".SH", ".TP" and ".PP" tag.
+
 Sentences are move to a new line so that they can be easily edited.
 Selected headers are detected and updated or preceded with one blank line;
 
@@ -75,6 +79,7 @@ Use program \fBrex\fR to recover a prior version.
 
 .SH PROFILE
 The default profile looks like:
+
 .PP
    [default]
    project=Motley Tools
@@ -101,6 +106,7 @@ The default is the current month and year.
 
 .SH EXAMPLES
 The following example formats the ".TH" line of man page \fBmp.7\fR using default program values.
+
 .PP
    # mp afm.7
 

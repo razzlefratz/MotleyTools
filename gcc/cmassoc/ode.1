@@ -1,4 +1,4 @@
-.TH ode 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH ode 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 ode - offset driven editor
@@ -157,6 +157,7 @@ Skipped bytes are not changed.
 The following example edits binary file \fBabc.bin\fR by writing decimal value \fB1\fR at offset \fB01F7\fR followed by hexadecimal value \fB00B052BABE01\fR.
 A partial dump is printed showing 16 bytes before and after the edited data.
 The dump can be suppressed with option \fB-q\fR.
+
 .PP
    # ode abc.bin 01F7 byte 1 data 00:B0:52:BA:BE:01
    000001D0                       00 00 00 00 00 00 00 00 00         .........

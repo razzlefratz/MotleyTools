@@ -1,4 +1,4 @@
-.TH htmltidy 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH htmltidy 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 htmltidy - format HTML/XHTML source code
@@ -9,6 +9,7 @@ htmltidy - format HTML/XHTML source code
 .IR file
 .RI [ file ] 
 .RI [ ... ]
+
 .PP
 .BR htmltidy
 .RI [ options ]
@@ -16,10 +17,12 @@ htmltidy - format HTML/XHTML source code
 .RI [> stdout ]
 
 .SH DESCRIPTION
+
 .PP
 Format HTML/XHTML source code without disturbing higher level text.
 Formatting is highly stylized and customized to suit the authors preferences.
 If you do not like the format then do not use the program.
+
 .PP
 This program uses the \fBotidy\fR and \fBohtml\fR classes to format language constructs.
 
@@ -74,18 +77,23 @@ Attempts to format badly formed or syntactically incorrect markup files may resu
 .SH EXAMPLES
 This example formats source file \fBabc.html\fR.
 Backup file \fBabc.html.001\fR is automatically created in case recovery is required.
+
 .PP
    # htmltidy abc.html
+
 .PP
 The next example reads file \fBabc.php\fR from stdin and writes formatted output to \fBdef.php\fR on stdout.
 This prevents the input file from being overwritten.
 Program output may be piped into another application.
+
 .PP
    # phptidy < abc.php > def.php
+
 .PP
 The next example reads file \fBabc.html\fR from stdin and formats embedded PHP source without disturbing surrounding HTML source.
 That output is then piped into program \fBhtmltidy\fR to format surrounding HTML source without disturbing the embedded PHP source.
 Of course, formatting could be done in the opposite order to obtain the same or similar results.
+
 .PP
    # htmltidy < abc.html | htmltidy > def.html
 

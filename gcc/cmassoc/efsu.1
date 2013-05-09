@@ -1,4 +1,4 @@
-.TH efsu 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH efsu 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 efsu \- Ethernet Frame Send Utility
@@ -9,23 +9,28 @@ efsu \- Ethernet Frame Send Utility
 .IR file
 .RI [ file ]
 [...]
+
 .PP
 .BR efsu
 .RI [ options ]
 .RI [< stdin ]
 
 .SH DESCRIPTION
+
 .PP
 Sends custom Ethernet frames over a specific Ethernet interface.
+
 .PP
 A frame is specified by a text stream of hexadecimal octets read from one or more files or from stdin.
 Each octet is converted to a binary byte, buffered and transmitted over the network on the specified host interface.
 The program assumes that frames are valid and will transmit what you specify, right or wrong.
 The program only checks minimum and maximum frame length.
+
 .PP
 Frame descriptions are stored in ordinary text files.
 Multiple frames may be specified in one file by separating frame descriptions with semicolons.
 All descriptions in a file are read and sent immediately but multiple files may be specified on the command line and options allow pauses between files, command line looping and pauses between command line loop iterations.
+
 .PP
 Frame descriptions are continuous stream of hexadecimal digits.
 Intervening text, punctuation, white space and comments are discarded.
@@ -92,6 +97,7 @@ You can then break out selected frame segments onto new lines and insert comment
 
 .SH EXAMPLES
 For example, a simple file might look like:
+
 .PP
    #!/usr/local/bin/efsu -ieth0
    # =====================================
@@ -108,15 +114,18 @@ For example, a simple file might look like:
    00 00 00 00 00 00 00 00
    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
    00 00 00 00 00 00 00 00
+
 .PP
 The bang path permits direct execution of the file, provided \fBefsu\fR is installed in the bang path directory, the description file has execute permissions and the user has execute priviledges for that file.
 The script-style, C++-style and C-style comments are ignored as is the white space.
 Only the hexadecimal octets are read and sent.
 Since the number of octets exceeds 60 and the number of digits is even, \fBefsu\fR will report no errors and send the packet.
 There is no guarantee that this packet is valid.
+
 .PP
 Assuming the above file is named \fBabc.hex\fR, we can transmit the file over the network as an Ethernet frame with the next command.
 A hexadecimal dump of the transmitted frame appears on the console because option \fB-v\fR is present.
+
 .PP
    # efsu abc.hex -v
    00000000 00 43 88 00 00 01 00 E0 45 DA DA 07 88 E1 00 00 ..R.....E.......
@@ -124,9 +133,11 @@ A hexadecimal dump of the transmitted frame appears on the console because optio
    00000020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
    00000030 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
    00000040 00 00 00 00 00 00                               ......
+
 .PP
 Since every host interface has a different hardware address, one can replace the destination address of transmitted frames with the actual host interface address using option \fB-h\fR.
 Observe that the original source address is now \fB00 0F EA 10 D5 1C\fR.
+
 .PP
    # efsu abc.hex -h
    00000000 00 43 88 00 00 01 \fB00 0F EA 10 D5 1C\fR 88 E1 00 00 ..R.............
@@ -134,9 +145,11 @@ Observe that the original source address is now \fB00 0F EA 10 D5 1C\fR.
    00000020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
    00000030 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
    00000040 00 00 00 00 00 00                               ......
+
 .PP
 One can also direct the frame to another device using option \fB-d\fR.
 Observer that the original destination address is not \fB00 43 88 BE EF 01\fR.
+
 .PP
    # efsu abc.hex -vhd 004388beef01
    00000000 \fB00 43 88 BE EF 01\fR 00 0F EA 10 D5 1C 88 E1 00 00 ..R.............

@@ -1,4 +1,4 @@
-.TH respond 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH respond 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 respond - Qualcomm Atheros Network Responder
@@ -9,6 +9,7 @@ respond - Qualcomm Atheros Network Responder
 
 .SH DESCRIPTION
 Respond to topology requests from a powerline network solicitor.
+
 .PP
 This program is part of the Qualcomm Atheros Powerline Toolkit.
 See the \fBplc\fR man page for an overview and installation instructions.
@@ -66,10 +67,13 @@ See the Qualcomm Atheros Simple Network Discovery Protocol for more information 
 The following command starts a responder on the local host.
 The responder will announce and listen on interface \fBeth0\fR.
 The responder will announce values defined in profile "\fBrespond.ini\fR" by default because option \fB-p\fR is absent.
+
 .PP
    # respond -i eth0
+
 .PP
 An example profile, "\fBrespond.ini\R", looks something like this.
+
 .PP
    # file: respond.ini
  

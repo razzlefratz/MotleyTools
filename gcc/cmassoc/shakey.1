@@ -1,4 +1,4 @@
-.TH shakey 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH shakey 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 shakey - SHA256 Key Generator
@@ -59,21 +59,26 @@ Use option \fB-e\fR to enforce HomePlug AV password character and length rules.
 The following example prints the SHA256 key for the phrase, "california", entered on the command line.
 An SHA256 key is 256 bits or 32 bytes expressed as 64 hexadecimal characters.
 SHA256 is a public domain standard.
+
 .PP
    # shakeys california
    7E8EEA5CC60980270C9CEB75CE8C087D48D726110FD3D17921F774EEFD8E18D8
+
 .PP
 The following command prints theSHA256 key for each phrase entered on the command line.
 Notice that spaces are legal and significant.
 Phrases containing spaces must be enclosed in quotes.
+
 .PP
    # shakey Supercalifragilisticexpialidocious "The quick brown fox jumped over the lazy dog."
    94730F57D7E41018D963D92FBF11618DCE8274CA2C1BF72274E0285A6013C17B
    68B1282B91DE2C054C36629CB8DD447F12F096D3E3C587978DC2248444633483
+
 .PP
 The following command prints both the key and the pass phrase for each pass phrase entered on the command line because the verbose option is specified.
 Pass phrases startin in column 66 and continue to the end of the line.
 The keys shown here have been abbreviated due to formatting limitations.
+
 .PP
    # shakey -v "Georgia on my mind" "Pooh Bear"
    1A2A9EA18...F4CAEFA3F2 Georgia on my mind

@@ -1,4 +1,4 @@
-.TH csv2html 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH csv2html 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 cvs2html - convert cvs file to html table
@@ -79,6 +79,7 @@ The following is an example comma separated value file.
 There are four fields.
 An extra comma is needed at the end of each line because the last field is empty.
 Backslashes are used to hide embedded commas.
+
 .PP
    Company,Ticker,,,
    3M Company,MMM,,,
@@ -142,8 +143,10 @@ Corp.,VFC,,,
    Walgreen Co.,WAG,,,
    Wal-Mart Stores,WMT,,,
    Wrigley (Wm) Jr.,WWY,,,
+
 .PP
 The following example reads file \fBstocks.csv\fR and prints an HTML table on stdout.
+
 .PP
    # offset stocks.csv
 

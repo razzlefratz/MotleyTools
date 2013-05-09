@@ -1,4 +1,4 @@
-.TH space 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH space 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 space - minimize whitespace
@@ -9,6 +9,7 @@ space - minimize whitespace
 .IR file
 .RI [ file ] 
 .RI [ ... ]
+
 .PP
 .BR space
 .RI [ options ]
@@ -19,6 +20,7 @@ space - minimize whitespace
 Remove or reduce leading whitespace and remove all trailing white space on each line of a text file.
 Replace white space strings with one space within each line.
 Do not alter literal strings or comments.
+
 .P
 In practical terms, if a line starts in column 1 then it remains there.
 If it does not then leading white space replaced with either nothing, a space, a tab or the character specified by option \fB-c\fR.

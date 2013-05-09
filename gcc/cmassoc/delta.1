@@ -1,4 +1,4 @@
-.TH delta 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH delta 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 delta - print deltas between consecutive numbers
@@ -10,6 +10,7 @@ delta - print deltas between consecutive numbers
 .RI [ file ]
 .RI [ ... ]
 .RI [> file ]
+
 .PP
 .BR delta
 .RI [ options ]
@@ -46,6 +47,7 @@ This file is not modified.
 The following is an example data file, \fBtimer.txt\fR, containing the absolute time, in seconds since the epoch, when a series of events occured.
 Three comment lines start the file and will be ignored.
 One line contains several times.
+
 .PP
    # ===============
    # seconds;
@@ -58,11 +60,13 @@ One line contains several times.
    643731 
    643732 
    643733
+
 .PP
 The following prints the difference between each value in \fBtimer.txt\fR.
 This tells us how much time passed between each event.
 It is now obvious that some time intervals are significantly longer than others.
 Some analysis may be in order.
+
 .PP
    # delta timer.txt 
    14
@@ -74,9 +78,11 @@ Some analysis may be in order.
    3
    1
    1
+
 .PP
 The rext example does the same but sorts the differences to groups similar values together.
 This starts to illustrate the distribution of time intervals but not well enough..
+
 .PP
    # delta timer.txt | sort
    1
@@ -88,10 +94,12 @@ This starts to illustrate the distribution of time intervals but not well enough
    2
    3
    14
+
 .PP
 The rext example does the same, again, but sorts then counts like differences.
 We can see, from this small sample that 6 events took 1 second, one event took 2 seconds, one took 3 seconds and one took 14 seconds.
 We now have enough information to produce a distribution chart or histogram.
+
 .PP
    # delta timer.txt | sort | uniq -c
    6 1

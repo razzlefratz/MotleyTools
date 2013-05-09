@@ -1,4 +1,4 @@
-.TH log 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH log 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 log - multi-file logger
@@ -45,10 +45,13 @@ The name of a log file.
 .SH EXAMPLES
 The following example echos makefile output to the console and file \fBmyfile.log\fR.
 Previous information in that file is lost.
+
 .PP
    # make | log myfile.log
+
 .PP
 The rext example does the same but preserves previous file content.
+
 .PP
    # make | log -a myfile.log
 

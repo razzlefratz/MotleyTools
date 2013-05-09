@@ -1,4 +1,4 @@
-.TH cblock 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH cblock 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 cblock - C Language code blocker
@@ -9,6 +9,7 @@ cblock - C Language code blocker
 .IR file
 .RI [ file ] 
 .RI [ ... ]
+
 .PP
 .BR call
 .RI [ options ]
@@ -16,10 +17,12 @@ cblock - C Language code blocker
 .RI [> file ]
 
 .SH DESCRIPTION
+
 .PP
 Read a C language source file.
 Place braces around lone conditional statements for \fBdo\fR, \fBif\fR, \fBelse\fR, \fBfor\fR and \fBwhile\fR statements.
 Place parenthesis around expressions for \fBexit\fR and \fBreturn\fR statements.
+
 .PP
 
 .SH OPTIONS
@@ -45,6 +48,7 @@ This file is not modified.
 
 .SH EXAMPLES
 The following file, \fBmain.c\fR, contains valid C Language statements that omit optional braces and parenthesis.
+
 .PP
    # cat main.c 
    int main (int argc, char const * argv []) 
@@ -54,9 +58,11 @@ The following file, \fBmain.c\fR, contains valid C Language statements that omit
            do a = 3; while (c++);
            return 4 + strlen ( "abc" );
    }
+
 .PP
 The next example read file \fBmain.c\fR and inserts optional braces ('\fB{}\fR') and parenthesis ('\fB()\fR') where missing.
 Thefile can then be formatted to clearly expose the program structure.
+
 .PP
    # cblock < main.c 
    int main (int argc, char const * argv []) 
@@ -66,9 +72,11 @@ Thefile can then be formatted to clearly expose the program structure.
            do { a = 3; } while (c++); }
            return (4 + strlen ( "abc" ));
    }
+
 .PP
 The next example does the same thing but pipes the content into language formatter, \fBcfm\fR, which relies on punctuation to determine the proper indent level.
 Some readers find this layout easier to read.
+
 .PP
    # cblock < main.c | cfm
    int main (int argc, char const * argv []) 

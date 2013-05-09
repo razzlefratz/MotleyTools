@@ -1,4 +1,4 @@
-.TH odd 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH odd 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 odd - object driven dump 
@@ -10,6 +10,7 @@ odd - object driven dump
 .RI [ file ]
 .RI [ ... ] 
 .RI [> stdout ]
+
 .PP
 .BR odd
 .RI [ options ]
@@ -54,6 +55,7 @@ Frame fields, like \fBODA\fR, \fBOSA\fR and \fBETHTYPE\fR,  are defined by \fIle
 Array subscripts following object names are optional but, if present, become part of the object name.
 Fields having no \fIlength\fR are headers and will be ignored.
 Comments and blank lines are also ignored.
+
 .PP
    # ========================================
    #
@@ -80,8 +82,10 @@ Comments and blank lines are also ignored.
    0 trailer
    
    4 CRC Cyclical Redundancy Check
+
 .PP
 The following command uses object definition file \fBether.txt\fR to identify and display member fields within binary file \fBabc.bin\fR in hexadecimal dump format.
+
 .PP
    # odd -f ether.txt abc.bin
 

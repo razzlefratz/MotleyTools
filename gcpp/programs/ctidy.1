@@ -1,4 +1,4 @@
-.TH ctidy 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH ctidy 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 ctidy - format C/C++ source code
@@ -9,6 +9,7 @@ ctidy - format C/C++ source code
 .IR file
 .RI [ file ] 
 .RI [ ... ]
+
 .PP
 .BR ctidy
 .RI [ options ]
@@ -16,10 +17,12 @@ ctidy - format C/C++ source code
 .RI [> stdout ]
 
 .SH DESCRIPTION
+
 .PP
 Format C/C++ source code.
 Formatting is highly stylized and customized to suit the authors preferences.
 If you do not like the format then do not used the program.
+
 .PP
 This program uses the otidy object to format language constructs.
 The otidy object is also used by programs \fBcsstidy\fR, \fBdnstidy\fR and \fBphptidy\fR.
@@ -48,13 +51,17 @@ Attempts to format syntactically incorrect source files may result in unpredicta
 .SH EXAMPLES
 The next example formats source file \fBabc.cpp\fR.
 Backup file \fBabc.cpp.nnn\fR is automatically created in case recovery is required.
+
 .PP
    # ctidy abc.cpp
+
 .PP
 The next example reads file \fBabc.cpp\fR from stdin and writes formatted output to \fBdef.cpp\fR on stdout.
 This preserves the input file and allows program output to be viewed on the console or piped into another application.
+
 .PP
    # ctidy < abc.cpp > def.cpp
+
 .PP
 
 .SH SEE ALSO

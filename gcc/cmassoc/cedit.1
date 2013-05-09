@@ -1,4 +1,4 @@
-.TH cedit 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH cedit 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 cedit - C language name editor
@@ -9,6 +9,7 @@ cedit - C language name editor
 .IR file
 .RI [ file ] 
 .RI [ ... ]
+
 .PP
 .BR cedit
 .RI [ options ]
@@ -16,6 +17,7 @@ cedit - C language name editor
 .RI [> file ]
 
 .SH DESCRIPTION
+
 .PP
 Search a C language source file and replace one constant or variable name with another.
 The program understands C language constant and variable name conventions and will skip over comments and literals when searching.
@@ -62,10 +64,13 @@ Use program \fBrex\fR to recover a prior version.
 
 .SH EXAMPLES
 The following example searches file \fBabc.c\fR and replaces the old variable name "\fBfd\fR" with the new variable name "\fBfileno\fR".
+
 .PP
    # cedit abc.c -o fd -n fileno
+
 .PP
 The rext example performs the same edit operation as above on multiple files and display those where replacements occured.
+
 .PP
    # cedit *.c *.h -o fd -n fileno -c
    abc.c 2

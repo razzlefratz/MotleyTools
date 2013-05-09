@@ -1,4 +1,4 @@
-.TH runjobs 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH runjobs 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 runjobs - run executable scripts 
@@ -19,6 +19,7 @@ A search specification looks like a normal filename specification with a \fBpath
 Either part may be ommitted or abbreviated.
 The basename part can be a filename or a \fBwildcard\fR pattern.
 When more than one search specification appears on the command line then each search is performed in order.
+
 .PP
 A single search starts in the folder specified by the pathname component and iterates through files in that folder looking for regular files that match the filename or wildcard specified by the basename component.
 Special files, such as devices, fifos and sockets are always ignored.
@@ -101,5 +102,6 @@ The path to the preferred command line shell.
 
 .SH CREDITS
 The idea for this program originated with the Debian run-parts program.
+
 .PP
  Charles Maier <cmaier@cmassoc.net>

@@ -1,4 +1,4 @@
-.TH call 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH call 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 call - print C language call dependencies
@@ -9,6 +9,7 @@ call - print C language call dependencies
 .IR file
 .RI [ file ] 
 .RI [ ... ]
+
 .PP
 .BR call
 .RI [ options ]
@@ -16,6 +17,7 @@ call - print C language call dependencies
 .RI [> file ]
 
 .SH DESCRIPTION
+
 .PP
 Read a C language source file and print function call relationships on stdout.
 
@@ -46,7 +48,8 @@ The name of a C or C++ language source file.
 This file is not modified.
 
 .SH EXAMPLES
-This example reads the source file for this program, \vBcall.c\fR, and prints the function call relationships on stdout.
+This example reads the source file for this program, \fBcall.c\fR, and prints the function call relationships on stdout.
+
 .PP
    # call call.c
    function:getc;
@@ -85,9 +88,11 @@ This example reads the source file for this program, \vBcall.c\fR, and prints th
    main:function;
    main:efreopen;
    main:function;
+
 .PP
 This example does the same as above but sorts relationships and removes dulicates.
 This makes it easier to see that function \fBmain\fR calls function \fBfunction\fR which calls function \fBgetc\fR.
+
 .PP
    # call call.c | sort | uniq
    function:_anyset;
@@ -108,8 +113,10 @@ This makes it easier to see that function \fBmain\fR calls function \fBfunction\
    main:efreopen;
    main:function;
    main:getoptv;
+
 .PP
 This example does the same a above but pipes the output into program \fBorder\fR to display the program call structure.
+
 .PP
    # call call.c | sort | uniq | order
    main

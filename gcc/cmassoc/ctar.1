@@ -1,4 +1,4 @@
-.TH ctar 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH ctar 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 ctar - C language tar program
@@ -16,11 +16,13 @@ ctar - C language tar program
 
 .SH DESCRIPTION
 Create a tape archive file that contains one or more C programs and supporting include files and preserve the relative directory structure.
+
 .PP
 This program assumes that the program file explicitly includes all custom source and header files needed to compile the program.
 It distinguishes between system and custom include files.
 System include files are enclosed in angle brackets and reside in standard system folders.
 Custom include files are enclosed in quotes and reside in local folders created by the user.
+
 .PP
 This program is a front-end to the \fBtar\fR utility and the \fB-I\fR option is the only one handled by this program.
 All other options and arguments are passed directly to \fBtar\fR.
@@ -65,8 +67,10 @@ This file should probably be the main program and should explicitly reference al
 .SH EXAMPLES
 The following command creates \fBtar\fR archive file \fBwidget.tar.gz\fR that contains program file \fBwidget.c\fR and any required custom include files.
 The relative directory structure is preserved.
+
 .PP
    # ctar -vzcf widget.tar.gz widget.c
+
 .PP
 Asuming that \fBwidget.c\fR explicitily includes required source and header files then \fBwidget.tar.gz\fR can be unpacked and compiled in another location provided all required system include files are accessible from that location..
 

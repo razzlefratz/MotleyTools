@@ -1,4 +1,4 @@
-.TH define 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH define 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 define - type list
@@ -10,6 +10,7 @@ define - type list
 .RI [ file ] 
 .RI [ ... ]
 .RI [ file >]
+
 .PP
 .BR define
 .RI [ options ]
@@ -17,6 +18,7 @@ define - type list
 .RI [ file >]
 
 .SH DESCRIPTION
+
 .PP
 Read one or more constant definition files and print C language or HTML source code on stdout.
 
@@ -91,14 +93,17 @@ An example file might look like:
 
 .SH EXAMPLES
 The following is an example constant definition file, \fBabc.txt\fR.
+
 .PP
    0x0000 XX_NOTHING
    0x0004 XX_READMODE
    0x0008 XX_SAVEMODE 
    0x0010 XX_EXITMODE 
+
 .PP
 This example reads \fBabc.txt\fR and writes a C language comment block and preprocessor constant definitions on stdout.
 Observe that the order is reversed.
+
 .PP
    # define -d abc.txt
    /*=*
@@ -110,10 +115,12 @@ Observe that the order is reversed.
    #define XX_SAVEMODE 0x0008
    #define XX_EXITMODE 0x0010
    
+
 .PP
 The next example reads the same file but prints C language comment blocks, preprocessor definitions and symbol table variable definitions on stdout.
 The default symbol table name is \fBLIST\fR.
 This list can be used to lookup a value by name or a name by value.
+
 .PP
    # define -v abc.txt
    /*=*
@@ -147,9 +154,11 @@ This list can be used to lookup a value by name or a name by value.
            },
    };
    
+
 .PP
 The next command reads the same file but prints a C language comment block and switch statement block.
 The switch block, when combined with the symbol table, can be used to convert keywords to program actions.
+
 .PP
    # define -s abc.txt 
    /*=*
@@ -169,9 +178,11 @@ The switch block, when combined with the symbol table, can be used to convert ke
            default:
                    break;
    };
+
 .PP
 The next command reads the same file but prints an HTML header block and table block on stdout.
 Table columns have class names so that presentation can be controlled using stylesheets.
+
 .PP
    # define -m abc.txt
    <h2>

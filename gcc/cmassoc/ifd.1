@@ -1,4 +1,4 @@
-.TH ifd 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH ifd 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 ifd - Interface Diagram Generator
@@ -10,6 +10,7 @@ ifd - Interface Diagram Generator
 .RI [ file ]
 .RI [ ... ] 
 .RI [> file ]
+
 .PP
 .BR ifd
 .RI [ options ]
@@ -81,6 +82,7 @@ Interface definition files end in \fB.ifd\fR by convention.
 This is an example interface definition file, \fBtest.ifd\fR.
 It consists of 9 lines that name 6 transactions.
 Consecutive blank lines are output as one line and introduce a gap between otherwise adjacent transactions.
+
 .PP
    Step1
        Step2
@@ -91,10 +93,12 @@ Consecutive blank lines are output as one line and introduce a gap between other
    
       Step5
    Step6
+
 .PP
 The following example reads file \fBtest.ifd\fR and prints the corresponding interface diagram on stdout.
 Observe that the first transaction is \fBleft-to\right\fR and steps are labeled \fB1\fR through \fB12\fR.
 You, as an author, must describe for each step so that readers understand the diagram.
+
 .PP
    # ifd test.ifd
     [01] |------------------- Step1 ------------------->| [02]
@@ -105,8 +109,10 @@ You, as an author, must describe for each step so that readers understand the di
          |                                              |     
     [09] |------------------- Step5 ------------------->| [10]
     [12] |<------------------ Step6 --------------------| [11]
+
 .PP
 The next example reverses the direction of all transactions because option \fB-l\fR is present and numbering starts with step \fB3\fR because option \fB-n\fR is present.
+
 .PP
    # ifd -l -n 3 test.ifd
     
@@ -119,10 +125,12 @@ The next example reverses the direction of all transactions because option \fB-l
      [12] |<------------------ Step5 --------------------| [11]
      [13] |------------------- Step6 ------------------->| [14]
     
+
 .PP
 The next example is identical to the first except that transactions ar only numbered at their start instead of at both ends because option \fB-a\fR is present.
 We call this "alternate" numbering because it appears to alternate.
 This minimizes the number of steps that must be documented.
+
 .PP
    # ifd -a test.ifd
    

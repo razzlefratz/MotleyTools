@@ -1,4 +1,4 @@
-.TH shout 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH shout 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 shout - broadcast a message to all terminals
@@ -64,10 +64,13 @@ If option \fB-b\fR is present then message arguments are treated as sentences an
 .SH EXAMPLES
 The following example broadcasts the message "Goodbye cruel world" on all active terminals.
 Observe that message arguments are concatenated to form one message.
+
 .PP
    # shout Goodbye cruel world
+
 .PP
 The rext example broadcasts several messages, one per output line.
+
 .PP
    # shout "System going down" "Brad messed up" "Give him hell"
 
@@ -76,5 +79,6 @@ The rext example broadcasts several messages, one per output line.
 
 .SH CREDITS
 The idea for this program came from the \fBwall\fR program.
+
 .PP
  Charles Maier <cmaier@cmassoc.net>

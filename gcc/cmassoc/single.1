@@ -1,4 +1,4 @@
-.TH single 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Toolkit"
+.TH single 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 single - manage duplicate lines
@@ -9,6 +9,7 @@ single - manage duplicate lines
 .IR file
 .RI [ file ]
 .RI [ ... ]
+
 .PP
 .BR single
 .RI [ options ]
@@ -75,11 +76,14 @@ Use program \fBrex\fR to recover a prior version.
 .SH EXAMPLES
 The following example removes duplicate lines from file \fBabc.txt\fR.
 A backup file is created.
+
 .PP
    # single abc.txt
+
 .PP
 The next example reads from file \fBabc.txt\fR and writes to file \fBdef.txt\fR.
 File \fBabc.txt\fR is not modified.
+
 .PP
    # single < abc.txt > def.txt
 

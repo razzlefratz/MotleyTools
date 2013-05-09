@@ -1,4 +1,4 @@
-.TH mrg 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH mrg 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 mrg - merge-sort
@@ -10,6 +10,7 @@ mrg - merge-sort
 .RI [ file ]
 .RI [ ... ]
 .RI [> stdout]
+
 .PP
 .BR mrg
 .RI [ options ]
@@ -55,13 +56,16 @@ The file is not modified.
 File order must match that specified (or implied) by the presence (or absence) of option \fB-d\fR.
 
 .SH EXAMPLES
-The following example merges sorted files \vBabc.txt\fR, \fBdef.txt\fR and \fBghi.txt\fR.
+The following example merges sorted files \fBabc.txt\fR, \fBdef.txt\fR and \fBghi.txt\fR.
 The order of files on the command line is not important but the order of file content is imporant.
 Each file must be sorted in ascending order because option \fB-d\fR has been omitted.
+
 .PP
    # mrg abc.txt def.txt ghi.txt
+
 .PP
 The next example does the same thing but all files must be arranged is descending order or an error will occur.
+
 .PP
    # mrg -d abc.txt def.txt ghi.txt
 

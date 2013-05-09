@@ -1,4 +1,4 @@
-.TH argv 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH argv 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 argv - display argument vector
@@ -24,6 +24,7 @@ All arguments entered on the command line are displayed as parsed by the shell a
 .SH EXAMPLES
 The following command displays the command line arguments.
 Observe that arguments are not always as entered by the user due to symbol expansion and globbing.
+
 .PP
    # argv $PATH "hello\tworld" "hello\\tworld" "hello\\\tworld"
     argv[0] = "argv"

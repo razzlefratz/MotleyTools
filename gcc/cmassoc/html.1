@@ -1,4 +1,4 @@
-.TH html 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH html 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 html - print HTML template page
@@ -10,6 +10,7 @@ html - print HTML template page
 .RI [ file ]
 .RI [ ... ] 
 .RI [> stdout ]
+
 .PP
 .BR html
 .RI [ options ]
@@ -67,6 +68,7 @@ This file is copied, unmodified, to the stdout.
 
 .SH PROFILE
 The default profile looks like:
+
 .PP
    [default]
    subject=Untitled Document
@@ -96,6 +98,7 @@ The following example reads file \fBabc.txt\fR and writes it to stdout.
 The file contains three numbered lines in this example.
 File content is preceded with an HTML header and followed by an HTML footer.
 Ouput appears on the console because we have not directed stdout to a file.
+
 .PP
    # html abc.txt
    <html>

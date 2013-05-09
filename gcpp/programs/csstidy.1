@@ -1,4 +1,4 @@
-.TH csstidy 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH csstidy 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 csstidy - format CSS2 stylesheet
@@ -9,6 +9,7 @@ csstidy - format CSS2 stylesheet
 .IR file
 .RI [ file ] 
 .RI [ ... ]
+
 .PP
 .BR csstidy
 .RI [ options ]
@@ -16,6 +17,7 @@ csstidy - format CSS2 stylesheet
 .RI [> stdout ]
 
 .SH DESCRIPTION
+
 .PP
 Format CSS2 source code.
 
@@ -69,6 +71,7 @@ Attempts to format syntactically incorrect source files may result in unpredicta
 
 .SH EXAMPLES
 This example prints stylesheet \fBstyle.css\fR on stdout using the default format.
+
 .PP
    # ctidy -c style.css
    a:hover 
@@ -83,8 +86,10 @@ This example prints stylesheet \fBstyle.css\fR on stdout using the default forma
    	font:normal 10pt courier;
    	margin: 10px 20px 10px 20px;
    } 
+
 .PP
 The next example prints the stylesheet in compact format.
+
 .PP
    # ctidy -c style.css
    a:hover {text-decoration: underline;} body {background:white;color:black;font:normal 10pt courier;margin: 10px 20px 10px 20px;} 

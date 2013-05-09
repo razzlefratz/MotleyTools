@@ -1,4 +1,4 @@
-.TH rex 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH rex 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 rex - remove and replace file extension 
@@ -13,6 +13,7 @@ rex - remove and replace file extension
 .SH DESCRIPTION
 Remove an old file extension and replace it with another.
 Candidate files having the old extension are renamed by removing the old extension and appending the new one.
+
 .PP
 This program can be used to remove numeric file extensions added to backup files created by some Motley Tools programs.
 Some, but not all, of those programs are listed under the "SEE ALSO" section.
@@ -62,15 +63,18 @@ The new filename is then the old filename less the old file extension plus the n
 The following example adds an extra extension to files ending in "\fB.txt\fR".
 A wildcard is used to select files but only those having the old extension are renamed.
 Option \fB-v\fR confirms filename changes.
+
 .PP
    # rex *.* -o ".txt" -n ".txt.save" -v
    rex: alt63d.txt.save <-- alt63d.txt
    rex: alt63x.txt.save <-- alt63x.txt
    rex: temp.txt.save <-- temp.txt
+
 .PP
 The next example removes the \fB.002\fR extension from C language header files.
 We search for files ending in "\fB.h.002\fR" to avoid renaming other file types that might also have a "\fB.002\fR" extension.
 The default new extension is "" but we specified it anyway.
+
 .PP
    # rex *.h.002 -v -o ".002" -n ""
    rex: chars.h <-- chars.h.002

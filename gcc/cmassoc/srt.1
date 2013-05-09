@@ -1,4 +1,4 @@
-.TH srt 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH srt 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 srt - sort files
@@ -9,6 +9,7 @@ srt - sort files
 .IR file
 .RI [ file ]
 .RI [ ... ]
+
 .PP
 .BR mrg
 .RI [ options ]
@@ -58,11 +59,14 @@ This file is replaced and a numbered backup is created.
 Use program \fBrex\fR to recover a prior version.
 
 .SH EXAMPLES 
-The following example sorts files \vBabc.txt\fR, \fBdef.txt\fR and \fBghi.txt\fR.
+The following example sorts files \fBabc.txt\fR, \fBdef.txt\fR and \fBghi.txt\fR.
+
 .PP
    # srt abc.txt def.txt ghi.txt
+
 .PP
 The next example does the same thing but duplicate input lines are reduced to one output line.
+
 .PP
    # srt abc.txt def.txt ghi.txt
 

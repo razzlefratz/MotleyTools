@@ -1,4 +1,4 @@
-.TH odx 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH odx 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 odx - object driven xml edit intructions 
@@ -53,6 +53,7 @@ The following is an example object definition file that defines a standard ether
 The comments and descriptions shown are optional.
 The field lengths and names are not.
 Zero-length fields denote arbitrary field groups and are used by program \fBoffset\fR to print headings.
+
 .PP
    # ========================================
    #
@@ -79,13 +80,17 @@ Zero-length fields denote arbitrary field groups and are used by program \fBoffs
    0 trailer
    
    4 CRC Cyclical Redundancy Check
+
 .PP
 The following command uses object definition file \fBether.txt\fR to identify and display member fields within binary file \fBabc.bin\fR as a set of xml instructions that can be used by program \fBxde\fR to edit other files.
+
 .PP
    # odx -f ether.txt abc.bin
+
 .PP
 The next command writes the xml schema that defines the elements and attributeds used in the edit instructions to file \fBdata.xsd\fR.
 This file can be used to validate xml edit instructions.
+
 .PP
    # odx -s > data.xsd
 

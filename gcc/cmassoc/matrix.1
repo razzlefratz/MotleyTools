@@ -1,4 +1,4 @@
-.TH matrix 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH matrix 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 matrix - print parse matrix table
@@ -10,6 +10,7 @@ matrix - print parse matrix table
 .RI [ file ]
 .RI [ ... ] 
 .RI [> stdout ]
+
 .PP
 .BR matrix
 .RI [ options ]
@@ -20,6 +21,7 @@ matrix - print parse matrix table
 Read a matrix definition file and print an HTML or DOCBOOK table on stdout.
 The output is suitable for use in the body of another HTML page or DOCBOOK section.
 Use program \fBhtml\fR to embed HTML output from this program inside a template HTML page.
+
 .PP
 A matrix description file is similar to a comma-separated-value file but spaces are used to separate field and a semi-colon is used to separate tuples.
 The first line of the file defines table column headings.
@@ -102,6 +104,7 @@ The remaining lines are table row definitions.
 There are 4 columns and 3 rows defined here.
 Names are separated by white space and each definition, except the last, is terminated by semicolon.
 Names may contain white space and puntuation when enclosed in quotes.
+
 .PP
    Items List1 List2 List3;
    Item1 List2; 
@@ -112,23 +115,30 @@ Names may contain white space and puntuation when enclosed in quotes.
      List2
    
      List1
+
 .PP
 The following command reads file \fBmatrix.txt\fR (shown above) and writes an HTML table to stdout because HTML is the default output format.
+
 .PP
    # matrix < matrix.txt > matrix.html
+
 .PP
+
 .PP
 File \fBmatrix.html\fR will look something like this when viewed using a web browser.
 There will be additional formatting, of course, depending on browser and stylesheet settings.
+
 .PP 
    Title
    Items List1 List2 List3
    Item1       Yes	  
    Item2 Yes         Yes
    Item3 Yes   Yes   Yes
+
 .PP
 File \fBmatrix.html\fR will look like this when opened using a standard text editor.
 See \fBhttp://www.w3.org/MarkUp/\fR for more information on HTML.
+
 .PP
    <h1 class='matrix'>
    	Title
@@ -191,21 +201,27 @@ See \fBhttp://www.w3.org/MarkUp/\fR for more information on HTML.
    			</td>
    		</tr>
    	</table>
+
 .PP
 The next example pipes program output into program \fBhtml\fR to bracket the output with an HTML header and footer.
 Option \fB-h\fR is present to ensure output is in HTML format.
 Option \fB-l\fR is used to adjust the indent level to match that expected of program \fBhtml\fR.
 The result is saved in file \fBmatrix.html\fR.
+
 .PP
    # matrix -h -l2 matrix.txt | html > matrix.html
+
 .PP
 The next example reads file \fBmatrix.txt\fR and writes a DOCBOOK table to stdout because option \fB-d\fR is present.
+
 .PP
    # matrix -d < matrix.txt > matrix.xml
+
 .PP
 File \fBmatrix.xml\fR will look like this when opened using a standard text editor.
 The element names are different thatn HTML but the basic principle is the same.
 See \fBhttp://www.docbook.org\fR for more information on DOCBOOK.
+
 .PP
    <table>
    	<title>

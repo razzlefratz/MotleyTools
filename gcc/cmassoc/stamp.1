@@ -1,4 +1,4 @@
-.TH stamp 7 "Mar 2013" "cmassoc-tools-1.8.2" "Motley Tools"
+.TH stamp 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
 stamp - echo a system time stamp
@@ -19,18 +19,23 @@ None.
 .SH EXAMPLES
 The following example prints a system time stamp.
 The command line prompt appears at the end because program output is not terminated with a newline.
+
 .PP
    # stamp
    00K0KRI6#
+
 .PP
 Use the \fBecho\fR utility to append a newline to the output.
+
 .PP
    # echo $(stamp)
    00K0KRIX
    #
+
 .PP
 The rext example creates a tarball having a distict name based on the system time.
 Such files have compact filenames that can be sorted chronologically and weeded out based on substrings.
+
 .PP
    # tar -vxcf backup-$(stamp).tar.gz  ...
 
