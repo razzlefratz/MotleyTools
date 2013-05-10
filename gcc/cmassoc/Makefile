@@ -48,9 +48,11 @@ manuals:
 	install -m 0444 -o ${OWNER} -g ${GROUP} ${PAGES} ${MAN}
 install: compile library
 	install -m 0555 -o ${OWNER} -g ${GROUP} ${TOOLS} ${BIN}
+	if [ -d /etc/profile.d ]; then install -m 0775 -o root -g root ../../misc/motley-tools.sh /etc/profile.d; fi;
 library:
 	install -m 6775 -o ${OWNER} -g ${GROUP} -d ${BIN}
 uninstall:
+	if [ -d /etc/profile ]; then rm -fr /etc/profile.d/motley-tools.sh; fi;
 	cd ${BIN}; rm -fv ${TOOLS}
 	cd ${MAN}; rm -fv ${PAGES}
 fresh: clean compile

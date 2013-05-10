@@ -51,4 +51,3 @@ private: clean
 control: 
 	if [ -d ${CONTROL} ]; then tar ${EXCLUDE} -vjcf ${CONTROL}/${PACKAGE}.tar.bz2 -C .. ${PACKAGE}; fi 
 	if [ -d ${CONTROL} ]; then tar ${EXCLUDE} -vzcf ${CONTROL}/${PACKAGE}.tar.gz  -C .. ${PACKAGE}; fi
-	
