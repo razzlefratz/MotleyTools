@@ -56,8 +56,6 @@
 
 #define CALL_B_INVERT (1 << 0)
 
-#define RESERVED 34
-
 /*====================================================================*
  *   program variables;
  *--------------------------------------------------------------------*/
@@ -68,7 +66,7 @@ unsigned lineno = 0;
  *   program variables;
  *--------------------------------------------------------------------*/
 
-static char const * reserved [RESERVED] = 
+static char const * reserved [] = 
 
 {
 	"auto",
@@ -186,7 +184,7 @@ static void function (flag_t flags)
 
 #endif
 
-			if (svindex (string, reserved, RESERVED, strcmp) < RESERVED) 
+			if (svindex (string, reserved, SIZEOF (reserved), strcmp) < SIZEOF (reserved)) 
 			{
 				continue;
 			}
