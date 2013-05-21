@@ -461,7 +461,7 @@ signed ocomment::clang (signed c)
 			}
 			while (width-- > 0) 
 			{
-				*this->minsert++ = (char) (start);
+				*this->mstring++ = (char) (start);
 			}
 		}
 
@@ -509,11 +509,11 @@ signed ocomment::clang (signed c)
 			{
 				this->mcount++;
 				this->moutput = this->mbuffer;
-				while (this->moutput < this->minsert) 
+				while (this->moutput < this->mstring) 
 				{
 					std::cout.put (*this->moutput++);
 				}
-				this->minsert = this->mbuffer;
+				this->mstring = this->mbuffer;
 				std::cout.put (c);
 				std::cout.put (' ');
 				do 
@@ -523,16 +523,16 @@ signed ocomment::clang (signed c)
 				while (oascii::isblank (c));
 				if (c != '*') 
 				{
-					*this->minsert++ = '*';
-					*this->minsert++ = ' ';
-					*this->minsert++ = ' ';
-					*this->minsert++ = ' ';
+					*this->mstring++ = '*';
+					*this->mstring++ = ' ';
+					*this->mstring++ = ' ';
+					*this->mstring++ = ' ';
 				}
 			}
 
 #endif
 
-			*this->minsert++ = c;
+			*this->mstring++ = c;
 		}
 		while ((c != '*') && (c != EOF));
 		c = std::cin.get ();
@@ -555,14 +555,14 @@ signed ocomment::clang (signed c)
 		std::cout.put ('*');
 		std::cout.put ('\n');
 		std::cout.put (' ');
-		this->minsert--;
+		this->mstring--;
 	}
 	this->moutput = this->mbuffer;
-	while (this->moutput < this->minsert) 
+	while (this->moutput < this->mstring) 
 	{
 		std::cout.put (*this->moutput++);
 	}
-	this->minsert = this->mbuffer;
+	this->mstring = this->mbuffer;
 	if (ocomment::anyset (oCOMMENT_B_TRIPLE) && !this->mcount) 
 	{
 		std::cout.put ('\n');
@@ -603,12 +603,12 @@ signed ocomment::message (signed c, char const * string)
 	}
 	else
 	{
-		*this->minsert++ = ocomment::anyset (oCOMMENT_B_PERMANENT)? ' ': c;
-		*this->minsert++ = ' ';
-		*this->minsert++ = ' ';
+		*this->mstring++ = ocomment::anyset (oCOMMENT_B_PERMANENT)? ' ': c;
+		*this->mstring++ = ' ';
+		*this->mstring++ = ' ';
 		while (*string) 
 		{
-			*this->minsert++ = *string++;
+			*this->mstring++ = *string++;
 		}
 	}
 	while (oascii::nobreak (c)) 
@@ -636,7 +636,7 @@ ocomment::ocomment (size_t length)
 
 {
 	this->mbuffer = new char [length];
-	this->minsert = this->mbuffer;
+	this->mstring = this->mbuffer;
 	this->mlength = length;
 	this->mcount = 0;
 
@@ -677,7 +677,7 @@ ocomment::ocomment ()
 {
 	this->mlength = oCOMMENT_LENGTH;
 	this->mbuffer = new char [this->mlength];
-	this->minsert = this->mbuffer;
+	this->mstring = this->mbuffer;
 	this->mcount = 0;
 
 #if oCOMMENT_EXTENDBAR
