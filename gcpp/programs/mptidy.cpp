@@ -75,7 +75,7 @@ int main (int argc, char const * argv [])
 		"op:s:",
 		oPUTOPTV_S_FILTER,
 		"format C/C++ source code with preamble annotations",
-		"o\toutput configuration profile on stdout",
+		"o\tprint default profile on stdout",
 		"p s\tprofile is (s) [" LITERAL (PROFILE_NAME) "]",
 		"s s\tsection is (s) [" LITERAL (SECTION_NAME) "]",
 		(char const *) (0)

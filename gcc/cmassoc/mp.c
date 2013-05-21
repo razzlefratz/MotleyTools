@@ -301,8 +301,8 @@ int main (int argc, char const * argv [])
 		PUTOPTV_S_FILTER,
 		"m\tprint example manpage on stdout",
 		"o\tprint default profile on stdout",
-		"p f\tuse profile (s) [" MP_PROFILE "]",
-		"s s\tuse profile section (s) [" MP_SECTION "]",
+		"p f\tprofile is (s) [" MP_PROFILE "]",
+		"s s\tsection is (s) [" MP_SECTION "]",
 		(char const *) (0)
 	};
 	char buffer [16];
