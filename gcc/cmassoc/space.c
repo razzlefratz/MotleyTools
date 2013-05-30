@@ -64,12 +64,13 @@
  *   program constants;
  *--------------------------------------------------------------------*/
 
+#define SPACE_DEFAULT ' '
+#define SPACE_NOTHING '\0'
 #define SPACE_NEWLINE '\t'
-#define SPACE_ENDLINE '\n'
 
 /*====================================================================*
  *
- *   void function (char newline, char endline);
+ *   void function (char newline);
  *
  *   read stdin and write stdout; replace leading spaces and tabs 
  *   with character newline unless newline is NUL; replace embedded 
@@ -84,7 +85,7 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (char newline, char endline) 
+void function (char newline) 
 
 {
 	signed c = getc (stdin);
@@ -136,10 +137,6 @@ void function (char newline, char endline)
 			}
 			c = keep (c);
 		}
-		if (endline) 
-		{
-			putc (endline, stdout);
-		}
 		c = getc (stdin);
 	}
 	return;
@@ -162,37 +159,32 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"c:e:nst",
+		"c:nst",
 		PUTOPTV_S_FILTER,
-		"white space minimizer",
+		"white space manager",
 		"c c\tindent character is c",
-		"e c\tend of line character is c",
-		"n\tindent character is nothing",
-		"s\tindent character is space [\' \']",
-		"t\tindent character is tab [\'\\t\']",
+		"n\tindent character is nothing [" LITERAL (SPACE_NOTHING) "]",
+		"s\tindent character is space [" LITERAL (SPACE_DEFAULT) "]",
+		"t\tindent character is tab [" LITERAL (SPACE_NEWLINE) "]",
 		(char *) (0)
 	};
 	char newline = SPACE_NEWLINE;
-	char endline = SPACE_ENDLINE;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
 		case 'c':
-			newline = *struesc ((char *) (optarg));
-			break;
-		case 'e':
-			endline = *struesc ((char *) (optarg));
+			newline = * struesc ((char *) (optarg));
 			break;
 		case 'n':
-			newline = (char) (0);
+			newline = SPACE_NOTHING;
 			break;
 		case 's':
-			newline = ' ';
+			newline = SPACE_DEFAULT;
 			break;
 		case 't':
-			newline = '\t';
+			newline = SPACE_NEWLINE;
 			break;
 		default:
 			break;
@@ -202,13 +194,13 @@ int main (int argc, char const * argv [])
 	argv += optind;
 	if (!argc) 
 	{
-		function (newline, endline);
+		function (newline);
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (vfopen (* argv)) 
 		{
-			function (newline, endline);
+			function (newline);
 		}
 		argc--;
 		argv++;

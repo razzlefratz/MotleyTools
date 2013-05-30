@@ -21,7 +21,7 @@ Remove or reduce leading whitespace and remove all trailing white space on each 
 Replace white space strings with one space within each line.
 Do not alter literal strings or comments.
 
-.P
+.PP
 In practical terms, if a line starts in column 1 then it remains there.
 If it does not then leading white space replaced with either nothing, a space, a tab or the character specified by option \fB-c\fR.
 
@@ -47,6 +47,7 @@ This option is useful for repairing makefiles where lines must either start in c
 .TP
 .BR - n
 Replace leading white space with nothing.
+THis effectively removes leading white space.
 This is the same as specifying a character value of '\0'.
 
 .TP
