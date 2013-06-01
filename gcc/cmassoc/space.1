@@ -31,23 +31,27 @@ All options are single letters.
 
 .TP
 -\fBc\fI c\fR
-Replace leading whitespace with a character.
+Replace leading spaces and tabs with one specific character.
 If a string is given then the first character is used.
 An empty string is equivalent to NUL or '\0' or 0x00.
 
 .TP
+.BR - m
+Remove leading spaces but keep leading tabs.
+
+.TP
+.BR - n
+Remove leading spaces and tabs.
+This is the same as specifying a character value of '\0'.
+
+.TP
 .RB - s
-Replace leading white space with one space.
+Replace leading spaces and tabs with one space.
 
 .TP
 .BR - t
 Replace leading white space with one tab.
 This option is useful for repairing makefiles where lines must either start in column 1 or start with a tab.
-
-.TP
-.BR - n
-Replace leading white space with nothing.
-This is the same as specifying a character value of '\0'.
 
 .TP
 .RB - ? ,-- help
