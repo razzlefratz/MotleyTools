@@ -64,13 +64,13 @@
  *   program constants;
  *--------------------------------------------------------------------*/
 
-#define SPACE_DEFAULT ' '
-#define SPACE_NOTHING '\0'
-#define SPACE_NEWLINE '\t'
+#define CHR_NUL '\0'
+#define CHR_HT '\t'
+#define CHR_SP ' '
 
 /*====================================================================*
  *
- *   void function (char newline);
+ *   void function (char newline, unsigned multiple);
  *
  *   read stdin and write stdout; replace leading spaces and tabs 
  *   with character newline unless newline is NUL; replace embedded 
@@ -85,7 +85,7 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (char newline) 
+void function (char o, unsigned multiple) 
 
 {
 	signed c = getc (stdin);
@@ -93,16 +93,48 @@ void function (char newline)
 	{
 		if (isblank (c)) 
 		{
+			unsigned column = 0;
+			unsigned spaces = 0;
+			unsigned tabs = 0;
 			do 
 			{
+				if (c == '\t') 
+				{
+					do 
+					{
+						column++;
+					}
+					while (column%8);
+					tabs++;
+				}
+				else if (c == ' ') 
+				{
+					column++;
+					spaces++;
+				}
 				c = getc (stdin);
 			}
 			while (isblank (c));
 			if (nobreak (c)) 
 			{
-				if (newline) 
+				if (o == '\t') 
 				{
-					putc (newline, stdout);
+					tabs *= multiple;
+					while (tabs--) 
+					{
+						putc (o, stdout);
+					}
+				}
+				if (o == ' ') 
+				{
+					if ((spaces) || (tabs)) 
+					{
+						putc (o, stdout);
+					}
+				}
+				if (o) 
+				{
+					putc (o, stdout);
 				}
 			}
 		}
@@ -137,7 +169,10 @@ void function (char newline)
 			}
 			c = keep (c);
 		}
-		c = getc (stdin);
+		if (c != EOF) 
+		{
+			c =keep (c);
+		}
 	}
 	return;
 }
@@ -159,16 +194,18 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"c:nst",
+		"c:mnst",
 		PUTOPTV_S_FILTER,
 		"white space manager",
 		"c c\tindent character is c",
-		"n\tindent character is nothing [" LITERAL (SPACE_NOTHING) "]",
-		"s\tindent character is space [" LITERAL (SPACE_DEFAULT) "]",
-		"t\tindent character is tab [" LITERAL (SPACE_NEWLINE) "]",
+		"m\tpreserve multiple tabs",
+		"n\tindent character is nothing [" LITERAL (CHR_NUL) "]",
+		"s\tindent character is space [" LITERAL (CHR_HT) "]",
+		"t\tindent character is tab [" LITERAL (CHR_HT) "]",
 		(char *) (0)
 	};
-	char newline = SPACE_NEWLINE;
+	char newline = CHR_HT;
+	unsigned multiple = 0;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
@@ -178,13 +215,16 @@ int main (int argc, char const * argv [])
 			newline = * struesc ((char *) (optarg));
 			break;
 		case 'n':
-			newline = SPACE_NOTHING;
+			newline = CHR_NUL;
 			break;
 		case 's':
-			newline = SPACE_DEFAULT;
+			newline = CHR_SP;
+			break;
+		case 'm':
+			multiple = 1;
 			break;
 		case 't':
-			newline = SPACE_NEWLINE;
+			newline = CHR_HT;
 			break;
 		default:
 			break;
@@ -194,13 +234,13 @@ int main (int argc, char const * argv [])
 	argv += optind;
 	if (!argc) 
 	{
-		function (newline);
+		function (newline, multiple);
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (vfopen (* argv)) 
 		{
-			function (newline);
+			function (newline, multiple);
 		}
 		argc--;
 		argv++;

@@ -16,7 +16,7 @@ LFLAGS=
 VPATH=../tidy
 TRASH=*.exe *.obj *.o t t.c *~ *.[0-9][0-9][0-9]
 TOOLS=
-PAGES=tidy.7
+PAGES=tidy.1
 
 # ====================================================================
 # targets;

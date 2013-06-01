@@ -79,7 +79,7 @@ int main (int argc, char const * argv [])
 	signed width = WIDTH;
 	signed digit = DIGIT;
 	signed scale = SCALE;
-	signed value;
+	off_t value;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
