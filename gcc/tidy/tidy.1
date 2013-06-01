@@ -1,0 +1,35 @@
+.TH mp 7 "GNU General Public License Version 2" "cmassoc-utils-1.8.1" "Motley Toolkit"
+.SH NAME
+tidy - text formatting functions
+
+.SH SYNOPSIS
+
+.SH FUNCTIONS
+
+.TP
+.BR advance ( c )
+Read stdin and write stdout. Write current character c then read and discard whitespace until next character is found.
+
+.TP
+.BR compact ( c, e )
+Read stdin and write stdout. Replace whitespace with character c unless the whitespace is termiante by character e;
+
+.TP
+.BR collect ( c )
+Write character c to stdout then read and write trailing e characters; Discard intervening whitespace.
+
+.TP
+.BR find ( c )
+Write character c to stdout then read stdin and discard whitespace. Return the next non-space character from stdin.
+
+.TP
+.BR keep ( c )
+Write character c to stdout then read and return the next character from stdin. 
+
+.SH EXAMPLES
+
+.SH SEE ALSO
+
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+
