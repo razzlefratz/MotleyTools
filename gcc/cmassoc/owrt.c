@@ -92,45 +92,6 @@ static void describe (flag_t flags)
 	return;
 }
 
-
-/*====================================================================*
- *
- *   void assemble (flag_t flags)
- *
- *--------------------------------------------------------------------*/
-
-static void assemble (flag_t flags) 
-
-{
-	char const * argv [255];
-	signed argc;
-	while ((argc = getargv (SIZEOF (argv), argv)))
-	{
-		if (argc != OWRT_MAXIMUM) 
-		{
-			error (1, 0, "Missing or extraneous field.");
-		}
-		printf ("define %s/%s/%s\n", argv [OWRT_COMPANY], argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
-		printf (" define Package/%s-%s\n", argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
-		printf ("  $(call Package/%s/common)\n", argv [OWRT_PACKAGE]);
-		printf ("  OWRT_TITLE:=%s\n", argv [OWRT_TITLE]);
-		printf ("  DEPENDS+=%s\n", argv [OWRT_PACKAGE]);
-		printf (" endef\n");
-		printf (" define Package/%s-%s/description\n", argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
-		printf ("  %s\n", argv [OWRT_SUMMARY]);
-		printf (" endef\n");
-		printf (" define Package/%s-%s/install\n", argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
-		printf ("  $(INSTALL_DIR) $$(1)/usr/bin\n");
-		printf ("  $(INSTALL_BIN) $(PKG_BUILD_DIR)/%s/%s $$(1)/usr/bin\n", argv [OWRT_LIBRARY], argv [OWRT_PROGRAM]);
-		printf (" endef\n");
-		printf (" $$(eval $$(call BuildPackage,%s-%s))\n", argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
-		printf ("endef\n");
-		printf ("\n");
-	}
-	return;
-}
-
-
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);

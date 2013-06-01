@@ -86,6 +86,10 @@ signed getargv (signed argc, char const * argv [])
 		*sp++ = (char)(c);
 		c = getc (stdin);
 	}
+	if (sp != *argp)
+	{
+		argp++;
+	}
 	*argp = (char const *)(0);
 	*sp = (char)(0);
 	return ((signed)(argp - argv));
