@@ -37,7 +37,7 @@
 #include "../tools/basespec.c"
 #include "../tools/uintspec.c"
 #include "../tools/todigit.c"
-#include "../tools/memencoedit.c"
+#include "../tools/memencode.c"
 #include "../tools/hexpeek.c"
 #include "../tools/hexdump.c"
 #endif
