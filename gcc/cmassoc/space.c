@@ -70,14 +70,7 @@
 
 /*====================================================================*
  *
- *   void function (char newline, unsigned multiple);
- *
- *   read stdin and write stdout; replace leading spaces and tabs 
- *   with character newline unless newline is NUL; replace embedded 
- *   spaces and tabs with one space; discard trailing spaces and tabs;
- *
- *   write literal strings, enclosed in quotes or apostrophes, as 
- *   as read; ignore escaped newlines as line terminators;
+ *   void GNUMake (signed o, unsigned spaces, unsigned tabs);
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -85,7 +78,76 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (char o, unsigned multiple) 
+void GNUMake (signed o, unsigned spaces, unsigned tabs) 
+
+{
+	if (o) 
+	{
+		if (tabs) 
+		{
+			do 
+			{
+				putc (o, stdout);
+			}
+			while (--tabs);
+		}
+		else if (spaces) 
+		{
+			putc (o, stdout);
+		}
+	}
+	return;
+}
+
+
+/*====================================================================*
+ *
+ *   void OpenWRT (signed o, unsigned spaces, unsigned tabs);
+ *
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+void OpenWRT (signed o, unsigned spaces, unsigned tabs) 
+
+{
+	if (tabs) 
+	{
+		do 
+		{
+			putc ('\t', stdout);
+		}
+		while (--tabs);
+	}
+	else if (spaces) 
+	{
+		putc (' ', stdout);
+	}
+	return;
+}
+
+
+/*====================================================================*
+ *
+ *   void function (signed o, void indent (signed, unsigned, unsigned);
+ *
+ *   read stdin and write stdout; replace leading spaces character o
+ *   unless it is NUL; preserve leading tabs; replace embedded spaces
+ *   and tabs with one space; discard trailing spaces and tabs; write
+ *   literal strings, enclosed in quotes or apostrophes, as as read; 
+ *   ignore escaped newlines as line terminators;
+ *
+ *   this function is taylored for OpenWRT make files;
+ *
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+void function (signed o, void indent (signed, unsigned, unsigned)) 
 
 {
 	signed c = getc (stdin);
@@ -96,15 +158,11 @@ void function (char o, unsigned multiple)
 			unsigned column = 0;
 			unsigned spaces = 0;
 			unsigned tabs = 0;
-			do 
+			while (isblank (c)) 
 			{
 				if (c == '\t') 
 				{
-					do 
-					{
-						column++;
-					}
-					while (column%8);
+					while (++column%8);
 					tabs++;
 				}
 				else if (c == ' ') 
@@ -114,28 +172,9 @@ void function (char o, unsigned multiple)
 				}
 				c = getc (stdin);
 			}
-			while (isblank (c));
 			if (nobreak (c)) 
 			{
-				if (o == '\t') 
-				{
-					tabs *= multiple;
-					while (tabs--) 
-					{
-						putc (o, stdout);
-					}
-				}
-				if (o == ' ') 
-				{
-					if ((spaces) || (tabs)) 
-					{
-						putc (o, stdout);
-					}
-				}
-				if (o) 
-				{
-					putc (o, stdout);
-				}
+				indent (o, spaces, tabs);
 			}
 		}
 		while (nobreak (c)) 
@@ -194,37 +233,40 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"c:mnst",
+		"c:GnstW",
 		PUTOPTV_S_FILTER,
 		"white space manager",
-		"c c\tindent character is c",
-		"m\tpreserve multiple tabs",
-		"n\tindent character is nothing [" LITERAL (CHR_NUL) "]",
-		"s\tindent character is space [" LITERAL (CHR_HT) "]",
-		"t\tindent character is tab [" LITERAL (CHR_HT) "]",
+		"c c\tindent character is (c)",
+		"n\tindent is nothing [" LITERAL (CHR_NUL) "]",
+		"s\tindent is one space [" LITERAL (CHR_SP) "]",
+		"t\tindent is one tab [" LITERAL (CHR_HT) "]",
+		"W\tindent one space but preserve mutiple tabs",
 		(char *) (0)
 	};
-	char newline = CHR_HT;
-	unsigned multiple = 0;
+	void (* indent) (signed, unsigned, unsigned) = GNUMake;
+	signed o = CHR_HT;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
 		case 'c':
-			newline = * struesc ((char *) (optarg));
+			o = * struesc ((char *) (optarg));
+			break;
+		case 'G':
+			indent = GNUMake;
 			break;
 		case 'n':
-			newline = CHR_NUL;
+			o = CHR_NUL;
 			break;
 		case 's':
-			newline = CHR_SP;
-			break;
-		case 'm':
-			multiple = 1;
+			o = CHR_SP;
 			break;
 		case 't':
-			newline = CHR_HT;
+			o = CHR_HT;
+			break;
+		case 'W':
+			indent = OpenWRT;
 			break;
 		default:
 			break;
@@ -234,13 +276,13 @@ int main (int argc, char const * argv [])
 	argv += optind;
 	if (!argc) 
 	{
-		function (newline, multiple);
+		function (o, indent);
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (vfopen (* argv)) 
 		{
-			function (newline, multiple);
+			function (o, indent);
 		}
 		argc--;
 		argv++;
