@@ -48,66 +48,49 @@
 signed getargv (signed argc, char const * argv []) 
 
 {
-	extern char const * program_name;
-	static char string [1024];
+	static char string [4096];
 	char const ** argp = argv;
 	char * sp = string;
-	signed c = getc (stdin);
+	signed c;
 	memset (string, 0, sizeof (string));
 	memset ((char **)(argv), 0, argc * sizeof (char const *));
-	while (nobreak (c)) 
+	do 
 	{
-		if (isspace (c)) 
-		{
-			do 
-			{
-				c = getc (stdin);
-			}
-			while (isspace (c));
-		}
+		c = getc (stdin);
 		if (c == '#') 
 		{
-			do 
+			do { c = getc (stdin); } while (nobreak (c));
+		}
+	}
+	while (isspace (c));
+	*argp = sp;
+	while (nobreak (c)) 
+	{
+		if (isblank (c)) 
+		{
+			do { c = getc (stdin); } while (isblank (c));
+			*sp++ = (char)(0);
+			*++argp = sp;
+			continue;
+		}
+		if (isquote (c)) 
+		{
+			signed o = c;
+			for (c = getc (stdin); nobreak (c) && (c != o); c = getc (stdin)) 
 			{
-				c = getc (stdin);
+				*sp++ = (char) (c);
 			}
-			while (nobreak (c));
 			c = getc (stdin);
 			continue;
 		}
-		*argp++ = program_name;
-		*argp++ = sp = string;
-		while (nobreak (c)) 
-		{
-			if (c == '#') 
-			{
-				do 
-				{
-					c = getc (stdin);
-				}
-				while (nobreak (c));
-				break;
-			}
-			if (isblank (c)) 
-			{
-				c = (char)(0);
-				*argp = sp + 1;
-			}
-			else if (sp == *argp) 
-			{
-				if ((signed)(argp - argv) < argc) 
-				{
-					argp++;
-				}
-			}
-			*sp++ = (char)(c);
-			c = getc (stdin);
-		}
-		*argp = (char const *)(0);
-		*sp = (char)(0);
+		*sp++ = (char)(c);
+		c = getc (stdin);
 	}
-	return ((unsigned)(argp - argv));
+	*argp = (char const *)(0);
+	*sp = (char)(0);
+	return ((signed)(argp - argv));
 }
+
 
 #endif
 
