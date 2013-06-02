@@ -51,13 +51,14 @@
 #define OWRT_SILENCE (1 << 1)
 #define OWRT_BAILOUT (1 << 2)
 
-#define OWRT_COMPANY 0
-#define OWRT_PACKAGE 1
-#define OWRT_LIBRARY 2
-#define OWRT_PROGRAM 3
-#define OWRT_TITLE 4
-#define OWRT_SUMMARY 5
-#define OWRT_MAXIMUM 6
+#define OWRT_HANDLER 0
+#define OWRT_PROJECT 1
+#define OWRT_PACKAGE 2
+#define OWRT_LIBRARY 3
+#define OWRT_PROGRAM 4
+#define OWRT_TITLE 5
+#define OWRT_SUMMARY 6
+#define OWRT_MAXIMUM 7
 
 /*====================================================================*
  *
@@ -70,17 +71,17 @@ static void describe (flag_t flags)
 {
 	char const * argv [16];
 	signed argc;
-	printf ("# ===\n# Define package/program build instructions;\n$ ---\n\n");
+	printf ("# ===\n# Define package/program build instructions;\n# ---\n\n");
 	while ((argc = getargv (SIZEOF (argv), argv)))
 	{
-		printf ("define %s/%s/%s\n", argv [OWRT_COMPANY], argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
+		printf ("define %s-%s-%s\n", argv [OWRT_PROJECT], argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
 		printf (" define Package/%s-%s\n", argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
 		printf ("  $(call Package/%s/common)\n", argv [OWRT_PACKAGE]);
 		printf ("  TITLE:=%s\n", argv [OWRT_TITLE]);
 		printf ("  DEPENDS+=%s\n", argv [OWRT_PACKAGE]);
 		printf (" endef\n");
 		printf (" define Package/%s-%s/description\n", argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
-		printf ("  %s\n", argv [OWRT_SUMMARY]);
+		printf ("  %s\n", *argv [OWRT_SUMMARY]? argv [OWRT_SUMMARY]: "No description.");
 		printf (" endef\n");
 		printf (" define Package/%s-%s/install\n", argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
 		printf ("\t$(INSTALL_DIR) $$(1)/usr/bin\n");
@@ -104,10 +105,10 @@ static void assemble (flag_t flags)
 {
 	char const * argv [16];
 	signed argc;
-	printf ("# ===\n# Invoke package/program build instructions;\n$ ---\n\n");
+	printf ("# ===\n# Call a package/program handler;\n# ---\n\n");
 	while ((argc = getargv (SIZEOF (argv), argv)))
 	{
-		printf ("$(eval $(call %s/%s/%s))\n", argv [OWRT_COMPANY], argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
+		printf ("$(eval $(call %s,%s,%s,'%s','%s'))\n", argv [OWRT_HANDLER], argv [OWRT_LIBRARY], argv [OWRT_PROGRAM], argv [OWRT_TITLE], argv [OWRT_SUMMARY]);
 	}
 	printf ("\n");
 	return;
@@ -152,11 +153,11 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"adeqv",
+		"abeqv",
 		PUTOPTV_S_FUNNEL,
 		"basic C language program",
-		"a\tassemble package programs",
-		"d\tdescribe package programs",
+		"a\tdescribe package programs",
+		"b\tassemble package programs",
 		"e\tenumerate fields",
 		"q\tsuppress routine messages",
 		"v\tenable verbose messages",
@@ -170,10 +171,10 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{
 		case 'a':
-			function = assemble;
-			break;
-		case 'd':
 			function = describe;
+			break;
+		case 'b':
+			function = assemble;
 			break;
 		case 'e':
 			function = enumerate;
