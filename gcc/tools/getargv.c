@@ -14,6 +14,9 @@
  *   fields are separated by spaces and/or tabs; use single or double
  *   quotes to include white space in a field;
  *
+ *   we assume one argument since empty lines are ignored; this means 
+ *   that no arguments indicates EOF; 
+ *
  *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>
  *:  Copyright (c) 1982-2006 by Charles Maier
  *;  Licensed under Internet Software Consortium License
@@ -65,44 +68,54 @@ signed getargv (signed argc, char const * argv [])
 			while (isblank (c));
 			if (argn < argc) 
 			{
-				*sp++ = (char)(0);
-				argv [argn++] = sp;
+				argv [argn++] = ++sp;
 			}
 			else 
 			{
 				*sp++ = ' ';
 			}
+			continue;
 		}
-		else if (isquote (c)) 
+		if (isquote (c)) 
 		{
 			signed quote = c;
+
+#if 0
+
+			*sp++ = (char)(quote);
+
+#endif
+
 			while (((c = getc (stdin)) != quote) && nobreak (c)) 
 			{
 				if (c == '\\') 
 				{
-					if ((c = getc (stdin)) == EOF)
+					if ((c = getc (stdin)) == EOF) 
 					{
 						break;
 					}
 				}
 				*sp++ = (char) (c);
 			}
+
+#if 0
+
+			*sp++ = (char)(quote);
+
+#endif
+
 			if (c == quote) 
 			{
 				c = getc (stdin);
 			}
+			continue;
 		}
-		else 
-		{
-			*sp++ = (char)(c);
-			c = getc (stdin);
-		}
+		*sp++ = (char)(c);
+		c = getc (stdin);
 	}
-	*sp = (char)(0);
-	argn--;
-	if (sp != argv [argn]) 
+	if (--argn) 
 	{
-		argn++;
+		++argn;
 	}
 	return (argn);
 }
