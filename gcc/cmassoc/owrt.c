@@ -25,10 +25,10 @@
 
 #include "../tools/getoptv.h"
 #include "../tools/putoptv.h"
+#include "../tools/symbol.h"
 #include "../tools/error.h"
 #include "../tools/types.h"
 #include "../tools/flags.h"
-#include "../tools/symbol.h"
 
 /*====================================================================*
  *   custom source files;
@@ -62,11 +62,12 @@
 
 /*====================================================================*
  *
- *   void describe (flag_t flags)
+ *   void describe (flag_t flags);
+ *
  *
  *--------------------------------------------------------------------*/
 
-static void describe (flag_t flags) 
+static void describe (flag_t flags)
 
 {
 	char const * argv [16];
@@ -74,6 +75,10 @@ static void describe (flag_t flags)
 	printf ("# ===\n# Define package/program build instructions;\n# ---\n\n");
 	while ((argc = getargv (SIZEOF (argv), argv)))
 	{
+		if (argc < OWRT_MAXIMUM)
+		{
+			error (1, 0, "%s: Fields are missing", __func__);
+		}
 		printf ("define %s-%s-%s\n", argv [OWRT_PROJECT], argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
 		printf (" define Package/%s-%s\n", argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
 		printf ("  $(call Package/%s/common)\n", argv [OWRT_PACKAGE]);
@@ -81,7 +86,7 @@ static void describe (flag_t flags)
 		printf ("  DEPENDS+=%s\n", argv [OWRT_PACKAGE]);
 		printf (" endef\n");
 		printf (" define Package/%s-%s/description\n", argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
-		printf ("  %s\n", *argv [OWRT_SUMMARY]? argv [OWRT_SUMMARY]: "No description.");
+		printf ("  %s\n", *argv [OWRT_SUMMARY] != 0? argv [OWRT_SUMMARY]: "No description.");
 		printf (" endef\n");
 		printf (" define Package/%s-%s/install\n", argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
 		printf ("\t$(INSTALL_DIR) $$(1)/usr/bin\n");
@@ -96,7 +101,8 @@ static void describe (flag_t flags)
 
 /*====================================================================*
  *
- *   void assemble (flag_t flags)
+ *   void assemble (flag_t flags);
+ *
  *
  *--------------------------------------------------------------------*/
 
@@ -105,9 +111,13 @@ static void assemble (flag_t flags)
 {
 	char const * argv [16];
 	signed argc;
-	printf ("# ===\n# Call a package/program handler;\n# ---\n\n");
+	printf ("# ===\n# Call various package/program handlers;\n# ---\n\n");
 	while ((argc = getargv (SIZEOF (argv), argv)))
 	{
+		if (argc < OWRT_MAXIMUM)
+		{
+			error (1, 0, "%s: Fields are missing", __func__);
+		}
 		printf ("$(eval $(call %s,%s,%s,'%s','%s'))\n", argv [OWRT_HANDLER], argv [OWRT_LIBRARY], argv [OWRT_PROGRAM], argv [OWRT_TITLE], argv [OWRT_SUMMARY]);
 	}
 	printf ("\n");
@@ -128,9 +138,13 @@ static void enumerate (flag_t flags)
 	signed argn;
 	while ((argc = getargv (SIZEOF (argv), argv)))
 	{
+		if (argc < OWRT_MAXIMUM)
+		{
+			error (0, 0, "%s: fields are missing", __func__);
+		}
 		for (argn = 0; argn < argc; argn++)
 		{
-			printf ("argv[%d]=[%s]\n", argn, argv[argn]);
+			printf ("field [%d]=[%s]\n", argn, argv [argn]);
 		}
 		printf ("\n");
 	}

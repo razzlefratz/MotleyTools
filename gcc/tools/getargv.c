@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   signed getargv (signed argc, char const * argv [])
+ *   signed getargv (char const * argv [], signed argc)
  *
  *   symbol.h
  *
