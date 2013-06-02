@@ -71,27 +71,32 @@ signed getargv (signed argc, char const * argv [])
 			do { c = getc (stdin); } while (isblank (c));
 			*sp++ = (char)(0);
 			*++argp = sp;
-			continue;
 		}
-		if (isquote (c)) 
+		else if (isquote (c)) 
 		{
 			signed o = c;
 			for (c = getc (stdin); nobreak (c) && (c != o); c = getc (stdin)) 
 			{
 				*sp++ = (char) (c);
 			}
-			c = getc (stdin);
-			continue;
+			if (c ==  o)
+			{
+				c = getc (stdin);
+			}
+			*sp++ = (char)(0);
 		}
-		*sp++ = (char)(c);
-		c = getc (stdin);
+		else
+		{
+			*sp++ = (char)(c);
+			c = getc (stdin);
+		}
 	}
-	if (sp != *argp)
+	*sp = (char)(0);
+	if (*argp != sp)
 	{
 		argp++;
 	}
 	*argp = (char const *)(0);
-	*sp = (char)(0);
 	return ((signed)(argp - argv));
 }
 

@@ -70,23 +70,67 @@ static void describe (flag_t flags)
 {
 	char const * argv [16];
 	signed argc;
+	printf ("# ===\n# Define package/program build instructions;\n$ ---\n\n");
 	while ((argc = getargv (SIZEOF (argv), argv)))
 	{
 		printf ("define %s/%s/%s\n", argv [OWRT_COMPANY], argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
 		printf (" define Package/%s-%s\n", argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
 		printf ("  $(call Package/%s/common)\n", argv [OWRT_PACKAGE]);
-		printf ("  OWRT_TITLE:=%s\n", argv [OWRT_TITLE]);
+		printf ("  TITLE:=%s\n", argv [OWRT_TITLE]);
 		printf ("  DEPENDS+=%s\n", argv [OWRT_PACKAGE]);
 		printf (" endef\n");
 		printf (" define Package/%s-%s/description\n", argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
 		printf ("  %s\n", argv [OWRT_SUMMARY]);
 		printf (" endef\n");
 		printf (" define Package/%s-%s/install\n", argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
-		printf ("  $(INSTALL_DIR) $$(1)/usr/bin\n");
-		printf ("  $(INSTALL_BIN) $(PKG_BUILD_DIR)/%s/%s $$(1)/usr/bin\n", argv [OWRT_LIBRARY], argv [OWRT_PROGRAM]);
+		printf ("\t$(INSTALL_DIR) $$(1)/usr/bin\n");
+		printf ("\t$(INSTALL_BIN) $(PKG_BUILD_DIR)/%s/%s $$(1)/usr/bin\n", argv [OWRT_LIBRARY], argv [OWRT_PROGRAM]);
 		printf (" endef\n");
 		printf (" $$(eval $$(call BuildPackage,%s-%s))\n", argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
 		printf ("endef\n");
+		printf ("\n");
+	}
+	return;
+}
+
+/*====================================================================*
+ *
+ *   void assemble (flag_t flags)
+ *
+ *--------------------------------------------------------------------*/
+
+static void assemble (flag_t flags) 
+
+{
+	char const * argv [16];
+	signed argc;
+	printf ("# ===\n# Invoke package/program build instructions;\n$ ---\n\n");
+	while ((argc = getargv (SIZEOF (argv), argv)))
+	{
+		printf ("$(eval $(call %s/%s/%s))\n", argv [OWRT_COMPANY], argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
+	}
+	printf ("\n");
+	return;
+}
+
+/*====================================================================*
+ *
+ *   void enumerate (flag_t flags)
+ *
+ *--------------------------------------------------------------------*/
+
+static void enumerate (flag_t flags) 
+
+{
+	char const * argv [16];
+	signed argc;
+	signed argn;
+	while ((argc = getargv (SIZEOF (argv), argv)))
+	{
+		for (argn = 0; argn < argc; argn++)
+		{
+			printf ("argv[%d]=[%s]\n", argn, argv[argn]);
+		}
 		printf ("\n");
 	}
 	return;
@@ -108,9 +152,12 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"qv",
+		"adeqv",
 		PUTOPTV_S_FUNNEL,
 		"basic C language program",
+		"a\tassemble package programs",
+		"d\tdescribe package programs",
+		"e\tenumerate fields",
 		"q\tsuppress routine messages",
 		"v\tenable verbose messages",
 		(char const *)(0)
@@ -122,6 +169,15 @@ int main (int argc, char const * argv [])
 	{
 		switch (c) 
 		{
+		case 'a':
+			function = assemble;
+			break;
+		case 'd':
+			function = describe;
+			break;
+		case 'e':
+			function = enumerate;
+			break;
 		case 'q':
 			_setbits (flags, OWRT_SILENCE);
 			break;
