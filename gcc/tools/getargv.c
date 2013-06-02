@@ -4,10 +4,15 @@
  *
  *   symbol.h
  *
- *   read one line from stdin; fill argv [] with fields from that
- *   line; return the number of fields found; ignore blank lines 
- *   and script style comment lines; this implementation inserts
- *   a program name at argv [0] to emulate a true argv [];
+ *   read one line from stdin and fill argv [] with fields from that
+ *   line; return the number of fields found up to the limit of argc; 
+ *   if the line has more than argc fields then the last field holds
+ *   all fields in the trailing portion of that line; vector argv is
+ *   always NULL termianted; ignore script-style comments and empty
+ *   lines;
+ *
+ *   fields are separated by spaces and/or tabs; use single or double
+ *   quotes to include white space in a field;
  *
  *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>
  *:  Copyright (c) 1982-2006 by Charles Maier
@@ -24,16 +29,18 @@
 
 #include "../tools/symbol.h"
 #include "../tools/chars.h"
+#include "../tools/sizes.h"
 
 signed getargv (signed argc, char const * argv []) 
 
 {
-	static char string [4096];
-	char const ** argp = argv;
+	static char string [_LINESIZE];
 	char * sp = string;
+	signed argn = 0;
 	signed c;
 	memset (string, 0, sizeof (string));
-	memset ((char **)(argv), 0, argc * sizeof (char const *));
+	memset (argv, 0, argc * sizeof (*argv));
+	argv [argn++] = sp;
 	do 
 	{
 		c = getc (stdin);
@@ -47,7 +54,6 @@ signed getargv (signed argc, char const * argv [])
 		}
 	}
 	while (isspace (c));
-	*argp = sp;
 	while (nobreak (c)) 
 	{
 		if (isblank (c)) 
@@ -57,21 +63,34 @@ signed getargv (signed argc, char const * argv [])
 				c = getc (stdin);
 			}
 			while (isblank (c));
-			*sp++ = (char)(0);
-			*++argp = sp;
+			if (argn < argc) 
+			{
+				*sp++ = (char)(0);
+				argv [argn++] = sp;
+			}
+			else 
+			{
+				*sp++ = ' ';
+			}
 		}
 		else if (isquote (c)) 
 		{
-			signed o = c;
-			for (c = getc (stdin); nobreak (c) && (c != o); c = getc (stdin)) 
+			signed quote = c;
+			while (((c = getc (stdin)) != quote) && nobreak (c)) 
 			{
+				if (c == '\\') 
+				{
+					if ((c = getc (stdin)) == EOF)
+					{
+						break;
+					}
+				}
 				*sp++ = (char) (c);
 			}
-			if (c == o) 
+			if (c == quote) 
 			{
 				c = getc (stdin);
 			}
-			*sp++ = (char)(0);
 		}
 		else 
 		{
@@ -80,12 +99,11 @@ signed getargv (signed argc, char const * argv [])
 		}
 	}
 	*sp = (char)(0);
-	if (*argp != sp) 
+	if (sp != argv [--argn]) 
 	{
-		argp++;
+		argn++;
 	}
-	*argp = (char const *)(0);
-	return ((signed)(argp - argv));
+	return (argn);
 }
 
 
