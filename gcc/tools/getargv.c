@@ -1,24 +1,4 @@
 /*====================================================================*
- *   
- *   Copyright (c) 2012 by Qualcomm Atheros.
- *   
- *   Permission to use, copy, modify, and/or distribute this software 
- *   for any purpose with or without fee is hereby granted, provided 
- *   that the above copyright notice and this permission notice appear 
- *   in all copies.
- *   
- *   THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL 
- *   WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED 
- *   WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL  
- *   THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR 
- *   CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
- *   LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, 
- *   NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN 
- *   CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *   
- *--------------------------------------------------------------------*/
-
-/*====================================================================*
  *
  *   signed getargv (signed argc, char const * argv [])
  *
@@ -29,9 +9,9 @@
  *   and script style comment lines; this implementation inserts
  *   a program name at argv [0] to emulate a true argv [];
  *
- *.  Qualcomm Atheros HomePlug AV Powerline Toolkit
- *:  Published 2009-2012 by Qualcomm Atheros. ALL RIGHTS RESERVED
- *;  For demonstration and evaluation only. Not for production use
+ *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>
+ *:  Copyright (c) 1982-2006 by Charles Maier
+ *;  Licensed under Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -59,7 +39,11 @@ signed getargv (signed argc, char const * argv [])
 		c = getc (stdin);
 		if (c == '#') 
 		{
-			do { c = getc (stdin); } while (nobreak (c));
+			do 
+			{
+				c = getc (stdin);
+			}
+			while (nobreak (c));
 		}
 	}
 	while (isspace (c));
@@ -68,7 +52,11 @@ signed getargv (signed argc, char const * argv [])
 	{
 		if (isblank (c)) 
 		{
-			do { c = getc (stdin); } while (isblank (c));
+			do 
+			{
+				c = getc (stdin);
+			}
+			while (isblank (c));
 			*sp++ = (char)(0);
 			*++argp = sp;
 		}
@@ -79,20 +67,20 @@ signed getargv (signed argc, char const * argv [])
 			{
 				*sp++ = (char) (c);
 			}
-			if (c ==  o)
+			if (c == o) 
 			{
 				c = getc (stdin);
 			}
 			*sp++ = (char)(0);
 		}
-		else
+		else 
 		{
 			*sp++ = (char)(c);
 			c = getc (stdin);
 		}
 	}
 	*sp = (char)(0);
-	if (*argp != sp)
+	if (*argp != sp) 
 	{
 		argp++;
 	}
