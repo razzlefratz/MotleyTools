@@ -233,14 +233,15 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"c:GnstW",
+		"c:mnostW",
 		PUTOPTV_S_FILTER,
 		"white space manager",
 		"c c\tindent character is (c)",
+		"m\tindent is nothing [" LITERAL (CHR_NUL) "]",
 		"n\tindent is nothing [" LITERAL (CHR_NUL) "]",
+		"o\tindent one space but preserve mutiple tabs",
 		"s\tindent is one space [" LITERAL (CHR_SP) "]",
 		"t\tindent is one tab [" LITERAL (CHR_HT) "]",
-		"W\tindent one space but preserve mutiple tabs",
 		(char *) (0)
 	};
 	void (* indent) (signed, unsigned, unsigned) = GNUMake;
@@ -253,20 +254,20 @@ int main (int argc, char const * argv [])
 		case 'c':
 			o = * struesc ((char *) (optarg));
 			break;
-		case 'G':
+		case 'm':
 			indent = GNUMake;
 			break;
 		case 'n':
 			o = CHR_NUL;
+			break;
+		case 'o':
+			indent = OpenWRT;
 			break;
 		case 's':
 			o = CHR_SP;
 			break;
 		case 't':
 			o = CHR_HT;
-			break;
-		case 'W':
-			indent = OpenWRT;
 			break;
 		default:
 			break;

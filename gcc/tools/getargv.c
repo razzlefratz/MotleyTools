@@ -99,7 +99,8 @@ signed getargv (signed argc, char const * argv [])
 		}
 	}
 	*sp = (char)(0);
-	if (sp != argv [--argn]) 
+	argn--;
+	if (sp != argv [argn]) 
 	{
 		argn++;
 	}
