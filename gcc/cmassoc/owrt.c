@@ -64,13 +64,8 @@
 #define OWRT_SUMMARY 5
 #define OWRT_MAXIMUM 6
 
-signed getargv (signed argc, char const * argv [])
-
-{
-	static char buffer [_LINESIZE];
-	signed count = getfields (argv, argc, buffer, sizeof (buffer));
-	return (count);
-}
+static char buffer [0x1000];
+static char const * argv [0x10];
 
 /*====================================================================*
  *
@@ -127,10 +122,8 @@ static void define_handler (char const * handler, char const * package)
 static void invoke_handler (flag_t flags) 
 
 {
-	char const * argv [0x10];
-	signed argc;
 	printf ("# ===\n# call package program handler;\n# ---\n\n");
-	while ((argc = getargv (SIZEOF (argv), argv))) 
+	while (getfields (argv, SIZEOF (argv), buffer, sizeof (buffer))) 
 	{
 		if (_anyset (flags, OWRT_ONELINE))
 		{
@@ -165,14 +158,13 @@ static void invoke_handler (flag_t flags)
 static void enumerate () 
 
 {
-	char const * argv [0x10];
-	signed argc;
-	signed argn;
-	while ((argc = getargv (SIZEOF (argv), argv))) 
+	signed limit;
+	while ((limit = getfields (argv, SIZEOF (argv), buffer, sizeof (buffer)))) 
 	{
-		for (argn = 0; argn < argc; argn++) 
+		signed count;
+		for (count = 0; count < limit; count++) 
 		{
-			printf ("field [%d]=[%s]\n", argn, argv [argn]);
+			printf ("field [%d]=[%s]\n", count, argv [count]);
 		}
 		printf ("\n");
 	}
