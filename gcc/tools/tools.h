@@ -161,14 +161,14 @@ void eperror (char const *format, ...);
  *
  *--------------------------------------------------------------------*/
 
-signed fgetline (char *buffer, size_t length, FILE * fp);
-signed fgetlongline (char *buffer, size_t length, unsigned preserve, FILE * fp);
-signed fputline (char const *buffer, size_t length, FILE * fp);
+signed fgetline (char * buffer, size_t length, FILE * fp);
+signed fgetlongline (char * buffer, size_t length, unsigned preserve, FILE * fp);
+signed fputline (char const * buffer, size_t length, FILE * fp);
 void fputn (unsigned value, unsigned short radix, size_t width, FILE * ofp);
-size_t fgetv (char *list [], size_t size, char *buffer, size_t length, FILE * fp);
-void fputv (char const *list [], size_t size, FILE * fp);
+size_t fgetv (char * list [], size_t size, char * buffer, size_t length, FILE * fp);
+void fputv (char const * list [], size_t size, FILE * fp);
 int fprintv (FILE *fp, char const *list [], size_t size);
-void signf (char const *string, int c, size_t width);
+void signf (char const * string, int c, size_t width);
 size_t cgets (char buffer [], size_t length);
 char * argv2str (char * argv []);
 void center (char const buffer [], unsigned length, unsigned margin);
@@ -178,7 +178,7 @@ void center (char const buffer [], unsigned length, unsigned margin);
  *--------------------------------------------------------------------*/
 
 char const * termspec (char const * term, char const * type, const struct _term_ list [], size_t size);
-void nodef (char const * term, char const * type, const struct _term_ list [], signed size);
+void nodef (char const * term, char const * type, const struct _term_ list [], size_t size);
 
 /*====================================================================*
  *
