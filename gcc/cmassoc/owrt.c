@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 #include <limits.h>
 
 /*====================================================================*
@@ -51,78 +52,97 @@
 #define OWRT_SILENCE (1 << 1)
 #define OWRT_BAILOUT (1 << 2)
 
+#define OWRT_S_HANDLER "MotleyTool"
+#define OWRT_S_PACKAGE "MotleyTools"
+
 #define OWRT_HANDLER 0
-#define OWRT_PROJECT 1
-#define OWRT_PACKAGE 2
-#define OWRT_LIBRARY 3
-#define OWRT_PROGRAM 4
-#define OWRT_TITLE 5
-#define OWRT_SUMMARY 6
-#define OWRT_MAXIMUM 7
+#define OWRT_PACKAGE 1
+#define OWRT_LIBRARY 2
+#define OWRT_PROGRAM 3
+#define OWRT_TITLE 4
+#define OWRT_SUMMARY 5
+#define OWRT_MAXIMUM 6
 
 /*====================================================================*
  *
- *   void describe (flag_t flags);
+ *   void define_handler (char const * name, char const * package);
  *
+ *   print a GNU make variable definition on stdout; the definition
+ *   expands to OpenWRT steps needed to add one program to the menu
+ *   coniguration; 
+ *
+ *   $(1) is the package folder where the compiled program exists;
+ *   $(2) is the program name; 
+ *   $(3) is the program title or short decription;
+ *   $(4) is the program description;
  *
  *--------------------------------------------------------------------*/
 
-static void describe (flag_t flags)
+static void define_handler (char const * handler, char const * package) 
 
 {
-	char const * argv [16];
-	signed argc;
-	printf ("# ===\n# Define package/program build instructions;\n# ---\n\n");
-	while ((argc = getargv (SIZEOF (argv), argv)))
-	{
-		if (argc < OWRT_MAXIMUM)
-		{
-			error (1, 0, "%s: Fields are missing", __func__);
-		}
-		printf ("define %s-%s-%s\n", argv [OWRT_PROJECT], argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
-		printf (" define Package/%s-%s\n", argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
-		printf ("  $(call Package/%s/common)\n", argv [OWRT_PACKAGE]);
-		printf ("  TITLE:=%s\n", argv [OWRT_TITLE]);
-		printf ("  DEPENDS+=%s\n", argv [OWRT_PACKAGE]);
-		printf (" endef\n");
-		printf (" define Package/%s-%s/description\n", argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
-		printf ("  %s\n", *argv [OWRT_SUMMARY] != 0? argv [OWRT_SUMMARY]: "No description.");
-		printf (" endef\n");
-		printf (" define Package/%s-%s/install\n", argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
-		printf ("\t$(INSTALL_DIR) $$(1)/usr/bin\n");
-		printf ("\t$(INSTALL_BIN) $(PKG_BUILD_DIR)/%s/%s $$(1)/usr/bin\n", argv [OWRT_LIBRARY], argv [OWRT_PROGRAM]);
-		printf (" endef\n");
-		printf (" $$(eval $$(call BuildPackage,%s-%s))\n", argv [OWRT_PACKAGE], argv [OWRT_PROGRAM]);
-		printf ("endef\n");
-		printf ("\n");
-	}
+	printf ("# ===\n# define package program handler;\n# ---\n\n");
+	printf ("define %s\n", handler);
+	printf ("  define Package/%s-$(2)\n", package);
+	printf ("    $(call Package/%s/default)\n", package);
+	printf ("    TITLE:=$(3)\n");
+	printf ("    DEPENDS+=%s\n", package);
+	printf ("  endef\n");
+	printf ("  define Package/%s-$(2)/description\n", package);
+	printf ("    $(4)\n");
+	printf ("  endef\n");
+	printf ("  define Package/%s-$(2)/install\n", package);
+	printf ("	$(INSTALL_DIR) $$(1)/usr/bin\n");
+	printf ("	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(1)/$(2) $$(1)/usr/bin\n");
+	printf ("  endef\n");
+	printf ("  $$(eval $$(call BuildPackage,%s-$(2)))\n", package);
+	printf ("endef\n\n");
 	return;
 }
 
+
 /*====================================================================*
  *
- *   void assemble (flag_t flags);
+ *   void invoke_handler ();
  *
+ *   print GNU make variable expansions on stdout; expansions have
+ *   the form '$(eval $(call variable,.,.,.))' where the arguments
+ *   are read from stdin using getargv;
+ *
+ *   enclose the last two arguments in single quotes because they
+ *   often contain white space; there should be a better way since
+ *   these quotes appear in the build menu;
  *
  *--------------------------------------------------------------------*/
 
-static void assemble (flag_t flags) 
+static void invoke_handler () 
 
 {
-	char const * argv [16];
+	char const * argv [0x10];
 	signed argc;
-	printf ("# ===\n# Call various package/program handlers;\n# ---\n\n");
-	while ((argc = getargv (SIZEOF (argv), argv)))
+	printf ("# ===\n# call package program handler;\n# ---\n\n");
+	while ((argc = getargv (SIZEOF (argv), argv))) 
 	{
-		if (argc < OWRT_MAXIMUM)
-		{
-			error (1, 0, "%s: Fields are missing", __func__);
-		}
-		printf ("$(eval $(call %s,%s,%s,'%s','%s'))\n", argv [OWRT_HANDLER], argv [OWRT_LIBRARY], argv [OWRT_PROGRAM], argv [OWRT_TITLE], argv [OWRT_SUMMARY]);
+#if 0
+		printf ("$(eval $(call %s", argv [OWRT_HANDLER]);
+		printf (",%s", argv [OWRT_LIBRARY]);
+		printf (",%s", argv [OWRT_PROGRAM]);
+		printf (",'%s'", argv [OWRT_TITLE]);
+		printf (",'%s'", argv [OWRT_SUMMARY]);
+		printf ("))\n");
+#else
+		printf ("$(eval $(call %s, \\\n", argv [OWRT_HANDLER]);
+		printf ("\t,%s \\\n", argv [OWRT_LIBRARY]);
+		printf ("\t,%s \\\n", argv [OWRT_PROGRAM]);
+		printf ("\t,'%s' \\\n", argv [OWRT_TITLE]);
+		printf ("\t,'%s' \\\n", argv [OWRT_SUMMARY]);
+		printf ("))\n");
+#endif
 	}
 	printf ("\n");
 	return;
 }
+
 
 /*====================================================================*
  *
@@ -130,19 +150,15 @@ static void assemble (flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void enumerate (flag_t flags) 
+static void enumerate () 
 
 {
-	char const * argv [16];
+	char const * argv [0x10];
 	signed argc;
 	signed argn;
-	while ((argc = getargv (SIZEOF (argv), argv)))
+	while ((argc = getargv (SIZEOF (argv), argv))) 
 	{
-		if (argc < OWRT_MAXIMUM)
-		{
-			error (0, 0, "%s: fields are missing", __func__);
-		}
-		for (argn = 0; argn < argc; argn++)
+		for (argn = 0; argn < argc; argn++) 
 		{
 			printf ("field [%d]=[%s]\n", argn, argv [argn]);
 		}
@@ -150,6 +166,7 @@ static void enumerate (flag_t flags)
 	}
 	return;
 }
+
 
 /*====================================================================*
  *
@@ -167,28 +184,32 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"abeqv",
+		"abeh:p:qv",
 		PUTOPTV_S_FUNNEL,
 		"basic C language program",
-		"a\tdescribe package programs",
-		"b\tassemble package programs",
+		"a\tdefine variable",
+		"b\tinvoke variable",
 		"e\tenumerate fields",
 		"q\tsuppress routine messages",
 		"v\tenable verbose messages",
+		"h s\thandler is (c) [" LITERAL (OWRT_S_HANDLER) "]",
+		"p s\tpackage is (c) [" LITERAL (OWRT_S_PACKAGE) "]",
 		(char const *)(0)
 	};
-	void (* function) () = describe;
+	char const * handler = OWRT_S_HANDLER;
+	char const * package = OWRT_S_PACKAGE;
+	void (* function) () = invoke_handler;
 	flag_t flags = (flag_t)(0);
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
-		case 'a':
-			function = describe;
+		case 'h':
+			handler = optarg;
 			break;
-		case 'b':
-			function = assemble;
+		case 'p':
+			package = optarg;
 			break;
 		case 'e':
 			function = enumerate;
@@ -207,7 +228,7 @@ int main (int argc, char const * argv [])
 	argv += optind;
 	if (!argc) 
 	{
-		function (flags);
+		define_handler (handler, package);
 	}
 	while ((argc) && (* argv)) 
 	{
