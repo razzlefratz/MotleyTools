@@ -110,6 +110,7 @@ void codesave (struct _code_ const list [], size_t size, char const * name, flag
 
 char const * synonym (struct _term_ const list [], size_t size, const char * term);
 void synonyms (struct _term_ const list [], size_t size, const char * term, const char * type);
+signed getfields (char const * fields [], signed limit, char buffer [], size_t length);
 signed getargv (signed argc, char const * argv []);
 
 /*====================================================================*

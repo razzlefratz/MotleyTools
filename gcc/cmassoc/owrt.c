@@ -40,7 +40,7 @@
 #include "../tools/putoptv.c"
 #include "../tools/version.c"
 #include "../tools/efreopen.c"
-#include "../tools/getargv.c"
+#include "../tools/getfields.c"
 #include "../tools/error.c"
 #endif
 
@@ -51,6 +51,7 @@
 #define OWRT_VERBOSE (1 << 0)
 #define OWRT_SILENCE (1 << 1)
 #define OWRT_BAILOUT (1 << 2)
+#define OWRT_ONELINE (1 << 3)
 
 #define OWRT_S_HANDLER "MotleyTool"
 #define OWRT_S_PACKAGE "MotleyTools"
@@ -62,6 +63,14 @@
 #define OWRT_TITLE 4
 #define OWRT_SUMMARY 5
 #define OWRT_MAXIMUM 6
+
+signed getargv (signed argc, char const * argv [])
+
+{
+	static char buffer [_LINESIZE];
+	signed count = getfields (argv, argc, buffer, sizeof (buffer));
+	return (count);
+}
 
 /*====================================================================*
  *
@@ -103,7 +112,7 @@ static void define_handler (char const * handler, char const * package)
 
 /*====================================================================*
  *
- *   void invoke_handler ();
+ *   void invoke_handler (flag_t flags);
  *
  *   print GNU make variable expansions on stdout; expansions have
  *   the form '$(eval $(call variable,.,.,.))' where the arguments
@@ -115,7 +124,7 @@ static void define_handler (char const * handler, char const * package)
  *
  *--------------------------------------------------------------------*/
 
-static void invoke_handler () 
+static void invoke_handler (flag_t flags) 
 
 {
 	char const * argv [0x10];
@@ -123,21 +132,24 @@ static void invoke_handler ()
 	printf ("# ===\n# call package program handler;\n# ---\n\n");
 	while ((argc = getargv (SIZEOF (argv), argv))) 
 	{
-#if 0
+		if (_anyset (flags, OWRT_ONELINE))
+		{
 		printf ("$(eval $(call %s", argv [OWRT_HANDLER]);
 		printf (",%s", argv [OWRT_LIBRARY]);
 		printf (",%s", argv [OWRT_PROGRAM]);
 		printf (",'%s'", argv [OWRT_TITLE]);
 		printf (",'%s'", argv [OWRT_SUMMARY]);
 		printf ("))\n");
-#else
-		printf ("$(eval $(call %s, \\\n", argv [OWRT_HANDLER]);
+		}
+		else
+		{
+		printf ("$(eval $(call %s \\\n", argv [OWRT_HANDLER]);
 		printf ("\t,%s \\\n", argv [OWRT_LIBRARY]);
 		printf ("\t,%s \\\n", argv [OWRT_PROGRAM]);
 		printf ("\t,'%s' \\\n", argv [OWRT_TITLE]);
 		printf ("\t,'%s' \\\n", argv [OWRT_SUMMARY]);
 		printf ("))\n");
-#endif
+		}
 	}
 	printf ("\n");
 	return;
@@ -184,16 +196,17 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"abeh:p:qv",
+		"abeh:op:qv",
 		PUTOPTV_S_FUNNEL,
-		"basic C language program",
+		"OpenWRT Makefile Tool",
 		"a\tdefine variable",
 		"b\tinvoke variable",
 		"e\tenumerate fields",
+		"o\tone line output",
 		"q\tsuppress routine messages",
 		"v\tenable verbose messages",
-		"h s\thandler is (c) [" LITERAL (OWRT_S_HANDLER) "]",
-		"p s\tpackage is (c) [" LITERAL (OWRT_S_PACKAGE) "]",
+		"h s\thandler name is (s) [" LITERAL (OWRT_S_HANDLER) "]",
+		"p s\tpackage name is (s) [" LITERAL (OWRT_S_PACKAGE) "]",
 		(char const *)(0)
 	};
 	char const * handler = OWRT_S_HANDLER;
@@ -205,14 +218,17 @@ int main (int argc, char const * argv [])
 	{
 		switch (c) 
 		{
+		case 'e':
+			function = enumerate;
+			break;
 		case 'h':
 			handler = optarg;
 			break;
+		case 'o':
+			_setbits (flags, OWRT_ONELINE);
+			break;
 		case 'p':
 			package = optarg;
-			break;
-		case 'e':
-			function = enumerate;
 			break;
 		case 'q':
 			_setbits (flags, OWRT_SILENCE);

@@ -173,7 +173,7 @@ odx: odx.o console.o indent.o xmlschema.o
 oedit: oedit.o basespec.o console.o dataspec.o hexdump.o hexpeek.o memencode.o todigit.o uintspec.o
 offset: offset.o console.o efreopen.o emalloc.o getusername.o hostname.o indent.o todigit.o uintspec.o username.o
 order: order.o edge.o efreopen.o emalloc.o erealloc.o error.o getoptv.o putoptv.o version.o
-owrt: owrt.o efreopen.o error.o getargv.o getoptv.o putoptv.o version.o
+owrt: owrt.o efreopen.o error.o getfields.o getoptv.o putoptv.o version.o
 pad: pad.o efreopen.o error.o getoptv.o putoptv.o todigit.o uintspec.o version.o
 paginate: paginate.o console.o efreopen.o filepart.o page.o todigit.o uintspec.o
 pkg: pkg.o chruesc.o error.o fgetline.o getoptv.o putoptv.o struesc.o todigit.o version.o

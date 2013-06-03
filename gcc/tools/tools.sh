@@ -73,6 +73,7 @@ gcc -Wall -Wextra -Wno-unused-parameter -c getch.c
 # gcc -Wall -Wextra -Wno-unused-parameter -c getopt.c
 # gcc -Wall -Wextra -Wno-unused-parameter -c getopt1.c
 gcc -Wall -Wextra -Wno-unused-parameter -c getargv.c
+gcc -Wall -Wextra -Wno-unused-parameter -c getfields.c
 gcc -Wall -Wextra -Wno-unused-parameter -c getoptv.c
 gcc -Wall -Wextra -Wno-unused-parameter -c getst.c
 gcc -Wall -Wextra -Wno-unused-parameter -c getvalue.c
