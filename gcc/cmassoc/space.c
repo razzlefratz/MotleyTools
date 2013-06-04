@@ -113,17 +113,20 @@ void GNUMake (signed o, unsigned spaces, unsigned tabs)
 void OpenWRT (signed o, unsigned spaces, unsigned tabs) 
 
 {
-	if (tabs) 
+	if (o) 
 	{
-		do 
+		if (tabs) 
 		{
-			putc ('\t', stdout);
+			do 
+			{
+				putc ('\t', stdout);
+			}
+			while (--tabs);
 		}
-		while (--tabs);
-	}
-	else if (spaces) 
-	{
-		putc (' ', stdout);
+		else if (spaces) 
+		{
+			putc (' ', stdout);
+		}
 	}
 	return;
 }
@@ -233,15 +236,15 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"c:mnostW",
+		"c:MnostW",
 		PUTOPTV_S_FILTER,
 		"white space manager",
 		"c c\tindent character is (c)",
-		"m\tindent is nothing [" LITERAL (CHR_NUL) "]",
+		"M\tsuitable for GNU makefiles",
 		"n\tindent is nothing [" LITERAL (CHR_NUL) "]",
-		"o\tindent one space but preserve mutiple tabs",
 		"s\tindent is one space [" LITERAL (CHR_SP) "]",
 		"t\tindent is one tab [" LITERAL (CHR_HT) "]",
+		"W\tsuitable for OpenWRT makefiles",
 		(char *) (0)
 	};
 	void (* indent) (signed, unsigned, unsigned) = GNUMake;
@@ -254,20 +257,20 @@ int main (int argc, char const * argv [])
 		case 'c':
 			o = * struesc ((char *) (optarg));
 			break;
-		case 'm':
+		case 'M':
 			indent = GNUMake;
 			break;
 		case 'n':
 			o = CHR_NUL;
-			break;
-		case 'o':
-			indent = OpenWRT;
 			break;
 		case 's':
 			o = CHR_SP;
 			break;
 		case 't':
 			o = CHR_HT;
+			break;
+		case 'W':
+			indent = OpenWRT;
 			break;
 		default:
 			break;
