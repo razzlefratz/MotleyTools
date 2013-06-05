@@ -74,9 +74,9 @@
  *--------------------------------------------------------------------*/
 
 #define ETHDEVICE "ETH"
-#define PAUSE 0
-#define DELAY 0
-#define LOOP 1
+#define EFSU_PAUSE 0
+#define EFSU_DELAY 0
+#define EFSU_COUNT 1
 
 /*====================================================================*
  *   
@@ -185,16 +185,16 @@ int main (int argc, char const * argv [])
 		"d x\treplace destination address with (x)",
 		"h\treplace source address with host address",
 		"i s\tuse host interface (s) [" LITERAL (CHANNEL_ETHDEVICE) "]",
-		"l n\trepeat file sequence (n) times [" LITERAL (LOOP) "]",
-		"p n\twait (n) seconds between files [" LITERAL (PAUSE) "]",
+		"l n\trepeat file sequence (n) times [" LITERAL (EFSU_COUNT) "]",
+		"p n\twait (n) seconds between files [" LITERAL (EFSU_PAUSE) "]",
 		"t n\tread timeout is (n) milliseconds [" LITERAL (CHANNEL_TIMEOUT) "]",
 		"v\tverbose messages",
-		"w n\twait (n) seconds between loops [" LITERAL (DELAY) "]",
+		"w n\twait (n) seconds between counts [" LITERAL (EFSU_DELAY) "]",
 		(char const *) (0)
 	};
-	unsigned pause = PAUSE;
-	unsigned delay = DELAY;
-	unsigned loop = LOOP;
+	unsigned pause = EFSU_PAUSE;
+	unsigned delay = EFSU_DELAY;
+	unsigned count = EFSU_COUNT;
 	signed c;
 	if (getenv (ETHDEVICE)) 
 	{
@@ -218,7 +218,7 @@ int main (int argc, char const * argv [])
 			channel.ifname = optarg;
 			break;
 		case 'l':
-			loop = (unsigned)(uintspec (optarg, 0, UINT_MAX));
+			count = (unsigned)(uintspec (optarg, 0, UINT_MAX));
 			break;
 		case 'p':
 			pause = (unsigned)(uintspec (optarg, 0, 1200));
@@ -246,10 +246,10 @@ int main (int argc, char const * argv [])
 		error (1, EPERM, ERROR_NOTROOT);
 	}
 	openchannel (&channel);
-	while (loop--) 
+	while (count--) 
 	{
 		iterate (argc, argv, &channel, pause);
-		if (loop) 
+		if (count) 
 		{
 			sleep (delay);
 		}
