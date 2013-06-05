@@ -39,6 +39,7 @@ signed getfields (char const * fields [], signed limit, char buffer [], size_t l
 {
 	signed count = 0;
 	signed c;
+	limit --;
 	memset (fields, 0, limit * sizeof (* fields));
 	memset (buffer, 0, length);
 	fields [count++] = buffer;
@@ -141,7 +142,7 @@ signed getfields (char const * fields [], signed limit, char buffer [], size_t l
 		}
 		c = getc (stdin);
 	}
-	if (--count) 
+	if (--count)
 	{
 		++count;
 	}
