@@ -34,15 +34,18 @@
 #include "../tools/chars.h"
 #include "../tools/sizes.h"
 
-signed getfields (char const * fields [], signed limit, char buffer [], size_t length) 
+signed getfields (char const * string [], signed limit, char buffer [], size_t length) 
 
 {
 	signed count = 0;
 	signed c;
-	limit --;
-	memset (fields, 0, limit * sizeof (* fields));
+	if (limit)
+	{
+		limit--;
+	}
+	memset (string, 0, limit * sizeof (* string));
 	memset (buffer, 0, length);
-	fields [count++] = buffer;
+	string [count++] = buffer;
 	do 
 	{
 		c = getc (stdin);
@@ -71,7 +74,7 @@ signed getfields (char const * fields [], signed limit, char buffer [], size_t l
 				{
 					buffer++;
 					length--;
-					fields [count++] = buffer;
+					string [count++] = buffer;
 				}
 			}
 			else 

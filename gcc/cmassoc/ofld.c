@@ -27,6 +27,7 @@
 #include "../tools/getoptv.h"
 #include "../tools/putoptv.h"
 #include "../tools/symbol.h"
+#include "../tools/number.h"
 #include "../tools/error.h"
 #include "../tools/types.h"
 #include "../tools/flags.h"

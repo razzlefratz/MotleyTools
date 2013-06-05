@@ -53,8 +53,11 @@
 #define OWRT_BAILOUT (1 << 2)
 #define OWRT_ONELINE (1 << 3)
 
-#define OWRT_S_HANDLER "MotleyTool"
-#define OWRT_S_PACKAGE "MotleyTools"
+#define OWRT_NAME_HANDLER "MotleyTool"
+#define OWRT_NAME_PACKAGE "MotleyTools"
+
+#define OWRT_SIZE_VECTOR 0x10
+#define OWRT_SIZE_BUFFER 0x1000
 
 #define OWRT_HANDLER 0
 #define OWRT_PACKAGE 1
@@ -63,9 +66,6 @@
 #define OWRT_TITLE 4
 #define OWRT_SUMMARY 5
 #define OWRT_MAXIMUM 6
-
-static char buffer [0x1000];
-static char const * argv [0x10];
 
 /*====================================================================*
  *
@@ -107,7 +107,7 @@ static void define_handler (char const * handler, char const * package)
 
 /*====================================================================*
  *
- *   void invoke_handler (flag_t flags);
+ *   void invoke_handler (signed count, size_t length, flag_t flags);
  *
  *   print GNU make variable expansions on stdout; expansions have
  *   the form '$(eval $(call variable,.,.,.))' where the arguments
@@ -119,29 +119,31 @@ static void define_handler (char const * handler, char const * package)
  *
  *--------------------------------------------------------------------*/
 
-static void invoke_handler (flag_t flags) 
+static void invoke_handler (signed count, size_t length, flag_t flags) 
 
 {
+	char const * fields [count];
+	char buffer [length];
 	printf ("# ===\n# call package program handler;\n# ---\n\n");
-	while (getfields (argv, SIZEOF (argv), buffer, sizeof (buffer))) 
+	while (getfields (fields, count, buffer, length)) 
 	{
-		if (_anyset (flags, OWRT_ONELINE))
+		if (_anyset (flags, OWRT_ONELINE)) 
 		{
-		printf ("$(eval $(call %s", argv [OWRT_HANDLER]);
-		printf (",%s", argv [OWRT_LIBRARY]);
-		printf (",%s", argv [OWRT_PROGRAM]);
-		printf (",'%s'", argv [OWRT_TITLE]);
-		printf (",'%s'", argv [OWRT_SUMMARY]);
-		printf ("))\n");
+			printf ("$(eval $(call %s \\\n", fields [OWRT_HANDLER]);
+			printf ("\t,%s \\\n", fields [OWRT_LIBRARY]);
+			printf ("\t,%s \\\n", fields [OWRT_PROGRAM]);
+			printf ("\t,'%s' \\\n", fields [OWRT_TITLE]);
+			printf ("\t,'%s' \\\n", fields [OWRT_SUMMARY]);
+			printf ("))\n");
 		}
-		else
+		else 
 		{
-		printf ("$(eval $(call %s \\\n", argv [OWRT_HANDLER]);
-		printf ("\t,%s \\\n", argv [OWRT_LIBRARY]);
-		printf ("\t,%s \\\n", argv [OWRT_PROGRAM]);
-		printf ("\t,'%s' \\\n", argv [OWRT_TITLE]);
-		printf ("\t,'%s' \\\n", argv [OWRT_SUMMARY]);
-		printf ("))\n");
+			printf ("$(eval $(call %s", fields [OWRT_HANDLER]);
+			printf (",%s", fields [OWRT_LIBRARY]);
+			printf (",%s", fields [OWRT_PROGRAM]);
+			printf (",'%s'", fields [OWRT_TITLE]);
+			printf (",'%s'", fields [OWRT_SUMMARY]);
+			printf ("))\n");
 		}
 	}
 	printf ("\n");
@@ -151,20 +153,23 @@ static void invoke_handler (flag_t flags)
 
 /*====================================================================*
  *
- *   void enumerate (flag_t flags)
+ *   void enumerate (signed count, size_t length, flag_t flags);
+ *
  *
  *--------------------------------------------------------------------*/
 
-static void enumerate () 
+static void enumerate (signed count, size_t length) 
 
 {
+	char const * fields [count];
+	char buffer [length];
 	signed limit;
-	while ((limit = getfields (argv, SIZEOF (argv), buffer, sizeof (buffer)))) 
+	while ((limit = getfields (fields, count, buffer, length))) 
 	{
-		signed count;
-		for (count = 0; count < limit; count++) 
+		signed field;
+		for (field = 0; field < limit; field++) 
 		{
-			printf ("field [%d]=[%s]\n", count, argv [count]);
+			printf ("field[%d]=[%s]\n", field, fields [field]);
 		}
 		printf ("\n");
 	}
@@ -188,21 +193,21 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"abeh:op:qv",
+		"ceh:p:qv",
 		PUTOPTV_S_FUNNEL,
 		"OpenWRT Makefile Tool",
-		"a\tdefine variable",
-		"b\tinvoke variable",
+		"c\tcontinuation line output",
 		"e\tenumerate fields",
-		"o\tone line output",
+		"h s\thandler name is (s) [" LITERAL (OWRT_NAME_HANDLER) "]",
+		"p s\tpackage name is (s) [" LITERAL (OWRT_NAME_PACKAGE) "]",
 		"q\tsuppress routine messages",
 		"v\tenable verbose messages",
-		"h s\thandler name is (s) [" LITERAL (OWRT_S_HANDLER) "]",
-		"p s\tpackage name is (s) [" LITERAL (OWRT_S_PACKAGE) "]",
 		(char const *)(0)
 	};
-	char const * handler = OWRT_S_HANDLER;
-	char const * package = OWRT_S_PACKAGE;
+	char const * handler = OWRT_NAME_HANDLER;
+	char const * package = OWRT_NAME_PACKAGE;
+	signed vectorsize = OWRT_SIZE_VECTOR;
+	signed buffersize = OWRT_SIZE_BUFFER;
 	void (* function) () = invoke_handler;
 	flag_t flags = (flag_t)(0);
 	signed c;
@@ -210,14 +215,14 @@ int main (int argc, char const * argv [])
 	{
 		switch (c) 
 		{
+		case 'c':
+			_setbits (flags, OWRT_ONELINE);
+			break;
 		case 'e':
 			function = enumerate;
 			break;
 		case 'h':
 			handler = optarg;
-			break;
-		case 'o':
-			_setbits (flags, OWRT_ONELINE);
 			break;
 		case 'p':
 			package = optarg;
@@ -242,7 +247,7 @@ int main (int argc, char const * argv [])
 	{
 		if (efreopen (* argv, "rb", stdin)) 
 		{
-			function (flags);
+			function (vectorsize, buffersize, flags);
 		}
 		argc--;
 		argv++;
