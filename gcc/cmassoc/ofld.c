@@ -27,6 +27,7 @@
 #include "../tools/getoptv.h"
 #include "../tools/putoptv.h"
 #include "../tools/symbol.h"
+#include "../tools/number.h"
 #include "../tools/error.h"
 #include "../tools/types.h"
 #include "../tools/flags.h"
@@ -41,6 +42,8 @@
 #include "../tools/version.c"
 #include "../tools/efreopen.c"
 #include "../tools/getfields.c"
+#include "../tools/uintspec.c"
+#include "../tools/todigit.c"
 #include "../tools/error.c"
 #endif
 
@@ -50,11 +53,9 @@
 
 #define OFLD_VERBOSE (1 << 0)
 #define OFLD_SILENCE (1 << 1)
-#define OFLD_BAILOUT (1 << 2)
-#define OFLD_ONELINE (1 << 3)
 
-static char buffer [0x1000];
-static char const * argv [0x10];
+#define OFLD_BUFFER 0x1000
+#define OFLD_FIELDS 0x10
 
 /*====================================================================*
  *
@@ -62,16 +63,18 @@ static char const * argv [0x10];
  *
  *--------------------------------------------------------------------*/
 
-static void function () 
+static void function (size_t length, signed fields) 
 
 {
+	char buffer [length];
+	char const * field [fields];
 	signed limit;
-	while ((limit = getfields (argv, SIZEOF (argv), buffer, sizeof (buffer)))) 
+	while ((limit = getfields (field, fields, buffer, sizeof (buffer)))) 
 	{
 		signed count;
 		for (count = 0; count < limit; count++) 
 		{
-			printf ("field [%d]=[%s]\n", count, argv [count]);
+			printf ("field [%d]=[%s]\n", count, field [count]);
 		}
 		printf ("\n");
 	}
@@ -95,24 +98,25 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"abeoqv",
+		"b:f:",
 		PUTOPTV_S_FUNNEL,
-		"OpenWRT Makefile Tool",
-		"q\tsuppress routine messages",
-		"v\tenable verbose messages",
+		"generic field enumerator",
+		"b n\tbuffer size is (n) [" LITERAL (OFLD_BUFFER) "]",
+		"f n\tfield count is (n) [" LITERAL (OFLD_FIELDS) "]",
 		(char const *)(0)
 	};
-	flag_t flags = (flag_t)(0);
+	size_t length = OFLD_BUFFER;
+	signed fields = OFLD_FIELDS;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
-		case 'q':
-			_setbits (flags, OFLD_SILENCE);
+		case 'b':
+			length = uintspec (optarg, 1, UINT_MAX);
 			break;
-		case 'v':
-			_setbits (flags, OFLD_VERBOSE);
+		case 'f':
+			fields = uintspec (optarg, 1, 512);
 			break;
 		default:
 			break;
@@ -122,13 +126,13 @@ int main (int argc, char const * argv [])
 	argv += optind;
 	if (!argc) 
 	{
-		function ();
+		function (length, fields);
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (efreopen (* argv, "rb", stdin)) 
 		{
-			function ();
+			function (length, fields);
 		}
 		argc--;
 		argv++;
