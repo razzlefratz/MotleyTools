@@ -38,10 +38,11 @@ signed getfields (char const * fields [], signed limit, char buffer [], size_t l
 
 {
 	signed count = 0;
+	signed index = 0;
 	signed c;
 	memset (fields, 0, limit * sizeof (* fields));
 	memset (buffer, 0, length);
-	fields [count++] = buffer;
+	fields [count] = buffer;
 	do 
 	{
 		c = getc (stdin);
@@ -64,13 +65,13 @@ signed getfields (char const * fields [], signed limit, char buffer [], size_t l
 				c = getc (stdin);
 			}
 			while (isblank (c));
-			if (count < limit) 
+			if (index < limit) 
 			{
 				if (length) 
 				{
 					buffer++;
 					length--;
-					fields [count++] = buffer;
+					fields [++index] = buffer;
 				}
 			}
 			else 
@@ -131,6 +132,7 @@ signed getfields (char const * fields [], signed limit, char buffer [], size_t l
 			{
 				c = getc (stdin);
 			}
+			count = index + 1;
 			continue;
 		}
 		if (length) 
@@ -140,10 +142,7 @@ signed getfields (char const * fields [], signed limit, char buffer [], size_t l
 			length--;
 		}
 		c = getc (stdin);
-	}
-	if (--count) 
-	{
-		++count;
+		count = index + 1;
 	}
 	return (count);
 }
