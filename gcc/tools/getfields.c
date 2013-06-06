@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   signed getfields (char const * fields [], signed limit, char buffer [], size_t length);
+ *   signed getfields (char const * vector [], signed limit, char buffer [], size_t length);
  *
  *   symbol.h
  *
@@ -34,19 +34,17 @@
 #include "../tools/chars.h"
 #include "../tools/sizes.h"
 
-signed getfields (char const * string [], signed limit, char buffer [], size_t length) 
+signed getfields (char const * vector [], signed limit, char buffer [], size_t length) 
 
 {
+	signed field = 0;
 	signed count = 0;
-	signed index = 0;
 	signed c;
-	if (limit)
+	vector [field] = buffer;
+	if ( field < limit)
 	{
-		limit--;
+		field++;
 	}
-	memset (string, 0, limit * sizeof (* string));
-	memset (buffer, 0, length);
-	fields [count] = buffer;
 	do 
 	{
 		c = getc (stdin);
@@ -69,13 +67,13 @@ signed getfields (char const * string [], signed limit, char buffer [], size_t l
 				c = getc (stdin);
 			}
 			while (isblank (c));
-			if (index < limit) 
+			if (field < limit) 
 			{
 				if (length) 
 				{
-					buffer++;
+					*buffer++ = (char)(0);;
 					length--;
-					fields [++index] = buffer;
+					vector [field++] = buffer;
 				}
 			}
 			else 
@@ -136,7 +134,7 @@ signed getfields (char const * string [], signed limit, char buffer [], size_t l
 			{
 				c = getc (stdin);
 			}
-			count = index + 1;
+			count = field;
 			continue;
 		}
 		if (length) 
@@ -146,8 +144,10 @@ signed getfields (char const * string [], signed limit, char buffer [], size_t l
 			length--;
 		}
 		c = getc (stdin);
-		count = index + 1;
+		count = field;
 	}
+	vector [count] = (char const *)(0);
+	*buffer = (char)(0);
 	return (count);
 }
 
