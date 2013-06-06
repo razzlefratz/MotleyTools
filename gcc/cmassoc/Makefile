@@ -59,7 +59,7 @@ fresh: clean compile
 clean:
 	rm -f ${TRASH} ${TOOLS}
 	chmod 0755 Makefile *.sh
-	chmod 0644 *.c *.h
+	chmod 0644 *.c 
 check:
 	${SH} cmassoc.sh
 ignore:
