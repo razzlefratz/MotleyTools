@@ -71,7 +71,8 @@ signed getfields (char const * vector [], signed limit, char buffer [], size_t l
 			{
 				if (length) 
 				{
-					*buffer++ = (char)(0);;
+					*buffer = (char)(0);
+					buffer++;
 					length--;
 					vector [field++] = buffer;
 				}
