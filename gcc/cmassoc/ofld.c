@@ -113,10 +113,10 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{
 		case 'b':
-			length = uintspec (optarg, 1, UINT_MAX);
+			length = uintspec (optarg, 0, UINT_MAX);
 			break;
 		case 'f':
-			fields = uintspec (optarg, 1, 512);
+			fields = uintspec (optarg, 0, 512);
 			break;
 		default:
 			break;
