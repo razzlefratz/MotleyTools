@@ -147,7 +147,10 @@ signed getfields (char const * vector [], signed limit, char buffer [], size_t l
 		c = getc (stdin);
 		count = field;
 	}
-	vector [count] = (char const *)(0);
+	if (count < limit)
+	{
+		vector [count] = (char const *)(0);
+	}
 	*buffer = (char)(0);
 	return (count);
 }

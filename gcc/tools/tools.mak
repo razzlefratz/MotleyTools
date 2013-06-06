@@ -65,6 +65,7 @@ getclass.demo.o: getclass.demo.c getclass.c tools.h types.h sizes.h
 getopt.o: getopt.c error.h getopt.h version.h types.h
 getopt1.o: getopt1.c
 getargv.o: getargv.c chars.h symbol.h
+getfields.o: getfields.c chars.h sizes.h symbol.h
 getoptv.o: getoptv.c getoptv.h putoptv.h version.h
 getst.o: getst.c unget.h
 getvalue.o: getvalue.c tools.h types.h sizes.h
@@ -156,5 +157,6 @@ info.h: sizes.h date.h
 
 codename.o: codename.c tools.h types.h
 typename.o: typename.c tools.h types.h
+
 
 

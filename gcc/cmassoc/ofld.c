@@ -126,13 +126,13 @@ int main (int argc, char const * argv [])
 	argv += optind;
 	if (!argc) 
 	{
-		function (length, fields + 1);
+		function (length, fields);
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (efreopen (* argv, "rb", stdin)) 
 		{
-			function (length, fields + 1);
+			function (length, fields);
 		}
 		argc--;
 		argv++;
