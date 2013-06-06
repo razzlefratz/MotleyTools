@@ -39,12 +39,12 @@ signed getfields (char const * string [], signed limit, char buffer [], size_t l
 {
 	signed count = 0;
 	signed c;
+	memset (string, 0, limit * sizeof (* string));
+	memset (buffer, 0, length);
 	if (limit)
 	{
 		limit--;
 	}
-	memset (string, 0, limit * sizeof (* string));
-	memset (buffer, 0, length);
 	string [count++] = buffer;
 	do 
 	{

@@ -54,8 +54,8 @@
 #define OFLD_VERBOSE (1 << 0)
 #define OFLD_SILENCE (1 << 1)
 
-#define OFLD_BUFFER 0x1000
-#define OFLD_FIELDS 0x10
+#define OFLD_BUFFER 4096
+#define OFLD_FIELDS 16
 
 /*====================================================================*
  *
@@ -126,13 +126,13 @@ int main (int argc, char const * argv [])
 	argv += optind;
 	if (!argc) 
 	{
-		function (length, fields);
+		function (length, fields + 1);
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (efreopen (* argv, "rb", stdin)) 
 		{
-			function (length, fields);
+			function (length, fields + 1);
 		}
 		argc--;
 		argv++;
