@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   owrt.c - 
+ *   ofld.c - 
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -63,18 +63,18 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function (size_t length, signed fields) 
+static void function (signed fields, unsigned length) 
 
 {
 	char buffer [length];
-	char const * field [fields];
+	char const * vector [fields];
 	signed limit;
-	while ((limit = getfields (field, fields, buffer, sizeof (buffer)))) 
+	while ((limit = getfields (vector, fields, buffer, length))) 
 	{
 		signed count;
 		for (count = 0; count < limit; count++) 
 		{
-			printf ("field [%d]=[%s]\n", count, field [count]);
+			printf ("field [%d] = [%s]\n", count, vector [count]);
 		}
 		printf ("\n");
 	}
@@ -105,8 +105,8 @@ int main (int argc, char const * argv [])
 		"f n\tfield count is (n) [" LITERAL (OFLD_FIELDS) "]",
 		(char const *)(0)
 	};
-	size_t length = OFLD_BUFFER;
 	signed fields = OFLD_FIELDS;
+	size_t length = OFLD_BUFFER;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
@@ -126,13 +126,13 @@ int main (int argc, char const * argv [])
 	argv += optind;
 	if (!argc) 
 	{
-		function (length, fields);
+		function (fields, length);
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (efreopen (* argv, "rb", stdin)) 
 		{
-			function (length, fields);
+			function (fields, length);
 		}
 		argc--;
 		argv++;

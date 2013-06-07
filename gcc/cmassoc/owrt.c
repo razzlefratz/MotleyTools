@@ -153,23 +153,23 @@ static void invoke_handler (signed count, size_t length, flag_t flags)
 
 /*====================================================================*
  *
- *   void enumerate (signed count, size_t length, flag_t flags);
+ *   void enumerate (signed fields, size_t length);
  *
  *
  *--------------------------------------------------------------------*/
 
-static void enumerate (signed count, size_t length) 
+static void enumerate (signed fields, size_t length) 
 
 {
-	char const * fields [count];
+	char const * vector [fields];
 	char buffer [length];
-	signed limit;
-	while ((limit = getfields (fields, count, buffer, length))) 
+	signed count;
+	while ((count = getfields (vector, fields, buffer, length))) 
 	{
-		signed field;
-		for (field = 0; field < limit; field++) 
+		signed index;
+		for (index = 0; index < count; index++) 
 		{
-			printf ("field[%d]=[%s]\n", field, fields [field]);
+			printf ("field[%d]=[%s]\n", index, vector [index]);
 		}
 		printf ("\n");
 	}
