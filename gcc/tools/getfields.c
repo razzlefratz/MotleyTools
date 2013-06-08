@@ -34,6 +34,16 @@
 #include "../tools/chars.h"
 #include "../tools/sizes.h"
 
+#if 0
+static int mygetc () 
+
+{
+	signed c;
+	while (((c = getc (stdin)) == '\\') && ((c = getc (stdin)) == '\n')); 
+	return (c);
+}
+#endif
+
 signed getfields (char const * vector [], signed limit, char buffer [], size_t length) 
 
 {
@@ -41,20 +51,21 @@ signed getfields (char const * vector [], signed limit, char buffer [], size_t l
 	signed count = 0;
 	signed c;
 	vector [field] = buffer;
-	if ( field < limit)
+	if (field < limit) 
 	{
 		field++;
 	}
 	do 
 	{
 		c = getc (stdin);
-		if (c == '#') 
+		while (c == '#') 
 		{
 			do 
 			{
 				c = getc (stdin);
 			}
 			while (nobreak (c));
+			c = getc (stdin);
 		}
 	}
 	while (isspace (c));
@@ -62,11 +73,7 @@ signed getfields (char const * vector [], signed limit, char buffer [], size_t l
 	{
 		if (isblank (c)) 
 		{
-			do 
-			{
-				c = getc (stdin);
-			}
-			while (isblank (c));
+			do { c = getc (stdin); } while (isblank (c));
 			if (field < limit) 
 			{
 				if (length) 
@@ -147,13 +154,14 @@ signed getfields (char const * vector [], signed limit, char buffer [], size_t l
 		c = getc (stdin);
 		count = field;
 	}
-	if (count < limit)
+	if (count < limit) 
 	{
 		vector [count] = (char const *)(0);
 	}
 	*buffer = (char)(0);
 	return (count);
 }
+
 
 #endif
 
