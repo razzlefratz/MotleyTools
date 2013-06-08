@@ -81,9 +81,9 @@ static signed statement (signed c)
 	}
 	if (c == '{') 
 	{
-		c = keep ('{');
+		c = keep (c);
 		c = program (c, '}');
-		c = keep ('}');
+		c = keep (c);
 	}
 	else if (c != ';') 
 	{
@@ -156,9 +156,9 @@ static signed program (signed c, signed e)
 		}
 		if (c == '{') 
 		{
-			c = keep ('{');
+			c = keep (c);
 			c = program (c, '}');
-			c = keep ('}');
+			c = keep (c);
 			continue;
 		}
 		if (c == '(') 
