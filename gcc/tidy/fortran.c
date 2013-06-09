@@ -23,7 +23,7 @@ signed fortran (signed c)
 
 {
 	c = keep (c);
-	while ((c != '\n') && (c != EOF)) 
+	while (nobreak (c)) 
 	{
 		if (c == '/') 
 		{
