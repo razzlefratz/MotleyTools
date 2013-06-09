@@ -22,7 +22,7 @@
 #endif
 
 #ifndef nobreak
-#define nobreak(c) ((char)(c) != '\r') && ((char)(c) != '\n') && ((int)(c) != EOF)
+#define nobreak(c) ((char)(c) != '\0') && ((char)(c) != '\r') && ((char)(c) != '\n') && ((int)(c) != EOF)
 #endif
 
 #ifndef nocomma

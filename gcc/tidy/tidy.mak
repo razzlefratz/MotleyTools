@@ -18,11 +18,12 @@ endline.o: endline.c tidy.h
 escaped.o: escaped.c tidy.h tools.h types.h sizes.h
 fortran.o: fortran.c tidy.h chrlib.h types.h chars.h
 newline.o: newline.c tidy.h
-nmtoken.o: newline.c tidy.h
+nmtoken.o: nmtoken.c tidy.h
+consume.o: consume.c tidy.h 
+conjoin.o: conjoin.c tidy.h 
 noliteral.o: noliteral.c tidy.h chars.h
 nocontext.o: nocontext.c tidy.h chars.h
 nocomment.o: nocomment.c tidy.h chars.h
-peek.o: peek.c tidy.h 
 keep.o: keep.c tidy.h 
 find.o: find.c tidy.h 
 

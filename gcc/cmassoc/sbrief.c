@@ -47,10 +47,11 @@
 #endif
 
 #ifndef MAKEFILE
+#include "../tidy/conjoin.c"
+#include "../tidy/consume.c"
 #include "../tidy/literal.c"
 #include "../tidy/escaped.c"
 #include "../tidy/keep.c"
-#include "../tidy/peek.c"
 #endif
 
 /*====================================================================*
@@ -111,7 +112,7 @@ static void function (signed comment, flag_t flags)
 			}
 			if (c == '\\')
 			{
-				c = peek (c);
+				c = conjoin (c);
 				continue;
 			}
 			c = keep (c);

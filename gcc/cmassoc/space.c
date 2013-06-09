@@ -47,9 +47,9 @@
 #endif
 
 #ifndef MAKEFILE
+#include "../tidy/conjoin.c"
 #include "../tidy/literal.c"
 #include "../tidy/keep.c"
-#include "../tidy/peek.c"
 #endif
 
 #ifndef MAKEFILE
@@ -81,21 +81,19 @@
 void GNUMake (signed o, unsigned spaces, unsigned tabs) 
 
 {
-	if (o) 
+	if (o) {
+	if (tabs) 
 	{
-		if (tabs) 
-		{
-			do 
-			{
-				putc (o, stdout);
-			}
-			while (--tabs);
-		}
-		else if (spaces) 
+		do 
 		{
 			putc (o, stdout);
 		}
+		while (--tabs);
 	}
+	else if (spaces) 
+	{
+		putc (o, stdout);
+	}}
 	return;
 }
 
@@ -113,21 +111,19 @@ void GNUMake (signed o, unsigned spaces, unsigned tabs)
 void OpenWRT (signed o, unsigned spaces, unsigned tabs) 
 
 {
-	if (o) 
+	if (o) {
+	if (tabs) 
 	{
-		if (tabs) 
+		do 
 		{
-			do 
-			{
-				putc ('\t', stdout);
-			}
-			while (--tabs);
+			putc ('\t', stdout);
 		}
-		else if (spaces) 
-		{
-			putc (' ', stdout);
-		}
+		while (--tabs);
 	}
+	else if (spaces) 
+	{
+		putc (o, stdout);
+	}}
 	return;
 }
 
@@ -140,7 +136,7 @@ void OpenWRT (signed o, unsigned spaces, unsigned tabs)
  *   unless it is NUL; preserve leading tabs; replace embedded spaces
  *   and tabs with one space; discard trailing spaces and tabs; write
  *   literal strings, enclosed in quotes or apostrophes, as as read; 
- *   ignore peekd newlines as line terminators;
+ *   ignore and discard escaped newline characters;
  *
  *   this function is taylored for OpenWRT make files;
  *
@@ -184,11 +180,12 @@ void function (signed o, void indent (signed, unsigned, unsigned))
 		{
 			if (c == '#') 
 			{
-				do 
-				{
-					c = keep (c);
-				}
-				while (nobreak (c));
+				c = consume (c);
+				continue;
+			}
+			if (c == '\\') 
+			{
+				c = conjoin (c);
 				continue;
 			}
 			if (isquote (c)) 
@@ -201,18 +198,13 @@ void function (signed o, void indent (signed, unsigned, unsigned))
 				do 
 				{
 					c = getc (stdin);
-					c = peek (c);
+					c = conjoin (c);
 				}
 				while (isblank (c));
 				if (nobreak (c)) 
 				{
 					putc (' ', stdout);
 				}
-				continue;
-			}
-			if (c == '\\') 
-			{
-				c = peek (c);
 				continue;
 			}
 			c = keep (c);

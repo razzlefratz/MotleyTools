@@ -91,8 +91,9 @@ signed nocontext (signed c, signed e);
 signed nocontent (signed c, signed e);
 signed noliteral (signed c);
 signed noescaped (signed c);
+signed consume (signed c);
+signed conjoin (signed c);
 signed keep (signed c);
-signed peek (signed c);
 signed find (signed c);
 
 /*====================================================================*
