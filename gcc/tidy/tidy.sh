@@ -26,6 +26,7 @@ gcc -Wall -Wextra -Wno-unused-parameter -c nocomment.c
 gcc -Wall -Wextra -Wno-unused-parameter -c nocontext.c
 gcc -Wall -Wextra -Wno-unused-parameter -c noliteral.c
 gcc -Wall -Wextra -Wno-unused-parameter -c keep.c
+gcc -Wall -Wextra -Wno-unused-parameter -c peek.c
 gcc -Wall -Wextra -Wno-unused-parameter -c find.c
 gcc -Wall -Wextra -Wno-unused-parameter -c tidy.c
 

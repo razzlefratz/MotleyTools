@@ -22,6 +22,9 @@ nmtoken.o: newline.c tidy.h
 noliteral.o: noliteral.c tidy.h chars.h
 nocontext.o: nocontext.c tidy.h chars.h
 nocomment.o: nocomment.c tidy.h chars.h
+peek.o: peek.c tidy.h 
+keep.o: keep.c tidy.h 
+find.o: find.c tidy.h 
 
 # ====================================================================
 # files;
