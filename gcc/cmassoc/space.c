@@ -180,7 +180,7 @@ void function (signed o, void indent (signed, unsigned, unsigned))
 		{
 			if (c == '#') 
 			{
-				c = consume (c);
+				do { c = getc (stdin); } while (nobreak (c));
 				continue;
 			}
 			if (c == '\\') 
@@ -198,7 +198,6 @@ void function (signed o, void indent (signed, unsigned, unsigned))
 				do 
 				{
 					c = getc (stdin);
-					c = conjoin (c);
 				}
 				while (isblank (c));
 				if (nobreak (c)) 

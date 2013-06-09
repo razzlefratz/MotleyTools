@@ -25,7 +25,7 @@ signed conjoin (signed c)
 	while (c == '\\') 
 	{
 		signed o = getc (stdin);
-		if (o != '\n') 
+		if ((o != '\r') && (o != '\n'))
 		{
 			putc (c, stdout);
 			putc (o, stdout);

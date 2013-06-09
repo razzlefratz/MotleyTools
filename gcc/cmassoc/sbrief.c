@@ -48,7 +48,6 @@
 
 #ifndef MAKEFILE
 #include "../tidy/conjoin.c"
-#include "../tidy/consume.c"
 #include "../tidy/literal.c"
 #include "../tidy/escaped.c"
 #include "../tidy/keep.c"
@@ -98,7 +97,11 @@ static void function (signed comment, flag_t flags)
 		{
 			if (isblank (c)) 
 			{
-				do { c = getc (stdin); } while (isblank (c));
+				do 
+				{
+					c = getc (stdin);
+				}
+				while (isblank (c));
 				if (nobreak (c)) 
 				{
 					putc (' ', stdout);
@@ -110,7 +113,7 @@ static void function (signed comment, flag_t flags)
 				c = literal (c);
 				continue;
 			}
-			if (c == '\\')
+			if (c == '\\') 
 			{
 				c = conjoin (c);
 				continue;
@@ -169,3 +172,4 @@ int main (int argc, char const * argv [])
 	}
 	exit (0);
 }
+
