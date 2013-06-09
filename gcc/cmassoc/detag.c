@@ -42,6 +42,7 @@
 #include "../tidy/nocontent.c"
 #include "../tidy/noliteral.c"
 #include "../tidy/noescaped.c"
+#include "../tidy/keep.c"
 #endif
 
 /*====================================================================*
@@ -190,8 +191,7 @@ static signed pcdata (signed c)
 	{
 		while ((c != '<') && (c != EOF)) 
 		{
-			putc (c, stdout);
-			c = getc (stdin);
+			c = keep (c);
 		}
 		c = markup (c);
 	}

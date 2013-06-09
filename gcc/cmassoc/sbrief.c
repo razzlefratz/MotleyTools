@@ -26,6 +26,7 @@
 
 #include "../tools/cmassoc.h"
 #include "../files/files.h"
+#include "../tidy/tidy.h"
 
 /*====================================================================*
  *   custom source files;
@@ -36,10 +37,20 @@
 #include "../tools/putoptv.c"
 #include "../tools/version.c"
 #include "../tools/error.c"
+#endif
+
+#ifndef MAKEFILE
 #include "../files/vfopen.c"
 #include "../files/makepath.c"
 #include "../files/splitpath.c"
 #include "../files/mergepath.c"
+#endif
+
+#ifndef MAKEFILE
+#include "../tidy/literal.c"
+#include "../tidy/escaped.c"
+#include "../tidy/keep.c"
+#include "../tidy/peek.c"
 #endif
 
 /*====================================================================*
@@ -59,7 +70,6 @@ static void function (signed comment, flag_t flags)
 
 {
 	signed c = (char) (0);
-	signed o = (char) (0);
 	while ((c = getc (stdin)) != EOF) 
 	{
 		if (isblank (c)) 
@@ -87,48 +97,24 @@ static void function (signed comment, flag_t flags)
 		{
 			if (isblank (c)) 
 			{
-				do 
-				{
-					c = getc (stdin);
-				}
-				while (isblank (c));
+				do { c = getc (stdin); } while (isblank (c));
 				if (nobreak (c)) 
 				{
 					putc (' ', stdout);
 				}
 				continue;
 			}
-			if (c == '\\') 
-			{
-				c = getc (stdin);
-				if (nobreak (c)) 
-				{
-					putc ('\\', stdout);
-					putc (c, stdout);
-				}
-				c = getc (stdin);
-				continue;
-			}
 			if (isquote (c)) 
 			{
-				putc (c, stdout);
-				o = getc (stdin);
-				while ((o != c) && (c != EOF)) 
-				{
-					if (o == '\\') 
-					{
-						putc (o, stdout);
-						o = getc (stdin);
-					}
-					putc (o, stdout);
-					o = getc (stdin);
-				}
-				putc (c, stdout);
-				c = getc (stdin);
+				c = literal (c);
 				continue;
 			}
-			putc (c, stdout);
-			c = getc (stdin);
+			if (c == '\\')
+			{
+				c = peek (c);
+				continue;
+			}
+			c = keep (c);
 		}
 		putc ('\n', stdout);
 	}
@@ -182,4 +168,3 @@ int main (int argc, char const * argv [])
 	}
 	exit (0);
 }
-

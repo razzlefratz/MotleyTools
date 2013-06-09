@@ -50,6 +50,7 @@
 #include "../tidy/nocontext.c"
 #include "../tidy/noliteral.c"
 #include "../tidy/noescaped.c"
+#include "../tidy/keep.c"
 #endif
 
 /*====================================================================*
@@ -85,8 +86,7 @@ static signed element (int c)
 	{
 		do 
 		{
-			putc (c, stdout);
-			c = getc (stdin);
+			c = keep (c);
 		}
 		while (isalnum (c) || ((char)(c) == '-'));
 		c = nocontext (c, '>');
@@ -96,8 +96,7 @@ static signed element (int c)
 	{
 		do 
 		{
-			putc (c, stdout);
-			c = getc (stdin);
+			c = keep (c);
 		}
 		while (isident (c));
 		c = nocontext (c, '>');

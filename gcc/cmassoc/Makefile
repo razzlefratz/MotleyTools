@@ -1,4 +1,4 @@
-#!/bin/make -f
+#!bin/make -f
 # file: cmassoc/Makefile
 # Published 2005 by Charles Maier Associates Limited for internal use;
 
@@ -103,7 +103,7 @@ define: define.o console.o efreopen.o indent.o todigit.o typeload.o typesave.o
 defix: defix.o chruesc.o console.o struesc.o todigit.o
 delta: delta.o efreopen.o error.o error_on_line.o getoptv.o putoptv.o todigit.o uintspec.o version.o
 detab: detab.o emalloc.o error.o getoptv.o makepath.o match.o mergepath.o putoptv.o splitpath.o tabs.o tabspec.o version.o vfopen.o
-detag: detag.o console.o efreopen.o nocomment.o nocontent.o nocontext.o noescaped.o noliteral.o todigit.o uintspec.o
+detag: detag.o console.o efreopen.o keep.o nocomment.o nocontent.o nocontext.o noescaped.o noliteral.o todigit.o uintspec.o
 dif: dif.o efopen.o efreopen.o emalloc.o error.o getoptv.o makeitem.o putoptv.o queue.o todigit.o uintspec.o version.o
 dls: dls.o console.o emalloc.o erealloc.o getviewport.o listcolumn.o listcreate.o listdelete.o listdetect.o listexpand.o listinsert.o todigit.o uintspec.o
 dmp2hex: dmp2hex.o error.o getoptv.o putoptv.o version.o
@@ -134,7 +134,7 @@ go: go.o cgetc.o command.o emalloc.o error.o getoptv.o putoptv.o version.o
 grab: grab.o basespec.o efreopen.o error.o getoptv.o putoptv.o todigit.o version.o
 graph: graph.o alert.o efreopen.o error.o error_on_line.o getoptv.o putoptv.o sintspec.o todigit.o uintspec.o version.o
 grope: grope.o charset.o chruesc.o chruescmap.o console.o efreopen.o emalloc.o fgetline.o find.o fputn.o makefind.o makepath.o match.o mergepath.o partfile.o partpath.o regexcomp.o regexfree.o regexhelp.o regexmake.o regexshow.o regexspan.o splitpath.o struesc.o sv_ascii.o todigit.o uintspec.o vfopen.o
-hbrief: hbrief.o error.o getoptv.o makepath.o mergepath.o nocontext.o noescaped.o noliteral.o putoptv.o splitpath.o version.o vfopen.o
+hbrief: hbrief.o error.o getoptv.o keep.o makepath.o mergepath.o nocontext.o noescaped.o noliteral.o putoptv.o splitpath.o version.o vfopen.o
 header: header.o console.o efreopen.o emalloc.o getviewport.o todigit.o uintspec.o
 hex: hex.o efreopen.o error.o getoptv.o makepath.o match.o mergepath.o putoptv.o splitpath.o todigit.o version.o
 hex2bin: hex2bin.o error.o getoptv.o putoptv.o version.o
@@ -192,7 +192,7 @@ rexp: rexp.o charset.o chruesc.o emalloc.o error.o getoptv.o putoptv.o regexcomp
 rmpkg: rmpkg.o emalloc.o erealloc.o error.o find.o getoptv.o listcreate.o listdelete.o listdetect.o listexpand.o listinsert.o makefind.o makepath.o match.o mergepath.o partfile.o partpath.o putoptv.o splitpath.o strvercmp.o version.o
 runjobs: runjobs.o error.o getoptv.o makefind.o makepath.o match.o mergepath.o partfile.o partpath.o plain.o putoptv.o setumask.o splitpath.o syslog_basic.o syslog_error.o version.o
 sbar: sbar.o console.o makepath.o mergepath.o splitpath.o todigit.o uintspec.o vfopen.o
-sbrief: sbrief.o error.o getoptv.o makepath.o mergepath.o putoptv.o splitpath.o version.o vfopen.o
+sbrief: sbrief.o error.o escaped.o getoptv.o keep.o literal.o makepath.o mergepath.o peek.o putoptv.o splitpath.o version.o vfopen.o
 search: search.o charset.o chruesc.o chruescmap.o console.o efreopen.o emalloc.o fgetline.o find.o fputn.o makefind.o makepath.o match.o mergepath.o partfile.o partpath.o regexcomp.o regexfree.o regexhelp.o regexmake.o regexshow.o regexspan.o showfind.o splitpath.o struesc.o sv_ascii.o todigit.o uintspec.o
 setmode: setmode.o atoin.o efopen.o error.o getoptv.o putoptv.o version.o
 setnumber: setnumber.o
@@ -202,7 +202,7 @@ shout: shout.o broadcast.o emalloc.o error.o getoptv.o putoptv.o syslog_basic.o 
 sign: sign.o console.o signf.o todigit.o uintspec.o
 single: single.o console.o makepath.o mergepath.o splitpath.o todigit.o uintspec.o vfopen.o
 sizeof: sizeof.o
-space: space.o chruesc.o console.o escaped.o keep.o literal.o makepath.o mergepath.o splitpath.o struesc.o todigit.o vfopen.o
+space: space.o chruesc.o console.o escaped.o keep.o literal.o makepath.o mergepath.o peek.o splitpath.o struesc.o todigit.o vfopen.o
 srt: srt.o adheap.o console.o deheap.o emalloc.o enheap.o makepath.o mergepath.o reheap.o splitpath.o swap.o todigit.o uintspec.o vfopen.o
 stamp: stamp.o
 str2hex: str2hex.o

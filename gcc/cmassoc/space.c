@@ -48,8 +48,8 @@
 
 #ifndef MAKEFILE
 #include "../tidy/literal.c"
-#include "../tidy/escaped.c"
 #include "../tidy/keep.c"
+#include "../tidy/peek.c"
 #endif
 
 #ifndef MAKEFILE
@@ -140,7 +140,7 @@ void OpenWRT (signed o, unsigned spaces, unsigned tabs)
  *   unless it is NUL; preserve leading tabs; replace embedded spaces
  *   and tabs with one space; discard trailing spaces and tabs; write
  *   literal strings, enclosed in quotes or apostrophes, as as read; 
- *   ignore escaped newlines as line terminators;
+ *   ignore peekd newlines as line terminators;
  *
  *   this function is taylored for OpenWRT make files;
  *
@@ -201,6 +201,7 @@ void function (signed o, void indent (signed, unsigned, unsigned))
 				do 
 				{
 					c = getc (stdin);
+					c = peek (c);
 				}
 				while (isblank (c));
 				if (nobreak (c)) 
@@ -209,11 +210,16 @@ void function (signed o, void indent (signed, unsigned, unsigned))
 				}
 				continue;
 			}
+			if (c == '\\') 
+			{
+				c = peek (c);
+				continue;
+			}
 			c = keep (c);
 		}
 		if (c != EOF) 
 		{
-			c =keep (c);
+			c = keep (c);
 		}
 	}
 	return;
