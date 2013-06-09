@@ -55,6 +55,27 @@ signed octidy::atheros (signed c, signed e)
 			c = std::cin.get ();
 			continue;
 		}
+
+#if 0
+
+		if (c == '\\') 
+		{
+			signed o = std::cin.get ();
+			if (o == '\n') 
+			{
+				c = std::cin.get ();
+				continue;
+			}
+			else 
+			{
+				std::cin.ungetc (o);
+				continue;
+			}
+			continue;
+		}
+
+#endif
+
 		if (c == '#') 
 		{
 			octidy::space (space);
@@ -156,6 +177,27 @@ signed octidy::charlie (signed c, signed e)
 			c = std::cin.get ();
 			continue;
 		}
+
+#if 0
+
+		if (c == '\\') 
+		{
+			signed o = std::cin.get ();
+			if (o == '\n') 
+			{
+				c = std::cin.get ();
+				continue;
+			}
+			else 
+			{
+				std::cin.ungetc (o);
+				continue;
+			}
+			continue;
+		}
+
+#endif
+
 		if (c == '#') 
 		{
 			octidy::space (space);
