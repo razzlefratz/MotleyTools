@@ -24,7 +24,7 @@
 
 /*====================================================================*
  *
- *   char *fill (signed clower, signed cupper, char buffer[], size_t *length);
+ *   char * fill (signed clower, signed cupper, char buffer[], size_t *length);
  *
  *   fill buffer with consecutive character values from clower through 
  *   cupper; decrement length after each insertion; return the address 
@@ -36,7 +36,7 @@
  *
  *--------------------------------------------------------------------*/
 
-static char *fill (signed clower, signed cupper, char buffer [], size_t *length) 
+static char * fill (signed clower, signed cupper, char buffer [], size_t *length) 
 
 {
 	while ((clower <= cupper) && (*length)) 
@@ -50,7 +50,7 @@ static char *fill (signed clower, signed cupper, char buffer [], size_t *length)
 
 /*====================================================================*
  *
- *   char *charset(char const *string, unsigned c, char buffer[], size_t length);
+ *   char * charset(char const * string, unsigned c, char buffer[], size_t length);
  *
  *   chrlib.h
  *
@@ -205,14 +205,6 @@ char const * charset (char const * string, signed close, char buffer [], size_t 
 
 #ifdef REGEX_POSIX_EXTENSIONS
 
-			if (!strcmp (buffer, "[:word:]")) 
-			{
-				buffer = fill ('_', '_', buffer, &length);
-				buffer = fill ('a', 'z', buffer, &length);
-				buffer = fill ('A', 'Z', buffer, &length);
-				buffer = fill ('0', '9', buffer, &length);
-				continue;
-			}
 			if (!strcmp (buffer, "[:blank:]")) 
 			{
 				for (c = 0; c <= UCHAR_MAX; c++) 
@@ -283,6 +275,20 @@ char const * charset (char const * string, signed close, char buffer [], size_t 
 						length--;
 					}
 				}
+				continue;
+			}
+
+#endif
+
+#ifdef REGEX_LOCAL_EXTENSIONS
+
+			if (!strcmp (buffer, "[:ident:]")) 
+			{
+				buffer = fill ('_', '_', buffer, &length);
+				buffer = fill ('a', 'z', buffer, &length);
+				buffer = fill ('A', 'Z', buffer, &length);
+				buffer = fill ('0', '9', buffer, &length);
+				buffer = fill ('-', '-', buffer, &length);
 				continue;
 			}
 

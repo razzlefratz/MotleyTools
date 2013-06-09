@@ -27,6 +27,7 @@
 
 #define REGEX_LABEL_EXTENSIONS
 #define REGEX_POSIX_EXTENSIONS
+#define REGEX_LOCAL_EXTENSIONS
 #define REGEX_COUNT_MAX 0x7FFF
 
 #define REGEX_C_KLEENE_STAR ('*')  /* Kleene star (reflexive transitive closure) */
