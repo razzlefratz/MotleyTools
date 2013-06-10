@@ -47,7 +47,7 @@
 #endif
 
 #ifndef MAKEFILE
-#include "../tidy/conjoin.c"
+#include "../tidy/join.c"
 #include "../tidy/literal.c"
 #include "../tidy/keep.c"
 #endif
@@ -180,12 +180,12 @@ void function (signed o, void indent (signed, unsigned, unsigned))
 		{
 			if (c == '#') 
 			{
-				do { c = getc (stdin); } while (nobreak (c));
+				do { c = keep (c); } while (nobreak (c));
 				continue;
 			}
 			if (isblank (c)) 
 			{
-				do { c = getc (stdin); c = conjoin (c); } while (isblank (c));
+				do { c = getc (stdin); c = join (c); } while (isblank (c));
 				if (nobreak (c)) 
 				{
 					putc (' ', stdout);
@@ -199,7 +199,7 @@ void function (signed o, void indent (signed, unsigned, unsigned))
 			}
 			if (c == '\\') 
 			{
-				c = conjoin (c);
+				c = join (c);
 				continue;
 			}
 			c = keep (c);

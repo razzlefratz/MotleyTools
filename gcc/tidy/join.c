@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   signed conjoin (signed c);
+ *   signed join (signed c);
  *
  *   tidy.h
  *
@@ -12,14 +12,14 @@
  *
  *--------------------------------------------------------------------*/
 
-#ifndef CONJOIN_SOURCE
-#define CONJOIN_SOURCE
+#ifndef JOIN_SOURCE
+#define JOIN_SOURCE
 
 #include <stdio.h>
 
 #include "../tidy/tidy.h"
 
-signed conjoin (signed c) 
+signed join (signed c) 
 
 {
 	while (c == '\\') 

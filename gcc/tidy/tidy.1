@@ -19,15 +19,15 @@ Write character c to stdout then read and write trailing e characters; Discard i
 Read stdin and write stdout. Replace whitespace with character c unless the whitespace is termianted by character e;
 
 .TP
-.BR conjoin ( c )
-Discard escaped newlines, effectively concatenating the next line to the current one; If character c is not a backslash them return it as the function value; otherwise, evaluate the sequence for a newline; If the sequencs is not an escaped newline the output it and return the next character from stdin as the function value;
-
-.TP
 .BR consume ( c )
 Discard character c; Read stdin and discard characters up to, but excluding, the next newline or EOF; return newline or EOF;  
 .TP
 .BR find ( c )
 Write character c to stdout then read stdin and discard whitespace. Return the next non-space character from stdin.
+
+.TP
+.BR join ( c )
+Discard escaped newlines, effectively concatenating the next line to the current one; If character c is not a backslash them return it as the function value; otherwise, evaluate the sequence for a newline; If the sequencs is not an escaped newline the output it and return the next character from stdin as the function value;
 
 .TP
 .BR keep ( c )

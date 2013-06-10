@@ -47,9 +47,9 @@
 #endif
 
 #ifndef MAKEFILE
-#include "../tidy/conjoin.c"
 #include "../tidy/literal.c"
 #include "../tidy/escaped.c"
+#include "../tidy/join.c"
 #include "../tidy/keep.c"
 #endif
 
@@ -115,7 +115,7 @@ static void function (signed comment, flag_t flags)
 			}
 			if (c == '\\') 
 			{
-				c = conjoin (c);
+				c = join (c);
 				continue;
 			}
 			c = keep (c);
