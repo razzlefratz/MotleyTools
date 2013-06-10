@@ -29,7 +29,7 @@
 #define VERSION "1.9.0"
 #define RELEASE __TIME__ " " __DATE__
 #define CONTACT "cmaier@cmassoc.net"
-#define LICENSE "Internet Software Consortium (ISC) License"
+#define LICENSE "ISC License"
 
 /*====================================================================*
  *   class declaration;

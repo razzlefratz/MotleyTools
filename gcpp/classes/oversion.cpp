@@ -211,6 +211,7 @@ oversion & oversion::print (void)
 	std::cerr << "C++" << " ";
 	std::cerr << this->mcompany << " ";
 	std::cerr << this->mrelease << " ";
+	std::cerr << this->mlicense << " ";
 	std::cerr << std::endl;
 	return (*this);
 }
