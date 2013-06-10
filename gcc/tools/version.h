@@ -17,12 +17,11 @@
 
 #define COMPANY "Charles Maier"
 #define PROJECT "Motley Toolkit"
-#define PURPOSE "personal use"
 #define PACKAGE "motley-tools"
-#define VERSION "1.8.2"
+#define VERSION "1.9.0"
 #define RELEASE __TIME__ " " __DATE__
 #define CONTACT "cmaier@cmassoc.net"
-#define LICENSE "GNU General Public License Version 2 Only;"
+#define LICENSE "Internet Software Consortium (ISC) License"
 
 /*====================================================================*
  *   functions;
