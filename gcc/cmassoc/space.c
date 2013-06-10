@@ -183,9 +183,13 @@ void function (signed o, void indent (signed, unsigned, unsigned))
 				c = consume (c);
 				continue;
 			}
-			if (c == '\\') 
+			if (isblank (c)) 
 			{
-				c = conjoin (c);
+				do { c = getc (stdin); c = conjoin (c); } while (isblank (c));
+				if (nobreak (c)) 
+				{
+					putc (' ', stdout);
+				}
 				continue;
 			}
 			if (isquote (c)) 
@@ -193,18 +197,9 @@ void function (signed o, void indent (signed, unsigned, unsigned))
 				c = literal (c);
 				continue;
 			}
-			if (isblank (c)) 
+			if (c == '\\') 
 			{
-				do 
-				{
-					c = getc (stdin);
-					c = conjoin (c);
-				}
-				while (isblank (c));
-				if (nobreak (c)) 
-				{
-					putc (' ', stdout);
-				}
+				c = conjoin (c);
 				continue;
 			}
 			c = keep (c);

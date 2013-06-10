@@ -676,6 +676,34 @@ signed octidy::find (signed c) const
 
 /*====================================================================*
  *
+ *   signed octidy::join (signed c) const;
+ *   
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+signed octidy::join (signed c) const 
+
+{
+	while (c == '\\')
+	{
+		signed o = std::cin.get ();
+		if (o != '\n')
+		{
+			std::cout.put (c);
+			std::cout.put (o);
+		}
+		c = std::cin.get ();
+	} 
+	return (c);
+}
+
+
+
+/*====================================================================*
+ *
  *   signed keep (signed c) const;
  *
  *   print current character (c) and return the next character;

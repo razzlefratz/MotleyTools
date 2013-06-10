@@ -391,7 +391,6 @@ signed ocollect::escaped (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *   
  *   signed find (signed c) const;
@@ -413,6 +412,34 @@ signed ocollect::find (signed c) const
 	}
 	return (c);
 }
+
+
+/*====================================================================*
+ *
+ *   signed ocollect::join (signed c) const;
+ *   
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+signed ocollect::join (signed c) const 
+
+{
+	while (c == '\\')
+	{
+		signed o = std::cin.get ();
+		if (o != '\n')
+		{
+			std::cout.put (c);
+			std::cout.put (o);
+		}
+		c = std::cin.get ();
+	} 
+	return (c);
+}
+
 
 
 /*====================================================================*

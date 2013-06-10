@@ -46,6 +46,7 @@ public:
 	signed inner_command (signed c, signed e) const;
 	signed inner_literal (signed c, signed e) const;
 	signed inner_content (signed c, signed e) const;
+	signed join (signed c) const;
 	signed find (signed c) const;
 	signed keep (signed c) const;
 private:
