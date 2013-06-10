@@ -31,7 +31,7 @@ signed conjoin (signed c)
 			putc (o, stdout);
 		}
 		c = getc (stdin);
-	}
+	} 
 	return (c);
 }
 
