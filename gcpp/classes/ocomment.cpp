@@ -361,7 +361,7 @@ signed ocomment::cplus (signed c)
 	}
 	else 
 	{
-		signed space = 0;
+		bool space = false;
 		std::cout.put ('/');
 		std::cout.put ('/');
 		while (oascii::nobreak (c)) 
@@ -369,17 +369,21 @@ signed ocomment::cplus (signed c)
 			if (oascii::isblank (c)) 
 			{
 				c = std::cin.get ();
-				space = 1;
+				space = true;
 				continue;
 			}
-			while (space) 
+			if (space) 
 			{
 				std::cout.put (' ');
-				space = 0;
+				space = false;
 				continue;
 			}
 			std::cout.put (c);
 			c = std::cin.get ();
+		}
+		if (c != EOF)
+		{
+			std::cout.put (c);
 		}
 	}
 	c = std::cin.get ();
