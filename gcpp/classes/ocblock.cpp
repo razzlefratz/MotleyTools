@@ -81,7 +81,6 @@ signed ocblock::level ()const
 
 signed ocblock::preamble (signed c)
 {
-	extern unsigned level;
 	if (!this->mlevel)
 	{
 		while (c != EOF)
@@ -139,20 +138,22 @@ signed ocblock::statement (signed c)
 	}
 	if (c == '{') 
 	{
+		this->mlevel++;
 		c = ocblock::keep (c);
 		c = ocblock::program (c, '}');
 		c = ocblock::keep (c);
+		this->mlevel--;
 	}
 	else if (c != ';') 
 	{
-		std::cout.put (' ');
+		this->mlevel++;
 		std::cout.put ('{');
 		std::cout.put (' ');
 		c = ocblock::program (c, ';');
 		c = ocblock::keep (c);
 		std::cout.put (' ');
 		std::cout.put ('}');
-		std::cout.put (' ');
+		this->mlevel--;
 	}
 	return (c);
 }
@@ -181,13 +182,15 @@ signed ocblock::condition (signed c)
 	}
 	else if (c != ';') 
 	{
+		std::cout.put (' ');
 		std::cout.put ('(');
 		c = ocblock::program (c, ';');
+		c = ocblock::keep (c);
 		std::cout.put (')');
+		std::cout.put (' ');
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -230,7 +233,7 @@ signed ocblock::program (signed c, signed e)
 			this->mlevel++;
 			c = ocblock::keep (c);
 			c = ocblock::program (c, '}');
-			c = ocblock::keep ('}');
+			c = ocblock::keep (c);
 			this->mlevel--;
 			c = ocblock::preamble (c);
 			continue;
@@ -263,9 +266,8 @@ signed ocblock::program (signed c, signed e)
 			}
 			if (!strcmp (string, "else")) 
 			{
-				do { c = std::cin.get (); } while (oascii::isspace (c));
-				std::cout.put (' ');
-				continue;
+				c = ocblock::statement (c);
+				return (c);
 			}
 			if (!strcmp (string, "while")) 
 			{
@@ -315,7 +317,7 @@ signed ocblock::program (signed c, signed e)
 ocblock::ocblock () 
 
 {
-	this->mlevel = 0;
+	this->mlevel = 1;
 	return;
 }
 
