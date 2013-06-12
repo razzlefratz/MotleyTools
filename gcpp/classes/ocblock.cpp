@@ -182,12 +182,14 @@ signed ocblock::condition (signed c)
 	}
 	else if (c != ';') 
 	{
+		this->mlevel++;
 		std::cout.put (' ');
 		std::cout.put ('(');
 		c = ocblock::program (c, ';');
 		c = ocblock::keep (c);
 		std::cout.put (')');
 		std::cout.put (' ');
+		this->mlevel--;
 	}
 	return (c);
 }

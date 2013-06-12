@@ -28,6 +28,7 @@
 #include "../classes/ocontext.hpp"
 #include "../classes/oescape.hpp"
 #include "../classes/ocblock.hpp"
+#include "../classes/oerror.hpp"
 
 /*====================================================================*
  *   custom source files;
