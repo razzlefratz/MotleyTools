@@ -298,13 +298,13 @@ signed ocblock::program (signed c, signed e)
 		}
 		c = ocblock::keep (c);
 	}
-	return (c);
+	return (e);
 }
 
 
 /*====================================================================*
  *
- *   ocblock()
+ *   ocblock ();
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -322,7 +322,25 @@ ocblock::ocblock ()
 
 /*====================================================================*
  *
- *   ~ocblock()
+ *   ocblock (signed level);
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+ocblock::ocblock (signed level) 
+
+{
+	this->mlevel = level;
+	return;
+}
+
+
+/*====================================================================*
+ *
+ *   ~ocblock();
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
