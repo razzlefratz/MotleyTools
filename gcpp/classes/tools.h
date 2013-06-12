@@ -87,11 +87,11 @@
  *--------------------------------------------------------------------*/
 
 #ifndef NUL
-#define NUL ((char)(0))		       // empty character */
+#define NUL ((char)(0))		       
 #endif
 
 #ifndef NIL
-#define NIL ("")		       // empty character string */
+#define NIL ("")		      
 #endif
 
 #define CSPACE (' ')
