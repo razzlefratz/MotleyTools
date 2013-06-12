@@ -62,7 +62,7 @@ void oerror::print (char const *format, ...)
 		std::vfprintf (stderr, format, argp);
 		va_end (argp);
 	}
-	std::cerr << "\n";
+	std::cerr << std::endl;
 	return;
 }
 
@@ -103,7 +103,7 @@ void oerror::error (char const * format, ...)
 
 /*====================================================================*
  *
- *   void error (int code, errno_t error, char const *format, ...);
+ *   void error (int code, errno_t error, char const * format, ...);
  *
  *   print an error message using variable argument list; prefix all
  *   messages with program_name; append strerror() message text when
@@ -113,10 +113,10 @@ void oerror::error (char const * format, ...)
  *
  *--------------------------------------------------------------------*/
 
-void oerror::error (int status, errno_t number, char const *format, ...) 
+void oerror::error (int status, errno_t number, char const * format, ...) 
 
 {
-	if ((program_name) && (*program_name)) 
+	if ((program_name) && (* program_name)) 
 	{
 		std::cerr << program_name << ": ";
 	}
@@ -165,7 +165,7 @@ void oerror::error (int status, char const * string, char const * format, ...)
 		std::cerr << string << ": ";
 		errno = 0;
 	}
-	if ((format) && (*format)) 
+	if ((format) && (* format)) 
 	{
 		va_list arglist;
 		va_start (arglist, format);
@@ -183,7 +183,7 @@ void oerror::error (int status, char const * string, char const * format, ...)
 
 /*====================================================================*
  *
- *   void error_at_line (int status, errno_t number, char const *file, unsigned line, char const *format, ...);
+ *   void error_at_line (int status, errno_t number, char const * file, unsigned line, char const * format, ...);
  *
  *   print error messages using a variable argument list; prefix all
  *   messages with the program_name string; suffix messages with the
@@ -194,14 +194,14 @@ void oerror::error (int status, char const * string, char const * format, ...)
  *
  *--------------------------------------------------------------------*/
 
-void oerror::error_at_line (int status, errno_t number, char const *file, unsigned line, char const *format, ...) 
+void oerror::error_at_line (int status, errno_t number, char const * file, unsigned line, char const * format, ...) 
 
 {
-	if ((program_name) && (*program_name)) 
+	if ((program_name) && (* program_name)) 
 	{
 		std::cerr << program_name << ": ";
 	}
-	if ((file) && (*file)) 
+	if ((file) && (* file)) 
 	{
 		std::cerr << file << " (" << line << "): ";
 	}
@@ -209,14 +209,14 @@ void oerror::error_at_line (int status, errno_t number, char const *file, unsign
 	{
 		std::cerr << std::strerror (number) << ": ";
 	}
-	if ((format) && (*format)) 
+	if ((format) && (* format)) 
 	{
 		va_list arglist;
 		va_start (arglist, format);
 		std::vfprintf (stderr, format, arglist);
 		va_end (arglist);
 	}
-	std::cerr << "\n";
+	std::cerr << std::endl;
 	if (status) 
 	{
 		std::exit (status);
