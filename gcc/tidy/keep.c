@@ -27,8 +27,8 @@ signed keep (signed c)
 	if ((c) && (c != EOF)) 
 	{
 		putc (c, stdout);
-		c = getc (stdin);
 	}
+	c = getc (stdin);
 	return (c);
 }
 
