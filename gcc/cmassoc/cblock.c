@@ -2,6 +2,8 @@
  *
  *   cblock.c - C/C++ Language blocker;
  *
+ *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -166,7 +168,7 @@ static signed condition (signed c)
 	}
 	if (c == '(') 
 	{
-		c = context ('(', ')');
+		c = context (c, ')');
 	}
 	else if (c != ';') 
 	{
