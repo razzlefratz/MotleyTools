@@ -392,29 +392,6 @@ signed ocollect::escaped (signed c) const
 }
 
 /*====================================================================*
- *   
- *   signed find (signed c) const;
- *
- *   return the next non-space input character;
- *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
- *--------------------------------------------------------------------*/
-
-signed ocollect::find (signed c) const 
-
-{
-	while (oascii::isspace (c)) 
-	{
-		c = ocollect::keep (c);
-	}
-	return (c);
-}
-
-
-/*====================================================================*
  *
  *   signed ocollect::join (signed c) const;
  *   
@@ -444,6 +421,29 @@ signed ocollect::join (signed c) const
 
 /*====================================================================*
  *   
+ *   signed find (signed c) const;
+ *
+ *   return the next non-space input character;
+ *   
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+signed ocollect::find (signed c) const 
+
+{
+	while (oascii::isspace (c)) 
+	{
+		c = ocollect::keep (c);
+	}
+	return (c);
+}
+
+
+/*====================================================================*
+ *   
  *   signed keep (signed c) const;
  *
  *   write (c) and return the next input character;
@@ -457,11 +457,11 @@ signed ocollect::join (signed c) const
 signed ocollect::keep (signed c) const 
 
 {
-	if (c != EOF) 
+	if ((c != NUL) && (c != EOF))
 	{
 		std::cout.put (c);
-		c = std::cin.get ();
 	}
+	c = std::cin.get ();
 	return (c);
 }
 
