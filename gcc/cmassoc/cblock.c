@@ -139,6 +139,7 @@ static signed statement (signed c)
 		putc ('{', stdout);
 		putc (' ', stdout);
 		c = program (c, ';');
+		c = keep (c);
 		putc (' ', stdout);
 		putc ('}', stdout);
 	}
