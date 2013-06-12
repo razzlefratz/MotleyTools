@@ -13,7 +13,7 @@ include ../make.def
 
 CFLAGS=-Wall -D_GNU_SOURCE -DMAKEFILE
 LFLAGS=
-TOOLS=call2 cblock cdep2 cfm cmpp csstidy ctidy ctokens dnstidy javatidy mmf2 order2 phptidy pkg relate2 sqltidy tokens defix profile page calend2 chtml index htmltidy mptidy
+TOOLS=call2 cblock2 cdep2 cfm cmpp csstidy ctidy ctokens dnstidy javatidy mmf2 order2 phptidy pkg relate2 sqltidy tokens defix profile page calend2 chtml index htmltidy mptidy
 # TOOLS+=syslog2 
 VPATH=../classes:../linux
 TRASH=*~ *.[0-9][0-9][0-9] t t.* *.exe *.o *.html *.css

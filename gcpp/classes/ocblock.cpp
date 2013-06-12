@@ -29,6 +29,99 @@
 
 /*====================================================================*
  *
+ *   ocblock & level (signed level);
+ *
+ *   change level counter value;
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *   
+ *--------------------------------------------------------------------*/
+
+ocblock & ocblock::level (signed level) 
+
+{
+	this->mlevel = level;
+	return (*this);
+}
+
+
+/*====================================================================*
+ *
+ *   signed level () const;
+ *
+ *   return level counter value;
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *   
+ *--------------------------------------------------------------------*/
+
+signed ocblock::level ()const 
+
+{
+	return (this->mlevel);
+}
+
+
+/*====================================================================*
+ *
+ *   signed ocblock::preamble (signed c);
+ *
+ *   conditionally print an empty preamble comment block; return
+ *   character c unchanged;
+ *   
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+signed ocblock::preamble (signed c)
+{
+	extern unsigned level;
+	if (!this->mlevel)
+	{
+		while (c != EOF)
+		{
+			if (c == '/')
+			{
+				c = ocblock::comment (c);
+				continue;
+			}
+			if (c == ';')
+			{
+				c = ocblock::keep (c);
+				continue;
+			} 
+			if (oascii::isspace (c))
+			{
+				c = ocblock::keep (c);
+				continue;
+			} 
+			std::cout << std::endl << std::endl;
+			std::cout << "/*===*" << std::endl;
+			std::cout << " *" << std::endl;
+			std::cout << " *" << std::endl;
+			std::cout << " *" << std::endl;
+#if 1
+			std::cout << " *." << std::endl;
+			std::cout << " *:" << std::endl;
+			std::cout << " *;" << std::endl;
+#endif
+			std::cout << " *" << std::endl;
+			std::cout << " *---*/" << std::endl;
+			std::cout << std::endl << std::endl;
+			break;
+		}
+	}
+	return (c);
+}
+
+/*====================================================================*
+ *
  *   signed statement (signed c);
  *   
  *.  Motley Tools by Charles Maier
@@ -109,6 +202,7 @@ signed ocblock::condition (signed c)
 signed ocblock::program (signed c, signed e) 
 
 {
+	c = ocblock::preamble (c);
 	while ((c != e) && (c != EOF)) 
 	{
 		if (c == '/') 
@@ -133,9 +227,12 @@ signed ocblock::program (signed c, signed e)
 		}
 		if (c == '{') 
 		{
+			this->mlevel++;
 			c = ocblock::keep (c);
 			c = ocblock::program (c, '}');
 			c = ocblock::keep ('}');
+			this->mlevel--;
+			c = ocblock::preamble (c);
 			continue;
 		}
 		if (oascii::isquote (c)) 
@@ -166,7 +263,8 @@ signed ocblock::program (signed c, signed e)
 			}
 			if (!strcmp (string, "else")) 
 			{
-				c = ocblock::statement (c);
+				do { c = std::cin.get (); } while (oascii::isspace (c));
+				std::cout.put (' ');
 				continue;
 			}
 			if (!strcmp (string, "while")) 
@@ -217,6 +315,7 @@ signed ocblock::program (signed c, signed e)
 ocblock::ocblock () 
 
 {
+	this->mlevel = 0;
 	return;
 }
 
