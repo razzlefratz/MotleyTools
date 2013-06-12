@@ -172,9 +172,11 @@ static signed condition (signed c)
 	}
 	else if (c != ';') 
 	{
+		putc (' ', stdout);
 		putc ('(', stdout);
 		c = control (c, ';');
 		putc (')', stdout);
+		putc (' ', stdout);
 	}
 	return (c);
 }
@@ -263,8 +265,7 @@ static signed program (signed c, signed e)
 			}
 			if (!strcmp (string, "else")) 
 			{
-				do { c = getc (stdin); } while (isspace (c));
-				putc (' ', stdout);
+				c = statement (c);
 				continue;
 			}
 			if (!strcmp (string, "do")) 

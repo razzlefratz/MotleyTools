@@ -269,7 +269,7 @@ signed ocblock::program (signed c, signed e)
 			if (!strcmp (string, "else")) 
 			{
 				c = ocblock::statement (c);
-				return (c);
+				continue;
 			}
 			if (!strcmp (string, "while")) 
 			{
