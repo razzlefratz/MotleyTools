@@ -95,7 +95,6 @@ signed octidy::atheros (signed c, signed e)
 				c = octidy::comment (c);
 			}
 			while (c == '/');
-			octidy::space (1);
 			space = 1;
 			continue;
 		}
@@ -218,7 +217,6 @@ signed octidy::charlie (signed c, signed e)
 				c = ocomment::comment (c);
 			}
 			while (c == '/');
-			octidy::space (1);
 			space = 1;
 			continue;
 		}
@@ -312,7 +310,6 @@ signed octidy::program (signed c, signed e)
 				c = octidy::comment (c);
 			}
 			while (c == '/');
-			octidy::space (1);
 			space = 1;
 			continue;
 		}

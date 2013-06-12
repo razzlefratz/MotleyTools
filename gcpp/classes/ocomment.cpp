@@ -574,6 +574,7 @@ signed ocomment::clang (signed c)
 		std::cout.put ('*');
 	}
 	std::cout.put ('/');
+	std::cout.put ('\n');
 	c = std::cin.get ();
 	return (c);
 }

@@ -146,11 +146,7 @@ signed ophptidy::program (signed c)
 		if (c == '/') 
 		{
 			ophptidy::space (space);
-			do 
-			{
-				c = ophptidy::comment (c);
-			}
-			while (c == '/');
+			c = ophptidy::comment (c);
 			space = 1;
 			continue;
 		}
