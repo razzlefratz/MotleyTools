@@ -83,7 +83,7 @@ call: call.o console.o efreopen.o nocomment.o nocontext.o noescaped.o noliteral.
 case: case.o chrlwr.o chrupr.o error.o escaped.o getoptv.o keep.o literal.o makepath.o mergepath.o putoptv.o splitpath.o strcomp.o strconv.o version.o vfopen.o
 cat: cat.o efreopen.o error.o getoptv.o putoptv.o todigit.o uintspec.o version.o
 catalog: catalog.o emalloc.o error.o filepart.o getoptv.o indent.o makepath.o mergepath.o putoptv.o splitpath.o todigit.o uintspec.o version.o vfopen.o
-cblock: cblock.o capsule.o comment.o content.o context.o control.o error.o escaped.o fortran.o getoptv.o keep.o literal.o makepath.o mergepath.o putoptv.o splitpath.o version.o vfopen.o
+cblock: cblock.o capsule.o comment.o content.o context.o control.o error.o escaped.o find.o fortran.o getoptv.o keep.o literal.o makepath.o mergepath.o putoptv.o splitpath.o version.o vfopen.o
 cbrief: cbrief.o console.o escaped.o keep.o literal.o makepath.o mergepath.o nocomment.o splitpath.o vfopen.o
 cdep: cdep.o depend.o efopen.o emalloc.o erealloc.o error.o fgetline.o find.o fullpath.o getoptv.o havebreak.o havetoken.o isbreak.o istoken.o makepath.o mergepath.o nextbreak.o nexttoken.o partfile.o partpath.o putoptv.o scanalnum.o scanbreak.o scandigit.o scanflush.o scaninput.o scanspace.o scanstart.o scantoken.o scanuntil.o splitpath.o tokentext.o version.o
 cedit: cedit.o error.o getoptv.o makepath.o mergepath.o putoptv.o splitpath.o version.o vfopen.o
