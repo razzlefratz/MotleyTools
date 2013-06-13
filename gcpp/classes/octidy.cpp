@@ -169,6 +169,7 @@ signed octidy::charlie (signed c, signed e)
 {
 	signed level = 0;
 	signed space = 0;
+	c = ocomment::preamble(c);
 	while ((c != e) && (c != EOF)) 
 	{
 		if (oascii::isspace (c)) 
@@ -245,9 +246,10 @@ signed octidy::charlie (signed c, signed e)
 			while (c == ';');
 			if (!level) 
 			{
-				octidy::space (1);
+				octidy::space (2);
+				c = ocomment::preamble(c);
 			}
-			space = 2;
+			space = 1;
 			continue;
 		}
 		if ((c == ',') || (c == ';') || (c == ':')) 
