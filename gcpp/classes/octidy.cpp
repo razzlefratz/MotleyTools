@@ -556,7 +556,7 @@ signed octidy::context (signed c) const
 	}
 	else if (c == '*')
 	{
-		do { c = keep (c); } while (c == '*');
+		c = keep (c);
 		if (oascii::isalpha (c) || (c == '_'))
 		{
 			std::cout.put (' ');
