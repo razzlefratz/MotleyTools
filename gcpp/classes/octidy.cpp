@@ -554,6 +554,14 @@ signed octidy::context (signed c) const
 		c = octidy::find (c);
 		std::cout.put (' ');
 	}
+	else if (c == '*')
+	{
+		do { c = keep (c); } while (c == '*');
+		if (oascii::isalpha (c) || (c == '_'))
+		{
+			std::cout.put (' ');
+		}
+	}
 	else if (oascii::isquote (c)) 
 	{
 		c = octidy::literal (c);
