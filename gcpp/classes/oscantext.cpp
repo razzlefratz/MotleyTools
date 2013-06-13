@@ -27,6 +27,23 @@
 
 /*====================================================================*
  *
+ *   bool end () const;
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+bool oscantext::end () const 
+
+{
+	return (this->mstart >= this->mlimit);
+}
+
+
+/*====================================================================*
+ *
  *   oscantext & copy (char const * string);
  *
  *   copy string into the input buffer; reset pointer, counters and objects;
@@ -512,7 +529,7 @@ bool oscantext::isclass (char const * charset) const
 
 /*====================================================================*
  *
- *   oscantext & scanflush ();
+ *   oscantext & flush ();
  *
  *   flush the current token string by advancing the start pointer 
  *   to the break pointer and counting characters as we go; 
@@ -526,7 +543,7 @@ bool oscantext::isclass (char const * charset) const
  *
  *--------------------------------------------------------------------*/
 
-oscantext & oscantext::scanflush () 
+oscantext & oscantext::flush () 
 
 {
 	while (this->mstart < this->mbreak) 
@@ -1557,7 +1574,7 @@ oscantext & oscantext::nexttoken ()
 
 {
 	this->scanspace ();
-	this->scanflush ();
+	this->flush ();
 	this->scantoken ();
 	return (*this);
 }
