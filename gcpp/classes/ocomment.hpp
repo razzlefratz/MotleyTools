@@ -38,13 +38,14 @@
 #define oCOMMENT_B_DOUBLE  (1 << 0)
 #define oCOMMENT_B_TRIPLE  (1 << 1)
 #define oCOMMENT_B_SHORT   (1 << 2)
-#define oCOMMENT_B_DISCARD (1 << 3)
-#define oCOMMENT_B_PERMANENT (1 << 4)
-#define oCOMMENT_B_PREFACE (1 << 5)
-#define oCOMMENT_B_PACKAGE (1 << 6)
-#define oCOMMENT_B_RELEASE (1 << 7)
-#define oCOMMENT_B_LICENSE (1 << 8)
-#define oCOMMENT_B_SPECIAL (1 << 9)
+#define oCOMMENT_B_COMMENT (1 << 3)
+#define oCOMMENT_B_DISCARD (1 << 4)
+#define oCOMMENT_B_PERMANENT (1 << 5)
+#define oCOMMENT_B_PREFACE (1 << 6)
+#define oCOMMENT_B_PACKAGE (1 << 7)
+#define oCOMMENT_B_RELEASE (1 << 8)
+#define oCOMMENT_B_LICENSE (1 << 9)
+#define oCOMMENT_B_SPECIAL (1 << 10)
 
 #define oCOMMENT_C_PREFACE ('~')
 #define oCOMMENT_C_PACKAGE ('.')
@@ -76,6 +77,8 @@ public:
 	signed comment (signed c);
 	signed cplus (signed c);
 	signed clang (signed c);
+	signed preamble (signed c);
+	ocomment & preamble ();
 
 #if oCOMMENT_EXTENDBAR
 
@@ -102,6 +105,8 @@ public:
 	ocomment & special (char const * special);
 
 #endif
+
+	ocomment & preamble () const;
 
 private:
 

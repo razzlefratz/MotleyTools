@@ -27,10 +27,17 @@ class __declspec (dllexport) ocblock: private ocollect
 {
 public:
 	ocblock ();
+	ocblock (signed);
 	virtual ~ ocblock ();
+	ocblock & level (signed);
+	signed level () const; 
 	signed program (signed c, signed e);
+private:
+	ocblock & preamble ();
 	signed statement (signed c);
 	signed condition (signed c);
+	signed preamble (signed c);
+	signed mlevel;
 };
 
 

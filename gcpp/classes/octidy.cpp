@@ -95,7 +95,6 @@ signed octidy::atheros (signed c, signed e)
 				c = octidy::comment (c);
 			}
 			while (c == '/');
-			octidy::space (1);
 			space = 1;
 			continue;
 		}
@@ -170,6 +169,7 @@ signed octidy::charlie (signed c, signed e)
 {
 	signed level = 0;
 	signed space = 0;
+	c = ocomment::preamble(c);
 	while ((c != e) && (c != EOF)) 
 	{
 		if (oascii::isspace (c)) 
@@ -218,7 +218,6 @@ signed octidy::charlie (signed c, signed e)
 				c = ocomment::comment (c);
 			}
 			while (c == '/');
-			octidy::space (1);
 			space = 1;
 			continue;
 		}
@@ -247,9 +246,10 @@ signed octidy::charlie (signed c, signed e)
 			while (c == ';');
 			if (!level) 
 			{
-				octidy::space (1);
+				octidy::space (2);
+				c = ocomment::preamble(c);
 			}
-			space = 2;
+			space = 1;
 			continue;
 		}
 		if ((c == ',') || (c == ';') || (c == ':')) 
@@ -312,7 +312,6 @@ signed octidy::program (signed c, signed e)
 				c = octidy::comment (c);
 			}
 			while (c == '/');
-			octidy::space (1);
 			space = 1;
 			continue;
 		}

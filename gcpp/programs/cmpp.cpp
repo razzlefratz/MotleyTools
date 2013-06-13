@@ -102,12 +102,12 @@ static void process (char const *pathname, char const * command, oflagword * fla
 	source.read (pathname);
 	while (!source.isempty ()) 
 	{
-		source.scanflush ();
+		source.flush ();
 		source.scantoken ();
 		if (source.istoken (command)) 
 		{
 			source.scanblank ();
-			source.scanflush ();
+			source.flush ();
 			source.scantoken ();
 			if (source.istoken ("include")) 
 			{
@@ -119,41 +119,41 @@ static void process (char const *pathname, char const * command, oflagword * fla
 				{
 				case '\"':
 					source.scanbreak ();
-					source.scanflush ();
+					source.flush ();
 					source.scanuntil ('\"');
 					pathspec.makepath (fullpath, rootname, source.tokentext ());
 					source.scanbreak ();
 					break;
 				case '\'':
 					source.scanbreak ();
-					source.scanflush ();
+					source.flush ();
 					source.scanuntil ('\'');
 					pathspec.makepath (fullpath, rootname, source.tokentext ());
 					source.scanbreak ();
 					break;
 				case '<':
 					source.scanbreak ();
-					source.scanflush ();
+					source.flush ();
 					source.scanuntil ('>');
 					pathspec.makepath (fullpath, rootname, source.tokentext ());
 					source.scanbreak ();
 					break;
 				case '(':
 					source.scanbreak ();
-					source.scanflush ();
+					source.flush ();
 					source.scanuntil (')');
 					pathspec.makepath (fullpath, rootname, source.tokentext ());
 					source.scanbreak ();
 					break;
 				case '[':
 					source.scanbreak ();
-					source.scanflush ();
+					source.flush ();
 					source.scanuntil (']');
 					pathspec.makepath (fullpath, rootname, source.tokentext ());
 					source.scanbreak ();
 					break;
 				default:
-					source.scanflush ();
+					source.flush ();
 					source.scanuntil (gcsSpace);
 					pathspec.makepath (fullpath, rootname, source.tokentext ());
 					break;
@@ -168,7 +168,7 @@ static void process (char const *pathname, char const * command, oflagword * fla
 			else if (source.istoken ("define")) 
 			{
 				source.scanblank ();
-				source.scanflush ();
+				source.flush ();
 				source.scanquote (gcsBreak);
 				macro.define (source.tokentext ());
 				source.scanwhile (gcsBreak);
@@ -176,7 +176,7 @@ static void process (char const *pathname, char const * command, oflagword * fla
 			else if (source.istoken ("undef")) 
 			{
 				source.scanblank ();
-				source.scanflush ();
+				source.flush ();
 				source.scanquote (gcsBreak);
 				macro.revert (source.tokentext ());
 				source.scanwhile (gcsBreak);
@@ -184,35 +184,35 @@ static void process (char const *pathname, char const * command, oflagword * fla
 			else if (source.istoken ("ifdef")) 
 			{
 				source.scanblank ();
-				source.scanflush ();
+				source.flush ();
 				source.scanquote (gcsBreak);
 				source.scanwhile (gcsBreak);
 			}
 			else if (source.istoken ("ifndef")) 
 			{
 				source.scanblank ();
-				source.scanflush ();
+				source.flush ();
 				source.scanquote (gcsBreak);
 				source.scanwhile (gcsBreak);
 			}
 			else if (source.istoken ("else")) 
 			{
 				source.scanblank ();
-				source.scanflush ();
+				source.flush ();
 				source.scanquote (gcsBreak);
 				source.scanwhile (gcsBreak);
 			}
 			else if (source.istoken ("endif")) 
 			{
 				source.scanblank ();
-				source.scanflush ();
+				source.flush ();
 				source.scanquote (gcsBreak);
 				source.scanwhile (gcsBreak);
 			}
 			else if (source.istoken ("enumerate")) 
 			{
 				source.scanblank ();
-				source.scanflush ();
+				source.flush ();
 				source.scanquote (gcsBreak);
 				macro.enumerate (pathname);
 				source.scanwhile (gcsBreak);

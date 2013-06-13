@@ -65,9 +65,10 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"",
+		"p",
 		oPUTOPTV_S_FILTER,
 		"C/C++ source code blocker",
+		"p\tinsert empty preamble comment blocks",
 		(char const *) (0)
 	};
 	ogetoptv getopt;
@@ -81,6 +82,9 @@ int main (int argc, char const * argv [])
 	{
 		switch (c) 
 		{
+		case 'p':
+			cblock.level (0);
+			break;
 		default:
 			break;
 		}
@@ -95,7 +99,7 @@ int main (int argc, char const * argv [])
 		pathspec.fullpath (filename, * getopt.argv ());
 		if (fileopen.openedit (filename)) 
 		{
-			c = (cblock.*function) (std::cin.get (), EOF);
+			(cblock.*function) (std::cin.get (), EOF);
 			fileopen.close ();
 		}
 		getopt++;

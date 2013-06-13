@@ -2,6 +2,8 @@
  *
  *   cblock.c - C/C++ Language blocker;
  *
+ *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -54,13 +56,62 @@
 #include "../tidy/escaped.c"
 #include "../tidy/fortran.c"
 #include "../tidy/keep.c"
+#include "../tidy/find.c"
 #endif
+
+/*====================================================================*
+ *   program variables;
+ *--------------------------------------------------------------------*/
+
+static unsigned level = 1;
 
 /*====================================================================*
  *   program functions;
  *--------------------------------------------------------------------*/
 
 static signed program (signed c, signed e);
+
+/*====================================================================*
+ *
+ *   signed preamble (signed c);
+ *
+ *   conditionally print an empty preamble comment block; return
+ *   character c unchanged;
+ *   
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+static signed preamble (signed c)
+{
+	extern unsigned level;
+	if (!level)
+	{
+		while (c != EOF)
+		{
+			if (isspace (c))
+			{
+				c = getc (stdin);
+				continue;
+			} 
+			if (c == '/')
+			{
+				c = comment (c);
+				continue;
+			}
+			if (c == ';')
+			{
+				c = keep (c);
+				continue;
+			} 
+			printf ("\n\n/*===*\n *\n *\n *\n *.\n *:\n *;\n *---*/\n\n");
+			break;
+		}
+	}
+	return (c);
+}
 
 /*====================================================================*
  *
@@ -117,12 +168,12 @@ static signed condition (signed c)
 	}
 	if (c == '(') 
 	{
-		c = context ('(', ')');
+		c = context (c, ')');
 	}
 	else if (c != ';') 
 	{
 		putc ('(', stdout);
-		c = control (c, ';');
+		c = program (c, ';');
 		putc (')', stdout);
 	}
 	return (c);
@@ -142,6 +193,8 @@ static signed condition (signed c)
 static signed program (signed c, signed e) 
 
 {
+	extern unsigned level;
+	c = preamble (c);
 	while ((c != e) && (c != EOF)) 
 	{
 		if (c == '#') 
@@ -156,9 +209,12 @@ static signed program (signed c, signed e)
 		}
 		if (c == '{') 
 		{
+			level++;
 			c = keep (c);
 			c = program (c, '}');
 			c = keep (c);
+			level--;
+			c = preamble (c);
 			continue;
 		}
 		if (c == '(') 
@@ -176,7 +232,7 @@ static signed program (signed c, signed e)
 			c = literal (c);
 			continue;
 		}
-		if (isalpha (c) || (c == '_')) 
+		if (isalnum (c) || (c == '_') || (c == '.')) 
 		{
 			char string [100];
 			char *sp = string;
@@ -185,7 +241,7 @@ static signed program (signed c, signed e)
 				*sp++ = c;
 				c = keep (c);
 			}
-			while (isalnum (c) || (c == '_'));
+			while (isalnum (c) || (c == '_') || (c == '.'));
 			*sp = (char)(0);
 			if (!strcmp (string, "while")) 
 			{
@@ -208,7 +264,7 @@ static signed program (signed c, signed e)
 			if (!strcmp (string, "else")) 
 			{
 				c = statement (c);
-				continue;
+				return (c);
 			}
 			if (!strcmp (string, "do")) 
 			{
@@ -229,7 +285,7 @@ static signed program (signed c, signed e)
 		}
 		c = keep (c);
 	}
-	return (c);
+	return (e);
 }
 
 
@@ -248,9 +304,10 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"",
+		"p",
 		PUTOPTV_S_FILTER,
 		"C/C++ language blocker",
+		"p\tinsert empty function preambles",
 		(char const *) (0)
 	};
 	signed c;
@@ -258,6 +315,9 @@ int main (int argc, char const * argv [])
 	{
 		switch (c) 
 		{
+		case 'p':
+			level = 0;
+			break;
 		default:
 			break;
 		}
@@ -266,13 +326,13 @@ int main (int argc, char const * argv [])
 	argv += optind;
 	if (!argc) 
 	{
-		program (getc (stdin), EOF);
+		program (NUL, EOF);
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (vfopen (* argv)) 
 		{
-			program (getc (stdin), EOF);
+			program (NUL, EOF);
 		}
 		argc--;
 		argv++;

@@ -26,7 +26,7 @@ signed comment (signed c)
 	c = keep (c);
 	if (c == '/') 
 	{
-		while ((c != '\n') && (c != EOF));
+		while ((c != '\n') && (c != EOF))
 		{
 			c = keep (c);
 		}
@@ -45,6 +45,10 @@ signed comment (signed c)
 			c = keep (c);
 		}
 		c = keep (c);
+		if (c == '\n')
+		{
+			c = keep (c);
+		}
 		return (c);
 	}
 	return (c);

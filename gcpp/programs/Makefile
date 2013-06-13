@@ -13,7 +13,7 @@ include ../make.def
 
 CFLAGS=-Wall -D_GNU_SOURCE -DMAKEFILE
 LFLAGS=
-TOOLS=call2 cblock cdep2 cfm cmpp csstidy ctidy ctokens dnstidy javatidy mmf2 order2 phptidy pkg relate2 sqltidy tokens defix profile page calend2 chtml index htmltidy mptidy
+TOOLS=call2 cblock2 cdep2 cfm cmpp csstidy ctidy ctokens dnstidy javatidy mmf2 order2 phptidy pkg relate2 sqltidy tokens defix profile page calend2 chtml index htmltidy mptidy
 # TOOLS+=syslog2 
 VPATH=../classes:../linux
 TRASH=*~ *.[0-9][0-9][0-9] t t.* *.exe *.o *.html *.css
@@ -47,7 +47,7 @@ ignore:
 
 calend2: calend2.o ogetoptv.o oputoptv.o oversion.o otext.o ocalendar.o omonth.o odate.o oindex.o oindent.o
 call2: call2.o ogetoptv.o oputoptv.o oversion.o oerror.o oascii.o ocpluswords.o okeywords.o oflagword.o owildcard.o ofileopen.o ofilespec.o opathspec.o ocontext.o odiscard.o otext.o
-cblock: cblock.o ogetoptv.o oputoptv.o oversion.o oerror.o ofileopen.o ofilespec.o opathspec.o ocontext.o owildcard.o oescape.o ocollect.o oascii.o ocblock.o otext.o
+cblock2: cblock2.o ogetoptv.o oputoptv.o oversion.o oerror.o ofileopen.o ofilespec.o opathspec.o ocontext.o owildcard.o oescape.o ocollect.o oascii.o ocblock.o otext.o
 cfm: cfm.o ogetoptv.o oputoptv.o oversion.o oflagword.o ofileopen.o ofilespec.o ocontext.o owildcard.o oescape.o oerror.o opathspec.o octidy.o ocomment.o oinclude.o oprofile.o oswitch.o ocgotowords.o ocexitwords.o okeywords.o oascii.o oindent.o ocollect.o otext.o
 chtml: chtml.o ogetoptv.o oputoptv.o oversion.o ofilespec.o opathspec.o owildcard.o ocontext.o oerror.o oitem.o olist.o oglossary.o owebpage.o oindent.o oenviron.o oattribute.o oscantext.o ocursor.o ochrtbl.o ochrlwr.o ochrupr.o oscancode.o ochtml.o okeywords.o oclangwords.o ocpluswords.o ocprocwords.o oISOGlyph.o oMetaElement.o oPageLinkElement.o oSpanElement.o oAnchorElement.o oCoreAttributes.o oi18nAttributes.o oLinkAttributes.o oascii.o oconstants.o ofunctions.o otext.o
 cmpp: cmpp.o fopensearch.o ogetoptv.o oputoptv.o oversion.o oerror.o omacro.o oscantext.o ochrtbl.o ochrupr.o ochrlwr.o ocursor.o opathspec.o ofindspec.o ofilespec.o ofileopen.o ofindfile.o owildcard.o ocontext.o osymbol.o oqueue.o oflagword.o oascii.o otext.o

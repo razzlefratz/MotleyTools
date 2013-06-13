@@ -84,12 +84,13 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"34acf:g:hklLmopPrstw:x",
+		"34abcf:g:hklLmopPrstw:x",
 		oPUTOPTV_S_FILTER,
 		"format C/C++ source code with preamble annotations",
 		"3\tindent is 3 blanks",
 		"4\tindent is 4 blanks",
 		"a\tatheros standard format",
+		"b\tinsert preamble comment block",
 		"c\tconvert C++ comments to standard C comments",
 		"f s\tuse profile (s) [" LITERAL (PROFILE_NAME) "]",
 		"g s\tuse profile section (s) [" LITERAL (SECTION_NAME) "]",
@@ -129,6 +130,9 @@ int main (int argc, char const * argv [])
 			break;
 		case 'a':
 			method = &octidy::atheros;
+			break;
+		case 'b':
+			object.setbits (oCOMMENT_B_COMMENT);
 			break;
 		case 'c':
 			object.setbits (oCOMMENT_B_DOUBLE);

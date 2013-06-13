@@ -29,6 +29,23 @@
 
 /*====================================================================*
  *
+ *   bool end () const;
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+bool oscanfile::end () const 
+
+{
+	return (std::cin.eof ());
+}
+
+
+/*====================================================================*
+ *
  *   unsigned int character () const;
  *
  *   return the current character;
@@ -60,7 +77,7 @@ unsigned int oscanfile::character () const
 size_t oscanfile::tokensize () const 
 
 {
-	return (strlen (this->mtoken));
+	return (std::strlen (this->mtoken));
 }
 
 
@@ -170,7 +187,7 @@ bool oscanfile::isbreak (signed c) const
 bool oscanfile::isbreak (char const * charset) const 
 
 {
-	return (strchr (charset, this->mbreak));
+	return (std::strchr (charset, this->mbreak));
 }
 
 
@@ -320,7 +337,7 @@ bool oscanfile::istoken (char const *literal) const
 
 /*====================================================================*
  *
- *   oscanfile & scanflush ();
+ *   oscanfile & flush ();
  *
  *
  *.  Motley Tools by Charles Maier
@@ -329,7 +346,7 @@ bool oscanfile::istoken (char const *literal) const
  *
  *--------------------------------------------------------------------*/
 
-oscanfile & oscanfile::scanflush () 
+oscanfile & oscanfile::flush () 
 
 {
 	this->mcount = 0;
@@ -975,7 +992,7 @@ oscanfile & oscanfile::scantoken ()
 {
 	if (this->mbreak == EOF) 
 	{
-		this->scanflush ();
+		this->flush ();
 	}
 	else if (oascii::isspace (this->mbreak)) 
 	{
@@ -1104,7 +1121,7 @@ oscanfile & oscanfile::skiptoken ()
 
 {
 	this->scanspace ();
-	this->scanflush ();
+	this->flush ();
 	this->scantoken ();
 	return (*this);
 }
@@ -1254,6 +1271,88 @@ oscanfile & oscanfile::uppercase ()
 
 {
 	ochrupr::convert (this->mtoken);
+	return (*this);
+}
+
+
+/*====================================================================*
+ *
+ *   oscanfile & write ();
+ *
+ *   write the current token span to the standard output stream;
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+oscanfile & oscanfile::write () 
+
+{
+	std::cout.write (this->mtoken, this->mcount);
+	return (*this);
+}
+
+
+/*====================================================================*
+ *
+ *   oscanfile & write (ofstream * stream);
+ *
+ *   write the current token span to an output file stream;
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+oscanfile & oscanfile::write (std::ofstream * stream) 
+
+{
+	stream->write (this->mtoken, this->mcount);
+	return (*this);
+}
+
+
+/*====================================================================*
+ *
+ *   oscanfile & print ();
+ *
+ *   print the current token span to the standard output stream;
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+oscanfile & oscanfile::print () 
+
+{
+	std::cout.write (this->mtoken, this->mcount);
+	std::cout.write ("\n", 1);
+	return (*this);
+}
+
+
+/*====================================================================*
+ *
+ *   oscanfile & print (ofstream * stream);
+ *
+ *   print the current token span to an output stream;
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+oscanfile & oscanfile::print (std::ofstream * stream) 
+
+{
+	stream->write (this->mtoken, this->mcount);
+	stream->write ("\n", 1);
 	return (*this);
 }
 

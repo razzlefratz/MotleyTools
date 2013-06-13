@@ -55,7 +55,7 @@
 #define OFLD_SILENCE (1 << 1)
 
 #define OFLD_BUFFER 4096
-#define OFLD_FIELDS 64
+#define OFLD_FIELDS 256
 
 /*====================================================================*
  *

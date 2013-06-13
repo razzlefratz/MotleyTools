@@ -6,7 +6,7 @@
 
 calend2.o: calend2.cpp ogetoptv.hpp oputoptv.hpp ocalendar.hpp
 call2.o: call2.cpp ogetoptv.hpp oputoptv.hpp oascii.hpp ocpluswords.hpp okeywords.hpp oflagword.hpp ofileopen.hpp opathspec.hpp ospan.hpp 
-cblock.o: cblock.cpp stdafx.hpp ogetoptv.hpp ocontext.hpp owildcard.hpp ofileopen.hpp ofilespec.hpp opathspec.hpp ocgotowords.hpp oescape.hpp oindent.hpp oinclude.hpp ocollect.hpp 
+cblock2.o: cblock2.cpp stdafx.hpp ogetoptv.hpp ocontext.hpp owildcard.hpp ofileopen.hpp ofilespec.hpp opathspec.hpp ocgotowords.hpp oescape.hpp oindent.hpp oinclude.hpp ocollect.hpp ocblock.hpp 
 chtml.o: chtml.cpp flags.h strlib.h ogetoptv.hpp oputoptv.hpp oversion.hpp ochtml.hpp
 cmpp.o: cmpp.cpp ogetopt.hpp oputopt.hpp oerror.hpp oscantext.hpp omacro.hpp ofilespec.hpp ofindfile.hpp charset.h strlib.h
 csstidy.o: csstidy.cpp ogetoptv.hpp oputoptv.hpp oversion.hpp oerror.hpp opathspec.hpp otidy.hpp tools.h flags.h

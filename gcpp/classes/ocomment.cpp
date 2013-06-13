@@ -279,6 +279,78 @@ ocomment & ocomment::special (char const * special)
 
 /*====================================================================*
  *
+ *   ocomment & ocomment::preamble ();
+ *
+ *   insert an empty preamble comment block; 
+ *   
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+ocomment & ocomment::preamble ()
+
+{
+	std::cout << "/*===*" << std::endl;
+	std::cout << " *" << std::endl;
+	std::cout << " *" << std::endl;
+	std::cout << " *" << std::endl;
+#if 1
+	std::cout << " *.   " << std::endl;
+	std::cout << " *:   " << std::endl;
+	std::cout << " *;   " << std::endl;
+#endif
+	std::cout << " *" << std::endl;
+	std::cout << " *---*/" << std::endl;
+	return (*this);
+}
+
+/*====================================================================*
+ *
+ *   signed ocomment::preamble (signed c)
+ *
+ *   insert an empty preamble comment block; 
+ *   
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+signed ocomment::preamble (signed c)
+
+{
+	if (ocomment::anyset (oCOMMENT_B_COMMENT)) 
+	{
+		while (c != EOF)
+		{
+			if (c == '/')
+			{
+				c = ocomment::comment (c);
+				std::cout.put ('\n');
+				continue;
+			}
+			if (c == ';')
+			{
+				std::cout.put (c);
+				c = std::cin.get ();
+				continue;
+			} 
+			if (oascii::isspace (c))
+			{
+				c = std::cin.get ();
+				continue;
+			} 
+			ocomment::preamble ();
+			break;
+		}
+	}
+	return (c);
+}
+
+/*====================================================================*
+ *
  *   signed comment (signed c) const;
  *
  *   read and write preamble comment blocks; preamble comment blocks
@@ -361,7 +433,7 @@ signed ocomment::cplus (signed c)
 	}
 	else 
 	{
-		signed space = 0;
+		bool space = false;
 		std::cout.put ('/');
 		std::cout.put ('/');
 		while (oascii::nobreak (c)) 
@@ -369,17 +441,21 @@ signed ocomment::cplus (signed c)
 			if (oascii::isblank (c)) 
 			{
 				c = std::cin.get ();
-				space = 1;
+				space = true;
 				continue;
 			}
-			while (space) 
+			if (space) 
 			{
 				std::cout.put (' ');
-				space = 0;
+				space = false;
 				continue;
 			}
 			std::cout.put (c);
 			c = std::cin.get ();
+		}
+		if (c != EOF)
+		{
+			std::cout.put (c);
 		}
 	}
 	c = std::cin.get ();
@@ -570,6 +646,7 @@ signed ocomment::clang (signed c)
 		std::cout.put ('*');
 	}
 	std::cout.put ('/');
+	std::cout.put ('\n');
 	c = std::cin.get ();
 	return (c);
 }
