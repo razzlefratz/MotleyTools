@@ -67,7 +67,6 @@ public:
 	bool havetoken (char const *literal);
 	oscanfile & unget (char const *string);
 	oscanfile & unget (char c);
-	oscanfile & scanflush ();
 	oscanfile & scanbreak ();
 	oscanfile & scanbreak (unsigned c);
 	oscanfile & scanbreak (char const *charset);
@@ -100,7 +99,13 @@ public:
 	oscanfile & trimtoken (char const *charset);
 	oscanfile & lowercase ();
 	oscanfile & uppercase ();
+	oscanfile & write ();
+	oscanfile & write (std::ofstream * stream);
+	oscanfile & print ();
+	oscanfile & print (std::ofstream * stream);
 	oscanfile & clear ();
+	oscanfile & flush ();
+	bool end () const;
 private:
 	char * mtoken;
 	char * munget;

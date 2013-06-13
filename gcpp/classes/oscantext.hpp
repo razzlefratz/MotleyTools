@@ -44,8 +44,8 @@ class __declspec (dllexport) oscantext: public ocursor, private oascii, private 
 {
 public:
 	oscantext ();
-	oscantext (std::ifstream *stream);
-	oscantext (char const *string);
+	oscantext (std::ifstream * stream);
+	oscantext (char const * string);
 	virtual ~ oscantext ();
 	virtual oscantext & scantoken ();
 	virtual oscantext & elaborate ();
@@ -71,8 +71,8 @@ public:
 	bool islogic () const;
 	bool isgroup () const;
 	bool isclass (unsigned c) const;
-	bool isclass (char const *charset) const;
-	bool istoken (char const *literal) const;
+	bool isclass (char const * charset) const;
+	bool istoken (char const * literal) const;
 	bool isbreak (unsigned c) const;
 	bool isbreak (char const * charset) const;
 	bool isbreak (bool (*) (unsigned)) const;
@@ -91,7 +91,6 @@ public:
 	oscantext & read ();
 	oscantext & readtoken (char buffer [], size_t length);
 	oscantext & tokentype (char c);
-	oscantext & scanflush ();
 	oscantext & scanspace ();
 	oscantext & scanblank ();
 	oscantext & scanalpha ();
@@ -101,37 +100,39 @@ public:
 	oscantext & scanmatch ();
 	oscantext & scanbreak ();
 	oscantext & scanbreak (unsigned c);
-	oscantext & scanbreak (char const *charset);
+	oscantext & scanbreak (char const * charset);
 	oscantext & scanwhile ();
 	oscantext & scanwhile (unsigned c);
-	oscantext & scanwhile (char const *charset);
+	oscantext & scanwhile (char const * charset);
 	oscantext & scanwhile (bool (*) (unsigned));
 	oscantext & scanuntil ();
 	oscantext & scanuntil (unsigned c);
-	oscantext & scanuntil (char const *charset);
+	oscantext & scanuntil (char const * charset);
 	oscantext & scanuntil (bool (*) (unsigned));
 	oscantext & scanquote ();
 	oscantext & scanquote (unsigned c);
-	oscantext & scanquote (char const *charset);
+	oscantext & scanquote (char const * charset);
 	oscantext & scangroup (unsigned c);
-	oscantext & scangroup (char const *charset);
+	oscantext & scangroup (char const * charset);
 	oscantext & scanblock ();
-	oscantext & scanblock (char const *literal);
+	oscantext & scanblock (char const * literal);
 	oscantext & nexttoken ();
 	oscantext & trimtoken ();
-	oscantext & trimtoken (char const *charset);
+	oscantext & trimtoken (char const * charset);
 	oscantext & lowercase ();
 	oscantext & uppercase ();
 	oscantext & enumerate ();
 	oscantext & write ();
-	oscantext & write (std::ofstream *stream);
+	oscantext & write (std::ofstream * stream);
 	oscantext & print ();
-	oscantext & print (std::ofstream *stream);
+	oscantext & print (std::ofstream * stream);
 	oscantext & unget ();
-	oscantext & unget (char const *string);
+	oscantext & unget (char const * string);
 	oscantext & unget (char c);
 	oscantext & cleanse ();
 	oscantext & clear ();
+	oscantext & flush ();
+	bool end () const;
 protected:
 private:
 	oscantext & reset (off_t length);

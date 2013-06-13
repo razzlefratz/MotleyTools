@@ -91,17 +91,17 @@ static signed preamble (signed c)
 	{
 		while (c != EOF)
 		{
+			if (isspace (c))
+			{
+				c = getc (stdin);
+				continue;
+			} 
 			if (c == '/')
 			{
 				c = comment (c);
 				continue;
 			}
 			if (c == ';')
-			{
-				c = keep (c);
-				continue;
-			} 
-			if (isspace (c))
 			{
 				c = keep (c);
 				continue;
@@ -174,7 +174,7 @@ static signed condition (signed c)
 	{
 		putc (' ', stdout);
 		putc ('(', stdout);
-		c = control (c, ';');
+		c = program (c, ';');
 		putc (')', stdout);
 		putc (' ', stdout);
 	}
@@ -234,7 +234,7 @@ static signed program (signed c, signed e)
 			c = literal (c);
 			continue;
 		}
-		if (isalpha (c) || (c == '_')) 
+		if (isalnum (c) || (c == '_') || (c == '.')) 
 		{
 			char string [100];
 			char *sp = string;
@@ -243,7 +243,7 @@ static signed program (signed c, signed e)
 				*sp++ = c;
 				c = keep (c);
 			}
-			while (isalnum (c) || (c == '_'));
+			while (isalnum (c) || (c == '_') || (c == '.'));
 			*sp = (char)(0);
 			if (!strcmp (string, "while")) 
 			{
