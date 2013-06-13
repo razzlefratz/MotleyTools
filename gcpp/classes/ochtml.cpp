@@ -138,7 +138,7 @@ ochtml & ochtml::html (char const *filename)
 	while (!this->mfile.isempty ()) 
 	{
 		unsigned level = 0;
-		switch (this->mfile.scanflush ().scantoken ().tokentype ()) 
+		switch (this->mfile.flush ().scantoken ().tokentype ()) 
 		{
 		case CL_T_COMMENTS:
 			this->mspan.CoreAttributes.IdentityAttribute->value ("");
@@ -277,8 +277,8 @@ ochtml & ochtml::html (char const *filename)
 ochtml & ochtml::directive () 
 
 {
-	std::cout << this->mfile.scanflush ().scanspace ().tokentext ();
-	switch (cprocword.indexof (this->mfile.scanflush ().scantoken ().tokentext ())) 
+	std::cout << this->mfile.flush ().scanspace ().tokentext ();
+	switch (cprocword.indexof (this->mfile.flush ().scantoken ().tokentext ())) 
 	{
 	case oCPROCWORD_O_DEFINE:
 		this->mspan.CoreAttributes.IdentityAttribute->value ("");
@@ -286,8 +286,8 @@ ochtml & ochtml::directive ()
 		this->mspan.StartTag ();
 		this->mfile.write ();
 		this->mspan.EndTag ();
-		std::cout << this->mfile.scanflush ().scanspace ().tokentext ();
-		this->mfile.scanflush ().scantoken ();
+		std::cout << this->mfile.flush ().scanspace ().tokentext ();
+		this->mfile.flush ().scantoken ();
 		this->mspan.CoreAttributes.IdentityAttribute->value (this->mfile.tokentext ());
 		this->mspan.CoreAttributes.ClassAttribute->value ("variable");
 		this->mspan.StartTag ();
@@ -320,42 +320,42 @@ ochtml & ochtml::directive ()
 		this->mspan.StartTag ();
 		this->mfile.write ();
 		this->mspan.EndTag ();
-		std::cout << this->mfile.scanflush ().scanspace ().tokentext ();
+		std::cout << this->mfile.flush ().scanspace ().tokentext ();
 		if (this->mfile.isbreak ('\"')) 
 		{
 			std::cout << "&quot;";
-			this->mfile.scanbreak ().scanflush ().scanuntil ("\"");
+			this->mfile.scanbreak ().flush ().scanuntil ("\"");
 			this->mlink.CoreAttributes.IdentityAttribute->value ("");
 			this->mlink.CoreAttributes.ClassAttribute->value ("variable");
 			this->mlink.LinkAttributes.ReferenceAttribute->value (ochtml::filespec.filespec (this->mfile.tokentext ()).savename (".html"));
 			this->mlink.StartTag ();
 			this->mfile.write ();
 			this->mlink.EndTag ();
-			this->mfile.scanbreak ().scanflush ();
+			this->mfile.scanbreak ().flush ();
 			std::cout << "&quot;";
 		}
 		else if (this->mfile.isbreak ('\'')) 
 		{
 			std::cout << "&apos;";
-			this->mfile.scanbreak ().scanflush ().scanuntil ("\'");
+			this->mfile.scanbreak ().flush ().scanuntil ("\'");
 			this->mspan.CoreAttributes.IdentityAttribute->value ("");
 			this->mspan.CoreAttributes.ClassAttribute->value ("variable");
 			this->mspan.StartTag ();
 			this->mfile.write ();
 			this->mlink.EndTag ();
-			this->mfile.scanbreak ().scanflush ();
+			this->mfile.scanbreak ().flush ();
 			std::cout << "&apos;";
 		}
 		else if (this->mfile.isbreak ('<')) 
 		{
 			std::cout << "&lt;";
-			this->mfile.scanbreak ().scanflush ().scanuntil (">");
+			this->mfile.scanbreak ().flush ().scanuntil (">");
 			this->mspan.CoreAttributes.IdentityAttribute->value ("");
 			this->mspan.CoreAttributes.ClassAttribute->value ("variable");
 			this->mspan.StartTag ();
 			this->mfile.write ();
 			this->mspan.EndTag ();
-			this->mfile.scanbreak ().scanflush ();
+			this->mfile.scanbreak ().flush ();
 			std::cout << "&gt;";
 		}
 
@@ -364,25 +364,25 @@ ochtml & ochtml::directive ()
 		else if (this->mfile.isbreak ('[')) 
 		{
 			std::cout << this->mfile.tokentext ();
-			this->mfile.scanbreak ().scanflush ().scanuntil ("]");
+			this->mfile.scanbreak ().flush ().scanuntil ("]");
 			this->mspan.CoreAttributes.IdentityAttribute->value ("");
 			this->mspan.CoreAttributes.ClassAttribute->value ("variable");
 			this->mspan.StartTag ();
 			this->mfile.write ();
 			this->mspan.EndTag ();
-			this->mfile.scanflush ().scanbreak ();
+			this->mfile.flush ().scanbreak ();
 			std::cout << this->mfile.tokentext ();
 		}
 		else if (this->mfile.isbreak ('(')) 
 		{
 			std::cout << this->mfile.tokentext ();
-			this->mfile.scanbreak ().scanflush ().scanuntil (")");
+			this->mfile.scanbreak ().flush ().scanuntil (")");
 			this->mspan.CoreAttributes.IdentityAttribute->value ("");
 			this->mspan.CoreAttributes.ClassAttribute->value ("variable");
 			this->mspan.StartTag ();
 			this->mfile.write ();
 			this->mspan.EndTag ();
-			this->mfile.scanflush ().scanbreak ();
+			this->mfile.flush ().scanbreak ();
 			std::cout << this->mfile.tokentext ();
 		}
 

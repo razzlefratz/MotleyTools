@@ -68,6 +68,37 @@ signed ocblock::level ()const
 
 /*====================================================================*
  *
+ *   ocblock & preamble ();
+ *
+ *   conditionally print an empty preamble comment block; return
+ *   character c unchanged;
+ *   
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+ocblock & ocblock::preamble ()
+{
+	std::cout << std::endl << std::endl;
+	std::cout << "/*===*" << std::endl;
+	std::cout << " *" << std::endl;
+	std::cout << " *" << std::endl;
+	std::cout << " *" << std::endl;
+#if 1
+	std::cout << " *." << std::endl;
+	std::cout << " *:" << std::endl;
+	std::cout << " *;" << std::endl;
+#endif
+	std::cout << " *" << std::endl;
+	std::cout << " *---*/" << std::endl;
+	std::cout << std::endl << std::endl;
+	return (* this);
+}
+
+/*====================================================================*
+ *
  *   signed ocblock::preamble (signed c);
  *
  *   conditionally print an empty preamble comment block; return
@@ -100,19 +131,7 @@ signed ocblock::preamble (signed c)
 				c = ocblock::keep (c);
 				continue;
 			} 
-			std::cout << std::endl << std::endl;
-			std::cout << "/*===*" << std::endl;
-			std::cout << " *" << std::endl;
-			std::cout << " *" << std::endl;
-			std::cout << " *" << std::endl;
-#if 1
-			std::cout << " *." << std::endl;
-			std::cout << " *:" << std::endl;
-			std::cout << " *;" << std::endl;
-#endif
-			std::cout << " *" << std::endl;
-			std::cout << " *---*/" << std::endl;
-			std::cout << std::endl << std::endl;
+			ocblock::preamble ();
 			break;
 		}
 	}

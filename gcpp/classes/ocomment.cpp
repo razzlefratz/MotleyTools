@@ -279,6 +279,76 @@ ocomment & ocomment::special (char const * special)
 
 /*====================================================================*
  *
+ *   ocomment & ocomment::preamble ();
+ *
+ *   insert an empty preamble comment block; 
+ *   
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+ocomment & ocomment::preamble ()
+
+{
+	std::cout << std::endl << std::endl;
+	std::cout << "/*===*" << std::endl;
+	std::cout << " *" << std::endl;
+	std::cout << " *" << std::endl;
+	std::cout << " *" << std::endl;
+#if 1
+	std::cout << " *." << std::endl;
+	std::cout << " *:" << std::endl;
+	std::cout << " *;" << std::endl;
+#endif
+	std::cout << " *" << std::endl;
+	std::cout << " *---*/" << std::endl;
+	std::cout << std::endl << std::endl;
+	return (*this);
+}
+
+/*====================================================================*
+ *
+ *   signed ocomment::preamble (signed c)
+ *
+ *   insert an empty preamble comment block; 
+ *   
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+signed ocomment::preamble (signed c)
+
+{
+	while (c != EOF)
+	{
+		if (c == '/')
+		{
+			c = ocomment::comment (c);
+			continue;
+		}
+		if (c == ';')
+		{
+			std::cout.put (c);
+			c = std::cin.get ();
+			continue;
+		} 
+		if (oascii::isspace (c))
+		{
+			c = std::cin.get ();
+			continue;
+		} 
+		ocomment::preamble ();
+		break;
+	}
+	return (c);
+}
+
+/*====================================================================*
+ *
  *   signed comment (signed c) const;
  *
  *   read and write preamble comment blocks; preamble comment blocks

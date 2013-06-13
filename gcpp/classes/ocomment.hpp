@@ -76,6 +76,8 @@ public:
 	signed comment (signed c);
 	signed cplus (signed c);
 	signed clang (signed c);
+	signed preamble (signed c);
+	ocomment & preamble ();
 
 #if oCOMMENT_EXTENDBAR
 
@@ -102,6 +104,8 @@ public:
 	ocomment & special (char const * special);
 
 #endif
+
+	ocomment & preamble () const;
 
 private:
 
