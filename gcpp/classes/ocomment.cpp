@@ -296,7 +296,7 @@ ocomment & ocomment::preamble ()
 	std::cout << " *" << std::endl;
 	std::cout << " *" << std::endl;
 	std::cout << " *" << std::endl;
-#if 1
+#if 0
 	std::cout << " *.   " << std::endl;
 	std::cout << " *:   " << std::endl;
 	std::cout << " *;   " << std::endl;
