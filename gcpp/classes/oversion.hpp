@@ -35,7 +35,7 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oversion: private otext
+class __declspec (dllexport) oversion: private otext 
 
 {
 public:

@@ -58,7 +58,7 @@ char const * oattribute::mcomma = "";
  *
  *--------------------------------------------------------------------*/
 
-char const *oattribute::label () const 
+char const * oattribute::label () const 
 
 {
 	return (this->mlabel);
@@ -73,7 +73,7 @@ char const *oattribute::label () const
  *
  *--------------------------------------------------------------------*/
 
-char const *oattribute::value () const 
+char const * oattribute::value () const 
 
 {
 	return (this->mvalue);
@@ -92,7 +92,7 @@ oattribute & oattribute::value (char const * string)
 
 {
 	this->mvalue = otext::replace (this->mvalue, string);
-	return (*this);
+	return (* this);
 }
 
 
@@ -119,7 +119,7 @@ oattribute & oattribute::value (unsigned number)
 	}
 	while (number);
 	this->mvalue = otext::replace (this->mvalue, &string [digits]);
-	return (*this);
+	return (* this);
 }
 
 
@@ -143,7 +143,7 @@ oattribute & oattribute::value (unsigned number, unsigned digits)
 		number /= 10;
 	}
 	this->mvalue = otext::replace (this->mvalue, string);
-	return (*this);
+	return (* this);
 }
 
 
@@ -158,17 +158,17 @@ oattribute & oattribute::value (unsigned number, unsigned digits)
 oattribute & oattribute::write () 
 
 {
-	if (*this->mvalue) 
+	if (* this->mvalue) 
 	{
 		std::cout << oattribute::mspace;
-		if (*this->mlabel) 
+		if (* this->mlabel) 
 		{
 			std::cout << this->mlabel << oattribute::mequal;
 		}
 		std::cout << oattribute::mquote << this->mvalue << oattribute::mquote;
 		std::cout << oattribute::mcomma;
 	}
-	return (*this);
+	return (* this);
 }
 
 

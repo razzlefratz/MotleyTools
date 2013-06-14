@@ -32,12 +32,12 @@ class __declspec (dllexport) oHTMLIndex
 public:
 	oHTMLIndex ();
 	virtual ~ oHTMLIndex ();
-	oHTMLIndex & title (char const *title);
-	oHTMLIndex & stylesheet (char const *stylesheet);
-	char const *title () const;
-	char const *stylesheet () const;
-	oHTMLIndex & include (char const *filename);
-	oHTMLIndex & collect (char const *pathname, char const *wildcard);
+	oHTMLIndex & title (char const * title);
+	oHTMLIndex & stylesheet (char const * stylesheet);
+	char const * title () const;
+	char const * stylesheet () const;
+	oHTMLIndex & include (char const * filename);
+	oHTMLIndex & collect (char const * pathname, char const * wildcard);
 	oHTMLIndex & publish (unsigned count);
 private:
 	oSpanElement mspan;

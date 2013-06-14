@@ -37,8 +37,8 @@ public:
 	oMetaElement & Contents (char const * name, char const * type);
 	oMetaElement & EmptyTag (unsigned level, unsigned space);
 private:
-	static char const *mscope;
-	static char const *mtitle;
+	static char const * mscope;
+	static char const * mtitle;
 };
 
 

@@ -69,7 +69,7 @@ char const * oswitch::mstate [] =
  *
  *--------------------------------------------------------------------*/
 
-bool oswitch::state (char const *string, bool state) 
+bool oswitch::state (char const * string, bool state) 
 
 {
 	for (unsigned index = 0; this->mstate [index]; index++) 

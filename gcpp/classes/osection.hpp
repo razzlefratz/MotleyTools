@@ -36,9 +36,9 @@ public:
 	osection & width (size_t width);
 	osection & title (char const * title);
 private:
-	char *mstart;
-	char *mupper;
-	char *mlower;
+	char * mstart;
+	char * mupper;
+	char * mlower;
 };
 
 

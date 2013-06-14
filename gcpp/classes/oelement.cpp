@@ -31,7 +31,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const *oelement::scope () const 
+char const * oelement::scope () const 
 
 {
 	return (oelement::mscope);
@@ -46,7 +46,7 @@ char const *oelement::scope () const
  *
  *--------------------------------------------------------------------*/
 
-char const *oelement::title () const 
+char const * oelement::title () const 
 
 {
 	return (oelement::mtitle);
@@ -64,13 +64,13 @@ char const *oelement::title () const
 oelement & oelement::print () 
 
 {
-	if (*this->mscope) 
+	if (* this->mscope) 
 	{
 		std::cout << this->mscope;
 		std::cout.put (':');
 	}
 	std::cout << this->mtitle;
-	return (*this);
+	return (* this);
 }
 
 

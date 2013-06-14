@@ -8,7 +8,7 @@
 int main () 
 
 {
-	static char *list [] = 
+	static char * list [] = 
 	{
 		"abc",
 		"ABC",
@@ -26,8 +26,8 @@ int main ()
 		"xyz",
 		NULL
 	};
-	ochrlwr *p = new ochrlwr;
-	ochrupr *q = new ochrupr;
+	ochrlwr * p = new ochrlwr;
+	ochrupr * q = new ochrupr;
 	cout << p->convert (strdup (gcsAlnum)) << std::endl;
 	cout << q->convert (strdup (gcsAlnum)) << std::endl;
 	cout << std::endl;
@@ -43,4 +43,5 @@ int main ()
 	cout << std::endl;
 	return (0);
 }
+
 

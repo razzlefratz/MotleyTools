@@ -53,7 +53,7 @@
  *   
  *--------------------------------------------------------------------*/
 
-signed oprogram::context (signed c, char const *charset) const 
+signed oprogram::context (signed c, char const * charset) const 
 
 {
 	while ((c) && !std::strchr (charset, c) && (c != EOF)) 
@@ -83,6 +83,7 @@ signed oprogram::context (signed c, signed o, signed e) const
 	c = oprogram::keep (c);
 	return (c);
 }
+
 
 signed oprogram::inner_context (signed c, signed o, signed e) const 
 
@@ -119,6 +120,7 @@ signed oprogram::context (signed c, signed e) const
 	c = oprogram::keep (c);
 	return (c);
 }
+
 
 signed oprogram::inner_context (signed c, signed e) const 
 

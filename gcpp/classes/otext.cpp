@@ -58,10 +58,10 @@ char * otext::replace (char * buffer, char const * string)
  *
  *--------------------------------------------------------------------*/
 
-char *otext::save (char const * string) 
+char * otext::save (char const * string) 
 
 {
-	char *buffer = new char [strlen (string) + 1];
+	char * buffer = new char [strlen (string) + 1];
 	std::strcpy (buffer, string);
 	return (buffer);
 }

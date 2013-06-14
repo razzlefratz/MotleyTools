@@ -48,7 +48,7 @@ public:
 	signed opterr () const;
 	signed optmin () const;
 	signed optopt () const;
-	char const *optarg () const;
+	char const * optarg () const;
 	signed operator++ (signed);
 	int getoptv (int argc, char const * argv [], char const * optv []);
 	ogetoptv & optind (const signed);

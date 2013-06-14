@@ -37,11 +37,11 @@ public:
 	virtual ~ oprofile ();
 	oprofile & write (char const * section);
 	oprofile & write (char const * element, char const * content);
-	char const *string (char const * profile, char const * section, char const * element, char const * content);
+	char const * string (char const * profile, char const * section, char const * element, char const * content);
 	signed number (char const * profile, char const * section, char const * element, signed value);
 	bool enable (char const * profile, char const * section, char const * element, bool state);
 private:
-	bool compare (char const *string);
+	bool compare (char const * string);
 	oprofile & newchar ();
 	oprofile & newword ();
 	oprofile & newline ();

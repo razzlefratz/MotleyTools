@@ -31,10 +31,10 @@ public:
 	ochrtable & tolower ();
 	ochrtable & toupper ();
 	ochrtable & toindex ();
-	ochrtable & charset (char const *charset1, char const *charset2);
+	ochrtable & charset (char const * charset1, char const * charset2);
 protected:
 	ochrtable & mreset ();
-	unsigned char *mtable;
+	unsigned char * mtable;
 private:
 	unsigned c;
 };

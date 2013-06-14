@@ -27,13 +27,13 @@ class __declspec (dllexport) okeep
 public:
 	okeep ();
 	virtual ~ okeep ();
-	void *fetch (char const *string) const;
-	void *store (char const *string, void *object);
+	void * fetch (char const * string) const;
+	void * store (char const * string, void * object);
 private:
-	char *mstring;
-	void *mobject;
-	okeep *mprior;
-	okeep *mafter;
+	char * mstring;
+	void * mobject;
+	okeep * mprior;
+	okeep * mafter;
 };
 
 

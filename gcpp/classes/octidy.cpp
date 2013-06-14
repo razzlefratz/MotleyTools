@@ -55,7 +55,6 @@ signed octidy::atheros (signed c, signed e)
 			c = std::cin.get ();
 			continue;
 		}
-
 #if 0
 
 		if (c == '\\') 
@@ -73,7 +72,6 @@ signed octidy::atheros (signed c, signed e)
 			}
 			continue;
 		}
-
 #endif
 
 		if (c == '#') 
@@ -169,7 +167,7 @@ signed octidy::charlie (signed c, signed e)
 {
 	signed level = 0;
 	signed space = 0;
-	c = ocomment::preamble(c);
+	c = ocomment::preamble (c);
 	while ((c != e) && (c != EOF)) 
 	{
 		if (oascii::isspace (c)) 
@@ -177,7 +175,6 @@ signed octidy::charlie (signed c, signed e)
 			c = std::cin.get ();
 			continue;
 		}
-
 #if 0
 
 		if (c == '\\') 
@@ -195,7 +192,6 @@ signed octidy::charlie (signed c, signed e)
 			}
 			continue;
 		}
-
 #endif
 
 		if (c == '#') 
@@ -247,7 +243,7 @@ signed octidy::charlie (signed c, signed e)
 			if (!level) 
 			{
 				octidy::space (2);
-				c = ocomment::preamble(c);
+				c = ocomment::preamble (c);
 			}
 			space = 1;
 			continue;
@@ -375,13 +371,13 @@ signed octidy::statement (signed c, signed level, signed space)
 
 {
 	char string [512];
-	char *sp = string;
+	char * sp = string;
 	while (oascii::isalnum (c) || (c == '_')) 
 	{
-		*sp++ = c;
+		* sp++ = c;
 		c = std::cin.get ();
 	}
-	*sp = (char) (0);
+	* sp = (char) (0);
 	if (sp == string) 
 	{
 		octidy::level (level);
@@ -474,6 +470,7 @@ signed octidy::context (signed c, signed o, signed e) const
 	return (c);
 }
 
+
 signed octidy::inner_context (signed c, signed o, signed e) const 
 
 {
@@ -505,6 +502,7 @@ signed octidy::context (signed c, signed e) const
 	c = octidy::keep (c);
 	return (c);
 }
+
 
 signed octidy::inner_context (signed c, signed e) const 
 
@@ -554,10 +552,10 @@ signed octidy::context (signed c) const
 		c = octidy::find (c);
 		std::cout.put (' ');
 	}
-	else if (c == '*')
+	else if (c == '*') 
 	{
 		c = keep (c);
-		if (oascii::isalpha (c) || (c == '_'))
+		if (oascii::isalpha (c) || (c == '_')) 
 		{
 			std::cout.put (' ');
 		}
@@ -694,19 +692,18 @@ signed octidy::find (signed c) const
 signed octidy::join (signed c) const 
 
 {
-	while (c == '\\')
+	while (c == '\\') 
 	{
 		signed o = std::cin.get ();
-		if ((o != '\r') && (o != '\n'))
+		if ((o != '\r') && (o != '\n')) 
 		{
 			std::cout.put (c);
 			std::cout.put (o);
 		}
 		c = std::cin.get ();
-	} 
+	}
 	return (c);
 }
-
 
 
 /*====================================================================*

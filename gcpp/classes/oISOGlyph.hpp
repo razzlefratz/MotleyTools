@@ -30,12 +30,12 @@ class __declspec (dllexport) oISOGlyph
 public:
 	oISOGlyph ();
 	virtual ~ oISOGlyph ();
-	char const *string (unsigned c);
+	char const * string (unsigned c);
 private:
-	static char const *mtable [];
-	char *mstring;
-	char const *mglyph;
-	char *mascii;
+	static char const * mtable [];
+	char * mstring;
+	char const * mglyph;
+	char * mascii;
 };
 
 

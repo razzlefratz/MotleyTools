@@ -47,11 +47,12 @@ size_t ocomment::width () const
 	return (this->mwidth);
 }
 
+
 ocomment & ocomment::width (size_t width) 
 
 {
 	this->mwidth = width;
-	return (*this);
+	return (* this);
 }
 
 
@@ -77,11 +78,12 @@ unsigned char ocomment::cupper () const
 	return (this->mupper);
 }
 
+
 ocomment & ocomment::cupper (unsigned char upper) 
 
 {
 	this->mupper = upper;
-	return (*this);
+	return (* this);
 }
 
 
@@ -107,11 +109,12 @@ unsigned char ocomment::clower () const
 	return (this->mlower);
 }
 
+
 ocomment & ocomment::clower (unsigned char lower) 
 
 {
 	this->mlower = lower;
-	return (*this);
+	return (* this);
 }
 
 
@@ -138,11 +141,12 @@ char const * ocomment::preface () const
 	return (this->mpreface);
 }
 
+
 ocomment & ocomment::preface (char const * preface) 
 
 {
 	this->mpreface = otext::replace (this->mpreface, preface);
-	return (*this);
+	return (* this);
 }
 
 
@@ -170,11 +174,12 @@ char const * ocomment::package () const
 	return (this->mpackage);
 }
 
+
 ocomment & ocomment::package (char const * package) 
 
 {
 	this->mpackage = otext::replace (this->mpackage, package);
-	return (*this);
+	return (* this);
 }
 
 
@@ -202,11 +207,12 @@ char const * ocomment::release () const
 	return (this->mrelease);
 }
 
+
 ocomment & ocomment::release (char const * release) 
 
 {
 	this->mrelease = otext::replace (this->mrelease, release);
-	return (*this);
+	return (* this);
 }
 
 
@@ -234,11 +240,12 @@ char const * ocomment::license () const
 	return (this->mlicense);
 }
 
+
 ocomment & ocomment::license (char const * license) 
 
 {
 	this->mlicense = otext::replace (this->mlicense, license);
-	return (*this);
+	return (* this);
 }
 
 
@@ -266,11 +273,12 @@ char const * ocomment::special () const
 	return (this->mspecial);
 }
 
+
 ocomment & ocomment::special (char const * special) 
 
 {
 	this->mspecial = otext::replace (this->mspecial, special);
-	return (*this);
+	return (* this);
 }
 
 
@@ -289,22 +297,27 @@ ocomment & ocomment::special (char const * special)
  *
  *--------------------------------------------------------------------*/
 
-ocomment & ocomment::preamble ()
+ocomment & ocomment::preamble () 
 
 {
 	std::cout << "/*===*" << std::endl;
 	std::cout << " *" << std::endl;
 	std::cout << " *" << std::endl;
 	std::cout << " *" << std::endl;
+
 #if 0
+
 	std::cout << " *.   " << std::endl;
 	std::cout << " *:   " << std::endl;
 	std::cout << " *;   " << std::endl;
+
 #endif
+
 	std::cout << " *" << std::endl;
 	std::cout << " *---*/" << std::endl;
-	return (*this);
+	return (* this);
 }
+
 
 /*====================================================================*
  *
@@ -318,36 +331,37 @@ ocomment & ocomment::preamble ()
  *
  *--------------------------------------------------------------------*/
 
-signed ocomment::preamble (signed c)
+signed ocomment::preamble (signed c) 
 
 {
 	if (ocomment::anyset (oCOMMENT_B_COMMENT)) 
 	{
-		while (c != EOF)
+		while (c != EOF) 
 		{
-			if (c == '/')
+			if (c == '/') 
 			{
 				c = ocomment::comment (c);
 				std::cout.put ('\n');
 				continue;
 			}
-			if (c == ';')
+			if (c == ';') 
 			{
 				std::cout.put (c);
 				c = std::cin.get ();
 				continue;
-			} 
-			if (oascii::isspace (c))
+			}
+			if (oascii::isspace (c)) 
 			{
 				c = std::cin.get ();
 				continue;
-			} 
+			}
 			ocomment::preamble ();
 			break;
 		}
 	}
 	return (c);
 }
+
 
 /*====================================================================*
  *
@@ -453,7 +467,7 @@ signed ocomment::cplus (signed c)
 			std::cout.put (c);
 			c = std::cin.get ();
 		}
-		if (c != EOF)
+		if (c != EOF) 
 		{
 			std::cout.put (c);
 		}
@@ -537,10 +551,9 @@ signed ocomment::clang (signed c)
 			}
 			while (width-- > 0) 
 			{
-				*this->minsert++ = (char) (start);
+				* this->minsert++ = (char) (start);
 			}
 		}
-
 #if oCOMMENT_CUSTOMIZE
 
 		else if (ocomment::anyset (oCOMMENT_B_PREFACE) && (c == oCOMMENT_C_PREFACE)) 
@@ -563,7 +576,6 @@ signed ocomment::clang (signed c)
 		{
 			c = ocomment::message (c, this->mlicense);
 		}
-
 #endif
 #endif
 
@@ -587,7 +599,7 @@ signed ocomment::clang (signed c)
 				this->moutput = this->mbuffer;
 				while (this->moutput < this->minsert) 
 				{
-					std::cout.put (*this->moutput++);
+					std::cout.put (* this->moutput++);
 				}
 				this->minsert = this->mbuffer;
 				std::cout.put (c);
@@ -599,30 +611,28 @@ signed ocomment::clang (signed c)
 				while (oascii::isblank (c));
 				if (c != '*') 
 				{
-					*this->minsert++ = '*';
-					*this->minsert++ = ' ';
-					*this->minsert++ = ' ';
-					*this->minsert++ = ' ';
+					* this->minsert++ = '*';
+					* this->minsert++ = ' ';
+					* this->minsert++ = ' ';
+					* this->minsert++ = ' ';
 				}
 			}
-
 #endif
 
-			*this->minsert++ = c;
+			* this->minsert++ = c;
 		}
 		while ((c != '*') && (c != EOF));
 		c = std::cin.get ();
 
 #if 1
 
-		if (ocomment::anyset (oCOMMENT_B_SHORT))
+		if (ocomment::anyset (oCOMMENT_B_SHORT)) 
 		{
-			while (c == '*')
+			while (c == '*') 
 			{
 				c = std::cin.get ();
 			}
 		}
-
 #endif
 
 	}
@@ -636,7 +646,7 @@ signed ocomment::clang (signed c)
 	this->moutput = this->mbuffer;
 	while (this->moutput < this->minsert) 
 	{
-		std::cout.put (*this->moutput++);
+		std::cout.put (* this->moutput++);
 	}
 	this->minsert = this->mbuffer;
 	if (ocomment::anyset (oCOMMENT_B_TRIPLE) && !this->mcount) 
@@ -673,19 +683,26 @@ signed ocomment::clang (signed c)
 signed ocomment::message (signed c, char const * string) 
 
 {
-	if (ocomment::anyset (oCOMMENT_B_DISCARD))
+	if (ocomment::anyset (oCOMMENT_B_DISCARD)) 
 	{
-		do {c = std::cin.get (); } while (oascii::isblank (c));
-		while (c == *string++) { c = std::cin.get (); };
-	}
-	else
-	{
-		*this->minsert++ = ocomment::anyset (oCOMMENT_B_PERMANENT)? ' ': c;
-		*this->minsert++ = ' ';
-		*this->minsert++ = ' ';
-		while (*string) 
+		do 
 		{
-			*this->minsert++ = *string++;
+			c = std::cin.get ();
+		}
+		while (oascii::isblank (c));
+		while (c == * string++) 
+		{
+			c = std::cin.get ();
+		};
+	}
+	else 
+	{
+		* this->minsert++ = ocomment::anyset (oCOMMENT_B_PERMANENT)? ' ': c;
+		* this->minsert++ = ' ';
+		* this->minsert++ = ' ';
+		while (* string) 
+		{
+			* this->minsert++ = * string++;
 		}
 	}
 	while (oascii::nobreak (c)) 

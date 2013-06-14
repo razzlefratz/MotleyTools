@@ -37,17 +37,17 @@ public:
 	oheap ();
 	oheap (int order (char const *, char const *));
 	virtual ~ oheap ();
-	oitem *item () const;
-	char const *title () const;
-	oheap & title (char const *string);
+	oitem * item () const;
+	char const * title () const;
+	oheap & title (char const * string);
 	size_t count () const;
-	oitem *item ();
+	oitem * item ();
 	oheap & insertitem (oitem * item);
 	oheap & clear ();
 private:
-	char *mtitle;
-	oitem **mtable;
-	signed (*morder) (char const *, char const *);
+	char * mtitle;
+	oitem ** mtable;
+	signed (* morder) (char const *, char const *);
 	unsigned mstart;
 
 /* table lower bound */

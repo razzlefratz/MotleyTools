@@ -55,10 +55,10 @@ ofileopen fileopen;
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
-	static char const *optv [] = 
+	static char const * optv [] = 
 	{
 		"",
 		PUTOPTV_S_FILTER,
@@ -77,13 +77,14 @@ int main (int argc, char const *argv [])
 			break;
 		}
 	}
-	while ((getopt.argc () > 0) && (*getopt.argv () != (char *) (0))) 
+	while ((getopt.argc () > 0) && (* getopt.argv () != (char *) (0))) 
 	{
-		if (fileopen.opensave (*getopt.argv (), "bak")) 
+		if (fileopen.opensave (* getopt.argv (), "bak")) 
 		{
 		}
 		getopt++;
 	}
 	return (0);
 }
+
 

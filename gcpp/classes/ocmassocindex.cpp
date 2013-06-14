@@ -60,6 +60,7 @@ ocmassocindex & ocmassocindex::index1 (struct _topic_ topics [], unsigned count)
 	}
 }
 
+
 ocmassocindex & ocmassocindex::index2 (struct _topic_ topics [], unsigned count) 
 
 {
@@ -95,7 +96,7 @@ ocmassocindex & ocmassocindex::index2 (struct _topic_ topics [], unsigned count)
 			}
 		}
 	}
-	return (*this);
+	return (* this);
 }
 
 

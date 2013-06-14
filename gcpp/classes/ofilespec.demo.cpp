@@ -38,10 +38,10 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
-	static char const *optv [] = 
+	static char const * optv [] = 
 	{
 		"",
 		"filespec [filespec] ...",
@@ -60,11 +60,12 @@ int main (int argc, char const *argv [])
 			break;
 		}
 	}
-	while ((getopt.argc () > 0) && (*getopt.argv () != (char *) (0))) 
+	while ((getopt.argc () > 0) && (* getopt.argv () != (char *) (0))) 
 	{
-		filespec.filespec (*getopt.argv ()).peek ();
+		filespec.filespec (* getopt.argv ()).peek ();
 		getopt++;
 	}
 	return (0);
 }
+
 

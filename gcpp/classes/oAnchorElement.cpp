@@ -26,8 +26,8 @@
  *   static data definitions; 
  *--------------------------------------------------------------------*/
 
-char const *oAnchorElement::mscope = "";
-char const *oAnchorElement::mtitle = "a";
+char const * oAnchorElement::mscope = "";
+char const * oAnchorElement::mtitle = "a";
 
 /*====================================================================*
  *
@@ -36,7 +36,7 @@ char const *oAnchorElement::mtitle = "a";
  *
  *--------------------------------------------------------------------*/
 
-char const *oAnchorElement::ElementName () const 
+char const * oAnchorElement::ElementName () const 
 
 {
 	return (oAnchorElement::mtitle);
@@ -54,7 +54,7 @@ oAnchorElement & oAnchorElement::StartTag ()
 
 {
 	std::cout.put ('<');
-	if (*this->mscope) 
+	if (* this->mscope) 
 	{
 		std::cout << this->mscope;
 		std::cout.put (':');
@@ -64,7 +64,7 @@ oAnchorElement & oAnchorElement::StartTag ()
 	oAnchorElement::CoreAttributes.write ();
 	oAnchorElement::LinkAttributes.write ();
 	std::cout.put ('>');
-	return (*this);
+	return (* this);
 }
 
 
@@ -79,7 +79,7 @@ oAnchorElement & oAnchorElement::EmptyTag ()
 
 {
 	std::cout.put ('<');
-	if (*this->mscope) 
+	if (* this->mscope) 
 	{
 		std::cout << this->mscope;
 		std::cout.put (':');
@@ -90,7 +90,7 @@ oAnchorElement & oAnchorElement::EmptyTag ()
 	oAnchorElement::LinkAttributes.write ();
 	std::cout.put ('/');
 	std::cout.put ('>');
-	return (*this);
+	return (* this);
 }
 
 
@@ -106,14 +106,14 @@ oAnchorElement & oAnchorElement::EndTag ()
 {
 	std::cout.put ('<');
 	std::cout.put ('/');
-	if (*this->mscope) 
+	if (* this->mscope) 
 	{
 		std::cout << this->mscope;
 		std::cout.put (':');
 	}
 	std::cout << this->mtitle;
 	std::cout.put ('>');
-	return (*this);
+	return (* this);
 }
 
 

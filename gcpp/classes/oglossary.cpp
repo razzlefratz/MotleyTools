@@ -31,7 +31,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const *oglossary::title () const 
+char const * oglossary::title () const 
 
 {
 	return (this->mlist->title ());
@@ -46,11 +46,11 @@ char const *oglossary::title () const
  *
  *--------------------------------------------------------------------*/
 
-oglossary & oglossary::title (char const *string) 
+oglossary & oglossary::title (char const * string) 
 
 {
 	this->mlist->title (string);
-	return (*this);
+	return (* this);
 }
 
 
@@ -89,7 +89,7 @@ size_t oglossary::count () const
  *
  *--------------------------------------------------------------------*/
 
-char const *oglossary::symbol () const 
+char const * oglossary::symbol () const 
 
 {
 	oitem * item = this->mlist->item ();
@@ -104,7 +104,7 @@ char const *oglossary::symbol () const
  *
  *--------------------------------------------------------------------*/
 
-char const *oglossary::string () const 
+char const * oglossary::string () const 
 
 {
 	oitem * item = this->mlist->item ();
@@ -119,7 +119,7 @@ char const *oglossary::string () const
  *
  *--------------------------------------------------------------------*/
 
-char const *oglossary::symbols (size_t index) const 
+char const * oglossary::symbols (size_t index) const 
 
 {
 	oitem * item = this->mlist->items (index);
@@ -134,7 +134,7 @@ char const *oglossary::symbols (size_t index) const
  *
  *--------------------------------------------------------------------*/
 
-char const *oglossary::strings (size_t index) const 
+char const * oglossary::strings (size_t index) const 
 
 {
 	oitem * item = this->mlist->items (index);
@@ -149,7 +149,7 @@ char const *oglossary::strings (size_t index) const
  *
  *--------------------------------------------------------------------*/
 
-bool oglossary::defined (char const *symbol) 
+bool oglossary::defined (char const * symbol) 
 
 {
 	return (this->mlist->defined (symbol));
@@ -163,7 +163,7 @@ bool oglossary::defined (char const *symbol)
  *
  *--------------------------------------------------------------------*/
 
-size_t oglossary::indexof (char const *symbol) 
+size_t oglossary::indexof (char const * symbol) 
 
 {
 	return (this->mlist->indexof (symbol));
@@ -177,7 +177,7 @@ size_t oglossary::indexof (char const *symbol)
  *
  *--------------------------------------------------------------------*/
 
-char const *oglossary::lookup (char const *symbol) 
+char const * oglossary::lookup (char const * symbol) 
 
 {
 	oitem * item = this->mlist->item (symbol);
@@ -192,7 +192,7 @@ char const *oglossary::lookup (char const *symbol)
  *
  *--------------------------------------------------------------------*/
 
-char const *oglossary::expand (char const *symbol) 
+char const * oglossary::expand (char const * symbol) 
 
 {
 	oitem * item = this->mlist->item (symbol);
@@ -207,7 +207,7 @@ char const *oglossary::expand (char const *symbol)
  *
  *--------------------------------------------------------------------*/
 
-bool oglossary::create (char const *symbol, char const *string) 
+bool oglossary::create (char const * symbol, char const * string) 
 
 {
 	oitem * item = this->mlist->item (symbol);
@@ -231,7 +231,7 @@ bool oglossary::create (char const *symbol, char const *string)
  *
  *--------------------------------------------------------------------*/
 
-bool oglossary::define (char const *symbol, char const *string) 
+bool oglossary::define (char const * symbol, char const * string) 
 
 {
 	oitem * item = this->mlist->item (symbol);
@@ -256,7 +256,7 @@ bool oglossary::define (char const *symbol, char const *string)
  *
  *--------------------------------------------------------------------*/
 
-bool oglossary::assign (char const *symbol, char const *string) 
+bool oglossary::assign (char const * symbol, char const * string) 
 
 {
 	oitem * item = this->mlist->item (symbol);
@@ -283,7 +283,7 @@ oglossary & oglossary::clear ()
 
 {
 	this->mlist->clear ();
-	return (*this);
+	return (* this);
 }
 
 
@@ -298,12 +298,14 @@ oglossary::oglossary (signed order (char const *, char const *))
 	return;
 }
 
+
 oglossary::oglossary () 
 
 {
 	this->mlist = new olist;
 	return;
 }
+
 
 oglossary::~oglossary () 
 

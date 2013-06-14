@@ -56,7 +56,7 @@ char const * opackage::extenders [oPACKAGE_EXTENDERS_MAX+1] =
  *
  *--------------------------------------------------------------------*/
 
-char const *opackage::archive () const 
+char const * opackage::archive () const 
 
 {
 	return ((char const *) (this->marchive));
@@ -76,7 +76,7 @@ char const *opackage::archive () const
  *
  *--------------------------------------------------------------------*/
 
-char const *opackage::package () const 
+char const * opackage::package () const 
 
 {
 	return ((char const *) (this->mproduct));
@@ -96,7 +96,7 @@ char const *opackage::package () const
  *
  *--------------------------------------------------------------------*/
 
-char const *opackage::product () const 
+char const * opackage::product () const 
 
 {
 	return ((char const *) (this->mproduct));
@@ -116,7 +116,7 @@ char const *opackage::product () const
  *
  *--------------------------------------------------------------------*/
 
-char const *opackage::release () const 
+char const * opackage::release () const 
 
 {
 	return ((char const *) (this->mrelease));
@@ -136,7 +136,7 @@ char const *opackage::release () const
  *
  *--------------------------------------------------------------------*/
 
-char const *opackage::trailer () const 
+char const * opackage::trailer () const 
 
 {
 	return ((char const *) (this->mtrailer));
@@ -156,11 +156,11 @@ char const *opackage::trailer () const
  *
  *--------------------------------------------------------------------*/
 
-opackage & opackage::operator= (char const *filespec) 
+opackage & opackage::operator= (char const * filespec) 
 
 {
 	this->filespec (filespec);
-	return (*this);
+	return (* this);
 }
 
 
@@ -177,39 +177,39 @@ opackage & opackage::operator= (char const *filespec)
  *
  *--------------------------------------------------------------------*/
 
-opackage & opackage::filespec (char const *string) 
+opackage & opackage::filespec (char const * string) 
 
 {
-	char const *package;
-	char const *release;
-	char const *trailer;
-	for (package = release = trailer = string; *string != (char) (0); string++) 
+	char const * package;
+	char const * release;
+	char const * trailer;
+	for (package = release = trailer = string; * string != (char) (0); string++) 
 	{
-		if (*string == '/') 
+		if (* string == '/') 
 		{
 			package = string+1;
 			release = string+1;
 			trailer = string+1;
 			continue;
 		}
-		if (*string == '-') 
+		if (* string == '-') 
 		{
 			release = string;
 			trailer = string;
 			continue;
 		}
-		if (*string == '.') 
+		if (* string == '.') 
 		{
 			trailer = string;
-			for (char const **extender = extenders; *extender != (char const *) (0); extender++) 
+			for (char const ** extender = extenders; * extender != (char const *) (0); extender++) 
 			{
-				if (!std::strcmp (string, *extender)) 
+				if (!std::strcmp (string, * extender)) 
 				{
 					while (*++string != (char) (0));
 					break;
 				}
 			}
-			if (*string == (char) (0)) 
+			if (* string == (char) (0)) 
 			{
 				break;
 			}
@@ -223,7 +223,7 @@ opackage & opackage::filespec (char const *string)
 		this->mrelease = opackage::extract (mrelease, release, trailer++);
 		this->mtrailer = opackage::extract (mtrailer, trailer, string);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -239,20 +239,20 @@ opackage & opackage::filespec (char const *string)
  *
  *--------------------------------------------------------------------*/
 
-opackage & opackage::extender (char const *string) 
+opackage & opackage::extender (char const * string) 
 
 {
-	char const **extender = opackage::extenders;
-	while (*extender != (char const *) (0)) 
+	char const ** extender = opackage::extenders;
+	while (* extender != (char const *) (0)) 
 	{
 		extender++;
 	}
 	if ((extender - opackage::extenders) < oPACKAGE_EXTENDERS_MAX) 
 	{
-		*extender++ = string;
-		*extender = (char const *) (0);
+		* extender++ = string;
+		* extender = (char const *) (0);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -267,7 +267,7 @@ opackage & opackage::extender (char const *string)
  *
  *--------------------------------------------------------------------*/
 
-char * opackage::extract (char string [], char const *start, char const *limit) 
+char * opackage::extract (char string [], char const * start, char const * limit) 
 
 {
 	delete [] string;
@@ -298,7 +298,7 @@ opackage & opackage::peek ()
 	std::cout << "release=[" << this->mrelease << "]" << std::endl;
 	std::cout << "trailer=[" << this->mtrailer << "]" << std::endl;
 	std::cout << std::endl;
-	return (*this);
+	return (* this);
 }
 
 
@@ -341,7 +341,7 @@ opackage::opackage ()
  *
  *--------------------------------------------------------------------*/
 
-opackage::opackage (char const *filespec) 
+opackage::opackage (char const * filespec) 
 
 {
 	this->marchive = new char [1];

@@ -59,13 +59,13 @@ char const * obuffer::offset () const
  *
  *--------------------------------------------------------------------*/
 
-obuffer & obuffer::offset (char const *offset) 
+obuffer & obuffer::offset (char const * offset) 
 
 {
 	delete [] this->moffset;
 	this->moffset = new char [std::strlen (offset) + 1];
 	std::strcpy (this->moffset, offset);
-	return (*this);
+	return (* this);
 }
 
 
@@ -102,13 +102,13 @@ char const * obuffer::record () const
  *
  *--------------------------------------------------------------------*/
 
-obuffer & obuffer::record (char const *record) 
+obuffer & obuffer::record (char const * record) 
 
 {
 	delete [] this->mfinish;
 	this->mfinish = new char [std::strlen (record) + 1];
 	std::strcpy (this->mfinish, record);
-	return (*this);
+	return (* this);
 }
 
 
@@ -146,7 +146,7 @@ obuffer & obuffer::append (signed c)
 		}
 		this->mbuffer [this->mlength++] = (char) (c);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -163,14 +163,14 @@ obuffer & obuffer::append (signed c)
  *   
  *--------------------------------------------------------------------*/
 
-obuffer & obuffer::append (char const *string) 
+obuffer & obuffer::append (char const * string) 
 
 {
-	if (string) for (char const * sp = string; *sp; ++sp) 
+	if (string) for (char const * sp = string; * sp; ++sp) 
 	{
-		this->append (*sp);
+		this->append (* sp);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -195,7 +195,7 @@ obuffer & obuffer::level (signed level)
 		std::cout.write (this->moffset, std::strlen (this->moffset));
 	}
 	this->flush ();
-	return (*this);
+	return (* this);
 }
 
 
@@ -220,7 +220,7 @@ obuffer & obuffer::space (signed space)
 	{
 		std::cout.write (this->mfinish, std::strlen (this->mfinish));
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -241,7 +241,7 @@ obuffer & obuffer::flush ()
 {
 	std::cout.write (this->mbuffer, this->mlength);
 	this->mlength = 0;
-	return (*this);
+	return (* this);
 }
 
 
@@ -260,7 +260,7 @@ obuffer & obuffer::clear ()
 
 {
 	this->mlength = 0;
-	return (*this);
+	return (* this);
 }
 
 

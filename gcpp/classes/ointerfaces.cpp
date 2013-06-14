@@ -131,7 +131,7 @@ ointerfaces & ointerfaces::SelectFirst (void)
 
 {
 	this->mindex = 0;
-	return (*this);
+	return (* this);
 }
 
 
@@ -147,7 +147,7 @@ ointerfaces & ointerfaces::SelectFinal (void)
 
 {
 	this->mindex = this->mcount - 1;
-	return (*this);
+	return (* this);
 }
 
 
@@ -167,7 +167,7 @@ ointerfaces & ointerfaces::SelectPrev (void)
 	{
 		this->mindex--;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -187,7 +187,7 @@ ointerfaces & ointerfaces::SelectNext (void)
 	{
 		this->mindex++;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -207,7 +207,7 @@ ointerfaces & ointerfaces::Select (unsigned index)
 	{
 		this->mindex = this->mcount;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -296,7 +296,7 @@ ointerfaces & ointerfaces::Enumerate (void)
 			ifp->Print ();
 		}
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -338,7 +338,6 @@ ointerfaces::ointerfaces ()
 		}
 		pcap_freealldevs (devices);
 	}
-
 #else
 
 	struct if_nameindex * ifs = if_nameindex ();

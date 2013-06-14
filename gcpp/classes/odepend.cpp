@@ -47,7 +47,7 @@ odepend & odepend::populate (char colon, char comma, bool invert)
 {
 	char one [oDEPEND_SYMBOL_LENGTH] = "";
 	char two [oDEPEND_SYMBOL_LENGTH] = "";
-	char *sp;
+	char * sp;
 	signed c;
 	while ((c = std::cin.get ()) != EOF) 
 	{
@@ -60,10 +60,10 @@ odepend & odepend::populate (char colon, char comma, bool invert)
 			}
 			if ((sp - one) < (signed) (sizeof (one) - 2)) 
 			{
-				*sp++ = (char) (c);
+				* sp++ = (char) (c);
 			}
 		}
-		*sp = (char) (0);
+		* sp = (char) (0);
 		for (sp = two; oascii::nobreak (c); c = std::cin.get ()) 
 		{
 			if ((char)(c) == comma) 
@@ -73,10 +73,10 @@ odepend & odepend::populate (char colon, char comma, bool invert)
 			}
 			if ((sp - two) < (signed) (sizeof (two) - 2)) 
 			{
-				*sp++ = (char) (c);
+				* sp++ = (char) (c);
 			}
 		}
-		*sp = (char) (0);
+		* sp = (char) (0);
 		if (oascii::nobreak (c)) 
 		{
 			c = std::cin.get ();
@@ -90,7 +90,7 @@ odepend & odepend::populate (char colon, char comma, bool invert)
 			this->connect (one, two);
 		}
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -108,7 +108,7 @@ odepend & odepend::populate (char colon, char comma, bool invert)
  *
  *--------------------------------------------------------------------*/
 
-odepend & odepend::connect (char const *one, char const *two) 
+odepend & odepend::connect (char const * one, char const * two) 
 
 {
 	odepend * node = this->store (one);
@@ -120,7 +120,7 @@ odepend & odepend::connect (char const *one, char const *two)
 	{
 		node->mbelow->store (two);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -137,7 +137,7 @@ odepend & odepend::connect (char const *one, char const *two)
  *
  *--------------------------------------------------------------------*/
 
-odepend * odepend::store (char const *nodename) 
+odepend * odepend::store (char const * nodename) 
 
 {
 	odepend * node = this;
@@ -181,10 +181,10 @@ odepend * odepend::store (char const *nodename)
  *
  *--------------------------------------------------------------------*/
 
-odepend * odepend::fetch (char const *nodename) 
+odepend * odepend::fetch (char const * nodename) 
 
 {
-	odepend *node = this;
+	odepend * node = this;
 	while (node) 
 	{
 		signed order = std::strcmp (nodename, node->mstring);
@@ -228,7 +228,7 @@ odepend & odepend::enumerate ()
 	{
 		this->mafter->enumerate ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -262,7 +262,7 @@ odepend & odepend::structure ()
 	{
 		this->mafter->structure ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -291,7 +291,7 @@ odepend & odepend::component ()
 	{
 		this->mafter->component ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -326,7 +326,7 @@ odepend & odepend::targets ()
 	{
 		this->mafter->targets ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -354,7 +354,7 @@ odepend & odepend::sources ()
 	{
 		this->mafter->sources ();
 	}
-	return (*this);
+	return (* this);
 }
 
 

@@ -35,7 +35,7 @@ public:
 	omonth (signed month);
 	omonth (unsigned year, signed month);
 	virtual ~ omonth ();
-	char const *title () const;
+	char const * title () const;
 	unsigned year () const;
 	unsigned month () const;
 	unsigned weekday () const;
@@ -46,7 +46,7 @@ public:
 protected:
 private:
 	static odate mdate;
-	char const *mtitle;
+	char const * mtitle;
 	unsigned mannum;
 	unsigned mmonth;
 	unsigned mstart;

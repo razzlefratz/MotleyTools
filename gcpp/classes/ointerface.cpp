@@ -199,7 +199,7 @@ ointerface & ointerface::ExportHardwareAddress (void * memory)
 
 {
 	std::memcpy (memory, this->mhwaddr, sizeof (this->mhwaddr));
-	return (*this);
+	return (* this);
 }
 
 
@@ -216,7 +216,7 @@ ointerface & ointerface::ExportInternetAddress (void * memory)
 
 {
 	std::memcpy (memory, this->mipaddr, sizeof (this->mipaddr));
-	return (*this);
+	return (* this);
 }
 
 
@@ -235,7 +235,7 @@ ointerface & ointerface::Description (char const * string)
 
 {
 	omemory::memtext (string, this->miftext, sizeof (this->miftext));
-	return (*this);
+	return (* this);
 }
 
 
@@ -256,7 +256,7 @@ ointerface & ointerface::Print ()
 	std::cout << this->InternetAddressString () << " ";
 	std::cout << this->Name () << " ";
 	std::cout << this->Description () << std::endl;
-	return (*this);
+	return (* this);
 }
 
 
@@ -322,10 +322,9 @@ ointerface & ointerface::lookup ()
 		{
 			struct sockaddr_in * sockaddr_in = (struct sockaddr_in *)(&ifreq.ifr_ifru.ifru_addr);
 			std::memcpy (this->mipaddr, &sockaddr_in->sin_addr.s_addr, sizeof (this->mipaddr));
-		}
-		::close (fd);
+		}::
+		close (fd);
 	}
-
 #elif defined (__linux__) || defined (__APPLE__) || defined (__OpenBSD__) 
 
 	struct ifaddrs * ifaddrs;
@@ -348,7 +347,6 @@ ointerface & ointerface::lookup ()
 				struct in_addr * in_addr = (struct in_addr *)(&sockaddr_in->sin_addr);
 				std::memcpy (this->mipaddr, &in_addr->s_addr, sizeof (this->mipaddr));
 			}
-
 #if defined (__linux__)
 
 			if (ifaddr->ifa_addr->sa_family == AF_PACKET) 
@@ -356,7 +354,6 @@ ointerface & ointerface::lookup ()
 				struct sockaddr_ll * sockaddr_ll = (struct sockaddr_ll *) (ifaddr->ifa_addr);
 				memcpy (this->mhwaddr, sockaddr_ll->sll_addr, sizeof (this->mhwaddr));
 			}
-
 #elif defined (__APPLE__) || defined (__OpenBSD__)
 
 			if (ifaddr->ifa_addr->sa_family == AF_LINK) 
@@ -367,7 +364,6 @@ ointerface & ointerface::lookup ()
 					std::memcpy (this->mhwaddr, LLADDR (sockaddr_dl), sizeof (this->mhwaddr));
 				}
 			}
-
 #else
 #error "Abandon all hope!"
 #endif
@@ -375,7 +371,6 @@ ointerface & ointerface::lookup ()
 		}
 		freeifaddrs (ifaddrs);
 	}
-
 #elif defined (WINPCAP) 
 
 	ointerface::pcap_gethwaddr ();
@@ -430,7 +425,6 @@ unsigned ointerface::pcap_nametoindex (char const * name) const
 		}
 		pcap_freealldevs (devices);
 	}
-
 #endif
 
 	errno = ENXIO;
@@ -475,7 +469,6 @@ char * ointerface::pcap_indextoname (unsigned ifindex, char * ifname) const
 		}
 		pcap_freealldevs (devices);
 	}
-
 #endif
 
 	errno = ENXIO;

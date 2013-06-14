@@ -38,7 +38,7 @@ ochrtable & ochrtable::toupper ()
 {
 	for (c = 'A'; c <= 'Z'; ochrtable::mtable [c++] = (char) (c));
 	for (c = 'a'; c <= 'z'; ochrtable::mtable [c++] = (char) (c - ('a' - 'A')));
-	return (*this);
+	return (* this);
 }
 
 
@@ -56,7 +56,7 @@ ochrtable & ochrtable::tolower ()
 {
 	for (c = 'A'; c <= 'Z'; ochrtable::mtable [c++] = (char) (c + ('a' - 'A')));
 	for (c = 'a'; c <= 'z'; ochrtable::mtable [c++] = (char) (c));
-	return (*this);
+	return (* this);
 }
 
 
@@ -75,16 +75,16 @@ ochrtable & ochrtable::charset (char const * charset1, char const * charset2)
 {
 	if ((charset1) && (charset2)) 
 	{
-		while (*charset1) 
+		while (* charset1) 
 		{
-			ochrtable::mtable [(unsigned)(*charset1++)] = *charset2;
-			if (*charset2) 
+			ochrtable::mtable [(unsigned)(* charset1++)] = * charset2;
+			if (* charset2) 
 			{
 				charset2++;
 			}
 		}
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -104,7 +104,7 @@ ochrtable & ochrtable::mreset ()
 		ochrtable::mtable [value] = (unsigned char)(value);
 		value++;
 	}
-	return (*this);
+	return (* this);
 }
 
 

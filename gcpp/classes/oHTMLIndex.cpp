@@ -49,12 +49,13 @@ olist mlist;
  *
  *--------------------------------------------------------------------*/
 
-oHTMLIndex & oHTMLIndex::title (char const *string) 
+oHTMLIndex & oHTMLIndex::title (char const * string) 
 
 {
 	oHTMLIndex::mwebpage.title (string);
-	return (*this);
+	return (* this);
 }
+
 
 char const * oHTMLIndex::title () const 
 
@@ -71,12 +72,13 @@ char const * oHTMLIndex::title () const
  *
  *--------------------------------------------------------------------*/
 
-oHTMLIndex & oHTMLIndex::stylesheet (char const *stylesheet) 
+oHTMLIndex & oHTMLIndex::stylesheet (char const * stylesheet) 
 
 {
 	oHTMLIndex::mwebpage.stylesheet (stylesheet);
-	return (*this);
+	return (* this);
 }
+
 
 char const * oHTMLIndex::stylesheet () const 
 
@@ -93,14 +95,14 @@ char const * oHTMLIndex::stylesheet () const
  *
  *--------------------------------------------------------------------*/
 
-oHTMLIndex & oHTMLIndex::include (char const *filename) 
+oHTMLIndex & oHTMLIndex::include (char const * filename) 
 
 {
 	if (!oHTMLIndex::mlist.item (filename)) 
 	{
 		oHTMLIndex::mlist.insertitem (new oitem (filename));
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -113,13 +115,13 @@ oHTMLIndex & oHTMLIndex::include (char const *filename)
  *
  *--------------------------------------------------------------------*/
 
-oHTMLIndex & oHTMLIndex::collect (char const *pathname, char const *wildcard) 
+oHTMLIndex & oHTMLIndex::collect (char const * pathname, char const * wildcard) 
 
 {
-	DIR *dir;
+	DIR * dir;
 	if ((dir = opendir (pathname)) != (DIR *) (0)) 
 	{
-		struct dirent *dirent;
+		struct dirent * dirent;
 		while ((dirent = readdir (dir)) != (struct dirent *)(0)) 
 		{
 			if (oHTMLIndex::mwildcard.match (dirent->d_name, wildcard)) 
@@ -129,7 +131,7 @@ oHTMLIndex & oHTMLIndex::collect (char const *pathname, char const *wildcard)
 		}
 		closedir (dir);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -200,7 +202,7 @@ oHTMLIndex & oHTMLIndex::publish (unsigned count)
 	oHTMLIndex::mwebpage.botMark ();
 	oHTMLIndex::mwebpage.footer ();
 	oHTMLIndex::mwebpage.botPage ();
-	return (*this);
+	return (* this);
 }
 
 
@@ -214,6 +216,7 @@ oHTMLIndex::oHTMLIndex ()
 	this->mlevel = 0;
 	return;
 }
+
 
 oHTMLIndex::~oHTMLIndex () 
 

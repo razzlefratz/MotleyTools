@@ -46,12 +46,12 @@ public:
 	oattribute & value (unsigned number, unsigned digits);
 	oattribute & write ();
 private:
-	static char const *mspace;
-	static char const *mequal;
-	static char const *mquote;
-	static char const *mcomma;
-	char *mlabel;
-	char *mvalue;
+	static char const * mspace;
+	static char const * mequal;
+	static char const * mquote;
+	static char const * mcomma;
+	char * mlabel;
+	char * mvalue;
 };
 
 

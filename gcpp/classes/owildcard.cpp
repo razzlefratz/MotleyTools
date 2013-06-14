@@ -41,18 +41,18 @@ bool owildcard::match (char const * literal, char const * pattern)
 
 #ifdef oWILDCARD_RECURSIVE
 
-	while (*literal) 
+	while (* literal) 
 	{
 
 // cerr << "[" << *literal << "] [" << *pattern << "]" << std::endl;
 
-		if (*pattern == (char) (0)) 
+		if (* pattern == (char) (0)) 
 		{
 			return (false);
 		}
-		if (*pattern == this->allchar) 
+		if (* pattern == this->allchar) 
 		{
-			for (++pattern; *literal != (char) (0); ++literal) 
+			for (++pattern; * literal != (char) (0); ++literal) 
 			{
 				if (this->match (literal, pattern)) 
 				{
@@ -61,13 +61,13 @@ bool owildcard::match (char const * literal, char const * pattern)
 			}
 			break;
 		}
-		if (*pattern == this->anychar) 
+		if (* pattern == this->anychar) 
 		{
 			pattern++;
 			literal++;
 			continue;
 		}
-		if (*pattern == *literal) 
+		if (* pattern == * literal) 
 		{
 			pattern++;
 			literal++;
@@ -75,7 +75,7 @@ bool owildcard::match (char const * literal, char const * pattern)
 		}
 		break;
 	}
-	return (*pattern == (char) (0));
+	return (* pattern == (char) (0));
 
 #else
 
@@ -83,16 +83,16 @@ bool owildcard::match (char const * literal, char const * pattern)
 	const register char * cpattern = pattern;
 	while (true) 
 	{
-		if (*cpattern == this->allchar) 
+		if (* cpattern == this->allchar) 
 		{
 			literal = cliteral;
 			pattern = cpattern;
 			cpattern++;
 			continue;
 		}
-		if (*cliteral == *cpattern) 
+		if (* cliteral == * cpattern) 
 		{
-			if (*cpattern == (char) (0)) 
+			if (* cpattern == (char) (0)) 
 			{
 				return (true);
 			}
@@ -100,17 +100,17 @@ bool owildcard::match (char const * literal, char const * pattern)
 			cpattern++;
 			continue;
 		}
-		if (*cliteral == (char) (0)) 
+		if (* cliteral == (char) (0)) 
 		{
 			break;
 		}
-		if (*cpattern == this->anychar) 
+		if (* cpattern == this->anychar) 
 		{
 			cliteral++;
 			cpattern++;
 			continue;
 		}
-		if (*pattern == this->allchar) 
+		if (* pattern == this->allchar) 
 		{
 			cliteral = ++literal;
 			cpattern = pattern + 1;

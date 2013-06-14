@@ -9,3 +9,4 @@ void osuffixtext ()
 	cout << "suffix test ..." << std::endl;
 }
 
+

@@ -32,7 +32,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const *otodo::title () const 
+char const * otodo::title () const 
 
 {
 	return (this->mtitle);
@@ -47,13 +47,13 @@ char const *otodo::title () const
  *
  *--------------------------------------------------------------------*/
 
-otodo & otodo::title (char const *string) 
+otodo & otodo::title (char const * string) 
 
 {
 	delete [] this->mtitle;
 	this->mtitle = new char [std::strlen (string) + 1];
 	std::strcpy (this->mtitle, string);
-	return (*this);
+	return (* this);
 }
 
 
@@ -149,7 +149,7 @@ size_t otodo::limit () const
  *
  *--------------------------------------------------------------------*/
 
-oitem *otodo::item () const 
+oitem * otodo::item () const 
 
 {
 	return (this->mindex < this->mcount? this->mtable [this->mindex]: (oitem *) (0));
@@ -165,7 +165,7 @@ oitem *otodo::item () const
  *
  *--------------------------------------------------------------------*/
 
-oitem *otodo::items (size_t index) const 
+oitem * otodo::items (size_t index) const 
 
 {
 	return (index < this->mcount? this->mtable [index]: (oitem *) (0));
@@ -181,7 +181,7 @@ oitem *otodo::items (size_t index) const
  *
  *--------------------------------------------------------------------*/
 
-bool otodo::defined (char const *string) 
+bool otodo::defined (char const * string) 
 
 {
 	return (this->indexof (string) < this->mcount);
@@ -198,7 +198,7 @@ bool otodo::defined (char const *string)
  *
  *--------------------------------------------------------------------*/
 
-size_t otodo::indexof (char const *string) 
+size_t otodo::indexof (char const * string) 
 
 {
 	return (this->select (string).index ());
@@ -215,7 +215,7 @@ size_t otodo::indexof (char const *string)
  *
  *--------------------------------------------------------------------*/
 
-otodo & otodo::select (char const *string) 
+otodo & otodo::select (char const * string) 
 
 {
 	for (this->mindex = this->mstart; this->mindex < this->mcount; this->mindex++) 
@@ -225,7 +225,7 @@ otodo & otodo::select (char const *string)
 			break;
 		}
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -236,7 +236,7 @@ otodo & otodo::select (char const *string)
  *
  *--------------------------------------------------------------------*/
 
-oitem *otodo::item (char const *symbol) 
+oitem * otodo::item (char const * symbol) 
 
 {
 	return (this->select (symbol).item ());
@@ -252,12 +252,12 @@ oitem *otodo::item (char const *symbol)
  *
  *--------------------------------------------------------------------*/
 
-otodo & otodo::insertitem (oitem *item) 
+otodo & otodo::insertitem (oitem * item) 
 
 {
 	if (this->mcount >= this->mlimit) 
 	{
-		oitem **otable = this->mtable;
+		oitem ** otable = this->mtable;
 		this->mtable = new oitem *[this->mlimit + this->mblock];
 		for (this->mindex = this->mstart; this->mindex < this->mlimit; this->mindex++) 
 		{
@@ -268,7 +268,7 @@ otodo & otodo::insertitem (oitem *item)
 		delete [] otable;
 	}
 	this->mtable [this->mcount++] = item;
-	return (*this);
+	return (* this);
 }
 
 
@@ -281,12 +281,12 @@ otodo & otodo::insertitem (oitem *item)
  *
  *--------------------------------------------------------------------*/
 
-otodo & otodo::appenditem (oitem *item) 
+otodo & otodo::appenditem (oitem * item) 
 
 {
 	if (this->mcount >= this->mlimit) 
 	{
-		oitem **otable = this->mtable;
+		oitem ** otable = this->mtable;
 		this->mtable = new oitem *[this->mlimit + this->mblock];
 		for (this->mindex = this->mstart; this->mindex < this->mlimit; this->mindex++) 
 		{
@@ -297,7 +297,7 @@ otodo & otodo::appenditem (oitem *item)
 		delete [] otable;
 	}
 	this->mtable [this->mcount++] = item;
-	return (*this);
+	return (* this);
 }
 
 
@@ -317,7 +317,7 @@ otodo & otodo::removeitem ()
 		delete this->mtable [--this->mcount];
 		this->mtable [this->mcount] = (oitem *) (0);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -335,7 +335,7 @@ otodo & otodo::orderlist ()
 	for (this->mindex = this->mstart; this->mindex < this->mcount; this->mindex++) 
 	{
 		size_t index = this->mindex;
-		oitem *entry = this->mtable [index];
+		oitem * entry = this->mtable [index];
 		while ((index > this->mstart) && std::strcmp (entry->name (), this->mtable [index-1] ->name ()) > 0) 
 		{
 			this->mtable [index] = this->mtable [index-1];
@@ -343,7 +343,7 @@ otodo & otodo::orderlist ()
 		}
 		this->mtable [index] = entry;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -362,7 +362,7 @@ otodo & otodo::clearlist ()
 	this->mstart = 0;
 	this->mindex = 0;
 	this->mcount = 0;
-	return (*this);
+	return (* this);
 }
 
 

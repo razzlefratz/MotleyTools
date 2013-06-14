@@ -83,7 +83,7 @@ char const * oMACAddress::string () const
  *
  *--------------------------------------------------------------------*/
 
-oMACAddress & oMACAddress::spec (char const *string) 
+oMACAddress & oMACAddress::spec (char const * string) 
 
 {
 	switch (this->encode (string).error ()) 
@@ -98,7 +98,7 @@ oMACAddress & oMACAddress::spec (char const *string)
 		std::cerr << "MAC address '" << string << "' is illegal.\n";
 		break;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -115,7 +115,7 @@ oMACAddress & oMACAddress::spec (char const *string)
  *
  *--------------------------------------------------------------------*/
 
-oMACAddress & oMACAddress::encode (char const *string) 
+oMACAddress & oMACAddress::encode (char const * string) 
 
 {
 	size_t octet;
@@ -124,40 +124,40 @@ oMACAddress & oMACAddress::encode (char const *string)
 	string = std::strncpy (this->mstring, string, oMACADDRESS_OCTET * 3);
 	for (octet = 0; octet < oMACADDRESS_OCTET; octet++) 
 	{
-		for (upper = 0; (oMACAddress::digit [upper] != std::toupper (*string)) && (oMACAddress::digit [upper] != (char) (0)); upper++);
-		if (*string++ == (char) (0)) 
+		for (upper = 0; (oMACAddress::digit [upper] != std::toupper (* string)) && (oMACAddress::digit [upper] != (char) (0)); upper++);
+		if (* string++ == (char) (0)) 
 		{
 			this->merror=oMACADDRESS_TOOSHORT;
-			return (*this);
+			return (* this);
 		}
 		if (upper == (sizeof (oMACAddress::digit) - 1)) 
 		{
 			this->merror=oMACADDRESS_ILLEGAL;
-			return (*this);
+			return (* this);
 		}
-		for (lower = 0; (oMACAddress::digit [lower] != std::toupper (*string)) && (oMACAddress::digit [lower] != (char) (0)); lower++);
-		if (*string++ == (char) (0)) 
+		for (lower = 0; (oMACAddress::digit [lower] != std::toupper (* string)) && (oMACAddress::digit [lower] != (char) (0)); lower++);
+		if (* string++ == (char) (0)) 
 		{
 			this->merror=oMACADDRESS_TOOSHORT;
-			return (*this);
+			return (* this);
 		}
 		if (lower == (sizeof (oMACAddress::digit) - 1)) 
 		{
 			this->merror=oMACADDRESS_ILLEGAL;
-			return (*this);
+			return (* this);
 		}
 		this->mnumber [octet] = ((upper & 0x0f) << 4) | (lower & 0x0f);
-		if (*string == oMACADDRESS_EXTENDER) 
+		if (* string == oMACADDRESS_EXTENDER) 
 		{
 			string++;
 		}
 	}
-	if (*string != (char) (0)) 
+	if (* string != (char) (0)) 
 	{
 		this->merror = oMACADDRESS_TOOLONG;
-		return (*this);
+		return (* this);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -177,19 +177,19 @@ oMACAddress & oMACAddress::encode (char const *string)
 oMACAddress & oMACAddress::decode (const unsigned char number []) 
 
 {
-	char *string = this->mstring;
+	char * string = this->mstring;
 	std::memcpy (this->mnumber, number, oMACADDRESS_OCTET);
 	for (size_t octet = 0; octet < oMACADDRESS_OCTET; octet++) 
 	{
 		if (octet) 
 		{
-			*string++ = oMACADDRESS_EXTENDER;
+			* string++ = oMACADDRESS_EXTENDER;
 		}
-		*string++ = oMACAddress::digit [(this->mnumber [octet] >> 4) & 0x0F];
-		*string++ = oMACAddress::digit [(this->mnumber [octet] >> 0) & 0x0F];
+		* string++ = oMACAddress::digit [(this->mnumber [octet] >> 4) & 0x0F];
+		* string++ = oMACAddress::digit [(this->mnumber [octet] >> 0) & 0x0F];
 	}
-	*string = (char)(0);
-	return (*this);
+	* string = (char)(0);
+	return (* this);
 }
 
 

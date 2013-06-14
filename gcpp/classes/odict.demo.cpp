@@ -3,7 +3,7 @@
 #include "../classes/odict.hpp"
 #include "../classes/odict.cpp"
 
-void main (int argc, char *argv []) 
+void main (int argc, char * argv []) 
 
 {
 	odict dict ("*", "*");
@@ -24,4 +24,5 @@ void main (int argc, char *argv [])
 	dict.enumerate ();
 	return (0);
 }
+
 

@@ -69,7 +69,7 @@ omacro & omacro::revert (char const * symbol)
 
 {
 	this->mfunction->revert (symbol);
-	return (*this);
+	return (* this);
 }
 
 
@@ -159,7 +159,7 @@ omacro & omacro::define (char const * string)
 	this->mfunction->define (this->margument->lookup (this->argument (0)), this->mbuffer);
 	this->margument->clear ();
 	this->mextent = 0;
-	return (*this);
+	return (* this);
 }
 
 
@@ -267,12 +267,12 @@ omacro & omacro::append (char const * string)
 		std::strcpy (this->mbuffer, scratch);
 		delete [] scratch;
 	}
-	while (*string) 
+	while (* string) 
 	{
-		this->mbuffer [this->mextent++] = *string++;
+		this->mbuffer [this->mextent++] = * string++;
 	}
 	this->mbuffer [this->mextent] = (char) (0);
-	return (*this);
+	return (* this);
 }
 
 
@@ -326,7 +326,7 @@ omacro & omacro::enumerate (char const * title)
 {
 	std::cerr << "--- " << title << " ---" << std::endl;
 	this->mfunction->enumerate ();
-	return (*this);
+	return (* this);
 }
 
 
@@ -349,7 +349,7 @@ omacro & omacro::clear ()
 	this->margument->clear ();
 	this->mbuffer [0] = (char) (0);
 	this->mextent = 0;
-	return (*this);
+	return (* this);
 }
 
 

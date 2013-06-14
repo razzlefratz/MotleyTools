@@ -30,10 +30,10 @@ char const ohexencoder::mdigit [] = "0123456789ABCDEF";
  *
  *--------------------------------------------------------------------*/
 
-char *ohexencoder::decode (char *string) 
+char * ohexencoder::decode (char * string) 
 
 {
-	char *target = string;
+	char * target = string;
 
 #ifdef CMASSOC_SAFEMODE
 
@@ -41,12 +41,11 @@ char *ohexencoder::decode (char *string)
 	{
 		return (string);
 	}
-
 #endif
 
-	while ((*target = *string) != (char) (0)) 
+	while ((* target = * string) != (char) (0)) 
 	{
-		if (*string == '%') 
+		if (* string == '%') 
 		{
 			signed upper = oascii::todigit (string [1]);
 			signed lower = oascii::todigit (string [2]);
@@ -54,7 +53,7 @@ char *ohexencoder::decode (char *string)
 			{
 				continue;
 			}
-			*target = (char) ((upper << 4) | lower);
+			* target = (char) ((upper << 4) | lower);
 			string++;
 			string++;
 		}

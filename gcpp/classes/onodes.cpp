@@ -90,7 +90,7 @@ onodes & onodes::index (size_t index)
 
 {
 	this->mindex = index;
-	return (*this);
+	return (* this);
 }
 
 
@@ -105,7 +105,7 @@ onodes & onodes::operator++ ()
 
 {
 	this->mindex++;
-	return (*this);
+	return (* this);
 }
 
 
@@ -150,7 +150,7 @@ onode * onodes::node (size_t index) const
  *
  *--------------------------------------------------------------------*/
 
-onode *onodes::node () const 
+onode * onodes::node () const 
 
 {
 	return (this->mindex < this->mcount? this->mtable [this->mindex]: (onode *) (0));
@@ -165,14 +165,14 @@ onode *onodes::node () const
  *
  *--------------------------------------------------------------------*/
 
-onodes & onodes::add (char const *nodename) 
+onodes & onodes::add (char const * nodename) 
 
 {
 	for (this->mindex = 0; this->mindex < this->mcount; this->mindex++) 
 	{
 		if (!std::strcmp (nodename, this->mtable [this->mindex] ->name ())) 
 		{
-			return (*this);
+			return (* this);
 		}
 	}
 	if (this->mcount >= this->mlimit) 
@@ -188,7 +188,7 @@ onodes & onodes::add (char const *nodename)
 		delete [] ntable;
 	}
 	this->mtable [this->mcount++] = new onode (nodename);
-	return (*this);
+	return (* this);
 }
 
 
@@ -209,7 +209,7 @@ onodes & onodes::clear ()
 		this->mtable [this->mindex] = (onode *) (0);
 		delete this->mentry;
 	}
-	return (*this);
+	return (* this);
 }
 
 

@@ -84,11 +84,12 @@ signed ocblock::condition (signed c)
 	else if (c != ';') 
 	{
 		std::cout.put ('(');
-		c = ocblock::context(c, ';');
+		c = ocblock::context (c, ';');
 		std::cout.put (')');
 	}
 	return (c);
 }
+
 
 /*====================================================================*
  *
@@ -140,14 +141,14 @@ signed ocblock::program (signed c, signed e)
 		if (oascii::isalpha (c) || (c == '_')) 
 		{
 			char string [100];
-			char *sp = string;
+			char * sp = string;
 			do 
 			{
-				*sp++ = c;
+				* sp++ = c;
 				c = ocblock::keep (c);
 			}
 			while (oascii::isalnum (c) || (c == '_'));
-			*sp = (char)(0);
+			* sp = (char)(0);
 			if ((c == '(') || (c == '[') || (c == '{')) 
 			{
 				std::cout.put (' ');
@@ -159,12 +160,14 @@ signed ocblock::program (signed c, signed e)
 				continue;
 			}
 #if 0
+
 			if (!strcmp (string, "else")) 
 			{
 				c = ocblock::statement (c);
 				continue;
 			}
 #endif
+
 			if (!strcmp (string, "while")) 
 			{
 				c = ocblock::condition (c);

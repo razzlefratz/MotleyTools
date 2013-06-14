@@ -70,11 +70,13 @@ char const * omarkup::element () const
 	return ((char const *) (this->melement));
 }
 
+
 char const * omarkup::attribute () const 
 
 {
 	return ((char const *) (this->mattribute));
 }
+
 
 char const * omarkup::value () const 
 
@@ -119,7 +121,7 @@ omarkup & omarkup::quote (signed quote)
 
 {
 	this->mquote = quote;
-	return (*this);
+	return (* this);
 }
 
 
@@ -468,11 +470,11 @@ signed omarkup::number (signed c)
 	char * string = this->mstring;
 	do 
 	{
-		*string++ = c;
+		* string++ = c;
 		c = std::cin.get ();
 	}
 	while (oascii::isdigit (c) || (c == '.'));
-	*string = (char) (0);
+	* string = (char) (0);
 	return (c);
 }
 
@@ -493,11 +495,11 @@ signed omarkup::nmtoken (signed c)
 	char * string = this->mstring;
 	do 
 	{
-		*string++ = c;
+		* string++ = c;
 		c = std::cin.get ();
 	}
 	while (oascii::nmtoken (c));
-	*string = (char) (0);
+	* string = (char) (0);
 	return (c);
 }
 
@@ -555,10 +557,10 @@ signed omarkup::dequote (signed e)
 	int c = std::cin.get ();
 	while ((c != e) && (c != EOF)) 
 	{
-		*string++ = c;
+		* string++ = c;
 		c = std::cin.get ();
 	}
-	*string = (char) (0);
+	* string = (char) (0);
 	c = std::cin.get ();
 	return (c);
 }
@@ -617,10 +619,10 @@ signed omarkup::unknown (signed c)
 	char * string = this->mstring;
 	while (!isspace (c) && (c != '<') && (c != '=') && (c !='/') && (c != '?') && (c != '>')) 
 	{
-		*string++ = c;
+		* string++ = c;
 		c = std::cin.get ();
 	}
-	*string = (char) (0);
+	* string = (char) (0);
 	return (c);
 }
 

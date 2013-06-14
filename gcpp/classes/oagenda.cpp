@@ -46,10 +46,10 @@ unsigned oagenda::count () const
  *
  *--------------------------------------------------------------------*/
 
-char const *oagenda::event () const 
+char const * oagenda::event () const 
 
 {
-	oitem *item = this->mheap->item ();
+	oitem * item = this->mheap->item ();
 	return (item != (oitem *) (0)? item->name (): (char *) (0));
 }
 
@@ -62,10 +62,10 @@ char const *oagenda::event () const
  *
  *--------------------------------------------------------------------*/
 
-char const *oagenda::title () const 
+char const * oagenda::title () const 
 
 {
-	oitem *item = this->mheap->item ();
+	oitem * item = this->mheap->item ();
 	return (item != (oitem *) (0)? item->text (): (char *) (0));
 }
 
@@ -79,11 +79,11 @@ char const *oagenda::title () const
  *
  *--------------------------------------------------------------------*/
 
-oagenda & oagenda::insert (char const *event) 
+oagenda & oagenda::insert (char const * event) 
 
 {
 	this->mheap->insertitem (new oitem (event));
-	return (*this);
+	return (* this);
 }
 
 
@@ -96,11 +96,11 @@ oagenda & oagenda::insert (char const *event)
  *
  *--------------------------------------------------------------------*/
 
-oagenda & oagenda::insert (char const *event, char const *title) 
+oagenda & oagenda::insert (char const * event, char const * title) 
 
 {
 	this->mheap->insertitem (new oitem (event, title));
-	return (*this);
+	return (* this);
 }
 
 
@@ -116,7 +116,7 @@ oagenda & oagenda::remove ()
 
 {
 	this->mheap->item ();
-	return (*this);
+	return (* this);
 }
 
 
@@ -132,7 +132,7 @@ oagenda & oagenda::clear ()
 
 {
 	this->mheap->clear ();
-	return (*this);
+	return (* this);
 }
 
 
@@ -147,12 +147,14 @@ oagenda::oagenda (signed order (char const *, char const *))
 	return;
 }
 
+
 oagenda::oagenda () 
 
 {
 	this->mheap = new oheap;
 	return;
 }
+
 
 oagenda::~oagenda () 
 

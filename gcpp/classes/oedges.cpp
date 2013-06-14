@@ -135,7 +135,7 @@ oedge * oedges::edge () const
  *
  *--------------------------------------------------------------------*/
 
-oedges & oedges::add (onode *sourcenode, onode *targetnode) 
+oedges & oedges::add (onode * sourcenode, onode * targetnode) 
 
 {
 	for (this->mindex = 0; this->mindex < this->mcount; this->mindex++) 
@@ -144,7 +144,7 @@ oedges & oedges::add (onode *sourcenode, onode *targetnode)
 		{
 			if (this->mtable [this->mindex] ->target () == targetnode) 
 			{
-				return (*this);
+				return (* this);
 			}
 		}
 	}
@@ -161,7 +161,7 @@ oedges & oedges::add (onode *sourcenode, onode *targetnode)
 		delete [] ntable;
 	}
 	this->mtable [this->mcount++] = new oedge (sourcenode, targetnode);
-	return (*this);
+	return (* this);
 }
 
 
@@ -183,7 +183,7 @@ oedges & oedges::clear ()
 		delete this->medge;
 	}
 	this->mcount = this->mindex = 0;
-	return (*this);
+	return (* this);
 }
 
 

@@ -45,7 +45,7 @@ oPageLinkElement & oPageLinkElement::name (char const * string)
 
 {
 	this->mname = otext::replace (this->mname, string);
-	return (*this);
+	return (* this);
 }
 
 
@@ -61,7 +61,7 @@ oPageLinkElement & oPageLinkElement::link (char const * text, char const * path)
 {
 	AnchorElement.CoreAttributes.TitleAttribute->value (text);
 	AnchorElement.LinkAttributes.ReferenceAttribute->value (path);
-	return (*this);
+	return (* this);
 }
 
 
@@ -82,7 +82,7 @@ oPageLinkElement & oPageLinkElement::write ()
 	std::cout << this->mname;
 	this->AnchorElement.EndTag ();
 	std::cout.put (']');
-	return (*this);
+	return (* this);
 }
 
 

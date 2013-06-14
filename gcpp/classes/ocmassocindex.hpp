@@ -18,9 +18,10 @@
 typedef struct _topic_ 
 
 {
-	char *title;
-	char *index;
+	char * title;
+	char * index;
 }
+
 
 TOPIC;
 
@@ -37,12 +38,12 @@ public:
 	ocmassocindex & index1 (struct _topic_ topics [], unsigned count);
 	ocmassocindex & index2 (struct _topic_ topics [], unsigned count);
 private:
-	ofilespec *mfilespec;
-	owebpage *mwebpage;
-	char *mstyle;
-	char *mframe;
-	char *mabove;
-	char *mbelow;
+	ofilespec * mfilespec;
+	owebpage * mwebpage;
+	char * mstyle;
+	char * mframe;
+	char * mabove;
+	char * mbelow;
 	unsigned mindex;
 	unsigned mtopic;
 };

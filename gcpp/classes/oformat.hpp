@@ -41,14 +41,14 @@ public:
 	oformat & indent (unsigned column);
 	oformat & margin (unsigned column);
 	oformat & length (unsigned column);
-	oformat & print (char const *string);
+	oformat & print (char const * string);
 	oformat & space (unsigned count);
 	oformat & flush (unsigned count);
 	oformat & table (unsigned count);
 	oformat & shift (unsigned count);
 	oformat & align ();
 private:
-	char *mbuffer;
+	char * mbuffer;
 	unsigned mlength;
 	unsigned mcolumn;
 	unsigned moffset;

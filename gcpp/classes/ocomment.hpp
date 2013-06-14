@@ -67,7 +67,7 @@
  *   interface declaration
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ocomment: private otext, public oflagword
+class __declspec (dllexport) ocomment: private otext, public oflagword 
 
 {
 public:
@@ -107,12 +107,11 @@ public:
 #endif
 
 	ocomment & preamble () const;
-
 private:
 
 #if oCOMMENT_CUSTOMIZE
 
-	signed message (signed c, char const *string);
+	signed message (signed c, char const * string);
 	char * mpreface;
 	char * mpackage;
 	char * mrelease;
@@ -129,9 +128,9 @@ private:
 
 #endif
 
-	char *mbuffer;
-	char *minsert;
-	char *moutput;
+	char * mbuffer;
+	char * minsert;
+	char * moutput;
 	size_t mlength;
 	size_t mcount;
 };

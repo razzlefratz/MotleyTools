@@ -68,7 +68,7 @@ unsigned ofileopen::versions () const
  *
  *--------------------------------------------------------------------*/
 
-bool ofileopen::opensave (char const *filespec, char const *extender) 
+bool ofileopen::opensave (char const * filespec, char const * extender) 
 
 {
 	ofilespec loadspec (filespec);
@@ -103,7 +103,7 @@ bool ofileopen::opensave (char const *filespec, char const *extender)
  *
  *--------------------------------------------------------------------*/
 
-bool ofileopen::openedit (char const *filespec) 
+bool ofileopen::openedit (char const * filespec) 
 
 {
 	ofilespec loadspec (filespec);
@@ -138,7 +138,7 @@ bool ofileopen::openedit (char const *filespec)
  *
  *--------------------------------------------------------------------*/
 
-bool ofileopen::permit (char const *filespec) const 
+bool ofileopen::permit (char const * filespec) const 
 
 {
 	if (lstat (filespec, &this->statinfo)) 
@@ -196,7 +196,7 @@ bool ofileopen::permit (char const *filespec) const
  *
  *--------------------------------------------------------------------*/
 
-bool ofileopen::filter (char const *filespec, char const *savespec) 
+bool ofileopen::filter (char const * filespec, char const * savespec) 
 
 {
 	ofileopen::close ();
@@ -256,7 +256,7 @@ ofileopen & ofileopen::close ()
 	{
 		ofileopen::target.close ();
 	}
-	return (*this);
+	return (* this);
 }
 
 

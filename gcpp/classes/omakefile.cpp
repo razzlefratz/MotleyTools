@@ -40,7 +40,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const *omakefile::compiler () const 
+char const * omakefile::compiler () const 
 
 {
 	return (this->mcompiler);
@@ -60,18 +60,19 @@ char const *omakefile::compiler () const
  *
  *--------------------------------------------------------------------*/
 
-omakefile & omakefile::compiler (char const *string) 
+omakefile & omakefile::compiler (char const * string) 
 
 {
 	otext::replace (this->mcompiler, string);
-	return (*this);
+	return (* this);
 }
+
 
 omakefile & omakefile::linebreak () 
 
 {
 	otext::replace (this->mlinebreak, "\\\n\t");
-	return (*this);
+	return (* this);
 }
 
 
@@ -87,7 +88,7 @@ omakefile & omakefile::linebreak ()
  *
  *--------------------------------------------------------------------*/
 
-char const *omakefile::sourcedir () const 
+char const * omakefile::sourcedir () const 
 
 {
 	return (this->msourcedir);
@@ -106,11 +107,11 @@ char const *omakefile::sourcedir () const
  *
  *--------------------------------------------------------------------*/
 
-omakefile & omakefile::sourcedir (char const *string) 
+omakefile & omakefile::sourcedir (char const * string) 
 
 {
 	otext::replace (this->msourcedir, string);
-	return (*this);
+	return (* this);
 }
 
 
@@ -126,7 +127,7 @@ omakefile & omakefile::sourcedir (char const *string)
  *
  *--------------------------------------------------------------------*/
 
-char const *omakefile::targetdir () const 
+char const * omakefile::targetdir () const 
 
 {
 	return (this->mtargetdir);
@@ -145,11 +146,11 @@ char const *omakefile::targetdir () const
  *
  *--------------------------------------------------------------------*/
 
-omakefile & omakefile::targetdir (char const *string) 
+omakefile & omakefile::targetdir (char const * string) 
 
 {
 	otext::replace (this->mtargetdir, string);
-	return (*this);
+	return (* this);
 }
 
 
@@ -166,29 +167,29 @@ omakefile & omakefile::targetdir (char const *string)
  *
  *--------------------------------------------------------------------*/
 
-omakefile & omakefile::projectfile (char const *pathname) 
+omakefile & omakefile::projectfile (char const * pathname) 
 
 {
 	this->stream.open (pathname, std::ifstream::in);
 	while (this->stream.getline (this->mbuffer, this->mlength).good ()) 
 	{
-		char *sp = this->mbuffer;;
-		while ((*sp == ' ') && (*sp == '\t')) 
+		char * sp = this->mbuffer;;
+		while ((* sp == ' ') && (* sp == '\t')) 
 		{
 			sp++;
 		}
-		if ((*sp == (char) (0)) || (*sp == '\n')) 
+		if ((* sp == (char) (0)) || (* sp == '\n')) 
 		{
 			continue;
 		}
-		if ((*sp == '#') || (*sp == ';')) 
+		if ((* sp == '#') || (* sp == ';')) 
 		{
 			continue;
 		}
 		this->includefile (sp);
 	}
 	this->stream.close ();
-	return (*this);
+	return (* this);
 }
 
 
@@ -205,14 +206,14 @@ omakefile & omakefile::projectfile (char const *pathname)
  *
  *--------------------------------------------------------------------*/
 
-omakefile & omakefile::includefile (char const *pathname) 
+omakefile & omakefile::includefile (char const * pathname) 
 
 {
 	if (!list.defined (pathname)) 
 	{
 		list.insertitem (new oitem (pathname));
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -275,7 +276,7 @@ omakefile & omakefile::publish ()
 	{
 		this->section (list.items (index)->name ());
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -290,7 +291,7 @@ omakefile & omakefile::publish ()
  *
  *--------------------------------------------------------------------*/
 
-omakefile & omakefile::section (char const *filespec) 
+omakefile & omakefile::section (char const * filespec) 
 
 {
 	this->stream.open (filespec);
@@ -315,7 +316,7 @@ omakefile & omakefile::section (char const *filespec)
 		std::cout << "\n";
 	}
 	this->stream.close ();
-	return (*this);
+	return (* this);
 }
 
 

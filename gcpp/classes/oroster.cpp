@@ -30,7 +30,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const *oroster::title () const 
+char const * oroster::title () const 
 
 {
 	return (this->mlist->title ());
@@ -44,11 +44,11 @@ char const *oroster::title () const
  *
  *--------------------------------------------------------------------*/
 
-oroster & oroster::title (char const *title) 
+oroster & oroster::title (char const * title) 
 
 {
 	this->mlist->title (title);
-	return (*this);
+	return (* this);
 }
 
 
@@ -102,7 +102,7 @@ char const * oroster::operator [] (signed index) const
  *
  *--------------------------------------------------------------------*/
 
-bool oroster::operator += (char const *symbol) 
+bool oroster::operator += (char const * symbol) 
 
 {
 	return (this->insert (symbol));
@@ -116,7 +116,7 @@ bool oroster::operator += (char const *symbol)
  *
  *--------------------------------------------------------------------*/
 
-bool oroster::operator -= (char const *symbol) 
+bool oroster::operator -= (char const * symbol) 
 
 {
 	return (this->remove (symbol));
@@ -130,10 +130,10 @@ bool oroster::operator -= (char const *symbol)
  *
  *--------------------------------------------------------------------*/
 
-char const *oroster::symbol () const 
+char const * oroster::symbol () const 
 
 {
-	oitem *item = this->mlist->item ();
+	oitem * item = this->mlist->item ();
 	return (item != (oitem *) (0)? item->name (): (char *) (0));
 }
 
@@ -145,7 +145,7 @@ char const *oroster::symbol () const
  *
  *--------------------------------------------------------------------*/
 
-char const *oroster::symbols (size_t index) const 
+char const * oroster::symbols (size_t index) const 
 
 {
 	oitem * item = this->mlist->items (index);
@@ -160,7 +160,7 @@ char const *oroster::symbols (size_t index) const
  *
  *--------------------------------------------------------------------*/
 
-bool oroster::defined (char const *symbol) 
+bool oroster::defined (char const * symbol) 
 
 {
 	return (this->mlist->defined (symbol));
@@ -174,7 +174,7 @@ bool oroster::defined (char const *symbol)
  *
  *--------------------------------------------------------------------*/
 
-unsigned oroster::indexof (char const *symbol) 
+unsigned oroster::indexof (char const * symbol) 
 
 {
 	return (this->mlist->indexof (symbol));
@@ -188,10 +188,10 @@ unsigned oroster::indexof (char const *symbol)
  *
  *--------------------------------------------------------------------*/
 
-bool oroster::insert (char const *symbol) 
+bool oroster::insert (char const * symbol) 
 
 {
-	oitem *item = this->mlist->item (symbol);
+	oitem * item = this->mlist->item (symbol);
 	if (item == (oitem *) (0)) 
 	{
 		item = new oitem (symbol);
@@ -212,10 +212,10 @@ bool oroster::insert (char const *symbol)
  *
  *--------------------------------------------------------------------*/
 
-bool oroster::remove (char const *symbol) 
+bool oroster::remove (char const * symbol) 
 
 {
-	oitem *item = this->mlist->item (symbol);
+	oitem * item = this->mlist->item (symbol);
 	if (item != (oitem *) (0)) 
 	{
 		this->mlist->removeitem ();
@@ -239,7 +239,7 @@ oroster & oroster::clear ()
 
 {
 	this->mlist->clear ();
-	return (*this);
+	return (* this);
 }
 
 

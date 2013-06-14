@@ -27,9 +27,9 @@ class __declspec (dllexport) ochroct
 public:
 	ochroct ();
 	virtual ~ ochroct ();
-	static char const *digits;
-	static char *tooctal (char *string, unsigned c);
-	static char *tounix (char *string, unsigned c);
+	static char const * digits;
+	static char * tooctal (char * string, unsigned c);
+	static char * tounix (char * string, unsigned c);
 private:
 };
 
