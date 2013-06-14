@@ -53,10 +53,7 @@ signed ocblock::statement (signed c)
 	else if (c != ';') 
 	{
 		std::cout.put ('{');
-		std::cout.put (' ');
-		c = ocblock::program (c, ';');
-		c = ocblock::keep (c);
-		std::cout.put (' ');
+		c = ocblock::context (c, ';');
 		std::cout.put ('}');
 	}
 	return (c);
@@ -86,12 +83,9 @@ signed ocblock::condition (signed c)
 	}
 	else if (c != ';') 
 	{
-		std::cout.put (' ');
 		std::cout.put ('(');
-		c = ocblock::program (c, ';');
-		c = ocblock::keep (c);
+		c = ocblock::context(c, ';');
 		std::cout.put (')');
-		std::cout.put (' ');
 	}
 	return (c);
 }
@@ -164,11 +158,13 @@ signed ocblock::program (signed c, signed e)
 				c = ocblock::statement (c);
 				continue;
 			}
+#if 0
 			if (!strcmp (string, "else")) 
 			{
 				c = ocblock::statement (c);
-				return (c);
+				continue;
 			}
+#endif
 			if (!strcmp (string, "while")) 
 			{
 				c = ocblock::condition (c);
@@ -200,7 +196,7 @@ signed ocblock::program (signed c, signed e)
 		}
 		c = ocblock::keep (c);
 	}
-	return (e);
+	return (c);
 }
 
 

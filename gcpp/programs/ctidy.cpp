@@ -78,7 +78,7 @@ int main (int argc, char const * argv [])
 	opathspec pathspec;
 	oescape escape;
 	octidy object;
-	int (octidy::*method) (signed, signed) = &octidy::program;
+	int (octidy::* method) (signed, signed) = &octidy::program;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
 	{
@@ -102,7 +102,7 @@ int main (int argc, char const * argv [])
 	}
 	if (!getopt.argc ()) 
 	{
-		c = (object.*method) (std::cin.get (), EOF);
+		c = (object.* method) (std::cin.get (), EOF);
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
@@ -110,11 +110,12 @@ int main (int argc, char const * argv [])
 		pathspec.fullpath (filename, * getopt.argv ());
 		if (fileopen.openedit (filename)) 
 		{
-			c = (object.*method) (std::cin.get (), EOF);
+			c = (object.* method) (std::cin.get (), EOF);
 			fileopen.close ();
 		}
 		getopt++;
 	}
 	std::exit (0);
 }
+
 

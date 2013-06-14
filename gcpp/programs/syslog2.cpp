@@ -109,7 +109,7 @@ int main (int argc, char const * argv [])
 	oflagword flagword;
 	oflagword options;
 	char message [BUFSIZ] = "";
-	char *bp = message;
+	char * bp = message;
 	char const * identity = getlogin ();
 	priority_t priority = SYSLOG_USER | SYSLOG_INFO;
 	signed c;
@@ -119,9 +119,9 @@ int main (int argc, char const * argv [])
 		{
 		case 'b':
 			identity = getopt.optarg ();
-			for (char const *sp = identity; *sp != (char) (0); ++sp) 
+			for (char const * sp = identity; * sp != (char) (0); ++sp) 
 			{
-				if (*sp == PATH_C_EXTENDER) 
+				if (* sp == PATH_C_EXTENDER) 
 				{
 					identity = sp;
 				}
@@ -168,12 +168,12 @@ int main (int argc, char const * argv [])
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
-		char const *sp = * getopt.argv ();
-		while (*sp) 
+		char const * sp = * getopt.argv ();
+		while (* sp) 
 		{
 			if ((unsigned)(bp - message) < (sizeof (message)-1)) 
 			{
-				*bp++ = *sp++;
+				* bp++ = * sp++;
 			}
 		}
-		*bp++ = (* getopt.argv ()? ' ': (char) (0); getopt++; } msyslog.syslog (priority, "%s", message); return (0); } 
+		* bp++ = (* getopt.argv ()? ' ': (char) (0); getopt++; } msyslog.syslog (priority, "%s", message); return (0); } 

@@ -54,20 +54,23 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-static void function ()
+static void function () 
+
 {
 	oscanfile source;
-	while (!source.end())
+	while (!source.end ()) 
 	{
-		source.scantoken();
-		if (source.isspace())
+		source.scantoken ();
+		if (source.isspace ()) 
 		{
-			source.scanspace();
+			source.scanspace ();
 		}
-		source.print().flush ();
+		source.print ().flush ();
 	}
 	return;
 }
+
+
 /*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
@@ -111,4 +114,5 @@ int main (int argc, char const * argv [])
 	}
 	std::exit (0);
 }
+
 

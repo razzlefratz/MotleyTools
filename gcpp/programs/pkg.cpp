@@ -55,7 +55,7 @@ opackage package;
  *
  *--------------------------------------------------------------------*/
 
-static void function (char const *string, oflagword * flags) 
+static void function (char const * string, oflagword * flags) 
 
 {
 	package = string;
@@ -153,4 +153,5 @@ int main (int argc, char const * argv [])
 	}
 	std::exit (0);
 }
+
 
