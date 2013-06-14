@@ -54,7 +54,7 @@ oscancode & oscancode::scantoken ()
 {
 	if (this->isempty ()) 
 	{
-		this->scanflush ();
+		this->flush ();
 	}
 	else if (this->isspace ()) 
 	{

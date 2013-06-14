@@ -59,12 +59,26 @@ static void function ()
 	oscanfile source;
 	while (!source.end())
 	{
-		source.scantoken();
-		if (source.isspace())
+		if (source.scantoken().isspace())
 		{
 			source.scanspace();
 		}
-		source.print().flush ();
+		else if (source.havetoken ("while"))
+		{
+		}
+		else if (source.havetoken ("do"))
+		{
+		}
+		else if (source.havetoken ("switch"))
+		{
+		}
+		else if (source.havetoken ("if"))
+		{
+		}
+		else if (source.havetoken ("return"))
+		{
+		}
+		source.write().flush ();
 	}
 	return;
 }

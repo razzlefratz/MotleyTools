@@ -105,7 +105,7 @@ omacro & omacro::define (char const * string)
 	unsigned count = 0;
 	oscantext source (string);
 	source.scanblank ();
-	source.scanflush ();
+	source.flush ();
 	source.scanident ();
 	this->margument->define (this->argument (count), source.tokentext ());
 	this->margument->define (source.tokentext (), this->argument (count++));
@@ -114,7 +114,7 @@ omacro & omacro::define (char const * string)
 		do 
 		{
 			source.scanspace ();
-			source.scanflush ();
+			source.flush ();
 			source.scangroup (",)");
 			source.trimtoken ();
 			this->margument->define (source.tokentext (), this->argument (count++));
@@ -126,7 +126,7 @@ omacro & omacro::define (char const * string)
 	source.scanblank ();
 	while (!source.isempty ()) 
 	{
-		source.scanflush ();
+		source.flush ();
 		source.scantoken ();
 		if (source.isclass ("_A")) 
 		{
@@ -179,7 +179,7 @@ char const * omacro::expand (char const * string)
 	unsigned count = 0;
 	oscantext source (string);
 	source.scanspace ();
-	source.scanflush ();
+	source.flush ();
 	source.scanident ();
 	this->margument->define (this->argument (count++), source.tokentext ());
 	source.scanspace ();
@@ -187,8 +187,7 @@ char const * omacro::expand (char const * string)
 	{
 		do 
 		{
-			source.scanspace ();
-			source.scanflush ();
+			source.scanspace ().flush ();
 			source.scangroup (",)");
 			source.trimtoken ();
 			this->margument->define (this->argument (count++), source.tokentext ());
@@ -200,8 +199,7 @@ char const * omacro::expand (char const * string)
 	source.copy (this->mfunction->lookup (this->margument->lookup (this->argument (0))));
 	while (!source.isempty ()) 
 	{
-		source.scanflush ();
-		source.scantoken ();
+		source.flush ().scantoken ();
 		if (source.isclass (omacro::msymbol)) 
 		{
 			source.scanbreak (omacro::mprefix);
