@@ -49,7 +49,7 @@ osection & osection::width (size_t width)
 		this->mupper [width] = '=';
 		this->mlower [width] = '-';
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -65,7 +65,7 @@ osection & osection::width (size_t width)
  *
  *--------------------------------------------------------------------*/
 
-osection & osection::title (char const *title) 
+osection & osection::title (char const * title) 
 
 {
 	std::cout << std::endl;
@@ -73,7 +73,7 @@ osection & osection::title (char const *title)
 	std::cout << this->mstart << " " << title << ";" << std::endl;
 	std::cout << this->mstart << " " << this->mlower << std::endl;
 	std::cout << std::endl;
-	return (*this);
+	return (* this);
 }
 
 

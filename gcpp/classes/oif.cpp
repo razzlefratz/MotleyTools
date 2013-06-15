@@ -164,7 +164,7 @@ oif & oif::GetHardwareAddress (void * memory)
 
 {
 	std::memcpy (memory, this->mhwaddr, sizeof (this->mhwaddr));
-	return (*this);
+	return (* this);
 }
 
 
@@ -181,7 +181,7 @@ oif & oif::GetEthernetAddress (void * memory)
 
 {
 	std::memcpy (memory, this->mhwaddr, sizeof (this->mhwaddr));
-	return (*this);
+	return (* this);
 }
 
 
@@ -198,7 +198,7 @@ oif & oif::GetInternetAddress (void * memory)
 
 {
 	std::memcpy (memory, this->mipaddr, sizeof (this->mipaddr));
-	return (*this);
+	return (* this);
 }
 
 
@@ -219,7 +219,7 @@ oif & oif::Print (void)
 	std::cout << this->InternetAddress () << " ";
 	std::cout << this->Name () << " ";
 	std::cout << this->Text () << std::endl;
-	return (*this);
+	return (* this);
 }
 
 
@@ -253,7 +253,7 @@ oif & oif::SetIndex (unsigned index)
 
 	std::memcpy (this->mtext, this->mname, sizeof (this->mname));
 	oif::lookup ();
-	return (*this);
+	return (* this);
 }
 
 
@@ -287,7 +287,7 @@ oif & oif::SetName (char const * name)
 	std::memcpy (this->mname, name, std::strlen (name));
 	std::memcpy (this->mtext, name, std::strlen (name));
 	oif::lookup ();
-	return (*this);
+	return (* this);
 }
 
 
@@ -306,7 +306,7 @@ oif & oif::SetText (char const * text)
 
 {
 	std::memcpy (this->mtext, text, std::strlen (text));
-	return (*this);
+	return (* this);
 }
 
 
@@ -327,7 +327,7 @@ oif & oif::SetHardwareAddress (void const * memory)
 {
 	std::memcpy (this->mhwaddr, memory, sizeof (this->mhwaddr));
 	oif::format ();
-	return (*this);
+	return (* this);
 }
 
 
@@ -348,7 +348,7 @@ oif & oif::SetEthernetAddress (void const * memory)
 {
 	std::memcpy (this->mhwaddr, memory, sizeof (this->mhwaddr));
 	oif::format ();
-	return (*this);
+	return (* this);
 }
 
 
@@ -369,7 +369,7 @@ oif & oif::SetInternetAddress (void const * memory)
 {
 	std::memcpy (this->mipaddr, memory, sizeof (this->mipaddr));
 	oif::format ();
-	return (*this);
+	return (* this);
 }
 
 
@@ -400,14 +400,14 @@ oif & oif::lookup ()
 	{
 		oerror::error (1, errno, "Can't fetch hardware address: %s", this->mname);
 		close (fd);
-		return (*this);
+		return (* this);
 	}
 	std::memcpy (this->mhwaddr, ifreq.ifr_ifru.ifru_hwaddr.sa_data, sizeof (this->mhwaddr));
 	if (ioctl (fd, SIOCGIFADDR, &ifreq) == -1) 
 	{
 		oerror::error (1, errno, "Can't fetch ethernet address: %s", this->mname);
 		close (fd);
-		return (*this);
+		return (* this);
 	}
 	std::memcpy (this->mipaddr, &sockaddr_in->sin_addr.s_addr, sizeof (this->mipaddr));
 	close (fd);
@@ -444,7 +444,7 @@ oif & oif::format ()
 {
 	omemory::hexdecode (this->mhwaddr, sizeof (this->mhwaddr), this->mhwstring, sizeof (this->mhwstring));
 	omemory::decdecode (this->mipaddr, sizeof (this->mipaddr), this->mipstring, sizeof (this->mipstring));
-	return (*this);
+	return (* this);
 }
 
 
@@ -463,8 +463,8 @@ void oif::osx_gethwaddr ()
 
 #if defined (__APPLE__)
 
-	struct ifaddrs *ifaddrs;
-	struct ifaddrs *ifaddr;
+	struct ifaddrs * ifaddrs;
+	struct ifaddrs * ifaddr;
 	if (getifaddrs (&ifaddrs) == -1) 
 	{
 		oerror::error (1, errno, "No interfaces available");
@@ -537,7 +537,6 @@ unsigned oif::pcap_nametoindex (char const * name) const
 		}
 		pcap_freealldevs (devices);
 	}
-
 #endif
 
 	errno = ENXIO;
@@ -580,7 +579,6 @@ char * oif::pcap_indextoname (unsigned ifindex, char * ifname) const
 		}
 		pcap_freealldevs (devices);
 	}
-
 #endif
 
 	errno = ENXIO;

@@ -72,7 +72,6 @@ unsigned opcap::if_nametoindex (char const * name)
 		}
 		pcap_freealldevs (devices);
 	}
-
 #endif
 
 	errno = ENXIO;
@@ -115,7 +114,6 @@ char * opcap::if_indextoname (unsigned ifindex, char * ifname)
 		}
 		pcap_freealldevs (devices);
 	}
-
 #endif
 
 	errno = ENXIO;
@@ -170,7 +168,6 @@ struct if_nameindex * opcap::if_nameindex (void)
 		pcap_freealldevs (devices);
 		return (ifs);
 	}
-
 #endif
 
 	return ((struct if_nameindex *)(0));

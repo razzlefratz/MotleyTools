@@ -46,7 +46,7 @@ oputopt & oputopt::chkopt (char const * optv [], char const * options)
 		}
 		for (index = oPUTOPT_I_DETAILS; optv [index]; index++) 
 		{
-			if (*option == *optv [index]) 
+			if (* option == * optv [index]) 
 			{
 				break;
 			}
@@ -59,24 +59,24 @@ oputopt & oputopt::chkopt (char const * optv [], char const * options)
 	}
 	for (index = oPUTOPT_I_DETAILS; optv [index]; index++) 
 	{
-		for (option = options; *option; option++) 
+		for (option = options; * option; option++) 
 		{
-			if (*option == ':') 
+			if (* option == ':') 
 			{
 				continue;
 			}
-			if (*option == *optv [index]) 
+			if (* option == * optv [index]) 
 			{
 				break;
 			}
 		}
-		if (*option) 
+		if (* option) 
 		{
 			continue;
 		}
 		std::cerr << program_name << ": string \"" << optv [index] << "\" has not option" << std::endl;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -125,7 +125,7 @@ oputopt & oputopt::putopt (char const * usage [])
 	std::cout << " " << oGETOPT_C_OPTIONS << oGETOPT_C_VERSION << "\tversion information" << std::endl;
 	std::cout << " " << oGETOPT_C_OPTIONS << oGETOPT_C_SUMMARY << "\thelp summary" << std::endl;
 	std::cout << std::endl;
-	return (*this);
+	return (* this);
 }
 
 

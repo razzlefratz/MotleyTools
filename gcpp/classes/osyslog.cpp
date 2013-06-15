@@ -74,7 +74,7 @@ osyslog & osyslog::identity (char const * identity)
 		this->midentity = new char [std::strlen (identity)+1];
 		std::strcpy (this->midentity, identity);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -117,7 +117,7 @@ osyslog & osyslog::facility (facility_t facility)
 
 {
 	this->mfacility = facility & SYSLOG_FACILITY_MASK;
-	return (*this);
+	return (* this);
 }
 
 
@@ -157,7 +157,7 @@ osyslog & osyslog::options (flag_t options)
 
 {
 	this->moptions = options;
-	return (*this);
+	return (* this);
 }
 
 
@@ -193,7 +193,7 @@ flag_t osyslog::options () const
  *
  *--------------------------------------------------------------------*/
 
-void osyslog::syslogerr (priority_t priority, errno_t errnum, char const *format, ...) 
+void osyslog::syslogerr (priority_t priority, errno_t errnum, char const * format, ...) 
 
 {
 	va_list arglist;
@@ -223,7 +223,7 @@ void osyslog::syslogerr (priority_t priority, errno_t errnum, char const *format
  *
  *--------------------------------------------------------------------*/
 
-void osyslog::syslogerr_at_line (priority_t priority, errno_t errornum, char const *filename, size_t lineno, char const *format, ...) 
+void osyslog::syslogerr_at_line (priority_t priority, errno_t errornum, char const * filename, size_t lineno, char const * format, ...) 
 
 {
 	va_list arglist;
@@ -255,7 +255,7 @@ void osyslog::syslogerr_at_line (priority_t priority, errno_t errornum, char con
  *
  *--------------------------------------------------------------------*/
 
-void osyslog::syslog (priority_t priority, char const *format, ...) 
+void osyslog::syslog (priority_t priority, char const * format, ...) 
 
 {
 	va_list arglist;
@@ -282,7 +282,7 @@ void osyslog::syslog (priority_t priority, char const *format, ...)
  *
  *--------------------------------------------------------------------*/
 
-void osyslog::vsyslog (priority_t priority, char const *format, va_list arglist) 
+void osyslog::vsyslog (priority_t priority, char const * format, va_list arglist) 
 
 {
 	time_t now = time (&now);
@@ -380,8 +380,8 @@ osyslog::osyslog ()
 osyslog::~osyslog () 
 
 {
-	delete [] this->midentity;
-	::close (this->mfile);
+	delete [] this->midentity;::
+	close (this->mfile);
 	return;
 }
 

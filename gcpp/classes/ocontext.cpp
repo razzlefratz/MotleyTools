@@ -50,7 +50,7 @@ ocontext & ocontext::prefix (char buffer [], size_t length)
 
 {
 	return (ocontext::copy (this->mprefix, buffer, length));
-	return (*this);
+	return (* this);
 }
 
 
@@ -62,7 +62,7 @@ ocontext & ocontext::prefix (char buffer [], size_t length)
  *
  *--------------------------------------------------------------------*/
 
-char const *ocontext::suffix () const 
+char const * ocontext::suffix () const 
 
 {
 	return (this->msuffix);
@@ -96,15 +96,15 @@ ocontext & ocontext::suffix (char buffer [], size_t length)
  *
  *--------------------------------------------------------------------*/
 
-ocontext & ocontext::split (char const *string, char c, bool initial, bool optional) 
+ocontext & ocontext::split (char const * string, char c, bool initial, bool optional) 
 
 {
 	delete [] this->mstring;
 	this->mstring = new char [std::strlen (string) + 1];
 	std::strcpy (this->mstring, string);
-	for (this->mprefix = this->msuffix = this->mstring; *this->mprefix != (char) (0); this->mprefix++) 
+	for (this->mprefix = this->msuffix = this->mstring; * this->mprefix != (char) (0); this->mprefix++) 
 	{
-		if (*this->mprefix == (char) (c)) 
+		if (* this->mprefix == (char) (c)) 
 		{
 			this->msuffix = this->mprefix;
 			if (initial) 
@@ -113,9 +113,9 @@ ocontext & ocontext::split (char const *string, char c, bool initial, bool optio
 			}
 		}
 	}
-	if (*this->msuffix == (char) (c)) 
+	if (* this->msuffix == (char) (c)) 
 	{
-		*this->msuffix++ = (char) (0);
+		* this->msuffix++ = (char) (0);
 		this->mprefix = this->mstring;
 	}
 	else if (optional) 
@@ -123,7 +123,7 @@ ocontext & ocontext::split (char const *string, char c, bool initial, bool optio
 		this->msuffix = this->mprefix;
 		this->mprefix = this->mstring;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -135,7 +135,7 @@ ocontext & ocontext::split (char const *string, char c, bool initial, bool optio
  *
  *--------------------------------------------------------------------*/
 
-ocontext & ocontext::copy (char const *string, char buffer [], size_t length) 
+ocontext & ocontext::copy (char const * string, char buffer [], size_t length) 
 
 {
 
@@ -143,25 +143,24 @@ ocontext & ocontext::copy (char const *string, char buffer [], size_t length)
 
 	if (buffer == (char *) (0)) 
 	{
-		return (*this);
+		return (* this);
 	}
-
 #endif
 
 	if (length > 0) 
 	{
-		while (*string != (char) (0)) 
+		while (* string != (char) (0)) 
 		{
 			if (length > 1) 
 			{
-				*buffer++ = *string;
+				* buffer++ = * string;
 				length--;
 			}
 			string++;
 		}
-		*buffer = (char) (0);
+		* buffer = (char) (0);
 	}
-	return (*this);
+	return (* this);
 }
 
 

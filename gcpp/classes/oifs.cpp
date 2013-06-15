@@ -108,7 +108,7 @@ oifs & oifs::SelectFirst (void)
 
 {
 	this->mindex = 0;
-	return (*this);
+	return (* this);
 }
 
 
@@ -124,7 +124,7 @@ oifs & oifs::SelectFinal (void)
 
 {
 	this->mindex = this->mcount - 1;
-	return (*this);
+	return (* this);
 }
 
 
@@ -144,7 +144,7 @@ oifs & oifs::SelectPrev (void)
 	{
 		this->mindex--;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -164,7 +164,7 @@ oifs & oifs::SelectNext (void)
 	{
 		this->mindex++;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -184,7 +184,7 @@ oifs & oifs::Select (unsigned index)
 	{
 		this->mindex = this->mcount;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -220,7 +220,7 @@ oifs & oifs::Enumerate (void)
 	{
 		this->mtable [index].Print ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -287,7 +287,7 @@ oifs::oifs ()
 #if defined (__linux__)
 
 	struct ifconf ifc;
-	struct ifreq *ifr;
+	struct ifreq * ifr;
 	char buffer [1024];
 	signed fd;
 	if ((fd = socket (AF_INET, SOCK_DGRAM, 0)) < 0) 

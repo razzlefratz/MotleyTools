@@ -26,8 +26,8 @@
  *   static data initialization;
  *--------------------------------------------------------------------*/
 
-char const *oSpanElement::mscope = "";
-char const *oSpanElement::mtitle = "span";
+char const * oSpanElement::mscope = "";
+char const * oSpanElement::mtitle = "span";
 
 /*====================================================================*
  *
@@ -37,7 +37,7 @@ char const *oSpanElement::mtitle = "span";
  *
  *--------------------------------------------------------------------*/
 
-char const *oSpanElement::ElementName () const 
+char const * oSpanElement::ElementName () const 
 
 {
 	return (oSpanElement::mtitle);
@@ -56,7 +56,7 @@ oSpanElement & oSpanElement::StartTag ()
 
 {
 	std::cout.put ('<');
-	if (*this->mscope) 
+	if (* this->mscope) 
 	{
 		std::cout << this->mscope;
 		std::cout.put (':');
@@ -65,7 +65,7 @@ oSpanElement & oSpanElement::StartTag ()
 	oSpanElement::i18nAttributes.write ();
 	oSpanElement::CoreAttributes.write ();
 	std::cout.put ('>');
-	return (*this);
+	return (* this);
 }
 
 
@@ -81,7 +81,7 @@ oSpanElement & oSpanElement::EmptyTag ()
 
 {
 	std::cout.put ('<');
-	if (*this->mscope) 
+	if (* this->mscope) 
 	{
 		std::cout << this->mscope;
 		std::cout.put (':');
@@ -91,7 +91,7 @@ oSpanElement & oSpanElement::EmptyTag ()
 	oSpanElement::CoreAttributes.write ();
 	std::cout.put ('/');
 	std::cout.put ('>');
-	return (*this);
+	return (* this);
 }
 
 
@@ -108,7 +108,7 @@ oSpanElement & oSpanElement::EndTag ()
 {
 	std::cout.put ('<');
 	std::cout.put ('/');
-	if (*this->mscope) 
+	if (* this->mscope) 
 	{
 		std::cout << this->mscope;
 		std::cout.put (':');
@@ -117,7 +117,7 @@ oSpanElement & oSpanElement::EndTag ()
 	oSpanElement::i18nAttributes.write ();
 	oSpanElement::CoreAttributes.write ();
 	std::cout.put ('>');
-	return (*this);
+	return (* this);
 }
 
 

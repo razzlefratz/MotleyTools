@@ -27,14 +27,14 @@ class __declspec (dllexport) osuffix
 public:
 	osuffix ();
 	virtual ~ osuffix ();
-	void define (char const *symbol, char const *string);
-	char const *lookup (char const *symbol);
+	void define (char const * symbol, char const * string);
+	char const * lookup (char const * symbol);
 private:
 	char m_char;
-	char *m_text;
-	osuffix *m_prior;
-	osuffix *m_after;
-	osuffix *m_equal;
+	char * m_text;
+	osuffix * m_prior;
+	osuffix * m_after;
+	osuffix * m_equal;
 };
 
 

@@ -31,7 +31,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const *ocatalog::title () const 
+char const * ocatalog::title () const 
 
 {
 	return (this->mlist->title ());
@@ -46,11 +46,11 @@ char const *ocatalog::title () const
  *
  *--------------------------------------------------------------------*/
 
-ocatalog & ocatalog::title (char const *string) 
+ocatalog & ocatalog::title (char const * string) 
 
 {
 	this->mlist->title (string);
-	return (*this);
+	return (* this);
 }
 
 
@@ -61,7 +61,7 @@ ocatalog & ocatalog::title (char const *string)
  *
  *--------------------------------------------------------------------*/
 
-char const *ocatalog::symbol () 
+char const * ocatalog::symbol () 
 
 {
 	oitem * item = this->mlist->item ();
@@ -76,7 +76,7 @@ char const *ocatalog::symbol ()
  *
  *--------------------------------------------------------------------*/
 
-char const *ocatalog::string () 
+char const * ocatalog::string () 
 
 {
 	oitem * item = this->mlist->item ();
@@ -91,7 +91,7 @@ char const *ocatalog::string ()
  *
  *--------------------------------------------------------------------*/
 
-char const *ocatalog::symbols (unsigned index) 
+char const * ocatalog::symbols (unsigned index) 
 
 {
 	oitem * item = this->mlist->items (index);
@@ -106,7 +106,7 @@ char const *ocatalog::symbols (unsigned index)
  *
  *--------------------------------------------------------------------*/
 
-char const *ocatalog::strings (unsigned index) 
+char const * ocatalog::strings (unsigned index) 
 
 {
 	oitem * item = this->mlist->items (index);
@@ -121,7 +121,7 @@ char const *ocatalog::strings (unsigned index)
  *
  *--------------------------------------------------------------------*/
 
-bool ocatalog::related (char const *symbol, char const *string) 
+bool ocatalog::related (char const * symbol, char const * string) 
 
 {
 	return (this->mlist->defined (symbol, string));
@@ -135,7 +135,7 @@ bool ocatalog::related (char const *symbol, char const *string)
  *
  *--------------------------------------------------------------------*/
 
-unsigned ocatalog::indexof (char const *symbol, char const *string) 
+unsigned ocatalog::indexof (char const * symbol, char const * string) 
 
 {
 	return (this->mlist->indexof (symbol, string));
@@ -149,7 +149,7 @@ unsigned ocatalog::indexof (char const *symbol, char const *string)
  *
  *--------------------------------------------------------------------*/
 
-bool ocatalog::relate (char const *major, char const *minor) 
+bool ocatalog::relate (char const * major, char const * minor) 
 
 {
 	oitem * item = this->mlist->item (major, minor);
@@ -174,7 +174,7 @@ ocatalog & ocatalog::clear ()
 
 {
 	this->mlist->clear ();
-	return (*this);
+	return (* this);
 }
 
 

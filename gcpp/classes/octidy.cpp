@@ -55,7 +55,6 @@ signed octidy::atheros (signed c, signed e)
 			c = std::cin.get ();
 			continue;
 		}
-
 #if 0
 
 		if (c == '\\') 
@@ -73,7 +72,6 @@ signed octidy::atheros (signed c, signed e)
 			}
 			continue;
 		}
-
 #endif
 
 		if (c == '#') 
@@ -169,6 +167,7 @@ signed octidy::charlie (signed c, signed e)
 {
 	signed level = 0;
 	signed space = 0;
+	c = ocomment::preamble (c);
 	while ((c != e) && (c != EOF)) 
 	{
 		if (oascii::isspace (c)) 
@@ -176,7 +175,6 @@ signed octidy::charlie (signed c, signed e)
 			c = std::cin.get ();
 			continue;
 		}
-
 #if 0
 
 		if (c == '\\') 
@@ -194,7 +192,6 @@ signed octidy::charlie (signed c, signed e)
 			}
 			continue;
 		}
-
 #endif
 
 		if (c == '#') 
@@ -245,9 +242,10 @@ signed octidy::charlie (signed c, signed e)
 			while (c == ';');
 			if (!level) 
 			{
-				octidy::space (1);
+				octidy::space (2);
+				c = ocomment::preamble (c);
 			}
-			space = 2;
+			space = 1;
 			continue;
 		}
 		if ((c == ',') || (c == ';') || (c == ':')) 
@@ -373,13 +371,13 @@ signed octidy::statement (signed c, signed level, signed space)
 
 {
 	char string [512];
-	char *sp = string;
+	char * sp = string;
 	while (oascii::isalnum (c) || (c == '_')) 
 	{
-		*sp++ = c;
+		* sp++ = c;
 		c = std::cin.get ();
 	}
-	*sp = (char) (0);
+	* sp = (char) (0);
 	if (sp == string) 
 	{
 		octidy::level (level);
@@ -445,7 +443,7 @@ signed octidy::statement (signed c, signed level, signed space)
 signed octidy::context (signed c, char const * charset) const 
 
 {
-	while ((c) && !std::strchr (charset, c) && (c != EOF)) 
+	while ((c) && (c != EOF) && !std::strchr (charset, c)) 
 	{
 		c = octidy::context (c);
 	}
@@ -471,6 +469,7 @@ signed octidy::context (signed c, signed o, signed e) const
 	c = octidy::keep (c);
 	return (c);
 }
+
 
 signed octidy::inner_context (signed c, signed o, signed e) const 
 
@@ -504,6 +503,7 @@ signed octidy::context (signed c, signed e) const
 	return (c);
 }
 
+
 signed octidy::inner_context (signed c, signed e) const 
 
 {
@@ -531,7 +531,15 @@ signed octidy::context (signed c) const
 	if (oascii::isspace (c)) 
 	{
 		c = octidy::find (c);
-		if ((c == '.') || (c == ',') || (c == ';') || (c == ':') || (c == '?')) 
+		if ((c == '.')) 
+		{
+			return (c);
+		}
+		if ((c == ',') || (c == ';')) 
+		{
+			return (c);
+		}
+		if ((c == '?') || (c == ':')) 
 		{
 			return (c);
 		}
@@ -539,22 +547,7 @@ signed octidy::context (signed c) const
 		{
 			return (c);
 		}
-		std::cout.put (' ');
-	}
-	else if ((c == '.')) 
-	{
-		c = octidy::keep (c);
-		c = octidy::find (c);
-	}
-	else if ((c == ',') || (c == ';') || (c == '?')) 
-	{
-		c = octidy::keep (c);
-		c = octidy::find (c);
-		std::cout.put (' ');
-	}
-	else if (oascii::isquote (c)) 
-	{
-		c = octidy::literal (c);
+  		std::cout.put (' ');
 	}
 	else if (oascii::isalpha (c) || (c == '_')) 
 	{
@@ -564,9 +557,124 @@ signed octidy::context (signed c) const
 			std::cout.put (' ');
 		}
 	}
+	else if ((c == '.')) 
+	{
+		c = octidy::keep (c);
+		c = octidy::find (c);
+	}
+	else if ((c == ',') || (c == ';')) 
+	{
+		c = octidy::keep (c);
+		c = octidy::find (c);
+		std::cout.put (' ');
+	}
+	else if (oascii::isquote (c)) 
+	{
+		c = octidy::literal (c);
+	}
+	else if ((c == '~') || (c == '^'))
+	{
+		c = octidy::keep (c);
+		if (c == '=')
+		{
+			c = octidy::keep (c);
+		}
+	}
+	else if ((c == '=') || (c == '!'))
+	{
+		c = octidy::keep (c);
+		if (c == '=')
+		{
+			c = octidy::keep (c);
+		}
+	}
+	else if ((c == '+') || (c == '-'))
+	{
+		char o = c;
+		c = octidy::keep (c);
+		if (c == o)
+		{
+			c = octidy::keep (c);
+			return (c);
+		}
+		if (c == '=')
+		{
+			c = octidy::keep (c);
+		}
+	}
+	else if ((c == '&') || (c == '|'))
+	{
+		char o = c;
+		c = octidy::keep (c);
+		if (c == o)
+		{
+			c = octidy::keep (c);
+			return (c);
+		}
+		if (c == '=')
+		{
+			c = octidy::keep (c);
+		}
+	}
+	else if ((c == '<') || (c == '>'))
+	{
+		char o = c;
+		c = octidy::keep (c);
+		if (c == o)
+		{
+			c = octidy::keep (c);
+		}
+		if (c == '=')
+		{
+			c = octidy::keep (c);
+		}
+	}
+	else if ((c == '?') || (c == ':'))
+	{
+		char o = c;
+		c = octidy::keep (c);
+		if (c == o)
+		{
+			c = octidy::keep (c);
+		}
+		if (c == '=')
+		{
+			c = octidy::keep (c);
+		}
+	}
+	else if (c == '*') 
+	{
+		c = octidy::keep (c);
+		if (c == '*')
+		{
+			c = octidy::keep (c);
+			c = octidy::find (c);
+			if (oascii::isalpha (c))
+			{
+				std::cout.put (' ');
+			}
+			return (c);
+		}
+		if (c == '=')
+		{
+			c = octidy::keep (c);
+		}
+	}
 	else if (c == '/') 
 	{
-		c = octidy::comment (c);
+		c = octidy::keep (c);
+		if (c == '/') 
+		{
+			c = octidy::content (c, '\n');
+		}
+		else if (c == '*') 
+		{
+			c = octidy::content (c, '*', '/');
+		}
+		else if (c == '=')
+		{
+			c = octidy::keep (c);
+		}
 	}
 	else if (c == '#') 
 	{
@@ -643,7 +751,7 @@ signed octidy::moniker (signed c) const
 	{
 		c = octidy::keep (c);
 	}
-	while (oascii::isalnum (c) || (c == '_'));
+	while (oascii::isalnum (c) || (c == '_') || (c == '.'));
 	return (c);
 }
 
@@ -684,19 +792,18 @@ signed octidy::find (signed c) const
 signed octidy::join (signed c) const 
 
 {
-	while (c == '\\')
+	while (c == '\\') 
 	{
 		signed o = std::cin.get ();
-		if ((o != '\r') && (o != '\n'))
+		if ((o != '\r') && (o != '\n')) 
 		{
 			std::cout.put (c);
 			std::cout.put (o);
 		}
 		c = std::cin.get ();
-	} 
+	}
 	return (c);
 }
-
 
 
 /*====================================================================*

@@ -52,7 +52,7 @@ onode & onode::node (onode * node)
 
 {
 	this->mnode = node;
-	return (*this);
+	return (* this);
 }
 
 
@@ -64,7 +64,7 @@ onode & onode::node (onode * node)
  *
  *--------------------------------------------------------------------*/
 
-char const *onode::name () const 
+char const * onode::name () const 
 
 {
 	return (this->mname);
@@ -84,7 +84,7 @@ onode & onode::name (char const * name)
 
 {
 	this->mname = otext::replace (this->mname, name);
-	return (*this);
+	return (* this);
 }
 
 
@@ -96,7 +96,7 @@ onode & onode::name (char const * name)
  *
  *--------------------------------------------------------------------*/
 
-char const *onode::text () const 
+char const * onode::text () const 
 
 {
 	return (this->mtext);
@@ -116,7 +116,7 @@ onode & onode::text (char const * text)
 
 {
 	this->mtext = otext::replace (this->mtext, text);
-	return (*this);
+	return (* this);
 }
 
 
@@ -128,7 +128,7 @@ onode & onode::text (char const * text)
  *
  *--------------------------------------------------------------------*/
 
-void *onode::data () const 
+void * onode::data () const 
 
 {
 	return (this->mdata);
@@ -143,11 +143,11 @@ void *onode::data () const
  *
  *--------------------------------------------------------------------*/
 
-onode & onode::data (void *data) 
+onode & onode::data (void * data) 
 
 {
 	this->mdata = data;
-	return (*this);
+	return (* this);
 }
 
 
@@ -176,7 +176,7 @@ onode & onode::count (size_t count)
 
 {
 	this->mcount = count;
-	return (*this);
+	return (* this);
 }
 
 
@@ -205,7 +205,7 @@ onode & onode::order (size_t order)
 
 {
 	this->morder = order;
-	return (*this);
+	return (* this);
 }
 
 
@@ -234,7 +234,7 @@ onode & onode::level (size_t level)
 
 {
 	this->mlevel = level;
-	return (*this);
+	return (* this);
 }
 
 
@@ -263,7 +263,7 @@ onode & onode::value (signed value)
 
 {
 	this->mvalue = value;
-	return (*this);
+	return (* this);
 }
 
 
@@ -281,7 +281,7 @@ onode & onode::clear ()
 	this->mcount = 0;
 	this->morder = 0;
 	this->mvalue = 0;
-	return (*this);
+	return (* this);
 }
 
 
@@ -292,7 +292,7 @@ onode & onode::clear ()
  *   
  *--------------------------------------------------------------------*/
 
-onode::onode (char const *name) 
+onode::onode (char const * name) 
 
 {
 	this->mnode = (onode *) (0);

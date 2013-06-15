@@ -28,7 +28,7 @@ oindex odate::mindex;
  *   class variables;
  *--------------------------------------------------------------------*/
 
-char const *odate::months [MONTHS_IN_YEAR+1] = 
+char const * odate::months [MONTHS_IN_YEAR+1] = 
 
 {
 	"January",
@@ -46,7 +46,8 @@ char const *odate::months [MONTHS_IN_YEAR+1] =
 	(char const *)(0)
 };
 
-char const *odate::weekdays [DAYS_IN_WEEK+1] = 
+
+char const * odate::weekdays [DAYS_IN_WEEK+1] = 
 
 {
 	"Sunday",
@@ -84,7 +85,7 @@ char const * odate::monthname (signed month)
  *
  *--------------------------------------------------------------------*/
 
-char const *odate::weekdayname (signed weekday) 
+char const * odate::weekdayname (signed weekday) 
 
 {
 	weekday = odate::mindex.qmod (weekday, DAYS_IN_WEEK);
@@ -239,12 +240,12 @@ unsigned odate::endofmonth (unsigned year, signed month)
  *
  *--------------------------------------------------------------------*/
 
-void odate::normalize (unsigned *year, signed *month) 
+void odate::normalize (unsigned * year, signed * month) 
 
 {
-	*month += *year * MONTHS_IN_YEAR;
-	*year = *month / MONTHS_IN_YEAR;
-	*month %= MONTHS_IN_YEAR;
+	* month += * year * MONTHS_IN_YEAR;
+	* year = * month / MONTHS_IN_YEAR;
+	* month %= MONTHS_IN_YEAR;
 	return;
 }
 

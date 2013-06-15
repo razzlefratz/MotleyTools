@@ -67,7 +67,7 @@ static opathspec pathspec;
 static ofilespec filespec;
 static oscantext scantext;
 static odepend sources ("project");
-static char const *folders [] = 
+static char const * folders [] = 
 
 {
 	"/usr/include",
@@ -89,7 +89,7 @@ static char const *folders [] =
  *
  *--------------------------------------------------------------------*/
 
-static void relate (char const *one, char const *two, oflagword * flags) 
+static void relate (char const * one, char const * two, oflagword * flags) 
 
 {
 	if (flags->anyset (DEPEND_B_INVERT)) 
@@ -259,4 +259,5 @@ int main (int argc, char const * argv [])
 	sources.enumerate ();
 	std::exit (0);
 }
+
 

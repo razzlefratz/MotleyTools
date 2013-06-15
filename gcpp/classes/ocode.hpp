@@ -32,15 +32,15 @@ class __declspec (dllexport) ocode
 public:
 	ocode ();
 	virtual ~ ocode ();
-	char const *label (signed value, char const *label) const;
-	signed value (char const *label, signed value) const;
+	char const * label (signed value, char const * label) const;
+	signed value (char const * label, signed value) const;
 protected:
 	const struct _code_ * mtable;
 	unsigned mcount;
 private:
 	static const struct _code_ table [];
 	static const unsigned count;
-	char const *mlabel;
+	char const * mlabel;
 	signed mvalue;
 };
 

@@ -5,7 +5,7 @@
 #include "../classes/otruth.cpp"
 #include "../classes/ocode.cpp"
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
 	otruth truth;
@@ -13,4 +13,5 @@ int main (int argc, char const *argv [])
 	cout << truth.value ("false", -1) << std::endl;
 	return (0);
 }
+
 

@@ -35,14 +35,14 @@
  *
  *--------------------------------------------------------------------*/
 
-char const *oregex::select (char const *string) const 
+char const * oregex::select (char const * string) const 
 
 {
-	if (string) while (*string) 
+	if (string) while (* string) 
 	{
 		if (size_t length = this->length (string)) 
 		{
-			char *buffer = new char [length + 1];
+			char * buffer = new char [length + 1];
 			strncpy (buffer, string, length);
 			buffer [length] = (char) (0);
 			return (buffer);
@@ -67,7 +67,7 @@ char const *oregex::select (char const *string) const
  *
  *--------------------------------------------------------------------*/
 
-char const *oregex::span (char const *literal) const 
+char const * oregex::span (char const * literal) const 
 
 {
 	char const * minimum = literal + this->mminimum;
@@ -79,7 +79,7 @@ char const *oregex::span (char const *literal) const
 	}
 	while (literal < maximum) 
 	{
-		if (!oregex::compare (this->mcharset, *literal, this->mexclude)) 
+		if (!oregex::compare (this->mcharset, * literal, this->mexclude)) 
 		{
 			break;
 		}
@@ -116,9 +116,9 @@ bool oregex::compare (char const * charset, char const character, bool exclude)
 	{
 		return (false);
 	}
-	while (*charset) 
+	while (* charset) 
 	{
-		if (*charset++ == character) 
+		if (* charset++ == character) 
 		{
 			return (!exclude);
 		}
@@ -146,7 +146,7 @@ oregex & oregex::show ()
 	{
 		this->mpattern->show ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -160,13 +160,13 @@ oregex & oregex::show ()
  *
  *--------------------------------------------------------------------*/
 
-char *oregex::fill (unsigned clower, unsigned cupper, char buffer [], size_t * length) 
+char * oregex::fill (unsigned clower, unsigned cupper, char buffer [], size_t * length) 
 
 {
-	while ((clower <= cupper) && (*length > 0)) 
+	while ((clower <= cupper) && (* length > 0)) 
 	{
-		*buffer++ = clower++;
-		(*length)--;
+		* buffer++ = clower++;
+		(* length)--;
 	}
 	return (buffer);
 }
@@ -184,7 +184,7 @@ char *oregex::fill (unsigned clower, unsigned cupper, char buffer [], size_t * l
  *
  *--------------------------------------------------------------------*/
 
-char const *oregex::charset (char const *string, char const close, char buffer [], size_t length) 
+char const * oregex::charset (char const * string, char const close, char buffer [], size_t length) 
 
 {
 	unsigned c;
@@ -192,43 +192,43 @@ char const *oregex::charset (char const *string, char const close, char buffer [
 	{
 		return (string);
 	}
-	while ((length) && (*string) && (*string != close)) 
+	while ((length) && (* string) && (* string != close)) 
 	{
-		*buffer = *string++;
-		if (*buffer == REGEX_C_ESC) 
+		* buffer = * string++;
+		if (* buffer == REGEX_C_ESC) 
 		{
-			if (*string) 
+			if (* string) 
 			{
-				*buffer = *string++;
+				* buffer = * string++;
 			}
 			buffer++;
 			continue;
 		}
-		if (*string == REGEX_C_RNG) 
+		if (* string == REGEX_C_RNG) 
 		{
 			string++;
-			if (*string > *buffer) 
+			if (* string > * buffer) 
 			{
-				if (oascii::islower (*buffer) && oascii::islower (*string)) 
+				if (oascii::islower (* buffer) && oascii::islower (* string)) 
 				{
-					buffer = oregex::fill (*buffer, *string, buffer, &length);
+					buffer = oregex::fill (* buffer, * string, buffer, &length);
 					continue;
 				}
-				if (oascii::isupper (*buffer) && oascii::isupper (*string)) 
+				if (oascii::isupper (* buffer) && oascii::isupper (* string)) 
 				{
-					buffer = oregex::fill (*buffer, *string, buffer, &length);
+					buffer = oregex::fill (* buffer, * string, buffer, &length);
 					continue;
 				}
-				if (oascii::isdigit (*buffer) && oascii::isdigit (*string)) 
+				if (oascii::isdigit (* buffer) && oascii::isdigit (* string)) 
 				{
-					buffer = oregex::fill (*buffer, *string, buffer, &length);
+					buffer = oregex::fill (* buffer, * string, buffer, &length);
 					continue;
 				}
 				buffer++;
 				string--;
 				continue;
 			}
-			if (*string < *buffer) 
+			if (* string < * buffer) 
 			{
 				buffer++;
 				string--;
@@ -236,25 +236,24 @@ char const *oregex::charset (char const *string, char const close, char buffer [
 			}
 			continue;
 		}
-
 #ifdef REGEX_LABEL_EXTENSIONS
 
-		if ((*buffer == '[') && (*string == ':')) 
+		if ((* buffer == '[') && (* string == ':')) 
 		{
-			char *symbol = buffer + 1;
-			while ((*string) && (*string != ']')) 
+			char * symbol = buffer + 1;
+			while ((* string) && (* string != ']')) 
 			{
-				while ((*string) && (*string != ':')) 
+				while ((* string) && (* string != ':')) 
 				{
-					*symbol++ = *string++;
+					* symbol++ = * string++;
 				}
-				*symbol++ = *string++;
+				* symbol++ = * string++;
 			}
-			if (*string) 
+			if (* string) 
 			{
-				*symbol++ = *string++;
+				* symbol++ = * string++;
 			}
-			*symbol = (char) (0);
+			* symbol = (char) (0);
 			if (!std::strcmp (buffer, "[:upper:]")) 
 			{
 				buffer = fill ('A', 'Z', buffer, &length);
@@ -290,7 +289,6 @@ char const *oregex::charset (char const *string, char const close, char buffer [
 				buffer = fill ('a', 'f', buffer, &length);
 				continue;
 			}
-
 #ifdef REGEX_POSIX_EXTENSIONS
 
 			if (!std::strcmp (buffer, "[:word:]")) 
@@ -307,7 +305,7 @@ char const *oregex::charset (char const *string, char const close, char buffer [
 				{
 					if (oascii::isblank (c) && (length > 0)) 
 					{
-						*buffer++ = c;
+						* buffer++ = c;
 						length--;
 					}
 				}
@@ -319,7 +317,7 @@ char const *oregex::charset (char const *string, char const close, char buffer [
 				{
 					if (oascii::isspace (c) && (length > 0)) 
 					{
-						*buffer++ = c;
+						* buffer++ = c;
 						length--;
 					}
 				}
@@ -331,7 +329,7 @@ char const *oregex::charset (char const *string, char const close, char buffer [
 				{
 					if (oascii::iscntrl (c) && (length > 0)) 
 					{
-						*buffer++ = c;
+						* buffer++ = c;
 						length--;
 					}
 				}
@@ -343,7 +341,7 @@ char const *oregex::charset (char const *string, char const close, char buffer [
 				{
 					if (oascii::ispunct (c) && (length > 0)) 
 					{
-						*buffer++ = c;
+						* buffer++ = c;
 						length--;
 					}
 				}
@@ -355,7 +353,7 @@ char const *oregex::charset (char const *string, char const close, char buffer [
 				{
 					if (oascii::isprint (c) && (length > 0)) 
 					{
-						*buffer++ = c;
+						* buffer++ = c;
 						length--;
 					}
 				}
@@ -367,7 +365,7 @@ char const *oregex::charset (char const *string, char const close, char buffer [
 				{
 					if (oascii::isgraph (c) && (length > 0)) 
 					{
-						*buffer++ = c;
+						* buffer++ = c;
 						length--;
 					}
 				}
@@ -376,13 +374,12 @@ char const *oregex::charset (char const *string, char const close, char buffer [
 			buffer = symbol;
 			continue;
 		}
-
 #endif
 #endif
 
 		buffer++;
 	}
-	*buffer = (char) (0);
+	* buffer = (char) (0);
 	return (string);
 }
 
@@ -406,17 +403,17 @@ oregex::oregex (char const * string)
 	{
 		return;
 	}
-	if (*string == (char) (0)) 
+	if (* string == (char) (0)) 
 	{
 		return;
 	}
-	switch (*string) 
+	switch (* string) 
 	{
 	case (char) (REGEX_C_ESC):
 		if (*++string) 
 		{
 			this->mexclude = false;
-			this->mcharset [0] = oescape::unescape (*string);
+			this->mcharset [0] = oescape::unescape (* string);
 			this->mcharset [1] = (char) (0);
 			string++;
 		}
@@ -436,7 +433,7 @@ oregex::oregex (char const * string)
 			string++;
 		}
 		string = oregex::charset (string, REGEX_C_END, this->mcharset, UCHAR_MAX);
-		if (*string) 
+		if (* string) 
 		{
 			string++;
 		}
@@ -450,12 +447,12 @@ oregex::oregex (char const * string)
 	default:
 		this->mexclude = false;
 		this->mcharset [0] = (char) (0);
-		this->mcharset [0] = *string;
+		this->mcharset [0] = * string;
 		this->mcharset [1] = (char) (0);
 		string++;
 		break;
 	}
-	switch (*string) 
+	switch (* string) 
 	{
 	case REGEX_C_KLEENE_ONCE:
 		this->mminimum = 0;
@@ -477,7 +474,7 @@ oregex::oregex (char const * string)
 		this->mmaximum = 1;
 		break;
 	}
-	if (*string) 
+	if (* string) 
 	{
 		this->mpattern = new oregex (string);
 	}

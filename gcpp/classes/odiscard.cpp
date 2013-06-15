@@ -38,7 +38,7 @@
  *   
  *--------------------------------------------------------------------*/
 
-signed odiscard::context (signed c, char const *charset) const 
+signed odiscard::context (signed c, char const * charset) const 
 
 {
 	while ((c) && !std::strchr (charset, c) && (c != EOF)) 
@@ -72,6 +72,7 @@ signed odiscard::context (signed c, signed o, signed e) const
 	c = std::cin.get ();
 	return (c);
 }
+
 
 signed odiscard::inner_context (signed c, signed o, signed e) const 
 
@@ -108,6 +109,7 @@ signed odiscard::context (signed c, signed e) const
 	c = std::cin.get ();
 	return (c);
 }
+
 
 signed odiscard::inner_context (signed c, signed e) const 
 
@@ -220,6 +222,7 @@ signed odiscard::content (signed c, signed o, signed e) const
 	return (c);
 }
 
+
 signed odiscard::inner_content (signed c, signed o, signed e) const 
 
 {
@@ -255,6 +258,7 @@ signed odiscard::content (signed c, signed e) const
 	return (c);
 }
 
+
 signed odiscard::inner_content (signed c, signed e) const 
 
 {
@@ -289,6 +293,7 @@ signed odiscard::command (signed c) const
 	return (c);
 }
 
+
 signed odiscard::command (signed c, signed e) const 
 
 {
@@ -297,6 +302,7 @@ signed odiscard::command (signed c, signed e) const
 	c = std::cin.get ();
 	return (c);
 }
+
 
 signed odiscard::inner_command (signed c, signed e) const 
 
@@ -342,6 +348,7 @@ signed odiscard::literal (signed c) const
 	return (c);
 }
 
+
 signed odiscard::literal (signed c, signed e) const 
 
 {
@@ -350,6 +357,7 @@ signed odiscard::literal (signed c, signed e) const
 	c = std::cin.get ();
 	return (c);
 }
+
 
 signed odiscard::inner_literal (signed c, signed e) const 
 

@@ -27,16 +27,16 @@ class __declspec (dllexport) onode: private otext
 {
 public:
 	onode ();
-	onode (char const *name);
+	onode (char const * name);
 	virtual ~ onode ();
 	onode * node () const;
-	char const *name () const;
-	char const *text () const;
-	void *data () const;
+	char const * name () const;
+	char const * text () const;
+	void * data () const;
 	onode & node (onode * node);
-	onode & name (char const *name);
-	onode & text (char const *text);
-	onode & data (void *data);
+	onode & name (char const * name);
+	onode & text (char const * text);
+	onode & data (void * data);
 	size_t order () const;
 	size_t count () const;
 	size_t level () const;
@@ -48,9 +48,9 @@ public:
 	onode & clear ();
 private:
 	onode * mnode;
-	char *mname;
-	char *mtext;
-	void *mdata;
+	char * mname;
+	char * mtext;
+	void * mdata;
 	size_t mlevel;
 	size_t mcount;
 	size_t morder;

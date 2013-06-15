@@ -35,7 +35,7 @@ oi18nAttributes & oi18nAttributes::write ()
 {
 	this->LanguageAttribute->write ();
 	this->DirectionAttribute->write ();
-	return (*this);
+	return (* this);
 }
 
 

@@ -34,7 +34,7 @@
  *
  *--------------------------------------------------------------------*/
 
-void *okeep::store (char const *string, void *object) 
+void * okeep::store (char const * string, void * object) 
 
 {
 	if (this->mstring == (char *) (0)) 
@@ -59,7 +59,7 @@ void *okeep::store (char const *string, void *object)
 		}
 		return (this->mafter->store (string, object));
 	}
-	void *pobject = this->mobject;
+	void * pobject = this->mobject;
 	this->mobject = object;
 	return (pobject);
 }
@@ -76,10 +76,10 @@ void *okeep::store (char const *string, void *object)
  *
  *--------------------------------------------------------------------*/
 
-void *okeep::fetch (char const *string) const 
+void * okeep::fetch (char const * string) const 
 
 {
-	const okeep *node = this;
+	const okeep * node = this;
 	while (node != (okeep *) (0)) 
 	{
 		int order = std::strcmp (string, node->mstring);

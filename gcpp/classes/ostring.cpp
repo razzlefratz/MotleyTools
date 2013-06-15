@@ -93,7 +93,7 @@ ostring & ostring::string (char const * string)
 		this->mstring = new char [this->mlength + 1];
 		std::strcpy (this->mstring, string);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -425,7 +425,7 @@ bool ostring::incharset (char const * charset) const
 ostring & ostring::read (char const * filename) 
 
 {
-	if ((filename) && (*filename)) 
+	if ((filename) && (* filename)) 
 	{
 		std::ifstream stream;
 		stream.open (filename, std::ios::binary);
@@ -435,7 +435,7 @@ ostring & ostring::read (char const * filename)
 		}
 		stream.close ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -462,7 +462,7 @@ ostring & ostring::read ()
 	std::cin.read (this->mstring, length);
 	this->mstring [length] = (char)(0);
 	this->mlength = length;
-	return (*this);
+	return (* this);
 }
 
 
@@ -489,7 +489,7 @@ ostring & ostring::read (std::ifstream * stream)
 	stream->read (this->mstring, length);
 	this->mstring [length] = (char)(0);
 	this->mlength = length;
-	return (*this);
+	return (* this);
 }
 
 
@@ -540,24 +540,24 @@ char const * ostring::field (size_t start, size_t count)
 ostring & ostring::trim (char const * charset) 
 
 {
-	char *first = this->mstring;
-	char *final = this->mstring + this->mlength - 1;
-	while ((first < final) && (std::strchr (charset, *first))) 
+	char * first = this->mstring;
+	char * final = this->mstring + this->mlength - 1;
+	while ((first < final) && (std::strchr (charset, * first))) 
 	{
 		first++;
 	}
-	while ((first < final) && (std::strchr (charset, *final))) 
+	while ((first < final) && (std::strchr (charset, * final))) 
 	{
 		final--;
 	}
-	char *field = this->mstring;
+	char * field = this->mstring;
 	while (first <= final) 
 	{
-		*field++ = *first++;
+		* field++ = * first++;
 	}
-	*first = (char) (0);
+	* first = (char) (0);
 	this->mlength = (size_t) (first - this->mstring);
-	return (*this);
+	return (* this);
 }
 
 
@@ -581,10 +581,10 @@ ostring & ostring::trim (char const * charset)
 ostring & ostring::enclose (char const * example) 
 
 {
-	if ((example) && (*example)) 
+	if ((example) && (* example)) 
 	{
 		size_t length = std::strlen (example);
-		char *buffer = this->mstring;
+		char * buffer = this->mstring;
 		this->mstring = new char [this->mlength + 3];
 		this->mstring [0] = example [0];
 		std::strcpy (&this->mstring [1], buffer);
@@ -592,7 +592,7 @@ ostring & ostring::enclose (char const * example)
 		this->mstring [++this->mlength] = (char) (0);
 		delete [] buffer;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -611,13 +611,13 @@ ostring & ostring::enclose (char const * example)
 ostring & ostring::prefix (char const * string) 
 
 {
-	char *buffer = this->mstring;
+	char * buffer = this->mstring;
 	this->mlength += std::strlen (string);
 	this->mstring = new char [this->mlength + 1];
 	std::strcpy (this->mstring, string);
 	std::strcat (this->mstring, buffer);
 	delete [] buffer;
-	return (*this);
+	return (* this);
 }
 
 
@@ -636,13 +636,13 @@ ostring & ostring::prefix (char const * string)
 ostring & ostring::suffix (char const * string) 
 
 {
-	char *buffer = this->mstring;
+	char * buffer = this->mstring;
 	this->mlength += std::strlen (string);
 	this->mstring = new char [this->mlength + 1];
 	std::strcpy (this->mstring, buffer);
 	std::strcat (this->mstring, string);
 	delete [] buffer;
-	return (*this);
+	return (* this);
 }
 
 
@@ -662,19 +662,19 @@ ostring & ostring::suffix (char const * string)
 ostring & ostring::reduce (char const * charset) 
 
 {
-	if ((charset) && (*charset)) 
+	if ((charset) && (* charset)) 
 	{
 		char * sp = this->mstring;
-		while (*sp) 
+		while (* sp) 
 		{
-			if (std::strchr (charset, *sp)) 
+			if (std::strchr (charset, * sp)) 
 			{
-				*sp = *charset;
+				* sp = * charset;
 			}
 			sp++;
 		}
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -694,20 +694,20 @@ ostring & ostring::reduce (char const * charset)
 ostring & ostring::select (char const * charset) 
 
 {
-	if ((charset) && (*charset)) 
+	if ((charset) && (* charset)) 
 	{
-		char *cp = this->mstring;
-		char *sp = this->mstring;
-		while ((*cp = *sp++)) 
+		char * cp = this->mstring;
+		char * sp = this->mstring;
+		while ((* cp = * sp++)) 
 		{
-			if (std::strchr (charset, *cp)) 
+			if (std::strchr (charset, * cp)) 
 			{
 				cp++;
 			}
 		}
 		this->mlength = (size_t) (cp - this->mstring);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -727,20 +727,20 @@ ostring & ostring::select (char const * charset)
 ostring & ostring::remove (char const * charset) 
 
 {
-	if ((charset) && (*charset)) 
+	if ((charset) && (* charset)) 
 	{
-		char *cp = this->mstring;
-		char *sp = this->mstring;
-		while ((*cp = *sp++)) 
+		char * cp = this->mstring;
+		char * sp = this->mstring;
+		while ((* cp = * sp++)) 
 		{
-			if (!std::strchr (charset, *cp)) 
+			if (!std::strchr (charset, * cp)) 
 			{
 				cp++;
 			}
 		}
 		this->mlength = (size_t) (cp - this->mstring);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -760,7 +760,7 @@ ostring & ostring::tolower ()
 
 {
 	ostring::chrlwr.convert (this->mstring);
-	return (*this);
+	return (* this);
 }
 
 
@@ -780,7 +780,7 @@ ostring & ostring::toupper ()
 
 {
 	ostring::chrupr.convert (this->mstring);
-	return (*this);
+	return (* this);
 }
 
 
@@ -803,7 +803,7 @@ ostring & ostring::clear ()
 	this->mstring = new char [1];
 	this->mstring [0] = (char) (0);
 	this->mlength = 0;
-	return (*this);
+	return (* this);
 }
 
 
@@ -842,16 +842,16 @@ signed ostring::compare (register char const * string1, register char const * st
 	{
 		return (+1);
 	}
-	while (ct [(unsigned) (*string1)] == ct [(unsigned) (*string2)]) 
+	while (ct [(unsigned) (* string1)] == ct [(unsigned) (* string2)]) 
 	{
-		if (ct [(unsigned) (*string1)] == (char) (0)) 
+		if (ct [(unsigned) (* string1)] == (char) (0)) 
 		{
 			return (0);
 		}
 		string1++;
 		string2++;
 	}
-	return (ct [(unsigned) (*string1)] < ct [(unsigned) (*string2)]? -1: +1);
+	return (ct [(unsigned) (* string1)] < ct [(unsigned) (* string2)]? -1: +1);
 }
 
 

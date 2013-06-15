@@ -37,7 +37,7 @@ tabrule & tabrule::clear ()
 	{
 		mruler [mcolumn] = false;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -55,7 +55,7 @@ tabrule & tabrule::reset ()
 	{
 		mruler [mcolumn] = mcolumn % mindent? false: true;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -149,7 +149,7 @@ tabrule & tabrule::tabset (unsigned column, signed indent)
 	{
 		mruler [column] = true;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -169,6 +169,7 @@ tabrule::tabrule (unsigned margin, signed indent)
 	}
 };
 
+
 tabrule::tabrule () 
 
 {
@@ -176,6 +177,7 @@ tabrule::tabrule ()
 	mindent = 0x08;
 	mruler = new bool [mmargin];
 };
+
 
 tabrule::~tabrule () 
 

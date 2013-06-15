@@ -77,7 +77,7 @@ unsigned oqueue::count () const
 
 {
 	unsigned counter = 0;
-	oqueue *temp = this->mhead;
+	oqueue * temp = this->mhead;
 	while (temp != this) 
 	{
 		temp = temp->mhead;
@@ -139,7 +139,7 @@ void * oqueue::data () const
  *
  *--------------------------------------------------------------------*/
 
-oqueue *oqueue::head () const 
+oqueue * oqueue::head () const 
 
 {
 	return (this->mhead);
@@ -185,7 +185,7 @@ oqueue & oqueue::insert (void * data)
 	temp->mhead = this->mhead;
 	this->mhead->mtail = temp;
 	this->mhead = temp;
-	return (*this);
+	return (* this);
 }
 
 
@@ -209,7 +209,7 @@ oqueue & oqueue::append (void * data)
 	temp->mtail = this->mtail;
 	this->mtail->mhead = temp;
 	this->mtail = temp;
-	return (*this);
+	return (* this);
 }
 
 
@@ -232,7 +232,7 @@ oqueue & oqueue::remove ()
 	{
 		delete this->mhead;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -255,7 +255,7 @@ oqueue & oqueue::unwind ()
 	{
 		delete this->mtail;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -283,7 +283,7 @@ oqueue & oqueue::attach (oqueue * queue)
 	temp = queue->mtail;
 	queue->mtail = this->mtail;
 	this->mtail = temp;
-	return (*queue);
+	return (* queue);
 }
 
 
@@ -305,7 +305,7 @@ oqueue & oqueue::detach ()
 	this->mtail->mhead = this->mhead;
 	this->mtail = this;
 	this->mhead = this;
-	return (*this);
+	return (* this);
 }
 
 
@@ -327,7 +327,7 @@ oqueue & oqueue::clear ()
 	{
 		delete this->mhead;
 	}
-	return (*this);
+	return (* this);
 }
 
 

@@ -37,7 +37,7 @@ public:
 	const unsigned char * number () const;
 	char const * string () const;
 	errno_t error () const;
-	oMACAddress & spec (char const *string);
+	oMACAddress & spec (char const * string);
 	oMACAddress & encode (char const * string);
 	oMACAddress & decode (const unsigned char []);
 private:

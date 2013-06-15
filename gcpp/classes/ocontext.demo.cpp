@@ -44,7 +44,7 @@ static ocontext context;
  *
  *--------------------------------------------------------------------*/
 
-static void show (char const *literal, unsigned c, bool mode) 
+static void show (char const * literal, unsigned c, bool mode) 
 
 {
 	std::cout << "literal=[" << literal << "]" << std::endl;
@@ -61,10 +61,10 @@ static void show (char const *literal, unsigned c, bool mode)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
-	static char const *optv [] = 
+	static char const * optv [] = 
 	{
 		"p:s:h",
 		PUTOPTV_S_FILTER,
@@ -84,38 +84,39 @@ int main (int argc, char const *argv [])
 		switch ((char) (c)) 
 		{
 		case 'p':
-			prefix = *getopt.optarg ();
+			prefix = * getopt.optarg ();
 			break;
 		case 's':
-			suffix = *getopt.optarg ();
+			suffix = * getopt.optarg ();
 			break;
 		default:
 			break;
 		}
 	}
-	while ((getopt.argc () > 0) && (*getopt.argv () != (char *) (0))) 
+	while ((getopt.argc () > 0) && (* getopt.argv () != (char *) (0))) 
 	{
 		std::cout << "first" << std::endl;
-		context.split (*getopt.argv (), prefix, true, true);
-		show (*getopt.argv (), prefix, true);
-		context.split (*getopt.argv (), prefix, true, false);
-		show (*getopt.argv (), prefix, false);
-		context.split (*getopt.argv (), suffix, true, true);
-		show (*getopt.argv (), suffix, true);
-		context.split (*getopt.argv (), suffix, true, false);
-		show (*getopt.argv (), suffix, false);
+		context.split (* getopt.argv (), prefix, true, true);
+		show (* getopt.argv (), prefix, true);
+		context.split (* getopt.argv (), prefix, true, false);
+		show (* getopt.argv (), prefix, false);
+		context.split (* getopt.argv (), suffix, true, true);
+		show (* getopt.argv (), suffix, true);
+		context.split (* getopt.argv (), suffix, true, false);
+		show (* getopt.argv (), suffix, false);
 		std::cout << "split" << std::endl;
-		context.split (*getopt.argv (), prefix, false, true);
-		show (*getopt.argv (), prefix, true);
-		context.split (*getopt.argv (), prefix, false, false);
-		show (*getopt.argv (), prefix, false);
-		context.split (*getopt.argv (), suffix, false, true);
-		show (*getopt.argv (), suffix, true);
-		context.split (*getopt.argv (), suffix, false, false);
-		show (*getopt.argv (), suffix, false);
+		context.split (* getopt.argv (), prefix, false, true);
+		show (* getopt.argv (), prefix, true);
+		context.split (* getopt.argv (), prefix, false, false);
+		show (* getopt.argv (), prefix, false);
+		context.split (* getopt.argv (), suffix, false, true);
+		show (* getopt.argv (), suffix, true);
+		context.split (* getopt.argv (), suffix, false, false);
+		show (* getopt.argv (), suffix, false);
 		std::cout << std::endl;
 		getopt++;
 	}
 	exit (0);
 }
+
 

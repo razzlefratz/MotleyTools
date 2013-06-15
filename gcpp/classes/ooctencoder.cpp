@@ -30,15 +30,15 @@ char const ooctencoder::mdigit [] = "01234567";
  *
  *--------------------------------------------------------------------*/
 
-char *ooctencoder::decode (char *string) 
+char * ooctencoder::decode (char * string) 
 
 {
-	char *target = string;
+	char * target = string;
 	if (string) 
 	{
-		while ((*target = *string) != (char) (0)) 
+		while ((* target = * string) != (char) (0)) 
 		{
-			if (*string == '\\') 
+			if (* string == '\\') 
 			{
 				unsigned m,
 				n,
@@ -55,7 +55,7 @@ char *ooctencoder::decode (char *string)
 				{
 					continue;
 				}
-				*target = (char) ((m << 6) + (n << 3) + (o << 0));
+				* target = (char) ((m << 6) + (n << 3) + (o << 0));
 				string += 3;
 			}
 			target++;

@@ -52,27 +52,27 @@ huge_t onumber::uintspec (char const * string, huge_t minimum, huge_t maximum)
 	unsigned radix = DEC_RADIX;
 	unsigned digit;
 	huge_t value = 0;
-	if (*number == '0') 
+	if (* number == '0') 
 	{
 		number++;
-		if ((*number == 'b') || (*number == 'B')) 
+		if ((* number == 'b') || (* number == 'B')) 
 		{
 			radix = BIN_RADIX;
 			number++;
 		}
-		else if ((*number == 'x') || (*number == 'X')) 
+		else if ((* number == 'x') || (* number == 'X')) 
 		{
 			radix = HEX_RADIX;
 			number++;
 		}
 	}
-	while ((digit = onumber::todigit (*number)) < radix) 
+	while ((digit = onumber::todigit (* number)) < radix) 
 	{
 		value *= radix;
 		value += digit;
 		number++;
 	}
-	if (*number) 
+	if (* number) 
 	{
 		oerror::error (1, EINVAL, "Have '%s' but want an unsigned integer", string);
 	}
@@ -121,20 +121,20 @@ huge_t onumber::basespec (char const * string, unsigned base, unsigned size)
 	{
 		radix = base;
 	}
-	if (*number == '0') 
+	if (* number == '0') 
 	{
 		number++;
-		if ((*number == 'b') || (*number == 'B')) 
+		if ((* number == 'b') || (* number == 'B')) 
 		{
 			radix = BIN_RADIX;
 			number++;
 		}
-		else if ((*number == 'd') || (*number == 'D')) 
+		else if ((* number == 'd') || (* number == 'D')) 
 		{
 			radix = DEC_RADIX;
 			number++;
 		}
-		else if ((*number == 'x') || (*number == 'X')) 
+		else if ((* number == 'x') || (* number == 'X')) 
 		{
 			radix = HEX_RADIX;
 			number++;
@@ -144,7 +144,7 @@ huge_t onumber::basespec (char const * string, unsigned base, unsigned size)
 	{
 		oerror::error (1, EINVAL, "%s is not base %d notation", string, base);
 	}
-	while ((digit = onumber::todigit (*number)) < radix) 
+	while ((digit = onumber::todigit (* number)) < radix) 
 	{
 		value *= radix;
 		value += digit;
@@ -154,17 +154,15 @@ huge_t onumber::basespec (char const * string, unsigned base, unsigned size)
 		}
 		number++;
 	}
-
 #ifdef WIN32
 
-	while (std::isspace (*number)) 
+	while (std::isspace (* number)) 
 	{
 		number++;
 	}
-
 #endif
 
-	if (*number) 
+	if (* number) 
 	{
 		oerror::error (1, EINVAL, "%s is not base %d notation", string, radix);
 	}
@@ -199,17 +197,17 @@ size_t onumber::ipv4spec (char const * string, void * memory)
 	byte * extent = offset + IPv4_SIZE;
 	unsigned radix = DEC_RADIX;
 	unsigned digit = 0;
-	while ((*number) && (offset < extent)) 
+	while ((* number) && (offset < extent)) 
 	{
 		unsigned value = 0;
 		if (offset > origin) 
 		{
-			if (*number == DEC_EXTENDER) 
+			if (* number == DEC_EXTENDER) 
 			{
 				number++;
 			}
 		}
-		while ((digit = onumber::todigit (*number)) < radix) 
+		while ((digit = onumber::todigit (* number)) < radix) 
 		{
 			value *= radix;
 			value += digit;
@@ -219,23 +217,21 @@ size_t onumber::ipv4spec (char const * string, void * memory)
 			}
 			number++;
 		}
-		*offset++ = value;
+		* offset++ = value;
 	}
-
 #if defined (WIN32)
 
-	while (std::isspace (*number)) 
+	while (std::isspace (* number)) 
 	{
 		number++;
 	}
-
 #endif
 
 	if (offset < extent) 
 	{
 		oerror::error (1, EINVAL, "IPv4 '%s' has only %d octets", string, offset - origin);
 	}
-	if (*number) 
+	if (* number) 
 	{
 		oerror::error (1, EINVAL, "IPv4 '%s' contains trash '%s'", string, number);
 	}
@@ -268,21 +264,21 @@ size_t onumber::ipv6spec (char const * string, void * memory)
 	byte * marker = offset + IPv6_SIZE;
 	unsigned radix = HEX_RADIX;
 	unsigned digit = 0;
-	while ((*number) && (offset < extent)) 
+	while ((* number) && (offset < extent)) 
 	{
 		uint32_t value = 0;
 		if (offset > origin) 
 		{
-			if (*number == HEX_EXTENDER) 
+			if (* number == HEX_EXTENDER) 
 			{
 				number++;
 			}
-			if (*number == HEX_EXTENDER) 
+			if (* number == HEX_EXTENDER) 
 			{
 				marker = offset;
 			}
 		}
-		while ((digit = onumber::todigit (*number)) < radix) 
+		while ((digit = onumber::todigit (* number)) < radix) 
 		{
 			value *= radix;
 			value += digit;
@@ -292,20 +288,18 @@ size_t onumber::ipv6spec (char const * string, void * memory)
 			}
 			number++;
 		}
-		*offset++ = (byte)(value >> 8);
-		*offset++ = (byte)(value >> 0);
+		* offset++ = (byte)(value >> 8);
+		* offset++ = (byte)(value >> 0);
 	}
-
 #if defined (WIN32)
 
-	while (std::isspace (*number)) 
+	while (std::isspace (* number)) 
 	{
 		number++;
 	}
-
 #endif
 
-	if (*number) 
+	if (* number) 
 	{
 		oerror::error (1, EINVAL, "IPv6 '%s' includes trash '%s'", string, number);
 	}
@@ -358,17 +352,17 @@ void * onumber::ipv4encode (char const * string, void * memory)
 	byte * extent = offset + IPv4_SIZE;
 	unsigned radix = DEC_RADIX;
 	unsigned digit = 0;
-	while ((*number) && (offset < extent)) 
+	while ((* number) && (offset < extent)) 
 	{
 		unsigned value = 0;
 		if (offset > origin) 
 		{
-			if (*number == DEC_EXTENDER) 
+			if (* number == DEC_EXTENDER) 
 			{
 				number++;
 			}
 		}
-		while ((digit = onumber::todigit (*number)) < radix) 
+		while ((digit = onumber::todigit (* number)) < radix) 
 		{
 			value *= radix;
 			value += digit;
@@ -378,23 +372,21 @@ void * onumber::ipv4encode (char const * string, void * memory)
 			}
 			number++;
 		}
-		*offset++ = value;
+		* offset++ = value;
 	}
-
 #if defined (WIN32)
 
-	while (std::isspace (*number)) 
+	while (std::isspace (* number)) 
 	{
 		number++;
 	}
-
 #endif
 
 	if (offset < extent) 
 	{
 		oerror::error (1, EINVAL, "IPv4 '%s' has only %d octets", string, offset - origin);
 	}
-	if (*number) 
+	if (* number) 
 	{
 		oerror::error (1, EINVAL, "IPv4 '%s' contains trash '%s'", string, number);
 	}
@@ -427,21 +419,21 @@ void * onumber::ipv6encode (char const * string, void * memory)
 	byte * marker = offset + IPv6_SIZE;
 	unsigned radix = HEX_RADIX;
 	unsigned digit = 0;
-	while ((*number) && (offset < extent)) 
+	while ((* number) && (offset < extent)) 
 	{
 		uint32_t value = 0;
 		if (offset > origin) 
 		{
-			if (*number == HEX_EXTENDER) 
+			if (* number == HEX_EXTENDER) 
 			{
 				number++;
 			}
-			if (*number == HEX_EXTENDER) 
+			if (* number == HEX_EXTENDER) 
 			{
 				marker = offset;
 			}
 		}
-		while ((digit = onumber::todigit (*number)) < radix) 
+		while ((digit = onumber::todigit (* number)) < radix) 
 		{
 			value *= radix;
 			value += digit;
@@ -451,20 +443,18 @@ void * onumber::ipv6encode (char const * string, void * memory)
 			}
 			number++;
 		}
-		*offset++ = (byte)(value >> 8);
-		*offset++ = (byte)(value >> 0);
+		* offset++ = (byte)(value >> 8);
+		* offset++ = (byte)(value >> 0);
 	}
-
 #if defined (WIN32)
 
-	while (std::isspace (*number)) 
+	while (std::isspace (* number)) 
 	{
 		number++;
 	}
-
 #endif
 
-	if (*number) 
+	if (* number) 
 	{
 		oerror::error (1, EINVAL, "IPv6 '%s' includes trash '%s'", string, number);
 	}

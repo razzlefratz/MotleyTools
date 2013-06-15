@@ -69,7 +69,7 @@ oinclude & oinclude::state (signed state)
 		state = -1;
 	}
 	this->mstate = state;
-	return (*this);
+	return (* this);
 }
 
 
@@ -86,26 +86,26 @@ oinclude & oinclude::state (signed state)
  *
  *--------------------------------------------------------------------*/
 
-oinclude & oinclude::filename (char const *string) 
+oinclude & oinclude::filename (char const * string) 
 
 {
 	char buffer [FILENAME_MAX];
-	char *sp = buffer;
-	char const *cp;
-	for (cp = string; *string; string++) 
+	char * sp = buffer;
+	char const * cp;
+	for (cp = string; * string; string++) 
 	{
-		if ((*string == '/') || (*string == '\\')) 
+		if ((* string == '/') || (* string == '\\')) 
 		{
 			cp = string + 1;
 		}
 	}
-	while ((*cp) && (*cp != '.')) 
+	while ((* cp) && (* cp != '.')) 
 	{
-		*sp++ = toupper (*cp++);
+		* sp++ = toupper (* cp++);
 	}
-	*sp = (char) (0);
+	* sp = (char) (0);
 	this->title (buffer);
-	return (*this);
+	return (* this);
 }
 
 
@@ -140,11 +140,11 @@ char const * oinclude::title () const
  *
  *--------------------------------------------------------------------*/
 
-oinclude & oinclude::title (char const *title) 
+oinclude & oinclude::title (char const * title) 
 
 {
 	this->mtitle = oinclude::replace (this->mtitle, title);
-	return (*this);
+	return (* this);
 }
 
 
@@ -179,11 +179,11 @@ char const * oinclude::label () const
  *
  *--------------------------------------------------------------------*/
 
-oinclude & oinclude::label (char const *label) 
+oinclude & oinclude::label (char const * label) 
 
 {
 	this->mclass = oinclude::replace (this->mclass, label);
-	return (*this);
+	return (* this);
 }
 
 
@@ -210,7 +210,7 @@ oinclude & oinclude::header ()
 		std::cout << "#define " << this->mtitle << "_" << this->mclass << std::endl;
 		std::cout << std::endl;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -236,7 +236,7 @@ oinclude & oinclude::footer ()
 		std::cout << "#endif" << std::endl;
 		std::cout << std::endl;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -250,7 +250,7 @@ oinclude & oinclude::footer ()
  *
  *--------------------------------------------------------------------*/
 
-oinclude::oinclude (char const *title, char const *label) 
+oinclude::oinclude (char const * title, char const * label) 
 
 {
 	this->mtitle = oinclude::save (title);

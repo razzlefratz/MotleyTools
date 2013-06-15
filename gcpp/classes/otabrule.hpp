@@ -38,7 +38,7 @@ private:
 	unsigned mmargin;
 	unsigned mindent;
 	unsigned mcolumn;
-	bool *mruler;
+	bool * mruler;
 };
 
 

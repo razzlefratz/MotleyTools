@@ -83,6 +83,7 @@ signed ocollect::context (signed c, signed o, signed e) const
 	return (c);
 }
 
+
 signed ocollect::inner_context (signed c, signed o, signed e) const 
 
 {
@@ -113,6 +114,7 @@ signed ocollect::context (signed c, signed e) const
 	c = ocollect::keep (c);
 	return (c);
 }
+
 
 signed ocollect::inner_context (signed c, signed e) const 
 
@@ -229,6 +231,7 @@ signed ocollect::content (signed c, signed o, signed e) const
 	return (c);
 }
 
+
 signed ocollect::inner_content (signed c, signed o, signed e) const 
 
 {
@@ -262,6 +265,7 @@ signed ocollect::content (signed c, signed e) const
 	c = ocollect::keep (c);
 	return (c);
 }
+
 
 signed ocollect::inner_content (signed c, signed e) const 
 
@@ -300,6 +304,7 @@ signed ocollect::command (signed c) const
 	return (c);
 }
 
+
 signed ocollect::command (signed c, signed e) const 
 
 {
@@ -308,6 +313,7 @@ signed ocollect::command (signed c, signed e) const
 	c = ocollect::keep (c);
 	return (c);
 }
+
 
 signed ocollect::inner_command (signed c, signed e) const 
 
@@ -351,6 +357,7 @@ signed ocollect::literal (signed c) const
 	return (c);
 }
 
+
 signed ocollect::literal (signed c, signed e) const 
 
 {
@@ -359,6 +366,7 @@ signed ocollect::literal (signed c, signed e) const
 	c = ocollect::keep (c);
 	return (c);
 }
+
 
 signed ocollect::inner_literal (signed c, signed e) const 
 
@@ -392,6 +400,7 @@ signed ocollect::escaped (signed c) const
 	return (c);
 }
 
+
 /*====================================================================*
  *
  *   signed ocollect::join (signed c) const;
@@ -405,19 +414,18 @@ signed ocollect::escaped (signed c) const
 signed ocollect::join (signed c) const 
 
 {
-	while (c == '\\')
+	while (c == '\\') 
 	{
 		signed o = std::cin.get ();
-		if ((o != '\r') && (o != '\n'))
+		if ((o != '\r') && (o != '\n')) 
 		{
 			std::cout.put (c);
 			std::cout.put (o);
 		}
 		c = std::cin.get ();
-	} 
+	}
 	return (c);
 }
-
 
 
 /*====================================================================*
@@ -458,7 +466,7 @@ signed ocollect::find (signed c) const
 signed ocollect::keep (signed c) const 
 
 {
-	if ((c != NUL) && (c != EOF))
+	if ((c != NUL) && (c != EOF)) 
 	{
 		std::cout.put (c);
 	}

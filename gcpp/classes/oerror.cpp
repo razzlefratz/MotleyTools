@@ -48,14 +48,14 @@ extern char const * program_name;
  *
  *--------------------------------------------------------------------*/
 
-void oerror::print (char const *format, ...) 
+void oerror::print (char const * format, ...) 
 
 {
-	if ((program_name) && (*program_name)) 
+	if ((program_name) && (* program_name)) 
 	{
 		std::cerr << program_name << ": ";
 	}
-	if ((format) && (*format)) 
+	if ((format) && (* format)) 
 	{
 		va_list argp;
 		va_start (argp, format);
@@ -80,7 +80,7 @@ void oerror::print (char const *format, ...)
 void oerror::error (char const * format, ...) 
 
 {
-	if ((program_name) && (*program_name)) 
+	if ((program_name) && (* program_name)) 
 	{
 		std::cerr << program_name << ": ";
 	}
@@ -89,7 +89,7 @@ void oerror::error (char const * format, ...)
 		std::cerr << std::strerror (errno) << ": ";
 		errno = 0;
 	}
-	if ((format) && (*format)) 
+	if ((format) && (* format)) 
 	{
 		va_list argp;
 		va_start (argp, format);
@@ -125,7 +125,7 @@ void oerror::error (int status, errno_t number, char const * format, ...)
 		std::cerr << std::strerror (number) << ": ";
 		errno = 0;
 	}
-	if ((format) && (*format)) 
+	if ((format) && (* format)) 
 	{
 		va_list arglist;
 		va_start (arglist, format);
@@ -241,7 +241,7 @@ oerror::oerror ()
 
 #if defined (__linux__)
 
-		program_name = ::getlogin ();
+		program_name =::getlogin ();
 
 #else
 

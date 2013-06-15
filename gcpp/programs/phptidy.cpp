@@ -78,7 +78,7 @@ int main (int argc, char const * argv [])
 	opathspec pathspec;
 	ofileopen fileopen;
 	ophptidy tidy;
-	int (ophptidy::*function) (signed) = &ophptidy::page;
+	int (ophptidy::* function) (signed) = &ophptidy::page;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
 	{
@@ -90,7 +90,7 @@ int main (int argc, char const * argv [])
 	}
 	if (!getopt.argc ()) 
 	{
-		c = (tidy.*function) (std::cin.get ());
+		c = (tidy.* function) (std::cin.get ());
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
@@ -98,11 +98,12 @@ int main (int argc, char const * argv [])
 		pathspec.fullpath (filename, * getopt.argv ());
 		if (fileopen.openedit (filename)) 
 		{
-			c = (tidy.*function) (std::cin.get ());
+			c = (tidy.* function) (std::cin.get ());
 			fileopen.close ();
 		}
 		getopt++;
 	}
 	std::exit (0);
 }
+
 

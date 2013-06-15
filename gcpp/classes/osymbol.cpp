@@ -48,7 +48,7 @@
  *
  *--------------------------------------------------------------------*/
 
-osymbol & osymbol::define (char const *symbol, char const *string) 
+osymbol & osymbol::define (char const * symbol, char const * string) 
 
 {
 	osymbol * node = this;
@@ -76,7 +76,7 @@ osymbol & osymbol::define (char const *symbol, char const *string)
 		node->mqueue->insert (otext::save (string));
 		break;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -92,10 +92,10 @@ osymbol & osymbol::define (char const *symbol, char const *string)
  *
  *--------------------------------------------------------------------*/
 
-bool osymbol::defined (char const *symbol) const 
+bool osymbol::defined (char const * symbol) const 
 
 {
-	const osymbol *node = osymbol::node (symbol);
+	const osymbol * node = osymbol::node (symbol);
 	if (node) 
 	{
 		return (!node->mqueue->empty ());
@@ -117,10 +117,10 @@ bool osymbol::defined (char const *symbol) const
  *
  *--------------------------------------------------------------------*/
 
-char const *osymbol::lookup (char const *symbol) const 
+char const * osymbol::lookup (char const * symbol) const 
 
 {
-	const osymbol *node = osymbol::node (symbol);
+	const osymbol * node = osymbol::node (symbol);
 	if (node) 
 	{
 		return ((char const *) (node->mqueue->head () ->data ()));
@@ -142,10 +142,10 @@ char const *osymbol::lookup (char const *symbol) const
  *
  *--------------------------------------------------------------------*/
 
-char const *osymbol::expand (char const *symbol) const 
+char const * osymbol::expand (char const * symbol) const 
 
 {
-	const osymbol *node = osymbol::node (symbol);
+	const osymbol * node = osymbol::node (symbol);
 	if (node) 
 	{
 		return ((char const *) (node->mqueue->head () ->data ()));
@@ -167,16 +167,16 @@ char const *osymbol::expand (char const *symbol) const
  *
  *--------------------------------------------------------------------*/
 
-osymbol & osymbol::revert (char const *symbol) 
+osymbol & osymbol::revert (char const * symbol) 
 
 {
-	const osymbol *node = osymbol::node (symbol);
+	const osymbol * node = osymbol::node (symbol);
 	if (node) if (!node->mqueue->empty ()) 
 	{
 		delete (char *) (node->mqueue->head () ->data ());
 		node->mqueue->remove ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -193,7 +193,7 @@ osymbol & osymbol::revert (char const *symbol)
  *
  *--------------------------------------------------------------------*/
 
-const osymbol * osymbol::node (char const *symbol) const 
+const osymbol * osymbol::node (char const * symbol) const 
 
 {
 	const osymbol * node = this;
@@ -240,7 +240,7 @@ osymbol & osymbol::enumerate ()
 	{
 		this->mafter->enumerate ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -264,7 +264,7 @@ osymbol & osymbol::print ()
 	{
 		std::cerr << "\tstring:[" << (char const *) (mentry->data ()) << "]" << std::endl;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -292,7 +292,7 @@ osymbol & osymbol::clear ()
 	delete this->mafter;
 	this->mprior = (osymbol *) (0);
 	this->mafter = (osymbol *) (0);
-	return (*this);
+	return (* this);
 }
 
 

@@ -95,7 +95,7 @@ oerror error;
  *
  *--------------------------------------------------------------------*/
 
-static void process (char const *pathname, char const * command, oflagword * flags) 
+static void process (char const * pathname, char const * command, oflagword * flags) 
 
 {
 	oscantext source;
@@ -196,7 +196,8 @@ static void process (char const *pathname, char const * command, oflagword * fla
 			}
 			else if (source.istoken ("enumerate")) 
 			{
-				source.scanblank ().flush ();
+				source.scanblank ();
+				source.flush ();
 				source.scanquote (gcsBreak);
 				macro.enumerate (pathname);
 				source.scanwhile (gcsBreak);
@@ -207,7 +208,6 @@ static void process (char const *pathname, char const * command, oflagword * fla
 			}
 			continue;
 		}
-
 /*
  * scan C Language comments;
  */
@@ -277,7 +277,7 @@ static void process (char const *pathname, char const * command, oflagword * fla
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv [], char const *envp []) 
+int main (int argc, char const * argv [], char const * envp []) 
 
 {
 	static char const * optv [] = 
@@ -338,4 +338,5 @@ int main (int argc, char const * argv [], char const *envp [])
 	}
 	std::exit (0);
 }
+
 

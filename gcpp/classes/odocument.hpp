@@ -34,10 +34,10 @@ class __declspec (dllexport) odocument
 public:
 	odocument ();
 	virtual ~ odocument ();
-	char const *title () const;
-	odocument & title (char const *title);
+	char const * title () const;
+	odocument & title (char const * title);
 private:
-	char *mtitle;
+	char * mtitle;
 	otree root;
 	otree temp;
 };

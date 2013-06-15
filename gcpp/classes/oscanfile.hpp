@@ -16,6 +16,7 @@
  *--------------------------------------------------------------------*/
 
 #include <cstdio>
+#include <fstream>
 
 /*====================================================================*
  *   custom header files;
@@ -56,23 +57,23 @@ public:
 	bool isdigit () const;
 	bool isident () const;
 	bool isbreak (signed c) const;
-	bool isbreak (char const *charset) const;
+	bool isbreak (char const * charset) const;
 	bool isclass (signed c) const;
-	bool isclass (char const *charset) const;
-	bool istoken (char const *literal) const;
+	bool isclass (char const * charset) const;
+	bool istoken (char const * literal) const;
 	bool havebreak (unsigned c);
-	bool havebreak (char const *charset);
+	bool havebreak (char const * charset);
 	bool haveclass (signed c);
-	bool haveclass (char const *charset);
-	bool havetoken (char const *literal);
-	oscanfile & unget (char const *string);
+	bool haveclass (char const * charset);
+	bool havetoken (char const * literal);
+	oscanfile & unget (char const * string);
 	oscanfile & unget (char c);
 	oscanfile & scanbreak ();
 	oscanfile & scanbreak (unsigned c);
-	oscanfile & scanbreak (char const *charset);
+	oscanfile & scanbreak (char const * charset);
 	oscanfile & scanwhile ();
 	oscanfile & scanwhile (unsigned c);
-	oscanfile & scanwhile (char const *charset);
+	oscanfile & scanwhile (char const * charset);
 	oscanfile & scanspace ();
 	oscanfile & scanalpha ();
 	oscanfile & scanalnum ();
@@ -81,22 +82,22 @@ public:
 	oscanfile & scanmatch ();
 	oscanfile & scanuntil ();
 	oscanfile & scanuntil (unsigned c);
-	oscanfile & scanuntil (char const *charset);
+	oscanfile & scanuntil (char const * charset);
 	oscanfile & scantoken ();
 	oscanfile & scanquote ();
 	oscanfile & scanquote (unsigned c);
-	oscanfile & scanquote (char const *charset);
+	oscanfile & scanquote (char const * charset);
 	oscanfile & scangroup ();
 	oscanfile & scangroup (unsigned c);
-	oscanfile & scangroup (char const *charset);
+	oscanfile & scangroup (char const * charset);
 	oscanfile & scanblock ();
-	oscanfile & scanblock (char const *literal);
+	oscanfile & scanblock (char const * literal);
 	oscanfile & skiptoken ();
 	oscanfile & skipbreak ();
-	oscanfile & skiptoken (char const *literal);
-	oscanfile & skipbreak (char const *literal);
+	oscanfile & skiptoken (char const * literal);
+	oscanfile & skipbreak (char const * literal);
 	oscanfile & trimtoken ();
-	oscanfile & trimtoken (char const *charset);
+	oscanfile & trimtoken (char const * charset);
 	oscanfile & lowercase ();
 	oscanfile & uppercase ();
 	oscanfile & write ();

@@ -54,14 +54,14 @@ unsigned ochrtbl::convert (unsigned c) const
  *
  *--------------------------------------------------------------------*/
 
-ochrtbl & ochrtbl::convert (char *string) 
+ochrtbl & ochrtbl::convert (char * string) 
 
 {
-	if (string) while (*string) 
+	if (string) while (* string) 
 	{
-		*string = this->mtable [(unsigned) (*string)];
+		* string = this->mtable [(unsigned) (* string)];
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -85,7 +85,7 @@ ochrtbl & ochrtbl::convert (char *string)
  *
  *--------------------------------------------------------------------*/
 
-signed ochrtbl::compare (char const *string1, char const *string2) const 
+signed ochrtbl::compare (char const * string1, char const * string2) const 
 
 {
 	if (string1 == string2) 
@@ -100,16 +100,16 @@ signed ochrtbl::compare (char const *string1, char const *string2) const
 	{
 		return (1);
 	}
-	while (this->mtable [(unsigned) (*string1)] == this->mtable [(unsigned) (*string2)]) 
+	while (this->mtable [(unsigned) (* string1)] == this->mtable [(unsigned) (* string2)]) 
 	{
-		if (!this->mtable [(unsigned) (*string1)]) 
+		if (!this->mtable [(unsigned) (* string1)]) 
 		{
 			return (0);
 		}
 		string1++;
 		string2++;
 	}
-	return (this->mtable [(unsigned) (*string1)] < this->mtable [(unsigned) (*string2)]? -1: 1);
+	return (this->mtable [(unsigned) (* string1)] < this->mtable [(unsigned) (* string2)]? -1: 1);
 }
 
 

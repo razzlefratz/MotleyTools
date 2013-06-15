@@ -38,7 +38,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const *ograph::name () 
+char const * ograph::name () 
 
 {
 	return (this->mname);
@@ -58,11 +58,11 @@ char const *ograph::name ()
  *
  *--------------------------------------------------------------------*/
 
-ograph & ograph::name (char const *name) 
+ograph & ograph::name (char const * name) 
 
 {
 	this->mname = ograph::replace (this->mname, name);
-	return (*this);
+	return (* this);
 }
 
 
@@ -93,11 +93,11 @@ onode * ograph::node () const
  *
  *--------------------------------------------------------------------*/
 
-ograph & ograph::addnode (char const *nodename) 
+ograph & ograph::addnode (char const * nodename) 
 
 {
 	this->mnodes->add (nodename);
-	return (*this);
+	return (* this);
 }
 
 
@@ -111,13 +111,13 @@ ograph & ograph::addnode (char const *nodename)
  *
  *--------------------------------------------------------------------*/
 
-ograph & ograph::addedge (char const *needname, char const *feedname) 
+ograph & ograph::addedge (char const * needname, char const * feedname) 
 
 {
-	onode *neednode = this->mnodes->add (needname).node ();
-	onode *feednode = this->mnodes->add (feedname).node ();
+	onode * neednode = this->mnodes->add (needname).node ();
+	onode * feednode = this->mnodes->add (feedname).node ();
 	this->medges->add (neednode, feednode);
-	return (*this);
+	return (* this);
 }
 
 
@@ -149,10 +149,10 @@ ograph & ograph::populate (char colon, char comma)
 			}
 			if ((sp - one) < (signed) (sizeof (one) - 2)) 
 			{
-				*sp++ = (char) (c);
+				* sp++ = (char) (c);
 			}
 		}
-		*sp = (char) (0);
+		* sp = (char) (0);
 		for (sp = two; nobreak (c); c = std::cin.get ()) 
 		{
 			if ((char) (c) == comma) 
@@ -162,10 +162,10 @@ ograph & ograph::populate (char colon, char comma)
 			}
 			if ((sp - two) < (signed) (sizeof (two) - 2)) 
 			{
-				*sp++ = (char) (c);
+				* sp++ = (char) (c);
 			}
 		}
-		*sp = (char) (0);
+		* sp = (char) (0);
 		if (ograph::anyset (oGRAPH_MODE_INVERT)) 
 		{
 			this->addedge (two, one);
@@ -175,7 +175,7 @@ ograph & ograph::populate (char colon, char comma)
 			this->addedge (one, two);
 		}
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -210,7 +210,7 @@ ograph & ograph::discover ()
 	{
 		ograph::traverse (this->mnodes->node (this->mcount++));
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -228,7 +228,7 @@ ograph & ograph::discover ()
  *
  *--------------------------------------------------------------------*/
 
-ograph & ograph::traverse (onode *node) 
+ograph & ograph::traverse (onode * node) 
 
 {
 
@@ -236,9 +236,8 @@ ograph & ograph::traverse (onode *node)
 
 	if (!node) 
 	{
-		return (*this);
+		return (* this);
 	}
-
 #endif
 
 /*
@@ -254,10 +253,9 @@ ograph & ograph::traverse (onode *node)
 			ograph::trace (this->mnode, node);
 			std::cerr << node->name () << "\n";
 			oerror::error (0, 0, "bailing out!");
-			return (*this);
+			return (* this);
 		}
 	}
-
 /*
  * if the level or order are non-zero then this node has already been 
  * traversed through another relationship; no need to traverse again;
@@ -265,17 +263,17 @@ ograph & ograph::traverse (onode *node)
 
 	if (node->level ()) 
 	{
-		return (*this);
+		return (* this);
 	}
 	if (node->order ()) 
 	{
-		return (*this);
+		return (* this);
 	}
 	node->node (this->mnode);
 	this->mnode = node;
 	for (size_t index = 0; index < this->medges->count (); index++) 
 	{
-		oedge *edge = this->medges->edge (index);
+		oedge * edge = this->medges->edge (index);
 		if (edge->source () == node) 
 		{
 			ograph::traverse (edge->target ());
@@ -306,7 +304,7 @@ ograph & ograph::traverse (onode *node)
 	}
 	std::cout << node->name () << std::endl;
 	node->level (node->level () + 1);
-	return (*this);
+	return (* this);
 }
 
 
@@ -319,7 +317,7 @@ ograph & ograph::traverse (onode *node)
  *
  *--------------------------------------------------------------------*/
 
-ograph & ograph::trace (onode *node, onode *stop) 
+ograph & ograph::trace (onode * node, onode * stop) 
 
 {
 	if ((node) && (node != stop)) 
@@ -327,7 +325,7 @@ ograph & ograph::trace (onode *node, onode *stop)
 		ograph::trace (node->node (), stop);
 		std::cerr << node->name () << oGRAPH_TEXT_MORE;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -349,7 +347,7 @@ ograph & ograph::clear ()
 	this->mcount = 0;
 	this->morder = 0;
 	this->mwidth = 0;
-	return (*this);
+	return (* this);
 }
 
 

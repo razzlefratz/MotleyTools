@@ -37,8 +37,8 @@ public:
 	unsigned count () const;
 	bool empty () const;
 	void * data () const;
-	oqueue *head () const;
-	oqueue *tail () const;
+	oqueue * head () const;
+	oqueue * tail () const;
 	oqueue & clear ();
 	oqueue & insert (void * object);
 	oqueue & append (void * object);
