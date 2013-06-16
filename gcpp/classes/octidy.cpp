@@ -432,7 +432,7 @@ signed octidy::statement (signed c, signed level, signed space)
 
 /*====================================================================*
  *
- *   signed context (signed c, char const *charset) const; 
+ *   signed context (signed c, char const * charset) const; 
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -528,10 +528,18 @@ signed octidy::inner_context (signed c, signed e) const
 signed octidy::context (signed c) const 
 
 {
-	if (oascii::isspace (c)) 
+	if (oascii::isalpha (c) || (c == '_')) 
+	{
+		c = octidy::moniker (c);
+		if ((c == '(') || (c == '[') || (c == '{')) 
+		{
+			std::cout.put (' ');
+		}
+	}
+	else if (oascii::isspace (c)) 
 	{
 		c = octidy::find (c);
-		if ((c == '.')) 
+		if ((c == ')') || (c == ']') || (c == '}')) 
 		{
 			return (c);
 		}
@@ -543,19 +551,11 @@ signed octidy::context (signed c) const
 		{
 			return (c);
 		}
-		if ((c == ')') || (c == ']') || (c == '}')) 
+		if ((c == '.')) 
 		{
 			return (c);
 		}
   		std::cout.put (' ');
-	}
-	else if (oascii::isalpha (c) || (c == '_')) 
-	{
-		c = octidy::moniker (c);
-		if ((c == '(') || (c == '[') || (c == '{')) 
-		{
-			std::cout.put (' ');
-		}
 	}
 	else if ((c == '.')) 
 	{
@@ -572,7 +572,7 @@ signed octidy::context (signed c) const
 	{
 		c = octidy::literal (c);
 	}
-	else if ((c == '~') || (c == '^'))
+	else if ((c == '~') || (c == '^') || (c == '%'))
 	{
 		c = octidy::keep (c);
 		if (c == '=')
@@ -588,20 +588,6 @@ signed octidy::context (signed c) const
 			c = octidy::keep (c);
 		}
 	}
-	else if ((c == '+') || (c == '-'))
-	{
-		char o = c;
-		c = octidy::keep (c);
-		if (c == o)
-		{
-			c = octidy::keep (c);
-			return (c);
-		}
-		if (c == '=')
-		{
-			c = octidy::keep (c);
-		}
-	}
 	else if ((c == '&') || (c == '|'))
 	{
 		char o = c;
@@ -611,7 +597,7 @@ signed octidy::context (signed c) const
 			c = octidy::keep (c);
 			return (c);
 		}
-		if (c == '=')
+		else if (c == '=')
 		{
 			c = octidy::keep (c);
 		}
@@ -638,6 +624,36 @@ signed octidy::context (signed c) const
 			c = octidy::keep (c);
 		}
 		if (c == '=')
+		{
+			c = octidy::keep (c);
+		}
+	}
+	else if (c == '+')
+	{
+		char o = c;
+		c = octidy::keep (c);
+		if (c == o)
+		{
+			c = octidy::keep (c);
+		}
+		else if (c == '=')
+		{
+			c = octidy::keep (c);
+		}
+	}
+	else if (c == '-')
+	{
+		char o = c;
+		c = octidy::keep (c);
+		if (c == o)
+		{
+			c = octidy::keep (c);
+		}
+		else if (c == '=')
+		{
+			c = octidy::keep (c);
+		}
+		else if (c == '>')
 		{
 			c = octidy::keep (c);
 		}
