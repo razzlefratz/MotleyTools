@@ -64,6 +64,8 @@
  *   program constants;
  *--------------------------------------------------------------------*/
 
+#define SPACE_B_NEWLINE (1 << 0)
+
 #define CHR_NUL '\0'
 #define CHR_HT '\t'
 #define CHR_SP ' '
@@ -130,7 +132,7 @@ void OpenWRT (signed o, unsigned spaces, unsigned tabs)
 
 /*====================================================================*
  *
- *   void function (signed o, void indent (signed, unsigned, unsigned);
+ *   void function (signed o, void indent (signed, unsigned, unsigned), signed escape (signed));
  *
  *   read stdin and write stdout; replace leading spaces character o
  *   unless it is NUL; preserve leading tabs; replace embedded spaces
@@ -146,7 +148,7 @@ void OpenWRT (signed o, unsigned spaces, unsigned tabs)
  *
  *--------------------------------------------------------------------*/
 
-void function (signed o, void indent (signed, unsigned, unsigned)) 
+void function (signed o, void indent (signed, unsigned, unsigned), signed escape (signed)) 
 
 {
 	signed c = getc (stdin);
@@ -199,8 +201,7 @@ void function (signed o, void indent (signed, unsigned, unsigned))
 			}
 			if (c == '\\') 
 			{
-				c = join (c);
-				continue;
+				c = escape (c);
 			}
 			c = keep (c);
 		}
@@ -229,10 +230,11 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"c:MnostW",
+		"c:jMnostW",
 		PUTOPTV_S_FILTER,
 		"white space manager",
 		"c c\tindent character is (c)",
+		"j\tjoin broken lines",
 		"M\tsuitable for GNU makefiles",
 		"n\tindent is nothing [" LITERAL (CHR_NUL) "]",
 		"s\tindent is one space [" LITERAL (CHR_SP) "]",
@@ -241,6 +243,7 @@ int main (int argc, char const * argv [])
 		(char *) (0)
 	};
 	void (* indent) (signed, unsigned, unsigned) = GNUMake;
+	signed (* escape) (signed) = keep;
 	signed o = CHR_HT;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
@@ -249,6 +252,9 @@ int main (int argc, char const * argv [])
 		{
 		case 'c':
 			o = * struesc ((char *) (optarg));
+			break;
+		case 'j':
+			escape = join;
 			break;
 		case 'M':
 			indent = GNUMake;
@@ -273,13 +279,13 @@ int main (int argc, char const * argv [])
 	argv += optind;
 	if (!argc) 
 	{
-		function (o, indent);
+		function (o, indent, escape);
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (vfopen (* argv)) 
 		{
-			function (o, indent);
+			function (o, indent, escape);
 		}
 		argc--;
 		argv++;
