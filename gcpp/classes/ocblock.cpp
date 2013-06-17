@@ -153,7 +153,7 @@ signed ocblock::program (signed c, signed e)
 			{
 				std::cout.put (' ');
 			}
-			if (!strcmp (string, "if")) 
+			if (!std::strcmp (string, "if")) 
 			{
 				c = ocblock::condition (c);
 				c = ocblock::statement (c);
@@ -161,36 +161,36 @@ signed ocblock::program (signed c, signed e)
 			}
 #if 0
 
-			if (!strcmp (string, "else")) 
+			if (!std::strcmp (string, "else")) 
 			{
 				c = ocblock::statement (c);
 				continue;
 			}
 #endif
 
-			if (!strcmp (string, "while")) 
+			if (!std::strcmp (string, "while")) 
 			{
 				c = ocblock::condition (c);
 				c = ocblock::statement (c);
 				continue;
 			}
-			if (!strcmp (string, "for")) 
+			if (!std::strcmp (string, "for")) 
 			{
 				c = ocblock::condition (c);
 				c = ocblock::statement (c);
 				continue;
 			}
-			if (!strcmp (string, "do")) 
+			if (!std::strcmp (string, "do")) 
 			{
 				c = ocblock::statement (c);
 				continue;
 			}
-			if (!strcmp (string, "return")) 
+			if (!std::strcmp (string, "return")) 
 			{
 				c = ocblock::condition (c);
 				continue;
 			}
-			if (!strcmp (string, "exit")) 
+			if (!std::strcmp (string, "exit")) 
 			{
 				c = ocblock::condition (c);
 				continue;
