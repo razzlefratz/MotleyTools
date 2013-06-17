@@ -51,7 +51,7 @@ opassword & opassword::count (unsigned count)
 
 {
 	this->mcount = count;
-	return (*this);
+	return (* this);
 }
 
 
@@ -80,7 +80,7 @@ opassword & opassword::group (unsigned group)
 
 {
 	this->mgroup = group;
-	return (*this);
+	return (* this);
 }
 
 
@@ -109,7 +109,7 @@ opassword & opassword::space (unsigned space)
 
 {
 	this->mbreak = space;
-	return (*this);
+	return (* this);
 }
 
 
@@ -135,7 +135,7 @@ opassword & opassword::print (unsigned salt)
 		std::cout << this->mcharset [c];
 		this->mindex++;
 	}
-	return (*this);
+	return (* this);
 }
 
 

@@ -34,18 +34,18 @@
  *
  *--------------------------------------------------------------------*/
 
-oprefix * oprefix::lookup (char const *symbol) 
+oprefix * oprefix::lookup (char const * symbol) 
 
 {
 	oprefix * prefix = this;
-	while ((prefix) && (*symbol)) 
+	while ((prefix) && (* symbol)) 
 	{
-		if (*symbol < prefix->msymbol) 
+		if (* symbol < prefix->msymbol) 
 		{
 			prefix = prefix->mprior;
 			continue;
 		}
-		if (*symbol > prefix->msymbol) 
+		if (* symbol > prefix->msymbol) 
 		{
 			prefix = prefix->mafter;
 			continue;
@@ -67,20 +67,20 @@ oprefix * oprefix::lookup (char const *symbol)
  *
  *--------------------------------------------------------------------*/
 
-char const *oprefix::assume (char const *symbol) const 
+char const * oprefix::assume (char const * symbol) const 
 
 {
 	const oprefix * prefix = this;
 	while (prefix) 
 	{
-		if (*symbol) 
+		if (* symbol) 
 		{
-			if (*symbol < prefix->msymbol) 
+			if (* symbol < prefix->msymbol) 
 			{
 				prefix = prefix->mprior;
 				continue;
 			}
-			if (*symbol > prefix->msymbol) 
+			if (* symbol > prefix->msymbol) 
 			{
 				prefix = prefix->mafter;
 				continue;
@@ -123,14 +123,14 @@ char const *oprefix::assume (char const *symbol) const
  *
  *--------------------------------------------------------------------*/
 
-char const *oprefix::revise (char const *symbol) const 
+char const * oprefix::revise (char const * symbol) const 
 
 {
-	char const *temp;
-	std::cout << "[" << *symbol << "]?[" << this->msymbol << "]" << std::endl;
-	if (*symbol < this->msymbol) 
+	char const * temp;
+	std::cout << "[" << * symbol << "]?[" << this->msymbol << "]" << std::endl;
+	if (* symbol < this->msymbol) 
 	{
-		std::cout << "[" << *symbol << "]<[" << this->msymbol << "]" << std::endl;
+		std::cout << "[" << * symbol << "]<[" << this->msymbol << "]" << std::endl;
 		if (this->mprior) 
 		{
 			temp = this->mprior->revise (symbol + 0);
@@ -140,9 +140,9 @@ char const *oprefix::revise (char const *symbol) const
 			return ((char *) ("<"));
 		}
 	}
-	else if (*symbol > this->msymbol) 
+	else if (* symbol > this->msymbol) 
 	{
-		std::cout << "[" << *symbol << "]>[" << this->msymbol << "]" << std::endl;
+		std::cout << "[" << * symbol << "]>[" << this->msymbol << "]" << std::endl;
 		if (this->mafter) 
 		{
 			temp = this->mafter->revise (symbol + 0);
@@ -152,9 +152,9 @@ char const *oprefix::revise (char const *symbol) const
 			return ((char *) (">"));
 		}
 	}
-	else if (*symbol) 
+	else if (* symbol) 
 	{
-		std::cout << "[" << *symbol << "]=[" << this->msymbol << "]" << std::endl;
+		std::cout << "[" << * symbol << "]=[" << this->msymbol << "]" << std::endl;
 		if (this->mequal) 
 		{
 			temp = this->mequal->revise (symbol + 1);
@@ -182,34 +182,34 @@ char const *oprefix::revise (char const *symbol) const
  *
  *--------------------------------------------------------------------*/
 
-char const *oprefix::prefix (char const *symbol) const 
+char const * oprefix::prefix (char const * symbol) const 
 
 {
-	char const *sp = symbol;
+	char const * sp = symbol;
 	const oprefix * prefix = this;
 	while (prefix) 
 	{
 		if (!prefix->msymbol) 
 		{
-			char const *string = prefix->mafter->prefix (symbol);
+			char const * string = prefix->mafter->prefix (symbol);
 			if (string) 
 			{
 				return (string);
 			}
-			char *buffer = new char [symbol - sp + 1];
+			char * buffer = new char [symbol - sp + 1];
 			strncpy (buffer, sp, symbol - sp);
 			buffer [symbol - sp] = (char) (0);
 			return (buffer);
 		}
-		else if (*symbol < prefix->msymbol) 
+		else if (* symbol < prefix->msymbol) 
 		{
 			prefix = prefix->mprior;
 		}
-		else if (*symbol > prefix->msymbol) 
+		else if (* symbol > prefix->msymbol) 
 		{
 			prefix = prefix->mafter;
 		}
-		else if (*symbol) 
+		else if (* symbol) 
 		{
 			++symbol;
 			prefix = prefix->mequal;
@@ -230,7 +230,7 @@ char const *oprefix::prefix (char const *symbol) const
  *
  *--------------------------------------------------------------------*/
 
-char const * oprefix::suffix (char const *symbol) const 
+char const * oprefix::suffix (char const * symbol) const 
 
 {
 	const oprefix * prefix = this;
@@ -238,22 +238,22 @@ char const * oprefix::suffix (char const *symbol) const
 	{
 		if (!prefix->msymbol) 
 		{
-			char const *string = prefix->mafter->suffix (symbol);
+			char const * string = prefix->mafter->suffix (symbol);
 			if (string) 
 			{
 				return (string);
 			}
 			return (symbol);
 		}
-		else if (*symbol < prefix->msymbol) 
+		else if (* symbol < prefix->msymbol) 
 		{
 			prefix = prefix->mprior;
 		}
-		else if (*symbol > prefix->msymbol) 
+		else if (* symbol > prefix->msymbol) 
 		{
 			prefix = prefix->mafter;
 		}
-		else if (*symbol) 
+		else if (* symbol) 
 		{
 			++symbol;
 			prefix = prefix->mequal;
@@ -274,34 +274,34 @@ char const * oprefix::suffix (char const *symbol) const
  *
  *--------------------------------------------------------------------*/
 
-oprefix & oprefix::define (char const *symbol, char const *string) 
+oprefix & oprefix::define (char const * symbol, char const * string) 
 
 {
 	oprefix * prefix = this;
 	while (prefix) 
 	{
-		if (*symbol < prefix->msymbol) 
+		if (* symbol < prefix->msymbol) 
 		{
 			if (!prefix->mprior) 
 			{
-				prefix->mprior = new oprefix (*symbol);
+				prefix->mprior = new oprefix (* symbol);
 			}
 			prefix = prefix->mprior;
 		}
-		else if (*symbol > prefix->msymbol) 
+		else if (* symbol > prefix->msymbol) 
 		{
 			if (!prefix->mafter) 
 			{
-				prefix->mafter = new oprefix (*symbol);
+				prefix->mafter = new oprefix (* symbol);
 			}
 			prefix = prefix->mafter;
 		}
-		else if (*symbol) 
+		else if (* symbol) 
 		{
 			symbol++;
 			if (!prefix->mequal) 
 			{
-				prefix->mequal = new oprefix (*symbol);
+				prefix->mequal = new oprefix (* symbol);
 			}
 			prefix = prefix->mequal;
 		}
@@ -313,7 +313,7 @@ oprefix & oprefix::define (char const *symbol, char const *string)
 			break;
 		}
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -327,7 +327,7 @@ oprefix & oprefix::define (char const *symbol, char const *string)
  *
  *--------------------------------------------------------------------*/
 
-oprefix & oprefix::report (char *buffer, size_t length) 
+oprefix & oprefix::report (char * buffer, size_t length) 
 
 {
 	static size_t column = 0;
@@ -350,7 +350,7 @@ oprefix & oprefix::report (char *buffer, size_t length)
 	{
 		this->mafter->report (buffer, length);
 	}
-	return (*this);
+	return (* this);
 }
 
 

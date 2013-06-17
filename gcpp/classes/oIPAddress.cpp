@@ -59,7 +59,7 @@ unsigned oIPAddress::width;
  *
  *--------------------------------------------------------------------*/
 
-char const *oIPAddress::string (unsigned number) 
+char const * oIPAddress::string (unsigned number) 
 
 {
 	oIPAddress::bitmap.value = number;
@@ -95,7 +95,7 @@ char const *oIPAddress::string (unsigned number)
  *
  *--------------------------------------------------------------------*/
 
-char const *oIPAddress::padded (unsigned number) 
+char const * oIPAddress::padded (unsigned number) 
 
 {
 	oIPAddress::bitmap.value = number;
@@ -131,7 +131,7 @@ char const *oIPAddress::padded (unsigned number)
  *
  *--------------------------------------------------------------------*/
 
-unsigned oIPAddress::number (char const *string) 
+unsigned oIPAddress::number (char const * string) 
 
 {
 	oIPAddress::bitmap.value = 0;
@@ -141,12 +141,12 @@ unsigned oIPAddress::number (char const *string)
 		while (oIPAddress::octet-- > 0) 
 		{
 			oIPAddress::value = 0;
-			while (isdigit (*string)) 
+			while (isdigit (* string)) 
 			{
 				oIPAddress::value *= 10;
-				oIPAddress::value += *string++ - oIPAddress::digits [0];
+				oIPAddress::value += * string++ - oIPAddress::digits [0];
 			}
-			if (*string == oIPAddress::digits [10]) 
+			if (* string == oIPAddress::digits [10]) 
 			{
 				string++;
 			}
@@ -173,7 +173,7 @@ unsigned oIPAddress::number (char const *string)
  *
  *--------------------------------------------------------------------*/
 
-unsigned oIPAddress::inaddr (char const *string) 
+unsigned oIPAddress::inaddr (char const * string) 
 
 {
 	oIPAddress::bitmap.value = 0;
@@ -182,12 +182,12 @@ unsigned oIPAddress::inaddr (char const *string)
 		for (oIPAddress::octet = 0; oIPAddress::octet < OCTETS; oIPAddress::octet++) 
 		{
 			oIPAddress::value = 0;
-			while (isdigit (*string)) 
+			while (isdigit (* string)) 
 			{
 				oIPAddress::value *= 10;
-				oIPAddress::value += *string++ - oIPAddress::digits [0];
+				oIPAddress::value += * string++ - oIPAddress::digits [0];
 			}
-			if (*string == oIPAddress::digits [10]) 
+			if (* string == oIPAddress::digits [10]) 
 			{
 				string++;
 			}
@@ -210,6 +210,7 @@ oIPAddress::oIPAddress ()
 {
 	return;
 };
+
 
 oIPAddress::~oIPAddress () 
 

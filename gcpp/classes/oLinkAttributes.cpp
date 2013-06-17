@@ -34,7 +34,7 @@ oLinkAttributes & oLinkAttributes::write ()
 	this->AccessKeyAttribute->write ();
 	this->NavigationIndexAttribute->write ();
 	this->BaseURLAttribute->write ();
-	return (*this);
+	return (* this);
 }
 
 

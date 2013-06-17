@@ -29,7 +29,7 @@ oCoreAttributes & oCoreAttributes::write ()
 	this->TitleAttribute->write ();
 	this->ClassAttribute->write ();
 	this->StyleAttribute->write ();
-	return (*this);
+	return (* this);
 }
 
 

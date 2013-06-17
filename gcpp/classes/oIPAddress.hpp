@@ -29,10 +29,10 @@ class __declspec (dllexport) oIPAddress
 public:
 	oIPAddress ();
 	virtual ~ oIPAddress ();
-	char const *string (unsigned address);
-	char const *padded (unsigned address);
-	unsigned number (char const *address);
-	unsigned inaddr (char const *address);
+	char const * string (unsigned address);
+	char const * padded (unsigned address);
+	unsigned number (char const * address);
+	unsigned inaddr (char const * address);
 private:
 	union bits 
 	{

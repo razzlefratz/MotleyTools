@@ -130,7 +130,7 @@ ocursor & ocursor::count (char c)
 		mcol++;
 		break;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -149,7 +149,7 @@ ocursor & ocursor::clear ()
 	mpage = 1;
 	mrow = 1;
 	mcol = 0;
-	return (*this);
+	return (* this);
 }
 
 
@@ -163,6 +163,7 @@ ocursor::ocursor ()
 	this->clear ();
 	return;
 };
+
 
 ocursor::~ocursor () 
 

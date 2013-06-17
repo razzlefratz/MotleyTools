@@ -41,10 +41,10 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
-	static char const *usage [] = 
+	static char const * usage [] = 
 	{
 		"oformat.demo",
 		"h",
@@ -83,4 +83,5 @@ int main (int argc, char const *argv [])
 	format.flush (0);
 	exit (0);
 }
+
 

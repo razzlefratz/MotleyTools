@@ -128,14 +128,14 @@ signed program1 (int c, int e)
 		if (oascii::isalpha (c) || (c == '_')) 
 		{
 			char string [100];
-			char *sp = string;
+			char * sp = string;
 			do 
 			{
-				*sp++ = c;
+				* sp++ = c;
 				c = oenclose::keep (c);
 			}
 			while (oascii::isalnum (c) || (c == '_'));
-			*sp = (char)(0);
+			* sp = (char)(0);
 			if (!strcmp (string, "do")) 
 			{
 				c = oenclose::statement (c);

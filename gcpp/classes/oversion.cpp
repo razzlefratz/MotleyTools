@@ -34,14 +34,16 @@
  *
  *--------------------------------------------------------------------*/
 
-
 oversion & oversion::program (char const * program) 
+
 {
 	this->mprogram = otext::replace (this->mprogram, program);
-	return (*this);
+	return (* this);
 }
 
-char const * oversion::program () const
+
+char const * oversion::program () const 
+
 {
 	return (this->mprogram);
 }
@@ -58,14 +60,16 @@ char const * oversion::program () const
  *
  *--------------------------------------------------------------------*/
 
-
 oversion & oversion::company (char const * company) 
+
 {
 	this->mcompany = otext::replace (this->mcompany, company);
-	return (*this);
+	return (* this);
 }
 
-char const * oversion::company () const
+
+char const * oversion::company () const 
+
 {
 	return (this->mcompany);
 }
@@ -82,14 +86,16 @@ char const * oversion::company () const
  *
  *--------------------------------------------------------------------*/
 
-
 oversion & oversion::project (char const * project) 
+
 {
 	this->mproject = otext::replace (this->mproject, project);
-	return (*this);
+	return (* this);
 }
 
-char const * oversion::project () const
+
+char const * oversion::project () const 
+
 {
 	return (this->mproject);
 }
@@ -106,14 +112,16 @@ char const * oversion::project () const
  *
  *--------------------------------------------------------------------*/
 
-
 oversion & oversion::package (char const * package) 
+
 {
 	this->mpackage = otext::replace (this->mpackage, package);
-	return (*this);
+	return (* this);
 }
 
-char const * oversion::package () const
+
+char const * oversion::package () const 
+
 {
 	return (this->mpackage);
 }
@@ -129,14 +137,16 @@ char const * oversion::package () const
  *
  *--------------------------------------------------------------------*/
 
-
 oversion & oversion::version (char const * version) 
+
 {
 	this->mversion = otext::replace (this->mversion, version);
-	return (*this);
+	return (* this);
 }
 
-char const * oversion::version () const
+
+char const * oversion::version () const 
+
 {
 	return (this->mversion);
 }
@@ -153,14 +163,16 @@ char const * oversion::version () const
  *
  *--------------------------------------------------------------------*/
 
-
 oversion & oversion::release (char const * release) 
+
 {
 	this->mrelease = otext::replace (this->mrelease, release);
-	return (*this);
+	return (* this);
 }
 
-char const * oversion::release () const
+
+char const * oversion::release () const 
+
 {
 	return (this->mrelease);
 }
@@ -177,14 +189,16 @@ char const * oversion::release () const
  *
  *--------------------------------------------------------------------*/
 
-
 oversion & oversion::contact (char const * contact) 
+
 {
 	this->mcontact = otext::replace (this->mcontact, contact);
-	return (*this);
+	return (* this);
 }
 
-char const * oversion::contact () const
+
+char const * oversion::contact () const 
+
 {
 	return (this->mcontact);
 }
@@ -213,8 +227,9 @@ oversion & oversion::print (void)
 	std::cerr << this->mrelease << " ";
 	std::cerr << this->mlicense << " ";
 	std::cerr << std::endl;
-	return (*this);
+	return (* this);
 }
+
 
 /*====================================================================*
  *

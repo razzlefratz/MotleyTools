@@ -43,17 +43,17 @@
  *   
  *--------------------------------------------------------------------*/
 
-FILE *ofindfile::fopen1 (char const *file, char const *mode) 
+FILE * ofindfile::fopen1 (char const * file, char const * mode) 
 
 {
-	FILE *fp;
+	FILE * fp;
 	char pathname [FILENAME_MAX];
 	int node = 0;
 	pathname [0] = (char) (0);
 	this->mstack [0] = pathname;
-	for (char *cp = pathname; (node < DIRLEVEL_MAX) && (*cp = *file); cp++, file++) 
+	for (char * cp = pathname; (node < DIRLEVEL_MAX) && (* cp = * file); cp++, file++) 
 	{
-		if (*cp == PATH_C_EXTENDER) 
+		if (* cp == PATH_C_EXTENDER) 
 		{
 			this->mstack [node++] = cp;
 		}
@@ -78,10 +78,10 @@ FILE *ofindfile::fopen1 (char const *file, char const *mode)
  *
  *--------------------------------------------------------------------*/
 
-FILE *ofindfile::fopen2 (char const *file, char const *mode, char const *pathstring) 
+FILE * ofindfile::fopen2 (char const * file, char const * mode, char const * pathstring) 
 
 {
-	FILE *fp = (FILE *) (0);
+	FILE * fp = (FILE *) (0);
 	char temp [FILENAME_MAX] = 
 	{
 		(char) (0)
@@ -92,29 +92,29 @@ FILE *ofindfile::fopen2 (char const *file, char const *mode, char const *pathstr
 		{
 			if (pathstring != (char const *) (0)) 
 			{
-				char *sp = (char *) (file);
-				while (*file != (char) (0)) 
+				char * sp = (char *) (file);
+				while (* file != (char) (0)) 
 				{
 					file++;
 				}
-				while ((file > sp) && (*file != PATH_C_EXTENDER)) 
+				while ((file > sp) && (* file != PATH_C_EXTENDER)) 
 				{
 					file--;
 				}
 				std::strcpy (temp, sp);
-				while (((fp = this->fopen1 (temp, mode)) == (FILE *) (0)) && (*pathstring)) 
+				while (((fp = this->fopen1 (temp, mode)) == (FILE *) (0)) && (* pathstring)) 
 				{
 					sp = temp;
-					while ((*sp = *pathstring) && (*sp != PATH_C_SEPARATOR)) 
+					while ((* sp = * pathstring) && (* sp != PATH_C_SEPARATOR)) 
 					{
 						sp++,
 						pathstring++;
 					}
-					if (*pathstring) 
+					if (* pathstring) 
 					{
 						pathstring++;
 					}
-					*sp++ = PATH_C_EXTENDER;
+					* sp++ = PATH_C_EXTENDER;
 					std::strcpy (sp, file);
 				}
 			}

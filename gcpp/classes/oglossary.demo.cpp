@@ -8,7 +8,7 @@
 #include "../classes/olist.cpp"
 #include "../classes/oitem.cpp"
 
-void main (int argc, char *argv []) 
+void main (int argc, char * argv []) 
 
 {
 	oglossary glossary;
@@ -21,4 +21,5 @@ void main (int argc, char *argv [])
 	cout << "glossary loaded" << std::endl;
 	cout << "glossary=[" << glossary.lookup ("abcde") << "]" << std::endl;
 }
+
 

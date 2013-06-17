@@ -33,28 +33,28 @@ public:
 	otodo ();
 	otodo (int order (char const *, char const *));
 	virtual ~ otodo ();
-	char const *title () const;
-	otodo & title (char const *string);
+	char const * title () const;
+	otodo & title (char const * string);
 	size_t index () const;
 	size_t start () const;
 	size_t count () const;
 	size_t limit () const;
 	size_t block () const;
-	oitem *operator [] (size_t index) const;
-	oitem *item () const;
-	oitem *items (size_t index) const;
-	bool defined (char const *symbol);
-	size_t indexof (char const *symbol);
-	otodo & select (char const *symbol);
-	oitem *item (char const *symbol);
+	oitem * operator [] (size_t index) const;
+	oitem * item () const;
+	oitem * items (size_t index) const;
+	bool defined (char const * symbol);
+	size_t indexof (char const * symbol);
+	otodo & select (char const * symbol);
+	oitem * item (char const * symbol);
 	otodo & insertitem (oitem * item);
 	otodo & appenditem (oitem * item);
 	otodo & removeitem ();
 	otodo & orderlist ();
 	otodo & clearlist ();
 private:
-	char *mtitle;
-	oitem **mtable;
+	char * mtitle;
+	oitem ** mtable;
 	size_t mblock;
 
 /* table allocation block size */

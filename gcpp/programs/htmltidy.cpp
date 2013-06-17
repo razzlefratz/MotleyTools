@@ -23,7 +23,8 @@
 #include "../classes/ofileopen.hpp"
 #include "../classes/ofilespec.hpp"
 #include "../classes/opathspec.hpp"
- #include "../classes/oescape.hpp"
+
+#include "../classes/oescape.hpp"
 #include "../classes/ohtmltidy.hpp"
 
 /*====================================================================*
@@ -84,7 +85,7 @@ int main (int argc, char const * argv [])
 	opathspec pathspec;
 	oescape escape;
 	ohtmltidy object;
-	int (ohtmltidy::*method) (signed) = &ohtmltidy::page;
+	int (ohtmltidy::* method) (signed) = &ohtmltidy::page;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
 	{
@@ -108,7 +109,7 @@ int main (int argc, char const * argv [])
 	}
 	if (!getopt.argc ()) 
 	{
-		c = (object.*method) (std::cin.get ());
+		c = (object.* method) (std::cin.get ());
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
@@ -116,11 +117,12 @@ int main (int argc, char const * argv [])
 		pathspec.fullpath (filespec, * getopt.argv ());
 		if (fileopen.openedit (filespec)) 
 		{
-			c = (object.*method) (std::cin.get ());
+			c = (object.* method) (std::cin.get ());
 			fileopen.close ();
 		}
 		getopt++;
 	}
 	std::exit (0);
 }
+
 

@@ -36,8 +36,8 @@ public:
 	oSpanElement & EmptyTag ();
 	oSpanElement & EndTag ();
 private:
-	static char const *mscope;
-	static char const *mtitle;
+	static char const * mscope;
+	static char const * mtitle;
 };
 
 

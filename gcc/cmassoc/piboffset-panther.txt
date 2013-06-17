@@ -1,0 +1,1636 @@
+   0 Local Device Configuration
+  12 mReserved 
+  06 mMACAddress Configuration Tab, Device Configuration Group, Device Personalization Subgroup, MAC Address Text Box
+  16 mDAK 
+   2 mRSVD16 
+  64 mHFID_Manufacturer 
+ 016 mNMK Configuration Tab, Device Configuration Group, Device Personalization Subgroup, Network Password Text Box
+ 064 mHFID_User Configuration Tab, User HFID Text Box
+  64 mHFID_AVLN 
+  01 mCCoSelection Green PHY Configuration Tab, SLAC Mode Group, Enable Checkbox, PEV/EVSE Radio Button
+   1 mCoexistModeSelect 
+   1 mPLFreqSelection 
+   1 mRSVD8 
+  06 mNIDByField_Byte Configuration Tab, Device Configuration Group, Device Personalization Subgroup, Network Password Text Box
+   1 mHybridMode_mask 00C0
+  01 mAVLNMembership LED Manager Tab, GPIO Configurtion Subtab, Override Default Checkbox, Simple Connect ID Checkbox, Member of AVLN Checkbox
+  01 mMDUConfiguration Configuration Tab, MDU Configuration Group, Enable MDU Checkbox
+  01 mMDURole Configuration Tab, MDU Configuration Group, Master/Slave Radio Button
+   1 mSnifferEnabled 
+   6 mSnifferReturnMACAddress
+   1 mMemoryProfile
+  01 mAuthorizedUpdateLevel Configuration Security Tab, Secured Address Checkbox, Security Level of Operation Group, Level 1/Level 2/Level3 Radio Button
+  01 mAuthorizedSimpleConnectEnabled Configuration Security Tab, Secured Address Checkbox, Secured Simple Connect Group, Enabled Checkbox
+ 016 mNVM_AuthorizationKey Configuration Security Tab, Secured Address Checkbox, NVM Security Group, Password/128 Bit Key Radio Button, Password/128 Bit Key Text Box
+
+   4 mPIBReadCookie
+   4 mChipSignatureId
+  16 mProductIdString
+   1 mBoardType
+   1 mBoardRevisionNumber
+   2 mReserved8
+  84 mReserved32
+
+   0 Product Management Configuration
+  64 mCustomer_Rsvd 
+ 180 mQCA_Rsvd 
+
+   0 Ethernet Options
+   1 mNumPorts 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mPhyAddr 
+   2 mRegAddr 
+   1 mLinkStaBitNum 
+   1 mLinkStaOnSense 
+   1 mOverrideDefaults 
+   4 mMaxFramesPerSec 
+   1 mOverrideDefaults 
+   1 mIsPortDisabled 
+   1 mEnableAutoNegotiation 
+   1 mEnableTxFlowControl 
+   1 mEnableRxFlowControl 
+   1 mReserved0_mask 00FC
+   1 mSpeed 
+   1 mDuplex 
+   1 mAdvertisementCapabilities 
+   1 mUserPortIndex 
+   2 mReserved0 
+   1 mOverrideDefaults 
+   1 mIsPortDisabled 
+   1 mEnableAutoNegotiation 
+   1 mEnableTxFlowControl 
+   1 mEnableRxFlowControl 
+   1 mReserved0_mask 00FC
+   1 mSpeed 
+   1 mDuplex 
+   1 mAdvertisementCapabilities 
+   1 mUserPortIndex 
+   2 mReserved0 
+   1 mOverrideDefaults 
+   1 mIsPortDisabled 
+   1 mEnableAutoNegotiation 
+   1 mEnableTxFlowControl 
+   1 mEnableRxFlowControl 
+   1 mReserved0_mask 00FC
+   1 mSpeed 
+   1 mDuplex 
+   1 mAdvertisementCapabilities 
+   1 mUserPortIndex 
+   2 mReserved0 
+   1 mOverrideDefaults 
+   1 mIsPortDisabled 
+   1 mEnableAutoNegotiation 
+   1 mEnableTxFlowControl 
+   1 mEnableRxFlowControl 
+   1 mReserved0_mask 00FC
+   1 mSpeed 
+   1 mDuplex 
+   1 mAdvertisementCapabilities 
+   1 mUserPortIndex 
+   2 mReserved0 
+   1 mOverrideDefaults 
+   1 mIsPortDisabled 
+   1 mEnableAutoNegotiation 
+   1 mEnableTxFlowControl 
+   1 mEnableRxFlowControl 
+   1 mReserved0_mask 00FC
+   1 mSpeed 
+   1 mDuplex 
+   1 mAdvertisementCapabilities 
+   1 mUserPortIndex 
+   2 mReserved0 
+   1 mOverrideDefaults 
+   1 mIsPortDisabled 
+   1 mEnableAutoNegotiation 
+   1 mEnableTxFlowControl 
+   1 mEnableRxFlowControl 
+   1 mReserved0_mask 00FC
+   1 mSpeed 
+   1 mDuplex 
+   1 mAdvertisementCapabilities 
+   1 mUserPortIndex 
+   2 mReserved0 
+   1 mOverrideDefaults 
+   1 mIsPortDisabled 
+   1 mEnableAutoNegotiation 
+   1 mEnableTxFlowControl 
+   1 mEnableRxFlowControl 
+   1 mReserved0_mask 00FC
+   1 mSpeed 
+   1 mDuplex 
+   1 mAdvertisementCapabilities 
+   1 mUserPortIndex 
+   2 mReserved0 
+   1 mOverrideDefaults 
+   1 mIsPortDisabled 
+   1 mEnableAutoNegotiation 
+   1 mEnableTxFlowControl 
+   1 mEnableRxFlowControl 
+   1 mReserved0_mask 00FC
+   1 mSpeed 
+   1 mDuplex 
+   1 mAdvertisementCapabilities 
+   1 mUserPortIndex 
+   2 mReserved0 
+   1 mPhyAddressSelection 
+   1 mPhyAddressSelection_Data 
+
+   0 SPI Slave Options
+ 032 mProtocolId Interface Configuration Tab, SPI Slave Host Subtab
+
+   0 UART Options
+  01 mProtocolId Interface Configuration Tab, UART Host Subtab
+  04 mBaudRate Interface Configuration Tab, UART Host Subtab, Uart Settings Group, Baud Rate Dropdown
+  01 mDataLength Interface Configuration Tab, UART Host Subtab, Uart Settings Group, Data Bits Dropdown
+  01 mStopBits Interface Configuration Tab, UART Host Subtab, Uart Settings Group, Stop Bits Dropdown
+  01 mParity Interface Configuration Tab, UART Host Subtab, Uart Settings Group, Parity Bits Dropdown
+  01 mFlowControl Interface Configuration Tab, UART Host Subtab, Uart Settings Group, Flow Control Dropdown
+ 023 mDivisorAdjustValue Interface Configuration Tab, UART Host Subtab, Uart Settings Group, Divisor Adjust Value Dropdown
+
+   0 HIF Options
+   1 mOverrideDefaults 
+   1 mIsEthernetEnabled 
+   1 mIsSpiSlaveEnabled 
+   1 mIsUartEnabled 
+  52 mEthernetUserPortMappingEnabled 
+
+   0 IGMP Configuration
+  01 mOverrideDefaults QoS Tab, IGMP Group, Override Defaults Checkbox
+  01 mConfigFlags QoS Tab, IGMP Group, Disable Timeouts From Groupi (Group Specific Queries Checkbox, All System Queries Checkbox, Group Membership Interval Checkbox, Forward Unknown Streams Checkbox, Ignore T-bit In GroupID Checkbox, IGMPv3/MLDv2 Leave Filtering Checkbox) 
+   2 mReserved 
+
+   0 Private Configuration
+00764 mReserved 
+
+   0 Qos Parameters 1
+  01 mUnicastPriority Qos Tab, Default CAP Group, Unicast Dropdown 
+  01 mMcastPriority QoS Tab, Default CAP Group, Multicast/Broadcast Dropdown
+  01 mIGMPMLDPriority QoS Tab, Default CAP Group, IGMP Dropdown
+  01 mAVStreamPriority QoS Tab, Default CAP Group, IGMP managed Multicast Stream Dropdown
+ 016 mPriorityTTL_us QoS Tab, Priority TTL Group, CA0/CA1/CA2/CA3 Text Box
+  04 mMMETTL_us QoS Tab, Priority TTL Group, MME Text Box
+  01 mEnableVLANOver QoS Tab, Assign Priority Using VLAN Tags Checkbox
+  01 mEnableTOSOver QoS Tab, Assign Priority Using Traffic Class Checkbox
+  01 mEnableTrafficClass_DSCPOver QoS Tab, DSCP Radio Buggon, CAP Dropdown
+  01 mMinimumCapToPreserveForQos QoS Tab, Multimedia QoS Group, Enable Multimedia QoS Checkbox
+  01 mPrio3_mask Qos Tab, VLAN Tags Group, 0-3 Dropdown
+  01 mPrio7_mask QoS Tab, VLAN Tags Group, 4-7 Dropdown
+   1 mPrec3_mask QoS Tab, 
+   1 mPrec7_mask
+   1 mClass3_mask
+   1 mClass7_mask
+   1 mClassB_mask
+   1 mClassF_mask
+   1 mClass3_mask
+   1 mClass7_mask
+   1 mClassB_mask
+   1 mClassF_mask
+   1 mClass3_mask
+   1 mClass7_mask
+   1 mClassB_mask
+   1 mClassF_mask
+   1 mClass3_mask
+   1 mClass7_mask
+   1 mClassB_mask
+   1 mClassF_mask
+   1 mClass3_mask
+   1 mClass7_mask
+   1 mClassB_mask
+   1 mClassF_mask
+   1 mClass3_mask
+   1 mClass7_mask
+   1 mClassB_mask
+   1 mClassF_mask
+   1 mClass3_mask
+   1 mClass7_mask
+   1 mClassB_mask
+   1 mClassF_mask
+   1 mClass3_mask
+   1 mClass7_mask
+   1 mClassB_mask
+   1 mClassF_mask
+   1 mClass3_mask
+   1 mClass7_mask
+   1 mClassB_mask
+   1 mClassF_mask
+   1 mClass3_mask
+   1 mClass7_mask
+   1 mClassB_mask
+   1 mClassF_mask
+   1 mClass3_mask
+   1 mClass7_mask
+   1 mClassB_mask
+   1 mClassF_mask
+   1 mClass3_mask
+   1 mClass7_mask
+   1 mClassB_mask
+   1 mClassF_mask
+   1 mClass3_mask
+   1 mClass7_mask
+   1 mClassB_mask
+   1 mClassF_mask
+   1 mClass3_mask
+   1 mClass7_mask
+   1 mClassB_mask
+   1 mClassF_mask
+   1 mClass3_mask
+   1 mClass7_mask
+   1 mClassB_mask
+   1 mClassF_mask
+   1 mClass3_mask
+   1 mClass7_mask
+   1 mClassB_mask
+   1 mClassF_mask
+
+   0 QoS Parameters 2
+   4 mNumClassifierPriorityMaps 
+   4 mNumAutoConnections 
+   4 mPriority 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mPriority 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mPriority 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mPriority 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mPriority 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mPriority 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mPriority 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mPriority 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   1 mAction 
+   1 mClassificationOperand 
+   2 mNumClassifiers 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   2 mCSPECversion 
+   1 mConnCAP 
+   1 mConnCoQoSPrio 
+   2 mConnRate 
+   4 mRSVD 
+  14 mRSVD 
+   1 mAction 
+   1 mClassificationOperand 
+   2 mNumClassifiers 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   2 mCSPECversion 
+   1 mConnCAP 
+   1 mConnCoQoSPrio 
+   2 mConnRate 
+   4 mRSVD 
+  14 mRSVD 
+   1 mAction 
+   1 mClassificationOperand 
+   2 mNumClassifiers 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   2 mCSPECversion 
+   1 mConnCAP 
+   1 mConnCoQoSPrio 
+   2 mConnRate 
+   4 mRSVD 
+  14 mRSVD 
+   1 mAction 
+   1 mClassificationOperand 
+   2 mNumClassifiers 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   2 mCSPECversion 
+   1 mConnCAP 
+   1 mConnCoQoSPrio 
+   2 mConnRate 
+   4 mRSVD 
+  14 mRSVD 
+   1 mAction 
+   1 mClassificationOperand 
+   2 mNumClassifiers 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   2 mCSPECversion 
+   1 mConnCAP 
+   1 mConnCoQoSPrio 
+   2 mConnRate 
+   4 mRSVD 
+  14 mRSVD 
+   1 mAction 
+   1 mClassificationOperand 
+   2 mNumClassifiers 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   2 mCSPECversion 
+   1 mConnCAP 
+   1 mConnCoQoSPrio 
+   2 mConnRate 
+   4 mRSVD 
+  14 mRSVD 
+   1 mAction 
+   1 mClassificationOperand 
+   2 mNumClassifiers 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   2 mCSPECversion 
+   1 mConnCAP 
+   1 mConnCoQoSPrio 
+   2 mConnRate 
+   4 mRSVD 
+  14 mRSVD 
+   1 mAction 
+   1 mClassificationOperand 
+   2 mNumClassifiers 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   2 mCSPECversion 
+   1 mConnCAP 
+   1 mConnCoQoSPrio 
+   2 mConnRate 
+   4 mRSVD 
+  14 mRSVD 
+   1 mAction 
+   1 mClassificationOperand 
+   2 mNumClassifiers 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   2 mCSPECversion 
+   1 mConnCAP 
+   1 mConnCoQoSPrio 
+   2 mConnRate 
+   4 mRSVD 
+  14 mRSVD 
+   1 mAction 
+   1 mClassificationOperand 
+   2 mNumClassifiers 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   2 mCSPECversion 
+   1 mConnCAP 
+   1 mConnCoQoSPrio 
+   2 mConnRate 
+   4 mRSVD 
+  14 mRSVD 
+   1 mAction 
+   1 mClassificationOperand 
+   2 mNumClassifiers 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   2 mCSPECversion 
+   1 mConnCAP 
+   1 mConnCoQoSPrio 
+   2 mConnRate 
+   4 mRSVD 
+  14 mRSVD 
+   1 mAction 
+   1 mClassificationOperand 
+   2 mNumClassifiers 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   2 mCSPECversion 
+   1 mConnCAP 
+   1 mConnCoQoSPrio 
+   2 mConnRate 
+   4 mRSVD 
+  14 mRSVD 
+   1 mAction 
+   1 mClassificationOperand 
+   2 mNumClassifiers 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   2 mCSPECversion 
+   1 mConnCAP 
+   1 mConnCoQoSPrio 
+   2 mConnRate 
+   4 mRSVD 
+  14 mRSVD 
+   1 mAction 
+   1 mClassificationOperand 
+   2 mNumClassifiers 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   2 mCSPECversion 
+   1 mConnCAP 
+   1 mConnCoQoSPrio 
+   2 mConnRate 
+   4 mRSVD 
+  14 mRSVD 
+   1 mAction 
+   1 mClassificationOperand 
+   2 mNumClassifiers 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   2 mCSPECversion 
+   1 mConnCAP 
+   1 mConnCoQoSPrio 
+   2 mConnRate 
+   4 mRSVD 
+  14 mRSVD 
+   1 mAction 
+   1 mClassificationOperand 
+   2 mNumClassifiers 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   4 mClassifierPID 
+   4 mIndividualOperand 
+  16 mClassifierValue 
+   2 mCSPECversion 
+   1 mConnCAP 
+   1 mConnCoQoSPrio 
+   2 mConnRate 
+   4 mRSVD 
+  14 mRSVD 
+
+   0 Private Configuration
+   001 mNumberOfConfigEntries 
+   001 mTrafficTypeId 
+   001 mAggregationConfigId 
+   001 mTrafficTypeId 
+   001 mAggregationConfigId 
+   001 mTrafficTypeId 
+   001 mAggregationConfigId 
+   001 mTrafficTypeId 
+   001 mAggregationConfigId 
+   001 mTrafficTypeId 
+   001 mAggregationConfigId 
+   001 mTrafficTypeId 
+   001 mAggregationConfigId 
+   001 mTrafficTypeId 
+   001 mAggregationConfigId 
+   001 mTrafficTypeId 
+   001 mAggregationConfigId 
+  0048 Reserved_CustomAggregationParameters 
+  0055 RSVD 
+
+   0 Private Configuration 
+ 004 mToneMaskType 
+ 004 mEnabled 
+ 004 mStartTone 
+ 004 mEndTone 
+0012 mReserved 
+ 002 mPsdIndex 
+ 002 mEnableDynamicPsd 
+ 004 mPhySyncReference 
+ 004 mTxPrescalerType 
+001348 mData 
+0001 mMitigateEnabled Configuration Tab, Neighbor Network Mitigation, Disable/Dynamic
+ 004 mCorrelThreshold 
+ 004 mScaledTxGain 
+
+   0 Tonemask Notch Parameters
+   1 mEnableIsolationChannelScanning_Selection 
+   8 mMasterIsolationChannelSelection_ChannelID 
+   1 mNumIsolationChannels 
+   8 mChannelID 
+   2 mAutoCorrelationThreshold 
+   1 mTxPowerLevelAdjustment 
+   1 mRSVD4AdditionalConfig 
+   4 mRSVD4AdditionalConfig_2 
+   1 mPreferenceBias_dB 
+   1 mRSVD4SlaveConfig_2 
+   2 mRSVD4SlaveConfig 
+   4 mRSVD4MasterConfig 
+   8 mChannelID 
+   2 mAutoCorrelationThreshold 
+   1 mTxPowerLevelAdjustment 
+   1 mRSVD4AdditionalConfig 
+   4 mRSVD4AdditionalConfig_2 
+   1 mPreferenceBias_dB 
+   1 mRSVD4SlaveConfig_2 
+   2 mRSVD4SlaveConfig 
+   4 mRSVD4MasterConfig 
+   8 mChannelID 
+   2 mAutoCorrelationThreshold 
+   1 mTxPowerLevelAdjustment 
+   1 mRSVD4AdditionalConfig 
+   4 mRSVD4AdditionalConfig_2 
+   1 mPreferenceBias_dB 
+   1 mRSVD4SlaveConfig_2 
+   2 mRSVD4SlaveConfig 
+   4 mRSVD4MasterConfig 
+   8 mChannelID 
+   2 mAutoCorrelationThreshold 
+   1 mTxPowerLevelAdjustment 
+   1 mRSVD4AdditionalConfig 
+   4 mRSVD4AdditionalConfig_2 
+   1 mPreferenceBias_dB 
+   1 mRSVD4SlaveConfig_2 
+   2 mRSVD4SlaveConfig 
+   4 mRSVD4MasterConfig 
+   8 mChannelID 
+   2 mAutoCorrelationThreshold 
+   1 mTxPowerLevelAdjustment 
+   1 mRSVD4AdditionalConfig 
+   4 mRSVD4AdditionalConfig_2 
+   1 mPreferenceBias_dB 
+   1 mRSVD4SlaveConfig_2 
+   2 mRSVD4SlaveConfig 
+   4 mRSVD4MasterConfig 
+   8 mChannelID 
+   2 mAutoCorrelationThreshold 
+   1 mTxPowerLevelAdjustment 
+   1 mRSVD4AdditionalConfig 
+   4 mRSVD4AdditionalConfig_2 
+   1 mPreferenceBias_dB 
+   1 mRSVD4SlaveConfig_2 
+   2 mRSVD4SlaveConfig 
+   4 mRSVD4MasterConfig 
+   8 mChannelID 
+   2 mAutoCorrelationThreshold 
+   1 mTxPowerLevelAdjustment 
+   1 mRSVD4AdditionalConfig 
+   4 mRSVD4AdditionalConfig_2 
+   1 mPreferenceBias_dB 
+   1 mRSVD4SlaveConfig_2 
+   2 mRSVD4SlaveConfig 
+   4 mRSVD4MasterConfig 
+   8 mChannelID 
+   2 mAutoCorrelationThreshold 
+   1 mTxPowerLevelAdjustment 
+   1 mRSVD4AdditionalConfig 
+   4 mRSVD4AdditionalConfig_2 
+   1 mPreferenceBias_dB 
+   1 mRSVD4SlaveConfig_2 
+   2 mRSVD4SlaveConfig 
+   4 mRSVD4MasterConfig 
+   8 mChannelID 
+   2 mAutoCorrelationThreshold 
+   1 mTxPowerLevelAdjustment 
+   1 mRSVD4AdditionalConfig 
+   4 mRSVD4AdditionalConfig_2 
+   1 mPreferenceBias_dB 
+   1 mRSVD4SlaveConfig_2 
+   2 mRSVD4SlaveConfig 
+   4 mRSVD4MasterConfig 
+   8 mChannelID 
+   2 mAutoCorrelationThreshold 
+   1 mTxPowerLevelAdjustment 
+   1 mRSVD4AdditionalConfig 
+   4 mRSVD4AdditionalConfig_2 
+   1 mPreferenceBias_dB 
+   1 mRSVD4SlaveConfig_2 
+   2 mRSVD4SlaveConfig 
+   4 mRSVD4MasterConfig 
+   8 mChannelID 
+   2 mAutoCorrelationThreshold 
+   1 mTxPowerLevelAdjustment 
+   1 mRSVD4AdditionalConfig 
+   4 mRSVD4AdditionalConfig_2 
+   1 mPreferenceBias_dB 
+   1 mRSVD4SlaveConfig_2 
+   2 mRSVD4SlaveConfig 
+   4 mRSVD4MasterConfig 
+   8 mChannelID 
+   2 mAutoCorrelationThreshold 
+   1 mTxPowerLevelAdjustment 
+   1 mRSVD4AdditionalConfig 
+   4 mRSVD4AdditionalConfig_2 
+   1 mPreferenceBias_dB 
+   1 mRSVD4SlaveConfig_2 
+   2 mRSVD4SlaveConfig 
+   4 mRSVD4MasterConfig 
+   8 mChannelID 
+   2 mAutoCorrelationThreshold 
+   1 mTxPowerLevelAdjustment 
+   1 mRSVD4AdditionalConfig 
+   4 mRSVD4AdditionalConfig_2 
+   1 mPreferenceBias_dB 
+   1 mRSVD4SlaveConfig_2 
+   2 mRSVD4SlaveConfig 
+   4 mRSVD4MasterConfig 
+   8 mChannelID 
+   2 mAutoCorrelationThreshold 
+   1 mTxPowerLevelAdjustment 
+   1 mRSVD4AdditionalConfig 
+   4 mRSVD4AdditionalConfig_2 
+   1 mPreferenceBias_dB 
+   1 mRSVD4SlaveConfig_2 
+   2 mRSVD4SlaveConfig 
+   4 mRSVD4MasterConfig 
+   8 mChannelID 
+   2 mAutoCorrelationThreshold 
+   1 mTxPowerLevelAdjustment 
+   1 mRSVD4AdditionalConfig 
+   4 mRSVD4AdditionalConfig_2 
+   1 mPreferenceBias_dB 
+   1 mRSVD4SlaveConfig_2 
+   2 mRSVD4SlaveConfig 
+   4 mRSVD4MasterConfig 
+   8 mChannelID 
+   2 mAutoCorrelationThreshold 
+   1 mTxPowerLevelAdjustment 
+   1 mRSVD4AdditionalConfig 
+   4 mRSVD4AdditionalConfig_2 
+   1 mPreferenceBias_dB 
+   1 mRSVD4SlaveConfig_2 
+   2 mRSVD4SlaveConfig 
+   4 mRSVD4MasterConfig 
+
+   0 Private Configuration
+001 mEnabled 
+001 mDefaultHwCouplingState_LineNeutral 
+001 mEnableToneMaskPhyLimitForSmartCoupler 
+001 mReserved0 
+004 mCouplingControlGpioBitMask 
+002 mAlternateCouplingMinImprovement_Percent 
+002 mAlternateCouplingMinPhyRate_Mbps 
+008 mReserved0 
+004 mTimeoutForUnusedPrimaryChannel_ms 
+004 mTimeoutForUnusedAlternateChannel_ms 
+002 mMaxPhyRateScale_Percent 
+002 mMinimumDropInUsedPhyRate_Mbps 
+004 mMinTimeBetweenInitialSounding_ms 
+004 mOverrideCouplingSelectTimeout_ms 
+008 mReserved0 
+0032 mReserved1 
+0001 mEnableROBO_OnlyModeSelection Green PHY Configuration Tab, ROBO Only Group, Override available ROBO Modulations Checkbox 
+0001 mROBOModeSelection4UnicastData Green PHY Configuration Tab, ROBO Only Group, Override available ROBO Modulations Checkbox, Unicast Data Group, Regular ROBO Checkbox 
+0001 mROBOModeSelection4BroadcastData Green PHY Configuration Tab, ROBO Only Group, Override available ROBO Modulations Checkbox, Broadcast Data Group, Regular ROBO Checkbox 
+0001 mROBOModeSelection4MMEs Green PHY Configuration Tab, ROBO Only Group, Override available ROBO Modulations Checkbox, MMEs Group, Regular ROBO Checkbox 
+0001 mSLAC_EnableMode Green PHY Configuration Tab, SLAC Mode Group, PEV/EVSE Radio Button 
+004 mScaledTxGainAdjustment_LowAttenuationTone 
+0040 mScaledTxGainAdjustment_HighAttenuationTone 
+
+   0 Private Configuration
+0040 mReserved 
+
+   0 Feature Configuration
+   1 mReserved0 
+  01 mOverrideMinButtonPressHoldTime LED Manager Tab, GPIO Configurtion Subtab, Min Push Time Dropdown
+  02 mMinButtonPressHoldTime LED Manager Tab, GPIO Configurtion Subtab, Min Push Time Dropdown 
+  01 mPBControlStatus Encryption Configuration Tab, Default/Enhanced/Custom Radio Button 
+  01 mSTAMembershipMaskEnabled Encryption Configuration Tab, Enhanced/Custom Radio Button, AVLN Membership Mask Checkbox
+  01 mExitDefaultEnabled Encryption Configuration Tab, Enhanced/Custom Radio Button, Exit Default
+  01 mRejectDefaultEnabled Encryption Configuration Tab, Enhanced/Custom Radio Button, Reject Default
+  01 mChainingEnabled Encryption Configuration Tab, Enhanced Radio Button, Chaining Checkbox 
+   1 mRSVD1 
+   1 mRSVD2 
+ 016 mVendorSpecificNMK Encryption Configuration Tab, Enhanced Radio Button, Chaining Checkbox, Password Text Box 
+   4 mUplinkLimit_bps 
+   4 mDownlinkLimit_bps 
+  01 mMDUStaticSNID Configuration Tab, MDU Configuration, Master, Static SNID 
+  01 mOverrideBridgeTableAgingTime Bridge Information Tab, Bridged Address Aging Group, Override Default Checkbox
+  02 mLocalBridgeTableAgingTime_min Bridge Information Tab, Bridged Address Aging Group, Local Bridged Table Aging Text Box
+  02 mRemoteBridgeTableAgingTime_min Bridge Information Tab, Bridged Address Aging Group, Remote Bridged Table Aging Text Box
+   1 mLocalMACAddressLimit 
+
+   0 Private Configuration
+0046 mReserved 
+
+   0 Private Configuration
+00128 mReserved 
+
+   0 LED Event Behavior
+  01 mOverrideDefaultLedEventBehavior LED Manager Tab, GPIO Configurtion Subtab, Override Default Checkbox 
+  01 mReportToHostConfig LED Manager Tab, GPIO Configurtion Subtab, NMK Randomization Checkbox, Report To Host Checkbox
+   1 mNumBehaviors 
+   1 mNumEvents 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 1
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 1 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 1 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 1 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 2
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 2 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 2 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 2 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 3
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 3 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 3 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 3 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 4
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 4 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 4 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 4 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 5
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 5 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 5 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 5 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 6
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 6 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 6 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 6 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 7
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 7 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 7 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 7 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 8
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 8 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 8 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 8 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 9
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 9 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 9 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 9 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 10
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 10 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 10 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 10 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 11
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 11 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 11 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 11 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 12
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 12 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 12 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 12 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 13
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 13 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 13 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 13 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 14
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 14 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 14 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 14 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 15
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 15 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 15 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 15 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 16
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 16 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 16 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 16 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 17
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 17 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 17 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 17 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 18
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 18 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 18 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 18 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 19
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 19 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 19 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 19 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 20
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 20 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 20 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 20 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 21
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 21 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 21 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 21 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 22
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 22 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 22 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 22 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 23
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 23 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 23 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 23 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 24
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 24 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 24 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 24 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 25
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 25 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 25 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 25 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 26
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 26 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 26 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 26 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 27
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 27 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 27 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 27 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 28
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 28 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 28 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 28 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 29
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 29 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 29 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 29 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 30
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 30 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 30 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 30 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 31
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 31 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 31 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 31 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+  01 mBehId LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard Group, ID 32
+  01 mNoOfSteps LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 32 Dialog, Pulse Behavior Group, Number of Steps 
+ 012 mDurationInMs LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 32 Dialog, Pulse Radio Button, Step0-11 Group, Duration Text Box 
+ 012 mGPIOMaskBits LED Manager Tab, Event Behavior Map Subtab, LED Behavior Wizard 32 Dialog, Solid/Static Radio Button, Step0-11 Group, GPIO Configuration Subgroup 
+   2 mReserved 
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Scanning Low Power, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, ScanningLowPowerMode
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, InLowPower, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, InLowPowerMode
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Simple Connect - Adder, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, Simple Connect - Adder
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Simple Connect - Joiner, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, Simple Connect - Joiner
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Powerline Link Status CCo, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, Powerline Link Status CCo with Member
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Powerline Link Status Sole Member, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, Powerline Link Status Sole Member
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Powerline Tx, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, Powerline Tx
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Powerline Rx, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, Powerline Rx
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Powerline Link Status Authenticated Station, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, Powerline Link Status Authenticated Station
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Powerline Link Status Associated Station, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, Powerline Link Status Associated Station
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, SpiSlave Tx, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, SpiSlave Tx
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, SpiSlave Rx, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, SpiSlave Rx
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Throughput_Operational_Assoc_Traffic, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, Throughput_Operational_Assoc_Traffic
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Throughput_Operational_Assoc_NoTraffic, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, Throughput_Operational_Assoc_NoTraffic
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, NMK Not Default, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, NMK Not Default
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, NMK Is Default, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, NMK Is Default
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Device Warm Start, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, Device Warm Start
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Device Cold Start, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, Device Cold Start
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, External Ethernet Link, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, External Ethernet Link
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, External Ethernet Rx, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, External Ethernet Rx
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, External Ethernet Tx, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, External Ethernet Tx
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, User Event 1, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, User Event 1
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, User Event 0, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, User Event 0
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Reserved0, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, Reserved0
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Ethernet Rx, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, Ethernet Rx
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Ethernet Tx, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, Ethernet Tx
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Simple Connect Timeout, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, Simple Connect Timeout
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Ethernet Link, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, Ethernet Link
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+  02 mParticipatingGPIOs LED Manager Tab, Event Behavior Map Subtab, LED Event Behavior Map Group, Power, Event Behavior Map Dialog, GPIO Configuration Group 
+  01 mRsvd_mask LED Manager Tab, Event Behavior Map, LED Event-Behavior Map Group, Power
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   1 mEvtPriorityId 
+   1 mEvtId 
+   3 mBehId 
+   2 mParticipatingGPIOs 
+   1 mRsvd_mask
+   6 mPinToGpioNoMapping 
+  02 mInputGpioMask LED Manager Tab, GPIO Configurtion Subtab, GPIO Configuration Group, Input Radio Button
+  02 mOutputGpioMask LED Manager Tab, GPIO Configurtion Subtab, GPIO Configuration Group, Output Radio Button
+   2 mControlGpioMask 
+   1 mData 
+   1 mData 
+00001 mRsvd_mask Event LED Manager Tab, Event Behavior Map Subtab, Connection Quality Indication Group, Enable Connection Quality Indication Checkbox
+   1 mData 
+  01 mPLLinkStatus_CCoDuration_sec LED Manager Tab, Event Behavior Map Subtab, Led TimeOuts Group, Powerline Link Status Station Dropdown
+  01 mPLLinkStatus_StaDuration_sec LED Manager Tab, Event Behavior Map Subtab, Led TimeOuts Group, Powerline Link Status CCo Dropdown
+  01 mDefault_CCoPLLinkStatusOn LED Manager Tab, Event Behavior Map Subtab, Led TimeOuts Group, Powerline Link Status CCo Initial On Checkbox
+   1 mRsvd_mask 
+   4 mLowLinkSpeed_kbps 
+   4 mHighLinkSpeed_kbps 
+  01 mSCID_SecondPushButtonAction LED Manager Tab, GPIO Configurtion Subtab, Simple Connect ID Checkbox, Second Pushbutton Action Dropdown
+  02 mSCID_MinHoldTime_ms LED Manager Tab, GPIO Configurtion Subtab, Simple Connect ID Checkbox, Min Hold Time Dropdown
+  02 mSCID_MaxHoldTime_ms LED Manager Tab, GPIO Configurtion Subtab, Simple Connect ID Checkbox, Max Hold Time Dropdown
+  02 mSCID_AddFailTimeout_ms LED Manager Tab, GPIO Configurtion Subtab, Simple Connect ID Checkbox, Pushbutton Error Event Timer Dropdown
+  02 mSCID_GpioMask LED Manager Tab, GPIO Configurtion Subtab, Simple Connect ID Checkbox
+  04 mSCID_SCAdderTimeout_ms LED Manager Tab, GPIO Configurtion Subtab, Simple Connect ID Checkbox, Simple Connect Timer Dropdown
+  04 mSCID_SCJoinerTimeout_ms LED Manager Tab, GPIO Configurtion Subtab, Simple Connect ID Checkbox, Simple Connect Timer Dropdown
+  02 mSCID_SCTimeout_ms LED Manager Tab, GPIO Configurtion Subtab, Simple Connect ID Checkbox, Simple Connect Timeout Event Timer Dropdown
+  02 mSCID_JoinFailTimeout_ms LED Manager Tab, GPIO Configurtion Subtab, Simple Connect ID Checkbox, Push Button Error Event Timer Dropdown
+  02 mNMKRand_MinHoldTime_ms LED Manager Tab, GPIO Configurtion Subtab, NMK Randomize Checkbox, Min Hold Time Dropdown
+  02 mNMKRand_MaxHoldTime_ms LED Manager Tab, GPIO Configurtion Subtab, NMK Randomize Checkbox, Max Hold Time Dropdown
+  02 mNMKRand_GpioMask LED Manager Tab, GPIO Configurtion Subtab, NMK Randomize Checkbox
+   2 mReserved1 
+  02 mRstFactDflt_MinHoldTime_ms LED Manager Tab, GPIO Configurtion Subtab, Factory Default Checkbox, Min Hold Time Dropdown
+  02 mRstFactDflt_MaxHoldTime_ms LED Manager Tab, GPIO Configurtion Subtab, Factory Default Checkbox, Max Hold Time Dropdown
+  02 mRstFactDflt_GpioMask LED Manager Tab, GPIO Configurtion Subtab, Factory Default Checkbox
+   2 mReserved1 
+00002 mGPIOReportMME_MinHoldTime_ms LED Manager Tab, GPIO Configurtion Subtab, Report GPIO State Change Checkbox, Min Hold Time Dropdown           
+00002 mGPIOReportMME_MaxHoldTime_ms LED Manager Tab, GPIO Configurtion Subtab, Report GPIO State Change Checkbox, Max Hold Time Dropdown
+00002 mGPIOReportMME_GpioMask LED Manager Tab, GPIO Configurtion Subtab, Report GPIO State Change Checkbox, Input GPIO Dropdown
+   2 mGPIOReportMME_Dest 
+00006 mGPIOReportMME_DestAddr LED Manager Tab, GPIO Configurtion Subtab, Report GPIO State Change Checkbox, Destination Address Text Box
+   2 mReserved1 
+  02 mGPIO_SCR_MME_MinHoldTime_ms LED Manager Tab, GPIO Configurtion Subtab, Override Default Checkbox, Request Remote GPIO State Change Checkbox, Min Hold Time Dropdown
+  02 mGPIO_SCR_MME_MaxHoldTime_ms LED Manager Tab, GPIO Configurtion Subtab, Override Default Checkbox, Request Remote GPIO State Change Checkbox, Max Hold Time Dropdown
+  02 mGPIO_SCR_MME_GpioMask LED Manager Tab, GPIO Configurtion Subtab, Override Default Checkbox, Request Remote GPIO State Change Checkbox, Host Radio Button, Input GPIO Dropdown
+  02 mGPIO_SCR_MME_Dest LED Manager Tab, GPIO Configurtion Subtab, Override Default Checkbox, Request Remote GPIO State Change Checkbox, Input GPIO Dropdown
+  06 mGPIO_SCR_MME_DestAddr LED Manager Tab, GPIO Configurtion Subtab, Override Default Checkbox, Request Remote GPIO State Change Checkbox, Destination Address Text Box
+  01 mGPIO_SCR_MME_UserEvt LED Manager Tab, GPIO Configurtion Subtab, Override Default Checkbox, Request Remote GPIO State Change Checkbox, Remote User Event Number Dropdown
+  01 mGPIO_SCR_MME_StateCtrl LED Manager Tab, GPIO Configurtion Subtab, Override Default Checkbox, Request Remote GPIO State Change Checkbox, Remote Event State Control Dropdown
+  01 mSimpleConnect LED Manager Tab, GPIO Configurtion Subtab, Simple Connect ID Checkbox, Input GPIO Dropdown
+  01 mNMKRandomize LED Manager Tab, GPIO Configurtion Subtab, NMK Randomization Checkbox, Input GPIO Dropdown 
+  01 mFactoryReset LED Manager Tab, GPIO Configurtion Subtab, Factory Default Checkbox, Input GPIO Dropdown
+   1 mRequestGpioChange 
+   1 mReportGpioChange 
+ 150 mRSVD1 
+
+   0 Advanced Power Management
+   2 mStandbyConfig 
+   4 mPowerSavePeriod tPowerSavePeriod
+   4 mStandbyModeEnabledForStationRole 
+   1 mLedOnDutyCycle 
+   1 mbPowerLedEnabled bool
+   4 mSignalingGpioAssignment 
+   4 mProgrammingGpioAssignment 
+   1 mNumberProgrammingGpios 
+  13 mMaxSize 
+   1 mEnabled 
+   1 mPolarity 
+   1 mGpioNumber 
+   5 mReserved 
+   8 mRSVD 
+   4 mMethod 
+   1 mGpioNumber 
+   1 mMMEType 
+   6 mMaxSize 
+   4 mMethod 
+   1 mGpioNumber 
+   1 mMMEType 
+   6 mMaxSize 
+   4 mMethod 
+   1 mGpioNumber 
+   1 mMMEType 
+   6 mMaxSize 
+   4 mNumberConcurrentEvents 
+   4 mMethod 
+   1 mGpioNumber 
+   1 mMMEType 
+   6 mMaxSize 
+   4 mMethod 
+   1 mGpioNumber 
+   1 mMMEType 
+   6 mMaxSize 
+   4 mMethod 
+   1 mGpioNumber 
+   1 mMMEType 
+   6 mMaxSize 
+   4 mNumberConcurrentEvents 
+   4 mMethod 
+   1 mGpioNumber 
+   1 mMMEType 
+   6 mMaxSize 
+   4 mMethod 
+   1 mGpioNumber 
+   1 mMMEType 
+   6 mMaxSize 
+   4 mMethod 
+   1 mGpioNumber 
+   1 mMMEType 
+   6 mMaxSize 
+   4 mNumberConcurrentEvents 
+   2 mNumberConcurrentWakeEvents 
+   4 mMethod 
+   1 mGpioNumber 
+   1 mMMEType 
+   6 mMaxSize 
+   4 mMethod 
+   1 mGpioNumber 
+   1 mMMEType 
+   6 mMaxSize 
+   4 mMethod 
+   1 mGpioNumber 
+   1 mMMEType 
+   6 mMaxSize 
+   4 mNumberConcurrentEvents 
+   4 mMethod 
+   1 mGpioNumber 
+   1 mMMEType 
+   6 mMaxSize 
+   4 mMethod 
+   1 mGpioNumber 
+   1 mMMEType 
+   6 mMaxSize 
+   4 mMethod 
+   1 mGpioNumber 
+   1 mMMEType 
+   6 mMaxSize 
+   4 mNumberConcurrentEvents 
+   4 mMethod 
+   1 mGpioNumber 
+   1 mMMEType 
+   6 mMaxSize 
+   4 mMethod 
+   1 mGpioNumber 
+   1 mMMEType 
+   6 mMaxSize 
+   4 mMethod 
+   1 mGpioNumber 
+   1 mMMEType 
+   6 mMaxSize
+   4 mNumberConcurrentEvents 
+   2 mNumberConcurrentSleepEvents 
+   4 mDurationB4Standby_ms 
+
+   0 Advanced Power Management
+   4 mAwakeWindow 
+   4 mUnusedOptionBits_mask FFFC
+   1 mEthPhyType 
+   1 mOptimizationType 
+   2 mRSVD1 
+  74 mRSVD2 
+
+   0 Private Configuration
+00128 mReserved 
+
+   0 Distributed Bandwidth Control
+  01 mFeatureEnabled Green PHY Configuration Tab, Distributed Bandwidth Control (DBC) Group, Override Distributed Bandwidth Control Checkbox
+  01 mLimitMme Green PHY Configuration Tab, Distributed Bandwidth Control (DBC) Group, Apply DBC Data Limiting Rules to MMEs Checkbox
+  01 mLimitCap0 Green PHY Configuration Tab, Distributed Bandwidth Control (DBC) Group, Also Limit CAP0 Data Checkbox 
+   1 mReserved1 
+  12 mReserved2 
+
+   0 Private Configuration
+0032 mReserved 
+
+   0 Ethernet Switch Configuration
+   1 mSwitchEnable 
+   1 mReserve 
+   2 mNumMessages 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 mRegisterData 
+   4 mRegisterOffset 
+   4 RSVD

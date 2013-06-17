@@ -37,7 +37,7 @@ public:
 	virtual ~ okeywords ();
 	size_t count () const;
 	char const * keywords (size_t index) const;
-	bool defined (char const *string) const;
+	bool defined (char const * string) const;
 	size_t longest () const;
 	size_t indexof (char const * string) const;
 	okeywords & enumerate ();

@@ -27,12 +27,12 @@ class __declspec (dllexport) ochrhex
 public:
 	ochrhex ();
 	virtual ~ ochrhex ();
-	static char const *digits;
-	static char *tohex (char *string, unsigned c);
-	static char *toiso (char *string, unsigned c);
-	static char *tohtml (char *string, unsigned c);
-	static char *toietf (char *string, unsigned c);
-	static char *toconst (char *string, unsigned c);
+	static char const * digits;
+	static char * tohex (char * string, unsigned c);
+	static char * toiso (char * string, unsigned c);
+	static char * tohtml (char * string, unsigned c);
+	static char * toietf (char * string, unsigned c);
+	static char * toconst (char * string, unsigned c);
 private:
 };
 

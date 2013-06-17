@@ -23,7 +23,7 @@
  *   interface declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oprogram: public ocollect, public oindent
+class __declspec (dllexport) oprogram: public ocollect, public oindent 
 
 {
 public:

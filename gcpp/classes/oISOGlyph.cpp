@@ -30,7 +30,7 @@
  *   data initialization;
  *--------------------------------------------------------------------*/
 
-char const *oISOGlyph::mtable [UCHAR_MAX + 1] = 
+char const * oISOGlyph::mtable [UCHAR_MAX + 1] = 
 
 {
 	"#x00",
@@ -301,25 +301,25 @@ char const *oISOGlyph::mtable [UCHAR_MAX + 1] =
  *
  *--------------------------------------------------------------------*/
 
-char const *oISOGlyph::string (unsigned c) 
+char const * oISOGlyph::string (unsigned c) 
 
 {
 	this->mascii = this->mstring;
 	this->mglyph = oISOGlyph::mtable [c & UCHAR_MAX];
 	if (this->mglyph [1] == (char)(0)) 
 	{
-		*this->mascii++ = *this->mglyph;
+		* this->mascii++ = * this->mglyph;
 	}
 	else 
 	{
-		*this->mascii++ = '&';
-		while (*this->mglyph != (char)(0)) 
+		* this->mascii++ = '&';
+		while (* this->mglyph != (char)(0)) 
 		{
-			*this->mascii++ = *this->mglyph++;
+			* this->mascii++ = * this->mglyph++;
 		}
-		*this->mascii++ = ';';
+		* this->mascii++ = ';';
 	}
-	*this->mascii = (char)(0);
+	* this->mascii = (char)(0);
 	return ((char const *)(this->mstring));
 }
 
@@ -335,6 +335,7 @@ oISOGlyph::oISOGlyph ()
 	this->mstring [0] = (char)(0);
 	return;
 }
+
 
 oISOGlyph::~oISOGlyph () 
 

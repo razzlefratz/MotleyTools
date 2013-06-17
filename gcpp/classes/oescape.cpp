@@ -370,142 +370,139 @@ unsigned oescape::unescape (signed c)
  *
  *--------------------------------------------------------------------*/
 
-char *oescape::unescape (register char * string) 
+char * oescape::unescape (register char * string) 
 
 {
-	register char *sp = string;
-	register char *cp = string;
-	if (string) for (sp = cp = string; (*sp = *cp++); ++sp) 
+	register char * sp = string;
+	register char * cp = string;
+	if (string) for (sp = cp = string; (* sp = * cp++); ++sp) 
 	{
-		if (*sp == '\\') 
+		if (* sp == '\\') 
 		{
-			if (isoctal (*cp)) 
+			if (isoctal (* cp)) 
 			{
 				unsigned digits = 3;
-				while ((digits--) && isoctal (*cp)) 
+				while ((digits--) && isoctal (* cp)) 
 				{
-					*sp *= 8;
-					*sp += *cp++ - '0';
+					* sp *= 8;
+					* sp += * cp++ - '0';
 				}
 				continue;
 			}
-			if ((*cp == 'x') || (*cp == 'X')) 
+			if ((* cp == 'x') || (* cp == 'X')) 
 			{
 				cp++;
-				*sp = 0;
-				if (oascii::isxdigit (*cp)) 
+				* sp = 0;
+				if (oascii::isxdigit (* cp)) 
 				{
-					*sp = (*sp << 4) + oascii::todigit (*cp++);
+					* sp = (* sp << 4) + oascii::todigit (* cp++);
 				}
-				if (oascii::isxdigit (*cp)) 
+				if (oascii::isxdigit (* cp)) 
 				{
-					*sp = (*sp << 4) + oascii::todigit (*cp++);
+					* sp = (* sp << 4) + oascii::todigit (* cp++);
 				}
 				continue;
 			}
-
 #if oESCAPE_NOTABLE
 
-			switch (*cp) 
+			switch (* cp) 
 			{
 			case 'a':
-				*sp = '\a';
+				* sp = '\a';
 				break;
 			case 'b':
-				*sp = '\b';
+				* sp = '\b';
 				break;
 			case 'f':
-				*sp = '\f';
+				* sp = '\f';
 				break;
 			case 'n':
-				*sp = '\n';
+				* sp = '\n';
 				break;
 			case 'r':
-				*sp = '\r';
+				* sp = '\r';
 				break;
 			case 't':
-				*sp = '\t';
+				* sp = '\t';
 				break;
 			case 'v':
-				*sp = '\v';
+				* sp = '\v';
 				break;
 			case '?':
-				*sp = '\?';
+				* sp = '\?';
 				break;
 			case '\'':
-				*sp = '\'';
+				* sp = '\'';
 				break;
 			case '\"':
-				*sp = '\"';
+				* sp = '\"';
 				break;
 			case '\\':
-				*sp = '\\';
+				* sp = '\\';
 				break;
 			default:
-				*sp = *cp;
+				* sp = * cp;
 				break;
 			}
 			cp++;
 
 #else
 
-			*sp = oescape::unescape (*cp++);
+			* sp = oescape::unescape (* cp++);
 
 #endif
 
 			continue;
 		}
-
 #if oESCAPE_ISO_646_1983
 
-		if (*sp == '?') 
+		if (* sp == '?') 
 		{
-			if (*cp == '?') 
+			if (* cp == '?') 
 			{
 				switch (*++cp) 
 				{
 				case '=':
-					*sp = '#';
+					* sp = '#';
 					break;
 				case '(':
-					*sp = '[';
+					* sp = '[';
 					break;
 				case '/':
-					*sp = '\\';
+					* sp = '\\';
 					break;
 				case ')':
-					*sp = ']';
+					* sp = ']';
 					break;
 				case '\'':
-					*sp = '^';
+					* sp = '^';
 					break;
 				case '<':
-					*sp = '{';
+					* sp = '{';
 					break;
 				case '!':
-					*sp = '|';
+					* sp = '|';
 					break;
 				case '>':
-					*sp = '}';
+					* sp = '}';
 					break;
 				case '-':
-					*sp = '~';
+					* sp = '~';
 					break;
 				default:
 					*++sp = '?';
-					*++sp = *cp;
+					*++sp = * cp;
 					break;
 				}
 				cp++;
 			}
 			continue;
 		}
-
 #endif
 
-		if (*sp == '^') 
+		if (* sp == '^') 
 		{
-			*sp = oascii::tocntrl (*cp++);
+			* sp = oascii::tocntrl (* cp++);
 			continue;
 		}
 	}

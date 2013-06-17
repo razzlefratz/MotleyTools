@@ -62,10 +62,11 @@
 
 #define PROFILE_NAME "/etc/cfm.ini"     
 #define SECTION_NAME "default"     
-#define CFM_S_PACKAGE "Motley Tools by Charles Maier <cmaier@cmassoc.net>"
+
+#define CFM_S_PREFACE "Permission to use, copy, modify, and/or distribute this software\n *   for any purpose with or without fee is hereby granted, provided\n *   that the above copyright notice and this permission notice appear\n *   in all copies.\n *\n *   THE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL\n *   WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED\n *   WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL\n *   THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR\n *   CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM\n *   LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,\n *   NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN\n *   CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE."
+#define CFM_S_PACKAGE "Motley Tools by Charles Maier <cmaier@cmassoc.net>."
 #define CFM_S_RELEASE "Copyright (c) 2001-2006 by Charles Maier."
-#define CFM_S_LICENSE "Permission to use, copy, modify, and/or distribute this software\n *   for any purpose with or without fee is hereby granted, provided\n *   that the above copyright notice and this permission notice appear\n *   in all copies.\n *\n *   THE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL\n *   WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED\n *   WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL\n *   THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR\n *   CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM\n *   LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,\n *   NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN\n *   CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE."
-#define CFM_S_PREFACE ""
+#define CFM_S_LICENSE "Licensed under the Internet Software Consortium (ISC) License."
 #define CFM_S_SPECIAL ""
 
 /*====================================================================*
@@ -198,7 +199,7 @@ int main (int argc, char const * argv [])
 	object.special (config.string (profile, section, oCOMMENT_S_SPECIAL, CFM_S_SPECIAL));
 	if (!getopt.argc ()) 
 	{
-		c = (object.*method) (std::cin.get (), EOF);
+		c = (object.* method) (std::cin.get (), EOF);
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
@@ -207,11 +208,12 @@ int main (int argc, char const * argv [])
 		if (fileopen.openedit (filename)) 
 		{
 			object.filename (filename);
-			c = (object.*method) (std::cin.get (), EOF);
+			c = (object.* method) (std::cin.get (), EOF);
 			fileopen.close ();
 		}
 		getopt++;
 	}
 	std::exit (0);
 }
+
 

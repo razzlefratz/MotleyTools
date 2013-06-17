@@ -32,7 +32,7 @@ class __declspec (dllexport) otree
 {
 public:
 	otree (char const * nodename);
-	otree (char const * nodename, void const *object);
+	otree (char const * nodename, void const * object);
 	otree (char const nodename [], size_t length);
 	virtual ~ otree ();
 	char const * nodename () const;
@@ -57,8 +57,8 @@ public:
 	otree * home () const;
 	otree * head () const;
 	otree * tail () const;
-	otree * select (char const *string, const int c) const;
-	otree * fetch (char const *string, char const c) const;
+	otree * select (char const * string, const int c) const;
+	otree * fetch (char const * string, char const c) const;
 	otree * nodes (long index) const;
 	char * strings (long index) const;
 	void * objects (long index) const;

@@ -57,7 +57,7 @@ char const * oenviron::hostname () const
  *
  *--------------------------------------------------------------------*/
 
-char const *oenviron::username () const 
+char const * oenviron::username () const 
 
 {
 	return (this->musername);
@@ -170,7 +170,7 @@ size_t oenviron::strfwhen (char buffer [], size_t length, time_t event)
 size_t oenviron::strfwhom (char buffer [], size_t length) 
 
 {
-	char *string = buffer;
+	char * string = buffer;
 
 #if defined (__linux__)
 

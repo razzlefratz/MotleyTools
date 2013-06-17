@@ -36,11 +36,11 @@ public:
 	ochtml (char const * stylesheet);
 	ochtml ();
 	virtual ~ ochtml ();
-	ochtml & html (char const *pathname);
+	ochtml & html (char const * pathname);
 	ochtml & stylesheet ();
 	ochtml & stylesheet (char const * string);
 private:
-	static char const * resource (char const *filename);
+	static char const * resource (char const * filename);
 	ochtml & directive ();
 	static ofilespec filespec;
 	oscancode mfile;

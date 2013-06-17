@@ -92,7 +92,7 @@ size_t oscanfile::tokensize () const
  *
  *--------------------------------------------------------------------*/
 
-char const *oscanfile::tokentext () const 
+char const * oscanfile::tokentext () const 
 
 {
 	return ((char const *) (this->mtoken));
@@ -132,7 +132,7 @@ oscanfile & oscanfile::tokentype (char c)
 
 {
 	this->mclass = c;
-	return (*this);
+	return (* this);
 }
 
 
@@ -310,7 +310,7 @@ bool oscanfile::isclass (signed c) const
  *
  *--------------------------------------------------------------------*/
 
-bool oscanfile::isclass (char const *charset) const 
+bool oscanfile::isclass (char const * charset) const 
 
 {
 	return (std::strchr (charset, this->mclass));
@@ -328,7 +328,7 @@ bool oscanfile::isclass (char const *charset) const
  *
  *--------------------------------------------------------------------*/
 
-bool oscanfile::istoken (char const *literal) const 
+bool oscanfile::istoken (char const * literal) const 
 
 {
 	return (std::strcmp (literal, this->mtoken) == 0);
@@ -352,7 +352,7 @@ oscanfile & oscanfile::flush ()
 	this->mcount = 0;
 	this->mtoken [0] = (char) (0);
 	this->mclass = (char) (0);
-	return (*this);
+	return (* this);
 }
 
 
@@ -376,7 +376,7 @@ oscanfile & oscanfile::scanbreak ()
 {
 	if (this->mcount >= this->mlimit) 
 	{
-		char *otoken = this->mtoken;
+		char * otoken = this->mtoken;
 		this->mlimit = this->mlimit + this->mblock;
 		this->mblock = this->mlimit - this->mblock;
 		this->mtoken = new char [this->mlimit + 1];
@@ -397,7 +397,7 @@ oscanfile & oscanfile::scanbreak ()
 	{
 		this->mbreak = std::cin.get ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -421,7 +421,7 @@ oscanfile & oscanfile::scanbreak (unsigned c)
 	{
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -438,14 +438,14 @@ oscanfile & oscanfile::scanbreak (unsigned c)
  *
  *--------------------------------------------------------------------*/
 
-oscanfile & oscanfile::scanbreak (char const *charset) 
+oscanfile & oscanfile::scanbreak (char const * charset) 
 
 {
 	if (this->isbreak (charset)) 
 	{
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -465,11 +465,11 @@ oscanfile & oscanfile::scanbreak (char const *charset)
 oscanfile & oscanfile::scanmatch () 
 
 {
-	if (this->mbreak == *this->mtoken) 
+	if (this->mbreak == * this->mtoken) 
 	{
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -489,11 +489,11 @@ oscanfile & oscanfile::scanmatch ()
 oscanfile & oscanfile::scanwhile () 
 
 {
-	while ((this->mbreak != EOF) && (this->mbreak == *this->mtoken)) 
+	while ((this->mbreak != EOF) && (this->mbreak == * this->mtoken)) 
 	{
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -514,7 +514,7 @@ oscanfile & oscanfile::scanwhile (unsigned c)
 	{
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -531,14 +531,14 @@ oscanfile & oscanfile::scanwhile (unsigned c)
  *
  *--------------------------------------------------------------------*/
 
-oscanfile & oscanfile::scanwhile (char const *charset) 
+oscanfile & oscanfile::scanwhile (char const * charset) 
 
 {
 	while ((this->mbreak != EOF) && std::strchr (charset, this->mbreak)) 
 	{
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -562,7 +562,7 @@ oscanfile & oscanfile::scanspace ()
 	{
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -586,7 +586,7 @@ oscanfile & oscanfile::scanalpha ()
 	{
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -610,7 +610,7 @@ oscanfile & oscanfile::scandigit ()
 	{
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -634,7 +634,7 @@ oscanfile & oscanfile::scanalnum ()
 	{
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -652,11 +652,11 @@ oscanfile & oscanfile::scanalnum ()
 oscanfile & oscanfile::scanuntil () 
 
 {
-	while ((this->mbreak != EOF) && (this->mbreak != *this->mtoken)) 
+	while ((this->mbreak != EOF) && (this->mbreak != * this->mtoken)) 
 	{
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -678,7 +678,7 @@ oscanfile & oscanfile::scanuntil (unsigned c)
 	{
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -693,14 +693,14 @@ oscanfile & oscanfile::scanuntil (unsigned c)
  *
  *--------------------------------------------------------------------*/
 
-oscanfile & oscanfile::scanuntil (char const *charset) 
+oscanfile & oscanfile::scanuntil (char const * charset) 
 
 {
 	while ((this->mbreak != EOF) && !strchr (charset, this->mbreak)) 
 	{
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -726,7 +726,7 @@ oscanfile & oscanfile::scanquote (unsigned c)
 		}
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -741,7 +741,7 @@ oscanfile & oscanfile::scanquote (unsigned c)
  *
  *--------------------------------------------------------------------*/
 
-oscanfile & oscanfile::scanquote (char const *charset) 
+oscanfile & oscanfile::scanquote (char const * charset) 
 
 {
 	while ((this->mbreak != EOF) && strchr (charset, this->mbreak)) 
@@ -752,7 +752,7 @@ oscanfile & oscanfile::scanquote (char const *charset)
 		}
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -770,7 +770,7 @@ oscanfile & oscanfile::scanquote (char const *charset)
 oscanfile & oscanfile::scanquote () 
 
 {
-	while ((this->mbreak != EOF) && (this->mbreak != *this->mtoken)) 
+	while ((this->mbreak != EOF) && (this->mbreak != * this->mtoken)) 
 	{
 		if (this->mbreak == '\\') 
 		{
@@ -778,7 +778,7 @@ oscanfile & oscanfile::scanquote ()
 		}
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -823,7 +823,7 @@ oscanfile & oscanfile::scangroup (unsigned c)
 		}
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -838,7 +838,7 @@ oscanfile & oscanfile::scangroup (unsigned c)
  *
  *--------------------------------------------------------------------*/
 
-oscanfile & oscanfile::scangroup (char const *charset) 
+oscanfile & oscanfile::scangroup (char const * charset) 
 
 {
 	while ((this->mbreak != EOF) && !strchr (charset, this->mbreak)) 
@@ -868,7 +868,7 @@ oscanfile & oscanfile::scangroup (char const *charset)
 		}
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -885,20 +885,20 @@ oscanfile & oscanfile::scangroup (char const *charset)
  *
  *--------------------------------------------------------------------*/
 
-oscanfile & oscanfile::scanblock (char const *literal) 
+oscanfile & oscanfile::scanblock (char const * literal) 
 
 {
-	while ((this->mbreak != EOF) && (this->mbreak != *literal)) 
+	while ((this->mbreak != EOF) && (this->mbreak != * literal)) 
 	{
 		literal++;
-		while ((this->mbreak != EOF) && (this->mbreak != *literal)) 
+		while ((this->mbreak != EOF) && (this->mbreak != * literal)) 
 		{
 			this->scanbreak ();
 		}
 		this->scanbreak ();
 		literal--;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -916,17 +916,17 @@ oscanfile & oscanfile::scanblock (char const *literal)
 oscanfile & oscanfile::scanblock () 
 
 {
-	while ((this->mbreak != EOF) && (this->mbreak != *this->mtoken)) 
+	while ((this->mbreak != EOF) && (this->mbreak != * this->mtoken)) 
 	{
 		this->mtoken++;
-		while ((this->mbreak != EOF) && (this->mbreak != *this->mtoken)) 
+		while ((this->mbreak != EOF) && (this->mbreak != * this->mtoken)) 
 		{
 			this->scanbreak ();
 		}
 		this->scanbreak ();
 		this->mtoken--;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -964,7 +964,7 @@ bool oscanfile::havebreak (unsigned c)
  *
  *--------------------------------------------------------------------*/
 
-bool oscanfile::havebreak (char const *charset) 
+bool oscanfile::havebreak (char const * charset) 
 
 {
 	if (this->isbreak (charset)) 
@@ -1014,7 +1014,7 @@ oscanfile & oscanfile::scantoken ()
 		this->mclass = this->mbreak;
 		this->scanbreak ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -1029,7 +1029,7 @@ oscanfile & oscanfile::scantoken ()
  *
  *--------------------------------------------------------------------*/
 
-bool oscanfile::havetoken (char const *literal) 
+bool oscanfile::havetoken (char const * literal) 
 
 {
 	if (this->istoken (literal)) 
@@ -1055,10 +1055,10 @@ bool oscanfile::havetoken (char const *literal)
  *
  *--------------------------------------------------------------------*/
 
-char const *oscanfile::copytoken () const 
+char const * oscanfile::copytoken () const 
 
 {
-	char *string = new char [this->mcount + 1];
+	char * string = new char [this->mcount + 1];
 	std::strncpy (string, this->mtoken, this->mcount);
 	return ((char const *) (string));
 }
@@ -1080,7 +1080,7 @@ oscanfile & oscanfile::copytoken (char buffer [], size_t length)
 {
 	std::strncpy (buffer, this->mtoken, length);
 	buffer [--length] = (char) (0);
-	return (*this);
+	return (* this);
 }
 
 
@@ -1095,14 +1095,14 @@ oscanfile & oscanfile::copytoken (char buffer [], size_t length)
  *
  *--------------------------------------------------------------------*/
 
-oscanfile & oscanfile::skiptoken (char const *literal) 
+oscanfile & oscanfile::skiptoken (char const * literal) 
 
 {
 	if (this->istoken (literal)) 
 	{
 		this->skiptoken ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -1123,7 +1123,7 @@ oscanfile & oscanfile::skiptoken ()
 	this->scanspace ();
 	this->flush ();
 	this->scantoken ();
-	return (*this);
+	return (* this);
 }
 
 
@@ -1161,7 +1161,7 @@ bool oscanfile::haveclass (signed c)
  *
  *--------------------------------------------------------------------*/
 
-bool oscanfile::haveclass (char const *charset) 
+bool oscanfile::haveclass (char const * charset) 
 
 {
 	if (this->isclass (charset)) 
@@ -1184,7 +1184,7 @@ bool oscanfile::haveclass (char const *charset)
  *
  *--------------------------------------------------------------------*/
 
-oscanfile & oscanfile::trimtoken (char const *charset) 
+oscanfile & oscanfile::trimtoken (char const * charset) 
 
 {
 	unsigned int first = 0;
@@ -1201,7 +1201,7 @@ oscanfile & oscanfile::trimtoken (char const *charset)
 	{
 		this->mtoken [this->mcount++] = this->mtoken [first++];
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -1233,7 +1233,7 @@ oscanfile & oscanfile::trimtoken ()
 	{
 		this->mtoken [this->mcount++] = this->mtoken [first++];
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -1252,7 +1252,7 @@ oscanfile & oscanfile::lowercase ()
 
 {
 	ochrlwr::convert (this->mtoken);
-	return (*this);
+	return (* this);
 }
 
 
@@ -1271,7 +1271,7 @@ oscanfile & oscanfile::uppercase ()
 
 {
 	ochrupr::convert (this->mtoken);
-	return (*this);
+	return (* this);
 }
 
 
@@ -1291,7 +1291,7 @@ oscanfile & oscanfile::write ()
 
 {
 	std::cout.write (this->mtoken, this->mcount);
-	return (*this);
+	return (* this);
 }
 
 
@@ -1311,7 +1311,7 @@ oscanfile & oscanfile::write (std::ofstream * stream)
 
 {
 	stream->write (this->mtoken, this->mcount);
-	return (*this);
+	return (* this);
 }
 
 
@@ -1332,7 +1332,7 @@ oscanfile & oscanfile::print ()
 {
 	std::cout.write (this->mtoken, this->mcount);
 	std::cout.write ("\n", 1);
-	return (*this);
+	return (* this);
 }
 
 
@@ -1353,7 +1353,7 @@ oscanfile & oscanfile::print (std::ofstream * stream)
 {
 	stream->write (this->mtoken, this->mcount);
 	stream->write ("\n", 1);
-	return (*this);
+	return (* this);
 }
 
 
@@ -1375,7 +1375,7 @@ oscanfile & oscanfile::clear ()
 	this->mclass = (char) (0);
 	this->mcount = 0;
 	this->ucount = 0;
-	return (*this);
+	return (* this);
 }
 
 
@@ -1390,13 +1390,13 @@ oscanfile & oscanfile::clear ()
  *
  *--------------------------------------------------------------------*/
 
-oscanfile & oscanfile::unget (char const *string) 
+oscanfile & oscanfile::unget (char const * string) 
 
 {
-	char const *sp;
+	char const * sp;
 	if (strlen (string) > this->ulimit - this->ucount) 
 	{
-		char *ounbuf = this->munget;
+		char * ounbuf = this->munget;
 		this->ulimit = this->ucount + std::strlen (string);
 		this->munget = new char [this->ulimit + 1];
 		for (unsigned int index = 0; index < this->ucount; ++index) 
@@ -1405,12 +1405,12 @@ oscanfile & oscanfile::unget (char const *string)
 		}
 		delete [] ounbuf;
 	}
-	for (sp = string; *sp; ++sp);
+	for (sp = string; * sp; ++sp);
 	while (sp > string) 
 	{
 		this->munget [this->ucount++] = *--sp;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -1432,7 +1432,7 @@ oscanfile & oscanfile::unget (char c)
 	{
 		this->munget [this->ucount++] = (char) (c);
 	}
-	return (*this);
+	return (* this);
 }
 
 

@@ -82,7 +82,7 @@ otree & otree::nodetext (char const * nodetext)
 		this->mstring = new char [std::strlen (nodetext) + 1];
 		std::strcpy (this->mstring, nodetext);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -117,7 +117,7 @@ otree & otree::nodedata (void * nodedata)
 
 {
 	this->mobject = nodedata;
-	return (*this);
+	return (* this);
 }
 
 
@@ -152,7 +152,7 @@ otree & otree::index (long index)
 
 {
 	this->mindex = index;
-	return (*this);
+	return (* this);
 }
 
 
@@ -187,7 +187,7 @@ otree & otree::count (long count)
 
 {
 	this->mcount = count;
-	return (*this);
+	return (* this);
 }
 
 
@@ -222,7 +222,7 @@ otree & otree::level (long level)
 
 {
 	this->mlevel = level;
-	return (*this);
+	return (* this);
 }
 
 
@@ -287,11 +287,11 @@ otree * otree::nodeabove () const
  *
  *--------------------------------------------------------------------*/
 
-otree & otree::nodeabove (otree *node) 
+otree & otree::nodeabove (otree * node) 
 
 {
 	this->mabove = node;
-	return (*this);
+	return (* this);
 }
 
 
@@ -322,11 +322,11 @@ otree * otree::nodeprior () const
  *
  *--------------------------------------------------------------------*/
 
-otree & otree::nodeprior (otree *node) 
+otree & otree::nodeprior (otree * node) 
 
 {
 	this->mabove = node;
-	return (*this);
+	return (* this);
 }
 
 
@@ -361,7 +361,7 @@ otree & otree::nodeafter (otree * node)
 
 {
 	this->mabove = node;
-	return (*this);
+	return (* this);
 }
 
 
@@ -396,7 +396,7 @@ otree & otree::nodebelow (otree * node)
 
 {
 	this->mabove = node;
-	return (*this);
+	return (* this);
 }
 
 
@@ -413,7 +413,7 @@ otree & otree::nodebelow (otree * node)
 char * otree::strings (long index) const 
 
 {
-	otree *node = this->nodes (index);
+	otree * node = this->nodes (index);
 	return (node? node->mstring: (char *) (0));
 }
 
@@ -432,7 +432,7 @@ char * otree::strings (long index) const
 void * otree::objects (long index) const 
 
 {
-	otree *node = this->nodes (index);
+	otree * node = this->nodes (index);
 	return (node? node->mobject: (void *) (0));
 }
 
@@ -614,7 +614,7 @@ otree * otree::insertabove (char const * nodename)
 otree * otree::insertprior (char const * nodename) 
 
 {
-	otree *node = new otree (nodename);
+	otree * node = new otree (nodename);
 	if (this->mprior) 
 	{
 		this->mprior->mafter = node;
@@ -734,7 +734,7 @@ otree * otree::appendafter (char const * nodename)
 otree * otree::appendbelow (char const * nodename) 
 
 {
-	otree *node = new otree (nodename);
+	otree * node = new otree (nodename);
 	if (this->mbelow) 
 	{
 		otree * temp = this->mbelow;
@@ -769,8 +769,8 @@ otree * otree::appendbelow (char const * nodename)
 otree * otree::createafter (char const * nodename, const int order) 
 
 {
-	otree *node = this;
-	otree *temp;
+	otree * node = this;
+	otree * temp;
 	if (order) while (node) 
 	{
 		int path = std::strcmp (nodename, node->msymbol);
@@ -834,7 +834,7 @@ otree * otree::createafter (char const * nodename, const int order)
 otree * otree::createbelow (char const * nodename, const int order) 
 
 {
-	otree *node = this->mbelow;
+	otree * node = this->mbelow;
 	if (this->mbelow) 
 	{
 		node = node->createafter (nodename, order);
@@ -873,7 +873,7 @@ otree & otree::connect ()
 		this->mafter->mprior = this;
 		this->mbelow->connect ();
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -890,7 +890,7 @@ otree & otree::connect ()
 long otree::reorder (long index, long level) 
 
 {
-	otree *node = this;
+	otree * node = this;
 	while (node) 
 	{
 		node->mlevel = level;
@@ -938,7 +938,7 @@ otree & otree::outline ()
 		}
 		node = node->mafter;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -1010,7 +1010,7 @@ char * otree::pathname (char buffer [], size_t length, char extender)
 	*--buffer = (char) (0);
 	while (node->mabove) 
 	{
-		for (string = node->msymbol; *string; string++);
+		for (string = node->msymbol; * string; string++);
 		while ((string > node->msymbol) && (length)) 
 		{
 			*--buffer = *--string;
@@ -1019,7 +1019,7 @@ char * otree::pathname (char buffer [], size_t length, char extender)
 		*--buffer = extender;
 		node = node->mabove;
 	}
-	for (string = node->msymbol; *string; string++);
+	for (string = node->msymbol; * string; string++);
 	while ((string > node->msymbol) && (length)) 
 	{
 		*--buffer = *--string;
@@ -1045,7 +1045,7 @@ otree * otree::createpath (char const * pathname, char extender)
 	otree * node = this;
 	otree * temp;
 	char const * nodename = pathname;
-	while ((*pathname) && (*pathname != extender)) 
+	while ((* pathname) && (* pathname != extender)) 
 	{
 		pathname++;
 	}
@@ -1060,13 +1060,13 @@ otree * otree::createpath (char const * pathname, char extender)
 		}
 		node = node->mafter;
 	}
-	if (*pathname) 
+	if (* pathname) 
 	{
 		if (node->mbelow) 
 		{
 			return (node->mbelow->createpath (++pathname, extender));
 		}
-		while (!node->mbelow && *pathname) 
+		while (!node->mbelow && * pathname) 
 		{
 			temp = new otree (nodename, pathname - nodename);
 			temp->mabove = node;
@@ -1090,9 +1090,9 @@ otree * otree::createpath (char const * pathname, char extender)
 otree * otree::selectpath (char const * pathname, char extender) 
 
 {
-	otree *node = this;
+	otree * node = this;
 	char const * nodename = pathname;
-	while ((*pathname) && (*pathname != extender)) 
+	while ((* pathname) && (* pathname != extender)) 
 	{
 		pathname++;
 	}
@@ -1100,7 +1100,7 @@ otree * otree::selectpath (char const * pathname, char extender)
 	{
 		node = node->mafter;
 	}
-	if ((node) && (*pathname)) 
+	if ((node) && (* pathname)) 
 	{
 		return (node->mbelow->selectpath (++pathname, extender));
 	}

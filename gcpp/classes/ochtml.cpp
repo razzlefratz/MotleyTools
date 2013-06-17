@@ -78,7 +78,7 @@ ochtml & ochtml::stylesheet ()
 	std::cout << "span.variable { color: blue; }" << std::endl;
 	std::cout << "span.operator { color: black; }" << std::endl;
 	std::cout << "span.function { color: fuschia; }" << std::endl;
-	return (*this);
+	return (* this);
 }
 
 
@@ -96,7 +96,7 @@ ochtml & ochtml::stylesheet (char const * string)
 
 {
 	owebpage::stylesheet (string);
-	return (*this);
+	return (* this);
 }
 
 
@@ -116,11 +116,11 @@ ochtml & ochtml::stylesheet (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-ochtml & ochtml::html (char const *filename) 
+ochtml & ochtml::html (char const * filename) 
 
 {
 	std::ofstream output;
-	std::streambuf *buf;
+	std::streambuf * buf;
 	filename = ochtml::filespec.filespec (filename).fullpath ();
 	if (this->mfile.read (filename).isempty ()) 
 	{
@@ -243,9 +243,9 @@ ochtml & ochtml::html (char const *filename)
 				this->mfile.write ();
 				level--;
 			}
-			else for (char const * sp = this->mfile.tokentext (); *sp; ++sp) 
+			else for (char const * sp = this->mfile.tokentext (); * sp; ++sp) 
 			{
-				std::cout << this->mglyph.string (*sp);
+				std::cout << this->mglyph.string (* sp);
 			}
 			break;
 		default:
@@ -258,7 +258,7 @@ ochtml & ochtml::html (char const *filename)
 	this->mfile.clear ();
 	std::cout.rdbuf (buf);
 	output.close ();
-	return (*this);
+	return (* this);
 }
 
 
@@ -358,7 +358,6 @@ ochtml & ochtml::directive ()
 			this->mfile.scanbreak ().flush ();
 			std::cout << "&gt;";
 		}
-
 #if 0         
 
 		else if (this->mfile.isbreak ('[')) 
@@ -385,7 +384,6 @@ ochtml & ochtml::directive ()
 			this->mfile.flush ().scanbreak ();
 			std::cout << this->mfile.tokentext ();
 		}
-
 #endif
 
 		else 
@@ -414,7 +412,7 @@ ochtml & ochtml::directive ()
 		this->mspan.EndTag ();
 		break;
 	}
-	return (*this);
+	return (* this);
 }
 
 

@@ -33,7 +33,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const *odocument::title () const 
+char const * odocument::title () const 
 
 {
 	return (this->root->title ());
@@ -48,11 +48,11 @@ char const *odocument::title () const
  *
  *--------------------------------------------------------------------*/
 
-odocument & odocument::title (char const *title) 
+odocument & odocument::title (char const * title) 
 
 {
 	this->root->title (title);
-	return (*this);
+	return (* this);
 }
 
 
@@ -67,12 +67,14 @@ odocument::odocument ()
 	return;
 }
 
-odocument::odocument (char const *title) 
+
+odocument::odocument (char const * title) 
 
 {
 	this->root = new otree (title);
 	return;
 }
+
 
 odocument::~odocument () 
 

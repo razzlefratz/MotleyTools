@@ -124,7 +124,7 @@ int main (int argc, char const * argv [])
 		pathspec.fullpath (filename, * getopt.argv ());
 		if (fileopen.openedit (filename)) 
 		{
- 			object.filename (filename);
+			object.filename (filename);
 			(object.* method) ();
 			fileopen.close ();
 		}
@@ -132,4 +132,5 @@ int main (int argc, char const * argv [])
 	}
 	std::exit (0);
 }
+
 

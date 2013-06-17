@@ -61,11 +61,12 @@ unsigned oformat::margin () const
 	return (this->mmargin);
 }
 
+
 oformat & oformat::margin (unsigned margin) 
 
 {
 	this->mmargin = margin;
-	return (*this);
+	return (* this);
 }
 
 
@@ -83,6 +84,7 @@ unsigned oformat::length () const
 	return (this->mlength);
 }
 
+
 oformat & oformat::length (unsigned column) 
 
 {
@@ -95,7 +97,7 @@ oformat & oformat::length (unsigned column)
 	{
 		this->mindent = this->mlength;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -113,6 +115,7 @@ unsigned oformat::indent () const
 	return (this->mindent);
 }
 
+
 oformat & oformat::indent (unsigned column) 
 
 {
@@ -121,7 +124,7 @@ oformat & oformat::indent (unsigned column)
 	{
 		this->mindent = this->mlength;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -140,6 +143,7 @@ unsigned oformat::offset () const
 	return (this->moffset);
 }
 
+
 oformat & oformat::offset (unsigned column) 
 
 {
@@ -148,7 +152,7 @@ oformat & oformat::offset (unsigned column)
 	{
 		this->moffset = this->mlength;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -165,8 +169,9 @@ oformat & oformat::table (unsigned count)
 
 {
 	for (this->moffset++; this->moffset % count; this->moffset++);
-	return (*this);
+	return (* this);
 }
+
 
 oformat & oformat::shift (unsigned count) 
 
@@ -176,7 +181,7 @@ oformat & oformat::shift (unsigned count)
 	{
 		this->moffset = this->mlength;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -202,7 +207,7 @@ oformat & oformat::space (unsigned count)
 			this->mbuffer [this->mcolumn++] = SP;
 		}
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -214,7 +219,7 @@ oformat & oformat::space (unsigned count)
  *
  *--------------------------------------------------------------------*/
 
-oformat & oformat::print (char const *string) 
+oformat & oformat::print (char const * string) 
 
 {
 	this->align ();
@@ -224,9 +229,9 @@ oformat & oformat::print (char const *string)
 		this->flush (0);
 		this->align ();
 	}
-	while (*string) 
+	while (* string) 
 	{
-		if (*string == '\n') 
+		if (* string == '\n') 
 		{
 			this->space (0);
 			this->flush (0);
@@ -235,7 +240,7 @@ oformat & oformat::print (char const *string)
 		}
 		else if (this->mcolumn < this->mlength) 
 		{
-			this->mbuffer [this->mcolumn++] = *string++;
+			this->mbuffer [this->mcolumn++] = * string++;
 		}
 		else 
 		{
@@ -244,7 +249,7 @@ oformat & oformat::print (char const *string)
 			this->align ();
 		}
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -277,7 +282,7 @@ oformat & oformat::flush (unsigned space)
 	{
 		fputc ('\n', stdout);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -292,7 +297,7 @@ oformat & oformat::align ()
 	{
 		this->mbuffer [this->mcolumn++] = SP;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -309,7 +314,7 @@ oformat & oformat::status ()
 	std::cout << "column=(" << this->mcolumn << ")" << std::endl;
 	std::cout << "length=(" << this->mlength << ")" << std::endl;
 	std::cout << "record=(" << this->mrecord << ")" << std::endl;
-	return (*this);
+	return (* this);
 }
 
 
@@ -329,6 +334,7 @@ oformat::oformat ()
 	this->mrecord = BUFFER_MAX;
 	return;
 }
+
 
 oformat::~oformat () 
 

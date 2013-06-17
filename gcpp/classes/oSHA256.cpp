@@ -92,7 +92,7 @@ oSHA256 & oSHA256::Write (void const * memory, size_t extent)
 			std::memcpy (this->mblock + left, buffer, (uint16_t) (extent));
 		}
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -217,7 +217,7 @@ oSHA256 & oSHA256::Block (byte const buffer [])
 	{
 		this->mstate [word] += H [word];
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -254,7 +254,7 @@ oSHA256 & oSHA256::Fetch (byte digest [])
 		PUT_UINT32 (this->mstate [word], digest, word * sizeof (uint32_t));
 	}
 	oSHA256::Reset ();
-	return (*this);
+	return (* this);
 }
 
 
@@ -280,7 +280,7 @@ oSHA256 & oSHA256::Reset (void)
 	std::memset (this->mblock, 0, oSHA256_BUFFER_LENGTH);
 	std::memset (this->mextra, 0, oSHA256_BUFFER_LENGTH);
 	this->mextra [0] = 0x80;
-	return (*this);
+	return (* this);
 }
 
 

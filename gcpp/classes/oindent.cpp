@@ -37,7 +37,7 @@
  *   
  *--------------------------------------------------------------------*/
 
-oindent & oindent::margin (char const *string) 
+oindent & oindent::margin (char const * string) 
 
 {
 	if (std::strcmp (string, this->mmargin)) 
@@ -46,7 +46,7 @@ oindent & oindent::margin (char const *string)
 		this->mmargin = new char [strlen (string) +1];
 		std::strcpy (this->mmargin, string);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -83,7 +83,7 @@ char const * oindent::margin () const
  *   
  *--------------------------------------------------------------------*/
 
-oindent & oindent::indent (char const *string) 
+oindent & oindent::indent (char const * string) 
 
 {
 	if (std::strcmp (string, this->mindent)) 
@@ -92,7 +92,7 @@ oindent & oindent::indent (char const *string)
 		this->mindent = new char [strlen (string) +1];
 		std::strcpy (this->mindent, string);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -129,7 +129,7 @@ char const * oindent::indent () const
  *   
  *--------------------------------------------------------------------*/
 
-oindent & oindent::finish (char const *string) 
+oindent & oindent::finish (char const * string) 
 
 {
 	if (std::strcmp (string, this->mfinish)) 
@@ -138,7 +138,7 @@ oindent & oindent::finish (char const *string)
 		this->mfinish = new char [strlen (string) +1];
 		std::strcpy (this->mfinish, string);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -175,7 +175,7 @@ char const * oindent::finish () const
  *   
  *--------------------------------------------------------------------*/
 
-oindent & oindent::record (char const *string) 
+oindent & oindent::record (char const * string) 
 
 {
 	if (std::strcmp (string, this->mrecord)) 
@@ -184,7 +184,7 @@ oindent & oindent::record (char const *string)
 		this->mrecord = new char [strlen (string) +1];
 		std::strcpy (this->mrecord, string);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -224,15 +224,16 @@ oindent & oindent::level ()
 
 {
 	oindent::print (this->mmargin, this->mindent, this->mlevel);
-	return (*this);
+	return (* this);
 }
+
 
 oindent & oindent::level (signed level) 
 
 {
 	this->mlevel = level;
 	oindent::print (this->mmargin, this->mindent, this->mlevel);
-	return (*this);
+	return (* this);
 }
 
 
@@ -252,15 +253,16 @@ oindent & oindent::space ()
 
 {
 	oindent::print (this->mfinish, this->mrecord, this->mspace);
-	return (*this);
+	return (* this);
 }
+
 
 oindent & oindent::space (signed space) 
 
 {
 	this->mspace = space;
 	oindent::print (this->mfinish, this->mrecord, this->mspace);
-	return (*this);
+	return (* this);
 }
 
 
@@ -276,7 +278,7 @@ oindent & oindent::space (signed space)
  *   
  *--------------------------------------------------------------------*/
 
-void oindent::newline (char const *margin, char const *indent, signed level) 
+void oindent::newline (char const * margin, char const * indent, signed level) 
 
 {
 	oindent::print (margin, indent, level);
@@ -296,7 +298,7 @@ void oindent::newline (char const *margin, char const *indent, signed level)
  *   
  *--------------------------------------------------------------------*/
 
-void oindent::endline (char const *finish, char const *record, signed space) 
+void oindent::endline (char const * finish, char const * record, signed space) 
 
 {
 	oindent::print (finish, record, space);
@@ -314,13 +316,13 @@ void oindent::endline (char const *finish, char const *record, signed space)
  *   
  *--------------------------------------------------------------------*/
 
-oindent & oindent::print (signed level, signed space, char const *string) 
+oindent & oindent::print (signed level, signed space, char const * string) 
 
 {
 	oindent::print (this->mmargin, this->mindent, level);
 	std::cout << string;
 	oindent::print (this->mfinish, this->mrecord, space);
-	return (*this);
+	return (* this);
 }
 
 
@@ -337,7 +339,7 @@ oindent & oindent::print (signed level, signed space, char const *string)
  *   
  *--------------------------------------------------------------------*/
 
-void oindent::print (char const *prefix, char const *suffix, signed count) 
+void oindent::print (char const * prefix, char const * suffix, signed count) 
 
 {
 	for (std::cout << prefix; count-- > 0; std::cout << suffix);

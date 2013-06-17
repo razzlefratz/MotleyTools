@@ -45,16 +45,16 @@ class __declspec (dllexport) osyslog
 public:
 	osyslog ();
 	virtual ~ osyslog ();
-	osyslog & identity (char const *identity);
+	osyslog & identity (char const * identity);
 	osyslog & facility (unsigned facility);
 	osyslog & options (unsigned options);
 	char const * identity () const;
 	unsigned facility () const;
 	unsigned options () const;
-	void syslog (unsigned priority, char const *format, ...);
-	void syslogerr (unsigned priority, errno_t errnum, char const *format, ...);
-	void syslogerr_at_line (unsigned priority, errno_t errnum, char const *file, size_t line, char const *format, ...);
-	void vsyslog (unsigned priority, char const *format, va_list arglist);
+	void syslog (unsigned priority, char const * format, ...);
+	void syslogerr (unsigned priority, errno_t errnum, char const * format, ...);
+	void syslogerr_at_line (unsigned priority, errno_t errnum, char const * file, size_t line, char const * format, ...);
+	void vsyslog (unsigned priority, char const * format, va_list arglist);
 private:
 	char * midentity;
 	facility_t mfacility;

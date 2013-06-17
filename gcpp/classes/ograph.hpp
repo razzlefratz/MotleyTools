@@ -40,31 +40,31 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ograph: private otext, private oascii, public oflagword
+class __declspec (dllexport) ograph: private otext, private oascii, public oflagword 
 
 {
 public:
 	ograph ();
 	virtual ~ ograph ();
-	char const *name ();
+	char const * name ();
 	onode * node () const;
-	ograph & name (char const *name);
-	ograph & addnode (char const *nodename);
-	ograph & addedge (char const *needname, char const *feedname);
+	ograph & name (char const * name);
+	ograph & addnode (char const * nodename);
+	ograph & addedge (char const * needname, char const * feedname);
 	ograph & populate (char colon, char comma);
 	ograph & discover ();
-	ograph & trace (onode *node, onode *temp);
+	ograph & trace (onode * node, onode * temp);
 	ograph & print (signed indent);
 	ograph & clear ();
 private:
 	ograph & traverse (onode * node);
-	char *mname;
-	onodes *mnodes;
-	oedges *medges;
-	onode *mneednode;
-	onode *mfeednode;
-	onode *mnode;
-	oedge *medge;
+	char * mname;
+	onodes * mnodes;
+	oedges * medges;
+	onode * mneednode;
+	onode * mfeednode;
+	onode * mnode;
+	oedge * medge;
 	size_t morder;
 	size_t mcount;
 	size_t mwidth;

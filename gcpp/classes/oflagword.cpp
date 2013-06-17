@@ -47,7 +47,7 @@ oflagword & oflagword::state (unsigned bits)
 
 {
 	this->mbits = bits;
-	return (*this);
+	return (* this);
 }
 
 
@@ -78,7 +78,7 @@ oflagword & oflagword::setword (unsigned word)
 
 {
 	this->mbits = word;
-	return (*this);
+	return (* this);
 }
 
 
@@ -109,7 +109,7 @@ oflagword & oflagword::setbits (unsigned mask)
 
 {
 	this->mbits |= mask;
-	return (*this);
+	return (* this);
 }
 
 
@@ -125,7 +125,7 @@ oflagword & oflagword::clearbits (unsigned mask)
 
 {
 	this->mbits &= ~mask;
-	return (*this);
+	return (* this);
 }
 
 

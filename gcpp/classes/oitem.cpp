@@ -31,7 +31,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const *oitem::name () const 
+char const * oitem::name () const 
 
 {
 	return (this->mname);
@@ -51,7 +51,7 @@ oitem & oitem::name (char const * name)
 
 {
 	this->mname = otext::replace (this->mname, name);
-	return (*this);
+	return (* this);
 }
 
 
@@ -63,7 +63,7 @@ oitem & oitem::name (char const * name)
  *
  *--------------------------------------------------------------------*/
 
-char const *oitem::text () const 
+char const * oitem::text () const 
 
 {
 	return (this->mtext);
@@ -83,7 +83,7 @@ oitem & oitem::text (char const * text)
 
 {
 	this->mtext = otext::replace (this->mtext, text);
-	return (*this);
+	return (* this);
 }
 
 
@@ -95,7 +95,7 @@ oitem & oitem::text (char const * text)
  *
  *--------------------------------------------------------------------*/
 
-void *oitem::data () const 
+void * oitem::data () const 
 
 {
 	return (this->mdata);
@@ -114,7 +114,7 @@ oitem & oitem::data (void * data)
 
 {
 	this->mdata = (void *) (data);
-	return (*this);
+	return (* this);
 }
 
 
@@ -125,7 +125,7 @@ oitem & oitem::data (void * data)
  *
  *--------------------------------------------------------------------*/
 
-oitem *oitem::next () const 
+oitem * oitem::next () const 
 
 {
 	return (this->mitem);
@@ -143,7 +143,7 @@ oitem & oitem::next (oitem * item)
 
 {
 	this->mitem = item;
-	return (*this);
+	return (* this);
 }
 
 
@@ -160,7 +160,7 @@ oitem & oitem::clear ()
 	this->mname = otext::replace (this->mname, "");
 	this->mtext = otext::replace (this->mtext, "");
 	this->mdata = (void *) (0);
-	return (*this);
+	return (* this);
 }
 
 
@@ -171,7 +171,7 @@ oitem & oitem::clear ()
  *   
  *--------------------------------------------------------------------*/
 
-oitem::oitem (char const *name, char const *text, void const *data) 
+oitem::oitem (char const * name, char const * text, void const * data) 
 
 {
 	this->mname = otext::save (name);
@@ -189,7 +189,7 @@ oitem::oitem (char const *name, char const *text, void const *data)
  *   
  *--------------------------------------------------------------------*/
 
-oitem::oitem (char const *name, char const *text) 
+oitem::oitem (char const * name, char const * text) 
 
 {
 	this->mname = otext::save (name);
@@ -207,7 +207,7 @@ oitem::oitem (char const *name, char const *text)
  *   
  *--------------------------------------------------------------------*/
 
-oitem::oitem (char const *name, void const *data) 
+oitem::oitem (char const * name, void const * data) 
 
 {
 	this->mname = otext::save (name);
@@ -225,7 +225,7 @@ oitem::oitem (char const *name, void const *data)
  *   
  *--------------------------------------------------------------------*/
 
-oitem::oitem (char const *name) 
+oitem::oitem (char const * name) 
 
 {
 	this->mname = otext::save (name);

@@ -37,12 +37,12 @@ public:
 	ocalendar & stylesheet (unsigned level, unsigned space);
 	ocalendar & print (unsigned index);
 private:
-	omonth **mmonth;
+	omonth ** mmonth;
 	oindent mindent;
-	static char const *mdays [];
-	static char const *mdate1 [];
-	static char const *mdate2 [];
-	char *mtitle;
+	static char const * mdays [];
+	static char const * mdate1 [];
+	static char const * mdate2 [];
+	char * mtitle;
 };
 
 

@@ -172,9 +172,11 @@ static signed condition (signed c)
 	}
 	else if (c != ';') 
 	{
+		putc (' ', stdout);
 		putc ('(', stdout);
 		c = program (c, ';');
 		putc (')', stdout);
+		putc (' ', stdout);
 	}
 	return (c);
 }
@@ -264,7 +266,7 @@ static signed program (signed c, signed e)
 			if (!strcmp (string, "else")) 
 			{
 				c = statement (c);
-				return (c);
+				continue;
 			}
 			if (!strcmp (string, "do")) 
 			{

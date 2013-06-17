@@ -27,11 +27,11 @@ class __declspec (dllexport) ooctencoder
 public:
 	ooctencoder ();
 	virtual ~ ooctencoder ();
-	char *encode (char const *string);
-	char *decode (char *string);
+	char * encode (char const * string);
+	char * decode (char * string);
 private:
 	static char const mdigit [];
-	char *mbuffer;
+	char * mbuffer;
 	size_t mlength;
 };
 

@@ -80,11 +80,13 @@ void osorter::home ()
 	return;
 }
 
+
 bool osorter::more () 
 
 {
 	return (this->mindex < this->mcount);
 }
+
 
 void osorter::next () 
 
@@ -122,7 +124,7 @@ void osorter::operator ++ ()
  *
  *--------------------------------------------------------------------*/
 
-char const *osorter::operator [] (unsigned int index) 
+char const * osorter::operator [] (unsigned int index) 
 
 {
 	return (this->strings (index));
@@ -136,7 +138,7 @@ char const *osorter::operator [] (unsigned int index)
  *
  *--------------------------------------------------------------------*/
 
-bool osorter::operator += (char const *string) 
+bool osorter::operator += (char const * string) 
 
 {
 	return (this->insert (string));
@@ -150,7 +152,7 @@ bool osorter::operator += (char const *string)
  *
  *--------------------------------------------------------------------*/
 
-bool osorter::operator -= (char const *string) 
+bool osorter::operator -= (char const * string) 
 
 {
 	return (this->remove (string));
@@ -164,7 +166,7 @@ bool osorter::operator -= (char const *string)
  *
  *--------------------------------------------------------------------*/
 
-bool osorter::insert (char const *string) 
+bool osorter::insert (char const * string) 
 
 {
 	if (this->indexof (string) < this->mcount) 
@@ -183,7 +185,7 @@ bool osorter::insert (char const *string)
  *
  *--------------------------------------------------------------------*/
 
-bool osorter::remove (char const *string) 
+bool osorter::remove (char const * string) 
 
 {
 	if (this->indexof (string) < this->mcount) 
@@ -206,7 +208,7 @@ bool osorter::remove (char const *string)
  *
  *--------------------------------------------------------------------*/
 
-char const *osorter::string () 
+char const * osorter::string () 
 
 {
 	return (this->mindex < this->mcount? this->mtable [this->mindex]: this->mtable [this->mcount]);
@@ -220,7 +222,7 @@ char const *osorter::string ()
  *
  *--------------------------------------------------------------------*/
 
-char const *osorter::strings (unsigned index) 
+char const * osorter::strings (unsigned index) 
 
 {
 	return (index < this->mcount? this->mtable [index]: this->mtable [this->mcount]);
@@ -235,7 +237,7 @@ char const *osorter::strings (unsigned index)
  *
  *--------------------------------------------------------------------*/
 
-bool osorter::defined (char const *string) 
+bool osorter::defined (char const * string) 
 
 {
 	return (this->indexof (string) < this->mcount);
@@ -249,7 +251,7 @@ bool osorter::defined (char const *string)
  *
  *--------------------------------------------------------------------*/
 
-unsigned int osorter::indexof (char const *string) 
+unsigned int osorter::indexof (char const * string) 
 
 {
 	this->mlower = this->mstart;
@@ -281,14 +283,14 @@ unsigned int osorter::indexof (char const *string)
  *
  *--------------------------------------------------------------------*/
 
-osorter & osorter::store (char const *string) 
+osorter & osorter::store (char const * string) 
 
 {
 	if (this->mlower >= this->mupper) 
 	{
 		if (this->mcount >= this->mlimit) 
 		{
-			char const **otable = this->mtable;
+			char const ** otable = this->mtable;
 			this->mtable = new char const *[this->mlimit + this->mblock];
 			for (this->mindex = this->mstart; this->mindex < this->mlimit; this->mindex++) 
 			{
@@ -308,7 +310,7 @@ osorter & osorter::store (char const *string)
 		this->mlower = this->mstart;
 		this->mupper = this->mcount;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -330,14 +332,14 @@ osorter & osorter::store (char const *string)
 osorter & osorter::define (char string [], unsigned char c) 
 
 {
-	char *sp;
+	char * sp;
 	if (string != (char *) (0)) 
 	{
-		for (sp = string; *sp != (char) (0); sp++) 
+		for (sp = string; * sp != (char) (0); sp++) 
 		{
-			if (*sp == c) 
+			if (* sp == c) 
 			{
-				*sp = (char) (0);
+				* sp = (char) (0);
 				this->store (string);
 				string = sp + 1;
 			}
@@ -347,7 +349,7 @@ osorter & osorter::define (char string [], unsigned char c)
 			this->store (string);
 		}
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -368,7 +370,7 @@ osorter & osorter::clear ()
 	this->mlower = 0;
 	this->mupper = 0;
 	this->mindex = 0;
-	return (*this);
+	return (* this);
 }
 
 
@@ -390,6 +392,7 @@ osorter::osorter (int order (char const *, char const *))
 	this->mindex = 0;
 }
 
+
 osorter::osorter () 
 
 {
@@ -403,6 +406,7 @@ osorter::osorter ()
 	this->mupper = 0;
 	this->mindex = 0;
 }
+
 
 osorter::~osorter () 
 

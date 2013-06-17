@@ -40,9 +40,9 @@ public:
 	oedge * edge () const;
 	oedges & clear ();
 private:
-	onode *mnode;
-	oedge *medge;
-	oedge **mtable;
+	onode * mnode;
+	oedge * medge;
+	oedge ** mtable;
 	size_t mblock;
 	size_t mlimit;
 	size_t mcount;

@@ -27,9 +27,9 @@ class __declspec (dllexport) ofindfile
 public:
 	ofindfile ();
 	virtual ~ ofindfile ();
-	FILE *fopen1 (char const *file, char const *mode);
-	FILE *fopen2 (char const *file, char const *mode, char const *pathstring);
-	FILE *fopen3 (char const *file, char const *mode, char const *pathsymbol);
+	FILE * fopen1 (char const * file, char const * mode);
+	FILE * fopen2 (char const * file, char const * mode, char const * pathstring);
+	FILE * fopen3 (char const * file, char const * mode, char const * pathsymbol);
 private:
 	char ** mstack;
 	unsigned mlevel;

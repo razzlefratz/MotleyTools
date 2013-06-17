@@ -35,7 +35,7 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ohtmltidy: private otext, private ocollect, public oindent, public oflagword
+class __declspec (dllexport) ohtmltidy: private otext, private ocollect, public oindent, public oflagword 
 
 {
 public:

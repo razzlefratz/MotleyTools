@@ -37,6 +37,7 @@ char const * okeywords::table [] =
 	(char const *) (0)
 };
 
+
 const unsigned okeywords::words = sizeof (okeywords::table) / sizeof (char const *) - 1;
 
 /*====================================================================*
@@ -89,7 +90,7 @@ char const * okeywords::keywords (size_t index) const
  *
  *--------------------------------------------------------------------*/
 
-bool okeywords::defined (char const *string) const 
+bool okeywords::defined (char const * string) const 
 
 {
 	return (this->indexof (string) < this->mcount);
@@ -109,7 +110,7 @@ bool okeywords::defined (char const *string) const
  *
  *--------------------------------------------------------------------*/
 
-size_t okeywords::indexof (char const *string) const 
+size_t okeywords::indexof (char const * string) const 
 
 {
 	size_t lower = 0;
@@ -217,7 +218,7 @@ okeywords & okeywords::enumerate ()
 	std::cout << "\t\t\tbreak;" << std::endl;
 	std::cout << "\t}" << std::endl;
 	std::cout << std::endl;
-	return (*this);
+	return (* this);
 }
 
 
@@ -233,7 +234,7 @@ okeywords & okeywords::enumerate ()
  *
  *--------------------------------------------------------------------*/
 
-okeywords & okeywords::enumerate (char const *prefix, char const *suffix) 
+okeywords & okeywords::enumerate (char const * prefix, char const * suffix) 
 
 {
 	unsigned index = 0;
@@ -241,7 +242,7 @@ okeywords & okeywords::enumerate (char const *prefix, char const *suffix)
 	{
 		std::cout << prefix << this->mtable [index++] << suffix;
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -288,9 +289,9 @@ okeywords & okeywords::enumerate (size_t columns)
 				char const * string = this->mtable [count];
 				while ((string - this->mtable [count]) < (signed)(width)) 
 				{
-					if (*string) 
+					if (* string) 
 					{
-						std::cout.put (*string++);
+						std::cout.put (* string++);
 						continue;
 					}
 					break;
@@ -305,7 +306,7 @@ okeywords & okeywords::enumerate (size_t columns)
 		}
 		std::cout.put ('\n');
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -344,7 +345,7 @@ okeywords & okeywords::mcheck ()
 			std::exit (1);
 		}
 	}
-	return (*this);
+	return (* this);
 }
 
 

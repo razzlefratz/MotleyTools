@@ -95,20 +95,16 @@ oerror error;
  *
  *--------------------------------------------------------------------*/
 
-static void process (char const *pathname, char const * command, oflagword * flags) 
+static void process (char const * pathname, char const * command, oflagword * flags) 
 
 {
 	oscantext source;
 	source.read (pathname);
 	while (!source.isempty ()) 
 	{
-		source.flush ();
-		source.scantoken ();
-		if (source.istoken (command)) 
+		if (source.flush().scantoken().istoken (command)) 
 		{
-			source.scanblank ();
-			source.flush ();
-			source.scantoken ();
+			source.scanblank ().flush ().scantoken ();
 			if (source.istoken ("include")) 
 			{
 				char fullpath [FILENAME_MAX] = "";
@@ -118,36 +114,31 @@ static void process (char const *pathname, char const * command, oflagword * fla
 				switch (source.scanblank ().character ()) 
 				{
 				case '\"':
-					source.scanbreak ();
-					source.flush ();
+					source.scanbreak ().flush ();
 					source.scanuntil ('\"');
 					pathspec.makepath (fullpath, rootname, source.tokentext ());
 					source.scanbreak ();
 					break;
 				case '\'':
-					source.scanbreak ();
-					source.flush ();
+					source.scanbreak ().flush ();
 					source.scanuntil ('\'');
 					pathspec.makepath (fullpath, rootname, source.tokentext ());
 					source.scanbreak ();
 					break;
 				case '<':
-					source.scanbreak ();
-					source.flush ();
+					source.scanbreak ().flush ();
 					source.scanuntil ('>');
 					pathspec.makepath (fullpath, rootname, source.tokentext ());
 					source.scanbreak ();
 					break;
 				case '(':
-					source.scanbreak ();
-					source.flush ();
+					source.scanbreak ().flush ();
 					source.scanuntil (')');
 					pathspec.makepath (fullpath, rootname, source.tokentext ());
 					source.scanbreak ();
 					break;
 				case '[':
-					source.scanbreak ();
-					source.flush ();
+					source.scanbreak ().flush ();
 					source.scanuntil (']');
 					pathspec.makepath (fullpath, rootname, source.tokentext ());
 					source.scanbreak ();
@@ -167,45 +158,39 @@ static void process (char const *pathname, char const * command, oflagword * fla
 			}
 			else if (source.istoken ("define")) 
 			{
-				source.scanblank ();
-				source.flush ();
+				source.scanblank ().flush ();
 				source.scanquote (gcsBreak);
 				macro.define (source.tokentext ());
 				source.scanwhile (gcsBreak);
 			}
 			else if (source.istoken ("undef")) 
 			{
-				source.scanblank ();
-				source.flush ();
+				source.scanblank ().flush ();
 				source.scanquote (gcsBreak);
 				macro.revert (source.tokentext ());
 				source.scanwhile (gcsBreak);
 			}
 			else if (source.istoken ("ifdef")) 
 			{
-				source.scanblank ();
-				source.flush ();
+				source.scanblank ().flush ();
 				source.scanquote (gcsBreak);
 				source.scanwhile (gcsBreak);
 			}
 			else if (source.istoken ("ifndef")) 
 			{
-				source.scanblank ();
-				source.flush ();
+				source.scanblank ().flush ();
 				source.scanquote (gcsBreak);
 				source.scanwhile (gcsBreak);
 			}
 			else if (source.istoken ("else")) 
 			{
-				source.scanblank ();
-				source.flush ();
+				source.scanblank ().flush ();
 				source.scanquote (gcsBreak);
 				source.scanwhile (gcsBreak);
 			}
 			else if (source.istoken ("endif")) 
 			{
-				source.scanblank ();
-				source.flush ();
+				source.scanblank ().flush ();
 				source.scanquote (gcsBreak);
 				source.scanwhile (gcsBreak);
 			}
@@ -223,7 +208,6 @@ static void process (char const *pathname, char const * command, oflagword * fla
 			}
 			continue;
 		}
-
 /*
  * scan C Language comments;
  */
@@ -293,7 +277,7 @@ static void process (char const *pathname, char const * command, oflagword * fla
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv [], char const *envp []) 
+int main (int argc, char const * argv [], char const * envp []) 
 
 {
 	static char const * optv [] = 
@@ -354,4 +338,5 @@ int main (int argc, char const * argv [], char const *envp [])
 	}
 	std::exit (0);
 }
+
 

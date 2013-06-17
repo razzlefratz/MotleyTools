@@ -40,15 +40,15 @@ public:
 	size_t index () const;
 	onodes & operator++ ();
 	onodes & index (size_t index);
-	onodes & add (char const *nodename);
+	onodes & add (char const * nodename);
 	onode * operator [] (size_t index) const;
 	onode * node (size_t index) const;
 	onode * node () const;
 	onodes & organize (onode * node);
 	onodes & clear ();
 private:
-	onode **mtable;
-	onode *mentry;
+	onode ** mtable;
+	onode * mentry;
 	size_t mblock;
 	size_t mlimit;
 	size_t mcount;

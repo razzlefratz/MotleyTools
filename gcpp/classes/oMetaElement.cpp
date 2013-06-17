@@ -26,8 +26,8 @@
  *   static data initialization;
  *--------------------------------------------------------------------*/
 
-char const *oMetaElement::mscope = "";
-char const *oMetaElement::mtitle = "meta";
+char const * oMetaElement::mscope = "";
+char const * oMetaElement::mtitle = "meta";
 
 /*====================================================================*
  *
@@ -37,7 +37,7 @@ char const *oMetaElement::mtitle = "meta";
  *
  *--------------------------------------------------------------------*/
 
-char const *oMetaElement::ElementName () const 
+char const * oMetaElement::ElementName () const 
 
 {
 	return (oMetaElement::mtitle);
@@ -58,7 +58,7 @@ oMetaElement & oMetaElement::Contents (char const * name, char const * type)
 {
 	this->NameAttribute->value (name);
 	this->ContentTypeAttribute->value (type);
-	return (*this);
+	return (* this);
 }
 
 
@@ -90,7 +90,7 @@ oMetaElement & oMetaElement::EmptyTag (unsigned level, unsigned space)
 	{
 		std::cout.put ('\n');
 	}
-	return (*this);
+	return (* this);
 }
 
 

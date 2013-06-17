@@ -288,7 +288,7 @@ oethernet & oethernet::SetProtocol (uint16_t protocol)
 
 {
 	this->mprotocol = htons (protocol);
-	return (*this);
+	return (* this);
 }
 
 
@@ -358,7 +358,7 @@ oethernet & oethernet::Print ()
 	std::cerr << oethernet::PeerAddressString () << " ";
 	std::cerr << oethernet::HostAddressString () << " ";
 	std::cerr << oethernet::ProtocolString () << std::endl;
-	return (*this);
+	return (* this);
 }
 
 

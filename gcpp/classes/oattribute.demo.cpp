@@ -35,10 +35,10 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
-	static char const *usage [] = 
+	static char const * usage [] = 
 	{
 		"oattribute.demo",
 		"h",
@@ -61,7 +61,6 @@ int main (int argc, char const *argv [])
 			break;
 		}
 	}
-
 /*
  * attrib.nameString("id");
  */
@@ -80,4 +79,5 @@ int main (int argc, char const *argv [])
 
 	return (0);
 }
+
 

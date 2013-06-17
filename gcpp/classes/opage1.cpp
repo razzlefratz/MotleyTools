@@ -57,7 +57,7 @@ opage & opage::title (char const * title)
 		this->mtitle = new char [strlen (title)+1];
 		std::strcpy (this->mtitle, title);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -86,7 +86,7 @@ opage & opage::rows (unsigned rows)
 
 {
 	this->mrows = rows;
-	return (*this);
+	return (* this);
 }
 
 
@@ -115,7 +115,7 @@ opage & opage::cols (unsigned cols)
 
 {
 	this->mcols = cols;
-	return (*this);
+	return (* this);
 }
 
 
@@ -144,7 +144,7 @@ opage & opage::tabs (unsigned tabs)
 
 {
 	this->mtabs = tabs;
-	return (*this);
+	return (* this);
 }
 
 
@@ -219,7 +219,6 @@ int opage::put (int c)
 		{
 			this->put ('\f');
 		}
-
 #endif
 
 		while (this->mcol < this->mtab) 
@@ -253,15 +252,15 @@ int opage::put (int c)
  *
  *--------------------------------------------------------------------*/
 
-char const * opage::put (char const *string) 
+char const * opage::put (char const * string) 
 
 {
 	if (string != (char const *)(0)) 
 	{
 		char const * sp = string;
-		while (*sp != (char)(0)) 
+		while (* sp != (char)(0)) 
 		{
-			this->put (*sp++);
+			this->put (* sp++);
 		}
 	}
 	return (string);
@@ -290,7 +289,7 @@ opage & opage::eject ()
 	this->mrow = 0;
 	this->mcol = 0;
 	this->mtab = 0;
-	return (*this);
+	return (* this);
 }
 
 

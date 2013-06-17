@@ -86,15 +86,13 @@ signed ocblock::condition (signed c)
 	}
 	else if (c != ';') 
 	{
-		std::cout.put (' ');
 		std::cout.put ('(');
-		c = ocblock::program (c, ';');
-		c = ocblock::keep (c);
+		c = ocblock::context (c, ';');
 		std::cout.put (')');
-		std::cout.put (' ');
 	}
 	return (c);
 }
+
 
 /*====================================================================*
  *
@@ -146,52 +144,52 @@ signed ocblock::program (signed c, signed e)
 		if (oascii::isalpha (c) || (c == '_')) 
 		{
 			char string [100];
-			char *sp = string;
+			char * sp = string;
 			do 
 			{
-				*sp++ = c;
+				* sp++ = c;
 				c = ocblock::keep (c);
 			}
 			while (oascii::isalnum (c) || (c == '_'));
-			*sp = (char)(0);
+			* sp = (char)(0);
 			if ((c == '(') || (c == '[') || (c == '{')) 
 			{
 				std::cout.put (' ');
 			}
-			if (!strcmp (string, "if")) 
+			if (!std::strcmp (string, "if")) 
 			{
 				c = ocblock::condition (c);
 				c = ocblock::statement (c);
 				continue;
 			}
-			if (!strcmp (string, "else")) 
+			if (!std::strcmp (string, "else")) 
 			{
 				c = ocblock::statement (c);
-				return (c);
+				continue;
 			}
-			if (!strcmp (string, "while")) 
+			if (!std::strcmp (string, "while")) 
 			{
 				c = ocblock::condition (c);
 				c = ocblock::statement (c);
 				continue;
 			}
-			if (!strcmp (string, "for")) 
+			if (!std::strcmp (string, "for")) 
 			{
 				c = ocblock::condition (c);
 				c = ocblock::statement (c);
 				continue;
 			}
-			if (!strcmp (string, "do")) 
+			if (!std::strcmp (string, "do")) 
 			{
 				c = ocblock::statement (c);
 				continue;
 			}
-			if (!strcmp (string, "return")) 
+			if (!std::strcmp (string, "return")) 
 			{
 				c = ocblock::condition (c);
 				continue;
 			}
-			if (!strcmp (string, "exit")) 
+			if (!std::strcmp (string, "exit")) 
 			{
 				c = ocblock::condition (c);
 				continue;
@@ -200,7 +198,7 @@ signed ocblock::program (signed c, signed e)
 		}
 		c = ocblock::keep (c);
 	}
-	return (e);
+	return (c);
 }
 
 

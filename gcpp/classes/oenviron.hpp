@@ -34,17 +34,17 @@ class __declspec (dllexport) oenviron
 public:
 	oenviron ();
 	virtual ~ oenviron ();
-	char const *hostname () const;
-	char const *username () const;
-	char const *datetime () const;
-	size_t strfwhat (char buffer [], size_t length, char const *event);
+	char const * hostname () const;
+	char const * username () const;
+	char const * datetime () const;
+	size_t strfwhat (char buffer [], size_t length, char const * event);
 	size_t strfdate (char buffer [], size_t length, time_t event);
 	size_t strfwhen (char buffer [], size_t length, time_t event);
 	size_t strfwhom (char buffer [], size_t length);
 private:
-	char *mhostname;
-	char *musername;
-	char *mdatetime;
+	char * mhostname;
+	char * musername;
+	char * mdatetime;
 };
 
 

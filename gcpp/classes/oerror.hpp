@@ -31,8 +31,8 @@ class oerror
 public:
 	oerror ();
 	virtual ~ oerror ();
-	static void print (char const *format, ...);
-	static void error (char const *format, ...);
+	static void print (char const * format, ...);
+	static void error (char const * format, ...);
 	static void syntax (char const * file, unsigned line, char const * format, ...);
 	static void error (signed status, errno_t number, char const * format, ...);
 	static void error (signed status, char const * string, char const * format, ...);

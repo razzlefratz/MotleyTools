@@ -26,16 +26,16 @@ class __declspec (dllexport) oedge
 
 {
 public:
-	oedge (onode *sourcenode, onode *targetnode);
+	oedge (onode * sourcenode, onode * targetnode);
 	virtual ~ oedge ();
-	onode *source () const;
-	onode *target () const;
+	onode * source () const;
+	onode * target () const;
 	char const * title () const;
 	signed value () const;
 	oedge & value (signed value);
 private:
-	onode *msource;
-	onode *mtarget;
+	onode * msource;
+	onode * mtarget;
 	char const * mtitle;
 	signed mvalue;
 };

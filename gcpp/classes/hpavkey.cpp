@@ -55,10 +55,10 @@
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
-	static char const *optv [] = 
+	static char const * optv [] = 
 	{
 		"DMNqv",
 		PUTOPTV_S_FUNNEL,
@@ -107,15 +107,15 @@ int main (int argc, char const *argv [])
 	while ((getopt.argc ()) && (* getopt.argv ())) 
 	{
 		sp = string = * getopt.argv ();
-		while (*sp != (char)(0)) 
+		while (* sp != (char)(0)) 
 		{
-			if (((unsigned)(*sp) < 0x20) || ((unsigned)(*sp) > 0x7F)) 
+			if (((unsigned)(* sp) < 0x20) || ((unsigned)(* sp) > 0x7F)) 
 			{
 				break;
 			}
 			sp++;
 		}
-		if (*sp != (char)(0)) 
+		if (* sp != (char)(0)) 
 		{
 			error.error (0, EINVAL, "string \"%s\" has illegal characters", string);
 		}
@@ -151,4 +151,5 @@ int main (int argc, char const *argv [])
 	}
 	exit (0);
 }
+
 

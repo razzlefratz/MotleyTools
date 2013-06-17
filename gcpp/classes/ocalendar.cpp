@@ -35,7 +35,7 @@
  *   class variables;
  *--------------------------------------------------------------------*/
 
-char const *ocalendar::mdays [DAYS_IN_WEEK] = 
+char const * ocalendar::mdays [DAYS_IN_WEEK] = 
 
 {
 	" S",
@@ -47,7 +47,8 @@ char const *ocalendar::mdays [DAYS_IN_WEEK] =
 	" S"
 };
 
-char const *ocalendar::mdate1 [DATES_IN_MONTH+1] = 
+
+char const * ocalendar::mdate1 [DATES_IN_MONTH+1] = 
 
 {
 	"  ",
@@ -84,7 +85,8 @@ char const *ocalendar::mdate1 [DATES_IN_MONTH+1] =
 	"31"
 };
 
-char const *ocalendar::mdate2 [DATES_IN_MONTH+1] = 
+
+char const * ocalendar::mdate2 [DATES_IN_MONTH+1] = 
 
 {
 	"&nbsp;",
@@ -144,7 +146,7 @@ ocalendar & ocalendar::stylesheet (unsigned level, unsigned space)
 	mindent.print (level, space, "td.note  { background: #C0C0C0; border: solid 1px #C0C0C0; height: 25px; padding: 2px 2px; font: normal 9pt comic sans ms; vertical-align: top; text-align: right; }");
 	mindent.print (level, space, "td.due   { background: #FFFF00; border: solid 1px #C0C0C0; height: 25px; padding: 2px 2px; font: normal 9pt comic sans ms; vertical-align: middle; text-align: center; }");
 	mindent.print (level--, space, "</style>");
-	return (*this);
+	return (* this);
 }
 
 
@@ -175,7 +177,7 @@ ocalendar & ocalendar::annum ()
 	this->stylesheet (level, space).annum (level, space);
 	mindent.print (level--, space, "</body>");
 	mindent.print (level--, space, "</html>");
-	return (*this);
+	return (* this);
 }
 
 
@@ -205,7 +207,7 @@ ocalendar & ocalendar::annum (unsigned level, unsigned space)
 		mindent.print (level--, 1, "</tr>");
 	}
 	mindent.print (level--, 1, "</table>");
-	return (*this);
+	return (* this);
 }
 
 
@@ -236,7 +238,7 @@ ocalendar & ocalendar::month (unsigned index)
 	this->stylesheet (level, space).month (level, space, index);
 	mindent.print (level--, space, "</body>");
 	mindent.print (level--, space, "</html>");
-	return (*this);
+	return (* this);
 }
 
 
@@ -251,7 +253,7 @@ ocalendar & ocalendar::month (unsigned index)
 ocalendar & ocalendar::month (unsigned level, unsigned space, unsigned index) 
 
 {
-	omonth *month = this->mmonth [index];
+	omonth * month = this->mmonth [index];
 	month->encode (this->mtitle, HEADERSIZE);
 	mindent.print (level++, space, "<table class='month'>");
 	mindent.print (level++, space, "<tr>");
@@ -280,7 +282,7 @@ ocalendar & ocalendar::month (unsigned level, unsigned space, unsigned index)
 		mindent.print (level--, space, "</tr>");
 	}
 	mindent.print (level--, space, "</table>");
-	return (*this);
+	return (* this);
 }
 
 
@@ -294,7 +296,7 @@ ocalendar & ocalendar::month (unsigned level, unsigned space, unsigned index)
 ocalendar & ocalendar::print (unsigned index) 
 
 {
-	omonth *month = this->mmonth [index];
+	omonth * month = this->mmonth [index];
 	month->encode (this->mtitle, HEADERSIZE);
 	std::cout << " " << this->mtitle << std::endl;
 	std::cout << "  S  M  T  W  T  F  S" << std::endl;
@@ -308,7 +310,7 @@ ocalendar & ocalendar::print (unsigned index)
 		std::cout << std::endl;
 	}
 	std::cout << std::endl;
-	return (*this);
+	return (* this);
 }
 
 

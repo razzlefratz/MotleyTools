@@ -1,0 +1,8 @@
+
+int main () 
+
+{
+	if (a) statement; if (b) statement; else statement; else statement; statement; else statement;
+	return;
+}
+

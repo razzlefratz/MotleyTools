@@ -54,7 +54,7 @@ opage & opage::title (char const * title)
 
 {
 	this->mtitle = opage::replace (this->mtitle, title);
-	return (*this);
+	return (* this);
 }
 
 
@@ -85,7 +85,7 @@ opage & opage::rows (unsigned rows)
 
 {
 	this->mrows = rows;
-	return (*this);
+	return (* this);
 }
 
 
@@ -116,7 +116,7 @@ opage & opage::cols (unsigned cols)
 
 {
 	this->mcols = cols;
-	return (*this);
+	return (* this);
 }
 
 
@@ -147,7 +147,7 @@ opage & opage::tabs (unsigned tabs)
 
 {
 	this->mtabs = tabs;
-	return (*this);
+	return (* this);
 }
 
 
@@ -239,14 +239,14 @@ signed opage::put (signed c)
  *
  *--------------------------------------------------------------------*/
 
-opage & opage::put (char const *string) 
+opage & opage::put (char const * string) 
 
 {
-	if (string) while (*string) 
+	if (string) while (* string) 
 	{
-		opage::put (*string++);
+		opage::put (* string++);
 	}
-	return (*this);
+	return (* this);
 }
 
 
@@ -280,7 +280,7 @@ opage & opage::header ()
 	}
 	std::cout.put ('\n');
 	std::cout.put ('\n');
-	return (*this);
+	return (* this);
 }
 
 
@@ -326,7 +326,7 @@ opage & opage::footer ()
 		length--;
 	}
 	std::cout.put ('\n');
-	return (*this);
+	return (* this);
 }
 
 

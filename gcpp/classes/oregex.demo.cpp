@@ -35,10 +35,10 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
 {
-	static char const *usage [] = 
+	static char const * usage [] = 
 	{
 		"h",
 		"expression [expression] ...",
@@ -48,7 +48,7 @@ int main (int argc, char const *argv [])
 	};
 	ogetopt getopt (1);
 	oputopt putopt;
-	oregex *regex;
+	oregex * regex;
 	signed c;
 	while ((c = getopt.getopt (argc, argv, usage [PUTOPT_I_OPTIONS])) != -1) 
 	{
@@ -68,4 +68,5 @@ int main (int argc, char const *argv [])
 	}
 	return (0);
 }
+
 

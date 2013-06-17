@@ -61,14 +61,14 @@ signed ophptidy::page (signed c)
 			if (c == '?') 
 			{
 				char string [100];
-				char *cp = string;
+				char * cp = string;
 				do 
 				{
-					*cp++ = c;
+					* cp++ = c;
 					c = std::cin.get ();
 				}
 				while (oascii::isalpha (c));
-				*cp = (char) (0);
+				* cp = (char) (0);
 				std::cout << string;
 				if (!strcmp (string, "?php")) 
 				{
@@ -216,14 +216,14 @@ signed ophptidy::statement (signed c, signed level, signed space)
 	if (isalpha (c) || (c == '_')) 
 	{
 		char string [512];
-		char *cp = string;
+		char * cp = string;
 		do 
 		{
-			*cp++ = c;
+			* cp++ = c;
 			c = std::cin.get ();
 		}
 		while (oascii::isalnum (c) || (c == '_'));
-		*cp = (char) (0);
+		* cp = (char) (0);
 		if (!std::strcmp (string, "case")) 
 		{
 			ophptidy::level (level-1);
@@ -304,6 +304,7 @@ signed ophptidy::context (signed c, signed o, signed e)
 	return (c);
 }
 
+
 signed ophptidy::inner_context (signed c, signed o, signed e) 
 
 {
@@ -338,6 +339,7 @@ signed ophptidy::context (signed c, signed e)
 	c = ophptidy::keep (c);
 	return (c);
 }
+
 
 signed ophptidy::inner_context (signed c, signed e) 
 

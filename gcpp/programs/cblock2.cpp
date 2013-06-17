@@ -28,6 +28,7 @@
 #include "../classes/ocontext.hpp"
 #include "../classes/oescape.hpp"
 #include "../classes/ocblock.hpp"
+#include "../classes/oerror.hpp"
 
 /*====================================================================*
  *   custom source files;
@@ -75,7 +76,7 @@ int main (int argc, char const * argv [])
 	opathspec pathspec;
 	oescape escape;
 	ocblock cblock;
-	signed (ocblock::*function) (signed, signed) = &ocblock::program;
+	signed (ocblock::* function) (signed, signed) = &ocblock::program;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
 	{
@@ -87,7 +88,7 @@ int main (int argc, char const * argv [])
 	}
 	if (!getopt.argc ()) 
 	{
-		c = (cblock.*function) (std::cin.get (), EOF);
+		c = (cblock.* function) (std::cin.get (), EOF);
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
@@ -95,11 +96,12 @@ int main (int argc, char const * argv [])
 		pathspec.fullpath (filename, * getopt.argv ());
 		if (fileopen.openedit (filename)) 
 		{
-			(cblock.*function) (std::cin.get (), EOF);
+			(cblock.* function) (std::cin.get (), EOF);
 			fileopen.close ();
 		}
 		getopt++;
 	}
 	std::exit (0);
 }
+
 

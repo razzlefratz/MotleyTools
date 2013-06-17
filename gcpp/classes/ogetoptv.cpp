@@ -123,7 +123,7 @@ ogetoptv & ogetoptv::opterr (signed opterr)
 
 {
 	this->mopterr = opterr;
-	return (*this);
+	return (* this);
 }
 
 
@@ -154,7 +154,7 @@ ogetoptv & ogetoptv::optmin (signed optmin)
 
 {
 	this->moptmin = optmin;
-	return (*this);
+	return (* this);
 }
 
 
@@ -186,7 +186,7 @@ ogetoptv & ogetoptv::optind (signed optind)
 
 {
 	this->moptind = optind;
-	return (*this);
+	return (* this);
 }
 
 
@@ -213,7 +213,7 @@ signed ogetoptv::optopt () const
  *
  *--------------------------------------------------------------------*/
 
-char const *ogetoptv::optarg () const 
+char const * ogetoptv::optarg () const 
 
 {
 	return (this->moptarg);
@@ -298,9 +298,9 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 	{
 		this->margc = argc;
 		this->margv = argv;
-		for (program_name = this->mstring = * this->margv; *this->mstring; this->mstring++) 
+		for (program_name = this->mstring = * this->margv; * this->mstring; this->mstring++) 
 		{
-			if ((*this->mstring == '/') || (*this->mstring == '\\')) 
+			if ((* this->mstring == '/') || (* this->mstring == '\\')) 
 			{
 				program_name = this->mstring + 1;
 			}
@@ -317,9 +317,9 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 	{
 		if (this->mstring) 
 		{
-			if (*this->mstring) 
+			if (* this->mstring) 
 			{
-				this->moptopt = *this->mstring++;
+				this->moptopt = * this->mstring++;
 				this->moptarg = (char *)(0);
 				for (char const * option = optv [oPUTOPTV_I_OPTIONS]; * option; option++) 
 				{
@@ -327,17 +327,17 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 					{
 						continue;
 					}
-					if (*option == oGETOPTV_C_OPERAND) 
+					if (* option == oGETOPTV_C_OPERAND) 
 					{
 						continue;
 					}
-					if (*option == this->moptopt) 
+					if (* option == this->moptopt) 
 					{
 						if (*++option != oGETOPTV_C_OPERAND) 
 						{
 							return (this->moptopt);
 						}
-						if (*this->mstring) 
+						if (* this->mstring) 
 						{
 							this->moptarg = this->mstring;
 							this->mstring = (char *) (0);
@@ -358,7 +358,7 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 							std::cerr << program_name << ": option '" << (char) (this->moptopt) << "' has no operand" << std::endl;
 							std::exit (this->mopterr);
 						}
-						if (*optv [oPUTOPTV_I_OPTIONS] == oGETOPTV_C_OPERAND) 
+						if (* optv [oPUTOPTV_I_OPTIONS] == oGETOPTV_C_OPERAND) 
 						{
 							return (oGETOPTV_C_OPERAND);
 						}
@@ -377,14 +377,14 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 		if (this->mcount < this->margc) 
 		{
 			this->mstring = this->margv [this->mcount];
-			if (*this->mstring == oGETOPTV_C_OPTIONS) 
+			if (* this->mstring == oGETOPTV_C_OPTIONS) 
 			{
 				for (this->mindex = this->mcount; this->mindex > this->moptind; --this->mindex) 
 				{
 					this->margv [this->mindex] = this->margv [this->mindex - 1];
 				}
 				this->margv [this->moptind++] = this->mstring++;
-				if (*this->mstring == oGETOPTV_C_OPTIONS) 
+				if (* this->mstring == oGETOPTV_C_OPTIONS) 
 				{
 					if (!*++this->mstring) 
 					{
@@ -405,12 +405,12 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 					this->mstring = (char *) (0);
 					continue;
 				}
-				if (*this->mstring == oGETOPTV_C_VERSION) 
+				if (* this->mstring == oGETOPTV_C_VERSION) 
 				{
 					oversion::print ();
 					std::exit (0);
 				}
-				if (*this->mstring == oGETOPTV_C_SUMMARY) 
+				if (* this->mstring == oGETOPTV_C_SUMMARY) 
 				{
 					oputoptv::putoptv (optv);
 					std::exit (0);

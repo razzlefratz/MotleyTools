@@ -38,11 +38,11 @@ class __declspec (dllexport) owebpage: private otext
 public:
 	owebpage ();
 	virtual ~ owebpage ();
-	char const *title () const;
-	char const *stylesheet () const;
+	char const * title () const;
+	char const * stylesheet () const;
 	signed level () const;
 	owebpage & title (char const * string);
-	owebpage & stylesheet (char const *stylesheet);
+	owebpage & stylesheet (char const * stylesheet);
 	owebpage & level (signed level);
 	oMetaElement MetaElement;
 	oPageLinkElement PrevPageLink;
@@ -58,7 +58,7 @@ public:
 	owebpage & botPage ();
 private:
 	oenviron session;
-	oindent *mindent;
+	oindent * mindent;
 	char * mtitle;
 	char * mstylesheet;
 	char * mowner;

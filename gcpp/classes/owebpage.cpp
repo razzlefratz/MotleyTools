@@ -40,7 +40,7 @@ oenviron session;
  *
  *--------------------------------------------------------------------*/
 
-char const *owebpage::title () const 
+char const * owebpage::title () const 
 
 {
 	return (this->mtitle);
@@ -60,7 +60,7 @@ owebpage & owebpage::title (char const * string)
 
 {
 	this->mtitle = otext::replace (this->mtitle, string);
-	return (*this);
+	return (* this);
 }
 
 
@@ -71,7 +71,7 @@ owebpage & owebpage::title (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-char const *owebpage::stylesheet () const 
+char const * owebpage::stylesheet () const 
 
 {
 	return (this->mstylesheet);
@@ -87,11 +87,11 @@ char const *owebpage::stylesheet () const
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::stylesheet (char const *stylesheet) 
+owebpage & owebpage::stylesheet (char const * stylesheet) 
 
 {
 	this->mstylesheet = otext::replace (this->mstylesheet, stylesheet);
-	return (*this);
+	return (* this);
 }
 
 
@@ -105,8 +105,9 @@ owebpage & owebpage::level (signed level)
 
 {
 	this->mlevel = level;
-	return (*this);
+	return (* this);
 }
+
 
 signed owebpage::level () const 
 
@@ -142,7 +143,7 @@ owebpage & owebpage::topPage ()
 	this->mindent->print (0, this->mspace, "' rel='stylesheet' type='text/css'/>");
 	this->mindent->print (this->mlevel--, this->mspace, "</head>");
 	this->mindent->print (this->mlevel++, this->mspace, "<body>");
-	return (*this);
+	return (* this);
 }
 
 
@@ -159,7 +160,7 @@ owebpage & owebpage::header ()
 {
 	this->mindent->print (this->mlevel++, this->mspace, "<div class='header'>");
 	this->mindent->print (this->mlevel--, this->mspace, "</div>");
-	return (*this);
+	return (* this);
 }
 
 
@@ -191,7 +192,7 @@ owebpage & owebpage::topLink ()
 #endif
 
 	this->mindent->print (this->mlevel--, this->mspace, "</div>");
-	return (*this);
+	return (* this);
 }
 
 
@@ -207,7 +208,7 @@ owebpage & owebpage::topMark ()
 
 {
 	this->mindent->print (0, this->mspace, "<!-- BEGIN CONTENT -->");
-	return (*this);
+	return (* this);
 }
 
 
@@ -223,7 +224,7 @@ owebpage & owebpage::botMark ()
 
 {
 	this->mindent->print (0, this->mspace, "<!-- END CONTENT -->");
-	return (*this);
+	return (* this);
 }
 
 
@@ -255,7 +256,7 @@ owebpage & owebpage::botLink ()
 #endif
 
 	this->mindent->print (this->mlevel--, this->mspace, "</div>");
-	return (*this);
+	return (* this);
 }
 
 
@@ -278,7 +279,7 @@ owebpage & owebpage::footer ()
 	this->mindent->print (this->mlevel, this->mspace, "<br/>");
 	this->mindent->print (this->mlevel, this->mspace, buffer);
 	this->mindent->print (this->mlevel--, this->mspace, "</div>");
-	return (*this);
+	return (* this);
 }
 
 
@@ -294,7 +295,7 @@ owebpage & owebpage::botPage ()
 {
 	this->mindent->print (this->mlevel--, this->mspace, "</body>");
 	this->mindent->print (this->mlevel--, this->mspace, "</html>");
-	return (*this);
+	return (* this);
 }
 
 

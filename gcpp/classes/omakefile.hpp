@@ -41,7 +41,7 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) omakefile: private otext, private osection, public oflagword
+class __declspec (dllexport) omakefile: private otext, private osection, public oflagword 
 
 {
 public:
@@ -51,30 +51,30 @@ public:
 	char const * project () const;
 	char const * sourcedir () const;
 	char const * targetdir () const;
-	omakefile & compiler (char const *string);
+	omakefile & compiler (char const * string);
 	omakefile & linebreak ();
-	omakefile & project (char const *string);
-	omakefile & sourcedir (char const *string);
-	omakefile & targetdir (char const *string);
+	omakefile & project (char const * string);
+	omakefile & sourcedir (char const * string);
+	omakefile & targetdir (char const * string);
 	omakefile & publish ();
-	omakefile & section (char const *filename);
-	omakefile & projectfile (char const *filename);
-	omakefile & includefile (char const *filename);
+	omakefile & section (char const * filename);
+	omakefile & projectfile (char const * filename);
+	omakefile & includefile (char const * filename);
 private:
 	oscantext scantext;
 	ofilespec filespec;
 	std::ifstream stream;
 	olist list;
-	char *mcompiler;
-	char *msourcedir;
-	char *mtargetdir;
-	char *mccflags;
-	char *mldflags;
-	char *mlinebreak;
+	char * mcompiler;
+	char * msourcedir;
+	char * mtargetdir;
+	char * mccflags;
+	char * mldflags;
+	char * mlinebreak;
 	size_t mlength;
 	size_t mline;
-	char *mbuffer;
-	char *moutput;
+	char * mbuffer;
+	char * moutput;
 };
 
 

@@ -51,11 +51,13 @@ char const * ohtmltidy::element () const
 	return ((char const *) (this->melement));
 }
 
+
 char const * ohtmltidy::attribute () const 
 
 {
 	return ((char const *) (this->mattribute));
 }
+
 
 char const * ohtmltidy::value () const 
 
@@ -100,7 +102,7 @@ ohtmltidy & ohtmltidy::quote (signed quote)
 
 {
 	this->mquote = quote;
-	return (*this);
+	return (* this);
 }
 
 
@@ -526,11 +528,11 @@ signed ohtmltidy::enquote (signed c, signed e)
 	c = ohtmltidy::keep (this->mquote);
 	while ((c != e) && (c != EOF)) 
 	{
-		*string++ = c;
+		* string++ = c;
 		c = ohtmltidy::keep (c);
 	}
 	c = ohtmltidy::keep (this->mquote);
-	*string = (char) (0);
+	* string = (char) (0);
 	return (c);
 }
 
@@ -552,11 +554,11 @@ signed ohtmltidy::dequote (signed c, signed e)
 	c = std::cin.get ();
 	while ((c != e) && (c != EOF)) 
 	{
-		*string++ = c;
+		* string++ = c;
 		c = std::cin.get ();
 	}
 	c = std::cin.get ();
-	*string = (char) (0);
+	* string = (char) (0);
 	return (c);
 }
 
@@ -577,11 +579,11 @@ signed ohtmltidy::nmtoken (signed c)
 	char * string = this->mstring;
 	do 
 	{
-		*string++ = c;
+		* string++ = c;
 		c = std::cin.get ();
 	}
 	while (oascii::nmtoken (c));
-	*string = (char) (0);
+	* string = (char) (0);
 	return (c);
 }
 
@@ -602,10 +604,10 @@ signed ohtmltidy::unknown (signed c)
 	char * string = this->mstring;
 	while (!isspace (c) && (c != '<') && (c != '=') && (c !='/') && (c != '?') && (c != '>')) 
 	{
-		*string++ = c;
+		* string++ = c;
 		c = std::cin.get ();
 	}
-	*string = (char) (0);
+	* string = (char) (0);
 	return (c);
 }
 
@@ -667,7 +669,7 @@ ohtmltidy & ohtmltidy::print ()
 
 {
 	std::cout << this->mstring;
-	return (*this);
+	return (* this);
 }
 
 
