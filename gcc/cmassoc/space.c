@@ -48,7 +48,6 @@
 
 #ifndef MAKEFILE
 #include "../tidy/consume.c"
-#include "../tidy/compact.c"
 #include "../tidy/literal.c"
 #include "../tidy/escaped.c"
 #include "../tidy/span.c"
@@ -199,7 +198,8 @@ static void function (signed comment, void indent (unsigned, unsigned), signed e
 			}
 			if (isblank (c)) 
 			{
-				c = compact (' ', '\n');
+				do { c = getc (stdin); c = escape (c); } while (isblank (c));
+				if (nobreak (c)) { putc (' ', stdout); }
 				continue;
 			}
 			if (isquote (c)) 
@@ -232,7 +232,7 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"c:jm",
+		"c:gm",
 		PUTOPTV_S_FILTER,
 		"white space manager",
 		"c c\tcomment character is (c) [" LITERAL (SPACE_C_COMMENT) "]",

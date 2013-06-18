@@ -192,7 +192,7 @@ rexp: rexp.o charset.o chruesc.o emalloc.o error.o getoptv.o putoptv.o regexcomp
 rmpkg: rmpkg.o emalloc.o erealloc.o error.o find.o getoptv.o listcreate.o listdelete.o listdetect.o listexpand.o listinsert.o makefind.o makepath.o match.o mergepath.o partfile.o partpath.o putoptv.o splitpath.o strvercmp.o version.o
 runjobs: runjobs.o error.o getoptv.o makefind.o makepath.o match.o mergepath.o partfile.o partpath.o plain.o putoptv.o setumask.o splitpath.o syslog_basic.o syslog_error.o version.o
 sbar: sbar.o console.o makepath.o mergepath.o splitpath.o todigit.o uintspec.o vfopen.o
-sbrief: sbrief.o compact.o consume.o error.o escaped.o getoptv.o keep.o literal.o makepath.o mergepath.o putoptv.o span.o splitpath.o version.o vfopen.o
+sbrief: sbrief.o consume.o error.o escaped.o getoptv.o keep.o literal.o makepath.o mergepath.o putoptv.o span.o splitpath.o version.o vfopen.o
 search: search.o charset.o chruesc.o chruescmap.o console.o efreopen.o emalloc.o fgetline.o find.o fputn.o makefind.o makepath.o match.o mergepath.o partfile.o partpath.o regexcomp.o regexfree.o regexhelp.o regexmake.o regexshow.o regexspan.o showfind.o splitpath.o struesc.o sv_ascii.o todigit.o uintspec.o
 setmode: setmode.o atoin.o efopen.o error.o getoptv.o putoptv.o version.o
 setnumber: setnumber.o
@@ -202,7 +202,7 @@ shout: shout.o broadcast.o emalloc.o error.o getoptv.o putoptv.o syslog_basic.o 
 sign: sign.o console.o signf.o todigit.o uintspec.o
 single: single.o console.o makepath.o mergepath.o splitpath.o todigit.o uintspec.o vfopen.o
 sizeof: sizeof.o
-space: space.o chruesc.o compact.o console.o consume.o escaped.o keep.o literal.o makepath.o mergepath.o span.o splitpath.o struesc.o todigit.o vfopen.o
+space: space.o chruesc.o console.o consume.o escaped.o keep.o literal.o makepath.o mergepath.o span.o splitpath.o struesc.o todigit.o vfopen.o
 srt: srt.o adheap.o console.o deheap.o emalloc.o enheap.o makepath.o mergepath.o reheap.o splitpath.o swap.o todigit.o uintspec.o vfopen.o
 stamp: stamp.o
 str2hex: str2hex.o

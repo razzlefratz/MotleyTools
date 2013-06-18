@@ -48,7 +48,6 @@
 
 #ifndef MAKEFILE
 #include "../tidy/consume.c"
-#include "../tidy/compact.c"
 #include "../tidy/literal.c"
 #include "../tidy/escaped.c"
 #include "../tidy/span.c"
@@ -116,7 +115,11 @@ static void function (signed comment, signed escape (signed))
 			}
 			if (isblank (c)) 
 			{
-				c = compact (' ', '\n');
+				do { c = getc (stdin); c = escape (c); } while (isblank(c)); 
+				if (nobreak (c))
+				{
+					putc (' ', stdout);
+				}
 				continue;
 			}
 			if (isquote (c)) 
