@@ -110,9 +110,9 @@ static void template ()
 	};
 	char const ** subject = subjects;
 	printf (".TH program 7 package");
-	while (*subject) 
+	while (* subject) 
 	{
-		printf ("\n.SH %s\n", *subject++);
+		printf ("\n.SH %s\n", * subject++);
 	}
 	return;
 }
@@ -187,11 +187,11 @@ static void function (char const * program, char const * project, char const * p
 			char * sp = symbol;
 			do 
 			{
-				*sp++ = c;
+				* sp++ = c;
 				c = getc (stdin);
 			}
 			while (isalpha (c));
-			*sp = (char) (0);
+			* sp = (char) (0);
 			if (!strcmp (symbol, ".TH")) 
 			{
 				while (nobreak (c)) 
@@ -245,18 +245,25 @@ static void function (char const * program, char const * project, char const * p
 				c = keep (c);
 				if (c == '.') 
 				{
-					do { c = keep (c); } while (c == '.');
+					do 
+					{
+						c = keep (c);
+					}
+					while (c == '.');
 					continue;
 				}
 				if (isblank (c)) 
 				{
-					do { c = getc (stdin); } while (isblank (c));
+					do 
+					{
+						c = getc (stdin);
+					}
+					while (isblank (c));
 					putc ('\n', stdout);
 					continue;
 				}
 				continue;
 			}
-
 #if 1
 
 			if (c == '\\') 
@@ -316,7 +323,7 @@ int main (int argc, char const * argv [])
 	char * sp;
 	flag_t flags = (flag_t)(0);
 	signed c;
-	strftime (buffer, sizeof (buffer), MP_PUBLISH, localtime (&now));
+	strftime (buffer, sizeof (buffer), MP_PUBLISH, localtime (& now));
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
@@ -342,7 +349,7 @@ int main (int argc, char const * argv [])
 	project = profilestring (profile, section, "project", project);
 	package = profilestring (profile, section, "package", package);
 	release = profilestring (profile, section, "release", release);
-	if ((!argc) || (!*argv)) 
+	if ((!argc) || (!* argv)) 
 	{
 		function ("unamed 7", project, package, release, flags);
 	}
@@ -351,15 +358,15 @@ int main (int argc, char const * argv [])
 		if (vfopen (* argv)) 
 		{
 			program = * argv;
-			for (sp = (char *)(* argv); *sp; ++sp) 
+			for (sp = (char *)(* argv); * sp; ++sp) 
 			{
-				if (*sp == PATH_C_EXTENDER) 
+				if (* sp == PATH_C_EXTENDER) 
 				{
 					program = sp + 1;
 				}
-				if (*sp == FILE_C_EXTENDER) 
+				if (* sp == FILE_C_EXTENDER) 
 				{
-					*sp = ' ';
+					* sp = ' ';
 				}
 			}
 			function (program, project, package, release, flags);
@@ -369,4 +376,5 @@ int main (int argc, char const * argv [])
 	}
 	exit (0);
 }
+
 
