@@ -47,7 +47,6 @@
 #endif
 
 #ifndef MAKEFILE
-#include "../tidy/join.c"
 #include "../tidy/literal.c"
 #include "../tidy/keep.c"
 #endif
@@ -64,15 +63,11 @@
  *   program constants;
  *--------------------------------------------------------------------*/
 
-#define SPACE_B_NEWLINE (1 << 0)
-
-#define CHR_NUL '\0'
-#define CHR_HT '\t'
-#define CHR_SP ' '
+#define SPACE_C_COMMENT '#'
 
 /*====================================================================*
  *
- *   void GNUMake (signed o, unsigned spaces, unsigned tabs);
+ *   void GNUMake (unsigned spaces, unsigned tabs);
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -80,40 +75,9 @@
  *
  *--------------------------------------------------------------------*/
 
-void GNUMake (signed o, unsigned spaces, unsigned tabs) 
+void GNUMake (unsigned spaces, unsigned tabs) 
 
 {
-	if (o) {
-	if (tabs) 
-	{
-		do 
-		{
-			putc (o, stdout);
-		}
-		while (--tabs);
-	}
-	else if (spaces) 
-	{
-		putc (o, stdout);
-	}}
-	return;
-}
-
-
-/*====================================================================*
- *
- *   void OpenWRT (signed o, unsigned spaces, unsigned tabs);
- *
- *.  Motley Tools by Charles Maier;
- *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
- *;  Licensed under the Internet Software Consortium License;
- *
- *--------------------------------------------------------------------*/
-
-void OpenWRT (signed o, unsigned spaces, unsigned tabs) 
-
-{
-	if (o) {
 	if (tabs) 
 	{
 		do 
@@ -124,15 +88,87 @@ void OpenWRT (signed o, unsigned spaces, unsigned tabs)
 	}
 	else if (spaces) 
 	{
-		putc (o, stdout);
-	}}
+		putc ('\t', stdout);
+	}
 	return;
 }
 
 
 /*====================================================================*
  *
- *   void function (signed o, void indent (signed, unsigned, unsigned), signed escape (signed));
+ *   void OpenWRT (unsigned spaces, unsigned tabs);
+ *
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+void OpenWRT (unsigned spaces, unsigned tabs) 
+
+{
+	if (tabs) 
+	{
+		do 
+		{
+			putc ('\t', stdout);
+		}
+		while (--tabs);
+	}
+	else if (spaces) 
+	{
+		putc (' ', stdout);
+	}
+	return;
+}
+
+
+/*====================================================================*
+ *
+ *   signed join (signed c);
+ *
+ *   discard escaped newline; return character argument or character
+ *   following the newline;
+ *
+ *--------------------------------------------------------------------*/
+
+static signed join (signed c) 
+
+{
+	if (c == '\\') 
+	{
+		signed o = getc (stdin);
+		if (o == '\n') 
+		{
+			c = getc (stdin);
+		}
+		else
+		{
+			ungetc (o, stdin);
+		}
+	}
+	return (c);
+}
+
+
+/*====================================================================*
+ *
+ *   signed pass (signed c);
+ *
+ *   do nothing; return character argument;
+ *
+ *--------------------------------------------------------------------*/
+
+static signed pass (signed c) 
+
+{
+	return (c);
+}
+
+
+/*====================================================================*
+ *
+ *   void function (void indent (signed, unsigned, unsigned), signed escape (signed));
  *
  *   read stdin and write stdout; replace leading spaces character o
  *   unless it is NUL; preserve leading tabs; replace embedded spaces
@@ -148,7 +184,7 @@ void OpenWRT (signed o, unsigned spaces, unsigned tabs)
  *
  *--------------------------------------------------------------------*/
 
-void function (signed o, void indent (signed, unsigned, unsigned), signed escape (signed)) 
+void function (signed comment, void indent (unsigned, unsigned), signed escape (signed)) 
 
 {
 	signed c = getc (stdin);
@@ -175,19 +211,28 @@ void function (signed o, void indent (signed, unsigned, unsigned), signed escape
 			}
 			if (nobreak (c)) 
 			{
-				indent (o, spaces, tabs);
+				indent (spaces, tabs);
 			}
 		}
 		while (nobreak (c)) 
 		{
-			if (c == '#') 
+			if (c == comment) 
 			{
-				do { c = keep (c); } while (nobreak (c));
+				do 
+				{
+					c = keep (c);
+				}
+				while (nobreak (c));
 				continue;
 			}
 			if (isblank (c)) 
 			{
-				do { c = getc (stdin); c = join (c); } while (isblank (c));
+				do 
+				{
+					c = getc (stdin);
+					c = escape (c);
+				}
+				while (isblank (c));
 				if (nobreak (c)) 
 				{
 					putc (' ', stdout);
@@ -199,10 +244,7 @@ void function (signed o, void indent (signed, unsigned, unsigned), signed escape
 				c = literal (c);
 				continue;
 			}
-			if (c == '\\') 
-			{
-				c = escape (c);
-			}
+			c = escape (c);
 			c = keep (c);
 		}
 		if (c != EOF) 
@@ -230,46 +272,30 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"c:jMnostW",
+		"c:jm",
 		PUTOPTV_S_FILTER,
 		"white space manager",
-		"c c\tindent character is (c)",
-		"j\tjoin broken lines",
-		"M\tsuitable for GNU makefiles",
-		"n\tindent is nothing [" LITERAL (CHR_NUL) "]",
-		"s\tindent is one space [" LITERAL (CHR_SP) "]",
-		"t\tindent is one tab [" LITERAL (CHR_HT) "]",
-		"W\tsuitable for OpenWRT makefiles",
+		"c c\tcomment character is (c) [" LITERAL (SPACE_C_COMMENT) "]",
+		"g\tsuitable for GNU makefiles",
+		"m\tmerge continuation lines",
 		(char *) (0)
 	};
-	void (* indent) (signed, unsigned, unsigned) = GNUMake;
-	signed (* escape) (signed) = keep;
-	signed o = CHR_HT;
+	void (* indent) (unsigned, unsigned) = GNUMake;
+	signed (* escape) (signed) = pass;
+	signed comment = SPACE_C_COMMENT;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
 		case 'c':
-			o = * struesc ((char *) (optarg));
+			comment = * optarg;
 			break;
-		case 'j':
-			escape = join;
-			break;
-		case 'M':
+		case 'g':
 			indent = GNUMake;
 			break;
-		case 'n':
-			o = CHR_NUL;
-			break;
-		case 's':
-			o = CHR_SP;
-			break;
-		case 't':
-			o = CHR_HT;
-			break;
-		case 'W':
-			indent = OpenWRT;
+		case 'm':
+			escape = join;
 			break;
 		default:
 			break;
@@ -279,17 +305,18 @@ int main (int argc, char const * argv [])
 	argv += optind;
 	if (!argc) 
 	{
-		function (o, indent, escape);
+		function (comment, indent, escape);
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (vfopen (* argv)) 
 		{
-			function (o, indent, escape);
+			function (comment, indent, escape);
 		}
 		argc--;
 		argv++;
 	}
 	exit (0);
 }
+
 

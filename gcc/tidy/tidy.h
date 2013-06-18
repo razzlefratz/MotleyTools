@@ -92,7 +92,7 @@ signed nocontent (signed c, signed e);
 signed noliteral (signed c);
 signed noescaped (signed c);
 signed consume (signed c);
-signed join (signed c);
+signed connect (signed c);
 signed keep (signed c);
 signed find (signed c);
 

@@ -49,9 +49,57 @@
 #ifndef MAKEFILE
 #include "../tidy/literal.c"
 #include "../tidy/escaped.c"
-#include "../tidy/join.c"
 #include "../tidy/keep.c"
 #endif
+
+/*=*
+ *   program constants;
+ *-*/
+
+#define SBRIEF_C_COMMENT '#'
+
+/*====================================================================*
+ *
+ *   signed join (signed c);
+ *
+ *   discard escaped newline; return character argument or character
+ *   following the newline;
+ *
+ *--------------------------------------------------------------------*/
+
+static signed join (signed c) 
+
+{
+	if (c == '\\') 
+	{
+		signed o = getc (stdin);
+		if (o == '\n') 
+		{
+			c = getc (stdin);
+		}
+		else
+		{
+			ungetc (o, stdin);
+		}
+	}
+	return (c);
+}
+
+
+/*====================================================================*
+ *
+ *   signed pass (signed c);
+ *
+ *   do nothing; return character argument;
+ *
+ *--------------------------------------------------------------------*/
+
+static signed pass (signed c) 
+
+{
+	return (c);
+}
+
 
 /*====================================================================*
  *
@@ -66,7 +114,7 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function (signed comment, flag_t flags) 
+static void function (signed comment, signed escape (signed)) 
 
 {
 	signed c = (char) (0);
@@ -100,6 +148,7 @@ static void function (signed comment, flag_t flags)
 				do 
 				{
 					c = getc (stdin);
+					c = escape (c);
 				}
 				while (isblank (c));
 				if (nobreak (c)) 
@@ -115,12 +164,14 @@ static void function (signed comment, flag_t flags)
 			}
 			if (c == '\\') 
 			{
-				c = join (c);
-				continue;
+				c = escape (c);
 			}
 			c = keep (c);
 		}
-		putc ('\n', stdout);
+		if (c != EOF)
+		{
+			putc (c, stdout);
+		}
 	}
 	return;
 }
@@ -135,13 +186,14 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"c:t:",
+		"c:m",
 		PUTOPTV_S_FILTER,
 		"remove comments, concatenate continuation lines and condense space",
-		"c c\tcomment character is (c) ['#']",
+		"c c\tcomment character is (c) [" LITERAL (SBRIEF_C_COMMENT) "]",
+		"m\tmerge continuation lines",
 		(char const *) (0)
 	};
-	flag_t flags = (flag_t) (0);
+	signed (* escape) (signed) = pass;
 	signed comment = '#';
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
@@ -151,6 +203,9 @@ int main (int argc, char const * argv [])
 		case 'c':
 			comment = *optarg;
 			break;
+		case 'm':
+			escape = join;
+			break;
 		default:
 			break;
 		}
@@ -159,13 +214,13 @@ int main (int argc, char const * argv [])
 	argv += optind;
 	if (!argc) 
 	{
-		function (comment, flags);
+		function (comment, escape);
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (vfopen (* argv)) 
 		{
-			function (comment, flags);
+			function (comment, escape);
 		}
 		argc--;
 		argv++;
