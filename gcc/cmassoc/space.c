@@ -47,7 +47,11 @@
 #endif
 
 #ifndef MAKEFILE
+#include "../tidy/consume.c"
+#include "../tidy/compact.c"
 #include "../tidy/literal.c"
+#include "../tidy/escaped.c"
+#include "../tidy/span.c"
 #include "../tidy/keep.c"
 #endif
 
@@ -75,7 +79,7 @@
  *
  *--------------------------------------------------------------------*/
 
-void GNUMake (unsigned spaces, unsigned tabs) 
+static void GNUMake (unsigned spaces, unsigned tabs) 
 
 {
 	if (tabs) 
@@ -104,7 +108,7 @@ void GNUMake (unsigned spaces, unsigned tabs)
  *
  *--------------------------------------------------------------------*/
 
-void OpenWRT (unsigned spaces, unsigned tabs) 
+static void OpenWRT (unsigned spaces, unsigned tabs) 
 
 {
 	if (tabs) 
@@ -125,41 +129,13 @@ void OpenWRT (unsigned spaces, unsigned tabs)
 
 /*====================================================================*
  *
- *   signed join (signed c);
- *
- *   discard escaped newline; return character argument or character
- *   following the newline;
- *
- *--------------------------------------------------------------------*/
-
-static signed join (signed c) 
-
-{
-	if (c == '\\') 
-	{
-		signed o = getc (stdin);
-		if (o == '\n') 
-		{
-			c = getc (stdin);
-		}
-		else
-		{
-			ungetc (o, stdin);
-		}
-	}
-	return (c);
-}
-
-
-/*====================================================================*
- *
- *   signed pass (signed c);
+ *   signed noop (signed c);
  *
  *   do nothing; return character argument;
  *
  *--------------------------------------------------------------------*/
 
-static signed pass (signed c) 
+static signed noop (signed c) 
 
 {
 	return (c);
@@ -184,7 +160,7 @@ static signed pass (signed c)
  *
  *--------------------------------------------------------------------*/
 
-void function (signed comment, void indent (unsigned, unsigned), signed escape (signed)) 
+static void function (signed comment, void indent (unsigned, unsigned), signed escape (signed)) 
 
 {
 	signed c = getc (stdin);
@@ -209,7 +185,7 @@ void function (signed comment, void indent (unsigned, unsigned), signed escape (
 				}
 				c = getc (stdin);
 			}
-			if (nobreak (c)) 
+			if (nobreak (c) && (c != comment)) 
 			{
 				indent (spaces, tabs);
 			}
@@ -218,25 +194,12 @@ void function (signed comment, void indent (unsigned, unsigned), signed escape (
 		{
 			if (c == comment) 
 			{
-				do 
-				{
-					c = keep (c);
-				}
-				while (nobreak (c));
+				c = consume ('\n');
 				continue;
 			}
 			if (isblank (c)) 
 			{
-				do 
-				{
-					c = getc (stdin);
-					c = escape (c);
-				}
-				while (isblank (c));
-				if (nobreak (c)) 
-				{
-					putc (' ', stdout);
-				}
+				c = compact (' ', '\n');
 				continue;
 			}
 			if (isquote (c)) 
@@ -247,10 +210,7 @@ void function (signed comment, void indent (unsigned, unsigned), signed escape (
 			c = escape (c);
 			c = keep (c);
 		}
-		if (c != EOF) 
-		{
-			c = keep (c);
-		}
+		c = keep (c);
 	}
 	return;
 }
@@ -281,7 +241,7 @@ int main (int argc, char const * argv [])
 		(char *) (0)
 	};
 	void (* indent) (unsigned, unsigned) = GNUMake;
-	signed (* escape) (signed) = pass;
+	signed (* escape) (signed) = noop;
 	signed comment = SPACE_C_COMMENT;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
@@ -295,7 +255,7 @@ int main (int argc, char const * argv [])
 			indent = GNUMake;
 			break;
 		case 'm':
-			escape = join;
+			escape = span;
 			break;
 		default:
 			break;

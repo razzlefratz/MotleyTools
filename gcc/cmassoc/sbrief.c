@@ -47,54 +47,29 @@
 #endif
 
 #ifndef MAKEFILE
+#include "../tidy/consume.c"
+#include "../tidy/compact.c"
 #include "../tidy/literal.c"
 #include "../tidy/escaped.c"
+#include "../tidy/span.c"
 #include "../tidy/keep.c"
 #endif
 
-/*=*
+/*====================================================================*
  *   program constants;
- *-*/
+ *--------------------------------------------------------------------*/
 
 #define SBRIEF_C_COMMENT '#'
 
 /*====================================================================*
  *
- *   signed join (signed c);
- *
- *   discard escaped newline; return character argument or character
- *   following the newline;
- *
- *--------------------------------------------------------------------*/
-
-static signed join (signed c) 
-
-{
-	if (c == '\\') 
-	{
-		signed o = getc (stdin);
-		if (o == '\n') 
-		{
-			c = getc (stdin);
-		}
-		else
-		{
-			ungetc (o, stdin);
-		}
-	}
-	return (c);
-}
-
-
-/*====================================================================*
- *
- *   signed pass (signed c);
+ *   signed noop (signed c);
  *
  *   do nothing; return character argument;
  *
  *--------------------------------------------------------------------*/
 
-static signed pass (signed c) 
+static signed noop (signed c) 
 
 {
 	return (c);
@@ -117,8 +92,8 @@ static signed pass (signed c)
 static void function (signed comment, signed escape (signed)) 
 
 {
-	signed c = (char) (0);
-	while ((c = getc (stdin)) != EOF) 
+	signed c = getc (stdin);
+	while (c != EOF) 
 	{
 		if (isblank (c)) 
 		{
@@ -127,34 +102,21 @@ static void function (signed comment, signed escape (signed))
 				c = getc (stdin);
 			}
 			while (isblank (c));
-			if ((c != comment) && nobreak (c)) 
+			if (nobreak (c) && (c != comment)) 
 			{
 				putc ('\t', stdout);
 			}
 		}
-		if (c == comment) 
-		{
-			do 
-			{
-				c = getc (stdin);
-			}
-			while (nobreak (c));
-			continue;
-		}
 		while (nobreak (c)) 
 		{
+			if (c == comment) 
+			{
+				c = consume ('\n');
+				continue;
+			}
 			if (isblank (c)) 
 			{
-				do 
-				{
-					c = getc (stdin);
-					c = escape (c);
-				}
-				while (isblank (c));
-				if (nobreak (c)) 
-				{
-					putc (' ', stdout);
-				}
+				c = compact (' ', '\n');
 				continue;
 			}
 			if (isquote (c)) 
@@ -162,16 +124,10 @@ static void function (signed comment, signed escape (signed))
 				c = literal (c);
 				continue;
 			}
-			if (c == '\\') 
-			{
-				c = escape (c);
-			}
+			c = escape (c);
 			c = keep (c);
 		}
-		if (c != EOF)
-		{
-			putc (c, stdout);
-		}
+		c = keep (c);
 	}
 	return;
 }
@@ -193,18 +149,18 @@ int main (int argc, char const * argv [])
 		"m\tmerge continuation lines",
 		(char const *) (0)
 	};
-	signed (* escape) (signed) = pass;
-	signed comment = '#';
+	signed (* escape) (signed) = noop;
+	signed comment = SBRIEF_C_COMMENT;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
 		case 'c':
-			comment = *optarg;
+			comment = * optarg;
 			break;
 		case 'm':
-			escape = join;
+			escape = span;
 			break;
 		default:
 			break;
@@ -227,4 +183,5 @@ int main (int argc, char const * argv [])
 	}
 	exit (0);
 }
+
 

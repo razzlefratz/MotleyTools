@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   signed noliteral (signed c) 
+ *   signed noliteral (signed e) 
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -15,11 +15,10 @@
 
 #include "../tidy/tidy.h"
 
-signed noliteral (signed c) 
+signed noliteral (signed e) 
 
 {
-	signed e = c;
-	c = getc (stdin);
+	char c = getc (stdin);
 	while ((c != e) && (c != EOF)) 
 	{
 		c = noescaped (c);

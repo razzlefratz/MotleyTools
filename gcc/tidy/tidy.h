@@ -89,10 +89,11 @@ void endline (signed space);
 signed nocomment (signed c);
 signed nocontext (signed c, signed e);
 signed nocontent (signed c, signed e);
-signed noliteral (signed c);
+signed noliteral (signed e);
 signed noescaped (signed c);
-signed consume (signed c);
+signed consume (signed e);
 signed connect (signed c);
+signed span (signed c);
 signed keep (signed c);
 signed find (signed c);
 
