@@ -257,6 +257,9 @@ int main (int argc, char const * argv [])
 		case 'm':
 			escape = span;
 			break;
+		case 'w':
+			indent = OpenWRT;
+			break;
 		default:
 			break;
 		}
