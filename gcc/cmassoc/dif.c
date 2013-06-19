@@ -81,7 +81,7 @@ void *next (size_t line, LINK * ip, FILE * fp)
 	char *cp = string;
 	for (c = getc (fp); (c != EOF) && (c != '\n'); c = getc (fp)) 
 	{
-		if ((cp - string) < (sizeof (string) - 1)) 
+		if ((size_t)(cp - string) < (sizeof (string) - 1)) 
 		{
 			*cp++ = (char) (c);
 		}

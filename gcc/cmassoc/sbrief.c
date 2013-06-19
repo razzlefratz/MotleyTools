@@ -47,11 +47,33 @@
 #endif
 
 #ifndef MAKEFILE
+#include "../tidy/consume.c"
 #include "../tidy/literal.c"
 #include "../tidy/escaped.c"
-#include "../tidy/join.c"
+#include "../tidy/span.c"
 #include "../tidy/keep.c"
 #endif
+
+/*====================================================================*
+ *   program constants;
+ *--------------------------------------------------------------------*/
+
+#define SBRIEF_C_COMMENT '#'
+
+/*====================================================================*
+ *
+ *   signed noop (signed c);
+ *
+ *   do nothing; return character argument;
+ *
+ *--------------------------------------------------------------------*/
+
+static signed noop (signed c) 
+
+{
+	return (c);
+}
+
 
 /*====================================================================*
  *
@@ -66,11 +88,11 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function (signed comment, flag_t flags) 
+static void function (signed comment, signed escape (signed)) 
 
 {
-	signed c = (char) (0);
-	while ((c = getc (stdin)) != EOF) 
+	signed c = getc (stdin);
+	while (c != EOF) 
 	{
 		if (isblank (c)) 
 		{
@@ -79,30 +101,22 @@ static void function (signed comment, flag_t flags)
 				c = getc (stdin);
 			}
 			while (isblank (c));
-			if ((c != comment) && nobreak (c)) 
+			if (nobreak (c) && (c != comment)) 
 			{
 				putc ('\t', stdout);
 			}
 		}
-		if (c == comment) 
-		{
-			do 
-			{
-				c = getc (stdin);
-			}
-			while (nobreak (c));
-			continue;
-		}
 		while (nobreak (c)) 
 		{
+			if (c == comment) 
+			{
+				c = consume ('\n');
+				continue;
+			}
 			if (isblank (c)) 
 			{
-				do 
-				{
-					c = getc (stdin);
-				}
-				while (isblank (c));
-				if (nobreak (c)) 
+				do { c = getc (stdin); c = escape (c); } while (isblank(c)); 
+				if (nobreak (c))
 				{
 					putc (' ', stdout);
 				}
@@ -113,14 +127,10 @@ static void function (signed comment, flag_t flags)
 				c = literal (c);
 				continue;
 			}
-			if (c == '\\') 
-			{
-				c = join (c);
-				continue;
-			}
+			c = escape (c);
 			c = keep (c);
 		}
-		putc ('\n', stdout);
+		c = keep (c);
 	}
 	return;
 }
@@ -135,21 +145,25 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"c:t:",
+		"c:m",
 		PUTOPTV_S_FILTER,
 		"remove comments, concatenate continuation lines and condense space",
-		"c c\tcomment character is (c) ['#']",
+		"c c\tcomment character is (c) [" LITERAL (SBRIEF_C_COMMENT) "]",
+		"m\tmerge continuation lines",
 		(char const *) (0)
 	};
-	flag_t flags = (flag_t) (0);
-	signed comment = '#';
+	signed (* escape) (signed) = noop;
+	signed comment = SBRIEF_C_COMMENT;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
 		case 'c':
-			comment = *optarg;
+			comment = * optarg;
+			break;
+		case 'm':
+			escape = span;
 			break;
 		default:
 			break;
@@ -159,17 +173,18 @@ int main (int argc, char const * argv [])
 	argv += optind;
 	if (!argc) 
 	{
-		function (comment, flags);
+		function (comment, escape);
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (vfopen (* argv)) 
 		{
-			function (comment, flags);
+			function (comment, escape);
 		}
 		argc--;
 		argv++;
 	}
 	exit (0);
 }
+
 

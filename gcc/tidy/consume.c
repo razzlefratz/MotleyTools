@@ -4,8 +4,8 @@
  *
  *   tidy.h
  *
- *   consume and discard the current character up to, but
- *   excluding, the next newline or EOF;
+ *   read and discard character up to, but excluding, the specified
+ *   end character;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -20,14 +20,15 @@
 
 #include "../tidy/tidy.h"
 
-signed consume (signed c) 
+signed consume (signed e) 
 
 {
+	signed c;
 	do 
 	{
 		c = getc (stdin);
 	}
-	while (nobreak (c));
+	while ((c != e) && (c != EOF));
 	return (c);
 }
 

@@ -31,33 +31,13 @@ Long options are not supported.
 All options are single letters.
 
 .TP
--\fBc\fI c\fR
-Replace leading whitespace with a character.
-If a string is given then the first character is used.
-An empty string is equivalent to NUL or '\0' or 0x00.
-
-.TP
-.BR - M
+.BR - g
 Suitable for GNU makefiles.
 This option is the default.
 
 .TP
-.BR - n
-Replace leading white space with nothing.
-This is the same as specifying a character value of '\0'.
-
-.TP
-.RB - s
-Replace leading white space with one space.
-
-.TP
-.BR - t
-Replace leading white space with one tab.
-This option is useful for repairing makefiles where lines must either start in column 1 or start with a tab.
-
-.TP
-.BR - W
-Suitable for OpenWRT makefiles.
+.BR - m
+Merge continuation lines.
 
 .TP
 .RB - ? ,-- help
