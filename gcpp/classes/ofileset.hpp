@@ -29,7 +29,7 @@ class __declspec (dllexport) ofileset: private otext
 public:
 	ofileset ();
 	ofileset (char const * pathname);
-	virtual ~ ofileset ();
+	virtual~ ofileset ();
 	char const * fullpath (bool increment);
 	char const * fullname () const;
 	char const * pathname () const;

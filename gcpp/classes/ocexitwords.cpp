@@ -18,6 +18,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/ocexitwords.hpp"
+#include "../classes/types.h"
 
 /*====================================================================*
  *
@@ -42,7 +43,7 @@ ocexitwords::ocexitwords ()
 		(char const *)(0)
 	};
 	okeywords::mtitle = "cexitwords";
-	okeywords::mcount = sizeof (table) / sizeof (table [0]) - 1;
+	okeywords::mcount = SIZEOF (table) - 1;
 	okeywords::mtable = table;
 	okeywords::mcheck ();
 	return;

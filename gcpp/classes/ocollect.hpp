@@ -26,7 +26,7 @@ class __declspec (dllexport) ocollect
 {
 public:
 	ocollect ();
-	virtual ~ ocollect ();
+	virtual~ ocollect ();
 	signed context (signed c, char const * charset) const;
 	signed context (signed c, signed o, signed e) const;
 	signed content (signed c, signed o, signed e) const;
@@ -50,6 +50,7 @@ public:
 	signed find (signed c) const;
 	signed keep (signed c) const;
 private:
+	
 };
 
 

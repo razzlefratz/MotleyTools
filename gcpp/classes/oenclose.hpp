@@ -27,13 +27,14 @@ class __declspec (dllexport) oenclose: private ocollect
 {
 public:
 	oenclose ();
-	virtual ~ oenclose ();
+	virtual~ oenclose ();
 	signed program (signed c, signed e) const;
 	signed inner_program (signed c, signed e) const;
 	signed condition (signed c) const;
 	signed statement (signed c) const;
 	signed expression (signed c) const;
 private:
+	
 };
 
 

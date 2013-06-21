@@ -115,7 +115,7 @@ int main (int argc, char const * argv [])
 	opathspec pathspec;
 	oprofile config;
 	octidy object;
-	int (octidy::* method) (signed, signed) = &octidy::charlie;
+	int (octidy::* method) (signed, signed) = & octidy::charlie;
 	char const * profile = PROFILE_NAME;
 	char const * section = SECTION_NAME;
 	signed c;
@@ -130,7 +130,7 @@ int main (int argc, char const * argv [])
 			object.indent ("    ");
 			break;
 		case 'a':
-			method = &octidy::atheros;
+			method = & octidy::atheros;
 			break;
 		case 'b':
 			object.setbits (oCOMMENT_B_COMMENT);

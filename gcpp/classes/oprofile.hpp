@@ -34,7 +34,7 @@ class __declspec (dllexport) oprofile: private oswitch
 {
 public:
 	oprofile ();
-	virtual ~ oprofile ();
+	virtual~ oprofile ();
 	oprofile & write (char const * section);
 	oprofile & write (char const * element, char const * content);
 	char const * string (char const * profile, char const * section, char const * element, char const * content);

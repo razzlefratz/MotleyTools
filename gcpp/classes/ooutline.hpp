@@ -39,7 +39,7 @@ class __declspec (dllexport) ooutline
 {
 public:
 	ooutline (char const * symbol);
-	virtual ~ ooutline ();
+	virtual~ ooutline ();
 	char const * title () const;
 	char const * string () const;
 	void * object () const;

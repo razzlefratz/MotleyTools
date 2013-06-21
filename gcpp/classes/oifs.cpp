@@ -296,7 +296,7 @@ oifs::oifs ()
 	}
 	ifc.ifc_len = sizeof (buffer);
 	ifc.ifc_buf = buffer;
-	if (ioctl (fd, SIOCGIFCONF, &ifc) < 0) 
+	if (ioctl (fd, SIOCGIFCONF, & ifc) < 0) 
 	{
 		oerror::error (1, errno, "Can't enumerate interfaces");
 	}
@@ -319,7 +319,7 @@ oifs::oifs ()
 	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *)(0);
 	pcap_if_t * device;
-	if (pcap_findalldevs (&devices, buffer) == -1) 
+	if (pcap_findalldevs (& devices, buffer) == -1) 
 	{
 		oerror::error (1, errno, "Can't enumerate interfaces");
 	}

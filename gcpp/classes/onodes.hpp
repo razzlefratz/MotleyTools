@@ -33,7 +33,7 @@ class __declspec (dllexport) onodes
 {
 public:
 	onodes ();
-	virtual ~ onodes ();
+	virtual~ onodes ();
 	size_t block () const;
 	size_t limit () const;
 	size_t count () const;

@@ -58,7 +58,7 @@ int main (int argc, char const * argv [])
 	ogetoptv getopt;
 	ocalendar * calendar;
 	time_t now = time ((time_t *) (0));
-	struct tm * tm = localtime (&now);
+	struct tm * tm = localtime (& now);
 	unsigned year = 1900 + tm->tm_year;
 	signed month = tm->tm_mon;
 	signed c;

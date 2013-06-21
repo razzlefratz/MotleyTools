@@ -78,7 +78,7 @@ char const * oIPAddress::string (unsigned number)
 		}
 		while (oIPAddress::value /= 10);
 	}
-	return (&oIPAddress::buffer [oIPAddress::digit]);
+	return (& oIPAddress::buffer [oIPAddress::digit]);
 }
 
 
@@ -114,7 +114,7 @@ char const * oIPAddress::padded (unsigned number)
 			oIPAddress::value /= 10;
 		}
 	}
-	return (&oIPAddress::buffer [oIPAddress::digit]);
+	return (& oIPAddress::buffer [oIPAddress::digit]);
 }
 
 

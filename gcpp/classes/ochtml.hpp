@@ -35,7 +35,7 @@ class __declspec (dllexport) ochtml: public owebpage
 public:
 	ochtml (char const * stylesheet);
 	ochtml ();
-	virtual ~ ochtml ();
+	virtual~ ochtml ();
 	ochtml & html (char const * pathname);
 	ochtml & stylesheet ();
 	ochtml & stylesheet (char const * string);

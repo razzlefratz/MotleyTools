@@ -27,11 +27,10 @@ class __declspec (dllexport) owildcard
 public:
 	owildcard ();
 	owildcard (unsigned char anychar, unsigned char allchar);
-	virtual ~ owildcard ();
+	virtual~ owildcard ();
 	bool match (char const * literal, char const * pattern);
 protected:
-private:
-	unsigned char anychar;
+	private: unsigned char anychar;
 	unsigned char allchar;
 };
 

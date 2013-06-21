@@ -28,7 +28,7 @@ class __declspec (dllexport) oprogram: public ocollect, public oindent
 {
 public:
 	oprogram ();
-	virtual ~ oprogram ();
+	virtual~ oprogram ();
 	signed context (signed c, char const * charset) const;
 	signed context (signed c, signed o, signed e) const;
 	signed requote (signed c, signed o, signed e) const;
@@ -40,6 +40,7 @@ public:
 	signed inner_context (signed c, signed e) const;
 	signed find (signed c) const;
 private:
+	
 };
 
 

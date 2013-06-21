@@ -54,7 +54,7 @@ bool oscantext::end () const
  *
  *--------------------------------------------------------------------*/
 
-oscantext & oscantext::operator= (char const * string) 
+oscantext & oscantext::operator = (char const * string) 
 
 {
 	this->copy (string);
@@ -93,7 +93,7 @@ oscantext & oscantext::read (char const * filename)
 		stream.open (filename, std::ios::binary);
 		if (stream.good ()) 
 		{
-			this->read (&stream);
+			this->read (& stream);
 		}
 		stream.close ();
 	}

@@ -35,7 +35,7 @@ class __declspec (dllexport) oindent
 {
 public:
 	oindent ();
-	virtual ~ oindent ();
+	virtual~ oindent ();
 	oindent & margin (char const * string);
 	oindent & indent (char const * string);
 	oindent & finish (char const * string);

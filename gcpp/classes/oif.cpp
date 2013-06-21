@@ -389,27 +389,27 @@ oif & oif::lookup ()
 #if defined (__linux__)
 
 	struct ifreq ifreq;
-	struct sockaddr_in * sockaddr_in = (struct sockaddr_in *)(&ifreq.ifr_ifru.ifru_addr);
+	struct sockaddr_in * sockaddr_in = (struct sockaddr_in *)(& ifreq.ifr_ifru.ifru_addr);
 	int fd;
 	if ((fd = socket (AF_INET, SOCK_RAW, 0)) < 0) 
 	{
 		oerror::error (1, errno, "Can't open socket: %s", this->mname);
 	}
 	std::memcpy (ifreq.ifr_name, this->mname, sizeof (ifreq.ifr_name));
-	if (ioctl (fd, SIOCGIFHWADDR, &ifreq) == -1) 
+	if (ioctl (fd, SIOCGIFHWADDR, & ifreq) == -1) 
 	{
 		oerror::error (1, errno, "Can't fetch hardware address: %s", this->mname);
 		close (fd);
 		return (* this);
 	}
 	std::memcpy (this->mhwaddr, ifreq.ifr_ifru.ifru_hwaddr.sa_data, sizeof (this->mhwaddr));
-	if (ioctl (fd, SIOCGIFADDR, &ifreq) == -1) 
+	if (ioctl (fd, SIOCGIFADDR, & ifreq) == -1) 
 	{
 		oerror::error (1, errno, "Can't fetch ethernet address: %s", this->mname);
 		close (fd);
 		return (* this);
 	}
-	std::memcpy (this->mipaddr, &sockaddr_in->sin_addr.s_addr, sizeof (this->mipaddr));
+	std::memcpy (this->mipaddr, & sockaddr_in->sin_addr.s_addr, sizeof (this->mipaddr));
 	close (fd);
 
 #elif defined (__APPLE__)
@@ -465,7 +465,7 @@ void oif::osx_gethwaddr ()
 
 	struct ifaddrs * ifaddrs;
 	struct ifaddrs * ifaddr;
-	if (getifaddrs (&ifaddrs) == -1) 
+	if (getifaddrs (& ifaddrs) == -1) 
 	{
 		oerror::error (1, errno, "No interfaces available");
 	}
@@ -482,7 +482,7 @@ void oif::osx_gethwaddr ()
 		if (ifaddr->ifa_addr->sa_family == AF_INET) 
 		{
 			struct sockaddr_in * sockaddr_in = (struct sockaddr_in *) (ifaddr->ifa_addr);
-			std::memcpy (this->mipaddr, &sockaddr_in->sa_data.s_addr, sizeof (this->mipaddr));
+			std::memcpy (this->mipaddr, & sockaddr_in->sa_data.s_addr, sizeof (this->mipaddr));
 			continue;
 		}
 		if (ifaddr->ifa_addr->sa_family == AF_LINK) 
@@ -522,7 +522,7 @@ unsigned oif::pcap_nametoindex (char const * name) const
 	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *)(0);
 	pcap_if_t * device;
-	if (pcap_findalldevs (&devices, buffer) != -1) 
+	if (pcap_findalldevs (& devices, buffer) != -1) 
 	{
 		unsigned index = 1;
 		for (device = devices; device; device = device->next) 
@@ -566,7 +566,7 @@ char * oif::pcap_indextoname (unsigned ifindex, char * ifname) const
 	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *)(0);
 	pcap_if_t * device;
-	if ((ifindex--) && (pcap_findalldevs (&devices, buffer) != -1)) 
+	if ((ifindex--) && (pcap_findalldevs (& devices, buffer) != -1)) 
 	{
 		for (device = devices; device; device = device->next) 
 		{
@@ -645,7 +645,7 @@ void oif::pcap_getipaddr ()
 	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *)(0);
 	pcap_if_t * device;
-	if (pcap_findalldevs (&devices, buffer) == -1) 
+	if (pcap_findalldevs (& devices, buffer) == -1) 
 	{
 		oerror::error (1, errno, "Can't enumerate interfaces");
 	}
@@ -660,7 +660,7 @@ void oif::pcap_getipaddr ()
 		{
 			struct pcap_addr * pcap_addr = device->addresses;
 			struct sockaddr_in * sockaddr_in = (struct sockaddr_in *)(pcap_addr->addr->sa_data);
-			std::memcpy (this->mipaddr, &sockaddr_in->sin_addr.s_addr, sizeof (this->mipaddr));
+			std::memcpy (this->mipaddr, & sockaddr_in->sin_addr.s_addr, sizeof (this->mipaddr));
 		}
 		break;
 	}

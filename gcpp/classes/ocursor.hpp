@@ -32,7 +32,7 @@ class __declspec (dllexport) ocursor
 {
 public:
 	ocursor ();
-	virtual ~ ocursor ();
+	virtual~ ocursor ();
 	ocursor & clear ();
 	ocursor & count (char c);
 	size_t charcount () const;

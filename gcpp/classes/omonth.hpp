@@ -34,7 +34,7 @@ public:
 	omonth ();
 	omonth (signed month);
 	omonth (unsigned year, signed month);
-	virtual ~ omonth ();
+	virtual~ omonth ();
 	char const * title () const;
 	unsigned year () const;
 	unsigned month () const;
@@ -44,8 +44,7 @@ public:
 	unsigned date (unsigned week, unsigned weekday) const;
 	void encode (char buffer [], size_t length);
 protected:
-private:
-	static odate mdate;
+	private: static odate mdate;
 	char const * mtitle;
 	unsigned mannum;
 	unsigned mmonth;

@@ -86,7 +86,7 @@ bool opathspec::isdotdir (char const * filename)
 bool opathspec::exists (char const * filename) 
 
 {
-	return (!stat (filename, &this->mstatinfo));
+	return (!stat (filename, & this->mstatinfo));
 }
 
 
@@ -113,7 +113,7 @@ bool opathspec::infolder (char pathname [], char const * wildcard, bool recurse)
 		while ((dirent = readdir (dir)) != (struct dirent *) (0)) 
 		{
 			std::strcpy (filename + 1, dirent->d_name);
-			if (lstat (pathname, &this->mstatinfo)) 
+			if (lstat (pathname, & this->mstatinfo)) 
 			{
 				oerror::error (0, errno, pathname);
 				continue;
@@ -188,7 +188,7 @@ bool opathspec::invector (char fullname [], char const * pathname [], char const
 	while (* pathname) 
 	{
 		opathspec::makepath (fullname, * pathname++, filename);
-		if (!stat (fullname, &this->mstatinfo)) 
+		if (!stat (fullname, & this->mstatinfo)) 
 		{
 			return (true);
 		}
@@ -290,7 +290,7 @@ bool opathspec::instring (char fullname [], char const * pathname, char const * 
 		}
 		* string = (char) (0);
 		opathspec::makepath (fullname, fullname, filename);
-		if (!stat (fullname, &this->mstatinfo)) 
+		if (!stat (fullname, & this->mstatinfo)) 
 		{
 			return (true);
 		}

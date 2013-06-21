@@ -314,21 +314,21 @@ ointerface & ointerface::lookup ()
 	{
 		struct ifreq ifreq;
 		std::memcpy (ifreq.ifr_name, this->mifname, sizeof (ifreq.ifr_name));
-		if (ioctl (fd, SIOCGIFHWADDR, &ifreq) != -1) 
+		if (ioctl (fd, SIOCGIFHWADDR, & ifreq) != -1) 
 		{
 			std::memcpy (this->mhwaddr, ifreq.ifr_ifru.ifru_hwaddr.sa_data, sizeof (this->mhwaddr));
 		}
-		if (ioctl (fd, SIOCGIFADDR, &ifreq) != -1) 
+		if (ioctl (fd, SIOCGIFADDR, & ifreq) != -1) 
 		{
-			struct sockaddr_in * sockaddr_in = (struct sockaddr_in *)(&ifreq.ifr_ifru.ifru_addr);
-			std::memcpy (this->mipaddr, &sockaddr_in->sin_addr.s_addr, sizeof (this->mipaddr));
+			struct sockaddr_in * sockaddr_in = (struct sockaddr_in *)(& ifreq.ifr_ifru.ifru_addr);
+			std::memcpy (this->mipaddr, & sockaddr_in->sin_addr.s_addr, sizeof (this->mipaddr));
 		}::
 		close (fd);
 	}
 #elif defined (__linux__) || defined (__APPLE__) || defined (__OpenBSD__) 
 
 	struct ifaddrs * ifaddrs;
-	if (getifaddrs (&ifaddrs) != -1) 
+	if (getifaddrs (& ifaddrs) != -1) 
 	{
 		struct ifaddrs * ifaddr;
 		for (ifaddr = ifaddrs; ifaddr; ifaddr = ifaddr->ifa_next) 
@@ -344,8 +344,8 @@ ointerface & ointerface::lookup ()
 			if (ifaddr->ifa_addr->sa_family == AF_INET) 
 			{
 				struct sockaddr_in * sockaddr_in = (struct sockaddr_in *) (ifaddr->ifa_addr);
-				struct in_addr * in_addr = (struct in_addr *)(&sockaddr_in->sin_addr);
-				std::memcpy (this->mipaddr, &in_addr->s_addr, sizeof (this->mipaddr));
+				struct in_addr * in_addr = (struct in_addr *)(& sockaddr_in->sin_addr);
+				std::memcpy (this->mipaddr, & in_addr->s_addr, sizeof (this->mipaddr));
 			}
 #if defined (__linux__)
 
@@ -410,7 +410,7 @@ unsigned ointerface::pcap_nametoindex (char const * name) const
 	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *)(0);
 	pcap_if_t * device;
-	if (pcap_findalldevs (&devices, buffer) != -1) 
+	if (pcap_findalldevs (& devices, buffer) != -1) 
 	{
 		unsigned index = 1;
 		for (device = devices; device; device = device->next) 
@@ -456,7 +456,7 @@ char * ointerface::pcap_indextoname (unsigned ifindex, char * ifname) const
 	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *)(0);
 	pcap_if_t * device;
-	if ((ifindex--) && (pcap_findalldevs (&devices, buffer) != -1)) 
+	if ((ifindex--) && (pcap_findalldevs (& devices, buffer) != -1)) 
 	{
 		for (device = devices; device; device = device->next) 
 		{
@@ -538,7 +538,7 @@ void ointerface::pcap_getipaddr ()
 	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *)(0);
 	pcap_if_t * device;
-	if (pcap_findalldevs (&devices, buffer) == -1) 
+	if (pcap_findalldevs (& devices, buffer) == -1) 
 	{
 		oerror::error (1, errno, "Can't enumerate interfaces");
 	}
@@ -553,8 +553,8 @@ void ointerface::pcap_getipaddr ()
 		{
 			struct pcap_addr * pcap_addr = device->addresses;
 			struct sockaddr_in * sockaddr_in = (struct sockaddr_in *)(pcap_addr->addr);
-			struct in_addr * in_addr = (struct in_addr *)(&sockaddr_in->sin_addr);
-			std::memcpy (this->mipaddr, &in_addr->s_addr, sizeof (this->mipaddr));
+			struct in_addr * in_addr = (struct in_addr *)(& sockaddr_in->sin_addr);
+			std::memcpy (this->mipaddr, & in_addr->s_addr, sizeof (this->mipaddr));
 		}
 		break;
 	}

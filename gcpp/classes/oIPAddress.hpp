@@ -28,7 +28,7 @@ class __declspec (dllexport) oIPAddress
 {
 public:
 	oIPAddress ();
-	virtual ~ oIPAddress ();
+	virtual~ oIPAddress ();
 	char const * string (unsigned address);
 	char const * padded (unsigned address);
 	unsigned number (char const * address);

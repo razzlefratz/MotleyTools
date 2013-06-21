@@ -26,7 +26,7 @@ class __declspec (dllexport) ochrtbl
 {
 public:
 	ochrtbl ();
-	virtual ~ ochrtbl ();
+	virtual~ ochrtbl ();
 	unsigned convert (unsigned c) const;
 	signed compare (char const * string1, char const * string2) const;
 	ochrtbl & convert (char * string);

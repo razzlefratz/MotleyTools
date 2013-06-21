@@ -85,16 +85,16 @@ size_t oenviron::strfwhat (char buffer [], size_t length, char const * event)
 
 #if defined (__linux__)
 
-	string += std::snprintf (string, string - buffer + length, "%s", event);
+	string+= std::snprintf (string, string - buffer + length, "%s", event);
 
 #else
 
-	string += snprintf (string, string - buffer + length, "%s", event);
+	string+= snprintf (string, string - buffer + length, "%s", event);
 
 #endif
 
-	string += oenviron::strfwhen (string, string - buffer + length, timer);
-	string += oenviron::strfwhom (string, string - buffer + length);
+	string+= oenviron::strfwhen (string, string - buffer + length, timer);
+	string+= oenviron::strfwhom (string, string - buffer + length);
 	return (string - buffer);
 }
 
@@ -113,7 +113,7 @@ size_t oenviron::strfdate (char buffer [], size_t length, time_t event)
 
 {
 	char * string = buffer;
-	string += std::strftime (string, string - buffer + length, DAYTIME, localtime (&event));
+	string+= std::strftime (string, string - buffer + length, DAYTIME, localtime (& event));
 	return (string - buffer);
 }
 
@@ -137,17 +137,17 @@ size_t oenviron::strfwhen (char buffer [], size_t length, time_t event)
 
 #if defined (__linux__)
 
-	string += std::snprintf (string, string - buffer + length, " at ");
-	string += std::strftime (string, string - buffer + length, "%T %Z", localtime (&event));
-	string += std::snprintf (string, string - buffer + length, " on ");
-	string += std::strftime (string, string - buffer + length, "%a %d %b %y", localtime (&event));
+	string+= std::snprintf (string, string - buffer + length, " at ");
+	string+= std::strftime (string, string - buffer + length, "%T %Z", localtime (& event));
+	string+= std::snprintf (string, string - buffer + length, " on ");
+	string+= std::strftime (string, string - buffer + length, "%a %d %b %y", localtime (& event));
 
 #else
 
-	string += snprintf (string, string - buffer + length, " at ");
-	string += strftime (string, string - buffer + length, "%T %Z", localtime (&event));
-	string += snprintf (string, string - buffer + length, " on ");
-	string += strftime (string, string - buffer + length, "%a %d %b %y", localtime (&event));
+	string+= snprintf (string, string - buffer + length, " at ");
+	string+= strftime (string, string - buffer + length, "%T %Z", localtime (& event));
+	string+= snprintf (string, string - buffer + length, " on ");
+	string+= strftime (string, string - buffer + length, "%a %d %b %y", localtime (& event));
 
 #endif
 
@@ -174,17 +174,17 @@ size_t oenviron::strfwhom (char buffer [], size_t length)
 
 #if defined (__linux__)
 
-	string += std::snprintf (string, string - buffer + length, " by");
-	string += std::snprintf (string, string - buffer + length, " %s", this->musername);
-	string += std::snprintf (string, string - buffer + length, " on");
-	string += std::snprintf (string, string - buffer + length, " %s", this->mhostname);
+	string+= std::snprintf (string, string - buffer + length, " by");
+	string+= std::snprintf (string, string - buffer + length, " %s", this->musername);
+	string+= std::snprintf (string, string - buffer + length, " on");
+	string+= std::snprintf (string, string - buffer + length, " %s", this->mhostname);
 
 #else
 
-	string += snprintf (string, string - buffer + length, " by");
-	string += snprintf (string, string - buffer + length, " %s", this->musername);
-	string += snprintf (string, string - buffer + length, " on");
-	string += snprintf (string, string - buffer + length, " %s", this->mhostname);
+	string+= snprintf (string, string - buffer + length, " by");
+	string+= snprintf (string, string - buffer + length, " %s", this->musername);
+	string+= snprintf (string, string - buffer + length, " on");
+	string+= snprintf (string, string - buffer + length, " %s", this->mhostname);
 
 #endif
 

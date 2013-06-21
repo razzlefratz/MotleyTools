@@ -34,7 +34,7 @@ public:
 	otree (char const * nodename);
 	otree (char const * nodename, void const * object);
 	otree (char const nodename [], size_t length);
-	virtual ~ otree ();
+	virtual~ otree ();
 	char const * nodename () const;
 	char const * nodetext () const;
 	void * nodedata () const;

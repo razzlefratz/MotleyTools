@@ -1006,7 +1006,7 @@ char * otree::pathname (char buffer [], size_t length, char extender)
 {
 	otree * node = this;
 	char * string;
-	buffer += length--;
+	buffer+= length--;
 	*--buffer = (char) (0);
 	while (node->mabove) 
 	{

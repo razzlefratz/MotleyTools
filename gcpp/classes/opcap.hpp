@@ -35,7 +35,7 @@ class __declspec (dllexport) opcap
 {
 public:
 	opcap ();
-	virtual ~ opcap ();
+	virtual~ opcap ();
 	static unsigned if_nametoindex (char const * ifname);
 	static char * if_indextoname (unsigned ifindex, char * ifname);
 	static struct if_nameindex * if_nameindex (void);

@@ -28,7 +28,7 @@ class __declspec (dllexport) odict
 public:
 	odict (char const * symbol);
 	odict (char const * symbol, char const * string);
-	virtual ~ odict ();
+	virtual~ odict ();
 	bool defined (char const * symbol) const;
 	char const * expand (char const * symbol) const;
 	char const * lookup (char const * symbol) const;
@@ -36,8 +36,7 @@ public:
 	odict & enumerate ();
 	odict & clear ();
 protected:
-private:
-	static signed comp (char const *, char const *);
+	private: static signed comp (char const *, char const *);
 	const odict * node (char const *) const;
 	odict * mprior;
 	odict * mafter;

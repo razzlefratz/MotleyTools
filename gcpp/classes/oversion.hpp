@@ -40,7 +40,7 @@ class __declspec (dllexport) oversion: private otext
 {
 public:
 	oversion ();
-	virtual ~ oversion ();
+	virtual~ oversion ();
 	char const * program () const;
 	char const * company () const;
 	char const * project () const;

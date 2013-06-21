@@ -156,7 +156,7 @@ class __declspec (dllexport) oHTMLAttributes: public okeywords
 {
 public:
 	oHTMLAttributes ();
-	virtual ~ oHTMLAttributes ();
+	virtual~ oHTMLAttributes ();
 };
 
 

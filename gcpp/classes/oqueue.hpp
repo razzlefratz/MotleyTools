@@ -33,7 +33,7 @@ class __declspec (dllexport) oqueue
 public:
 	oqueue ();
 	oqueue (void * object);
-	virtual ~ oqueue ();
+	virtual~ oqueue ();
 	unsigned count () const;
 	bool empty () const;
 	void * data () const;

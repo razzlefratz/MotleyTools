@@ -57,7 +57,7 @@ unsigned opcap::if_nametoindex (char const * name)
 	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *)(0);
 	pcap_if_t * device;
-	if (pcap_findalldevs (&devices, buffer) != -1) 
+	if (pcap_findalldevs (& devices, buffer) != -1) 
 	{
 		unsigned index = 1;
 		for (device = devices; device; device = device->next) 
@@ -101,7 +101,7 @@ char * opcap::if_indextoname (unsigned ifindex, char * ifname)
 	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *)(0);
 	pcap_if_t * device;
-	if ((ifindex--) && (pcap_findalldevs (&devices, buffer) != -1)) 
+	if ((ifindex--) && (pcap_findalldevs (& devices, buffer) != -1)) 
 	{
 		for (device = devices; device; device = device->next) 
 		{
@@ -148,7 +148,7 @@ struct if_nameindex * opcap::if_nameindex (void)
 	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *)(0);
 	pcap_if_t * device;
-	if (pcap_findalldevs (&devices, buffer) != -1) 
+	if (pcap_findalldevs (& devices, buffer) != -1) 
 	{
 		struct if_nameindex * ifs;
 		struct if_nameindex * ifp;

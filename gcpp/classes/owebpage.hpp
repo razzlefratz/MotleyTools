@@ -37,7 +37,7 @@ class __declspec (dllexport) owebpage: private otext
 {
 public:
 	owebpage ();
-	virtual ~ owebpage ();
+	virtual~ owebpage ();
 	char const * title () const;
 	char const * stylesheet () const;
 	signed level () const;

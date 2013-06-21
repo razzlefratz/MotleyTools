@@ -26,7 +26,7 @@ class __declspec (dllexport) ooctencoder
 {
 public:
 	ooctencoder ();
-	virtual ~ ooctencoder ();
+	virtual~ ooctencoder ();
 	char * encode (char const * string);
 	char * decode (char * string);
 private:

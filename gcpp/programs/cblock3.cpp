@@ -60,35 +60,29 @@ static void function ()
 	oscanfile source;
 	while (!source.end ()) 
 	{
-<<<<<<< HEAD
-		if (source.scantoken().isspace())
-=======
-		source.scantoken ();
-		if (source.isspace ()) 
->>>>>>> 6f95020476b52cf467ba9cc9ea46d424fb7d7b40
+		<<<<<<< HEAD if (source.scantoken ().isspace ()) ======= source.scantoken ();
+		if (source.isspace ()) >>>>>>> 6f95020476b52cf467ba9cc9ea46d424fb7d7b40 
 		{
 			source.scanspace ();
 		}
-<<<<<<< HEAD
-		else if (source.havetoken ("while"))
+		<<<<<<< HEAD else if (source.havetoken ("while")) 
 		{
 		}
-		else if (source.havetoken ("do"))
+		else if (source.havetoken ("do")) 
 		{
 		}
-		else if (source.havetoken ("switch"))
+		else if (source.havetoken ("switch")) 
 		{
 		}
-		else if (source.havetoken ("if"))
+		else if (source.havetoken ("if")) 
 		{
 		}
-		else if (source.havetoken ("return"))
+		else if (source.havetoken ("return")) 
 		{
 		}
-		source.write().flush ();
-=======
-		source.print ().flush ();
->>>>>>> 6f95020476b52cf467ba9cc9ea46d424fb7d7b40
+		source.write ().flush ();
+		======= source.print ().flush ();
+		>>>>>>> 6f95020476b52cf467ba9cc9ea46d424fb7d7b40
 	}
 	return;
 }

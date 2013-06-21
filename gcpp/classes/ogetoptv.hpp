@@ -40,7 +40,7 @@ class __declspec (dllexport) ogetoptv: private oputoptv, private oversion
 {
 public:
 	ogetoptv ();
-	virtual ~ ogetoptv ();
+	virtual~ ogetoptv ();
 	int argc () const;
 	char const ** argv () const;
 	char const * args ();

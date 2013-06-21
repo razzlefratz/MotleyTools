@@ -34,7 +34,7 @@ class __declspec (dllexport) ocmassocindex: private otext;
 {
 public:
 	ocmassocindex ();
-	virtual ~ ocmassocindex ();
+	virtual~ ocmassocindex ();
 	ocmassocindex & index1 (struct _topic_ topics [], unsigned count);
 	ocmassocindex & index2 (struct _topic_ topics [], unsigned count);
 private:

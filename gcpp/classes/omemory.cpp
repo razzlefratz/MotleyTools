@@ -200,9 +200,9 @@ uint16_t omemory::checksum16 (void const * memory, register size_t extent, regis
 	register byte * offset = (byte *)(memory);
 	while (extent >= sizeof (checksum)) 
 	{
-		checksum ^= *(uint16_t *)(offset);
-		offset += sizeof (checksum);
-		extent -= sizeof (checksum);
+		checksum^= *(uint16_t *)(offset);
+		offset+= sizeof (checksum);
+		extent-= sizeof (checksum);
 	}
 	return (~checksum);
 }
@@ -232,9 +232,9 @@ uint32_t omemory::checksum32 (void const * memory, register size_t extent, regis
 	register byte * offset = (byte *)(memory);
 	while (extent >= sizeof (checksum)) 
 	{
-		checksum ^= *(uint32_t *)(offset);
-		offset += sizeof (checksum);
-		extent -= sizeof (checksum);
+		checksum^= *(uint32_t *)(offset);
+		offset+= sizeof (checksum);
+		extent-= sizeof (checksum);
 	}
 	return (~checksum);
 }
@@ -405,7 +405,7 @@ size_t omemory::binencode (void * memory, register size_t extent, register char 
 				return (0);
 			}
 			value *= radix;
-			value += digit;
+			value+= digit;
 			string++;
 		}
 		* offset = (byte)(value);
@@ -466,7 +466,7 @@ size_t omemory::decencode (void * memory, size_t extent, char const * string)
 				return (0);
 			}
 			value *= radix;
-			value += digit;
+			value+= digit;
 			if (value >> 8) 
 			{
 				errno = ERANGE;
@@ -534,7 +534,7 @@ size_t omemory::hexencode (void * memory, register size_t extent, register char 
 				return (0);
 			}
 			value *= radix;
-			value += digit;
+			value+= digit;
 			string++;
 		}
 		* offset = (byte)(value);
@@ -740,8 +740,8 @@ void omemory::hexdump (void const * memory, size_t offset, size_t extent, std::o
 		}
 		* output++ = '\n';
 		stream->write (buffer, (signed)(output - buffer));
-		lower += block;
-		upper += block;
+		lower+= block;
+		upper+= block;
 	}
 	return;
 }
@@ -812,8 +812,8 @@ void omemory::hexview (void const * memory, size_t offset, size_t extent, std::o
 		}
 		* output++ = '\n';
 		stream->write (buffer, (signed)(output - buffer));
-		lower += block;
-		upper += block;
+		lower+= block;
+		upper+= block;
 	}
 	return;
 }

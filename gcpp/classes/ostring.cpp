@@ -431,7 +431,7 @@ ostring & ostring::read (char const * filename)
 		stream.open (filename, std::ios::binary);
 		if (stream.good ()) 
 		{
-			this->read (&stream);
+			this->read (& stream);
 		}
 		stream.close ();
 	}
@@ -587,7 +587,7 @@ ostring & ostring::enclose (char const * example)
 		char * buffer = this->mstring;
 		this->mstring = new char [this->mlength + 3];
 		this->mstring [0] = example [0];
-		std::strcpy (&this->mstring [1], buffer);
+		std::strcpy (& this->mstring [1], buffer);
 		this->mstring [++this->mlength] = example [length - 1];
 		this->mstring [++this->mlength] = (char) (0);
 		delete [] buffer;

@@ -127,23 +127,23 @@ oMACAddress & oMACAddress::encode (char const * string)
 		for (upper = 0; (oMACAddress::digit [upper] != std::toupper (* string)) && (oMACAddress::digit [upper] != (char) (0)); upper++);
 		if (* string++ == (char) (0)) 
 		{
-			this->merror=oMACADDRESS_TOOSHORT;
+			this->merror =oMACADDRESS_TOOSHORT;
 			return (* this);
 		}
 		if (upper == (sizeof (oMACAddress::digit) - 1)) 
 		{
-			this->merror=oMACADDRESS_ILLEGAL;
+			this->merror =oMACADDRESS_ILLEGAL;
 			return (* this);
 		}
 		for (lower = 0; (oMACAddress::digit [lower] != std::toupper (* string)) && (oMACAddress::digit [lower] != (char) (0)); lower++);
 		if (* string++ == (char) (0)) 
 		{
-			this->merror=oMACADDRESS_TOOSHORT;
+			this->merror =oMACADDRESS_TOOSHORT;
 			return (* this);
 		}
 		if (lower == (sizeof (oMACAddress::digit) - 1)) 
 		{
-			this->merror=oMACADDRESS_ILLEGAL;
+			this->merror =oMACADDRESS_ILLEGAL;
 			return (* this);
 		}
 		this->mnumber [octet] = ((upper & 0x0f) << 4) | (lower & 0x0f);

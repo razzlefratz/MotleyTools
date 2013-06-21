@@ -131,7 +131,7 @@ unsigned omonth::date (unsigned block) const
 	{
 		return (0);
 	}
-	block -= this->mstart - 1;
+	block-= this->mstart - 1;
 	if (block > this->mlimit) 
 	{
 		return (0);
@@ -207,7 +207,7 @@ omonth::omonth (signed month)
 {
 	odate date;
 	time_t now = time ((time_t *)(0));
-	struct tm * tm = localtime (&now);
+	struct tm * tm = localtime (& now);
 	this->mmonth = 22800 + tm->tm_year * MONTHS_IN_YEAR + month;
 	this->mannum = month / MONTHS_IN_YEAR;
 	this->mmonth = month % MONTHS_IN_YEAR;
@@ -231,7 +231,7 @@ omonth::omonth ()
 {
 	odate date;
 	time_t now = time ((time_t *)(0));
-	struct tm * tm = localtime (&now);
+	struct tm * tm = localtime (& now);
 	this->mmonth = 22800 + tm->tm_year * MONTHS_IN_YEAR + tm->tm_mon;
 	this->mannum = this->mmonth / MONTHS_IN_YEAR;
 	this->mmonth = this->mmonth % MONTHS_IN_YEAR;

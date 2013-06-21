@@ -26,7 +26,7 @@ class __declspec (dllexport) ohexencode
 {
 public:
 	ohexencode ();
-	virtual ~ ohexencode ();
+	virtual~ ohexencode ();
 	static char * octet (char * string, char const c);
 	static char * literal (char * string, char const c);
 	static char * clang (char * string, char const c);

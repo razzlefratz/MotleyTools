@@ -372,9 +372,28 @@ signed octidy::statement (signed c, signed level, signed space)
 {
 	char string [512];
 	char * sp = string;
+	unsigned colon = 0;
 	while (oascii::isalnum (c) || (c == '_')) 
 	{
 		* sp++ = c;
+		c = std::cin.get ();
+	}
+	while (oascii::isspace (c)) 
+	{
+		c = std::cin.get ();
+	}
+	if (c == ':') 
+	{
+		c = std::cin.get ();
+		colon++;
+	}
+	if (c == ':') 
+	{
+		c = std::cin.get ();
+		colon++;
+	}
+	while (oascii::isspace (c)) 
+	{
 		c = std::cin.get ();
 	}
 	* sp = (char) (0);
@@ -386,20 +405,19 @@ signed octidy::statement (signed c, signed level, signed space)
 	else if (!std::strcmp (string, "class")) 
 	{
 		octidy::level (level);
-		std::cout << string;
+		std::cout << string << " ";
 		c = octidy::context (c, "{");
 	}
-	else if (octidy::gotowords.defined (string)) 
+	else if (!std::strcmp (string, "case")) 
 	{
 		octidy::level (level-1);
-		std::cout << string;
+		std::cout << string << " ";
 		c = octidy::context (c, ":");
 	}
 	else if (octidy::exitwords.defined (string)) 
 	{
 		octidy::level (level);
 		std::cout << string;
-		c = octidy::find (c);
 		if (c == ';') 
 		{
 		}
@@ -416,11 +434,51 @@ signed octidy::statement (signed c, signed level, signed space)
 			std::cout.put (')');
 		}
 	}
+	else if (octidy::gotowords.defined (string)) 
+	{
+		octidy::level (level-1);
+		std::cout << string << ":";
+		octidy::space (1).level (level);
+		c = octidy::context (c, ",;{}#");
+	}
+	else if (colon == 1) 
+	{
+		octidy::level (level-1);
+		std::cout << string << ":";
+		octidy::space (1).level (level);
+		c = octidy::context (c, ",;{}#");
+	}
+	else if (colon == 2) 
+	{
+		octidy::level (level);
+		std::cout << string << "::";
+		c = octidy::context (c, ",;{}#");
+	}
 	else 
 	{
 		octidy::level (level);
 		std::cout << string;
-		if ((c == '(') || (c == '[') || (c == '{')) 
+		if (oascii::isalnum (c) || (c == '_')) 
+		{
+			std::cout.put (' ');
+		}
+		else if ((c == '(') || (c == '[') || (c == '{')) 
+		{
+			std::cout.put (' ');
+		}
+		else if ((c == '=') || (c == '!')) 
+		{
+			std::cout.put (' ');
+		}
+		else if ((c == '*') || (c == '/')) 
+		{
+			std::cout.put (' ');
+		}
+		else if ((c == '&') || (c == '|')) 
+		{
+			std::cout.put (' ');
+		}
+		else if ((c == '<') || (c == '>')) 
 		{
 			std::cout.put (' ');
 		}
@@ -530,12 +588,27 @@ signed octidy::context (signed c) const
 {
 	if (oascii::isalpha (c) || (c == '_')) 
 	{
-		c = octidy::moniker (c);
+		while (oascii::isalnum (c) || (c == '_')) 
+		{
+			c = octidy::keep (c);
+		}
 		if ((c == '(') || (c == '[') || (c == '{')) 
 		{
 			std::cout.put (' ');
 		}
-		if (c == '*') 
+		else if ((c == '=') || (c == '!')) 
+		{
+			std::cout.put (' ');
+		}
+		else if ((c == '*') || (c == '/')) 
+		{
+			std::cout.put (' ');
+		}
+		else if ((c == '&') || (c == '|')) 
+		{
+			std::cout.put (' ');
+		}
+		else if ((c == '<') || (c == '>')) 
 		{
 			std::cout.put (' ');
 		}
@@ -559,7 +632,7 @@ signed octidy::context (signed c) const
 		{
 			return (c);
 		}
-  		std::cout.put (' ');
+		std::cout.put (' ');
 	}
 	else if ((c == '.')) 
 	{
@@ -576,18 +649,18 @@ signed octidy::context (signed c) const
 	{
 		c = octidy::literal (c);
 	}
-	else if ((c == '~') || (c == '^') || (c == '%'))
+	else if ((c == '~') || (c == '^') || (c == '%')) 
 	{
 		c = octidy::keep (c);
-		if (c == '=')
+		if (c == '=') 
 		{
 			c = octidy::keep (c);
 		}
 	}
-	else if ((c == '=') || (c == '!'))
+	else if ((c == '=') || (c == '!')) 
 	{
 		c = octidy::keep (c);
-		if (c == '=')
+		if (c == '=') 
 		{
 			c = octidy::keep (c);
 		}
@@ -595,81 +668,81 @@ signed octidy::context (signed c) const
 	else if (c == '&') 
 	{
 		c = octidy::keep (c);
-		if (c == '&')
+		if (c == '&') 
 		{
 			c = octidy::keep (c);
 		}
-		else if (c == '=')
+		else if (c == '=') 
 		{
 			c = octidy::keep (c);
 		}
-		else if (oascii::isalpha (c))
+		else if (oascii::isalpha (c)) 
 		{
 			std::cout.put (' ');
 		}
 	}
-	else if (c == '|')
+	else if (c == '|') 
 	{
 		c = octidy::keep (c);
-		if (c == '|')
+		if (c == '|') 
 		{
 			c = octidy::keep (c);
 		}
-		else if (c == '=')
+		else if (c == '=') 
 		{
 			c = octidy::keep (c);
 		}
 	}
-	else if ((c == '<') || (c == '>'))
+	else if ((c == '<') || (c == '>')) 
 	{
 		char o = c;
 		c = octidy::keep (c);
-		if (c == o)
+		if (c == o) 
 		{
 			c = octidy::keep (c);
 		}
-		if (c == '=')
+		if (c == '=') 
 		{
 			c = octidy::keep (c);
 		}
 	}
-	else if ((c == '?') || (c == ':'))
+	else if ((c == '?') || (c == ':')) 
 	{
 		char o = c;
 		c = octidy::keep (c);
-		if (c == o)
+		if (c == o) 
 		{
 			c = octidy::keep (c);
 		}
-		if (c == '=')
-		{
-			c = octidy::keep (c);
-		}
-	}
-	else if (c == '+')
-	{
-		c = octidy::keep (c);
-		if (c =='+')
-		{
-			c = octidy::keep (c);
-		}
-		else if (c == '=')
+		if (c == '=') 
 		{
 			c = octidy::keep (c);
 		}
 	}
-	else if (c == '-')
+	else if (c == '+') 
 	{
 		c = octidy::keep (c);
-		if (c == '-')
+		if (c =='+') 
 		{
 			c = octidy::keep (c);
 		}
-		else if (c == '=')
+		else if (c == '=') 
 		{
 			c = octidy::keep (c);
 		}
-		else if (c == '>')
+	}
+	else if (c == '-') 
+	{
+		c = octidy::keep (c);
+		if (c == '-') 
+		{
+			c = octidy::keep (c);
+		}
+		else if (c == '=') 
+		{
+			c = octidy::keep (c);
+		}
+		else if (c == '>') 
 		{
 			c = octidy::keep (c);
 		}
@@ -677,19 +750,23 @@ signed octidy::context (signed c) const
 	else if (c == '*') 
 	{
 		c = octidy::keep (c);
-		if (c == '*')
+		if (c == '*') 
 		{
-			do { c = octidy::keep (c); } while (c == '*');
-			if (oascii::isalpha (c))
+			do 
+			{
+				c = octidy::keep (c);
+			}
+			while (c == '*');
+			if (oascii::isalpha (c)) 
 			{
 				std::cout.put (' ');
 			}
 		}
-		else if (c == '=')
+		else if (c == '=') 
 		{
 			c = octidy::keep (c);
 		}
-		else if (oascii::isalpha (c))
+		else if (oascii::isalpha (c)) 
 		{
 			std::cout.put (' ');
 		}
@@ -705,7 +782,7 @@ signed octidy::context (signed c) const
 		{
 			c = octidy::content (c, '*', '/');
 		}
-		else if (c == '=')
+		else if (c == '=') 
 		{
 			c = octidy::keep (c);
 		}
@@ -760,32 +837,6 @@ signed octidy::comment (signed c) const
 		c = octidy::content (c, '*', '/');
 		return (c);
 	}
-	return (c);
-}
-
-
-/*====================================================================*
- *
- *   signed octidy::moniker (signed c) const;
- *
- *   collect moniker consisting of letters, digits and underscores;
- *   insert one space if the following character is an open nesting
- *   character;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
- *--------------------------------------------------------------------*/
-
-signed octidy::moniker (signed c) const 
-
-{
-	do 
-	{
-		c = octidy::keep (c);
-	}
-	while (oascii::isalnum (c) || (c == '_') || (c == '.'));
 	return (c);
 }
 

@@ -28,11 +28,12 @@ class __declspec (dllexport) oi18nAttributes: private otext
 {
 public:
 	oi18nAttributes ();
-	virtual ~ oi18nAttributes ();
+	virtual~ oi18nAttributes ();
 	oattribute * LanguageAttribute;
 	oattribute * DirectionAttribute;
 	oi18nAttributes & write ();
 private:
+	
 };
 
 

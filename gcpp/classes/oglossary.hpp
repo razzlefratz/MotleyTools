@@ -34,7 +34,7 @@ class __declspec (dllexport) oglossary
 public:
 	oglossary ();
 	oglossary (signed order (char const *, char const *));
-	virtual ~ oglossary ();
+	virtual~ oglossary ();
 	char const * title () const;
 	oglossary & title (char const * string);
 	size_t index () const;

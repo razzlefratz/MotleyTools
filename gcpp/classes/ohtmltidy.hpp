@@ -40,7 +40,7 @@ class __declspec (dllexport) ohtmltidy: private otext, private ocollect, public 
 {
 public:
 	ohtmltidy ();
-	virtual ~ ohtmltidy ();
+	virtual~ ohtmltidy ();
 	char quote () const;
 	ohtmltidy & quote (signed c);
 	char const * string () const;
