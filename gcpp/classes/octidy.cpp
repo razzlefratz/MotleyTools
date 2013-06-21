@@ -408,6 +408,12 @@ signed octidy::statement (signed c, signed level, signed space)
 		std::cout << string << " ";
 		c = octidy::context (c, "{");
 	}
+	else if (!std::strcmp (string, "case"))
+	{
+		octidy::level (level-1);
+		std::cout << string << " ";
+		c = octidy::context (c, ":");
+	}
 	else if (octidy::exitwords.defined (string)) 
 	{
 		octidy::level (level);
@@ -431,24 +437,23 @@ signed octidy::statement (signed c, signed level, signed space)
 	else if (octidy::gotowords.defined (string)) 
 	{
 		octidy::level (level-1);
-		std::cout << string;
-		c = octidy::context (c, ":");
+		std::cout << string << ":";
+		octidy::space (1).level (level);
+		c = octidy::context (c, ",;{}#");
+		return (c);
 	}
 	else if (colon == 1)
 	{
 		octidy::level (level-1);
 		std::cout << string << ":";
-		octidy::space (1);
-		octidy::level (level);
+		octidy::space (1).level (level);
 		c = octidy::context (c, ",;{}#");
-		return (c);
 	}
 	else if (colon == 2)
 	{
 		octidy::level (level);
 		std::cout << string << "::";
 		c = octidy::context (c, ",;{}#");
-		return (c);
 	}
 	else 
 	{
