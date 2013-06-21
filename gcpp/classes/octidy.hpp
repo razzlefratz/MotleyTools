@@ -48,7 +48,6 @@ public:
 	signed context (signed c, signed o, signed e) const;
 	signed context (signed c, signed e) const;
 	signed context (signed c) const;
-	signed moniker (signed c) const;
 	signed comment (signed c) const;
 	signed inner_context (signed c, signed o, signed e) const;
 	signed inner_context (signed c, signed e) const;
