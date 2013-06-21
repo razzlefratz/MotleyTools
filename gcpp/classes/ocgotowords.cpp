@@ -18,6 +18,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/ocgotowords.hpp"
+#include "../classes/types.h"
 
 /*====================================================================*
  *
@@ -34,7 +35,6 @@ ocgotowords::ocgotowords ()
 {
 	static char const * table [] = 
 	{
-		"case",
 		"default",
 		"private",
 		"protected",
@@ -42,7 +42,7 @@ ocgotowords::ocgotowords ()
 		(char const *)(0)
 	};
 	okeywords::mtitle = "cgotowords";
-	okeywords::mcount = sizeof (table) / sizeof (table [0]) - 1;
+	okeywords::mcount = SIZEOF (table) - 1;
 	okeywords::mtable = table;
 	okeywords::mcheck ();
 	return;

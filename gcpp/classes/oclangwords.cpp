@@ -18,6 +18,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/oclangwords.hpp"
+#include "../classes/types.h"
 
 /*====================================================================*
  *
@@ -71,7 +72,7 @@ oclangwords::oclangwords ()
 		(char const *) (0)
 	};
 	okeywords::mtitle = "clangwords";
-	okeywords::mcount = sizeof (table) / sizeof (table [0]) - 1;
+	okeywords::mcount = SIZEOF (table) - 1;
 	okeywords::mtable = table;
 	okeywords::mcheck ();
 	return;

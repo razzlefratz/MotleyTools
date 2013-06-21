@@ -16,6 +16,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/ocpluswords.hpp"
+#include "../classes/types.h"
 
 /*====================================================================*
  * 
@@ -116,7 +117,7 @@ ocpluswords::ocpluswords ()
 		(char const *) (0)
 	};
 	okeywords::mtitle = "cpluswords";
-	okeywords::mcount = sizeof (table) / sizeof (table [0]) - 1;
+	okeywords::mcount = SIZEOF (table) - 1;
 	okeywords::mtable = table;
 	okeywords::mcheck ();
 	return;

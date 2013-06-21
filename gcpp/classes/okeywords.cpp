@@ -26,6 +26,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/okeywords.hpp"
+#include "../classes/types.h"
 
 /*====================================================================*
  *   class variables;    
@@ -38,7 +39,7 @@ char const * okeywords::table [] =
 };
 
 
-const unsigned okeywords::words = sizeof (okeywords::table) / sizeof (char const *) - 1;
+const unsigned okeywords::words = SIZEOF (okeywords::table) - 1;
 
 /*====================================================================*
  *
