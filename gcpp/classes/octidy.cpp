@@ -372,9 +372,28 @@ signed octidy::statement (signed c, signed level, signed space)
 {
 	char string [512];
 	char * sp = string;
+	unsigned colon = 0;
 	while (oascii::isalnum (c) || (c == '_')) 
 	{
 		* sp++ = c;
+		c = std::cin.get ();
+	}
+	while (oascii::isspace (c)) 
+	{
+		c = std::cin.get ();
+	}
+	if (c == ':')
+	{
+		c = std::cin.get ();
+		colon++;
+	}
+	if (c == ':')
+	{
+		c = std::cin.get ();
+		colon++;
+	}
+	while (oascii::isspace (c)) 
+	{
 		c = std::cin.get ();
 	}
 	* sp = (char) (0);
@@ -386,20 +405,13 @@ signed octidy::statement (signed c, signed level, signed space)
 	else if (!std::strcmp (string, "class")) 
 	{
 		octidy::level (level);
-		std::cout << string;
+		std::cout << string << " ";
 		c = octidy::context (c, "{");
-	}
-	else if (octidy::gotowords.defined (string)) 
-	{
-		octidy::level (level-1);
-		std::cout << string;
-		c = octidy::context (c, ":");
 	}
 	else if (octidy::exitwords.defined (string)) 
 	{
 		octidy::level (level);
 		std::cout << string;
-		c = octidy::find (c);
 		if (c == ';') 
 		{
 		}
@@ -416,11 +428,49 @@ signed octidy::statement (signed c, signed level, signed space)
 			std::cout.put (')');
 		}
 	}
+	else if (octidy::gotowords.defined (string)) 
+	{
+		octidy::level (level-1);
+		std::cout << string;
+		c = octidy::context (c, ":");
+	}
+	else if (colon == 1)
+	{
+		octidy::level (level-1);
+		std::cout << string << ":";
+		octidy::space (1);
+		octidy::level (level);
+		c = octidy::context (c, ",;{}#");
+		return (c);
+	}
+	else if (colon == 2)
+	{
+		octidy::level (level);
+		std::cout << string << "::";
+		c = octidy::context (c, ",;{}#");
+		return (c);
+	}
 	else 
 	{
 		octidy::level (level);
 		std::cout << string;
-		if ((c == '(') || (c == '[') || (c == '{')) 
+		if ((c == '(') || (c == '[') || (c == '{'))
+		{
+			std::cout.put (' ');
+		}
+		if (oascii::isalnum (c) || (c == '_'))
+		{
+			std::cout.put (' ');
+		}
+		else if ((c == '=') && (c == '!'))
+		{
+			std::cout.put (' ');
+		}
+		else if ((c == '*') || (c == '/'))
+		{
+			std::cout.put (' ');
+		}
+		else if ((c == '&') && (c == '|'))
 		{
 			std::cout.put (' ');
 		}
@@ -535,7 +585,15 @@ signed octidy::context (signed c) const
 		{
 			std::cout.put (' ');
 		}
-		if (c == '*') 
+		else if ((c == '=') || (c == '!'))
+		{
+			std::cout.put (' ');
+		}
+		else if ((c == '*') || (c == '/'))
+		{
+			std::cout.put (' ');
+		}
+		else if ((c == '&') || (c == '|'))
 		{
 			std::cout.put (' ');
 		}
