@@ -26,7 +26,7 @@ class __declspec (dllexport) oxml: public omarkup
 {
 public:
 	oxml ();
-	virtual ~ oxml ();
+	virtual~ oxml ();
 	char quote () const;
 	oxml & quote (signed c);
 	char const * element () const;
@@ -37,7 +37,7 @@ public:
 	signed content (signed c);
 	signed xml (signed c);
 protected:
-private:
+	private:
 };
 
 

@@ -234,7 +234,7 @@ omakefile & omakefile::publish ()
 	std::cout << "#!/usr/bin/make -f" << std::endl;
 	this->title ("compile constants");
 	std::cout << "cc=" << this->mcompiler << std::endl;
-	switch (omakefile::getbits (oMAKEFILE_LIBRARY|oMAKEFILE_UTILITY)) 
+	switch (omakefile::getbits (oMAKEFILE_LIBRARY |oMAKEFILE_UTILITY)) 
 	{
 	case oMAKEFILE_UTILITY:
 		std::cout << "src=" << this->msourcedir << std::endl;

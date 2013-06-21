@@ -26,7 +26,7 @@ class __declspec (dllexport) ocontext
 {
 public:
 	ocontext ();
-	virtual ~ ocontext ();
+	virtual~ ocontext ();
 	char const * string () const;
 	char const * prefix () const;
 	char const * suffix () const;

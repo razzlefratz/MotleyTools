@@ -285,7 +285,7 @@ void osyslog::syslog (priority_t priority, char const * format, ...)
 void osyslog::vsyslog (priority_t priority, char const * format, va_list arglist) 
 
 {
-	time_t now = time (&now);
+	time_t now = time (& now);
 	char buffer [SYSLOG_MESSAGE_MAX] = "";
 	signed prefix = 0;
 	signed length = 0;
@@ -304,14 +304,14 @@ void osyslog::vsyslog (priority_t priority, char const * format, va_list arglist
 	length = prefix = snprintf (buffer + length, sizeof (buffer) - length, "<%d>", priority);
 	if (this->midentity != (char *) (0)) 
 	{
-		length += snprintf (buffer + length, sizeof (buffer) - length, "%s: ", this->midentity);
+		length+= snprintf (buffer + length, sizeof (buffer) - length, "%s: ", this->midentity);
 	}
 	if (this->moptions & SYSLOG_PROCESS) 
 	{
-		length += snprintf (buffer + length, sizeof (buffer) - length, "[%d] ", getpid ());
+		length+= snprintf (buffer + length, sizeof (buffer) - length, "[%d] ", getpid ());
 	}
-	length += vsnprintf (buffer + length, sizeof (buffer) - length, format, arglist);
-	length += snprintf (buffer + length, sizeof (buffer) - length, "\n");
+	length+= vsnprintf (buffer + length, sizeof (buffer) - length, format, arglist);
+	length+= snprintf (buffer + length, sizeof (buffer) - length, "\n");
 	if (this->moptions & SYSLOG_PERROR) 
 	{
 		std::cerr.write (buffer + prefix, length - prefix);
@@ -358,7 +358,7 @@ osyslog::osyslog ()
 	{
 		oerror::error (1, errno, "can't open udp socket");
 	}
-	if (connect (this->mfile, &this->msocket, sizeof (this->msocket)) == -1) 
+	if (connect (this->mfile, & this->msocket, sizeof (this->msocket)) == -1) 
 	{
 		oerror::error (1, errno, "can't connect to %s", this->msocket.sa_data);
 	}

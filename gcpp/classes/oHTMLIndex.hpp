@@ -31,7 +31,7 @@ class __declspec (dllexport) oHTMLIndex
 {
 public:
 	oHTMLIndex ();
-	virtual ~ oHTMLIndex ();
+	virtual~ oHTMLIndex ();
 	oHTMLIndex & title (char const * title);
 	oHTMLIndex & stylesheet (char const * stylesheet);
 	char const * title () const;

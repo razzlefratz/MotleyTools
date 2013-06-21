@@ -36,7 +36,7 @@ public:
 	ostring ();
 	ostring (char const * string);
 	ostring (char const * string, size_t start, size_t count);
-	virtual ~ ostring ();
+	virtual~ ostring ();
 	const size_t length () const;
 	char const * string () const;
 	ostring & string (char const * string);

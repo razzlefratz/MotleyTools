@@ -33,7 +33,7 @@ class __declspec (dllexport) odocument
 {
 public:
 	odocument ();
-	virtual ~ odocument ();
+	virtual~ odocument ();
 	char const * title () const;
 	odocument & title (char const * title);
 private:

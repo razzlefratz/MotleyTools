@@ -27,10 +27,9 @@ class __declspec (dllexport) ochrlwr: public ochrtbl
 {
 public:
 	ochrlwr ();
-	virtual ~ ochrlwr ();
+	virtual~ ochrlwr ();
 protected:
-private:
-	static const unsigned char table [];
+	private: static const unsigned char table [];
 };
 
 

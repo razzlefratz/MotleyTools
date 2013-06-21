@@ -29,7 +29,7 @@ class __declspec (dllexport) ofindspec: private oerror
 public:
 	ofindspec ();
 	ofindspec (char const * fullname);
-	virtual ~ ofindspec ();
+	virtual~ ofindspec ();
 	char const * fullname ();
 	char const * pathname () const;
 	char const * filename () const;

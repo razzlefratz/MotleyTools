@@ -27,7 +27,7 @@ class __declspec (dllexport) oedge
 {
 public:
 	oedge (onode * sourcenode, onode * targetnode);
-	virtual ~ oedge ();
+	virtual~ oedge ();
 	onode * source () const;
 	onode * target () const;
 	char const * title () const;

@@ -211,17 +211,17 @@ char const * oregex::charset (char const * string, char const close, char buffer
 			{
 				if (oascii::islower (* buffer) && oascii::islower (* string)) 
 				{
-					buffer = oregex::fill (* buffer, * string, buffer, &length);
+					buffer = oregex::fill (* buffer, * string, buffer, & length);
 					continue;
 				}
 				if (oascii::isupper (* buffer) && oascii::isupper (* string)) 
 				{
-					buffer = oregex::fill (* buffer, * string, buffer, &length);
+					buffer = oregex::fill (* buffer, * string, buffer, & length);
 					continue;
 				}
 				if (oascii::isdigit (* buffer) && oascii::isdigit (* string)) 
 				{
-					buffer = oregex::fill (* buffer, * string, buffer, &length);
+					buffer = oregex::fill (* buffer, * string, buffer, & length);
 					continue;
 				}
 				buffer++;
@@ -256,47 +256,47 @@ char const * oregex::charset (char const * string, char const close, char buffer
 			* symbol = (char) (0);
 			if (!std::strcmp (buffer, "[:upper:]")) 
 			{
-				buffer = fill ('A', 'Z', buffer, &length);
+				buffer = fill ('A', 'Z', buffer, & length);
 				continue;
 			}
 			if (!std::strcmp (buffer, "[:lower:]")) 
 			{
-				buffer = fill ('a', 'z', buffer, &length);
+				buffer = fill ('a', 'z', buffer, & length);
 				continue;
 			}
 			if (!std::strcmp (buffer, "[:digit:]")) 
 			{
-				buffer = fill ('0', '9', buffer, &length);
+				buffer = fill ('0', '9', buffer, & length);
 				continue;
 			}
 			if (!std::strcmp (buffer, "[:alpha:]")) 
 			{
-				buffer = fill ('a', 'z', buffer, &length);
-				buffer = fill ('A', 'Z', buffer, &length);
+				buffer = fill ('a', 'z', buffer, & length);
+				buffer = fill ('A', 'Z', buffer, & length);
 				continue;
 			}
 			if (!std::strcmp (buffer, "[:alnum:]")) 
 			{
-				buffer = fill ('a', 'z', buffer, &length);
-				buffer = fill ('A', 'Z', buffer, &length);
-				buffer = fill ('0', '9', buffer, &length);
+				buffer = fill ('a', 'z', buffer, & length);
+				buffer = fill ('A', 'Z', buffer, & length);
+				buffer = fill ('0', '9', buffer, & length);
 				continue;
 			}
 			if (!std::strcmp (buffer, "[:xdigit:]")) 
 			{
-				buffer = fill ('0', '9', buffer, &length);
-				buffer = fill ('A', 'F', buffer, &length);
-				buffer = fill ('a', 'f', buffer, &length);
+				buffer = fill ('0', '9', buffer, & length);
+				buffer = fill ('A', 'F', buffer, & length);
+				buffer = fill ('a', 'f', buffer, & length);
 				continue;
 			}
 #ifdef REGEX_POSIX_EXTENSIONS
 
 			if (!std::strcmp (buffer, "[:word:]")) 
 			{
-				buffer = fill ('_', '_', buffer, &length);
-				buffer = fill ('a', 'z', buffer, &length);
-				buffer = fill ('A', 'Z', buffer, &length);
-				buffer = fill ('0', '9', buffer, &length);
+				buffer = fill ('_', '_', buffer, & length);
+				buffer = fill ('a', 'z', buffer, & length);
+				buffer = fill ('A', 'Z', buffer, & length);
+				buffer = fill ('0', '9', buffer, & length);
 				continue;
 			}
 			if (!std::strcmp (buffer, "[:blank:]")) 

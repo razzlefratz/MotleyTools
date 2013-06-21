@@ -56,7 +56,7 @@ char * ooctencoder::decode (char * string)
 					continue;
 				}
 				* target = (char) ((m << 6) + (n << 3) + (o << 0));
-				string += 3;
+				string+= 3;
 			}
 			target++;
 			string++;

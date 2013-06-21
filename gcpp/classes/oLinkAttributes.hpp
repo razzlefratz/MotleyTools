@@ -27,7 +27,7 @@ class __declspec (dllexport) oLinkAttributes
 {
 public:
 	oLinkAttributes ();
-	virtual ~ oLinkAttributes ();
+	virtual~ oLinkAttributes ();
 	oattribute * ReferenceAttribute;
 	oattribute * ReferenceLanguageAttribute;
 	oattribute * ForwardLinkTypeAttribute;
@@ -38,6 +38,7 @@ public:
 	oattribute * BaseURLAttribute;
 	oLinkAttributes & write ();
 private:
+	
 };
 
 

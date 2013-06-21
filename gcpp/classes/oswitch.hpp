@@ -26,7 +26,7 @@ class __declspec (dllexport) oswitch
 {
 public:
 	oswitch ();
-	virtual ~ oswitch ();
+	virtual~ oswitch ();
 	bool state (char const * string, bool state);
 private:
 	static char const * mstate [];

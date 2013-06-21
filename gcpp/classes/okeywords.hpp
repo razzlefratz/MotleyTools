@@ -34,7 +34,7 @@ class __declspec (dllexport) okeywords
 {
 public:
 	okeywords ();
-	virtual ~ okeywords ();
+	virtual~ okeywords ();
 	size_t count () const;
 	char const * keywords (size_t index) const;
 	bool defined (char const * string) const;

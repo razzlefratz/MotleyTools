@@ -34,7 +34,7 @@ class __declspec (dllexport) ofilespec: private ocontext
 public:
 	ofilespec ();
 	ofilespec (char const * fullname);
-	virtual ~ ofilespec ();
+	virtual~ ofilespec ();
 	char const * fullpath ();
 	char const * fullname () const;
 	char const * pathname () const;
@@ -47,7 +47,7 @@ public:
 	char const * savename (char const * extender);
 	char const * savename (unsigned number, unsigned length);
 	ofilespec & makepath ();
-	ofilespec & operator= (char const * filespec);
+	ofilespec & operator = (char const * filespec);
 	ofilespec & filespec (char const * filespec);
 	ofilespec & pathname (char const * filespec);
 	ofilespec & filename (char const * filespec);
@@ -55,8 +55,7 @@ public:
 	ofilespec & extender (char const * filespec);
 	ofilespec & peek ();
 protected:
-private:
-	static ofilespec scratch;
+	private: static ofilespec scratch;
 	char * mfullname;
 	char * mpathname;
 	char * mfilename;

@@ -34,7 +34,7 @@ class __declspec (dllexport) ocatalog
 public:
 	ocatalog ();
 	ocatalog (signed order (char const *, char const *));
-	virtual ~ ocatalog ();
+	virtual~ ocatalog ();
 	char const * title () const;
 	ocatalog & title (char const * string);
 	unsigned index () const;

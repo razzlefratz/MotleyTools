@@ -28,7 +28,7 @@ class __declspec (dllexport) ophptidy: public ocollect, public oindent
 {
 public:
 	ophptidy ();
-	virtual ~ ophptidy ();
+	virtual~ ophptidy ();
 	signed page (signed c);
 	signed statement (signed c, signed level, signed space);
 	signed program (signed c);

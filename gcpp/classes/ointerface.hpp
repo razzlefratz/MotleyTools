@@ -79,7 +79,7 @@ class __declspec (dllexport) ointerface
 public:
 	explicit ointerface (unsigned ifindex);
 	explicit ointerface (char const * ifname);
-	virtual ~ ointerface ();
+	virtual~ ointerface ();
 	unsigned Index (void) const;
 	char const * Name (void) const;
 	char const * Description (void) const;
@@ -93,8 +93,7 @@ public:
 	ointerface & Print ();
 	bool Disabled () const;
 protected:
-private:
-	ointerface & lookup ();
+	private: ointerface & lookup ();
 	unsigned pcap_nametoindex (char const * ifname) const;
 	char * pcap_indextoname (unsigned ifindex, char * ifname) const;
 	void pcap_gethwaddr ();

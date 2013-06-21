@@ -26,7 +26,7 @@ class __declspec (dllexport) ooctencode
 {
 public:
 	ooctencode ();
-	virtual ~ ooctencode ();
+	virtual~ ooctencode ();
 	static char * numeric (char * string, const unsigned c);
 	static char * literal (char * string, const unsigned c);
 private:

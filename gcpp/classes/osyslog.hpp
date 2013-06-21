@@ -44,7 +44,7 @@ class __declspec (dllexport) osyslog
 {
 public:
 	osyslog ();
-	virtual ~ osyslog ();
+	virtual~ osyslog ();
 	osyslog & identity (char const * identity);
 	osyslog & facility (unsigned facility);
 	osyslog & options (unsigned options);

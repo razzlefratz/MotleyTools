@@ -27,13 +27,14 @@ class __declspec (dllexport) oCoreAttributes
 {
 public:
 	oCoreAttributes ();
-	virtual ~ oCoreAttributes ();
+	virtual~ oCoreAttributes ();
 	oattribute * IdentityAttribute;
 	oattribute * TitleAttribute;
 	oattribute * ClassAttribute;
 	oattribute * StyleAttribute;
 	oCoreAttributes & write ();
 private:
+	
 };
 
 

@@ -157,9 +157,9 @@ oitem * olist::cycle (signed index) const
 {
 	if (this->mcount > 0) 
 	{
-		index %= (signed) (this->mcount);
-		index += this->mcount;
-		index %= this->mcount;
+		index%= (signed) (this->mcount);
+		index+= this->mcount;
+		index%= this->mcount;
 		return (this->mtable [index]);
 	}
 	return ((oitem *) (0));
@@ -180,9 +180,9 @@ oitem * olist::operator [] (signed index) const
 {
 	if (this->mcount > 0) 
 	{
-		index %= (signed) (this->mcount);
-		index += this->mcount;
-		index %= this->mcount;
+		index%= (signed) (this->mcount);
+		index+= this->mcount;
+		index%= this->mcount;
 		return (this->mtable [index]);
 	}
 	return ((oitem *) (0));

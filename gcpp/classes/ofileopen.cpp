@@ -78,7 +78,7 @@ bool ofileopen::opensave (char const * filespec, char const * extender)
 		return (false);
 	}
 	savespec.extender (extender);
-	if (!stat (savespec.fullname (), &this->statinfo)) 
+	if (!stat (savespec.fullname (), & this->statinfo)) 
 	{
 		if (!std::remove (savespec.fullname ())) 
 		{
@@ -115,7 +115,7 @@ bool ofileopen::openedit (char const * filespec)
 	for (this->mcount = 1; this->mcount < this->mlimit; this->mcount++) 
 	{
 		savespec.savename (this->mcount, this->mdigit);
-		if (stat (savespec.fullname (), &this->statinfo)) 
+		if (stat (savespec.fullname (), & this->statinfo)) 
 		{
 			return (this->filter (loadspec.fullname (), savespec.fullname ()));
 		}
@@ -141,7 +141,7 @@ bool ofileopen::openedit (char const * filespec)
 bool ofileopen::permit (char const * filespec) const 
 
 {
-	if (lstat (filespec, &this->statinfo)) 
+	if (lstat (filespec, & this->statinfo)) 
 	{
 		ofileopen::message.error (filespec);
 		return (false);

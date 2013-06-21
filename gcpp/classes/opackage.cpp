@@ -156,7 +156,7 @@ char const * opackage::trailer () const
  *
  *--------------------------------------------------------------------*/
 
-opackage & opackage::operator= (char const * filespec) 
+opackage & opackage::operator = (char const * filespec) 
 
 {
 	this->filespec (filespec);

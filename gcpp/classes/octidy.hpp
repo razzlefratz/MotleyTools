@@ -38,7 +38,7 @@ class __declspec (dllexport) octidy: public ocollect, public oindent, public oin
 {
 public:
 	octidy ();
-	virtual ~ octidy ();
+	virtual~ octidy ();
 	signed preamble (signed c, signed e);
 	signed statement (signed c, signed level, signed space);
 	signed charlie (signed c, signed e);

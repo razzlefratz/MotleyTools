@@ -27,7 +27,7 @@ class __declspec (dllexport) ochrtable: public ochrtbl
 {
 public:
 	ochrtable ();
-	virtual ~ ochrtable ();
+	virtual~ ochrtable ();
 	ochrtable & tolower ();
 	ochrtable & toupper ();
 	ochrtable & toindex ();

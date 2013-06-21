@@ -166,7 +166,7 @@ void * oethernet::ExportHostAddress (void * memory) const
 void * oethernet::ExportProtocol (void * memory) const 
 
 {
-	memory = omemory::encode (memory, &this->mprotocol, sizeof (this->mprotocol));
+	memory = omemory::encode (memory, & this->mprotocol, sizeof (this->mprotocol));
 	return (memory);
 }
 
@@ -217,7 +217,7 @@ void const * oethernet::ImportHostAddress (void const * memory)
 void const * oethernet::ImportProtocol (void const * memory) 
 
 {
-	memory = omemory::decode (memory, &this->mprotocol, sizeof (this->mprotocol));
+	memory = omemory::decode (memory, & this->mprotocol, sizeof (this->mprotocol));
 	return (memory);
 }
 
@@ -338,7 +338,7 @@ char const * oethernet::ProtocolString (void) const
 
 {
 	static char buffer [sizeof (this->mprotocol) * 3];
-	omemory::hexdecode (&this->mprotocol, sizeof (this->mprotocol), buffer, sizeof (buffer));
+	omemory::hexdecode (& this->mprotocol, sizeof (this->mprotocol), buffer, sizeof (buffer));
 	return (buffer);
 }
 

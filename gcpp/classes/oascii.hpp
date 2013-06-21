@@ -30,7 +30,7 @@ class __declspec (dllexport) oascii
 {
 public:
 	oascii ();
-	virtual ~ oascii ();
+	virtual~ oascii ();
 
 #ifndef WIN32
 

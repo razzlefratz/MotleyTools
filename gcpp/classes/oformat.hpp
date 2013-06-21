@@ -30,7 +30,7 @@ class __declspec (dllexport) oformat
 {
 public:
 	oformat ();
-	virtual ~ oformat ();
+	virtual~ oformat ();
 	unsigned offset () const;
 	unsigned indent () const;
 	unsigned margin () const;

@@ -29,7 +29,7 @@ class __declspec (dllexport) osymbol: private otext
 public:
 	osymbol (char const * symbol);
 	osymbol (char const * symbol, char const * string);
-	virtual ~ osymbol ();
+	virtual~ osymbol ();
 	bool defined (char const * symbol) const;
 	char const * expand (char const * symbol) const;
 	char const * lookup (char const * symbol) const;

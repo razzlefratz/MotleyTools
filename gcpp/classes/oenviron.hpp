@@ -33,7 +33,7 @@ class __declspec (dllexport) oenviron
 {
 public:
 	oenviron ();
-	virtual ~ oenviron ();
+	virtual~ oenviron ();
 	char const * hostname () const;
 	char const * username () const;
 	char const * datetime () const;

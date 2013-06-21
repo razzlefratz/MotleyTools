@@ -92,7 +92,7 @@ class __declspec (dllexport) ochannel: public oflagword, public ointerface, publ
 public:
 	ochannel ();
 	ochannel (char const * name);
-	virtual ~ ochannel ();
+	virtual~ ochannel ();
 	signed Descriptor () const;
 	unsigned Timer () const;
 	ochannel & SetTimer (unsigned);

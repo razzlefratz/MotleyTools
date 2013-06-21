@@ -118,7 +118,7 @@ oattribute & oattribute::value (unsigned number)
 		number /= 10;
 	}
 	while (number);
-	this->mvalue = otext::replace (this->mvalue, &string [digits]);
+	this->mvalue = otext::replace (this->mvalue, & string [digits]);
 	return (* this);
 }
 

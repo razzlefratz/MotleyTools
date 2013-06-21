@@ -29,7 +29,7 @@ class __declspec (dllexport) oedges
 {
 public:
 	oedges ();
-	virtual ~ oedges ();
+	virtual~ oedges ();
 	size_t block () const;
 	size_t limit () const;
 	size_t count () const;

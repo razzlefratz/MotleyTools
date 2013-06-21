@@ -134,20 +134,20 @@ unsigned odate::dayofweek (unsigned year, signed month, signed day)
 
 {
 	unsigned century;
-	odate::normalize (&year, &month);
+	odate::normalize (& year, & month);
 	if (month > 1) 
 	{
 		--month;
 	}
 	else 
 	{
-		month += MONTHS_IN_YEAR;
+		month+= MONTHS_IN_YEAR;
 		--month;
 		--year;
 	}
 	century = year / 100;
 	year = year % 100;
-	day += (26 * month - 1) / 10 + 5 * year / 4 + century / 4 - 2 * century + 1;
+	day+= (26 * month - 1) / 10 + 5 * year / 4 + century / 4 - 2 * century + 1;
 	return (odate::mindex.qmod (day, DAYS_IN_WEEK));
 }
 
@@ -178,10 +178,10 @@ unsigned odate::dayofyear (unsigned year, signed month, signed day)
 		304,
 		334
 	};
-	month += year * MONTHS_IN_YEAR;
+	month+= year * MONTHS_IN_YEAR;
 	year = month / MONTHS_IN_YEAR;
 	month = month % MONTHS_IN_YEAR;
-	day += days [month];
+	day+= days [month];
 	if ((day > days [1]) && odate::isleap (year)) 
 	{
 		day++;
@@ -222,7 +222,7 @@ unsigned odate::endofmonth (unsigned year, signed month)
 		31
 	};
 	unsigned day;
-	odate::normalize (&year, &month);
+	odate::normalize (& year, & month);
 	day = days [month];
 	if ((month == 1) && odate::isleap (year)) 
 	{

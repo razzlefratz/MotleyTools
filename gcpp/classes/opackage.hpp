@@ -40,19 +40,18 @@ class __declspec (dllexport) opackage
 public:
 	opackage ();
 	opackage (char const * filespec);
-	virtual ~ opackage ();
+	virtual~ opackage ();
 	char const * archive () const;
 	char const * package () const;
 	char const * product () const;
 	char const * release () const;
 	char const * trailer () const;
-	opackage & operator= (char const * filespec);
+	opackage & operator = (char const * filespec);
 	opackage & filespec (char const * filespec);
 	opackage & extender (char const * extender);
 	opackage & peek ();
 protected:
-private:
-	static char const * extenders [];
+	private: static char const * extenders [];
 	static char * extract (char string [], char const * start, char const * limit);
 	char * marchive;
 	char * mpackage;

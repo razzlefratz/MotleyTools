@@ -42,7 +42,7 @@ class __declspec (dllexport) odepend: private opathspec, private oascii
 public:
 	odepend ();
 	odepend (char const * nodename);
-	virtual ~ odepend ();
+	virtual~ odepend ();
 	static odepend nodes;
 	static oqueue queue;
 	odepend & populate (char colon, char comma, bool invert);

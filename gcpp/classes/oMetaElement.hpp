@@ -28,7 +28,7 @@ class __declspec (dllexport) oMetaElement: private otext
 {
 public:
 	oMetaElement ();
-	virtual ~ oMetaElement ();
+	virtual~ oMetaElement ();
 	char const * ElementName () const;
 	oattribute * NameAttribute;
 	oattribute * ContentTypeAttribute;

@@ -92,7 +92,7 @@ ofilespec & ofilespec::makepath ()
  *
  *--------------------------------------------------------------------*/
 
-ofilespec & ofilespec::operator= (char const * filespec) 
+ofilespec & ofilespec::operator = (char const * filespec) 
 
 {
 	this->filespec (filespec);

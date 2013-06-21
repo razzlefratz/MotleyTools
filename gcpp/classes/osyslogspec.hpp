@@ -44,13 +44,14 @@ class __declspec (dllexport) osyslogspec
 {
 public:
 	osyslogspec ();
-	virtual ~ osyslogspec ();
+	virtual~ osyslogspec ();
 	static const struct _code_ facilities [];
 	static const struct _code_ severities [];
 	char const * decode (int flagword) const;
 	int encode (char const * string) const;
 	int lookup (char const * string, const struct _code_ table []) const;
 private:
+	
 };
 
 

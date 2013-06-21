@@ -46,7 +46,7 @@ public:
 	oscantext ();
 	oscantext (std::ifstream * stream);
 	oscantext (char const * string);
-	virtual ~ oscantext ();
+	virtual~ oscantext ();
 	virtual oscantext & scantoken ();
 	virtual oscantext & elaborate ();
 	virtual oscantext & translate (char const * oldtoken, char const * newtoken);
@@ -84,7 +84,7 @@ public:
 	bool haveclass (unsigned c);
 	bool haveclass (char const * charset);
 	bool havetoken (char const * literal);
-	oscantext & operator= (char const * string);
+	oscantext & operator = (char const * string);
 	oscantext & copy (char const * string);
 	oscantext & read (char const * filename);
 	oscantext & read (std::ifstream * stream);
@@ -134,8 +134,7 @@ public:
 	oscantext & flush ();
 	bool end () const;
 protected:
-private:
-	oscantext & reset (off_t length);
+	private: oscantext & reset (off_t length);
 	char mclass;
 	char * mtoken;
 	char * minput;

@@ -36,7 +36,7 @@ class __declspec (dllexport) ofileopen
 public:
 	ofileopen ();
 	ofileopen (unsigned limit);
-	virtual ~ ofileopen ();
+	virtual~ ofileopen ();
 	unsigned count () const;
 	unsigned versions () const;
 	bool permit (char const * filespec) const;
@@ -45,8 +45,7 @@ public:
 	bool openedit (char const * filespec);
 	ofileopen & close ();
 protected:
-private:
-	static struct stat statinfo;
+	private: static struct stat statinfo;
 	static std::ifstream source;
 	static std::ofstream target;
 	oerror message;

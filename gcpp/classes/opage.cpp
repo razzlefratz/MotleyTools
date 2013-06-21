@@ -273,7 +273,7 @@ opage & opage::header ()
 	{
 		std::cout.put (buffer [offset]);
 	}
-	length = std::strftime (buffer, sizeof (buffer), DAYTIME, std::localtime (&stamp));
+	length = std::strftime (buffer, sizeof (buffer), DAYTIME, std::localtime (& stamp));
 	for (offset = 0; offset < length; offset++) 
 	{
 		std::cout.put (buffer [offset]);
@@ -306,7 +306,7 @@ opage & opage::footer ()
 	signed offset = this->mcols;
 	if (length < offset) 
 	{
-		offset -= length;
+		offset-= length;
 		offset /= 2;
 	}
 	else 

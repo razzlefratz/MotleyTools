@@ -323,7 +323,7 @@ ointerfaces::ointerfaces ()
 	pcap_if_t * device;
 	this->mindex = 0;
 	this->mcount = 0;
-	if (pcap_findalldevs (&devices, buffer) != -1) 
+	if (pcap_findalldevs (& devices, buffer) != -1) 
 	{
 		for (device = devices; device; device = device->next) 
 		{
