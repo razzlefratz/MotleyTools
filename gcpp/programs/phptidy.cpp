@@ -78,7 +78,7 @@ int main (int argc, char const * argv [])
 	opathspec pathspec;
 	ofileopen fileopen;
 	ophptidy tidy;
-	int (ophptidy::* function) (signed) = &ophptidy::page;
+	int (ophptidy::* function) (signed) = & ophptidy::page;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
 	{

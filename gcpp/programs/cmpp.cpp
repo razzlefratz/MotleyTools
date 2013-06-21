@@ -102,7 +102,7 @@ static void process (char const * pathname, char const * command, oflagword * fl
 	source.read (pathname);
 	while (!source.isempty ()) 
 	{
-		if (source.flush().scantoken().istoken (command)) 
+		if (source.flush ().scantoken ().istoken (command)) 
 		{
 			source.scanblank ().flush ().scantoken ();
 			if (source.istoken ("include")) 
@@ -333,7 +333,7 @@ int main (int argc, char const * argv [], char const * envp [])
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
-		process (* getopt.argv (), command, &flags);
+		process (* getopt.argv (), command, & flags);
 		getopt++;
 	}
 	std::exit (0);

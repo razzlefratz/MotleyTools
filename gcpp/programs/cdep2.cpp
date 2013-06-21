@@ -75,7 +75,7 @@ static char const * folders [] =
 	"/usr/lib/gcc-lib/i386-linux/2.95.4/include",
 	"/usr/lib/gcc-lib/i386-linux/3.0.4/include",
 	"/usr/include/c++/3.3",
-	(char const*) (0)
+	(char const *) (0)
 };
 
 
@@ -243,7 +243,7 @@ int main (int argc, char const * argv [])
 	while (!odepend::queue.empty ()) 
 	{
 		odepend::nodes.store ((char *)(odepend::queue.head ()->data ()));
-		function ((char *) (odepend::queue.head () ->data ()), length, &flags);
+		function ((char *) (odepend::queue.head () ->data ()), length, & flags);
 		odepend::queue.remove ();
 	}
 	if (flags.anyset (DEPEND_B_REPORT)) 

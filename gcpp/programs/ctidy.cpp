@@ -78,7 +78,7 @@ int main (int argc, char const * argv [])
 	opathspec pathspec;
 	oescape escape;
 	octidy object;
-	int (octidy::* method) (signed, signed) = &octidy::program;
+	int (octidy::* method) (signed, signed) = & octidy::program;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
 	{

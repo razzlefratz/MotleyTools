@@ -76,7 +76,7 @@ int main (int argc, char const * argv [])
 	opathspec pathspec;
 	oescape escape;
 	ocblock cblock;
-	signed (ocblock::* function) (signed, signed) = &ocblock::program;
+	signed (ocblock::* function) (signed, signed) = & ocblock::program;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
 	{

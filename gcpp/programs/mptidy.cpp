@@ -85,7 +85,7 @@ int main (int argc, char const * argv [])
 	opathspec pathspec;
 	oprofile config;
 	omptidy object;
-	omptidy & (omptidy::* method) () = &omptidy::tidy;
+	omptidy & (omptidy::* method) () = & omptidy::tidy;
 	char const * profile = PROFILE_NAME;
 	char const * section = SECTION_NAME;
 	signed c;

@@ -190,7 +190,7 @@ int main (int argc, char const * argv [])
 	}
 	if (!getopt.argc ()) 
 	{
-		function (&flags);
+		function (& flags);
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
@@ -198,7 +198,7 @@ int main (int argc, char const * argv [])
 		pathspec.fullpath (filename, * getopt.argv ());
 		if (fileopen.openedit (filename)) 
 		{
-			function (&flags);
+			function (& flags);
 			fileopen.close ();
 		}
 		getopt++;

@@ -143,12 +143,12 @@ int main (int argc, char const * argv [])
 			{
 				pathname [length] = (char) (0);
 			}
-			function ((char const *) (pathname), &flags);
+			function ((char const *) (pathname), & flags);
 		}
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
-		function (* getopt.argv (), &flags);
+		function (* getopt.argv (), & flags);
 		getopt++;
 	}
 	std::exit (0);
