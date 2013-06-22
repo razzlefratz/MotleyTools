@@ -128,7 +128,7 @@ signed octidy::atheros (signed c, signed e)
 			{
 				octidy::space (1);
 			}
-			space = 2;
+			space = 1;
 			continue;
 		}
 		if ((c == ',') || (c == ';') || (c == ':')) 
@@ -242,7 +242,7 @@ signed octidy::charlie (signed c, signed e)
 			while (c == ';');
 			if (!level) 
 			{
-				octidy::space (2);
+				octidy::space (1);
 				c = ocomment::preamble (c);
 			}
 			space = 1;
@@ -338,7 +338,7 @@ signed octidy::program (signed c, signed e)
 			{
 				octidy::space (1);
 			}
-			space = 2;
+			space = 1;
 			continue;
 		}
 		if ((c == ',') || (c == ';') || (c == ':')) 
