@@ -54,6 +54,12 @@
 #endif
 
 /*====================================================================*
+ *   program constants;
+ *--------------------------------------------------------------------*/
+
+#define INDEX_COLUMNS 5
+
+/*====================================================================*
  *   program variables;
  *--------------------------------------------------------------------*/
 
@@ -73,9 +79,9 @@ int main (int argc, char const * argv [])
 		"c:s:t:",
 		oPUTOPTV_S_FUNNEL,
 		"produce html file index",
-		"c n\tdisplay n columns [5]",
+		"c n\tdisplay n columns [" LITERAL (INDEX_COLUMNS) "]",
 		"s s\tuse CSS2 stylesheet",
-		"t s\tHTML page title",
+		"t s\tHTML index title",
 		(char const *) (0)
 	};
 	ogetoptv getopt;
@@ -89,20 +95,20 @@ int main (int argc, char const * argv [])
 			columns = atoi (getopt.optarg ());
 			break;
 		case 's':
-			page.stylesheet (getopt.optarg ());
+			page.IndexStyle (getopt.optarg ());
 			break;
 		case 't':
-			page.title (getopt.optarg ());
+			page.IndexTitle (getopt.optarg ());
 			break;
 		default:
 			break;
 		}
 	}
-	if (getopt.argc () == 0) 
+	if (!getopt.argc ()) 
 	{
 		message.error (1, 0, "no files specified");
 	}
-	while ((getopt.argc () > 0) && (* getopt.argv () != (char *) (0))) 
+	while (getopt.argc () && * getopt.argv ()) 
 	{
 		findspec.fullname (* getopt.argv ());
 		page.collect (findspec.pathname (), findspec.filename ());
