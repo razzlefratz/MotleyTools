@@ -22,12 +22,12 @@ mp - format man page header
 Format Linux man pages to update header information, simplify text maintenance and correct common mistakes.
 
 .PP
-The man page filename, taken from the command line, used to generate the program name and man page folder number.
+The man page filename and extension, taken from the command line, are used as the program name and folder number.
 The title header, starting with "\fB.TH\fR", is updated using information from a user-defined configuration profile.
 An empty line is inserted prior to each ".SH", ".TP" and ".PP" tag.
 
-Sentences are move to a new line so that they can be easily edited.
-Selected headers are detected and updated or preceded with one blank line;
+Sentences are each moved to a new line so that they can be easily edited or detected and replaced or removed by other programs.
+Selected headers are detected and updated or preceded with one blank line.
 
 .PP
 This program can be used with program \fBnp\fR, for example, to perform global changes across multiple man pages.
