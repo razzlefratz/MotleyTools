@@ -269,7 +269,7 @@ int main (int argc, char const * argv [])
 	{
 		_setbits (find.flagword, (FIND_B_LNK | FIND_B_REG));
 	}
-	if (argc > 0) 
+	if (argc) 
 	{
 		strcpy (home.pathname, * argv);
 		if (lstat (home.pathname, &home.statinfo)) 
