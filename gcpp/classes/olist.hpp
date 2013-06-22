@@ -35,17 +35,17 @@ public:
 	char const * title () const;
 	olist & title (char const * title);
 	oitem * operator [] (signed index) const;
-	size_t index () const;
-	size_t count () const;
-	size_t lower () const;
-	size_t upper () const;
+	unsigned index () const;
+	unsigned count () const;
+	unsigned lower () const;
+	unsigned upper () const;
 	oitem * item () const;
-	oitem * items (size_t index) const;
+	oitem * items (unsigned index) const;
 	oitem * cycle (signed index) const;
 	bool defined (char const * symbol);
 	bool defined (char const * symbol, char const * string);
-	size_t indexof (char const * symbol);
-	size_t indexof (char const * symbol, char const * string);
+	unsigned indexof (char const * symbol);
+	unsigned indexof (char const * symbol, char const * string);
 	olist & select (char const * symbol);
 	olist & select (char const * symbol, char const * string);
 	oitem * item (char const * symbol);
@@ -58,13 +58,13 @@ private:
 	char * mtitle;
 	oitem ** mtable;
 	signed (* morder) (char const *, char const *);
-	size_t mblock;
-	size_t mlimit;
-	size_t mstart;
-	size_t mindex;
-	size_t mcount;
-	size_t mlower;
-	size_t mupper;
+	unsigned mblock;
+	unsigned mlimit;
+	unsigned mstart;
+	unsigned mindex;
+	unsigned mcount;
+	unsigned mlower;
+	unsigned mupper;
 };
 
 
