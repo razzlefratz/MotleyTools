@@ -33,71 +33,8 @@
 oenviron session;
 
 /*====================================================================*
- * 
- *   char const *owebpage::title() const;
  *
- *   return the page title as a constant string;
- *
- *--------------------------------------------------------------------*/
-
-char const * owebpage::title () const 
-
-{
-	return (this->mtitle);
-}
-
-
-/*====================================================================*
- * 
- *   owebpage & owebpage::title(char const * string) 
- *
- *   replace current title with the constant string argument only
- *   if they differ;
- *
- *--------------------------------------------------------------------*/
-
-owebpage & owebpage::title (char const * string) 
-
-{
-	this->mtitle = otext::replace (this->mtitle, string);
-	return (* this);
-}
-
-
-/*====================================================================*
- * 
- *   char const *owebpage::stylesheet() const;
- *
- *
- *--------------------------------------------------------------------*/
-
-char const * owebpage::stylesheet () const 
-
-{
-	return (this->mstylesheet);
-}
-
-
-/*====================================================================*
- * 
- *   owebpage & owebpage::stylesheet(char const *stylesheet);
- *
- *   replace the current stylesheet with the constant string argument 
- *   only if they differ;
- *
- *--------------------------------------------------------------------*/
-
-owebpage & owebpage::stylesheet (char const * stylesheet) 
-
-{
-	this->mstylesheet = otext::replace (this->mstylesheet, stylesheet);
-	return (* this);
-}
-
-
-/*====================================================================*
- *
- *   owebpage & owebpage::level (signed);
+ *   owebpage & level (signed);
  *
  *--------------------------------------------------------------------*/
 
@@ -108,6 +45,11 @@ owebpage & owebpage::level (signed level)
 	return (* this);
 }
 
+/*====================================================================*
+ *
+ *   signed level () const;
+ *
+ *--------------------------------------------------------------------*/
 
 signed owebpage::level () const 
 
@@ -115,15 +57,74 @@ signed owebpage::level () const
 	return (this->mlevel);
 }
 
+/*====================================================================*
+ * 
+ *   char const * PageStyle () const;
+ *
+ *   return the stylesheet as a constant character string;
+ *
+ *--------------------------------------------------------------------*/
+
+char const * owebpage::PageStyle () const 
+
+{
+	return (this->mstylesheet);
+}
 
 /*====================================================================*
  * 
- *   owebpage &owebpage::topPage ();
+ *   owebpage & PageStyle (char const * stylesheet);
+ *
+ *   replace the current stylesheet with the constant string argument 
+ *   only if they differ;
+ *
+ *--------------------------------------------------------------------*/
+
+owebpage & owebpage::PageStyle (char const * stylesheet) 
+
+{
+	this->mstylesheet = otext::replace (this->mstylesheet, stylesheet);
+	return (* this);
+}
+
+/*====================================================================*
+ * 
+ *   char const * PageTitle () const;
+ *
+ *   return the page title as a constant string;
+ *
+ *--------------------------------------------------------------------*/
+
+char const * owebpage::PageTitle () const 
+
+{
+	return (this->mtitle);
+}
+
+/*====================================================================*
+ * 
+ *   owebpage & PageTitle (char const * string) 
+ *
+ *   replace current title with the constant string argument only
+ *   if they differ;
+ *
+ *--------------------------------------------------------------------*/
+
+owebpage & owebpage::PageTitle (char const * string) 
+
+{
+	this->mtitle = otext::replace (this->mtitle, string);
+	return (* this);
+}
+
+/*====================================================================*
+ * 
+ *   owebpage & PageHeader ();
  *
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::topPage () 
+owebpage & owebpage::PageHeader () 
 
 {
 	this->mindent->print (this->mlevel, this->mspace, "<?xml version='1.0' encoding='iso-8859-1'?>");
@@ -146,36 +147,34 @@ owebpage & owebpage::topPage ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *   
- *   owebpage &owebpage::header();
+ *   owebpage & BodyHeader ();
  *
  *   print the page header;
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::header () 
+owebpage & owebpage::BodyHeader () 
 
 {
-	this->mindent->print (this->mlevel++, this->mspace, "<div class='header'>");
+	this->mindent->print (this->mlevel++, this->mspace, "<div class='" oWEBPAGE_BODY_HEADER_CLASS "'>");
 	this->mindent->print (this->mlevel--, this->mspace, "</div>");
 	return (* this);
 }
 
-
 /*====================================================================*
  *   
- *   owebpage &owebpage::topLink();
+ *   owebpage & LinkHeader ();
  *
  *   print the upper link division containing PREV, HOME and NEXT links;
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::topLink () 
+owebpage & owebpage::LinkHeader () 
 
 {
-	this->mindent->print (this->mlevel++, this->mspace, "<div class='toplink'>");
+	this->mindent->print (this->mlevel++, this->mspace, "<div class='" oWEBPAGE_LINK_HEADER_CLASS "'>");
 
 #if 0
 
@@ -195,51 +194,48 @@ owebpage & owebpage::topLink ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *   
- *   owebpage &owebpage::topMark();
+ *   owebpage & MarkStart ();
  *
  *   print a content prefix tag;
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::topMark () 
+owebpage & owebpage::MarkStart () 
 
 {
 	this->mindent->print (0, this->mspace, "<!-- BEGIN CONTENT -->");
 	return (* this);
 }
 
-
 /*====================================================================*
  *   
- *   owebpage &owebpage::botMark();
+ *   owebpage & MarkEnd ();
  *
  *   print a content suffix tag;
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::botMark () 
+owebpage & owebpage::MarkEnd () 
 
 {
 	this->mindent->print (0, this->mspace, "<!-- END CONTENT -->");
 	return (* this);
 }
 
-
 /*====================================================================*
  *   
- *   owebpage &owebpage::botLink(FILE *fp);
+ *   owebpage & LinkFooter ();
  *
  *   print the lower link division containing PREV, HOME and NEXT links;
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::botLink () 
+owebpage & owebpage::LinkFooter () 
 
 {
-	this->mindent->print (this->mlevel++, this->mspace, "<div class='botlink'>");
+	this->mindent->print (this->mlevel++, this->mspace, "<div class='" oWEBPAGE_LINK_FOOTER_CLASS "'>");
 
 #if 0
 
@@ -259,22 +255,21 @@ owebpage & owebpage::botLink ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *   
- *   owebpage &owebpage::footer();
+ *   owebpage & BodyFooter ();
  *
  *   print the page footer; the footer identifies the source and data of
  *   publication plus other information; 
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::footer () 
+owebpage & owebpage::BodyFooter () 
 
 {
-	char buffer [200];
+	char buffer [512];
 	owebpage::session.strfwhat (buffer, sizeof (buffer), "Published");
-	this->mindent->print (this->mlevel++, this->mspace, "<div class='footer'>");
+	this->mindent->print (this->mlevel++, this->mspace, "<div class='" oWEBPAGE_BODY_FOOTER_CLASS "'>");
 	this->mindent->print (this->mlevel, this->mspace, this->mowner);
 	this->mindent->print (this->mlevel, this->mspace, "<br/>");
 	this->mindent->print (this->mlevel, this->mspace, buffer);
@@ -282,22 +277,20 @@ owebpage & owebpage::footer ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
- *   owebpage &owebpage::botPage ();
+ *   owebpage & PageFooter ();
  *
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::botPage () 
+owebpage & owebpage::PageFooter () 
 
 {
 	this->mindent->print (this->mlevel--, this->mspace, "</body>");
 	this->mindent->print (this->mlevel--, this->mspace, "</html>");
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -309,18 +302,17 @@ owebpage & owebpage::botPage ()
 owebpage::owebpage () 
 
 {
-	this->mtitle = otext::save ("untitled");
-	this->mstylesheet = otext::save ("http://www.cmassoc.net/styles/cmassoc.css");
-	this->mowner = otext::save ("Courtesy of <a href='mailto:cmaier@cmassoc.net'>Charles Maier Assocoiates Limited</a>, The Motley Tools Folks, Nashua NH, USA");
-	owebpage::PrevPageLink.name ("PREV").link ("Index", "index.html");
-	owebpage::HomePageLink.name ("HOME").link ("Index", "index.html");
-	owebpage::NextPageLink.name ("NEXT").link ("Index", "index.html");
+	this->mtitle = otext::save (oWEBPAGE_PAGE_TITLE);
+	this->mstylesheet = otext::save (oWEBPAGE_PAGE_STYLE);
+	this->mowner = otext::save ("Courtesy of <a href='mailto:cmaier@cmassoc.net'>Charles Maier Associates Limited</a>, The Motley Tools Folks, Nashua NH, USA");
+	owebpage::PrevPageLink.name ("PREV").link (oWEBPAGE_LINK_PREV_NAME, oWEBPAGE_LINK_PREV_PAGE);
+	owebpage::HomePageLink.name ("HOME").link (oWEBPAGE_LINK_HOME_NAME, oWEBPAGE_LINK_HOME_PAGE);
+	owebpage::NextPageLink.name ("NEXT").link (oWEBPAGE_LINK_NEXT_NAME, oWEBPAGE_LINK_NEXT_PAGE);
 	this->mindent = new oindent ();
 	this->mlevel = 0;
 	this->mspace = 1;
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -338,7 +330,6 @@ owebpage::~owebpage ()
 	delete this->mindent;
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

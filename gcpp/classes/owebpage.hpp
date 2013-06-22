@@ -29,6 +29,25 @@
 #include "../classes/oMetaElement.hpp"
 
 /*====================================================================*
+ *   class constants;
+ *--------------------------------------------------------------------*/
+
+#define oWEBPAGE_PAGE_TITLE "untitled"
+#define oWEBPAGE_PAGE_STYLE "index.css"
+#define oWEBPAGE_PAGE_HEADER_CLASS "pageheader"
+#define oWEBPAGE_PAGE_FOOTER_CLASS "pagefooter"
+#define oWEBPAGE_BODY_HEADER_CLASS "bodyheader"
+#define oWEBPAGE_BODY_FOOTER_CLASS "bodyfooter"
+#define oWEBPAGE_LINK_HEADER_CLASS "linkheader"
+#define oWEBPAGE_LINK_FOOTER_CLASS "linkfooter"
+#define oWEBPAGE_LINK_PREV_NAME "Index"
+#define oWEBPAGE_LINK_HOME_NAME "Index"
+#define oWEBPAGE_LINK_NEXT_NAME "Index"
+#define oWEBPAGE_LINK_PREV_PAGE "index.html"
+#define oWEBPAGE_LINK_HOME_PAGE "index.html"
+#define oWEBPAGE_LINK_NEXT_PAGE "index.html"
+
+/*====================================================================*
  * 
  *--------------------------------------------------------------------*/
 
@@ -38,24 +57,24 @@ class __declspec (dllexport) owebpage: private otext
 public:
 	owebpage ();
 	virtual~ owebpage ();
-	char const * title () const;
-	char const * stylesheet () const;
+	char const * PageTitle () const;
+	char const * PageStyle () const;
 	signed level () const;
-	owebpage & title (char const * string);
-	owebpage & stylesheet (char const * stylesheet);
 	owebpage & level (signed level);
+	owebpage & PageTitle (char const * string);
+	owebpage & PageStyle (char const * stylesheet);
 	oMetaElement MetaElement;
 	oPageLinkElement PrevPageLink;
 	oPageLinkElement HomePageLink;
 	oPageLinkElement NextPageLink;
-	owebpage & topPage ();
-	owebpage & header ();
-	owebpage & topLink ();
-	owebpage & topMark ();
-	owebpage & botMark ();
-	owebpage & botLink ();
-	owebpage & footer ();
-	owebpage & botPage ();
+	owebpage & PageHeader ();
+	owebpage & BodyHeader ();
+	owebpage & LinkHeader ();
+	owebpage & MarkStart ();
+	owebpage & MarkEnd ();
+	owebpage & LinkFooter ();
+	owebpage & BodyFooter ();
+	owebpage & PageFooter ();
 private:
 	oenviron session;
 	oindent * mindent;
