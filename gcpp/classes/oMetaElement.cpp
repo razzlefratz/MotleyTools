@@ -103,10 +103,10 @@ oMetaElement & oMetaElement::EmptyTag (unsigned level, unsigned space)
 oMetaElement::oMetaElement () 
 
 {
-	this->NameAttribute = new oattribute ("name", "content-type");
-	this->ContentTypeAttribute = new oattribute ("content", "text/html;iso-8895-1");
-	this->SchemeAttribute = new oattribute ("scheme");
-	this->ResponseAttribute = new oattribute ("http-equiv");
+	this->NameAttribute = new oAttribute ("name", "content-type");
+	this->ContentTypeAttribute = new oAttribute ("content", "text/html;iso-8895-1");
+	this->SchemeAttribute = new oAttribute ("scheme");
+	this->ResponseAttribute = new oAttribute ("http-equiv");
 	return;
 }
 
