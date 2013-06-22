@@ -81,4 +81,3 @@ int main (int argc, char const * argv [], char const * envp [])
 	std::exit (0);
 }
 
-

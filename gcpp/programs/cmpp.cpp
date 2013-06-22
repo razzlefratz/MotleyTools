@@ -265,7 +265,6 @@ static void process (char const * pathname, char const * command, oflagword * fl
 	return;
 }
 
-
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
@@ -338,5 +337,4 @@ int main (int argc, char const * argv [], char const * envp [])
 	}
 	std::exit (0);
 }
-
 

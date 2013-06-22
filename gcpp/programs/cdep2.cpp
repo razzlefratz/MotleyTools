@@ -78,7 +78,6 @@ static char const * folders [] =
 	(char const *) (0)
 };
 
-
 /*====================================================================*
  *
  *   void relate (char const *one, char const *two, oflagword * flags);
@@ -102,7 +101,6 @@ static void relate (char const * one, char const * two, oflagword * flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -177,7 +175,6 @@ static void function (char const * target, size_t length, oflagword * flags)
 	stream.close ();
 	return;
 }
-
 
 /*====================================================================*
  *   main program;
@@ -259,5 +256,4 @@ int main (int argc, char const * argv [])
 	sources.enumerate ();
 	std::exit (0);
 }
-
 

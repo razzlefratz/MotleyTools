@@ -112,4 +112,3 @@ int main (int argc, char const * argv [])
 	std::exit (0);
 }
 
-
