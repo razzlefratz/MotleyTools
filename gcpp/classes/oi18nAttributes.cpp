@@ -48,8 +48,8 @@ oi18nAttributes & oi18nAttributes::write ()
 oi18nAttributes::oi18nAttributes () 
 
 {
-	this->LanguageAttribute = new oattribute ("lang");
-	this->DirectionAttribute = new oattribute ("dir");
+	this->LanguageAttribute = new oAttribute ("lang");
+	this->DirectionAttribute = new oAttribute ("dir");
 	return;
 }
 
