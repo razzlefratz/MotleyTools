@@ -124,7 +124,6 @@ static void function (struct channel * channel, void * memory, ssize_t extent)
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   void iterate (int argc, char const * argv [], void * memory, ssize_t extent, unsigned pause);
@@ -160,7 +159,6 @@ static void iterate (int argc, char const * argv [], struct channel * channel, u
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -239,22 +237,22 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (geteuid ()) 
 	{
 		error (1, EPERM, ERROR_NOTROOT);
 	}
-	openchannel (&channel);
+	openchannel (& channel);
 	while (count--) 
 	{
-		iterate (argc, argv, &channel, pause);
+		iterate (argc, argv, & channel, pause);
 		if (count) 
 		{
 			sleep (delay);
 		}
 	}
-	closechannel (&channel);
+	closechannel (& channel);
 	return (0);
 }
 

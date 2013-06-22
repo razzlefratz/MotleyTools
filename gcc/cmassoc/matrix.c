@@ -120,7 +120,7 @@ static signed gettoken (char * string)
 	{
 		do 
 		{
-			*string++ = c;
+			* string++ = c;
 			c = getc (stdin);
 		}
 		while (isalnum (c) || (c == '.') || (c == '_') || (c == '-'));
@@ -131,7 +131,7 @@ static signed gettoken (char * string)
 	{
 		do 
 		{
-			*string++ = c;
+			* string++ = c;
 			c = getc (stdin);
 		}
 		while (isdigit (c) || (c == '.'));
@@ -147,18 +147,17 @@ static signed gettoken (char * string)
 			{
 				o = getc (stdin);
 			}
-			*string++ = o;
+			* string++ = o;
 			o = getc (stdin);
 		}
 	}
 	else 
 	{
-		*string++ = c;
+		* string++ = c;
 	}
-	*string++ = (char) (0);
+	* string++ = (char) (0);
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -184,7 +183,7 @@ static void headers (struct column * column)
 		column->name = strdup (string);
 		column->label = label_empty;
 		column->style = style_empty;
-		for (cols = 0; ~ gettoken (string) && (*string != ';'); cols++) 
+		for (cols = 0; ~ gettoken (string) && (* string != ';'); cols++) 
 		{
 			column->next = (struct column *)(malloc (sizeof (struct column)));
 			column = column->next;
@@ -196,7 +195,6 @@ static void headers (struct column * column)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -222,7 +220,7 @@ static void columns (struct column * column)
 	if (~ gettoken (string)) 
 	{
 		strcpy (column->name, string);
-		while (~ gettoken (string) && (*string != ';')) 
+		while (~ gettoken (string) && (* string != ';')) 
 		{
 			struct column * object;
 			for (object = column->next; object; object = object->next) 
@@ -242,7 +240,6 @@ static void columns (struct column * column)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -275,7 +272,6 @@ static void finish (struct column * column)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   static unsigned stylesheet (unsigned margin);
@@ -300,7 +296,6 @@ static unsigned stylesheet (unsigned margin)
 	return (margin);
 }
 
-
 /*====================================================================*
  *
  *   unsigned posted ();
@@ -316,15 +311,14 @@ static unsigned stylesheet (unsigned margin)
 static unsigned posted (unsigned margin) 
 
 {
-	time_t now = time (&now);
+	time_t now = time (& now);
 	static char datetime [LOGTIME_LEN];
-	strftime (datetime, sizeof (datetime), LOGTIME, localtime (&now));
+	strftime (datetime, sizeof (datetime), LOGTIME, localtime (& now));
 	indent (margin++, "<div class='%s'>", style_posted);
 	indent (margin, "Posted %s on %s by %s", datetime, hostname (), username (getuid ()));
 	indent (margin--, "</div>");
 	return (margin);
 }
-
 
 /*====================================================================*
  *
@@ -381,7 +375,6 @@ static unsigned table1 (unsigned margin, char const * string, struct column * co
 	finish (column);
 	return (margin);
 }
-
 
 /*====================================================================*
  *
@@ -452,7 +445,6 @@ static unsigned table2 (unsigned margin, char const * string, struct column * co
 	return (margin);
 }
 
-
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
@@ -521,17 +513,17 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
-		margin = table (margin, header, &column);
+		margin = table (margin, header, & column);
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (efreopen (* argv, "rb", stdin)) 
 		{
-			margin = table (margin, header, &column);
+			margin = table (margin, header, & column);
 		}
 		argc--;
 		argv++;

@@ -76,7 +76,7 @@ int main (int argc, char const * argv [])
 		"w n\twait (n) seconds [" LITERAL (PAUSE) "]",
 		(char const *) (0)
 	};
-	FILE *fp;
+	FILE * fp;
 	signed index = 0;
 	signed count = COUNT;
 	signed pause = PAUSE;
@@ -98,8 +98,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	while (count--) 
 	{
 		for (index = 0; index < argc; index++) 

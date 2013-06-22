@@ -75,7 +75,6 @@ static void stylesheet (unsigned margin)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
@@ -138,8 +137,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!flags) 
 	{
 		flags = TOOLS_B_NORMAL;

@@ -84,7 +84,6 @@ void function (char const * prefix, char const * suffix, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *  main program;
  *--------------------------------------------------------------------*/
@@ -102,8 +101,8 @@ int main (int argc, char const * argv [])
 		(char const *)(0)
 	};
 	flag_t flags = (flag_t)(0);
-	char *prefix = "";
-	char *suffix = "";
+	char * prefix = "";
+	char * suffix = "";
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
@@ -119,8 +118,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (prefix, suffix, flags);

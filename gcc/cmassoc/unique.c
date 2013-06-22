@@ -75,7 +75,6 @@ static void put (size_t count, char * string, flag_t flags, FILE * fp)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void function (size_t length, flag_t flag, FILE * ifp, FILE *ofp);
@@ -102,8 +101,8 @@ static void function (size_t length, flag_t flags)
 	};
 	struct line one;
 	struct line two;
-	struct line * old = two.next = (struct line *) (&one);
-	struct line * new = one.next = (struct line *) (&two);
+	struct line * old = two.next = (struct line *) (& one);
+	struct line * new = one.next = (struct line *) (& two);
 	size_t count = 1;
 	one.text = (char *)(malloc (length));
 	two.text = (char *)(malloc (length));
@@ -113,12 +112,12 @@ static void function (size_t length, flag_t flags)
 	{
 		char * np = new->text;
 		char * op = old->text;
-		while ((*np) && (*op) && (*np == *op)) 
+		while ((* np) && (* op) && (* np == * op)) 
 		{
 			np++;
 			op++;
 		}
-		if ((*np) || (*op)) 
+		if ((* np) || (* op)) 
 		{
 			if (_anyset (flags, UNIQ_B_UNIQUE)) 
 			{
@@ -146,7 +145,6 @@ static void function (size_t length, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -196,8 +194,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (length, flags);

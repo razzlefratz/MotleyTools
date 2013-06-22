@@ -63,10 +63,10 @@ static void function (size_t column)
 {
 	byte byte;
 	size_t offset;
-	for (offset = 0; read (STDIN_FILENO, &byte, sizeof (byte)) > 0; offset++) 
+	for (offset = 0; read (STDIN_FILENO, & byte, sizeof (byte)) > 0; offset++) 
 	{
-		write (STDOUT_FILENO, &DIGITS_HEX [(byte >> 4) & 0x0F], sizeof (char));
-		write (STDOUT_FILENO, &DIGITS_HEX [(byte >> 0) & 0x0F], sizeof (char));
+		write (STDOUT_FILENO, & DIGITS_HEX [(byte >> 4) & 0x0F], sizeof (char));
+		write (STDOUT_FILENO, & DIGITS_HEX [(byte >> 0) & 0x0F], sizeof (char));
 		if (offset && column) 
 		{
 			write (STDOUT_FILENO, offset%column? " ": "\n", sizeof (char));
@@ -75,7 +75,6 @@ static void function (size_t column)
 	write (STDOUT_FILENO, "\n", sizeof (char));
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -112,8 +111,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (column);

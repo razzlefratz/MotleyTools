@@ -116,7 +116,7 @@ static signed runscript (FIND * script, FIND * shell, flag_t flags)
 	static char * argv [ARGVSIZE];
 	static int argc = 0;
 	char buffer [BUFSIZ];
-	char *sp = buffer;
+	char * sp = buffer;
 	file_t fd = (file_t) (0);
 	pid_t pid = (pid_t) (0);
 	if (access (script->fullname, (R_OK | X_OK))) 
@@ -135,7 +135,7 @@ static signed runscript (FIND * script, FIND * shell, flag_t flags)
 		}
 		return (-1);
 	}
-	if ((read (fd, sp, 2) != 2) || (*sp++ != '#') || (*sp++ != '!')) 
+	if ((read (fd, sp, 2) != 2) || (* sp++ != '#') || (* sp++ != '!')) 
 	{
 		if ((flags & (FIND_B_VERBOSE)) != 0) 
 		{
@@ -146,14 +146,14 @@ static signed runscript (FIND * script, FIND * shell, flag_t flags)
 	}
 	for (sp = buffer; sp < (buffer + sizeof (buffer) - 1); sp++) 
 	{
-		if ((read (fd, sp, 1) != 1) || isspace (*sp) || iscntrl (*sp)) 
+		if ((read (fd, sp, 1) != 1) || isspace (* sp) || iscntrl (* sp)) 
 		{
 			break;
 		}
 	}
-	*sp = (char) (0);
+	* sp = (char) (0);
 	close (fd);
-	if (stat (buffer, &script->statinfo)) 
+	if (stat (buffer, & script->statinfo)) 
 	{
 		if (_anyset (flags, FIND_B_VERBOSE)) 
 		{
@@ -198,7 +198,7 @@ static signed runscript (FIND * script, FIND * shell, flag_t flags)
 		{
 			syslog (LOG_INFO, "Started %s", script->fullname);
 		}
-		waitpid (pid, &status, 0);
+		waitpid (pid, & status, 0);
 		if (WIFEXITED (status)) 
 		{
 			if ((status = WEXITSTATUS (status)) != 0) 
@@ -229,7 +229,6 @@ static signed runscript (FIND * script, FIND * shell, flag_t flags)
 	exit (1);
 }
 
-
 /*====================================================================*
  *
  *   void testfile (FIND *script, FIND *shell, flag_t flags);
@@ -253,23 +252,23 @@ static signed runscript (FIND * script, FIND * shell, flag_t flags)
 static void testfile (FIND * script, FIND * shell, flag_t flags) 
 
 {
-	if (stat (script->fullname, &script->statinfo)) 
+	if (stat (script->fullname, & script->statinfo)) 
 	{
 		error (0, errno, "can't stat %s", script->fullname);
 		return;
 	}
 	if (S_ISDIR (script->statinfo.st_mode)) 
 	{
-		char *filename = script->filename;
-		if (*filename == '.') 
+		char * filename = script->filename;
+		if (* filename == '.') 
 		{
 			filename++;
 		}
-		if (*filename == '.') 
+		if (* filename == '.') 
 		{
 			filename++;
 		}
-		if (*filename == (char) (0)) 
+		if (* filename == (char) (0)) 
 		{
 			return;
 		}
@@ -309,7 +308,6 @@ static void testfile (FIND * script, FIND * shell, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void findfile (FIND *script, FIND *shell, flag_t flags);
@@ -337,12 +335,12 @@ static void findfile (FIND * script, FIND * shell, flag_t flags)
 	char * filename = script->fullname;
 	if ((dir = opendir (filename))) 
 	{
-		struct dirent *dirent;
-		while (*filename) 
+		struct dirent * dirent;
+		while (* filename) 
 		{
 			filename++;
 		}
-		*filename = PATH_C_EXTENDER;
+		* filename = PATH_C_EXTENDER;
 		while ((dirent = readdir (dir))) 
 		{
 			strcpy (filename + 1, dirent->d_name);
@@ -350,14 +348,13 @@ static void findfile (FIND * script, FIND * shell, flag_t flags)
 			partfile (script->basename, script->filename, script->extender);
 			testfile (script, shell, flags);
 		}
-		*filename = (char) (0);
+		* filename = (char) (0);
 		closedir (dir);
 		return;
 	}
 	testfile (script, shell, flags);
 	return;
 }
-
 
 /*====================================================================*
  *  
@@ -372,7 +369,7 @@ static void findfile (FIND * script, FIND * shell, flag_t flags)
 int main (int argc, char const * argv []) 
 
 {
-	extern char const *program_name;
+	extern char const * program_name;
 	static char const * optv [] = 
 	{
 		"a:elpqrs:Stu:v",
@@ -426,8 +423,8 @@ int main (int argc, char const * argv [])
 	flag_t flags = (flag_t) (0);
 	signed c;
 	umask (022);
-	optind=1;
-	opterr=1;
+	optind =1;
+	opterr =1;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
@@ -481,10 +478,10 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	openlog (program_name, LOG_PERROR, LOG_USER);
-	if (stat (shell.fullname, &shell.statinfo)) 
+	if (stat (shell.fullname, & shell.statinfo)) 
 	{
 		error (1, errno, "Can't execute shell %s", shell.fullname);
 	}
@@ -494,12 +491,12 @@ int main (int argc, char const * argv [])
 	}
 	if (!argc) 
 	{
-		findfile (&script, &shell, flags);
+		findfile (& script, & shell, flags);
 	}
 	while ((argc) && (* argv)) 
 	{
-		makefind (&script, * argv);
-		findfile (&script, &shell, flags);
+		makefind (& script, * argv);
+		findfile (& script, & shell, flags);
 		argc--;
 		argv++;
 	}

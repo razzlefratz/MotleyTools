@@ -83,7 +83,7 @@ static void testfile (FIND * find, FIND * home, flag_t flags);
  *
  *--------------------------------------------------------------------*/
 
-static void function (struct _find_ *find, struct _find_ * home, flag_t flags) 
+static void function (struct _find_ * find, struct _find_ * home, flag_t flags) 
 
 {
 	char buffer [BUFSIZ];
@@ -99,7 +99,7 @@ static void function (struct _find_ *find, struct _find_ * home, flag_t flags)
 		error (0, errno, FILE_CANTOPEN, find->fullname);
 		return;
 	}
-	if ((home->fd = open (home->fullname, O_CREAT|O_WRONLY, find->statinfo.st_mode)) == -1) 
+	if ((home->fd = open (home->fullname, O_CREAT |O_WRONLY, find->statinfo.st_mode)) == -1) 
 	{
 		error (0, errno, FILE_CANTOPEN, home->fullname);
 		close (find->fd);
@@ -122,7 +122,6 @@ static void function (struct _find_ *find, struct _find_ * home, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void testfile (FIND *find, flag_t flags);
@@ -136,23 +135,23 @@ static void function (struct _find_ *find, struct _find_ * home, flag_t flags)
 static void testfile (FIND * find, FIND * home, flag_t flags) 
 
 {
-	if (lstat (find->fullname, &find->statinfo)) 
+	if (lstat (find->fullname, & find->statinfo)) 
 	{
 		error (0, errno, FILE_CANTSTAT, find->fullname);
 		return;
 	}
 	if (S_ISDIR (find->statinfo.st_mode)) 
 	{
-		char const *filename = find->filename;
-		if (*filename == '.') 
+		char const * filename = find->filename;
+		if (* filename == '.') 
 		{
 			filename++;
 		}
-		if (*filename == '.') 
+		if (* filename == '.') 
 		{
 			filename++;
 		}
-		if (*filename == (char) (0)) 
+		if (* filename == (char) (0)) 
 		{
 			return;
 		}
@@ -185,7 +184,6 @@ static void testfile (FIND * find, FIND * home, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void findfile (FIND *find, FIND * home, flag_t flags);
@@ -199,16 +197,16 @@ static void testfile (FIND * find, FIND * home, flag_t flags)
 static void findfile (FIND * find, FIND * home, flag_t flags) 
 
 {
-	DIR *dir;
-	char *filename = find->fullname;
+	DIR * dir;
+	char * filename = find->fullname;
 	if ((dir = opendir (filename))) 
 	{
-		struct dirent *dirent;
-		while (*filename != (char) (0)) 
+		struct dirent * dirent;
+		while (* filename != (char) (0)) 
 		{
 			filename++;
 		}
-		*filename = PATH_C_EXTENDER;
+		* filename = PATH_C_EXTENDER;
 		while ((dirent = readdir (dir)) != (struct dirent *) (0)) 
 		{
 			strcpy (filename + 1, dirent->d_name);
@@ -216,14 +214,13 @@ static void findfile (FIND * find, FIND * home, flag_t flags)
 			partfile (find->filename, find->basename, find->extender);
 			testfile (find, home, flags);
 		}
-		*filename = (char) (0);
+		* filename = (char) (0);
 		closedir (dir);
 		return;
 	}
 	testfile (find, home, flags);
 	return;
 }
-
 
 /*====================================================================*
  *   main program;
@@ -263,8 +260,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (_allclr (find.flagword, (FIND_B_LNK | FIND_B_REG))) 
 	{
 		_setbits (find.flagword, (FIND_B_LNK | FIND_B_REG));
@@ -272,7 +269,7 @@ int main (int argc, char const * argv [])
 	if (argc > 0) 
 	{
 		strcpy (home.pathname, * argv);
-		if (lstat (home.pathname, &home.statinfo)) 
+		if (lstat (home.pathname, & home.statinfo)) 
 		{
 			error (1, errno, FILE_CANTSTAT, * argv);
 		}
@@ -285,8 +282,8 @@ int main (int argc, char const * argv [])
 	}
 	while ((argc) && (* argv)) 
 	{
-		makefind (&find, * argv);
-		findfile (&find, &home, flags);
+		makefind (& find, * argv);
+		findfile (& find, & home, flags);
 		argc--;
 		argv++;
 	}

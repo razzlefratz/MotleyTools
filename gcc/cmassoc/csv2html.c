@@ -96,7 +96,6 @@ signed header (signed margin, char const * string)
 	return (margin);
 }
 
-
 /*====================================================================*
  *   
  *   signed footer (signed margin, char const * string);
@@ -114,7 +113,6 @@ signed footer (signed margin, char const * string)
 	indent (margin--, "</html>");
 	return (margin);
 }
-
 
 /*====================================================================*
  *   
@@ -179,7 +177,7 @@ static void function (char const * string, size_t column, flag_t flags)
 					c = getc (stdin);
 					if (c != EOF) 
 					{
-						*cp++ = (char)(c);
+						* cp++ = (char)(c);
 						c = getc (stdin);
 						sp = cp;
 					}
@@ -195,21 +193,21 @@ static void function (char const * string, size_t column, flag_t flags)
 				}
 				if (c == ',') 
 				{
-					*cp++ = '<';
-					*cp++ = 'b';
-					*cp++ = 'r';
-					*cp++ = '/';
-					*cp++ = '>';
+					* cp++ = '<';
+					* cp++ = 'b';
+					* cp++ = 'r';
+					* cp++ = '/';
+					* cp++ = '>';
 					c = getc (stdin);
 				}
-				*cp++ = (char)(c);
+				* cp++ = (char)(c);
 				if (c != ' ') 
 				{
 					sp = cp;
 				}
 				c = getc (stdin);
 			}
-			*sp = (char) (0);
+			* sp = (char) (0);
 			if (sp == field) 
 			{
 				strcpy (field, "&nbsp;");
@@ -255,7 +253,6 @@ static void function (char const * string, size_t column, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -311,8 +308,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!(field = malloc (length))) 
 	{
 		error (1, errno, "Can't allocate %u bytes", length);

@@ -71,7 +71,6 @@ static void getmemory (byte const * memory, size_t extent, char const * object, 
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void getstring (byte const * memory, size_t extent, char const * object, size_t length);
@@ -87,13 +86,12 @@ static void getstring (byte const * memory, size_t extent, char const * object, 
 	{
 		error (1, ECANCELED, "%s exceeds " SIZE_T_SPEC " bytes", object, length);
 	}
-	while (isprint (*string) && (length--)) 
+	while (isprint (* string) && (length--)) 
 	{
-		putc (*string++, stdout);
+		putc (* string++, stdout);
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -144,14 +142,14 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		error (1, 0, "No file to read");
 	}
 	file.name = * argv;
-	if ((file.file = open (file.name, O_BINARY|O_RDONLY)) == -1) 
+	if ((file.file = open (file.name, O_BINARY |O_RDONLY)) == -1) 
 	{
 		error (1, errno, "Can't open %s", file.name);
 	}
@@ -203,8 +201,8 @@ int main (int argc, char const * argv [])
 				error (1, ECANCELED, "%s exceeds " SIZE_T_SPEC " bytes", object, length);
 			}
 			printf ("%u", * number);
-			memory += sizeof (* number);
-			extent -= sizeof (* number);
+			memory+= sizeof (* number);
+			extent-= sizeof (* number);
 		}
 		else if (!strcmp (object, "word")) 
 		{
@@ -214,8 +212,8 @@ int main (int argc, char const * argv [])
 				error (1, ECANCELED, "%s exceeds " SIZE_T_SPEC " bytes", object, length);
 			}
 			printf ("%u", LE16TOH (* number));
-			memory += sizeof (* number);
-			extent -= sizeof (* number);
+			memory+= sizeof (* number);
+			extent-= sizeof (* number);
 		}
 		else if (!strcmp (object, "long")) 
 		{
@@ -225,8 +223,8 @@ int main (int argc, char const * argv [])
 				error (1, ECANCELED, "%s exceeds " SIZE_T_SPEC " bytes", object, length);
 			}
 			printf ("%u", LE32TOH (* number));
-			memory += sizeof (* number);
-			extent -= sizeof (* number);
+			memory+= sizeof (* number);
+			extent-= sizeof (* number);
 		}
 		else if (!strcmp (object, "xbyte")) 
 		{
@@ -236,8 +234,8 @@ int main (int argc, char const * argv [])
 				error (1, ECANCELED, "%s exceeds " SIZE_T_SPEC " bytes", object, length);
 			}
 			printf ("0x%02X", * number);
-			memory += sizeof (* number);
-			extent -= sizeof (* number);
+			memory+= sizeof (* number);
+			extent-= sizeof (* number);
 		}
 		else if (!strcmp (object, "xword")) 
 		{
@@ -247,8 +245,8 @@ int main (int argc, char const * argv [])
 				error (1, ECANCELED, "%s exceeds " SIZE_T_SPEC " bytes", object, length);
 			}
 			printf ("0x%04X", LE16TOH (* number));
-			memory += sizeof (* number);
-			extent -= sizeof (* number);
+			memory+= sizeof (* number);
+			extent-= sizeof (* number);
 		}
 		else if (!strcmp (object, "xlong")) 
 		{
@@ -258,8 +256,8 @@ int main (int argc, char const * argv [])
 				error (1, ECANCELED, "%s exceeds " SIZE_T_SPEC " bytes", object, length);
 			}
 			printf ("0x%08X", LE32TOH (* number));
-			memory += sizeof (* number);
-			extent -= sizeof (* number);
+			memory+= sizeof (* number);
+			extent-= sizeof (* number);
 		}
 		else if (!strcmp (object, "mac")) 
 		{
@@ -269,8 +267,8 @@ int main (int argc, char const * argv [])
 				error (1, ECANCELED, "%s exceeds " SIZE_T_SPEC " bytes", object, length);
 			}
 			getmemory (memory, extent, object, length);
-			memory += length;
-			extent -= length;
+			memory+= length;
+			extent-= length;
 		}
 		else if (!strcmp (object, "data")) 
 		{
@@ -280,8 +278,8 @@ int main (int argc, char const * argv [])
 			}
 			length = (unsigned)(uintspec (* argv, 1, extent));
 			hexout (memory, length, 0, 0, stdout);
-			memory += length;
-			extent -= length;
+			memory+= length;
+			extent-= length;
 			argc--;
 			argv++;
 		}
@@ -293,8 +291,8 @@ int main (int argc, char const * argv [])
 			}
 			length = (unsigned)(uintspec (* argv, 1, extent));
 			getstring (memory, extent, object, length);
-			memory += length;
-			extent -= length;
+			memory+= length;
+			extent-= length;
 			argc--;
 			argv++;
 		}
@@ -305,8 +303,8 @@ int main (int argc, char const * argv [])
 				error (1, EINVAL, "%s needs a length", object);
 			}
 			length = (unsigned)(uintspec (* argv, 1, extent));
-			memory += length;
-			extent -= length;
+			memory+= length;
+			extent-= length;
 			argc--;
 			argv++;
 			continue;

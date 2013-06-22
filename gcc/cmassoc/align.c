@@ -127,7 +127,6 @@ void function (unsigned minimum, unsigned maximum, unsigned column, char cc)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
@@ -169,7 +168,7 @@ int main (int argc, char const * argv [])
 			maximum = uintspec (optarg, 0, SHRT_MAX);
 			break;
 		case 'c':
-			character = *optarg;
+			character = * optarg;
 			break;
 		case 't':
 			column = uintspec (optarg, 0, SHRT_MAX);
@@ -178,8 +177,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (minimum, maximum, column, character);

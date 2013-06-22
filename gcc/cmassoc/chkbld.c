@@ -85,11 +85,11 @@
  *
  *--------------------------------------------------------------------*/
 
-static void func (char const *filename, char *pathname, char *extender [], flag_t flags) 
+static void func (char const * filename, char * pathname, char * extender [], flag_t flags) 
 
 {
 	struct stat statinfo;
-	if (lstat (pathname, &statinfo)) 
+	if (lstat (pathname, & statinfo)) 
 	{
 		error (0, errno, "can't stat %s.", pathname);
 	}
@@ -102,29 +102,29 @@ static void func (char const *filename, char *pathname, char *extender [], flag_
 		SCAN scan;
 		char buffer [TEXTLINE_MAX];
 		unsigned line;
-		char *filename;
-		for (filename = pathname; *filename != (char) (0); filename++);
-		*filename++ = PATH_C_EXTENDER;
-		scaninput (&scan, buffer, sizeof (buffer));
+		char * filename;
+		for (filename = pathname; * filename != (char) (0); filename++);
+		* filename++ = PATH_C_EXTENDER;
+		scaninput (& scan, buffer, sizeof (buffer));
 		for (line = 0; fgetline (buffer, sizeof (buffer), stdin) != -1; line++) 
 		{
-			scantoken (&scan);
-			if (havetoken (&scan, "pkg")) 
+			scantoken (& scan);
+			if (havetoken (& scan, "pkg")) 
 			{
-				if (havetoken (&scan, "=")) 
+				if (havetoken (& scan, "=")) 
 				{
-					char **item;
-					scanuntil (&scan, " \t\r\n");
-					for (item = extender; *item != (char *) (0); item++) 
+					char ** item;
+					scanuntil (& scan, " \t\r\n");
+					for (item = extender; * item != (char *) (0); item++) 
 					{
-						strcpy (filename, tokentext (&scan));
-						strcat (filename, *item);
-						if (!lstat (pathname, &statinfo)) 
+						strcpy (filename, tokentext (& scan));
+						strcat (filename, * item);
+						if (!lstat (pathname, & statinfo)) 
 						{
 							break;
 						}
 					}
-					if (*item != (char *) (0)) 
+					if (* item != (char *) (0)) 
 					{
 						if (flags & PKG_B_PRESENT) 
 						{
@@ -135,18 +135,17 @@ static void func (char const *filename, char *pathname, char *extender [], flag_
 					{
 						if (flags & PKG_B_MISSING) 
 						{
-							strcpy (filename, tokentext (&scan));
+							strcpy (filename, tokentext (& scan));
 							printf ("- %s\n", pathname);
 						}
 					}
 				}
 			}
-			scanreset (&scan);
+			scanreset (& scan);
 		}
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -171,7 +170,7 @@ int main (int argc, char const * argv [])
 		(char const *)(0)
 	};
 	char pathname [FILENAME_MAX] = PKG_S_SOURCEDIR;
-	char *extender [100] = 
+	char * extender [100] = 
 	{
 		".tar.gz",
 		".tar.bz2",
@@ -196,11 +195,11 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
-	if (_allclr (flags, (PKG_B_PRESENT|PKG_B_MISSING))) 
+	argc-= optind;
+	argv+= optind;
+	if (_allclr (flags, (PKG_B_PRESENT |PKG_B_MISSING))) 
 	{
-		_setbits (flags, (PKG_B_PRESENT|PKG_B_MISSING));
+		_setbits (flags, (PKG_B_PRESENT |PKG_B_MISSING));
 	}
 	while ((argc) && (* argv)) 
 	{

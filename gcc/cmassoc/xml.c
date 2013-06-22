@@ -87,7 +87,6 @@ void csstree (struct node const * node)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
@@ -137,19 +136,19 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		error (1, ENOTSUP, "No filenames given!");
 	}
 	while ((argc) && (* argv)) 
 	{
-		xmlread (&node, * argv);
-		xmlscan (&node);
-		reorder (&node);
-		xmldump (&node);
-		xmlfree (&node);
+		xmlread (& node, * argv);
+		xmlscan (& node);
+		reorder (& node);
+		xmldump (& node);
+		xmlfree (& node);
 		argc--;
 		argv++;
 	}

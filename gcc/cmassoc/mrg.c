@@ -106,7 +106,6 @@ static signed comp (const LINE * one, const LINE * two)
 	return (compare (one->text, two->text));
 }
 
-
 /*====================================================================*
  *
  *   LINE * makeitem (FILE * stream, char const * name, size_t linesize);
@@ -138,7 +137,6 @@ static LINE * makeitem (FILE * stream, char const * name, size_t linesize)
 	return ((LINE *) (0));
 }
 
-
 /*====================================================================*
  *
  *   LINE * freeitem (LINE * line);
@@ -164,7 +162,6 @@ static LINE * freeitem (LINE * line)
 	return ((LINE *)(0));
 }
 
-
 /*====================================================================*
  *
  *   static void function (LINE * heap [], size_t heapsize, size_t linesize);
@@ -189,7 +186,7 @@ static void function (LINE * heap [], size_t heapsize, size_t linesize, int comp
 		}
 		else 
 		{
-			*heap = freeitem (* heap);
+			* heap = freeitem (* heap);
 			swap ((void *)(heap), 0, --heapsize);
 		}
 		if (heapsize) 
@@ -197,14 +194,13 @@ static void function (LINE * heap [], size_t heapsize, size_t linesize, int comp
 			reheap ((void *) (heap), heapsize, (void *) (comp), (void *) (swap));
 			if (compare ((* heap)->text, text) < 0) 
 			{
-				error (1, 0, "%s (%d): input out of order", (* heap)->name, (*heap)->line);
+				error (1, 0, "%s (%d): input out of order", (* heap)->name, (* heap)->line);
 			}
 		}
 		fputs (text, stdout);
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -249,8 +245,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		if ((heap [heapitem] = makeitem (stdin, "stdin", linesize))) 

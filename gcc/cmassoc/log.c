@@ -50,7 +50,7 @@ int main (int argc, char const * argv [])
 		(char const *)(0)
 	};
 	char buffer [TEXTLINE_MAX];
-	char *openmode = "wb";
+	char * openmode = "wb";
 	FILE * files [argc];
 	size_t file = 0;
 	signed c;
@@ -68,8 +68,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	files [file++] = stdout;
 	while ((argc) && (* argv)) 
 	{

@@ -91,8 +91,8 @@ void function (signed start, signed space, size_t length, flag_t flags)
 			{
 				if (c == '\t') 
 				{
-					column -= column % 8;
-					column += 8;
+					column-= column % 8;
+					column+= 8;
 				}
 				c = getc (stdin);
 			}
@@ -136,7 +136,6 @@ void function (signed start, signed space, size_t length, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
@@ -165,7 +164,7 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{
 		case 'c':
-			start = (char) (*optarg);
+			start = (char) (* optarg);
 			break;
 		case 'm':
 			_setbits (flags, SBAR_B_SHIFT);
@@ -180,8 +179,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (start, space, width, flags);

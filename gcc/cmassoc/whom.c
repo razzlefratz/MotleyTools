@@ -105,14 +105,14 @@
 static void function (LIST * list, regexp * regex, flag_t flags) 
 
 {
-	char const *string;
+	char const * string;
 	if (_anyset (flags, WHOM_B_USR)) 
 	{
-		struct passwd *passwd;
+		struct passwd * passwd;
 		while ((passwd = getpwent ())) 
 		{
 			string = regexspan (regex, passwd->pw_name);
-			if ((string) && (!*string)) 
+			if ((string) && (!* string)) 
 			{
 				listinsert (list, passwd->pw_name);
 			}
@@ -120,11 +120,11 @@ static void function (LIST * list, regexp * regex, flag_t flags)
 	}
 	if (_anyset (flags, WHOM_B_GRP)) 
 	{
-		struct group *group;
+		struct group * group;
 		while ((group = getgrent ())) 
 		{
 			string = regexspan (regex, group->gr_name);
-			if ((string) && (!*string)) 
+			if ((string) && (!* string)) 
 			{
 				listinsert (list, group->gr_name);
 			}
@@ -132,7 +132,6 @@ static void function (LIST * list, regexp * regex, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -207,8 +206,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (_anyset (flags, (WHOM_B_SHW))) 
 	{
 		regex = regexmake (expression);
@@ -220,12 +219,12 @@ int main (int argc, char const * argv [])
 		_setbits (flags, (WHOM_B_USR | WHOM_B_GRP));
 	}
 	setpwent ();
-	listcreate (&list, _LISTSIZE);
+	listcreate (& list, _LISTSIZE);
 	regex = regexmake (expression);
-	function (&list, regex, flags);
+	function (& list, regex, flags);
 	regex = regexfree (regex);
-	listcolumn (&list, stdout, width, count, index);
-	listdelete (&list);
+	listcolumn (& list, stdout, width, count, index);
+	listdelete (& list);
 	endpwent ();
 	exit (0);
 }

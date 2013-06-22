@@ -67,7 +67,7 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function (char const *thisfile, char const *thatfile, char const *command, flag_t flags) 
+static void function (char const * thisfile, char const * thatfile, char const * command, flag_t flags) 
 
 {
 	if (_anyset (flags, SWEEP_B_COMMAND)) 
@@ -89,7 +89,6 @@ static void function (char const *thisfile, char const *thatfile, char const *co
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void findfile (char *thispath, char *thatpath, flag_t flags);
@@ -100,53 +99,53 @@ static void function (char const *thisfile, char const *thatfile, char const *co
  *
  *--------------------------------------------------------------------*/
 
-static void findfile (char *thispath, char *thatpath, char const *command, flag_t flags) 
+static void findfile (char * thispath, char * thatpath, char const * command, flag_t flags) 
 
 {
-	DIR *dir;
-	struct dirent *dirent;
-	char *thisfile = thispath;
-	char *thatfile = thatpath;
+	DIR * dir;
+	struct dirent * dirent;
+	char * thisfile = thispath;
+	char * thatfile = thatpath;
 	struct stat this;
 	struct stat that;
 	if ((dir = opendir (thispath))) 
 	{
-		while (*thisfile) 
+		while (* thisfile) 
 		{
 			thisfile++;
 		}
-		while (*thatfile) 
+		while (* thatfile) 
 		{
 			thatfile++;
 		}
-		*thisfile++ = PATH_C_EXTENDER;
-		*thatfile++ = PATH_C_EXTENDER;
+		* thisfile++ = PATH_C_EXTENDER;
+		* thatfile++ = PATH_C_EXTENDER;
 		while ((dirent = readdir (dir))) 
 		{
 			strcpy (thisfile, dirent->d_name);
 			strcpy (thatfile, dirent->d_name);
-			if (stat (thatpath, &that)) 
+			if (stat (thatpath, & that)) 
 			{
 				error (0, 0, "can't stat %s", thatpath);
 				continue;
 			}
-			if (stat (thispath, &this)) 
+			if (stat (thispath, & this)) 
 			{
 				error (0, 0, "can't stat %s", thispath);
 				continue;
 			}
 			if (S_ISDIR (this.st_mode) && S_ISDIR (that.st_mode)) 
 			{
-				char *filename = dirent->d_name;
-				if (*filename == '.') 
+				char * filename = dirent->d_name;
+				if (* filename == '.') 
 				{
 					filename++;
 				}
-				if (*filename == '.') 
+				if (* filename == '.') 
 				{
 					filename++;
 				}
-				if (*filename == (char)(0)) 
+				if (* filename == (char)(0)) 
 				{
 					continue;
 				}
@@ -167,7 +166,6 @@ static void findfile (char *thispath, char *thatpath, char const *command, flag_
 				function (thispath, thatpath, command, flags);
 				continue;
 			}
-
 #if 0
 
 			if (S_ISBLK (this.st_mode) && S_ISBLK (that.st_mode)) 
@@ -186,7 +184,6 @@ static void findfile (char *thispath, char *thatpath, char const *command, flag_
 			{
 				continue;
 			}
-
 #endif
 
 		}
@@ -196,7 +193,6 @@ static void findfile (char *thispath, char *thatpath, char const *command, flag_
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   main program;
@@ -219,7 +215,7 @@ int main (int argc, char const * argv [])
 	};
 	char thispath [FILENAME_MAX+1];
 	char thatpath [FILENAME_MAX+1];
-	char const *command = SWEEP_S_COMMAND;
+	char const * command = SWEEP_S_COMMAND;
 	flag_t flags = (flag_t) (0);
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
@@ -246,8 +242,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (argc) 
 	{
 		strcpy (thispath, * argv);

@@ -90,7 +90,6 @@ static void function (signed fd1, signed fd2, signed length)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
@@ -144,8 +143,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (fd1, fd2, BUFFERSIZE);

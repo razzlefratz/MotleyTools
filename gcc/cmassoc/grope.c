@@ -103,7 +103,7 @@
 typedef struct _edit_ 
 
 {
-	regexp *list [_LISTSIZE];
+	regexp * list [_LISTSIZE];
 	size_t size;
 	char buffer [TEXTLINE_MAX];
 	size_t length;
@@ -150,7 +150,7 @@ static void testfile (FIND * find, EDIT * edit, flag_t flags);
  *
  *--------------------------------------------------------------------*/
 
-static void editfile (FIND *find, EDIT *edit, flag_t flags) 
+static void editfile (FIND * find, EDIT * edit, flag_t flags) 
 
 {
 	size_t line = 0;
@@ -160,10 +160,10 @@ static void editfile (FIND *find, EDIT *edit, flag_t flags)
 	{
 		for (item = 0; item < edit->size; item++) 
 		{
-			char const *sp;
-			for (sp = edit->buffer; *sp; sp++) 
+			char const * sp;
+			for (sp = edit->buffer; * sp; sp++) 
 			{
-				char const *cp;
+				char const * cp;
 				if ((cp = regexspan (edit->list [item], sp))) 
 				{
 					if (!once) 
@@ -189,7 +189,7 @@ static void editfile (FIND *find, EDIT *edit, flag_t flags)
 						}
 						while (sp < cp) 
 						{
-							fputc (*sp++, stdout);
+							fputc (* sp++, stdout);
 						}
 						fputc ('\n', stdout);
 						sp--;
@@ -207,7 +207,6 @@ static void editfile (FIND *find, EDIT *edit, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -234,7 +233,6 @@ static void openfile (FIND * find, EDIT * edit, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void testfile (FIND * find, EDIT * edit, flag_t flags);
@@ -248,23 +246,23 @@ static void openfile (FIND * find, EDIT * edit, flag_t flags)
 static void testfile (FIND * find, EDIT * edit, flag_t flags) 
 
 {
-	if (lstat (find->fullname, &find->statinfo)) 
+	if (lstat (find->fullname, & find->statinfo)) 
 	{
 		error (0, errno, "%s", find->fullname);
 		return;
 	}
 	if (S_ISDIR (find->statinfo.st_mode)) 
 	{
-		char const *filename = find->filename;
-		if (*filename == '.') 
+		char const * filename = find->filename;
+		if (* filename == '.') 
 		{
 			filename++;
 		}
-		if (*filename == '.') 
+		if (* filename == '.') 
 		{
 			filename++;
 		}
-		if (*filename == (char) (0)) 
+		if (* filename == (char) (0)) 
 		{
 			return;
 		}
@@ -297,7 +295,6 @@ static void testfile (FIND * find, EDIT * edit, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void findfile (FIND * find, EDIT * edit, flag_t flags);
@@ -317,12 +314,12 @@ static void findfile (FIND * find, EDIT * edit, flag_t flags)
 	char * filename = find->fullname;
 	if ((dir = opendir (filename))) 
 	{
-		struct dirent *dirent;
-		while (*filename != (char) (0)) 
+		struct dirent * dirent;
+		while (* filename != (char) (0)) 
 		{
 			filename++;
 		}
-		*filename = PATH_C_EXTENDER;
+		* filename = PATH_C_EXTENDER;
 		while ((dirent = readdir (dir)) != (struct dirent *) (0)) 
 		{
 			strcpy (filename + 1, dirent->d_name);
@@ -330,14 +327,13 @@ static void findfile (FIND * find, EDIT * edit, flag_t flags)
 			partfile (find->filename, find->basename, find->extender);
 			testfile (find, edit, flags);
 		}
-		*filename = (char) (0);
+		* filename = (char) (0);
 		closedir (dir);
 		return;
 	}
 	testfile (find, edit, flags);
 	return;
 }
-
 
 /*====================================================================*
  *   main program;
@@ -412,8 +408,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (_allclr (find.flagword, FIND_B_REG | FIND_B_LNK)) 
 	{
 		_setbits (find.flagword, FIND_B_REG | FIND_B_LNK);
@@ -428,12 +424,12 @@ int main (int argc, char const * argv [])
 	}
 	if (!argc) 
 	{
-		editfile (&find, &edit, flags);
+		editfile (& find, & edit, flags);
 	}
 	while ((argc) && (* argv)) 
 	{
-		makefind (&find, * argv);
-		findfile (&find, &edit, flags);
+		makefind (& find, * argv);
+		findfile (& find, & edit, flags);
 		argc--;
 		argv++;
 	}

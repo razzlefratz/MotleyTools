@@ -99,8 +99,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		SHA256Ident (STDIN_FILENO, buffer, sizeof (buffer), digest);

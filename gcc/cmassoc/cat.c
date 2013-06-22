@@ -66,7 +66,6 @@ static signed function (signed extent)
 	return (0);
 }
 
-
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
@@ -106,8 +105,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (length);

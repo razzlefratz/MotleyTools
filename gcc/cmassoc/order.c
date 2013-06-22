@@ -86,7 +86,6 @@ void print (signed indent, NODE * node, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   void traverse (NODE * node, flags_t flags);
@@ -138,7 +137,6 @@ static void traverse (NODE * node, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -197,7 +195,6 @@ static void organize (NODE * node, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   void discover (flag_t flags);
@@ -230,7 +227,6 @@ static void discover (flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -284,8 +280,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	graphinit ();
 	if (!argc) 
 	{

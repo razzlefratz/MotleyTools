@@ -92,7 +92,7 @@ wc;
  *
  *--------------------------------------------------------------------*/
 
-void show (struct wc *total, flag_t flags) 
+void show (struct wc * total, flag_t flags) 
 
 {
 	if (flags & WC_B_NLINE) 
@@ -115,7 +115,6 @@ void show (struct wc *total, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void func (char const *file, char table[], flag_t flags);
@@ -137,7 +136,7 @@ void show (struct wc *total, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-void function (char const *pathname, char table [], struct wc *total, flag_t flags) 
+void function (char const * pathname, char table [], struct wc * total, flag_t flags) 
 
 {
 	struct wc local;
@@ -174,10 +173,9 @@ void function (char const *pathname, char table [], struct wc *total, flag_t fla
 	total->_word += local._word;
 	total->_char += local._char;
 	total->_byte += local._byte;
-	show (&local, flags);
+	show (& local, flags);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -253,22 +251,22 @@ int main (int argc, char const * argv [])
 	{
 		_setbits (flags, WC_B_NLINE | WC_B_NWORD | WC_B_NCHAR | WC_B_NBYTE);
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
-		function ("stdin", table, &total, flags);
+		function ("stdin", table, & total, flags);
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (efreopen (* argv, "rb", stdin)) 
 		{
-			function (* argv, table, &total, flags);
+			function (* argv, table, & total, flags);
 		}
 		argc--;
 		argv++;
 	}
-	show (&total, flags);
+	show (& total, flags);
 	exit (0);
 }
 

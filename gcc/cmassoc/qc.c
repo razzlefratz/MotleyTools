@@ -110,18 +110,18 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (char const *filename, char const *pathlist [], flag_t flags) 
+void function (char const * filename, char const * pathlist [], flag_t flags) 
 
 {
-	FILE *fp;
+	FILE * fp;
 	LIST list;
 	FIND open;
 	SCAN scan;
 	char buffer [TEXTLINE_MAX];
 	long line;
 	struct stat stat;
-	listcreate (&list, _LISTSIZE);
-	listappend (&list, filename);
+	listcreate (& list, _LISTSIZE);
+	listappend (& list, filename);
 	for (list.index = list.start; list.index < list.count; list.index++) 
 	{
 		if ((fp = efopen (list.table [list.index], "rb"))) 
@@ -133,26 +133,26 @@ void function (char const *filename, char const *pathlist [], flag_t flags)
 			strcpy (open.fullname, list.table [list.index]);
 			partpath (open.fullname, open.pathname, open.basename);
 			partfile (open.basename, open.filename, open.extender);
-			scaninput (&scan, buffer, sizeof (buffer));
+			scaninput (& scan, buffer, sizeof (buffer));
 			for (line = 1; fgetline (buffer, TEXTLINE_MAX, fp) != -1; line++) 
 			{
-				nexttoken (&scan);
-				if (havetoken (&scan, "#")) 
+				nexttoken (& scan);
+				if (havetoken (& scan, "#")) 
 				{
-					if (havetoken (&scan, "include")) 
+					if (havetoken (& scan, "include")) 
 					{
-						if (havetoken (&scan, "<")) 
+						if (havetoken (& scan, "<")) 
 						{
-							scanuntil (&scan, ">");
+							scanuntil (& scan, ">");
 							if (_anyset (flags, QCFLAG_SYSTEM)) 
 							{
 								size_t index;
 								for (index = 0; pathlist [index] != (char const *) (0); index++) 
 								{
-									makepath (open.fullname, pathlist [index], tokentext (&scan));
-									if (lstat (open.fullname, &stat) == 0) 
+									makepath (open.fullname, pathlist [index], tokentext (& scan));
+									if (lstat (open.fullname, & stat) == 0) 
 									{
-										listappend (&list, open.fullname);
+										listappend (& list, open.fullname);
 										break;
 									}
 								}
@@ -161,25 +161,25 @@ void function (char const *filename, char const *pathlist [], flag_t flags)
 									error (0, 0, "%s:%ld system file %s is missing.", open.basename, line, open.fullname);
 								}
 							}
-							scanbreak (&scan, ">");
+							scanbreak (& scan, ">");
 						}
-						else if (havetoken (&scan, "\"")) 
+						else if (havetoken (& scan, "\"")) 
 						{
-							scanuntil (&scan, "\"");
+							scanuntil (& scan, "\"");
 							if (_anyset (flags, QCFLAG_CUSTOM)) 
 							{
-								makepath (open.fullname, open.pathname, tokentext (&scan));
-								listappend (&list, open.fullname);
-								if (lstat (open.fullname, &stat) != 0) 
+								makepath (open.fullname, open.pathname, tokentext (& scan));
+								listappend (& list, open.fullname);
+								if (lstat (open.fullname, & stat) != 0) 
 								{
-									error (0, 0, "%s:%ld custom file %s is missing.", open.basename, line, tokentext (&scan));
+									error (0, 0, "%s:%ld custom file %s is missing.", open.basename, line, tokentext (& scan));
 								}
 							}
-							scanbreak (&scan, "\"");
+							scanbreak (& scan, "\"");
 						}
 					}
 				}
-				scanreset (&scan);
+				scanreset (& scan);
 			}
 			fclose (fp);
 			if (line == 1) 
@@ -196,10 +196,9 @@ void function (char const *filename, char const *pathlist [], flag_t flags)
 		}
 		printf ("\n");
 	}
-	listdelete (&list);
+	listdelete (& list);
 	return;
 }
-
 
 /*====================================================================*
  *   main program;
@@ -219,7 +218,7 @@ int main (int argc, char const * argv [])
 		"v\tverbose messages",
 		(char const *) (0)
 	};
-	static char const *pathlist [] = 
+	static char const * pathlist [] = 
 	{
 		"/usr/include",
 		"/usr/local/include",
@@ -257,8 +256,8 @@ int main (int argc, char const * argv [])
 	{
 		_setbits (flags, (QCFLAG_CUSTOM | QCFLAG_SYSTEM));
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	while ((argc) && (* argv)) 
 	{
 		makepath (filename, getenv ("PWD"), * argv);

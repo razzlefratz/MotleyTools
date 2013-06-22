@@ -84,7 +84,7 @@ static void findfile (FIND * find, LIST * list, flag_t flags);
  *
  *--------------------------------------------------------------------*/
 
-static void function1 (char const *filename, flag_t flags) 
+static void function1 (char const * filename, flag_t flags) 
 
 {
 	if (flags & FIND_B_TESTRUN) 
@@ -101,7 +101,6 @@ static void function1 (char const *filename, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -126,32 +125,32 @@ static void function (LIST * list, flag_t flags)
 {
 	struct _part_ 
 	{
-		struct _part_ *next;
-		char const *name;
+		struct _part_ * next;
+		char const * name;
 	}
 	one,
 	two,
-	*this;
-	this = &one;
-	one.next = &two;
-	two.next = &one;
+	* this;
+	this = & one;
+	one.next = & two;
+	two.next = & one;
 	this->name = list->table [list->index++];
 	while (list->index < list->count) 
 	{
-		char const *sp1;
-		char const *sp2;
+		char const * sp1;
+		char const * sp2;
 		this->next->name = list->table [list->index++];
 
 // printf ("[%s][%s]\n", this->name, this->next->name);
 
-		for (sp1 = this->name, sp2 = this->next->name; *sp1 == *sp2; sp1++, sp2++) 
+		for (sp1 = this->name, sp2 = this->next->name; * sp1 == * sp2; sp1++, sp2++) 
 		{
-			if (*sp1 == (char) (0)) 
+			if (* sp1 == (char) (0)) 
 			{
 				this->next->name = list->table [list->index++];
 				break;
 			}
-			if (*sp1 == FILE_C_EXTENDER) 
+			if (* sp1 == FILE_C_EXTENDER) 
 			{
 				int order = strvercmp (sp1, sp2, FILE_C_EXTENDER);
 				if (order < 0) 
@@ -170,7 +169,6 @@ static void function (LIST * list, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   static void testfile (FIND *find, struct_list *list, flag_t flags);
@@ -184,23 +182,23 @@ static void function (LIST * list, flag_t flags)
 static void testfile (FIND * find, LIST * list, flag_t flags) 
 
 {
-	if (lstat (find->fullname, &find->statinfo)) 
+	if (lstat (find->fullname, & find->statinfo)) 
 	{
 		error (0, errno, "can't stat %s.", find->fullname);
 		return;
 	}
 	if (S_ISDIR (find->statinfo.st_mode)) 
 	{
-		char *filename = find->filename;
-		if (*filename == '.') 
+		char * filename = find->filename;
+		if (* filename == '.') 
 		{
 			filename++;
 		}
-		if (*filename == '.') 
+		if (* filename == '.') 
 		{
 			filename++;
 		}
-		if (*filename == (char) (0)) 
+		if (* filename == (char) (0)) 
 		{
 			return;
 		}
@@ -221,7 +219,6 @@ static void testfile (FIND * find, LIST * list, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   static void findfile (FIND *find, struct_list *list, flag_t flags);
@@ -235,19 +232,19 @@ static void testfile (FIND * find, LIST * list, flag_t flags)
 static void findfile (FIND * find, LIST * list, flag_t flags) 
 
 {
-	struct dirent *dirent;
-	char *filename = find->fullname;
-	DIR *dir = opendir (filename);
+	struct dirent * dirent;
+	char * filename = find->fullname;
+	DIR * dir = opendir (filename);
 	if (dir == (DIR *) (0)) 
 	{
 		testfile (find, list, flags);
 		return;
 	}
-	while (*filename != (char) (0)) 
+	while (* filename != (char) (0)) 
 	{
 		filename++;
 	}
-	*filename = PATH_C_EXTENDER;
+	* filename = PATH_C_EXTENDER;
 	while ((dirent = readdir (dir)) != (struct dirent *) (0)) 
 	{
 		strcpy (filename + 1, dirent->d_name);
@@ -255,11 +252,10 @@ static void findfile (FIND * find, LIST * list, flag_t flags)
 		partfile (find->filename, find->basename, find->extender);
 		testfile (find, list, flags);
 	}
-	*filename = (char) (0);
+	* filename = (char) (0);
 	closedir (dir);
 	return;
 }
-
 
 /*====================================================================*
  *   main program;
@@ -299,19 +295,19 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
-	listcreate (&list, _LISTSIZE);
+	argc-= optind;
+	argv+= optind;
+	listcreate (& list, _LISTSIZE);
 	while ((argc) && (* argv)) 
 	{
-		makefind (&find, * argv);
+		makefind (& find, * argv);
 		strcpy (find.fullname, find.pathname);
-		findfile (&find, &list, flags);
-		function (&list, flags);
+		findfile (& find, & list, flags);
+		function (& list, flags);
 		argc--;
 		argv++;
 	}
-	listdelete (&list);
+	listdelete (& list);
 	exit (0);
 }
 

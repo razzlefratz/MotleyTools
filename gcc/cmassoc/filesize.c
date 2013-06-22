@@ -98,11 +98,11 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	while ((argc) && (* argv)) 
 	{
-		if (lstat (* argv, &statinfo)) 
+		if (lstat (* argv, & statinfo)) 
 		{
 			error (0, errno, "Can't stat %s", * argv);
 		}

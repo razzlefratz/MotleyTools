@@ -72,7 +72,7 @@ static void report (char const * filename, off_t offset)
 
 {
 	struct stat statinfo;
-	if (stat (filename, &statinfo) == -1) 
+	if (stat (filename, & statinfo) == -1) 
 	{
 		error (1, errno, "can't stat %s", filename);
 	}
@@ -90,7 +90,6 @@ static void report (char const * filename, off_t offset)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -126,7 +125,6 @@ static void dump (int fd, char const * symbol, off_t offset, byte const * buffer
 	return;
 }
 
-
 /*====================================================================*
  *
  *   static void efsu (int fd, char const * symbol, off_t offset, byte const * buffer, signed length);
@@ -152,7 +150,6 @@ static void efsu (int fd, char const * symbol, off_t offset, byte const * buffer
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   void function (char const * filename, void output (int, off_t, char const *, byte const *, signed), flag_t flags);
@@ -176,7 +173,7 @@ static void function (char const * filename, void output (int, char const *, off
 	char * sp;
 	file_t fd;
 	signed c;
-	if ((fd = open (filename, O_BINARY|O_RDONLY)) == -1) 
+	if ((fd = open (filename, O_BINARY |O_RDONLY)) == -1) 
 	{
 		error (1, errno, "can't open %s", filename);
 	}
@@ -212,7 +209,7 @@ static void function (char const * filename, void output (int, char const *, off
 		while (isdigit (c)) 
 		{
 			length *= 10;
-			length += c - '0';
+			length+= c - '0';
 			c = getc (stdin);
 		}
 		while (isblank (c)) 
@@ -224,7 +221,7 @@ static void function (char const * filename, void output (int, char const *, off
 		{
 			do 
 			{
-				*sp++ = (char)(c);
+				* sp++ = (char)(c);
 				c = getc (stdin);
 			}
 			while (isident (c));
@@ -235,7 +232,7 @@ static void function (char const * filename, void output (int, char const *, off
 		}
 		if (c == '[') 
 		{
-			*sp++ = (char)(c);
+			* sp++ = (char)(c);
 			c = getc (stdin);
 			while (isblank (c)) 
 			{
@@ -243,22 +240,22 @@ static void function (char const * filename, void output (int, char const *, off
 			}
 			while (isdigit (c)) 
 			{
-				*sp++ = (char)(c);
+				* sp++ = (char)(c);
 				c = getc (stdin);
 			}
 			while (isblank (c)) 
 			{
 				c = getc (stdin);
 			}
-			*sp = (char)(0);
+			* sp = (char)(0);
 			if (c != ']') 
 			{
 				error (1, EINVAL, "Have '%s' without ']' on line %d", symbol, lineno);
 			}
-			*sp++ = (char)(c);
+			* sp++ = (char)(c);
 			c = getc (stdin);
 		}
-		*sp = (char)(0);
+		* sp = (char)(0);
 		while (isblank (c)) 
 		{
 			c = getc (stdin);
@@ -275,7 +272,7 @@ static void function (char const * filename, void output (int, char const *, off
 				output (fd, symbol, offset, buffer, length);
 			}
 		}
-		offset += length;
+		offset+= length;
 		lineno++;
 	}
 	if (_allclr (flags, ODD_SILENCE)) 
@@ -285,7 +282,6 @@ static void function (char const * filename, void output (int, char const *, off
 	close (fd);
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -342,8 +338,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (argc > 1) 
 	{
 		error (1, 0, ERROR_TOOMANY);

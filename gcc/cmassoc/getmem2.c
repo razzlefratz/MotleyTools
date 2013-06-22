@@ -70,7 +70,7 @@ static void function (int argc, const char * argv [], flag_t flags)
 	byte * memory;
 	byte * origin;
 	file.name = * argv;
-	if ((file.file = open (file.name, O_BINARY|O_RDONLY)) == -1) 
+	if ((file.file = open (file.name, O_BINARY |O_RDONLY)) == -1) 
 	{
 		error (1, errno, "Can't open %s", file.name);
 	}
@@ -109,14 +109,14 @@ static void function (int argc, const char * argv [], flag_t flags)
 		_setbits (flags, SETPIB_VERBOSE);
 	}
 	origin = memory;
-	memory += offset;
-	extent -= offset;
+	memory+= offset;
+	extent-= offset;
 	while (argc && * argv) 
 	{
 		offset = memdecode (memory, extent, *(argv), *(argv + 1));
 		putc (' ', stdout);
-		memory += offset;
-		extent -= offset;
+		memory+= offset;
+		extent-= offset;
 		argv++;
 		argc--;
 	}
@@ -126,7 +126,6 @@ static void function (int argc, const char * argv [], flag_t flags)
 	}
 	free (origin);
 }
-
 
 /*====================================================================*
  *
@@ -171,8 +170,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if ((argc) && (* argv)) 
 	{
 		function (argc, argv, flags);

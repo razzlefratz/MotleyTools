@@ -19,9 +19,9 @@ int main (int argc, char const * argv [], char const * envp [])
 
 {
 	char const ** argp;
-	for (argp = envp; *argp; argp++) 
+	for (argp = envp; * argp; argp++) 
 	{
-		printf (" envp[%lu] = [%s]\n", (long unsigned)(argp - envp), *argp);
+		printf (" envp[%lu] = [%s]\n", (long unsigned)(argp - envp), * argp);
 	}
 	printf (" envp[%lu] = NULL\n", (long unsigned)(argp - envp));
 	return (0);

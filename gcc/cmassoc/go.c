@@ -69,7 +69,7 @@ int main (int argc, char const * argv [])
 		"example command line program",
 		(char const *)(0)
 	};
-	TREE *node = (TREE *)(0);
+	TREE * node = (TREE *)(0);
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
@@ -78,8 +78,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	printf ("stdin %s a tty\n", isatty (STDIN_FILENO)? "is": "is not");
 	while ((c = cgetc (STDIN_FILENO)) != EOF) 
 	{

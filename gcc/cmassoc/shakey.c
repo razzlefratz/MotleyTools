@@ -98,8 +98,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		putoptv (optv);
@@ -108,17 +108,17 @@ int main (int argc, char const * argv [])
 	while ((argc) && (* argv)) 
 	{
 		sp = phrase = * argv;
-		while (isprint (*sp)) 
+		while (isprint (* sp)) 
 		{
 			sp++;
 		}
-		if (*sp) 
+		if (* sp) 
 		{
 			error (1, ENOTSUP, "Illegal characters: %s", phrase);
 		}
-		SHA256Reset (&sha256);
-		SHA256Write (&sha256, phrase, sp - phrase);
-		SHA256Fetch (&sha256, digest);
+		SHA256Reset (& sha256);
+		SHA256Write (& sha256, phrase, sp - phrase);
+		SHA256Fetch (& sha256, digest);
 		if (_allclr (flags, KEY_VERBOSE)) 
 		{
 			phrase = (char const *)(0);

@@ -63,7 +63,6 @@ static void paginate (struct _page_ * page)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
@@ -107,18 +106,18 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
-		paginate (&page);
+		paginate (& page);
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (efreopen (* argv, "rb", stdin)) 
 		{
 			page.title = filepart (* argv);
-			paginate (&page);
+			paginate (& page);
 		}
 		argc--;
 		argv++;

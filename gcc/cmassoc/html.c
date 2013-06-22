@@ -87,7 +87,6 @@ static unsigned links (unsigned margin, char const * style)
 	return (margin);
 }
 
-
 /*====================================================================*
  *
  *   unsigned header (unsigned margin);
@@ -128,7 +127,6 @@ static unsigned header (unsigned margin)
 	return (margin);
 }
 
-
 /*====================================================================*
  *
  *   unsigned body (unsigned margin);
@@ -150,7 +148,6 @@ static unsigned body (unsigned margin)
 	return (margin);
 }
 
-
 /*====================================================================*
  *
  *   unsigned footer (unsigned margin);
@@ -170,7 +167,6 @@ static unsigned footer (unsigned margin)
 	indent (margin--, "</html>");
 	return (margin);
 }
-
 
 /*====================================================================*
  *
@@ -223,8 +219,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	subject = profilestring (profile, section, "subject", subject);
 	contact = profilestring (profile, section, "contact", contact);
 	cssfile = profilestring (profile, section, "cssfile", cssfile);

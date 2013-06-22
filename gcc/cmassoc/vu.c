@@ -75,10 +75,10 @@
 void function (flag_t flags) 
 
 {
-	extern char const *sv_ascii [];
-	extern char const *sv_glyph [];
-	char *sp1 = "";
-	char *sp2 = "";
+	extern char const * sv_ascii [];
+	extern char const * sv_glyph [];
+	char * sp1 = "";
+	char * sp2 = "";
 	signed c;
 	if (_anyset (flags, VIS_B_BOLD)) 
 	{
@@ -129,7 +129,6 @@ void function (flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -184,8 +183,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (flags);

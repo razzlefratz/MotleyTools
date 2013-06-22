@@ -92,8 +92,8 @@ static void display (signed x [], signed y [], signed count, struct graph * grap
 	printf ("%s\n", graph->title);
 	for (graph->count = 0; graph->count < count; graph->count++) 
 	{
-		signed value = *y;
-		printf ("%6d[%6d]", *x++, *y++);
+		signed value = * y;
+		printf ("%6d[%6d]", * x++, * y++);
 		if (value < graph->lower) 
 		{
 			graph->lower = value;
@@ -102,11 +102,11 @@ static void display (signed x [], signed y [], signed count, struct graph * grap
 		{
 			graph->upper = value;
 		}
-		value += graph->shift;
+		value+= graph->shift;
 		while (value > (graph->scale >> 1)) 
 		{
 			putc ('#', stdout);
-			value -= graph->scale;
+			value-= graph->scale;
 		}
 		putc ('\n', stdout);
 	}
@@ -117,7 +117,6 @@ static void display (signed x [], signed y [], signed count, struct graph * grap
 	printf ("scale=%d\n", graph->scale);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -155,7 +154,6 @@ static void arrange (signed x [], signed y [], signed count)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -220,7 +218,7 @@ static void collect (char const * filename, signed limit, struct graph * graph, 
 		while (isdigit (c)) 
 		{
 			value *= 10;
-			value += c - '0';
+			value+= c - '0';
 			c = getc (stdin);
 		}
 		x [index] = sign * value;
@@ -250,7 +248,7 @@ static void collect (char const * filename, signed limit, struct graph * graph, 
 		while (isdigit (c)) 
 		{
 			value *= 10;
-			value += c - '0';
+			value+= c - '0';
 			c = getc (stdin);
 		}
 		y [index] = sign * value;
@@ -283,7 +281,6 @@ static void collect (char const * filename, signed limit, struct graph * graph, 
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -347,17 +344,17 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
-		collect ("stdin", count, &graph, flags);
+		collect ("stdin", count, & graph, flags);
 	}
 	while ((argc) && (argv)) 
 	{
-		if (efreopen (*argv, "rb", stdin)) 
+		if (efreopen (* argv, "rb", stdin)) 
 		{
-			collect (*argv, count, &graph, flags);
+			collect (* argv, count, & graph, flags);
 		}
 		argc--;
 		argv++;

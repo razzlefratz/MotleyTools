@@ -163,14 +163,13 @@ static bool member (char const * name, char const * list [], char const * mask)
 {
 	if (list) while (* list) 
 	{
-		if (strwcmp (name, *list++, mask)) 
+		if (strwcmp (name, * list++, mask)) 
 		{
 			return (true);
 		}
 	}
 	return (false);
 }
-
 
 /*====================================================================*
  *
@@ -194,7 +193,6 @@ static void listoutput (LIST * list, char const * target)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void compile (char * target, char const * source);
@@ -215,28 +213,27 @@ static void compile (char * target, char const * source)
 		"",
 		(char const *)(0)
 	};
-	listcreate (&list, _LISTSIZE);
-	listappend (&list, source);
-	if (cinclude (&list, paths)) 
+	listcreate (& list, _LISTSIZE);
+	listappend (& list, source);
+	if (cinclude (& list, paths)) 
 	{
 		error (0, 0, "target %s is missing %d files.", list.table [0], list.error);
 	}
-	listcreate (&name, _LISTSIZE);
-	listappend (&name, filename (source));
+	listcreate (& name, _LISTSIZE);
+	listappend (& name, filename (source));
 	name.start++;
 	for (list.index = list.start + 1; list.index < list.count; list.index++) 
 	{
-		listinsert (&name, filename (list.table [list.index]));
+		listinsert (& name, filename (list.table [list.index]));
 	}
 	name.start--;
 	strcpy (target, filename (source));
 	setfiletype (target, ".o");
-	listoutput (&name, target);
-	listdelete (&name);
-	listdelete (&list);
+	listoutput (& name, target);
+	listdelete (& name);
+	listdelete (& list);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -258,27 +255,26 @@ static void include (char * target, char const * source)
 		"",
 		(char const *)(0)
 	};
-	listcreate (&list, _LISTSIZE);
-	listappend (&list, source);
-	if (cinclude (&list, paths)) 
+	listcreate (& list, _LISTSIZE);
+	listappend (& list, source);
+	if (cinclude (& list, paths)) 
 	{
 		error (0, 0, "target %s is missing %d files.", list.table [0], list.error);
 	}
 	if (list.count > 1) 
 	{
-		listcreate (&name, _LISTSIZE);
+		listcreate (& name, _LISTSIZE);
 		for (list.index = list.start + 1; list.index < list.count; list.index++) 
 		{
-			listinsert (&name, filename (list.table [list.index]));
+			listinsert (& name, filename (list.table [list.index]));
 		}
 		strcpy (target, filename (source));
-		listoutput (&name, target);
-		listdelete (&name);
+		listoutput (& name, target);
+		listdelete (& name);
 	}
-	listdelete (&list);
+	listdelete (& list);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -300,16 +296,16 @@ void program_binary (char * target, char const * source, char const * ignore [],
 		"",
 		(char const *)(0)
 	};
-	listcreate (&list, _LISTSIZE);
-	listappend (&list, source);
-	if (cinclude (&list, paths)) 
+	listcreate (& list, _LISTSIZE);
+	listappend (& list, source);
+	if (cinclude (& list, paths)) 
 	{
 		error (0, 0, "target %s is missing %d files.", list.table [0], list.error);
 	}
-	listcreate (&name, _LISTSIZE);
+	listcreate (& name, _LISTSIZE);
 	strcpy (target, filename (source));
 	setfiletype (target, ".o");
-	listappend (&name, target);
+	listappend (& name, target);
 	name.start++;
 	for (list.index = list.start + 1; list.index < list.count; list.index++) 
 	{
@@ -317,18 +313,17 @@ void program_binary (char * target, char const * source, char const * ignore [],
 		if (!member (target, ignore, mask)) 
 		{
 			setfiletype (target, ".o");
-			listinsert (&name, target);
+			listinsert (& name, target);
 		}
 	}
 	name.start--;
 	strcpy (target, filename (source));
 	setfiletype (target, "");
-	listoutput (&name, target);
-	listdelete (&name);
-	listdelete (&list);
+	listoutput (& name, target);
+	listdelete (& name);
+	listdelete (& list);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -350,33 +345,32 @@ void program_object (char * target, char const * source, char const * ignore [],
 		"",
 		(char const *)(0)
 	};
-	listcreate (&list, _LISTSIZE);
-	listappend (&list, source);
-	if (cinclude (&list, paths)) 
+	listcreate (& list, _LISTSIZE);
+	listappend (& list, source);
+	if (cinclude (& list, paths)) 
 	{
 		error (0, 0, "target %s is missing %d files.", list.table [0], list.error);
 	}
-	listcreate (&name, _LISTSIZE);
+	listcreate (& name, _LISTSIZE);
 	strcpy (target, filename (source));
-	listappend (&name, target);
+	listappend (& name, target);
 	name.start++;
 	for (list.index = list.start + 1; list.index < list.count; list.index++) 
 	{
 		strcpy (target, filename (list.table [list.index]));
 		if (!member (target, ignore, mask)) 
 		{
-			listinsert (&name, target);
+			listinsert (& name, target);
 		}
 	}
 	name.start--;
 	strcpy (target, filename (source));
 	setfiletype (target, ".o");
-	listoutput (&name, target);
-	listdelete (&name);
-	listdelete (&list);
+	listoutput (& name, target);
+	listdelete (& name);
+	listdelete (& list);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -397,23 +391,22 @@ void content (char * target, char const * source)
 		"",
 		(char const *)(0)
 	};
-	listcreate (&list, _LISTSIZE);
-	listappend (&list, source);
-	if (ccollect (&list, paths)) 
+	listcreate (& list, _LISTSIZE);
+	listappend (& list, source);
+	if (ccollect (& list, paths)) 
 	{
 		error (0, 0, "target %s is missing %d files.", list.table [0], list.error);
 	}
 	list.start++;
-	listsort (&list);
+	listsort (& list);
 	list.start--;
 	for (list.index = list.start; list.index < list.count; list.index++) 
 	{
 		printf ("%s\n", list.table [list.index]);
 	}
-	listdelete (&list);
+	listdelete (& list);
 	return;
 }
-
 
 /*====================================================================*
  *   main program;
@@ -452,14 +445,14 @@ int main (int argc, char const * argv [])
 	signed c;
 	memset (topbar, '=', sizeof (topbar) - 1);
 	memset (botbar, '-', sizeof (botbar) - 1);
-	listcreate (&targets, _LISTSIZE);
-	listcreate (&sources, _LISTSIZE);
+	listcreate (& targets, _LISTSIZE);
+	listcreate (& sources, _LISTSIZE);
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
 		case 'f':
-			listload (&targets, optarg, string, sizeof (string));
+			listload (& targets, optarg, string, sizeof (string));
 			break;
 		case 'i':
 			_setbits (flags, MMF_B_CONTENT);
@@ -480,18 +473,18 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	while ((argc) && (* argv)) 
 	{
-		listinsert (&targets, * argv);
+		listinsert (& targets, * argv);
 		argc--;
 		argv++;
 	}
 	if (_anyset (flags, MMF_B_MAKEFILE)) 
 	{
 		printf ("#!/usr/bin/make -f\n");
-		strftime (string, sizeof (string), "Published %Y by Charles Maier for personal use;", localtime (&now));
+		strftime (string, sizeof (string), "Published %Y by Charles Maier for personal use;", localtime (& now));
 		printf ("# %s\n", string);
 
 #if 1
@@ -603,8 +596,8 @@ int main (int argc, char const * argv [])
 		}
 	}
 	printf ("\n");
-	listdelete (&targets);
-	listdelete (&sources);
+	listdelete (& targets);
+	listdelete (& sources);
 	fchmod (STDOUT_FILENO, MMF_B_FILEMODE);
 	exit (0);
 }
