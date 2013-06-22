@@ -39,7 +39,7 @@
  *
  *--------------------------------------------------------------------*/
 
-#define CSS_STYLESHEET "/styles/cmassoc.css"
+#define CSS_STYLESHEET "/styles/stylesheet.css"
 #define CSS_CONTENT "text/css"
 
 /*====================================================================*
@@ -65,19 +65,16 @@
  *--------------------------------------------------------------------*/
 
 #define HTML_CONTENT ISO_CONTENT ";" ISO_CHARSET
-#define HTML_PROGRAM PACKAGE " " VERSION "." RELEASE
+#define HTML_PROGRAM PACKAGE " " VERSION " " RELEASE
 #define HTML_SUBJECT "Untitled Document"
 #define HTML_AUTHOR "cmaier@cmassoc.net"
 #define HTML_ROBOTS "noindex,nofollow"
 
+#define HTML_PATH "index.html"
+#define HTML_NAME "Index"
 #define HTML_PREV "PREV"
 #define HTML_HOME "HOME"
 #define HTML_NEXT "NEXT"
-
-#define HTML_PATH "index.html"
-#define HTML_NAME "Index"
-
-#define CGI_TESTPAGE "http://www.htmlcodetutorial.com/cgi-bin/mycgi.pl"
 
 /*====================================================================*
  *

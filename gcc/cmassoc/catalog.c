@@ -56,6 +56,7 @@
  *--------------------------------------------------------------------*/
 
 #define CATALOG_COLUMN 5
+#define CATALOG_STYLESHEET "catalog.css"
 #define CATALOG_INDEX (1 << 0)
 #define CATALOG_TOPIC (1 << 1)
 #define CATALOG_GLYPH (1 << 2)
@@ -73,14 +74,14 @@ typedef struct page
 	struct page * next;
 	char const * file;
 	char const * path;
-	char const * text;
+	char const * name;
 }
 
 page;
 
 /*====================================================================*
  *
- *   void pagelink (unsigned level, struct page * page);
+ *   void pagelink (unsigned level, struct page * page, char const * link);
  *
  *
  *.  Motley Tools by Charles Maier;
@@ -89,10 +90,10 @@ page;
  *
  *--------------------------------------------------------------------*/
 
-void pagelink (unsigned level, struct page * page, char const * name) 
+void pagelink (unsigned level, struct page * page, char const * link) 
 
 {
-	indent (level, "[<a href='%s' title=' %s '>%s</a>]", page->path, page->text, name);
+	indent (level, "[<a href='%s' title=' %s '>%s</a>]", page->path, page->name, link);
 	return;
 }
 
@@ -116,7 +117,7 @@ static signed header (signed margin, struct page * page, char const * stylesheet
 	indent (margin++, "<html xmlns='%s' lang='%s'>", XML_NAMESPACE, XML_LANGUAGE);
 	indent (margin++, "<head>");
 	indent (margin++, "<title>");
-	indent (margin, "%s", page->text);
+	indent (margin, "%s", page->name);
 	indent (margin--, "</title>");
 	indent (margin, "<meta http-equiv='content-type' content='%s'/>", HTML_CONTENT);
 	indent (margin, "<meta name='generator' content='%s'/>", HTML_PROGRAM);
@@ -185,7 +186,7 @@ void htmlindex (struct page * page, char const * stylesheet, unsigned group, fla
 	{
 		margin = header (margin, page, stylesheet);
 		indent (margin++, "<h1>");
-		indent (margin, "%s", page->text);
+		indent (margin, "%s", page->name);
 		indent (margin--, "</h1>");
 	}
 	indent (margin++, "<table>");
@@ -207,7 +208,7 @@ void htmlindex (struct page * page, char const * stylesheet, unsigned group, fla
 			indent (margin++, "<ol start='%d'>", index+1);
 		}
 		indent (margin++, "<li class='index'>");
-		indent (margin, "<a href='%s'>%s</a>", page->path, page->text);
+		indent (margin, "<a href='%s'>%s</a>", page->path, page->name);
 		indent (margin--, "</li>");
 		index++;
 	}
@@ -377,21 +378,21 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"c:dgip:n:t:s:",
+		"c:dgin:p:s:",
 		PUTOPTV_S_FILTER,
 		"produce a set of linked html pages with index page",
 		"c n\tindex column count is n [" LITERAL (CATALOG_COLUMN) "]",
 		"d\tdelete source files after conversion",
 		"g\treplace selected punctuation with IETF/HTML/ISO glyphs",
 		"i\tproduce an index page",
+		"n s\tindex page name is s [" HTML_NAME "]",
 		"p f\tindex page path is f [" HTML_PATH "]",
-		"t s\tindex page name is s [" HTML_NAME "]",
-		"s f\tstylesheet path is f [" CSS_STYLESHEET "]",
+		"s f\tstylesheet path is f [" CATALOG_STYLESHEET "]",
 		(char *) (0)
 	};
 	unsigned column = CATALOG_COLUMN;
 	char filename [FILENAME_MAX];
-	char const * stylesheet = CSS_STYLESHEET;
+	char const * stylesheet = CATALOG_STYLESHEET;
 	struct page * page = NEW (struct page);
 	struct page * temp;
 	flag_t flags = (flag_t) (0);
@@ -401,28 +402,28 @@ int main (int argc, char const * argv [])
 	page->next = page;
 	page->file = HTML_PATH;
 	page->path = HTML_PATH;
-	page->text = HTML_NAME;
+	page->name = HTML_NAME;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
-		case 'g':
-			_setbits (flags, CATALOG_GLYPH);
-			break;
-		case 'i':
-			_setbits (flags, CATALOG_INDEX);
-			break;
 		case 'c':
 			column = uintspec (optarg, 1, 12);
 			break;
 		case 'd':
 			_setbits (flags, CATALOG_DELETE);
 			break;
+		case 'g':
+			_setbits (flags, CATALOG_GLYPH);
+			break;
+		case 'i':
+			_setbits (flags, CATALOG_INDEX);
+			break;
+		case 'n':
+			page->name = optarg;
+			break;
 		case 'p':
 			page->path = optarg;
-			break;
-		case 't':
-			page->text = optarg;
 			break;
 		case 's':
 			stylesheet = optarg;
@@ -447,7 +448,7 @@ int main (int argc, char const * argv [])
 		temp->next = page;
 		temp->home = page;
 		page->prev = temp;
-		temp->text = filepart (* argv);
+		temp->name = filepart (* argv);
 		temp->file = filepart (* argv);
 		strcpy (filename, temp->file);
 		strcat (filename, ".html");
