@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   oattribute.cpp - implementation of oattribute class;
+ *   oAttribute.cpp - implementation of oAttribute class;
  *
  *   this class implements HTML-style attributes where an attribute
  *   a label/value pair; by convention, an attribute starts with a
@@ -39,16 +39,16 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/oattribute.hpp"
+#include "../classes/oAttribute.hpp"
 
 /*====================================================================*
  *   class variables;
  *--------------------------------------------------------------------*/
 
-char const * oattribute::mspace = " ";
-char const * oattribute::mequal = "=";
-char const * oattribute::mquote = "\'";
-char const * oattribute::mcomma = "";
+char const * oAttribute::mspace = " ";
+char const * oAttribute::mequal = "=";
+char const * oAttribute::mquote = "\'";
+char const * oAttribute::mcomma = "";
 
 /*====================================================================*
  *
@@ -58,7 +58,7 @@ char const * oattribute::mcomma = "";
  *
  *--------------------------------------------------------------------*/
 
-char const * oattribute::label () const 
+char const * oAttribute::label () const 
 
 {
 	return (this->mlabel);
@@ -73,7 +73,7 @@ char const * oattribute::label () const
  *
  *--------------------------------------------------------------------*/
 
-char const * oattribute::value () const 
+char const * oAttribute::value () const 
 
 {
 	return (this->mvalue);
@@ -82,13 +82,13 @@ char const * oattribute::value () const
 
 /*====================================================================*
  *
- *   oattribute & value (char const * string);
+ *   oAttribute & value (char const * string);
  *
  *   replace the attribute value (value) string;
  *
  *--------------------------------------------------------------------*/
 
-oattribute & oattribute::value (char const * string) 
+oAttribute & oAttribute::value (char const * string) 
 
 {
 	this->mvalue = otext::replace (this->mvalue, string);
@@ -98,7 +98,7 @@ oattribute & oattribute::value (char const * string)
 
 /*====================================================================*
  *
- *   oattribute & value (unsigned number);
+ *   oAttribute & value (unsigned number);
  *
  *   replace the attribute value (value) string with an integer; the
  *   string length is determined by integer magnitude and will only
@@ -106,7 +106,7 @@ oattribute & oattribute::value (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-oattribute & oattribute::value (unsigned number) 
+oAttribute & oAttribute::value (unsigned number) 
 
 {
 	unsigned digits = 32;
@@ -125,14 +125,14 @@ oattribute & oattribute::value (unsigned number)
 
 /*====================================================================*
  *
- *   oattribute & value (unsigned number, unsigned digits) 
+ *   oAttribute & value (unsigned number, unsigned digits) 
  *
  *   replace the attribute value (value) string with an integer; the
  *   string length is fixed and will be padded/truncated as needed;
  *
  *--------------------------------------------------------------------*/
 
-oattribute & oattribute::value (unsigned number, unsigned digits) 
+oAttribute & oAttribute::value (unsigned number, unsigned digits) 
 
 {
 	char string [digits+1];
@@ -149,24 +149,24 @@ oattribute & oattribute::value (unsigned number, unsigned digits)
 
 /*====================================================================*
  *
- *   oattribute & write ();
+ *   oAttribute & write ();
  *
  *   <space><label><equal><quote><value><quote><comma>
  *
  *--------------------------------------------------------------------*/
 
-oattribute & oattribute::write () 
+oAttribute & oAttribute::write () 
 
 {
 	if (* this->mvalue) 
 	{
-		std::cout << oattribute::mspace;
+		std::cout << oAttribute::mspace;
 		if (* this->mlabel) 
 		{
-			std::cout << this->mlabel << oattribute::mequal;
+			std::cout << this->mlabel << oAttribute::mequal;
 		}
-		std::cout << oattribute::mquote << this->mvalue << oattribute::mquote;
-		std::cout << oattribute::mcomma;
+		std::cout << oAttribute::mquote << this->mvalue << oAttribute::mquote;
+		std::cout << oAttribute::mcomma;
 	}
 	return (* this);
 }
@@ -174,11 +174,11 @@ oattribute & oattribute::write ()
 
 /*====================================================================*
  *
- *   oattribute (char const * label, char const * value);
+ *   oAttribute (char const * label, char const * value);
  *   
  *--------------------------------------------------------------------*/
 
-oattribute::oattribute (char const * label, char const * value) 
+oAttribute::oAttribute (char const * label, char const * value) 
 
 {
 	this->mlabel = otext::save (label);
@@ -189,11 +189,11 @@ oattribute::oattribute (char const * label, char const * value)
 
 /*====================================================================*
  *
- *   oattribute (char const * label);
+ *   oAttribute (char const * label);
  *   
  *--------------------------------------------------------------------*/
 
-oattribute::oattribute (char const * label) 
+oAttribute::oAttribute (char const * label) 
 
 {
 	this->mlabel = otext::save (label);
@@ -204,12 +204,12 @@ oattribute::oattribute (char const * label)
 
 /*====================================================================*
  *
- *   ~oattribute ();
+ *   ~oAttribute ();
  *   
  *   
  *--------------------------------------------------------------------*/
 
-oattribute::~oattribute () 
+oAttribute::~oAttribute () 
 
 {
 	delete [] this->mlabel;

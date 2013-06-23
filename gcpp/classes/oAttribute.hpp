@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   oattribute.hpp - oattribute class declaration;
+ *   oAttribute.hpp - oAttribute class declaration;
  *
  *   this object implements a generic markup language attribute 
  *   having a name and a text property; the name property is read
@@ -32,19 +32,19 @@
  *   interface declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oattribute: private otext 
+class __declspec (dllexport) oAttribute: private otext 
 
 {
 public:
-	oattribute (char const * label);
-	oattribute (char const * label, char const * value);
-	virtual~ oattribute ();
+	oAttribute (char const * label);
+	oAttribute (char const * label, char const * value);
+	virtual~ oAttribute ();
 	char const * label () const;
 	char const * value () const;
-	oattribute & value (char const * string);
-	oattribute & value (unsigned number);
-	oattribute & value (unsigned number, unsigned digits);
-	oattribute & write ();
+	oAttribute & value (char const * string);
+	oAttribute & value (unsigned number);
+	oAttribute & value (unsigned number, unsigned digits);
+	oAttribute & write ();
 private:
 	static char const * mspace;
 	static char const * mequal;

@@ -27,7 +27,7 @@
  *   custom source files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/oattribute.cpp"
+#include "../classes/oAttribute.cpp"
 #include "../classes/ogetopt.cpp"
 #include "../classes/oputopt.cpp"
 
@@ -40,15 +40,15 @@ int main (int argc, char const * argv [])
 {
 	static char const * usage [] = 
 	{
-		"oattribute.demo",
+		"oAttribute.demo",
 		"h",
 		PUTOPT_S_FUNNEL,
-		"oattribute object class demonstration and test utility",
+		"oAttribute object class demonstration and test utility",
 		"h\thelp summary ",
 		NULL
 	};
 	ogetopt options (1);
-	oattribute attrib;
+	oAttribute attrib;
 	flag_t flags = (flag_t) (0);
 	signed c;
 	while ((c = options.getopt (argc, argv, usage [PUTOPT_I_OPTIONS])) != -1) 
