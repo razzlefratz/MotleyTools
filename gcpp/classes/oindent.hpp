@@ -52,15 +52,15 @@ public:
 	static void newline (char const * margin, char const * indent, signed align);
 	static void endline (char const * finish, char const * record, signed space);
 	static void print (char const * prefix, char const * suffix, signed count);
+protected:
+	signed mlevel;
+	signed mspace;
 private:
-	unsigned mspace;
-	unsigned mlevel;
 	char * mmargin;
 	char * mindent;
 	char * mfinish;
 	char * mrecord;
 };
-
 
 /*====================================================================*
  *   end interface declaration;

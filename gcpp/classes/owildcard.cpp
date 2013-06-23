@@ -124,7 +124,6 @@ bool owildcard::match (char const * literal, char const * pattern)
 
 }
 
-
 /*====================================================================*
  *
  *   owildcard ();
@@ -140,7 +139,6 @@ owildcard::owildcard ()
 	this->allchar = '*';
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -159,7 +157,6 @@ owildcard::owildcard (unsigned char anychar, unsigned char allchar)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~owildcard();
@@ -171,7 +168,6 @@ owildcard::~owildcard ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

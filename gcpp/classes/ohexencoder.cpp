@@ -41,6 +41,7 @@ char * ohexencoder::decode (char * string)
 	{
 		return (string);
 	}
+
 #endif
 
 	while ((* target = * string) != (char) (0)) 
@@ -63,7 +64,6 @@ char * ohexencoder::decode (char * string)
 	return (target);
 }
 
-
 /*====================================================================*
  *   
  *   ohexencoder ();
@@ -77,7 +77,6 @@ ohexencoder::ohexencoder ()
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   ~ohexencoder ();
@@ -90,7 +89,6 @@ ohexencoder::~ohexencoder ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   

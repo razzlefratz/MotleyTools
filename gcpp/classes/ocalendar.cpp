@@ -47,7 +47,6 @@ char const * ocalendar::mdays [DAYS_IN_WEEK] =
 	" S"
 };
 
-
 char const * ocalendar::mdate1 [DATES_IN_MONTH+1] = 
 
 {
@@ -84,7 +83,6 @@ char const * ocalendar::mdate1 [DATES_IN_MONTH+1] =
 	"30",
 	"31"
 };
-
 
 char const * ocalendar::mdate2 [DATES_IN_MONTH+1] = 
 
@@ -123,7 +121,6 @@ char const * ocalendar::mdate2 [DATES_IN_MONTH+1] =
 	"31"
 };
 
-
 /*====================================================================*
  *
  *   ocalendar & stylesheet (unsigned level, unsigned space)
@@ -148,7 +145,6 @@ ocalendar & ocalendar::stylesheet (unsigned level, unsigned space)
 	mindent.print (level--, space, "</style>");
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -180,7 +176,6 @@ ocalendar & ocalendar::annum ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ocalendar & annum (unsigned level, unsigned space);
@@ -209,7 +204,6 @@ ocalendar & ocalendar::annum (unsigned level, unsigned space)
 	mindent.print (level--, 1, "</table>");
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -240,7 +234,6 @@ ocalendar & ocalendar::month (unsigned index)
 	mindent.print (level--, space, "</html>");
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -285,7 +278,6 @@ ocalendar & ocalendar::month (unsigned level, unsigned space, unsigned index)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ocalendar & print ()
@@ -313,7 +305,6 @@ ocalendar & ocalendar::print (unsigned index)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ocalendar ()
@@ -334,7 +325,6 @@ ocalendar::ocalendar ()
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -357,7 +347,6 @@ ocalendar::ocalendar (unsigned year)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ocalendar ()
@@ -373,7 +362,6 @@ ocalendar::~ocalendar ()
 	delete [] this->mtitle;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

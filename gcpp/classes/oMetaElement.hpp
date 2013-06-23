@@ -22,7 +22,7 @@
  *   interface declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oMetaElement
+class __declspec (dllexport) oMetaElement 
 
 {
 public:
@@ -39,7 +39,6 @@ private:
 	static char const * mscope;
 	static char const * mtitle;
 };
-
 
 /*====================================================================*
  *   end declaration;

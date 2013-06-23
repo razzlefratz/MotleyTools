@@ -40,7 +40,6 @@ char const * opage::title () const
 	return (this->mtitle);
 }
 
-
 /*====================================================================*
  *
  *   opage & title (char const * title);
@@ -60,7 +59,6 @@ opage & opage::title (char const * title)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   unsigned rows () const;
@@ -73,7 +71,6 @@ unsigned opage::rows () const
 {
 	return (this->mrows);
 }
-
 
 /*====================================================================*
  *
@@ -89,7 +86,6 @@ opage & opage::rows (unsigned rows)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   unsigned cols () const;
@@ -102,7 +98,6 @@ unsigned opage::cols () const
 {
 	return (this->mcols);
 }
-
 
 /*====================================================================*
  *
@@ -118,7 +113,6 @@ opage & opage::cols (unsigned cols)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   unsigned tabs () const;
@@ -131,7 +125,6 @@ unsigned opage::tabs () const
 {
 	return (this->mtabs);
 }
-
 
 /*====================================================================*
  *
@@ -146,7 +139,6 @@ opage & opage::tabs (unsigned tabs)
 	this->mtabs = tabs;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -220,6 +212,7 @@ int opage::put (int c)
 		{
 			this->put ('\f');
 		}
+
 #endif
 
 		while (this->mcol < this->mtab) 
@@ -241,7 +234,6 @@ int opage::put (int c)
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -267,7 +259,6 @@ char const * opage::put (char const * string)
 	return (string);
 }
 
-
 /*====================================================================*
  *
  *   opage & eject ();
@@ -292,7 +283,6 @@ opage & opage::eject ()
 	this->mtab = 0;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -322,7 +312,6 @@ opage::opage ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   opage::~opage ();
@@ -338,7 +327,6 @@ opage::~opage ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

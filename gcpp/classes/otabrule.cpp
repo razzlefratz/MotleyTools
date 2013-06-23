@@ -40,7 +40,6 @@ tabrule & tabrule::clear ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   tabrule & tabrule::reset ();
@@ -58,7 +57,6 @@ tabrule & tabrule::reset ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   unsigned tabrule::margin () const;
@@ -72,7 +70,6 @@ unsigned tabrule::margin () const
 	return (mmargin);
 }
 
-
 /*====================================================================*
  *
  *   unsigned tabrule::indent () const;
@@ -85,7 +82,6 @@ unsigned tabrule::indent () const
 {
 	return (mindent);
 }
-
 
 /*====================================================================*
  *
@@ -101,7 +97,6 @@ bool tabrule::tabcol (unsigned column)
 {
 	return ((column < mmargin)? (mruler [column]): true);
 }
-
 
 /*====================================================================*
  *
@@ -152,7 +147,6 @@ tabrule & tabrule::tabset (unsigned column, signed indent)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
@@ -169,7 +163,6 @@ tabrule::tabrule (unsigned margin, signed indent)
 	}
 };
 
-
 tabrule::tabrule () 
 
 {
@@ -178,13 +171,11 @@ tabrule::tabrule ()
 	mruler = new bool [mmargin];
 };
 
-
 tabrule::~tabrule () 
 
 {
 	delete [] mruler;
 }
-
 
 /*====================================================================*
  *   end implementation;

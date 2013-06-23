@@ -51,7 +51,6 @@ char const * ofilespec::fullpath ()
 	return (this->makepath ().fullname ());
 }
 
-
 /*====================================================================*
  *
  *   char const *makepath ();
@@ -78,7 +77,6 @@ ofilespec & ofilespec::makepath ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ofilespec & operator= (char const *filespec);
@@ -98,7 +96,6 @@ ofilespec & ofilespec::operator = (char const * filespec)
 	this->filespec (filespec);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -126,7 +123,6 @@ ofilespec & ofilespec::filespec (char const * filespec)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char const *fullname() const;
@@ -144,7 +140,6 @@ char const * ofilespec::fullname () const
 {
 	return (this->mfullname);
 }
-
 
 /*====================================================================*
  *
@@ -164,7 +159,6 @@ char const * ofilespec::pathname () const
 	return (this->mpathname);
 }
 
-
 /*====================================================================*
  *
  *   ofilespec & pathname (char const *filespec);
@@ -183,7 +177,6 @@ ofilespec & ofilespec::pathname (char const * filespec)
 	std::strcpy (this->mpathname, ofilespec::scratch.filespec (filespec).pathname ());
 	return (this->makepath ());
 }
-
 
 /*====================================================================*
  *
@@ -210,7 +203,6 @@ char const * ofilespec::filename () const
 	return (this->mfilename);
 }
 
-
 /*====================================================================*
  *
  *   ofilespec & filename(char const *filespec);
@@ -233,7 +225,6 @@ ofilespec & ofilespec::filename (char const * filespec)
 	return (this->makepath ());
 }
 
-
 /*====================================================================*
  *
  *   char const *basename() const;
@@ -251,7 +242,6 @@ char const * ofilespec::basename () const
 {
 	return (this->mbasename);
 }
-
 
 /*====================================================================*
  *
@@ -272,7 +262,6 @@ ofilespec & ofilespec::basename (char const * filespec)
 	return (this->makepath ());
 }
 
-
 /*====================================================================*
  *
  *   char const *extender() const;
@@ -290,7 +279,6 @@ char const * ofilespec::extender () const
 {
 	return (this->mextender);
 }
-
 
 /*====================================================================*
  *
@@ -310,7 +298,6 @@ ofilespec & ofilespec::extender (char const * filespec)
 	std::strcpy (this->mextender, ofilespec::scratch.filespec (filespec).extender ());
 	return (this->makepath ());
 }
-
 
 /*====================================================================*
  *
@@ -339,7 +326,6 @@ char const * ofilespec::longname () const
 	std::strcat (this->mfullname, this->mbasename);
 	return (this->mfullname);
 }
-
 
 /*====================================================================*
  *
@@ -374,7 +360,6 @@ char const * ofilespec::tempname (char const * filespec)
 	return (this->mfullname);
 }
 
-
 /*====================================================================*
  *
  *   char const *likename(char const *extender);
@@ -402,7 +387,6 @@ char const * ofilespec::likename (char const * filespec)
 	return (this->mfullname);
 }
 
-
 /*====================================================================*
  *
  *   char const *savename (char const *filespec);
@@ -427,7 +411,6 @@ char const * ofilespec::savename (char const * filespec)
 	}
 	return (this->mfullname);
 }
-
 
 /*====================================================================*
  *
@@ -455,7 +438,6 @@ char const * ofilespec::savename (unsigned number, unsigned length)
 	std::strcat (this->mfullname, digits);
 	return (this->mfullname);
 }
-
 
 /*====================================================================*
  *
@@ -486,7 +468,6 @@ ofilespec & ofilespec::peek ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ofilespec();
@@ -508,7 +489,6 @@ ofilespec::ofilespec ()
 	this->mextender = new char [FILENAME_MAX + 1];
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -533,7 +513,6 @@ ofilespec::ofilespec (char const * filespec)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ofilespec();
@@ -555,7 +534,6 @@ ofilespec::~ofilespec ()
 	delete [] this->mextender;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

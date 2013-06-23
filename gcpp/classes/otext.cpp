@@ -46,7 +46,6 @@ char * otext::replace (char * buffer, char const * string)
 	return (buffer);
 }
 
-
 /*====================================================================*
  *
  *   char const *otext::save(char const * string);
@@ -65,7 +64,6 @@ char * otext::save (char const * string)
 	std::strcpy (buffer, string);
 	return (buffer);
 }
-
 
 /*====================================================================*
  *   end implementation;

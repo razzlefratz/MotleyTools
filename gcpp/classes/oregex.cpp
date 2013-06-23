@@ -55,7 +55,6 @@ char const * oregex::select (char const * string) const
 	return ((char *) (0));
 }
 
-
 /*====================================================================*
  *
  *   char const *oregex::span(char const *string) const;
@@ -96,7 +95,6 @@ char const * oregex::span (char const * literal) const
 	return (sp);
 }
 
-
 /*====================================================================*
  *
  *   bool oregex::compare (char const * charset, char const character, bool exclude);
@@ -126,7 +124,6 @@ bool oregex::compare (char const * charset, char const character, bool exclude)
 	return (exclude);
 }
 
-
 /*====================================================================*
  *
  *   oregex & oregex::show ();
@@ -149,7 +146,6 @@ oregex & oregex::show ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char *oregex::fill (unsigned clower, unsigned cupper, char buffer[], size_t * length);
@@ -170,7 +166,6 @@ char * oregex::fill (unsigned clower, unsigned cupper, char buffer [], size_t * 
 	}
 	return (buffer);
 }
-
 
 /*====================================================================*
  *
@@ -236,6 +231,7 @@ char const * oregex::charset (char const * string, char const close, char buffer
 			}
 			continue;
 		}
+
 #ifdef REGEX_LABEL_EXTENSIONS
 
 		if ((* buffer == '[') && (* string == ':')) 
@@ -289,6 +285,7 @@ char const * oregex::charset (char const * string, char const close, char buffer
 				buffer = fill ('a', 'f', buffer, & length);
 				continue;
 			}
+
 #ifdef REGEX_POSIX_EXTENSIONS
 
 			if (!std::strcmp (buffer, "[:word:]")) 
@@ -374,6 +371,7 @@ char const * oregex::charset (char const * string, char const close, char buffer
 			buffer = symbol;
 			continue;
 		}
+
 #endif
 #endif
 
@@ -382,7 +380,6 @@ char const * oregex::charset (char const * string, char const close, char buffer
 	* buffer = (char) (0);
 	return (string);
 }
-
 
 /*====================================================================*
  *
@@ -481,7 +478,6 @@ oregex::oregex (char const * string)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oregex () 
@@ -497,7 +493,6 @@ oregex::~oregex ()
 	delete this->mpattern;
 	return;
 }
-
 
 /*====================================================================*
  *

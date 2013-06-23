@@ -63,7 +63,6 @@ signed ocollect::context (signed c, char const * charset) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed context (signed c, signed o, signed e) const;
@@ -83,7 +82,6 @@ signed ocollect::context (signed c, signed o, signed e) const
 	return (c);
 }
 
-
 signed ocollect::inner_context (signed c, signed o, signed e) const 
 
 {
@@ -94,7 +92,6 @@ signed ocollect::inner_context (signed c, signed o, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -115,7 +112,6 @@ signed ocollect::context (signed c, signed e) const
 	return (c);
 }
 
-
 signed ocollect::inner_context (signed c, signed e) const 
 
 {
@@ -125,7 +121,6 @@ signed ocollect::inner_context (signed c, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *   
@@ -178,7 +173,6 @@ signed ocollect::context (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed comment (signed c) const;
@@ -206,7 +200,6 @@ signed ocollect::comment (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed ocollect::content (signed c, signed o, signed e);
@@ -231,7 +224,6 @@ signed ocollect::content (signed c, signed o, signed e) const
 	return (c);
 }
 
-
 signed ocollect::inner_content (signed c, signed o, signed e) const 
 
 {
@@ -242,7 +234,6 @@ signed ocollect::inner_content (signed c, signed o, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -266,7 +257,6 @@ signed ocollect::content (signed c, signed e) const
 	return (c);
 }
 
-
 signed ocollect::inner_content (signed c, signed e) const 
 
 {
@@ -276,7 +266,6 @@ signed ocollect::inner_content (signed c, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -304,7 +293,6 @@ signed ocollect::command (signed c) const
 	return (c);
 }
 
-
 signed ocollect::command (signed c, signed e) const 
 
 {
@@ -313,7 +301,6 @@ signed ocollect::command (signed c, signed e) const
 	c = ocollect::keep (c);
 	return (c);
 }
-
 
 signed ocollect::inner_command (signed c, signed e) const 
 
@@ -334,7 +321,6 @@ signed ocollect::inner_command (signed c, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -357,7 +343,6 @@ signed ocollect::literal (signed c) const
 	return (c);
 }
 
-
 signed ocollect::literal (signed c, signed e) const 
 
 {
@@ -366,7 +351,6 @@ signed ocollect::literal (signed c, signed e) const
 	c = ocollect::keep (c);
 	return (c);
 }
-
 
 signed ocollect::inner_literal (signed c, signed e) const 
 
@@ -377,7 +361,6 @@ signed ocollect::inner_literal (signed c, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -399,7 +382,6 @@ signed ocollect::escaped (signed c) const
 	c = ocollect::keep (c);
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -427,7 +409,6 @@ signed ocollect::join (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *   
  *   signed find (signed c) const;
@@ -449,7 +430,6 @@ signed ocollect::find (signed c) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *   
@@ -474,7 +454,6 @@ signed ocollect::keep (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   ocollect ();
@@ -491,7 +470,6 @@ ocollect::ocollect ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ocollect ();
@@ -507,7 +485,6 @@ ocollect::~ocollect ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation

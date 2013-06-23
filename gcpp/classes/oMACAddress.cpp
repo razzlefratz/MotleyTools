@@ -44,7 +44,6 @@ errno_t oMACAddress::error () const
 	return (this->merror);
 }
 
-
 /*====================================================================*
  *   
  *   const unsigned char * number() const
@@ -58,7 +57,6 @@ const unsigned char * oMACAddress::number () const
 	return ((const unsigned char *)(this->mnumber));
 }
 
-
 /*====================================================================*
  *   
  *   const unsigned char * string () const
@@ -71,7 +69,6 @@ char const * oMACAddress::string () const
 {
 	return ((char const *)(this->mstring));
 }
-
 
 /*====================================================================*
  *
@@ -100,7 +97,6 @@ oMACAddress & oMACAddress::spec (char const * string)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -160,7 +156,6 @@ oMACAddress & oMACAddress::encode (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char const * MACDecode (const unsigned char number[], size_t octets, char *string);
@@ -192,7 +187,6 @@ oMACAddress & oMACAddress::decode (const unsigned char number [])
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oMACAddress()
@@ -211,7 +205,6 @@ oMACAddress::oMACAddress ()
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   ~oMACAddress()
@@ -224,7 +217,6 @@ oMACAddress::~oMACAddress ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *

@@ -43,7 +43,6 @@ char const * oAnchorElement::ElementName () const
 	return (oAnchorElement::mtitle);
 }
 
-
 /*====================================================================*
  *
  *   char const * StartTag() 
@@ -68,7 +67,6 @@ oAnchorElement & oAnchorElement::StartTag ()
 	std::cout.put ('>');
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -96,7 +94,6 @@ oAnchorElement & oAnchorElement::EmptyTag ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oAnchorElement & EndTag();
@@ -120,7 +117,6 @@ oAnchorElement & oAnchorElement::EndTag ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oAnchorElement ();
@@ -134,7 +130,6 @@ oAnchorElement::oAnchorElement ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oAnchorElement ();
@@ -147,7 +142,6 @@ oAnchorElement::~oAnchorElement ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *

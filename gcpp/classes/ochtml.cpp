@@ -51,11 +51,7 @@ ofilespec ochtml::filespec;
  *   void stylesheet ();
  *   
  *   write a compatible CSS stylesheet on stdout; the element and
- *   property names are referenced throughout the document;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *   property names are used throughout HTML source code pages;
  *
  *--------------------------------------------------------------------*/
 
@@ -81,24 +77,18 @@ ochtml & ochtml::stylesheet ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ochtml & stylesheet (char const * string);
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 ochtml & ochtml::stylesheet (char const * string) 
 
 {
-	owebpage::PageStyle (string);
+	owebpage::stylesheet (string);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -109,10 +99,6 @@ ochtml & ochtml::stylesheet (char const * string)
  *   comments, keywords, constants, variables and operators highlighed in
  *   various colors for visual effect; selected constants, variable and
  *   filenames may have hyperlinks to companion pages;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -133,7 +119,7 @@ ochtml & ochtml::html (char const * filename)
 		oerror::print ("can't open %s for output", filename);
 	}
 	buf = std::cout.rdbuf (output.rdbuf ());
-	ochtml::PageTitle (filename);
+	ochtml::title (filename);
 	ochtml::PageHeader ();
 	std::cout << "<pre>";
 	while (!this->mfile.isempty ()) 
@@ -262,16 +248,11 @@ ochtml & ochtml::html (char const * filename)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   void directive ();
  *
  *   under construction;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -359,6 +340,7 @@ ochtml & ochtml::directive ()
 			this->mfile.scanbreak ().flush ();
 			std::cout << "&gt;";
 		}
+
 #if 0         
 
 		else if (this->mfile.isbreak ('[')) 
@@ -385,6 +367,7 @@ ochtml & ochtml::directive ()
 			this->mfile.flush ().scanbreak ();
 			std::cout << this->mfile.tokentext ();
 		}
+
 #endif
 
 		else 
@@ -416,54 +399,39 @@ ochtml & ochtml::directive ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ochtml(char const * stylesheet);
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
 ochtml::ochtml (char const * stylesheet) 
 
 {
-	owebpage::PageStyle (stylesheet);
+	owebpage::stylesheet (stylesheet);
 	this->murl = new char [FILENAME_MAX + 1];
 	this->murl [0] = (char)(0);
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ochtml();
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
 ochtml::ochtml () 
 
 {
-	owebpage::PageStyle (oCHTML_PAGE_STYLESHEET);
+	owebpage::stylesheet (oCHTML_PAGE_STYLESHEET);
 	this->murl = new char [FILENAME_MAX + 1];
 	this->murl [0] = (char)(0);
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ochtml();
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -472,7 +440,6 @@ ochtml::~ochtml ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

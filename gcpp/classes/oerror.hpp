@@ -39,7 +39,6 @@ public:
 	static void error_at_line (signed status, errno_t number, char const * file, unsigned line, char const * format, ...);
 };
 
-
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/

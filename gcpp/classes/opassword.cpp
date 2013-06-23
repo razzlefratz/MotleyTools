@@ -39,7 +39,6 @@ unsigned opassword::count () const
 	return (this->mcount);
 }
 
-
 /*====================================================================*
  *
  *   opassword & count (unsigned count);
@@ -54,7 +53,6 @@ opassword & opassword::count (unsigned count)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   const unsigned group () const;
@@ -67,7 +65,6 @@ unsigned opassword::group () const
 {
 	return (this->mgroup);
 }
-
 
 /*====================================================================*
  *
@@ -83,7 +80,6 @@ opassword & opassword::group (unsigned group)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   unsigned space () const;
@@ -96,7 +92,6 @@ unsigned opassword::space () const
 {
 	return (this->mbreak);
 }
-
 
 /*====================================================================*
  *
@@ -111,7 +106,6 @@ opassword & opassword::space (unsigned space)
 	this->mbreak = space;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -137,7 +131,6 @@ opassword & opassword::print (unsigned salt)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -166,7 +159,6 @@ opassword::opassword (unsigned seed)
 	return;
 };
 
-
 /*====================================================================*
  *
  *   ~opassword();
@@ -180,7 +172,6 @@ opassword::~opassword ()
 	delete [] this->mcharset;
 	return;
 }
-
 
 /*====================================================================*
  *

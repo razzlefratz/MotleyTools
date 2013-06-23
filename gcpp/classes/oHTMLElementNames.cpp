@@ -140,7 +140,6 @@ oHTMLElementNames::oHTMLElementNames ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oHTMLElementNames ();
@@ -152,7 +151,6 @@ oHTMLElementNames::~oHTMLElementNames ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

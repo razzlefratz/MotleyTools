@@ -51,7 +51,6 @@ const size_t ostring::length () const
 	return (this->mlength);
 }
 
-
 /*====================================================================*
  *
  *   char const * string () const;
@@ -69,7 +68,6 @@ char const * ostring::string () const
 {
 	return ((char const *) (this->mstring));
 }
-
 
 /*====================================================================*
  *
@@ -95,7 +93,6 @@ ostring & ostring::string (char const * string)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -124,7 +121,6 @@ char const * ostring::first (size_t count)
 	return (this->mbuffer);
 }
 
-
 /*====================================================================*
  *
  *   char const * final (size_t count);
@@ -150,7 +146,6 @@ char const * ostring::final (size_t count)
 	this->mbuffer [count] = (char) (0);
 	return (this->mbuffer);
 }
-
 
 /*====================================================================*
  *
@@ -178,7 +173,6 @@ char const * ostring::operator << (size_t count)
 	return (this->mbuffer);
 }
 
-
 /*====================================================================*
  *
  *   char const * operator >> (size_t count);
@@ -205,7 +199,6 @@ char const * ostring::operator >> (size_t count)
 	return (this->mbuffer);
 }
 
-
 /*====================================================================*
  *
  *   ostring & operator = (char const * string);
@@ -223,7 +216,6 @@ ostring & ostring::operator = (char const * string)
 {
 	return (this->string (string));
 }
-
 
 /*====================================================================*
  *
@@ -243,7 +235,6 @@ bool ostring::operator == (char const * string) const
 	return (std::strcmp (this->mstring, string) == 0);
 }
 
-
 /*====================================================================*
  *
  *   ostring & operator != (char const * string);
@@ -261,7 +252,6 @@ bool ostring::operator != (char const * string) const
 {
 	return (std::strcmp (this->mstring, string) != 0);
 }
-
 
 /*====================================================================*
  *
@@ -281,7 +271,6 @@ bool ostring::operator <= (char const * string) const
 	return (std::strcmp (this->mstring, string) <= 0);
 }
 
-
 /*====================================================================*
  *
  *   ostring & operator >= (char const * string);
@@ -299,7 +288,6 @@ bool ostring::operator >= (char const * string) const
 {
 	return (std::strcmp (this->mstring, string) >= 0);
 }
-
 
 /*====================================================================*
  *
@@ -319,7 +307,6 @@ bool ostring::operator < (char const * string) const
 	return (std::strcmp (this->mstring, string) < 0);
 }
 
-
 /*====================================================================*
  *
  *   ostring & operator >= (char const * string);
@@ -338,7 +325,6 @@ bool ostring::operator > (char const * string) const
 	return (std::strcmp (this->mstring, string) > 0);
 }
 
-
 /*====================================================================*
  *
  *   bool operator * (char const * charset) const;
@@ -356,7 +342,6 @@ bool ostring::operator * (char const * charset) const
 {
 	return (this->ischarset (charset));
 }
-
 
 /*====================================================================*
  *
@@ -383,7 +368,6 @@ bool ostring::ischarset (char const * charset) const
 	return (true);
 }
 
-
 /*====================================================================*
  *
  *   bool incharset (char const * charset) const;
@@ -408,7 +392,6 @@ bool ostring::incharset (char const * charset) const
 	}
 	return (false);
 }
-
 
 /*====================================================================*
  *
@@ -438,7 +421,6 @@ ostring & ostring::read (char const * filename)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ostring & read ();
@@ -465,7 +447,6 @@ ostring & ostring::read ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ostring & read (ifstream *stream);
@@ -491,7 +472,6 @@ ostring & ostring::read (std::ifstream * stream)
 	this->mlength = length;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -523,7 +503,6 @@ char const * ostring::field (size_t start, size_t count)
 	this->mbuffer [count] = (char) (0);
 	return (this->mbuffer);
 }
-
 
 /*====================================================================*
  *
@@ -560,7 +539,6 @@ ostring & ostring::trim (char const * charset)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ostring & enclose (char const * example);
@@ -595,7 +573,6 @@ ostring & ostring::enclose (char const * example)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ostring & prefix (char const * string);
@@ -620,7 +597,6 @@ ostring & ostring::prefix (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ostring & suffix (char const * string);
@@ -644,7 +620,6 @@ ostring & ostring::suffix (char const * string)
 	delete [] buffer;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -676,7 +651,6 @@ ostring & ostring::reduce (char const * charset)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -710,7 +684,6 @@ ostring & ostring::select (char const * charset)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ostring & remove (char const * charset);
@@ -743,7 +716,6 @@ ostring & ostring::remove (char const * charset)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ostring & tolower ();
@@ -763,7 +735,6 @@ ostring & ostring::tolower ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ostring & toupper ();
@@ -782,7 +753,6 @@ ostring & ostring::toupper ()
 	ostring::chrupr.convert (this->mstring);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -805,7 +775,6 @@ ostring & ostring::clear ()
 	this->mlength = 0;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -854,7 +823,6 @@ signed ostring::compare (register char const * string1, register char const * st
 	return (ct [(unsigned) (* string1)] < ct [(unsigned) (* string2)]? -1: +1);
 }
 
-
 /*====================================================================*
  *
  *   ostring::ostring (char const * string, size_t start, size_t count);
@@ -885,7 +853,6 @@ ostring::ostring (char const * string, size_t start, size_t count)
 	this->mstring [this->mlength] = (char) (0);
 }
 
-
 /*====================================================================*
  *
  *   ostring::ostring (char const * string);
@@ -907,7 +874,6 @@ ostring::ostring (char const * string)
 	this->mstring = new char [this->mlength + 1];
 	std::strcpy (this->mstring, string);
 }
-
 
 /*====================================================================*
  *
@@ -931,7 +897,6 @@ ostring::ostring ()
 	this->mlength = 0;
 }
 
-
 /*====================================================================*
  *
  *   ostring::~ostring ();
@@ -950,7 +915,6 @@ ostring::~ostring ()
 	delete [] this->mbuffer;
 	delete [] this->mstring;
 }
-
 
 /*====================================================================*
  *   end implementation;

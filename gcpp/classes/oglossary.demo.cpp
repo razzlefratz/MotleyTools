@@ -22,4 +22,3 @@ void main (int argc, char * argv [])
 	cout << "glossary=[" << glossary.lookup ("abcde") << "]" << std::endl;
 }
 
-

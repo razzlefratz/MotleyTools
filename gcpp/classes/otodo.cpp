@@ -38,7 +38,6 @@ char const * otodo::title () const
 	return (this->mtitle);
 }
 
-
 /*====================================================================*
  *
  *   otodo &otodo::title(char const *string)
@@ -56,7 +55,6 @@ otodo & otodo::title (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   size_t otodo::index() const;
@@ -71,7 +69,6 @@ size_t otodo::index () const
 {
 	return (this->mindex);
 }
-
 
 /*====================================================================*
  *
@@ -88,7 +85,6 @@ size_t otodo::start () const
 	return (this->mstart);
 }
 
-
 /*====================================================================*
  *
  *   size_t otodo::count() const;
@@ -102,7 +98,6 @@ size_t otodo::count () const
 {
 	return (this->mcount);
 }
-
 
 /*====================================================================*
  *
@@ -121,7 +116,6 @@ size_t otodo::block () const
 	return (this->mblock);
 }
 
-
 /*====================================================================*
  *
  *   size_t otodo::limit() const;
@@ -139,7 +133,6 @@ size_t otodo::limit () const
 	return (this->mlimit);
 }
 
-
 /*====================================================================*
  *
  *   oitem *otodo::item() const
@@ -154,7 +147,6 @@ oitem * otodo::item () const
 {
 	return (this->mindex < this->mcount? this->mtable [this->mindex]: (oitem *) (0));
 }
-
 
 /*====================================================================*
  *
@@ -171,7 +163,6 @@ oitem * otodo::items (size_t index) const
 	return (index < this->mcount? this->mtable [index]: (oitem *) (0));
 }
 
-
 /*====================================================================*
  *
  *   bool otodo::defined(char const *string);
@@ -186,7 +177,6 @@ bool otodo::defined (char const * string)
 {
 	return (this->indexof (string) < this->mcount);
 }
-
 
 /*====================================================================*
  *
@@ -203,7 +193,6 @@ size_t otodo::indexof (char const * string)
 {
 	return (this->select (string).index ());
 }
-
 
 /*====================================================================*
  *
@@ -228,7 +217,6 @@ otodo & otodo::select (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oitem *otodo::item(char const *symbol) 
@@ -241,7 +229,6 @@ oitem * otodo::item (char const * symbol)
 {
 	return (this->select (symbol).item ());
 }
-
 
 /*====================================================================*
  *
@@ -271,7 +258,6 @@ otodo & otodo::insertitem (oitem * item)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   otodo &otodo::appenditem(oitem *item);
@@ -300,7 +286,6 @@ otodo & otodo::appenditem (oitem * item)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   otodo &otodo::removeitem(oitem *item);
@@ -319,7 +304,6 @@ otodo & otodo::removeitem ()
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -346,7 +330,6 @@ otodo & otodo::orderlist ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   otodo & otodo::clearlist();
@@ -364,7 +347,6 @@ otodo & otodo::clearlist ()
 	this->mcount = 0;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -387,7 +369,6 @@ otodo::otodo ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   otodo::~otodo();
@@ -402,7 +383,6 @@ otodo::~otodo ()
 	delete [] this->mtable;
 	return;
 }
-
 
 /*====================================================================*
  * end implementation;

@@ -41,7 +41,6 @@ unsigned ochrtbl::convert (unsigned c) const
 	return (this->mtable [c & UCHAR_MAX]);
 }
 
-
 /*====================================================================*
  *
  *   ochrtbl & convert (  char *string);
@@ -63,7 +62,6 @@ ochrtbl & ochrtbl::convert (char * string)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -112,7 +110,6 @@ signed ochrtbl::compare (char const * string1, char const * string2) const
 	return (this->mtable [(unsigned) (* string1)] < this->mtable [(unsigned) (* string2)]? -1: 1);
 }
 
-
 /*====================================================================*
  *
  *   ochrtbl::ochrtbl ();
@@ -129,7 +126,6 @@ ochrtbl::ochrtbl ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ochrtbl::~ochrtbl ();
@@ -145,7 +141,6 @@ ochrtbl::~ochrtbl ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end declaration;

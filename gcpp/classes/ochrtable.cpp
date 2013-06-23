@@ -41,7 +41,6 @@ ochrtable & ochrtable::toupper ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ochrtable & ochrtable::tolower();
@@ -58,7 +57,6 @@ ochrtable & ochrtable::tolower ()
 	for (c = 'a'; c <= 'z'; ochrtable::mtable [c++] = (char) (c));
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -87,7 +85,6 @@ ochrtable & ochrtable::charset (char const * charset1, char const * charset2)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ochrtable & ochrtable::mreset();
@@ -107,7 +104,6 @@ ochrtable & ochrtable::mreset ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ochrtable();
@@ -123,7 +119,6 @@ ochrtable::ochrtable ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ochrtable();
@@ -136,7 +131,6 @@ ochrtable::~ochrtable ()
 	delete [] this->mtable;
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

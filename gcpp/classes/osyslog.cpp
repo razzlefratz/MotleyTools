@@ -77,7 +77,6 @@ osyslog & osyslog::identity (char const * identity)
 	return (* this);
 }
 
-
 /*====================================================================*
  *   
  *   char const * identity() const;
@@ -96,7 +95,6 @@ char const * osyslog::identity () const
 {
 	return (this->midentity);
 }
-
 
 /*====================================================================*
  *   
@@ -120,7 +118,6 @@ osyslog & osyslog::facility (facility_t facility)
 	return (* this);
 }
 
-
 /*====================================================================*
  *   
  *   facility_t facility() const;
@@ -138,7 +135,6 @@ facility_t osyslog::facility () const
 {
 	return (this->mfacility);
 }
-
 
 /*====================================================================*
  *   
@@ -160,7 +156,6 @@ osyslog & osyslog::options (flag_t options)
 	return (* this);
 }
 
-
 /*====================================================================*
  *   
  *   flag_t options() const;
@@ -178,7 +173,6 @@ flag_t osyslog::options () const
 {
 	return (this->moptions);
 }
-
 
 /*====================================================================*
  *
@@ -212,7 +206,6 @@ void osyslog::syslogerr (priority_t priority, errno_t errnum, char const * forma
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void syslogerr_at_line (priority_t priority, errno_t errornum, char const *filename, unsigned lineno, char const *format, ...);
@@ -242,7 +235,6 @@ void osyslog::syslogerr_at_line (priority_t priority, errno_t errornum, char con
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   void syslog (priority_t priority, char const *format, ...);
@@ -264,7 +256,6 @@ void osyslog::syslog (priority_t priority, char const * format, ...)
 	va_end (arglist);
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -332,7 +323,6 @@ void osyslog::vsyslog (priority_t priority, char const * format, va_list arglist
 	return;
 }
 
-
 /*====================================================================*
  *
  *   osyslog();
@@ -365,7 +355,6 @@ osyslog::osyslog ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~osyslog();
@@ -384,7 +373,6 @@ osyslog::~osyslog ()
 	close (this->mfile);
 	return;
 }
-
 
 /*====================================================================*
  *

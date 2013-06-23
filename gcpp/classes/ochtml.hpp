@@ -44,10 +44,10 @@ public:
 	virtual~ ochtml ();
 	ochtml & html (char const * pathname);
 	ochtml & stylesheet ();
-	ochtml & stylesheet (char const * string);
+	ochtml & stylesheet (char const * stylesheet);
 private:
-	static char const * resource (char const * filename);
-	ochtml & directive ();
+	//	static char const * resource (char const * filename);
+ ochtml & directive ();
 	static ofilespec filespec;
 	oscancode mfile;
 	ofunctions clibword;
@@ -59,7 +59,6 @@ private:
 	oAnchorElement mlink;
 	oISOGlyph mglyph;
 };
-
 
 /*====================================================================*
  *   end declaration;

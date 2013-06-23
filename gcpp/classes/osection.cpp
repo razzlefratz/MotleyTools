@@ -52,7 +52,6 @@ osection & osection::width (size_t width)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   osection & title (char const *title) 
@@ -75,7 +74,6 @@ osection & osection::title (char const * title)
 	std::cout << std::endl;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -100,7 +98,6 @@ osection::osection ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~osection ();
@@ -119,7 +116,6 @@ osection::~osection ()
 	delete [] this->mlower;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

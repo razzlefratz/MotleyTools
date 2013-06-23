@@ -50,7 +50,6 @@ signed omarkup::level () const
 	return (this->mlevel);
 }
 
-
 /*====================================================================*
  *   
  *   char const * element () const;
@@ -70,20 +69,17 @@ char const * omarkup::element () const
 	return ((char const *) (this->melement));
 }
 
-
 char const * omarkup::attribute () const 
 
 {
 	return ((char const *) (this->mattribute));
 }
 
-
 char const * omarkup::value () const 
 
 {
 	return ((char const *) (this->mvalue));
 }
-
 
 /*====================================================================*
  *
@@ -102,7 +98,6 @@ char omarkup::quote () const
 {
 	return (this->mquote);
 }
-
 
 /*====================================================================*
  *
@@ -123,7 +118,6 @@ omarkup & omarkup::quote (signed quote)
 	this->mquote = quote;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -197,7 +191,6 @@ signed omarkup::indent (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed process (signed c) const;
@@ -217,7 +210,6 @@ signed omarkup::process (signed c) const
 	c = otidy::context (c, '?', '>');
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -311,7 +303,6 @@ signed omarkup::sgml (signed c) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -410,7 +401,6 @@ signed omarkup::xhtml (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed php (signed c) const;
@@ -431,7 +421,6 @@ signed omarkup::php (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed asp (signed c) const;
@@ -451,7 +440,6 @@ signed omarkup::asp (signed c) const
 	c = otidy::collect (c, '%', '>');
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -478,7 +466,6 @@ signed omarkup::number (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed nmtoken (signed c)
@@ -502,7 +489,6 @@ signed omarkup::nmtoken (signed c)
 	* string = (char) (0);
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -539,7 +525,6 @@ signed omarkup::cdata (signed c, signed e) const
 	return (e);
 }
 
-
 /*====================================================================*
  *
  *   signed dequote (signed e) 
@@ -564,7 +549,6 @@ signed omarkup::dequote (signed e)
 	c = std::cin.get ();
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -602,7 +586,6 @@ signed omarkup::comment (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed unknown (signed c);
@@ -625,7 +608,6 @@ signed omarkup::unknown (signed c)
 	* string = (char) (0);
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -679,7 +661,6 @@ signed omarkup::control (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed content (signed c) const
@@ -703,7 +684,6 @@ signed omarkup::content (signed c) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -730,7 +710,6 @@ omarkup::omarkup ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~omarkup()
@@ -750,7 +729,6 @@ omarkup::~omarkup ()
 	delete [] this->mvalue;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation

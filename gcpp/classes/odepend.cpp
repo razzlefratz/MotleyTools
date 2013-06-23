@@ -93,7 +93,6 @@ odepend & odepend::populate (char colon, char comma, bool invert)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   odepend & connect(char const * one, char const * two);
@@ -122,7 +121,6 @@ odepend & odepend::connect (char const * one, char const * two)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -167,7 +165,6 @@ odepend * odepend::store (char const * nodename)
 	return (node);
 }
 
-
 /*====================================================================*
  *
  *   odepend & odepend::fetch(char const *nodename);
@@ -203,7 +200,6 @@ odepend * odepend::fetch (char const * nodename)
 	return (node);
 }
 
-
 /*====================================================================*
  *
  *   odepend & enumerate();
@@ -230,7 +226,6 @@ odepend & odepend::enumerate ()
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -265,7 +260,6 @@ odepend & odepend::structure ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   odepend & component();
@@ -293,7 +287,6 @@ odepend & odepend::component ()
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -329,7 +322,6 @@ odepend & odepend::targets ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   odepend & sources();
@@ -357,7 +349,6 @@ odepend & odepend::sources ()
 	return (* this);
 }
 
-
 /*====================================================================*
  * 
  *   odepend (char const * string);
@@ -382,7 +373,6 @@ odepend::odepend (char const * string)
 	return;
 }
 
-
 /*====================================================================*
  * 
  *   odepend();
@@ -406,7 +396,6 @@ odepend::odepend ()
 	return;
 }
 
-
 /*====================================================================*
  * 
  *   ~odepend();
@@ -427,7 +416,6 @@ odepend::~odepend ()
 	delete [] this->mstring;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

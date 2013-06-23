@@ -64,7 +64,6 @@ void * okeep::store (char const * string, void * object)
 	return (pobject);
 }
 
-
 /*====================================================================*
  *
  *   void *fetch (char const *string) const;
@@ -98,7 +97,6 @@ void * okeep::fetch (char const * string) const
 	return ((void *) (0));
 }
 
-
 /*====================================================================*
  *
  *   okeep()
@@ -118,7 +116,6 @@ okeep::okeep ()
 	mafter = (okeep *) (0);
 	return;
 };
-
 
 /*====================================================================*
  *
@@ -140,7 +137,6 @@ okeep::~okeep ()
 	this->mafter = (okeep *) (0);
 	return;
 }
-
 
 /*====================================================================*
  *

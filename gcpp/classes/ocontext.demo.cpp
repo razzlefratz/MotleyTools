@@ -56,7 +56,6 @@ static void show (char const * literal, unsigned c, bool mode)
 	return;
 }
 
-
 /*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
@@ -118,5 +117,4 @@ int main (int argc, char const * argv [])
 	}
 	exit (0);
 }
-
 

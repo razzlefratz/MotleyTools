@@ -69,7 +69,6 @@ bool opathspec::isdotdir (char const * filename)
 	return (* filename == (char) (0));
 }
 
-
 /*====================================================================*
  *
  *   bool exists (char const * filename);
@@ -88,7 +87,6 @@ bool opathspec::exists (char const * filename)
 {
 	return (!stat (filename, & this->mstatinfo));
 }
-
 
 /*====================================================================*
  *
@@ -150,7 +148,6 @@ bool opathspec::infolder (char pathname [], char const * wildcard, bool recurse)
 	return (false);
 }
 
-
 /*====================================================================*
  *
  *   bool invector (char fullname[], char const * pathname[], char const * filename);
@@ -183,6 +180,7 @@ bool opathspec::invector (char fullname [], char const * pathname [], char const
 	{
 		return (false);
 	}
+
 #endif
 
 	while (* pathname) 
@@ -195,7 +193,6 @@ bool opathspec::invector (char fullname [], char const * pathname [], char const
 	}
 	return (false);
 }
-
 
 /*====================================================================*
  *
@@ -228,6 +225,7 @@ bool opathspec::invector (char fullname [], char const * pathname [], char const
 	{
 		return (false);
 	}
+
 #endif
 
 	while (* pathname) 
@@ -242,7 +240,6 @@ bool opathspec::invector (char fullname [], char const * pathname [], char const
 	}
 	return (false);
 }
-
 
 /*====================================================================*
  *
@@ -275,6 +272,7 @@ bool opathspec::instring (char fullname [], char const * pathname, char const * 
 	{
 		return (false);
 	}
+
 #endif
 
 	while (* pathname) 
@@ -297,7 +295,6 @@ bool opathspec::instring (char fullname [], char const * pathname, char const * 
 	}
 	return (false);
 }
-
 
 /*====================================================================*
  *
@@ -330,6 +327,7 @@ bool opathspec::instring (char fullname [], char const * pathname, char const * 
 	{
 		return (false);
 	}
+
 #endif
 
 	while (* pathname) 
@@ -354,7 +352,6 @@ bool opathspec::instring (char fullname [], char const * pathname, char const * 
 	}
 	return (false);
 }
-
 
 /*====================================================================*
  *
@@ -388,7 +385,6 @@ char const * opathspec::dirname (char const * filespec)
 	return (buffer);
 }
 
-
 /*====================================================================*
  *
  *   char const * basename (char const * filespec);
@@ -414,7 +410,6 @@ char const * opathspec::basename (char const * filespec)
 	}
 	return (filename);
 }
-
 
 /*====================================================================*
  *
@@ -447,7 +442,6 @@ void opathspec::findpath (char const * filespec, char * pathname, char * filenam
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -483,6 +477,7 @@ void opathspec::partpath (char const * filespec, char * pathname, char * filenam
 	{
 		return (false);
 	}
+
 #endif
 
 	for (string = filespec; * string; string++) 
@@ -507,7 +502,6 @@ void opathspec::partpath (char const * filespec, char * pathname, char * filenam
 	* filename++ = (char) (0);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -543,6 +537,7 @@ void opathspec::partfile (char const * filespec, char filename [], char extender
 	{
 		return (false);
 	}
+
 #endif
 
 	for (string = filespec; * string; string++) 
@@ -575,7 +570,6 @@ void opathspec::partfile (char const * filespec, char filename [], char extender
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void fullpath (char fullname[], char const * filespec);
@@ -592,7 +586,6 @@ void opathspec::fullpath (char fullname [], char const * filespec)
 	this->makepath (fullname, getenv ("PWD"), filespec);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -636,6 +629,7 @@ void opathspec::makepath (char fullname [], char const * pathname, char const * 
 	{
 		return;
 	}
+
 #endif
 
 	this->mcount = 0;
@@ -651,7 +645,6 @@ void opathspec::makepath (char fullname [], char const * pathname, char const * 
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -677,6 +670,7 @@ void opathspec::splitpath (char filespec [])
 	{
 		return;
 	}
+
 #endif
 
 	if (* filespec == PATH_C_EXTENDER) 
@@ -696,7 +690,6 @@ void opathspec::splitpath (char filespec [])
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -746,7 +739,6 @@ void opathspec::mergepath ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   opathspec ();
@@ -768,7 +760,6 @@ opathspec::opathspec ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~opathspec ()
@@ -785,7 +776,6 @@ opathspec::~opathspec ()
 	delete [] this->mstack;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

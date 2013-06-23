@@ -37,7 +37,6 @@ char const * oitem::name () const
 	return (this->mname);
 }
 
-
 /*====================================================================*
  *
  *   oitem & name(char const *string);
@@ -54,7 +53,6 @@ oitem & oitem::name (char const * name)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char const *text() const;
@@ -68,7 +66,6 @@ char const * oitem::text () const
 {
 	return (this->mtext);
 }
-
 
 /*====================================================================*
  *
@@ -86,7 +83,6 @@ oitem & oitem::text (char const * text)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   void * data() const;
@@ -100,7 +96,6 @@ void * oitem::data () const
 {
 	return (this->mdata);
 }
-
 
 /*====================================================================*
  *
@@ -117,7 +112,6 @@ oitem & oitem::data (void * data)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oitem * next() const;
@@ -130,7 +124,6 @@ oitem * oitem::next () const
 {
 	return (this->mitem);
 }
-
 
 /*====================================================================*
  *
@@ -145,7 +138,6 @@ oitem & oitem::next (oitem * item)
 	this->mitem = item;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -162,7 +154,6 @@ oitem & oitem::clear ()
 	this->mdata = (void *) (0);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -181,7 +172,6 @@ oitem::oitem (char const * name, char const * text, void const * data)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   oitem (char const *name, char const *text);
@@ -198,7 +188,6 @@ oitem::oitem (char const * name, char const * text)
 	this->mitem = (oitem *) (0);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -217,7 +206,6 @@ oitem::oitem (char const * name, void const * data)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   oitem (char const *name);
@@ -235,7 +223,6 @@ oitem::oitem (char const * name)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   oitem ();
@@ -252,7 +239,6 @@ oitem::oitem ()
 	this->mitem = (oitem *) (0);
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -273,7 +259,6 @@ oitem::~oitem ()
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

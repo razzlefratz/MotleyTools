@@ -110,7 +110,7 @@ signed octidy::atheros (signed c, signed e)
 				octidy::space (1);
 				space = 1;
 			}
-			else
+			else 
 			{
 				space = 2;
 			}
@@ -131,7 +131,6 @@ signed octidy::atheros (signed c, signed e)
 	octidy::space (space);
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -212,7 +211,7 @@ signed octidy::charlie (signed c, signed e)
 				c = ocomment::preamble (c);
 				space = 1;
 			}
-			else
+			else 
 			{
 				space = 2;
 			}
@@ -233,7 +232,6 @@ signed octidy::charlie (signed c, signed e)
 	oinclude::footer ();
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -309,7 +307,7 @@ signed octidy::program (signed c, signed e)
 				octidy::space (1);
 				space = 1;
 			}
-			else
+			else 
 			{
 				space = 2;
 			}
@@ -329,7 +327,6 @@ signed octidy::program (signed c, signed e)
 	octidy::space (space);
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -461,7 +458,6 @@ signed octidy::statement (signed c, signed level, signed space)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed context (signed c, char const * charset) const; 
@@ -482,7 +478,6 @@ signed octidy::context (signed c, char const * charset) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed context (signed c, signed o, signed e) const;
@@ -502,7 +497,6 @@ signed octidy::context (signed c, signed o, signed e) const
 	return (c);
 }
 
-
 signed octidy::inner_context (signed c, signed o, signed e) const 
 
 {
@@ -513,7 +507,6 @@ signed octidy::inner_context (signed c, signed o, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -535,7 +528,6 @@ signed octidy::context (signed c, signed e) const
 	return (c);
 }
 
-
 signed octidy::inner_context (signed c, signed e) const 
 
 {
@@ -545,7 +537,6 @@ signed octidy::inner_context (signed c, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -784,7 +775,6 @@ signed octidy::context (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed comment (signed c) const;
@@ -814,7 +804,6 @@ signed octidy::comment (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed find (signed c) const;
@@ -836,7 +825,6 @@ signed octidy::find (signed c) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -864,7 +852,6 @@ signed octidy::join (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed keep (signed c) const;
@@ -888,7 +875,6 @@ signed octidy::keep (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   octidy()
@@ -905,7 +891,6 @@ octidy::octidy ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~octidy()
@@ -921,7 +906,6 @@ octidy::~octidy ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition

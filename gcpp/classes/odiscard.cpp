@@ -48,7 +48,6 @@ signed odiscard::context (signed c, char const * charset) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed context (signed c, signed o, signed e) const;
@@ -73,7 +72,6 @@ signed odiscard::context (signed c, signed o, signed e) const
 	return (c);
 }
 
-
 signed odiscard::inner_context (signed c, signed o, signed e) const 
 
 {
@@ -84,7 +82,6 @@ signed odiscard::inner_context (signed c, signed o, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -110,7 +107,6 @@ signed odiscard::context (signed c, signed e) const
 	return (c);
 }
 
-
 signed odiscard::inner_context (signed c, signed e) const 
 
 {
@@ -120,7 +116,6 @@ signed odiscard::inner_context (signed c, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *   
@@ -170,7 +165,6 @@ signed odiscard::context (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed comment (signed c) const;
@@ -198,7 +192,6 @@ signed odiscard::comment (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed odiscard::content (signed c, signed o, signed e) const;
@@ -222,7 +215,6 @@ signed odiscard::content (signed c, signed o, signed e) const
 	return (c);
 }
 
-
 signed odiscard::inner_content (signed c, signed o, signed e) const 
 
 {
@@ -233,7 +225,6 @@ signed odiscard::inner_content (signed c, signed o, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -258,7 +249,6 @@ signed odiscard::content (signed c, signed e) const
 	return (c);
 }
 
-
 signed odiscard::inner_content (signed c, signed e) const 
 
 {
@@ -268,7 +258,6 @@ signed odiscard::inner_content (signed c, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -293,7 +282,6 @@ signed odiscard::command (signed c) const
 	return (c);
 }
 
-
 signed odiscard::command (signed c, signed e) const 
 
 {
@@ -302,7 +290,6 @@ signed odiscard::command (signed c, signed e) const
 	c = std::cin.get ();
 	return (c);
 }
-
 
 signed odiscard::inner_command (signed c, signed e) const 
 
@@ -323,7 +310,6 @@ signed odiscard::inner_command (signed c, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -348,7 +334,6 @@ signed odiscard::literal (signed c) const
 	return (c);
 }
 
-
 signed odiscard::literal (signed c, signed e) const 
 
 {
@@ -357,7 +342,6 @@ signed odiscard::literal (signed c, signed e) const
 	c = std::cin.get ();
 	return (c);
 }
-
 
 signed odiscard::inner_literal (signed c, signed e) const 
 
@@ -368,7 +352,6 @@ signed odiscard::inner_literal (signed c, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -397,7 +380,6 @@ signed odiscard::escaped (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   odiscard ()
@@ -414,7 +396,6 @@ odiscard::odiscard ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~odiscard ()
@@ -430,7 +411,6 @@ odiscard::~odiscard ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation

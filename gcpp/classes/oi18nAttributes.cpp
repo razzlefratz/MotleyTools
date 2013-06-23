@@ -38,7 +38,6 @@ oi18nAttributes & oi18nAttributes::write ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oi18nAttributes ();
@@ -53,7 +52,6 @@ oi18nAttributes::oi18nAttributes ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oi18nAttributes ();
@@ -65,7 +63,6 @@ oi18nAttributes::~oi18nAttributes ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition

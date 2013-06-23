@@ -34,7 +34,6 @@ char const * oPageLinkElement::name () const
 	return (this->mname);
 }
 
-
 /*====================================================================*
  *
  *   oPageLinkElement & name (char const * string);
@@ -47,7 +46,6 @@ oPageLinkElement & oPageLinkElement::name (char const * string)
 	this->mname = otext::replace (this->mname, string);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -63,7 +61,6 @@ oPageLinkElement & oPageLinkElement::link (char const * text, char const * path)
 	AnchorElement.LinkAttributes.ReferenceAttribute->value (path);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -85,7 +82,6 @@ oPageLinkElement & oPageLinkElement::write ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oPageLinkElement (char const *string);
@@ -99,7 +95,6 @@ oPageLinkElement::oPageLinkElement (char const * name)
 	this->mname = otext::save (name);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -115,7 +110,6 @@ oPageLinkElement::oPageLinkElement ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oPageLinkElement ();
@@ -129,7 +123,6 @@ oPageLinkElement::~oPageLinkElement ()
 	delete [] this->mname;
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

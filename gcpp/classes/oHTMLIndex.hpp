@@ -27,36 +27,30 @@
  *--------------------------------------------------------------------*/
 
 #define oHTMLINDEX_CLASS "index"
+#define oHTMLINDEX_STYLESHEET "index.css"
 
 /*====================================================================*
  *   begin declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oHTMLIndex 
+class __declspec (dllexport) oHTMLIndex: public owebpage 
 
 {
 public:
-	oHTMLIndex ();
-	virtual~ oHTMLIndex ();
-	oHTMLIndex & IndexTitle (char const *);
-	oHTMLIndex & IndexStyle (char const *);
-	char const * IndexTitle () const;
-	char const * IndexStyle () const;
-	oHTMLIndex & anchor ();
+	oHTMLIndex (void);
+	virtual~ oHTMLIndex (void);
+	oHTMLIndex & anchor (void);
 	oHTMLIndex & include (char const * filename);
 	oHTMLIndex & collect (char const * pathname, char const * wildcard);
 	oHTMLIndex & publish (unsigned count);
 private:
 	oAnchorElement manchor;
-	owebpage mwebpage;
 	owildcard mwildcard;
-	oindent mindent;
 	olist mlist;
 	oitem * mitem;
 	signed mlevel;
 	signed mspace;
 };
-
 
 /*====================================================================*
  *   end declaration;

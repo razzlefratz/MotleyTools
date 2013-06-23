@@ -21,4 +21,3 @@ void heaptest ()
 	heap.store ("123");
 }
 
-

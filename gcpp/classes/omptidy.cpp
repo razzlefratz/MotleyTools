@@ -45,14 +45,12 @@ char const * omptidy::program () const
 	return (this->mprogram);
 }
 
-
 omptidy & omptidy::program (char const * program) 
 
 {
 	this->mprogram = otext::replace (this->mprogram, program);
 	return (* this);
 }
-
 
 /*====================================================================*
  *   
@@ -72,14 +70,12 @@ char const * omptidy::project () const
 	return (this->mproject);
 }
 
-
 omptidy & omptidy::project (char const * project) 
 
 {
 	this->mproject = otext::replace (this->mproject, project);
 	return (* this);
 }
-
 
 /*====================================================================*
  *   
@@ -99,14 +95,12 @@ char const * omptidy::package () const
 	return (this->mpackage);
 }
 
-
 omptidy & omptidy::package (char const * package) 
 
 {
 	this->mpackage = otext::replace (this->mpackage, package);
 	return (* this);
 }
-
 
 /*====================================================================*
  *   
@@ -126,14 +120,12 @@ char const * omptidy::release () const
 	return (this->mrelease);
 }
 
-
 omptidy & omptidy::release (char const * release) 
 
 {
 	this->mrelease = otext::replace (this->mrelease, release);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -166,7 +158,6 @@ omptidy & omptidy::filename (char const * filename)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -276,6 +267,7 @@ omptidy & omptidy::tidy ()
 				}
 				continue;
 			}
+
 #if 1
 
 			if (c == '\\') 
@@ -288,6 +280,7 @@ omptidy & omptidy::tidy ()
 				c = ocollect::keep (c);
 				continue;
 			}
+
 #endif
 
 			c = ocollect::keep (c);
@@ -296,7 +289,6 @@ omptidy & omptidy::tidy ()
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -324,7 +316,6 @@ omptidy::omptidy ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~omptidy()
@@ -345,7 +336,6 @@ omptidy::~omptidy ()
 	delete [] this->mstring;
 	return;
 }
-
 
 /*====================================================================*
  *   end definition

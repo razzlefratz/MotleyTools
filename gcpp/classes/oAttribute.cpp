@@ -64,7 +64,6 @@ char const * oAttribute::label () const
 	return (this->mlabel);
 }
 
-
 /*====================================================================*
  *
  *   char const * value () const;
@@ -78,7 +77,6 @@ char const * oAttribute::value () const
 {
 	return (this->mvalue);
 }
-
 
 /*====================================================================*
  *
@@ -95,7 +93,6 @@ oAttribute & oAttribute::value (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oAttribute & value (unsigned number);
@@ -109,19 +106,18 @@ oAttribute & oAttribute::value (char const * string)
 oAttribute & oAttribute::value (unsigned number) 
 
 {
-	unsigned digits = 32;
-	char string [digits+1];
-	string [digits] = (char)(0);
+	char string [32];
+	char * sp = string + sizeof (string);
+	*--sp = (char)(0);
 	do 
 	{
-		string [--digits] = number % 10;
+		*--sp = '0' + number % 10;
 		number /= 10;
 	}
-	while (number);
-	this->mvalue = otext::replace (this->mvalue, & string [digits]);
+	while ((sp > string) && (number));
+	this->mvalue = otext::replace (this->mvalue, sp);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -135,17 +131,18 @@ oAttribute & oAttribute::value (unsigned number)
 oAttribute & oAttribute::value (unsigned number, unsigned digits) 
 
 {
-	char string [digits+1];
-	string [digits] = (char)(0);
-	while (digits) 
+	char string [digits + 1];
+	char * sp = string + sizeof (string);
+	*--sp = (char)(0);
+	do 
 	{
-		string [--digits] = number % 10;
+		* --sp = '0' + number % 10;
 		number /= 10;
 	}
-	this->mvalue = otext::replace (this->mvalue, string);
+	while ((sp > string) || (number));
+	this->mvalue = otext::replace (this->mvalue, sp);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -171,7 +168,6 @@ oAttribute & oAttribute::write ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oAttribute (char const * label, char const * value);
@@ -185,7 +181,6 @@ oAttribute::oAttribute (char const * label, char const * value)
 	this->mvalue = otext::save (value);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -201,7 +196,6 @@ oAttribute::oAttribute (char const * label)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oAttribute ();
@@ -216,7 +210,6 @@ oAttribute::~oAttribute ()
 	delete [] this->mvalue;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

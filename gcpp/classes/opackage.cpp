@@ -42,7 +42,6 @@ char const * opackage::extenders [oPACKAGE_EXTENDERS_MAX+1] =
 	(char const *) (0)
 };
 
-
 /*====================================================================*
  *
  *   char const *archive () const;
@@ -61,7 +60,6 @@ char const * opackage::archive () const
 {
 	return ((char const *) (this->marchive));
 }
-
 
 /*====================================================================*
  *
@@ -82,7 +80,6 @@ char const * opackage::package () const
 	return ((char const *) (this->mproduct));
 }
 
-
 /*====================================================================*
  *
  *   char const *product () const;
@@ -101,7 +98,6 @@ char const * opackage::product () const
 {
 	return ((char const *) (this->mproduct));
 }
-
 
 /*====================================================================*
  *
@@ -122,7 +118,6 @@ char const * opackage::release () const
 	return ((char const *) (this->mrelease));
 }
 
-
 /*====================================================================*
  *
  *   char const *trailer () const;
@@ -141,7 +136,6 @@ char const * opackage::trailer () const
 {
 	return ((char const *) (this->mtrailer));
 }
-
 
 /*====================================================================*
  *
@@ -162,7 +156,6 @@ opackage & opackage::operator = (char const * filespec)
 	this->filespec (filespec);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -226,7 +219,6 @@ opackage & opackage::filespec (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   opackage & extender (char const *string);
@@ -255,7 +247,6 @@ opackage & opackage::extender (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char * extract(char *string, char const *first, char const *limit)
@@ -276,7 +267,6 @@ char * opackage::extract (char string [], char const * start, char const * limit
 	string [limit - start] = (char) (0);
 	return (string);
 }
-
 
 /*====================================================================*
  *
@@ -300,7 +290,6 @@ opackage & opackage::peek ()
 	std::cout << std::endl;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -328,7 +317,6 @@ opackage::opackage ()
 	this->mtrailer [0] = (char) (0);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -358,7 +346,6 @@ opackage::opackage (char const * filespec)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ opackage();
@@ -380,7 +367,6 @@ opackage::~opackage ()
 	delete [] this->mtrailer;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

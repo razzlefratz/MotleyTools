@@ -109,6 +109,7 @@ oscancode & oscancode::scantoken ()
 			this->tokentype (CL_T_VARIABLE);
 		}
 	}
+
 #if 0
 
 /*
@@ -123,6 +124,7 @@ oscancode & oscancode::scantoken ()
 		this->scanquote ("\r\n");
 		this->scanwhile ("\r\n");
 	}
+
 #endif
 
 	else if (this->havebreak ('\"')) 
@@ -218,7 +220,6 @@ oscancode & oscancode::scantoken ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscancode & elaborate();
@@ -276,7 +277,6 @@ oscancode & oscancode::elaborate ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscancode ();
@@ -289,7 +289,6 @@ oscancode::oscancode ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ oscancode ()
@@ -301,7 +300,6 @@ oscancode::~oscancode ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

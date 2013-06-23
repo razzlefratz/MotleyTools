@@ -61,6 +61,7 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
+
 /*
  * attrib.nameString("id");
  */
@@ -79,5 +80,4 @@ int main (int argc, char const * argv [])
 
 	return (0);
 }
-
 

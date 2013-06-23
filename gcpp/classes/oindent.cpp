@@ -49,7 +49,6 @@ oindent & oindent::margin (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char const * margin () const;
@@ -68,7 +67,6 @@ char const * oindent::margin () const
 {
 	return ((char const *) (this->mmargin));
 }
-
 
 /*====================================================================*
  *
@@ -95,7 +93,6 @@ oindent & oindent::indent (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char const * indent () const;
@@ -114,7 +111,6 @@ char const * oindent::indent () const
 {
 	return ((char const *) (this->mindent));
 }
-
 
 /*====================================================================*
  *
@@ -141,7 +137,6 @@ oindent & oindent::finish (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char const * finish () const;
@@ -160,7 +155,6 @@ char const * oindent::finish () const
 {
 	return ((char const *) (this->mfinish));
 }
-
 
 /*====================================================================*
  *
@@ -187,7 +181,6 @@ oindent & oindent::record (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char const * record () const;
@@ -206,7 +199,6 @@ char const * oindent::record () const
 {
 	return ((char const *) (this->mrecord));
 }
-
 
 /*====================================================================*
  *   
@@ -227,7 +219,6 @@ oindent & oindent::level ()
 	return (* this);
 }
 
-
 oindent & oindent::level (signed level) 
 
 {
@@ -235,7 +226,6 @@ oindent & oindent::level (signed level)
 	oindent::print (this->mmargin, this->mindent, this->mlevel);
 	return (* this);
 }
-
 
 /*====================================================================*
  *   
@@ -256,7 +246,6 @@ oindent & oindent::space ()
 	return (* this);
 }
 
-
 oindent & oindent::space (signed space) 
 
 {
@@ -264,7 +253,6 @@ oindent & oindent::space (signed space)
 	oindent::print (this->mfinish, this->mrecord, this->mspace);
 	return (* this);
 }
-
 
 /*====================================================================*
  *   
@@ -285,7 +273,6 @@ void oindent::newline (char const * margin, char const * indent, signed level)
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   oindent & std::endline (char const *finish, char const *record, signed space);
@@ -305,7 +292,6 @@ void oindent::endline (char const * finish, char const * record, signed space)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   oindent & print (signed level, signed space, char const *string);
@@ -324,7 +310,6 @@ oindent & oindent::print (signed level, signed space, char const * string)
 	oindent::print (this->mfinish, this->mrecord, space);
 	return (* this);
 }
-
 
 /*====================================================================*
  *   
@@ -346,7 +331,6 @@ void oindent::print (char const * prefix, char const * suffix, signed count)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   oindent () 
@@ -361,8 +345,8 @@ void oindent::print (char const * prefix, char const * suffix, signed count)
 oindent::oindent () 
 
 {
-	this->mspace = 0;
 	this->mlevel = 0;
+	this->mspace = 1;
 	this->mmargin = new char [1];
 	this->mmargin [0] = '\0';
 	this->mindent = new char [2];
@@ -375,7 +359,6 @@ oindent::oindent ()
 	this->mrecord [1] = '\0';
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -397,7 +380,6 @@ oindent::~oindent ()
 	delete [] this->mrecord;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation

@@ -39,7 +39,6 @@ signed oenclose::statement (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed condition (signed c) const;
@@ -65,7 +64,6 @@ signed oenclose::condition (signed c)
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -93,7 +91,6 @@ signed oenclose::expression (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed program (signed c, signed e) const;
@@ -108,7 +105,6 @@ signed oenclose::program (signed c, signed e) const
 	c = oenclose::keep (c);
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -211,7 +207,6 @@ signed program1 (int c, int e)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   oenclose ()
@@ -228,7 +223,6 @@ oenclose::oenclose ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oenclose ()
@@ -244,7 +238,6 @@ oenclose::~oenclose ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation

@@ -46,7 +46,6 @@ char const * odate::months [MONTHS_IN_YEAR+1] =
 	(char const *)(0)
 };
 
-
 char const * odate::weekdays [DAYS_IN_WEEK+1] = 
 
 {
@@ -59,7 +58,6 @@ char const * odate::weekdays [DAYS_IN_WEEK+1] =
 	"Saturday",
 	(char const *)(0)
 };
-
 
 /*====================================================================*
  *
@@ -76,7 +74,6 @@ char const * odate::monthname (signed month)
 	return (odate::months [month]);
 }
 
-
 /*====================================================================*
  *
  *   char const * weekdayname (unsigned weekday);
@@ -91,7 +88,6 @@ char const * odate::weekdayname (signed weekday)
 	weekday = odate::mindex.qmod (weekday, DAYS_IN_WEEK);
 	return (odate::weekdays [weekday]);
 }
-
 
 /*====================================================================*
  *
@@ -109,7 +105,6 @@ bool odate::isleap (unsigned year)
 {
 	return (((year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0))));
 }
-
 
 /*====================================================================*
  *
@@ -151,7 +146,6 @@ unsigned odate::dayofweek (unsigned year, signed month, signed day)
 	return (odate::mindex.qmod (day, DAYS_IN_WEEK));
 }
 
-
 /*====================================================================*
  *
  *   unsigned dayofyear (unsigned year, signed month, signed day);
@@ -188,7 +182,6 @@ unsigned odate::dayofyear (unsigned year, signed month, signed day)
 	}
 	return (day);
 }
-
 
 /*====================================================================*
  *
@@ -231,7 +224,6 @@ unsigned odate::endofmonth (unsigned year, signed month)
 	return (day);
 }
 
-
 /*====================================================================*
  *
  *   void normalize(unsigned *year, signed *month)
@@ -249,7 +241,6 @@ void odate::normalize (unsigned * year, signed * month)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   odate ();
@@ -264,7 +255,6 @@ odate::odate ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~odate ();
@@ -278,7 +268,6 @@ odate::~odate ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

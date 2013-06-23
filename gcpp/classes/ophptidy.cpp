@@ -94,7 +94,6 @@ signed ophptidy::page (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed ophptidy::program (signed c);
@@ -203,7 +202,6 @@ signed ophptidy::program (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed ophptidy::statement (signed c, signed level, signed space);
@@ -255,7 +253,6 @@ signed ophptidy::statement (signed c, signed level, signed space)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed context (signed o, char const *charset); 
@@ -284,7 +281,6 @@ signed ophptidy::context (signed c, char const * charset)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed context (signed c, signed o, signed e);
@@ -304,7 +300,6 @@ signed ophptidy::context (signed c, signed o, signed e)
 	return (c);
 }
 
-
 signed ophptidy::inner_context (signed c, signed o, signed e) 
 
 {
@@ -315,7 +310,6 @@ signed ophptidy::inner_context (signed c, signed o, signed e)
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -340,7 +334,6 @@ signed ophptidy::context (signed c, signed e)
 	return (c);
 }
 
-
 signed ophptidy::inner_context (signed c, signed e) 
 
 {
@@ -350,7 +343,6 @@ signed ophptidy::inner_context (signed c, signed e)
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -435,7 +427,6 @@ signed ophptidy::context (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed find (signed c);
@@ -456,7 +447,6 @@ signed ophptidy::find (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   ophptidy()
@@ -473,7 +463,6 @@ ophptidy::ophptidy ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ophptidy()
@@ -489,7 +478,6 @@ ophptidy::~ophptidy ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition

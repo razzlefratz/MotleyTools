@@ -1078,7 +1078,6 @@ const unsigned short oascii::mtable [UCHAR_MAX + 1] =
 	CTYPE_B_NTYPE
 };
 
-
 /*====================================================================*
  *
  *   bool isascii (signed c);
@@ -1092,7 +1091,6 @@ bool oascii::isascii (signed c)
 {
 	return (c < 0x80);
 }
-
 
 #endif
 
@@ -1108,7 +1106,6 @@ bool oascii::iscntrl (signed c)
 	return ((oascii::mtable [c & UCHAR_MAX] & (CTYPE_B_CNTRL)) != 0);
 }
 
-
 /*====================================================================*
  *
  *   bool isupper (signed c); 
@@ -1120,7 +1117,6 @@ bool oascii::isupper (signed c)
 {
 	return ((oascii::mtable [c & UCHAR_MAX] & CTYPE_B_UPPER) != 0);
 }
-
 
 /*====================================================================*
  *
@@ -1134,7 +1130,6 @@ bool oascii::islower (signed c)
 	return ((oascii::mtable [c & UCHAR_MAX] & CTYPE_B_LOWER) != 0);
 }
 
-
 /*====================================================================*
  *
  *   bool isalpha (signed c);
@@ -1146,7 +1141,6 @@ bool oascii::isalpha (signed c)
 {
 	return ((oascii::mtable [c & UCHAR_MAX] & (CTYPE_B_LOWER | CTYPE_B_UPPER)) != 0);
 }
-
 
 /*====================================================================*
  *
@@ -1160,7 +1154,6 @@ bool oascii::isdigit (signed c)
 	return ((oascii::mtable [c & UCHAR_MAX] & CTYPE_B_DIGIT) != 0);
 }
 
-
 /*====================================================================*
  *
  *   bool isxdigit (signed c);
@@ -1172,7 +1165,6 @@ bool oascii::isxdigit (signed c)
 {
 	return ((oascii::mtable [c & UCHAR_MAX] & CTYPE_B_HEX) != 0);
 }
-
 
 /*====================================================================*
  *
@@ -1186,7 +1178,6 @@ bool oascii::isalnum (signed c)
 	return ((oascii::mtable [c & UCHAR_MAX] & (CTYPE_B_UPPER | CTYPE_B_LOWER | CTYPE_B_DIGIT)) != 0);
 }
 
-
 /*====================================================================*
  *
  *   bool isspace (signed c);
@@ -1198,7 +1189,6 @@ bool oascii::isspace (signed c)
 {
 	return ((oascii::mtable [c & UCHAR_MAX] & CTYPE_B_SPACE) != 0);
 }
-
 
 /*====================================================================*
  *
@@ -1212,7 +1202,6 @@ bool oascii::ispunct (signed c)
 	return ((oascii::mtable [c & UCHAR_MAX] & CTYPE_B_PUNCT) != 0);
 }
 
-
 /*====================================================================*
  *
  *   bool isgraph (signed c);
@@ -1224,7 +1213,6 @@ bool oascii::isgraph (signed c)
 {
 	return ((oascii::mtable [c & UCHAR_MAX] & (CTYPE_B_UPPER | CTYPE_B_LOWER | CTYPE_B_DIGIT | CTYPE_B_PUNCT)) != 0);
 }
-
 
 /*====================================================================*
  *
@@ -1238,7 +1226,6 @@ bool oascii::isprint (signed c)
 	return ((oascii::mtable [c & UCHAR_MAX] & (CTYPE_B_CNTRL)) == 0);
 }
 
-
 /*====================================================================*
  *
  *   bool isident (signed c);
@@ -1250,7 +1237,6 @@ bool oascii::isident (signed c)
 {
 	return ((oascii::mtable [c & UCHAR_MAX] & CTYPE_B_IDENT) != 0);
 }
-
 
 /*====================================================================*
  *
@@ -1264,7 +1250,6 @@ bool oascii::isarith (signed c)
 	return ((oascii::mtable [c & UCHAR_MAX] & CTYPE_B_ARITH) != 0);
 }
 
-
 /*====================================================================*
  *
  *   bool islogic (signed c);
@@ -1276,7 +1261,6 @@ bool oascii::islogic (signed c)
 {
 	return ((oascii::mtable [c & UCHAR_MAX] & CTYPE_B_LOGIC) != 0);
 }
-
 
 /*====================================================================*
  *
@@ -1290,7 +1274,6 @@ bool oascii::isgroup (signed c)
 	return ((oascii::mtable [c & UCHAR_MAX] & CTYPE_B_GROUP) != 0);
 }
 
-
 /*====================================================================*
  *
  *   bool nmtoken (signed c);
@@ -1302,7 +1285,6 @@ bool oascii::nmtoken (signed c)
 {
 	return (oascii::isalnum (c) || (c == '_') || (c == '-') || (c == '.') || (c == ':'));
 }
-
 
 /*====================================================================*
  *
@@ -1316,7 +1298,6 @@ bool oascii::isquote (signed c)
 	return ((c == '\'') || (c == '\"'));
 }
 
-
 /*====================================================================*
  *
  *   bool isblank (signed c);
@@ -1328,7 +1309,6 @@ bool oascii::isblank (signed c)
 {
 	return ((c == ' ') || (c == '\t'));
 }
-
 
 /*====================================================================*
  *
@@ -1342,7 +1322,6 @@ bool oascii::ismatch (signed c, signed o)
 	return (oascii::toupper (c) == oascii::toupper (o));
 }
 
-
 /*====================================================================*
  *
  *   bool isbreak (signed c);
@@ -1354,7 +1333,6 @@ bool oascii::isbreak (signed c)
 {
 	return ((c == '\0') || (c == '\n') || (c == EOF));
 }
-
 
 /*====================================================================*
  *
@@ -1368,7 +1346,6 @@ bool oascii::isbreak (signed c, signed o)
 	return ((c == o) || (c == '\0') || (c == '\n') || (c == EOF));
 }
 
-
 /*====================================================================*
  *
  *   bool nobreak (signed c);
@@ -1381,7 +1358,6 @@ bool oascii::nobreak (signed c)
 	return ((c != '\0') && (c != '\n') && (c != EOF));
 }
 
-
 /*====================================================================*
  *
  *   bool nobreak (signed c, signed o);
@@ -1393,7 +1369,6 @@ bool oascii::nobreak (signed c, signed o)
 {
 	return ((c != o) && (c != '\0') && (c != '\n') && (c != EOF));
 }
-
 
 /*====================================================================*
  *
@@ -1409,7 +1384,6 @@ signed oascii::toascii (signed c)
 	return (c & 0x007F);
 }
 
-
 #endif
 
 /*====================================================================*
@@ -1423,7 +1397,6 @@ signed oascii::tocntrl (signed c)
 {
 	return (c & 0x001F);
 }
-
 
 /*====================================================================*
  *
@@ -1441,7 +1414,6 @@ signed oascii::toupper (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   bool tolower (signed c);
@@ -1457,7 +1429,6 @@ signed oascii::tolower (signed c)
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -1485,7 +1456,6 @@ signed oascii::todigit (signed c)
 	return (-1);
 }
 
-
 /*====================================================================*
  *
  *   oascii();
@@ -1499,7 +1469,6 @@ oascii::oascii ()
 	return;
 };
 
-
 /*====================================================================*
  *
  *   ~oascii();
@@ -1512,7 +1481,6 @@ oascii::~oascii ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

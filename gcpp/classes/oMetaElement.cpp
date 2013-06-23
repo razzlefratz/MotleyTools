@@ -43,7 +43,6 @@ char const * oMetaElement::ElementName () const
 	return (oMetaElement::mtitle);
 }
 
-
 /*====================================================================*
  *
  *   oMetaElement & Contents (char const * name, char const * type);
@@ -60,7 +59,6 @@ oMetaElement & oMetaElement::Contents (char const * name, char const * type)
 	this->ContentTypeAttribute->value (type);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -93,7 +91,6 @@ oMetaElement & oMetaElement::EmptyTag (unsigned level, unsigned space)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oMetaElement ();
@@ -110,7 +107,6 @@ oMetaElement::oMetaElement ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oMetaElement ();
@@ -122,7 +118,6 @@ oMetaElement::~oMetaElement ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *

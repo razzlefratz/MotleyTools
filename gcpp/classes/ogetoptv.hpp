@@ -69,6 +69,5 @@ private:
 	int mindex;
 };
 
-
 #endif
 

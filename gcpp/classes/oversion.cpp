@@ -41,13 +41,11 @@ oversion & oversion::program (char const * program)
 	return (* this);
 }
 
-
 char const * oversion::program () const 
 
 {
 	return (this->mprogram);
 }
-
 
 /*====================================================================*
  *
@@ -67,13 +65,11 @@ oversion & oversion::company (char const * company)
 	return (* this);
 }
 
-
 char const * oversion::company () const 
 
 {
 	return (this->mcompany);
 }
-
 
 /*====================================================================*
  *
@@ -93,13 +89,11 @@ oversion & oversion::project (char const * project)
 	return (* this);
 }
 
-
 char const * oversion::project () const 
 
 {
 	return (this->mproject);
 }
-
 
 /*====================================================================*
  *
@@ -119,13 +113,11 @@ oversion & oversion::package (char const * package)
 	return (* this);
 }
 
-
 char const * oversion::package () const 
 
 {
 	return (this->mpackage);
 }
-
 
 /*====================================================================*
  *
@@ -144,13 +136,11 @@ oversion & oversion::version (char const * version)
 	return (* this);
 }
 
-
 char const * oversion::version () const 
 
 {
 	return (this->mversion);
 }
-
 
 /*====================================================================*
  *
@@ -170,13 +160,11 @@ oversion & oversion::release (char const * release)
 	return (* this);
 }
 
-
 char const * oversion::release () const 
 
 {
 	return (this->mrelease);
 }
-
 
 /*====================================================================*
  *
@@ -196,13 +184,11 @@ oversion & oversion::contact (char const * contact)
 	return (* this);
 }
 
-
 char const * oversion::contact () const 
 
 {
 	return (this->mcontact);
 }
-
 
 /*====================================================================*
  *
@@ -230,7 +216,6 @@ oversion & oversion::print (void)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oversion ();
@@ -255,7 +240,6 @@ oversion::oversion ()
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   ~oversion ();
@@ -271,7 +255,6 @@ oversion::~oversion ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation

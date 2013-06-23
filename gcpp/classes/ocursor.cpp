@@ -36,7 +36,6 @@ size_t ocursor::charcount () const
 	return (this->mchar);
 }
 
-
 /*====================================================================*
  *
  *   size_t ocursor::linecount() const;
@@ -49,7 +48,6 @@ size_t ocursor::linecount () const
 {
 	return (this->mline);
 }
-
 
 /*====================================================================*
  *
@@ -64,7 +62,6 @@ size_t ocursor::pagecount () const
 	return (this->mpage);
 }
 
-
 /*====================================================================*
  *
  *   size_t ocursor::rowcount() const;
@@ -78,7 +75,6 @@ size_t ocursor::rowcount () const
 	return (this->mrow);
 }
 
-
 /*====================================================================*
  *
  *   size_t ocursor::colcount() const;
@@ -91,7 +87,6 @@ size_t ocursor::colcount () const
 {
 	return (this->mcol);
 }
-
 
 /*====================================================================*
  *
@@ -133,7 +128,6 @@ ocursor & ocursor::count (char c)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ocursor & ocursor::clear();
@@ -152,7 +146,6 @@ ocursor & ocursor::clear ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
@@ -164,13 +157,11 @@ ocursor::ocursor ()
 	return;
 };
 
-
 ocursor::~ocursor () 
 
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

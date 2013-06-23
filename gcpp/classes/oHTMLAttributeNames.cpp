@@ -164,7 +164,6 @@ oHTMLAttributeNames::oHTMLAttributeNames ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oHTMLAttributeNames ();
@@ -180,7 +179,6 @@ oHTMLAttributeNames::~oHTMLAttributeNames ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

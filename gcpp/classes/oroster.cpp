@@ -36,7 +36,6 @@ char const * oroster::title () const
 	return (this->mlist->title ());
 }
 
-
 /*====================================================================*
  *
  *   oroster & title(char const *title);
@@ -51,7 +50,6 @@ oroster & oroster::title (char const * title)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   unsigned index() const;
@@ -65,7 +63,6 @@ unsigned oroster::index () const
 	return (this->mlist->index ());
 }
 
-
 /*====================================================================*
  *
  *   unsigned count() const;
@@ -78,7 +75,6 @@ unsigned oroster::count () const
 {
 	return (this->mlist->count ());
 }
-
 
 /*====================================================================*
  *
@@ -94,7 +90,6 @@ char const * oroster::operator [] (signed index) const
 	return (item != (oitem *) (0)? item->name (): (char *) (0));
 }
 
-
 /*====================================================================*
  *
  *   bool operator += (char const *symbol);
@@ -108,7 +103,6 @@ bool oroster::operator += (char const * symbol)
 	return (this->insert (symbol));
 }
 
-
 /*====================================================================*
  *
  *   bool operator -= (char const *symbol);
@@ -121,7 +115,6 @@ bool oroster::operator -= (char const * symbol)
 {
 	return (this->remove (symbol));
 }
-
 
 /*====================================================================*
  *
@@ -137,7 +130,6 @@ char const * oroster::symbol () const
 	return (item != (oitem *) (0)? item->name (): (char *) (0));
 }
 
-
 /*====================================================================*
  *
  *   char const *symbols(size_t index);
@@ -152,7 +144,6 @@ char const * oroster::symbols (size_t index) const
 	return (item != (oitem *) (0)? item->name (): (char *) (0));
 }
 
-
 /*====================================================================*
  *
  *   bool defined(char const *symbol);
@@ -166,7 +157,6 @@ bool oroster::defined (char const * symbol)
 	return (this->mlist->defined (symbol));
 }
 
-
 /*====================================================================*
  *
  *   unsigned indexof(char const *symbol);
@@ -179,7 +169,6 @@ unsigned oroster::indexof (char const * symbol)
 {
 	return (this->mlist->indexof (symbol));
 }
-
 
 /*====================================================================*
  *
@@ -204,7 +193,6 @@ bool oroster::insert (char const * symbol)
 	}
 }
 
-
 /*====================================================================*
  *
  *   bool remove(char const *symbol);
@@ -227,7 +215,6 @@ bool oroster::remove (char const * symbol)
 	}
 }
 
-
 /*====================================================================*
  *
  *   oroster & clear();
@@ -241,7 +228,6 @@ oroster & oroster::clear ()
 	this->mlist->clear ();
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -257,7 +243,6 @@ oroster::oroster (signed order (char const *, char const *))
 	return;
 }
 
-
 /*====================================================================*
  *
  *   oroster ();
@@ -272,7 +257,6 @@ oroster::oroster ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oroster ();
@@ -286,7 +270,6 @@ oroster::~oroster ()
 	delete this->mlist;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

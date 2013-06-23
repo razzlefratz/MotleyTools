@@ -46,7 +46,6 @@ char const * omakefile::compiler () const
 	return (this->mcompiler);
 }
 
-
 /*====================================================================*
  *
  *   omakefile & compiler (char const * string);
@@ -67,14 +66,12 @@ omakefile & omakefile::compiler (char const * string)
 	return (* this);
 }
 
-
 omakefile & omakefile::linebreak () 
 
 {
 	otext::replace (this->mlinebreak, "\\\n\t");
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -93,7 +90,6 @@ char const * omakefile::sourcedir () const
 {
 	return (this->msourcedir);
 }
-
 
 /*====================================================================*
  *
@@ -114,7 +110,6 @@ omakefile & omakefile::sourcedir (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char const * targetdir () const;
@@ -132,7 +127,6 @@ char const * omakefile::targetdir () const
 {
 	return (this->mtargetdir);
 }
-
 
 /*====================================================================*
  *
@@ -152,7 +146,6 @@ omakefile & omakefile::targetdir (char const * string)
 	otext::replace (this->mtargetdir, string);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -192,7 +185,6 @@ omakefile & omakefile::projectfile (char const * pathname)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   omakefile & includefile(char const *pathname);
@@ -215,7 +207,6 @@ omakefile & omakefile::includefile (char const * pathname)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -279,7 +270,6 @@ omakefile & omakefile::publish ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   omakefile & section (char const *filespec);
@@ -319,7 +309,6 @@ omakefile & omakefile::section (char const * filespec)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   omakefile ();
@@ -349,7 +338,6 @@ omakefile::omakefile ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~omakefile ();
@@ -373,7 +361,6 @@ omakefile::~omakefile ()
 	delete [] this->moutput;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

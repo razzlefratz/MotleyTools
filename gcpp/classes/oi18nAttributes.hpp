@@ -22,7 +22,7 @@
  *   class declarations;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oi18nAttributes
+class __declspec (dllexport) oi18nAttributes 
 
 {
 public:
@@ -34,7 +34,6 @@ public:
 private:
 	
 };
-
 
 /*====================================================================*
  *   end declarations;

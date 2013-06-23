@@ -46,7 +46,6 @@ char const * oenviron::hostname () const
 	return (this->mhostname);
 }
 
-
 /*====================================================================*
  *
  *   char const * oenviron::username () const;
@@ -62,7 +61,6 @@ char const * oenviron::username () const
 {
 	return (this->musername);
 }
-
 
 /*====================================================================*
  * 
@@ -98,7 +96,6 @@ size_t oenviron::strfwhat (char buffer [], size_t length, char const * event)
 	return (string - buffer);
 }
 
-
 /*====================================================================*
  *
  *   size_t strfdate (char buffer[], size_t length, time_t event)
@@ -116,7 +113,6 @@ size_t oenviron::strfdate (char buffer [], size_t length, time_t event)
 	string+= std::strftime (string, string - buffer + length, DAYTIME, localtime (& event));
 	return (string - buffer);
 }
-
 
 /*====================================================================*
  * 
@@ -154,7 +150,6 @@ size_t oenviron::strfwhen (char buffer [], size_t length, time_t event)
 	return (string - buffer);
 }
 
-
 /*====================================================================*
  * 
  *   char const * strfwhom (char buffer[], size_t length);
@@ -191,7 +186,6 @@ size_t oenviron::strfwhom (char buffer [], size_t length)
 	return (string - buffer);
 }
 
-
 /*====================================================================*
  *
  *   oenviron();
@@ -219,7 +213,6 @@ oenviron::oenviron ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oenviron();
@@ -238,7 +231,6 @@ oenviron::~oenviron ()
 	delete [] this->mdatetime;
 	return;
 }
-
 
 /*====================================================================*
  *

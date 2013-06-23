@@ -291,7 +291,6 @@ char const * oISOGlyph::mtable [UCHAR_MAX + 1] =
 	"yuml",
 };
 
-
 /*====================================================================*
  *
  *   char oISOGlyph::string(unsigned c) const;
@@ -323,7 +322,6 @@ char const * oISOGlyph::string (unsigned c)
 	return ((char const *)(this->mstring));
 }
 
-
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
@@ -336,14 +334,12 @@ oISOGlyph::oISOGlyph ()
 	return;
 }
 
-
 oISOGlyph::~oISOGlyph () 
 
 {
 	delete [] this->mstring;
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

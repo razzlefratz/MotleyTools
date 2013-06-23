@@ -58,6 +58,7 @@ odict & odict::define (char const * symbol, char const * string)
 	{
 		return (* this);
 	}
+
 #endif
 
 	odict * node = this;
@@ -90,7 +91,6 @@ odict & odict::define (char const * symbol, char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *  
  *   bool defined (char const *symbol) const;
@@ -108,7 +108,6 @@ bool odict::defined (char const * symbol) const
 {
 	return (odict::node (symbol));
 }
-
 
 /*====================================================================*
  *  
@@ -134,7 +133,6 @@ char const * odict::lookup (char const * symbol) const
 	return ((char const *) (0));
 }
 
-
 /*====================================================================*
  *  
  *   char const *expand (char const *symbol) const;
@@ -158,7 +156,6 @@ char const * odict::expand (char const * symbol) const
 	}
 	return (symbol);
 }
-
 
 /*====================================================================*
  *
@@ -186,7 +183,6 @@ odict & odict::enumerate ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   odict & clear ();
@@ -209,7 +205,6 @@ odict & odict::clear ()
 	this->mafter = (odict *) (0);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -235,6 +230,7 @@ const odict * odict::node (char const * symbol) const
 	{
 		return ((odict *) (0));
 	}
+
 #endif
 
 	while (node != (odict *) (0)) 
@@ -254,7 +250,6 @@ const odict * odict::node (char const * symbol) const
 	}
 	return (node);
 }
-
 
 /*====================================================================*
  *
@@ -295,6 +290,7 @@ signed odict::comp (register char const * string1, register char const * string2
 	{
 		return (+1);
 	}
+
 #endif
 
 	while (* string1 == * string2) 
@@ -312,7 +308,6 @@ signed odict::comp (register char const * string1, register char const * string2
 	}
 	return (* string1 > * string2? -1: +1);
 }
-
 
 /*====================================================================*
  *
@@ -339,7 +334,6 @@ odict::odict (char const * symbol)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void odict(char const *symbol, char const *string);
@@ -365,7 +359,6 @@ odict::odict (char const * symbol, char const * string)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void ~odict()
@@ -388,7 +381,6 @@ odict::~odict ()
 	delete this->mafter;
 	return;
 }
-
 
 /*====================================================================*
  *

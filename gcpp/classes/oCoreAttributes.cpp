@@ -32,7 +32,6 @@ oCoreAttributes & oCoreAttributes::write ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oCoreAttributes ();
@@ -49,7 +48,6 @@ oCoreAttributes::oCoreAttributes ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oCoreAttributes ();
@@ -62,7 +60,6 @@ oCoreAttributes::~oCoreAttributes ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition

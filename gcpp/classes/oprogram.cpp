@@ -63,7 +63,6 @@ signed oprogram::context (signed c, char const * charset) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed context (signed c, signed o, signed e) const;
@@ -84,7 +83,6 @@ signed oprogram::context (signed c, signed o, signed e) const
 	return (c);
 }
 
-
 signed oprogram::inner_context (signed c, signed o, signed e) const 
 
 {
@@ -95,7 +93,6 @@ signed oprogram::inner_context (signed c, signed o, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -121,7 +118,6 @@ signed oprogram::context (signed c, signed e) const
 	return (c);
 }
 
-
 signed oprogram::inner_context (signed c, signed e) const 
 
 {
@@ -131,7 +127,6 @@ signed oprogram::inner_context (signed c, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *   
@@ -206,7 +201,6 @@ signed oprogram::context (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed comment (signed c) const;
@@ -262,7 +256,6 @@ signed oprogram::comment (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed oprogram::moniker (signed c) const;
@@ -283,7 +276,6 @@ signed oprogram::moniker (signed c) const
 	while (oascii::isalnum (c) || (c == '_') || (c == '.'));
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -307,7 +299,6 @@ signed oprogram::requote (signed c, signed o, signed e) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed oprogram::find (signed c) const;
@@ -330,7 +321,6 @@ signed oprogram::find (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   oprogram ()
@@ -347,7 +337,6 @@ oprogram::oprogram ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oprogram ()
@@ -363,7 +352,6 @@ oprogram::~oprogram ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation

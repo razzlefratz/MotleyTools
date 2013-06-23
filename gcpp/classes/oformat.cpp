@@ -45,7 +45,6 @@ unsigned oformat::column () const
 	return (this->mcolumn);
 }
 
-
 /*====================================================================*
  *
  *   unsigned int oformat::margin(unsigned margin);
@@ -61,14 +60,12 @@ unsigned oformat::margin () const
 	return (this->mmargin);
 }
 
-
 oformat & oformat::margin (unsigned margin) 
 
 {
 	this->mmargin = margin;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -83,7 +80,6 @@ unsigned oformat::length () const
 {
 	return (this->mlength);
 }
-
 
 oformat & oformat::length (unsigned column) 
 
@@ -100,7 +96,6 @@ oformat & oformat::length (unsigned column)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   unsigned int oformat::indent(unsigned column);
@@ -115,7 +110,6 @@ unsigned oformat::indent () const
 	return (this->mindent);
 }
 
-
 oformat & oformat::indent (unsigned column) 
 
 {
@@ -126,7 +120,6 @@ oformat & oformat::indent (unsigned column)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -143,7 +136,6 @@ unsigned oformat::offset () const
 	return (this->moffset);
 }
 
-
 oformat & oformat::offset (unsigned column) 
 
 {
@@ -154,7 +146,6 @@ oformat & oformat::offset (unsigned column)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -172,7 +163,6 @@ oformat & oformat::table (unsigned count)
 	return (* this);
 }
 
-
 oformat & oformat::shift (unsigned count) 
 
 {
@@ -183,7 +173,6 @@ oformat & oformat::shift (unsigned count)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -209,7 +198,6 @@ oformat & oformat::space (unsigned count)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -252,7 +240,6 @@ oformat & oformat::print (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   void flush(unsigned space);
@@ -285,7 +272,6 @@ oformat & oformat::flush (unsigned space)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
@@ -299,7 +285,6 @@ oformat & oformat::align ()
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -316,7 +301,6 @@ oformat & oformat::status ()
 	std::cout << "record=(" << this->mrecord << ")" << std::endl;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -335,7 +319,6 @@ oformat::oformat ()
 	return;
 }
 
-
 oformat::~oformat () 
 
 {
@@ -343,7 +326,6 @@ oformat::~oformat ()
 	delete [] this->mbuffer;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation

@@ -34,7 +34,6 @@ unsigned oflagword::state () const
 	return (this->mbits);
 }
 
-
 /*====================================================================*
  *
  *   oflagword & state (unsigned bits);
@@ -50,7 +49,6 @@ oflagword & oflagword::state (unsigned bits)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   unsigned getword () const;
@@ -64,7 +62,6 @@ unsigned oflagword::getword () const
 {
 	return (this->mbits);
 }
-
 
 /*====================================================================*
  *
@@ -81,7 +78,6 @@ oflagword & oflagword::setword (unsigned word)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   unsigned getbits (unsigned mask) const;
@@ -95,7 +91,6 @@ unsigned oflagword::getbits (unsigned mask) const
 {
 	return (this->mbits & mask);
 }
-
 
 /*====================================================================*
  *
@@ -112,7 +107,6 @@ oflagword & oflagword::setbits (unsigned mask)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oflagword & clearbits (unsigned bits);
@@ -128,7 +122,6 @@ oflagword & oflagword::clearbits (unsigned mask)
 	return (* this);
 }
 
-
 /*====================================================================*
  * 
  *   bool anyset (unsigned mask) const;
@@ -140,7 +133,6 @@ bool oflagword::anyset (unsigned mask) const
 {
 	return ((this->mbits & mask) != 0);
 }
-
 
 /*====================================================================*
  * 
@@ -154,7 +146,6 @@ bool oflagword::allset (unsigned mask) const
 	return ((this->mbits & mask) == mask);
 }
 
-
 /*====================================================================*
  * 
  *   bool anyclear (unsigned mask) const;
@@ -167,7 +158,6 @@ bool oflagword::anyclear (unsigned mask) const
 	return ((this->mbits & mask) != mask);
 }
 
-
 /*====================================================================*
  * 
  *   bool allclear (unsigned make) const;
@@ -179,7 +169,6 @@ bool oflagword::allclear (unsigned mask) const
 {
 	return ((this->mbits & mask) == 0);
 }
-
 
 /*====================================================================*
  *
@@ -194,7 +183,6 @@ oflagword::oflagword (unsigned word)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   oflagword ();
@@ -208,7 +196,6 @@ oflagword::oflagword ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oflagword ();
@@ -220,7 +207,6 @@ oflagword::~oflagword ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

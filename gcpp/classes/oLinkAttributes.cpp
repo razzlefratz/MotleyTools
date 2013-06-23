@@ -37,7 +37,6 @@ oLinkAttributes & oLinkAttributes::write ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oLinkAttributes ();
@@ -58,7 +57,6 @@ oLinkAttributes::oLinkAttributes ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oLinkAttributes ();
@@ -70,7 +68,6 @@ oLinkAttributes::~oLinkAttributes ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *

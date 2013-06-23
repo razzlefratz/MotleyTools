@@ -44,7 +44,6 @@ char const * obuffer::offset () const
 	return (this->moffset);
 }
 
-
 /*====================================================================*
  *   
  *   obuffer & offset (char const *offset);
@@ -68,7 +67,6 @@ obuffer & obuffer::offset (char const * offset)
 	return (* this);
 }
 
-
 /*====================================================================*
  *   
  *   char const * record () const
@@ -86,7 +84,6 @@ char const * obuffer::record () const
 {
 	return (this->moffset);
 }
-
 
 /*====================================================================*
  *   
@@ -110,7 +107,6 @@ obuffer & obuffer::record (char const * record)
 	std::strcpy (this->mfinish, record);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -149,7 +145,6 @@ obuffer & obuffer::append (signed c)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   obuffer & append (char const *string);
@@ -172,7 +167,6 @@ obuffer & obuffer::append (char const * string)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -198,7 +192,6 @@ obuffer & obuffer::level (signed level)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   obuffer & space (signed space);
@@ -223,7 +216,6 @@ obuffer & obuffer::space (signed space)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   obuffer & flush ();
@@ -244,7 +236,6 @@ obuffer & obuffer::flush ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   obuffer & clear() :
@@ -262,7 +253,6 @@ obuffer & obuffer::clear ()
 	this->mlength = 0;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -291,7 +281,6 @@ obuffer::obuffer (size_t length)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   obuffer()
@@ -319,7 +308,6 @@ obuffer::obuffer ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~obuffer()
@@ -339,7 +327,6 @@ obuffer::~obuffer ()
 	delete [] this->mbuffer;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation

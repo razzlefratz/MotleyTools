@@ -47,14 +47,12 @@ size_t ocomment::width () const
 	return (this->mwidth);
 }
 
-
 ocomment & ocomment::width (size_t width) 
 
 {
 	this->mwidth = width;
 	return (* this);
 }
-
 
 #endif
 
@@ -78,14 +76,12 @@ unsigned char ocomment::cupper () const
 	return (this->mupper);
 }
 
-
 ocomment & ocomment::cupper (unsigned char upper) 
 
 {
 	this->mupper = upper;
 	return (* this);
 }
-
 
 #endif
 
@@ -109,14 +105,12 @@ unsigned char ocomment::clower () const
 	return (this->mlower);
 }
 
-
 ocomment & ocomment::clower (unsigned char lower) 
 
 {
 	this->mlower = lower;
 	return (* this);
 }
-
 
 #endif
 
@@ -141,14 +135,12 @@ char const * ocomment::preface () const
 	return (this->mpreface);
 }
 
-
 ocomment & ocomment::preface (char const * preface) 
 
 {
 	this->mpreface = otext::replace (this->mpreface, preface);
 	return (* this);
 }
-
 
 #endif
 #endif
@@ -174,14 +166,12 @@ char const * ocomment::package () const
 	return (this->mpackage);
 }
 
-
 ocomment & ocomment::package (char const * package) 
 
 {
 	this->mpackage = otext::replace (this->mpackage, package);
 	return (* this);
 }
-
 
 #endif
 #endif
@@ -207,14 +197,12 @@ char const * ocomment::release () const
 	return (this->mrelease);
 }
 
-
 ocomment & ocomment::release (char const * release) 
 
 {
 	this->mrelease = otext::replace (this->mrelease, release);
 	return (* this);
 }
-
 
 #endif
 #endif
@@ -240,14 +228,12 @@ char const * ocomment::license () const
 	return (this->mlicense);
 }
 
-
 ocomment & ocomment::license (char const * license) 
 
 {
 	this->mlicense = otext::replace (this->mlicense, license);
 	return (* this);
 }
-
 
 #endif
 #endif
@@ -273,14 +259,12 @@ char const * ocomment::special () const
 	return (this->mspecial);
 }
 
-
 ocomment & ocomment::special (char const * special) 
 
 {
 	this->mspecial = otext::replace (this->mspecial, special);
 	return (* this);
 }
-
 
 #endif
 #endif
@@ -317,7 +301,6 @@ ocomment & ocomment::preamble ()
 	std::cout << " *---*/" << std::endl;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -362,7 +345,6 @@ signed ocomment::preamble (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed comment (signed c) const;
@@ -393,7 +375,6 @@ signed ocomment::comment (signed c)
 	std::cout.put ('/');
 	return (c);
 }
-
 
 /*====================================================================*
  *   
@@ -476,7 +457,6 @@ signed ocomment::cplus (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *   
  *   signed clang (signed c);
@@ -554,6 +534,7 @@ signed ocomment::clang (signed c)
 				* this->minsert++ = (char) (start);
 			}
 		}
+
 #if oCOMMENT_CUSTOMIZE
 
 		else if (ocomment::anyset (oCOMMENT_B_PREFACE) && (c == oCOMMENT_C_PREFACE)) 
@@ -576,6 +557,7 @@ signed ocomment::clang (signed c)
 		{
 			c = ocomment::message (c, this->mlicense);
 		}
+
 #endif
 #endif
 
@@ -617,6 +599,7 @@ signed ocomment::clang (signed c)
 					* this->minsert++ = ' ';
 				}
 			}
+
 #endif
 
 			* this->minsert++ = c;
@@ -633,6 +616,7 @@ signed ocomment::clang (signed c)
 				c = std::cin.get ();
 			}
 		}
+
 #endif
 
 	}
@@ -660,7 +644,6 @@ signed ocomment::clang (signed c)
 	c = std::cin.get ();
 	return (c);
 }
-
 
 /*====================================================================*
  *   
@@ -712,7 +695,6 @@ signed ocomment::message (signed c, char const * string)
 	return (c);
 }
 
-
 #endif
 #endif
 
@@ -754,7 +736,6 @@ ocomment::ocomment (size_t length)
 
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -799,7 +780,6 @@ ocomment::ocomment ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ocomment()
@@ -829,7 +809,6 @@ ocomment::~ocomment ()
 	delete [] this->mbuffer;
 	return;
 }
-
 
 /*====================================================================*
  *   end definition

@@ -65,7 +65,6 @@ FILE * ofindfile::fopen1 (char const * file, char const * mode)
 	return (fp);
 }
 
-
 /*====================================================================*
  *   
  *   FILE *ofindfile::fopen2 (char const *file, char const *mode, char const *pathstring);
@@ -123,7 +122,6 @@ FILE * ofindfile::fopen2 (char const * file, char const * mode, char const * pat
 	return (fp);
 }
 
-
 /*====================================================================*
  *   
  *   ofindfile ();
@@ -146,7 +144,6 @@ ofindfile::ofindfile ()
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   ~ofindfile ();
@@ -164,7 +161,6 @@ ofindfile::~ofindfile ()
 	delete [] this->mstack;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

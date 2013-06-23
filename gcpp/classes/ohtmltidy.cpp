@@ -51,20 +51,17 @@ char const * ohtmltidy::element () const
 	return ((char const *) (this->melement));
 }
 
-
 char const * ohtmltidy::attribute () const 
 
 {
 	return ((char const *) (this->mattribute));
 }
 
-
 char const * ohtmltidy::value () const 
 
 {
 	return ((char const *) (this->mvalue));
 }
-
 
 /*====================================================================*
  *
@@ -83,7 +80,6 @@ char ohtmltidy::quote () const
 {
 	return (this->mquote);
 }
-
 
 /*====================================================================*
  *
@@ -104,7 +100,6 @@ ohtmltidy & ohtmltidy::quote (signed quote)
 	this->mquote = quote;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -157,7 +152,6 @@ signed ohtmltidy::page (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed xml (signed c) const
@@ -177,7 +171,6 @@ signed ohtmltidy::xml (signed c) const
 	c = ohtmltidy::context (c, '?', '>');
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -199,7 +192,6 @@ signed ohtmltidy::php (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed asp (signed c) const
@@ -219,7 +211,6 @@ signed ohtmltidy::asp (signed c) const
 	c = ohtmltidy::context (c, '%', '>');
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -333,7 +324,6 @@ signed ohtmltidy::sgml (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed xhtml (signed c);
@@ -437,7 +427,6 @@ signed ohtmltidy::xhtml (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed comment (signed c) const;
@@ -474,7 +463,6 @@ signed ohtmltidy::comment (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed cdata (signed c) const;
@@ -510,7 +498,6 @@ signed ohtmltidy::cdata (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed enquote (signed c, signed e) 
@@ -535,7 +522,6 @@ signed ohtmltidy::enquote (signed c, signed e)
 	* string = (char) (0);
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -562,7 +548,6 @@ signed ohtmltidy::dequote (signed c, signed e)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed nmtoken (signed c)
@@ -587,7 +572,6 @@ signed ohtmltidy::nmtoken (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed unknown (signed c);
@@ -611,7 +595,6 @@ signed ohtmltidy::unknown (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *   
  *   signed find (signed c) const;
@@ -631,7 +614,6 @@ signed ohtmltidy::find (signed c) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *   
@@ -654,7 +636,6 @@ signed ohtmltidy::keep (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   ohtmltidy & print () 
@@ -671,7 +652,6 @@ ohtmltidy & ohtmltidy::print ()
 	std::cout << this->mstring;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -697,7 +677,6 @@ ohtmltidy::ohtmltidy ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ohtmltidy()
@@ -717,7 +696,6 @@ ohtmltidy::~ohtmltidy ()
 	delete [] this->mvalue;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation

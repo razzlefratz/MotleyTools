@@ -90,7 +90,6 @@ unsigned ointerface::Index (void) const
 	return (this->mifindex);
 }
 
-
 /*====================================================================*
  *
  *   char const * Name (void) const;
@@ -104,7 +103,6 @@ char const * ointerface::Name (void) const
 {
 	return (this->mifname);
 }
-
 
 /*====================================================================*
  *
@@ -121,7 +119,6 @@ char const * ointerface::Description (void) const
 	return (this->miftext);
 }
 
-
 /*====================================================================*
  *
  *   byte const * HardwareAddress (void) const;
@@ -136,7 +133,6 @@ byte const * ointerface::HardwareAddress (void) const
 {
 	return (this->mhwaddr);
 }
-
 
 /*====================================================================*
  *
@@ -153,7 +149,6 @@ byte const * ointerface::InternetAddress (void) const
 	return (this->mipaddr);
 }
 
-
 /*====================================================================*
  *
  *   char const * HardwareAddressString (void) const;
@@ -169,7 +164,6 @@ char const * ointerface::HardwareAddressString (void) const
 	return (this->mhwstring);
 }
 
-
 /*====================================================================*
  *
  *   char const * InternetAddressString (void) const;
@@ -184,7 +178,6 @@ char const * ointerface::InternetAddressString (void) const
 {
 	return (this->mipstring);
 }
-
 
 /*====================================================================*
  *
@@ -202,7 +195,6 @@ ointerface & ointerface::ExportHardwareAddress (void * memory)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ointerface & ExportInternetAddress (void * memory);
@@ -218,7 +210,6 @@ ointerface & ointerface::ExportInternetAddress (void * memory)
 	std::memcpy (memory, this->mipaddr, sizeof (this->mipaddr));
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -237,7 +228,6 @@ ointerface & ointerface::Description (char const * string)
 	omemory::memtext (string, this->miftext, sizeof (this->miftext));
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -258,7 +248,6 @@ ointerface & ointerface::Print ()
 	std::cout << this->Description () << std::endl;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -284,7 +273,6 @@ bool ointerface::Disabled () const
 	}
 	return (false);
 }
-
 
 /*====================================================================*
  *
@@ -325,6 +313,7 @@ ointerface & ointerface::lookup ()
 		}::
 		close (fd);
 	}
+
 #elif defined (__linux__) || defined (__APPLE__) || defined (__OpenBSD__) 
 
 	struct ifaddrs * ifaddrs;
@@ -347,6 +336,7 @@ ointerface & ointerface::lookup ()
 				struct in_addr * in_addr = (struct in_addr *)(& sockaddr_in->sin_addr);
 				std::memcpy (this->mipaddr, & in_addr->s_addr, sizeof (this->mipaddr));
 			}
+
 #if defined (__linux__)
 
 			if (ifaddr->ifa_addr->sa_family == AF_PACKET) 
@@ -354,6 +344,7 @@ ointerface & ointerface::lookup ()
 				struct sockaddr_ll * sockaddr_ll = (struct sockaddr_ll *) (ifaddr->ifa_addr);
 				memcpy (this->mhwaddr, sockaddr_ll->sll_addr, sizeof (this->mhwaddr));
 			}
+
 #elif defined (__APPLE__) || defined (__OpenBSD__)
 
 			if (ifaddr->ifa_addr->sa_family == AF_LINK) 
@@ -364,6 +355,7 @@ ointerface & ointerface::lookup ()
 					std::memcpy (this->mhwaddr, LLADDR (sockaddr_dl), sizeof (this->mhwaddr));
 				}
 			}
+
 #else
 #error "Abandon all hope!"
 #endif
@@ -371,6 +363,7 @@ ointerface & ointerface::lookup ()
 		}
 		freeifaddrs (ifaddrs);
 	}
+
 #elif defined (WINPCAP) 
 
 	ointerface::pcap_gethwaddr ();
@@ -384,7 +377,6 @@ ointerface & ointerface::lookup ()
 	omemory::decdecode (this->mipaddr, sizeof (this->mipaddr), this->mipstring, sizeof (this->mipstring));
 	return (* this);
 }
-
 
 /*====================================================================*
  *   
@@ -425,12 +417,12 @@ unsigned ointerface::pcap_nametoindex (char const * name) const
 		}
 		pcap_freealldevs (devices);
 	}
+
 #endif
 
 	errno = ENXIO;
 	return (0);
 }
-
 
 /*====================================================================*
  *
@@ -469,12 +461,12 @@ char * ointerface::pcap_indextoname (unsigned ifindex, char * ifname) const
 		}
 		pcap_freealldevs (devices);
 	}
+
 #endif
 
 	errno = ENXIO;
 	return ((char *)(0));
 }
-
 
 /*====================================================================*
  *
@@ -518,7 +510,6 @@ void ointerface::pcap_gethwaddr ()
 
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -565,7 +556,6 @@ void ointerface::pcap_getipaddr ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ointerface (unsigned ifindex) 
@@ -602,7 +592,6 @@ ointerface::ointerface (unsigned ifindex)
 	ointerface::lookup ();
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -641,7 +630,6 @@ ointerface::ointerface (char const * ifname)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ointerface () 
@@ -653,7 +641,6 @@ ointerface::~ointerface ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

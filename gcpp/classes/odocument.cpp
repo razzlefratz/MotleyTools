@@ -39,7 +39,6 @@ char const * odocument::title () const
 	return (this->root->title ());
 }
 
-
 /*====================================================================*
  * 
  *   odocument & odocument::title(char const *title) 
@@ -55,7 +54,6 @@ odocument & odocument::title (char const * title)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
@@ -67,7 +65,6 @@ odocument::odocument ()
 	return;
 }
 
-
 odocument::odocument (char const * title) 
 
 {
@@ -75,14 +72,12 @@ odocument::odocument (char const * title)
 	return;
 }
 
-
 odocument::~odocument () 
 
 {
 	delete [] this->mtitle;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

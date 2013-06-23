@@ -43,7 +43,6 @@ char const * oSpanElement::ElementName () const
 	return (oSpanElement::mtitle);
 }
 
-
 /*====================================================================*
  *
  *   oSpanElement & StartTag () 
@@ -67,7 +66,6 @@ oSpanElement & oSpanElement::StartTag ()
 	std::cout.put ('>');
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -94,7 +92,6 @@ oSpanElement & oSpanElement::EmptyTag ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oSpanElement & EndTag () 
@@ -120,7 +117,6 @@ oSpanElement & oSpanElement::EndTag ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oSpanElement ();
@@ -133,7 +129,6 @@ oSpanElement::oSpanElement ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oSpanElement ();
@@ -145,7 +140,6 @@ oSpanElement::~oSpanElement ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

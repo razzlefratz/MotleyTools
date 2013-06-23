@@ -44,7 +44,6 @@ char const * ograph::name ()
 	return (this->mname);
 }
 
-
 /*====================================================================*
  *
  *   ograph & name (char const *string);
@@ -65,7 +64,6 @@ ograph & ograph::name (char const * name)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   onode * node () const;
@@ -81,7 +79,6 @@ onode * ograph::node () const
 {
 	return (this->mnode);
 }
-
 
 /*====================================================================*
  *
@@ -99,7 +96,6 @@ ograph & ograph::addnode (char const * nodename)
 	this->mnodes->add (nodename);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -119,7 +115,6 @@ ograph & ograph::addedge (char const * needname, char const * feedname)
 	this->medges->add (neednode, feednode);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -178,7 +173,6 @@ ograph & ograph::populate (char colon, char comma)
 	return (* this);
 }
 
-
 /*====================================================================*
  *   
  *   void discover();
@@ -213,7 +207,6 @@ ograph & ograph::discover ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *   
  *   ograph & traverse (onode *node);
@@ -238,6 +231,7 @@ ograph & ograph::traverse (onode * node)
 	{
 		return (* this);
 	}
+
 #endif
 
 /*
@@ -256,6 +250,7 @@ ograph & ograph::traverse (onode * node)
 			return (* this);
 		}
 	}
+
 /*
  * if the level or order are non-zero then this node has already been 
  * traversed through another relationship; no need to traverse again;
@@ -307,7 +302,6 @@ ograph & ograph::traverse (onode * node)
 	return (* this);
 }
 
-
 /*====================================================================*
  * 
  *   ograph & trace(onode * temp, onode *node);
@@ -327,7 +321,6 @@ ograph & ograph::trace (onode * node, onode * stop)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  * 
@@ -350,7 +343,6 @@ ograph & ograph::clear ()
 	return (* this);
 }
 
-
 /*====================================================================*
  * 
  *   ograph ()
@@ -371,7 +363,6 @@ ograph::ograph ()
 	return;
 }
 
-
 /*====================================================================*
  * 
  *   ~ograph ()
@@ -388,7 +379,6 @@ ograph::~ograph ()
 	this->mnode = (onode *) (0);
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;
