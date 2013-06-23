@@ -80,7 +80,8 @@ int main (int argc, char const * argv [])
 		oPUTOPTV_S_FUNNEL,
 		"produce html file index",
 		"c n\tdisplay n columns [" LITERAL (INDEX_COLUMNS) "]",
-		"s s\tuse CSS2 stylesheet",
+		"s s\tuse CSS2 stylesheet (s)",
+		"S\tprint CSS2 stylesheet on stdout",
 		"t s\tHTML index title",
 		(char const *) (0)
 	};
@@ -95,10 +96,13 @@ int main (int argc, char const * argv [])
 			columns = atoi (getopt.optarg ());
 			break;
 		case 's':
-			page.IndexStyle (getopt.optarg ());
+			page.stylesheet (getopt.optarg ());
+			break;
+		case 'S':
+			page.stylesheet ();
 			break;
 		case 't':
-			page.IndexTitle (getopt.optarg ());
+			page.title (getopt.optarg ());
 			break;
 		default:
 			break;

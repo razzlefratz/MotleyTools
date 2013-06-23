@@ -64,6 +64,10 @@
 #include "../classes/owebpage.cpp"
 #endif
 
+/*====================================================================*
+ *   program constants;
+ *--------------------------------------------------------------------*/
+
 #define STYLESHEET "clang.css"
 
 /*====================================================================*
@@ -82,7 +86,7 @@ int main (int argc, char const * argv [])
 		"S\tprint default stylesheet on stdout",
 		(char const *) (0)
 	};
-	ochtml chtml (STYLESHEET);
+	ochtml page (STYLESHEET);
 	ogetoptv getopt;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
@@ -90,10 +94,10 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{
 		case 's':
-			chtml.stylesheet (getopt.optarg ());
+			page.stylesheet (getopt.optarg ());
 			break;
 		case 'S':
-			chtml.stylesheet ();
+			page.stylesheet ();
 			return (0);
 		default:
 			break;
@@ -101,7 +105,7 @@ int main (int argc, char const * argv [])
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
-		chtml.html (* getopt.argv ());
+		page.html (* getopt.argv ());
 		getopt++;
 	}
 	std::exit (0);
