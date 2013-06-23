@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   oHTMLAttributes.hpp - declaration of oHTMLAttributes class.
+ *   oHTMLAttributeNames.hpp - declaration of oHTMLAttributeNames class.
  *
  *   this object implements the detection, lookup and retrieval of HTML 
  *   attribute names;
@@ -151,12 +151,12 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oHTMLAttributes: public okeywords 
+class __declspec (dllexport) oHTMLAttributeNames: public okeywords 
 
 {
 public:
-	oHTMLAttributes ();
-	virtual~ oHTMLAttributes ();
+	oHTMLAttributeNames ();
+	virtual~ oHTMLAttributeNames ();
 };
 
 

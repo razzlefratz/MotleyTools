@@ -95,7 +95,7 @@ ochtml & ochtml::stylesheet ()
 ochtml & ochtml::stylesheet (char const * string) 
 
 {
-	owebpage::stylesheet (string);
+	owebpage::PageStyle (string);
 	return (* this);
 }
 
@@ -133,7 +133,8 @@ ochtml & ochtml::html (char const * filename)
 		oerror::print ("can't open %s for output", filename);
 	}
 	buf = std::cout.rdbuf (output.rdbuf ());
-	ochtml::topPage ();
+	ochtml::PageTitle (filename);
+	ochtml::PageHeader ();
 	std::cout << "<pre>";
 	while (!this->mfile.isempty ()) 
 	{
@@ -254,7 +255,7 @@ ochtml & ochtml::html (char const * filename)
 		}
 	}
 	std::cout << "</pre>" << std::endl;
-	ochtml::botPage ();
+	ochtml::PageFooter ();
 	this->mfile.clear ();
 	std::cout.rdbuf (buf);
 	output.close ();
@@ -429,7 +430,7 @@ ochtml & ochtml::directive ()
 ochtml::ochtml (char const * stylesheet) 
 
 {
-	owebpage::stylesheet (stylesheet);
+	owebpage::PageStyle (stylesheet);
 	this->murl = new char [FILENAME_MAX + 1];
 	this->murl [0] = (char)(0);
 	return;
@@ -449,10 +450,7 @@ ochtml::ochtml (char const * stylesheet)
 ochtml::ochtml () 
 
 {
-
-// owebpage::stylesheet ("http://www.cmassoc.net/styles/clang.css");
-
-	owebpage::stylesheet ("clang.css");
+	owebpage::PageStyle (oCHTML_PAGE_STYLESHEET);
 	this->murl = new char [FILENAME_MAX + 1];
 	this->murl [0] = (char)(0);
 	return;

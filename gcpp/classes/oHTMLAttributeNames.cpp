@@ -1,6 +1,6 @@
 /*==========================================================================/
  *
- *   oHTMLAttributes.cpp - definition of oHTMLAttributes class.
+ *   oHTMLAttributeNames.cpp - definition of oHTMLAttributeNames class.
  *
  *   this object implements the detection, lookup and retrieval of HTML
  *   attribute names;
@@ -18,11 +18,11 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/oHTMLAttributes.hpp"
+#include "../classes/oHTMLAttributeNames.hpp"
 
 /*====================================================================*
  *
- *   oHTMLAttributes ();
+ *   oHTMLAttributeNames ();
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -30,7 +30,7 @@
  *
  *--------------------------------------------------------------------*/
 
-oHTMLAttributes::oHTMLAttributes () 
+oHTMLAttributeNames::oHTMLAttributeNames () 
 
 {
 	static char const * table [] = 
@@ -167,7 +167,7 @@ oHTMLAttributes::oHTMLAttributes ()
 
 /*====================================================================*
  *
- *   ~oHTMLAttributes ();
+ *   ~oHTMLAttributeNames ();
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -175,7 +175,7 @@ oHTMLAttributes::oHTMLAttributes ()
  *
  *--------------------------------------------------------------------*/
 
-oHTMLAttributes::~oHTMLAttributes () 
+oHTMLAttributeNames::~oHTMLAttributeNames () 
 
 {
 	return;

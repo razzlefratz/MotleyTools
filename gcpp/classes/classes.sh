@@ -7,8 +7,8 @@
 
 g++ -Wall -c oagenda.cpp
 g++ -Wall -c oascii.cpp
-g++ -Wall -c oattribute.cpp
-# g++ -Wall -c oattribute.demo.cpp
+g++ -Wall -c oAttribute.cpp
+# g++ -Wall -c oAttribute.demo.cpp
 g++ -Wall -c obreak.cpp
 g++ -Wall -c obuffer.cpp
 g++ -Wall -c ocatalog.cpp
@@ -59,6 +59,7 @@ g++ -Wall -c oheap.cpp
 # g++ -Wall -c oheap.demo.cpp
 # g++ -Wall -c ohexencode.cpp
 # g++ -Wall -c ohexencoder.cpp
+g++ -Wall -c oHTMLIndex.cpp
 g++ -Wall -c ohtmltidy.cpp
 g++ -Wall -c oindent.cpp
 g++ -Wall -c oindex.cpp

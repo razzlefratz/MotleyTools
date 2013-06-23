@@ -168,7 +168,6 @@ void func (flag_t flags, FILE * ifp, FILE * ofp)
 	return;
 }
 
-
 /*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
@@ -193,8 +192,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		func (flags, stdin, stdout);

@@ -132,7 +132,7 @@ static unsigned object ()
 	char * sp;
 	char * cp;
 	length = 0;
-	if ((c == '+') || (c == '-'))
+	if ((c == '+') || (c == '-')) 
 	{
 		do 
 		{
@@ -148,7 +148,7 @@ static unsigned object ()
 	while (isdigit (c)) 
 	{
 		length *= 10;
-		length += c - '0';
+		length+= c - '0';
 		c = getc (stdin);
 	}
 	while (isblank (c)) 
@@ -160,7 +160,7 @@ static unsigned object ()
 	{
 		do 
 		{
-			*sp++ = (char)(c);
+			* sp++ = (char)(c);
 			c = getc (stdin);
 		}
 		while (isalnum (c) || (c == '_') || (c == '-') || (c == '.') || (c == ':'));
@@ -171,7 +171,7 @@ static unsigned object ()
 	}
 	if (c == '[') 
 	{
-		*sp++ = (char)(c);
+		* sp++ = (char)(c);
 		c = getc (stdin);
 		while (isblank (c)) 
 		{
@@ -179,22 +179,22 @@ static unsigned object ()
 		}
 		while (isdigit (c)) 
 		{
-			*sp++ = (char)(c);
+			* sp++ = (char)(c);
 			c = getc (stdin);
 		}
 		while (isblank (c)) 
 		{
 			c = getc (stdin);
 		}
-		*sp = (char)(0);
+		* sp = (char)(0);
 		if (c != ']') 
 		{
 			error (1, EINVAL, "Have '%s' but need ']' on line %d", symbol, lineno);
 		}
-		*sp++ = (char)(c);
+		* sp++ = (char)(c);
 		c = getc (stdin);
 	}
-	*sp = (char)(0);
+	* sp = (char)(0);
 	while (isblank (c)) 
 	{
 		c = getc (stdin);
@@ -202,17 +202,16 @@ static unsigned object ()
 	sp = cp = string;
 	while (nobreak (c)) 
 	{
-		*cp++ = (char)(c);
+		* cp++ = (char)(c);
 		if (!isspace (c)) 
 		{
 			sp = cp;
 		}
 		c = getc (stdin);
 	}
-	*sp = (char)(0);
+	* sp = (char)(0);
 	return (count);
 }
-
 
 /*====================================================================*
  *
@@ -258,7 +257,6 @@ static unsigned stylesheet (unsigned margin)
 	return (margin);
 }
 
-
 /*====================================================================*
  *   
  *   void html (char const * colors [], unsigned count, flag_t flags);
@@ -275,7 +273,7 @@ static unsigned stylesheet (unsigned margin)
 static void html (char const * colors [], unsigned count, flag_t flags) 
 
 {
-	time_t now = time (&now);
+	time_t now = time (& now);
 	static char datetime [LOGTIME_LEN];
 	extern unsigned lineno;
 	extern unsigned margin;
@@ -284,11 +282,11 @@ static void html (char const * colors [], unsigned count, flag_t flags)
 	extern char * symbol;
 	extern char * string;
 	extern signed c;
-	strftime (datetime, sizeof (datetime), LOGTIME, localtime (&now));
+	strftime (datetime, sizeof (datetime), LOGTIME, localtime (& now));
 	lineno = 1;
 	offset = 0;
 	length = 0;
-	if (_anyset (flags, OFFSET_PAGE))
+	if (_anyset (flags, OFFSET_PAGE)) 
 	{
 		indent (margin++, "<html>");
 		indent (margin++, "<title>");
@@ -350,7 +348,7 @@ static void html (char const * colors [], unsigned count, flag_t flags)
 		}
 		else 
 		{
-			if (!offset)
+			if (!offset) 
 			{
 				indent (margin++, "<h2 class='%s'>", style);
 				indent (margin, "No Title");
@@ -380,14 +378,14 @@ static void html (char const * colors [], unsigned count, flag_t flags)
 			indent (margin, "%6d", length);
 			indent (margin--, "</td>");
 			indent (margin++, "<td class='%s' style='background: %s;'>", style_symbol, colors [index]);
-			indent (margin, "%s", *symbol? symbol: "&nbsp;");
+			indent (margin, "%s", * symbol? symbol: "&nbsp;");
 			indent (margin--, "</td>");
 			indent (margin++, "<td class='%s' style='background: %s;'>", style_string, colors [index]);
-			indent (margin, "%s", *string? string: "&nbsp;");
+			indent (margin, "%s", * string? string: "&nbsp;");
 			indent (margin--, "</td>");
 			indent (margin--, "</tr>");
 		}
-		offset += length;
+		offset+= length;
 		lineno++;
 	}
 	if (offset) 
@@ -398,7 +396,7 @@ static void html (char const * colors [], unsigned count, flag_t flags)
 	indent (margin, "Posted %s on %s by %s", datetime, hostname (), username (getuid ()));
 	indent (margin--, "</div>");
 	indent (0, "<!-- END CONTENT -->");
-	if (_anyset (flags, OFFSET_PAGE))
+	if (_anyset (flags, OFFSET_PAGE)) 
 	{
 		indent (margin--, "</body>");
 		indent (margin--, "</html>");
@@ -461,7 +459,7 @@ static void text (flag_t flags)
 			{
 				putc (' ', stdout);
 			}
-			if (*string) 
+			if (* string) 
 			{
 				printf (" (%s)", string);
 			}
@@ -476,7 +474,7 @@ static void text (flag_t flags)
 			printf (" -------- %10d %s %s\n", offset, symbol, string);
 			origin = offset;
 		}
-		offset += length;
+		offset+= length;
 		lineno++;
 	}
 	if (offset) 
@@ -486,7 +484,6 @@ static void text (flag_t flags)
 	printf (" %08X  %10d bytes\n", offset, offset);
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -551,12 +548,11 @@ static void efsu (flag_t flags)
 				putc ('\n', stdout);
 			}
 		}
-		offset += length;
+		offset+= length;
 		lineno++;
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -611,12 +607,11 @@ static void tabs (flag_t flags)
 		{
 			printf ("\n\t\t%s %s\n", symbol, string);
 		}
-		offset += length;
+		offset+= length;
 		lineno++;
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -653,7 +648,7 @@ static void fold (flag_t flags)
 			while (isdigit (c)) 
 			{
 				length *= 10;
-				length += c - '0';
+				length+= c - '0';
 				c = getc (stdin);
 			}
 			if (extent) 
@@ -668,7 +663,7 @@ static void fold (flag_t flags)
 				c = getc (stdin);
 			}
 			putc ('\n', stdout);
-			offset += length;
+			offset+= length;
 			length = 0;
 			continue;
 		}
@@ -677,7 +672,7 @@ static void fold (flag_t flags)
 			while (isdigit (c)) 
 			{
 				length *= 10;
-				length += c - '0';
+				length+= c - '0';
 				c = getc (stdin);
 			}
 			if (!length) 
@@ -707,8 +702,8 @@ static void fold (flag_t flags)
 			{
 				c = getc (stdin);
 			}
-			extent += length;
-			offset += length;
+			extent+= length;
+			offset+= length;
 			length = 0;
 			continue;
 		}
@@ -725,7 +720,6 @@ static void fold (flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -751,9 +745,14 @@ static void zero (flag_t flags)
 			putc (c, stdout);
 			c = getc (stdin);
 		}
-		if ((c == '+') || (c == '-'))
+		if ((c == '+') || (c == '-')) 
 		{
-			do { putc (c, stdout); c = getc (stdin); } while (isblank (c));
+			do 
+			{
+				putc (c, stdout);
+				c = getc (stdin);
+			}
+			while (isblank (c));
 		}
 		while (c == '0') 
 		{
@@ -772,7 +771,6 @@ static void zero (flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -814,7 +812,6 @@ static void function (char const * colors [], unsigned count, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -901,8 +898,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	symbol = emalloc (SYMBOLSIZE);
 	string = emalloc (STRINGSIZE);
 	if (!argc) 

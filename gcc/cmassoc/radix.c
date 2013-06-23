@@ -86,20 +86,20 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	while ((argc) && (* argv)) 
 	{
 		char const * string = * argv;
 		unsigned index = sizeof (number);
 		unsigned digit;
 		uint64_t value = 0;
-		while (*string) 
+		while (* string) 
 		{
-			if ((digit = todigit (*string)) < base1) 
+			if ((digit = todigit (* string)) < base1) 
 			{
 				value *= base1;
-				value += digit;
+				value+= digit;
 				string++;
 				continue;
 			}
@@ -112,7 +112,7 @@ int main (int argc, char const * argv [])
 			value /= base2;
 		}
 		while ((index) && (value));
-		printf ("%s %s\n", * argv, &number [index]);
+		printf ("%s %s\n", * argv, & number [index]);
 		argc--;
 		argv++;
 	}

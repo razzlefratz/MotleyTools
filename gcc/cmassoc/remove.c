@@ -114,7 +114,7 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (char const *filename, regexp * list [], size_t size, char buffer [], size_t length, flag_t flags) 
+void function (char const * filename, regexp * list [], size_t size, char buffer [], size_t length, flag_t flags) 
 
 {
 	unsigned line;
@@ -124,10 +124,10 @@ void function (char const *filename, regexp * list [], size_t size, char buffer 
 		size_t item;
 		for (item = 0; item < size; item++) 
 		{
-			char const *cp = regexspan (list [item], buffer);
+			char const * cp = regexspan (list [item], buffer);
 			if (cp) 
 			{
-				if (*cp == (char) (0)) 
+				if (* cp == (char) (0)) 
 				{
 					break;
 				}
@@ -156,7 +156,6 @@ void function (char const *filename, regexp * list [], size_t size, char buffer 
 	return;
 }
 
-
 /*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
@@ -180,7 +179,7 @@ int main (int argc, char const * argv [])
 		"v\texclude matching lines",
 		(char const *) (0)
 	};
-	regexp *remove [_LISTSIZE] = 
+	regexp * remove [_LISTSIZE] = 
 	{
 		(regexp *) (0)
 	};
@@ -240,8 +239,8 @@ int main (int argc, char const * argv [])
 			exit (1);
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (flags & (REMOVE_B_REVIEW)) 
 	{
 		for (item = 0; item < size; item++) 

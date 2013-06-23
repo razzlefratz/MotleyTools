@@ -64,7 +64,7 @@ int main (int argc, char const * argv [])
 		(char const *) (0)
 	};
 	struct stat statinfo;
-	struct group *group;
+	struct group * group;
 	mode_t mode;
 	mode_t prev;
 	bool system = false;
@@ -78,13 +78,13 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!isatty (STDIN_FILENO)) 
 	{
 		error (1, 0, "stdin is not a tty");
 	}
-	if (fstat (STDIN_FILENO, &statinfo)) 
+	if (fstat (STDIN_FILENO, & statinfo)) 
 	{
 		error (1, errno, "can't fstat stdin");
 	}
@@ -109,7 +109,6 @@ int main (int argc, char const * argv [])
 	{
 		error (1, 0, "argument '%s' has no meaning: only 'yes' or 'no' have meaning", * argv);
 	}
-
 /*
  * permit no but not yes if group is non-standard.
  */

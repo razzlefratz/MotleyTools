@@ -64,7 +64,7 @@
 void function (char const * path, char * file, unsigned depth) 
 
 {
-	DIR *dir;
+	DIR * dir;
 	static unsigned level = 0;
 	if (level > depth) 
 	{
@@ -73,30 +73,30 @@ void function (char const * path, char * file, unsigned depth)
 	indent (level++, "%s", file);
 	if ((dir = opendir (path))) 
 	{
-		struct dirent *dirent;
+		struct dirent * dirent;
 		struct stat statinfo;
-		while (*file) 
+		while (* file) 
 		{
 			file++;
 		}
-		*file++ = PATH_C_EXTENDER;
+		* file++ = PATH_C_EXTENDER;
 		while ((dirent = readdir (dir))) 
 		{
-			char const *sp = dirent->d_name;
-			if (*sp == FILE_C_EXTENDER) 
+			char const * sp = dirent->d_name;
+			if (* sp == FILE_C_EXTENDER) 
 			{
 				sp++;
 			}
-			if (*sp == FILE_C_EXTENDER) 
+			if (* sp == FILE_C_EXTENDER) 
 			{
 				sp++;
 			}
-			if (*sp == (char) (0)) 
+			if (* sp == (char) (0)) 
 			{
 				continue;
 			}
 			strcpy (file, dirent->d_name);
-			if (stat (path, &statinfo)) 
+			if (stat (path, & statinfo)) 
 			{
 				error (0, errno, "%s", path);
 				continue;
@@ -121,7 +121,6 @@ void function (char const * path, char * file, unsigned depth)
 	level--;
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -159,8 +158,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		strcpy (filename, getenv ("PWD"));

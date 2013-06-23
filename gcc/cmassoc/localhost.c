@@ -80,11 +80,11 @@ int main (int argc, char const * argv [])
 			}
 			break;
 		case 'l':
-			if (stat (HOSTNAME1, &statinfo)) 
+			if (stat (HOSTNAME1, & statinfo)) 
 			{
 				error (1, errno, "Can't stat %s", HOSTNAME1);
 			}
-			if (stat (HOSTNAME2, &statinfo)) 
+			if (stat (HOSTNAME2, & statinfo)) 
 			{
 				error (1, errno, "Can't stat %s", HOSTNAME2);
 			}

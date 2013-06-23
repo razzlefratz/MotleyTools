@@ -84,10 +84,10 @@ static void populate (flag_t flags)
 		sp = one;
 		while (nobreak (c) && (c != ',') && (c != ':') && (c != ';')) 
 		{
-			*sp++ = (char) (c);
+			* sp++ = (char) (c);
 			c = getc (stdin);
 		}
-		*sp = (char) (0);
+		* sp = (char) (0);
 		while (isblank (c)) 
 		{
 			c = getc (stdin);
@@ -103,10 +103,10 @@ static void populate (flag_t flags)
 		sp = two;
 		while (nobreak (c) && (c != ';')) 
 		{
-			*sp++ = (char) (c);
+			* sp++ = (char) (c);
 			c = getc (stdin);
 		}
-		*sp = (char) (0);
+		* sp = (char) (0);
 		while (isblank (c)) 
 		{
 			c = getc (stdin);
@@ -130,7 +130,6 @@ static void populate (flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -173,8 +172,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		populate (flags);

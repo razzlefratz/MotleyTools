@@ -57,7 +57,7 @@ static void function (char const * filename)
 	unsigned line = 1;
 	unsigned digit = 0;
 	unsigned value = 0;
-	while (read (STDIN_FILENO, &byte, sizeof (byte)) > 0) 
+	while (read (STDIN_FILENO, & byte, sizeof (byte)) > 0) 
 	{
 		if (isspace (byte)) 
 		{
@@ -70,10 +70,10 @@ static void function (char const * filename)
 		if ((byte >= '0') && (byte <= '9')) 
 		{
 			value *= 16;
-			value += byte - '0';
+			value+= byte - '0';
 			if (digit++ & 1) 
 			{
-				write (STDOUT_FILENO, &value, sizeof (char));
+				write (STDOUT_FILENO, & value, sizeof (char));
 				value = 0;
 			}
 			continue;
@@ -81,11 +81,11 @@ static void function (char const * filename)
 		if ((byte >= 'A') && (byte <= 'F')) 
 		{
 			value *= 16;
-			value += 10;
-			value += byte - 'A';
+			value+= 10;
+			value+= byte - 'A';
 			if (digit++ & 1) 
 			{
-				write (STDOUT_FILENO, &value, sizeof (char));
+				write (STDOUT_FILENO, & value, sizeof (char));
 				value = 0;
 			}
 			continue;
@@ -93,11 +93,11 @@ static void function (char const * filename)
 		if ((byte >= 'a') && (byte <= 'f')) 
 		{
 			value *= 16;
-			value += 10;
-			value += byte - 'a';
+			value+= 10;
+			value+= byte - 'a';
 			if (digit++ & 1) 
 			{
-				write (STDOUT_FILENO, &value, sizeof (char));
+				write (STDOUT_FILENO, & value, sizeof (char));
 				value = 0;
 			}
 			continue;
@@ -110,7 +110,6 @@ static void function (char const * filename)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -142,8 +141,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function ("standard input");

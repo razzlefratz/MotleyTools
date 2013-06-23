@@ -55,7 +55,7 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (char const *braces, flag_t flags) 
+void function (char const * braces, flag_t flags) 
 
 {
 	signed c = getc (stdin);
@@ -77,7 +77,7 @@ void function (char const *braces, flag_t flags)
 			c = getc (stdin);
 			if (isalnum (c)) 
 			{
-				putc (*braces++, stdout);
+				putc (* braces++, stdout);
 				while (isalnum (c) || (c == '_')) 
 				{
 					putc (c, stdout);
@@ -103,21 +103,21 @@ void function (char const *braces, flag_t flags)
 #endif
 
 				}
-				putc (*braces--, stdout);
+				putc (* braces--, stdout);
 				continue;
 			}
 			if (isdigit (c)) 
 			{
-				putc (*braces++, stdout);
+				putc (* braces++, stdout);
 				putc (c, stdout);
-				putc (*braces--, stdout);
+				putc (* braces--, stdout);
 				continue;
 			}
 			if ((c == '#') || (c == '?') || (c == '$')) 
 			{
-				putc (*braces++, stdout);
+				putc (* braces++, stdout);
 				putc (c, stdout);
-				putc (*braces--, stdout);
+				putc (* braces--, stdout);
 				c = getc (stdin);
 				continue;
 			}
@@ -127,7 +127,6 @@ void function (char const *braces, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   main program;
@@ -154,8 +153,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (braces, flags);

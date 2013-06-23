@@ -95,7 +95,7 @@ static void function (char const * file, unsigned width, flag_t flags)
 		while (isdigit (c)) 
 		{
 			value *= 10;
-			value += c - '0';
+			value+= c - '0';
 			c = getc (stdin);
 		}
 		if (value < prior) 
@@ -123,7 +123,6 @@ static void function (char const * file, unsigned width, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -160,8 +159,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function ("stdin", width, flags);

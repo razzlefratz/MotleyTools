@@ -101,7 +101,6 @@ static signed _nocomment (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed markup (signed c) 
@@ -173,7 +172,6 @@ static signed markup (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed pcdata (signed c) 
@@ -197,7 +195,6 @@ static signed pcdata (signed c)
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -228,8 +225,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		pcdata (getc (stdin));

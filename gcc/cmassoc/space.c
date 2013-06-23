@@ -96,7 +96,6 @@ static void GNUMake (unsigned spaces, unsigned tabs)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void OpenWRT (unsigned spaces, unsigned tabs);
@@ -125,7 +124,6 @@ static void OpenWRT (unsigned spaces, unsigned tabs)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   signed noop (signed c);
@@ -139,7 +137,6 @@ static signed noop (signed c)
 {
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -198,8 +195,16 @@ static void function (signed comment, void indent (unsigned, unsigned), signed e
 			}
 			if (isblank (c)) 
 			{
-				do { c = getc (stdin); c = escape (c); } while (isblank (c));
-				if (nobreak (c)) { putc (' ', stdout); }
+				do 
+				{
+					c = getc (stdin);
+					c = escape (c);
+				}
+				while (isblank (c));
+				if (nobreak (c)) 
+				{
+					putc (' ', stdout);
+				}
 				continue;
 			}
 			if (isquote (c)) 
@@ -214,7 +219,6 @@ static void function (signed comment, void indent (unsigned, unsigned), signed e
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -264,8 +268,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (comment, indent, escape);
@@ -281,5 +285,4 @@ int main (int argc, char const * argv [])
 	}
 	exit (0);
 }
-
 

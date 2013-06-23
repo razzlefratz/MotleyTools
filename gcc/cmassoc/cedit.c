@@ -67,7 +67,7 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned function (char const *oldname, char const *newname, flag_t flags) 
+unsigned function (char const * oldname, char const * newname, flag_t flags) 
 
 {
 	unsigned count = 0;
@@ -87,14 +87,14 @@ unsigned function (char const *oldname, char const *newname, flag_t flags)
 		if (isalpha (c) || (c == '_')) 
 		{
 			char string [255];
-			char *sp = string;
+			char * sp = string;
 			do 
 			{
-				*sp++ = (char)(c);
+				* sp++ = (char)(c);
 				c = getc (stdin);
 			}
 			while (isalnum (c) || (c == '_'));
-			*sp = (char)(0);
+			* sp = (char)(0);
 			if (!strcmp (string, oldname)) 
 			{
 				count++;
@@ -196,7 +196,6 @@ unsigned function (char const *oldname, char const *newname, flag_t flags)
 	return (count);
 }
 
-
 /*====================================================================*
  *   
  *   int main (int argc, char const * argv[]);
@@ -224,9 +223,9 @@ int main (int argc, char const * argv [])
 		(char const *) (0)
 	};
 	flag_t flags = (flag_t) (0);
-	char const *oldname = "";
-	char const *newname = "";
-	char const *sp;
+	char const * oldname = "";
+	char const * newname = "";
+	char const * sp;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
@@ -249,9 +248,9 @@ int main (int argc, char const * argv [])
 	{
 		error (1, EINVAL, "No old name given");
 	}
-	for (sp = oldname; *sp; sp++) 
+	for (sp = oldname; * sp; sp++) 
 	{
-		if (!isalnum (*sp) && (*sp != '_')) 
+		if (!isalnum (* sp) && (* sp != '_')) 
 		{
 			error (1, EINVAL, "%s is not a variable or constant name", oldname);
 		}
@@ -264,9 +263,9 @@ int main (int argc, char const * argv [])
 	{
 		error (1, EINVAL, "No new name given");
 	}
-	for (sp = newname; *sp; sp++) 
+	for (sp = newname; * sp; sp++) 
 	{
-		if (!isalnum (*sp) && (*sp != '_')) 
+		if (!isalnum (* sp) && (* sp != '_')) 
 		{
 			error (1, EINVAL, "%s is not a variable or constant name", newname);
 		}
@@ -275,8 +274,8 @@ int main (int argc, char const * argv [])
 	{
 		error (1, EINVAL, "New name  is empty");
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		if ((c = function (oldname, newname, flags))) 

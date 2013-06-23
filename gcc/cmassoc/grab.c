@@ -88,7 +88,6 @@ void function (size_t offset, size_t length, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
@@ -141,8 +140,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (offset, length, flags);

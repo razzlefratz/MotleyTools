@@ -79,7 +79,6 @@ signed comp (char const * one, char const * two)
 	return (order * strcmp (one, two));
 }
 
-
 /*====================================================================*
  *
  *   size_t loadheap(char * heap[], size_t heapsize, size_t linesize, FILE *ifp);
@@ -107,7 +106,6 @@ size_t loadheap (char * heap [], size_t heapsize, size_t linesize, FILE * ifp)
 	return (heapitem);
 }
 
-
 /*====================================================================*
  *
  *   size_t saveheap (char * heap [], size_t heapsize, FILE * ofp);
@@ -131,7 +129,6 @@ size_t saveheap (char * heap [], size_t heapsize, FILE * ofp)
 	}
 	return (heapsize);
 }
-
 
 /*====================================================================*
  *
@@ -163,8 +160,8 @@ size_t function (size_t heapsize, size_t linesize)
 	while ((heapitem = loadheap (heap, heapsize, linesize, stdin))) 
 	{
 		saveheap (heap, heapitem, stdout);
-		line += heapitem;
-		pass ++;
+		line+= heapitem;
+		pass++;
 	}
 	if (pass > 1) 
 	{
@@ -172,7 +169,6 @@ size_t function (size_t heapsize, size_t linesize)
 	}
 	return (pass);
 }
-
 
 /*====================================================================*
  *
@@ -218,8 +214,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (heapsize, linesize);

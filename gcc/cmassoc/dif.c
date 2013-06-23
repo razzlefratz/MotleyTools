@@ -72,30 +72,29 @@
  *
  *--------------------------------------------------------------------*/
 
-void *next (size_t line, LINK * ip, FILE * fp) 
+void * next (size_t line, LINK * ip, FILE * fp) 
 
 {
 	register signed c = (char) (0);
 	char string [TEXTLINE_MAX];
-	char *sp = string;
-	char *cp = string;
+	char * sp = string;
+	char * cp = string;
 	for (c = getc (fp); (c != EOF) && (c != '\n'); c = getc (fp)) 
 	{
 		if ((size_t)(cp - string) < (sizeof (string) - 1)) 
 		{
-			*cp++ = (char) (c);
+			* cp++ = (char) (c);
 		}
 		if ((c != ' ') && (c != '\t')) 
 		{
 			sp = cp;
 		}
 	}
-	*sp = (char) (0);
+	* sp = (char) (0);
 	ip->name = (void *) (strdup (string));
 	ip->data = (void *) (line);
 	return ((c != EOF)? (void *) (ip->name): (void *) (0));
 }
-
 
 /*====================================================================*
  *
@@ -111,10 +110,10 @@ void *next (size_t line, LINK * ip, FILE * fp)
  *
  *--------------------------------------------------------------------*/
 
-LINK *find (LINK * list, LINK * item, int comp (char const *, char const *)) 
+LINK * find (LINK * list, LINK * item, int comp (char const *, char const *)) 
 
 {
-	LINK *temp;
+	LINK * temp;
 	if (list == (LINK *) (0)) 
 	{
 		return ((LINK *) (0));
@@ -149,7 +148,6 @@ LINK *find (LINK * list, LINK * item, int comp (char const *, char const *))
 	return ((LINK *) (0));
 }
 
-
 /*====================================================================*
  *
  *   void show(LINK *op, LINK *np, unsigned width, flag_t flags);
@@ -173,7 +171,7 @@ LINK *find (LINK * list, LINK * item, int comp (char const *, char const *))
 void show (LINK * op, LINK * np, int width, flag_t flag) 
 
 {
-	LINK *tp;
+	LINK * tp;
 	if (_anyset (flag, _SHOWBREAK)) 
 	{
 		if ((op != op->next) || (np != np->next)) 
@@ -212,7 +210,6 @@ void show (LINK * op, LINK * np, int width, flag_t flag)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void func (size_t width, flag_t flag, FILE * ofp, FILE * nfp)
@@ -226,10 +223,10 @@ void show (LINK * op, LINK * np, int width, flag_t flag)
 void function (size_t width, flag_t flag, FILE * ofp, FILE * nfp) 
 
 {
-	LINK *op,
-	*otp;
-	LINK *np,
-	*ntp;
+	LINK * op,
+	* otp;
+	LINK * np,
+	* ntp;
 	unsigned match;
 	unsigned count;
 	op = makeitem ((LINK *) (0), (LINK *) (0));
@@ -276,7 +273,6 @@ void function (size_t width, flag_t flag, FILE * ofp, FILE * nfp)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
@@ -301,8 +297,8 @@ int main (int argc, char const * argv [])
 		"w n\tscreen width is n characters",
 		(char const *)(0)
 	};
-	FILE *ofp,
-	*nfp;
+	FILE * ofp,
+	* nfp;
 	size_t width = _WIDTH;
 	flag_t flag = NONE;
 	signed c;
@@ -326,8 +322,8 @@ int main (int argc, char const * argv [])
 			exit (1);
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (argc == 2) 
 	{
 		ofp = efopen (* argv++, "rb");

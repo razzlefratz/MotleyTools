@@ -92,8 +92,8 @@ signed function (struct channel * channel, signed fd)
 		{
 			bytes = ETHERMIN;
 		}
-		bytes += ETHER_HDR_LEN;
-		if (sendpacket (channel, &frame, bytes) != bytes) 
+		bytes+= ETHER_HDR_LEN;
+		if (sendpacket (channel, & frame, bytes) != bytes) 
 		{
 			error (1, errno, CHANNEL_CANTSEND);
 		}
@@ -101,7 +101,6 @@ signed function (struct channel * channel, signed fd)
 	}
 	return (0);
 }
-
 
 /*====================================================================*
  *
@@ -158,23 +157,23 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
-	openchannel (&channel);
+	argc-= optind;
+	argv+= optind;
+	openchannel (& channel);
 	if (!argc) 
 	{
-		function (&channel, STDIN_FILENO);
+		function (& channel, STDIN_FILENO);
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (efreopen (* argv, "rb", stdin)) 
 		{
-			function (&channel, STDIN_FILENO);
+			function (& channel, STDIN_FILENO);
 		}
 		argc--;
 		argv++;
 	}
-	closechannel (&channel);
+	closechannel (& channel);
 	exit (0);
 }
 

@@ -115,19 +115,31 @@ void function (signed c, flag_t flags)
 		{
 			if (_anyset (flags, CASE_B_UPPER)) 
 			{
-				do { c = keep (toupper (c)); } while (isalpha (c));
+				do 
+				{
+					c = keep (toupper (c));
+				}
+				while (isalpha (c));
 				continue;
 			}
 			if (_anyset (flags, CASE_B_LOWER)) 
 			{
-				do { c = keep (tolower (c)); } while (isalpha (c));
+				do 
+				{
+					c = keep (tolower (c));
+				}
+				while (isalpha (c));
 				continue;
 			}
 			if (_anyset (flags, CASE_B_TITLE)) 
 			{
 				c = toupper (c);
 			}
-			do { c = keep (c); } while (isalnum (c));
+			do 
+			{
+				c = keep (c);
+			}
+			while (isalnum (c));
 			continue;
 		}
 		if ((c == '\"') && _anyset (flags, CASE_B_QUOTE)) 
@@ -144,7 +156,6 @@ void function (signed c, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -200,8 +211,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (getc (stdin), flags);

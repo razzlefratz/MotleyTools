@@ -76,33 +76,33 @@
 static void findfile (FIND * find, mode_t dirmode, mode_t regmode, flag_t flags) 
 
 {
-	DIR *dir;
+	DIR * dir;
 	if ((dir = opendir (find->fullname))) 
 	{
-		struct dirent *dirent;
-		char *filename;
-		for (filename = find->fullname; *filename; filename++);
-		*filename = PATH_C_EXTENDER;
+		struct dirent * dirent;
+		char * filename;
+		for (filename = find->fullname; * filename; filename++);
+		* filename = PATH_C_EXTENDER;
 		while ((dirent = readdir (dir))) 
 		{
 			strcpy (filename + 1, dirent->d_name);
-			if (lstat (find->fullname, &find->statinfo)) 
+			if (lstat (find->fullname, & find->statinfo)) 
 			{
 				error (0, 0, "can't stat %s.", find->fullname);
 				continue;
 			}
 			if (S_ISDIR (find->statinfo.st_mode)) 
 			{
-				char *sp = dirent->d_name;
-				if (*sp == '.') 
+				char * sp = dirent->d_name;
+				if (* sp == '.') 
 				{
 					sp++;
 				}
-				if (*sp == '.') 
+				if (* sp == '.') 
 				{
 					sp++;
 				}
-				if (*sp == (char) (0)) 
+				if (* sp == (char) (0)) 
 				{
 					continue;
 				}
@@ -141,12 +141,11 @@ static void findfile (FIND * find, mode_t dirmode, mode_t regmode, flag_t flags)
 				continue;
 			}
 		}
-		*filename = (char) (0);
+		* filename = (char) (0);
 		closedir (dir);
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   main program;
@@ -191,12 +190,12 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	while ((argc) && (* argv)) 
 	{
-		makefind (&find, * argv);
-		findfile (&find, dirmode, regmode, flags);
+		makefind (& find, * argv);
+		findfile (& find, dirmode, regmode, flags);
 		argc--;
 		argv++;
 	}

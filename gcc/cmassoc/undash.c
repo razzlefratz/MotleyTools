@@ -140,7 +140,6 @@ void function (flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
@@ -172,8 +171,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (flags);

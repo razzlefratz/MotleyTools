@@ -74,7 +74,6 @@ static signed noop (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   void function (signed comment, signed tab, flag_t flags);
@@ -115,8 +114,13 @@ static void function (signed comment, signed escape (signed))
 			}
 			if (isblank (c)) 
 			{
-				do { c = getc (stdin); c = escape (c); } while (isblank(c)); 
-				if (nobreak (c))
+				do 
+				{
+					c = getc (stdin);
+					c = escape (c);
+				}
+				while (isblank (c));
+				if (nobreak (c)) 
 				{
 					putc (' ', stdout);
 				}
@@ -134,7 +138,6 @@ static void function (signed comment, signed escape (signed))
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   main program;
@@ -169,8 +172,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (comment, escape);
@@ -186,5 +189,4 @@ int main (int argc, char const * argv [])
 	}
 	exit (0);
 }
-
 

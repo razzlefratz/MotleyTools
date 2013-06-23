@@ -103,11 +103,11 @@ void function (flag_t flags)
 		{
 			if ((size_t)(sp - phrase) < (sizeof (phrase) - 1)) 
 			{
-				*sp++ = (char)(c);
+				* sp++ = (char)(c);
 			}
 			c = getc (stdin);
 		}
-		*sp = (char)(0);
+		* sp = (char)(0);
 		if ((c != '\r') && (c != '\n') && (c != EOF)) 
 		{
 			error (0, ENOTSUP, "illegal characters on line %d", line);
@@ -123,9 +123,9 @@ void function (flag_t flags)
 			error (0, ENOTSUP, "more than %d characters on line %d", PHRASE_MAX, line);
 			continue;
 		}
-		SHA256Reset (&sha256);
-		SHA256Write (&sha256, phrase, sp - phrase);
-		SHA256Fetch (&sha256, digest);
+		SHA256Reset (& sha256);
+		SHA256Write (& sha256, phrase, sp - phrase);
+		SHA256Fetch (& sha256, digest);
 		if (_allclr (flags, KEY_VERBOSE)) 
 		{
 			SHA256Print (digest, (char const *)(0));
@@ -135,7 +135,6 @@ void function (flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -176,8 +175,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (flags);

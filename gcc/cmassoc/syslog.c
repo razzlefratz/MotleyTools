@@ -89,7 +89,6 @@ static void mysyslogtest (int priority)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   file_t myopenlog (char const *socketname, int sockettype);
@@ -101,7 +100,7 @@ static void mysyslogtest (int priority)
  *
  *--------------------------------------------------------------------*/
 
-static file_t myopenlog (char const *socketname, int sockettype) 
+static file_t myopenlog (char const * socketname, int sockettype) 
 
 {
 	static struct sockaddr_un sockaddr_un;
@@ -116,13 +115,12 @@ static file_t myopenlog (char const *socketname, int sockettype)
 	{
 		error (1, errno, "can't open socket %s", sockaddr_un.sun_path);
 	}
-	if (connect (fd, (struct sockaddr *) (&sockaddr_un), sizeof (sockaddr_un)) == -1) 
+	if (connect (fd, (struct sockaddr *) (& sockaddr_un), sizeof (sockaddr_un)) == -1) 
 	{
 		error (1, errno, "can't connect to socket %s", sockaddr_un.sun_path);
 	}
 	return (fd);
 }
-
 
 /*====================================================================*
  *
@@ -138,16 +136,16 @@ static file_t myopenlog (char const *socketname, int sockettype)
  *
  *--------------------------------------------------------------------*/
 
-static void mysyslog (file_t fd, int options, int priority, char const *identity, char const *message) 
+static void mysyslog (file_t fd, int options, int priority, char const * identity, char const * message) 
 
 {
 	char buffer [TEXTLINE_MAX];
-	time_t now = time (&now);
+	time_t now = time (& now);
 	size_t length = 0;
 	if (fd != -1) 
 	{
 		length = snprintf (buffer + length, sizeof (buffer) - length, "<%d>", priority);
-		length = strftime (buffer + length, sizeof (buffer) - length, LOGTIME, localtime (&now));
+		length = strftime (buffer + length, sizeof (buffer) - length, LOGTIME, localtime (& now));
 		length = snprintf (buffer + length, sizeof (buffer) - length, ": ");
 		if (identity != (char *) (0)) 
 		{
@@ -155,14 +153,14 @@ static void mysyslog (file_t fd, int options, int priority, char const *identity
 		}
 		if (options & SYSLOG_PROCESS) 
 		{
-			length += snprintf (buffer + length, sizeof (buffer) - length, "[%d]", getpid ());
+			length+= snprintf (buffer + length, sizeof (buffer) - length, "[%d]", getpid ());
 		}
 		if ((identity != (char *) (0)) || (options & SYSLOG_PROCESS)) 
 		{
 			length = snprintf (buffer + length, sizeof (buffer) - length, ": ");
 		}
-		length += snprintf (buffer + length, sizeof (buffer) - length, "%s", message);
-		length += snprintf (buffer + length, sizeof (buffer) - length, "\n");
+		length+= snprintf (buffer + length, sizeof (buffer) - length, "%s", message);
+		length+= snprintf (buffer + length, sizeof (buffer) - length, "\n");
 		if (write (fd, buffer, length) < length) 
 		{
 			error (0, errno, "can't write to syslog");
@@ -170,7 +168,6 @@ static void mysyslog (file_t fd, int options, int priority, char const *identity
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -204,9 +201,9 @@ int main (int argc, char const * argv [])
 		(char const *) (0)
 	};
 	char message [TEXTLINE_MAX];
-	char *bp = message;
-	char const *socketname = (char *) (0);
-	char const *identity = (char *)(0);
+	char * bp = message;
+	char const * socketname = (char *) (0);
+	char const * identity = (char *)(0);
 	int priority = SYSLOG_USER | SYSLOG_INFO;
 	code_t sockettype = SOCK_STREAM;
 	flag_t options = (flag_t) (0);
@@ -217,9 +214,9 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{
 		case 'b':
-			for (identity = optarg; *optarg != (char) (0); optarg++) 
+			for (identity = optarg; * optarg != (char) (0); optarg++) 
 			{
-				if (*optarg == PATH_C_EXTENDER) 
+				if (* optarg == PATH_C_EXTENDER) 
 				{
 					identity = optarg + 1;
 				}
@@ -256,8 +253,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	fclose (stdout);
 	if (socketname) 
 	{
@@ -275,12 +272,12 @@ int main (int argc, char const * argv [])
 			{
 				if ((bp - message) < (sizeof (message) - 1)) 
 				{
-					*bp++ = c;
+					* bp++ = c;
 				}
 			}
 			else 
 			{
-				*bp = (char) (0);
+				* bp = (char) (0);
 				if (socketname) 
 				{
 					mysyslog (fd, options, priority, identity, message);
@@ -295,14 +292,14 @@ int main (int argc, char const * argv [])
 	}
 	else 
 	{
-		for (bp = message; (argc) && (* argv); *bp++ = ' ') 
+		for (bp = message; (argc) && (* argv); * bp++ = ' ') 
 		{
-			char const *string;
-			for (string = * argv; *string; string++) 
+			char const * string;
+			for (string = * argv; * string; string++) 
 			{
 				if ((bp - message) < (sizeof (message) - 1)) 
 				{
-					*bp++ = *string;
+					* bp++ = * string;
 				}
 			}
 			argc--;
@@ -312,7 +309,7 @@ int main (int argc, char const * argv [])
 		{
 			bp--;
 		}
-		*bp = (char) (0);
+		* bp = (char) (0);
 		if (socketname) 
 		{
 			mysyslog (fd, options, priority, identity, message);

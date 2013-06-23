@@ -16,7 +16,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
-#include "../classes/oattribute.hpp"
+#include "../classes/oAttribute.hpp"
 
 /*====================================================================*
  *   class declarations;
@@ -28,10 +28,10 @@ class __declspec (dllexport) oCoreAttributes
 public:
 	oCoreAttributes ();
 	virtual~ oCoreAttributes ();
-	oattribute * IdentityAttribute;
-	oattribute * TitleAttribute;
-	oattribute * ClassAttribute;
-	oattribute * StyleAttribute;
+	oAttribute * IdentityAttribute;
+	oAttribute * TitleAttribute;
+	oAttribute * ClassAttribute;
+	oAttribute * StyleAttribute;
 	oCoreAttributes & write ();
 private:
 	

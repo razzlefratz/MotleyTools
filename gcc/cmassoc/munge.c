@@ -72,47 +72,47 @@ static void function (char const * pathname, char const * prefix, char const * d
 	char filename [FILENAME_MAX];
 	char * sp = strcpy (filename, pathname);
 	char * cp = sp;
-	while (*cp) 
+	while (* cp) 
 	{
-		if (*cp++ == PATH_C_EXTENDER) 
+		if (* cp++ == PATH_C_EXTENDER) 
 		{
 			sp = cp;
 		}
 	}
-	for (cp = sp; *prefix == *cp; prefix++, cp++);
-	if (*prefix) 
+	for (cp = sp; * prefix == * cp; prefix++, cp++);
+	if (* prefix) 
 	{
 		cp = sp;
 	}
-	while (*cp) 
+	while (* cp) 
 	{
-		if (strchr (discard, *cp)) 
+		if (strchr (discard, * cp)) 
 		{
 			cp++;
 			continue;
 		}
-		if (strchr (replace, *cp)) 
+		if (strchr (replace, * cp)) 
 		{
-			*sp++ = *cp++ = *replace;
+			* sp++ = * cp++ = * replace;
 			continue;
 		}
 		if (_anyset (flags, MUNGE_B_LOWER)) 
 		{
-			*cp = tolower (*cp);
-			*sp++ = *cp++;
+			* cp = tolower (* cp);
+			* sp++ = * cp++;
 			continue;
 		}
 		if (_anyset (flags, MUNGE_B_UPPER)) 
 		{
-			*cp = toupper (*cp);
-			*sp++ = *cp++;
+			* cp = toupper (* cp);
+			* sp++ = * cp++;
 			continue;
 		}
-		*sp++ = *cp++;
+		* sp++ = * cp++;
 	}
 	if (sp > filename) 
 	{
-		*sp = (char)(0);
+		* sp = (char)(0);
 	}
 	if (strcmp (pathname, filename)) 
 	{
@@ -127,7 +127,6 @@ static void function (char const * pathname, char const * prefix, char const * d
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -189,8 +188,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	while ((argc) && (* argv)) 
 	{
 		function (* argv, prefix, discard, replace, flags);

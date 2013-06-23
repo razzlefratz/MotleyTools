@@ -68,16 +68,16 @@
  *
  *--------------------------------------------------------------------*/
 
-int faudit (char *filestate []) 
+int faudit (char * filestate []) 
 
 {
 	struct stat statinfo;
-	struct passwd *passwd;
-	struct group *group;
+	struct passwd * passwd;
+	struct group * group;
 	mode_t type;
 	mode_t mode;
 	int errors = 0;
-	if (stat (filestate [NAME], &statinfo)) 
+	if (stat (filestate [NAME], & statinfo)) 
 	{
 		error (0, errno, "%s", filestate [NAME]);
 		return (1);
@@ -117,7 +117,6 @@ int faudit (char *filestate [])
 	return (errors);
 }
 
-
 /*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
@@ -132,11 +131,11 @@ int main (int argc, char const * argv [])
 		"audit file states against snapshot file;",
 		(char const *)(0)
 	};
-	FILE *fp;
+	FILE * fp;
 	char buffer [255];
-	char *attributes [16];
-	char **attribute;
-	char *string;
+	char * attributes [16];
+	char ** attribute;
+	char * string;
 	signed errors = 0;
 	signed index = 0;
 	signed c;
@@ -148,8 +147,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 	}
@@ -157,29 +156,29 @@ int main (int argc, char const * argv [])
 	{
 		if ((fp = efopen (* argv, "rb"))) 
 		{
-			*attribute++ = string = buffer;
+			* attribute++ = string = buffer;
 			while ((c = fgetc (fp)) != EOF) 
 			{
 				switch (c) 
 				{
 				case LIST_C_EXTENDER:
-					*attribute = (char *) (0);
-					*string = (char) (0);
-					errors += faudit (attributes);
+					* attribute = (char *) (0);
+					* string = (char) (0);
+					errors+= faudit (attributes);
 					index++;
 					attribute = attributes;
-					*attribute++ = string = buffer;
+					* attribute++ = string = buffer;
 					break;
 				case ITEM_C_EXTENDER:
-					*attribute++ = string + 1;
-					*string++ = (char) (0);
+					* attribute++ = string + 1;
+					* string++ = (char) (0);
 					break;
 				case ' ':
 				case '\t':
 				case '\n':
 					break;
 				default:
-					*string++ = c;
+					* string++ = c;
 					break;
 				}
 			}

@@ -66,7 +66,7 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{
 		case 'c':
-			o = *optarg;
+			o = * optarg;
 			break;
 		case 'w':
 			width = uintspec (optarg, 1, UCHAR_MAX);
@@ -75,8 +75,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	while ((argc) && (* argv)) 
 	{
 		signf (* argv, o, width);

@@ -89,15 +89,15 @@
 static void function (LIST * list) 
 
 {
-	DIR *dir;
-	struct dirent *dirent;
+	DIR * dir;
+	struct dirent * dirent;
 	char pathname [FILENAME_MAX + 1] = PROCROOT;
-	char *filename = pathname + sizeof (PROCROOT) - 1;
+	char * filename = pathname + sizeof (PROCROOT) - 1;
 	if ((dir = opendir (pathname))) while ((dirent = readdir (dir))) 
 	{
-		char *string;
-		for (string = dirent->d_name; isdigit (*string); ++string);
-		if (*string == (char) (0)) 
+		char * string;
+		for (string = dirent->d_name; isdigit (* string); ++string);
+		if (* string == (char) (0)) 
 		{
 			signed fd;
 			strcpy (filename, dirent->d_name);
@@ -105,19 +105,19 @@ static void function (LIST * list)
 			if ((fd = open (pathname, O_RDONLY)) != -1) 
 			{
 				char buffer [PROCSTAT_MAX];
-				char *vector [PROCSTAT_CNT];
+				char * vector [PROCSTAT_CNT];
 				signed length = read (fd, buffer, sizeof (buffer) - 1);
 				buffer [length] = (char) (0);
 				close (fd);
 				strsplit ((char const **) (vector), PROCSTAT_CNT, buffer, ' ');
-				for (string = vector [PROCSTAT_NAME]; *string != (char) (0); string++) 
+				for (string = vector [PROCSTAT_NAME]; * string != (char) (0); string++) 
 				{
-					*string = *(string + 1);
-					if (*string == ')') 
+					* string = *(string + 1);
+					if (* string == ')') 
 					{
-						*string = (char) (0);
+						* string = (char) (0);
 					}
-					if (*string == (char) (0)) 
+					if (* string == (char) (0)) 
 					{
 						break;
 					}
@@ -129,7 +129,6 @@ static void function (LIST * list)
 	closedir (dir);
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -172,10 +171,10 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	listcreate (&list, _LISTSIZE);
-	function (&list);
-	listcolumn (&list, stdout, width, count, index);
-	listdelete (&list);
+	listcreate (& list, _LISTSIZE);
+	function (& list);
+	listcolumn (& list, stdout, width, count, index);
+	listdelete (& list);
 	exit (0);
 }
 

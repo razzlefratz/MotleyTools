@@ -73,17 +73,17 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function (struct _find_ *find, size_t length, flag_t flags) 
+static void function (struct _find_ * find, size_t length, flag_t flags) 
 
 {
-	time_t now = time (&now);
-	struct tm *tm = localtime (&now);
+	time_t now = time (& now);
+	struct tm * tm = localtime (& now);
 	char buffer [length];
 	length = 0;
-	length += snprintf (buffer + length, sizeof (buffer) - length, "#!/bin/bash\n");
-	length += snprintf (buffer + length, sizeof (buffer) - length, "# file: %s\n", find->pathname);
-	length += snprintf (buffer + length, sizeof (buffer) - length, "# Published %04d by Charles Maier Associates Limited for internal use;\n", tm->tm_year + 1900);
-	length += snprintf (buffer + length, sizeof (buffer) - length, "\n");
+	length+= snprintf (buffer + length, sizeof (buffer) - length, "#!/bin/bash\n");
+	length+= snprintf (buffer + length, sizeof (buffer) - length, "# file: %s\n", find->pathname);
+	length+= snprintf (buffer + length, sizeof (buffer) - length, "# Published %04d by Charles Maier Associates Limited for internal use;\n", tm->tm_year + 1900);
+	length+= snprintf (buffer + length, sizeof (buffer) - length, "\n");
 	write (STDOUT_FILENO, buffer, length);
 	while ((length = read (STDIN_FILENO, buffer, sizeof (buffer))) > 0) 
 	{
@@ -91,7 +91,6 @@ static void function (struct _find_ *find, size_t length, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -118,7 +117,7 @@ int main (int argc, char const * argv [])
 		"x\tmake file executable",
 		(char const *) (0)
 	};
-	char const *pathname = "";
+	char const * pathname = "";
 	flag_t flags = (flag_t) (0);
 	size_t length = _LINESIZE;
 	signed c;
@@ -148,24 +147,24 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
-		function (&find, length, flags);
+		function (& find, length, flags);
 	}
 	while ((argc) && (* argv)) 
 	{
-		makefind (&find, * argv);
+		makefind (& find, * argv);
 		if (vfopen (find.fullname)) 
 		{
-			if ((!pathname) || (!*pathname)) 
+			if ((!pathname) || (!* pathname)) 
 			{
 				strcpy (find.pathname, pathname);
 			}
 			strcat (find.pathname, PATH_S_EXTENDER);
 			strcat (find.pathname, find.filename);
-			function (&find, length, flags);
+			function (& find, length, flags);
 			if (_anyset (flags, SHBANG_EXECUTE)) 
 			{
 				if (chmod (find.fullname, 0755)) 

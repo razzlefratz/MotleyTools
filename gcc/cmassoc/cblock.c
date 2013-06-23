@@ -84,28 +84,29 @@ static signed program (signed c, signed e);
  *
  *--------------------------------------------------------------------*/
 
-static signed preamble (signed c)
+static signed preamble (signed c) 
+
 {
 	extern unsigned level;
-	if (!level)
+	if (!level) 
 	{
-		while (c != EOF)
+		while (c != EOF) 
 		{
-			if (isspace (c))
+			if (isspace (c)) 
 			{
 				c = getc (stdin);
 				continue;
-			} 
-			if (c == '/')
+			}
+			if (c == '/') 
 			{
 				c = comment (c);
 				continue;
 			}
-			if (c == ';')
+			if (c == ';') 
 			{
 				c = keep (c);
 				continue;
-			} 
+			}
 			printf ("\n\n/*===*\n *\n *\n *\n *.\n *:\n *;\n *---*/\n\n");
 			break;
 		}
@@ -148,7 +149,6 @@ static signed statement (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed condition (signed c);
@@ -180,7 +180,6 @@ static signed condition (signed c)
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -237,14 +236,14 @@ static signed program (signed c, signed e)
 		if (isalnum (c) || (c == '_') || (c == '.')) 
 		{
 			char string [100];
-			char *sp = string;
+			char * sp = string;
 			do 
 			{
-				*sp++ = c;
+				* sp++ = c;
 				c = keep (c);
 			}
 			while (isalnum (c) || (c == '_') || (c == '.'));
-			*sp = (char)(0);
+			* sp = (char)(0);
 			if (!strcmp (string, "while")) 
 			{
 				c = condition (c);
@@ -290,7 +289,6 @@ static signed program (signed c, signed e)
 	return (e);
 }
 
-
 /*====================================================================*
  *   
  *   int main (int argc, char const * argv[]);
@@ -324,8 +322,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		program (NUL, EOF);

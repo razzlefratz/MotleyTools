@@ -62,7 +62,7 @@
  *
  *--------------------------------------------------------------------*/
 
-static void myrename (char const *thisfile, char const *thatfile, flag_t flags) 
+static void myrename (char const * thisfile, char const * thatfile, flag_t flags) 
 
 {
 	if (flags & (FIND_B_TESTRUN)) 
@@ -80,7 +80,6 @@ static void myrename (char const *thisfile, char const *thatfile, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void function (char const *thisfile, char const *thatfile, flag_t flags);
@@ -91,7 +90,7 @@ static void myrename (char const *thisfile, char const *thatfile, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void myremove (char const *thisfile, flag_t flags) 
+static void myremove (char const * thisfile, flag_t flags) 
 
 {
 	if (flags & (FIND_B_TESTRUN)) 
@@ -109,7 +108,6 @@ static void myremove (char const *thisfile, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void findfile (char *thispath, char *thatpath, flag_t flags);
@@ -123,25 +121,25 @@ static void myremove (char const *thisfile, flag_t flags)
 static void findfile (char thispathname [], char thatpathname [], flag_t flags) 
 
 {
-	DIR *thisdir;
-	DIR *thatdir;
-	struct dirent *thisdirent;
-	struct dirent *thatdirent;
+	DIR * thisdir;
+	DIR * thatdir;
+	struct dirent * thisdirent;
+	struct dirent * thatdirent;
 	struct stat thisstatinfo;
 	struct stat thatstatinfo;
-	char *thisfilename;
-	char *thatfilename;
+	char * thisfilename;
+	char * thatfilename;
 	if ((thisdir = opendir (thispathname)) == (DIR *) (0)) 
 	{
 		error (0, errno, "%s", thispathname);
 		return;
 	}
-	for (thisfilename = thispathname; *thisfilename != (char) (0); thisfilename++);
-	*thisfilename = PATH_C_EXTENDER;
+	for (thisfilename = thispathname; * thisfilename != (char) (0); thisfilename++);
+	* thisfilename = PATH_C_EXTENDER;
 	while ((thisdirent = readdir (thisdir)) != (struct dirent *) (0)) 
 	{
 		strcpy (thisfilename + 1, thisdirent->d_name);
-		if (lstat (thispathname, &thisstatinfo)) 
+		if (lstat (thispathname, & thisstatinfo)) 
 		{
 			error (0, errno, "can't stat %s", thispathname);
 		}
@@ -152,12 +150,12 @@ static void findfile (char thispathname [], char thatpathname [], flag_t flags)
 				error (0, errno, "%s", thatpathname);
 				continue;
 			}
-			for (thatfilename = thatpathname; *thatfilename != (char) (0); thatfilename++);
-			*thatfilename = PATH_C_EXTENDER;
+			for (thatfilename = thatpathname; * thatfilename != (char) (0); thatfilename++);
+			* thatfilename = PATH_C_EXTENDER;
 			while ((thatdirent = readdir (thatdir)) != (struct dirent *) (0)) 
 			{
 				strcpy (thatfilename + 1, thatdirent->d_name);
-				if (lstat (thatpathname, &thatstatinfo)) 
+				if (lstat (thatpathname, & thatstatinfo)) 
 				{
 					error (0, errno, "can't stat %s", thatpathname);
 				}
@@ -179,7 +177,7 @@ static void findfile (char thispathname [], char thatpathname [], flag_t flags)
 					}
 				}
 			}
-			*thatfilename = (char) (0);
+			* thatfilename = (char) (0);
 			closedir (thatdir);
 		}
 	}
@@ -187,7 +185,6 @@ static void findfile (char thispathname [], char thatpathname [], flag_t flags)
 	closedir (thisdir);
 	return;
 }
-
 
 /*====================================================================*
  *   main program;
@@ -223,8 +220,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (argc) 
 	{
 		strcpy (thispath, * argv);

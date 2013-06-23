@@ -161,7 +161,6 @@ static void func (unsigned column, signed cc, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
@@ -201,7 +200,7 @@ int main (int argc, char const * argv [])
 			_setbits (flags, AFM_B_UPPER);
 			break;
 		case 'c':
-			character = *optarg;
+			character = * optarg;
 			break;
 		case 'a':
 			column = uintspec (optarg, 0, SHRT_MAX);
@@ -213,8 +212,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		func (column, character, flags);

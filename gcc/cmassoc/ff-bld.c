@@ -80,7 +80,6 @@ static void testfile (FIND * find, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   static void testfile (FIND * find, flag_t flags);
@@ -98,7 +97,7 @@ static void testlink (FIND * find, flag_t flags)
 	if (match (find->filename, find->wildcard)) 
 	{
 		FIND link;
-		memcpy (&link, find, sizeof (link));
+		memcpy (& link, find, sizeof (link));
 		memset (link.filename, 0, sizeof (link.filename));
 		readlink (link.fullname, link.filename, sizeof (link.filename));
 		makepath (link.fullname, link.pathname, link.filename);
@@ -107,7 +106,6 @@ static void testlink (FIND * find, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -122,49 +120,47 @@ static void testlink (FIND * find, flag_t flags)
 static void findfile (FIND * find, flag_t flags) 
 
 {
-	DIR *dir;
-	struct dirent *dirent;
-	char *filename;
+	DIR * dir;
+	struct dirent * dirent;
+	char * filename;
 	if ((dir = opendir (find->fullname)) == (DIR *) (0)) 
 	{
 		error (0, errno, "%s", find->fullname);
 		return;
 	}
 	strcpy (find->pathname, find->fullname);
-	for (filename = find->fullname; *filename != (char) (0); filename++);
-	*filename = PATH_C_EXTENDER;
+	for (filename = find->fullname; * filename != (char) (0); filename++);
+	* filename = PATH_C_EXTENDER;
 	while ((dirent = readdir (dir)) != (struct dirent *) (0)) 
 	{
 		strcpy (filename + 1, dirent->d_name);
 		partpath (find->fullname, find->pathname, find->filename);
 		partfile (find->filename, find->basename, find->extender);
-		if (lstat (find->fullname, &find->statinfo)) 
+		if (lstat (find->fullname, & find->statinfo)) 
 		{
 			error (0, errno, "%s", find->fullname);
 		}
 		else if (S_ISDIR (find->statinfo.st_mode)) 
 		{
-			char *filename = find->filename;
-			if (*filename == '.') 
+			char * filename = find->filename;
+			if (* filename == '.') 
 			{
 				filename++;
 			}
-			if (*filename == '.') 
+			if (* filename == '.') 
 			{
 				filename++;
 			}
-			if (*filename == (char) (0)) 
+			if (* filename == (char) (0)) 
 			{
 				continue;
 			}
-
 #ifdef NEVEREVERINAMILLIONYEARS
 
 			if (_anyset (find->flagword, FIND_B_DIR)) 
 			{
 				testfile (find, flags);
 			}
-
 #endif
 
 			if (_anyset (find->flagword, FIND_B_RECURSE)) 
@@ -187,11 +183,10 @@ static void findfile (FIND * find, flag_t flags)
 			}
 		}
 	}
-	*filename = (char) (0);
+	* filename = (char) (0);
 	closedir (dir);
 	return;
 }
-
 
 /*====================================================================*
  *   main program;
@@ -222,17 +217,17 @@ int main (int argc, char const * argv [])
 			exit (1);
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (_allclr (find.flagword, (FIND_B_REG | FIND_B_LNK))) 
 	{
 		_setbits (find.flagword, (FIND_B_REG | FIND_B_LNK));
 	}
 	while ((argc) && (* argv)) 
 	{
-		makefind (&find, * argv);
+		makefind (& find, * argv);
 		strcpy (find.fullname, find.pathname);
-		findfile (&find, flags);
+		findfile (& find, flags);
 		argc--;
 		argv++;
 	}

@@ -97,7 +97,6 @@ void pagelink (unsigned level, struct page * page, char const * link)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   signed header (signed margin, struct page * page);
@@ -134,7 +133,6 @@ static signed header (signed margin, struct page * page, char const * stylesheet
 	return (margin);
 }
 
-
 /*====================================================================*
  *
  *   signed footer (signed margin, struct page * page);
@@ -158,7 +156,6 @@ static signed footer (signed margin, struct page * page)
 	indent (margin--, "</html>");
 	return (margin);
 }
-
 
 /*====================================================================*
  *
@@ -223,7 +220,6 @@ void htmlindex (struct page * page, char const * stylesheet, unsigned group, fla
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void htmltopic (struct page * page, char const * stylesheet, flag_t flags);
@@ -283,7 +279,6 @@ void htmltopic (struct page * page, char const * stylesheet, flag_t flags)
 					c = getc (stdin);
 					continue;
 				}
-
 #if 0
 
 /*
@@ -296,7 +291,6 @@ void htmltopic (struct page * page, char const * stylesheet, flag_t flags)
 					c = getc (stdin);
 					continue;
 				}
-
 #endif
 
 			}
@@ -318,7 +312,6 @@ void htmltopic (struct page * page, char const * stylesheet, flag_t flags)
 	margin = footer (margin, page);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -360,7 +353,6 @@ void function (struct page * page, char const * stylesheet, unsigned group, flag
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -432,8 +424,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (page, stylesheet, column, flags);

@@ -91,7 +91,6 @@ static void stop (signo_t signal)
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   void function (void * secret, size_t length, flag_t flags);
@@ -108,13 +107,13 @@ static void function (void * secret, size_t length, flag_t flags)
 	struct sigaction sa;
 	struct sha256 sha256;
 	byte digest [SHA256_DIGEST_LENGTH];
-	memset (&sa, 0, sizeof (struct sigaction));
+	memset (& sa, 0, sizeof (struct sigaction));
 	sa.sa_handler = stop;
-	sigaction (SIGTERM, &sa, (struct sigaction *)(0));
-	sigaction (SIGQUIT, &sa, (struct sigaction *)(0));
-	sigaction (SIGTSTP, &sa, (struct sigaction *)(0));
-	sigaction (SIGINT, &sa, (struct sigaction *)(0));
-	sigaction (SIGHUP, &sa, (struct sigaction *)(0));
+	sigaction (SIGTERM, & sa, (struct sigaction *)(0));
+	sigaction (SIGQUIT, & sa, (struct sigaction *)(0));
+	sigaction (SIGTSTP, & sa, (struct sigaction *)(0));
+	sigaction (SIGINT, & sa, (struct sigaction *)(0));
+	sigaction (SIGHUP, & sa, (struct sigaction *)(0));
 	while (count-- > 0) 
 	{
 		memset (digest, 0, sizeof (digest));
@@ -122,9 +121,9 @@ static void function (void * secret, size_t length, flag_t flags)
 		{
 			error (1, errno, "Can't increment secret");
 		}
-		SHA256Reset (&sha256);
-		SHA256Write (&sha256, secret, length);
-		SHA256Fetch (&sha256, digest);
+		SHA256Reset (& sha256);
+		SHA256Write (& sha256, secret, length);
+		SHA256Fetch (& sha256, digest);
 		if (_anyset (flags, KEY_VERBOSE)) 
 		{
 			SHA256Print (digest, secret);
@@ -136,7 +135,6 @@ static void function (void * secret, size_t length, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -192,14 +190,14 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (argc) 
 	{
 		error (1, ENOTSUP, ERROR_TOOMANY);
 	}
 	memset (secret, 0, sizeof (secret));
-	if ((fd = open (file, O_BINARY|O_CREAT|O_RDWR, (S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH))) == -1) 
+	if ((fd = open (file, O_BINARY |O_CREAT |O_RDWR, (S_IRUSR |S_IWUSR |S_IRGRP |S_IWGRP |S_IROTH |S_IWOTH))) == -1) 
 	{
 		error (1, errno, "%s", file);
 	}

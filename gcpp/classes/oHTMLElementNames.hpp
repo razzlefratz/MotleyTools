@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   oHTMLElements.hpp - declaration of oHTMLElements class;
+ *   oHTMLElementNames.hpp - declaration of oHTMLElementNames class;
  * 
  *   this object offers compact and fast detection, lookup and retrieval
  *   for HTML element names;
@@ -129,12 +129,12 @@
  *   class declaration; 
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oHTMLElements: public okeywords 
+class __declspec (dllexport) oHTMLElementNames: public okeywords 
 
 {
 public:
-	oHTMLElements ();
-	virtual~ oHTMLElements ();
+	oHTMLElementNames ();
+	virtual~ oHTMLElementNames ();
 };
 
 

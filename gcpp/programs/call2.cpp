@@ -205,7 +205,6 @@ static signed function (signed c, signed e)
 	return (c);
 }
 
-
 /*====================================================================*
  *   
  *   int main (int argc, char const * argv[]);
@@ -257,5 +256,4 @@ int main (int argc, char const * argv [])
 	}
 	std::exit (0);
 }
-
 

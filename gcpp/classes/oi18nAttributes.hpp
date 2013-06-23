@@ -16,21 +16,20 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
-#include "../classes/oattribute.hpp"
-#include "../classes/otext.hpp"
+#include "../classes/oAttribute.hpp"
 
 /*====================================================================*
  *   class declarations;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oi18nAttributes: private otext 
+class __declspec (dllexport) oi18nAttributes
 
 {
 public:
 	oi18nAttributes ();
 	virtual~ oi18nAttributes ();
-	oattribute * LanguageAttribute;
-	oattribute * DirectionAttribute;
+	oAttribute * LanguageAttribute;
+	oAttribute * DirectionAttribute;
 	oi18nAttributes & write ();
 private:
 	

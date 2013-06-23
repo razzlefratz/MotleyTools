@@ -72,10 +72,10 @@ int main (int argc, char const * argv [])
 		"e\tthe regular expression",
 		(char const *)(0)
 	};
-	regexp *pattern = (regexp *)(0);
+	regexp * pattern = (regexp *)(0);
 	char prefix [TEXTLINE_MAX];
-	char const *sp;
-	char const *cp;
+	char const * sp;
+	char const * cp;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
@@ -88,8 +88,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	while ((argc) && (* argv)) 
 	{
 		sp = regexspan (pattern, * argv);
@@ -97,7 +97,7 @@ int main (int argc, char const * argv [])
 		{
 			printf ("[] [%s]\n", * argv);
 		}
-		else if (!*sp) 
+		else if (!* sp) 
 		{
 			printf ("[%s] []\n", * argv);
 		}
@@ -105,7 +105,7 @@ int main (int argc, char const * argv [])
 		{
 			for (cp = * argv; cp < sp; cp++) 
 			{
-				prefix [cp - * argv] = *cp;
+				prefix [cp - * argv] = * cp;
 			}
 			prefix [cp - * argv] = (char)(0);
 			printf ("[%s] [%s]\n", prefix, sp);
@@ -113,7 +113,6 @@ int main (int argc, char const * argv [])
 		argc--;
 		argv++;
 	}
-
 #if 0
 
 	regexshow (pattern);

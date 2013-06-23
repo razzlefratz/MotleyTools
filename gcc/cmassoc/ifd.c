@@ -118,10 +118,10 @@ static void function (unsigned step, unsigned dir, unsigned width, flag_t flags)
 			{
 				prior--;
 			}
-			*label++ = (char)(c);
+			* label++ = (char)(c);
 			c = getc (stdin);
 		}
-		*label = (char)(0);
+		* label = (char)(0);
 		extra = prior % 2;
 		after = prior / 2;
 		prior = after;
@@ -190,7 +190,6 @@ static void function (unsigned step, unsigned dir, unsigned width, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   int main (int argc, char const * argv []);
@@ -245,8 +244,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (start, dir, width, flags);

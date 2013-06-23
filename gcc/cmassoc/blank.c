@@ -86,18 +86,16 @@ static void function (const unsigned limit, flag_t flags)
 			length++;
 			continue;
 		}
-
 #if 0
 
 		if (c == '\t') 
 		{
-			length %= 8;
+			length%= 8;
 			length *= 8;
-			length += 8;
+			length+= 8;
 			c = getc (stdin);
 			continue;
 		}
-
 #endif
 
 		if (c == '\n') 
@@ -131,7 +129,6 @@ static void function (const unsigned limit, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -169,8 +166,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (count, flags);

@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   chtml.cpp - output c language source file as html pages; 
+ *   chtml.cpp - print C language source file as html page; 
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -32,7 +32,6 @@
 #include "../classes/olist.cpp"
 #include "../classes/otext.cpp"
 #include "../classes/oglossary.cpp"
-#include "../classes/oattribute.cpp"
 #include "../classes/owildcard.cpp"
 #include "../classes/ocontext.cpp"
 #include "../classes/ocursor.cpp"
@@ -61,10 +60,11 @@
 #include "../classes/oCoreAttributes.cpp"
 #include "../classes/oi18nAttributes.cpp"
 #include "../classes/oLinkAttributes.cpp"
+#include "../classes/oAttribute.cpp"
 #include "../classes/owebpage.cpp"
 #endif
 
-#define STYLESHEET "/styles/clang.css"
+#define STYLESHEET "clang.css"
 
 /*====================================================================*
  *   main program;
@@ -78,7 +78,7 @@ int main (int argc, char const * argv [])
 		"s:S",
 		oPUTOPTV_S_FUNNEL,
 		"c to html file formatter having absolutely no features !",
-		"s f\tdefault stylesheet is (f) [" LITERAL (STYLESHEET) "]",
+		"s f\tuse stylesheet (f) [" LITERAL (STYLESHEET) "]",
 		"S\tprint default stylesheet on stdout",
 		(char const *) (0)
 	};
@@ -106,5 +106,4 @@ int main (int argc, char const * argv [])
 	}
 	std::exit (0);
 }
-
 

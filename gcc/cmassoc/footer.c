@@ -107,7 +107,6 @@ void function (signed count, signed width)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
@@ -134,7 +133,7 @@ int main (int argc, char const * argv [])
 	unsigned lines = VT_LINES;
 	unsigned width = VT_LIMIT;
 	signed c;
-	getviewport (&lines, &width);
+	getviewport (& lines, & width);
 	lines--;
 	lines--;
 	width--;
@@ -152,8 +151,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	};
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (lines, width);

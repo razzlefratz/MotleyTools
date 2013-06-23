@@ -30,7 +30,7 @@
 
 /*====================================================================*
  *
- *   char const *compiler() const;
+ *   char const * compiler() const;
  *
  *   return the mcompiler member string;
  *
@@ -49,7 +49,7 @@ char const * omakefile::compiler () const
 
 /*====================================================================*
  *
- *   omakefile & compiler(char const *string);
+ *   omakefile & compiler (char const * string);
  *
  *   assign a nes string to the mcompiler member only if the new string
  *   differs from the old string; 
@@ -78,7 +78,7 @@ omakefile & omakefile::linebreak ()
 
 /*====================================================================*
  *
- *   char const *sourcedir() const;
+ *   char const * sourcedir () const;
  *
  *   return the msourcedir member string;
  *
@@ -97,7 +97,7 @@ char const * omakefile::sourcedir () const
 
 /*====================================================================*
  *
- *   omakefile & sourcedir(char const *string);
+ *   omakefile & sourcedir (char const * string);
  *
  *   replace the library property string if different from the old one; 
  *
@@ -117,7 +117,7 @@ omakefile & omakefile::sourcedir (char const * string)
 
 /*====================================================================*
  *
- *   char const *targetdir() const;
+ *   char const * targetdir () const;
  *
  *   return the mtargetdir member string;
  *
@@ -136,7 +136,7 @@ char const * omakefile::targetdir () const
 
 /*====================================================================*
  *
- *   omakefile & targetdir(char const *string);
+ *   omakefile & targetdir (char const * string);
  *
  *   replace the library property string if different from the old one; 
  *
@@ -156,7 +156,7 @@ omakefile & omakefile::targetdir (char const * string)
 
 /*====================================================================*
  *
- *   omakefile & projectfile(char const *pathname);
+ *   omakefile & projectfile (char const * pathname);
  *
  *   open a file containing a list of target filenames; include 
  *   each target in the project target list if not already present;
@@ -256,7 +256,7 @@ omakefile & omakefile::publish ()
 	std::cout << "compile:";
 	for (size_t index = 0; index < list.count (); index++) 
 	{
-		std::cout << " " << this->mlinebreak << this->filespec.filespec (list.items (index) ->name ()).likename (".o");
+		std::cout << " " << this->mlinebreak << this->filespec.filespec (list.items (index)->name ()).likename (".o");
 	}
 	std::cout << std::endl;
 	std::cout << "library:" << std::endl;

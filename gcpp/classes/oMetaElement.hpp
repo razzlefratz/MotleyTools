@@ -16,24 +16,23 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
-#include "../classes/oattribute.hpp"
-#include "../classes/otext.hpp"
+#include "../classes/oAttribute.hpp"
 
 /*====================================================================*
  *   interface declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oMetaElement: private otext 
+class __declspec (dllexport) oMetaElement
 
 {
 public:
 	oMetaElement ();
 	virtual~ oMetaElement ();
 	char const * ElementName () const;
-	oattribute * NameAttribute;
-	oattribute * ContentTypeAttribute;
-	oattribute * SchemeAttribute;
-	oattribute * ResponseAttribute;
+	oAttribute * NameAttribute;
+	oAttribute * ContentTypeAttribute;
+	oAttribute * SchemeAttribute;
+	oAttribute * ResponseAttribute;
 	oMetaElement & Contents (char const * name, char const * type);
 	oMetaElement & EmptyTag (unsigned level, unsigned space);
 private:

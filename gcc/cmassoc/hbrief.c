@@ -105,7 +105,6 @@ static signed element (int c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   void document (flag_t flags) 
@@ -134,7 +133,6 @@ static void document (flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
@@ -159,8 +157,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		document (flags);

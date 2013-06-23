@@ -105,7 +105,7 @@ static void function (file const * file, char const * schema, off_t extent, flag
 		while (isdigit (c)) 
 		{
 			length *= 10;
-			length += c - '0';
+			length+= c - '0';
 			c = getc (stdin);
 		}
 		while (isblank (c)) 
@@ -117,12 +117,12 @@ static void function (file const * file, char const * schema, off_t extent, flag
 		{
 			do 
 			{
-				*sp++ = (char)(c);
+				* sp++ = (char)(c);
 				c = getc (stdin);
 			}
 			while (isident (c));
 		}
-		*sp = (char)(0);
+		* sp = (char)(0);
 		while (isblank (c)) 
 		{
 			c = getc (stdin);
@@ -155,17 +155,17 @@ static void function (file const * file, char const * schema, off_t extent, flag
 		sp = string;
 		while (nobreak (c)) 
 		{
-			*sp++ = (char)(c);
+			* sp++ = (char)(c);
 			c = getc (stdin);
 		}
-		*sp = (char)(0);
+		* sp = (char)(0);
 		if (length) 
 		{
 			byte buffer [length];
 			if (read (file->file, buffer, length) == (signed)(length)) 
 			{
 				indent (margin++, "<%s name='%s'>", DATA_MEMBER, symbol);
-				if (*string) 
+				if (* string) 
 				{
 					indent (margin++, "<text>");
 					indent (margin, "%s", string);
@@ -191,7 +191,7 @@ static void function (file const * file, char const * schema, off_t extent, flag
 				indent (margin--, "</%s>", DATA_MEMBER);
 			}
 		}
-		offset += length;
+		offset+= length;
 		lineno++;
 	}
 	indent (margin--, "</%s>", DATA_OBJECT);
@@ -204,7 +204,6 @@ static void function (file const * file, char const * schema, off_t extent, flag
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -263,8 +262,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (argc > 1) 
 	{
 		error (1, ENOTSUP, ERROR_TOOMANY);
@@ -272,14 +271,14 @@ int main (int argc, char const * argv [])
 	if ((argc) && (* argv)) 
 	{
 		struct stat statinfo;
-		stat (*argv, &statinfo);
-		if ((file.file = open (file.name = *argv, O_BINARY|O_RDONLY)) == -1) 
+		stat (* argv, & statinfo);
+		if ((file.file = open (file.name = * argv, O_BINARY |O_RDONLY)) == -1) 
 		{
 			error (0, errno, "%s", file.name);
 		}
 		else 
 		{
-			function (&file, schema, statinfo.st_size, flags);
+			function (& file, schema, statinfo.st_size, flags);
 			close (file.file);
 		}
 	}

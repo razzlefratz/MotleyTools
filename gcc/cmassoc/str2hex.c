@@ -17,13 +17,13 @@
 int main (int argc, char const * argv []) 
 
 {
-	char const *sp;
+	char const * sp;
 	while ((--argc) && (*++argv)) 
 	{
-		for (sp = * argv; *sp; ++sp) 
+		for (sp = * argv; * sp; ++sp) 
 		{
-			putc (DIGITS_HEX [(*sp >> 4) & 0x0F], stdout);
-			putc (DIGITS_HEX [(*sp >> 0) & 0x0F], stdout);
+			putc (DIGITS_HEX [(* sp >> 4) & 0x0F], stdout);
+			putc (DIGITS_HEX [(* sp >> 0) & 0x0F], stdout);
 		}
 		putc ('\n', stdout);
 	}

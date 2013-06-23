@@ -75,7 +75,7 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-static char *sv_prolog [] = 
+static char * sv_prolog [] = 
 
 {
 	"/*================* ",
@@ -93,7 +93,7 @@ static char *sv_prolog [] =
 
 static char buffer [TEXTLINE_MAX + 1];
 static signed length;
-static char *title [2] = 
+static char * title [2] = 
 
 {
 	"symbol",
@@ -126,7 +126,7 @@ void function1 (flag_t flags)
 	for (count = 0; fgetline (buffer, sizeof (buffer), stdin) != -1; count++) 
 	{
 		strselect (strupr (buffer), SV_S_RESTRICT);
-		if (*buffer == (char) (0)) 
+		if (* buffer == (char) (0)) 
 		{
 			serial (buffer, DIGITS_MAX + 1, (char) (0), count);
 		}
@@ -137,7 +137,6 @@ void function1 (flag_t flags)
 	rewind (stdin);
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -175,7 +174,6 @@ void function2 (flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   void function3 (flag_t flags);
@@ -211,7 +209,6 @@ void function3 (flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   void function (flag_t flags);
@@ -245,7 +242,6 @@ void function (flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   main program;
@@ -291,8 +287,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (_allclr (flags, (SV_B_DEFINE | SV_B_VECTOR | SV_B_SWITCH))) 
 	{
 		_setbits (flags, (SV_B_DEFINE | SV_B_VECTOR | SV_B_SWITCH));

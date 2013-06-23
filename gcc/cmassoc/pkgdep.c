@@ -109,31 +109,30 @@ static void testfile (FIND * find, flag_t flags);
  *
  *--------------------------------------------------------------------*/
 
-static char *noversion (char package []) 
+static char * noversion (char package []) 
 
 {
-	char *version;
-	for (version = package; *package != (char) (0); ++package) 
+	char * version;
+	for (version = package; * package != (char) (0); ++package) 
 	{
-		if (*package == '-') 
+		if (* package == '-') 
 		{
 			version = package;
 			continue;
 		}
-		if (isupper (*package)) 
+		if (isupper (* package)) 
 		{
-			*package = *package + ('a' - 'A');
+			* package = * package + ('a' - 'A');
 			continue;
 		}
 	}
-	if (*version == '-') 
+	if (* version == '-') 
 	{
-		*version = (char) (0);
+		* version = (char) (0);
 		version++;
 	}
 	return (version);
 }
-
 
 /*====================================================================*
  *
@@ -155,7 +154,6 @@ static void extract (SCAN * scan, char buffer [], size_t length)
 	noversion (buffer);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -184,46 +182,45 @@ static void function (FIND * find, flag_t flags)
 		char scratch [FILENAME_MAX];
 		char buffer [TEXTLINE_MAX];
 		size_t line;
-		scaninput (&scan, buffer, sizeof (buffer));
+		scaninput (& scan, buffer, sizeof (buffer));
 		for (line = 0; fgetline (buffer, sizeof (buffer), stdin) != -1; line++) 
 		{
-			scanwhile (&scan, gcsASCIIAlpha ".");
-			scanbreak (&scan, ":");
-			if (havetoken (&scan, "Name:")) 
+			scanwhile (& scan, gcsASCIIAlpha ".");
+			scanbreak (& scan, ":");
+			if (havetoken (& scan, "Name:")) 
 			{
-				scanuntil (&scan, gcsBreak);
-				extract (&scan, package, sizeof (package));
+				scanuntil (& scan, gcsBreak);
+				extract (& scan, package, sizeof (package));
 			}
-			else if (havetoken (&scan, "Requires:")) 
+			else if (havetoken (& scan, "Requires:")) 
 			{
-				while (tokensize (&scan)) 
+				while (tokensize (& scan)) 
 				{
-					if (isclass (&scan, "A")) 
+					if (isclass (& scan, "A")) 
 					{
-						extract (&scan, scratch, sizeof (scratch));
+						extract (& scan, scratch, sizeof (scratch));
 						printf ("\"%s\",\"%s\"\n", package, scratch);
 					}
-					nexttoken (&scan);
+					nexttoken (& scan);
 				}
 			}
-			else if (havetoken (&scan, "Requires.private:")) 
+			else if (havetoken (& scan, "Requires.private:")) 
 			{
-				while (tokensize (&scan)) 
+				while (tokensize (& scan)) 
 				{
-					if (isclass (&scan, "A")) 
+					if (isclass (& scan, "A")) 
 					{
-						extract (&scan, scratch, sizeof (scratch));
+						extract (& scan, scratch, sizeof (scratch));
 						printf ("\"%s\",\"%s\"\n", package, scratch);
 					}
-					nexttoken (&scan);
+					nexttoken (& scan);
 				}
 			}
-			scanreset (&scan);
+			scanreset (& scan);
 		}
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -241,19 +238,19 @@ static void function (FIND * find, flag_t flags)
 static void findfile (FIND * find, flag_t flags) 
 
 {
-	struct dirent *dirent;
-	char *filename = find->fullname;
-	DIR *dir = opendir (filename);
+	struct dirent * dirent;
+	char * filename = find->fullname;
+	DIR * dir = opendir (filename);
 	if (dir == (DIR *) (0)) 
 	{
 		testfile (find, flags);
 		return;
 	}
-	while (*filename != (char)(0)) 
+	while (* filename != (char)(0)) 
 	{
 		filename++;
 	}
-	*filename = PATH_C_EXTENDER;
+	* filename = PATH_C_EXTENDER;
 	while ((dirent = readdir (dir)) != (struct dirent *) (0)) 
 	{
 		strcpy (filename + 1, dirent->d_name);
@@ -261,11 +258,10 @@ static void findfile (FIND * find, flag_t flags)
 		partfile (find->filename, find->basename, find->extender);
 		testfile (find, flags);
 	}
-	*filename = (char) (0);
+	* filename = (char) (0);
 	closedir (dir);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -280,23 +276,23 @@ static void findfile (FIND * find, flag_t flags)
 static void testfile (FIND * find, flag_t flags) 
 
 {
-	if (lstat (find->fullname, &find->statinfo)) 
+	if (lstat (find->fullname, & find->statinfo)) 
 	{
 		error (0, errno, "%s", find->fullname);
 		return;
 	}
 	if (S_ISDIR (find->statinfo.st_mode)) 
 	{
-		char const *filename = find->filename;
-		if (*filename == '.') 
+		char const * filename = find->filename;
+		if (* filename == '.') 
 		{
 			filename++;
 		}
-		if (*filename == '.') 
+		if (* filename == '.') 
 		{
 			filename++;
 		}
-		if (*filename == (char) (0)) 
+		if (* filename == (char) (0)) 
 		{
 			return;
 		}
@@ -318,7 +314,6 @@ static void testfile (FIND * find, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -342,8 +337,8 @@ int main (int argc, char const * argv [])
 		"r\trecursive search",
 		(char const *) (0)
 	};
-	char const *paths [MAX_PATHS];
-	char *buffer = (char *) (0);
+	char const * paths [MAX_PATHS];
+	char * buffer = (char *) (0);
 	size_t index;
 	flag_t flags = (flag_t) (0);
 	signed c;
@@ -358,8 +353,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		buffer = strdup (getenv ("PKG_CONFIG_PATH"));
@@ -372,7 +367,7 @@ int main (int argc, char const * argv [])
 			find.filename [0] = (char) (0);
 			find.basename [0] = (char) (0);
 			find.extender [0] = (char) (0);
-			findfile (&find, flags);
+			findfile (& find, flags);
 		}
 	}
 	while ((argc) && (* argv)) 
@@ -383,7 +378,7 @@ int main (int argc, char const * argv [])
 		find.filename [0] = (char) (0);
 		find.basename [0] = (char) (0);
 		find.extender [0] = (char) (0);
-		findfile (&find, flags);
+		findfile (& find, flags);
 		argc--;
 		argv++;
 	}

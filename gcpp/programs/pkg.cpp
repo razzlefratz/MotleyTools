@@ -83,7 +83,6 @@ static void function (char const * string, oflagword * flags)
 	return;
 }
 
-
 /*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
@@ -153,5 +152,4 @@ int main (int argc, char const * argv [])
 	}
 	std::exit (0);
 }
-
 

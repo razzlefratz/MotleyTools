@@ -71,21 +71,21 @@ int main (int argc, char const * argv [])
 		"s\textract suffix",
 		(char const *) (0)
 	};
-	char const *format = "%s";
+	char const * format = "%s";
 	char character = '.';
 	bool initial = false;
 	bool optional = false;
 	bool right = false;
-	char *string;
-	char *prefix;
-	char *suffix;
+	char * string;
+	char * prefix;
+	char * suffix;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
 		case 'c':
-			character = *optarg;
+			character = * optarg;
 			break;
 		case 'f':
 			format = struesc ((char *) (optarg));
@@ -109,14 +109,14 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	while ((argc) && (* argv)) 
 	{
 		string = (char *) (* argv);
-		for (prefix = suffix = string; *prefix != (char) (0); prefix++) 
+		for (prefix = suffix = string; * prefix != (char) (0); prefix++) 
 		{
-			if (*prefix == character) 
+			if (* prefix == character) 
 			{
 				suffix = prefix;
 				if (initial) 
@@ -125,9 +125,9 @@ int main (int argc, char const * argv [])
 				}
 			}
 		}
-		if (*suffix == character) 
+		if (* suffix == character) 
 		{
-			*suffix++ = (char) (0);
+			* suffix++ = (char) (0);
 			prefix = string;
 		}
 		else if (optional) 

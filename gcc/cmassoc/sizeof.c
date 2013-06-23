@@ -39,7 +39,7 @@ int main (int argc, char const * argv [])
 	while (octet < sizeof (unsigned)) 
 	{
 		endian.octets [octet++] = value;
-		value += 0x22;
+		value+= 0x22;
 	}
 	printf ("order         %8x\n", endian.number);
 	printf ("\n");

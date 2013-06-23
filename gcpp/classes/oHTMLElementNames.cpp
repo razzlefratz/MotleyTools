@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   oHTMLElements.cpp - definition of oHTMLElements class;
+ *   oHTMLElementNames.cpp - definition of oHTMLElementNames class;
  *
  *   this object implements the detectiOn, lookup and retrieval of HTML
  *   element names;
@@ -18,17 +18,17 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/oHTMLElements.hpp"
+#include "../classes/oHTMLElementNames.hpp"
 
 /*====================================================================*
  *
- *   oHTMLElements ();
+ *   oHTMLElementNames ();
  *
- *   assign oHTMLElements count and table to okeyword count and table;
+ *   assign oHTMLElementNames count and table to okeyword count and table;
  *   
  *--------------------------------------------------------------------*/
 
-oHTMLElements::oHTMLElements () 
+oHTMLElementNames::oHTMLElementNames () 
 
 {
 	static char const * table [] = 
@@ -143,11 +143,11 @@ oHTMLElements::oHTMLElements ()
 
 /*====================================================================*
  *
- *   ~oHTMLElements ();
+ *   ~oHTMLElementNames ();
  *   
  *--------------------------------------------------------------------*/
 
-oHTMLElements::~oHTMLElements () 
+oHTMLElementNames::~oHTMLElementNames () 
 
 {
 	return;
