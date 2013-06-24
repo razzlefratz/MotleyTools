@@ -17,6 +17,7 @@
 
 #include <cstring>
 #include <cstdlib>
+#include <fstream>
 #include <iostream>
 
 #include <dirent.h>
@@ -38,7 +39,28 @@ olist mlist;
 
 /*====================================================================*
  *
- *   oHTMLIndex & oHTMLIndex::include(char const *filename)
+ *   void css2 (void);
+ *   
+ *   print a compatible CSS stylesheet on stdout so that element and
+ *   property names match the HTML output;
+ *
+ *--------------------------------------------------------------------*/
+
+oHTMLIndex & oHTMLIndex::css2 (void) 
+
+{
+	std::cout << "a:hover { text-decoration: underline; }" << std::endl;
+	std::cout << "a.index { text-decoration: none; }" << std::endl;
+	std::cout << "a:visited { color: #000080; }" << std::endl;
+	std::cout << "body { background:white; color:black; font:normal 10pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
+	std::cout << "pre  { background:white; color:black; font:normal 10pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
+	std::cout << "li.index { color: black; list-style: outside; padding: 00px 00px 00px 05px; }" << std::endl;
+	return (* this);
+}
+
+/*====================================================================*
+ *
+ *   oHTMLIndex & include (char const *filename)
  *
  *   include the filename string in the index if not already present;
  *
@@ -56,7 +78,7 @@ oHTMLIndex & oHTMLIndex::include (char const * filename)
 
 /*====================================================================*
  *
- *   oHTMLIndex & oHTMLIndex::collect(char const * pathname, char const * filename);
+ *   oHTMLIndex & collect (char const * pathname, char const * filename);
  *
  *   search the specified folder for files that match the wildcard
  *   filename string; include matching filenames in the index;
@@ -84,7 +106,7 @@ oHTMLIndex & oHTMLIndex::collect (char const * pathname, char const * filename)
 
 /*====================================================================*
  *
- *   oHTMLIndex & oHTMLIndex::publish(char const *filename, unsigned count);
+ *   oHTMLIndex & publish (unsigned count);
  *
  *   open a C Language source file, read the contents and write an HTML 
  *   page to stdout; the page displays the original source having
@@ -93,16 +115,6 @@ oHTMLIndex & oHTMLIndex::collect (char const * pathname, char const * filename)
  *   filenames may have hyperlinks to companion pages;
  *
  *--------------------------------------------------------------------*/
-
-oHTMLIndex & oHTMLIndex::anchor (void) 
-
-{
-	oHTMLIndex::print (this->mlevel, 0, "");
-	oHTMLIndex::manchor.StartTag ();
-	std::cout << oHTMLIndex::mitem->name ();
-	oHTMLIndex::manchor.EndTag ();
-	return (* this);
-}
 
 oHTMLIndex & oHTMLIndex::publish (unsigned count) 
 

@@ -30,8 +30,8 @@
  *--------------------------------------------------------------------*/
 
 #include <cstring>
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
 /*====================================================================*
  *   custom source files;
@@ -48,14 +48,14 @@ ofilespec ochtml::filespec;
 
 /*====================================================================*
  *
- *   void stylesheet ();
+ *   void css2 (void);
  *   
- *   write a compatible CSS stylesheet on stdout; the element and
- *   property names are used throughout HTML source code pages;
+ *   print a compatible CSS stylesheet on stdout so that element and
+ *   property names match HTML output;
  *
  *--------------------------------------------------------------------*/
 
-ochtml & ochtml::stylesheet () 
+ochtml & ochtml::css2 (void) 
 
 {
 	std::cout << "a:hover { text-decoration: underline; }" << std::endl;
@@ -63,8 +63,8 @@ ochtml & ochtml::stylesheet ()
 	std::cout << "a:link { color: #000080; }" << std::endl;
 	std::cout << "a:active { }" << std::endl;
 	std::cout << "a:visited { color: #000080; }" << std::endl;
-	std::cout << "body { background:white; color:black; font:normal 10pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
-	std::cout << "pre  { background:white; color:black; font:normal 10pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
+	std::cout << "body { background:white; color:black; font:normal 12pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
+	std::cout << "pre  { background:white; color:black; font:normal 12pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
 	std::cout << "span.comments { color: green; }" << std::endl;
 	std::cout << "span.compiler { color: black; }" << std::endl;
 	std::cout << "span.language { color: black; }" << std::endl;
@@ -74,19 +74,6 @@ ochtml & ochtml::stylesheet ()
 	std::cout << "span.variable { color: blue; }" << std::endl;
 	std::cout << "span.operator { color: black; }" << std::endl;
 	std::cout << "span.function { color: fuschia; }" << std::endl;
-	return (* this);
-}
-
-/*====================================================================*
- *
- *   ochtml & stylesheet (char const * string);
- *   
- *--------------------------------------------------------------------*/
-
-ochtml & ochtml::stylesheet (char const * string) 
-
-{
-	owebpage::stylesheet (string);
 	return (* this);
 }
 

@@ -76,7 +76,7 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"c:s:t:",
+		"c:s:St:",
 		oPUTOPTV_S_FUNNEL,
 		"produce html file index",
 		"c n\tdisplay n columns [" LITERAL (INDEX_COLUMNS) "]",
@@ -99,18 +99,14 @@ int main (int argc, char const * argv [])
 			page.stylesheet (getopt.optarg ());
 			break;
 		case 'S':
-			page.stylesheet ();
-			break;
+			page.css2 ();
+			return (0);
 		case 't':
 			page.title (getopt.optarg ());
 			break;
 		default:
 			break;
 		}
-	}
-	if (!getopt.argc ()) 
-	{
-		message.error (1, 0, "no files specified");
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{

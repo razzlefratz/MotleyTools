@@ -56,7 +56,7 @@ class __declspec (dllexport) owebpage: public oindent, private otext
 {
 public:
 	owebpage (void);
-	virtual~ owebpage (void);
+	virtual ~ owebpage (void);
 	char const * title (void) const;
 	char const * stylesheet (void) const;
 	owebpage & title (char const *);

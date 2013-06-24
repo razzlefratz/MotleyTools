@@ -39,15 +39,14 @@ class __declspec (dllexport) ochtml: public owebpage
 
 {
 public:
-	ochtml (char const * stylesheet);
 	ochtml ();
-	virtual~ ochtml ();
+	ochtml (char const * stylesheet);
+	virtual ~ ochtml ();
+	ochtml & css2 ();
+	ochtml & css2 (char const * filename);
 	ochtml & html (char const * pathname);
-	ochtml & stylesheet ();
-	ochtml & stylesheet (char const * stylesheet);
 private:
-	//	static char const * resource (char const * filename);
- ochtml & directive ();
+ 	ochtml & directive ();
 	static ofilespec filespec;
 	oscancode mfile;
 	ofunctions clibword;

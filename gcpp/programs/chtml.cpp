@@ -82,8 +82,8 @@ int main (int argc, char const * argv [])
 		"s:S",
 		oPUTOPTV_S_FUNNEL,
 		"c to html file formatter having absolutely no features !",
-		"s f\tuse stylesheet (f) [" LITERAL (STYLESHEET) "]",
-		"S\tprint default stylesheet on stdout",
+		"s s\tuse CSS2 stylesheet (s) [" LITERAL (STYLESHEET) "]",
+		"S\tprint CSS2 stylesheet on stdout",
 		(char const *) (0)
 	};
 	ochtml page (STYLESHEET);
@@ -97,7 +97,7 @@ int main (int argc, char const * argv [])
 			page.stylesheet (getopt.optarg ());
 			break;
 		case 'S':
-			page.stylesheet ();
+			page.css2 ();
 			return (0);
 		default:
 			break;
