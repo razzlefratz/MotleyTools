@@ -343,52 +343,35 @@ signed octidy::statement (signed c, signed level, signed space)
 {
 	char string [512];
 	char * sp = string;
-	unsigned colon = 0;
-	while (oascii::isalnum (c) || (c == '_')) 
+	while (oascii::isalnum (c) || (c == '_') || (c == '.')) 
 	{
 		* sp++ = c;
 		c = std::cin.get ();
 	}
-	while (oascii::isspace (c)) 
-	{
-		c = std::cin.get ();
-	}
-	if (c == ':') 
-	{
-		c = std::cin.get ();
-		colon++;
-	}
-	if (c == ':') 
-	{
-		c = std::cin.get ();
-		colon++;
-	}
-	while (oascii::isspace (c)) 
-	{
-		c = std::cin.get ();
-	}
 	* sp = (char) (0);
+	while (oascii::isspace (c)) 
+	{
+		c = std::cin.get ();
+	}
 	if (sp == string) 
 	{
-		octidy::level (level);
 		c = octidy::context (c, ",;{}#");
 	}
 	else if (!std::strcmp (string, "class")) 
 	{
-		octidy::level (level);
-		std::cout << string << " ";
+		octidy::print (level, 0, string);
+		std::cout.put (' ');
 		c = octidy::context (c, "{");
 	}
 	else if (!std::strcmp (string, "case")) 
 	{
-		octidy::level (level-1);
-		std::cout << string << " ";
+		octidy::print (level-1, 0, string);
+		std::cout.put (' ');
 		c = octidy::context (c, ":");
 	}
 	else if (octidy::exitwords.defined (string)) 
 	{
-		octidy::level (level);
-		std::cout << string;
+		octidy::print (level, 0, string);
 		if (c == ';') 
 		{
 		}
@@ -405,30 +388,40 @@ signed octidy::statement (signed c, signed level, signed space)
 			std::cout.put (')');
 		}
 	}
+#if 0
+/*
+ *	this may be obsolete and assumes that a colon sollows the keyword;
+ *	the check vof colon has been moved;
+ */
 	else if (octidy::gotowords.defined (string)) 
 	{
-		octidy::level (level-1);
-		std::cout << string << ":";
+		octidy::print (level-1, 0, string);
+		std::cout.put (':');
 		octidy::space (1).level (level);
 		c = octidy::context (c, ",;{}#");
 	}
-	else if (colon == 1) 
+#endif
+	else if (c == ':')
 	{
-		octidy::level (level-1);
-		std::cout << string << ":";
-		octidy::space (1).level (level);
-		c = octidy::context (c, ",;{}#");
-	}
-	else if (colon == 2) 
-	{
-		octidy::level (level);
-		std::cout << string << "::";
-		c = octidy::context (c, ",;{}#");
+		if (c == std::cin.peek ()) 
+		{
+			octidy::print (level, 0, string);
+			c = octidy::keep (c);
+			c = octidy::keep (c);
+			c = octidy::context (c, ",;{}#");
+		}
+		else
+		{
+			octidy::print (level-1, 0, string);
+			c = octidy::keep (c);
+			c = octidy::find (c);
+			octidy::space (1).level (level);
+			c = octidy::context (c, ",;{}#");
+		}	
 	}
 	else 
 	{
-		octidy::level (level);
-		std::cout << string;
+		octidy::print (level, 0, string);
 		if (oascii::isalnum (c) || (c == '_')) 
 		{
 			std::cout.put (' ');
@@ -437,21 +430,24 @@ signed octidy::statement (signed c, signed level, signed space)
 		{
 			std::cout.put (' ');
 		}
-		else if ((c == '=') || (c == '!')) 
+		else if ((c == '=') || (c == '<') || (c == '>')) 
 		{
 			std::cout.put (' ');
 		}
-		else if ((c == '*') || (c == '/')) 
+		else if ((c == '!') || (c == '&') || (c == '|') || (c == '~')) 
 		{
 			std::cout.put (' ');
 		}
-		else if ((c == '&') || (c == '|')) 
+		else if ((c == '*') || (c == '/') || (c == '%')) 
 		{
 			std::cout.put (' ');
 		}
-		else if ((c == '<') || (c == '>')) 
+		else if ((c == '+') || (c == '-'))
 		{
-			std::cout.put (' ');
+			if (std::cin.peek () == '=')
+			{
+				std::cout.put (' ');
+			}
 		}
 		c = octidy::context (c, ",;{}#");
 	}
@@ -561,21 +557,24 @@ signed octidy::context (signed c) const
 		{
 			std::cout.put (' ');
 		}
-		else if ((c == '=') || (c == '!')) 
+		else if ((c == '=') || (c == '<') || (c == '>')) 
 		{
 			std::cout.put (' ');
 		}
-		else if ((c == '*') || (c == '/')) 
+		else if ((c == '*') || (c == '/') || (c == '%')) 
 		{
 			std::cout.put (' ');
 		}
-		else if ((c == '&') || (c == '|')) 
+		else if ((c == '!') || (c == '&') || (c == '|') || (c == '~')) 
 		{
 			std::cout.put (' ');
 		}
-		else if ((c == '<') || (c == '>')) 
+		else if ((c == '+') || (c == '-'))
 		{
-			std::cout.put (' ');
+			if (std::cin.peek () == '=')
+			{
+				std::cout.put (' ');
+			}
 		}
 	}
 	else if (oascii::isspace (c)) 
