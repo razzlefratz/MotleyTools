@@ -67,7 +67,7 @@ fp.o: fp.c SHA256.h cmassoc.h crypt.h
 getmem.o: getmem.c error.h files.h flags.h getoptv.h memory.h number.h types.h
 getmem2.o: getmem2.c error.h files.h flags.h getoptv.h memory.h number.h types.h
 getmode.o: getmode.c cmassoc.h files.h linux.h
-go.o: go.c cmassoc.h command.h linux.h strlib.h tree.h
+go.o: go.c cmassoc.h dcl.h linux.h strlib.h tree.h
 grab.o: grab.c error.h files.h flags.h getoptv.h number.h putoptv.h version.h
 graph.o: graph.c cmassoc.h
 grope.o: grope.c chrlib.h cmassoc.h files.h regex.h strlib.h

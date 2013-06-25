@@ -28,7 +28,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../tools/cmassoc.h"
-#include "../tools/command.h"
+#include "../tools/dcl.h"
 #include "../linux/linux.h"
 #include "../strlib/strlib.h"
 #include "../tree/tree.h"
