@@ -63,12 +63,6 @@
 #define PROFILE_NAME "/etc/cfm.ini"     
 #define SECTION_NAME "default"     
 
-#define CFM_S_PREFACE "Permission to use, copy, modify, and/or distribute this software\n *   for any purpose with or without fee is hereby granted, provided\n *   that the above copyright notice and this permission notice appear\n *   in all copies.\n *\n *   THE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL\n *   WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED\n *   WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL\n *   THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR\n *   CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM\n *   LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,\n *   NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN\n *   CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE."
-#define CFM_S_PACKAGE "Motley Tools by Charles Maier <cmaier@cmassoc.net>."
-#define CFM_S_RELEASE "Copyright (c) 2001-2006 by Charles Maier."
-#define CFM_S_LICENSE "Licensed under the Internet Software Consortium (ISC) License."
-#define CFM_S_SPECIAL ""
-
 /*====================================================================*
  *   
  *   int main (int argc, char const * argv []);
@@ -97,13 +91,13 @@ int main (int argc, char const * argv [])
 		"g s\tuse profile section (s) [" LITERAL (SECTION_NAME) "]",
 		"h\tinsert header include guard",
 		"k\tmake comments permanent",
-		"l\tupdate " LITERAL (oCOMMENT_S_LICENSE) " comment",
-		"L\tupdate " LITERAL (oCOMMENT_S_SPECIAL) " comment",
+		"l\tupdate " LITERAL (oCOMMENT_S_LICENSE) " comment [" LITERAL (oCOMMENT_C_LICENSE) "]",
+		"L\tupdate " LITERAL (oCOMMENT_S_SPECIAL) " comment [" LITERAL (oCOMMENT_C_SPECIAL) "]",
 		"m\tconvert single-line comments to multi-line comments",
 		"o\toutput profile to stdout",
-		"p\tupdate " LITERAL (oCOMMENT_S_PACKAGE) " comment",
-		"P\tupdate " LITERAL (oCOMMENT_S_PREFACE) " comment",
-		"r\tupdate " LITERAL (oCOMMENT_S_RELEASE) " comment",
+		"p\tupdate " LITERAL (oCOMMENT_S_PACKAGE) " comment [" LITERAL (oCOMMENT_C_PACKAGE) "]",
+		"P\tupdate " LITERAL (oCOMMENT_S_PREFACE) " comment [" LITERAL (oCOMMENT_C_PREFACE) "]",
+		"r\tupdate " LITERAL (oCOMMENT_S_RELEASE) " comment [" LITERAL (oCOMMENT_C_RELEASE) "]",
 		"s\tinsert source include guard",
 		"t\tindent is 1 tab",
 		"w n\tbar width is (n)",
@@ -161,11 +155,11 @@ int main (int argc, char const * argv [])
 			break;
 		case 'o':
 			config.write (SECTION_NAME);
-			config.write (oCOMMENT_S_PREFACE, CFM_S_PREFACE);
-			config.write (oCOMMENT_S_PACKAGE, CFM_S_PACKAGE);
-			config.write (oCOMMENT_S_RELEASE, CFM_S_RELEASE);
-			config.write (oCOMMENT_S_LICENSE, CFM_S_LICENSE);
-			config.write (oCOMMENT_S_SPECIAL, CFM_S_SPECIAL);
+			config.write (oCOMMENT_S_PREFACE, oCOMMENT_T_PREFACE);
+			config.write (oCOMMENT_S_PACKAGE, oCOMMENT_T_PACKAGE);
+			config.write (oCOMMENT_S_RELEASE, oCOMMENT_T_RELEASE);
+			config.write (oCOMMENT_S_LICENSE, oCOMMENT_T_LICENSE);
+			config.write (oCOMMENT_S_SPECIAL, oCOMMENT_T_SPECIAL);
 			std::exit (0);
 		case 'p':
 			object.setbits (oCOMMENT_B_PACKAGE);
@@ -192,11 +186,11 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	object.preface (config.string (profile, section, oCOMMENT_S_PREFACE, CFM_S_PREFACE));
-	object.package (config.string (profile, section, oCOMMENT_S_PACKAGE, CFM_S_PACKAGE));
-	object.release (config.string (profile, section, oCOMMENT_S_RELEASE, CFM_S_RELEASE));
-	object.license (config.string (profile, section, oCOMMENT_S_LICENSE, CFM_S_LICENSE));
-	object.special (config.string (profile, section, oCOMMENT_S_SPECIAL, CFM_S_SPECIAL));
+	object.preface (config.string (profile, section, oCOMMENT_S_PREFACE, oCOMMENT_T_PREFACE));
+	object.package (config.string (profile, section, oCOMMENT_S_PACKAGE, oCOMMENT_T_PACKAGE));
+	object.release (config.string (profile, section, oCOMMENT_S_RELEASE, oCOMMENT_T_RELEASE));
+	object.license (config.string (profile, section, oCOMMENT_S_LICENSE, oCOMMENT_T_LICENSE));
+	object.special (config.string (profile, section, oCOMMENT_S_SPECIAL, oCOMMENT_T_SPECIAL));
 	if (!getopt.argc ()) 
 	{
 		c = (object.* method) (std::cin.get (), EOF);
