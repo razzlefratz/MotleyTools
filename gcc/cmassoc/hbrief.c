@@ -47,10 +47,20 @@
 #endif
 
 #ifndef MAKEFILE
+#include "../tidy/nocomment.c"
 #include "../tidy/nocontext.c"
+#include "../tidy/nocontent.c"
 #include "../tidy/noliteral.c"
 #include "../tidy/noescaped.c"
 #include "../tidy/keep.c"
+#endif
+
+/*====================================================================*
+ *   program constants;
+ *--------------------------------------------------------------------*/
+
+#ifndef nmtoken
+#define nmtoken(c) (isalnum(c) || (c == '_') || (c == ':') || (c == '.') || (c == '-'))
 #endif
 
 /*====================================================================*
@@ -60,54 +70,121 @@
 unsigned lineno = 0;
 
 /*====================================================================*
+ *   program functions;
+ *--------------------------------------------------------------------*/
+
+static signed markup (signed c);
+static signed pcdata (signed c);
+
+/*====================================================================*
  *
- *   int element (int c) 
- *
+ *   signed nocomment (signed c) 
+ *   
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
-static signed element (int c) 
+static signed _nocomment (signed c) 
 
 {
 	c = getc (stdin);
-	if ((c == '?') || (c == '%')) 
+	if (c == '-') 
 	{
 		do 
 		{
-			c = nocontext (c, c);
+			c = getc (stdin);
 		}
-		while ((c != '>') && (c != EOF));
-		return (c);
-	}
-	if (c == '!') 
-	{
+		while (c == '-');
 		do 
 		{
-			c = keep (c);
+			c = nocontent (c, '-');
 		}
-		while (isalnum (c) || ((char)(c) == '-'));
-		c = nocontext (c, '>');
-		return (c);
-	}
-	if (isalpha (c) || ((char)(c) == '/')) 
-	{
+		while ((c != '-') && (c != EOF));
 		do 
 		{
-			c = keep (c);
+			c = getc (stdin);
 		}
-		while (isident (c));
-		c = nocontext (c, '>');
-		return (c);
+		while (c == '-');
 	}
 	return (c);
 }
 
 /*====================================================================*
  *
- *   void document (flag_t flags) 
+ *   signed markup (signed c) 
+ *   
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+static signed markup (signed c) 
+
+{
+	c = getc (stdin);
+	if (c == '!') 
+	{
+		c = getc (stdin);
+		if (c == '-') 
+		{
+			c = _nocomment (c);
+		}
+		c = nocontext (c, '>');
+		return (c);
+	}
+	else if ((c == '?') || (c == '%')) 
+	{
+		do 
+		{
+			c = nocontext (c, c);
+		}
+		while ((c != '>') && (c != EOF));
+		c = getc (stdin);
+		return (c);
+	}
+	while ((c != '/') && (c != '>') && (c != EOF)) 
+	{
+		if (isspace (c)) 
+		{
+			do 
+			{
+				c = getc (stdin);
+			}
+			while (isspace (c));
+			continue;
+		}
+		if (nmtoken (c)) 
+		{
+			do 
+			{
+				c = getc (stdin);
+			}
+			while (nmtoken (c));
+			continue;
+		}
+		if (isquote (c)) 
+		{
+			c = noliteral (c);
+			continue;
+		}
+		c = getc (stdin);
+	}
+	if (c == '>') 
+	{
+		c = getc (stdin);
+		c = pcdata (c);
+		c = getc (stdin);
+	}
+	c = nocontext (c, '>');
+	return (c);
+}
+
+/*====================================================================*
+ *
+ *   signed pcdata (signed c) 
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -115,11 +192,65 @@ static signed element (int c)
  *
  *--------------------------------------------------------------------*/
 
-static void document (flag_t flags) 
+static signed pcdata (signed c) 
 
 {
-	signed c;
-	while ((c = getc (stdin)) != EOF) 
+	while ((c != '/') && (c != EOF)) 
+	{
+		while ((c != '<') && (c != EOF)) 
+		{
+			c = keep (c);
+		}
+		c = markup (c);
+	}
+	return (c);
+}
+
+/*====================================================================*
+ *
+ *   int element (signed c) 
+ *
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+static signed element (signed c) 
+
+{
+	c = getc (stdin);
+	if (c == '%') 
+	{
+		do { c = nocontext (c, c); } while ((c != '>') && (c != EOF));
+	}
+	else if ((c == '!') || (c == '?'))
+	{
+		do { c = keep (c); } while (isalnum (c) || ((char)(c) == '-'));
+		c = nocontext (c, '>');
+	}
+	else if (isalpha (c) || ((char)(c) == '/')) 
+	{
+		do { c = keep (c); } while (isident (c)); 
+		c = nocontext (c, '>');
+	}
+	return (c);
+}
+
+/*====================================================================*
+ *
+ *   signed document (signed c) 
+ *
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+static signed document (signed c) 
+
+{
+	while (c != EOF) 
 	{
 		if (c == '<') 
 		{
@@ -128,9 +259,10 @@ static void document (flag_t flags)
 			putc ('>', stdout);
 			continue;
 		}
-		putc (c, stdout);
+		c = keep (c);
+	
 	}
-	return;
+	return (c);
 }
 
 /*====================================================================*
@@ -142,17 +274,25 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"",
+		"at",
 		PUTOPTV_S_FILTER,
-		"remove HTML attributes from HTML tags",
+		"remove markup from HTML document",
+		"a\tremove attributes from HTML markup",
+		"t\tremove markup from HTML document",
 		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	signed (* function) (signed) = pcdata;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
+		case 'a':
+			function = document;
+			break;
+		case 't':
+			function = pcdata;
+			break;
 		default:
 			break;
 		}
@@ -161,13 +301,13 @@ int main (int argc, char const * argv [])
 	argv+= optind;
 	if (!argc) 
 	{
-		document (flags);
+		function (getc (stdin));
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (vfopen (* argv)) 
 		{
-			document (flags);
+			function (getc (stdin));
 		}
 		argc--;
 		argv++;
