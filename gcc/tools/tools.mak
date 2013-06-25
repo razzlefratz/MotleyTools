@@ -33,6 +33,7 @@ debug.o: debug.c types.h error.h
 decdecode.o: decdecode.c types.h number.h tools.h sizes.h
 decencode.o: decencode.c number.h tools.h types.h sizes.h
 decout.o: decout.c number.h 
+dcl.o: dcl.c dcl.h memory.h error.h linux.h tree.h
 digit.o: digit.c number.h 
 efopen.o: efopen.c tools.h error.h types.h sizes.h
 efreopen.o: efreopen.c tools.h error.h types.h sizes.h

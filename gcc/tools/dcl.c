@@ -1,6 +1,9 @@
 /*====================================================================*
  *
- *   command.c - string based command line parser;
+ *   dcl.c -                                  
+ *
+ *   copy one or more files to stdout; if no files are specified 
+ *   then copy stdin to stdout;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -8,53 +11,58 @@
  *
  *--------------------------------------------------------------------*/
 
-#ifndef COMMAND_SOURCE
-#define COMMAND_SOURCE
+#ifndef DCL_SOURCE
+#define DCL_SOURCE
 
 /*====================================================================*
  *   system header files;
  *--------------------------------------------------------------------*/
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
 #include <ctype.h>
+#include <stdlib.h>
+#include <memory.h>
 
 /*====================================================================*
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../tools/command.h"
+#include "../tools/dcl.h"
 #include "../tools/memory.h"
 #include "../tools/error.h"
+#include "../linux/linux.h"
 #include "../tree/tree.h"
 
 /*====================================================================*
  *   variables;
  *--------------------------------------------------------------------*/
 
-static char *string = (char *)(0);
-
-// static signed c;
+static char buffer [1024];
+static char * string = buffer;
+char c = (char)(0);
 
 /*====================================================================*
  *   functions;
  *--------------------------------------------------------------------*/
 
-static TREE *DCLName ();
-static TREE *DCLText (char c);
-static TREE *DCLList (char c, TREE * func ());
-static TREE *DCLItem ();
-static TREE *DCLTerm ();
+static TREE * DCLName ();
+static TREE * DCLText (char c);
+static TREE * DCLList (char c, TREE * func ());
+static TREE * DCLItem ();
+static TREE * DCLTerm ();
 
 /*====================================================================*
  *
  *   TREE * DCLName ();
  *   
- *   name := '_' 
- *   name := LETTER
- *   name := <name> '_'
- *   name := <name> LETTER
+ *   name := letter 
+ *   name := digit 
+ *   name := _
+ *   name := name letter
+ *   name := name digit
+ *   name := name _
+ *   name := name .
+ *   name := name :
  *   
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -62,28 +70,30 @@ static TREE *DCLTerm ();
  *
  *--------------------------------------------------------------------*/
 
-static TREE * DCLName () 
+TREE * DCLName () 
 
 {
+	extern char c;
 	TREE * name = NEW (TREE);
-	while (isspace (*string)) 
-	{
-		*string++ = (char)(0);
-	}
 	name->name = string;
 	name->one = (TREE *)(0);
 	name->two = (TREE *)(0);
-	if (isalnum (*string) || (*string == '_')) 
+	while (isspace (c)) 
+	{
+		c = cgetc (STDIN_FILENO);
+	}
+	if (isalnum (c)) 
 	{
 		do 
 		{
-			string++;
+* string ++ = (char)(c);
+			c = cgetc (STDIN_FILENO);
 		}
-		while (isalnum (*string) || (*string == '_'));
+		while (isalnum (c) || (c == '.') || (c == ':') || (c == '_'));
 	}
+* string ++ = (char)(0);
 	return (name);
 }
-
 
 /*====================================================================*
  *
@@ -97,33 +107,35 @@ static TREE * DCLName ()
  *
  *--------------------------------------------------------------------*/
 
-static TREE * DCLText (char c) 
+TREE * DCLText (char quote) 
 
 {
+	extern char c;
 	TREE * text = NEW (TREE);
+	text->name = string;
 	text->one = (TREE *)(0);
 	text->two = (TREE *)(0);
-	text->name = string;
-	while (*string != c) 
+	while ((c != quote) && (c != EOF)) 
 	{
-		if (*string == '\\') 
+		if (c == '\\') 
 		{
-			string++;
+* string ++ = (char)(c);
+			c = cgetc (STDIN_FILENO);
+			if (c == EOF) 
+			{
+				error (1, 0, "Have '%c' but want '%c'", c, quote);
+			}
 		}
-		if (!*string) 
-		{
-			error (1, 0, "Have '%s' but want '%c'", string, c);
-		}
-		string++;
+* string ++ = (char)(c);
+		c = cgetc (STDIN_FILENO);
 	}
-	*string++ = (char)(0);
+* string ++ = (char)(0);
 	return (text);
 }
 
-
 /*====================================================================*
  *
- *   TREE *DCLList (char comma, TREE * func ());
+ *   TREE *DCLList (char comma, TREE * item ());
  *   
  *   list :== <item>
  *   list :== <list>,<item>
@@ -134,20 +146,21 @@ static TREE * DCLText (char c)
  *
  *--------------------------------------------------------------------*/
 
-static TREE *DCLList (char c, TREE * func ()) 
+TREE * DCLList (char comma, TREE * func ()) 
 
 {
-	TREE *list = func ();
-	TREE *item = list;
-	while (*string) 
+	extern char c;
+	TREE * list = func ();
+	TREE * item = list;
+	while (c != EOF) 
 	{
-		while (isspace (*string)) 
+		while (isspace (c)) 
 		{
-			*string++ = (char)(0);
+			c = cgetc (STDIN_FILENO);
 		}
-		if (*string == c) 
+		if (c == comma) 
 		{
-			*string++ = (char)(0);
+			c = cgetc (STDIN_FILENO);
 			item->one = func ();
 			item = item->one;
 			continue;
@@ -156,7 +169,6 @@ static TREE *DCLList (char c, TREE * func ())
 	}
 	return (list);
 }
-
 
 /*====================================================================*
  *
@@ -175,63 +187,73 @@ static TREE *DCLList (char c, TREE * func ())
  *
  *--------------------------------------------------------------------*/
 
-static TREE * DCLItem () 
+TREE * DCLItem () 
 
 {
-	TREE *item;
-	while (isspace (*string)) 
+	extern char c;
+	TREE * item;
+	while (isspace (c)) 
 	{
-		*string++ = (char)(0);
+		c = cgetc (STDIN_FILENO);
 	}
-	if (*string == '(') 
+	if (c == '(') 
 	{
-		*string++ = (char)(0);
+		c = cgetc (STDIN_FILENO);
 		item = DCLList (COMMA, DCLItem);
-		if (*string != ')') 
+		if (c != ')') 
 		{
-			error (1, 0, "Have '%s' but need ')'", string);
+			error (1, 0, "Have '%c' but need ')'", c);
 		}
-		*string++ = (char)(0);
+		c = cgetc (STDIN_FILENO);
 		return (item);
 	}
-	if (*string == '[') 
+	if (c == '[') 
 	{
-		*string++ = (char)(0);
+		c = cgetc (STDIN_FILENO);
 		item = DCLList (COLON, DCLItem);
-		if (*string != ']') 
+		if (c != ']') 
 		{
-			error (1, 0, "Have '%s' but need ']'", string);
+			error (1, 0, "Have '%c' but need ']'", c);
 		}
-		*string++ = (char)(0);
+		c = cgetc (STDIN_FILENO);
 		return (item);
 	}
-	if (*string == '{') 
+	if (c == '{') 
 	{
-		*string++ = (char)(0);
+		c = cgetc (STDIN_FILENO);
 		item = DCLList (BREAK, DCLItem);
-		if (*string != '}') 
+		if (c != '}') 
 		{
-			error (1, 0, "Have '%s' but need ')'", string);
+			error (1, 0, "Have '%c' but need ')'", c);
 		}
-		*string++ = (char)(0);
+		c = cgetc (STDIN_FILENO);
 		return (item);
 	}
-	if (*string == QUOTE) 
+	if (c == QUOTE) 
 	{
-		*string++ = (char) (0);
+		c = cgetc (STDIN_FILENO);
 		item = DCLText (QUOTE);
+		if (c != QUOTE) 
+		{
+			error (1, 0, "Have '%c' but need '%c'", c, QUOTE);
+		}
+		c = cgetc (STDIN_FILENO);
 		return (item);
 	}
-	if (*string == APOST) 
+	if (c == APOST) 
 	{
-		*string++ = (char) (0);
+		c = cgetc (STDIN_FILENO);
 		item = DCLText (APOST);
+		if (c != APOST) 
+		{
+			error (1, 0, "Have '%c' but need '%c'", c, APOST);
+		}
+		c = cgetc (STDIN_FILENO);
 		return (item);
 	}
 	item = DCLTerm ();
 	return (item);
 }
-
 
 /*====================================================================*
  *
@@ -248,40 +270,40 @@ static TREE * DCLItem ()
  *
  *--------------------------------------------------------------------*/
 
-static TREE * DCLTerm () 
+TREE * DCLTerm () 
 
 {
+	extern char c;
 	TREE * term = DCLName ();
-	while (isspace (*string)) 
+	while (isspace (c)) 
 	{
-		*string++ = (char)(0);
+		c = cgetc (STDIN_FILENO);
 	}
-	if (*string == '(') 
+	if (c == '(') 
 	{
-		*string++ = (char)(0);
+		c = cgetc (STDIN_FILENO);
 		term->two = DCLList (COMMA, DCLItem);
-		if (*string != ')') 
+		if (c != ')') 
 		{
-			error (1, 0, "Have '%s' but need ')'", string);
+			error (1, 0, "Have '%c' but need ')'", c);
 		}
-		*string++ = (char)(0);
+		c = cgetc (STDIN_FILENO);
 		return (term);
 	}
-	if (*string == EQUAL) 
+	if (c == EQUAL) 
 	{
-		*string++ = (char)(0);
+		c = cgetc (STDIN_FILENO);
 		term->two = DCLItem ();
 		return (term);
 	}
-	if (*string == COLON) 
+	if (c == COLON) 
 	{
-		*string++ = (char)(0);
+		c = cgetc (STDIN_FILENO);
 		term->two = DCLItem ();
 		return (term);
 	}
 	return (term);
 }
-
 
 /*====================================================================*
  *
@@ -300,21 +322,22 @@ static TREE * DCLTerm ()
 TREE * DCLLine () 
 
 {
+	extern char c;
 	TREE * line = DCLTerm ();
 	TREE * term = line;
-	while (*string) 
+	while (c != EOF) 
 	{
-		while (isspace (*string)) 
+		while (isspace (c)) 
 		{
-			*string++ = (char)(0);
+			c = cgetc (STDIN_FILENO);
 		}
-		if (*string == SLASH) 
+		if (c == SLASH) 
 		{
-			*string++ = (char)(0);
+			c = cgetc (STDIN_FILENO);
 			term->two = DCLList (SLASH, DCLTerm);
 			continue;
 		}
-		if (isalnum (*string)) 
+		if (isalnum (c)) 
 		{
 			term->one = DCLTerm ();
 			term = term->one;
@@ -322,16 +345,19 @@ TREE * DCLLine ()
 		}
 		break;
 	}
-	*string = (char)(0);
 	return (line);
 }
 
+void DCLInit () 
+
+{
+	string = buffer;
+	return;
+}
 
 /*====================================================================*
  *
  *   void DCLTree (TREE *node);
- *
- *   print indented DCL tree on stdout;
  *   
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -347,7 +373,7 @@ void DCLTree (TREE * node)
 	level++;
 	while (node) 
 	{
-		for (count = 1; count < level; count++) 
+		for (count = 1; count < level; count ++) 
 		{
 			putc (' ', stdout);
 			putc (' ', stdout);
@@ -364,12 +390,10 @@ void DCLTree (TREE * node)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void DCLFree (TREE * node);
  *
- *   release memory allocated to DCL tree;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -385,13 +409,11 @@ void DCLFree (TREE * node)
 		TREE * temp = node;
 		node = node->one;
 		DCLFree (temp->two);
-		temp->one = (TREE *) (0);
-		temp->two = (TREE *) (0);
+		memset (temp, 0, sizeof (TREE));
 		free (temp);
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -406,29 +428,55 @@ void DCLFree (TREE * node)
 
 #if 0
 #include <stdio.h>
-#include "../tools/error.c"
-#include "../tools/emalloc.c"
 
-char const * program_name;
-int main (int argc, char * argv []) 
+#include "../tools/getoptv.c"
+#include "../tools/putoptv.c"
+#include "../tools/version.c"
+#include "../tools/emalloc.c"
+#include "../tools/error.c"
+#include "../tools/cgetc.c"
+
+int main (int argc, char const * argv []) 
 
 {
-	TREE *node = (TREE *)(0);
-	program_name = *argv;
-	while ((c = getc (stdin)) != EOF) 
+	extern char c;
+	static char const * optv [] = 
+	{
+"",
+		PUTOPTV_S_FUNNEL,
+"example command line program",
+(char const *)(0)
+	};
+	TREE * node = (TREE *)(0);
+	optind = 1;
+	opterr = 1;
+	while ((c = getoptv (argc, argv, optv)) != -1) 
+	{
+		switch (c) 
+		{
+		default:
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	while ((c = cgetc (STDIN_FILENO)) != EOF) 
 	{
 		node = DCLLine ();
+		if ((c != ';') && (c != EOF)) 
+		{
+			error (1, 0, "Have '%c' but need ';'", c);
+		}
 		DCLTree (node);
 		DCLFree (node);
 	}
 	return (0);
 }
 
-
 #endif
 
 /*====================================================================*
- *   system header files;
+ *   
  *--------------------------------------------------------------------*/
 
 #endif

@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   command.h - command definitions and declarations;
+ *   dcl.h - command definitions and declarations;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 2005 by Charles Maier Associates for internal use;
@@ -8,8 +8,8 @@
  *
  *--------------------------------------------------------------------*/
 
-#ifndef COMMAND_HEADER
-#define COMMAND_HEADER
+#ifndef DCL_HEADER
+#define DCL_HEADER
 
 /*====================================================================*
  *   custom header files;
