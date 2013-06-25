@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   signed comment (signed c) 
+ *   signed nocomment (signed c) 
  *   
  *   read stdin and discard comment; character c contains the 
  *   slash character value;
