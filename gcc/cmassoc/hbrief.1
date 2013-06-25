@@ -1,7 +1,7 @@
 .TH hbrief 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
-hbrief - remove HTML attributes
+hbrief - remove HTML markup or markup attributes
 
 .SH SYNOPSIS
 .BR hbrief
@@ -19,11 +19,24 @@ hbrief - remove HTML attributes
 .SH DESCRIPTION
 
 .PP
-Remove HTML and XML attributes from markup;
+Remove SGML, HTML and XML markup from documents or merely remove all attributes from markup elements.
+The first operation may be used to extract plain text content for a markup-laden document or webpage.
+The second operation may be used to remove deprecated or unwanted styling inserted by programs like Microsoft Word.
+
+.PP
+See program \fBcbrief\fR to remove comments from C/C++ language source files.
 
 .SH OPTIONS
 Long options are not supported.
 All options are single letters.
+
+.TP
+.RB - a
+Remove attributes from SGML, HTML and XML markup elements.
+
+.TP
+.RB - t
+Remove SGML, HTML and XML markup from a document.
 
 .TP
 .RB - ? ,-- help
@@ -47,7 +60,8 @@ Use program \fBrex\fR to recover a prior version.
 None
 
 .SH SEE ALSO
-.BR xml ( 7 )
+.BR cbrief ( 1 ),
+.BR xml ( 1 )
 
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>
