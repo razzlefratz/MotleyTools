@@ -1,7 +1,7 @@
 .TH cbrief 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
 
 .SH NAME
-cbrief - remove C/C++ comments
+cbrief - strip C/C++ comments or source code
 
 .SH SYNOPSIS
 .BR cbrief
@@ -19,11 +19,25 @@ cbrief - remove C/C++ comments
 .SH DESCRIPTION
 
 .PP
-Remove C and C++ comments from a source code file.
+Discard comments from C/C++ source files and leave leaving only the code. 
+Conversely, discard the code and leave ony the comments.
 
 .SH OPTIONS
 Long options are not supported.
 All options are single letters.
+
+.TP
+.RB - c
+Discard source code, leaving only comments.
+This option may be used to quickly extract documentation from well annotated source code.
+It may also be used to inspect function preambles for copyright notices.
+
+.TP
+.RB - C
+Discard comments, leaving only source code.
+This option may be used remove thos creative, meaningless or annoying comments that make programs hard to read.
+It may also be used to streamline source files before passing them to other software tools.
+Remember that "\fBReal programmers do not document their code.\fR".
 
 .TP
 .RB - ? ,-- help
@@ -44,12 +58,356 @@ This file is replaced and a numbered backup is created.
 Use program \fBrex\fR to recover a prior version.
 
 .SH EXAMPLES
-None
+The following example prints myprogram.c on the console with the linux cat utility.
+Notice that the program has many creative, meaningless, misaligned and annoying comments that make it hard to read. 
+One sign that a novice programmer wrote this program is the endless stating of the obvious.
+.PP
+   # cat myprogram.c
+       /*
+    * start of program;
+   */
+   
+   #define _GETOPT_H // include getopt.h here
+   
+   /*====================================================================*
+    *   system header files;
+    *--------------------------------------------------------------------*/
+   
+   #include <stdio.h> /* include stdio.g here because we need it. */
+   
+   /*====================================================================*
+   *
+   *   main.c - the main program;
+     *
+   *--------------------------------------------------------*/
+   
+   int main (int argc, char const * argv []) 
+   
+   {
+           static char const * optv [] = 
+           { /* the menu */
+                   "",
+                   PUTOPTV_S_FUNNEL,
+                   "myprogram", // program name here
+                   /* end of list */ (char const *)(0)
+           };
+           flag_t flags = (flag_t) (0); /* flag word - each bit means something */
+           signed c;
+           while ((c = getoptv (argc /* annoying comment! */, 
+                   argv, // another annoying comment
+                   optv)) 
+                   != -1 /* EOF */) 
+           { /* start lookin at arguments */
+                   switch (c)  // switch on character c 
+                   {
+   /*              case 'A': don't ever do this thing
+                           thing ();
+                           break;
+   /*
+                   default: /* default operation */
+                           break; /* do nothing */
+                   }
+   /*
+    A end of while loop;*
+    */
+           }
+           argc-= /* defined in getopt.h */ optind;
+           argv+= optind; /* defined in getopt.h */
+           if (!argc) // if no arguments
+           {
+                   // do this quickly
+           }
+           while ((argc) && (* argv)) 
+           {
+                   argc--;
+                   argv++;
+           }
+           return (0);
+           // end of program
+   } /* end of program */
+.PP
+Now we will print myprogram.c on the console using cbrief without any options.
+The default behavior it to discard comments causing the output to look like this.
+This output is marginally better than the original but needs more work.
+.PP
+   # cbrief < myprogram.c
+	   
+   
+   #define _GETOPT_H 
+   
+   
+   
+   #include <stdio.h> 
+   
+   
+   
+   int main (int argc, char const * argv []) 
+   
+   {
+           static char const * optv [] = 
+           { 
+                   "",
+                   PUTOPTV_S_FUNNEL,
+                   "myprogram", 
+                    (char const *)(0)
+           };
+           flag_t flags = (flag_t) (0); 
+           signed c;
+           while ((c = getoptv (argc , 
+                   argv, 
+                   optv)) 
+                   != -1 ) 
+           { 
+                   switch (c)  
+                   {
+   
+                           break; 
+                   }
+   
+           }
+           argc-=  optind;
+           argv+= optind; 
+           if (!argc) 
+           {
+                   
+           }
+           while ((argc) && (* argv)) 
+           {
+                   argc--;
+                   argv++;
+           }
+           return (0);
+           
+   } 
 
+.PP
+The extensive white space is also annoying.
+We will now format this output by piping it into program cfm, yet another Motley Tool.
+Program cfm will remove uncessary white space and shuffle language tokens to show program structure.
+The result looks like this, which appeals to me, as the author of the program.
+.PP
+   # cbrief < myprogram.c | cfm
+   
+   #define _GETOPT_H 
+   
+   #include <stdio.h> 
+   
+   int main (int argc, char const * argv []) 
+   
+   {
+           static char const * optv [] = 
+           {
+                   "",
+                   PUTOPTV_S_FUNNEL,
+                   "myprogram",
+                   (char const *)(0)
+           };
+           flag_t flags = (flag_t) (0);
+           signed c;
+           while ((c = getoptv (argc, argv, optv)) != -1) 
+           {
+                   switch (c) 
+                   {
+                           break;
+                   }
+           }
+           argc-= optind;
+           argv+= optind;
+           if (!argc) 
+           {
+           }
+           while ((argc) && (* argv)) 
+           {
+                   argc--;
+                   argv++;
+           }
+           return (0);
+   }
+
+.pp
+Now lets see what we discarded from the original program using cbrief with option \fB-c\fR.
+We may discover that some of this is actually worthwhile and want to include it in our documentation.
+Unforunately, this program contains garbage comments but you probably get the idea.
+.PP
+   # cbrief -c < myprogram.c
+   /*
+       * start of program;
+    */
+   // include getopt.h here/*====================================================================*
+       *   system header files;
+       *--------------------------------------------------------------------*/
+   /* include stdio.g here because we need it. */
+   /*====================================================================*
+       *
+       *   main.c - the main program;
+       *
+       *--------------------------------------------------------------------*/
+   /* the menu */
+   // program name here/* end of list */
+   /* flag word - each bit means something */
+   /* annoying comment! */
+   // another annoying comment/* EOF */
+   /* start lookin at arguments */
+   // switch on character c /*              case 'A': don't ever do this thing
+                              thing ();
+                              break;
+      /*
+                      default: /* default operation */
+   /* do nothing */
+   /*
+       A end of while loop;*
+       */
+   /* defined in getopt.h */
+   /* defined in getopt.h */
+   // if no arguments// do this quickly// end of program/* end of program */
+.PP
+A better example shows how cbrief can be used to inspect, and possibly document, a well commented file.
+The file is C++ class that is used to format C/C++ language comments.
+The coding standard used encourages uniform preambles and discourages comments within the code.
+There are examples of comments in code further down and they are visibly different from preambles.
+.PP
+   # cbrief -c < ocomment.cpp
+   /*====================================================================*
+    *
+    *   ocomment.cpp - definition of ocomment class.
+    *
+    *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
+    *:  Copyright 2001-2006 by Charles Maier Associates;
+    *;  Licensed under the Internet Software Consortium License
+    *
+    *--------------------------------------------------------------------*/
+   /*====================================================================*
+    *   system header files;
+    *--------------------------------------------------------------------*/
+   /*====================================================================*
+    *   custom header files;
+    *--------------------------------------------------------------------*/
+   /*====================================================================*
+    *   
+    *   size_t width () const;
+    *   
+    *   get and set the comment bar width;
+    *
+    *--------------------------------------------------------------------*/
+   /*====================================================================*
+    *   
+    *   unsigned char cupper () const;
+    *   
+    *   get and set the upper bar character;
+    *   
+    *--------------------------------------------------------------------*/
+   /*====================================================================*
+    *   
+    *   unsigned char clower () const;
+    *   
+    *   get and set the lower bar character;
+    *   
+    *--------------------------------------------------------------------*/
+   /*====================================================================*
+    *   
+    *   char const * preface () const;
+    *   
+    *   get and set the preface comment string;
+    *   
+    *--------------------------------------------------------------------*/
+   /*====================================================================*
+    *   
+    *   signed cplus (signed c);
+    *   
+    *   format C++ style comments and return the character after; 
+    *
+    *   read and discard excess leading slashes and empty comment lines;
+    *   
+    *   under normal conditions, output two slashes then read and write
+    *   characters until newline or EOF; discard the newline;
+    *
+    *   if oCOMMENT_B_TRIPLE is set then convert C++ comment to a multi-line 
+    *   C-style comment;
+    *
+    *--------------------------------------------------------------------*/
+   /*====================================================================*
+    *   
+    *   signed clang (signed c);
+    *   
+    *   format ANSI C style comments and return the character after;
+    *   
+    *   this method has two standard forms as follows interlaced with
+    *   specific formatting function blocks; the second form is more
+    *   reliable and veratile;
+    *
+    *      putc ('/', stdout);
+    *      while ((c != '/') && (c != EOF))
+    *      {
+    *              while ((c != '*') && (c != EOF))
+    *              {
+    *                      putc (c, stdout);
+    *                      c = getc (stdin);
+    *              }
+    *              putc (c, stdout);
+    *              c = getc (stdin);
+    *      }
+    *      putc ('/', stdout);
+    *
+    *   and
+    *
+    *      putc ('/', stdout);
+    *      do { 
+    *              ungetc (c, stdin);
+    *              do { 
+    *                      c = getc(stdin); 
+    *                      putc (c,stdout); 
+    *              } while ((c != '*') && (c != EOF));
+    *              c = getc (stdin);
+    *      } while ((c != '/') && (c != EOF));
+    *      putc ('/', stdout);
+    *
+    *--------------------------------------------------------------------*/
+   /*
+    *   if the character after as asterisk is UPPER or LOWER then collect the entire string
+    *   and keep track of the length; if the string ends in asterisk then replace place it with 
+    *   another of fixed length using the same character; otherwise, replace it with another of
+    *   the same length using the same character;  
+    */
+   /*
+    *   if the next character is newline then flush the buffer and reset sp to the start; write the 
+    *   newline and one space then find the first non-blank character on the next comment line; if 
+    *   that character is not asterisk then write an asterisk and one or more spaces; increment the
+    *   line counter for later; 
+    */
+   /*====================================================================*
+    *   
+    *   signed message (unsigned char c, char const * string);
+    *   
+    *   replace comment line with new one;
+    *
+    *   copy c then string to buffer; read and discard characters from
+    *   stdin until newline or EOF is read; return read character; 
+    *   
+    *--------------------------------------------------------------------*/
+   /*====================================================================*
+    *
+    *   ocomment (size_t length)
+    *
+    *
+    *--------------------------------------------------------------------*/
+   /*====================================================================*
+    *
+    *   ocomment ()
+    *
+    *--------------------------------------------------------------------*/
+   /*====================================================================*
+    *
+    *   ~ocomment ()
+    *
+    *--------------------------------------------------------------------*/
+   /*====================================================================*
+    *   end definition
+    *--------------------------------------------------------------------*/
 .SH SEE ALSO
 .BR call ( 7 ),
 .BR cblock ( 7 ),
 .BR cedit ( 7 ),
+.BR cfm ( 7 ),
 .BR cinc ( 7 ),
 .BR cmerge ( 7 ),
 .BR ctar ( 7 )

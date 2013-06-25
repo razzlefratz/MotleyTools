@@ -40,64 +40,6 @@
 #include "../files/mergepath.c"
 #endif
 
-#ifndef MAKEFILE
-#include "../tidy/literal.c"
-#include "../tidy/nocomment.c"
-#include "../tidy/noliteral.c"
-#include "../tidy/noescaped.c"
-#include "../tidy/escaped.c"
-#include "../tidy/keep.c"
-#endif
-
-/*====================================================================*
- *
- *   void comment (int c);
- *
- *   tidy.h
- *
- *   read stdin and write stdout; pass C style comment block;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
- *--------------------------------------------------------------------*/
-
-signed comment (signed c) 
-
-{
-	c = getc (stdin);
-	if (c == '/') 
-	{
-		putc ('/', stdout);
-		do 
-		{
-			c = keep (c);
-		}
-		while ((c != '\n') && (c != EOF));
-		putc ('\n', stdout);
-		c = keep (c);
-		return (c);
-	}
-	if (c == '*') 
-	{
-		putc ('/', stdout);
-		c = keep (c);
-		while ((c != '/') && (c != EOF)) 
-		{
-			while ((c != '*') && (c != EOF)) 
-			{
-				c = keep (c);
-			}
-			c = keep (c);
-		}
-		c = keep (c);
-		putc ('\n', stdout);
-		return (c);
-	}
-	return (c);
-}
-
 /*====================================================================*
  *
  *   void exclude (void);
@@ -120,15 +62,51 @@ static void exclude (void)
 	{
 		if (c == '/') 
 		{
-			c = nocomment (c);
+			c = getc (stdin);
+			if (c == '/') 
+			{
+				while ((c != '\n') && (c != EOF)) 
+				{
+					c = getc (stdin);
+				}
+				continue;
+			}
+			if (c == '*') 
+			{
+				while ((c != '/') && (c != EOF)) 
+				{
+					while ((c != '*') && (c != EOF)) 
+					{
+						c = getc (stdin);
+					}
+					c = getc (stdin);
+				}
+				c = getc (stdin);
+				continue;
+			}
+			putc ('/', stdout);
 			continue;
 		}
 		if (isquote (c)) 
 		{
-			c = literal (c);
-			continue;
+			signed quote = c;
+			putc (c, stdout);
+			c = getc (stdin);
+			while ((c != quote) && (c != EOF)) 
+			{
+				if (c == '\\')
+				{
+					putc (c, stdout);
+					c = getc (stdin);
+				}
+				putc (c, stdout);
+				c = getc (stdin);
+			}
+			putc (c, stdout);
+			c = getc (stdin);
 		}
-		c = keep (c);
+		putc (c, stdout);
+		c = getc (stdin);
 	}
 	return;
 }
@@ -159,35 +137,45 @@ static void include (void)
 			if (c == '/') 
 			{
 				putc ('/', stdout);
-				do 
+				while ((c != '\n') && (c != EOF)) 
 				{
-					c = keep (c);
+					putc (c, stdout);
+					c = getc (stdin);
 				}
-				while ((c != '\n') && (c != EOF));
-				putc ('\n', stdout);
-				c = keep (c);
 				continue;
 			}
 			if (c == '*') 
 			{
 				putc ('/', stdout);
-				c = keep (c);
 				while ((c != '/') && (c != EOF)) 
 				{
 					while ((c != '*') && (c != EOF)) 
 					{
-						c = keep (c);
+						putc (c, stdout);
+						c = getc (stdin);
 					}
-					c = keep (c);
+					putc (c, stdout);
+					c = getc (stdin);
 				}
-				c = keep (c);
+				putc (c, stdout);
+				c = getc (stdin);
 				putc ('\n', stdout);
 				continue;
 			}
 		}
 		if (isquote (c)) 
 		{
-			c = noliteral (c);
+			signed quote = c;
+			c = getc (stdin);
+			while ((c != quote) && (c != EOF)) 
+			{
+				if (c == '\\')
+				{
+					c = getc (stdin);
+				}
+				c = getc (stdin);
+			}
+			c = getc (stdin);
 			continue;
 		}
 		c = getc (stdin);
@@ -210,10 +198,11 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"v",
+		"cC",
 		PUTOPTV_S_FILTER,
-		"remove C/C++ language comments",
-		"v\tdiscard source code",
+		"strip C/C++ comments or source code",
+		"c\tdiscard code and keep comments",
+		"C\tdiscard comments and keep code",
 		(char const *) (0)
 	};
 	void (* function) (void) = exclude;
@@ -222,8 +211,11 @@ int main (int argc, char const * argv [])
 	{
 		switch (c) 
 		{
-		case 'v':
+		case 'c':
 			function = include;
+			break;
+		case 'C':
+			function = exclude;
 			break;
 		default:
 			break;
