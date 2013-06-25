@@ -21,6 +21,7 @@
 
 #include "../tools/cmassoc.h"
 #include "../files/files.h"
+#include "../tidy/tidy.h"
 
 /*====================================================================*
  *   custom source files;
@@ -40,16 +41,16 @@
 #include "../files/mergepath.c"
 #endif
 
-/*====================================================================*
- *   
- *--------------------------------------------------------------------*/
-
-#ifndef isblank
-#define isblank(c) (((char)(c) == ' ') || ((char)(c) == '\t')) 
-#endif 
-#ifndef nobreak
-#define nobreak(c) (((signed)(c) != EOF) || ((char)(c) == '\n')) 
-#endif  
+#ifndef MAKEFILE
+#include "../tidy/comment.c"
+#include "../tidy/control.c"
+#include "../tidy/content.c"
+#include "../tidy/context.c"
+#include "../tidy/escaped.c"
+#include "../tidy/literal.c"
+#include "../tidy/span.c"
+#include "../tidy/keep.c"
+#endif
 
 /*====================================================================*
  *
@@ -57,115 +58,33 @@
  *
  *   read from ifp and write to ofp; remove escaped newlines to form
  *   one long line from consecutive continuation lines; 
- *.  Motley Tools by Charles Maier;
- *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
- *;  Licensed under the Internet Software Consortium License;
  *
  *--------------------------------------------------------------------*/
 
-void func (flag_t flags, FILE * ifp, FILE * ofp) 
+signed noescape (signed c)
 
 {
-	signed c;
-	signed o;
-	while ((c = getc (ifp)) != EOF) 
+	while (c != EOF) 
 	{
-		switch (c) 
+		if (c == '/')
 		{
-		case '/':
-			o = getc (ifp);
-			if (o == '*') 
-			{
-				putc (c, ofp);
-				do 
-				{
-					ungetc (o, ifp);
-					do 
-					{
-						o = getc (ifp);
-						putc (o, ofp);
-					}
-					while ((o != EOF) && (o != '*'));
-					o = getc (ifp);
-				}
-				while ((o != EOF) && (o != c));
-				putc (c, ofp);
-			}
-			else if (o == '/') 
-			{
-				putc (c, ofp);
-				do 
-				{
-					putc (c, ofp);
-					c = getc (ifp);
-				}
-				while (nobreak ((char) (c)));
-				putc ('\n', ofp);
-			}
-			else 
-			{
-				ungetc (o, ifp);
-				putc (c, ofp);
-			}
-			break;
-		case '\"':
-		case '\'':
-			putc (c, ofp);
-			for (o = getc (ifp); (o != EOF) && (o != c); o = getc (ifp)) 
-			{
-				if ((c = putc (c, ofp)) == '\\') 
-				{
-					putc (c, ofp);
-					if ((c = getc (ifp)) != EOF) 
-					{
-						putc (c, ofp);
-					}
-				}
-			}
-			putc (c, ofp);
-			break;
-		case '#':
-			do 
-			{
-				putc (c, ofp);
-				c = getc (ifp);
-			}
-			while (nobreak ((char) (c)));
-			putc ('\n', ofp);
-			break;
-		case '\\':
-			o = getc (ifp);
-			switch (o) 
-			{
-			case '\r':
-				o = getc (ifp);
-				if (nobreak (o)) 
-				{
-					ungetc (o, ifp);
-				}
-			case '\n':
-				do 
-				{
-					o = getc (ifp);
-				}
-				while (isblank (o));
-				ungetc (o, ifp);
-				break;
-			case EOF:
-				putc (c, ofp);
-				break;
-			default:
-				putc (c, ofp);
-				putc (o, ofp);
-				break;
-			}
-			break;
-		default:
-			putc (c, ofp);
-			break;
+			c = comment (c);
+			continue;
 		}
+		if (isquote (c))
+		{
+			c = literal (c);
+			continue;
+		}
+		if (c == '#')
+		{
+			c = control (c, '\n');
+			continue;
+		}
+		c = span (c);
+		c = keep (c);
 	}
-	return;
+	return (c);
 }
 
 /*====================================================================*
@@ -182,7 +101,7 @@ int main (int argc, char const * argv [])
 		"convert escaped newlines to form long lines;",
 		(char const *) (0)
 	};
-	flag_t flags = (flag_t) (0);
+	signed (* function) (signed) = noescape;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
@@ -196,13 +115,13 @@ int main (int argc, char const * argv [])
 	argv+= optind;
 	if (!argc) 
 	{
-		func (flags, stdin, stdout);
+		function (getc (stdin));
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (vfopen (* argv)) 
 		{
-			func (flags, stdin, stdout);
+			function (getc (stdin));
 		}
 		argc--;
 		argv++;
