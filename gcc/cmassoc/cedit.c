@@ -56,7 +56,7 @@
 
 /*====================================================================*
  *
- *   unsigned function (char const *oldname, char const *newname, flag_t flags);
+ *   unsigned function (char const * oldname, char const * newname);
  *
  *   read tokens from stdin and write them to stdout; replace alpha
  *   tokens that match oldname with token newname;
@@ -67,7 +67,7 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned function (char const * oldname, char const * newname, flag_t flags) 
+unsigned function (char const * oldname, char const * newname) 
 
 {
 	unsigned count = 0;
@@ -222,7 +222,7 @@ int main (int argc, char const * argv [])
 		"n s\tnew token is s",
 		(char const *) (0)
 	};
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	char const * oldname = "";
 	char const * newname = "";
 	char const * sp;
@@ -278,7 +278,7 @@ int main (int argc, char const * argv [])
 	argv+= optind;
 	if (!argc) 
 	{
-		if ((c = function (oldname, newname, flags))) 
+		if ((c = function (oldname, newname))) 
 		{
 			if (_anyset (flags, CEDIT_COUNT)) 
 			{
@@ -290,7 +290,7 @@ int main (int argc, char const * argv [])
 	{
 		if (vfopen (* argv)) 
 		{
-			if ((c = function (oldname, newname, flags))) 
+			if ((c = function (oldname, newname))) 
 			{
 				if (_anyset (flags, CEDIT_COUNT)) 
 				{
