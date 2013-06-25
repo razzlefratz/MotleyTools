@@ -355,6 +355,7 @@ signed octidy::statement (signed c, signed level, signed space)
 	}
 	if (sp == string) 
 	{
+		octidy::print (level, 0, string);
 		c = octidy::context (c, ",;{}#");
 	}
 	else if (!std::strcmp (string, "class")) 
@@ -362,12 +363,6 @@ signed octidy::statement (signed c, signed level, signed space)
 		octidy::print (level, 0, string);
 		std::cout.put (' ');
 		c = octidy::context (c, "{");
-	}
-	else if (!std::strcmp (string, "case")) 
-	{
-		octidy::print (level-1, 0, string);
-		std::cout.put (' ');
-		c = octidy::context (c, ":");
 	}
 	else if (octidy::exitwords.defined (string)) 
 	{
@@ -401,6 +396,12 @@ signed octidy::statement (signed c, signed level, signed space)
 		c = octidy::context (c, ",;{}#");
 	}
 #endif
+	else if (!std::strcmp (string, "case")) 
+	{
+		octidy::print (level-1, 0, string);
+		std::cout.put (' ');
+		c = octidy::context (c, ":");
+	}
 	else if (c == ':')
 	{
 		if (c == std::cin.peek ()) 
