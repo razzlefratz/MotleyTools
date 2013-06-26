@@ -320,7 +320,7 @@ opage & opage::footer ()
 
 /*====================================================================*
  *
- *   opage (char const * string);
+ *   opage (char const * title);
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -328,11 +328,11 @@ opage & opage::footer ()
  *
  *--------------------------------------------------------------------*/
 
-opage::opage (char const * string) 
+opage::opage (char const * title) 
 
 {
-	this->mtitle = new char [std::strlen (string)+1];
-	std::strcpy (this->mtitle, string);
+	this->mtitle = new char [std::strlen (title)+1];
+	std::strcpy (this->mtitle, title);
 	this->mrows = oPAGE_ROWS;
 	this->mcols = oPAGE_COLS;
 	this->mtabs = oPAGE_TABS;
