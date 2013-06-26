@@ -31,7 +31,7 @@
  *   class variables;        
  *--------------------------------------------------------------------*/
 
-oHTMLEmpty ohtmltidy::htmlempty;
+oHTMLEmptyElements ohtmltidy::htmlempty;
 
 /*====================================================================*
  *   

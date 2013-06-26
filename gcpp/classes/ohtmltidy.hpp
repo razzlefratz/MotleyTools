@@ -15,7 +15,7 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/oHTMLEmpty.hpp"
+#include "../classes/oHTMLEmptyElements.hpp"
 #include "../classes/oflagword.hpp"
 #include "../classes/oindent.hpp"
 #include "../classes/ocollect.hpp"
@@ -63,7 +63,7 @@ public:
 	signed keep (signed c) const;
 	ohtmltidy & print ();
 protected:
-	static oHTMLEmpty htmlempty;
+	static oHTMLEmptyElements htmlempty;
 	char * mstring;
 	char * melement;
 	char * mattribute;
