@@ -59,6 +59,9 @@ g++ -Wall -c oheap.cpp
 # g++ -Wall -c oheap.demo.cpp
 # g++ -Wall -c ohexencode.cpp
 # g++ -Wall -c ohexencoder.cpp
+g++ -Wall -c oHTMLAttributeNames.cpp
+g++ -Wall -c oHTMLElementNames.cpp
+g++ -Wall -c oHTMLEmptyElements.cpp
 g++ -Wall -c oHTMLIndex.cpp
 g++ -Wall -c ohtmltidy.cpp
 g++ -Wall -c oindent.cpp

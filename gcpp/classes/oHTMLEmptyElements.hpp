@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   oHTMLEmpty.hpp - declaration of oHTMLEmpty class.
+ *   oHTMLEmptyElements.hpp - declaration of oHTMLEmptyElements class.
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -8,8 +8,8 @@
  *
  *--------------------------------------------------------------------*/
 
-#ifndef oHTMLEMPTY_HEADER
-#define oHTMLEMPTY_HEADER
+#ifndef oHTMLEMPTYELEMENTS_HEADER
+#define oHTMLEMPTYELEMENTS_HEADER
 
 /*====================================================================*
  *   custom header files;
@@ -22,12 +22,12 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oHTMLEmpty: public okeywords 
+class __declspec (dllexport) oHTMLEmptyElements: public okeywords 
 
 {
 public:
-	oHTMLEmpty ();
-	~ oHTMLEmpty ();
+	oHTMLEmptyElements ();
+	~ oHTMLEmptyElements ();
 };
 
 /*====================================================================*

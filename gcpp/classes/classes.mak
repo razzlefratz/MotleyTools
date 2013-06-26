@@ -145,7 +145,7 @@ ograph.hpp: oascii.hpp oedges.hpp oflagword.hpp onodes.hpp oqueue.hpp otext.hpp 
 oheap.hpp: oitem.hpp
 ohexencode.hpp: stdafx.hpp
 ohexencoder.hpp: oascii.hpp ochrupr.hpp stdafx.hpp
-ohtmltidy.hpp: oHTMLEmpty.hpp ocollect.hpp oflagword.hpp oindent.hpp otext.hpp
+ohtmltidy.hpp: oHTMLEmptyElements.hpp ocollect.hpp oflagword.hpp oindent.hpp otext.hpp
 oi18nAttributes.hpp: oattribute.hpp otext.hpp stdafx.hpp
 oif.hpp: stdafx.hpp
 oifs.hpp: oif.hpp stdafx.hpp

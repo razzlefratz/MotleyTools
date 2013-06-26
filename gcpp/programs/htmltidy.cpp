@@ -52,7 +52,7 @@
 #endif
 
 #ifndef MAKEFILE
-#include "../classes/oHTMLEmpty.cpp"
+#include "../classes/oHTMLEmptyElements.cpp"
 #endif
 
 /*====================================================================*

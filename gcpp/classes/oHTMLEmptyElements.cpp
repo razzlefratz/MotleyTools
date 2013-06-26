@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   oHTMLEmpty.cpp - definition of oHTMLEmpty class.
+ *   oHTMLEmptyElements.cpp - definition of oHTMLEmptyElements class.
  *
  *   symbol table containing empty HTML element names;
  *
@@ -10,20 +10,21 @@
  *
  *--------------------------------------------------------------------*/
 
-#ifndef oHTMLEMPTY_SOURCE
-#define oHTMLEMPTY_SOURCE
+#ifndef oHTMLEMPTYELEMENTS_SOURCE
+#define oHTMLEMPTYELEMENTS_SOURCE
 
 /*====================================================================*
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/oHTMLEmpty.hpp"
+#include "../classes/oHTMLEmptyElements.hpp"
+#include "../classes/types.h"
 
 /*====================================================================*
  *
- *   oHTMLEmpty ();
+ *   oHTMLEmptyElements ();
  *   
- *   constructor for oHTMLEmpty class; replace the base class table with
+ *   constructor for oHTMLEmptyElements class; replace the base class table with
  *   this one;
  *   
  *.  Motley Tools by Charles Maier
@@ -32,7 +33,7 @@
  *
  *--------------------------------------------------------------------*/
 
-oHTMLEmpty::oHTMLEmpty () 
+oHTMLEmptyElements::oHTMLEmptyElements () 
 
 {
 	static char const * table [] = 
@@ -66,7 +67,7 @@ oHTMLEmpty::oHTMLEmpty ()
 		(char const *)(0)
 	};
 	okeywords::mtitle = "HTMLEmpty";
-	okeywords::mcount = sizeof (table) / sizeof (char const *) - 1;
+	okeywords::mcount = SIZEOF (table) - 1;
 	okeywords::mtable = table;
 	okeywords::mcheck ();
 	return;
@@ -74,7 +75,7 @@ oHTMLEmpty::oHTMLEmpty ()
 
 /*====================================================================*
  *
- *   ~oHTMLEmpty ();
+ *   ~oHTMLEmptyElements ();
  *
  *
  *.  Motley Tools by Charles Maier
@@ -83,7 +84,7 @@ oHTMLEmpty::oHTMLEmpty ()
  *
  *--------------------------------------------------------------------*/
 
-oHTMLEmpty::~oHTMLEmpty () 
+oHTMLEmptyElements::~oHTMLEmptyElements () 
 
 {
 	return;
