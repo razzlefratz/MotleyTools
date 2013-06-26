@@ -67,17 +67,17 @@ signed odiscard::context (signed c, signed o, signed e) const
 
 {
 	c = std::cin.get ();
-	c = odiscard::inner_context (c, o, e);
+	c = odiscard::_context (c, o, e);
 	c = std::cin.get ();
 	return (c);
 }
 
-signed odiscard::inner_context (signed c, signed o, signed e) const 
+signed odiscard::_context (signed c, signed o, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = odiscard::inner_context (c, o);
+		c = odiscard::_context (c, o);
 		c = std::cin.get ();
 	}
 	return (c);
@@ -102,12 +102,12 @@ signed odiscard::context (signed c, signed e) const
 
 {
 	c = std::cin.get ();
-	c = odiscard::inner_context (c, e);
+	c = odiscard::_context (c, e);
 	c = std::cin.get ();
 	return (c);
 }
 
-signed odiscard::inner_context (signed c, signed e) const 
+signed odiscard::_context (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
@@ -210,17 +210,17 @@ signed odiscard::content (signed c, signed o, signed e) const
 
 {
 	c = std::cin.get ();
-	c = odiscard::inner_content (c, o, e);
+	c = odiscard::_content (c, o, e);
 	c = std::cin.get ();
 	return (c);
 }
 
-signed odiscard::inner_content (signed c, signed o, signed e) const 
+signed odiscard::_content (signed c, signed o, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = odiscard::inner_content (c, o);
+		c = odiscard::_content (c, o);
 		c = std::cin.get ();
 	}
 	return (c);
@@ -244,12 +244,12 @@ signed odiscard::content (signed c, signed e) const
 
 {
 	c = std::cin.get ();
-	c = odiscard::inner_content (c, e);
+	c = odiscard::_content (c, e);
 	c = std::cin.get ();
 	return (c);
 }
 
-signed odiscard::inner_content (signed c, signed e) const 
+signed odiscard::_content (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
@@ -277,7 +277,7 @@ signed odiscard::command (signed c) const
 
 {
 	c = std::cin.get ();
-	c = odiscard::inner_command (c, '\n');
+	c = odiscard::_command (c, '\n');
 	c = std::cin.get ();
 	return (c);
 }
@@ -286,12 +286,12 @@ signed odiscard::command (signed c, signed e) const
 
 {
 	c = std::cin.get ();
-	c = odiscard::inner_command (c, e);
+	c = odiscard::_command (c, e);
 	c = std::cin.get ();
 	return (c);
 }
 
-signed odiscard::inner_command (signed c, signed e) const 
+signed odiscard::_command (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
@@ -338,12 +338,12 @@ signed odiscard::literal (signed c, signed e) const
 
 {
 	c = std::cin.get ();
-	c = odiscard::inner_literal (c, e);
+	c = odiscard::_literal (c, e);
 	c = std::cin.get ();
 	return (c);
 }
 
-signed odiscard::inner_literal (signed c, signed e) const 
+signed odiscard::_literal (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
