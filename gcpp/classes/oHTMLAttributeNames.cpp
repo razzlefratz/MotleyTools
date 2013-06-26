@@ -19,6 +19,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/oHTMLAttributeNames.hpp"
+#include "../classes/types.h"
 
 /*====================================================================*
  *
@@ -158,7 +159,7 @@ oHTMLAttributeNames::oHTMLAttributeNames ()
 		(char const *)(0)
 	};
 	okeywords::mtitle = "HTMLAttribute";
-	okeywords::mcount = sizeof (table) / sizeof (char const *) - 1;
+	okeywords::mcount = SIZEOF (table) - 1;
 	okeywords::mtable = table;
 	okeywords::mcheck ();
 	return;

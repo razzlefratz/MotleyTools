@@ -19,6 +19,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/oHTMLElementNames.hpp"
+#include "../classes/types.h"
 
 /*====================================================================*
  *
@@ -134,7 +135,7 @@ oHTMLElementNames::oHTMLElementNames ()
 		(char const *)(0)
 	};
 	okeywords::mtitle = "HTMLElement";
-	okeywords::mcount = sizeof (table) / sizeof (char const *) - 1;
+	okeywords::mcount = SIZEOF (table) - 1;
 	okeywords::mtable = table;
 	okeywords::mcheck ();
 	return;
