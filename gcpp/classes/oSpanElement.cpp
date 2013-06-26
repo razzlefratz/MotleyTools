@@ -111,8 +111,6 @@ oSpanElement & oSpanElement::EndTag ()
 		std::cout.put (':');
 	}
 	std::cout << this->mtitle;
-	oSpanElement::i18nAttributes.write ();
-	oSpanElement::CoreAttributes.write ();
 	std::cout.put ('>');
 	return (* this);
 }
