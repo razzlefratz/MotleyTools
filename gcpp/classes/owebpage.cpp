@@ -109,7 +109,6 @@ owebpage & owebpage::PageHeader (void)
 	owebpage::print (this->mlevel++, this->mspace, "<title>");
 	owebpage::print (this->mlevel, this->mspace, this->mtitle);
 	owebpage::print (this->mlevel--, this->mspace, "</title>");
-	owebpage::MetaElement.EmptyTag (this->mlevel, this->mspace);
 	owebpage::MetaElement.Contents ("robots", "noindex,nofollow").EmptyTag (this->mlevel, this->mspace);
 	owebpage::MetaElement.Contents ("author", "charles maier").EmptyTag (this->mlevel, this->mspace);
 	owebpage::MetaElement.Contents ("generator", "Motley Tools").EmptyTag (this->mlevel, this->mspace);
