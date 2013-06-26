@@ -94,6 +94,7 @@ ochtml & ochtml::html (char const * filename)
 {
 	std::ofstream output;
 	std::streambuf * buf;
+	this->mcount = 1;
 	filename = ochtml::filespec.filespec (filename).fullpath ();
 	if (this->mfile.read (filename).isempty ()) 
 	{
@@ -160,7 +161,7 @@ ochtml & ochtml::html (char const * filename)
 		case CL_T_VARIABLE:
 			if (!level) 
 			{
-				this->mspan.CoreAttributes.IdentityAttribute->value (this->mfile.tokentext ());
+				this->mspan.CoreAttributes.IdentityAttribute->value ("");
 				this->mspan.CoreAttributes.ClassAttribute->value ("variable");
 				this->mspan.StartTag ();
 				this->mfile.write ();
@@ -171,6 +172,7 @@ ochtml & ochtml::html (char const * filename)
 			}
 			else if (this->minternal.defined (this->mfile.tokentext ())) 
 			{
+				this->mlink.CoreAttributes.IdentityAttribute->value (this->mcount++);
 				this->mlink.LinkAttributes.ReferenceAttribute->value (this->minternal.expand (this->mfile.tokentext ()));
 				this->mlink.StartTag ();
 				this->mfile.write ();
@@ -178,6 +180,7 @@ ochtml & ochtml::html (char const * filename)
 			}
 			else if (this->mexternal.defined (this->mfile.tokentext ())) 
 			{
+				this->mlink.CoreAttributes.IdentityAttribute->value (this->mcount++);
 				this->mlink.LinkAttributes.ReferenceAttribute->value (this->mexternal.expand (this->mfile.tokentext ()));
 				this->mlink.StartTag ();
 				this->mfile.write ();
@@ -185,7 +188,7 @@ ochtml & ochtml::html (char const * filename)
 			}
 			else if (clibword.defined (this->mfile.tokentext ())) 
 			{
-				this->mspan.CoreAttributes.IdentityAttribute->value (this->mfile.tokentext ());
+				this->mspan.CoreAttributes.IdentityAttribute->value ("");
 				this->mspan.CoreAttributes.ClassAttribute->value ("variable");
 				this->mspan.StartTag ();
 				this->mfile.write ();
@@ -193,7 +196,7 @@ ochtml & ochtml::html (char const * filename)
 			}
 			else 
 			{
-				this->mspan.CoreAttributes.IdentityAttribute->value (this->mfile.tokentext ());
+				this->mspan.CoreAttributes.IdentityAttribute->value (this->mcount++);
 				this->mspan.CoreAttributes.ClassAttribute->value ("variable");
 				this->mspan.StartTag ();
 				this->mfile.write ();
@@ -250,14 +253,14 @@ ochtml & ochtml::directive ()
 	switch (cprocword.indexof (this->mfile.flush ().scantoken ().tokentext ())) 
 	{
 	case oCPROCWORD_O_DEFINE:
-		this->mspan.CoreAttributes.IdentityAttribute->value ("");
+		this->mspan.CoreAttributes.IdentityAttribute->value (this->mcount++);
 		this->mspan.CoreAttributes.ClassAttribute->value ("keyword");
 		this->mspan.StartTag ();
 		this->mfile.write ();
 		this->mspan.EndTag ();
 		std::cout << this->mfile.flush ().scanspace ().tokentext ();
 		this->mfile.flush ().scantoken ();
-		this->mspan.CoreAttributes.IdentityAttribute->value (this->mfile.tokentext ());
+		this->mspan.CoreAttributes.IdentityAttribute->value (this->mcount++);
 		this->mspan.CoreAttributes.ClassAttribute->value ("variable");
 		this->mspan.StartTag ();
 		this->mfile.write ();
@@ -284,7 +287,7 @@ ochtml & ochtml::directive ()
 #endif
 
 	case oCPROCWORD_O_INCLUDE:
-		this->mspan.CoreAttributes.IdentityAttribute->value ("");
+		this->mspan.CoreAttributes.IdentityAttribute->value (this->mcount++);
 		this->mspan.CoreAttributes.ClassAttribute->value ("reserved");
 		this->mspan.StartTag ();
 		this->mfile.write ();
@@ -294,7 +297,7 @@ ochtml & ochtml::directive ()
 		{
 			std::cout << "&quot;";
 			this->mfile.scanbreak ().flush ().scanuntil ("\"");
-			this->mlink.CoreAttributes.IdentityAttribute->value ("");
+			this->mlink.CoreAttributes.IdentityAttribute->value (this->mcount++);
 			this->mlink.CoreAttributes.ClassAttribute->value ("variable");
 			this->mlink.LinkAttributes.ReferenceAttribute->value (ochtml::filespec.filespec (this->mfile.tokentext ()).savename (".html"));
 			this->mlink.StartTag ();
@@ -307,7 +310,7 @@ ochtml & ochtml::directive ()
 		{
 			std::cout << "&apos;";
 			this->mfile.scanbreak ().flush ().scanuntil ("\'");
-			this->mspan.CoreAttributes.IdentityAttribute->value ("");
+			this->mspan.CoreAttributes.IdentityAttribute->value (this->mcount++);
 			this->mspan.CoreAttributes.ClassAttribute->value ("variable");
 			this->mspan.StartTag ();
 			this->mfile.write ();
@@ -319,7 +322,7 @@ ochtml & ochtml::directive ()
 		{
 			std::cout << "&lt;";
 			this->mfile.scanbreak ().flush ().scanuntil (">");
-			this->mspan.CoreAttributes.IdentityAttribute->value ("");
+			this->mspan.CoreAttributes.IdentityAttribute->value (this->mcount++);
 			this->mspan.CoreAttributes.ClassAttribute->value ("variable");
 			this->mspan.StartTag ();
 			this->mfile.write ();
@@ -376,7 +379,7 @@ ochtml & ochtml::directive ()
 #endif
 
 	default:
-		this->mspan.CoreAttributes.IdentityAttribute->value ("");
+		this->mspan.CoreAttributes.IdentityAttribute->value (this->mcount++);
 		this->mspan.CoreAttributes.ClassAttribute->value ("keyword");
 		this->mspan.StartTag ();
 		this->mfile.write ();
@@ -398,6 +401,7 @@ ochtml::ochtml (char const * stylesheet)
 	owebpage::stylesheet (stylesheet);
 	this->murl = new char [FILENAME_MAX + 1];
 	this->murl [0] = (char)(0);
+	this->mcount = 1;
 	return;
 }
 
@@ -413,6 +417,7 @@ ochtml::ochtml ()
 	owebpage::stylesheet (oCHTML_PAGE_STYLESHEET);
 	this->murl = new char [FILENAME_MAX + 1];
 	this->murl [0] = (char)(0);
+	this->mcount = 1;
 	return;
 }
 

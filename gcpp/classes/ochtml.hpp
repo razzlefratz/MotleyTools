@@ -57,6 +57,7 @@ private:
 	oSpanElement mspan;
 	oAnchorElement mlink;
 	oISOGlyph mglyph;
+	unsigned mcount;
 };
 
 /*====================================================================*
