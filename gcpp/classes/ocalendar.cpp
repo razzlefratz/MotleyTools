@@ -50,7 +50,7 @@ char const * ocalendar::mdays [DAYS_IN_WEEK] =
 char const * ocalendar::mdate1 [DATES_IN_MONTH+1] = 
 
 {
-	"  ",
+	"&nbsp",
 	" 1",
 	" 2",
 	" 3",
@@ -165,9 +165,7 @@ ocalendar & ocalendar::annum ()
 	mindent.print (level++, space, "<head>");
 	mindent.print (level++, space, "<title>");
 	mindent.print (level--, space, "</title>");
-
-// mindent.print (level, space, "<link href='http://www.cmassoc.net/styles/cmassoc.css' rel='stylesheet' type='text/css'>");
-
+	mindent.print (level, space, "<link href='calendar.css' rel='stylesheet' type='text/css'>");
 	mindent.print (level--, space, "</head>");
 	mindent.print (level++, space, "<body>");
 	this->stylesheet (level, space).annum (level, space);
@@ -224,9 +222,7 @@ ocalendar & ocalendar::month (unsigned index)
 	mindent.print (level++, space, "<head>");
 	mindent.print (level++, space, "<title>");
 	mindent.print (level--, space, "</title>");
-
-// mindent.print (level, space, "<link href='http://www.cmassoc.net/styles/cmassoc.css' rel='stylesheet' type='text/css'>");
-
+	mindent.print (level, space, "<link href='calendar.css' rel='stylesheet' type='text/css'>");
 	mindent.print (level--, space, "</head>");
 	mindent.print (level++, space, "<body>");
 	this->stylesheet (level, space).month (level, space, index);
