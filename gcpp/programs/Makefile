@@ -13,7 +13,7 @@ include ../make.def
 
 CFLAGS=-Wall -D_GNU_SOURCE -DMAKEFILE
 LFLAGS=
-VPATH=../classes:../linux
+VPATH=../classes:../../gcc/files
 TRASH=*~ *.[0-9][0-9][0-9] t t.* *.exe *.o *.html *.css
 TOOLS=calend2 cfm chtml cmpp csstidy ctidy ctokens dnstidy htmltidy index javatidy mptidy order2 phptidy sqltidy tokens profile page
 PAGES=cfm.1 ctidy.1 javatidy.1 csstidy.1 htmltidy.1 mptidy.1 phptidy.1
@@ -88,4 +88,5 @@ profile: profile.o ogetoptv.o oputoptv.o oversion.o oprofile.o oswitch.o oerror.
 
 #include ../programs/programs.mak
 #include ../classes/classes.mak
+#include ../../gcc/files/files.mak
 
