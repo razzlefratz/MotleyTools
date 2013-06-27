@@ -21,9 +21,9 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/date.h"
 #include "../classes/odate.hpp"
 #include "../classes/omonth.hpp"
+#include "../../gcc/date/date.h"
 
 /*====================================================================*
  *

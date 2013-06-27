@@ -27,8 +27,8 @@
  *   custom source files;
  *--------------------------------------------------------------------*/
 
-#include "strlib.h"
-#include "strxcmp.c"
+#include "../../gcc/strlib/strlib.h"
+#include "../../gcc/strlib/strxcmp.c"
 #include "../classes/ogetopt.cpp"
 #include "../classes/oscantext.cpp"
 #include "../classes/ocursor.cpp"

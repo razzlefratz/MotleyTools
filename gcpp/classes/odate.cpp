@@ -15,8 +15,8 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/date.h"
 #include "../classes/odate.hpp"
+#include "../../gcc/date/date.h"
 
 /*====================================================================*
  *   class opbjects;

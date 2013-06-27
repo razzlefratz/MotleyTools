@@ -21,9 +21,9 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/date.h"
 #include "../classes/ocalendar.hpp"
 #include "../classes/oversion.hpp"
+#include "../../gcc/date/date.h"
 
 /*====================================================================*
  *   class constants; 

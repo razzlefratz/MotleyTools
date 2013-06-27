@@ -12,6 +12,7 @@ g++ -Wall -c oAttribute.cpp
 g++ -Wall -c obreak.cpp
 g++ -Wall -c obuffer.cpp
 g++ -Wall -c ocatalog.cpp
+g++ -Wall -c ocalendar.cpp
 g++ -Wall -c ocexitwords.cpp
 g++ -Wall -c ocblock.cpp 
 g++ -Wall -c ochrhex.cpp
@@ -29,6 +30,7 @@ g++ -Wall -c ocollect.cpp
 # g++ -Wall -c ocontext.demo.cpp
 g++ -Wall -c ocursor.cpp
 g++ -Wall -c octype.cpp
+g++ -Wall -c odate.cpp
 g++ -Wall -c odepend.cpp
 g++ -Wall -c odict.cpp
 # g++ -Wall -c odict.demo.cpp
@@ -77,6 +79,7 @@ g++ -Wall -c olist.cpp
 g++ -Wall -c omacro.cpp
 g++ -Wall -c omakefile.cpp
 g++ -Wall -c omemory.cpp
+g++ -Wall -c omonth.cpp
 g++ -Wall -c omptidy.cpp
 g++ -Wall -c onode.cpp
 g++ -Wall -c onodes.cpp
