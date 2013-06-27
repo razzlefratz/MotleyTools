@@ -39,16 +39,16 @@ char const * ocatalog::title () const
 
 /*====================================================================*
  *
- *   ocatalog & title(char const *string);
+ *   ocatalog & title(char const * title);
  *
  *   replace the object title the conventional string argument;
  *
  *--------------------------------------------------------------------*/
 
-ocatalog & ocatalog::title (char const * string) 
+ocatalog & ocatalog::title (char const * title) 
 
 {
-	this->mlist->title (string);
+	this->mlist->title (title);
 	return (* this);
 }
 
