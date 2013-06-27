@@ -23,8 +23,8 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "files.h"
 #include "../classes/ofilespec.hpp"
+#include "../../gcc/files/files.h"
 
 /*====================================================================*
  *   class variables;    

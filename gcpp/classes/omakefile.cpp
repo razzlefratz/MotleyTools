@@ -25,8 +25,8 @@
 
 #include "../classes/omakefile.hpp"
 
-#include "../classes/paths.h"
-#include "../classes/sizes.h"
+#include "../../gcc/tools/paths.h"
+#include "../../gcc/tools/sizes.h"
 
 /*====================================================================*
  *

@@ -20,8 +20,8 @@
 #include "../classes/ogetopt.hpp"
 #include "../classes/oputopt.hpp"
 #include "../classes/tools.h"
-#include "../classes/otypes.h"
-#include "../classes/oflags.h"
+#include "../../gcc/tools/types.h"
+#include "../classes/flags.h"
 
 /*====================================================================*
  *   custom source files;

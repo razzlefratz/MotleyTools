@@ -29,7 +29,7 @@
 
 #include "../classes/onumber.hpp"
 #include "../classes/oerror.hpp"
-#include "../classes/types.h"
+#include "../../gcc/tools/types.h"
 
 /*====================================================================*
  *

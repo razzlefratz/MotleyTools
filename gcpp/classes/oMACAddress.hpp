@@ -12,7 +12,7 @@
 #define oMACADDRESS_HEADER
 
 #include "../classes/stdafx.hpp"
-#include "../classes/types.h"
+#include "../../gcc/tools/types.h"
 
 /*====================================================================*
  *   class constants;

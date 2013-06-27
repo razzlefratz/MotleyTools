@@ -24,8 +24,9 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/tools.h"
 #include "../classes/oscanfile.hpp"
+#include "../../gcc/tools/symbol.h"
+#include "../../gcc/tools/sizes.h"
 
 /*====================================================================*
  *

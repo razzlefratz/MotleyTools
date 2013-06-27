@@ -40,7 +40,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/paths.h"
-#include "../classes/types.h"
+#include "../../gcc/tools/types.h"
 #include "../classes/flags.h"
 
 #include "../classes/osyslog.hpp"

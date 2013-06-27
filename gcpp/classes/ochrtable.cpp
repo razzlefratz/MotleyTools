@@ -21,8 +21,9 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/strlib.h"
 #include "../classes/ochrtable.hpp"
+
+#include "../../gcc/strlib/strlib.h"
 
 /*====================================================================*
  *

@@ -26,8 +26,9 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "files.h"
 #include "../classes/ofindfile.hpp"
+
+#include "../../gcc/files/files.h"
 
 /*====================================================================*
  *   
@@ -51,7 +52,7 @@ FILE * ofindfile::fopen1 (char const * file, char const * mode)
 	int node = 0;
 	pathname [0] = (char) (0);
 	this->mstack [0] = pathname;
-	for (char * cp = pathname; (node < DIRLEVEL_MAX) && (* cp = * file); cp++, file++) 
+	for (char * cp = pathname; (node < FILE_DIR_MAX) && (* cp = * file); cp++, file++) 
 	{
 		if (* cp == PATH_C_EXTENDER) 
 		{
@@ -136,8 +137,8 @@ FILE * ofindfile::fopen2 (char const * file, char const * mode, char const * pat
 ofindfile::ofindfile () 
 
 {
-	this->mstack = new char * [DIRLEVEL_MAX];
-	this->mlimit = DIRLEVEL_MAX;
+	this->mstack = new char * [FILE_DIR_MAX];
+	this->mlimit = FILE_DIR_MAX;
 	this->mcount = 0;
 	this->mlevel = 0;
 	this->mindex = 0;

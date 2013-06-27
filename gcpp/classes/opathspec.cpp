@@ -26,11 +26,11 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/files.h"
-#include "../classes/find.h"
-
 #include "../classes/oerror.hpp"
 #include "../classes/opathspec.hpp"
+
+#include "../../gcc/files/files.h"
+#include "../../gcc/files/find.h"
 
 /*====================================================================*
  *   private objects; 
@@ -752,8 +752,8 @@ void opathspec::mergepath ()
 opathspec::opathspec () 
 
 {
-	this->mstack = new char * [DIRLEVEL_MAX];
-	this->mlimit = DIRLEVEL_MAX;
+	this->mstack = new char * [FILE_DIR_MAX];
+	this->mlimit = FILE_DIR_MAX;
 	this->mcount = 0;
 	this->mlevel = 0;
 	this->mindex = 0;

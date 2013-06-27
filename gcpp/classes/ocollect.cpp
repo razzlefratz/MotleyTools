@@ -30,7 +30,7 @@
 
 #include "../classes/oascii.hpp"
 #include "../classes/ocollect.hpp"
-#include "../classes/tools.h"
+#include "../../gcc/tools/symbol.h"
 
 /*====================================================================*
  *   

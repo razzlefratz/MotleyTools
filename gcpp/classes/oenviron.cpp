@@ -26,9 +26,9 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/oenviron.hpp"
-#include "../classes/date.h"
-#include "../classes/sizes.h"
-#include "../classes/getusername.c"
+#include "../../gcc/date/date.h"
+#include "../../gcc/tools/sizes.h"
+#include "../../gcc/linux/getusername.c"
 
 /*====================================================================*
  *

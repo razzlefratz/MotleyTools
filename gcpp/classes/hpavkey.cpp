@@ -27,7 +27,7 @@
 #include "../classes/oversion.hpp"
 #include "../classes/oerror.hpp"
 #include "../classes/convert.h"
-#include "../classes/types.h"
+#include "../../gcc/tools/types.h"
 #include "../classes/flags.h"
 #include "../classes/oHPAVKey.hpp"
 

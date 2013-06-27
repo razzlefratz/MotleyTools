@@ -22,8 +22,8 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/strlib.h"
 #include "../classes/otree.hpp"
+#include "../../gcc/strlib/strlib.h"
 
 /*====================================================================*
  * 

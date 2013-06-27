@@ -22,8 +22,8 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/tools.h"
 #include "../classes/oscantext.hpp"
+#include "../../gcc/tools/symbol.h"
 
 /*====================================================================*
  *

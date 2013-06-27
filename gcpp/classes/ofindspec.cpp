@@ -25,9 +25,10 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "files.h"
-#include "find.h"
 #include "../classes/ofindspec.hpp"
+
+#include "../../gcc/files/files.h"
+#include "../../gcc/files/find.h"
 
 /*====================================================================*
  *
