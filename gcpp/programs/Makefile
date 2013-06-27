@@ -13,24 +13,34 @@ include ../make.def
 
 CFLAGS=-Wall -D_GNU_SOURCE -DMAKEFILE
 LFLAGS=
-TOOLS=call2 cblock2 cdep2 cfm cmpp csstidy ctidy ctokens dnstidy javatidy mmf2 order2 phptidy pkg relate2 sqltidy tokens defix profile page calend2 chtml index htmltidy mptidy
-# TOOLS+=syslog2 
 VPATH=../classes:../linux
 TRASH=*~ *.[0-9][0-9][0-9] t t.* *.exe *.o *.html *.css
+TOOLS=calend2 cfm chtml cmpp csstidy ctidy ctokens dnstidy htmltidy index javatidy mptidy order2 phptidy sqltidy tokens profile page
 PAGES=cfm.1 ctidy.1 javatidy.1 csstidy.1 htmltidy.1 mptidy.1 phptidy.1
+
+ifeq ($(EXTRA), yes)
+TOOLS=call2 cblock2 cdep2 javatidy mmf2 pkg relate2 defix 
+endif
+
+ifeq ($(SYSTEM),Linux)
+# TOOLS+=syslog2 
+endif
 
 # ====================================================================
 # targets;
 # --------------------------------------------------------------------
 
-compile: ${TOOLS}
+all compile: ${TOOLS}
 scripts:
 manuals:
 	install -m 0444 -o ${OWNER} -g ${GROUP} ${PAGES} ${MAN}
-install: compile
-	install -m 0555 -o ${OWNER} -g ${GROUP} ${TOOLS} ${BIN}
 library:
 	install -m 6755 -o ${OWNER} -g ${GROUP} -d ${BIN}
+install: compile
+	install -m 0555 -o ${OWNER} -g ${GROUP} ${TOOLS} ${BIN}
+uninstall:
+	cd ${BIN}; rm -fv ${TOOLS}
+	cd ${MAN}; rm -fv ${PAGES}
 fresh: clean compile
 clean:
 	rm -f ${TOOLS} ${TRASH}

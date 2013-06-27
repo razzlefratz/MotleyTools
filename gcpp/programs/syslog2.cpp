@@ -39,8 +39,8 @@
 #include "../classes/oversion.cpp"
 #include "../classes/oerror.cpp"
 #include "../classes/oflagword.cpp"
-#include "../linux/osyslog.cpp"
-#include "../linux/osyslogspec.cpp"
+#include "../classes/osyslog.cpp"
+#include "../classes/osyslogspec.cpp"
 #endif
 
 /*====================================================================*

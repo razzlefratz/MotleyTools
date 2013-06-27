@@ -27,7 +27,6 @@ ctar
 defix
 delta
 detab
-detag
 dls
 dmp2hex
 dump
@@ -129,7 +128,7 @@ dif
 dump
 ff-bld
 ff-elf
-localhostlong
+long
 main
 mvpkg
 octal
@@ -137,14 +136,9 @@ pkg
 pkgdep
 pkgopt
 qc
-quiet
 rexp
 rmpkg
-runjobs
 setmode
-shout
 tr
 undash
 wc
-what
-whom

@@ -19,15 +19,14 @@ TRASH = *.[0-9][0-9][0-9]
 # targets;
 # --------------------------------------------------------------------
 
-all: 
-compile:
+all compile:
 scripts:
 manuals:
+library:
 install: 
 	@if [ -d /etc/profile.d ]; then install -m 0775 -o root -g root motley-tools.sh /etc/profile.d; fi;
-library:
 uninstall:
-	@if [ -d /etc/profile ]; then rm -fr /etc/profile.d/motley-tools.sh; fi;
+	@if [ -d /etc/profile.d ]; then rm -fr /etc/profile.d/motley-tools.sh; fi;
 fresh: clean compile
 clean:
 	rm -f ${TRASH} 
@@ -37,13 +36,5 @@ clean:
 check:
 	${SH} misc.sh
 ignore:
-	echo ${TOOLS} | tr " " "\n" > .gitignore
-
-# ====================================================================
-# targets;
-# --------------------------------------------------------------------
-
-# ====================================================================
-# files;
-# --------------------------------------------------------------------
+#	echo ${FILES} | tr " " "\n" > .gitignore
 
