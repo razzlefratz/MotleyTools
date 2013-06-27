@@ -135,5 +135,7 @@ g++ -Wall -c ocprocwords.cpp
 g++ -Wall -c octidy.cpp
 g++ -Wall -c oinclude.cpp
 g++ -Wall -c oscancode.cpp
+g++ -Wall -c osyslog.cpp
+g++ -Wall -c osyslogspec.cpp
 g++ -Wall -c oSHA256.cpp
 

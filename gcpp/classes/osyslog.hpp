@@ -23,9 +23,9 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../../gcc/tools/types.h"
 #include "../classes/stdafx.hpp"
-#include "../classes/syslog.h"
+#include "../../gcc/tools/types.h"
+#include "../../gcc/linux/syslog.h"
 
 /*====================================================================*
  *   class constants;

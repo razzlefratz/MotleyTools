@@ -21,7 +21,7 @@
 
 #include "../classes/stdafx.hpp"
 #include "../classes/oerror.hpp"
-#include "../../gcc/tools/types.h"
+// #include "../../gcc/tools/types.h"
 
 /*====================================================================*
  *    constant definitions;
