@@ -21,7 +21,6 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../../gcc/tools/types.h"     
 #include "../classes/stdafx.hpp"
 #include "../classes/otext.hpp"
 
