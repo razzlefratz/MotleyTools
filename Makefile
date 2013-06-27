@@ -11,7 +11,7 @@ PRIVATE := /Volumes/CHARLIE
 CONTROL := /home/ftp/linux/system/src/custom
 PACKAGE	:= $(basename ${PWD})
 EXCLUDE := --exclude=.git 
-FOLDERS := awk bash php python bash gcc gcpp misc
+FOLDERS := awk bash gcc gcpp misc php python  
 FOLDERS := gcc gcpp misc 
 
 # ===================================================================
