@@ -210,6 +210,8 @@ static signed pcdata (signed c)
  *
  *   int element (signed c) 
  *
+ *   remove attributes from markup element, leaving a minimal tag;
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -274,11 +276,11 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"at",
+		"am",
 		PUTOPTV_S_FILTER,
-		"remove markup from HTML document",
-		"a\tremove attributes from HTML markup",
-		"t\tremove markup from HTML document",
+		"remove markup from document",
+		"a\tremove attributes from markup",
+		"m\tremove markup from document",
 		(char const *) (0)
 	};
 	signed (* function) (signed) = pcdata;

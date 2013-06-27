@@ -198,11 +198,11 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"cC",
+		"bv",
 		PUTOPTV_S_FILTER,
-		"strip C/C++ comments or source code",
-		"c\tdiscard code and keep comments",
-		"C\tdiscard comments and keep code",
+		"strip C/C++ comments from code",
+		"b\tdiscard comments and keep code",
+		"v\tdiscard code and keep comments",
 		(char const *) (0)
 	};
 	void (* function) (void) = exclude;
@@ -211,11 +211,11 @@ int main (int argc, char const * argv [])
 	{
 		switch (c) 
 		{
-		case 'c':
-			function = include;
-			break;
-		case 'C':
+		case 'b':
 			function = exclude;
+			break;
+		case 'v':
+			function = include;
 			break;
 		default:
 			break;

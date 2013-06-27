@@ -20,8 +20,6 @@ hbrief - remove HTML markup or markup attributes
 
 .PP
 Remove SGML, HTML and XML markup from documents or merely remove all attributes from markup elements.
-The first operation may be used to extract plain text content for a markup-laden document or webpage.
-The second operation may be used to remove deprecated or unwanted styling inserted by programs like Microsoft Word.
 
 .PP
 See program \fBcbrief\fR to remove comments from C/C++ language source files.
@@ -32,11 +30,13 @@ All options are single letters.
 
 .TP
 .RB - a
-Remove attributes from SGML, HTML and XML markup elements.
+Remove attributes from SGML, HTML and XML markup elements, leaving a simple tag behind.
+This option may be used to remove deprecated or unwanted attributes inserted by programs like Microsoft Word.
 
 .TP
-.RB - t
+.RB - m
 Remove SGML, HTML and XML markup from a document.
+This option may be used to extract plain text content for a markup-laden document or webpage.
 
 .TP
 .RB - ? ,-- help

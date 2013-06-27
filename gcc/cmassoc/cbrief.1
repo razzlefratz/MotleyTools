@@ -30,17 +30,16 @@ Long options are not supported.
 All options are single letters.
 
 .TP
-.RB - c
-Discard source code, leaving only comments.
-This option may be used to quickly extract documentation from well annotated source code.
-It may also be used to inspect function preambles for copyright notices.
+.RB - b
+Discard comments but preserve source code.
+This is the default behavior.
+Use this option to discard creative, meaningless or annoying comments that make programs hard to read.
 
 .TP
-.RB - C
-Discard comments, leaving only source code.
-This option may be used remove thos creative, meaningless or annoying comments that make programs hard to read.
-It may also be used to streamline source files before passing them to other software tools.
-Remember that "\fBReal programmers do not document their code.\fR".
+.RB - v
+Discard source code and preserve comments.
+This is the inverse of the default behavior.
+Use this option to extract information from well annotated source code.
 
 .TP
 .RB - ? ,-- help
