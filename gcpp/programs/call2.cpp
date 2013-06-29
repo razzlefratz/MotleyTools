@@ -75,7 +75,7 @@ odiscard discard;
 
 /*====================================================================*
  *
- *   signed function (signed c, signed e);
+ *   signed function (signed c);
  *
  *   scan source file for C language function definitions and calls;
  *
@@ -85,13 +85,13 @@ odiscard discard;
  *
  *--------------------------------------------------------------------*/
 
-static signed function (signed c, signed e) 
+static signed function (signed c) 
 
 {
 	static unsigned level = 0;
 	char module [512];
 	char string [512];
-	while (oascii::nobreak (e)) 
+	while (c != EOF) 
 	{
 		if (oascii::isspace (c)) 
 		{
@@ -242,7 +242,7 @@ int main (int argc, char const * argv [])
 	}
 	if (!getopt.argc ()) 
 	{
-		function (std::cin.get (), EOF);
+		function (std::cin.get ());
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
@@ -250,7 +250,7 @@ int main (int argc, char const * argv [])
 		pathspec.fullpath (filename, * getopt.argv ());
 		if (std::freopen (filename, "rb", stdin)) 
 		{
-			c = function (std::cin.get (), EOF);
+			c = function (std::cin.get ());
 		}
 		getopt++;
 	}

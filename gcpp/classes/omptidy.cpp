@@ -245,12 +245,12 @@ omptidy & omptidy::tidy ()
 			}
 			if (c == '.') 
 			{
-				c = ocollect::keep (c);
+				c = ocollect::feed (c);
 				if (c == '.') 
 				{
 					do 
 					{
-						c = ocollect::keep (c);
+						c = ocollect::feed (c);
 					}
 					while (c == '.');
 					continue;
@@ -272,20 +272,20 @@ omptidy & omptidy::tidy ()
 
 			if (c == '\\') 
 			{
-				c = ocollect::keep (c);
+				c = ocollect::feed (c);
 				if (c == 'v') 
 				{
 					c = 'f';
 				}
-				c = ocollect::keep (c);
+				c = ocollect::feed (c);
 				continue;
 			}
 
 #endif
 
-			c = ocollect::keep (c);
+			c = ocollect::feed (c);
 		}
-		c = ocollect::keep (c);
+		c = ocollect::feed (c);
 	}
 	return (* this);
 }

@@ -34,24 +34,24 @@ class __declspec (dllexport) oindent
 
 {
 public:
-	oindent ();
-	virtual~ oindent ();
+	oindent (void);
+	virtual~ oindent (void);
 	oindent & margin (char const * string);
 	oindent & indent (char const * string);
 	oindent & finish (char const * string);
 	oindent & record (char const * string);
-	char const * margin () const;
-	char const * indent () const;
-	char const * finish () const;
-	char const * record () const;
-	oindent & space ();
+	char const * margin (void) const;
+	char const * indent (void) const;
+	char const * finish (void) const;
+	char const * record (void) const;
+	oindent & space (void);
 	oindent & space (signed space);
-	oindent & level ();
+	oindent & level (void);
 	oindent & level (signed level);
 	oindent & print (signed level, signed space, char const * string);
 	static void newline (char const * margin, char const * indent, signed align);
 	static void endline (char const * finish, char const * record, signed space);
-	static void print (char const * prefix, char const * suffix, signed count);
+	static void print (char const * margin, char const * indent, signed level);
 protected:
 	signed mlevel;
 	signed mspace;

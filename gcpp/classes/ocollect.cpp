@@ -76,9 +76,9 @@ signed ocollect::context (signed c, char const * charset) const
 signed ocollect::context (signed c, signed o, signed e) const 
 
 {
-	c = ocollect::keep (c);
+	c = ocollect::feed (c);
 	c = ocollect::_context (c, o, e);
-	c = ocollect::keep (c);
+	c = ocollect::feed (c);
 	return (c);
 }
 
@@ -88,7 +88,7 @@ signed ocollect::_context (signed c, signed o, signed e) const
 	while ((c != e) && (c != EOF)) 
 	{
 		c = ocollect::_context (c, o);
-		c = ocollect::keep (c);
+		c = ocollect::feed (c);
 	}
 	return (c);
 }
@@ -106,9 +106,9 @@ signed ocollect::_context (signed c, signed o, signed e) const
 signed ocollect::context (signed c, signed e) const 
 
 {
-	c = ocollect::keep (c);
+	c = ocollect::feed (c);
 	c = ocollect::_context (c, e);
-	c = ocollect::keep (c);
+	c = ocollect::feed (c);
 	return (c);
 }
 
@@ -168,7 +168,7 @@ signed ocollect::context (signed c) const
 	}
 	else 
 	{
-		c = ocollect::keep (c);
+		c = ocollect::feed (c);
 	}
 	return (c);
 }
@@ -186,7 +186,7 @@ signed ocollect::context (signed c) const
 signed ocollect::comment (signed c) const 
 
 {
-	c = ocollect::keep (c);
+	c = ocollect::feed (c);
 	if (c == '/') 
 	{
 		c = ocollect::content (c, '\n');
@@ -218,9 +218,9 @@ signed ocollect::comment (signed c) const
 signed ocollect::content (signed c, signed o, signed e) const 
 
 {
-	c = ocollect::keep (c);
+	c = ocollect::feed (c);
 	c = ocollect::_content (c, o, e);
-	c = ocollect::keep (c);
+	c = ocollect::feed (c);
 	return (c);
 }
 
@@ -230,7 +230,7 @@ signed ocollect::_content (signed c, signed o, signed e) const
 	while ((c != e) && (c != EOF)) 
 	{
 		c = ocollect::_content (c, o);
-		c = ocollect::keep (c);
+		c = ocollect::feed (c);
 	}
 	return (c);
 }
@@ -251,9 +251,9 @@ signed ocollect::_content (signed c, signed o, signed e) const
 signed ocollect::content (signed c, signed e) const 
 
 {
-	c = ocollect::keep (c);
+	c = ocollect::feed (c);
 	c = ocollect::_content (c, e);
-	c = ocollect::keep (c);
+	c = ocollect::feed (c);
 	return (c);
 }
 
@@ -262,7 +262,7 @@ signed ocollect::_content (signed c, signed e) const
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = ocollect::keep (c);
+		c = ocollect::feed (c);
 	}
 	return (c);
 }
@@ -287,18 +287,18 @@ signed ocollect::_content (signed c, signed e) const
 signed ocollect::command (signed c) const 
 
 {
-	c = ocollect::keep (c);
+	c = ocollect::feed (c);
 	c = ocollect::_command (c, '\n');
-	c = ocollect::keep (c);
+	c = ocollect::feed (c);
 	return (c);
 }
 
 signed ocollect::command (signed c, signed e) const 
 
 {
-	c = ocollect::keep (c);
+	c = ocollect::feed (c);
 	c = ocollect::_command (c, e);
-	c = ocollect::keep (c);
+	c = ocollect::feed (c);
 	return (c);
 }
 
@@ -346,9 +346,9 @@ signed ocollect::literal (signed c) const
 signed ocollect::literal (signed c, signed e) const 
 
 {
-	c = ocollect::keep (c);
+	c = ocollect::feed (c);
 	c = ocollect::_literal (c, e);
-	c = ocollect::keep (c);
+	c = ocollect::feed (c);
 	return (c);
 }
 
@@ -377,35 +377,9 @@ signed ocollect::escaped (signed c) const
 {
 	if (c == '\\') 
 	{
-		c = ocollect::keep (c);
+		c = ocollect::feed (c);
 	}
-	c = ocollect::keep (c);
-	return (c);
-}
-
-/*====================================================================*
- *
- *   signed ocollect::join (signed c) const;
- *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
- *--------------------------------------------------------------------*/
-
-signed ocollect::join (signed c) const 
-
-{
-	while (c == '\\') 
-	{
-		signed o = std::cin.get ();
-		if ((o != '\r') && (o != '\n')) 
-		{
-			std::cout.put (c);
-			std::cout.put (o);
-		}
-		c = std::cin.get ();
-	}
+	c = ocollect::feed (c);
 	return (c);
 }
 
@@ -426,14 +400,14 @@ signed ocollect::find (signed c) const
 {
 	while (oascii::isspace (c)) 
 	{
-		c = ocollect::keep (c);
+		c = ocollect::feed (c);
 	}
 	return (c);
 }
 
 /*====================================================================*
  *   
- *   signed keep (signed c) const;
+ *   signed feed (signed c) const;
  *
  *   write (c) and return the next input character;
  *   
@@ -443,10 +417,10 @@ signed ocollect::find (signed c) const
  *
  *--------------------------------------------------------------------*/
 
-signed ocollect::keep (signed c) const 
+signed ocollect::feed (signed c) const 
 
 {
-	if ((c != NUL) && (c != EOF)) 
+	if ((c) && (c != EOF)) 
 	{
 		std::cout.put (c);
 	}

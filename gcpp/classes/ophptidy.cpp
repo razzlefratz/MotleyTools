@@ -46,7 +46,7 @@ signed ophptidy::page (signed c)
 	{
 		if (c == '<') 
 		{
-			c = ophptidy::keep (c);
+			c = ophptidy::feed (c);
 			c = ophptidy::find (c);
 			if (c == '!') 
 			{
@@ -84,12 +84,12 @@ signed ophptidy::page (signed c)
 			}
 			while (oascii::isalpha (c)) 
 			{
-				c = ophptidy::keep (c);
+				c = ophptidy::feed (c);
 			}
 			c = ophptidy::context (c, '>');
 			continue;
 		}
-		c = ophptidy::keep (c);
+		c = ophptidy::feed (c);
 	}
 	return (c);
 }
@@ -154,7 +154,7 @@ signed ophptidy::program (signed c)
 
 #if 0
 
-			c = ophptidy::keep (c);
+			c = ophptidy::feed (c);
 			c = ophptidy::find (c);
 			level++;
 
@@ -166,7 +166,7 @@ signed ophptidy::program (signed c)
 			}
 			ophptidy::space (1);
 			ophptidy::level (level++);
-			c = ophptidy::keep (c);
+			c = ophptidy::feed (c);
 			c = ophptidy::find (c);
 
 #endif
@@ -178,7 +178,7 @@ signed ophptidy::program (signed c)
 		{
 			ophptidy::space (1);
 			ophptidy::level (--level);
-			c = ophptidy::keep (c);
+			c = ophptidy::feed (c);
 			c = ophptidy::find (c);
 			if (!level) 
 			{
@@ -189,7 +189,7 @@ signed ophptidy::program (signed c)
 		}
 		if ((c == ',') || (c == ';') || (c == ':')) 
 		{
-			c = ophptidy::keep (c);
+			c = ophptidy::feed (c);
 			c = ophptidy::find (c);
 			space = 2;
 			continue;
@@ -198,7 +198,7 @@ signed ophptidy::program (signed c)
 		c = ophptidy::statement (c, level, space);
 		space = 2;
 	}
-	c = ophptidy::keep (c);
+	c = ophptidy::feed (c);
 	return (c);
 }
 
@@ -294,9 +294,9 @@ signed ophptidy::context (signed c, char const * charset)
 signed ophptidy::context (signed c, signed o, signed e) 
 
 {
-	c = ophptidy::keep (c);
+	c = ophptidy::feed (c);
 	c = ophptidy::inner_context (c, o, e);
-	c = ophptidy::keep (c);
+	c = ophptidy::feed (c);
 	return (c);
 }
 
@@ -306,7 +306,7 @@ signed ophptidy::inner_context (signed c, signed o, signed e)
 	while ((c != e) && (c != EOF)) 
 	{
 		c = ophptidy::inner_context (c, o);
-		c = ophptidy::keep (c);
+		c = ophptidy::feed (c);
 	}
 	return (c);
 }
@@ -327,10 +327,10 @@ signed ophptidy::inner_context (signed c, signed o, signed e)
 signed ophptidy::context (signed c, signed e) 
 
 {
-	c = ophptidy::keep (c);
+	c = ophptidy::feed (c);
 	c = ophptidy::find (c);
 	c = ophptidy::inner_context (c, e);
-	c = ophptidy::keep (c);
+	c = ophptidy::feed (c);
 	return (c);
 }
 
@@ -376,7 +376,7 @@ signed ophptidy::context (signed c)
 	}
 	else if ((c == ',') || (c == ';') || (c == '?')) 
 	{
-		c = ophptidy::keep (c);
+		c = ophptidy::feed (c);
 		c = ophptidy::find (c);
 		std::cout.put (' ');
 	}
@@ -384,7 +384,7 @@ signed ophptidy::context (signed c)
 	{
 		do 
 		{
-			c = ophptidy::keep (c);
+			c = ophptidy::feed (c);
 		}
 		while (oascii::isdigit (c) || (c == '.'));
 	}
@@ -392,7 +392,7 @@ signed ophptidy::context (signed c)
 	{
 		do 
 		{
-			c = ophptidy::keep (c);
+			c = ophptidy::feed (c);
 		}
 		while (oascii::isalnum (c) || (c == '_'));
 		if ((c == '(') || (c == '[') || (c == '{')) 
@@ -422,7 +422,7 @@ signed ophptidy::context (signed c)
 	}
 	else 
 	{
-		c = ophptidy::keep (c);
+		c = ophptidy::feed (c);
 	}
 	return (c);
 }

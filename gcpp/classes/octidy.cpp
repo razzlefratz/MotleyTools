@@ -82,13 +82,13 @@ signed octidy::atheros (signed c, signed e)
 			if (!level) 
 			{
 				octidy::space (2);
-				c = octidy::keep (c);
+				c = octidy::feed (c);
 				c = octidy::find (c);
 				octidy::level (level++);
 			}
 			else 
 			{
-				c = octidy::keep (c);
+				c = octidy::feed (c);
 				c = octidy::find (c);
 				octidy::level (level++);
 			}
@@ -101,7 +101,7 @@ signed octidy::atheros (signed c, signed e)
 			octidy::level (--level);
 			do 
 			{
-				c = octidy::keep (c);
+				c = octidy::feed (c);
 				c = octidy::find (c);
 			}
 			while (c == ';');
@@ -118,7 +118,7 @@ signed octidy::atheros (signed c, signed e)
 		}
 		if ((c == ',') || (c == ';') || (c == ':')) 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 			c = octidy::find (c);
 			space = 2;
 			continue;
@@ -190,7 +190,7 @@ signed octidy::charlie (signed c, signed e)
 			}
 			octidy::space (1);
 			octidy::level (level++);
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 			c = octidy::find (c);
 			space = 2;
 			continue;
@@ -201,7 +201,7 @@ signed octidy::charlie (signed c, signed e)
 			octidy::level (--level);
 			do 
 			{
-				c = octidy::keep (c);
+				c = octidy::feed (c);
 				c = octidy::find (c);
 			}
 			while (c == ';');
@@ -219,7 +219,7 @@ signed octidy::charlie (signed c, signed e)
 		}
 		if ((c == ',') || (c == ';') || (c == ':')) 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 			c = octidy::find (c);
 			space = 2;
 			continue;
@@ -287,7 +287,7 @@ signed octidy::program (signed c, signed e)
 			}
 			octidy::space (1);
 			octidy::level (level++);
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 			c = octidy::find (c);
 			space = 2;
 			continue;
@@ -298,7 +298,7 @@ signed octidy::program (signed c, signed e)
 			octidy::level (--level);
 			do 
 			{
-				c = octidy::keep (c);
+				c = octidy::feed (c);
 				c = octidy::find (c);
 			}
 			while (c == ';');
@@ -315,7 +315,7 @@ signed octidy::program (signed c, signed e)
 		}
 		if ((c == ',') || (c == ';') || (c == ':')) 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 			c = octidy::find (c);
 			space = 2;
 			continue;
@@ -407,14 +407,14 @@ signed octidy::statement (signed c, signed level, signed space)
 		if (c == std::cin.peek ()) 
 		{
 			octidy::print (level, 0, string);
-			c = octidy::keep (c);
-			c = octidy::keep (c);
+			c = octidy::feed (c);
+			c = octidy::feed (c);
 			c = octidy::context (c, ",;{}#");
 		}
 		else
 		{
 			octidy::print (level-1, 0, string);
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 			c = octidy::find (c);
 			octidy::space (1).level (level);
 			c = octidy::context (c, ",;{}#");
@@ -488,9 +488,9 @@ signed octidy::context (signed c, char const * charset) const
 signed octidy::context (signed c, signed o, signed e) const 
 
 {
-	c = octidy::keep (c);
+	c = octidy::feed (c);
 	c = octidy::inner_context (c, o, e);
-	c = octidy::keep (c);
+	c = octidy::feed (c);
 	return (c);
 }
 
@@ -500,7 +500,7 @@ signed octidy::inner_context (signed c, signed o, signed e) const
 	while ((c != e) && (c != EOF)) 
 	{
 		c = octidy::inner_context (c, o);
-		c = octidy::keep (c);
+		c = octidy::feed (c);
 	}
 	return (c);
 }
@@ -518,10 +518,10 @@ signed octidy::inner_context (signed c, signed o, signed e) const
 signed octidy::context (signed c, signed e) const 
 
 {
-	c = octidy::keep (c);
+	c = octidy::feed (c);
 	c = octidy::find (c);
 	c = octidy::inner_context (c, e);
-	c = octidy::keep (c);
+	c = octidy::feed (c);
 	return (c);
 }
 
@@ -552,7 +552,7 @@ signed octidy::context (signed c) const
 	{
 		while (oascii::isalnum (c) || (c == '_')) 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 		}
 		if ((c == '(') || (c == '[') || (c == '{')) 
 		{
@@ -599,47 +599,52 @@ signed octidy::context (signed c) const
 		}
 		std::cout.put (' ');
 	}
-	else if ((c == '.')) 
-	{
-		c = octidy::keep (c);
-		c = octidy::find (c);
-	}
-	else if ((c == ',') || (c == ';')) 
-	{
-		c = octidy::keep (c);
-		c = octidy::find (c);
-		std::cout.put (' ');
-	}
 	else if (oascii::isquote (c)) 
 	{
 		c = octidy::literal (c);
 	}
+	else if (c == '\\') 
+	{
+		c = octidy::feed (c);
+		c = octidy::feed (c);
+	}
+	else if ((c == '.')) 
+	{
+		c = octidy::feed (c);
+		c = octidy::find (c);
+	}
+	else if ((c == ',') || (c == ';')) 
+	{
+		c = octidy::feed (c);
+		c = octidy::find (c);
+		std::cout.put (' ');
+	}
 	else if ((c == '~') || (c == '^') || (c == '%')) 
 	{
-		c = octidy::keep (c);
+		c = octidy::feed (c);
 		if (c == '=') 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 		}
 	}
 	else if ((c == '=') || (c == '!')) 
 	{
-		c = octidy::keep (c);
+		c = octidy::feed (c);
 		if (c == '=') 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 		}
 	}
 	else if (c == '&') 
 	{
-		c = octidy::keep (c);
+		c = octidy::feed (c);
 		if (c == '&') 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 		}
 		else if (c == '=') 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 		}
 		else if (oascii::isalpha (c)) 
 		{
@@ -648,78 +653,78 @@ signed octidy::context (signed c) const
 	}
 	else if (c == '|') 
 	{
-		c = octidy::keep (c);
+		c = octidy::feed (c);
 		if (c == '|') 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 		}
 		else if (c == '=') 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 		}
 	}
 	else if ((c == '<') || (c == '>')) 
 	{
 		char o = c;
-		c = octidy::keep (c);
+		c = octidy::feed (c);
 		if (c == o) 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 		}
 		if (c == '=') 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 		}
 	}
 	else if ((c == '?') || (c == ':')) 
 	{
 		char o = c;
-		c = octidy::keep (c);
+		c = octidy::feed (c);
 		if (c == o) 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 		}
 		if (c == '=') 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 		}
 	}
 	else if (c == '+') 
 	{
-		c = octidy::keep (c);
+		c = octidy::feed (c);
 		if (c =='+') 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 		}
 		else if (c == '=') 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 		}
 	}
 	else if (c == '-') 
 	{
-		c = octidy::keep (c);
+		c = octidy::feed (c);
 		if (c == '-') 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 		}
 		else if (c == '=') 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 		}
 		else if (c == '>') 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 		}
 	}
 	else if (c == '*') 
 	{
-		c = octidy::keep (c);
+		c = octidy::feed (c);
 		if (c == '*') 
 		{
 			do 
 			{
-				c = octidy::keep (c);
+				c = octidy::feed (c);
 			}
 			while (c == '*');
 			if (oascii::isalpha (c)) 
@@ -729,7 +734,7 @@ signed octidy::context (signed c) const
 		}
 		else if (c == '=') 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 		}
 		else if (oascii::isalpha (c)) 
 		{
@@ -738,7 +743,7 @@ signed octidy::context (signed c) const
 	}
 	else if (c == '/') 
 	{
-		c = octidy::keep (c);
+		c = octidy::feed (c);
 		if (c == '/') 
 		{
 			c = octidy::content (c, '\n');
@@ -749,7 +754,7 @@ signed octidy::context (signed c) const
 		}
 		else if (c == '=') 
 		{
-			c = octidy::keep (c);
+			c = octidy::feed (c);
 		}
 	}
 	else if (c == '#') 
@@ -770,7 +775,7 @@ signed octidy::context (signed c) const
 	}
 	else 
 	{
-		c = octidy::keep (c);
+		c = octidy::feed (c);
 	}
 	return (c);
 }
@@ -790,7 +795,7 @@ signed octidy::context (signed c) const
 signed octidy::comment (signed c) const 
 
 {
-	c = octidy::keep (c);
+	c = octidy::feed (c);
 	if (c == '/') 
 	{
 		c = octidy::content (c, '\n');
@@ -821,55 +826,6 @@ signed octidy::find (signed c) const
 {
 	while (oascii::isspace (c)) 
 	{
-		c = std::cin.get ();
-	}
-	return (c);
-}
-
-/*====================================================================*
- *
- *   signed octidy::join (signed c) const;
- *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
- *--------------------------------------------------------------------*/
-
-signed octidy::join (signed c) const 
-
-{
-	while (c == '\\') 
-	{
-		signed o = std::cin.get ();
-		if ((o != '\r') && (o != '\n')) 
-		{
-			std::cout.put (c);
-			std::cout.put (o);
-		}
-		c = std::cin.get ();
-	}
-	return (c);
-}
-
-/*====================================================================*
- *
- *   signed keep (signed c) const;
- *
- *   print current character (c) and return the next character;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
- *--------------------------------------------------------------------*/
-
-signed octidy::keep (signed c) const 
-
-{
-	if (c != EOF) 
-	{
-		std::cout.put (c);
 		c = std::cin.get ();
 	}
 	return (c);

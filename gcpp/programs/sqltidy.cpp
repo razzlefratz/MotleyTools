@@ -111,23 +111,23 @@ void function (oflagword * flags)
 		case '(':
 			indent.space (1);
 			indent.level (level++);
-			c = tidy.keep (c);
+			c = tidy.feed (c);
 			break;
 		case ')':
 			indent.space (1);
 			indent.level (--level);
-			c = tidy.keep (c);
+			c = tidy.feed (c);
 			c = tidy.find (c);
 			if ((c == ',') || (c == ';')) 
 			{
-				c = tidy.keep (c);
+				c = tidy.feed (c);
 				break;
 			}
 			std::cout.put (' ');
 			break;
 		case ',':
 		case ';':
-			c = tidy.keep (c);
+			c = tidy.feed (c);
 			break;
 		default:
 			indent.space (1);

@@ -48,7 +48,7 @@ public:
 	signed _content (signed c, signed e) const;
 	signed join (signed c) const;
 	signed find (signed c) const;
-	signed keep (signed c) const;
+	signed feed (signed c) const;
 private:
 	
 };

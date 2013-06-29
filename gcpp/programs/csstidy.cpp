@@ -84,7 +84,7 @@ static signed function (signed c, signed e)
 		}
 		if ((c == ',') || (c == ';')) 
 		{
-			c = program.keep (c);
+			c = program.feed (c);
 			c = program.find (c);
 			continue;
 		}
@@ -92,7 +92,7 @@ static signed function (signed c, signed e)
 		{
 			program.space (1);
 			program.level (level++);
-			c = program.keep (c);
+			c = program.feed (c);
 			c = program.find (c);
 			space = 1;
 			continue;
@@ -101,7 +101,7 @@ static signed function (signed c, signed e)
 		{
 			program.space (1);
 			program.level (--level);
-			c = program.keep (c);
+			c = program.feed (c);
 			c = program.find (c);
 			space = 2;
 			continue;

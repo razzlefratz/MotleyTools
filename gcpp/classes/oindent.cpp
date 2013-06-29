@@ -51,7 +51,7 @@ oindent & oindent::margin (char const * string)
 
 /*====================================================================*
  *
- *   char const * margin () const;
+ *   char const * margin (void) const;
  *
  *   get the margin string; the margin string is output at the start 
  *   of each line before the repeating indent string;
@@ -62,7 +62,7 @@ oindent & oindent::margin (char const * string)
  *   
  *--------------------------------------------------------------------*/
 
-char const * oindent::margin () const 
+char const * oindent::margin (void) const 
 
 {
 	return ((char const *) (this->mmargin));
@@ -95,7 +95,7 @@ oindent & oindent::indent (char const * string)
 
 /*====================================================================*
  *
- *   char const * indent () const;
+ *   char const * indent (void) const;
  *
  *   get the indent string; the indent string may be output at the
  *   start of each line after the margin string; 
@@ -106,7 +106,7 @@ oindent & oindent::indent (char const * string)
  *   
  *--------------------------------------------------------------------*/
 
-char const * oindent::indent () const 
+char const * oindent::indent (void) const 
 
 {
 	return ((char const *) (this->mindent));
@@ -139,7 +139,7 @@ oindent & oindent::finish (char const * string)
 
 /*====================================================================*
  *
- *   char const * finish () const;
+ *   char const * finish (void) const;
  *
  *   get the finish string; the finish string is output at the end 
  *   of each line before the repeating record string;
@@ -150,7 +150,7 @@ oindent & oindent::finish (char const * string)
  *   
  *--------------------------------------------------------------------*/
 
-char const * oindent::finish () const 
+char const * oindent::finish (void) const 
 
 {
 	return ((char const *) (this->mfinish));
@@ -183,7 +183,7 @@ oindent & oindent::record (char const * string)
 
 /*====================================================================*
  *
- *   char const * record () const;
+ *   char const * record (void) const;
  *
  *   get the record string; the record string may be output at the
  *   end of each line after the finish string; 
@@ -194,7 +194,7 @@ oindent & oindent::record (char const * string)
  *   
  *--------------------------------------------------------------------*/
 
-char const * oindent::record () const 
+char const * oindent::record (void) const 
 
 {
 	return ((char const *) (this->mrecord));
@@ -212,7 +212,7 @@ char const * oindent::record () const
  *   
  *--------------------------------------------------------------------*/
 
-oindent & oindent::level () 
+oindent & oindent::level (void) 
 
 {
 	oindent::print (this->mmargin, this->mindent, this->mlevel);
@@ -239,7 +239,7 @@ oindent & oindent::level (signed level)
  *   
  *--------------------------------------------------------------------*/
 
-oindent & oindent::space () 
+oindent & oindent::space (void) 
 
 {
 	oindent::print (this->mfinish, this->mrecord, this->mspace);
@@ -333,7 +333,7 @@ void oindent::print (char const * prefix, char const * suffix, signed count)
 
 /*====================================================================*
  *
- *   oindent () 
+ *   oindent (void) 
  *
  *
  *.  Motley Tools by Charles Maier
@@ -342,7 +342,7 @@ void oindent::print (char const * prefix, char const * suffix, signed count)
  *   
  *--------------------------------------------------------------------*/
 
-oindent::oindent () 
+oindent::oindent (void) 
 
 {
 	this->mlevel = 0;
@@ -362,7 +362,7 @@ oindent::oindent ()
 
 /*====================================================================*
  *
- *   oindent () 
+ *   oindent (void) 
  *
  *
  *.  Motley Tools by Charles Maier
@@ -371,7 +371,7 @@ oindent::oindent ()
  *   
  *--------------------------------------------------------------------*/
 
-oindent::~oindent () 
+oindent::~oindent (void) 
 
 {
 	delete [] this->mmargin;

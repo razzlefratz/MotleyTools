@@ -27,8 +27,8 @@ class __declspec (dllexport) odiscard
 
 {
 public:
-	odiscard ();
-	virtual~ odiscard ();
+	odiscard (void);
+	virtual~ odiscard (void);
 	signed context (signed c, char const * charset) const;
 	signed context (signed c, signed o, signed e) const;
 	signed content (signed c, signed o, signed e) const;
@@ -47,6 +47,8 @@ public:
 	signed _literal (signed c, signed e) const;
 	signed _command (signed c, signed e) const;
 	signed _content (signed c, signed e) const;
+	signed find (signed c) const;
+	signed feed (signed c) const;
 private:
 	
 };

@@ -76,10 +76,10 @@ signed oprogram::context (signed c, char const * charset) const
 signed oprogram::context (signed c, signed o, signed e) const 
 
 {
-	c = oprogram::keep (c);
+	c = oprogram::feed (c);
 	c = oprogram::find (c);
 	c = oprogram::inner_context (c, o, e);
-	c = oprogram::keep (c);
+	c = oprogram::feed (c);
 	return (c);
 }
 
@@ -89,7 +89,7 @@ signed oprogram::inner_context (signed c, signed o, signed e) const
 	while ((c != e) && (c != EOF)) 
 	{
 		c = oprogram::inner_context (c, o);
-		c = oprogram::keep (c);
+		c = oprogram::feed (c);
 	}
 	return (c);
 }
@@ -111,10 +111,10 @@ signed oprogram::inner_context (signed c, signed o, signed e) const
 signed oprogram::context (signed c, signed e) const 
 
 {
-	c = oprogram::keep (c);
+	c = oprogram::feed (c);
 	c = oprogram::find (c);
 	c = oprogram::inner_context (c, e);
-	c = oprogram::keep (c);
+	c = oprogram::feed (c);
 	return (c);
 }
 
@@ -162,7 +162,7 @@ signed oprogram::context (signed c) const
 	}
 	else if ((c == ',') || (c == ';')) 
 	{
-		c = oprogram::keep (c);
+		c = oprogram::feed (c);
 		c = oprogram::find (c);
 		std::cout.put (' ');
 	}
@@ -196,7 +196,7 @@ signed oprogram::context (signed c) const
 	}
 	else 
 	{
-		c = oprogram::keep (c);
+		c = oprogram::feed (c);
 	}
 	return (c);
 }
@@ -216,7 +216,7 @@ signed oprogram::context (signed c) const
 signed oprogram::comment (signed c) const 
 
 {
-	c = oprogram::keep (c);
+	c = oprogram::feed (c);
 	if (c == '/') 
 	{
 		c = oprogram::content (c, '\n');
@@ -248,9 +248,9 @@ signed oprogram::comment (signed c) const
 				}
 				c = std::cin.get ();
 			}
-			c = oprogram::keep (c);
+			c = oprogram::feed (c);
 		}
-		c = oprogram::keep (c);
+		c = oprogram::feed (c);
 		return (c);
 	}
 	return (c);
@@ -271,7 +271,7 @@ signed oprogram::moniker (signed c) const
 {
 	do 
 	{
-		c = oprogram::keep (c);
+		c = oprogram::feed (c);
 	}
 	while (oascii::isalnum (c) || (c == '_') || (c == '.'));
 	return (c);
@@ -290,12 +290,12 @@ signed oprogram::moniker (signed c) const
 signed oprogram::requote (signed c, signed o, signed e) const 
 
 {
-	c = oprogram::keep (o);
+	c = oprogram::feed (o);
 	while ((c != e) && (c != EOF)) 
 	{
 		c = oprogram::escaped ((c == o)? e: c);
 	}
-	c = oprogram::keep (o);
+	c = oprogram::feed (o);
 	return (c);
 }
 
