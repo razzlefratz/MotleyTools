@@ -120,6 +120,7 @@ size_t dehex (char const buffer [], size_t length, void * memory, size_t extent)
 size_t decdecode (void const * memory, size_t extent, char buffer [], size_t length);
 size_t hexdecode (void const * memory, size_t extent, char buffer [], size_t length);
 size_t bindecode (void const * memory, size_t extent, char buffer [], size_t length);
+size_t memdecode (void const * memory, size_t extent, char const * object, char const * string);
 char * decstring (char buffer [], size_t length, const byte memory [], size_t extent);
 char * hexstring (char buffer [], size_t length, const byte memory [], size_t extent);
 char * binstring (char buffer [], size_t length, const byte memory [], size_t extent);
