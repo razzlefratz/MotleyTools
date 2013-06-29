@@ -11,7 +11,7 @@
 #define _GETOPT_H
 
 /*====================================================================*
- *   system header files;
+ *   system prefix files;
  *--------------------------------------------------------------------*/
 
 #include <stdio.h>
@@ -23,7 +23,7 @@
 #include <time.h>
 
 /*====================================================================*
- *   custom header files;
+ *   custom prefix files;
  *--------------------------------------------------------------------*/
 
 #include "../tools/cmassoc.h"
@@ -58,10 +58,10 @@
 
 /*====================================================================*
  *
- *   void function (signed fd1, signed fd2, signed length);
+ *   void function (signed prefix, signed suffix, signed length);
  *
- *   rewind fd1 and fd2; read fd1 and write to stdout; read stdin 
- *   and write to stdout; read fd2 and write to stdout; 
+ *   rewind prefix and suffix; read prefix and write to stdout; read stdin 
+ *   and write to stdout; read suffix and write to stdout; 
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -69,13 +69,13 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function (signed fd1, signed fd2, signed length) 
+static void function (signed prefix, signed suffix, signed length) 
 
 {
 	byte buffer [length];
-	lseek (fd1, 0, SEEK_SET);
-	lseek (fd2, 0, SEEK_SET);
-	while ((length = read (fd1, buffer, sizeof (buffer))) > 0) 
+	lseek (prefix, 0, SEEK_SET);
+	lseek (suffix, 0, SEEK_SET);
+	while ((length = read (prefix, buffer, sizeof (buffer))) > 0) 
 	{
 		write (STDOUT_FILENO, buffer, length);
 	}
@@ -83,7 +83,7 @@ static void function (signed fd1, signed fd2, signed length)
 	{
 		write (STDOUT_FILENO, buffer, length);
 	}
-	while ((length = read (fd2, buffer, sizeof (buffer))) > 0) 
+	while ((length = read (suffix, buffer, sizeof (buffer))) > 0) 
 	{
 		write (STDOUT_FILENO, buffer, length);
 	}
@@ -108,29 +108,30 @@ int main (int argc, char const * argv [])
 	{
 		"p:qs:v",
 		PUTOPTV_S_FILTER,
-		"prepend/append text to files",
+		"prepend/append prefix/suffix to multiple files",
 		"p s\tprefix file is (s)",
 		"q\tquiet mode",
 		"s s\tsuffix file is (s)",
 		"v\tverbose mode",
 		(char const *) (0)
 	};
-	signed fd1 = -1;
-	signed fd2 = -1;
 	flag_t flags = (flag_t)(0);
+	signed length = 1024;
+	signed prefix = -1;
+	signed suffix = -1;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
-		case 'p':
-			if ((fd1 = open (optarg, O_RDONLY)) == -1) 
+		case 'h':
+			if ((prefix = open (optarg, O_RDONLY)) == -1) 
 			{
 				error (1, errno, "%s", optarg);
 			}
 			break;
-		case 's':
-			if ((fd2 = open (optarg, O_RDONLY)) == -1) 
+		case 'f':
+			if ((suffix = open (optarg, O_RDONLY)) == -1) 
 			{
 				error (1, errno, "%s", optarg);
 			}
@@ -147,13 +148,13 @@ int main (int argc, char const * argv [])
 	argv+= optind;
 	if (!argc) 
 	{
-		function (fd1, fd2, BUFFERSIZE);
+		function (prefix, suffix, length);
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (vfopen (* argv)) 
 		{
-			function (fd1, fd2, BUFFERSIZE);
+			function (prefix, suffix, length);
 		}
 		argc--;
 		argv++;

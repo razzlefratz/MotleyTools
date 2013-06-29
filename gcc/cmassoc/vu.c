@@ -31,6 +31,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../tools/cmassoc.h"
+#include "../tools/vtdef.h"
 #include "../chrlib/chrlib.h"
 
 /*====================================================================*
@@ -51,8 +52,8 @@
  *   program definitions and declarations;
  *--------------------------------------------------------------------*/
 
-#define VIS_S_ENBOLD "\033[1m\033[7m"
-#define VIS_S_NORMAL "\033[0m"
+#define VIS_S_ENBOLD VT_ENBOLD VT_VIDEO
+#define VIS_S_NORMAL VT_NORMAL
 #define VIS_B_BOLD (1 << 0)
 #define VIS_B_NORM (1 << 1) 
 #define VIS_B_NAME (1 << 2) 

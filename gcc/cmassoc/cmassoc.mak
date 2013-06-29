@@ -158,7 +158,7 @@ undash.o: undash.c cmassoc.h files.h
 unique.o: unique.c cmassoc.h
 vl.o: vl.c ascii.h charset.h cmassoc.h files.h
 vr.o: vr.c ascii.h charset.h cmassoc.h files.h
-vu.o: vu.c chrlib.h cmassoc.h
+vu.o: vu.c chrlib.h cmassoc.h vtdef.h
 wc.o: wc.c chrlib.h cmassoc.h
 what.o: what.c cmassoc.h linux.h list.h procstat.h strlib.h
 whom.o: whom.c chrlib.h cmassoc.h linux.h list.h regex.h

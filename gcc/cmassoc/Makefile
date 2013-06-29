@@ -128,8 +128,7 @@ ff: ff.o chrcount.o datecomp.o emalloc.o error.o find.o getoptv.o makefind.o mak
 filesize: filesize.o console.o filepart.o todigit.o uintspec.o
 footer: footer.o console.o efreopen.o emalloc.o getviewport.o todigit.o uintspec.o
 fp: fp.o SHA256Block.o SHA256Fetch.o SHA256Ident.o SHA256Reset.o SHA256Write.o console.o efreopen.o filepart.o hexout.o
-getmem: getmem.o basespec.o error.o getoptv.o hexout.o putoptv.o todigit.o uintspec.o version.o
-getmem2: getmem2.o basespec.o error.o getoptv.o hexout.o memdecode.o putoptv.o todigit.o uintspec.o version.o
+getmem: getmem.o basespec.o error.o getoptv.o hexout.o memdecode.o putoptv.o todigit.o uintspec.o version.o
 getmode: getmode.o fputn.o ftype.o getoptv.o makefind.o makepath.o match.o mergepath.o partfile.o partpath.o putoptv.o splitpath.o version.o
 go: go.o cgetc.o dcl.o emalloc.o error.o getoptv.o putoptv.o version.o
 grab: grab.o basespec.o efreopen.o error.o getoptv.o putoptv.o todigit.o version.o
