@@ -56,13 +56,6 @@
 #endif
 
 /*====================================================================*
- *   program constants;
- *--------------------------------------------------------------------*/
-
-#define MARGIN ""
-#define OFFSET "\t"
-
-/*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
 
@@ -71,11 +64,12 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"m:o:st",
+		"cm:o:st",
 		oPUTOPTV_S_FILTER,
 		"tidy html and xhtml source files",
-		"m s\tmargin string is (s) [" LITERAL (MARGIN) "]",
-		"o s\tindent string is (c) [" LITERAL (OFFSET) "]",
+		"c\tcompact html",
+		"m s\tmargin string is (s) [" LITERAL (oINDENT_MARGIN) "]",
+		"o s\tindent string is (c) [" LITERAL (oINDENT_OFFSET) "]",
 		"s\tindent is 3 spaces",
 		"t\tindent is 1 tab",
 		(char const *) (0)
@@ -91,17 +85,23 @@ int main (int argc, char const * argv [])
 	{
 		switch (c) 
 		{
+		case 'c':
+			object.margin ("");
+			object.offset ("");
+			object.finish ("");
+			object.record ("");
+			break;
 		case 'm':
 			object.margin (escape.unescape ((char *)(getopt.args ())));
 			break;
 		case 'o':
-			object.indent (escape.unescape ((char *)(getopt.args ())));
+			object.offset (escape.unescape ((char *)(getopt.args ())));
 			break;
 		case 's':
-			object.indent ("   ");
+			object.offset ("   ");
 			break;
 		case 't':
-			object.indent ("\t");
+			object.offset ("\t");
 			break;
 		default:
 			break;

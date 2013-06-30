@@ -64,9 +64,10 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"m:o:st",
+		"cm:o:st",
 		oPUTOPTV_S_FILTER,
 		"format C/C++ source code",
+		"c\tcompact source",
 		"m s\tmargin string [" LITERAL (oINDENT_MARGIN) "]",
 		"o s\toffset string [" LITERAL (oINDENT_OFFSET) "]",
 		"s\toffset is space",
@@ -84,17 +85,23 @@ int main (int argc, char const * argv [])
 	{
 		switch (c) 
 		{
+		case 'c':
+			object.margin ("");
+			object.offset ("");
+			object.finish ("");
+			object.record ("");
+			break;
 		case 'm':
 			object.margin (escape.unescape ((char *)(getopt.args ())));
 			break;
 		case 'o':
-			object.indent (escape.unescape ((char *)(getopt.args ())));
+			object.offset (escape.unescape ((char *)(getopt.args ())));
 			break;
 		case 's':
-			object.indent ("   ");
+			object.offset ("   ");
 			break;
 		case 't':
-			object.indent ("\t");
+			object.offset ("\t");
 			break;
 		default:
 			break;

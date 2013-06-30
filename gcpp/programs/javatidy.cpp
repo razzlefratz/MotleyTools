@@ -131,8 +131,8 @@ int main (int argc, char const * argv [])
 		oPUTOPTV_S_FILTER,
 		"program CSS functions",
 		"c\tcompact stylesheet",
-		"m s\tmargin string [\"\"]",
-		"o s\toffset string [\"\\t\"]",
+		"m s\tmargin string [" LITERAL (oINDEX_MARGIN) "]",
+		"o s\toffset string [" LITERAL (oINDEX_OFFSET) "]",
 		"s\toffset is space",
 		"t\toffset is tabs",
 		(char const *) (0)
@@ -147,19 +147,19 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{
 		case 'c':
-			program.indent ("").record ("");
+			program.offset ("").record ("");
 			break;
 		case 'm':
 			program.margin (escape.unescape ((char *)(getopt.args ())));
 			break;
 		case 'o':
-			program.indent (escape.unescape ((char *)(getopt.args ())));
+			program.offset (escape.unescape ((char *)(getopt.args ())));
 			break;
 		case 's':
-			program.indent ("   ");
+			program.offset ("   ");
 			break;
 		case 't':
-			program.indent ("\t");
+			program.offset ("\t");
 			break;
 		default:
 			break;

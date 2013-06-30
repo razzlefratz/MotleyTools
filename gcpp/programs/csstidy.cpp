@@ -144,19 +144,22 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{
 		case 'c':
-			program.indent ("").record ("");
+			program.margin ("");
+			program.offset ("");
+			program.finish ("");
+			program.record ("");
 			break;
 		case 'm':
 			program.margin (escape.unescape ((char *)(getopt.args ())));
 			break;
 		case 'o':
-			program.indent (escape.unescape ((char *)(getopt.args ())));
+			program.offset (escape.unescape ((char *)(getopt.args ())));
 			break;
 		case 's':
-			program.indent ("   ");
+			program.offset ("   ");
 			break;
 		case 't':
-			program.indent ("\t");
+			program.offset ("\t");
 			break;
 		default:
 			break;

@@ -118,10 +118,10 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{
 		case '3':
-			object.indent ("   ");
+			object.offset ("   ");
 			break;
 		case '4':
-			object.indent ("    ");
+			object.offset ("    ");
 			break;
 		case 'a':
 			method = & octidy::atheros;
@@ -174,7 +174,7 @@ int main (int argc, char const * argv [])
 			object.label ("SOURCE").state (1);
 			break;
 		case 't':
-			object.indent ("\t");
+			object.offset ("\t");
 			break;
 		case 'w':
 			object.width (std::atoi (getopt.args ()));
