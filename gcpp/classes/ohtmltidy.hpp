@@ -70,8 +70,6 @@ protected:
 	char * mvalue;
 	char mquote;
 private:
-	signed mspace;
-	signed mlevel;
 };
 
 /*====================================================================*

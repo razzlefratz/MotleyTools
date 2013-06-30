@@ -25,16 +25,103 @@
 #include "../classes/oindent.hpp"
 
 /*====================================================================*
+ *   
+ *   oindent & space (signed space);
+ *   
+ *   set the line spacing; the line spacing determines how many times
+ *   the record string is printed at the end of each line; 
+ *   
+ *--------------------------------------------------------------------*/
+
+oindent & oindent::space (signed space) 
+
+{
+	this->mspace = space;
+	return (* this);
+}
+
+/*====================================================================*
+ *   
+ *   signed space (signed space) const;
+ *   
+ *   set the line spacing; the line spacing determines how many times
+ *   the record string is printed at the end of each line; 
+ *   
+ *--------------------------------------------------------------------*/
+
+signed oindent::space (void) const
+
+{
+	return (this->mspace);
+}
+
+/*====================================================================*
+ *   
+ *   oindent & level (signed level);
+ *
+ *   set the indent level; the indent level determines the number of
+ *   time the indent string is printed at the start of each new line;
+ *   
+ *--------------------------------------------------------------------*/
+
+oindent & oindent::level (signed level) 
+
+{
+	this->mlevel = level;
+	return (* this);
+}
+
+/*====================================================================*
+ *   
+ *   signed level (signed level) const;
+ *
+ *   get the indent level; the indent level determines the number of
+ *   time the indent string is printed at the start of each new line;
+ *   
+ *--------------------------------------------------------------------*/
+
+signed oindent::level (void) const 
+
+{
+	return (this->mlevel);
+}
+
+/*====================================================================*
+ *   
+ *   oindent & increment ();
+ *
+ *--------------------------------------------------------------------*/
+
+oindent & oindent::increment ()
+
+{
+	this->mlevel++;
+	return (* this);
+}
+
+/*====================================================================*
+ *   
+ *   oindent & decrement ();
+ *
+ *--------------------------------------------------------------------*/
+
+oindent & oindent::decrement ()
+
+{
+	if (this->mlevel)
+	{
+		this->mlevel--;
+	}
+	return (* this);
+}
+
+/*====================================================================*
  *
  *   oindent & margin (char const *string);
  *
  *   set the margin string; the margin string is output at the start 
  *   of each line before the repeating indent string;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
  *--------------------------------------------------------------------*/
 
 oindent & oindent::margin (char const * string) 
@@ -56,10 +143,6 @@ oindent & oindent::margin (char const * string)
  *   get the margin string; the margin string is output at the start 
  *   of each line before the repeating indent string;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
  *--------------------------------------------------------------------*/
 
 char const * oindent::margin (void) const 
@@ -75,10 +158,6 @@ char const * oindent::margin (void) const
  *   set the indent string; the indent string may be output at the
  *   start of each line after the margin string; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
  *--------------------------------------------------------------------*/
 
 oindent & oindent::indent (char const * string) 
@@ -100,10 +179,6 @@ oindent & oindent::indent (char const * string)
  *   get the indent string; the indent string may be output at the
  *   start of each line after the margin string; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
  *--------------------------------------------------------------------*/
 
 char const * oindent::indent (void) const 
@@ -119,10 +194,6 @@ char const * oindent::indent (void) const
  *   set the finish string; the finish string is output at the end 
  *   of each line before the repeating record string;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
  *--------------------------------------------------------------------*/
 
 oindent & oindent::finish (char const * string) 
@@ -144,10 +215,6 @@ oindent & oindent::finish (char const * string)
  *   get the finish string; the finish string is output at the end 
  *   of each line before the repeating record string;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
  *--------------------------------------------------------------------*/
 
 char const * oindent::finish (void) const 
@@ -163,10 +230,6 @@ char const * oindent::finish (void) const
  *   set the record string; the record string may be output at the
  *   end of each line after the finish string; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
  *--------------------------------------------------------------------*/
 
 oindent & oindent::record (char const * string) 
@@ -188,10 +251,6 @@ oindent & oindent::record (char const * string)
  *   get the record string; the record string may be output at the
  *   end of each line after the finish string; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
  *--------------------------------------------------------------------*/
 
 char const * oindent::record (void) const 
@@ -202,55 +261,30 @@ char const * oindent::record (void) const
 
 /*====================================================================*
  *   
- *   oindent & level (signed level);
- *
- *   output the margin string followed by count indent strings;
- *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
- *--------------------------------------------------------------------*/
-
-oindent & oindent::level (void) 
-
-{
-	oindent::print (this->mmargin, this->mindent, this->mlevel);
-	return (* this);
-}
-
-oindent & oindent::level (signed level) 
-
-{
-	this->mlevel = level;
-	oindent::print (this->mmargin, this->mindent, this->mlevel);
-	return (* this);
-}
-
-/*====================================================================*
- *   
- *   oindent & space (signed space);
+ *   oindent & std::endline (char const *finish, char const *record, signed space);
  *   
  *   output the finish string followed by count record strings;
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
  *--------------------------------------------------------------------*/
 
-oindent & oindent::space (void) 
+oindent & oindent::endline () 
 
 {
 	oindent::print (this->mfinish, this->mrecord, this->mspace);
 	return (* this);
 }
 
-oindent & oindent::space (signed space) 
+oindent & oindent::endline (signed space) 
 
 {
-	this->mspace = space;
-	oindent::print (this->mfinish, this->mrecord, this->mspace);
+	oindent::print (this->mfinish, this->mrecord, space);
+	return (* this);
+}
+
+oindent & oindent::endline (char const * finish, char const * record, signed space) 
+
+{
+	oindent::print (finish, record, space);
 	return (* this);
 }
 
@@ -260,46 +294,33 @@ oindent & oindent::space (signed space)
  *   
  *   output the margin string followed by count indent strings;
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
  *--------------------------------------------------------------------*/
 
-void oindent::newline (char const * margin, char const * indent, signed level) 
+oindent & oindent::newline () 
+
+{
+	oindent::print (this->mmargin, this->mindent, this->mlevel);
+	return (*this);
+}
+
+oindent & oindent::newline (signed level) 
+
+{
+	oindent::print (this->mmargin, this->mindent, level);
+	return (*this);
+}
+
+oindent & oindent::newline (char const * margin, char const * indent, signed level) 
 
 {
 	oindent::print (margin, indent, level);
-	return;
-}
-
-/*====================================================================*
- *   
- *   oindent & std::endline (char const *finish, char const *record, signed space);
- *   
- *   output the finish string followed by count record strings;
- *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
- *--------------------------------------------------------------------*/
-
-void oindent::endline (char const * finish, char const * record, signed space) 
-
-{
-	oindent::print (finish, record, space);
-	return;
+	return (*this);
 }
 
 /*====================================================================*
  *
  *   oindent & print (signed level, signed space, char const *string);
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
  *--------------------------------------------------------------------*/
 
 oindent & oindent::print (signed level, signed space, char const * string) 
@@ -318,10 +339,6 @@ oindent & oindent::print (signed level, signed space, char const * string)
  *   print a prefix string followed by count suffix strings; this is
  *   the lowest level indent method;
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
  *--------------------------------------------------------------------*/
 
 void oindent::print (char const * prefix, char const * suffix, signed count) 
@@ -336,17 +353,11 @@ void oindent::print (char const * prefix, char const * suffix, signed count)
  *   oindent (void) 
  *
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
  *--------------------------------------------------------------------*/
 
 oindent::oindent (void) 
 
 {
-	this->mlevel = 0;
-	this->mspace = 1;
 	this->mmargin = new char [1];
 	this->mmargin [0] = '\0';
 	this->mindent = new char [2];
@@ -357,6 +368,8 @@ oindent::oindent (void)
 	this->mrecord = new char [2];
 	this->mrecord [0] = '\n';
 	this->mrecord [1] = '\0';
+	this->mlevel = 0;
+	this->mspace = 1;
 	return;
 }
 
@@ -365,10 +378,6 @@ oindent::oindent (void)
  *   oindent (void) 
  *
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
  *--------------------------------------------------------------------*/
 
 oindent::~oindent (void) 

@@ -98,7 +98,7 @@ void function (oflagword * flags)
 		}
 		if (c == '#') 
 		{
-			indent.space (space);
+			indent.endline (space);
 			do 
 			{
 				c = tidy.content (c, '\n');
@@ -110,18 +110,18 @@ void function (oflagword * flags)
 		{
 			if (!level) 
 			{
-				indent.space (1);
+				indent.endline (1);
 			}
-			indent.space (1);
-			indent.level (level++);
+			indent.endline (1);
+			indent.newline (level++);
 			c = tidy.feed (c);
 			space = 1;
 			continue;
 		}
 		if (c == '}') 
 		{
-			indent.space (1);
-			indent.level (--level);
+			indent.endline (1);
+			indent.newline (--level);
 			c = tidy.feed (c);
 			if (c != ';') 
 			{
@@ -129,17 +129,17 @@ void function (oflagword * flags)
 			}
 			if (!level) 
 			{
-				indent.space (1);
+				indent.endline (1);
 			}
 			space = 1;
 			continue;
 		}
-		indent.space (1);
-		indent.level (level);
+		indent.endline (1);
+		indent.newline (level);
 		c = tidy.context (c, "{};");
 		space = 2;
 	}
-	indent.space (2);
+	indent.endline (2);
 	return;
 }
 

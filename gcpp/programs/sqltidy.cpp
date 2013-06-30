@@ -101,7 +101,7 @@ void function (oflagword * flags)
 			c = std::cin.get ();
 			break;
 		case '#':
-			indent.space (2);
+			indent.endline (2);
 			do 
 			{
 				c = tidy.content (c, '\n');
@@ -109,13 +109,13 @@ void function (oflagword * flags)
 			while (c == '#');
 			break;
 		case '(':
-			indent.space (1);
-			indent.level (level++);
+			indent.endline (1);
+			indent.newline (level++);
 			c = tidy.feed (c);
 			break;
 		case ')':
-			indent.space (1);
-			indent.level (--level);
+			indent.endline (1);
+			indent.newline (--level);
 			c = tidy.feed (c);
 			c = tidy.find (c);
 			if ((c == ',') || (c == ';')) 
@@ -130,13 +130,13 @@ void function (oflagword * flags)
 			c = tidy.feed (c);
 			break;
 		default:
-			indent.space (1);
-			indent.level (level);
+			indent.endline (1);
+			indent.newline (level);
 			c = tidy.context (c, "(,)#");
 			break;
 		}
 	}
-	indent.space (2);
+	indent.endline (2);
 	return;
 }
 

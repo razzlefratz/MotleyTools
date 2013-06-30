@@ -131,9 +131,9 @@ oHTMLIndex & oHTMLIndex::publish (unsigned count)
 	while (index < limit) 
 	{
 		oHTMLIndex::print (this->mlevel++, this->mspace, "<td class='" oHTMLINDEX_CLASS "'>");
-		oHTMLIndex::level (this->mlevel++);
+		oHTMLIndex::newline (this->mlevel++);
 		std::cout << "<ol start='" << index + 1 << "'>";
-		oHTMLIndex::space (1);
+		oHTMLIndex::endline (1);
 		while (index < limit) 
 		{
 			oHTMLIndex::mitem = oHTMLIndex::mlist.items (index++);

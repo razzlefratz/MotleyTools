@@ -146,8 +146,8 @@ signed ohtmltidy::page (signed c)
 		{
 			c = ohtmltidy::cdata (c);
 		}
-		oindent::space (this->mspace);
-		oindent::level (this->mlevel);
+		oindent::endline (this->mspace);
+		oindent::newline (this->mlevel);
 	}
 	return (c);
 }

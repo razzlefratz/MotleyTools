@@ -133,7 +133,7 @@ signed ophptidy::program (signed c)
 		}
 		if (c == '#') 
 		{
-			ophptidy::space (space);
+			ophptidy::endline (space);
 			do 
 			{
 				c = ophptidy::command ('#', '\n');
@@ -144,7 +144,7 @@ signed ophptidy::program (signed c)
 		}
 		if (c == '/') 
 		{
-			ophptidy::space (space);
+			ophptidy::endline (space);
 			c = ophptidy::comment (c);
 			space = 1;
 			continue;
@@ -162,10 +162,10 @@ signed ophptidy::program (signed c)
 
 			if (!level) 
 			{
-				ophptidy::space (1);
+				ophptidy::endline (1);
 			}
-			ophptidy::space (1);
-			ophptidy::level (level++);
+			ophptidy::endline (1);
+			ophptidy::newline (level++);
 			c = ophptidy::feed (c);
 			c = ophptidy::find (c);
 
@@ -176,13 +176,13 @@ signed ophptidy::program (signed c)
 		}
 		if (c == '}') 
 		{
-			ophptidy::space (1);
-			ophptidy::level (--level);
+			ophptidy::endline (1);
+			ophptidy::newline (--level);
 			c = ophptidy::feed (c);
 			c = ophptidy::find (c);
 			if (!level) 
 			{
-				ophptidy::space (1);
+				ophptidy::endline (1);
 			}
 			space = 2;
 			continue;
@@ -194,7 +194,7 @@ signed ophptidy::program (signed c)
 			space = 2;
 			continue;
 		}
-		ophptidy::space (1);
+		ophptidy::endline (1);
 		c = ophptidy::statement (c, level, space);
 		space = 2;
 	}
@@ -224,19 +224,19 @@ signed ophptidy::statement (signed c, signed level, signed space)
 		* cp = (char) (0);
 		if (!std::strcmp (string, "case")) 
 		{
-			ophptidy::level (level-1);
+			ophptidy::newline (level-1);
 			std::cout << string;
 			c = ophptidy::context (c, ':');
 		}
 		else if (!std::strcmp (string, "default")) 
 		{
-			ophptidy::level (level-1);
+			ophptidy::newline (level-1);
 			std::cout << string;
 			c = ophptidy::context (c, ':');
 		}
 		else 
 		{
-			ophptidy::level (level);
+			ophptidy::newline (level);
 			std::cout << string;
 			if ((c == '(') || (c == '[') || (c == '{')) 
 			{
@@ -247,7 +247,7 @@ signed ophptidy::statement (signed c, signed level, signed space)
 	}
 	else 
 	{
-		ophptidy::level (level);
+		ophptidy::newline (level);
 		c = ophptidy::context (c, ",;{}?#");
 	}
 	return (c);

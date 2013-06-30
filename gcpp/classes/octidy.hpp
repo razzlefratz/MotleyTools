@@ -34,7 +34,7 @@ public:
 	octidy ();
 	virtual~ octidy ();
 	signed preamble (signed c, signed e);
-	signed statement (signed c, signed level, signed space);
+	signed statement (signed c);
 	signed charlie (signed c, signed e);
 	signed atheros (signed c, signed e);
 	signed program (signed c, signed e);

@@ -89,8 +89,8 @@ static signed function (signed c, signed e)
 		}
 		if (c == '{') 
 		{
-			program.space (1);
-			program.level (level++);
+			program.endline (1);
+			program.newline (level++);
 			c = program.feed (c);
 			c = program.find (c);
 			space = 1;
@@ -98,23 +98,23 @@ static signed function (signed c, signed e)
 		}
 		if (c == '}') 
 		{
-			program.space (1);
-			program.level (--level);
+			program.endline (1);
+			program.newline (--level);
 			c = program.feed (c);
 			c = program.find (c);
 			space = 1;
 			if (!level) 
 			{
-				program.space (1);
+				program.endline (1);
 			}
 			continue;
 		}
-		program.space (space);
-		program.level (level);
+		program.endline (space);
+		program.newline (level);
 		c = program.context (c, "{;}</>");
 		space = 1;
 	}
-	program.space (2);
+	program.endline (2);
 	return (c);
 }
 

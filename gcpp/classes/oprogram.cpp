@@ -47,10 +47,6 @@
  *   after each ',' or ';'; replace other white space strings with
  *   one space;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
  *--------------------------------------------------------------------*/
 
 signed oprogram::context (signed c, char const * charset) const 
@@ -67,10 +63,6 @@ signed oprogram::context (signed c, char const * charset) const
  *
  *   signed context (signed c, signed o, signed e) const;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed oprogram::context (signed c, signed o, signed e) const 
@@ -78,17 +70,17 @@ signed oprogram::context (signed c, signed o, signed e) const
 {
 	c = oprogram::feed (c);
 	c = oprogram::find (c);
-	c = oprogram::inner_context (c, o, e);
+	c = oprogram::_context (c, o, e);
 	c = oprogram::feed (c);
 	return (c);
 }
 
-signed oprogram::inner_context (signed c, signed o, signed e) const 
+signed oprogram::_context (signed c, signed o, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = oprogram::inner_context (c, o);
+		c = oprogram::_context (c, o);
 		c = oprogram::feed (c);
 	}
 	return (c);
@@ -102,10 +94,6 @@ signed oprogram::inner_context (signed c, signed o, signed e) const
  *   including (e) or EOF; return the next character or EOF as the
  *   function value;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed oprogram::context (signed c, signed e) const 
@@ -113,12 +101,12 @@ signed oprogram::context (signed c, signed e) const
 {
 	c = oprogram::feed (c);
 	c = oprogram::find (c);
-	c = oprogram::inner_context (c, e);
+	c = oprogram::_context (c, e);
 	c = oprogram::feed (c);
 	return (c);
 }
 
-signed oprogram::inner_context (signed c, signed e) const 
+signed oprogram::_context (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
@@ -138,10 +126,6 @@ signed oprogram::inner_context (signed c, signed e) const
  *   one space after others; output monikers, comments and literals
  *   directly;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
  *--------------------------------------------------------------------*/
 
 signed oprogram::context (signed c) const 
@@ -207,10 +191,6 @@ signed oprogram::context (signed c) const
  *
  *   process multi-line comments; pad left margin with asterisks;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed oprogram::comment (signed c) const 
@@ -260,10 +240,6 @@ signed oprogram::comment (signed c) const
  *
  *   signed oprogram::moniker (signed c) const;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed oprogram::moniker (signed c) const 
@@ -280,10 +256,6 @@ signed oprogram::moniker (signed c) const
 /*====================================================================*
  *
  *   signed oprogram::requote (signed c, signed o, signed e) const;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -305,10 +277,6 @@ signed oprogram::requote (signed c, signed o, signed e) const
  *
  *   read and discard whitespace; return next character;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed oprogram::find (signed c) const 
@@ -325,10 +293,6 @@ signed oprogram::find (signed c) const
  *
  *   oprogram ()
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 oprogram::oprogram () 
@@ -340,10 +304,6 @@ oprogram::oprogram ()
 /*====================================================================*
  *
  *   ~oprogram ()
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
