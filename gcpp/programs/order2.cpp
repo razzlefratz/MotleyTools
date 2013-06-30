@@ -33,13 +33,13 @@
 #include "../classes/oversion.cpp"
 #include "../classes/oflagword.cpp"
 #include "../classes/oerror.cpp"
+#include "../classes/oascii.cpp"
 #include "../classes/ograph.cpp"
 #include "../classes/oedges.cpp"
 #include "../classes/onodes.cpp"
 #include "../classes/oedge.cpp"
 #include "../classes/onode.cpp"
 #include "../classes/otext.cpp"
-#include "../classes/oascii.cpp"
 #endif
 
 /*====================================================================*
@@ -97,11 +97,11 @@ int main (int argc, char const * argv [])
 			break;
 		case 's':
 			graph.setbits (oGRAPH_SHOW_SYMBOL);
-			graph.clearbits (oGRAPH_SHOW_STRUCT);
+			graph.clearbits (oGRAPH_SHOW_SYMBOL);
 			break;
 		case 't':
 			graph.setbits (oGRAPH_SHOW_STRUCT);
-			graph.clearbits (oGRAPH_SHOW_SYMBOL);
+			graph.clearbits (oGRAPH_SHOW_STRUCT);
 			break;
 		case 'x':
 			graph.setbits (oGRAPH_MODE_INVERT);

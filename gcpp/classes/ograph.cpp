@@ -18,6 +18,7 @@
 #include <cstdio>
 #include <cstring>
 #include <iostream>
+#include "../../gcc/tools/sizes.h"
 
 /*====================================================================*
  *   custom header files;
@@ -28,13 +29,9 @@
 
 /*====================================================================*
  *
- *   char const *name () const;
+ *   char const *name (void) const;
  *
  *   return the object name string as a constant;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -46,14 +43,10 @@ char const * ograph::name ()
 
 /*====================================================================*
  *
- *   ograph & name (char const *string);
+ *   ograph & name (char const * name);
  *
  *   assign a new string as the name only if the new string differs 
  *   from the old string; 
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -66,15 +59,11 @@ ograph & ograph::name (char const * name)
 
 /*====================================================================*
  *
- *   onode * node () const;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *   onode * node (void) const;
  *
  *--------------------------------------------------------------------*/
 
-onode * ograph::node () const 
+onode * ograph::node (void) const 
 
 {
 	return (this->mnode);
@@ -83,10 +72,6 @@ onode * ograph::node () const
 /*====================================================================*
  *
  *   ograph & addnode (char const *nodename);
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -99,11 +84,7 @@ ograph & ograph::addnode (char const * nodename)
 
 /*====================================================================*
  *
- *   ograph & relate (char const *group, char const *member);
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *   ograph & relate (char const * needname, char const * feedname);
  *
  *--------------------------------------------------------------------*/
 
@@ -118,22 +99,18 @@ ograph & ograph::addedge (char const * needname, char const * feedname)
 
 /*====================================================================*
  *
- *   ograph & populate (char colon, char comma, bool invert);
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *   ograph & populate (char colon, char comma);
  *
  *--------------------------------------------------------------------*/
 
 ograph & ograph::populate (char colon, char comma) 
 
 {
-	char one [oGRAPH_SYMBOL_LENGTH] = "";
-	char two [oGRAPH_SYMBOL_LENGTH] = "";
+	char one [_NAMESIZE] = "";
+	char two [_NAMESIZE] = "";
 	char * sp;
-	int c;
-	while ((c = std::cin.get ()) != EOF) 
+	signed c = std::cin.get ();
+	while (c != EOF) 
 	{
 		for (sp = one; nobreak (c); c = std::cin.get ()) 
 		{
@@ -169,13 +146,14 @@ ograph & ograph::populate (char colon, char comma)
 		{
 			this->addedge (one, two);
 		}
+		c = std::cin.get ();
 	}
 	return (* this);
 }
 
 /*====================================================================*
  *   
- *   void discover();
+ *   void discover (void);
  *
  *   search the node table and traverse each node to discover all
  *   starting points; traverse does not traverse nodes visited by
@@ -184,13 +162,9 @@ ograph & ograph::populate (char colon, char comma)
  *   compute the width of numeric fields using successive division
  *   by ten; member morder should be zero on exit from this loop;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
-ograph & ograph::discover () 
+ograph & ograph::discover (void) 
 
 {
 	this->mcount = this->mnodes->count ();
@@ -214,10 +188,6 @@ ograph & ograph::discover ()
  *   perform a depth-first search of the edge table starting from 
  *   the specified node; set the enter count before and the leave 
  *   count after the node is searched; ignore visited nodes; 
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -243,10 +213,10 @@ ograph & ograph::traverse (onode * node)
 	{
 		if (temp == node) 
 		{
-			std::cerr << node->name () << oGRAPH_TEXT_MORE;
+			std::cerr << "circular reference: ";
+			std::cerr << node->name ();
 			ograph::trace (this->mnode, node);
-			std::cerr << node->name () << "\n";
-			oerror::error (0, 0, "bailing out!");
+			std::cerr << " --> " << node->name () << std::endl;
 			return (* this);
 		}
 	}
@@ -317,20 +287,20 @@ ograph & ograph::trace (onode * node, onode * stop)
 	if ((node) && (node != stop)) 
 	{
 		ograph::trace (node->node (), stop);
-		std::cerr << node->name () << oGRAPH_TEXT_MORE;
+		std::cerr << " --> " << node->name ();
 	}
 	return (* this);
 }
 
 /*====================================================================*
  * 
- *   ograph & clear ();
+ *   ograph & clear (void);
  *
  *   clear this node and subordinate names; 
  *
  *--------------------------------------------------------------------*/
 
-ograph & ograph::clear () 
+ograph & ograph::clear (void) 
 
 {
 	this->medges->clear ();
@@ -345,12 +315,12 @@ ograph & ograph::clear ()
 
 /*====================================================================*
  * 
- *   ograph ()
+ *   ograph (void)
  *
  *
  *--------------------------------------------------------------------*/
 
-ograph::ograph () 
+ograph::ograph (void) 
 
 {
 	this->medges = new oedges;
@@ -365,12 +335,12 @@ ograph::ograph ()
 
 /*====================================================================*
  * 
- *   ~ograph ()
+ *   ~ograph (void)
  *
  *
  *--------------------------------------------------------------------*/
 
-ograph::~ograph () 
+ograph::~ograph (void) 
 
 {
 	delete [] this->mname;
