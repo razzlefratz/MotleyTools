@@ -43,8 +43,9 @@ public:
 	signed context (signed c, signed e) const;
 	signed context (signed c) const;
 	signed comment (signed c) const;
-	signed _context (signed c, signed o, signed e) const;
-	signed _context (signed c, signed e) const;
+	signed escaped (signed c) const;
+	signed context_ (signed c, signed o, signed e) const;
+	signed context_ (signed c, signed e) const;
 	signed find (signed c) const;
 private:
 	static ocgotowords gotowords;

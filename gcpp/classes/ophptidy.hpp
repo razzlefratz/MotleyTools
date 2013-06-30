@@ -36,8 +36,8 @@ public:
 	signed context (signed c, signed o, signed e);
 	signed context (signed c, signed e);
 	signed context (signed c);
-	signed inner_context (signed c, signed o, signed e);
-	signed inner_context (signed c, signed e);
+	signed innercontext_ (signed c, signed o, signed e);
+	signed innercontext_ (signed c, signed e);
 	signed find (signed c);
 };
 

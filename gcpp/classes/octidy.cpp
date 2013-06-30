@@ -1,3 +1,4 @@
+
 /*====================================================================*
  *
  *   octidy.cpp - definition of octidy class.
@@ -37,10 +38,6 @@ ocexitwords octidy::exitwords;
  *
  *   signed octidy::atheros (signed c, signed e);
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed octidy::atheros (signed c, signed e) 
@@ -52,7 +49,11 @@ signed octidy::atheros (signed c, signed e)
 	{
 		if (oascii::isspace (c)) 
 		{
-			c = std::cin.get ();
+			do 
+			{
+				c = std::cin.get ();
+			}
+			while (oascii::isspace (c));
 			continue;
 		}
 		if (c == '#') 
@@ -137,10 +138,6 @@ signed octidy::atheros (signed c, signed e)
  *   and inserts include guards; essentially, this is charlie's own
  *   private formatter;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed octidy::charlie (signed c, signed e) 
@@ -153,7 +150,11 @@ signed octidy::charlie (signed c, signed e)
 	{
 		if (oascii::isspace (c)) 
 		{
-			c = std::cin.get ();
+			do 
+			{
+				c = std::cin.get ();
+			}
+			while (oascii::isspace (c));
 			continue;
 		}
 		if (c == '#') 
@@ -238,10 +239,6 @@ signed octidy::charlie (signed c, signed e)
  *
  *   format a source code file; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed octidy::program (signed c, signed e) 
@@ -253,7 +250,11 @@ signed octidy::program (signed c, signed e)
 	{
 		if (oascii::isspace (c)) 
 		{
-			c = std::cin.get ();
+			do 
+			{
+				c = std::cin.get ();
+			}
+			while (oascii::isspace (c));
 			continue;
 		}
 		if (c == '#') 
@@ -333,10 +334,6 @@ signed octidy::program (signed c, signed e)
  *
  *   signed statement (signed c); 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed octidy::statement (signed c) 
@@ -384,11 +381,14 @@ signed octidy::statement (signed c)
 			std::cout.put (')');
 		}
 	}
+
 #if 0
+
 /*
  *	this may be obsolete and assumes that a colon sollows the keyword;
  *	the check vof colon has been moved;
  */
+
 	else if (octidy::gotowords.defined (string)) 
 	{
 		octidy::print (this->mlevel-1, 0, string);
@@ -397,14 +397,16 @@ signed octidy::statement (signed c)
 		octidy::newline (level);
 		c = octidy::context (c, ",;{}#");
 	}
+
 #endif
+
 	else if (!std::strcmp (string, "case")) 
 	{
 		octidy::print (this->mlevel-1, 0, string);
 		std::cout.put (' ');
 		c = octidy::context (c, ":");
 	}
-	else if (c == ':')
+	else if (c == ':') 
 	{
 		if (c == std::cin.peek ()) 
 		{
@@ -413,7 +415,7 @@ signed octidy::statement (signed c)
 			c = octidy::feed (c);
 			c = octidy::context (c, ",;{}#");
 		}
-		else
+		else 
 		{
 			octidy::print (this->mlevel-1, 0, string);
 			c = octidy::feed (c);
@@ -421,7 +423,7 @@ signed octidy::statement (signed c)
 			octidy::endline (1);
 			octidy::newline ();
 			c = octidy::context (c, ",;{}#");
-		}	
+		}
 	}
 	else 
 	{
@@ -446,9 +448,9 @@ signed octidy::statement (signed c)
 		{
 			std::cout.put (' ');
 		}
-		else if ((c == '+') || (c == '-'))
+		else if ((c == '+') || (c == '-')) 
 		{
-			if (std::cin.peek () == '=')
+			if (std::cin.peek () == '=') 
 			{
 				std::cout.put (' ');
 			}
@@ -461,10 +463,6 @@ signed octidy::statement (signed c)
 /*====================================================================*
  *
  *   signed context (signed c, char const * charset) const; 
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -482,27 +480,23 @@ signed octidy::context (signed c, char const * charset) const
  *
  *   signed context (signed c, signed o, signed e) const;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed octidy::context (signed c, signed o, signed e) const 
 
 {
 	c = octidy::feed (c);
-	c = octidy::_context (c, o, e);
+	c = octidy::context_ (c, o, e);
 	c = octidy::feed (c);
 	return (c);
 }
 
-signed octidy::_context (signed c, signed o, signed e) const 
+signed octidy::context_ (signed c, signed o, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = octidy::_context (c, o);
+		c = octidy::context_ (c, o);
 		c = octidy::feed (c);
 	}
 	return (c);
@@ -512,10 +506,6 @@ signed octidy::_context (signed c, signed o, signed e) const
  *
  *   signed context (signed c, signed e) const; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed octidy::context (signed c, signed e) const 
@@ -523,12 +513,12 @@ signed octidy::context (signed c, signed e) const
 {
 	c = octidy::feed (c);
 	c = octidy::find (c);
-	c = octidy::_context (c, e);
+	c = octidy::context_ (c, e);
 	c = octidy::feed (c);
 	return (c);
 }
 
-signed octidy::_context (signed c, signed e) const 
+signed octidy::context_ (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
@@ -541,10 +531,6 @@ signed octidy::_context (signed c, signed e) const
 /*====================================================================*
  *
  *   signed context (signed  c) const; 
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -573,9 +559,9 @@ signed octidy::context (signed c) const
 		{
 			std::cout.put (' ');
 		}
-		else if ((c == '+') || (c == '-'))
+		else if ((c == '+') || (c == '-')) 
 		{
-			if (std::cin.peek () == '=')
+			if (std::cin.peek () == '=') 
 			{
 				std::cout.put (' ');
 			}
@@ -608,8 +594,7 @@ signed octidy::context (signed c) const
 	}
 	else if (c == '\\') 
 	{
-		c = octidy::feed (c);
-		c = octidy::feed (c);
+		c = octidy::escaped (c);
 	}
 	else if ((c == '.')) 
 	{
@@ -789,10 +774,6 @@ signed octidy::context (signed c) const
  *
  *   read and write C and C++ comments;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed octidy::comment (signed c) const 
@@ -816,13 +797,30 @@ signed octidy::comment (signed c) const
 
 /*====================================================================*
  *
+ *   signed comment (signed c) const;
+ *
+ *   read and write escaped characters, accounting for special cases;
+ *
+ *--------------------------------------------------------------------*/
+
+signed octidy::escaped (signed c) const 
+
+{
+	signed o;
+	o = octidy::feed (c);
+	c = octidy::feed (o);
+	if (o == '\n') 
+	{
+		octidy::print (octidy::margin (), octidy::indent (), octidy::level ());
+	}
+	return (c);
+}
+
+/*====================================================================*
+ *
  *   signed find (signed c) const;
  *
  *   read and discard whitespace; start with current character (c);
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -840,10 +838,6 @@ signed octidy::find (signed c) const
  *
  *   octidy()
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 octidy::octidy () 
@@ -855,10 +849,6 @@ octidy::octidy ()
 /*====================================================================*
  *
  *   ~octidy()
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 

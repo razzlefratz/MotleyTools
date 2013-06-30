@@ -31,7 +31,7 @@ signed oenclose::statement (signed c) const
 	{
 		std::cout.put ('{');
 		std::cout.put (' ');
-		c = oenclose::inner_context (c, ';');
+		c = oenclose::innercontext_ (c, ';');
 		c = oenclose::keep (c);
 		std::cout.put (' ');
 		std::cout.put ('}');
