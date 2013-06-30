@@ -259,7 +259,7 @@ oformat & oformat::flush (unsigned space)
 		this->mbuffer [this->mcolumn++] = '\0';
 		for (this->mcolumn = this->mmargin; this->mcolumn > 0; this->mcolumn--) 
 		{
-			fputc ('$', stdout);
+			fputc (' ', stdout);
 		}
 		fputs (this->mbuffer, stdout);
 		this->moffset = this->mindent;
