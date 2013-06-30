@@ -27,23 +27,23 @@ class __declspec (dllexport) ophptidy: public ocollect, public oindent
 
 {
 public:
-	ophptidy ();
-	virtual~ ophptidy ();
+	ophptidy (void);
+	virtual~ ophptidy (void);
 	signed page (signed c);
-	signed statement (signed c, signed level, signed space);
+	signed statement (signed c);
 	signed program (signed c);
 	signed context (signed c, char const * charset);
 	signed context (signed c, signed o, signed e);
 	signed context (signed c, signed e);
 	signed context (signed c);
-	signed innercontext_ (signed c, signed o, signed e);
-	signed innercontext_ (signed c, signed e);
+	signed context_ (signed c, signed o, signed e);
+	signed context_ (signed c, signed e);
 	signed find (signed c);
 };
 
-#endif
 
 /*====================================================================*
  *   end declaration;
  *--------------------------------------------------------------------*/
 
+#endif
