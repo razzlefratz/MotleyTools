@@ -811,7 +811,7 @@ signed octidy::escaped (signed c) const
 	c = octidy::feed (o);
 	if (o == '\n') 
 	{
-		octidy::print (octidy::margin (), octidy::indent (), octidy::level ());
+		octidy::print (octidy::margin (), octidy::offset (), octidy::level ());
 	}
 	return (c);
 }

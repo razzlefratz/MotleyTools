@@ -22,7 +22,7 @@
  *--------------------------------------------------------------------*/
 
 #define oINDENT_MARGIN ""
-#define oINDENT_INDENT "\t"
+#define oINDENT_OFFSET "\t"
 #define oINDENT_FINISH ""
 #define oINDENT_RECORD "\n"
 
@@ -39,7 +39,7 @@ public:
 	signed space (void) const;
 	signed level (void) const;
 	char const * margin (void) const;
-	char const * indent (void) const;
+	char const * offset (void) const;
 	char const * finish (void) const;
 	char const * record (void) const;
 	oindent & increment (void);
@@ -47,7 +47,7 @@ public:
 	oindent & space (signed space);
 	oindent & level (signed level);
 	oindent & margin (char const * string);
-	oindent & indent (char const * string);
+	oindent & offset (char const * string);
 	oindent & finish (char const * string);
 	oindent & record (char const * string);
 	oindent & endline ();
@@ -55,17 +55,17 @@ public:
 	oindent & endline (char const * finish, char const * record, signed space);
 	oindent & newline ();
 	oindent & newline (signed level);
-	oindent & newline (char const * margin, char const * indent, signed level);
+	oindent & newline (char const * margin, char const * offset, signed level);
 	oindent & print (void);
 	oindent & print (char const * string);
 	oindent & print (signed level, signed space, char const * string);
-	static void print (char const * margin, char const * indent, signed level);
+	static void print (char const * prefix, char const * suffix, signed count);
 protected:
 	signed mlevel;
 	signed mspace;
 private:
 	char * mmargin;
-	char * mindent;
+	char * moffset;
 	char * mfinish;
 	char * mrecord;
 };
