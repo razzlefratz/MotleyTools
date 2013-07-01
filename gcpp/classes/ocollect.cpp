@@ -47,10 +47,6 @@
  *   after each ',' or ';'; replace other white space strings with
  *   one space;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *   
  *--------------------------------------------------------------------*/
 
 signed ocollect::context (signed c, char const * charset) const 
@@ -66,10 +62,7 @@ signed ocollect::context (signed c, char const * charset) const
 /*====================================================================*
  *
  *   signed context (signed c, signed o, signed e) const;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *   signed _context (signed c, signed o, signed e) const;
  *
  *--------------------------------------------------------------------*/
 
@@ -95,11 +88,8 @@ signed ocollect::_context (signed c, signed o, signed e) const
 
 /*====================================================================*
  *
- *   signed context (signed c, signed e);
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *   signed context (signed c, signed e) const;
+ *   signed _context (signed c, signed e) const;
  *
  *--------------------------------------------------------------------*/
 
@@ -124,7 +114,7 @@ signed ocollect::_context (signed c, signed e) const
 
 /*====================================================================*
  *   
- *   signed context (signed c);
+ *   signed context (signed c) const;
  *   
  *   read stdin and write stdout; write initiator (c) then read and 
  *   write trailing characters upto and including any terminator in
@@ -132,10 +122,6 @@ signed ocollect::_context (signed c, signed e) const
  *
  *   ignore terminators in character or string literals or enclosed
  *   by nested "(...)", "[...]" or "{...}" groups;
- *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *   
  *--------------------------------------------------------------------*/
 
@@ -177,10 +163,6 @@ signed ocollect::context (signed c) const
  *
  *   signed comment (signed c) const;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ocollect::comment (signed c) const 
@@ -202,16 +184,13 @@ signed ocollect::comment (signed c) const
 
 /*====================================================================*
  *
- *   signed ocollect::content (signed c, signed o, signed e);
+ *   signed ocollect::content (signed c, signed o, signed e) const;
+ *   signed ocollect::_content (signed c, signed o, signed e) const;
  *
  *   write (c) then read and write characters up to pair (oe); write
  *   both (o) and (e) then return either the next character or EOF;
  *
  *   for example, content ('{', '*', '}') collects pascal comments;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -237,14 +216,14 @@ signed ocollect::_content (signed c, signed o, signed e) const
 
 /*====================================================================*
  *
- *   signed ocollect::content (signed c, signed e);
+ *   signed ocollect::content (signed c, signed e) const;
+ *   signed ocollect::_content (signed c, signed e) const;
  *
  *   write (c) then read and write characters until (e); write (e) 
  *   then return the next character;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *   this method is suitabl for FORTRAN style comments that have no
+ *   special constructs from start of comment to end of line;
  *
  *--------------------------------------------------------------------*/
 
@@ -271,6 +250,7 @@ signed ocollect::_content (signed c, signed e) const
  *
  *   signed ocollect::command (signed c) const;
  *   signed ocollect::command (signed c, signed e) const;
+ *   signed ocollect::_command (signed c, signed e) const;
  *
  *   read stdin and write stdout; write initiator c then read and
  *   write characters until terminator e; 
@@ -278,9 +258,8 @@ signed ocollect::_content (signed c, signed e) const
  *   ignore escaped terminators and terminators inside literals and 
  *   comments; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *   this methods is suitable for C language style macro processor 
+ *   commands that contain literals and support continuation lines;
  *
  *--------------------------------------------------------------------*/
 
@@ -330,10 +309,6 @@ signed ocollect::_command (signed c, signed e) const
  *   read and write characters up to (e); output (e) then return the
  *   next character or EOF; ignore escaped instances of (e);
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ocollect::literal (signed c) const 
@@ -366,10 +341,6 @@ signed ocollect::_literal (signed c, signed e) const
  *
  *   signed ocollect::escaped (signed c) const;
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ocollect::escaped (signed c) const 
@@ -389,10 +360,6 @@ signed ocollect::escaped (signed c) const
  *
  *   return the next non-space input character;
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ocollect::find (signed c) const 
@@ -411,10 +378,6 @@ signed ocollect::find (signed c) const
  *
  *   write (c) and return the next input character;
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ocollect::feed (signed c) const 
@@ -432,10 +395,6 @@ signed ocollect::feed (signed c) const
  *
  *   ocollect ();
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 ocollect::ocollect () 
@@ -447,10 +406,6 @@ ocollect::ocollect ()
 /*====================================================================*
  *
  *   ~ocollect ();
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 

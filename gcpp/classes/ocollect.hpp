@@ -28,13 +28,12 @@ public:
 	ocollect ();
 	virtual~ ocollect ();
 	signed context (signed c, char const * charset) const;
-	signed context (signed c, signed o, signed e) const;
 	signed content (signed c, signed o, signed e) const;
-	signed requote (signed c, signed o, signed e) const;
-	signed context (signed c, signed e) const;
+	signed context (signed c, signed o, signed e) const;
 	signed command (signed c, signed e) const;
-	signed literal (signed c, signed e) const;
 	signed content (signed c, signed e) const;
+	signed context (signed c, signed e) const;
+	signed literal (signed c, signed e) const;
 	signed context (signed c) const;
 	signed command (signed c) const;
 	signed literal (signed c) const;
