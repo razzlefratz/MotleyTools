@@ -1,6 +1,0 @@
-a:hover { text-decoration: underline; }
-a.index { text-decoration: none; }
-a:visited { color: #000080; }
-body { background:white; color:black; font:normal 10pt courier; margin: 10px 20px 10px 20px; }
-pre  { background:white; color:black; font:normal 10pt courier; margin: 10px 20px 10px 20px; }
-li.index { color: black; list-style: outside; padding: 00px 00px 00px 05px; }
