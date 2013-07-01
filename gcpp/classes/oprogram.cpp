@@ -142,12 +142,6 @@ signed oprogram::context (signed c) const
 		}
 		std::cout.put (' ');
 	}
-	else if ((c == ',') || (c == ';')) 
-	{
-		c = oprogram::feed (c);
-		c = oprogram::find (c);
-		std::cout.put (' ');
-	}
 	else if (oascii::isalpha (c) || (c == '_')) 
 	{
 		c = oprogram::moniker (c);
@@ -159,6 +153,16 @@ signed oprogram::context (signed c) const
 	else if (oascii::isquote (c)) 
 	{
 		c = oprogram::literal (c);
+	}
+	else if (c == '\\')
+	{
+		c = oprogram::escaped (c);
+	}
+	else if ((c == ',') || (c == ';')) 
+	{
+		c = oprogram::feed (c);
+		c = oprogram::find (c);
+		std::cout.put (' ');
 	}
 	else if (c == '/') 
 	{

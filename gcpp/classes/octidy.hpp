@@ -35,9 +35,9 @@ public:
 	virtual~ octidy ();
 	signed preamble (signed c, signed e);
 	signed statement (signed c);
-	signed charlie (signed c, signed e);
-	signed atheros (signed c, signed e);
-	signed program (signed c, signed e);
+	signed charlie (signed c);
+	signed atheros (signed c);
+	signed program (signed c);
 	signed context (signed c, char const * charset) const;
 	signed context (signed c, signed o, signed e) const;
 	signed context (signed c, signed e) const;

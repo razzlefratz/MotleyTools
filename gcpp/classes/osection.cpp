@@ -30,11 +30,6 @@
  *   osection & width (size_t width)
  *
  *   
- *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 osection & osection::width (size_t width) 
@@ -58,10 +53,6 @@ osection & osection::width (size_t width)
  *
  *
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 osection & osection::title (char const * title) 
@@ -78,10 +69,6 @@ osection & osection::title (char const * title)
 /*====================================================================*
  *
  *   osection ()
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -101,10 +88,6 @@ osection::osection ()
 /*====================================================================*
  *
  *   ~osection ();
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 

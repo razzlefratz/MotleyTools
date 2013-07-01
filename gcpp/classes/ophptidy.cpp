@@ -33,10 +33,6 @@
  *
  *   search for PHP source; ignore asp source; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ophptidy::page (signed c) 
@@ -99,10 +95,6 @@ signed ophptidy::page (signed c)
  *   signed ophptidy::program (signed c);
  *
  *   format php markup using class ophptidy for support;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -273,10 +265,6 @@ signed ophptidy::statement (signed c)
  *   multiple terminators instead of one and returns the terminator
  *   instead of the following character;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ophptidy::context (signed c, char const * charset) 
@@ -292,10 +280,6 @@ signed ophptidy::context (signed c, char const * charset)
 /*====================================================================*
  *
  *   signed context (signed c, signed o, signed e);
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -326,17 +310,12 @@ signed ophptidy::_context (signed c, signed o, signed e)
  *   read and buffer nested expressions and literals until character
  *   (e) is encountered; buffer (e) and return the next character; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ophptidy::context (signed c, signed e) 
 
 {
 	c = ophptidy::feed (c);
-	c = ophptidy::find (c);
 	c = ophptidy::_context (c, e);
 	c = ophptidy::feed (c);
 	return (c);
@@ -355,10 +334,6 @@ signed ophptidy::_context (signed c, signed e)
 /*====================================================================*
  *
  *   signed context (signed  c); 
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -439,10 +414,6 @@ signed ophptidy::context (signed c)
  *
  *   signed find (signed c);
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ophptidy::find (signed c) 
@@ -459,10 +430,6 @@ signed ophptidy::find (signed c)
  *
  *   ophptidy()
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 ophptidy::ophptidy () 
@@ -474,10 +441,6 @@ ophptidy::ophptidy ()
 /*====================================================================*
  *
  *   ~ophptidy()
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 

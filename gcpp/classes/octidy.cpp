@@ -36,16 +36,16 @@ ocexitwords octidy::exitwords;
 
 /*====================================================================*
  *
- *   signed octidy::atheros (signed c, signed e);
+ *   signed octidy::atheros (signed c);
  *
  *--------------------------------------------------------------------*/
 
-signed octidy::atheros (signed c, signed e) 
+signed octidy::atheros (signed c) 
 
 {
 	octidy::level (0);
 	octidy::space (0);
-	while ((c != e) && (c != EOF)) 
+	while (c != EOF) 
 	{
 		if (oascii::isspace (c)) 
 		{
@@ -147,13 +147,13 @@ signed octidy::atheros (signed c, signed e)
  *
  *--------------------------------------------------------------------*/
 
-signed octidy::charlie (signed c, signed e) 
+signed octidy::charlie (signed c) 
 
 {
 	octidy::level (0);
 	octidy::space (0);
 	c = ocomment::preamble (c);
-	while ((c != e) && (c != EOF)) 
+	while (c != EOF)) 
 	{
 		if (oascii::isspace (c)) 
 		{
@@ -246,18 +246,18 @@ signed octidy::charlie (signed c, signed e)
 
 /*====================================================================*
  *
- *   signed octidy::program (signed c, signed e);
+ *   signed octidy::program (signed c);
  *
  *   format a source code file; 
  *
  *--------------------------------------------------------------------*/
 
-signed octidy::program (signed c, signed e) 
+signed octidy::program (signed c) 
 
 {
 	octidy::level (0);
 	octidy::space (0);
-	while ((c != e) && (c != EOF)) 
+	while (c != EOF) 
 	{
 		if (oascii::isspace (c)) 
 		{
