@@ -36,8 +36,8 @@ public:
 	signed context (signed c, signed o, signed e);
 	signed context (signed c, signed e);
 	signed context (signed c);
-	signed context_ (signed c, signed o, signed e);
-	signed context_ (signed c, signed e);
+	signed _context (signed c, signed o, signed e);
+	signed _context (signed c, signed e);
 	signed find (signed c);
 };
 

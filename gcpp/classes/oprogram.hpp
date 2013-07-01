@@ -31,13 +31,12 @@ public:
 	virtual~ oprogram ();
 	signed context (signed c, char const * charset) const;
 	signed context (signed c, signed o, signed e) const;
-	signed requote (signed c, signed o, signed e) const;
 	signed context (signed c, signed e) const;
 	signed context (signed c) const;
 	signed comment (signed c) const;
 	signed moniker (signed c) const;
-	signed context_ (signed c, signed o, signed e) const;
-	signed context_ (signed c, signed e) const;
+	signed _context (signed c, signed o, signed e) const;
+	signed _context (signed c, signed e) const;
 	signed find (signed c) const;
 private:
 	

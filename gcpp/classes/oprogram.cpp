@@ -69,18 +69,17 @@ signed oprogram::context (signed c, signed o, signed e) const
 
 {
 	c = oprogram::feed (c);
-	c = oprogram::find (c);
-	c = oprogram::context_ (c, o, e);
+	c = oprogram::_context (c, o, e);
 	c = oprogram::feed (c);
 	return (c);
 }
 
-signed oprogram::context_ (signed c, signed o, signed e) const 
+signed oprogram::_context (signed c, signed o, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = oprogram::context_ (c, o);
+		c = oprogram::_context (c, o);
 		c = oprogram::feed (c);
 	}
 	return (c);
@@ -100,13 +99,12 @@ signed oprogram::context (signed c, signed e) const
 
 {
 	c = oprogram::feed (c);
-	c = oprogram::find (c);
-	c = oprogram::context_ (c, e);
+	c = oprogram::_context (c, e);
 	c = oprogram::feed (c);
 	return (c);
 }
 
-signed oprogram::context_ (signed c, signed e) const 
+signed oprogram::_context (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
@@ -250,24 +248,6 @@ signed oprogram::moniker (signed c) const
 		c = oprogram::feed (c);
 	}
 	while (oascii::isalnum (c) || (c == '_') || (c == '.'));
-	return (c);
-}
-
-/*====================================================================*
- *
- *   signed oprogram::requote (signed c, signed o, signed e) const;
- *
- *--------------------------------------------------------------------*/
-
-signed oprogram::requote (signed c, signed o, signed e) const 
-
-{
-	c = oprogram::feed (o);
-	while ((c != e) && (c != EOF)) 
-	{
-		c = oprogram::escaped ((c == o)? e: c);
-	}
-	c = oprogram::feed (o);
 	return (c);
 }
 

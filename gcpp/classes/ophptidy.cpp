@@ -303,17 +303,17 @@ signed ophptidy::context (signed c, signed o, signed e)
 
 {
 	c = ophptidy::feed (c);
-	c = ophptidy::context_ (c, o, e);
+	c = ophptidy::_context (c, o, e);
 	c = ophptidy::feed (c);
 	return (c);
 }
 
-signed ophptidy::context_ (signed c, signed o, signed e) 
+signed ophptidy::_context (signed c, signed o, signed e) 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = ophptidy::context_ (c, o);
+		c = ophptidy::_context (c, o);
 		c = ophptidy::feed (c);
 	}
 	return (c);
@@ -337,12 +337,12 @@ signed ophptidy::context (signed c, signed e)
 {
 	c = ophptidy::feed (c);
 	c = ophptidy::find (c);
-	c = ophptidy::context_ (c, e);
+	c = ophptidy::_context (c, e);
 	c = ophptidy::feed (c);
 	return (c);
 }
 
-signed ophptidy::context_ (signed c, signed e) 
+signed ophptidy::_context (signed c, signed e) 
 
 {
 	while ((c != e) && (c != EOF)) 

@@ -67,17 +67,17 @@ signed odiscard::context (signed c, signed o, signed e) const
 
 {
 	c = odiscard::feed (c);
-	c = odiscard::context_ (c, o, e);
+	c = odiscard::_context (c, o, e);
 	c = odiscard::feed (c);
 	return (c);
 }
 
-signed odiscard::context_ (signed c, signed o, signed e) const 
+signed odiscard::_context (signed c, signed o, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = odiscard::context_ (c, o);
+		c = odiscard::_context (c, o);
 		c = odiscard::feed (c);
 	}
 	return (c);
@@ -102,12 +102,12 @@ signed odiscard::context (signed c, signed e) const
 
 {
 	c = odiscard::feed (c);
-	c = odiscard::context_ (c, e);
+	c = odiscard::_context (c, e);
 	c = odiscard::feed (c);
 	return (c);
 }
 
-signed odiscard::context_ (signed c, signed e) const 
+signed odiscard::_context (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
@@ -210,17 +210,17 @@ signed odiscard::content (signed c, signed o, signed e) const
 
 {
 	c = odiscard::feed (c);
-	c = odiscard::content_ (c, o, e);
+	c = odiscard::_content (c, o, e);
 	c = odiscard::feed (c);
 	return (c);
 }
 
-signed odiscard::content_ (signed c, signed o, signed e) const 
+signed odiscard::_content (signed c, signed o, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = odiscard::content_ (c, o);
+		c = odiscard::_content (c, o);
 		c = odiscard::feed (c);
 	}
 	return (c);
@@ -244,12 +244,12 @@ signed odiscard::content (signed c, signed e) const
 
 {
 	c = odiscard::feed (c);
-	c = odiscard::content_ (c, e);
+	c = odiscard::_content (c, e);
 	c = odiscard::feed (c);
 	return (c);
 }
 
-signed odiscard::content_ (signed c, signed e) const 
+signed odiscard::_content (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
@@ -277,7 +277,7 @@ signed odiscard::command (signed c) const
 
 {
 	c = odiscard::feed (c);
-	c = odiscard::command_ (c, '\n');
+	c = odiscard::_command (c, '\n');
 	c = odiscard::feed (c);
 	return (c);
 }
@@ -286,12 +286,12 @@ signed odiscard::command (signed c, signed e) const
 
 {
 	c = odiscard::feed (c);
-	c = odiscard::command_ (c, e);
+	c = odiscard::_command (c, e);
 	c = odiscard::feed (c);
 	return (c);
 }
 
-signed odiscard::command_ (signed c, signed e) const 
+signed odiscard::_command (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
@@ -338,12 +338,12 @@ signed odiscard::literal (signed c, signed e) const
 
 {
 	c = odiscard::feed (c);
-	c = odiscard::literal_ (c, e);
+	c = odiscard::_literal (c, e);
 	c = odiscard::feed (c);
 	return (c);
 }
 
-signed odiscard::literal_ (signed c, signed e) const 
+signed odiscard::_literal (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 

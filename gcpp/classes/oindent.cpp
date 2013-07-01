@@ -369,7 +369,7 @@ oindent::oindent (void)
 	this->mrecord [0] = '\n';
 	this->mrecord [1] = '\0';
 	this->mlevel = 0;
-	this->mspace = 1;
+	this->mspace = 0;
 	return;
 }
 

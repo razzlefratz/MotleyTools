@@ -122,7 +122,7 @@ signed ohtmltidy::page (signed c)
 	{
 		if (c == '<') 
 		{
-			c = ohtmltidy::keep (c);
+			c = ohtmltidy::feed (c);
 			c = ohtmltidy::find (c);
 			if (c == '?') 
 			{
@@ -231,12 +231,12 @@ signed ohtmltidy::sgml (signed c)
 {
 	if (c == '<') 
 	{
-		c = ohtmltidy::keep (c);
+		c = ohtmltidy::feed (c);
 		c = ohtmltidy::find (c);
 	}
 	if (c == '!') 
 	{
-		c = ohtmltidy::keep (c);
+		c = ohtmltidy::feed (c);
 		c = ohtmltidy::find (c);
 	}
 	if (c == '-') 
@@ -245,12 +245,12 @@ signed ohtmltidy::sgml (signed c)
 	}
 	else if (c == '[') 
 	{
-		c = ohtmltidy::keep (c);
+		c = ohtmltidy::feed (c);
 		c = ohtmltidy::find (c);
 		do 
 		{
 			c = oascii::toupper (c);
-			c = ohtmltidy::keep (c);
+			c = ohtmltidy::feed (c);
 		}
 		while (oascii::isalpha (c) || (c == '-'));
 		c = ohtmltidy::find (c);
@@ -261,7 +261,7 @@ signed ohtmltidy::sgml (signed c)
 		do 
 		{
 			c = oascii::toupper (c);
-			c = ohtmltidy::keep (c);
+			c = ohtmltidy::feed (c);
 		}
 		while (oascii::isalpha (c) || (c == '-'));
 	}
@@ -278,17 +278,17 @@ signed ohtmltidy::sgml (signed c)
 			c = ohtmltidy::context ('(', ')');
 			if ((c == '*') || (c == '+')) 
 			{
-				c = ohtmltidy::keep (c);
+				c = ohtmltidy::feed (c);
 			}
 		}
 		else if (c == '[') 
 		{
-			c = ohtmltidy::keep (c);
+			c = ohtmltidy::feed (c);
 			c = ohtmltidy::find (c);
 			do 
 			{
 				c = oascii::toupper (c);
-				c = ohtmltidy::keep (c);
+				c = ohtmltidy::feed (c);
 			}
 			while (oascii::isalpha (c) || (c == '-'));
 			c = ohtmltidy::find (c);
@@ -303,7 +303,7 @@ signed ohtmltidy::sgml (signed c)
 			do 
 			{
 				c = oascii::toupper (c);
-				c = ohtmltidy::keep (c);
+				c = ohtmltidy::feed (c);
 			}
 			while (oascii::isalnum (c) || (c == '-') || (c == '.'));
 		}
@@ -311,7 +311,7 @@ signed ohtmltidy::sgml (signed c)
 		{
 			do 
 			{
-				c = ohtmltidy::keep (c);
+				c = ohtmltidy::feed (c);
 			}
 			while (oascii::isdigit (c) || (c == '.'));
 		}
@@ -319,7 +319,7 @@ signed ohtmltidy::sgml (signed c)
 	}
 	if (c == '>') 
 	{
-		c = ohtmltidy::keep (c);
+		c = ohtmltidy::feed (c);
 	}
 	return (c);
 }
@@ -341,12 +341,12 @@ signed ohtmltidy::xhtml (signed c)
 {
 	if (c == '<') 
 	{
-		c = ohtmltidy::keep (c);
+		c = ohtmltidy::feed (c);
 		c = ohtmltidy::find (c);
 	}
 	if (c == '/') 
 	{
-		c = ohtmltidy::keep (c);
+		c = ohtmltidy::feed (c);
 		c = ohtmltidy::find (c);
 		this->mlevel--;
 	}
@@ -389,7 +389,7 @@ signed ohtmltidy::xhtml (signed c)
 		c = ohtmltidy::find (c);
 		if (c == '=') 
 		{
-			c = ohtmltidy::keep (c);
+			c = ohtmltidy::feed (c);
 			c = ohtmltidy::find (c);
 			if (oascii::isquote (c)) 
 			{
@@ -408,7 +408,7 @@ signed ohtmltidy::xhtml (signed c)
 	}
 	if (c == '/') 
 	{
-		c = ohtmltidy::keep (c);
+		c = ohtmltidy::feed (c);
 		c = ohtmltidy::find (c);
 		this->mlevel--;
 	}
@@ -422,7 +422,7 @@ signed ohtmltidy::xhtml (signed c)
 	}
 	if (c == '>') 
 	{
-		c = ohtmltidy::keep (c);
+		c = ohtmltidy::feed (c);
 	}
 	return (c);
 }
@@ -440,24 +440,24 @@ signed ohtmltidy::xhtml (signed c)
 signed ohtmltidy::comment (signed c) const 
 
 {
-	c = ohtmltidy::keep (c);
+	c = ohtmltidy::feed (c);
 	if (c == '-') 
 	{
 		while (c == '-') 
 		{
-			c = ohtmltidy::keep (c);
+			c = ohtmltidy::feed (c);
 		}
 		while ((c != '-') && (c != EOF)) 
 		{
 			while ((c != '-') && (c != EOF)) 
 			{
-				c = ohtmltidy::keep (c);
+				c = ohtmltidy::feed (c);
 			}
-			c = ohtmltidy::keep (c);
+			c = ohtmltidy::feed (c);
 		}
 		while (c == '-') 
 		{
-			c = ohtmltidy::keep (c);
+			c = ohtmltidy::feed (c);
 		}
 	}
 	return (c);
@@ -493,7 +493,7 @@ signed ohtmltidy::cdata (signed c) const
 			space = 0;
 			continue;
 		}
-		c = ohtmltidy::keep (c);
+		c = ohtmltidy::feed (c);
 	}
 	return (c);
 }
@@ -512,13 +512,13 @@ signed ohtmltidy::enquote (signed c, signed e)
 
 {
 	char * string = this->mstring;
-	c = ohtmltidy::keep (this->mquote);
+	c = ohtmltidy::feed (this->mquote);
 	while ((c != e) && (c != EOF)) 
 	{
 		* string++ = c;
-		c = ohtmltidy::keep (c);
+		c = ohtmltidy::feed (c);
 	}
-	c = ohtmltidy::keep (this->mquote);
+	c = ohtmltidy::feed (this->mquote);
 	* string = (char) (0);
 	return (c);
 }
@@ -597,12 +597,25 @@ signed ohtmltidy::unknown (signed c)
 
 /*====================================================================*
  *   
+ *   signed feed (signed c) const;
+ *   
+ *--------------------------------------------------------------------*/
+
+signed ohtmltidy::feed (signed c) const 
+
+{
+	if (c != EOF) 
+	{
+		std::cout.put (c);
+		c = std::cin.get ();
+	}
+	return (c);
+}
+
+/*====================================================================*
+ *   
  *   signed find (signed c) const;
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ohtmltidy::find (signed c) const 
@@ -616,33 +629,8 @@ signed ohtmltidy::find (signed c) const
 }
 
 /*====================================================================*
- *   
- *   signed keep (signed c) const;
- *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
- *--------------------------------------------------------------------*/
-
-signed ohtmltidy::keep (signed c) const 
-
-{
-	if (c != EOF) 
-	{
-		std::cout.put (c);
-		c = std::cin.get ();
-	}
-	return (c);
-}
-
-/*====================================================================*
  *
  *   ohtmltidy & print () 
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -656,10 +644,6 @@ ohtmltidy & ohtmltidy::print ()
 /*====================================================================*
  *
  *   ohtmltidy()
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -680,10 +664,6 @@ ohtmltidy::ohtmltidy ()
 /*====================================================================*
  *
  *   ~ohtmltidy()
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 

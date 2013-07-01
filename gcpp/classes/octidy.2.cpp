@@ -489,17 +489,17 @@ signed octidy::context (signed c, signed o, signed e) const
 
 {
 	c = octidy::feed (c);
-	c = octidy::context_ (c, o, e);
+	c = octidy::_context (c, o, e);
 	c = octidy::feed (c);
 	return (c);
 }
 
-signed octidy::context_ (signed c, signed o, signed e) const 
+signed octidy::_context (signed c, signed o, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = octidy::context_ (c, o);
+		c = octidy::_context (c, o);
 		c = octidy::feed (c);
 	}
 	return (c);
@@ -520,12 +520,12 @@ signed octidy::context (signed c, signed e) const
 {
 	c = octidy::feed (c);
 	c = octidy::find (c);
-	c = octidy::context_ (c, e);
+	c = octidy::_context (c, e);
 	c = octidy::feed (c);
 	return (c);
 }
 
-signed octidy::context_ (signed c, signed e) const 
+signed octidy::_context (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 

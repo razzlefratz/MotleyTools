@@ -77,17 +77,17 @@ signed ocollect::context (signed c, signed o, signed e) const
 
 {
 	c = ocollect::feed (c);
-	c = ocollect::context_ (c, o, e);
+	c = ocollect::_context (c, o, e);
 	c = ocollect::feed (c);
 	return (c);
 }
 
-signed ocollect::context_ (signed c, signed o, signed e) const 
+signed ocollect::_context (signed c, signed o, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = ocollect::context_ (c, o);
+		c = ocollect::_context (c, o);
 		c = ocollect::feed (c);
 	}
 	return (c);
@@ -107,12 +107,12 @@ signed ocollect::context (signed c, signed e) const
 
 {
 	c = ocollect::feed (c);
-	c = ocollect::context_ (c, e);
+	c = ocollect::_context (c, e);
 	c = ocollect::feed (c);
 	return (c);
 }
 
-signed ocollect::context_ (signed c, signed e) const 
+signed ocollect::_context (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
@@ -219,17 +219,17 @@ signed ocollect::content (signed c, signed o, signed e) const
 
 {
 	c = ocollect::feed (c);
-	c = ocollect::content_ (c, o, e);
+	c = ocollect::_content (c, o, e);
 	c = ocollect::feed (c);
 	return (c);
 }
 
-signed ocollect::content_ (signed c, signed o, signed e) const 
+signed ocollect::_content (signed c, signed o, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = ocollect::content_ (c, o);
+		c = ocollect::_content (c, o);
 		c = ocollect::feed (c);
 	}
 	return (c);
@@ -252,12 +252,12 @@ signed ocollect::content (signed c, signed e) const
 
 {
 	c = ocollect::feed (c);
-	c = ocollect::content_ (c, e);
+	c = ocollect::_content (c, e);
 	c = ocollect::feed (c);
 	return (c);
 }
 
-signed ocollect::content_ (signed c, signed e) const 
+signed ocollect::_content (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
@@ -288,7 +288,7 @@ signed ocollect::command (signed c) const
 
 {
 	c = ocollect::feed (c);
-	c = ocollect::command_ (c, '\n');
+	c = ocollect::_command (c, '\n');
 	c = ocollect::feed (c);
 	return (c);
 }
@@ -297,12 +297,12 @@ signed ocollect::command (signed c, signed e) const
 
 {
 	c = ocollect::feed (c);
-	c = ocollect::command_ (c, e);
+	c = ocollect::_command (c, e);
 	c = ocollect::feed (c);
 	return (c);
 }
 
-signed ocollect::command_ (signed c, signed e) const 
+signed ocollect::_command (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
@@ -347,12 +347,12 @@ signed ocollect::literal (signed c, signed e) const
 
 {
 	c = ocollect::feed (c);
-	c = ocollect::literal_ (c, e);
+	c = ocollect::_literal (c, e);
 	c = ocollect::feed (c);
 	return (c);
 }
 
-signed ocollect::literal_ (signed c, signed e) const 
+signed ocollect::_literal (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 

@@ -44,7 +44,7 @@ signed octidy::atheros (signed c, signed e)
 
 {
 	octidy::level (0);
-	octidy::space (1);
+	octidy::space (0);
 	while ((c != e) && (c != EOF)) 
 	{
 		if (oascii::isspace (c)) 
@@ -83,11 +83,18 @@ signed octidy::atheros (signed c, signed e)
 		{
 			if (!this->mlevel) 
 			{
-				octidy::endline (1);
+				octidy::endline (2);
+				octidy::newline ();
+				c = octidy::feed (c);
+				c = octidy::find (c);
 			}
-			c = octidy::feed (c);
-			c = octidy::find (c);
-			octidy::newline ();
+			else
+			{
+				c = octidy::feed (c);
+				c = octidy::find (c);
+				octidy::endline (1);
+				octidy::newline ();
+			}
 			octidy::increment ();
 			octidy::space (1);
 			continue;
@@ -144,7 +151,7 @@ signed octidy::charlie (signed c, signed e)
 
 {
 	octidy::level (0);
-	octidy::space (1);
+	octidy::space (0);
 	c = ocomment::preamble (c);
 	while ((c != e) && (c != EOF)) 
 	{
@@ -184,10 +191,14 @@ signed octidy::charlie (signed c, signed e)
 		{
 			if (!this->mlevel) 
 			{
-				octidy::endline (1);
+				octidy::endline (2);
+				octidy::newline ();
 			}
-			octidy::endline (1);
-			octidy::newline ();
+			else
+			{
+				octidy::endline (1);
+				octidy::newline ();
+			}
 			c = octidy::feed (c);
 			c = octidy::find (c);
 			octidy::increment ();
@@ -245,7 +256,7 @@ signed octidy::program (signed c, signed e)
 
 {
 	octidy::level (0);
-	octidy::space (1);
+	octidy::space (0);
 	while ((c != e) && (c != EOF)) 
 	{
 		if (oascii::isspace (c)) 
@@ -486,17 +497,17 @@ signed octidy::context (signed c, signed o, signed e) const
 
 {
 	c = octidy::feed (c);
-	c = octidy::context_ (c, o, e);
+	c = octidy::_context (c, o, e);
 	c = octidy::feed (c);
 	return (c);
 }
 
-signed octidy::context_ (signed c, signed o, signed e) const 
+signed octidy::_context (signed c, signed o, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = octidy::context_ (c, o);
+		c = octidy::_context (c, o);
 		c = octidy::feed (c);
 	}
 	return (c);
@@ -512,13 +523,12 @@ signed octidy::context (signed c, signed e) const
 
 {
 	c = octidy::feed (c);
-	c = octidy::find (c);
-	c = octidy::context_ (c, e);
+	c = octidy::_context (c, e);
 	c = octidy::feed (c);
 	return (c);
 }
 
-signed octidy::context_ (signed c, signed e) const 
+signed octidy::_context (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
