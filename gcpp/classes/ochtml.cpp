@@ -94,7 +94,9 @@ ochtml & ochtml::html (char const * filename)
 {
 	std::ofstream output;
 	std::streambuf * buf;
-	this->mcount = 1;
+	ochtml::level (0);
+	ochtml::space (1);
+	this->mindex = 1;
 	filename = ochtml::filespec.filespec (filename).fullpath ();
 	if (this->mfile.read (filename).isempty ()) 
 	{
@@ -144,14 +146,14 @@ ochtml & ochtml::html (char const * filename)
 			this->mspan.EndTag ();
 			break;
 		case CL_T_STANDARD:
-			this->mspan.CoreAttributes.IdentityAttribute->value (this->mlevel++);
+			this->mspan.CoreAttributes.IdentityAttribute->value (this->mindex++);
 			this->mspan.CoreAttributes.ClassAttribute->value ("standard");
 			this->mspan.StartTag ();
 			this->mfile.write ();
 			this->mspan.EndTag ();
 			break;
 		case CL_T_CONSTANT:
-			this->mspan.CoreAttributes.IdentityAttribute->value (this->mlevel++);
+			this->mspan.CoreAttributes.IdentityAttribute->value (this->mindex++);
 			this->mspan.CoreAttributes.ClassAttribute->value ("constant");
 			this->mspan.StartTag ();
 			this->mfile.write ();
@@ -161,7 +163,7 @@ ochtml & ochtml::html (char const * filename)
 		case CL_T_VARIABLE:
 			if (!level) 
 			{
-				this->mspan.CoreAttributes.IdentityAttribute->value (this->mlevel++);
+				this->mspan.CoreAttributes.IdentityAttribute->value (this->mindex++);
 				this->mspan.CoreAttributes.ClassAttribute->value ("variable");
 				this->mspan.StartTag ();
 				this->mfile.write ();
@@ -180,7 +182,7 @@ ochtml & ochtml::html (char const * filename)
 
 #else
 
-				this->mlink.LinkAttributes.ReferenceAttribute->value (this->mlevel++);
+				this->mlink.LinkAttributes.ReferenceAttribute->value (this->mindex++);
 
 #endif
 
@@ -198,7 +200,7 @@ ochtml & ochtml::html (char const * filename)
 
 #else
 
-				this->mlink.LinkAttributes.ReferenceAttribute->value (this->mlevel++);
+				this->mlink.LinkAttributes.ReferenceAttribute->value (this->mindex++);
 
 #endif
 
@@ -273,7 +275,7 @@ ochtml & ochtml::directive ()
 	switch (cprocword.indexof (this->mfile.flush ().scantoken ().tokentext ())) 
 	{
 	case oCPROCWORD_O_DEFINE:
-		this->mspan.CoreAttributes.IdentityAttribute->value (this->mlevel++);
+		this->mspan.CoreAttributes.IdentityAttribute->value (this->mindex++);
 		this->mspan.CoreAttributes.ClassAttribute->value ("keyword");
 		this->mspan.StartTag ();
 		this->mfile.write ();
@@ -307,7 +309,7 @@ ochtml & ochtml::directive ()
 #endif
 
 	case oCPROCWORD_O_INCLUDE:
-		this->mspan.CoreAttributes.IdentityAttribute->value (this->mlevel++);
+		this->mspan.CoreAttributes.IdentityAttribute->value (this->mindex++);
 		this->mspan.CoreAttributes.ClassAttribute->value ("reserved");
 		this->mspan.StartTag ();
 		this->mfile.write ();
@@ -399,7 +401,7 @@ ochtml & ochtml::directive ()
 #endif
 
 	default:
-		this->mspan.CoreAttributes.IdentityAttribute->value (this->mcount++);
+		this->mspan.CoreAttributes.IdentityAttribute->value (this->mindex++);
 		this->mspan.CoreAttributes.ClassAttribute->value ("keyword");
 		this->mspan.StartTag ();
 		this->mfile.write ();
@@ -421,7 +423,7 @@ ochtml::ochtml (char const * stylesheet)
 	owebpage::stylesheet (stylesheet);
 	this->murl = new char [FILENAME_MAX + 1];
 	this->murl [0] = (char)(0);
-	this->mcount = 1;
+	this->mindex = 1;
 	return;
 }
 
@@ -437,7 +439,7 @@ ochtml::ochtml ()
 	owebpage::stylesheet (oCHTML_PAGE_STYLESHEET);
 	this->murl = new char [FILENAME_MAX + 1];
 	this->murl [0] = (char)(0);
-	this->mcount = 1;
+	this->mindex = 1;
 	return;
 }
 
