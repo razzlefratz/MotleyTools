@@ -47,8 +47,9 @@ public:
 	signed _literal (signed c, signed e) const;
 	signed _content (signed c, signed e) const;
 	signed _comment (signed c) const;
-	signed find (signed c) const;
 	signed feed (signed c) const;
+	signed find (signed c) const;
+	signed pack (signed c) const;
 };
 
 /*====================================================================*

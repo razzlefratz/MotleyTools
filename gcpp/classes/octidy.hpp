@@ -46,7 +46,6 @@ public:
 	signed escaped (signed c) const;
 	signed _context (signed c, signed o, signed e) const;
 	signed _context (signed c, signed e) const;
-	signed find (signed c) const;
 private:
 	static ocgotowords gotowords;
 	static ocexitwords exitwords;

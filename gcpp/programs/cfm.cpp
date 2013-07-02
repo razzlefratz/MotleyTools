@@ -104,14 +104,14 @@ int main (int argc, char const * argv [])
 		"x\terase markers",
 		(char const *) (0)
 	};
+	char const * profile = PROFILE_NAME;
+	char const * section = SECTION_NAME;
 	ogetoptv getopt;
 	ofileopen fileopen;
 	opathspec pathspec;
 	oprofile config;
 	octidy object;
-	int (octidy::* method) (signed) = & octidy::charlie;
-	char const * profile = PROFILE_NAME;
-	char const * section = SECTION_NAME;
+	signed (octidy::* method) (signed) = & octidy::charlie;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
 	{
@@ -193,7 +193,7 @@ int main (int argc, char const * argv [])
 	object.special (config.string (profile, section, oCOMMENT_S_SPECIAL, oCOMMENT_T_SPECIAL));
 	if (!getopt.argc ()) 
 	{
-		c = (object.* method) (std::cin.get ());
+		(object.* method) (std::cin.get ());
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
@@ -202,7 +202,7 @@ int main (int argc, char const * argv [])
 		if (fileopen.openedit (filename)) 
 		{
 			object.filename (filename);
-			c = (object.* method) (std::cin.get ());
+			(object.* method) (std::cin.get ());
 			fileopen.close ();
 		}
 		getopt++;

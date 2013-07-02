@@ -69,8 +69,7 @@ signed osource::context (signed c, char const * charset) const
 signed osource::context (signed c, signed o, signed e) const 
 
 {
-	c = osource::feed (c);
-	c = osource::find (c);
+	c = osource::pack (c);
 	c = osource::_context (c, o, e);
 	c = osource::feed (c);
 	return (c);
@@ -96,8 +95,7 @@ signed osource::_context (signed c, signed o, signed e) const
 signed osource::context (signed c, signed e) const 
 
 {
-	c = osource::feed (c);
-	c = osource::find (c);
+	c = osource::pack (c);
 	c = osource::_context (c, e);
 	c = osource::feed (c);
 	return (c);
@@ -416,24 +414,6 @@ signed osource::escaped (signed c) const
 
 /*====================================================================*
  *   
- *   signed find (signed c) const;
- *
- *   return the next non-space input character;
- *   
- *--------------------------------------------------------------------*/
-
-signed osource::find (signed c) const 
-
-{
-	while (oascii::isspace (c)) 
-	{
-		c = osource::feed (c);
-	}
-	return (c);
-}
-
-/*====================================================================*
- *   
  *   signed feed (signed c) const;
  *
  *   write (c) and return the next input character;
@@ -448,6 +428,40 @@ signed osource::feed (signed c) const
 		std::cout.put (c);
 	}
 	c = std::cin.get ();
+	return (c);
+}
+
+/*====================================================================*
+ *   
+ *   signed find (signed c) const;
+ *
+ *   return the next non-space input character;
+ *   
+ *--------------------------------------------------------------------*/
+
+signed osource::find (signed c) const 
+
+{
+	while (oascii::isspace (c)) 
+	{
+		c = std::cin.get ();
+	}
+	return (c);
+}
+
+/*====================================================================*
+ *   
+ *   signed pack (signed c) const;
+ *
+ *   write (c) and return the next non-space input character;
+ *   
+ *--------------------------------------------------------------------*/
+
+signed osource::pack (signed c) const 
+
+{
+	c = osource::feed (c);
+	c = osource::find (c);
 	return (c);
 }
 

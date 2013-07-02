@@ -85,13 +85,11 @@ signed octidy::atheros (signed c)
 			{
 				octidy::endline (2);
 				octidy::newline ();
-				c = octidy::feed (c);
-				c = octidy::find (c);
+				c = octidy::pack (c);
 			}
 			else
 			{
-				c = octidy::feed (c);
-				c = octidy::find (c);
+				c = octidy::pack (c);
 				octidy::endline (1);
 				octidy::newline ();
 			}
@@ -106,8 +104,7 @@ signed octidy::atheros (signed c)
 			octidy::newline ();
 			do 
 			{
-				c = octidy::feed (c);
-				c = octidy::find (c);
+				c = octidy::pack (c);
 			}
 			while (c == ';');
 			if (!this->mlevel) 
@@ -123,8 +120,7 @@ signed octidy::atheros (signed c)
 		}
 		if ((c == ',') || (c == ';') || (c == ':')) 
 		{
-			c = octidy::feed (c);
-			c = octidy::find (c);
+			c = octidy::pack (c);
 			octidy::space (2);
 			continue;
 		}
@@ -199,8 +195,7 @@ signed octidy::charlie (signed c)
 				octidy::endline (1);
 				octidy::newline ();
 			}
-			c = octidy::feed (c);
-			c = octidy::find (c);
+			c = octidy::pack (c);
 			octidy::increment ();
 			octidy::space (2);
 			continue;
@@ -212,8 +207,7 @@ signed octidy::charlie (signed c)
 			octidy::newline ();
 			do 
 			{
-				c = octidy::feed (c);
-				c = octidy::find (c);
+				c = octidy::pack (c);
 			}
 			while (c == ';');
 			if (!this->mlevel) 
@@ -230,8 +224,7 @@ signed octidy::charlie (signed c)
 		}
 		if ((c == ',') || (c == ';') || (c == ':')) 
 		{
-			c = octidy::feed (c);
-			c = octidy::find (c);
+			c = octidy::pack (c);
 			octidy::space (2);
 			continue;
 		}
@@ -298,8 +291,7 @@ signed octidy::program (signed c)
 			}
 			octidy::endline (1);
 			octidy::newline ();
-			c = octidy::feed (c);
-			c = octidy::find (c);
+			c = octidy::pack (c);
 			octidy::increment ();
 			octidy::space (2);
 			continue;
@@ -311,8 +303,7 @@ signed octidy::program (signed c)
 			octidy::newline ();
 			do 
 			{
-				c = octidy::feed (c);
-				c = octidy::find (c);
+				c = octidy::pack (c);
 			}
 			while (c == ';');
 			if (!this->mlevel) 
@@ -328,8 +319,7 @@ signed octidy::program (signed c)
 		}
 		if ((c == ',') || (c == ';') || (c == ':')) 
 		{
-			c = octidy::feed (c);
-			c = octidy::find (c);
+			c = octidy::pack (c);
 			octidy::space (2);
 			continue;
 		}
@@ -429,8 +419,7 @@ signed octidy::statement (signed c)
 		else 
 		{
 			octidy::print (this->mlevel-1, 0, string);
-			c = octidy::feed (c);
-			c = octidy::find (c);
+			c = octidy::pack (c);
 			octidy::endline (1);
 			octidy::newline ();
 			c = octidy::context (c, ",;{}#");
@@ -496,8 +485,7 @@ signed octidy::context (signed c, char const * charset) const
 signed octidy::context (signed c, signed o, signed e) const 
 
 {
-	c = octidy::feed (c);
-	c = octidy::find (c);
+	c = octidy::pack (c);
 	c = octidy::_context (c, o, e);
 	c = octidy::feed (c);
 	return (c);
@@ -523,8 +511,7 @@ signed octidy::_context (signed c, signed o, signed e) const
 signed octidy::context (signed c, signed e) const 
 
 {
-	c = octidy::feed (c);
-	c = octidy::find (c);
+	c = octidy::pack (c);
 	c = octidy::_context (c, e);
 	c = octidy::feed (c);
 	return (c);
@@ -607,13 +594,11 @@ signed octidy::context (signed c) const
 	}
 	else if ((c == '.')) 
 	{
-		c = octidy::feed (c);
-		c = octidy::find (c);
+		c = octidy::pack (c);
 	}
 	else if ((c == ',') || (c == ';')) 
 	{
-		c = octidy::feed (c);
-		c = octidy::find (c);
+		c = octidy::pack (c);
 		std::cout.put (' ');
 	}
 	else if ((c == '~') || (c == '^') || (c == '%')) 
@@ -821,24 +806,6 @@ signed octidy::escaped (signed c) const
 	if (o == '\n') 
 	{
 		octidy::print (octidy::margin (), octidy::offset (), octidy::level ());
-	}
-	return (c);
-}
-
-/*====================================================================*
- *
- *   signed find (signed c) const;
- *
- *   read and discard whitespace; start with current character (c);
- *
- *--------------------------------------------------------------------*/
-
-signed octidy::find (signed c) const 
-
-{
-	while (oascii::isspace (c)) 
-	{
-		c = std::cin.get ();
 	}
 	return (c);
 }
