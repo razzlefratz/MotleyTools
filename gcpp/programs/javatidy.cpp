@@ -12,7 +12,6 @@
  *   system header files;
  *--------------------------------------------------------------------*/
 
-#include <cstdlib>
 #include <iostream>
 
 /*====================================================================*
@@ -49,76 +48,6 @@
 #endif
 
 /*====================================================================*
- *   program variables;
- *--------------------------------------------------------------------*/
-
-static oprogram program;
-
-/*====================================================================*
- *
- *   void function (oflagword * flags);
- *
- *   read from stdin and write to stdout; indent C style text based
- *   on '{', ';' and '}' characters; leave '#' comments alone; this
- *   program is suitable for css functions, awk programs and bind 
- *   name.conf files;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
- *--------------------------------------------------------------------*/
-
-static signed function (signed c, signed e) 
-
-{
-	unsigned level = 0;
-	unsigned space = 0;
-	while ((c != e) && (c != EOF)) 
-	{
-		if (oascii::isspace (c)) 
-		{
-			c = std::cin.get ();
-			continue;
-		}
-		if ((c == ',') || (c == ';')) 
-		{
-			c = program.feed (c);
-			c = program.find (c);
-			continue;
-		}
-		if (c == '{') 
-		{
-			program.endline (1);
-			program.newline (level++);
-			c = program.feed (c);
-			c = program.find (c);
-			space = 1;
-			continue;
-		}
-		if (c == '}') 
-		{
-			program.endline (1);
-			program.newline (--level);
-			c = program.feed (c);
-			c = program.find (c);
-			space = 1;
-			if (!level) 
-			{
-				program.endline (1);
-			}
-			continue;
-		}
-		program.endline (space);
-		program.newline (level);
-		c = program.context (c, "{;}</>");
-		space = 1;
-	}
-	program.endline (2);
-	return (c);
-}
-
-/*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
 
@@ -141,6 +70,8 @@ int main (int argc, char const * argv [])
 	ofileopen fileopen;
 	opathspec pathspec;
 	oescape escape;
+	oprogram program;
+	signed (oprogram::* method) (signed) = & oprogram::java;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
 	{
@@ -167,7 +98,7 @@ int main (int argc, char const * argv [])
 	}
 	if (!getopt.argc ()) 
 	{
-		function (std::cin.get (), EOF);
+		(program.* method) (std::cin.get ());
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
@@ -175,7 +106,7 @@ int main (int argc, char const * argv [])
 		pathspec.fullpath (filename, * getopt.argv ());
 		if (fileopen.openedit (filename)) 
 		{
-			function (std::cin.get (), EOF);
+			(program.* method) (std::cin.get ());
 			fileopen.close ();
 		}
 		getopt++;
