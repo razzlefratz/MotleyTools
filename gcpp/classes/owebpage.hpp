@@ -73,6 +73,7 @@ public:
 	owebpage & LinkFooter (void);
 	owebpage & BodyFooter (void);
 	owebpage & PageFooter (void);
+	owebpage & css2 (void);
 private:
 	oenviron session;
 	char * mtitle;

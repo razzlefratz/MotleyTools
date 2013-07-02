@@ -48,25 +48,24 @@ char const * owebpage::title (void) const
 
 /*====================================================================*
  * 
- *   owebpage & title (char const * string) 
+ *   owebpage & title (char const * title) 
  *
- *   replace current title with the constant string argument only
- *   if they differ;
+ *   replace current title with another if they differ;
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::title (char const * string) 
+owebpage & owebpage::title (char const * title) 
 
 {
-	this->mtitle = otext::replace (this->mtitle, string);
+	this->mtitle = otext::replace (this->mtitle, title);
 	return (* this);
 }
 
 /*====================================================================*
  * 
- *   char const * PageStyle (void) const;
+ *   char const * stylesheet (void) const;
  *
- *   return the stylesheet as a constant character string;
+ *   return the stylesheet url as a constant character string;
  *
  *--------------------------------------------------------------------*/
 
@@ -78,10 +77,9 @@ char const * owebpage::stylesheet (void) const
 
 /*====================================================================*
  * 
- *   owebpage & PageStyle (char const * stylesheet);
+ *   owebpage & stylesheet (char const * stylesheet);
  *
- *   replace the current stylesheet with the constant string argument 
- *   only if they differ;
+ *   replace the current stylesheet url with another if they differ;
  *
  *--------------------------------------------------------------------*/
 
@@ -89,6 +87,32 @@ owebpage & owebpage::stylesheet (char const * stylesheet)
 
 {
 	this->mstylesheet = otext::replace (this->mstylesheet, stylesheet);
+	return (* this);
+}
+
+/*====================================================================*
+ *
+ *   void css2 (void);
+ *   
+ *   print a compatible CSS stylesheet on stdout so that element and
+ *   property names match HTML output;
+ *
+ *--------------------------------------------------------------------*/
+
+owebpage & owebpage::css2 (void) 
+
+{
+	std::cout << "a:hover { text-decoration: underline; }" << std::endl;
+	std::cout << "a { text-decoration: none; }" << std::endl;
+	std::cout << "a:link { color: navy; }" << std::endl;
+	std::cout << "a:active { }" << std::endl;
+	std::cout << "a:visited { color: maroon; }" << std::endl;
+	std::cout << "body { background:white; color:black; font:normal 12pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
+	std::cout << "pre  { background:white; color:black; font:normal 12pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
+	std::cout << "div.pageheader { test-align: center; }" << std::endl;
+	std::cout << "div.linkheader { text-align: left; }" << std::endl;
+	std::cout << "div.linkfooter { text-align: right; }" << std::endl;
+	std::cout << "div.pagefooter { text-align: center; }" << std::endl;
 	return (* this);
 }
 

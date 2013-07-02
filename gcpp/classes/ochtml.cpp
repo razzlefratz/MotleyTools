@@ -74,6 +74,10 @@ ochtml & ochtml::css2 (void)
 	std::cout << "span.variable { color: blue; }" << std::endl;
 	std::cout << "span.operator { color: black; }" << std::endl;
 	std::cout << "span.function { color: fuschia; }" << std::endl;
+	std::cout << "div.pageheader { test-align: center; }" << std::endl;
+	std::cout << "div.linkheader { text-align: left; }" << std::endl;
+	std::cout << "div.linkfooter { text-align: right; }" << std::endl;
+	std::cout << "div.pagefooter { test-align: center; }" << std::endl;
 	return (* this);
 }
 
