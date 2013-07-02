@@ -42,80 +42,18 @@
 #include "../classes/ocontext.cpp"
 #include "../classes/owildcard.cpp"
 #include "../classes/oescape.cpp"
+#include "../classes/oprogram.cpp"
+#include "../classes/osource.cpp"
 #include "../classes/oindent.cpp"
 #include "../classes/oascii.cpp"
-#include "../classes/osource.cpp"
-#include "../classes/oprogram.cpp"
+#include "../classes/otext.cpp"
 #endif
 
 /*====================================================================*
- *   program variables;
- *--------------------------------------------------------------------*/
-
-static oprogram program;
-
-/*====================================================================*
- *
- *   void function (oflagword * flags);
- *
- *   read from stdin and write to stdout; indent C style text based
- *   on '{', ';' and '}' characters; leave '#' comments alone; this
- *   program is suitable for css functions, awk programs and bind 
- *   name.conf files;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
- *--------------------------------------------------------------------*/
-
-static signed function (signed c, signed e) 
-
-{
-	unsigned level = 0;
-	unsigned space = 0;
-	while ((c != e) && (c != EOF)) 
-	{
-		if (oascii::isspace (c)) 
-		{
-			c = std::cin.get ();
-			continue;
-		}
-		if ((c == ',') || (c == ';')) 
-		{
-			c = program.feed (c);
-			c = program.find (c);
-			continue;
-		}
-		if (c == '{') 
-		{
-			program.endline (1);
-			program.newline (level++);
-			c = program.feed (c);
-			c = program.find (c);
-			space = 1;
-			continue;
-		}
-		if (c == '}') 
-		{
-			program.endline (1);
-			program.newline (--level);
-			c = program.feed (c);
-			c = program.find (c);
-			space = 2;
-			continue;
-		}
-		program.endline (space);
-		program.newline (level);
-		c = program.context (c, "{;}</>");
-		space = 1;
-	}
-	program.endline (2);
-	return (c);
-}
-
-/*====================================================================*
- *   main program;
+ *   
+ *   int main (int argc, char const * argv []) 
+ *   
+ *   
  *--------------------------------------------------------------------*/
 
 int main (int argc, char const * argv []) 
@@ -125,7 +63,7 @@ int main (int argc, char const * argv [])
 	{
 		"cm:o:st",
 		oPUTOPTV_S_FILTER,
-		"program CSS functions",
+		"format CSS stylesheets",
 		"c\tcompact stylesheet",
 		"m s\tmargin string [" LITERAL (oINDENT_MARGIN) "]",
 		"o s\toffset string [" LITERAL (oINDENT_OFFSET) "]",
@@ -137,28 +75,30 @@ int main (int argc, char const * argv [])
 	ofileopen fileopen;
 	opathspec pathspec;
 	oescape escape;
+	oprogram object;
+	signed (oprogram::* method) (signed) = & oprogram::stylesheet;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
 		case 'c':
-			program.margin ("");
-			program.offset ("");
-			program.finish ("");
-			program.record ("");
+			object.margin ("");
+			object.offset ("");
+			object.finish ("");
+			object.record ("");
 			break;
 		case 'm':
-			program.margin (escape.unescape ((char *)(getopt.args ())));
+			object.margin (escape.unescape ((char *)(getopt.args ())));
 			break;
 		case 'o':
-			program.offset (escape.unescape ((char *)(getopt.args ())));
+			object.offset (escape.unescape ((char *)(getopt.args ())));
 			break;
 		case 's':
-			program.offset ("   ");
+			object.offset ("   ");
 			break;
 		case 't':
-			program.offset ("\t");
+			object.offset ("\t");
 			break;
 		default:
 			break;
@@ -166,7 +106,7 @@ int main (int argc, char const * argv [])
 	}
 	if (!getopt.argc ()) 
 	{
-		function (std::cin.get (), EOF);
+		(object.* method) (std::cin.get ());
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
@@ -174,7 +114,7 @@ int main (int argc, char const * argv [])
 		pathspec.fullpath (filename, * getopt.argv ());
 		if (fileopen.openedit (filename)) 
 		{
-			function (std::cin.get (), EOF);
+			(object.* method) (std::cin.get ());
 			fileopen.close ();
 		}
 		getopt++;

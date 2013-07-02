@@ -16,8 +16,8 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
-#include "../classes/oindent.hpp"
 #include "../classes/osource.hpp"
+#include "../classes/oindent.hpp"
 
 /*====================================================================*
  *   interface declaration;
@@ -29,8 +29,7 @@ class __declspec (dllexport) oprogram: public osource, public oindent
 public:
 	oprogram ();
 	virtual~ oprogram ();
-private:
-	
+	signed stylesheet (signed c);
 };
 
 /*====================================================================*

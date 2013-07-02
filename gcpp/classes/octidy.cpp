@@ -36,7 +36,7 @@ ocexitwords octidy::exitwords;
 
 /*====================================================================*
  *
- *   signed octidy::atheros (signed c);
+ *   signed atheros (signed c);
  *
  *--------------------------------------------------------------------*/
 
@@ -139,7 +139,7 @@ signed octidy::atheros (signed c)
 
 /*====================================================================*
  *
- *   signed octidy::charlie (signed c);
+ *   signed charlie (signed c);
  *
  *   this method is similar method program() but annotates comments 
  *   and inserts include guards; essentially, this is charlie's own
@@ -246,7 +246,7 @@ signed octidy::charlie (signed c)
 
 /*====================================================================*
  *
- *   signed octidy::program (signed c);
+ *   signed program (signed c);
  *
  *   format a source code file; 
  *

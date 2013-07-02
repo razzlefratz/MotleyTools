@@ -6,8 +6,6 @@
  *   languages including C, C++, PHP, java, CSS and DNS; as one example,
  *   this file was probably formatted by oprogram;
  *
- *   it is used by contexts ctidy, phptidy, csstidy, dnstidy;
- *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -18,10 +16,80 @@
 #define oPROGRAM_SOURCE
 
 /*====================================================================*
+ *   system header files;
+ *--------------------------------------------------------------------*/
+
+#include <cstdio>
+#include <iostream>
+
+/*====================================================================*
  *   custom header files;
  *--------------------------------------------------------------------*/
 
 #include "../classes/oprogram.hpp"
+#include "../classes/oascii.hpp"
+
+/*====================================================================*
+ *
+ *   signed stylesheet (signed c);
+ *
+ *   read from stdin and write to stdout; indent C style text based
+ *   on '{', ';' and '}' characters; leave '#' comments alone; this
+ *   program is suitable for css functions, awk programs and bind 
+ *   name.conf files;
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+signed oprogram::stylesheet (signed c) 
+
+{
+	oprogram::level (0);
+	oprogram::space (0);
+	while (c != EOF) 
+	{
+		if (oascii::isspace (c)) 
+		{
+			c = std::cin.get ();
+			continue;
+		}
+		if ((c == ',') || (c == ';')) 
+		{
+			c = oprogram::feed (c);
+			c = oprogram::find (c);
+			continue;
+		}
+		if (c == '{') 
+		{
+			oprogram::endline (2);
+			oprogram::newline ();
+			c = oprogram::feed (c);
+			c = oprogram::find (c);
+			oprogram::increment ();
+			oprogram::space (1);
+			continue;
+		}
+		if (c == '}') 
+		{
+			oprogram::decrement ();
+			oprogram::endline (1);
+			oprogram::newline ();
+			c = oprogram::feed (c);
+			c = oprogram::find (c);
+			oprogram::space (1);
+			continue;
+		}
+		oprogram::endline ();
+		oprogram::newline ();
+		c = oprogram::context (c, "{;}</>");
+		oprogram::space (1);
+	}
+	oprogram::endline (1);
+	return (c);
+}
 
 /*====================================================================*
  *

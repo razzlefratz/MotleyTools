@@ -39,10 +39,6 @@ oHTMLEmptyElements ohtmltidy::htmlempty;
  *   char const * attribute () const 
  *   char const * value () const 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 char const * ohtmltidy::element () const 
@@ -69,10 +65,6 @@ char const * ohtmltidy::value () const
  *
  *   return the default quote character value;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 char ohtmltidy::quote () const 
@@ -87,10 +79,6 @@ char ohtmltidy::quote () const
  *
  *   define the default quote character value; attribute values are
  *   enclosed in this value by default;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -107,17 +95,13 @@ ohtmltidy & ohtmltidy::quote (signed quote)
  *
  *   indent a markup file;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ohtmltidy::page (signed c) 
 
 {
-	this->mspace = 1;
-	this->mlevel = 0;
+	ohtmltidy::space (1);
+	ohtmltidy::level (0);
 	while (c != EOF) 
 	{
 		if (c == '<') 
@@ -146,8 +130,8 @@ signed ohtmltidy::page (signed c)
 		{
 			c = ohtmltidy::cdata (c);
 		}
-		oindent::endline (this->mspace);
-		oindent::newline (this->mlevel);
+		oindent::endline ();
+		oindent::newline ();
 	}
 	return (c);
 }
@@ -159,10 +143,6 @@ signed ohtmltidy::page (signed c)
  *   read and write an entire <?xml ... ?> segment including opening
  *   and closing brackets;
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ohtmltidy::xml (signed c) const 
@@ -178,10 +158,6 @@ signed ohtmltidy::xml (signed c) const
  *
  *   read and write an entire <?php ... ?> segment including opening
  *   and closing brackets;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -199,10 +175,6 @@ signed ohtmltidy::php (signed c) const
  *   read and write entire <% ... %> asp segment including opening
  *   and closing brackets;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ohtmltidy::asp (signed c) const 
@@ -219,10 +191,6 @@ signed ohtmltidy::asp (signed c) const
  *	<!AAA ... >
  *	<!-- ... -->
  *	<![NAME[ ... ]]>
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -330,10 +298,6 @@ signed ohtmltidy::sgml (signed c)
  *   
  *   [/] element [ attribute [ = value ]] [ attribute [ = value]] [/]
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ohtmltidy::xhtml (signed c) 
@@ -348,11 +312,11 @@ signed ohtmltidy::xhtml (signed c)
 	{
 		c = ohtmltidy::feed (c);
 		c = ohtmltidy::find (c);
-		this->mlevel--;
+		ohtmltidy::decrement ();
 	}
 	else 
 	{
-		this->mlevel++;
+		ohtmltidy::increment ();
 	}
 	if (oascii::isalpha (c)) 
 	{
@@ -410,14 +374,14 @@ signed ohtmltidy::xhtml (signed c)
 	{
 		c = ohtmltidy::feed (c);
 		c = ohtmltidy::find (c);
-		this->mlevel--;
+		ohtmltidy::decrement ();
 	}
 	else if (ohtmltidy::htmlempty.defined (this->melement)) 
 	{
 		if (ohtmltidy::anyset (oMARKUP_REPAIR)) 
 		{
 			std::cout.put ('/');
-			this->mlevel--;
+			ohtmltidy::decrement ();
 		}
 	}
 	if (c == '>') 
@@ -430,10 +394,6 @@ signed ohtmltidy::xhtml (signed c)
 /*====================================================================*
  *
  *   signed comment (signed c) const;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -469,10 +429,6 @@ signed ohtmltidy::comment (signed c) const
  *   
  *   read and write cdata;
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ohtmltidy::cdata (signed c) const 
@@ -502,10 +458,6 @@ signed ohtmltidy::cdata (signed c) const
  *
  *   signed enquote (signed c, signed e) 
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ohtmltidy::enquote (signed c, signed e) 
@@ -527,10 +479,6 @@ signed ohtmltidy::enquote (signed c, signed e)
  *
  *   signed dequote (signed c, signed e) 
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ohtmltidy::dequote (signed c, signed e) 
@@ -552,10 +500,6 @@ signed ohtmltidy::dequote (signed c, signed e)
  *
  *   signed nmtoken (signed c)
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ohtmltidy::nmtoken (signed c) 
@@ -576,10 +520,6 @@ signed ohtmltidy::nmtoken (signed c)
  *
  *   signed unknown (signed c);
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ohtmltidy::unknown (signed c) 
@@ -656,8 +596,6 @@ ohtmltidy::ohtmltidy ()
 	this->mattribute = otext::save ("");
 	this->mvalue = otext::save ("");
 	this->mquote = '\"';
-	this->mspace = 1;
-	this->mlevel = 0;
 	return;
 }
 

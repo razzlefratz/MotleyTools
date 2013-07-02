@@ -8,8 +8,8 @@
  *
  *--------------------------------------------------------------------*/
 
-#ifndef oCOLLECT_HEADER
-#define oCOLLECT_HEADER
+#ifndef oSOURCE_HEADER
+#define oSOURCE_HEADER
 
 /*====================================================================*
  *   custom header files;
@@ -47,11 +47,8 @@ public:
 	signed _literal (signed c, signed e) const;
 	signed _content (signed c, signed e) const;
 	signed _comment (signed c) const;
-	signed join (signed c) const;
 	signed find (signed c) const;
 	signed feed (signed c) const;
-private:
-	
 };
 
 /*====================================================================*

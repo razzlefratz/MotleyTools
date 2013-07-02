@@ -13,8 +13,8 @@
  *
  *--------------------------------------------------------------------*/
 
-#ifndef oCOLLECT_SOURCE
-#define oCOLLECT_SOURCE
+#ifndef oSOURCE_SOURCE
+#define oSOURCE_SOURCE
 
 /*====================================================================*
  *   system header files;
@@ -393,7 +393,7 @@ signed osource::moniker (signed c) const
 	{
 		c = osource::feed (c);
 	}
-	while (oascii::isalnum (c) || (c == '_') || (c == '.'));
+	while (oascii::isalnum (c) || (c == '_'));
 	return (c);
 }
 
