@@ -16,14 +16,14 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
-#include "../classes/ocollect.hpp"
+#include "../classes/osource.hpp"
 #include "../classes/oindent.hpp"
 
 /*====================================================================*
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ophptidy: public ocollect, public oindent 
+class __declspec (dllexport) ophptidy: public osource, public oindent 
 
 {
 public:

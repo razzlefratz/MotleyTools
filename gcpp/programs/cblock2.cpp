@@ -45,7 +45,7 @@
 #include "../classes/ocontext.cpp"
 #include "../classes/owildcard.cpp"
 #include "../classes/oescape.cpp"
-#include "../classes/ocollect.cpp"
+#include "../classes/osource.cpp"
 #include "../classes/ocblock.cpp"
 #include "../classes/oascii.cpp"
 #include "../classes/otext.cpp"

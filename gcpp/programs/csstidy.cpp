@@ -44,9 +44,8 @@
 #include "../classes/oescape.cpp"
 #include "../classes/oindent.cpp"
 #include "../classes/oascii.cpp"
+#include "../classes/osource.cpp"
 #include "../classes/oprogram.cpp"
-#include "../classes/ocollect.cpp"
-#include "../classes/otext.cpp"
 #endif
 
 /*====================================================================*

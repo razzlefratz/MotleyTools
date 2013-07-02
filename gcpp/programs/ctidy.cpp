@@ -48,7 +48,7 @@
 #include "../classes/ocgotowords.cpp"
 #include "../classes/ocexitwords.cpp"
 #include "../classes/oascii.cpp"
-#include "../classes/ocollect.cpp"
+#include "../classes/osource.cpp"
 #include "../classes/oinclude.cpp"
 #include "../classes/ocomment.cpp"
 #include "../classes/octidy.cpp"

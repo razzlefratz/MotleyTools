@@ -17,8 +17,8 @@
 
 #include "../classes/oHTMLEmptyElements.hpp"
 #include "../classes/oflagword.hpp"
+#include "../classes/osource.hpp"
 #include "../classes/oindent.hpp"
-#include "../classes/ocollect.hpp"
 #include "../classes/otext.hpp"
 
 /*====================================================================*
@@ -35,7 +35,7 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ohtmltidy: private otext, private ocollect, public oindent, public oflagword 
+class __declspec (dllexport) ohtmltidy: private otext, private osource, public oindent, public oflagword 
 
 {
 public:

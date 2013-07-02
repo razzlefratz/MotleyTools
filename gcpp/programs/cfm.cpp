@@ -45,15 +45,15 @@
 #include "../classes/owildcard.cpp"
 #include "../classes/oescape.cpp"
 #include "../classes/oswitch.cpp"
-#include "../classes/ocollect.cpp"
 #include "../classes/otext.cpp"
 #include "../classes/oascii.cpp"
 #include "../classes/oinclude.cpp"
 #include "../classes/ocomment.cpp"
 #include "../classes/ocgotowords.cpp"
 #include "../classes/ocexitwords.cpp"
-#include "../classes/oindent.cpp"
 #include "../classes/octidy.cpp"
+#include "../classes/osource.cpp"
+#include "../classes/oindent.cpp"
 #endif
 
 /*====================================================================*
@@ -109,7 +109,7 @@ int main (int argc, char const * argv [])
 	opathspec pathspec;
 	oprofile config;
 	octidy object;
-	int (octidy::* method) (signed, signed) = & octidy::charlie;
+	int (octidy::* method) (signed) = & octidy::charlie;
 	char const * profile = PROFILE_NAME;
 	char const * section = SECTION_NAME;
 	signed c;
@@ -193,7 +193,7 @@ int main (int argc, char const * argv [])
 	object.special (config.string (profile, section, oCOMMENT_S_SPECIAL, oCOMMENT_T_SPECIAL));
 	if (!getopt.argc ()) 
 	{
-		c = (object.* method) (std::cin.get (), EOF);
+		c = (object.* method) (std::cin.get ());
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
@@ -202,7 +202,7 @@ int main (int argc, char const * argv [])
 		if (fileopen.openedit (filename)) 
 		{
 			object.filename (filename);
-			c = (object.* method) (std::cin.get (), EOF);
+			c = (object.* method) (std::cin.get ());
 			fileopen.close ();
 		}
 		getopt++;

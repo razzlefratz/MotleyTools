@@ -25,7 +25,7 @@
 #include "../classes/ofileopen.hpp"
 #include "../classes/oindent.hpp"
 #include "../classes/oescape.hpp"
-#include "../classes/ocollect.hpp"
+#include "../classes/osource.hpp"
 
 /*====================================================================*
  *   custom source files;
@@ -45,7 +45,7 @@
 #include "../classes/oescape.cpp"
 #include "../classes/oindent.cpp"
 #include "../classes/oascii.cpp"
-#include "../classes/ocollect.cpp"
+#include "../classes/osource.cpp"
 #include "../classes/otext.cpp"
 #endif
 
@@ -61,7 +61,7 @@
  *--------------------------------------------------------------------*/
 
 static oindent indent;
-static ocollect tidy;
+static osource tidy;
 
 /*====================================================================*
  *

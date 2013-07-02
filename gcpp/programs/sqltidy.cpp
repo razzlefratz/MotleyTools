@@ -27,7 +27,7 @@
 #include "../classes/opathspec.hpp"
 #include "../classes/oindent.hpp"
 #include "../classes/oescape.hpp"
-#include "../classes/ocollect.hpp"
+#include "../classes/osource.hpp"
 
 /*====================================================================*
  *   custom source files;
@@ -48,7 +48,7 @@
 #include "../classes/oescape.cpp"
 #include "../classes/oindent.cpp"
 #include "../classes/oascii.cpp"
-#include "../classes/ocollect.cpp"
+#include "../classes/osource.cpp"
 #endif
 
 /*====================================================================*
@@ -66,7 +66,7 @@ static ofileopen fileopen;
 static opathspec pathspec;
 static oescape escape;
 static oindent indent;
-static ocollect tidy;
+static osource tidy;
 
 /*====================================================================*
  *

@@ -16,13 +16,13 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
-#include "../classes/ocollect.hpp"
+#include "../classes/osource.hpp"
 
 /*====================================================================*
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ocblock: private ocollect 
+class __declspec (dllexport) ocblock: private osource 
 
 {
 public:

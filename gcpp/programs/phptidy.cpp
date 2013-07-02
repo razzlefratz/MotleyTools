@@ -41,9 +41,9 @@
 #include "../classes/ocontext.cpp"
 #include "../classes/owildcard.cpp"
 #include "../classes/oescape.cpp"
-#include "../classes/oindent.cpp"
 #include "../classes/oascii.cpp"
-#include "../classes/ocollect.cpp"
+#include "../classes/osource.cpp"
+#include "../classes/oindent.cpp"
 #include "../classes/ophptidy.cpp"
 #include "../classes/otext.cpp"
 #endif

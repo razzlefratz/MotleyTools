@@ -240,17 +240,17 @@ omptidy & omptidy::tidy ()
 		{
 			if (oascii::isquote (c)) 
 			{
-				c = ocollect::literal (c, c);
+				c = omptidy::literal (c, c);
 				continue;
 			}
 			if (c == '.') 
 			{
-				c = ocollect::feed (c);
+				c = omptidy::feed (c);
 				if (c == '.') 
 				{
 					do 
 					{
-						c = ocollect::feed (c);
+						c = omptidy::feed (c);
 					}
 					while (c == '.');
 					continue;
@@ -272,20 +272,20 @@ omptidy & omptidy::tidy ()
 
 			if (c == '\\') 
 			{
-				c = ocollect::feed (c);
+				c = omptidy::feed (c);
 				if (c == 'v') 
 				{
 					c = 'f';
 				}
-				c = ocollect::feed (c);
+				c = omptidy::feed (c);
 				continue;
 			}
 
 #endif
 
-			c = ocollect::feed (c);
+			c = omptidy::feed (c);
 		}
-		c = ocollect::feed (c);
+		c = omptidy::feed (c);
 	}
 	return (* this);
 }

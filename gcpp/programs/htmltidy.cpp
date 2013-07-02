@@ -23,7 +23,6 @@
 #include "../classes/ofileopen.hpp"
 #include "../classes/ofilespec.hpp"
 #include "../classes/opathspec.hpp"
-
 #include "../classes/oescape.hpp"
 #include "../classes/ohtmltidy.hpp"
 
@@ -41,14 +40,14 @@
 #include "../classes/opathspec.cpp"
 #include "../classes/ocontext.cpp"
 #include "../classes/owildcard.cpp"
-#include "../classes/oindent.cpp"
 #include "../classes/oflagword.cpp"
 #include "../classes/okeywords.cpp"
 #include "../classes/otext.cpp"
 #include "../classes/oascii.cpp"
 #include "../classes/oescape.cpp"
 #include "../classes/ohtmltidy.cpp"
-#include "../classes/ocollect.cpp"
+#include "../classes/osource.cpp"
+#include "../classes/oindent.cpp"
 #endif
 
 #ifndef MAKEFILE

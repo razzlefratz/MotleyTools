@@ -16,7 +16,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
-#include "../classes/ocollect.hpp"
+#include "../classes/osource.hpp"
 #include "../classes/oindent.hpp"
 #include "../classes/oinclude.hpp"
 #include "../classes/ocomment.hpp"
@@ -27,7 +27,7 @@
  *   interface declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) octidy: public ocollect, public oindent, public oinclude, public ocomment 
+class __declspec (dllexport) octidy: public osource, public oindent, public oinclude, public ocomment 
 
 {
 public:

@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   ocollect.hpp - ocollect class declaration;     
+ *   osource.hpp - osource class declaration;     
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -21,12 +21,12 @@
  *   interface declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ocollect 
+class __declspec (dllexport) osource 
 
 {
 public:
-	ocollect ();
-	virtual~ ocollect ();
+	osource ();
+	virtual~ osource ();
 	signed context (signed c, char const * charset) const;
 	signed content (signed c, signed o, signed e) const;
 	signed context (signed c, signed o, signed e) const;
@@ -39,12 +39,14 @@ public:
 	signed literal (signed c) const;
 	signed escaped (signed c) const;
 	signed comment (signed c) const;
+	signed moniker (signed c) const;
 	signed _context (signed c, signed o, signed e) const;
 	signed _content (signed c, signed o, signed e) const;
 	signed _context (signed c, signed e) const;
 	signed _command (signed c, signed e) const;
 	signed _literal (signed c, signed e) const;
 	signed _content (signed c, signed e) const;
+	signed _comment (signed c) const;
 	signed join (signed c) const;
 	signed find (signed c) const;
 	signed feed (signed c) const;

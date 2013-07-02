@@ -153,7 +153,7 @@ signed octidy::charlie (signed c)
 	octidy::level (0);
 	octidy::space (0);
 	c = ocomment::preamble (c);
-	while (c != EOF)) 
+	while (c != EOF) 
 	{
 		if (oascii::isspace (c)) 
 		{
@@ -497,6 +497,7 @@ signed octidy::context (signed c, signed o, signed e) const
 
 {
 	c = octidy::feed (c);
+	c = octidy::find (c);
 	c = octidy::_context (c, o, e);
 	c = octidy::feed (c);
 	return (c);
@@ -523,6 +524,7 @@ signed octidy::context (signed c, signed e) const
 
 {
 	c = octidy::feed (c);
+	c = octidy::find (c);
 	c = octidy::_context (c, e);
 	c = octidy::feed (c);
 	return (c);
@@ -549,10 +551,7 @@ signed octidy::context (signed c) const
 {
 	if (oascii::isalpha (c) || (c == '_')) 
 	{
-		while (oascii::isalnum (c) || (c == '_')) 
-		{
-			c = octidy::feed (c);
-		}
+		c = octidy::moniker (c);
 		if ((c == '(') || (c == '[') || (c == '{')) 
 		{
 			std::cout.put (' ');

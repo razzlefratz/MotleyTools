@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   ocollect.cpp - implementation of the ocollect class.
+ *   osource.cpp - implementation of the osource class.
  *
  *   this is a generic source code formatter for C-style languages 
  *   such as C, C++, PHP, CSS and DNS; 
@@ -29,7 +29,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/oascii.hpp"
-#include "../classes/ocollect.hpp"
+#include "../classes/osource.hpp"
 #include "../../gcc/tools/symbol.h"
 
 /*====================================================================*
@@ -49,12 +49,12 @@
  *
  *--------------------------------------------------------------------*/
 
-signed ocollect::context (signed c, char const * charset) const 
+signed osource::context (signed c, char const * charset) const 
 
 {
 	while ((c) && !std::strchr (charset, c) && (c != EOF)) 
 	{
-		c = ocollect::context (c);
+		c = osource::context (c);
 	}
 	return (c);
 }
@@ -66,22 +66,23 @@ signed ocollect::context (signed c, char const * charset) const
  *
  *--------------------------------------------------------------------*/
 
-signed ocollect::context (signed c, signed o, signed e) const 
+signed osource::context (signed c, signed o, signed e) const 
 
 {
-	c = ocollect::feed (c);
-	c = ocollect::_context (c, o, e);
-	c = ocollect::feed (c);
+	c = osource::feed (c);
+	c = osource::find (c);
+	c = osource::_context (c, o, e);
+	c = osource::feed (c);
 	return (c);
 }
 
-signed ocollect::_context (signed c, signed o, signed e) const 
+signed osource::_context (signed c, signed o, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = ocollect::_context (c, o);
-		c = ocollect::feed (c);
+		c = osource::_context (c, o);
+		c = osource::feed (c);
 	}
 	return (c);
 }
@@ -89,25 +90,25 @@ signed ocollect::_context (signed c, signed o, signed e) const
 /*====================================================================*
  *
  *   signed context (signed c, signed e) const;
- *   signed _context (signed c, signed e) const;
  *
  *--------------------------------------------------------------------*/
 
-signed ocollect::context (signed c, signed e) const 
+signed osource::context (signed c, signed e) const 
 
 {
-	c = ocollect::feed (c);
-	c = ocollect::_context (c, e);
-	c = ocollect::feed (c);
+	c = osource::feed (c);
+	c = osource::find (c);
+	c = osource::_context (c, e);
+	c = osource::feed (c);
 	return (c);
 }
 
-signed ocollect::_context (signed c, signed e) const 
+signed osource::_context (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = ocollect::context (c);
+		c = osource::context (c);
 	}
 	return (c);
 }
@@ -125,36 +126,36 @@ signed ocollect::_context (signed c, signed e) const
  *   
  *--------------------------------------------------------------------*/
 
-signed ocollect::context (signed c) const 
+signed osource::context (signed c) const 
 
 {
 	if (c == '/') 
 	{
-		c = ocollect::comment (c);
+		c = osource::comment (c);
 	}
 	else if (oascii::isquote (c)) 
 	{
-		c = ocollect::literal (c);
+		c = osource::literal (c);
 	}
 	else if (c == '#') 
 	{
-		c = ocollect::command (c, '\n');
+		c = osource::command (c, '\n');
 	}
 	else if (c == '(') 
 	{
-		c = ocollect::context (c, ')');
+		c = osource::context (c, ')');
 	}
 	else if (c == '[') 
 	{
-		c = ocollect::context (c, ']');
+		c = osource::context (c, ']');
 	}
 	else if (c == '{') 
 	{
-		c = ocollect::context (c, '}');
+		c = osource::context (c, '}');
 	}
 	else 
 	{
-		c = ocollect::feed (c);
+		c = osource::feed (c);
 	}
 	return (c);
 }
@@ -163,20 +164,65 @@ signed ocollect::context (signed c) const
  *
  *   signed comment (signed c) const;
  *
+ *   process multi-line comments; pad left margin with asterisks;
+ *
  *--------------------------------------------------------------------*/
 
-signed ocollect::comment (signed c) const 
+signed osource::comment (signed c) const 
 
 {
-	c = ocollect::feed (c);
+	c = osource::feed (c);
 	if (c == '/') 
 	{
-		c = ocollect::content (c, '\n');
+		c = osource::content (c, '\n');
 		return (c);
 	}
 	if (c == '*') 
 	{
-		c = ocollect::content (c, '*', '/');
+		while ((c != '/') && (c != EOF)) 
+		{
+			while ((c != '*') && (c != EOF)) 
+			{
+				std::cout.put (c);
+				if (c == '\n') 
+				{
+					std::cout.put (' ');
+					do 
+					{
+						c = std::cin.get ();
+					}
+					while (oascii::isblank (c));
+					if (c != '*') 
+					{
+						std::cout.put ('*');
+						std::cout.put (' ');
+						std::cout.put (' ');
+						std::cout.put (' ');
+					}
+					continue;
+				}
+				c = std::cin.get ();
+			}
+			c = osource::feed (c);
+		}
+		c = osource::feed (c);
+		return (c);
+	}
+	return (c);
+}
+
+signed osource::_comment (signed c) const 
+
+{
+	c = osource::feed (c);
+	if (c == '/') 
+	{
+		c = osource::content (c, '\n');
+		return (c);
+	}
+	if (c == '*') 
+	{
+		c = osource::content (c, '*', '/');
 		return (c);
 	}
 	return (c);
@@ -184,8 +230,7 @@ signed ocollect::comment (signed c) const
 
 /*====================================================================*
  *
- *   signed ocollect::content (signed c, signed o, signed e) const;
- *   signed ocollect::_content (signed c, signed o, signed e) const;
+ *   signed osource::content (signed c, signed o, signed e) const;
  *
  *   write (c) then read and write characters up to pair (oe); write
  *   both (o) and (e) then return either the next character or EOF;
@@ -194,30 +239,29 @@ signed ocollect::comment (signed c) const
  *
  *--------------------------------------------------------------------*/
 
-signed ocollect::content (signed c, signed o, signed e) const 
+signed osource::content (signed c, signed o, signed e) const 
 
 {
-	c = ocollect::feed (c);
-	c = ocollect::_content (c, o, e);
-	c = ocollect::feed (c);
+	c = osource::feed (c);
+	c = osource::_content (c, o, e);
+	c = osource::feed (c);
 	return (c);
 }
 
-signed ocollect::_content (signed c, signed o, signed e) const 
+signed osource::_content (signed c, signed o, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = ocollect::_content (c, o);
-		c = ocollect::feed (c);
+		c = osource::_content (c, o);
+		c = osource::feed (c);
 	}
 	return (c);
 }
 
 /*====================================================================*
  *
- *   signed ocollect::content (signed c, signed e) const;
- *   signed ocollect::_content (signed c, signed e) const;
+ *   signed osource::content (signed c, signed e) const;
  *
  *   write (c) then read and write characters until (e); write (e) 
  *   then return the next character;
@@ -227,30 +271,29 @@ signed ocollect::_content (signed c, signed o, signed e) const
  *
  *--------------------------------------------------------------------*/
 
-signed ocollect::content (signed c, signed e) const 
+signed osource::content (signed c, signed e) const 
 
 {
-	c = ocollect::feed (c);
-	c = ocollect::_content (c, e);
-	c = ocollect::feed (c);
+	c = osource::feed (c);
+	c = osource::_content (c, e);
+	c = osource::feed (c);
 	return (c);
 }
 
-signed ocollect::_content (signed c, signed e) const 
+signed osource::_content (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = ocollect::feed (c);
+		c = osource::feed (c);
 	}
 	return (c);
 }
 
 /*====================================================================*
  *
- *   signed ocollect::command (signed c) const;
- *   signed ocollect::command (signed c, signed e) const;
- *   signed ocollect::_command (signed c, signed e) const;
+ *   signed osource::command (signed c) const;
+ *   signed osource::command (signed c, signed e) const;
  *
  *   read stdin and write stdout; write initiator c then read and
  *   write characters until terminator e; 
@@ -263,94 +306,111 @@ signed ocollect::_content (signed c, signed e) const
  *
  *--------------------------------------------------------------------*/
 
-signed ocollect::command (signed c) const 
+signed osource::command (signed c) const 
 
 {
-	c = ocollect::feed (c);
-	c = ocollect::_command (c, '\n');
-	c = ocollect::feed (c);
+	c = osource::feed (c);
+	c = osource::_command (c, '\n');
+	c = osource::feed (c);
 	return (c);
 }
 
-signed ocollect::command (signed c, signed e) const 
+signed osource::command (signed c, signed e) const 
 
 {
-	c = ocollect::feed (c);
-	c = ocollect::_command (c, e);
-	c = ocollect::feed (c);
+	c = osource::feed (c);
+	c = osource::_command (c, e);
+	c = osource::feed (c);
 	return (c);
 }
 
-signed ocollect::_command (signed c, signed e) const 
+signed osource::_command (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
 		if (oascii::isquote (c)) 
 		{
-			c = ocollect::literal (c);
+			c = osource::literal (c);
 			continue;
 		}
 		if (c == '/') 
 		{
-			c = ocollect::comment (c);
+			c = osource::comment (c);
 			continue;
 		}
-		c = ocollect::escaped (c);
+		c = osource::escaped (c);
 	}
 	return (c);
 }
 
 /*====================================================================*
  *
- *   signed ocollect::literal (signed c) const;
- *   signed ocollect::literal (signed c, signed e) const;
+ *   signed osource::literal (signed c) const;
+ *   signed osource::literal (signed c, signed e) const;
  *   
  *   read and write characters up to (e); output (e) then return the
  *   next character or EOF; ignore escaped instances of (e);
  *
  *--------------------------------------------------------------------*/
 
-signed ocollect::literal (signed c) const 
+signed osource::literal (signed c) const 
 
 {
-	c = ocollect::literal (c, c);
+	c = osource::literal (c, c);
 	return (c);
 }
 
-signed ocollect::literal (signed c, signed e) const 
+signed osource::literal (signed c, signed e) const 
 
 {
-	c = ocollect::feed (c);
-	c = ocollect::_literal (c, e);
-	c = ocollect::feed (c);
+	c = osource::feed (c);
+	c = osource::_literal (c, e);
+	c = osource::feed (c);
 	return (c);
 }
 
-signed ocollect::_literal (signed c, signed e) const 
+signed osource::_literal (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = ocollect::escaped (c);
+		c = osource::escaped (c);
 	}
 	return (c);
 }
 
 /*====================================================================*
  *
- *   signed ocollect::escaped (signed c) const;
+ *   signed osource::moniker (signed c) const;
+ *
+ *--------------------------------------------------------------------*/
+
+signed osource::moniker (signed c) const 
+
+{
+	do 
+	{
+		c = osource::feed (c);
+	}
+	while (oascii::isalnum (c) || (c == '_') || (c == '.'));
+	return (c);
+}
+
+/*====================================================================*
+ *
+ *   signed osource::escaped (signed c) const;
  *   
  *--------------------------------------------------------------------*/
 
-signed ocollect::escaped (signed c) const 
+signed osource::escaped (signed c) const 
 
 {
 	if (c == '\\') 
 	{
-		c = ocollect::feed (c);
+		c = osource::feed (c);
 	}
-	c = ocollect::feed (c);
+	c = osource::feed (c);
 	return (c);
 }
 
@@ -362,12 +422,12 @@ signed ocollect::escaped (signed c) const
  *   
  *--------------------------------------------------------------------*/
 
-signed ocollect::find (signed c) const 
+signed osource::find (signed c) const 
 
 {
 	while (oascii::isspace (c)) 
 	{
-		c = ocollect::feed (c);
+		c = osource::feed (c);
 	}
 	return (c);
 }
@@ -380,7 +440,7 @@ signed ocollect::find (signed c) const
  *   
  *--------------------------------------------------------------------*/
 
-signed ocollect::feed (signed c) const 
+signed osource::feed (signed c) const 
 
 {
 	if ((c) && (c != EOF)) 
@@ -393,11 +453,11 @@ signed ocollect::feed (signed c) const
 
 /*====================================================================*
  *
- *   ocollect ();
+ *   osource ();
  *
  *--------------------------------------------------------------------*/
 
-ocollect::ocollect () 
+osource::osource () 
 
 {
 	return;
@@ -405,11 +465,11 @@ ocollect::ocollect ()
 
 /*====================================================================*
  *
- *   ~ocollect ();
+ *   ~osource ();
  *
  *--------------------------------------------------------------------*/
 
-ocollect::~ocollect () 
+osource::~osource () 
 
 {
 	return;

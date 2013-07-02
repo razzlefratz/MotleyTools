@@ -17,27 +17,18 @@
 
 #include "../classes/stdafx.hpp"
 #include "../classes/oindent.hpp"
-#include "../classes/ocollect.hpp"
+#include "../classes/osource.hpp"
 
 /*====================================================================*
  *   interface declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oprogram: public ocollect, public oindent 
+class __declspec (dllexport) oprogram: public osource, public oindent 
 
 {
 public:
 	oprogram ();
 	virtual~ oprogram ();
-	signed context (signed c, char const * charset) const;
-	signed context (signed c, signed o, signed e) const;
-	signed context (signed c, signed e) const;
-	signed context (signed c) const;
-	signed comment (signed c) const;
-	signed moniker (signed c) const;
-	signed _context (signed c, signed o, signed e) const;
-	signed _context (signed c, signed e) const;
-	signed find (signed c) const;
 private:
 	
 };

@@ -17,7 +17,7 @@
 
 #include "../classes/stdafx.hpp"
 #include "../classes/otext.hpp"
-#include "../classes/ocollect.hpp"
+#include "../classes/osource.hpp"
 #include "../classes/oascii.hpp"
 
 /*====================================================================*
@@ -34,7 +34,7 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) omptidy: private otext, private oascii, private ocollect 
+class __declspec (dllexport) omptidy: private otext, private oascii, private osource 
 
 {
 public:
