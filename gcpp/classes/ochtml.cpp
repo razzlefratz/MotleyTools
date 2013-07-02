@@ -111,7 +111,8 @@ ochtml & ochtml::html (char const * filename)
 	buf = std::cout.rdbuf (output.rdbuf ());
 	ochtml::title (filename);
 	ochtml::PageHeader ();
-	std::cout << "<pre>";
+	ochtml::LinkHeader ();
+	std::cout << "<pre>" << std::endl;
 	while (!this->mfile.isempty ()) 
 	{
 		unsigned level = 0;
@@ -253,6 +254,7 @@ ochtml & ochtml::html (char const * filename)
 		}
 	}
 	std::cout << "</pre>" << std::endl;
+	ochtml::LinkFooter ();
 	ochtml::PageFooter ();
 	this->mfile.clear ();
 	std::cout.rdbuf (buf);

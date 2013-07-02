@@ -149,21 +149,15 @@ owebpage & owebpage::LinkHeader (void)
 
 {
 	owebpage::print (this->mlevel++, this->mspace, "<div class='" oWEBPAGE_LINK_HEADER_CLASS "'>");
-
-#if 0
-
-	owebpage::print (this->mlevel, this->mspace, owebpage::PrevPageLink.string ());
-	owebpage::print (this->mlevel, this->mspace, owebpage::HomePageLink.string ());
-	owebpage::print (this->mlevel, this->mspace, owebpage::NextPageLink.string ());
-
-#else
-
+	owebpage::newline ();
 	owebpage::PrevPageLink.write ();
+	owebpage::endline ();
+	owebpage::newline ();
 	owebpage::HomePageLink.write ();
+	owebpage::endline ();
+	owebpage::newline ();
 	owebpage::NextPageLink.write ();
-
-#endif
-
+	owebpage::endline ();
 	owebpage::print (this->mlevel--, this->mspace, "</div>");
 	return (* this);
 }
@@ -210,21 +204,15 @@ owebpage & owebpage::LinkFooter (void)
 
 {
 	owebpage::print (this->mlevel++, this->mspace, "<div class='" oWEBPAGE_LINK_FOOTER_CLASS "'>");
-
-#if 0
-
-	owebpage::print (this->mlevel, this->mspace, owebpage::PrevPageLink.string ());
-	owebpage::print (this->mlevel, this->mspace, owebpage::HomePageLink.string ());
-	owebpage::print (this->mlevel, this->mspace, owebpage::NextPageLink.string ());
-
-#else
-
+	owebpage::newline();
 	owebpage::PrevPageLink.write ();
+	owebpage::endline();
+	owebpage::newline();
 	owebpage::HomePageLink.write ();
+	owebpage::endline();
+	owebpage::newline();
 	owebpage::NextPageLink.write ();
-
-#endif
-
+	owebpage::endline();
 	owebpage::print (this->mlevel--, this->mspace, "</div>");
 	return (* this);
 }

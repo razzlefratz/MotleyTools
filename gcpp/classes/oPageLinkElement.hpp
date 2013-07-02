@@ -16,8 +16,8 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
-#include "../classes/otext.hpp"
 #include "../classes/oAnchorElement.hpp"
+#include "../classes/otext.hpp"
 
 /*====================================================================*
  *

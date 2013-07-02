@@ -122,7 +122,6 @@ oHTMLIndex & oHTMLIndex::publish (unsigned count)
 	unsigned index = 0;
 	unsigned limit = count = (oHTMLIndex::mlist.count () + (count - 1)) / count;
 	oHTMLIndex::PageHeader ();
-	oHTMLIndex::MarkStart ();
 	oHTMLIndex::print (this->mlevel++, this->mspace, "<h1>");
 	oHTMLIndex::print (this->mlevel, this->mspace, oHTMLIndex::title ());
 	oHTMLIndex::print (this->mlevel--, this->mspace, "</h1>");
@@ -158,7 +157,6 @@ oHTMLIndex & oHTMLIndex::publish (unsigned count)
 	}
 	oHTMLIndex::print (this->mlevel--, this->mspace, "</tr>");
 	oHTMLIndex::print (this->mlevel--, this->mspace, "</table>");
-	oHTMLIndex::MarkEnd ();
 	oHTMLIndex::BodyFooter ();
 	oHTMLIndex::PageFooter ();
 	return (* this);
