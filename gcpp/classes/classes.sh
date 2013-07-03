@@ -24,7 +24,6 @@ g++ -Wall -c ochrtbl.cpp
 g++ -Wall -c ochrupr.cpp
 # g++ -Wall -c ocmassocindex.cpp
 g++ -Wall -c ocode.cpp
-g++ -Wall -c ocollect.cpp
 # g++ -Wall -c ocombine.cpp
 # g++ -Wall -c ocontext.cpp
 # g++ -Wall -c ocontext.demo.cpp
@@ -39,6 +38,7 @@ g++ -Wall -c odiscard.cpp
 g++ -Wall -c oedge.cpp
 g++ -Wall -c oedges.cpp
 g++ -Wall -c osession.cpp
+g++ -Wall -c osource.cpp
 g++ -Wall -c oerror.cpp
 g++ -Wall -c oescape.cpp
 g++ -Wall -c oethernet.cpp
