@@ -36,7 +36,7 @@ public:
 	ocatalog (signed order (char const *, char const *));
 	virtual~ ocatalog ();
 	char const * title () const;
-	ocatalog & title (char const * string);
+	ocatalog & title (char const * title);
 	unsigned index () const;
 	unsigned count () const;
 	char const * symbol ();
@@ -50,7 +50,6 @@ public:
 private:
 	olist * mlist;
 };
-
 
 /*====================================================================*
  *

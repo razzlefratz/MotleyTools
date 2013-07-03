@@ -25,7 +25,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/opage.hpp"
-#include "../classes/date.h"
+#include "../../gcc/date/date.h"
 
 /*====================================================================*
  *
@@ -40,7 +40,6 @@ char const * opage::title () const
 {
 	return (this->mtitle);
 }
-
 
 /*====================================================================*
  *
@@ -57,7 +56,6 @@ opage & opage::title (char const * title)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   unsigned rows () const;
@@ -71,7 +69,6 @@ unsigned opage::rows () const
 {
 	return (this->mrows);
 }
-
 
 /*====================================================================*
  *
@@ -88,7 +85,6 @@ opage & opage::rows (unsigned rows)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   unsigned cols () const;
@@ -102,7 +98,6 @@ unsigned opage::cols () const
 {
 	return (this->mcols);
 }
-
 
 /*====================================================================*
  *
@@ -119,7 +114,6 @@ opage & opage::cols (unsigned cols)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   unsigned tabs () const;
@@ -133,7 +127,6 @@ unsigned opage::tabs () const
 {
 	return (this->mtabs);
 }
-
 
 /*====================================================================*
  *
@@ -149,7 +142,6 @@ opage & opage::tabs (unsigned tabs)
 	this->mtabs = tabs;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -226,7 +218,6 @@ signed opage::put (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   opage & put (char const * string);
@@ -248,7 +239,6 @@ opage & opage::put (char const * string)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -282,7 +272,6 @@ opage & opage::header ()
 	std::cout.put ('\n');
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -329,10 +318,9 @@ opage & opage::footer ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
- *   opage (char const * string);
+ *   opage (char const * title);
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -340,11 +328,11 @@ opage & opage::footer ()
  *
  *--------------------------------------------------------------------*/
 
-opage::opage (char const * string) 
+opage::opage (char const * title) 
 
 {
-	this->mtitle = new char [std::strlen (string)+1];
-	std::strcpy (this->mtitle, string);
+	this->mtitle = new char [std::strlen (title)+1];
+	std::strcpy (this->mtitle, title);
 	this->mrows = oPAGE_ROWS;
 	this->mcols = oPAGE_COLS;
 	this->mtabs = oPAGE_TABS;
@@ -354,7 +342,6 @@ opage::opage (char const * string)
 	this->mcol = 0;
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -372,7 +359,6 @@ opage::~opage ()
 	delete [] this->mtitle;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

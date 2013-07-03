@@ -135,13 +135,12 @@ static void template ()
 	};
 	char const ** subject = subjects;
 	printf (".TH program 7 package");
-	while (*subject) 
+	while (* subject) 
 	{
-		printf ("\n.SH %s\n", *subject++);
+		printf ("\n.SH %s\n", * subject++);
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -162,7 +161,6 @@ static void configure (char const * section, char const * project, char const * 
 	printf ("release=%s\n", release);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -185,33 +183,46 @@ static void function (char const * program, char const * project, char const * p
 		{
 			c = getc (stdin);
 		}
-		if (c == ' ')
+		if (c == ' ') 
 		{
-			do {c = keep (c); } while (nobreak (c));
+			do 
+			{
+				c = keep (c);
+			}
+			while (nobreak (c));
 		}
 		else if (c == '.') 
 		{
 			c = keep (c);
 			if (c == '\\') 
 			{
-				do { c = keep (c); } while (nobreak (c));
+				do 
+				{
+					c = keep (c);
+				}
+				while (nobreak (c));
 			}
 			else if (isalpha (c)) 
 			{
 				char symbol [4096];
 				char * sp = symbol;
-				do { *sp++ = c; c = getc (stdin); } while (isalpha (c));
-				*sp = (char) (0);
+				do 
+				{
+					* sp++ = c;
+					c = getc (stdin);
+				}
+				while (isalpha (c));
+				* sp = (char) (0);
 				if (!strcmp (symbol, ".TH")) 
 				{
 					while (nobreak (c)) 
 					{
 						c = getc (stdin);
 					}
-					sp += snprintf (sp, sizeof (symbol) + sp - symbol, " %s", program);
-					sp += snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", release);
-					sp += snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", package);
-					sp += snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", project);
+					sp+= snprintf (sp, sizeof (symbol) + sp - symbol, " %s", program);
+					sp+= snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", release);
+					sp+= snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", package);
+					sp+= snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", project);
 				}
 				else if (!strcmp (symbol, ".SH")) 
 				{
@@ -251,11 +262,19 @@ static void function (char const * program, char const * project, char const * p
 				c = keep (c);
 				if (c == '.') 
 				{
-					do { c = keep (c); } while (c == '.');
+					do 
+					{
+						c = keep (c);
+					}
+					while (c == '.');
 				}
 				else if (isblank (c)) 
 				{
-					do { c = getc (stdin); } while (isblank (c));
+					do 
+					{
+						c = getc (stdin);
+					}
+					while (isblank (c));
 					putc ('\n', stdout);
 				}
 			}
@@ -263,7 +282,6 @@ static void function (char const * program, char const * project, char const * p
 			{
 				c = literal (c);
 			}
-
 #if 1
 
 			else if (c == '\\') 
@@ -278,7 +296,7 @@ static void function (char const * program, char const * project, char const * p
 #endif
 
 			}
-			else
+			else 
 			{
 				c = keep (c);
 			}
@@ -287,7 +305,6 @@ static void function (char const * program, char const * project, char const * p
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -325,7 +342,7 @@ int main (int argc, char const * argv [])
 	char * sp;
 	flag_t flags;
 	signed c;
-	strftime (buffer, sizeof (buffer), MP_PUBLISH, localtime (&now));
+	strftime (buffer, sizeof (buffer), MP_PUBLISH, localtime (& now));
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
@@ -346,12 +363,12 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	project = profilestring (profile, section, "project", project);
 	package = profilestring (profile, section, "package", package);
 	release = profilestring (profile, section, "release", release);
-	if ((!argc) || (!*argv)) 
+	if ((!argc) || (!* argv)) 
 	{
 		function ("unamed 7", project, package, release, flags);
 	}
@@ -360,15 +377,15 @@ int main (int argc, char const * argv [])
 		if (vfopen (* argv)) 
 		{
 			program = * argv;
-			for (sp = (char *)(* argv); *sp; ++sp) 
+			for (sp = (char *)(* argv); * sp; ++sp) 
 			{
-				if (*sp == PATH_C_EXTENDER) 
+				if (* sp == PATH_C_EXTENDER) 
 				{
 					program = sp + 1;
 				}
-				if (*sp == FILE_C_EXTENDER) 
+				if (* sp == FILE_C_EXTENDER) 
 				{
-					*sp = ' ';
+					* sp = ' ';
 				}
 			}
 			function (program, project, package, release, flags);

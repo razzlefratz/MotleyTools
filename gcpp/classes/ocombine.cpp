@@ -37,7 +37,6 @@ char const * ocontext::string () const
 	return (this->mstring);
 }
 
-
 /*====================================================================*
  *
  *   char const *prefix () const;
@@ -52,7 +51,6 @@ char const * ocontext::prefix () const
 	return (this->mprefix);
 }
 
-
 /*====================================================================*
  *
  *   char const *suffix () const;
@@ -66,7 +64,6 @@ char const * ocontext::suffix () const
 {
 	return (this->msuffix);
 }
-
 
 /*====================================================================*
  *
@@ -86,6 +83,7 @@ ocontext & ocontext::string (char buffer [], size_t length)
 	{
 		return (* this);
 	}
+
 #endif
 
 	if (length > 0) 
@@ -102,7 +100,6 @@ ocontext & ocontext::string (char buffer [], size_t length)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -122,6 +119,7 @@ ocontext & ocontext::prefix (char buffer [], size_t length)
 	{
 		return (* this);
 	}
+
 #endif
 
 	if (length > 0) 
@@ -138,7 +136,6 @@ ocontext & ocontext::prefix (char buffer [], size_t length)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -158,6 +155,7 @@ ocontext & ocontext::suffix (char buffer [], size_t length)
 	{
 		return (* this);
 	}
+
 #endif
 
 	if (length > 0) 
@@ -174,7 +172,6 @@ ocontext & ocontext::suffix (char buffer [], size_t length)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -225,7 +222,6 @@ ocontext & ocontext::split (char const * string, char const * charset, bool firs
 	return (* this);
 }
 
-
 ocontext & ocontext::merge (char const * prefix, char const * middle, char const * suffix) 
 
 {
@@ -273,7 +269,6 @@ ocontext & ocontext::merge (char const * prefix, char const * middle, char const
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   bool member (char const *string, char c);
@@ -295,7 +290,6 @@ bool ocontext::member (char const * string, char c)
 	return (false);
 }
 
-
 /*====================================================================*
  *
  *   context ();
@@ -313,7 +307,6 @@ ocontext::ocontext ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ ocontext ();
@@ -329,7 +322,6 @@ ocontext::~ocontext ()
 	this->msuffix = (char *) (0);
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

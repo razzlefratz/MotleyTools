@@ -27,9 +27,6 @@
  *   class constants;
  *--------------------------------------------------------------------*/
 
-#define oGRAPH_SYMBOL_LENGTH 0x0400
-#define oGRAPH_TEXT_MORE " --> "
-
 #define oGRAPH_MODE_INVERT (1 << 0)
 #define oGRAPH_SHOW_SYMBOL (1 << 1)
 #define oGRAPH_SHOW_STRUCT (1 << 2)
@@ -44,32 +41,28 @@ class __declspec (dllexport) ograph: private otext, private oascii, public oflag
 
 {
 public:
-	ograph ();
-	virtual~ ograph ();
-	char const * name ();
-	onode * node () const;
+	ograph (void);
+	virtual~ ograph (void);
+	char const * name (void);
+	onode * node (void) const;
 	ograph & name (char const * name);
 	ograph & addnode (char const * nodename);
-	ograph & addedge (char const * needname, char const * feedname);
+	ograph & addedge (char const * rootname, char const * nodename);
 	ograph & populate (char colon, char comma);
-	ograph & discover ();
-	ograph & trace (onode * node, onode * temp);
+	ograph & discover (void);
+	ograph & trace (onode * node, onode * stop);
 	ograph & print (signed indent);
-	ograph & clear ();
+	ograph & clear (void);
 private:
 	ograph & traverse (onode * node);
 	char * mname;
 	onodes * mnodes;
 	oedges * medges;
-	onode * mneednode;
-	onode * mfeednode;
 	onode * mnode;
-	oedge * medge;
 	size_t morder;
 	size_t mcount;
 	size_t mwidth;
 };
-
 
 /*====================================================================*
  *   end declaration;

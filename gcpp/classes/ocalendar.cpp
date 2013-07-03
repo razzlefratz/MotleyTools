@@ -21,9 +21,9 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/date.h"
 #include "../classes/ocalendar.hpp"
 #include "../classes/oversion.hpp"
+#include "../../gcc/date/date.h"
 
 /*====================================================================*
  *   class constants; 
@@ -47,11 +47,10 @@ char const * ocalendar::mdays [DAYS_IN_WEEK] =
 	" S"
 };
 
-
 char const * ocalendar::mdate1 [DATES_IN_MONTH+1] = 
 
 {
-	"  ",
+	"&nbsp",
 	" 1",
 	" 2",
 	" 3",
@@ -84,7 +83,6 @@ char const * ocalendar::mdate1 [DATES_IN_MONTH+1] =
 	"30",
 	"31"
 };
-
 
 char const * ocalendar::mdate2 [DATES_IN_MONTH+1] = 
 
@@ -123,7 +121,6 @@ char const * ocalendar::mdate2 [DATES_IN_MONTH+1] =
 	"31"
 };
 
-
 /*====================================================================*
  *
  *   ocalendar & stylesheet (unsigned level, unsigned space)
@@ -149,7 +146,6 @@ ocalendar & ocalendar::stylesheet (unsigned level, unsigned space)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ocalendar & annum ()
@@ -169,9 +165,7 @@ ocalendar & ocalendar::annum ()
 	mindent.print (level++, space, "<head>");
 	mindent.print (level++, space, "<title>");
 	mindent.print (level--, space, "</title>");
-
-// mindent.print (level, space, "<link href='http://www.cmassoc.net/styles/cmassoc.css' rel='stylesheet' type='text/css'>");
-
+	mindent.print (level, space, "<link href='calendar.css' rel='stylesheet' type='text/css'>");
 	mindent.print (level--, space, "</head>");
 	mindent.print (level++, space, "<body>");
 	this->stylesheet (level, space).annum (level, space);
@@ -179,7 +173,6 @@ ocalendar & ocalendar::annum ()
 	mindent.print (level--, space, "</html>");
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -210,7 +203,6 @@ ocalendar & ocalendar::annum (unsigned level, unsigned space)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ocalendar & month (unsigned index)
@@ -230,9 +222,7 @@ ocalendar & ocalendar::month (unsigned index)
 	mindent.print (level++, space, "<head>");
 	mindent.print (level++, space, "<title>");
 	mindent.print (level--, space, "</title>");
-
-// mindent.print (level, space, "<link href='http://www.cmassoc.net/styles/cmassoc.css' rel='stylesheet' type='text/css'>");
-
+	mindent.print (level, space, "<link href='calendar.css' rel='stylesheet' type='text/css'>");
 	mindent.print (level--, space, "</head>");
 	mindent.print (level++, space, "<body>");
 	this->stylesheet (level, space).month (level, space, index);
@@ -240,7 +230,6 @@ ocalendar & ocalendar::month (unsigned index)
 	mindent.print (level--, space, "</html>");
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -285,7 +274,6 @@ ocalendar & ocalendar::month (unsigned level, unsigned space, unsigned index)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ocalendar & print ()
@@ -313,7 +301,6 @@ ocalendar & ocalendar::print (unsigned index)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ocalendar ()
@@ -334,7 +321,6 @@ ocalendar::ocalendar ()
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -357,7 +343,6 @@ ocalendar::ocalendar (unsigned year)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ocalendar ()
@@ -373,7 +358,6 @@ ocalendar::~ocalendar ()
 	delete [] this->mtitle;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

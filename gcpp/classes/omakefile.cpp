@@ -25,12 +25,12 @@
 
 #include "../classes/omakefile.hpp"
 
-#include "../classes/paths.h"
-#include "../classes/sizes.h"
+#include "../../gcc/tools/paths.h"
+#include "../../gcc/tools/sizes.h"
 
 /*====================================================================*
  *
- *   char const *compiler() const;
+ *   char const * compiler() const;
  *
  *   return the mcompiler member string;
  *
@@ -46,10 +46,9 @@ char const * omakefile::compiler () const
 	return (this->mcompiler);
 }
 
-
 /*====================================================================*
  *
- *   omakefile & compiler(char const *string);
+ *   omakefile & compiler (char const * string);
  *
  *   assign a nes string to the mcompiler member only if the new string
  *   differs from the old string; 
@@ -67,7 +66,6 @@ omakefile & omakefile::compiler (char const * string)
 	return (* this);
 }
 
-
 omakefile & omakefile::linebreak () 
 
 {
@@ -75,10 +73,9 @@ omakefile & omakefile::linebreak ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
- *   char const *sourcedir() const;
+ *   char const * sourcedir () const;
  *
  *   return the msourcedir member string;
  *
@@ -94,10 +91,9 @@ char const * omakefile::sourcedir () const
 	return (this->msourcedir);
 }
 
-
 /*====================================================================*
  *
- *   omakefile & sourcedir(char const *string);
+ *   omakefile & sourcedir (char const * string);
  *
  *   replace the library property string if different from the old one; 
  *
@@ -114,10 +110,9 @@ omakefile & omakefile::sourcedir (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
- *   char const *targetdir() const;
+ *   char const * targetdir () const;
  *
  *   return the mtargetdir member string;
  *
@@ -133,10 +128,9 @@ char const * omakefile::targetdir () const
 	return (this->mtargetdir);
 }
 
-
 /*====================================================================*
  *
- *   omakefile & targetdir(char const *string);
+ *   omakefile & targetdir (char const * string);
  *
  *   replace the library property string if different from the old one; 
  *
@@ -153,10 +147,9 @@ omakefile & omakefile::targetdir (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
- *   omakefile & projectfile(char const *pathname);
+ *   omakefile & projectfile (char const * pathname);
  *
  *   open a file containing a list of target filenames; include 
  *   each target in the project target list if not already present;
@@ -192,7 +185,6 @@ omakefile & omakefile::projectfile (char const * pathname)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   omakefile & includefile(char const *pathname);
@@ -215,7 +207,6 @@ omakefile & omakefile::includefile (char const * pathname)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -256,7 +247,7 @@ omakefile & omakefile::publish ()
 	std::cout << "compile:";
 	for (size_t index = 0; index < list.count (); index++) 
 	{
-		std::cout << " " << this->mlinebreak << this->filespec.filespec (list.items (index) ->name ()).likename (".o");
+		std::cout << " " << this->mlinebreak << this->filespec.filespec (list.items (index)->name ()).likename (".o");
 	}
 	std::cout << std::endl;
 	std::cout << "library:" << std::endl;
@@ -278,7 +269,6 @@ omakefile & omakefile::publish ()
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -319,7 +309,6 @@ omakefile & omakefile::section (char const * filespec)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   omakefile ();
@@ -349,7 +338,6 @@ omakefile::omakefile ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~omakefile ();
@@ -373,7 +361,6 @@ omakefile::~omakefile ()
 	delete [] this->moutput;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

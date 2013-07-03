@@ -27,7 +27,6 @@ ctar
 defix
 delta
 detab
-detag
 dls
 dmp2hex
 dump
@@ -64,6 +63,7 @@ l2p
 lp2824
 lam
 log
+long
 loop
 matrix
 mmf
@@ -80,7 +80,6 @@ ode
 odump
 odx
 oedit
-ofld
 offset
 ofld
 order
@@ -118,6 +117,13 @@ vu
 wl
 xde
 xml
+localhost
+quiet
+runjobs
+shout
+syslog
+what
+whom
 auth
 cat
 checkmode
@@ -129,7 +135,7 @@ dif
 dump
 ff-bld
 ff-elf
-localhostlong
+long
 main
 mvpkg
 octal
@@ -137,14 +143,9 @@ pkg
 pkgdep
 pkgopt
 qc
-quiet
 rexp
 rmpkg
-runjobs
 setmode
-shout
 tr
 undash
 wc
-what
-whom

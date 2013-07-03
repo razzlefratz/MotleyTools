@@ -2,6 +2,9 @@
  *
  *   okeep.cpp - implementation of the okeep class.
  *
+ *   create and maintain an ordered tree of named nodes where each
+ *   node is the head of a linked list of objects;
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -25,12 +28,7 @@
 
 /*====================================================================*
  *
- *   void *store (char const *string, void *object);
- *
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *   void * store (char const * string, void * object);
  *
  *--------------------------------------------------------------------*/
 
@@ -64,15 +62,10 @@ void * okeep::store (char const * string, void * object)
 	return (pobject);
 }
 
-
 /*====================================================================*
  *
- *   void *fetch (char const *string) const;
+ *   void * fetch (char const * string) const;
  *
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -98,14 +91,9 @@ void * okeep::fetch (char const * string) const
 	return ((void *) (0));
 }
 
-
 /*====================================================================*
  *
  *   okeep()
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -119,14 +107,9 @@ okeep::okeep ()
 	return;
 };
 
-
 /*====================================================================*
  *
  *   ~okeep()
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -140,7 +123,6 @@ okeep::~okeep ()
 	this->mafter = (okeep *) (0);
 	return;
 }
-
 
 /*====================================================================*
  *

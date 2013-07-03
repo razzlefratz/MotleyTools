@@ -79,7 +79,6 @@ osymbol & osymbol::define (char const * symbol, char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *  
  *   bool defined (char const *symbol) const;
@@ -102,7 +101,6 @@ bool osymbol::defined (char const * symbol) const
 	}
 	return (false);
 }
-
 
 /*====================================================================*
  *  
@@ -128,7 +126,6 @@ char const * osymbol::lookup (char const * symbol) const
 	return ((char const *) (0));
 }
 
-
 /*====================================================================*
  *  
  *   char const *expand (char const *symbol) const;
@@ -152,7 +149,6 @@ char const * osymbol::expand (char const * symbol) const
 	}
 	return (symbol);
 }
-
 
 /*====================================================================*
  *
@@ -178,7 +174,6 @@ osymbol & osymbol::revert (char const * symbol)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -215,7 +210,6 @@ const osymbol * osymbol::node (char const * symbol) const
 	return ((osymbol *)(0));
 }
 
-
 /*====================================================================*
  *
  *   osymbol & print ();
@@ -243,7 +237,6 @@ osymbol & osymbol::enumerate ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   osymbol & print ();
@@ -266,7 +259,6 @@ osymbol & osymbol::print ()
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -295,7 +287,6 @@ osymbol & osymbol::clear ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *  void  osymbol (char const * symbol);
@@ -317,7 +308,6 @@ osymbol::osymbol (char const * symbol)
 	this->mafter = (osymbol *) (0);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -341,7 +331,6 @@ osymbol::osymbol (char const * symbol, char const * string)
 	this->mafter = (osymbol *) (0);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -370,7 +359,6 @@ osymbol::~osymbol ()
 	delete this->mqueue;
 	return;
 }
-
 
 /*====================================================================*
  *

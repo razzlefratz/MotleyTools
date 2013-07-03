@@ -111,9 +111,9 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-extern LINK *nodelist;
-extern TREE *nodetree;
-static TREE *pathtree = (TREE *) (0);
+extern LINK * nodelist;
+extern TREE * nodetree;
+static TREE * pathtree = (TREE *) (0);
 
 /*====================================================================*
  *
@@ -127,7 +127,7 @@ static TREE *pathtree = (TREE *) (0);
  *
  *--------------------------------------------------------------------*/
 
-static void relate (char const *one, char const *two, flag_t flags) 
+static void relate (char const * one, char const * two, flag_t flags) 
 
 {
 	if (_anyset (flags, DEP_B_INVERT)) 
@@ -140,7 +140,6 @@ static void relate (char const *one, char const *two, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -176,10 +175,10 @@ static void relate (char const *one, char const *two, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-void function (char const *pathname, char *buffer, size_t length, flag_t flags) 
+void function (char const * pathname, char * buffer, size_t length, flag_t flags) 
 
 {
-	FILE *ifp;
+	FILE * ifp;
 	SCAN scan;
 	FIND find;
 	size_t line;
@@ -188,35 +187,35 @@ void function (char const *pathname, char *buffer, size_t length, flag_t flags)
 		strcpy (find.fullname, pathname);
 		partpath (find.fullname, find.pathname, find.filename);
 		partfile (find.filename, find.basename, find.extender);
-		scaninput (&scan, buffer, length);
+		scaninput (& scan, buffer, length);
 		for (line = 0; fgetline (buffer, length, ifp) != -1; line++) 
 		{
-			scanstart (&scan);
-			nexttoken (&scan);
-			if (!havetoken (&scan, "#")) 
+			scanstart (& scan);
+			nexttoken (& scan);
+			if (!havetoken (& scan, "#")) 
 			{
 				continue;
 			}
-			if (!havetoken (&scan, "include")) 
+			if (!havetoken (& scan, "include")) 
 			{
 				continue;
 			}
-			if (havetoken (&scan, "<")) 
+			if (havetoken (& scan, "<")) 
 			{
 				if (_anyset (flags, DEP_B_SYSTEM)) 
 				{
-					scanuntil (&scan, ">");
-					makepath (find.fullname, "/usr/include", tokentext (&scan));
+					scanuntil (& scan, ">");
+					makepath (find.fullname, "/usr/include", tokentext (& scan));
 					relate (pathname, find.fullname, flags);
 				}
 				continue;
 			}
-			if (havetoken (&scan, "\"")) 
+			if (havetoken (& scan, "\"")) 
 			{
 				if (_anyset (flags, DEP_B_CUSTOM)) 
 				{
-					scanuntil (&scan, "\"");
-					makepath (find.fullname, find.pathname, tokentext (&scan));
+					scanuntil (& scan, "\"");
+					makepath (find.fullname, find.pathname, tokentext (& scan));
 					relate (pathname, find.fullname, flags);
 				}
 				continue;
@@ -230,7 +229,6 @@ void function (char const *pathname, char *buffer, size_t length, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -285,8 +283,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		error (1, 0, "nothing to analyse");

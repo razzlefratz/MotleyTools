@@ -22,7 +22,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/oheap.hpp"
-#include "../classes/tools.h"
+#include "../../gcc/tools/sizes.h"
 
 /*====================================================================*
  *
@@ -37,7 +37,6 @@ char const * oheap::title () const
 {
 	return (this->mtitle);
 }
-
 
 /*====================================================================*
  *
@@ -59,7 +58,6 @@ oheap & oheap::title (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   size_t oheap::count() const;
@@ -73,7 +71,6 @@ size_t oheap::count () const
 	return (this->mcount);
 }
 
-
 /*====================================================================*
  *
  *   oitem * oheap::item() const;
@@ -86,7 +83,6 @@ oitem * oheap::item () const
 {
 	return (this->mcount > 0? this->mtable [this->mstart]: (oitem *) (0));
 }
-
 
 /*====================================================================*
  *
@@ -106,6 +102,7 @@ oitem * oheap::item ()
 	{
 		return ((oitem *) (0));
 	}
+
 /*
  * Do not use table[0] because this algorithm depends on the
  * oheap root being a positive odd integer, specifically 1.
@@ -136,7 +133,6 @@ oitem * oheap::item ()
 	this->mtable [this->mcount--] = (oitem *) (0);
 	return (item);
 }
-
 
 /*====================================================================*
  *
@@ -175,7 +171,6 @@ oheap & oheap::insertitem (oitem * item)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oheap & oheap::clear();
@@ -192,7 +187,6 @@ oheap & oheap::clear ()
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -212,7 +206,6 @@ oheap::oheap ()
 	return;
 }
 
-
 oheap::oheap (int order (char const *, char const *)) 
 
 {
@@ -227,7 +220,6 @@ oheap::oheap (int order (char const *, char const *))
 	return;
 }
 
-
 oheap::~oheap () 
 
 {
@@ -235,7 +227,6 @@ oheap::~oheap ()
 	delete [] this->mtable;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

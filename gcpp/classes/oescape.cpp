@@ -316,7 +316,6 @@ unsigned char oescape::mtable [UCHAR_MAX + 1] =
 	255
 };
 
-
 /*====================================================================*
  *
  *   unsigned oescape::define (signed c, unsigned e);
@@ -334,7 +333,6 @@ unsigned oescape::define (signed c, signed e)
 {
 	return (oescape::mtable [c & UCHAR_MAX] = e & UCHAR_MAX);
 }
-
 
 /*====================================================================*
  *
@@ -354,7 +352,6 @@ unsigned oescape::unescape (signed c)
 {
 	return (oescape::mtable [(unsigned) (c) & UCHAR_MAX]);
 }
-
 
 /*====================================================================*
  *
@@ -403,6 +400,7 @@ char * oescape::unescape (register char * string)
 				}
 				continue;
 			}
+
 #if oESCAPE_NOTABLE
 
 			switch (* cp) 
@@ -454,6 +452,7 @@ char * oescape::unescape (register char * string)
 
 			continue;
 		}
+
 #if oESCAPE_ISO_646_1983
 
 		if (* sp == '?') 
@@ -498,6 +497,7 @@ char * oescape::unescape (register char * string)
 			}
 			continue;
 		}
+
 #endif
 
 		if (* sp == '^') 
@@ -508,7 +508,6 @@ char * oescape::unescape (register char * string)
 	}
 	return (string);
 }
-
 
 /*====================================================================*
  *
@@ -527,7 +526,6 @@ oescape::oescape ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oescape ();
@@ -544,7 +542,6 @@ oescape::~oescape ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

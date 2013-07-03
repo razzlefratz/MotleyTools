@@ -21,9 +21,9 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/date.h"
 #include "../classes/odate.hpp"
 #include "../classes/omonth.hpp"
+#include "../../gcc/date/date.h"
 
 /*====================================================================*
  *
@@ -39,7 +39,6 @@ char const * omonth::title () const
 	return (this->mtitle);
 }
 
-
 /*====================================================================*
  *
  *   unsigned year () const;
@@ -53,7 +52,6 @@ unsigned omonth::year () const
 {
 	return (this->mannum);
 }
-
 
 /*====================================================================*
  *
@@ -69,7 +67,6 @@ unsigned omonth::month () const
 	return (this->mmonth);
 }
 
-
 /*====================================================================*
  *
  *   unsigned weekday () const;
@@ -83,7 +80,6 @@ unsigned omonth::weekday () const
 {
 	return (this->mstart);
 }
-
 
 /*====================================================================*
  *
@@ -99,7 +95,6 @@ unsigned omonth::lastday () const
 	return (this->mlimit);
 }
 
-
 /*====================================================================*
  *
  *   unsigned date (unsigned week, unsigned weekday) const;
@@ -114,7 +109,6 @@ unsigned omonth::date (unsigned week, unsigned weekday) const
 {
 	return (this->date (week * DAYS_IN_WEEK + weekday));
 }
-
 
 /*====================================================================*
  *
@@ -138,7 +132,6 @@ unsigned omonth::date (unsigned block) const
 	}
 	return (block);
 }
-
 
 /*====================================================================*
  *
@@ -169,7 +162,6 @@ void omonth::encode (char buffer [], size_t length)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   omonth (unsigned year, signed month);
@@ -191,7 +183,6 @@ omonth::omonth (unsigned year, signed month)
 	this->mlimit = date.endofmonth (this->mannum, this->mmonth);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -217,7 +208,6 @@ omonth::omonth (signed month)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   omonth ();
@@ -241,7 +231,6 @@ omonth::omonth ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~omonth ();
@@ -255,7 +244,6 @@ omonth::~omonth ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

@@ -56,5 +56,6 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
+
 #if 0 while ((getopt.argc () > 0) && (*getopt.argv () != (char *) (0))) {getopt++; } #else cout << profile.lookup ("profile.ini", "cbar", "release", "Published 2006 by Charles Maier Associates Limited for internal use;") << "\n"; cout << profile.lookup ("profile.ini", "cbar", "license", "Licensed under the GNU General Public License version 2 or later;") << "\n"; #endif return (0); } 
 

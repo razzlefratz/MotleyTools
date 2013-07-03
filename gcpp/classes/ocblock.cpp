@@ -42,26 +42,25 @@ signed ocblock::statement (signed c)
 {
 	while (oascii::isspace (c)) 
 	{
-		c = ocblock::keep (c);
+		c = ocblock::feed (c);
 	}
 	if (c == '{') 
 	{
-		c = ocblock::keep (c);
+		c = ocblock::feed (c);
 		c = ocblock::program (c, '}');
-		c = ocblock::keep (c);
+		c = ocblock::feed (c);
 	}
 	else if (c != ';') 
 	{
 		std::cout.put ('{');
 		std::cout.put (' ');
 		c = ocblock::program (c, ';');
-		c = ocblock::keep (c);
+		c = ocblock::feed (c);
 		std::cout.put (' ');
 		std::cout.put ('}');
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -78,7 +77,7 @@ signed ocblock::condition (signed c)
 {
 	while (oascii::isspace (c)) 
 	{
-		c = ocblock::keep (c);
+		c = ocblock::feed (c);
 	}
 	if (c == '(') 
 	{
@@ -92,7 +91,6 @@ signed ocblock::condition (signed c)
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -131,9 +129,9 @@ signed ocblock::program (signed c, signed e)
 		}
 		if (c == '{') 
 		{
-			c = ocblock::keep (c);
+			c = ocblock::feed (c);
 			c = ocblock::program (c, '}');
-			c = ocblock::keep (c);
+			c = ocblock::feed (c);
 			continue;
 		}
 		if (oascii::isquote (c)) 
@@ -148,7 +146,7 @@ signed ocblock::program (signed c, signed e)
 			do 
 			{
 				* sp++ = c;
-				c = ocblock::keep (c);
+				c = ocblock::feed (c);
 			}
 			while (oascii::isalnum (c) || (c == '_'));
 			* sp = (char)(0);
@@ -196,11 +194,10 @@ signed ocblock::program (signed c, signed e)
 			}
 			continue;
 		}
-		c = ocblock::keep (c);
+		c = ocblock::feed (c);
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -218,7 +215,6 @@ ocblock::ocblock ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ocblock();
@@ -234,7 +230,6 @@ ocblock::~ocblock ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

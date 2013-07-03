@@ -11,8 +11,8 @@ PRIVATE := /Volumes/CHARLIE
 CONTROL := /home/ftp/linux/system/src/custom
 PACKAGE	:= $(basename ${PWD})
 EXCLUDE := --exclude=.git 
-FOLDERS := awk bash php python bash gcc gcpp 
-FOLDERS := gcc gcpp 
+FOLDERS := awk bash gcc gcpp misc php python  
+FOLDERS := gcc gcpp misc 
 
 # ===================================================================
 # pseudo targets;
@@ -64,4 +64,5 @@ PAGES=afm.7 align.7 argv.7 b64.7 bang.7 bin2hex.7 blank.7 calend.7 call.7 case.7
 
 unman:
 	for page in ${PAGES}; do rm -vfr /usr/share/man/man7/$${page}; done
-
+showme:
+	echo $(OS)

@@ -25,9 +25,9 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/paths.h"
-#include "../classes/types.h"
-#include "../classes/flags.h"
+#include "../../gcc/tools/paths.h"
+#include "../../gcc/tools/types.h"
+#include "../../gcc/tools/flags.h"
 
 #include "../classes/osyslog.hpp"
 #include "../classes/osyslogspec.hpp"
@@ -133,7 +133,6 @@ const struct _code_ osyslogspec::facilities [] =
 	}
 };
 
-
 const struct _code_ osyslogspec::severities [] = 
 
 {
@@ -195,7 +194,6 @@ const struct _code_ osyslogspec::severities [] =
 	}
 };
 
-
 /*====================================================================*
  *
  *   int osyslogspec::encode (char const *string);
@@ -241,7 +239,6 @@ int osyslogspec::encode (char const * string) const
 	return (facility | severity);
 }
 
-
 /*====================================================================*
  *
  *   char *osyslogspec::decode(int flagword) const
@@ -279,7 +276,6 @@ char const * osyslogspec::decode (int flagword) const
 	return (buffer);
 }
 
-
 /*====================================================================*
  *
  *   int lookup (char const *string, const struct _code_ table[]);
@@ -314,7 +310,6 @@ int osyslogspec::lookup (char const * string, const struct _code_ table []) cons
 	return (0);
 }
 
-
 /*====================================================================*
  *   
  *   osyslogspec();
@@ -332,7 +327,6 @@ osyslogspec::osyslogspec ()
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   ~osyslogspec();
@@ -349,7 +343,6 @@ osyslogspec::~osyslogspec ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *

@@ -45,7 +45,6 @@ char * ochrhex::tohex (char * string, unsigned c)
 	return (string);
 }
 
-
 /*====================================================================*
  *   
  *   char * toietf (char * string, unsigned c);
@@ -63,7 +62,6 @@ char * ochrhex::toietf (char * string, unsigned c)
 	string = ochrhex::tohex (string, c);
 	return (string);
 }
-
 
 /*====================================================================*
  *   
@@ -83,7 +81,6 @@ char * ochrhex::toiso (char * string, unsigned c)
 	string =ochrhex::tohex (string, c);
 	return (string);
 }
-
 
 /*====================================================================*
  *   
@@ -105,7 +102,6 @@ char * ochrhex::tohtml (char * string, unsigned c)
 	return (string);
 }
 
-
 /*====================================================================*
  *   
  *   char * toconst (char * string, unsigned c);
@@ -125,7 +121,6 @@ char * ochrhex::toconst (char * string, unsigned c)
 	return (string);
 }
 
-
 /*====================================================================*
  *   
  *   ochrhex ();
@@ -142,7 +137,6 @@ ochrhex::ochrhex ()
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   ~ochrhex ();
@@ -158,7 +152,6 @@ ochrhex::~ochrhex ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

@@ -44,7 +44,6 @@ char * ochroct::tooctal (char * string, unsigned c)
 	return (string);
 }
 
-
 char * ochroct::tounix (char * string, unsigned c) 
 
 {
@@ -52,7 +51,6 @@ char * ochroct::tounix (char * string, unsigned c)
 	string = ochroct::tooctal (string, c);
 	return (string);
 }
-
 
 /*====================================================================*
  *   
@@ -64,13 +62,11 @@ ochroct::ochroct ()
 	return;
 };
 
-
 ochroct::~ochroct () 
 
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

@@ -37,7 +37,6 @@ char const * ocontext::prefix () const
 	return (this->mprefix);
 }
 
-
 /*====================================================================*
  *
  *   ocontext & prefix (char buffer[], size_t length) const;
@@ -53,7 +52,6 @@ ocontext & ocontext::prefix (char buffer [], size_t length)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char const *suffix () const;
@@ -68,7 +66,6 @@ char const * ocontext::suffix () const
 	return (this->msuffix);
 }
 
-
 /*====================================================================*
  *
  *   ocontext & suffix (char buffer[], size_t length) const;
@@ -82,7 +79,6 @@ ocontext & ocontext::suffix (char buffer [], size_t length)
 {
 	return (ocontext::copy (this->msuffix, buffer, length));
 }
-
 
 /*====================================================================*
  *
@@ -126,7 +122,6 @@ ocontext & ocontext::split (char const * string, char c, bool initial, bool opti
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ocontext & copy (char const *string, char buffer[], size_t length) const;
@@ -145,6 +140,7 @@ ocontext & ocontext::copy (char const * string, char buffer [], size_t length)
 	{
 		return (* this);
 	}
+
 #endif
 
 	if (length > 0) 
@@ -163,7 +159,6 @@ ocontext & ocontext::copy (char const * string, char buffer [], size_t length)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   context ();
@@ -181,7 +176,6 @@ ocontext::ocontext ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ ocontext ();
@@ -197,7 +191,6 @@ ocontext::~ocontext ()
 	this->msuffix = (char *) (0);
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

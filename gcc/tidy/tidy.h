@@ -80,7 +80,6 @@ signed nothing (signed c);
 signed literal (signed c);
 signed context (signed c, signed e);
 signed control (signed c, signed e);
-signed compact (signed c, signed e);
 signed discard (signed c, signed e);
 signed collect (signed c, signed e);
 signed divider (signed c, unsigned width);

@@ -16,9 +16,9 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
-#include "../classes/otext.hpp"
-#include "../classes/ocollect.hpp"
+#include "../classes/osource.hpp"
 #include "../classes/oascii.hpp"
+#include "../classes/otext.hpp"
 
 /*====================================================================*
  *   class constants;
@@ -34,22 +34,22 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) omptidy: private otext, private oascii, private ocollect 
+class __declspec (dllexport) omptidy: private otext, private oascii, private osource 
 
 {
 public:
-	omptidy ();
-	virtual~ omptidy ();
-	char const * project () const;
-	char const * program () const;
-	char const * package () const;
-	char const * release () const;
+	omptidy (void);
+	virtual~ omptidy (void);
+	char const * project (void) const;
+	char const * program (void) const;
+	char const * package (void) const;
+	char const * release (void) const;
 	omptidy & project (char const *);
 	omptidy & program (char const *);
 	omptidy & package (char const *);
 	omptidy & release (char const *);
 	omptidy & filename (char const *);
-	omptidy & tidy ();
+	signed tidy (signed c);
 private:
 	char * mproject;
 	char * mprogram;
@@ -57,7 +57,6 @@ private:
 	char * mrelease;
 	char * mstring;
 };
-
 
 #endif
 

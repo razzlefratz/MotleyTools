@@ -79,7 +79,6 @@ oputopt & oputopt::chkopt (char const * optv [], char const * options)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oputopt & putopt(char const * usage[], signed exitcode);
@@ -97,7 +96,6 @@ oputopt & oputopt::putopt (char const * usage [], signed exitcode)
 	this->putopt (usage);
 	std::exit (exitcode);
 }
-
 
 /*====================================================================*
  *
@@ -128,7 +126,6 @@ oputopt & oputopt::putopt (char const * usage [])
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oputopt ();
@@ -141,7 +138,6 @@ oputopt::oputopt ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oputopt ();
@@ -153,7 +149,6 @@ oputopt::~oputopt ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation

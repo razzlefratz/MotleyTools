@@ -41,7 +41,6 @@ unsigned oindex::qmod (signed domain, signed range)
 	return (0);
 }
 
-
 /*====================================================================*
  *
  *   unsigned pmod (signed domain, unsigned range)
@@ -66,7 +65,6 @@ unsigned oindex::pmod (signed domain, signed range)
 	return (0);
 }
 
-
 /*====================================================================*
  *
  *   oindex ();
@@ -81,7 +79,6 @@ oindex::oindex ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oindex ();
@@ -95,7 +92,6 @@ oindex::~oindex ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

@@ -17,6 +17,7 @@
 
 #include <cstring>
 #include <cstdlib>
+#include <fstream>
 #include <iostream>
 
 #include <dirent.h>
@@ -26,70 +27,45 @@
  *   custom source files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/files.h"
-
 #include "oHTMLIndex.hpp"
 
 /*====================================================================*
  *   custom source files;
  *--------------------------------------------------------------------*/
 
-oSpanElement mspan;
-oAnchorElement mlink;
-owebpage mwebpage;
+oAnchorElement manchor;
 owildcard mwildcard;
-oindent mindent;
 olist mlist;
 
 /*====================================================================*
  *
- *   oHTMLIndex & oHTMLIndex::title(char const *string);
- *
- *   assign the string argument to the page title;
- *
- *--------------------------------------------------------------------*/
-
-oHTMLIndex & oHTMLIndex::title (char const * string) 
-
-{
-	oHTMLIndex::mwebpage.title (string);
-	return (* this);
-}
-
-
-char const * oHTMLIndex::title () const 
-
-{
-	return (oHTMLIndex::mwebpage.title ());
-}
-
-
-/*====================================================================*
- *
- *   oHTMLIndex & oHTMLIndex::stylesheet(char const *stylesheet);
- *
- *   assign the string argument to the page title;
+ *   void css2 (void);
+ *   
+ *   print a compatible CSS stylesheet on stdout so that element and
+ *   property names match the HTML output;
  *
  *--------------------------------------------------------------------*/
 
-oHTMLIndex & oHTMLIndex::stylesheet (char const * stylesheet) 
+oHTMLIndex & oHTMLIndex::css2 (void) 
 
 {
-	oHTMLIndex::mwebpage.stylesheet (stylesheet);
+	std::cout << "a:hover { text-decoration: underline; }" << std::endl;
+	std::cout << "a { text-decoration: none; }" << std::endl;
+	std::cout << "a:link { color: navy; }" << std::endl;
+	std::cout << "a:active { }" << std::endl;
+	std::cout << "a:visited { color: maroon; }" << std::endl;
+	std::cout << "body { background:white; color:black; font:normal 12pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
+	std::cout << "li.index { color: black; list-style: outside; padding: 00px 00px 00px 05px; }" << std::endl;
+	std::cout << "div.bodyheader { margin: 10px 10px 10px 10px; test-align: center; }" << std::endl;
+	std::cout << "div.linkheader { margin: 10px 10px 10px 10px; text-align: left; }" << std::endl;
+	std::cout << "div.linkfooter { margin: 10px 10px 10px 10px; text-align: right; }" << std::endl;
+	std::cout << "div.bodyfooter { margin: 10px 10px 10px 10px; text-align: center; }" << std::endl;
 	return (* this);
 }
 
-
-char const * oHTMLIndex::stylesheet () const 
-
-{
-	return (oHTMLIndex::mwebpage.stylesheet ());
-}
-
-
 /*====================================================================*
  *
- *   oHTMLIndex & oHTMLIndex::include(char const *filename)
+ *   oHTMLIndex & include (char const *filename)
  *
  *   include the filename string in the index if not already present;
  *
@@ -105,17 +81,16 @@ oHTMLIndex & oHTMLIndex::include (char const * filename)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
- *   oHTMLIndex & oHTMLIndex::collect(char const *basename, char const *wildcard);
+ *   oHTMLIndex & collect (char const * pathname, char const * filename);
  *
- *   search the specified folder for filenames that match the wildcard
- *   argument string; include matching filenames in the index;
+ *   search the specified folder for files that match the wildcard
+ *   filename string; include matching filenames in the index;
  *
  *--------------------------------------------------------------------*/
 
-oHTMLIndex & oHTMLIndex::collect (char const * pathname, char const * wildcard) 
+oHTMLIndex & oHTMLIndex::collect (char const * pathname, char const * filename) 
 
 {
 	DIR * dir;
@@ -124,7 +99,7 @@ oHTMLIndex & oHTMLIndex::collect (char const * pathname, char const * wildcard)
 		struct dirent * dirent;
 		while ((dirent = readdir (dir)) != (struct dirent *)(0)) 
 		{
-			if (oHTMLIndex::mwildcard.match (dirent->d_name, wildcard)) 
+			if (oHTMLIndex::mwildcard.match (dirent->d_name, filename)) 
 			{
 				this->include (dirent->d_name);
 			}
@@ -134,10 +109,9 @@ oHTMLIndex & oHTMLIndex::collect (char const * pathname, char const * wildcard)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
- *   oHTMLIndex & oHTMLIndex::publish(char const *filename, unsigned count);
+ *   oHTMLIndex & publish (unsigned count);
  *
  *   open a C Language source file, read the contents and write an HTML 
  *   page to stdout; the page displays the original source having
@@ -150,80 +124,77 @@ oHTMLIndex & oHTMLIndex::collect (char const * pathname, char const * wildcard)
 oHTMLIndex & oHTMLIndex::publish (unsigned count) 
 
 {
-	size_t index = 0;
-	size_t limit = count = (oHTMLIndex::mlist.count () + (count - 1)) / count;
-	oHTMLIndex::mwebpage.topPage ();
-	oHTMLIndex::mwebpage.topMark ();
-	oHTMLIndex::mindent.print (this->mlevel++, 1, "<h1>");
-	oHTMLIndex::mindent.print (this->mlevel, 1, oHTMLIndex::mwebpage.title ());
-	oHTMLIndex::mindent.print (this->mlevel--, 1, "</h1>");
-	oHTMLIndex::mindent.print (this->mlevel++, 1, "<table class='index'>");
-	oHTMLIndex::mindent.print (this->mlevel++, 1, "<tr class='index'>");
+	unsigned index = 0;
+	unsigned limit = count = (oHTMLIndex::mlist.count () + (count - 1)) / count;
+	oHTMLIndex::PageHeader ();
+	oHTMLIndex::LinkHeader ();
+	oHTMLIndex::print (this->mlevel++, this->mspace, "<h1>");
+	oHTMLIndex::print (this->mlevel, this->mspace, oHTMLIndex::title ());
+	oHTMLIndex::print (this->mlevel--, this->mspace, "</h1>");
+	oHTMLIndex::print (this->mlevel++, this->mspace, "<table class='" oHTMLINDEX_CLASS "'>");
+	oHTMLIndex::print (this->mlevel++, this->mspace, "<tr class='" oHTMLINDEX_CLASS "'>");
 	while (index < limit) 
 	{
-		oHTMLIndex::mindent.print (this->mlevel++, 1, "<td class='index'>");
-		oHTMLIndex::mindent.level (this->mlevel++);
+		oHTMLIndex::print (this->mlevel++, this->mspace, "<td class='" oHTMLINDEX_CLASS "'>");
+		oHTMLIndex::newline (this->mlevel++);
 		std::cout << "<ol start='" << index + 1 << "'>";
-		oHTMLIndex::mindent.space (1);
+		oHTMLIndex::endline (1);
 		while (index < limit) 
 		{
 			oHTMLIndex::mitem = oHTMLIndex::mlist.items (index++);
-			oHTMLIndex::mlink.CoreAttributes.IdentityAttribute->value (index, 1 + (int)(log10 (mlist.count ())));
-			oHTMLIndex::mlink.CoreAttributes.ClassAttribute->value ("index");
-			oHTMLIndex::mlink.CoreAttributes.TitleAttribute->value (oHTMLIndex::mitem->name ());
-			oHTMLIndex::mlink.LinkAttributes.ReferenceAttribute->value (oHTMLIndex::mitem->name ());
-			oHTMLIndex::mindent.print (this->mlevel++, 1, "<li class='index'>");
-
-#if 0
-
-			oHTMLIndex::mindent.print (this->mlevel++, 1, oHTMLIndex::mlink.StartTag ());
-			oHTMLIndex::mindent.print (this->mlevel, 1, oHTMLIndex::mitem->name ());
-			oHTMLIndex::mindent.print (this->mlevel--, 1, oHTMLIndex::mlink.EndTag ());
-
-#else
-
-			oHTMLIndex::mlink.StartTag ();
-			oHTMLIndex::mindent.print (this->mlevel, 1, oHTMLIndex::mitem->name ());
-			oHTMLIndex::mlink.EndTag ();
-
-#endif
-
-			oHTMLIndex::mindent.print (this->mlevel--, 1, "</li>");
+			oHTMLIndex::print (this->mlevel++, this->mspace, "<li class='" oHTMLINDEX_CLASS "'>");
+			oHTMLIndex::print (this->mlevel, 0, "");
+			oHTMLIndex::manchor.CoreAttributes.IdentityAttribute->value (index);
+			oHTMLIndex::manchor.CoreAttributes.ClassAttribute->value ("index");
+			oHTMLIndex::manchor.CoreAttributes.TitleAttribute->value (oHTMLIndex::mitem->name ());
+			oHTMLIndex::manchor.LinkAttributes.ReferenceAttribute->value (oHTMLIndex::mitem->name ());
+			oHTMLIndex::manchor.StartTag ();
+			oHTMLIndex::print (0, 0, oHTMLIndex::mitem->name ());
+			oHTMLIndex::manchor.EndTag ();
+			oHTMLIndex::print (0, this->mspace, "");
+			oHTMLIndex::print (this->mlevel--, this->mspace, "</li>");
 		}
-		oHTMLIndex::mindent.print (this->mlevel--, 1, "</ol>");
-		oHTMLIndex::mindent.print (this->mlevel--, 1, "</td>");
+		oHTMLIndex::print (this->mlevel--, this->mspace, "</ol>");
+		oHTMLIndex::print (this->mlevel--, this->mspace, "</td>");
 		if ((limit += count) > oHTMLIndex::mlist.count ()) 
 		{
 			limit = oHTMLIndex::mlist.count ();
 		}
 	}
-	oHTMLIndex::mindent.print (this->mlevel--, 1, "</tr>");
-	oHTMLIndex::mindent.print (this->mlevel--, 1, "</table>");
-	oHTMLIndex::mwebpage.botMark ();
-	oHTMLIndex::mwebpage.footer ();
-	oHTMLIndex::mwebpage.botPage ();
+	oHTMLIndex::print (this->mlevel--, this->mspace, "</tr>");
+	oHTMLIndex::print (this->mlevel--, this->mspace, "</table>");
+	oHTMLIndex::LinkFooter ();
+	oHTMLIndex::BodyFooter ();
+	oHTMLIndex::PageFooter ();
 	return (* this);
 }
 
+/*====================================================================*
+ *
+ *   oHTMLIndex (void);
+ *   
+ *--------------------------------------------------------------------*/
+
+oHTMLIndex::oHTMLIndex (void) 
+
+{
+	owebpage::stylesheet (oHTMLINDEX_STYLESHEET);
+	this->mlevel = 0;
+	this->mspace = 1;
+	return;
+}
 
 /*====================================================================*
  *
+ *   ~oHTMLIndex (void);
+ *   
  *--------------------------------------------------------------------*/
 
-oHTMLIndex::oHTMLIndex () 
-
-{
-	this->mlevel = 0;
-	return;
-}
-
-
-oHTMLIndex::~oHTMLIndex () 
+oHTMLIndex::~oHTMLIndex (void) 
 
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

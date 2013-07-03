@@ -95,7 +95,7 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-static char **args;
+static char ** args;
 char const * program_name = "ctar";
 
 /*====================================================================*
@@ -114,7 +114,7 @@ int main (int argc, char * argv [])
 {
 	LIST files;
 	char filename [FILENAME_MAX];
-	char const *paths [_LISTSIZE] = 
+	char const * paths [_LISTSIZE] = 
 	{
 		getenv ("PWD"),
 		(char const *)(0)
@@ -133,16 +133,16 @@ int main (int argc, char * argv [])
 	int argx;
 	for (argn = 1; argn < argc; argn++) 
 	{
-		char const *sp = argv [argn];
-		if (*sp++ != GETOPTV_C_OPTION) 
+		char const * sp = argv [argn];
+		if (* sp++ != GETOPTV_C_OPTION) 
 		{
 			continue;
 		}
-		if (*sp++ != 'I') 
+		if (* sp++ != 'I') 
 		{
 			continue;
 		}
-		if (*sp == (char)(0)) 
+		if (* sp == (char)(0)) 
 		{
 			for (argx = argn; argx < argc; argx++) 
 			{
@@ -170,9 +170,9 @@ int main (int argc, char * argv [])
 		exit (1);
 	}
 	makepath (filename, getenv ("PWD"), argv [--argc]);
-	listcreate (&files, _LISTSIZE);
-	listappend (&files, filename);
-	if (ccollect (&files, paths)) 
+	listcreate (& files, _LISTSIZE);
+	listappend (& files, filename);
+	if (ccollect (& files, paths)) 
 	{
 		error (1, 0, "%s: missing %d file(s)", files.table [0], files.error);
 	}
@@ -190,8 +190,8 @@ int main (int argc, char * argv [])
 		args [argc++] = (char *)(files.table [files.lower]);
 	}
 	args [argc] = (char *)(0);
-	execv (*args, args);
-	error (1, errno, "can't execute %s", *args);
+	execv (* args, args);
+	error (1, errno, "can't execute %s", * args);
 	exit (0);
 }
 

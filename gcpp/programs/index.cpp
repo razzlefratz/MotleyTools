@@ -38,7 +38,7 @@
 #include "../classes/opathspec.cpp"
 #include "../classes/ofindspec.cpp"
 #include "../classes/oindent.cpp"
-#include "../classes/oenviron.cpp"
+#include "../classes/osession.cpp"
 #endif
 
 #ifndef MAKEFILE
@@ -52,6 +52,12 @@
 #include "../classes/oHTMLIndex.cpp"
 #include "../classes/owebpage.cpp"
 #endif
+
+/*====================================================================*
+ *   program constants;
+ *--------------------------------------------------------------------*/
+
+#define INDEX_COLUMNS 5
 
 /*====================================================================*
  *   program variables;
@@ -70,12 +76,13 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"c:s:t:",
+		"c:s:St:",
 		oPUTOPTV_S_FUNNEL,
 		"produce html file index",
-		"c n\tdisplay n columns [5]",
-		"s s\tuse CSS2 stylesheet",
-		"t s\tHTML page title",
+		"c n\tdisplay n columns [" LITERAL (INDEX_COLUMNS) "]",
+		"s s\tuse CSS2 stylesheet (s)",
+		"S\tprint CSS2 stylesheet on stdout",
+		"t s\tHTML index title",
 		(char const *) (0)
 	};
 	ogetoptv getopt;
@@ -91,6 +98,9 @@ int main (int argc, char const * argv [])
 		case 's':
 			page.stylesheet (getopt.optarg ());
 			break;
+		case 'S':
+			page.css2 ();
+			return (0);
 		case 't':
 			page.title (getopt.optarg ());
 			break;
@@ -98,11 +108,7 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	if (getopt.argc () == 0) 
-	{
-		message.error (1, 0, "no files specified");
-	}
-	while ((getopt.argc () > 0) && (* getopt.argv () != (char *) (0))) 
+	while (getopt.argc () && * getopt.argv ()) 
 	{
 		findspec.fullname (* getopt.argv ());
 		page.collect (findspec.pathname (), findspec.filename ());
@@ -111,5 +117,4 @@ int main (int argc, char const * argv [])
 	page.publish (columns);
 	std::exit (0);
 }
-
 

@@ -129,7 +129,6 @@ void function (char start, char space, size_t width, size_t length, flag_t flags
 	return;
 }
 
-
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
@@ -165,7 +164,7 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{
 		case 'c':
-			start = (char) (*optarg);
+			start = (char) (* optarg);
 			break;
 		case 'x':
 			_setbits (flags, FBAR_EXECUTE);
@@ -177,8 +176,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (start, space, width, length, flags);

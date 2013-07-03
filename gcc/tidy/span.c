@@ -4,6 +4,10 @@
  *
  *   join continuation lines; return first character of next line;
  *
+ *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>
+ *:  Copyright (c) 1982-2006 by Charles Maier.
+ *;  Published under Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
 #ifndef SPAN_SOURCE
@@ -29,7 +33,6 @@ signed span (signed c)
 	}
 	return (c);
 }
-
 
 #endif
 

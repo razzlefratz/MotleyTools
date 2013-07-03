@@ -105,14 +105,14 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		error (1, ECANCELED, "No file.");
 	}
 	file.name = * argv;
-	if ((file.file = open (file.name, O_BINARY|O_RDONLY)) == -1) 
+	if ((file.file = open (file.name, O_BINARY |O_RDONLY)) == -1) 
 	{
 		error (1, errno, "%s", file.name);
 	}
@@ -152,15 +152,15 @@ int main (int argc, char const * argv [])
 	}
 	while ((argc > 1) && (* argv)) 
 	{
-		offset += memencode (memory + offset, extent - offset, argv [0], argv [1]);
-		argc -= 2;
-		argv += 2;
+		offset+= memencode (memory + offset, extent - offset, argv [0], argv [1]);
+		argc-= 2;
+		argv+= 2;
 	}
 	if (argc) 
 	{
 		error (1, ECANCELED, "%s needs a value", * argv);
 	}
-	if ((file.file = open (file.name, O_BINARY|O_TRUNC|O_RDWR)) == -1) 
+	if ((file.file = open (file.name, O_BINARY |O_TRUNC |O_RDWR)) == -1) 
 	{
 		error (1, errno, "%s", file.name);
 	}

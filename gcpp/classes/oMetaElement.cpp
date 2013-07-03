@@ -43,7 +43,6 @@ char const * oMetaElement::ElementName () const
 	return (oMetaElement::mtitle);
 }
 
-
 /*====================================================================*
  *
  *   oMetaElement & Contents (char const * name, char const * type);
@@ -60,7 +59,6 @@ oMetaElement & oMetaElement::Contents (char const * name, char const * type)
 	this->ContentTypeAttribute->value (type);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -93,7 +91,6 @@ oMetaElement & oMetaElement::EmptyTag (unsigned level, unsigned space)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oMetaElement ();
@@ -103,13 +100,12 @@ oMetaElement & oMetaElement::EmptyTag (unsigned level, unsigned space)
 oMetaElement::oMetaElement () 
 
 {
-	this->NameAttribute = new oattribute ("name", "content-type");
-	this->ContentTypeAttribute = new oattribute ("content", "text/html;iso-8895-1");
-	this->SchemeAttribute = new oattribute ("scheme");
-	this->ResponseAttribute = new oattribute ("http-equiv");
+	this->NameAttribute = new oAttribute ("name", "content-type");
+	this->ContentTypeAttribute = new oAttribute ("content", "text/html;iso-8895-1");
+	this->SchemeAttribute = new oAttribute ("scheme");
+	this->ResponseAttribute = new oAttribute ("http-equiv");
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -122,7 +118,6 @@ oMetaElement::~oMetaElement ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *

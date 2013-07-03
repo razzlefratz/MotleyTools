@@ -29,7 +29,7 @@
 
 #include "../classes/onumber.hpp"
 #include "../classes/oerror.hpp"
-#include "../classes/types.h"
+#include "../../gcc/tools/types.h"
 
 /*====================================================================*
  *
@@ -82,7 +82,6 @@ huge_t onumber::uintspec (char const * string, huge_t minimum, huge_t maximum)
 	}
 	return (value);
 }
-
 
 /*====================================================================*
  *
@@ -154,12 +153,14 @@ huge_t onumber::basespec (char const * string, unsigned base, unsigned size)
 		}
 		number++;
 	}
+
 #ifdef WIN32
 
 	while (std::isspace (* number)) 
 	{
 		number++;
 	}
+
 #endif
 
 	if (* number) 
@@ -168,7 +169,6 @@ huge_t onumber::basespec (char const * string, unsigned base, unsigned size)
 	}
 	return (value);
 }
-
 
 /*====================================================================*
  *
@@ -219,12 +219,14 @@ size_t onumber::ipv4spec (char const * string, void * memory)
 		}
 		* offset++ = value;
 	}
+
 #if defined (WIN32)
 
 	while (std::isspace (* number)) 
 	{
 		number++;
 	}
+
 #endif
 
 	if (offset < extent) 
@@ -237,7 +239,6 @@ size_t onumber::ipv4spec (char const * string, void * memory)
 	}
 	return (offset - origin);
 }
-
 
 /*====================================================================*
  *
@@ -291,12 +292,14 @@ size_t onumber::ipv6spec (char const * string, void * memory)
 		* offset++ = (byte)(value >> 8);
 		* offset++ = (byte)(value >> 0);
 	}
+
 #if defined (WIN32)
 
 	while (std::isspace (* number)) 
 	{
 		number++;
 	}
+
 #endif
 
 	if (* number) 
@@ -320,7 +323,6 @@ size_t onumber::ipv6spec (char const * string, void * memory)
 	}
 	return (offset - origin);
 }
-
 
 /*====================================================================*
  *
@@ -374,12 +376,14 @@ void * onumber::ipv4encode (char const * string, void * memory)
 		}
 		* offset++ = value;
 	}
+
 #if defined (WIN32)
 
 	while (std::isspace (* number)) 
 	{
 		number++;
 	}
+
 #endif
 
 	if (offset < extent) 
@@ -392,7 +396,6 @@ void * onumber::ipv4encode (char const * string, void * memory)
 	}
 	return ((void *)(offset));
 }
-
 
 /*====================================================================*
  *
@@ -446,12 +449,14 @@ void * onumber::ipv6encode (char const * string, void * memory)
 		* offset++ = (byte)(value >> 8);
 		* offset++ = (byte)(value >> 0);
 	}
+
 #if defined (WIN32)
 
 	while (std::isspace (* number)) 
 	{
 		number++;
 	}
+
 #endif
 
 	if (* number) 
@@ -475,7 +480,6 @@ void * onumber::ipv6encode (char const * string, void * memory)
 	}
 	return ((void *)(offset));
 }
-
 
 /*====================================================================*
  *
@@ -503,7 +507,6 @@ signed onumber::todigit (signed c)
 	return (-1);
 }
 
-
 /*====================================================================*
  *
  *   onumber::onumber ();
@@ -516,7 +519,6 @@ onumber::onumber ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~onumber();
@@ -528,7 +530,6 @@ onumber::~onumber ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

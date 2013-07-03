@@ -77,13 +77,13 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{
 		case 'f':
-			space = *optarg;
+			space = * optarg;
 			break;
 		case 'n':
 			space = '\n';
 			break;
 		case 'q':
-			quote = *optarg;
+			quote = * optarg;
 			break;
 		case 's':
 			space = ' ';
@@ -99,8 +99,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		error (1, EINVAL, "No files given");

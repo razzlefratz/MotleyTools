@@ -23,33 +23,34 @@
 #include "../classes/oitem.hpp"
 
 /*====================================================================*
+ *   class constants;
+ *--------------------------------------------------------------------*/
+
+#define oHTMLINDEX_CLASS "index"
+#define oHTMLINDEX_STYLESHEET "index.css"
+
+/*====================================================================*
  *   begin declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oHTMLIndex 
+class __declspec (dllexport) oHTMLIndex: public owebpage 
 
 {
 public:
-	oHTMLIndex ();
-	virtual~ oHTMLIndex ();
-	oHTMLIndex & title (char const * title);
-	oHTMLIndex & stylesheet (char const * stylesheet);
-	char const * title () const;
-	char const * stylesheet () const;
+	oHTMLIndex (void);
+	virtual~ oHTMLIndex (void);
+	oHTMLIndex & css2 (void);
 	oHTMLIndex & include (char const * filename);
 	oHTMLIndex & collect (char const * pathname, char const * wildcard);
 	oHTMLIndex & publish (unsigned count);
 private:
-	oSpanElement mspan;
-	oAnchorElement mlink;
-	owebpage mwebpage;
+	oAnchorElement manchor;
 	owildcard mwildcard;
-	oindent mindent;
 	olist mlist;
 	oitem * mitem;
 	signed mlevel;
+	signed mspace;
 };
-
 
 /*====================================================================*
  *   end declaration;

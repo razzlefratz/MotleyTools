@@ -34,7 +34,6 @@ char const * oPageLinkElement::name () const
 	return (this->mname);
 }
 
-
 /*====================================================================*
  *
  *   oPageLinkElement & name (char const * string);
@@ -47,7 +46,6 @@ oPageLinkElement & oPageLinkElement::name (char const * string)
 	this->mname = otext::replace (this->mname, string);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -64,13 +62,12 @@ oPageLinkElement & oPageLinkElement::link (char const * text, char const * path)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char const * write () 
  *
- *   format a page link element and return a pointer to it; page links are
- *   merely anchor elements enclosed in brackets ('[',']');
+ *   format a page link element and return a pointer to it; page 
+ *   links are anchor elements enclosed in brackets ('[',']');
  *
  *--------------------------------------------------------------------*/
 
@@ -84,7 +81,6 @@ oPageLinkElement & oPageLinkElement::write ()
 	std::cout.put (']');
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -100,7 +96,6 @@ oPageLinkElement::oPageLinkElement (char const * name)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   oPageLinkElement ();
@@ -115,7 +110,6 @@ oPageLinkElement::oPageLinkElement ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oPageLinkElement ();
@@ -129,7 +123,6 @@ oPageLinkElement::~oPageLinkElement ()
 	delete [] this->mname;
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

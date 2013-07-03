@@ -54,7 +54,6 @@ unsigned ofileopen::versions () const
 	return (this->mlimit);
 }
 
-
 /*====================================================================*
  *
  *   bool opensave (char const *pathname, char const *extender);
@@ -89,7 +88,6 @@ bool ofileopen::opensave (char const * filespec, char const * extender)
 	return (this->filter (loadspec.fullname (), savespec.fullname ()));
 }
 
-
 /*====================================================================*
  *
  *   bool openedit(char const *filespec);
@@ -123,7 +121,6 @@ bool ofileopen::openedit (char const * filespec)
 	ofileopen::message.print ("can't open %s: too many file versions", loadspec.fullname ());
 	return (false);
 }
-
 
 /*====================================================================*
  *
@@ -183,7 +180,6 @@ bool ofileopen::permit (char const * filespec) const
 	return (true);
 }
 
-
 /*====================================================================*
  *   
  *   bool filter ();
@@ -232,7 +228,6 @@ bool ofileopen::filter (char const * filespec, char const * savespec)
 	return (true);
 }
 
-
 /*====================================================================*
  *   
  *   ofileopen & close ();
@@ -258,7 +253,6 @@ ofileopen & ofileopen::close ()
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *   
@@ -286,7 +280,6 @@ ofileopen::ofileopen (unsigned limit)
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   ofileopen ();
@@ -308,7 +301,6 @@ ofileopen::ofileopen ()
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   ~ofileopen ();
@@ -326,7 +318,6 @@ ofileopen::~ofileopen ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

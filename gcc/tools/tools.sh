@@ -32,9 +32,9 @@ gcc -Wall -Wextra -Wno-unused-parameter -c codeload.c
 gcc -Wall -Wextra -Wno-unused-parameter -c codelist.c
 gcc -Wall -Wextra -Wno-unused-parameter -c codename.c
 gcc -Wall -Wextra -Wno-unused-parameter -c codesave.c
-gcc -Wall -Wextra -Wno-unused-parameter -c command.c
-gcc -Wall -Wextra -Wno-unused-parameter -c command.chr.c
-gcc -Wall -Wextra -Wno-unused-parameter -c command.str.c
+gcc -Wall -Wextra -Wno-unused-parameter -c dcl.c
+gcc -Wall -Wextra -Wno-unused-parameter -c dcl.chr.c
+gcc -Wall -Wextra -Wno-unused-parameter -c dcl.str.c
 gcc -Wall -Wextra -Wno-unused-parameter -c config.c
 gcc -Wall -Wextra -Wno-unused-parameter -c cread.c
 gcc -Wall -Wextra -Wno-unused-parameter -c cwrite.c

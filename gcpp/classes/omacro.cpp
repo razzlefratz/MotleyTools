@@ -52,7 +52,6 @@ bool omacro::defined (char const * symbol) const
 	return (this->mfunction->defined (symbol));
 }
 
-
 /*====================================================================*
  *
  *   omacro & revert (char const * symbol);
@@ -71,7 +70,6 @@ omacro & omacro::revert (char const * symbol)
 	this->mfunction->revert (symbol);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -162,7 +160,6 @@ omacro & omacro::define (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char const * expand (char const *string);
@@ -240,7 +237,6 @@ char const * omacro::expand (char const * string)
 	return (this->mbuffer);
 }
 
-
 /*====================================================================*
  *
  *   omacro & append (char const * string);
@@ -273,7 +269,6 @@ omacro & omacro::append (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char const * argument (unsigned number) const;
@@ -305,7 +300,6 @@ char const * omacro::argument (unsigned number) const
 	return ((char const *) (string));
 }
 
-
 /*====================================================================*
  *
  *   omacro & enumerate (char const * title);
@@ -326,7 +320,6 @@ omacro & omacro::enumerate (char const * title)
 	this->mfunction->enumerate ();
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -350,7 +343,6 @@ omacro & omacro::clear ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   omacro();
@@ -373,7 +365,6 @@ omacro::omacro ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~omacro();
@@ -392,7 +383,6 @@ omacro::~omacro ()
 	delete this->margument;
 	return;
 }
-
 
 /*====================================================================*
  *  end implementation;

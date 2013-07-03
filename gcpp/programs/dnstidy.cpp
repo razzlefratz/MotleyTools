@@ -25,7 +25,7 @@
 #include "../classes/ofileopen.hpp"
 #include "../classes/oindent.hpp"
 #include "../classes/oescape.hpp"
-#include "../classes/ocollect.hpp"
+#include "../classes/osource.hpp"
 
 /*====================================================================*
  *   custom source files;
@@ -45,7 +45,7 @@
 #include "../classes/oescape.cpp"
 #include "../classes/oindent.cpp"
 #include "../classes/oascii.cpp"
-#include "../classes/ocollect.cpp"
+#include "../classes/osource.cpp"
 #include "../classes/otext.cpp"
 #endif
 
@@ -61,7 +61,7 @@
  *--------------------------------------------------------------------*/
 
 static oindent indent;
-static ocollect tidy;
+static osource tidy;
 
 /*====================================================================*
  *
@@ -93,12 +93,12 @@ void function (oflagword * flags)
 		}
 		if ((c == ',') || (c == ';')) 
 		{
-			c = tidy.keep (c);
+			c = tidy.feed (c);
 			continue;
 		}
 		if (c == '#') 
 		{
-			indent.space (space);
+			indent.endline (space);
 			do 
 			{
 				c = tidy.content (c, '\n');
@@ -110,39 +110,38 @@ void function (oflagword * flags)
 		{
 			if (!level) 
 			{
-				indent.space (1);
+				indent.endline (1);
 			}
-			indent.space (1);
-			indent.level (level++);
-			c = tidy.keep (c);
+			indent.endline (1);
+			indent.newline (level++);
+			c = tidy.feed (c);
 			space = 1;
 			continue;
 		}
 		if (c == '}') 
 		{
-			indent.space (1);
-			indent.level (--level);
-			c = tidy.keep (c);
+			indent.endline (1);
+			indent.newline (--level);
+			c = tidy.feed (c);
 			if (c != ';') 
 			{
 				std::cout.put (';');
 			}
 			if (!level) 
 			{
-				indent.space (1);
+				indent.endline (1);
 			}
 			space = 1;
 			continue;
 		}
-		indent.space (1);
-		indent.level (level);
+		indent.endline (1);
+		indent.newline (level);
 		c = tidy.context (c, "{};");
 		space = 2;
 	}
-	indent.space (2);
+	indent.endline (2);
 	return;
 }
-
 
 /*====================================================================*
  *   main program;
@@ -211,5 +210,4 @@ int main (int argc, char const * argv [])
 	}
 	std::exit (0);
 }
-
 

@@ -64,7 +64,6 @@ void example (int argc, char const * argv [])
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void function (int argc, char * argv []);
@@ -81,13 +80,12 @@ void function (int argc, char const * argv [])
 	while ((argc) && (* argv)) 
 	{
 		fprintf (fp, "A%03d,%03d,0,4,1,1,N,\"%-24.24s\"\n", over, down, * argv++);
-		down += HIGH;
+		down+= HIGH;
 	}
 	fprintf (fp, "P\n");
 	fclose (fp);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -119,8 +117,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (argc > 4) 
 	{
 		error (1, 0, "Maximum 4 lines per label");

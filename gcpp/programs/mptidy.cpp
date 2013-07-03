@@ -12,7 +12,7 @@
  *   system header files;
  *--------------------------------------------------------------------*/
 
-#include <cstdlib>
+#include <iostream>
 
 /*====================================================================*
  *   custom header files;
@@ -39,10 +39,10 @@
 #include "../classes/opathspec.cpp"
 #include "../classes/oprofile.cpp"
 #include "../classes/ocontext.cpp"
-#include "../classes/ocollect.cpp"
 #include "../classes/owildcard.cpp"
 #include "../classes/oescape.cpp"
 #include "../classes/oascii.cpp"
+#include "../classes/osource.cpp"
 #include "../classes/oindent.cpp"
 #include "../classes/oswitch.cpp"
 #include "../classes/otext.cpp"
@@ -85,9 +85,9 @@ int main (int argc, char const * argv [])
 	opathspec pathspec;
 	oprofile config;
 	omptidy object;
-	omptidy & (omptidy::* method) () = & omptidy::tidy;
 	char const * profile = PROFILE_NAME;
 	char const * section = SECTION_NAME;
+	signed (omptidy::* method) (signed) = & omptidy::tidy;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
 	{
@@ -116,7 +116,7 @@ int main (int argc, char const * argv [])
 	object.release (config.string (profile, section, oMPTIDY_S_RELEASE, MPTIDY_S_RELEASE));
 	if (!getopt.argc ()) 
 	{
-		(object.* method) ();
+		(object.* method) (std::cin.get ());
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
@@ -125,12 +125,11 @@ int main (int argc, char const * argv [])
 		if (fileopen.openedit (filename)) 
 		{
 			object.filename (filename);
-			(object.* method) ();
+			(object.* method) (std::cin.get ());
 			fileopen.close ();
 		}
 		getopt++;
 	}
 	std::exit (0);
 }
-
 

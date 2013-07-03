@@ -45,7 +45,7 @@ class __declspec (dllexport) opage: private otext
 {
 public:
 	opage ();
-	opage (char const * string);
+	opage (char const * title);
 	virtual~ opage ();
 	char const * title () const;
 	unsigned rows () const;
@@ -55,8 +55,8 @@ public:
 	opage & rows (unsigned rows);
 	opage & cols (unsigned cols);
 	opage & tabs (unsigned tabs);
-	signed put (signed c);
 	opage & put (char const * string);
+	signed put (signed c);
 private:
 	opage & header ();
 	opage & footer ();
@@ -69,7 +69,6 @@ private:
 	unsigned mrow;
 	unsigned mcol;
 };
-
 
 /*====================================================================*
  *   end defintions;

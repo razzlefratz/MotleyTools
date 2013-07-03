@@ -100,7 +100,6 @@ static void function (FIND * find, FIND * link, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void findfile (FIND *find, flag_t flags);
@@ -114,19 +113,19 @@ static void function (FIND * find, FIND * link, flag_t flags)
 static void findfile (FIND * find, flag_t flags) 
 
 {
-	struct dirent *dirent;
-	char *filename = find->fullname;
-	DIR *dir;
+	struct dirent * dirent;
+	char * filename = find->fullname;
+	DIR * dir;
 	if (!(dir = opendir (filename))) 
 	{
 		testfile (find, flags);
 		return;
 	}
-	while (*filename != (char) (0)) 
+	while (* filename != (char) (0)) 
 	{
 		filename++;
 	}
-	*filename = PATH_C_EXTENDER;
+	* filename = PATH_C_EXTENDER;
 	while ((dirent = readdir (dir))) 
 	{
 		strcpy (filename + 1, dirent->d_name);
@@ -134,11 +133,10 @@ static void findfile (FIND * find, flag_t flags)
 		partfile (find->filename, find->basename, find->extender);
 		testfile (find, flags);
 	}
-	*filename = (char) (0);
+	* filename = (char) (0);
 	closedir (dir);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -153,23 +151,23 @@ static void findfile (FIND * find, flag_t flags)
 static void testfile (FIND * find, flag_t flags) 
 
 {
-	if (lstat (find->fullname, &find->statinfo)) 
+	if (lstat (find->fullname, & find->statinfo)) 
 	{
 		error (0, errno, "%s", find->fullname);
 		return;
 	}
 	if (S_ISDIR (find->statinfo.st_mode)) 
 	{
-		char const *filename = find->filename;
-		if (*filename == '.') 
+		char const * filename = find->filename;
+		if (* filename == '.') 
 		{
 			filename++;
 		}
-		if (*filename == '.') 
+		if (* filename == '.') 
 		{
 			filename++;
 		}
-		if (*filename == (char) (0)) 
+		if (* filename == (char) (0)) 
 		{
 			return;
 		}
@@ -182,32 +180,31 @@ static void testfile (FIND * find, flag_t flags)
 	if (S_ISLNK (find->statinfo.st_mode)) 
 	{
 		FIND link;
-		memcpy (&link, find, sizeof (link));
+		memcpy (& link, find, sizeof (link));
 		memset (link.filename, 0, sizeof (link.filename));
 		readlink (link.fullname, link.filename, sizeof (link.filename));
 		makepath (link.fullname, link.pathname, link.filename);
 		if (_anyset (flags, LINK_B_ACTIVE)) 
 		{
-			if (!lstat (link.fullname, &link.statinfo)) 
+			if (!lstat (link.fullname, & link.statinfo)) 
 			{
-				function (find, &link, flags);
+				function (find, & link, flags);
 			}
 			return;
 		}
 		if (_anyset (flags, LINK_B_BROKEN)) 
 		{
-			if (lstat (link.fullname, &link.statinfo)) 
+			if (lstat (link.fullname, & link.statinfo)) 
 			{
-				function (find, &link, flags);
+				function (find, & link, flags);
 			}
 			return;
 		}
-		function (find, &link, flags);
+		function (find, & link, flags);
 		return;
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   main program;
@@ -258,12 +255,12 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	while ((argc) && (* argv)) 
 	{
-		makefind (&find, * argv);
-		findfile (&find, flags);
+		makefind (& find, * argv);
+		findfile (& find, flags);
 		argc--;
 		argv++;
 	}

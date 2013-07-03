@@ -43,7 +43,6 @@ unsigned othread::count () const
 	return (counter);
 }
 
-
 /*====================================================================*
  *
  *   bool isempty () const;
@@ -56,7 +55,6 @@ bool othread::isempty () const
 {
 	return (this == this->mafter);
 }
-
 
 /*====================================================================*
  *
@@ -71,7 +69,6 @@ char const * othread::name () const
 	return (this->mname);
 }
 
-
 /*====================================================================*
  *
  *   char const *text () const;
@@ -85,7 +82,6 @@ char const * othread::text () const
 	return (this->mtext);
 }
 
-
 /*====================================================================*
  *
  *   char const *page () const;
@@ -98,7 +94,6 @@ char const * othread::page () const
 {
 	return (this->mpage);
 }
-
 
 /*====================================================================*
  *
@@ -114,7 +109,6 @@ othread & othread::name (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   othread & text (char const *string);
@@ -128,7 +122,6 @@ othread & othread::text (char const * string)
 	this->mtext = otext::replace (this->mtext, string);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -144,7 +137,6 @@ othread & othread::page (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   othread *above () const;
@@ -157,7 +149,6 @@ othread * othread::above () const
 {
 	return (this->mabove);
 }
-
 
 /*====================================================================*
  *
@@ -172,7 +163,6 @@ othread * othread::prior () const
 	return (this->mprior);
 }
 
-
 /*====================================================================*
  *
  *   othread *after () const;
@@ -185,7 +175,6 @@ othread * othread::after () const
 {
 	return (this->mafter);
 }
-
 
 /*====================================================================*
  *
@@ -200,7 +189,6 @@ othread * othread::below () const
 	return (this->mbelow);
 }
 
-
 /*====================================================================*
  *
  *   othread *other () const;
@@ -214,7 +202,6 @@ othread * othread::other () const
 {
 	return (this->mother);
 }
-
 
 /*====================================================================*
  *
@@ -233,7 +220,6 @@ othread & othread::insert (othread * thread)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   othread & append (othread * thread);
@@ -250,7 +236,6 @@ othread & othread::append (othread * thread)
 	this->mprior = thread;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -269,7 +254,6 @@ othread & othread::remove ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   othread & unwind ();
@@ -286,7 +270,6 @@ othread & othread::unwind ()
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -307,7 +290,6 @@ othread & othread::attach (othread * other)
 	return (* other);
 }
 
-
 /*====================================================================*
  *
  *   othread & detach ();
@@ -324,7 +306,6 @@ othread & othread::detach ()
 	this->mafter = this;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -343,7 +324,6 @@ othread & othread::clear ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char *copy (char const *string);
@@ -358,7 +338,6 @@ char * othread::copy (char const * string)
 	strcpy (buffer, string);
 	return (buffer);
 }
-
 
 /*====================================================================*
  *
@@ -379,7 +358,6 @@ othread::othread (char const * name, char const * text, char const * page)
 	this->mafter = this;
 }
 
-
 /*====================================================================*
  *
  *   othread ();
@@ -398,7 +376,6 @@ othread::othread ()
 	this->mprior = this;
 	this->mafter = this;
 }
-
 
 /*====================================================================*
  *
@@ -428,7 +405,6 @@ othread::~othread ()
 	delete this->mtext;
 	delete this->mpage;
 }
-
 
 /*====================================================================*
  *   end implementation;

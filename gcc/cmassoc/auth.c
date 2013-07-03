@@ -107,7 +107,6 @@ struct _column_ rootlist [] =
 	}
 };
 
-
 /*====================================================================*
  *
  *   void func (char * buffer, size_t length, size_t extent, unsigned start, flag_t flags);
@@ -135,23 +134,23 @@ void function (struct _column_ columns [], struct _column_ outputs [], flag_t fl
 	struct _record_ * record;
 	struct _record_ one;
 	struct _record_ two;
-	char **vector;
-	char *string;
-	one.next = &two;
-	two.next = &one;
-	record = &two;
+	char ** vector;
+	char * string;
+	one.next = & two;
+	two.next = & one;
+	record = & two;
 	for (string = record->buffer; fgets (string, BUFFER_SIZE, stdin) != (char *)(0); string = record->buffer) 
 	{
 		vector = record->vector;
-		for (*vector++ = string; (*string != (char)(0)) && ((string - record->buffer) < (BUFFER_SIZE-1)); string++) 
+		for (* vector++ = string; (* string != (char)(0)) && ((string - record->buffer) < (BUFFER_SIZE-1)); string++) 
 		{
-			if (isspace (*string) && ((vector - record->vector) < (VECTOR_SIZE -1))) 
+			if (isspace (* string) && ((vector - record->vector) < (VECTOR_SIZE -1))) 
 			{
-				*vector++ = string + 1;
-				*string = (char)(0);
+				* vector++ = string + 1;
+				* string = (char)(0);
 			}
 		}
-		*vector = (char *)(0);
+		* vector = (char *)(0);
 		for (column = columns; column->number != -1; column++) 
 		{
 			if (strcmp (record->vector [column->number], column->string)) 
@@ -167,11 +166,10 @@ void function (struct _column_ columns [], struct _column_ outputs [], flag_t fl
 			}
 			printf ("\n");
 		}
-		record=record->next;
+		record =record->next;
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   main program;
@@ -187,8 +185,8 @@ int main (int argc, char const * argv [])
 		"print auth.log statistics",
 		(char const *) (0)
 	};
-	struct _column_ *columns = rootuser;
-	struct _column_ *outputs = rootlist;
+	struct _column_ * columns = rootuser;
+	struct _column_ * outputs = rootlist;
 	flag_t flags = (flag_t) (0);
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
@@ -199,8 +197,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (columns, outputs, flags);

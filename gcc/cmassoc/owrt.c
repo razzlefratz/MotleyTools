@@ -104,7 +104,6 @@ static void define_handler (char const * handler, char const * package)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void invoke_handler (signed count, size_t length, flag_t flags);
@@ -150,7 +149,6 @@ static void invoke_handler (signed count, size_t length, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void enumerate (signed fields, size_t length);
@@ -175,7 +173,6 @@ static void enumerate (signed fields, size_t length)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -237,8 +234,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		define_handler (handler, package);

@@ -26,7 +26,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
-#include "../classes/types.h"
+#include "../../gcc/tools/types.h"
 
 /*====================================================================*
  *   numeric converson sizes and limits;
@@ -82,7 +82,6 @@ public:
 private:
 	static signed todigit (signed c);
 };
-
 
 /*====================================================================*
  *   end declaration;

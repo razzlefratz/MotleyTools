@@ -64,21 +64,21 @@
 static void function (char const * prefix, char const * string) 
 
 {
-	char const *pp;
-	char const *sp;
+	char const * pp;
+	char const * sp;
 	signed c;
 	while ((c = getc (stdin)) != EOF) 
 	{
-		for (pp = prefix; c == *pp; pp++) 
+		for (pp = prefix; c == * pp; pp++) 
 		{
 			c = getc (stdin);
 		}
-		if (*pp) 
+		if (* pp) 
 		{
 			sp = prefix;
 			while (sp < pp) 
 			{
-				putc (*sp++, stdout);
+				putc (* sp++, stdout);
 			}
 			while (nobreak (c)) 
 			{
@@ -89,17 +89,16 @@ static void function (char const * prefix, char const * string)
 		else 
 		{
 			sp = string;
-			while (*sp) 
+			while (* sp) 
 			{
-				putc (*sp++, stdout);
+				putc (* sp++, stdout);
 
 #if 1
 
-				if (*sp == '\\') 
+				if (* sp == '\\') 
 				{
 					sp++;
 				}
-
 #endif
 
 			}
@@ -115,7 +114,6 @@ static void function (char const * prefix, char const * string)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -157,13 +155,13 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
-	if (!prefix || !*prefix) 
+	argc-= optind;
+	argv+= optind;
+	if (!prefix || !* prefix) 
 	{
 		error (1, ECANCELED, "paragraph prefix is empty");
 	}
-	if (!string || !*string) 
+	if (!string || !* string) 
 	{
 		error (1, ECANCELED, "paragraph string is empty");
 	}

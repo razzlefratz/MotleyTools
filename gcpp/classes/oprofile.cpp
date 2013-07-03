@@ -58,7 +58,6 @@ oprofile & oprofile::write (char const * section)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oprofile & write (char const * element, char const * content);
@@ -84,7 +83,6 @@ oprofile & oprofile::write (char const * element, char const * content)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char const * string (char const * profile, char const * section, char const * element, char const * content);
@@ -107,6 +105,7 @@ char const * oprofile::string (char const * profile, char const * section, char 
 	{
 		return (content);
 	}
+
 #endif
 
 	this->mstream.open (profile, std::ifstream::in);
@@ -152,7 +151,6 @@ char const * oprofile::string (char const * profile, char const * section, char 
 	this->mstream.close ();
 	return (content);
 }
-
 
 /*====================================================================*
  *
@@ -203,7 +201,6 @@ signed oprofile::number (char const * profile, char const * section, char const 
 	return (value);
 }
 
-
 /*====================================================================*
  *
  *   bool enable (char const *profile, char const *section, char const *element, bool state);
@@ -224,7 +221,6 @@ bool oprofile::enable (char const * profile, char const * section, char const * 
 	this->string (profile, section, element, (char const *)(0));
 	return (oprofile::state (this->mstring, state));
 }
-
 
 /*====================================================================*
  *
@@ -282,7 +278,6 @@ oprofile & oprofile:: newtext ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   bool compare (char const *string);
@@ -315,7 +310,6 @@ bool oprofile::compare (char const * string)
 	return (!* string);
 }
 
-
 /*====================================================================*
  *
  *   oprofile & newchar();
@@ -336,7 +330,6 @@ oprofile & oprofile:: newchar ()
 	while (oascii::isblank (this->mbreak));
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -362,7 +355,6 @@ oprofile & oprofile:: newline ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oprofile() 
@@ -385,7 +377,6 @@ oprofile::oprofile ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oprofile() 
@@ -403,7 +394,6 @@ oprofile::~oprofile ()
 	delete [] this->mstring;
 	return;
 }
-
 
 /*====================================================================*
  *

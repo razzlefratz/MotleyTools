@@ -36,7 +36,6 @@ size_t oedges::block () const
 	return (this->mblock);
 }
 
-
 /*====================================================================*
  *
  *   size_t limit () const;
@@ -49,7 +48,6 @@ size_t oedges::limit () const
 {
 	return (this->mlimit);
 }
-
 
 /*====================================================================*
  *
@@ -64,7 +62,6 @@ size_t oedges::count () const
 	return (this->mcount);
 }
 
-
 /*====================================================================*
  *
  *   size_t index () const;
@@ -77,7 +74,6 @@ size_t oedges::index () const
 {
 	return (this->mindex);
 }
-
 
 /*====================================================================*
  *
@@ -94,7 +90,6 @@ oedge * oedges::operator [] (size_t index) const
 	return (index < this->mcount? this->mtable [index]: (oedge *) (0));
 }
 
-
 /*====================================================================*
  *
  *   oedge * edge (size_t index) const
@@ -110,7 +105,6 @@ oedge * oedges::edge (size_t index) const
 	return (index < this->mcount? this->mtable [index]: (oedge *) (0));
 }
 
-
 /*====================================================================*
  *
  *   oedge * edge () const
@@ -125,7 +119,6 @@ oedge * oedges::edge () const
 {
 	return (this->mindex < this->mcount? this->mtable [this->mindex]: (oedge *) (0));
 }
-
 
 /*====================================================================*
  *
@@ -164,7 +157,6 @@ oedges & oedges::add (onode * sourcenode, onode * targetnode)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oedges & clear();
@@ -186,7 +178,6 @@ oedges & oedges::clear ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oedges ();
@@ -204,7 +195,6 @@ oedges::oedges ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oedges ();
@@ -220,7 +210,6 @@ oedges::~ oedges ()
 	delete [] this->mtable;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

@@ -29,22 +29,17 @@
 
 /*====================================================================*
  *   
- *   char const * program () const;
+ *   char const * program (void) const;
  *   
  *   get and set the program comment string;
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
-char const * omptidy::program () const 
+char const * omptidy::program (void) const 
 
 {
 	return (this->mprogram);
 }
-
 
 omptidy & omptidy::program (char const * program) 
 
@@ -53,25 +48,19 @@ omptidy & omptidy::program (char const * program)
 	return (* this);
 }
 
-
 /*====================================================================*
  *   
- *   char const * project () const;
+ *   char const * project (void) const;
  *   
  *   get and set the project comment string;
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
-char const * omptidy::project () const 
+char const * omptidy::project (void) const 
 
 {
 	return (this->mproject);
 }
-
 
 omptidy & omptidy::project (char const * project) 
 
@@ -80,25 +69,19 @@ omptidy & omptidy::project (char const * project)
 	return (* this);
 }
 
-
 /*====================================================================*
  *   
- *   char const * package () const;
+ *   char const * package (void) const;
  *   
  *   get and set the package comment string;
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
-char const * omptidy::package () const 
+char const * omptidy::package (void) const 
 
 {
 	return (this->mpackage);
 }
-
 
 omptidy & omptidy::package (char const * package) 
 
@@ -107,25 +90,19 @@ omptidy & omptidy::package (char const * package)
 	return (* this);
 }
 
-
 /*====================================================================*
  *   
- *   char const * release () const;
+ *   char const * release (void) const;
  *   
  *   get and set the release comment string;
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
-char const * omptidy::release () const 
+char const * omptidy::release (void) const 
 
 {
 	return (this->mrelease);
 }
-
 
 omptidy & omptidy::release (char const * release) 
 
@@ -134,14 +111,9 @@ omptidy & omptidy::release (char const * release)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   omptidy & filename (char const * filename);
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -167,23 +139,17 @@ omptidy & omptidy::filename (char const * filename)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
- *   omptidy & omptidy::tidy ();
+ *   signed omptidy::tidy (signed c);
  *
  *   tidy man page source file;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
-omptidy & omptidy::tidy () 
+signed omptidy::tidy (signed c) 
 
 {
-	signed c = std::cin.get ();
 	while (c != EOF) 
 	{
 		while ((c == '\r') || (c == '\n')) 
@@ -249,17 +215,17 @@ omptidy & omptidy::tidy ()
 		{
 			if (oascii::isquote (c)) 
 			{
-				c = ocollect::literal (c, c);
+				c = omptidy::literal (c, c);
 				continue;
 			}
 			if (c == '.') 
 			{
-				c = ocollect::keep (c);
+				c = omptidy::feed (c);
 				if (c == '.') 
 				{
 					do 
 					{
-						c = ocollect::keep (c);
+						c = omptidy::feed (c);
 					}
 					while (c == '.');
 					continue;
@@ -276,39 +242,36 @@ omptidy & omptidy::tidy ()
 				}
 				continue;
 			}
+
 #if 1
 
 			if (c == '\\') 
 			{
-				c = ocollect::keep (c);
+				c = omptidy::feed (c);
 				if (c == 'v') 
 				{
 					c = 'f';
 				}
-				c = ocollect::keep (c);
+				c = omptidy::feed (c);
 				continue;
 			}
+
 #endif
 
-			c = ocollect::keep (c);
+			c = omptidy::feed (c);
 		}
-		c = ocollect::keep (c);
+		c = omptidy::feed (c);
 	}
-	return (* this);
+	return (c);
 }
-
 
 /*====================================================================*
  *
- *   omptidy()
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *   omptidy (void)
  *
  *--------------------------------------------------------------------*/
 
-omptidy::omptidy () 
+omptidy::omptidy (void) 
 
 {
 	this->mproject = new char [1];
@@ -324,18 +287,13 @@ omptidy::omptidy ()
 	return;
 }
 
-
 /*====================================================================*
  *
- *   ~omptidy()
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *   ~omptidy(void)
  *
  *--------------------------------------------------------------------*/
 
-omptidy::~omptidy () 
+omptidy::~omptidy (void) 
 
 {
 	delete [] this->mproject;
@@ -345,7 +303,6 @@ omptidy::~omptidy ()
 	delete [] this->mstring;
 	return;
 }
-
 
 /*====================================================================*
  *   end definition

@@ -49,7 +49,6 @@ char const * oswitch::mstate [] =
 	(char const *)(0)
 };
 
-
 /*====================================================================*
  *
  *   bool state (char const *string, bool state);
@@ -82,7 +81,6 @@ bool oswitch::state (char const * string, bool state)
 	return (state);
 }
 
-
 /*====================================================================*
  *
  *   oswitch() 
@@ -99,7 +97,6 @@ oswitch::oswitch ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oswitch() 
@@ -115,7 +112,6 @@ oswitch::~oswitch ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

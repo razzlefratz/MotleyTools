@@ -37,7 +37,6 @@ char const * oelement::scope () const
 	return (oelement::mscope);
 }
 
-
 /*====================================================================*
  *
  *   char const * title () const;
@@ -51,7 +50,6 @@ char const * oelement::title () const
 {
 	return (oelement::mtitle);
 }
-
 
 /*====================================================================*
  *
@@ -73,7 +71,6 @@ oelement & oelement::print ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oelement (char const * scope, char const * title);
@@ -87,7 +84,6 @@ oelement::oelement (char const * scope, char const * title)
 	this->mscope = otext::save (title);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -103,7 +99,6 @@ oelement::oelement (char const * title)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oelement ();
@@ -115,7 +110,6 @@ oelement::~oelement ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

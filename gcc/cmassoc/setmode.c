@@ -68,15 +68,15 @@
  *
  *--------------------------------------------------------------------*/
 
-void checkmode (char *vector []) 
+void checkmode (char * vector []) 
 
 {
 	struct stat stat;
-	struct passwd *passwd;
-	struct group *group;
+	struct passwd * passwd;
+	struct group * group;
 	mode_t filetype;
 	mode_t filemode;
-	if (lstat (vector [FSTAT_FILENAME], &stat)) 
+	if (lstat (vector [FSTAT_FILENAME], & stat)) 
 	{
 		error (0, errno, "%s is missing or misplaced or not accessible.", vector [FSTAT_FILENAME]);
 	}
@@ -109,7 +109,6 @@ void checkmode (char *vector [])
 	return;
 }
 
-
 /*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
@@ -124,11 +123,11 @@ int main (int argc, char const * argv [])
 		"set file modes from snapshot file",
 		(char const *)(0)
 	};
-	FILE *fp;
+	FILE * fp;
 	char buffer [255];
-	char *vector [16];
-	char **vp,
-	*sp;
+	char * vector [16];
+	char ** vp,
+	* sp;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
@@ -138,35 +137,35 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	while ((argc) && (* argv)) 
 	{
 		if ((fp = efopen (* argv, "rb"))) 
 		{
 			vp = vector;
-			*vp++ = sp = buffer;
+			* vp++ = sp = buffer;
 			while ((c = fgetc (fp)) != EOF) 
 			{
 				switch (c) 
 				{
 				case LIST_C_EXTENDER:
-					*vp = (char *) (0);
-					*sp = (char) (0);
+					* vp = (char *) (0);
+					* sp = (char) (0);
 					checkmode (vector);
 					vp = vector;
-					*vp++ = sp = buffer;
+					* vp++ = sp = buffer;
 					break;
 				case ITEM_C_EXTENDER:
-					*vp++ = sp + 1;
-					*sp++ = (char) (0);
+					* vp++ = sp + 1;
+					* sp++ = (char) (0);
 					break;
 				case ' ':
 				case '\t':
 				case '\n':
 					break;
 				default:
-					*sp++ = c;
+					* sp++ = c;
 					break;
 				}
 			}

@@ -73,7 +73,6 @@ bool ointerfaces::Empty (void) const
 	return (!this->mcount);
 }
 
-
 /*====================================================================*
  *
  *   bool End (void) const;
@@ -87,7 +86,6 @@ bool ointerfaces::End (void) const
 {
 	return (this->mindex >= this->mcount);
 }
-
 
 /*====================================================================*
  *
@@ -103,7 +101,6 @@ unsigned ointerfaces::Count (void) const
 	return (this->mcount);
 }
 
-
 /*====================================================================*
  *
  *   unsigned Index (void) const;
@@ -117,7 +114,6 @@ unsigned ointerfaces::Index (void) const
 {
 	return (this->mindex);
 }
-
 
 /*====================================================================*
  *
@@ -134,7 +130,6 @@ ointerfaces & ointerfaces::SelectFirst (void)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ointerfaces & SelectFinal (void);
@@ -149,7 +144,6 @@ ointerfaces & ointerfaces::SelectFinal (void)
 	this->mindex = this->mcount - 1;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -170,7 +164,6 @@ ointerfaces & ointerfaces::SelectPrev (void)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ointerfaces & SelectNext (void) 
@@ -189,7 +182,6 @@ ointerfaces & ointerfaces::SelectNext (void)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -210,7 +202,6 @@ ointerfaces & ointerfaces::Select (unsigned index)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ointerface & operator = (unsigned index) 
@@ -225,7 +216,6 @@ ointerfaces & ointerfaces::operator = (unsigned index)
 {
 	return (this->Select (index));
 }
-
 
 /*====================================================================*
  *
@@ -243,7 +233,6 @@ ointerface & ointerfaces::operator [] (unsigned index)
 	return (this->Select (index).Selected ());
 }
 
-
 /*====================================================================*
  *
  *   ointerface & Selected (void) const
@@ -259,7 +248,6 @@ ointerface & ointerfaces::Selected (void) const
 	return (* this->mtable [this->mindex]);
 }
 
-
 /*====================================================================*
  *
  *   ointerface & Interface (void) const
@@ -274,7 +262,6 @@ ointerface & ointerfaces::Interface (void) const
 {
 	return (* this->mtable [this->mindex]);
 }
-
 
 /*====================================================================*
  *
@@ -298,7 +285,6 @@ ointerfaces & ointerfaces::Enumerate (void)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -338,6 +324,7 @@ ointerfaces::ointerfaces ()
 		}
 		pcap_freealldevs (devices);
 	}
+
 #else
 
 	struct if_nameindex * ifs = if_nameindex ();
@@ -367,7 +354,6 @@ ointerfaces::ointerfaces ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ointerfaces () 
@@ -386,7 +372,6 @@ ointerfaces::~ointerfaces ()
 	delete [] this->mtable;
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

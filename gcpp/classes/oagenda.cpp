@@ -37,7 +37,6 @@ unsigned oagenda::count () const
 	return (this->mheap->count ());
 }
 
-
 /*====================================================================*
  *
  *   char const *oagenda::event() const;
@@ -52,7 +51,6 @@ char const * oagenda::event () const
 	oitem * item = this->mheap->item ();
 	return (item != (oitem *) (0)? item->name (): (char *) (0));
 }
-
 
 /*====================================================================*
  *
@@ -69,13 +67,12 @@ char const * oagenda::title () const
 	return (item != (oitem *) (0)? item->text (): (char *) (0));
 }
 
-
 /*====================================================================*
  *
  *   oagenda & oagenda::insert(char const *event);
  *
- *   insert the event string into the queue at the proper position based 
- *   the event string value;
+ *   insert the event string into the queue at the proper position 
+ *   based the event string value;
  *
  *--------------------------------------------------------------------*/
 
@@ -86,13 +83,12 @@ oagenda & oagenda::insert (char const * event)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oagenda & oagenda::insert(char const *event, char const *title);
  *
- *   insert the event and title into the heap at the proper position based 
- *   on the event string value; 
+ *   insert the event and title into the heap at the proper position 
+ *   based on the event string value; 
  *
  *--------------------------------------------------------------------*/
 
@@ -102,7 +98,6 @@ oagenda & oagenda::insert (char const * event, char const * title)
 	this->mheap->insertitem (new oitem (event, title));
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -119,7 +114,6 @@ oagenda & oagenda::remove ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oagenda & oagenda::clear();
@@ -135,9 +129,10 @@ oagenda & oagenda::clear ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
+ *   oagenda (signed order (char const *, char const *)) 
+ *   
  *--------------------------------------------------------------------*/
 
 oagenda::oagenda (signed order (char const *, char const *)) 
@@ -147,6 +142,11 @@ oagenda::oagenda (signed order (char const *, char const *))
 	return;
 }
 
+/*====================================================================*
+ *
+ *   oagenda () 
+ *   
+ *--------------------------------------------------------------------*/
 
 oagenda::oagenda () 
 
@@ -155,6 +155,11 @@ oagenda::oagenda ()
 	return;
 }
 
+/*====================================================================*
+ *
+ *   ~oagenda () 
+ *   
+ *--------------------------------------------------------------------*/
 
 oagenda::~oagenda () 
 
@@ -162,7 +167,6 @@ oagenda::~oagenda ()
 	delete this->mheap;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

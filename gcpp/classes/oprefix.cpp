@@ -56,7 +56,6 @@ oprefix * oprefix::lookup (char const * symbol)
 	return (prefix);
 }
 
-
 /*====================================================================*
  *
  *   char const *assume (char const *symbol) const 
@@ -111,7 +110,6 @@ char const * oprefix::assume (char const * symbol) const
 	}
 	return ((char *) (0));
 }
-
 
 /*====================================================================*
  *
@@ -171,7 +169,6 @@ char const * oprefix::revise (char const * symbol) const
 	return (temp);
 }
 
-
 /*====================================================================*
  *
  *   char const * prefix (char const *symbol) const 
@@ -219,7 +216,6 @@ char const * oprefix::prefix (char const * symbol) const
 	return ((char *) (0));
 }
 
-
 /*====================================================================*
  *
  *   char const *suffix (char const *symbol) const 
@@ -262,7 +258,6 @@ char const * oprefix::suffix (char const * symbol) const
 	}
 	return ((char *) (0));
 }
-
 
 /*====================================================================*
  *
@@ -316,7 +311,6 @@ oprefix & oprefix::define (char const * symbol, char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oprefix & report (char *buffer, size_t length);
@@ -353,7 +347,6 @@ oprefix & oprefix::report (char * buffer, size_t length)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oprefix (const unsigned c);
@@ -376,7 +369,6 @@ oprefix::oprefix (const unsigned c)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   oprefix ();
@@ -396,7 +388,6 @@ oprefix::oprefix ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oprefix ();
@@ -410,7 +401,6 @@ oprefix::~oprefix ()
 	delete [] mstring;
 	return;
 }
-
 
 /*====================================================================*
  *

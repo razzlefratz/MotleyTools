@@ -80,7 +80,6 @@ unsigned oifs::Count (void) const
 	return (this->mcount);
 }
 
-
 /*====================================================================*
  *
  *   unsigned Index (void) const;
@@ -94,7 +93,6 @@ unsigned oifs::Index (void) const
 {
 	return (this->mindex);
 }
-
 
 /*====================================================================*
  *
@@ -111,7 +109,6 @@ oifs & oifs::SelectFirst (void)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oifs & SelectFinal (void);
@@ -126,7 +123,6 @@ oifs & oifs::SelectFinal (void)
 	this->mindex = this->mcount - 1;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -147,7 +143,6 @@ oifs & oifs::SelectPrev (void)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oifs & SelectNext (void) 
@@ -166,7 +161,6 @@ oifs & oifs::SelectNext (void)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -187,7 +181,6 @@ oifs & oifs::Select (unsigned index)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oif & Selected (unsigned index) 
@@ -201,7 +194,6 @@ oif & oifs::Selected () const
 {
 	return (this->mtable [this->mindex]);
 }
-
 
 /*====================================================================*
  *
@@ -223,7 +215,6 @@ oifs & oifs::Enumerate (void)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oif & operator [] (unsigned index) 
@@ -237,7 +228,6 @@ oif & oifs::operator [] (unsigned index)
 {
 	return (this->Select (index).Selected ());
 }
-
 
 /*====================================================================*
  *
@@ -254,7 +244,6 @@ oifs & oifs::operator ++ (signed)
 	return (this->SelectNext ());
 }
 
-
 /*====================================================================*
  *
  *   oifs & operator -- (signed) 
@@ -269,7 +258,6 @@ oifs & oifs::operator -- (signed)
 {
 	return (this->SelectPrev ());
 }
-
 
 /*====================================================================*
  *
@@ -344,7 +332,6 @@ oifs::oifs ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oifs () 
@@ -356,7 +343,6 @@ oifs::~oifs ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

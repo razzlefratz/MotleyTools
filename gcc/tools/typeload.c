@@ -28,6 +28,7 @@
 #include "../tools/symbol.h"
 #include "../tools/number.h"
 #include "../tools/error.h"
+#include "../tools/sizes.h"
 
 /*====================================================================*
  *   functions;

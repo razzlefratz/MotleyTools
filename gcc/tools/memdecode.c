@@ -59,7 +59,7 @@ static void getstring (byte const * memory, size_t extent, char const * object, 
 
 /*====================================================================*
  *
- *   size_t memdecode (const void * memory, unsigned extent, char const * object, char const * string) ;
+ *   size_t memdecode (const void * memory, size_t extent, char const * object, char const * string) ;
  *
  *
  *--------------------------------------------------------------------*/
@@ -79,7 +79,7 @@ size_t memdecode (const void * memory, size_t extent, char const * object, char 
 		printf ("%u", number);
 		return (sizeof (number));
 	}
-	else if (!strcmp (object, "number")) 
+	else if (!strcmp (object, "word")) 
 	{
 		uint16_t number;
 		if (sizeof (number) > extent) 
@@ -112,7 +112,7 @@ size_t memdecode (const void * memory, size_t extent, char const * object, char 
 		printf ("0x%02X", number);
 		return (sizeof (number));
 	}
-	else if (!strcmp (object, "xnumber")) 
+	else if (!strcmp (object, "xword")) 
 	{
 		uint16_t number;
 		if (sizeof (number) > extent) 
@@ -133,18 +133,6 @@ size_t memdecode (const void * memory, size_t extent, char const * object, char 
 		memcpy (&number, memory, sizeof (number));
 		printf ("0x%08X", LE32TOH (number));
 		return (sizeof (number));
-	}
-	else if (!strcmp (object, "mac")) 
-	{
-		length = ETHER_ADDR_LEN;
-		getmemory (memory, extent, object, length);
-		return (length);
-	}
-	else if (!strcmp (object, "url")) 
-	{
-		length = STRINGSIZE;
-		getstring (memory, extent, object, length);
-		return (length);
 	}
 	else if (!strcmp (object, "data")) 
 	{
@@ -180,6 +168,18 @@ size_t memdecode (const void * memory, size_t extent, char const * object, char 
 			error (1, EINVAL, "%s needs a length", object);
 		}
 		length = (unsigned)(uintspec (size, 1, extent));
+		return (length);
+	}
+	else if (!strcmp (object, "mac")) 
+	{
+		length = ETHER_ADDR_LEN;
+		getmemory (memory, extent, object, length);
+		return (length);
+	}
+	else if (!strcmp (object, "url")) 
+	{
+		length = STRINGSIZE;
+		getstring (memory, extent, object, length);
 		return (length);
 	}
 	else 

@@ -30,15 +30,15 @@
 #include "../classes/ofilespec.hpp"
 #include "../classes/ofileopen.hpp"
 #include "../classes/ofindfile.hpp"
-#include "../classes/files.h"
-#include "../classes/charset.h"
+#include "../../gcc/chrlib/charset.h"
+#include "../../gcc/files/files.h"
 
 /*====================================================================*
  *   custom source files
  *--------------------------------------------------------------------*/
 
 #ifndef MAKEFILE
-#include "../classes/fopensearch.c"
+#include "../../gcc/files/fopensearch.c"
 #include "../classes/ogetoptv.cpp"
 #include "../classes/oputoptv.cpp"
 #include "../classes/oversion.cpp"
@@ -265,7 +265,6 @@ static void process (char const * pathname, char const * command, oflagword * fl
 	return;
 }
 
-
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
@@ -338,5 +337,4 @@ int main (int argc, char const * argv [], char const * envp [])
 	}
 	std::exit (0);
 }
-
 

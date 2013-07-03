@@ -86,8 +86,8 @@ int main (int argc, char const * argv [])
 	unsigned row;
 	unsigned col;
 	signed c;
-	time (&timer);
-	tm = localtime (&timer);
+	time (& timer);
+	tm = localtime (& timer);
 	annum = 1900 + tm->tm_year;
 	month = tm->tm_mon;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
@@ -111,7 +111,6 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-
 /*
  * populate calendar blocks;
  */
@@ -135,7 +134,6 @@ int main (int argc, char const * argv [])
 			}
 		}
 	}
-
 /*
  * print calendar blocks;
  */

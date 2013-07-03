@@ -26,7 +26,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/okeywords.hpp"
-#include "../classes/types.h"
+#include "../../gcc/tools/types.h"
 
 /*====================================================================*
  *   class variables;    
@@ -37,7 +37,6 @@ char const * okeywords::table [] =
 {
 	(char const *) (0)
 };
-
 
 const unsigned okeywords::words = SIZEOF (okeywords::table) - 1;
 
@@ -59,7 +58,6 @@ size_t okeywords::count () const
 	return (this->mcount);
 }
 
-
 /*====================================================================*
  *
  *   char const keywords (size_t index) const;
@@ -78,7 +76,6 @@ char const * okeywords::keywords (size_t index) const
 	return (index < this->mcount? this->mtable [index]: this->mtable [this->mcount]);
 }
 
-
 /*====================================================================*
  *
  *   bool defined (char const *string) const;
@@ -96,7 +93,6 @@ bool okeywords::defined (char const * string) const
 {
 	return (this->indexof (string) < this->mcount);
 }
-
 
 /*====================================================================*
  *
@@ -135,7 +131,6 @@ size_t okeywords::indexof (char const * string) const
 	return (this->mcount);
 }
 
-
 /*====================================================================*
  *
  *   size_t longest () const
@@ -162,7 +157,6 @@ size_t okeywords::longest () const
 	}
 	return (length);
 }
-
 
 /*====================================================================*
  *
@@ -222,7 +216,6 @@ okeywords & okeywords::enumerate ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   okeywords & enumerate (char const *prefix, char const *suffix);
@@ -245,7 +238,6 @@ okeywords & okeywords::enumerate (char const * prefix, char const * suffix)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -310,7 +302,6 @@ okeywords & okeywords::enumerate (size_t columns)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   okeywords & mcheck (); 
@@ -349,7 +340,6 @@ okeywords & okeywords::mcheck ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   okeywords ();
@@ -369,7 +359,6 @@ okeywords::okeywords ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   okeywords::~okeywords ();
@@ -385,7 +374,6 @@ okeywords::~okeywords ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

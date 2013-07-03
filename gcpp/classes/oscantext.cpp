@@ -22,8 +22,8 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/tools.h"
 #include "../classes/oscantext.hpp"
+#include "../../gcc/tools/symbol.h"
 
 /*====================================================================*
  *
@@ -40,7 +40,6 @@ bool oscantext::end () const
 {
 	return (this->mstart >= this->mlimit);
 }
-
 
 /*====================================================================*
  *
@@ -61,7 +60,6 @@ oscantext & oscantext::operator = (char const * string)
 	return (* this);
 }
 
-
 oscantext & oscantext::copy (char const * string) 
 
 {
@@ -71,10 +69,9 @@ oscantext & oscantext::copy (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
- *   oscantext & read (char const *filename);
+ *   oscantext & read (char const * filename);
  * 
  *   read an entire input stream into the input buffer; 
  *
@@ -100,7 +97,6 @@ oscantext & oscantext::read (char const * filename)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & read (ifstream * stream);
@@ -123,7 +119,6 @@ oscantext & oscantext::read (std::ifstream * stream)
 	stream->read (this->mstart, length);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -148,7 +143,6 @@ oscantext & oscantext::read ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   bool isempty () const;
@@ -167,7 +161,6 @@ bool oscantext::isempty () const
 	return (this->mstart >= this->mlimit);
 }
 
-
 /*====================================================================*
  *
  *   char character () const;
@@ -185,7 +178,6 @@ char oscantext::character () const
 {
 	return (* this->mbreak);
 }
-
 
 /*====================================================================*
  *
@@ -212,7 +204,6 @@ bool oscantext::istoken (char const * literal) const
 	return (* literal == (char) (0));
 }
 
-
 /*====================================================================*
  *
  *   size_t tokensize () const;
@@ -231,7 +222,6 @@ size_t oscantext::tokensize () const
 {
 	return (this->mbreak - this->mstart);
 }
-
 
 /*====================================================================*
  *
@@ -263,7 +253,6 @@ char const * oscantext::tokentext ()
 	return ((char const *) (this->mtoken));
 }
 
-
 /*====================================================================*
  *
  *   char const * savetoken ();
@@ -284,7 +273,6 @@ char const * oscantext::savetoken ()
 	this->readtoken (this->mindex, this->mbreak - this->mstart + 1);
 	return ((char const *) (this->mindex));
 }
-
 
 /*====================================================================*
  *
@@ -314,7 +302,6 @@ oscantext & oscantext::readtoken (char buffer [], size_t length)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   bool isspace () const;
@@ -332,7 +319,6 @@ bool oscantext::isspace () const
 {
 	return (oascii::isspace (* this->mbreak));
 }
-
 
 /*====================================================================*
  *
@@ -352,7 +338,6 @@ bool oscantext::isalpha () const
 	return (oascii::isalpha (* this->mbreak));
 }
 
-
 /*====================================================================*
  *
  *  bool isdigit () const;
@@ -370,7 +355,6 @@ bool oscantext::isdigit () const
 {
 	return (oascii::isdigit (* this->mbreak));
 }
-
 
 /*====================================================================*
  *
@@ -390,7 +374,6 @@ bool oscantext::isalnum () const
 	return (oascii::isalnum (* this->mbreak));
 }
 
-
 /*====================================================================*
  *
  *   bool isident () const;
@@ -408,7 +391,6 @@ bool oscantext::isident () const
 {
 	return (oascii::isident (* this->mbreak));
 }
-
 
 /*====================================================================*
  *
@@ -428,7 +410,6 @@ bool oscantext::ispunct () const
 	return (oascii::ispunct (* this->mbreak));
 }
 
-
 /*====================================================================*
  *
  *  bool isarith () const;
@@ -446,7 +427,6 @@ bool oscantext::isarith () const
 {
 	return (oascii::isarith (* this->mbreak));
 }
-
 
 /*====================================================================*
  *
@@ -466,7 +446,6 @@ bool oscantext::islogic () const
 	return (oascii::islogic (* this->mbreak));
 }
 
-
 /*====================================================================*
  *
  *  bool isgroup () const;
@@ -485,7 +464,6 @@ bool oscantext::isgroup () const
 	return (oascii::isgroup (* this->mbreak));
 }
 
-
 /*====================================================================*
  *
  *   bool isclass (unsigned c) const;
@@ -501,7 +479,6 @@ bool oscantext::isclass (unsigned c) const
 {
 	return (this->mclass == (char) (c));
 }
-
 
 /*====================================================================*
  *
@@ -526,7 +503,6 @@ bool oscantext::isclass (char const * charset) const
 	}
 	return (* charset != (char) (0));
 }
-
 
 /*====================================================================*
  *
@@ -556,7 +532,6 @@ oscantext & oscantext::flush ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext &scanmatch ();
@@ -580,7 +555,6 @@ oscantext & oscantext::scanmatch ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext &scanbreak ();
@@ -602,7 +576,6 @@ oscantext & oscantext::scanbreak ()
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -626,7 +599,6 @@ oscantext & oscantext::scanbreak (unsigned c)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext &scanbreak (char const * charset);
@@ -649,7 +621,6 @@ oscantext & oscantext::scanbreak (char const * charset)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantest & scanblank ();
@@ -669,7 +640,6 @@ oscantext & oscantext::scanblank ()
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -691,7 +661,6 @@ oscantext & oscantext::scanspace ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & scanalpha ();
@@ -711,7 +680,6 @@ oscantext & oscantext::scanalpha ()
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -733,7 +701,6 @@ oscantext & oscantext::scandigit ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & scanalnum ();
@@ -754,7 +721,6 @@ oscantext & oscantext::scanalnum ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & scanident ();
@@ -774,7 +740,6 @@ oscantext & oscantext::scanident ()
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -799,7 +764,6 @@ oscantext & oscantext::scanwhile ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & scanwhile (unsigned c);
@@ -823,7 +787,6 @@ oscantext & oscantext::scanwhile (unsigned c)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & scanwhile (char const * charset);
@@ -846,7 +809,6 @@ oscantext & oscantext::scanwhile (char const * charset)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & scanwhile (bool type (unsigned c));
@@ -868,7 +830,6 @@ oscantext & oscantext::scanwhile (bool type (unsigned c))
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -896,7 +857,6 @@ oscantext & oscantext::scanuntil ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & scanuntil (unsigned c);
@@ -919,7 +879,6 @@ oscantext & oscantext::scanuntil (unsigned c)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -944,7 +903,6 @@ oscantext & oscantext::scanuntil (char const * charset)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & scanuntil (bool type (unsigned c));
@@ -966,7 +924,6 @@ oscantext & oscantext::scanuntil (bool type (unsigned c))
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -994,7 +951,6 @@ oscantext & oscantext::scanquote ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & scanquote (unsigned c);
@@ -1021,7 +977,6 @@ oscantext & oscantext::scanquote (unsigned c)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & scanquote (char const * charset);
@@ -1047,7 +1002,6 @@ oscantext & oscantext::scanquote (char const * charset)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -1076,7 +1030,6 @@ oscantext & oscantext::scanblock ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & scanblock (char const *literal)
@@ -1104,7 +1057,6 @@ oscantext & oscantext::scanblock (char const * literal)
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -1151,7 +1103,6 @@ oscantext & oscantext::scangroup (unsigned c)
 	return (* this);
 }
 
-
 /*====================================================================*
  *   
  *   oscantext &oscantext::scantoken ();
@@ -1194,7 +1145,6 @@ oscantext & oscantext::scantoken ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & elaborate ();
@@ -1231,7 +1181,6 @@ oscantext & oscantext::elaborate ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & translate (char const * oldtoken, char const * newtoken);
@@ -1255,7 +1204,6 @@ oscantext & oscantext::translate (char const * oldtoken, char const * newtoken)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   bool ismatch () const;
@@ -1276,7 +1224,6 @@ bool oscantext::ismatch () const
 	return ((this->mstart < this->mlimit) && (* this->mbreak == * this->mstart));
 }
 
-
 /*====================================================================*
  *
  *   bool isbreak (unsigned c) const;
@@ -1292,7 +1239,6 @@ bool oscantext::isbreak (unsigned c) const
 {
 	return ((this->mstart < this->mlimit) && (* this->mbreak == (char) (c)));
 }
-
 
 /*====================================================================*
  *
@@ -1318,7 +1264,6 @@ bool oscantext::isbreak (char const * charset) const
 	return (* charset != (char) (0));
 }
 
-
 /*====================================================================*
  *
  *   bool isbreak (bool type (unsigned)) const;
@@ -1336,7 +1281,6 @@ bool oscantext::isbreak (bool (* type) (unsigned)) const
 {
 	return ((this->mstart < this->mlimit) && type (* this->mbreak));
 }
-
 
 /*====================================================================*
  *
@@ -1359,7 +1303,6 @@ bool oscantext::havematch ()
 	return (false);
 }
 
-
 /*====================================================================*
  *
  *   bool havebreak (unsigned c);
@@ -1380,7 +1323,6 @@ bool oscantext::havebreak (unsigned c)
 	}
 	return (false);
 }
-
 
 /*====================================================================*
  *
@@ -1407,7 +1349,6 @@ bool oscantext::havebreak (char const * charset)
 	return (false);
 }
 
-
 /*====================================================================*
  *
  *   bool havebreak (bool type (unsigned));
@@ -1432,7 +1373,6 @@ bool oscantext::havebreak (bool type (unsigned))
 	return (false);
 }
 
-
 /*====================================================================*
  *
  *   char class () const;
@@ -1450,7 +1390,6 @@ char oscantext::tokentype () const
 {
 	return (this->mclass);
 }
-
 
 /*====================================================================*
  *
@@ -1471,7 +1410,6 @@ oscantext & oscantext::tokentype (char c)
 	this->mclass = (char) (c);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -1494,7 +1432,6 @@ bool oscantext::haveclass (unsigned c)
 	return (false);
 }
 
-
 /*====================================================================*
  *
  *   bool haveclass (char const * charset);
@@ -1516,7 +1453,6 @@ bool oscantext::haveclass (char const * charset)
 	}
 	return (false);
 }
-
 
 /*====================================================================*
  *
@@ -1558,7 +1494,6 @@ bool oscantext::havetoken (char const * literal)
 	return (false);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & nexttoken ();
@@ -1579,7 +1514,6 @@ oscantext & oscantext::nexttoken ()
 	this->scantoken ();
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -1612,7 +1546,6 @@ oscantext & oscantext::cleanse ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & trimtoken ();
@@ -1644,7 +1577,6 @@ oscantext & oscantext::trimtoken ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & trimtoken (char const * charset);
@@ -1675,7 +1607,6 @@ oscantext & oscantext::trimtoken (char const * charset)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext &uppercase ();
@@ -1695,7 +1626,6 @@ oscantext & oscantext::uppercase ()
 	ochrupr::convert (this->mtoken);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -1717,7 +1647,6 @@ oscantext & oscantext::lowercase ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & write ();
@@ -1737,7 +1666,6 @@ oscantext & oscantext::write ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & write (ofstream * stream);
@@ -1756,7 +1684,6 @@ oscantext & oscantext::write (std::ofstream * stream)
 	stream->write (this->mstart, this->mbreak - this->mstart);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -1778,7 +1705,6 @@ oscantext & oscantext::print ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & print (ofstream *stream);
@@ -1798,7 +1724,6 @@ oscantext & oscantext::print (std::ofstream * stream)
 	stream->write ("\n", 1);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -1824,7 +1749,6 @@ oscantext & oscantext::unget ()
 	this->mclass = (char) (0);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -1854,7 +1778,6 @@ oscantext & oscantext::unget (char c)
 	this->mclass = (char) (0);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -1886,7 +1809,6 @@ oscantext & oscantext::unget (char const * string)
 	this->mclass = (char) (0);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -1933,7 +1855,6 @@ oscantext & oscantext::scangroup (char const * charset)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & enumerate ();
@@ -1955,7 +1876,6 @@ oscantext & oscantext::enumerate ()
 	}
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -1987,7 +1907,6 @@ oscantext & oscantext::reset (off_t length)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oscantext & clear ();
@@ -2006,7 +1925,6 @@ oscantext & oscantext::clear ()
 	this->reset ((off_t) (0));
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -2033,7 +1951,6 @@ oscantext::oscantext ()
 	this->reset ((off_t) (0));
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -2063,7 +1980,6 @@ oscantext::oscantext (std::ifstream * stream)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   oscantext (char const *string);
@@ -2090,7 +2006,6 @@ oscantext::oscantext (char const * string)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oscantext ();
@@ -2108,7 +2023,6 @@ oscantext::~oscantext ()
 	delete [] this->minput;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

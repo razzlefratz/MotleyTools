@@ -62,7 +62,7 @@ int main (int argc, char const * argv [])
 		"c s\tcomment text",
 		(char const *) (0)
 	};
-	FILE *fp;
+	FILE * fp;
 	char const * comment = (char const *)(0);
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
@@ -76,10 +76,10 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	dup2 (STDOUT_FILENO, STDERR_FILENO);
-	if ((comment) && (*comment)) 
+	if ((comment) && (* comment)) 
 	{
 		breakout (comment, BARWIDTH_MAX);
 	}

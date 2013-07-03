@@ -22,7 +22,6 @@ typedef struct _topic_
 	char * index;
 }
 
-
 TOPIC;
 
 /*====================================================================*
@@ -47,7 +46,6 @@ private:
 	unsigned mindex;
 	unsigned mtopic;
 };
-
 
 #endif
 

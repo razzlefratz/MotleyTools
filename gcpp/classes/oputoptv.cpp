@@ -79,7 +79,6 @@ oputoptv & oputoptv::chkoptv (char const * optv [])
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oputoptv & oputoptv (char const * optv[]);
@@ -111,7 +110,6 @@ oputoptv & oputoptv::putoptv (char const * optv [])
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oputoptv & putoptv (char const * optv[], signed exitcode);
@@ -130,7 +128,6 @@ oputoptv & oputoptv::putoptv (char const * optv [], signed exitcode)
 	std::exit (exitcode);
 }
 
-
 /*====================================================================*
  *
  *   oputoptv ();
@@ -143,7 +140,6 @@ oputoptv::oputoptv ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oputoptv ();
@@ -155,7 +151,6 @@ oputoptv::~oputoptv ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation

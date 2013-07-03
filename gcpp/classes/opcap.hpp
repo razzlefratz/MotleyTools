@@ -42,7 +42,6 @@ public:
 	static void if_freenameindex (struct if_nameindex * if_nameindex);
 };
 
-
 /*====================================================================*
  *   end declaration;
  *--------------------------------------------------------------------*/

@@ -61,6 +61,5 @@ private:
 	char * mpage;
 };
 
-
 #endif
 

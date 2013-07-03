@@ -12,8 +12,6 @@
  *   system header files;
  *--------------------------------------------------------------------*/
 
-#include <cstring>
-#include <cstdlib>
 #include <iostream>
 
 /*====================================================================*
@@ -48,7 +46,7 @@
 #include "../classes/ocgotowords.cpp"
 #include "../classes/ocexitwords.cpp"
 #include "../classes/oascii.cpp"
-#include "../classes/ocollect.cpp"
+#include "../classes/osource.cpp"
 #include "../classes/oinclude.cpp"
 #include "../classes/ocomment.cpp"
 #include "../classes/octidy.cpp"
@@ -64,9 +62,10 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"m:o:st",
+		"cm:o:st",
 		oPUTOPTV_S_FILTER,
 		"format C/C++ source code",
+		"c\tcompact source",
 		"m s\tmargin string [" LITERAL (oINDENT_MARGIN) "]",
 		"o s\toffset string [" LITERAL (oINDENT_OFFSET) "]",
 		"s\toffset is space",
@@ -78,23 +77,29 @@ int main (int argc, char const * argv [])
 	opathspec pathspec;
 	oescape escape;
 	octidy object;
-	int (octidy::* method) (signed, signed) = & octidy::program;
+	signed (octidy::* method) (signed) = & octidy::program;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
+		case 'c':
+			object.margin ("");
+			object.offset ("");
+			object.finish ("");
+			object.record ("");
+			break;
 		case 'm':
 			object.margin (escape.unescape ((char *)(getopt.args ())));
 			break;
 		case 'o':
-			object.indent (escape.unescape ((char *)(getopt.args ())));
+			object.offset (escape.unescape ((char *)(getopt.args ())));
 			break;
 		case 's':
-			object.indent ("   ");
+			object.offset ("   ");
 			break;
 		case 't':
-			object.indent ("\t");
+			object.offset ("\t");
 			break;
 		default:
 			break;
@@ -102,7 +107,7 @@ int main (int argc, char const * argv [])
 	}
 	if (!getopt.argc ()) 
 	{
-		c = (object.* method) (std::cin.get (), EOF);
+		(object.* method) (std::cin.get ());
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
@@ -110,12 +115,11 @@ int main (int argc, char const * argv [])
 		pathspec.fullpath (filename, * getopt.argv ());
 		if (fileopen.openedit (filename)) 
 		{
-			c = (object.* method) (std::cin.get (), EOF);
+			(object.* method) (std::cin.get ());
 			fileopen.close ();
 		}
 		getopt++;
 	}
 	std::exit (0);
 }
-
 

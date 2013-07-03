@@ -40,18 +40,11 @@
 #include "../files/mergepath.c"
 #endif
 
-#ifndef MAKEFILE
-#include "../tidy/nocomment.c"
-#include "../tidy/literal.c"
-#include "../tidy/escaped.c"
-#include "../tidy/keep.c"
-#endif
-
 /*====================================================================*
  *
- *   void function (flag_t flags);
+ *   void exclude (void);
  *
- *   read stdin and write stdout; intercept and discard C Language
+ *   read stdin and write stdout; intercept and exclude C Language
  *   style comments that start with double slash or appear between
  *   inverted slash/asterisk character pairs;
  *
@@ -61,26 +54,134 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (signed c, flag_t flags) 
+static void exclude (void) 
 
 {
+	signed c = getc (stdin);
 	while (c != EOF) 
 	{
 		if (c == '/') 
 		{
-			c = nocomment (c);
+			c = getc (stdin);
+			if (c == '/') 
+			{
+				while ((c != '\n') && (c != EOF)) 
+				{
+					c = getc (stdin);
+				}
+				continue;
+			}
+			if (c == '*') 
+			{
+				while ((c != '/') && (c != EOF)) 
+				{
+					while ((c != '*') && (c != EOF)) 
+					{
+						c = getc (stdin);
+					}
+					c = getc (stdin);
+				}
+				c = getc (stdin);
+				continue;
+			}
+			putc ('/', stdout);
 			continue;
 		}
 		if (isquote (c)) 
 		{
-			c = literal (c);
-			continue;
+			signed quote = c;
+			putc (c, stdout);
+			c = getc (stdin);
+			while ((c != quote) && (c != EOF)) 
+			{
+				if (c == '\\')
+				{
+					putc (c, stdout);
+					c = getc (stdin);
+				}
+				putc (c, stdout);
+				c = getc (stdin);
+			}
+			putc (c, stdout);
+			c = getc (stdin);
 		}
-		c = keep (c);
+		putc (c, stdout);
+		c = getc (stdin);
 	}
 	return;
 }
 
+/*====================================================================*
+ *
+ *   void include (void);
+ *
+ *   read stdin and write stdout; intercept and include C Language
+ *   style comments that start with double slash or appear between
+ *   inverted slash/asterisk character pairs;
+ *
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+static void include (void) 
+
+{
+	signed c = getc (stdin);
+	while (c != EOF) 
+	{
+		if (c == '/') 
+		{
+			c = getc (stdin);
+			if (c == '/') 
+			{
+				putc ('/', stdout);
+				while ((c != '\n') && (c != EOF)) 
+				{
+					putc (c, stdout);
+					c = getc (stdin);
+				}
+				continue;
+			}
+			if (c == '*') 
+			{
+				putc ('/', stdout);
+				while ((c != '/') && (c != EOF)) 
+				{
+					while ((c != '*') && (c != EOF)) 
+					{
+						putc (c, stdout);
+						c = getc (stdin);
+					}
+					putc (c, stdout);
+					c = getc (stdin);
+				}
+				putc (c, stdout);
+				c = getc (stdin);
+				putc ('\n', stdout);
+				continue;
+			}
+		}
+		if (isquote (c)) 
+		{
+			signed quote = c;
+			c = getc (stdin);
+			while ((c != quote) && (c != EOF)) 
+			{
+				if (c == '\\')
+				{
+					c = getc (stdin);
+				}
+				c = getc (stdin);
+			}
+			c = getc (stdin);
+			continue;
+		}
+		c = getc (stdin);
+	}
+	return;
+}
 
 /*====================================================================*
  *
@@ -97,32 +198,40 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"",
+		"bv",
 		PUTOPTV_S_FILTER,
-		"remove C/C++ language comments",
+		"strip C/C++ comments from code",
+		"b\tdiscard comments and keep code",
+		"v\tdiscard code and keep comments",
 		(char const *) (0)
 	};
-	flag_t flags = (flag_t) (0);
+	void (* function) (void) = exclude;
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
+		case 'b':
+			function = exclude;
+			break;
+		case 'v':
+			function = include;
+			break;
 		default:
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
-		function (getc (stdin), flags);
+		function ();
 	}
 	while ((argc) && (* argv)) 
 	{
 		if (vfopen (* argv)) 
 		{
-			function (getc (stdin), flags);
+			function ();
 		}
 		argv++;
 		argc--;

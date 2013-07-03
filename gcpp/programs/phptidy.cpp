@@ -24,6 +24,7 @@
 #include "../classes/ofileopen.hpp"
 #include "../classes/opathspec.hpp"
 #include "../classes/ophptidy.hpp"
+#include "../classes/oescape.hpp"
 
 /*====================================================================*
  *   custom source files;
@@ -40,19 +41,12 @@
 #include "../classes/ocontext.cpp"
 #include "../classes/owildcard.cpp"
 #include "../classes/oescape.cpp"
-#include "../classes/oindent.cpp"
 #include "../classes/oascii.cpp"
-#include "../classes/ocollect.cpp"
+#include "../classes/osource.cpp"
+#include "../classes/oindent.cpp"
 #include "../classes/ophptidy.cpp"
 #include "../classes/otext.cpp"
 #endif
-
-/*====================================================================*
- *   program constants;
- *--------------------------------------------------------------------*/
-
-#define MARGIN ""
-#define OFFSET "\t"
 
 /*====================================================================*
  *   
@@ -69,28 +63,52 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] = 
 	{
-		"",
+		"cm:o:st",
 		oPUTOPTV_S_FILTER,
-		"format PHP source code",
+		"format C/C++ source code",
+		"c\tcompact source",
+		"m s\tmargin string [" LITERAL (oINDENT_MARGIN) "]",
+		"o s\toffset string [" LITERAL (oINDENT_OFFSET) "]",
+		"s\toffset is space",
+		"t\toffset is tabs",
 		(char const *) (0)
 	};
 	ogetoptv getopt;
+	oescape escape;
 	opathspec pathspec;
 	ofileopen fileopen;
-	ophptidy tidy;
+	ophptidy object;
 	int (ophptidy::* function) (signed) = & ophptidy::page;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
+		case 'c':
+			object.margin ("");
+			object.offset ("");
+			object.finish ("");
+			object.record ("");
+			break;
+		case 'm':
+			object.margin (escape.unescape ((char *)(getopt.args ())));
+			break;
+		case 'o':
+			object.offset (escape.unescape ((char *)(getopt.args ())));
+			break;
+		case 's':
+			object.offset ("   ");
+			break;
+		case 't':
+			object.offset ("\t");
+			break;
 		default:
 			break;
 		}
 	}
 	if (!getopt.argc ()) 
 	{
-		c = (tidy.* function) (std::cin.get ());
+		c = (object.* function) (std::cin.get ());
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
@@ -98,12 +116,11 @@ int main (int argc, char const * argv [])
 		pathspec.fullpath (filename, * getopt.argv ());
 		if (fileopen.openedit (filename)) 
 		{
-			c = (tidy.* function) (std::cin.get ());
+			c = (object.* function) (std::cin.get ());
 			fileopen.close ();
 		}
 		getopt++;
 	}
 	std::exit (0);
 }
-
 

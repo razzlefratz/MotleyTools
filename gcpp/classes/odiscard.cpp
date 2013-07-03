@@ -48,7 +48,6 @@ signed odiscard::context (signed c, char const * charset) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed context (signed c, signed o, signed e) const;
@@ -67,24 +66,22 @@ signed odiscard::context (signed c, char const * charset) const
 signed odiscard::context (signed c, signed o, signed e) const 
 
 {
-	c = std::cin.get ();
-	c = odiscard::inner_context (c, o, e);
-	c = std::cin.get ();
+	c = odiscard::feed (c);
+	c = odiscard::_context (c, o, e);
+	c = odiscard::feed (c);
 	return (c);
 }
 
-
-signed odiscard::inner_context (signed c, signed o, signed e) const 
+signed odiscard::_context (signed c, signed o, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = odiscard::inner_context (c, o);
-		c = std::cin.get ();
+		c = odiscard::_context (c, o);
+		c = odiscard::feed (c);
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -104,14 +101,13 @@ signed odiscard::inner_context (signed c, signed o, signed e) const
 signed odiscard::context (signed c, signed e) const 
 
 {
-	c = std::cin.get ();
-	c = odiscard::inner_context (c, e);
-	c = std::cin.get ();
+	c = odiscard::feed (c);
+	c = odiscard::_context (c, e);
+	c = odiscard::feed (c);
 	return (c);
 }
 
-
-signed odiscard::inner_context (signed c, signed e) const 
+signed odiscard::_context (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
@@ -120,7 +116,6 @@ signed odiscard::inner_context (signed c, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *   
@@ -165,11 +160,10 @@ signed odiscard::context (signed c) const
 	}
 	else 
 	{
-		c = std::cin.get ();
+		c = odiscard::feed (c);
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -198,7 +192,6 @@ signed odiscard::comment (signed c) const
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed odiscard::content (signed c, signed o, signed e) const;
@@ -216,24 +209,22 @@ signed odiscard::comment (signed c) const
 signed odiscard::content (signed c, signed o, signed e) const 
 
 {
-	c = std::cin.get ();
-	c = odiscard::inner_content (c, o, e);
-	c = std::cin.get ();
+	c = odiscard::feed (c);
+	c = odiscard::_content (c, o, e);
+	c = odiscard::feed (c);
 	return (c);
 }
 
-
-signed odiscard::inner_content (signed c, signed o, signed e) const 
+signed odiscard::_content (signed c, signed o, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = odiscard::inner_content (c, o);
-		c = std::cin.get ();
+		c = odiscard::_content (c, o);
+		c = odiscard::feed (c);
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -252,23 +243,21 @@ signed odiscard::inner_content (signed c, signed o, signed e) const
 signed odiscard::content (signed c, signed e) const 
 
 {
-	c = std::cin.get ();
-	c = odiscard::inner_content (c, e);
-	c = std::cin.get ();
+	c = odiscard::feed (c);
+	c = odiscard::_content (c, e);
+	c = odiscard::feed (c);
 	return (c);
 }
 
-
-signed odiscard::inner_content (signed c, signed e) const 
+signed odiscard::_content (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = std::cin.get ();
+		c = odiscard::feed (c);
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -287,24 +276,22 @@ signed odiscard::inner_content (signed c, signed e) const
 signed odiscard::command (signed c) const 
 
 {
-	c = std::cin.get ();
-	c = odiscard::inner_command (c, '\n');
-	c = std::cin.get ();
+	c = odiscard::feed (c);
+	c = odiscard::_command (c, '\n');
+	c = odiscard::feed (c);
 	return (c);
 }
-
 
 signed odiscard::command (signed c, signed e) const 
 
 {
-	c = std::cin.get ();
-	c = odiscard::inner_command (c, e);
-	c = std::cin.get ();
+	c = odiscard::feed (c);
+	c = odiscard::_command (c, e);
+	c = odiscard::feed (c);
 	return (c);
 }
 
-
-signed odiscard::inner_command (signed c, signed e) const 
+signed odiscard::_command (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
@@ -323,7 +310,6 @@ signed odiscard::inner_command (signed c, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -348,18 +334,16 @@ signed odiscard::literal (signed c) const
 	return (c);
 }
 
-
 signed odiscard::literal (signed c, signed e) const 
 
 {
-	c = std::cin.get ();
-	c = odiscard::inner_literal (c, e);
-	c = std::cin.get ();
+	c = odiscard::feed (c);
+	c = odiscard::_literal (c, e);
+	c = odiscard::feed (c);
 	return (c);
 }
 
-
-signed odiscard::inner_literal (signed c, signed e) const 
+signed odiscard::_literal (signed c, signed e) const 
 
 {
 	while ((c != e) && (c != EOF)) 
@@ -368,7 +352,6 @@ signed odiscard::inner_literal (signed c, signed e) const
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -391,16 +374,56 @@ signed odiscard::escaped (signed c) const
 {
 	if (c == '\\') 
 	{
-		c = std::cin.get ();
+		c = odiscard::feed (c);
 	}
+	c = odiscard::feed (c);
+	return (c);
+}
+
+/*====================================================================*
+ *
+ *   signed find (signed c) const;
+ *
+ *   read and discard whitespace; start with current character (c);
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+signed odiscard::find (signed c) const 
+
+{
+	while (oascii::isspace (c)) 
+	{
+		c = odiscard::feed (c);
+	}
+	return (c);
+}
+
+/*====================================================================*
+ *
+ *   signed feed (signed c) const;
+ *
+ *   read and discard whitespace; start with current character (c);
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+signed odiscard::feed (signed c) const 
+
+{
 	c = std::cin.get ();
 	return (c);
 }
 
-
 /*====================================================================*
  *
- *   odiscard ()
+ *   odiscard (void)
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -408,16 +431,15 @@ signed odiscard::escaped (signed c) const
  *
  *--------------------------------------------------------------------*/
 
-odiscard::odiscard () 
+odiscard::odiscard (void) 
 
 {
 	return;
 }
 
-
 /*====================================================================*
  *
- *   ~odiscard ()
+ *   ~odiscard (void)
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -425,12 +447,11 @@ odiscard::odiscard ()
  *
  *--------------------------------------------------------------------*/
 
-odiscard::~odiscard () 
+odiscard::~odiscard (void) 
 
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation

@@ -105,7 +105,6 @@ static char const * reserved [] =
 	"while"
 };
 
-
 /*====================================================================*
  *
  *   unsigned function (flag_t flags);
@@ -172,11 +171,11 @@ static void function (flag_t flags)
 			char * sp = string;
 			do 
 			{
-				*sp++ = (char)(c);
+				* sp++ = (char)(c);
 				c = getc (stdin);
 			}
 			while (isalnum (c) || (c == '_'));
-			*sp = (char)(0);
+			* sp = (char)(0);
 
 #if 0
 
@@ -243,7 +242,6 @@ static void function (flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   int main (int argc, char const * argv[]);
@@ -278,8 +276,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (flags);

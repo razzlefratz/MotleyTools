@@ -30,8 +30,8 @@
  *--------------------------------------------------------------------*/
 
 #include <cstring>
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
 /*====================================================================*
  *   custom source files;
@@ -48,27 +48,27 @@ ofilespec ochtml::filespec;
 
 /*====================================================================*
  *
- *   void stylesheet ();
+ *   void css2 (void);
  *   
- *   write a compatible CSS stylesheet on stdout; the element and
- *   property names are referenced throughout the document;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *   print a compatible CSS stylesheet on stdout so that element and
+ *   property names match HTML output;
  *
  *--------------------------------------------------------------------*/
 
-ochtml & ochtml::stylesheet () 
+ochtml & ochtml::css2 (void) 
 
 {
 	std::cout << "a:hover { text-decoration: underline; }" << std::endl;
 	std::cout << "a { text-decoration: none; }" << std::endl;
-	std::cout << "a:link { color: #000080; }" << std::endl;
+	std::cout << "a:link { color: navy; }" << std::endl;
 	std::cout << "a:active { }" << std::endl;
-	std::cout << "a:visited { color: #000080; }" << std::endl;
-	std::cout << "body { background:white; color:black; font:normal 10pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
-	std::cout << "pre  { background:white; color:black; font:normal 10pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
+	std::cout << "a:visited { color: navy; }" << std::endl;
+	std::cout << "body { background:white; color:black; font:normal 12pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
+	std::cout << "pre  { background:white; color:black; font:normal 12pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
+	std::cout << "div.bodyheader { margin: 10px 10px 10px 10px; test-align: center; }" << std::endl;
+	std::cout << "div.linkheader { margin: 10px 10px 10px 10px; text-align: left; }" << std::endl;
+	std::cout << "div.linkfooter { margin: 10px 10px 10px 10px; text-align: right; }" << std::endl;
+	std::cout << "div.bodyfooter { margin: 10px 10px 10px 10px; text-align: center; }" << std::endl;
 	std::cout << "span.comments { color: green; }" << std::endl;
 	std::cout << "span.compiler { color: black; }" << std::endl;
 	std::cout << "span.language { color: black; }" << std::endl;
@@ -81,25 +81,6 @@ ochtml & ochtml::stylesheet ()
 	return (* this);
 }
 
-
-/*====================================================================*
- *
- *   ochtml & stylesheet (char const * string);
- *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
- *--------------------------------------------------------------------*/
-
-ochtml & ochtml::stylesheet (char const * string) 
-
-{
-	owebpage::stylesheet (string);
-	return (* this);
-}
-
-
 /*====================================================================*
  *
  *   ochtml & html (char const *filename);
@@ -110,10 +91,6 @@ ochtml & ochtml::stylesheet (char const * string)
  *   various colors for visual effect; selected constants, variable and
  *   filenames may have hyperlinks to companion pages;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 ochtml & ochtml::html (char const * filename) 
@@ -121,6 +98,9 @@ ochtml & ochtml::html (char const * filename)
 {
 	std::ofstream output;
 	std::streambuf * buf;
+	ochtml::level (0);
+	ochtml::space (1);
+	this->mindex = 1;
 	filename = ochtml::filespec.filespec (filename).fullpath ();
 	if (this->mfile.read (filename).isempty ()) 
 	{
@@ -133,8 +113,10 @@ ochtml & ochtml::html (char const * filename)
 		oerror::print ("can't open %s for output", filename);
 	}
 	buf = std::cout.rdbuf (output.rdbuf ());
-	ochtml::topPage ();
-	std::cout << "<pre>";
+	ochtml::title (filename);
+	ochtml::PageHeader ();
+	ochtml::LinkHeader ();
+	std::cout << "<pre>" << std::endl;
 	while (!this->mfile.isempty ()) 
 	{
 		unsigned level = 0;
@@ -169,14 +151,14 @@ ochtml & ochtml::html (char const * filename)
 			this->mspan.EndTag ();
 			break;
 		case CL_T_STANDARD:
-			this->mspan.CoreAttributes.IdentityAttribute->value ("");
+			this->mspan.CoreAttributes.IdentityAttribute->value (this->mindex++);
 			this->mspan.CoreAttributes.ClassAttribute->value ("standard");
 			this->mspan.StartTag ();
 			this->mfile.write ();
 			this->mspan.EndTag ();
 			break;
 		case CL_T_CONSTANT:
-			this->mspan.CoreAttributes.IdentityAttribute->value ("");
+			this->mspan.CoreAttributes.IdentityAttribute->value (this->mindex++);
 			this->mspan.CoreAttributes.ClassAttribute->value ("constant");
 			this->mspan.StartTag ();
 			this->mfile.write ();
@@ -186,7 +168,7 @@ ochtml & ochtml::html (char const * filename)
 		case CL_T_VARIABLE:
 			if (!level) 
 			{
-				this->mspan.CoreAttributes.IdentityAttribute->value (this->mfile.tokentext ());
+				this->mspan.CoreAttributes.IdentityAttribute->value (this->mindex++);
 				this->mspan.CoreAttributes.ClassAttribute->value ("variable");
 				this->mspan.StartTag ();
 				this->mfile.write ();
@@ -197,21 +179,43 @@ ochtml & ochtml::html (char const * filename)
 			}
 			else if (this->minternal.defined (this->mfile.tokentext ())) 
 			{
+				this->mlink.CoreAttributes.IdentityAttribute->value ("");
+
+#if 0
+
 				this->mlink.LinkAttributes.ReferenceAttribute->value (this->minternal.expand (this->mfile.tokentext ()));
+
+#else
+
+				this->mlink.LinkAttributes.ReferenceAttribute->value (this->mindex++);
+
+#endif
+
 				this->mlink.StartTag ();
 				this->mfile.write ();
 				this->mlink.EndTag ();
 			}
 			else if (this->mexternal.defined (this->mfile.tokentext ())) 
 			{
+				this->mlink.CoreAttributes.IdentityAttribute->value ("");
+
+#if 0
+
 				this->mlink.LinkAttributes.ReferenceAttribute->value (this->mexternal.expand (this->mfile.tokentext ()));
+
+#else
+
+				this->mlink.LinkAttributes.ReferenceAttribute->value (this->mindex++);
+
+#endif
+
 				this->mlink.StartTag ();
 				this->mfile.write ();
 				this->mlink.EndTag ();
 			}
 			else if (clibword.defined (this->mfile.tokentext ())) 
 			{
-				this->mspan.CoreAttributes.IdentityAttribute->value (this->mfile.tokentext ());
+				this->mspan.CoreAttributes.IdentityAttribute->value ("");
 				this->mspan.CoreAttributes.ClassAttribute->value ("variable");
 				this->mspan.StartTag ();
 				this->mfile.write ();
@@ -219,7 +223,7 @@ ochtml & ochtml::html (char const * filename)
 			}
 			else 
 			{
-				this->mspan.CoreAttributes.IdentityAttribute->value (this->mfile.tokentext ());
+				this->mspan.CoreAttributes.IdentityAttribute->value ("");
 				this->mspan.CoreAttributes.ClassAttribute->value ("variable");
 				this->mspan.StartTag ();
 				this->mfile.write ();
@@ -254,23 +258,20 @@ ochtml & ochtml::html (char const * filename)
 		}
 	}
 	std::cout << "</pre>" << std::endl;
-	ochtml::botPage ();
+	ochtml::LinkFooter ();
+	ochtml::BodyFooter ();
+	ochtml::PageFooter ();
 	this->mfile.clear ();
 	std::cout.rdbuf (buf);
 	output.close ();
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   void directive ();
  *
  *   under construction;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -281,14 +282,14 @@ ochtml & ochtml::directive ()
 	switch (cprocword.indexof (this->mfile.flush ().scantoken ().tokentext ())) 
 	{
 	case oCPROCWORD_O_DEFINE:
-		this->mspan.CoreAttributes.IdentityAttribute->value ("");
+		this->mspan.CoreAttributes.IdentityAttribute->value (this->mindex++);
 		this->mspan.CoreAttributes.ClassAttribute->value ("keyword");
 		this->mspan.StartTag ();
 		this->mfile.write ();
 		this->mspan.EndTag ();
 		std::cout << this->mfile.flush ().scanspace ().tokentext ();
 		this->mfile.flush ().scantoken ();
-		this->mspan.CoreAttributes.IdentityAttribute->value (this->mfile.tokentext ());
+		this->mspan.CoreAttributes.IdentityAttribute->value ("");
 		this->mspan.CoreAttributes.ClassAttribute->value ("variable");
 		this->mspan.StartTag ();
 		this->mfile.write ();
@@ -315,7 +316,7 @@ ochtml & ochtml::directive ()
 #endif
 
 	case oCPROCWORD_O_INCLUDE:
-		this->mspan.CoreAttributes.IdentityAttribute->value ("");
+		this->mspan.CoreAttributes.IdentityAttribute->value (this->mindex++);
 		this->mspan.CoreAttributes.ClassAttribute->value ("reserved");
 		this->mspan.StartTag ();
 		this->mfile.write ();
@@ -358,6 +359,7 @@ ochtml & ochtml::directive ()
 			this->mfile.scanbreak ().flush ();
 			std::cout << "&gt;";
 		}
+
 #if 0         
 
 		else if (this->mfile.isbreak ('[')) 
@@ -384,6 +386,7 @@ ochtml & ochtml::directive ()
 			this->mfile.flush ().scanbreak ();
 			std::cout << this->mfile.tokentext ();
 		}
+
 #endif
 
 		else 
@@ -405,7 +408,7 @@ ochtml & ochtml::directive ()
 #endif
 
 	default:
-		this->mspan.CoreAttributes.IdentityAttribute->value ("");
+		this->mspan.CoreAttributes.IdentityAttribute->value (this->mindex++);
 		this->mspan.CoreAttributes.ClassAttribute->value ("keyword");
 		this->mspan.StartTag ();
 		this->mfile.write ();
@@ -415,14 +418,9 @@ ochtml & ochtml::directive ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ochtml(char const * stylesheet);
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -432,40 +430,29 @@ ochtml::ochtml (char const * stylesheet)
 	owebpage::stylesheet (stylesheet);
 	this->murl = new char [FILENAME_MAX + 1];
 	this->murl [0] = (char)(0);
+	this->mindex = 1;
 	return;
 }
-
 
 /*====================================================================*
  *
  *   ochtml();
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
 ochtml::ochtml () 
 
 {
-
-// owebpage::stylesheet ("http://www.cmassoc.net/styles/clang.css");
-
-	owebpage::stylesheet ("clang.css");
+	owebpage::stylesheet (oCHTML_PAGE_STYLESHEET);
 	this->murl = new char [FILENAME_MAX + 1];
 	this->murl [0] = (char)(0);
+	this->mindex = 1;
 	return;
 }
-
 
 /*====================================================================*
  *
  *   ~ochtml();
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -474,7 +461,6 @@ ochtml::~ochtml ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

@@ -65,7 +65,7 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function (char const string [], char const *extenders [], flag_t flags) 
+static void function (char const string [], char const * extenders [], flag_t flags) 
 
 {
 	struct _package_ 
@@ -81,37 +81,37 @@ static void function (char const string [], char const *extenders [], flag_t fla
 		"",
 		""
 	};
-	char const *package;
-	char const *version;
-	char const *trailer;
-	for (package = version = trailer = string; *string != (char) (0); string++) 
+	char const * package;
+	char const * version;
+	char const * trailer;
+	for (package = version = trailer = string; * string != (char) (0); string++) 
 	{
-		if (*string == '/') 
+		if (* string == '/') 
 		{
 			package = string + 1;
 			version = string + 1;
 			trailer = string + 1;
 			continue;
 		}
-		if (*string == '-') 
+		if (* string == '-') 
 		{
 			version = string;
 			trailer = string;
 			continue;
 		}
-		if (*string == '.') 
+		if (* string == '.') 
 		{
-			char const **extender = extenders;
+			char const ** extender = extenders;
 			trailer = string;
-			while (*extender != (char const *) (0)) 
+			while (* extender != (char const *) (0)) 
 			{
-				if (!strcmp (string, *extender++)) 
+				if (!strcmp (string, * extender++)) 
 				{
 					while (*++string != (char) (0));
 					break;
 				}
 			}
-			if (*string == (char)(0)) 
+			if (* string == (char)(0)) 
 			{
 				break;
 			}
@@ -151,7 +151,6 @@ static void function (char const string [], char const *extenders [], flag_t fla
 	return;
 }
 
-
 /*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
@@ -170,8 +169,8 @@ int main (int argc, char const * argv [])
 		"x s\tremove extender s [.tar.bz2]",
 		(char const *) (0)
 	};
-	char const **extender;
-	char const *extenders [100] = 
+	char const ** extender;
+	char const * extenders [100] = 
 	{
 		".tar",
 		".tgz",
@@ -184,14 +183,14 @@ int main (int argc, char const * argv [])
 	};
 	flag_t flags = (flag_t) (0);
 	signed c;
-	for (extender = extenders; *extender != (char const *) (0); extender++);
+	for (extender = extenders; * extender != (char const *) (0); extender++);
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
 		{
 		case 'x':
-			*extender++ = optarg;
-			*extender = (char const *) (0);
+			* extender++ = optarg;
+			* extender = (char const *) (0);
 			break;
 		case 'p':
 			_setbits (flags, PKG_B_PACKAGE);
@@ -206,8 +205,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		char pathname [TEXTLINE_MAX];

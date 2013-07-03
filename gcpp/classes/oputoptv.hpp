@@ -60,6 +60,5 @@ public:
 	oputoptv & putoptv (char const * optv [], signed exitcode);
 };
 
-
 #endif
 

@@ -21,7 +21,7 @@
 
 #include "../classes/stdafx.hpp"
 #include "../classes/oerror.hpp"
-#include "../classes/types.h"
+// #include "../../gcc/tools/types.h"
 
 /*====================================================================*
  *    constant definitions;
@@ -53,7 +53,6 @@ public:
 private:
 	
 };
-
 
 /*====================================================================*
  *   end interface declaration;

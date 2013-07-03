@@ -65,7 +65,6 @@ char * ooctencoder::decode (char * string)
 	return (string);
 }
 
-
 /*====================================================================*
  *
  *   ooctencoder ();
@@ -79,7 +78,6 @@ ooctencoder::ooctencoder ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ooctencoder ();
@@ -92,7 +90,6 @@ ooctencoder::~ooctencoder ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

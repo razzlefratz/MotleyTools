@@ -16,35 +16,34 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
-#include "../classes/ocollect.hpp"
+#include "../classes/osource.hpp"
 #include "../classes/oindent.hpp"
 
 /*====================================================================*
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ophptidy: public ocollect, public oindent 
+class __declspec (dllexport) ophptidy: public osource, public oindent 
 
 {
 public:
-	ophptidy ();
-	virtual~ ophptidy ();
+	ophptidy (void);
+	virtual~ ophptidy (void);
 	signed page (signed c);
-	signed statement (signed c, signed level, signed space);
+	signed statement (signed c);
 	signed program (signed c);
 	signed context (signed c, char const * charset);
 	signed context (signed c, signed o, signed e);
 	signed context (signed c, signed e);
 	signed context (signed c);
-	signed inner_context (signed c, signed o, signed e);
-	signed inner_context (signed c, signed e);
+	signed _context (signed c, signed o, signed e);
+	signed _context (signed c, signed e);
 	signed find (signed c);
 };
 
-
-#endif
 
 /*====================================================================*
  *   end declaration;
  *--------------------------------------------------------------------*/
 
+#endif

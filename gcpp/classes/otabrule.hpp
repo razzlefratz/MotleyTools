@@ -41,6 +41,5 @@ private:
 	bool * mruler;
 };
 
-
 #endif
 

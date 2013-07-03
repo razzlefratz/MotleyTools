@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 # file: gcpp/Makefile
-# Published 2005 by Charles Maier Associates Limited for intenal use;
+# Published 2005 by Charles Maier Associates Limited for internal use;
 
 # ===================================================================
 # folders;

@@ -33,6 +33,7 @@ char const * oAnchorElement::mtitle = "a";
  *
  *   char const * ElementName () const;
  *
+ *   return element name as a constant string;
  *
  *--------------------------------------------------------------------*/
 
@@ -42,11 +43,11 @@ char const * oAnchorElement::ElementName () const
 	return (oAnchorElement::mtitle);
 }
 
-
 /*====================================================================*
  *
  *   char const * StartTag() 
  *
+ *   print element start tag with any attributes on stdout;
  *
  *--------------------------------------------------------------------*/
 
@@ -67,11 +68,11 @@ oAnchorElement & oAnchorElement::StartTag ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oAnchorElement & EmptyTag();
  *
+ *   print empty element tag with any attributes on stdout;
  *
  *--------------------------------------------------------------------*/
 
@@ -93,11 +94,11 @@ oAnchorElement & oAnchorElement::EmptyTag ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oAnchorElement & EndTag();
  *
+ *   print element end tag on stdout;
  *
  *--------------------------------------------------------------------*/
 
@@ -116,7 +117,6 @@ oAnchorElement & oAnchorElement::EndTag ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oAnchorElement ();
@@ -130,7 +130,6 @@ oAnchorElement::oAnchorElement ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oAnchorElement ();
@@ -143,7 +142,6 @@ oAnchorElement::~oAnchorElement ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *

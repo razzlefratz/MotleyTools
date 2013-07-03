@@ -66,7 +66,6 @@ byte const oethernet::BroadcastAddress [ETHER_ADDR_LEN] =
 	0xFF
 };
 
-
 /*====================================================================*
  *   
  *   size_t HeaderLength (void) const;
@@ -80,7 +79,6 @@ size_t oethernet::HeaderLength (void) const
 {
 	return (sizeof (this->mpeeraddr) + sizeof (this->mhostaddr) + sizeof (this->mprotocol));
 }
-
 
 /*====================================================================*
  *   
@@ -100,7 +98,6 @@ void * oethernet::ExportHeader (void * memory) const
 	return (memory);
 }
 
-
 /*====================================================================*
  *   
  *   void const * ImportHeader (void * memory);
@@ -119,7 +116,6 @@ void const * oethernet::ImportHeader (void const * memory)
 	return (memory);
 }
 
-
 /*====================================================================*
  *   
  *   void * ExportPeerAddress (void * memory) const;
@@ -135,7 +131,6 @@ void * oethernet::ExportPeerAddress (void * memory) const
 	memory = omemory::encode (memory, this->mpeeraddr, sizeof (this->mpeeraddr));
 	return (memory);
 }
-
 
 /*====================================================================*
  *   
@@ -153,7 +148,6 @@ void * oethernet::ExportHostAddress (void * memory) const
 	return (memory);
 }
 
-
 /*====================================================================*
  *
  *   void * oethernet::ExportProtocol (void * memory) const;
@@ -169,7 +163,6 @@ void * oethernet::ExportProtocol (void * memory) const
 	memory = omemory::encode (memory, & this->mprotocol, sizeof (this->mprotocol));
 	return (memory);
 }
-
 
 /*====================================================================*
  *   
@@ -187,7 +180,6 @@ void const * oethernet::ImportPeerAddress (void const * memory)
 	return (memory);
 }
 
-
 /*====================================================================*
  *   
  *   void const * ImportHostAddress (void const * memory);
@@ -203,7 +195,6 @@ void const * oethernet::ImportHostAddress (void const * memory)
 	memory = omemory::decode (memory, this->mhostaddr, sizeof (this->mhostaddr));
 	return (memory);
 }
-
 
 /*====================================================================*
  *   
@@ -221,7 +212,6 @@ void const * oethernet::ImportProtocol (void const * memory)
 	return (memory);
 }
 
-
 /*====================================================================*
  *   
  *   byte const * PeerAddress (void) const;
@@ -236,7 +226,6 @@ byte const * oethernet::PeerAddress (void) const
 	return (this->mpeeraddr);
 }
 
-
 /*====================================================================*
  *   
  *   byte const * HostAddress (void) const;
@@ -250,7 +239,6 @@ byte const * oethernet::HostAddress (void) const
 {
 	return (this->mhostaddr);
 }
-
 
 /*====================================================================*
  *
@@ -269,7 +257,6 @@ uint16_t oethernet::Protocol (void) const
 {
 	return (ntohs (this->mprotocol));
 }
-
 
 /*====================================================================*
  *   
@@ -291,7 +278,6 @@ oethernet & oethernet::SetProtocol (uint16_t protocol)
 	return (* this);
 }
 
-
 /*====================================================================*
  *   
  *   char const * PeerAddressString (void) const;
@@ -307,7 +293,6 @@ char const * oethernet::PeerAddressString (void) const
 	omemory::hexdecode (this->mpeeraddr, sizeof (this->mpeeraddr), buffer, sizeof (buffer));
 	return (buffer);
 }
-
 
 /*====================================================================*
  *   
@@ -325,7 +310,6 @@ char const * oethernet::HostAddressString (void) const
 	return (buffer);
 }
 
-
 /*====================================================================*
  *   
  *   char const * ProtocolString (void) const;
@@ -341,7 +325,6 @@ char const * oethernet::ProtocolString (void) const
 	omemory::hexdecode (& this->mprotocol, sizeof (this->mprotocol), buffer, sizeof (buffer));
 	return (buffer);
 }
-
 
 /*====================================================================*
  *
@@ -361,7 +344,6 @@ oethernet & oethernet::Print ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oethernet (uint16_t protocol);
@@ -379,7 +361,6 @@ oethernet::oethernet (uint16_t protocol)
 	this->mprotocol = htons (protocol);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -399,7 +380,6 @@ oethernet::oethernet (void)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oethernet (void);
@@ -411,7 +391,6 @@ oethernet::~oethernet (void)
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

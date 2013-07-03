@@ -59,8 +59,8 @@ int main (int argc, char const * argv [])
 	char const * old = "";
 	char const * new = "";
 	char file [FILENAME_MAX];
-	char *sp;
-	char *cp;
+	char * sp;
+	char * cp;
 	flag_t flags = (flag_t) (0);
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
@@ -80,13 +80,13 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	while ((argc) && (* argv)) 
 	{
-		for (cp = sp = strcpy (file, * argv); *sp; sp++) 
+		for (cp = sp = strcpy (file, * argv); * sp; sp++) 
 		{
-			if (*sp == FILE_C_EXTENDER) 
+			if (* sp == FILE_C_EXTENDER) 
 			{
 				cp = sp;
 			}

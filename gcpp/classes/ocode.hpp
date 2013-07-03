@@ -20,7 +20,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
-#include "../classes/types.h"
+#include "../../gcc/tools/types.h"
 
 /*====================================================================*
  *   class declaration;
@@ -43,7 +43,6 @@ private:
 	char const * mlabel;
 	signed mvalue;
 };
-
 
 /*====================================================================*
  *   end declaration;

@@ -90,7 +90,7 @@
  *   custom source files;
  *--------------------------------------------------------------------*/
 
-static char const *preamble = "/*====================================================================*\n *\n *   Merged %s by user %s on host %s\n *\n *--------------------------------------------------------------------*/\n\n";
+static char const * preamble = "/*====================================================================*\n *\n *   Merged %s by user %s on host %s\n *\n *--------------------------------------------------------------------*/\n\n";
 
 /*====================================================================*
  *
@@ -109,33 +109,33 @@ static char const *preamble = "/*===============================================
  *
  *--------------------------------------------------------------------*/
 
-void function (FIND *find, LIST *list, size_t length) 
+void function (FIND * find, LIST * list, size_t length) 
 
 {
-	FILE *fp;
+	FILE * fp;
 	char buffer [length+1];
 	struct _scan_ scan;
 	if ((fp = efopen (find->fullname, "rb"))) 
 	{
-		scaninput (&scan, buffer, sizeof (buffer));
+		scaninput (& scan, buffer, sizeof (buffer));
 		while (fgets (buffer, sizeof (buffer), fp)) 
 		{
-			scanstart (&scan);
-			nexttoken (&scan);
-			if (havetoken (&scan, "#")) 
+			scanstart (& scan);
+			nexttoken (& scan);
+			if (havetoken (& scan, "#")) 
 			{
-				if (havetoken (&scan, "include")) 
+				if (havetoken (& scan, "include")) 
 				{
-					if (havetoken (&scan, "\"")) 
+					if (havetoken (& scan, "\"")) 
 					{
 						FIND file;
-						scanuntil (&scan, "\"");
-						makepath (file.fullname, find->pathname, tokentext (&scan));
+						scanuntil (& scan, "\"");
+						makepath (file.fullname, find->pathname, tokentext (& scan));
 						partpath (file.fullname, file.pathname, file.filename);
 						partfile (file.filename, file.basename, file.extender);
 						if (listappend (list, file.fullname)) 
 						{
-							function (&file, list, length);
+							function (& file, list, length);
 						}
 					}
 					else 
@@ -157,7 +157,6 @@ void function (FIND *find, LIST *list, size_t length)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -196,32 +195,32 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
-	time (&now);
+	argc-= optind;
+	argv+= optind;
+	time (& now);
 	gethostname (hostname, sizeof (hostname));
 	getusername (username, sizeof (username), getuid ());
-	strftime (datetime, sizeof (datetime), DAYTIME, localtime (&now));
+	strftime (datetime, sizeof (datetime), DAYTIME, localtime (& now));
 	printf (preamble, datetime, username, hostname);
-	listcreate (&list, _LISTSIZE);
+	listcreate (& list, _LISTSIZE);
 	while ((argc) && (* argv)) 
 	{
 		makepath (find.fullname, getenv ("PWD"), * argv);
 		partpath (find.fullname, find.pathname, find.filename);
 		partfile (find.filename, find.basename, find.extender);
-		listappend (&list, find.fullname);
-		function (&find, &list, length);
+		listappend (& list, find.fullname);
+		function (& find, & list, length);
 		printf ("\n/*=*\n *\n");
 		for (list.index = list.start; list.index < list.count; list.index++) 
 		{
 			printf (" *   %s\n", list.table [list.index]);
 		}
 		printf (" *\n *-*/\n");
-		listrubout (&list);
+		listrubout (& list);
 		argc--;
 		argv++;
 	}
-	listdelete (&list);
+	listdelete (& list);
 	exit (0);
 }
 

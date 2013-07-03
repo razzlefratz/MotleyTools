@@ -37,7 +37,6 @@ const struct _code_ ocode::table [] =
 	}
 };
 
-
 /*====================================================================*
  *
  *   char const *label(signed value, char const *label) const;
@@ -61,7 +60,6 @@ char const * ocode::label (signed value, char const * label) const
 	}
 	return (label);
 }
-
 
 /*====================================================================*
  *
@@ -98,7 +96,6 @@ signed ocode::value (char const * label, signed value) const
 	return (value);
 }
 
-
 /*====================================================================*
  *
  *   ocode ();
@@ -117,7 +114,6 @@ ocode::ocode ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ocode ();
@@ -133,7 +129,6 @@ ocode::~ocode ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

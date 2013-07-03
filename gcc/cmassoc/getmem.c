@@ -16,7 +16,6 @@
 
 #include <unistd.h>
 #include <stdlib.h>
-#include <net/ethernet.h>
 
 /*====================================================================*
  *   custom header files;
@@ -25,6 +24,7 @@
 #include "../tools/getoptv.h"
 #include "../tools/memory.h"
 #include "../tools/number.h"
+#include "../tools/endian.h"
 #include "../tools/error.h"
 #include "../tools/types.h"
 #include "../tools/flags.h"
@@ -40,6 +40,7 @@
 #include "../tools/version.c"
 #include "../tools/uintspec.c"
 #include "../tools/basespec.c"
+#include "../tools/memdecode.c"
 #include "../tools/todigit.c"
 #include "../tools/hexout.c"
 #include "../tools/error.c"
@@ -55,45 +56,77 @@
 
 /*====================================================================*
  *
- *   void getmemory (byte const * memory, size_t extent, char const * object, size_t length);
+ *   void function (int argc, const char * argv [], size_t decode (void const *, size_t, char const *, char const *), flag_t flags);
  *
  *
  *--------------------------------------------------------------------*/
 
-static void getmemory (byte const * memory, size_t extent, char const * object, size_t length) 
+static void function (int argc, const char * argv [], size_t decode (void const *, size_t, char const *, char const *), flag_t flags) 
 
 {
-	if (length > extent) 
+	file file;
+	unsigned offset = 0;
+	unsigned extent = 0;
+	unsigned length = 0;
+	byte * memory;
+	byte * origin;
+	file.name = * argv;
+	if ((file.file = open (file.name, O_BINARY |O_RDONLY)) == -1) 
 	{
-		error (1, ECANCELED, "%s exceeds " SIZE_T_SPEC " bytes", object, length);
+		error (1, errno, "Can't open %s", file.name);
 	}
-	hexout (memory, length, ':', 0, stdout);
-	return;
+	if ((extent = lseek (file.file, 0, SEEK_END)) == -1) 
+	{
+		error (1, errno, "Can't size %s", file.name);
+	}
+	if (!(memory = malloc (extent))) 
+	{
+		error (1, errno, "Can't span %s", file.name);
+	}
+	if (lseek (file.file, 0, SEEK_SET)) 
+	{
+		error (1, errno, "Can't seek %s", file.name);
+	}
+	if (read (file.file, memory, extent) != extent) 
+	{
+		error (1, errno, "Can't load %s", file.name);
+	}
+	close (file.file);
+	argc--;
+	argv++;
+	if (!argc) 
+	{
+		error (1, ECANCELED, "Need an offset");
+	}
+	offset = (uint32_t)(basespec (* argv, 16, sizeof (uint32_t)));
+	if (offset > extent) 
+	{
+		error (1, ECANCELED, "PIB offset %X exceeds PIB extent %d", offset, extent);
+	}
+	argc--;
+	argv++;
+	if (!argc) 
+	{
+		_setbits (flags, GETMEM_VERBOSE);
+	}
+	origin = memory;
+	memory+= offset;
+	extent-= offset;
+	while (argc && * argv) 
+	{
+		offset = decode (memory, extent, *(argv), *(argv + 1));
+		putc (' ', stdout);
+		memory+= offset;
+		extent-= offset;
+		argv++;
+		argc--;
+	}
+	if (_anyset (flags, GETMEM_NEWLINE)) 
+	{
+		putc ('\n', stdout);
+	}
+	free (origin);
 }
-
-
-/*====================================================================*
- *
- *   void getstring (byte const * memory, size_t extent, char const * object, size_t length);
- *
- *
- *--------------------------------------------------------------------*/
-
-static void getstring (byte const * memory, size_t extent, char const * object, size_t length) 
-
-{
-	char const * string = (char const *)(memory);
-	if (length > extent) 
-	{
-		error (1, ECANCELED, "%s exceeds " SIZE_T_SPEC " bytes", object, length);
-	}
-	while (isprint (*string) && (length--)) 
-	{
-		putc (*string++, stdout);
-	}
-	return;
-}
-
 
 /*====================================================================*
  *
@@ -111,19 +144,19 @@ int main (int argc, char const * argv [])
 	static char const * optv [] = 
 	{
 		"qvn",
-		"file offset type [size]\n\n\t  standard-length types are 'byte'|'number'|'long'|'hfid'|'mac'|'key'\n\t  variable-length types are 'data'|'text'",
+		"file offset type [size]\n\n" 
+
+
+\
+		"\t  standard-length types are 'byte'|'word'|'long'|'hfid'|'mac'|'key'\n" \
+		"\t  variable-length types are 'data'|'text'",
 		"PIB Data Extractor",
 		"n\tappend newline",
 		"q\tquiet mode",
 		"v\tverbose mode",
 		(char const *) (0)
 	};
-	file file;
-	size_t offset = 0;
-	size_t length = 0;
-	size_t extent = 0;
-	byte * buffer;
-	byte const * memory;
+	size_t (* decode)(void const *, size_t, char const *, char const *) = memdecode;
 	flag_t flags = (flag_t)(0);
 	signed c;
 	opterr = 1;
@@ -144,187 +177,12 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
-	if (!argc) 
+	argc-= optind;
+	argv+= optind;
+	if ((argc) && (* argv)) 
 	{
-		error (1, 0, "No file to read");
+		function (argc, argv, decode, flags);
 	}
-	file.name = * argv;
-	if ((file.file = open (file.name, O_BINARY|O_RDONLY)) == -1) 
-	{
-		error (1, errno, "Can't open %s", file.name);
-	}
-	if ((extent = lseek (file.file, 0, SEEK_END)) == -1) 
-	{
-		error (1, errno, "Can't size %s", file.name);
-	}
-	if (!(buffer = malloc (extent))) 
-	{
-		error (1, errno, "Can't span %s", file.name);
-	}
-	if (lseek (file.file, 0, SEEK_SET)) 
-	{
-		error (1, errno, "Can't seek %s", file.name);
-	}
-	if (read (file.file, buffer, extent) != extent) 
-	{
-		error (1, errno, "Can't load %s", file.name);
-	}
-	close (file.file);
-	argc--;
-	argv++;
-	if (!argc) 
-	{
-		error (1, ECANCELED, "Need an offset");
-	}
-	length = (uint32_t)(basespec (* argv, 16, sizeof (uint32_t)));
-	if (length > extent) 
-	{
-		error (1, ECANCELED, "PIB offset %zX exceeds PIB extent %zX", offset, length);
-	}
-	memory = buffer + length;
-	argc--;
-	argv++;
-	if (!argc) 
-	{
-		_setbits (flags, GETMEM_VERBOSE);
-	}
-	while (argc && * argv) 
-	{
-		char const * object = * argv;
-		argc--;
-		argv++;
-		if (!strcmp (object, "byte")) 
-		{
-			uint8_t * number = (uint8_t *)(memory);
-			if (sizeof (* number) > extent) 
-			{
-				error (1, ECANCELED, "%s exceeds " SIZE_T_SPEC " bytes", object, length);
-			}
-			printf ("%u", * number);
-			memory += sizeof (* number);
-			extent -= sizeof (* number);
-		}
-		else if (!strcmp (object, "word")) 
-		{
-			uint16_t * number = (uint16_t *)(memory);
-			if (sizeof (* number) > extent) 
-			{
-				error (1, ECANCELED, "%s exceeds " SIZE_T_SPEC " bytes", object, length);
-			}
-			printf ("%u", LE16TOH (* number));
-			memory += sizeof (* number);
-			extent -= sizeof (* number);
-		}
-		else if (!strcmp (object, "long")) 
-		{
-			uint32_t * number = (uint32_t *)(memory);
-			if (sizeof (* number) > extent) 
-			{
-				error (1, ECANCELED, "%s exceeds " SIZE_T_SPEC " bytes", object, length);
-			}
-			printf ("%u", LE32TOH (* number));
-			memory += sizeof (* number);
-			extent -= sizeof (* number);
-		}
-		else if (!strcmp (object, "xbyte")) 
-		{
-			uint8_t * number = (uint8_t *)(memory);
-			if (sizeof (* number) > extent) 
-			{
-				error (1, ECANCELED, "%s exceeds " SIZE_T_SPEC " bytes", object, length);
-			}
-			printf ("0x%02X", * number);
-			memory += sizeof (* number);
-			extent -= sizeof (* number);
-		}
-		else if (!strcmp (object, "xword")) 
-		{
-			uint16_t * number = (uint16_t *)(memory);
-			if (sizeof (* number) > extent) 
-			{
-				error (1, ECANCELED, "%s exceeds " SIZE_T_SPEC " bytes", object, length);
-			}
-			printf ("0x%04X", LE16TOH (* number));
-			memory += sizeof (* number);
-			extent -= sizeof (* number);
-		}
-		else if (!strcmp (object, "xlong")) 
-		{
-			uint32_t * number = (uint32_t *)(memory);
-			if (sizeof (* number) > extent) 
-			{
-				error (1, ECANCELED, "%s exceeds " SIZE_T_SPEC " bytes", object, length);
-			}
-			printf ("0x%08X", LE32TOH (* number));
-			memory += sizeof (* number);
-			extent -= sizeof (* number);
-		}
-		else if (!strcmp (object, "mac")) 
-		{
-			length = ETHER_ADDR_LEN;
-			if (length > extent) 
-			{
-				error (1, ECANCELED, "%s exceeds " SIZE_T_SPEC " bytes", object, length);
-			}
-			getmemory (memory, extent, object, length);
-			memory += length;
-			extent -= length;
-		}
-		else if (!strcmp (object, "data")) 
-		{
-			if (!* argv) 
-			{
-				error (1, EINVAL, "%s needs a length", object);
-			}
-			length = (unsigned)(uintspec (* argv, 1, extent));
-			hexout (memory, length, 0, 0, stdout);
-			memory += length;
-			extent -= length;
-			argc--;
-			argv++;
-		}
-		else if (!strcmp (object, "text")) 
-		{
-			if (!* argv) 
-			{
-				error (1, EINVAL, "%s needs a length", object);
-			}
-			length = (unsigned)(uintspec (* argv, 1, extent));
-			getstring (memory, extent, object, length);
-			memory += length;
-			extent -= length;
-			argc--;
-			argv++;
-		}
-		else if (!strcmp (object, "skip")) 
-		{
-			if (!* argv) 
-			{
-				error (1, EINVAL, "%s needs a length", object);
-			}
-			length = (unsigned)(uintspec (* argv, 1, extent));
-			memory += length;
-			extent -= length;
-			argc--;
-			argv++;
-			continue;
-		}
-		else 
-		{
-			error (1, ENOTSUP, "%s", object);
-		}
-		if ((argc) && (* argv)) 
-		{
-			putc (' ', stdout);
-		}
-	}
-	if (_anyset (flags, GETMEM_NEWLINE)) 
-	{
-		putc ('\n', stdout);
-	}
-	free (buffer);
 	return (0);
 }
 

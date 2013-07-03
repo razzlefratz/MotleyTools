@@ -81,7 +81,6 @@ char const * oIPAddress::string (unsigned number)
 	return (& oIPAddress::buffer [oIPAddress::digit]);
 }
 
-
 /*====================================================================*
  *
  *   char const *oIPAddress::padded (unsigned number);
@@ -116,7 +115,6 @@ char const * oIPAddress::padded (unsigned number)
 	}
 	return (& oIPAddress::buffer [oIPAddress::digit]);
 }
-
 
 /*====================================================================*
  *
@@ -159,7 +157,6 @@ unsigned oIPAddress::number (char const * string)
 	return (oIPAddress::bitmap.value);
 }
 
-
 /*====================================================================*
  *
  *   unsigned oIPAddress::inaddr (char const *string);
@@ -200,7 +197,6 @@ unsigned oIPAddress::inaddr (char const * string)
 	return (oIPAddress::bitmap.value);
 }
 
-
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
@@ -211,13 +207,11 @@ oIPAddress::oIPAddress ()
 	return;
 };
 
-
 oIPAddress::~oIPAddress () 
 
 {
 	return;
 }
-
 
 /*====================================================================*
  *

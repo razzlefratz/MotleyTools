@@ -87,7 +87,7 @@ void function (char const * filename [], flag_t flags)
 	signed c;
 	for (c = 0; c < 2; c++) 
 	{
-		if ((file [c] = open (filename [c], O_BINARY|O_RDONLY)) == -1) 
+		if ((file [c] = open (filename [c], O_BINARY |O_RDONLY)) == -1) 
 		{
 			error (1, errno, "%s", filename [c]);
 		}
@@ -116,7 +116,7 @@ void function (char const * filename [], flag_t flags)
 		while (isdigit (c)) 
 		{
 			length *= 10;
-			length += c - '0';
+			length+= c - '0';
 			c = getc (stdin);
 		}
 		while (isblank (c)) 
@@ -128,7 +128,7 @@ void function (char const * filename [], flag_t flags)
 		{
 			do 
 			{
-				*sp++ = (char)(c);
+				* sp++ = (char)(c);
 				c = getc (stdin);
 			}
 			while (isident (c));
@@ -139,7 +139,7 @@ void function (char const * filename [], flag_t flags)
 		}
 		if (c == '[') 
 		{
-			*sp++ = (char)(c);
+			* sp++ = (char)(c);
 			c = getc (stdin);
 			while (isblank (c)) 
 			{
@@ -147,22 +147,22 @@ void function (char const * filename [], flag_t flags)
 			}
 			while (isdigit (c)) 
 			{
-				*sp++ = (char)(c);
+				* sp++ = (char)(c);
 				c = getc (stdin);
 			}
 			while (isblank (c)) 
 			{
 				c = getc (stdin);
 			}
-			*sp = (char)(0);
+			* sp = (char)(0);
 			if (c != ']') 
 			{
 				error (1, EINVAL, "Have '%s' but need ']' on line %d", symbol, lineno);
 			}
-			*sp++ = (char)(c);
+			* sp++ = (char)(c);
 			c = getc (stdin);
 		}
-		*sp = (char)(0);
+		* sp = (char)(0);
 		while (isblank (c)) 
 		{
 			c = getc (stdin);
@@ -170,10 +170,10 @@ void function (char const * filename [], flag_t flags)
 		sp = string;
 		while (nobreak (c)) 
 		{
-			*sp++ = (char)(c);
+			* sp++ = (char)(c);
 			c = getc (stdin);
 		}
-		*sp = (char)(0);
+		* sp = (char)(0);
 		if (length) 
 		{
 
@@ -221,7 +221,6 @@ void function (char const * filename [], flag_t flags)
 					putc ('\n', stdout);
 				}
 			}
-
 #if defined (WIN32)
 
 			free (buffer [0]);
@@ -230,7 +229,7 @@ void function (char const * filename [], flag_t flags)
 #endif
 
 		}
-		offset += length;
+		offset+= length;
 		lineno++;
 	}
 	if (_allclr (flags, ODC_SILENCE)) 
@@ -264,7 +263,6 @@ void function (char const * filename [], flag_t flags)
 	close (file [1]);
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -312,8 +310,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (argc != 2) 
 	{
 		error (1, 0, "Need two files to compare.");

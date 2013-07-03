@@ -110,7 +110,6 @@ signed ogetoptv::opterr () const
 	return (this->mopterr);
 }
 
-
 /*====================================================================*
  *
  *   ogetoptv & opterr (signed opterr);
@@ -126,7 +125,6 @@ ogetoptv & ogetoptv::opterr (signed opterr)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   signed optmin () const;
@@ -140,7 +138,6 @@ signed ogetoptv::optmin () const
 {
 	return (this->moptmin);
 }
-
 
 /*====================================================================*
  *
@@ -157,7 +154,6 @@ ogetoptv & ogetoptv::optmin (signed optmin)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   signed optind () const;
@@ -172,7 +168,6 @@ signed ogetoptv::optind () const
 {
 	return (this->moptind);
 }
-
 
 /*====================================================================*
  *
@@ -189,7 +184,6 @@ ogetoptv & ogetoptv::optind (signed optind)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   signed optopt () const;
@@ -204,7 +198,6 @@ signed ogetoptv::optopt () const
 	return (this->moptopt);
 }
 
-
 /*====================================================================*
  *
  *   char const * optarg () const;
@@ -218,7 +211,6 @@ char const * ogetoptv::optarg () const
 {
 	return (this->moptarg);
 }
-
 
 /*====================================================================*
  *
@@ -236,7 +228,6 @@ signed ogetoptv::argc () const
 	return (this->margc - this->moptind);
 }
 
-
 /*====================================================================*
  *
  *   char const ** argv () const;
@@ -250,7 +241,6 @@ char const ** ogetoptv::argv () const
 {
 	return (this->margv + this->moptind);
 }
-
 
 /*====================================================================*
  *
@@ -266,7 +256,6 @@ char const * ogetoptv::args ()
 	return (this->moptarg);
 }
 
-
 /*====================================================================*
  *
  *   signed operator++ (signed);
@@ -281,7 +270,6 @@ signed ogetoptv::operator++ (signed)
 {
 	return (this->moptind < this->margc? this->moptind++: this->moptind);
 }
-
 
 /*====================================================================*
  *
@@ -428,7 +416,6 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 	return (-1);
 }
 
-
 /*====================================================================*
  *
  *   ogetoptv ();
@@ -448,7 +435,6 @@ ogetoptv::ogetoptv ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ogetoptv ();
@@ -463,7 +449,6 @@ ogetoptv::~ogetoptv ()
 	this->moptopt = (char) (0);
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation

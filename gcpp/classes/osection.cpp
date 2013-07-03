@@ -30,11 +30,6 @@
  *   osection & width (size_t width)
  *
  *   
- *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 osection & osection::width (size_t width) 
@@ -52,16 +47,11 @@ osection & osection::width (size_t width)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   osection & title (char const *title) 
  *
  *
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -76,14 +66,9 @@ osection & osection::title (char const * title)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   osection ()
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -100,14 +85,9 @@ osection::osection ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~osection ();
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -119,7 +99,6 @@ osection::~osection ()
 	delete [] this->mlower;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

@@ -36,7 +36,6 @@ size_t onodes::block () const
 	return (this->mblock);
 }
 
-
 /*====================================================================*
  *
  *   size_t limit () const;
@@ -49,7 +48,6 @@ size_t onodes::limit () const
 {
 	return (this->mlimit);
 }
-
 
 /*====================================================================*
  *
@@ -64,7 +62,6 @@ size_t onodes::count () const
 	return (this->mcount);
 }
 
-
 /*====================================================================*
  *
  *   size_t index () const;
@@ -77,7 +74,6 @@ size_t onodes::index () const
 {
 	return (this->mindex);
 }
-
 
 /*====================================================================*
  *
@@ -93,7 +89,6 @@ onodes & onodes::index (size_t index)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   onodes & operator++ ();
@@ -107,7 +102,6 @@ onodes & onodes::operator++ ()
 	this->mindex++;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -124,7 +118,6 @@ onode * onodes::operator [] (size_t index) const
 	return (index < this->mcount? this->mtable [index]: (onode *) (0));
 }
 
-
 /*====================================================================*
  *
  *   onode * onodes::node (size_t index) const
@@ -140,7 +133,6 @@ onode * onodes::node (size_t index) const
 	return (index < this->mcount? this->mtable [index]: (onode *) (0));
 }
 
-
 /*====================================================================*
  *
  *   onode * node () const;
@@ -155,7 +147,6 @@ onode * onodes::node () const
 {
 	return (this->mindex < this->mcount? this->mtable [this->mindex]: (onode *) (0));
 }
-
 
 /*====================================================================*
  *
@@ -191,7 +182,6 @@ onodes & onodes::add (char const * nodename)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   onodes & clear();
@@ -212,7 +202,6 @@ onodes & onodes::clear ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   onodes ();
@@ -230,7 +219,6 @@ onodes::onodes ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~onodes ();
@@ -245,7 +233,6 @@ onodes::~onodes ()
 	delete [] this->mtable;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

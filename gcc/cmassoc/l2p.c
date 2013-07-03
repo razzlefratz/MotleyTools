@@ -81,12 +81,12 @@ static void function (flag_t flags)
 		{
 			do 
 			{
-				*sp++ = c;
+				* sp++ = c;
 				c = getc (stdin);
 			}
 			while (isident (c) || (c == '-') || (c == '.'));
 		}
-		*sp = (char)(0);
+		* sp = (char)(0);
 		while (isblank (c)) 
 		{
 			c = getc (stdin);
@@ -105,12 +105,12 @@ static void function (flag_t flags)
 				{
 					do 
 					{
-						*sp++ = c;
+						* sp++ = c;
 						c = getc (stdin);
 					}
 					while (isident (c) || (c == '-') || (c == '.'));
 				}
-				*sp = (char)(0);
+				* sp = (char)(0);
 				while (isblank (c)) 
 				{
 					c = getc (stdin);
@@ -135,7 +135,6 @@ static void function (flag_t flags)
 	fclose (stdin);
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -180,8 +179,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		function (flags);

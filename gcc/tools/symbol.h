@@ -27,9 +27,7 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../tools/chars.h"
 #include "../tools/types.h"
-#include "../tools/sizes.h"
 
 /*====================================================================*
  *   character and string constants;
@@ -86,13 +84,16 @@ signed cwrite (signed fd, signed c);
 #define TOKEN_ALPHA 'A'
 #define TOKEN_DIGIT '0'
 
+#ifndef __cplusplus
 signed token (char buffer [], size_t length, unsigned * lineno, void * bp, signed get (void * bp), signed unget (signed c, void * bp));
 signed value (void * bp, signed get (void * bp), signed unget (signed c, void * bp));
+#endif
 
 /*====================================================================*
  *   
  *--------------------------------------------------------------------*/
 
+#ifndef __cplusplus
 char const * codename (struct _code_ const list [], size_t size, code_t code, char const * name);
 char const * typename (struct _type_ const list [], size_t size, type_t type, char const * name);
 code_t namecode (struct _code_ const list [], size_t size, char const * name, code_t code);
@@ -103,23 +104,28 @@ void codelist (struct _code_ const list [], size_t size, char const * group, cha
 void typelist (struct _type_ const list [], size_t size, char const * group, char const * comma, FILE *);
 void typesave (struct _type_ const list [], size_t size, char const * name, flag_t);
 void codesave (struct _code_ const list [], size_t size, char const * name, flag_t);
+#endif
 
 /*====================================================================*
  *   
  *--------------------------------------------------------------------*/
 
+#ifndef __cplusplus
 char const * synonym (struct _term_ const list [], size_t size, const char * term);
 void synonyms (struct _term_ const list [], size_t size, const char * term, const char * type);
 signed getfields (char const * fields [], signed limit, char buffer [], size_t length);
 signed getargv (signed argc, char const * argv []);
+#endif
 
 /*====================================================================*
  *   
  *--------------------------------------------------------------------*/
 
+#ifndef __cplusplus
 signed equate (struct _code_ const list [], size_t size, const char * name, signed fail);
 signed lookup (struct _code_ const list [], size_t size, const char * name);
 void assist (struct _code_ const list [], size_t size, const char * name, const char * type, FILE *fp);
+#endif
 
 /*====================================================================*
  *   

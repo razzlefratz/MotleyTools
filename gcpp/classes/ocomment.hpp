@@ -47,14 +47,14 @@
 #define oCOMMENT_B_LICENSE (1 << 9)
 #define oCOMMENT_B_SPECIAL (1 << 10)
 
-#define oCOMMENT_C_PREFACE ('~')
-#define oCOMMENT_C_PACKAGE ('.')
-#define oCOMMENT_C_RELEASE (':')
-#define oCOMMENT_C_LICENSE (';')
-#define oCOMMENT_C_SPECIAL ('!')
-
 #define oCOMMENT_C_UPPER ('=')
 #define oCOMMENT_C_LOWER ('-')
+
+#define oCOMMENT_C_PREFACE '~'
+#define oCOMMENT_C_PACKAGE '.'
+#define oCOMMENT_C_RELEASE ':'
+#define oCOMMENT_C_LICENSE ';'
+#define oCOMMENT_C_SPECIAL '!'
 
 #define oCOMMENT_S_PREFACE "preface"
 #define oCOMMENT_S_PROJECT "project"
@@ -62,6 +62,12 @@
 #define oCOMMENT_S_RELEASE "release"
 #define oCOMMENT_S_LICENSE "license"
 #define oCOMMENT_S_SPECIAL "special"
+
+#define oCOMMENT_T_PREFACE "Permission to use, copy, modify, and/or distribute this software\n *   for any purpose with or without fee is hereby granted, provided\n *   that the above copyright notice and this permission notice appear\n *   in all copies.\n *\n *   THE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL\n *   WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED\n *   WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL\n *   THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR\n *   CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM\n *   LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,\n *   NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN\n *   CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE."
+#define oCOMMENT_T_PACKAGE "Motley Tools by Charles Maier <cmaier@cmassoc.net>."
+#define oCOMMENT_T_RELEASE "Copyright (c) 2001-2006 by Charles Maier."
+#define oCOMMENT_T_LICENSE "Published under the Internet Software Consortium (ISC) License."
+#define oCOMMENT_T_SPECIAL ""
 
 /*====================================================================*
  *   interface declaration
@@ -135,7 +141,6 @@ private:
 	size_t mlength;
 	size_t mcount;
 };
-
 
 /*====================================================================*
  *   end interface declaration;

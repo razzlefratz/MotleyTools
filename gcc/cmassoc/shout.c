@@ -9,7 +9,7 @@
  *--------------------------------------------------------------------*/
 
 #define _GETOPT_H
- 
+
 /*====================================================================*
  *   system header files;
  *--------------------------------------------------------------------*/
@@ -22,7 +22,7 @@
 #include <syslog.h>
 #include <errno.h>
 #include <pwd.h>
- 
+
 /*====================================================================*
  *   custom header files;
  *--------------------------------------------------------------------*/
@@ -31,7 +31,7 @@
 #include "../linux/linux.h"
 #include "../linux/broadcast.h"
 #include "../linux/syslog.h"
- 
+
 /*====================================================================*
  *   custom source files;
  *--------------------------------------------------------------------*/
@@ -49,18 +49,18 @@
 #include "../linux/syslog_basic.c"
 #include "../linux/syslog_error.c"
 #endif
- 
+
 /*====================================================================*
  *   
  *   int main(int argc, char **argv);
  *   
  *--------------------------------------------------------------------*/
- 
+
 int main (int argc, const char * argv []) 
 
 {
-	extern const char *program_name;
-	static const char *optv [] = 
+	extern const char * program_name;
+	static const char * optv [] = 
 	{
 		"bcnrt",
 		"message [message] [...] or [< stdin]",
@@ -106,9 +106,9 @@ int main (int argc, const char * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
-	openlog (program_name, 0, LOG_USER|LOG_INFO);
+	argc-= optind;
+	argv+= optind;
+	openlog (program_name, 0, LOG_USER |LOG_INFO);
 	if (geteuid ()) 
 	{
 		syslog_error (LOG_NOTICE, EPERM, "user %s tried to broadcast", getlogin ());
@@ -118,18 +118,18 @@ int main (int argc, const char * argv [])
 	{
 		if ((nchars = read (STDIN_FILENO, message, sizeof (message)-1)) != -1) 
 		{
-			message[nchars]=(char)(0);
+			message [nchars]=(char)(0);
 		}
 	}
-	while ((argc) && (*argv)) 
+	while ((argc) && (* argv)) 
 	{
 		if (_anyset (flags, BROADCAST_B_BULLET)) 
 		{
-			message[nchars++] = ' ';
-			message[nchars++] = '-';
-			message[nchars++] = ' ';
+			message [nchars++] = ' ';
+			message [nchars++] = '-';
+			message [nchars++] = ' ';
 		}
-		nchars += snprintf (message + nchars, BROADCAST_MAXCHARS - nchars, "%s\n", *argv);
+		nchars+= snprintf (message + nchars, BROADCAST_MAXCHARS - nchars, "%s\n", * argv);
 		argc--;
 		argv++;
 	}
@@ -140,12 +140,11 @@ int main (int argc, const char * argv [])
 			nlines++;
 		}
 	}
-	message[nchars] = (char)(0);
-	syslog (LOG_SYSLOG|LOG_INFO, "user %s broadcast %d line(s) total %d char(s)", getlogin (), nlines, nchars);
+	message [nchars] = (char)(0);
+	syslog (LOG_SYSLOG |LOG_INFO, "user %s broadcast %d line(s) total %d char(s)", getlogin (), nlines, nchars);
 	unsetenv ("TZ");
 	broadcast (message, flags);
 	closelog ();
 	exit (0);
 }
-
 

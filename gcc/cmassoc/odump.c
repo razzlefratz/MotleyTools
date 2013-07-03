@@ -102,7 +102,7 @@ static void function (file const * file, off_t extent, flag_t flags)
 		while (isdigit (c)) 
 		{
 			length *= 10;
-			length += c - '0';
+			length+= c - '0';
 			c = getc (stdin);
 		}
 		while (isblank (c)) 
@@ -114,7 +114,7 @@ static void function (file const * file, off_t extent, flag_t flags)
 		{
 			do 
 			{
-				*sp++ = (char)(c);
+				* sp++ = (char)(c);
 				c = getc (stdin);
 			}
 			while (isident (c));
@@ -125,7 +125,7 @@ static void function (file const * file, off_t extent, flag_t flags)
 		}
 		if (c == '[') 
 		{
-			*sp++ = (char)(c);
+			* sp++ = (char)(c);
 			c = getc (stdin);
 			while (isblank (c)) 
 			{
@@ -133,22 +133,22 @@ static void function (file const * file, off_t extent, flag_t flags)
 			}
 			while (isdigit (c)) 
 			{
-				*sp++ = (char)(c);
+				* sp++ = (char)(c);
 				c = getc (stdin);
 			}
 			while (isblank (c)) 
 			{
 				c = getc (stdin);
 			}
-			*sp = (char)(0);
+			* sp = (char)(0);
 			if (c != ']') 
 			{
 				error (1, EINVAL, "Have '%s' without ']' on line %d", symbol, lineno);
 			}
-			*sp++ = (char)(c);
+			* sp++ = (char)(c);
 			c = getc (stdin);
 		}
-		*sp = (char)(0);
+		* sp = (char)(0);
 		while (isblank (c)) 
 		{
 			c = getc (stdin);
@@ -156,10 +156,10 @@ static void function (file const * file, off_t extent, flag_t flags)
 		sp = string;
 		while (nobreak (c)) 
 		{
-			*sp++ = (char)(c);
+			* sp++ = (char)(c);
 			c = getc (stdin);
 		}
-		*sp = (char)(0);
+		* sp = (char)(0);
 		if (length) 
 		{
 			byte buffer [length];
@@ -182,7 +182,7 @@ static void function (file const * file, off_t extent, flag_t flags)
 				putc ('\n', stdout);
 			}
 		}
-		offset += length;
+		offset+= length;
 		lineno++;
 	}
 	if (_allclr (flags, ODD_SILENCE)) 
@@ -194,7 +194,6 @@ static void function (file const * file, off_t extent, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -247,8 +246,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (argc > 1) 
 	{
 		error (1, ENOTSUP, ERROR_TOOMANY);
@@ -256,14 +255,14 @@ int main (int argc, char const * argv [])
 	if ((argc) && (* argv)) 
 	{
 		struct stat statinfo;
-		stat (*argv, &statinfo);
-		if ((file.file = open (file.name = *argv, O_BINARY|O_RDONLY)) == -1) 
+		stat (* argv, & statinfo);
+		if ((file.file = open (file.name = * argv, O_BINARY |O_RDONLY)) == -1) 
 		{
 			error (0, errno, "%s", file.name);
 		}
 		else 
 		{
-			function (&file, statinfo.st_size, flags);
+			function (& file, statinfo.st_size, flags);
 			close (file.file);
 		}
 		argc--;

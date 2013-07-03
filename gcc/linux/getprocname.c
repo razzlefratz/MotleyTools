@@ -41,7 +41,12 @@ int getprocname (char buffer [], size_t length, pid_t pid)
 #endif
 #ifdef CMASSOC_SAFEMODE
 
-	if (buffer == (char *) (0)) 
+	if (!buffer) 
+	{
+		errno = EFAULT;
+		return (-1);
+	}
+	if (!length) 
 	{
 		errno = EFAULT;
 		return (-1);
@@ -49,26 +54,23 @@ int getprocname (char buffer [], size_t length, pid_t pid)
 
 #endif
 
-	if (length > 0) 
+	snprintf (filename, sizeof (filename), "/proc/%d/stat", pid);
+	if ((fd = open (filename, O_RDONLY)) == -1) 
 	{
-		snprintf (filename, sizeof (filename), "/proc/%d/stat", pid);
-		if ((fd = open (filename, O_RDONLY)) == -1) 
-		{
-			errno = EINVAL;
-			return (-1);
-		}
-		while ((read (fd, buffer, 1) > 0) && (*buffer != '('));
-		while ((read (fd, buffer, 1) > 0) && (*buffer != ')')) 
-		{
-			if (length > 1) 
-			{
-				buffer++;
-				length--;
-			}
-		}
-		*buffer = (char) (0);
-		close (fd);
+		errno = EINVAL;
+		return (-1);
 	}
+	while ((read (fd, buffer, 1) > 0) && (*buffer != '('));
+	while ((read (fd, buffer, 1) > 0) && (*buffer != ')')) 
+	{
+		if (length > 1) 
+		{
+			buffer++;
+			length--;
+		}
+	}
+	*buffer = (char) (0);
+	close (fd);
 	return (0);
 }
 

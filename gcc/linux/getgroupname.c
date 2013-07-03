@@ -21,12 +21,27 @@
 int getgroupname (char buffer [], size_t length, gid_t gid) 
 
 {
-	struct group *group;
+	struct group * group;
 
+#ifdef CMASSOC_PARANOID
+
+	if (getuid ()) 
+	{
+		errno = EPERM;
+		return (-1);
+	}
+
+#endif
 #ifdef CMASSOC_SAFEMODE
 
-	if (buffer == (char *) (0)) 
+	if (!buffer) 
 	{
+		errno = EFAULT;
+		return (-1);
+	}
+	if (!length) 
+	{
+		errno = EFAULT;
 		return (-1);
 	}
 
@@ -34,6 +49,7 @@ int getgroupname (char buffer [], size_t length, gid_t gid)
 
 	if ((group = getgrgid (gid)) == (struct group *) (0)) 
 	{
+		errno = EINVAL;
 		return (-1);
 	}
 	if (length-- > 0) 

@@ -71,7 +71,6 @@ unsigned oif::Index (void) const
 	return (this->mindex);
 }
 
-
 /*====================================================================*
  *
  *   char const * Name (void) const;
@@ -85,7 +84,6 @@ char const * oif::Name (void) const
 {
 	return (this->mname);
 }
-
 
 /*====================================================================*
  *
@@ -102,7 +100,6 @@ char const * oif::Text (void) const
 	return (this->mtext);
 }
 
-
 /*====================================================================*
  *
  *   char const * HardwareAddress (void) const;
@@ -117,7 +114,6 @@ char const * oif::HardwareAddress (void) const
 {
 	return (this->mhwstring);
 }
-
 
 /*====================================================================*
  *
@@ -134,7 +130,6 @@ char const * oif::EthernetAddress (void) const
 	return (this->mhwstring);
 }
 
-
 /*====================================================================*
  *
  *   char const * InternetAddress (void) const;
@@ -149,7 +144,6 @@ char const * oif::InternetAddress (void) const
 {
 	return (this->mipstring);
 }
-
 
 /*====================================================================*
  *
@@ -167,7 +161,6 @@ oif & oif::GetHardwareAddress (void * memory)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oif & GetEthernetAddress (void * memory);
@@ -184,7 +177,6 @@ oif & oif::GetEthernetAddress (void * memory)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oif & GetInternetAddress (void * memory);
@@ -200,7 +192,6 @@ oif & oif::GetInternetAddress (void * memory)
 	std::memcpy (memory, this->mipaddr, sizeof (this->mipaddr));
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -221,7 +212,6 @@ oif & oif::Print (void)
 	std::cout << this->Text () << std::endl;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -256,7 +246,6 @@ oif & oif::SetIndex (unsigned index)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oif & oif::SetName (char const * name);
@@ -290,7 +279,6 @@ oif & oif::SetName (char const * name)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oif & oif::SetText (char const * text);
@@ -308,7 +296,6 @@ oif & oif::SetText (char const * text)
 	std::memcpy (this->mtext, text, std::strlen (text));
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -330,7 +317,6 @@ oif & oif::SetHardwareAddress (void const * memory)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oif & SetEthernetAddress (void const * memory);
@@ -351,7 +337,6 @@ oif & oif::SetEthernetAddress (void const * memory)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oif & SetInternetAddress (void const * memory);
@@ -371,7 +356,6 @@ oif & oif::SetInternetAddress (void const * memory)
 	oif::format ();
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -429,7 +413,6 @@ oif & oif::lookup ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oif & oif::format ();
@@ -446,7 +429,6 @@ oif & oif::format ()
 	omemory::decdecode (this->mipaddr, sizeof (this->mipaddr), this->mipstring, sizeof (this->mipstring));
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -499,7 +481,6 @@ void oif::osx_gethwaddr ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   unsigned pcap_nametoindex (char const * name) const;
@@ -537,12 +518,12 @@ unsigned oif::pcap_nametoindex (char const * name) const
 		}
 		pcap_freealldevs (devices);
 	}
+
 #endif
 
 	errno = ENXIO;
 	return (0);
 }
-
 
 /*====================================================================*
  *
@@ -579,12 +560,12 @@ char * oif::pcap_indextoname (unsigned ifindex, char * ifname) const
 		}
 		pcap_freealldevs (devices);
 	}
+
 #endif
 
 	errno = ENXIO;
 	return ((char *)(0));
 }
-
 
 /*====================================================================*
  *
@@ -625,7 +606,6 @@ void oif::pcap_gethwaddr ()
 
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -671,7 +651,6 @@ void oif::pcap_getipaddr ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   oif () 
@@ -690,7 +669,6 @@ oif::oif ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oif () 
@@ -702,7 +680,6 @@ oif::~oif ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

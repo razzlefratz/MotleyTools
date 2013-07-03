@@ -43,7 +43,6 @@ obreak & obreak::print (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   obreak (size_t witdh)
@@ -69,7 +68,6 @@ obreak::obreak (size_t length)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~obreak ();
@@ -87,7 +85,6 @@ obreak::~obreak ()
 	delete [] this->mlower;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

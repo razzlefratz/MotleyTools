@@ -101,7 +101,6 @@ static void function (struct _find_ * find, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void testfile (FIND * find, flag_t flags);
@@ -115,23 +114,23 @@ static void function (struct _find_ * find, flag_t flags)
 static void testfile (FIND * find, flag_t flags) 
 
 {
-	if (lstat (find->fullname, &find->statinfo)) 
+	if (lstat (find->fullname, & find->statinfo)) 
 	{
 		error (0, errno, "%s", find->fullname);
 		return;
 	}
 	if (S_ISDIR (find->statinfo.st_mode)) 
 	{
-		char const *filename = find->filename;
-		if (*filename == '.') 
+		char const * filename = find->filename;
+		if (* filename == '.') 
 		{
 			filename++;
 		}
-		if (*filename == '.') 
+		if (* filename == '.') 
 		{
 			filename++;
 		}
-		if (*filename == (char) (0)) 
+		if (* filename == (char) (0)) 
 		{
 			return;
 		}
@@ -164,7 +163,6 @@ static void testfile (FIND * find, flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void findfile (FIND *find, flag_t flags);
@@ -182,12 +180,12 @@ static void findfile (FIND * find, flag_t flags)
 	char * filename = find->fullname;
 	if ((dir = opendir (filename))) 
 	{
-		struct dirent *dirent;
+		struct dirent * dirent;
 		while (* filename) 
 		{
 			filename++;
 		}
-		*filename = PATH_C_EXTENDER;
+		* filename = PATH_C_EXTENDER;
 		while ((dirent = readdir (dir))) 
 		{
 			strcpy (filename + 1, dirent->d_name);
@@ -195,14 +193,13 @@ static void findfile (FIND * find, flag_t flags)
 			partfile (find->filename, find->basename, find->extender);
 			testfile (find, flags);
 		}
-		*filename = (char) (0);
+		* filename = (char) (0);
 		closedir (dir);
 		return;
 	}
 	testfile (find, flags);
 	return;
 }
-
 
 /*====================================================================*
  *   main program;
@@ -225,7 +222,7 @@ int main (int argc, char const * argv [])
 	};
 	flag_t flags = (flag_t) (0);
 	signed c;
-	time (&find.filetime);
+	time (& find.filetime);
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
 		switch (c) 
@@ -248,17 +245,17 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (_allclr (find.flagword, (FIND_B_LNK | FIND_B_REG))) 
 	{
 		_setbits (find.flagword, (FIND_B_LNK | FIND_B_REG));
 	}
 	while ((argc) && (* argv)) 
 	{
-		makefind (&find, * argv);
+		makefind (& find, * argv);
 		strcpy (find.fullname, find.pathname);
-		findfile (&find, flags);
+		findfile (& find, flags);
 		argc--;
 		argv++;
 	}

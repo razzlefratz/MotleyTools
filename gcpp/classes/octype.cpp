@@ -1072,7 +1072,6 @@ const unsigned short octype::mtable [UCHAR_MAX+1] =
 	CTYPE_B_NTYPE
 };
 
-
 /*====================================================================*
  *
  *   bool isascii (signed c);
@@ -1085,7 +1084,6 @@ bool octype::isascii (signed c)
 {
 	return (c < 0x80);
 }
-
 
 /*====================================================================*
  *
@@ -1100,7 +1098,6 @@ bool octype::iscntrl (signed c)
 	return ((octype::mtable [c & UCHAR_MAX] & (CTYPE_B_CNTRL)) != 0);
 }
 
-
 /*====================================================================*
  *
  *   bool isupper (signed c); 
@@ -1114,7 +1111,6 @@ bool octype::isupper (signed c)
 	return (octype::mtable [c & UCHAR_MAX] & CTYPE_B_UPPER);
 }
 
-
 /*====================================================================*
  *
  *   bool islower (signed c);
@@ -1126,7 +1122,6 @@ bool octype::islower (signed c)
 {
 	return (octype::mtable [c & UCHAR_MAX] & CTYPE_B_LOWER);
 }
-
 
 /*====================================================================*
  *
@@ -1140,7 +1135,6 @@ bool octype::isalpha (signed c)
 	return (octype::mtable [c & UCHAR_MAX] & (CTYPE_B_LOWER | CTYPE_B_UPPER));
 }
 
-
 /*====================================================================*
  *
  *   bool isdigit (signed c);
@@ -1152,7 +1146,6 @@ bool octype::isdigit (signed c)
 {
 	return (octype::mtable [c & UCHAR_MAX] & CTYPE_B_DIGIT);
 }
-
 
 /*====================================================================*
  *
@@ -1166,7 +1159,6 @@ bool octype::isxdigit (signed c)
 	return (octype::mtable [c & UCHAR_MAX] & CTYPE_B_HEX);
 }
 
-
 /*====================================================================*
  *
  *   bool isalnum (signed c);
@@ -1178,7 +1170,6 @@ bool octype::isalnum (signed c)
 {
 	return (octype::mtable [c & UCHAR_MAX] & (CTYPE_B_UPPER | CTYPE_B_LOWER | CTYPE_B_DIGIT));
 }
-
 
 /*====================================================================*
  *
@@ -1192,7 +1183,6 @@ bool octype::isspace (signed c)
 	return (octype::mtable [c & UCHAR_MAX] & CTYPE_B_SPACE);
 }
 
-
 /*====================================================================*
  *
  *   bool ispunct (signed c);
@@ -1204,7 +1194,6 @@ bool octype::ispunct (signed c)
 {
 	return (octype::mtable [c & UCHAR_MAX] & CTYPE_B_PUNCT);
 }
-
 
 /*====================================================================*
  *
@@ -1218,7 +1207,6 @@ bool octype::isgraph (signed c)
 	return (octype::mtable [c & UCHAR_MAX] & (CTYPE_B_UPPER | CTYPE_B_LOWER | CTYPE_B_DIGIT | CTYPE_B_PUNCT));
 }
 
-
 /*====================================================================*
  *
  *   bool isprint (signed c);
@@ -1230,7 +1218,6 @@ bool octype::isprint (signed c)
 {
 	return ((octype::mtable [c & UCHAR_MAX] & (CTYPE_B_CNTRL)) == 0);
 }
-
 
 /*====================================================================*
  *
@@ -1244,7 +1231,6 @@ bool octype::isident (signed c)
 	return (octype::mtable [c & UCHAR_MAX] & CTYPE_B_IDENT);
 }
 
-
 /*====================================================================*
  *
  *   bool nmtoken (signed c);
@@ -1256,7 +1242,6 @@ bool octype::nmtoken (signed c)
 {
 	return (octype::isalnum (c) || (c == '_') || (c == '-') || (c == '.') || (c == ':'));
 }
-
 
 /*====================================================================*
  *
@@ -1270,7 +1255,6 @@ bool octype::isquote (signed c)
 	return ((c == '\'') || (c == '\"'));
 }
 
-
 /*====================================================================*
  *
  *   bool isblank (signed c);
@@ -1282,7 +1266,6 @@ bool octype::isblank (signed c)
 {
 	return ((c == ' ') || (c == '\t'));
 }
-
 
 /*====================================================================*
  *
@@ -1296,7 +1279,6 @@ bool octype::isbreak (signed c)
 	return ((c == '\0') || (c == '\n') || (c == EOF));
 }
 
-
 /*====================================================================*
  *
  *   bool nobreak (signed c);
@@ -1308,7 +1290,6 @@ bool octype::nobreak (signed c)
 {
 	return ((c != '\0') && (c != '\n') && (c != EOF));
 }
-
 
 /*====================================================================*
  *
@@ -1326,7 +1307,6 @@ signed octype::toupper (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   bool tolower (signed c);
@@ -1343,7 +1323,6 @@ signed octype::tolower (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   bool toascii (signed c);
@@ -1356,7 +1335,6 @@ signed octype::toascii (signed c)
 	return (c & 0x007F);
 }
 
-
 /*====================================================================*
  *
  *   bool tocntrl (signed c);
@@ -1368,7 +1346,6 @@ signed octype::tocntrl (signed c)
 {
 	return (c & 0x001F);
 }
-
 
 /*====================================================================*
  *
@@ -1394,7 +1371,6 @@ signed octype::todigit (signed c)
 	return (-1);
 }
 
-
 /*====================================================================*
  *
  *   octype();
@@ -1407,7 +1383,6 @@ octype::octype ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~octype();
@@ -1419,7 +1394,6 @@ octype::~octype ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *

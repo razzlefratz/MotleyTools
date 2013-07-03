@@ -93,9 +93,9 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
-	if ((fd = open (registry, O_BINARY|O_RDONLY)) == -1) 
+	argc-= optind;
+	argv+= optind;
+	if ((fd = open (registry, O_BINARY |O_RDONLY)) == -1) 
 	{
 		error (1, errno, FILE_CANTOPEN, registry);
 	}

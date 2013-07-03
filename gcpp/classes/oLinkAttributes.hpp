@@ -16,7 +16,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
-#include "../classes/oattribute.hpp"
+#include "../classes/oAttribute.hpp"
 
 /*====================================================================*
  *   class declarations;
@@ -28,19 +28,18 @@ class __declspec (dllexport) oLinkAttributes
 public:
 	oLinkAttributes ();
 	virtual~ oLinkAttributes ();
-	oattribute * ReferenceAttribute;
-	oattribute * ReferenceLanguageAttribute;
-	oattribute * ForwardLinkTypeAttribute;
-	oattribute * ReverseLinkTypeAttribute;
-	oattribute * TargetFrameAttribute;
-	oattribute * AccessKeyAttribute;
-	oattribute * NavigationIndexAttribute;
-	oattribute * BaseURLAttribute;
+	oAttribute * ReferenceAttribute;
+	oAttribute * ReferenceLanguageAttribute;
+	oAttribute * ForwardLinkTypeAttribute;
+	oAttribute * ReverseLinkTypeAttribute;
+	oAttribute * TargetFrameAttribute;
+	oAttribute * AccessKeyAttribute;
+	oAttribute * NavigationIndexAttribute;
+	oAttribute * BaseURLAttribute;
 	oLinkAttributes & write ();
 private:
 	
 };
-
 
 /*====================================================================*
  *   end declarations;

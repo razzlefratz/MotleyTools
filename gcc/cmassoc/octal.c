@@ -99,7 +99,6 @@ void encode (flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void decode (flag_t flags)
@@ -171,7 +170,6 @@ void decode (flag_t flags)
 	return;
 }
 
-
 /*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
@@ -206,8 +204,8 @@ int main (int argc, char const * argv [])
 			exit (1);
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	while ((argc) && (* argv)) 
 	{
 		if (efreopen (* argv, "rb", stdin)) 

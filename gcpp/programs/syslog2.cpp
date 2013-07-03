@@ -39,8 +39,8 @@
 #include "../classes/oversion.cpp"
 #include "../classes/oerror.cpp"
 #include "../classes/oflagword.cpp"
-#include "../linux/osyslog.cpp"
-#include "../linux/osyslogspec.cpp"
+#include "../classes/osyslog.cpp"
+#include "../classes/osyslogspec.cpp"
 #endif
 
 /*====================================================================*
@@ -82,7 +82,6 @@ static void mysyslogtest (unsigned priority)
 	msyslog.syslog (facility | SYSLOG_DEBUG, "sample debug messaage");
 	return;
 }
-
 
 /*====================================================================*
  *   main program;

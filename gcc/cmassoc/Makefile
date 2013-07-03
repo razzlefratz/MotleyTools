@@ -21,22 +21,26 @@ MAKEFIND=makefind.o partpath.o partfile.o find.o
 MAKEPATH=makepath.o splitpath.o mergepath.o
 VFOPEN=vfopen.o ${MAKEPATH}
 
-TOOLS=afm align argv argvesc b64 bang bin2hex blank calend call envp ether case catalog cblock cbrief cdep cedit change chr cinc cmerge cpp2c crlf csv2html ctar defix delta detab detag dls dmp2hex dump ds efru efsu enbrace enfix englyph entab errno fbar ff filesize footer fp go grab graph grope hbrief header hex hex2bin hexcmp hexdmp html ifd import iplist ipsort key l2p lp2824 lam log loop matrix mmf mp mrg munge rex nics np ocomp odc odd ode odump odx oedit offset ofld order owrt pad paginate preamble purge radix relate remove sbar sbrief search shakey shakeys sign single sizeof space srt stamp sv sweep symlinks timer typelist tls trim try ts unique vl vu wl xde xml 
+TOOLS=afm align argv argvesc b64 bang bin2hex blank calend call envp ether case catalog cblock cbrief cdep cedit change chr cinc cmerge cpp2c crlf csv2html ctar defix delta detab dls dmp2hex dump ds efru efsu enbrace enfix englyph entab errno fbar ff filesize footer fp go grab graph grope hbrief header hex hex2bin hexcmp hexdmp html ifd import iplist ipsort key l2p lp2824 lam log long loop matrix mmf mp mrg munge rex nics np ocomp odc odd ode odump odx oedit offset ofld order owrt pad paginate preamble purge radix relate remove sbar sbrief search shakey shakeys sign single sizeof space srt stamp sv sweep symlinks timer typelist tls trim try ts unique vl vu wl xde xml 
 
-PAGES=toolkit.1 afm.1 align.1 argv.1 b64.1 bang.1 bin2hex.1 blank.1 calend.1 call.1 case.1 catalog.1 cblock.1 cbrief.1 cdep.1 cedit.1 change.1 chr.1 cinc.1 cmerge.1 crlf.1 csv2html.1 ctar.1 defix.1 delta.1 detab.1 detag.1 dls.1 dmp2hex.1 ds.1 efsu.1 enbrace.1 enfix.1 englyph.1 entab.1 envp.1 fbar.1 ff.1 filesize.1 footer.1 fp.1 grab.1 graph.1 grope.1 hbrief.1 header.1 hex.1 hex2bin.1 hexcmp.1 hexdmp.1 html.1 ifd.1 import.1 key.1 l2p.1 lam.1 log.1 loop.1 matrix.1 mp.1 mrg.1 munge.1 nics.1 np.1 ocomp.1 odc.1 odd.1 ode.1 odump.1 odx.1 oedit.1 offset.1 order.1 preamble.1 relate.1 remove.1 rex.1 sbrief.1 search.1 shakey.1 shakeys.1 single.1 sizeof.1 space.1 srt.1 stamp.1 sweep.1 sv.1 symlinks.1 timer.1 typelist.1 tls.1 trim.1 try.1 unique.1 vl.1 vu.1 wl.1 xde.1 xml.1
+PAGES=toolkit.1 afm.1 align.1 argv.1 b64.1 bang.1 bin2hex.1 blank.1 calend.1 call.1 case.1 catalog.1 cblock.1 cbrief.1 cdep.1 cedit.1 change.1 chr.1 cinc.1 cmerge.1 crlf.1 csv2html.1 ctar.1 defix.1 delta.1 detab.1 dls.1 dmp2hex.1 ds.1 efsu.1 enbrace.1 enfix.1 englyph.1 entab.1 envp.1 fbar.1 ff.1 filesize.1 footer.1 fp.1 grab.1 graph.1 grope.1 hbrief.1 header.1 hex.1 hex2bin.1 hexcmp.1 hexdmp.1 html.1 ifd.1 import.1 key.1 l2p.1 lam.1 log.1 loop.1 matrix.1 mp.1 mrg.1 munge.1 nics.1 np.1 ocomp.1 odc.1 odd.1 ode.1 odump.1 odx.1 oedit.1 offset.1 order.1 preamble.1 relate.1 remove.1 rex.1 sbrief.1 search.1 shakey.1 shakeys.1 single.1 sizeof.1 space.1 srt.1 stamp.1 sweep.1 sv.1 symlinks.1 timer.1 typelist.1 tls.1 trim.1 try.1 unique.1 vl.1 vu.1 wl.1 xde.1 xml.1
 
-ifeq (${OS},linux)
+ifeq (${SYSTEM},Linux)
 TOOLS+=localhost quiet runjobs shout syslog what whom
 PAGES+=localhost.1 quiet.1 runjobs.1 shout.1 what.1 whom.1
 endif
 
-# TOOLS+=long mvpkg octal pkgdep pkgopt qc rexp rmpkg chkbld chperm checkmode dif ff-bld ff-elf setmode undash 
-# PAGES+=long.1 mvpkg.1 octal.1 pkgdep.1 pkgopt.1 qc.1 rexp.1 rmpkg.1 chkbld.1 chperm.1 checkmode.1 dif.1 ff-bld.1 ff-elf.1 setmode.1 undash.1 
+ifeq (${EXTRA},yes)
+TOOLS+=mvpkg octal pkgdep pkgopt qc rexp rmpkg chkbld chperm checkmode dif ff-bld ff-elf setmode undash 
+PAGES+=mvpkg.1 octal.1 pkgdep.1 pkgopt.1 qc.1 rexp.1 rmpkg.1 chkbld.1 chperm.1 checkmode.1 dif.1 ff-bld.1 ff-elf.1 setmode.1 undash.1 
+endif
 
-# TOOLS+=mycat mytr mywc 
-# PAGES+=tr.1 
+ifeq ($(KR),yes)
+TOOLS+=mycat mytr mywc 
+PAGES+=tr.1 
+endif
 
-OTHER=auth cat checkmode chkbld chperm clear define dif dump ff-bld ff-elf localhostlong main mvpkg octal pkg pkgdep pkgopt qc quiet rexp rmpkg runjobs setmode shout tr undash wc what whom
+OTHER=auth cat checkmode chkbld chperm clear define dif dump ff-bld ff-elf long main mvpkg octal pkg pkgdep pkgopt qc rexp rmpkg setmode tr undash wc
 
 # ====================================================================
 # targets;
@@ -46,13 +50,11 @@ all compile: ${TOOLS}
 scripts:
 manuals:
 	install -m 0444 -o ${OWNER} -g ${GROUP} ${PAGES} ${MAN}
-install: compile library
-	install -m 0555 -o ${OWNER} -g ${GROUP} ${TOOLS} ${BIN}
-	if [ -d /etc/profile.d ]; then install -m 0775 -o root -g root ../../misc/motley-tools.sh /etc/profile.d; fi;
 library:
 	install -m 6775 -o ${OWNER} -g ${GROUP} -d ${BIN}
+install: compile library
+	install -m 0555 -o ${OWNER} -g ${GROUP} ${TOOLS} ${BIN}
 uninstall:
-	if [ -d /etc/profile ]; then rm -fr /etc/profile.d/motley-tools.sh; fi;
 	cd ${BIN}; rm -fv ${TOOLS}
 	cd ${MAN}; rm -fv ${PAGES}
 fresh: clean compile
@@ -84,7 +86,7 @@ case: case.o chrlwr.o chrupr.o error.o escaped.o getoptv.o keep.o literal.o make
 cat: cat.o efreopen.o error.o getoptv.o putoptv.o todigit.o uintspec.o version.o
 catalog: catalog.o emalloc.o error.o filepart.o getoptv.o indent.o makepath.o mergepath.o putoptv.o splitpath.o todigit.o uintspec.o version.o vfopen.o
 cblock: cblock.o capsule.o comment.o content.o context.o control.o error.o escaped.o find.o fortran.o getoptv.o keep.o literal.o makepath.o mergepath.o putoptv.o splitpath.o version.o vfopen.o
-cbrief: cbrief.o console.o escaped.o keep.o literal.o makepath.o mergepath.o nocomment.o splitpath.o vfopen.o
+cbrief: cbrief.o console.o makepath.o mergepath.o splitpath.o vfopen.o
 cdep: cdep.o depend.o efopen.o emalloc.o erealloc.o error.o fgetline.o find.o fullpath.o getoptv.o havebreak.o havetoken.o isbreak.o istoken.o makepath.o mergepath.o nextbreak.o nexttoken.o partfile.o partpath.o putoptv.o scanalnum.o scanbreak.o scandigit.o scanflush.o scaninput.o scanspace.o scanstart.o scantoken.o scanuntil.o splitpath.o tokentext.o version.o
 cedit: cedit.o error.o getoptv.o makepath.o mergepath.o putoptv.o splitpath.o version.o vfopen.o
 change: change.o charset.o chrindex.o chruesc.o chruescmap.o emalloc.o error.o fgetline.o getoptv.o makefind.o makepath.o match.o mergepath.o partfile.o partpath.o putoptv.o regexcomp.o regexfree.o regexhelp.o regexmake.o regexshow.o regexspan.o splitpath.o struesc.o sv_ascii.o todigit.o version.o vfopen.o
@@ -103,7 +105,6 @@ define: define.o console.o efreopen.o indent.o todigit.o typeload.o typesave.o
 defix: defix.o chruesc.o console.o struesc.o todigit.o
 delta: delta.o efreopen.o error.o error_on_line.o getoptv.o putoptv.o todigit.o uintspec.o version.o
 detab: detab.o emalloc.o error.o getoptv.o makepath.o match.o mergepath.o putoptv.o splitpath.o tabs.o tabspec.o version.o vfopen.o
-detag: detag.o console.o efreopen.o keep.o nocomment.o nocontent.o nocontext.o noescaped.o noliteral.o todigit.o uintspec.o
 dif: dif.o efopen.o efreopen.o emalloc.o error.o getoptv.o makeitem.o putoptv.o queue.o todigit.o uintspec.o version.o
 dls: dls.o console.o emalloc.o erealloc.o getviewport.o listcolumn.o listcreate.o listdelete.o listdetect.o listexpand.o listinsert.o todigit.o uintspec.o
 dmp2hex: dmp2hex.o error.o getoptv.o putoptv.o version.o
@@ -127,14 +128,13 @@ ff: ff.o chrcount.o datecomp.o emalloc.o error.o find.o getoptv.o makefind.o mak
 filesize: filesize.o console.o filepart.o todigit.o uintspec.o
 footer: footer.o console.o efreopen.o emalloc.o getviewport.o todigit.o uintspec.o
 fp: fp.o SHA256Block.o SHA256Fetch.o SHA256Ident.o SHA256Reset.o SHA256Write.o console.o efreopen.o filepart.o hexout.o
-getmem: getmem.o basespec.o error.o getoptv.o hexout.o putoptv.o todigit.o uintspec.o version.o
-getmem2: getmem2.o basespec.o error.o getoptv.o hexout.o memdecode.o putoptv.o todigit.o uintspec.o version.o
+getmem: getmem.o basespec.o error.o getoptv.o hexout.o memdecode.o putoptv.o todigit.o uintspec.o version.o
 getmode: getmode.o fputn.o ftype.o getoptv.o makefind.o makepath.o match.o mergepath.o partfile.o partpath.o putoptv.o splitpath.o version.o
-go: go.o cgetc.o command.o emalloc.o error.o getoptv.o putoptv.o version.o
+go: go.o cgetc.o dcl.o emalloc.o error.o getoptv.o putoptv.o version.o
 grab: grab.o basespec.o efreopen.o error.o getoptv.o putoptv.o todigit.o version.o
 graph: graph.o alert.o efreopen.o error.o error_on_line.o getoptv.o putoptv.o sintspec.o todigit.o uintspec.o version.o
 grope: grope.o charset.o chruesc.o chruescmap.o console.o efreopen.o emalloc.o fgetline.o find.o fputn.o makefind.o makepath.o match.o mergepath.o partfile.o partpath.o regexcomp.o regexfree.o regexhelp.o regexmake.o regexshow.o regexspan.o splitpath.o struesc.o sv_ascii.o todigit.o uintspec.o vfopen.o
-hbrief: hbrief.o error.o getoptv.o keep.o makepath.o mergepath.o nocontext.o noescaped.o noliteral.o putoptv.o splitpath.o version.o vfopen.o
+hbrief: hbrief.o error.o getoptv.o keep.o makepath.o mergepath.o nocontent.o nocontext.o noescaped.o noliteral.o putoptv.o splitpath.o version.o vfopen.o
 header: header.o console.o efreopen.o emalloc.o getviewport.o todigit.o uintspec.o
 hex: hex.o efreopen.o error.o getoptv.o makepath.o match.o mergepath.o putoptv.o splitpath.o todigit.o version.o
 hex2bin: hex2bin.o error.o getoptv.o putoptv.o version.o
@@ -150,7 +150,7 @@ l2p: l2p.o error.o getoptv.o putoptv.o version.o
 lam: lam.o console.o emalloc.o
 localhost: localhost.o console.o
 log: log.o console.o
-long: long.o error.o getoptv.o makepath.o mergepath.o putoptv.o splitpath.o version.o vfopen.o
+long: long.o comment.o content.o context.o control.o error.o escaped.o getoptv.o keep.o literal.o makepath.o mergepath.o putoptv.o span.o splitpath.o version.o vfopen.o
 loop: loop.o error.o getoptv.o putoptv.o todigit.o uintspec.o version.o
 lp2824: lp2824.o console.o efopen.o
 main: main.o getoptv.o putoptv.o version.o

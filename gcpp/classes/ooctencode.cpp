@@ -42,7 +42,6 @@ char * ooctencode::numeric (char * string, const unsigned c)
 	return (string);
 }
 
-
 /*====================================================================*
  *
  *   char * ooctencode::literal(char *string,  const unsigned c)
@@ -60,7 +59,6 @@ char * ooctencode::literal (char * string, const unsigned c)
 	return (string);
 }
 
-
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
@@ -71,13 +69,11 @@ ooctencode::ooctencode ()
 	return;
 }
 
-
 ooctencode::~ooctencode () 
 
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

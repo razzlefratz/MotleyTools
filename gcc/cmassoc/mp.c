@@ -117,7 +117,6 @@ static void template ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void configure (char const * section, char const * project, char const * package, char const * release) 
@@ -137,7 +136,6 @@ static void configure (char const * section, char const * project, char const * 
 	printf ("release=%s\n", release);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -198,10 +196,10 @@ static void function (char const * program, char const * project, char const * p
 				{
 					c = getc (stdin);
 				}
-				sp += snprintf (sp, sizeof (symbol) + sp - symbol, " %s", program);
-				sp += snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", release);
-				sp += snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", package);
-				sp += snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", project);
+				sp+= snprintf (sp, sizeof (symbol) + sp - symbol, " %s", program);
+				sp+= snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", release);
+				sp+= snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", package);
+				sp+= snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", project);
 			}
 			else if (!strcmp (symbol, ".SH")) 
 			{
@@ -286,7 +284,6 @@ static void function (char const * program, char const * project, char const * p
 	return;
 }
 
-
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
@@ -344,8 +341,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	project = profilestring (profile, section, "project", project);
 	package = profilestring (profile, section, "package", package);
 	release = profilestring (profile, section, "release", release);
@@ -376,5 +373,4 @@ int main (int argc, char const * argv [])
 	}
 	exit (0);
 }
-
 

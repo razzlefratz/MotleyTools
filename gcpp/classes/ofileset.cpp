@@ -21,8 +21,9 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "files.h"
 #include "../classes/ofileset.hpp"
+
+#include "../../gcc/files/files.h"
 
 /*====================================================================*
  *
@@ -39,7 +40,6 @@ unsigned int ofileset::index () const
 	return (this->mindex);
 }
 
-
 /*====================================================================*
  *
  *   ofileset & index(unsigned index);
@@ -54,7 +54,6 @@ ofileset & ofileset::index (unsigned index)
 	this->mindex = index;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -71,7 +70,6 @@ unsigned int ofileset::field () const
 	return (this->mfield);
 }
 
-
 /*====================================================================*
  *
  *   ofileset & field(unsigned field);
@@ -86,7 +84,6 @@ ofileset & ofileset::field (unsigned field)
 	this->mfield = field;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -121,7 +118,6 @@ ofileset & ofileset::makepath ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char const *fullpath (bool increment);
@@ -139,7 +135,6 @@ char const * ofileset::fullpath (bool increment)
 	}
 	return (this->makepath ().fullname ());
 }
-
 
 /*====================================================================*
  *
@@ -162,7 +157,6 @@ ofileset & ofileset::filespec (char const * filespec)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char const *pathname () const;
@@ -176,7 +170,6 @@ char const * ofileset::pathname () const
 {
 	return (this->mpathname);
 }
-
 
 /*====================================================================*
  *
@@ -195,7 +188,6 @@ ofileset & ofileset::pathname (char const * filespec)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char const *filename () const;
@@ -209,7 +201,6 @@ char const * ofileset::filename () const
 {
 	return (this->mfilename);
 }
-
 
 /*====================================================================*
  *
@@ -228,7 +219,6 @@ ofileset & ofileset::filename (char const * filespec)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char const *basename () const;
@@ -242,7 +232,6 @@ char const * ofileset::basename () const
 {
 	return (this->mbasename);
 }
-
 
 /*====================================================================*
  *
@@ -261,7 +250,6 @@ ofileset & ofileset::basename (char const * filespec)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   char const * extender () const;
@@ -275,7 +263,6 @@ char const * ofileset::extender () const
 {
 	return (this->mextender);
 }
-
 
 /*====================================================================*
  *
@@ -293,7 +280,6 @@ ofileset & ofileset::extender (char const * filespec)
 	this->mextender = otext::replace (this->mextender, example.extender ());
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -318,7 +304,6 @@ ofileset::ofileset (char const * filespec)
 	this->mfield = 3;
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -345,7 +330,6 @@ ofileset::ofileset ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ofileset (char const *filespec);
@@ -365,7 +349,6 @@ ofileset::~ofileset ()
 	delete [] this->mextender;
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

@@ -66,7 +66,6 @@ void omemory::endian (void * memory, size_t extent)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void swap (void * memory1, void * memory2, size_t extent);
@@ -93,7 +92,6 @@ void omemory::swap (void * memory1, void * memory2, size_t extent)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -127,7 +125,6 @@ void omemory::memtext (char const * string, char buffer [], size_t length)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void * encode (void * memory, void const * source, size_t extent);
@@ -151,7 +148,6 @@ void * omemory::encode (void * memory, void const * source, size_t extent)
 	return ((byte *)(memory) + extent);
 }
 
-
 /*====================================================================*
  *
  *   void const * decode (void const * memory, void * target, size_t extent);
@@ -174,7 +170,6 @@ void const * omemory::decode (void const * memory, void * target, size_t extent)
 	std::memcpy (target, memory, extent);
 	return ((byte *)(memory) + extent);
 }
-
 
 /*====================================================================*
  *
@@ -207,7 +202,6 @@ uint16_t omemory::checksum16 (void const * memory, register size_t extent, regis
 	return (~checksum);
 }
 
-
 /*====================================================================*
  *
  *   uint32_t checksum32 (void const * memory, size_t extent, uint32_t checksum);
@@ -238,7 +232,6 @@ uint32_t omemory::checksum32 (void const * memory, register size_t extent, regis
 	}
 	return (~checksum);
 }
-
 
 /*====================================================================*
  *
@@ -272,7 +265,6 @@ signed omemory::memincr (void * memory, register size_t extent)
 	return (-1);
 }
 
-
 /*====================================================================*
  *
  *   signed strincr (void * memory, size_t extent, byte minimum, byte maximum);
@@ -300,7 +292,6 @@ signed omemory::strincr (void * memory, register size_t extent, register byte mi
 	}
 	return (-1);
 }
-
 
 /*====================================================================*
  *
@@ -334,7 +325,6 @@ signed omemory::memdecr (void * memory, register size_t extent)
 	return (-1);
 }
 
-
 /*====================================================================*
  *
  *   signed strdecr (void * memory, size_t extent, byte minimum, byte maximum);
@@ -362,7 +352,6 @@ signed omemory::strdecr (void * memory, register size_t extent, register byte mi
 	}
 	return (-1);
 }
-
 
 /*====================================================================*
  *
@@ -412,12 +401,14 @@ size_t omemory::binencode (void * memory, register size_t extent, register char 
 		offset++;
 		extent--;
 	}
+
 #if defined (WIN32)
 
 	while (isspace (* string)) 
 	{
 		string++;
 	}
+
 #endif
 
 	if ((extent) || (* string)) 
@@ -427,7 +418,6 @@ size_t omemory::binencode (void * memory, register size_t extent, register char 
 	}
 	return (offset - origin);
 }
-
 
 /*====================================================================*
  *
@@ -478,12 +468,14 @@ size_t omemory::decencode (void * memory, size_t extent, char const * string)
 		offset++;
 		extent--;
 	}
+
 #if defined (WIN32)
 
 	while (isspace (* string)) 
 	{
 		string++;
 	}
+
 #endif
 
 	if ((extent) || (* string)) 
@@ -493,7 +485,6 @@ size_t omemory::decencode (void * memory, size_t extent, char const * string)
 	}
 	return (offset - origin);
 }
-
 
 /*====================================================================*
  *
@@ -541,12 +532,14 @@ size_t omemory::hexencode (void * memory, register size_t extent, register char 
 		offset++;
 		extent--;
 	}
+
 #if defined (WIN32)
 
 	while (isspace (* string)) 
 	{
 		string++;
 	}
+
 #endif
 
 	if ((extent) || (* string)) 
@@ -556,7 +549,6 @@ size_t omemory::hexencode (void * memory, register size_t extent, register char 
 	}
 	return (offset - origin);
 }
-
 
 /*====================================================================*
  *
@@ -591,7 +583,6 @@ size_t omemory::bindecode (void const * memory, register size_t extent, char buf
 	}
 	return (string - buffer);
 }
-
 
 /*====================================================================*
  *
@@ -633,7 +624,6 @@ size_t omemory::decdecode (void const * memory, register size_t extent, char buf
 	return (string - buffer);
 }
 
-
 /*====================================================================*
  *
  *   size_t hexdecode (void const * memory, size_t extent,   char buffer [], size_t length);
@@ -673,7 +663,6 @@ size_t omemory::hexdecode (void const * memory, register size_t extent, char buf
 	}
 	return (string - buffer);
 }
-
 
 /*====================================================================*
  *
@@ -746,7 +735,6 @@ void omemory::hexdump (void const * memory, size_t offset, size_t extent, std::o
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void hexview (void const * memory, size_t offset, size_t extent, std::ostream * stream)  
@@ -818,7 +806,6 @@ void omemory::hexview (void const * memory, size_t offset, size_t extent, std::o
 	return;
 }
 
-
 /*====================================================================*
  *
  *   char * binstring (  char buffer [], size_t length, void const * memory, size_t extent);
@@ -842,7 +829,6 @@ char * omemory::binstring (char buffer [], size_t length, void const * memory, s
 	omemory::bindecode (memory, extent, buffer, length);
 	return (buffer);
 }
-
 
 /*====================================================================*
  *
@@ -868,7 +854,6 @@ char * omemory::decstring (char buffer [], size_t length, void const * memory, s
 	return (buffer);
 }
 
-
 /*====================================================================*
  *
  *   char * hexstring (  char buffer [], size_t length, void const * memory, size_t extent);
@@ -892,7 +877,6 @@ char * omemory::hexstring (char buffer [], size_t length, void const * memory, s
 	omemory::hexdecode (memory, extent, buffer, length);
 	return (buffer);
 }
-
 
 /*====================================================================*
  *
@@ -930,7 +914,6 @@ void omemory::binout (void const * memory, size_t extent, signed c, std::ostream
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -971,7 +954,6 @@ void omemory::decout (void const * memory, size_t extent, signed c, std::ostream
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void hexout (void const * memory, size_t extent, signed c, std::ostream * stream);
@@ -1005,7 +987,6 @@ void omemory::hexout (void const * memory, size_t extent, signed c, std::ostream
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -1098,6 +1079,7 @@ size_t omemory::hexin (void * memory, size_t extent, std::istream * stream)
 				extent--;
 			}
 		}
+
 #ifdef oERROR_HEADER
 
 		oerror::error (0, EILSEQ, "Illegal character '%c' (0x%0X) in source", c, c);
@@ -1119,7 +1101,6 @@ size_t omemory::hexin (void * memory, size_t extent, std::istream * stream)
 	}
 	return (offset - origin);
 }
-
 
 /*====================================================================*
  *
@@ -1145,7 +1126,6 @@ char * omemory::serial (register char buffer [], register size_t length, registe
 	}
 	return (buffer + length);
 }
-
 
 /*====================================================================*
  *
@@ -1175,7 +1155,6 @@ char * omemory::serial (register char buffer [], register size_t length, registe
 	}
 	return (buffer);
 }
-
 
 /*====================================================================*
  *
@@ -1207,7 +1186,6 @@ signed omemory::todigit (signed c)
 	return (-1);
 }
 
-
 /*====================================================================*
  *
  *   omemory::omemory ();
@@ -1225,7 +1203,6 @@ omemory::omemory ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~omemory();
@@ -1242,7 +1219,6 @@ omemory::~omemory ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

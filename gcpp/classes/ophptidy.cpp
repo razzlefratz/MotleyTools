@@ -33,10 +33,6 @@
  *
  *   search for PHP source; ignore asp source; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ophptidy::page (signed c) 
@@ -46,7 +42,7 @@ signed ophptidy::page (signed c)
 	{
 		if (c == '<') 
 		{
-			c = ophptidy::keep (c);
+			c = ophptidy::feed (c);
 			c = ophptidy::find (c);
 			if (c == '!') 
 			{
@@ -60,7 +56,7 @@ signed ophptidy::page (signed c)
 			}
 			if (c == '?') 
 			{
-				char string [100];
+				char string [256];
 				char * cp = string;
 				do 
 				{
@@ -84,16 +80,15 @@ signed ophptidy::page (signed c)
 			}
 			while (oascii::isalpha (c)) 
 			{
-				c = ophptidy::keep (c);
+				c = ophptidy::feed (c);
 			}
 			c = ophptidy::context (c, '>');
 			continue;
 		}
-		c = ophptidy::keep (c);
+		c = ophptidy::feed (c);
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -101,22 +96,24 @@ signed ophptidy::page (signed c)
  *
  *   format php markup using class ophptidy for support;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ophptidy::program (signed c) 
 
 {
-	signed level = 0;
-	signed space = 1;
+	ophptidy::space (1);
+	ophptidy::level (0);
 	while (c != EOF) 
 	{
 		if (oascii::isspace (c)) 
 		{
-			c = std::cin.get ();
+			do { c = std::cin.get (); } while (oascii::isspace (c));
+			std::cout.put (' ');
+			continue;
+		}
+		if (oascii::isquote (c))
+		{
+			c = ophptidy::literal (c);
 			continue;
 		}
 		if (c == '?') 
@@ -124,7 +121,7 @@ signed ophptidy::program (signed c)
 			c = std::cin.get ();
 			if (c == '>') 
 			{
-				std::cout.put ('\n');
+				ophptidy::newline ();
 				std::cout.put (' ');
 				std::cout.put ('?');
 				break;
@@ -134,20 +131,20 @@ signed ophptidy::program (signed c)
 		}
 		if (c == '#') 
 		{
-			ophptidy::space (space);
+			ophptidy::endline ();
 			do 
 			{
 				c = ophptidy::command ('#', '\n');
 			}
 			while (c == '#');
-			space = 1;
+			ophptidy::space (1);
 			continue;
 		}
 		if (c == '/') 
 		{
-			ophptidy::space (space);
+			ophptidy::endline ();
 			c = ophptidy::comment (c);
-			space = 1;
+			ophptidy::space (1);
 			continue;
 		}
 		if (c == '{') 
@@ -155,62 +152,63 @@ signed ophptidy::program (signed c)
 
 #if 0
 
-			c = ophptidy::keep (c);
+			c = ophptidy::feed (c);
 			c = ophptidy::find (c);
-			level++;
+			ophptidy::increment ();
 
 #else
 
-			if (!level) 
+			if (!this->mlevel) 
 			{
-				ophptidy::space (1);
+				ophptidy::endline (1);
 			}
-			ophptidy::space (1);
-			ophptidy::level (level++);
-			c = ophptidy::keep (c);
+			ophptidy::endline (1);
+			ophptidy::newline ();
+			ophptidy::increment ();
+			c = ophptidy::feed (c);
 			c = ophptidy::find (c);
 
 #endif
 
-			space = 1;
+			ophptidy::space (1);
 			continue;
 		}
 		if (c == '}') 
 		{
-			ophptidy::space (1);
-			ophptidy::level (--level);
-			c = ophptidy::keep (c);
+			ophptidy::decrement ();
+			ophptidy::endline (1);
+			ophptidy::newline ();
+			c = ophptidy::feed (c);
 			c = ophptidy::find (c);
-			if (!level) 
+			if (!this->mlevel) 
 			{
-				ophptidy::space (1);
+				ophptidy::endline (1);
 			}
-			space = 2;
+			ophptidy::space (2);
 			continue;
 		}
 		if ((c == ',') || (c == ';') || (c == ':')) 
 		{
-			c = ophptidy::keep (c);
+			c = ophptidy::feed (c);
 			c = ophptidy::find (c);
-			space = 2;
+			ophptidy::space (2);
 			continue;
 		}
-		ophptidy::space (1);
-		c = ophptidy::statement (c, level, space);
-		space = 2;
+		ophptidy::endline (1);
+		c = ophptidy::statement (c);
+		ophptidy::space (2);
 	}
-	c = ophptidy::keep (c);
+	c = ophptidy::feed (c);
 	return (c);
 }
 
-
 /*====================================================================*
  *
- *   signed ophptidy::statement (signed c, signed level, signed space);
+ *   signed ophptidy::statement (signed c);
  *   
  *--------------------------------------------------------------------*/
 
-signed ophptidy::statement (signed c, signed level, signed space) 
+signed ophptidy::statement (signed c) 
 
 {
 	if (isalpha (c) || (c == '_')) 
@@ -226,19 +224,19 @@ signed ophptidy::statement (signed c, signed level, signed space)
 		* cp = (char) (0);
 		if (!std::strcmp (string, "case")) 
 		{
-			ophptidy::level (level-1);
+			ophptidy::newline (this->mlevel-1);
 			std::cout << string;
 			c = ophptidy::context (c, ':');
 		}
 		else if (!std::strcmp (string, "default")) 
 		{
-			ophptidy::level (level-1);
+			ophptidy::newline (this->mlevel-1);
 			std::cout << string;
 			c = ophptidy::context (c, ':');
 		}
 		else 
 		{
-			ophptidy::level (level);
+			ophptidy::newline (this->mlevel);
 			std::cout << string;
 			if ((c == '(') || (c == '[') || (c == '{')) 
 			{
@@ -249,12 +247,11 @@ signed ophptidy::statement (signed c, signed level, signed space)
 	}
 	else 
 	{
-		ophptidy::level (level);
+		ophptidy::newline (this->mlevel);
 		c = ophptidy::context (c, ",;{}?#");
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -268,10 +265,6 @@ signed ophptidy::statement (signed c, signed level, signed space)
  *   multiple terminators instead of one and returns the terminator
  *   instead of the following character;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ophptidy::context (signed c, char const * charset) 
@@ -284,38 +277,31 @@ signed ophptidy::context (signed c, char const * charset)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed context (signed c, signed o, signed e);
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
 signed ophptidy::context (signed c, signed o, signed e) 
 
 {
-	c = ophptidy::keep (c);
-	c = ophptidy::inner_context (c, o, e);
-	c = ophptidy::keep (c);
+	c = ophptidy::feed (c);
+	c = ophptidy::_context (c, o, e);
+	c = ophptidy::feed (c);
 	return (c);
 }
 
-
-signed ophptidy::inner_context (signed c, signed o, signed e) 
+signed ophptidy::_context (signed c, signed o, signed e) 
 
 {
 	while ((c != e) && (c != EOF)) 
 	{
-		c = ophptidy::inner_context (c, o);
-		c = ophptidy::keep (c);
+		c = ophptidy::_context (c, o);
+		c = ophptidy::feed (c);
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *
@@ -324,24 +310,18 @@ signed ophptidy::inner_context (signed c, signed o, signed e)
  *   read and buffer nested expressions and literals until character
  *   (e) is encountered; buffer (e) and return the next character; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ophptidy::context (signed c, signed e) 
 
 {
-	c = ophptidy::keep (c);
-	c = ophptidy::find (c);
-	c = ophptidy::inner_context (c, e);
-	c = ophptidy::keep (c);
+	c = ophptidy::feed (c);
+	c = ophptidy::_context (c, e);
+	c = ophptidy::feed (c);
 	return (c);
 }
 
-
-signed ophptidy::inner_context (signed c, signed e) 
+signed ophptidy::_context (signed c, signed e) 
 
 {
 	while ((c != e) && (c != EOF)) 
@@ -351,14 +331,9 @@ signed ophptidy::inner_context (signed c, signed e)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed context (signed  c); 
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -384,7 +359,7 @@ signed ophptidy::context (signed c)
 	}
 	else if ((c == ',') || (c == ';') || (c == '?')) 
 	{
-		c = ophptidy::keep (c);
+		c = ophptidy::feed (c);
 		c = ophptidy::find (c);
 		std::cout.put (' ');
 	}
@@ -392,7 +367,7 @@ signed ophptidy::context (signed c)
 	{
 		do 
 		{
-			c = ophptidy::keep (c);
+			c = ophptidy::feed (c);
 		}
 		while (oascii::isdigit (c) || (c == '.'));
 	}
@@ -400,7 +375,7 @@ signed ophptidy::context (signed c)
 	{
 		do 
 		{
-			c = ophptidy::keep (c);
+			c = ophptidy::feed (c);
 		}
 		while (oascii::isalnum (c) || (c == '_'));
 		if ((c == '(') || (c == '[') || (c == '{')) 
@@ -430,19 +405,14 @@ signed ophptidy::context (signed c)
 	}
 	else 
 	{
-		c = ophptidy::keep (c);
+		c = ophptidy::feed (c);
 	}
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   signed find (signed c);
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -456,14 +426,9 @@ signed ophptidy::find (signed c)
 	return (c);
 }
 
-
 /*====================================================================*
  *
  *   ophptidy()
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -473,14 +438,9 @@ ophptidy::ophptidy ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ophptidy()
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -489,7 +449,6 @@ ophptidy::~ophptidy ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition

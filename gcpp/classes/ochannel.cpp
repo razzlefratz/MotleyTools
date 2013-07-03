@@ -91,7 +91,6 @@ signed ochannel::Descriptor () const
 	return (this->mfd);
 }
 
-
 /*====================================================================*
  *
  *   unsigned Timer () const;
@@ -105,7 +104,6 @@ unsigned ochannel::Timer () const
 {
 	return (this->mtimer);
 }
-
 
 /*====================================================================*
  *
@@ -122,7 +120,6 @@ ochannel & ochannel::SetTimer (unsigned timer)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ochannel & Open (ointerface & interface) 
@@ -136,14 +133,12 @@ ochannel & ochannel::Open (unsigned index)
 	return (ochannel::Open ());
 }
 
-
 ochannel & ochannel::Open (char const * device) 
 
 {
 	ointerface::SetName (device);
 	return (ochannel::Open ());
 }
-
 
 /*====================================================================*
  *
@@ -187,6 +182,7 @@ ochannel & ochannel::Open ()
 	{
 		oerror::error (1, errno, "Can't bind socket to %s", ifreq.ifr_name);
 	}
+
 #if 1
 
 	if (ioctl (this->mfd, SIOCGIFFLAGS, & ifreq) == -1) 
@@ -199,6 +195,7 @@ ochannel & ochannel::Open ()
 	{
 		oerror::error (1, errno, "%s", ifreq.ifr_name);
 	}
+
 #endif
 
 #elif defined (__APPLE__)
@@ -361,6 +358,7 @@ ochannel & ochannel::Open ()
 	{
 		oerror::error (1, errno, "Can't use filter program");
 	}
+
 #elif defined (__OpenBSD__)
 
 	struct ifreq ifreq;
@@ -387,6 +385,7 @@ ochannel & ochannel::Open ()
 	{
 		oerror::error (1, errno, "Can't bind socket to %s", interface);
 	}
+
 #endif
 
 	if (ioctl (this->mfd, SIOCGIFFLAGS, & ifreq) == -1) 
@@ -404,6 +403,7 @@ ochannel & ochannel::Open ()
 			oerror::error (1, errno, "Can't save state of %s", ifreq.ifr_name);
 		}
 	}
+
 #elif defined (WINPCAP)
 
 	struct bpf_program bpf_program;
@@ -425,12 +425,14 @@ ochannel & ochannel::Open ()
 	{
 		oerror::error (1, errno, "Can't set minimum data: %s", ointerface::Name ());
 	}
+
 #if 0
 
 	if (pcap_setdirection (this->msocket, PCAP_D_IN)) 
 	{
 		oerror::error (1, errno, "Can't set packet direction: %s", ointerface::Name ());
 	}
+
 #endif
 
 #else
@@ -439,7 +441,6 @@ ochannel & ochannel::Open ()
 
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -454,6 +455,7 @@ signed ochannel::SendPacket (void const * memory, signed extent)
 	{
 		omemory::hexdump (memory, 0, extent, & std::cout);
 	}
+
 #if defined (__linux__)
 
 	extent =::sendto (this->mfd, memory, extent, 0, (struct sockaddr *) (0), (socklen_t) (0));
@@ -472,13 +474,13 @@ signed ochannel::SendPacket (void const * memory, signed extent)
 	{
 		extent = -1;
 	}
+
 #else
 #error "Unknown Environment."
 #endif
 
 	return (extent);
 }
-
 
 /*====================================================================*
  *
@@ -529,6 +531,7 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 		}
 		return (extent);
 	}
+
 #elif defined (__APPLE__) 
 
 	uint8_t buffer [this->bpf_length];
@@ -551,6 +554,7 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 		}
 		return (extent);
 	}
+
 #elif defined (__OpenBSD__) 
 
 	struct::pollfd pollfd = 
@@ -580,6 +584,7 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 		}
 		return (extent);
 	}
+
 #elif defined (WINPCAP)
 
 	struct pcap_pkthdr * header;
@@ -641,13 +646,13 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 		}
 		return (extent);
 	}
+
 #else
 #error "Unknown environment."
 #endif
 
 	return (0);
 }
-
 
 /*====================================================================*
  *
@@ -672,7 +677,6 @@ ochannel & ochannel::Close ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   ochannel & Print();
@@ -686,7 +690,6 @@ ochannel & ochannel::Print ()
 	oethernet::Print ();
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -705,7 +708,6 @@ ochannel::ochannel ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~ochannel () 
@@ -718,7 +720,6 @@ ochannel::~ochannel ()
 	ochannel::Close ();
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

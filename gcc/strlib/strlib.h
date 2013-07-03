@@ -104,8 +104,8 @@ size_t strjoin (char const * vector [], char buffer [], signed c);
  *--------------------------------------------------------------------*/
 
 char * strfield (char buffer [], char const * string, char const * charset);
-size_t strfcsv (char buffer [], size_t length, char const * vector [], char const * operator, char const * quote);
-size_t strfbits (char buffer [], size_t length, char const * vector [], char const * operator, unsigned flagword);
+size_t strfcsv (char buffer [], size_t length, char const * vector [], char const * oper, char const * quote);
+size_t strfbits (char buffer [], size_t length, char const * vector [], char const * oper, unsigned flagword);
 size_t strfbin (char buffer [], size_t length, const byte memory [], size_t extent, unsigned extender);
 size_t strfhex (char buffer [], size_t length, const byte memory [], size_t extent, unsigned extender);
 size_t strfascii (char buffer [], size_t length, unsigned c);

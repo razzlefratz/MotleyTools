@@ -72,12 +72,12 @@ unsigned opcap::if_nametoindex (char const * name)
 		}
 		pcap_freealldevs (devices);
 	}
+
 #endif
 
 	errno = ENXIO;
 	return (0);
 }
-
 
 /*====================================================================*
  *
@@ -114,12 +114,12 @@ char * opcap::if_indextoname (unsigned ifindex, char * ifname)
 		}
 		pcap_freealldevs (devices);
 	}
+
 #endif
 
 	errno = ENXIO;
 	return ((char *)(0));
 }
-
 
 /*====================================================================*
  *
@@ -168,11 +168,11 @@ struct if_nameindex * opcap::if_nameindex (void)
 		pcap_freealldevs (devices);
 		return (ifs);
 	}
+
 #endif
 
 	return ((struct if_nameindex *)(0));
 }
-
 
 /*====================================================================*
  *
@@ -207,7 +207,6 @@ void opcap::if_freenameindex (struct if_nameindex * if_nameindex)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   opcap () 
@@ -220,7 +219,6 @@ opcap::opcap ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~opcap () 
@@ -232,7 +230,6 @@ opcap::~opcap ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

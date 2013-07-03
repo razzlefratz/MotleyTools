@@ -32,7 +32,6 @@ oCoreAttributes & oCoreAttributes::write ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oCoreAttributes ();
@@ -42,13 +41,12 @@ oCoreAttributes & oCoreAttributes::write ()
 oCoreAttributes::oCoreAttributes () 
 
 {
-	this->IdentityAttribute = new oattribute ("id");
-	this->TitleAttribute = new oattribute ("title");
-	this->ClassAttribute = new oattribute ("class");
-	this->StyleAttribute = new oattribute ("style");
+	this->IdentityAttribute = new oAttribute ("id");
+	this->TitleAttribute = new oAttribute ("title");
+	this->ClassAttribute = new oAttribute ("class");
+	this->StyleAttribute = new oAttribute ("style");
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -62,7 +60,6 @@ oCoreAttributes::~oCoreAttributes ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition

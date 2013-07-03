@@ -132,18 +132,18 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (geteuid ()) 
 	{
 		error (1, EPERM, ERROR_NOTROOT);
 	}
-	openchannel (&channel);
-	while (readpacket (&channel, &frame, sizeof (frame)) > 0) 
+	openchannel (& channel);
+	while (readpacket (& channel, & frame, sizeof (frame)) > 0) 
 	{
 		write (STDOUT_FILENO, frame.frame_body, ntohs (frame.frame_type));
 	}
-	closechannel (&channel);
+	closechannel (& channel);
 	return (0);
 }
 

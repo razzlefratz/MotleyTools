@@ -106,7 +106,7 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (char const *filename, const regexp * remove, char const *insert, char buffer [], size_t length, flag_t flags) 
+void function (char const * filename, const regexp * remove, char const * insert, char buffer [], size_t length, flag_t flags) 
 
 {
 	unsigned changes = 0;
@@ -125,10 +125,10 @@ void function (char const *filename, const regexp * remove, char const *insert, 
 	}
 	while ((signed)(actual = fgetline (buffer, length, stdin)) != -1) 
 	{
-		char const *sp;
-		for (sp = buffer; *sp; ++sp) 
+		char const * sp;
+		for (sp = buffer; * sp; ++sp) 
 		{
-			char const *cp;
+			char const * cp;
 			if ((cp = regexspan (remove, sp))) 
 			{
 				fputs (insert, stdout);
@@ -137,7 +137,7 @@ void function (char const *filename, const regexp * remove, char const *insert, 
 			}
 			else 
 			{
-				fputc (*sp, stdout);
+				fputc (* sp, stdout);
 			}
 		}
 		if (actual != (length - 1)) 
@@ -158,7 +158,6 @@ void function (char const *filename, const regexp * remove, char const *insert, 
 	}
 	return;
 }
-
 
 /*====================================================================*
  *   
@@ -191,8 +190,8 @@ int main (int argc, char const * argv [])
 		"T\tescape sequence rules",
 		(char const *)(0)
 	};
-	regexp *remove = (regexp *) (0);
-	char const *insert = (char const *) (0);
+	regexp * remove = (regexp *) (0);
+	char const * insert = (char const *) (0);
 	char buffer [TEXTLINE_MAX] = 
 	{
 		(char) (0)
@@ -242,8 +241,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!remove) 
 	{
 		error (0, EINVAL, "no search expression.");
@@ -259,7 +258,7 @@ int main (int argc, char const * argv [])
 		error (0, EINVAL, "no replacement text.");
 		exit (1);
 	}
-	if (!*insert) 
+	if (!* insert) 
 	{
 		error (0, EINVAL, "replacement string is empty.");
 		exit (1);

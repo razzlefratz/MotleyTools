@@ -22,7 +22,7 @@ odepend.o: odepend.cpp odepend.hpp
 odocument.o: odocument.cpp odocument.hpp
 oedge.o: oedge.cpp oedge.hpp
 oedges.o: oedges.cpp oedges.hpp
-oenviron.o: oenviron.cpp oenviron.hpp
+osession.o: osession.cpp osession.hpp
 oescape.o: oescape.cpp chrlib.h oescape.hpp
 ofindfile.o: ofindfile.cpp ofindfile.hpp files.h
 ofindspec.o: ofindspec.cpp ofindspec.hpp files.h find.h
@@ -126,7 +126,7 @@ oedge.hpp: onode.hpp stdafx.hpp
 oedges.hpp: oedge.hpp stdafx.hpp
 oelement.hpp: otext.hpp stdafx.hpp
 oenclose.hpp: ocollect.hpp stdafx.hpp
-oenviron.hpp: stdafx.hpp
+osession.hpp: stdafx.hpp
 oerror.hpp: stdafx.hpp types.h
 oescape.hpp: oascii.hpp stdafx.hpp
 oethernet.hpp: stdafx.hpp
@@ -145,7 +145,7 @@ ograph.hpp: oascii.hpp oedges.hpp oflagword.hpp onodes.hpp oqueue.hpp otext.hpp 
 oheap.hpp: oitem.hpp
 ohexencode.hpp: stdafx.hpp
 ohexencoder.hpp: oascii.hpp ochrupr.hpp stdafx.hpp
-ohtmltidy.hpp: oHTMLEmpty.hpp ocollect.hpp oflagword.hpp oindent.hpp otext.hpp
+ohtmltidy.hpp: oHTMLEmptyElements.hpp ocollect.hpp oflagword.hpp oindent.hpp otext.hpp
 oi18nAttributes.hpp: oattribute.hpp otext.hpp stdafx.hpp
 oif.hpp: stdafx.hpp
 oifs.hpp: oif.hpp stdafx.hpp
@@ -200,7 +200,7 @@ otodo.hpp: oitem.hpp stdafx.hpp
 otree.hpp: stdafx.hpp
 otruth.hpp: ocode.hpp stdafx.hpp
 oversion.hpp: stdafx.hpp
-owebpage.hpp: oMetaElement.hpp oPageLinkElement.hpp oenviron.hpp oindent.hpp otext.hpp stdafx.hpp
+owebpage.hpp: oMetaElement.hpp oPageLinkElement.hpp osession.hpp oindent.hpp otext.hpp stdafx.hpp
 owildcard.hpp: stdafx.hpp
 oxyz.hpp: stdafx.hpp
 

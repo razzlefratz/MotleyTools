@@ -37,7 +37,6 @@ oLinkAttributes & oLinkAttributes::write ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oLinkAttributes ();
@@ -47,17 +46,16 @@ oLinkAttributes & oLinkAttributes::write ()
 oLinkAttributes::oLinkAttributes () 
 
 {
-	this->ReferenceAttribute = new oattribute ("href");
-	this->ReferenceLanguageAttribute = new oattribute ("hreflang");
-	this->ForwardLinkTypeAttribute = new oattribute ("rel");
-	this->ReverseLinkTypeAttribute = new oattribute ("rev");
-	this->TargetFrameAttribute = new oattribute ("target");
-	this->AccessKeyAttribute = new oattribute ("accesskey");
-	this->NavigationIndexAttribute = new oattribute ("navindex");
-	this->BaseURLAttribute = new oattribute ("base");
+	this->ReferenceAttribute = new oAttribute ("href");
+	this->ReferenceLanguageAttribute = new oAttribute ("hreflang");
+	this->ForwardLinkTypeAttribute = new oAttribute ("rel");
+	this->ReverseLinkTypeAttribute = new oAttribute ("rev");
+	this->TargetFrameAttribute = new oAttribute ("target");
+	this->AccessKeyAttribute = new oAttribute ("accesskey");
+	this->NavigationIndexAttribute = new oAttribute ("navindex");
+	this->BaseURLAttribute = new oAttribute ("base");
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -70,7 +68,6 @@ oLinkAttributes::~oLinkAttributes ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *

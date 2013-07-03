@@ -21,7 +21,6 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/types.h"     
 #include "../classes/stdafx.hpp"
 #include "../classes/otext.hpp"
 
@@ -50,7 +49,6 @@ private:
 	char * mclass;
 	signed mstate;
 };
-
 
 /*====================================================================*
  *   end interface declaration;

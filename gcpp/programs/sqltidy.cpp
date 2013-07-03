@@ -27,7 +27,7 @@
 #include "../classes/opathspec.hpp"
 #include "../classes/oindent.hpp"
 #include "../classes/oescape.hpp"
-#include "../classes/ocollect.hpp"
+#include "../classes/osource.hpp"
 
 /*====================================================================*
  *   custom source files;
@@ -48,7 +48,7 @@
 #include "../classes/oescape.cpp"
 #include "../classes/oindent.cpp"
 #include "../classes/oascii.cpp"
-#include "../classes/ocollect.cpp"
+#include "../classes/osource.cpp"
 #endif
 
 /*====================================================================*
@@ -66,7 +66,7 @@ static ofileopen fileopen;
 static opathspec pathspec;
 static oescape escape;
 static oindent indent;
-static ocollect tidy;
+static osource tidy;
 
 /*====================================================================*
  *
@@ -101,7 +101,7 @@ void function (oflagword * flags)
 			c = std::cin.get ();
 			break;
 		case '#':
-			indent.space (2);
+			indent.endline (2);
 			do 
 			{
 				c = tidy.content (c, '\n');
@@ -109,37 +109,36 @@ void function (oflagword * flags)
 			while (c == '#');
 			break;
 		case '(':
-			indent.space (1);
-			indent.level (level++);
-			c = tidy.keep (c);
+			indent.endline (1);
+			indent.newline (level++);
+			c = tidy.feed (c);
 			break;
 		case ')':
-			indent.space (1);
-			indent.level (--level);
-			c = tidy.keep (c);
+			indent.endline (1);
+			indent.newline (--level);
+			c = tidy.feed (c);
 			c = tidy.find (c);
 			if ((c == ',') || (c == ';')) 
 			{
-				c = tidy.keep (c);
+				c = tidy.feed (c);
 				break;
 			}
 			std::cout.put (' ');
 			break;
 		case ',':
 		case ';':
-			c = tidy.keep (c);
+			c = tidy.feed (c);
 			break;
 		default:
-			indent.space (1);
-			indent.level (level);
+			indent.endline (1);
+			indent.newline (level);
 			c = tidy.context (c, "(,)#");
 			break;
 		}
 	}
-	indent.space (2);
+	indent.endline (2);
 	return;
 }
-
 
 /*====================================================================*
  *   main program;
@@ -205,5 +204,4 @@ int main (int argc, char const * argv [])
 	}
 	std::exit (0);
 }
-
 

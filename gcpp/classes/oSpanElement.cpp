@@ -43,7 +43,6 @@ char const * oSpanElement::ElementName () const
 	return (oSpanElement::mtitle);
 }
 
-
 /*====================================================================*
  *
  *   oSpanElement & StartTag () 
@@ -67,7 +66,6 @@ oSpanElement & oSpanElement::StartTag ()
 	std::cout.put ('>');
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -94,7 +92,6 @@ oSpanElement & oSpanElement::EmptyTag ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oSpanElement & EndTag () 
@@ -114,12 +111,9 @@ oSpanElement & oSpanElement::EndTag ()
 		std::cout.put (':');
 	}
 	std::cout << this->mtitle;
-	oSpanElement::i18nAttributes.write ();
-	oSpanElement::CoreAttributes.write ();
 	std::cout.put ('>');
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -133,7 +127,6 @@ oSpanElement::oSpanElement ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oSpanElement ();
@@ -145,7 +138,6 @@ oSpanElement::~oSpanElement ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end definition;

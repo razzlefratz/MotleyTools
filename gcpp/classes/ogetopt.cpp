@@ -109,7 +109,6 @@ signed ogetopt::opterr () const
 	return (this->mopterr);
 }
 
-
 /*====================================================================*
  *
  *   ogetopt & opterr (signed opterr);
@@ -126,7 +125,6 @@ ogetopt & ogetopt::opterr (signed opterr)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   signed optind () const;
@@ -141,7 +139,6 @@ signed ogetopt::optind () const
 {
 	return (this->moptind);
 }
-
 
 /*====================================================================*
  *
@@ -158,7 +155,6 @@ ogetopt & ogetopt::optind (signed optind)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   signed optopt () const;
@@ -173,7 +169,6 @@ signed ogetopt::optopt () const
 	return (this->moptopt);
 }
 
-
 /*====================================================================*
  *
  *   char const * optarg () const;
@@ -187,7 +182,6 @@ char const * ogetopt::optarg () const
 {
 	return (this->moptarg);
 }
-
 
 /*====================================================================*
  *
@@ -205,7 +199,6 @@ signed ogetopt::argc () const
 	return (this->margc - this->moptind);
 }
 
-
 /*====================================================================*
  *
  *   char const ** argv () const;
@@ -219,7 +212,6 @@ char const ** ogetopt::argv () const
 {
 	return (this->margv + this->moptind);
 }
-
 
 /*====================================================================*
  *
@@ -238,7 +230,6 @@ char * ogetopt::args ()
 	return (this->margs);
 }
 
-
 /*====================================================================*
  *
  *   signed operator++(signed);
@@ -253,7 +244,6 @@ signed ogetopt::operator++ (signed)
 {
 	return (this->moptind < this->margc? this->moptind++: this->moptind);
 }
-
 
 /*====================================================================*
  *
@@ -369,7 +359,6 @@ signed ogetopt::getopt (int argc, char const * argv [], char const * options)
 	return (-1);
 }
 
-
 /*====================================================================*
  *   initialization and termination;
  *--------------------------------------------------------------------*/
@@ -386,7 +375,6 @@ ogetopt::ogetopt (const signed opterr)
 	return;
 }
 
-
 ogetopt::ogetopt () 
 
 {
@@ -399,7 +387,6 @@ ogetopt::ogetopt ()
 	return;
 }
 
-
 ogetopt::~ogetopt () 
 
 {
@@ -408,7 +395,6 @@ ogetopt::~ogetopt ()
 	this->moptopt = (char) (0);
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation

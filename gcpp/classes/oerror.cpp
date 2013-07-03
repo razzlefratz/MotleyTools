@@ -30,7 +30,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/oerror.hpp"
-#include "../classes/types.h"
+#include "../../gcc/tools/types.h"
 
 /*====================================================================*
  *   program variables; 
@@ -66,7 +66,6 @@ void oerror::print (char const * format, ...)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void oerror::error (char const * format, ...);
@@ -99,7 +98,6 @@ void oerror::error (char const * format, ...)
 	std::cerr << std::endl;
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -140,7 +138,6 @@ void oerror::error (int status, errno_t number, char const * format, ...)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void error (int status, char const * string, char const * format, ...);
@@ -179,7 +176,6 @@ void oerror::error (int status, char const * string, char const * format, ...)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -224,7 +220,6 @@ void oerror::error_at_line (int status, errno_t number, char const * file, unsig
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   oerror ();
@@ -254,7 +249,6 @@ oerror::oerror ()
 	return;
 }
 
-
 /*====================================================================*
  *   
  *   ~oerror ();
@@ -267,7 +261,6 @@ oerror::~oerror ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

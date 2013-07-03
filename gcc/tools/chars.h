@@ -15,6 +15,7 @@
  *
  *--------------------------------------------------------------------*/
 
+#ifndef __cplusplus
 #ifndef isblank
 #if ! defined (__GNUC__) && ! defined (__APPLE__)
 #define isblank(c) (((char)(c) == ' ') || ((char)(c) == '\t'))
@@ -51,6 +52,7 @@
 
 #ifndef isoctal
 #define isoctal(c) ((char)(c) >= '0') && ((char)(c) <= '7')
+#endif
 #endif
 
 /*====================================================================*

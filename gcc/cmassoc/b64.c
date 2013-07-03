@@ -87,7 +87,7 @@ static void encode (size_t width, flag_t flags)
 		unsigned bits = BASE64_WORDSIZE - BASE64_BYTESIZE;
 		while ((bits) && ((c = getc (stdin)) != EOF)) 
 		{
-			bits -= BASE64_BYTESIZE;
+			bits-= BASE64_BYTESIZE;
 			word |= c << bits;
 			source++;
 			byte++;
@@ -97,14 +97,14 @@ static void encode (size_t width, flag_t flags)
 			bits = BASE64_WORDSIZE - BASE64_BYTESIZE;
 			for (byte++; (bits) && (byte); byte--) 
 			{
-				bits -= BASE64_CHARSIZE;
+				bits-= BASE64_CHARSIZE;
 				putc (BASE64_CHARSET [(word >> bits) & BASE64_CHARMASK], stdout);
 				encode++;
 				output++;
 			}
 			while (bits) 
 			{
-				bits -= BASE64_CHARSIZE;
+				bits-= BASE64_CHARSIZE;
 				putc ('=', stdout);
 				encode++;
 				output++;
@@ -122,7 +122,6 @@ static void encode (size_t width, flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -158,17 +157,17 @@ static void decode (flag_t flags)
 			}
 			else if (isupper (c)) 
 			{
-				c -= 'A';
+				c-= 'A';
 			}
 			else if (islower (c)) 
 			{
-				c -= 'a';
-				c += 26;
+				c-= 'a';
+				c+= 26;
 			}
 			else if (isdigit (c)) 
 			{
-				c -= '0';
-				c += 52;
+				c-= '0';
+				c+= 52;
 			}
 			else if (c == '+') 
 			{
@@ -180,7 +179,7 @@ static void decode (flag_t flags)
 			}
 			else if (c == '=') 
 			{
-				bits -= BASE64_CHARSIZE;
+				bits-= BASE64_CHARSIZE;
 				continue;
 			}
 			else if (_anyset (flags, B64_REPAIR)) 
@@ -191,7 +190,7 @@ static void decode (flag_t flags)
 			{
 				error (1, ENOTSUP, "Input is not base64 encoded");
 			}
-			bits -= BASE64_CHARSIZE;
+			bits-= BASE64_CHARSIZE;
 			word |= c << bits;
 			byte++;
 		}
@@ -200,7 +199,7 @@ static void decode (flag_t flags)
 			bits = BASE64_WORDSIZE - BASE64_BYTESIZE;
 			while ((bits) && (byte)) 
 			{
-				bits -= BASE64_BYTESIZE;
+				bits-= BASE64_BYTESIZE;
 				putc ((word >> bits) & BASE64_BYTEMASK, stdout);
 				output++;
 				byte--;
@@ -213,7 +212,6 @@ static void decode (flag_t flags)
 	}
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -271,8 +269,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		if (_anyset (flags, B64_DECODE)) 

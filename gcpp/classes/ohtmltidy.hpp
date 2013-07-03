@@ -15,10 +15,10 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/oHTMLEmpty.hpp"
+#include "../classes/oHTMLEmptyElements.hpp"
 #include "../classes/oflagword.hpp"
+#include "../classes/osource.hpp"
 #include "../classes/oindent.hpp"
-#include "../classes/ocollect.hpp"
 #include "../classes/otext.hpp"
 
 /*====================================================================*
@@ -35,7 +35,7 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ohtmltidy: private otext, private ocollect, public oindent, public oflagword 
+class __declspec (dllexport) ohtmltidy: private otext, private osource, public oindent, public oflagword 
 
 {
 public:
@@ -59,21 +59,18 @@ public:
 	signed dequote (signed c, signed e);
 	signed nmtoken (signed c);
 	signed unknown (signed c);
+	signed feed (signed c) const;
 	signed find (signed c) const;
-	signed keep (signed c) const;
 	ohtmltidy & print ();
 protected:
-	static oHTMLEmpty htmlempty;
+	static oHTMLEmptyElements htmlempty;
 	char * mstring;
 	char * melement;
 	char * mattribute;
 	char * mvalue;
 	char mquote;
 private:
-	signed mspace;
-	signed mlevel;
 };
-
 
 /*====================================================================*
  *   end declaration;

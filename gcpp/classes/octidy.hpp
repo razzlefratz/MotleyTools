@@ -16,7 +16,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
-#include "../classes/ocollect.hpp"
+#include "../classes/osource.hpp"
 #include "../classes/oindent.hpp"
 #include "../classes/oinclude.hpp"
 #include "../classes/ocomment.hpp"
@@ -24,41 +24,32 @@
 #include "../classes/ocexitwords.hpp"
 
 /*====================================================================*
- *   class constants;
- *--------------------------------------------------------------------*/
-
-#define ATHEROS 0
-
-/*====================================================================*
  *   interface declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) octidy: public ocollect, public oindent, public oinclude, public ocomment 
+class __declspec (dllexport) octidy: public osource, public oindent, public oinclude, public ocomment 
 
 {
 public:
 	octidy ();
 	virtual~ octidy ();
+	signed charlie (signed c);
+	signed atheros (signed c);
+	signed program (signed c);
+	signed statement (signed c);
 	signed preamble (signed c, signed e);
-	signed statement (signed c, signed level, signed space);
-	signed charlie (signed c, signed e);
-	signed atheros (signed c, signed e);
-	signed program (signed c, signed e);
 	signed context (signed c, char const * charset) const;
 	signed context (signed c, signed o, signed e) const;
 	signed context (signed c, signed e) const;
 	signed context (signed c) const;
 	signed comment (signed c) const;
-	signed inner_context (signed c, signed o, signed e) const;
-	signed inner_context (signed c, signed e) const;
-	signed join (signed c) const;
-	signed find (signed c) const;
-	signed keep (signed c) const;
+	signed escaped (signed c) const;
+	signed _context (signed c, signed o, signed e) const;
+	signed _context (signed c, signed e) const;
 private:
 	static ocgotowords gotowords;
 	static ocexitwords exitwords;
 };
-
 
 /*====================================================================*
  *   end definitions and declarations;

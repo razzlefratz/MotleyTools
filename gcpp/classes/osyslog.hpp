@@ -23,9 +23,9 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/types.h"
 #include "../classes/stdafx.hpp"
-#include "../classes/syslog.h"
+#include "../../gcc/tools/types.h"
+#include "../../gcc/linux/syslog.h"
 
 /*====================================================================*
  *   class constants;
@@ -65,7 +65,6 @@ private:
 	bool mconnected;
 	file_t mfile;
 };
-
 
 /*====================================================================*
  *   end interface declaration;

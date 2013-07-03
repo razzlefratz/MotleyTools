@@ -41,7 +41,6 @@ char * ohexencode::octet (char * string, char const c)
 	return (string);
 }
 
-
 /*====================================================================*
  *
  *   char * literal (char *string, char const c);
@@ -58,7 +57,6 @@ char * ohexencode::literal (char * string, char const c)
 	return (string);
 }
 
-
 /*====================================================================*
  *
  *   char * iso (char *string, char const c);
@@ -74,7 +72,6 @@ char * ohexencode::iso (char * string, char const c)
 	string = ohexencode::octet (string, c);
 	return (string);
 }
-
 
 /*====================================================================*
  *
@@ -96,7 +93,6 @@ char * ohexencode::html (char * string, char const c)
 	return (string);
 }
 
-
 /*====================================================================*
  *
  *   char * clang (char *string, char const c);
@@ -113,7 +109,6 @@ char * ohexencode::clang (char * string, char const c)
 	return (string);
 }
 
-
 /*====================================================================*
  *
  *   char * ietf (char *string, char const c);
@@ -129,7 +124,6 @@ char * ohexencode::ietf (char * string, char const c)
 	return (string);
 }
 
-
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
@@ -140,7 +134,6 @@ ohexencode::ohexencode ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
@@ -150,7 +143,6 @@ ohexencode::~ohexencode ()
 {
 	return;
 }
-
 
 /*====================================================================*
  *   end implementation;

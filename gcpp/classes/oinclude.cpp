@@ -44,7 +44,6 @@ signed oinclude::state () const
 	return (this->mstate);
 }
 
-
 /*====================================================================*
  *
  *   signed state(signed state);
@@ -71,7 +70,6 @@ oinclude & oinclude::state (signed state)
 	this->mstate = state;
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -108,7 +106,6 @@ oinclude & oinclude::filename (char const * string)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oinclude & title () const;
@@ -126,7 +123,6 @@ char const * oinclude::title () const
 {
 	return (this->mtitle);
 }
-
 
 /*====================================================================*
  *
@@ -147,7 +143,6 @@ oinclude & oinclude::title (char const * title)
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oinclude & label () const;
@@ -165,7 +160,6 @@ char const * oinclude::label () const
 {
 	return (this->mclass);
 }
-
 
 /*====================================================================*
  *
@@ -185,7 +179,6 @@ oinclude & oinclude::label (char const * label)
 	this->mclass = oinclude::replace (this->mclass, label);
 	return (* this);
 }
-
 
 /*====================================================================*
  *
@@ -213,7 +206,6 @@ oinclude & oinclude::header ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oinclude & footer ();
@@ -239,7 +231,6 @@ oinclude & oinclude::footer ()
 	return (* this);
 }
 
-
 /*====================================================================*
  *
  *   oinclude(char const *title, char const *label);
@@ -258,7 +249,6 @@ oinclude::oinclude (char const * title, char const * label)
 	this->mstate = 0;
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -279,7 +269,6 @@ oinclude::oinclude ()
 	return;
 }
 
-
 /*====================================================================*
  *
  *   ~oinclude()
@@ -297,7 +286,6 @@ oinclude::~oinclude ()
 	delete [] this->mclass;
 	return;
 }
-
 
 /*====================================================================*
  *   end definition

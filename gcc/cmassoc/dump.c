@@ -85,7 +85,6 @@ static void fputx (unsigned value, unsigned radix, int width, char c, FILE * ofp
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void func (int radix, flag_t flag, FILE *ifp, FILE *ofp);
@@ -197,7 +196,6 @@ void func (int radix, flag_t flag, FILE * ifp, FILE * ofp)
 	return;
 }
 
-
 /*====================================================================*
  *   main program
  *--------------------------------------------------------------------*/
@@ -244,8 +242,8 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	argc -= optind;
-	argv += optind;
+	argc-= optind;
+	argv+= optind;
 	if (!argc) 
 	{
 		func (base, flag, stdin, stdout);
