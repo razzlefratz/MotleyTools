@@ -23,7 +23,7 @@
 int getusername (char buffer [], size_t length, uid_t uid) 
 
 {
-	struct passwd *passwd;
+	struct passwd * passwd;
 
 #ifdef CMASSOC_PARANOID
 
@@ -36,7 +36,12 @@ int getusername (char buffer [], size_t length, uid_t uid)
 #endif
 #ifdef CMASSOC_SAFEMODE
 
-	if (buffer == (char) (0)) 
+	if (!buffer) 
+	{
+		errno = EFAULT;
+		return (-1);
+	}
+	if (!length) 
 	{
 		errno = EFAULT;
 		return (-1);
@@ -49,15 +54,12 @@ int getusername (char buffer [], size_t length, uid_t uid)
 		errno = EINVAL;
 		return (-1);
 	}
-	if (length > sizeof (passwd->pw_name)) 
+	memset (buffer, 0, length);
+	if (length-- > strlen (passwd->pw_name)) 
 	{
-		length = sizeof (passwd->pw_name);
+		length = strlen (passwd->pw_name);
 	}
-	if (length > 0) 
-	{
-		memcpy (buffer, passwd->pw_name, length);
-		buffer [length] = (char)(0);
-	}
+	memcpy (buffer, passwd->pw_name, length);
 	return (0);
 }
 
