@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   oenviron.cpp - implementation of the oenviron class.
+ *   osession.cpp - implementation of the osession class.
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -15,7 +15,6 @@
  *   system header files;
  *--------------------------------------------------------------------*/
 
-#include <unistd.h>
 #include <cstdlib>
 #include <cstring>
 #include <iostream>
@@ -25,14 +24,14 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/oenviron.hpp"
+#include "../classes/osession.hpp"
 #include "../../gcc/date/date.h"
 #include "../../gcc/tools/sizes.h"
 #include "../../gcc/linux/getusername.c"
 
 /*====================================================================*
  *
- *   char const * oenviron::hostname () const;
+ *   char const * osession::hostname () const;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -40,7 +39,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const * oenviron::hostname () const 
+char const * osession::hostname () const 
 
 {
 	return (this->mhostname);
@@ -48,7 +47,7 @@ char const * oenviron::hostname () const
 
 /*====================================================================*
  *
- *   char const * oenviron::username () const;
+ *   char const * osession::username () const;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -56,7 +55,7 @@ char const * oenviron::hostname () const
  *
  *--------------------------------------------------------------------*/
 
-char const * oenviron::username () const 
+char const * osession::username () const 
 
 {
 	return (this->musername);
@@ -64,7 +63,7 @@ char const * oenviron::username () const
 
 /*====================================================================*
  * 
- *   size_t oenviron::strfwhat (char buffer[], size_t length, char const * event);
+ *   size_t osession::strfwhat (char buffer[], size_t length, char const * event);
  *
  *   return an event statement as a constant string; event statements are
  *   used for logging putposes;
@@ -75,24 +74,24 @@ char const * oenviron::username () const
  *
  *--------------------------------------------------------------------*/
 
-size_t oenviron::strfwhat (char buffer [], size_t length, char const * event) 
+size_t osession::strfwhat (char buffer [], size_t length, char const * event) 
 
 {
-	time_t timer = time ((time_t *) (0));
+	time_t timer = std::time ((time_t *) (0));
 	char * string = buffer;
 
 #if defined (__linux__)
 
-	string+= std::snprintf (string, string - buffer + length, "%s", event);
+	string += std::snprintf (string, string - buffer + length, "%s", event);
 
 #else
 
-	string+= snprintf (string, string - buffer + length, "%s", event);
+	string += snprintf (string, string - buffer + length, "%s", event);
 
 #endif
 
-	string+= oenviron::strfwhen (string, string - buffer + length, timer);
-	string+= oenviron::strfwhom (string, string - buffer + length);
+	string += osession::strfwhen (string, string - buffer + length, timer);
+	string += osession::strfwhom (string, string - buffer + length);
 	return (string - buffer);
 }
 
@@ -106,11 +105,11 @@ size_t oenviron::strfwhat (char buffer [], size_t length, char const * event)
  *
  *--------------------------------------------------------------------*/
 
-size_t oenviron::strfdate (char buffer [], size_t length, time_t event) 
+size_t osession::strfdate (char buffer [], size_t length, time_t event) 
 
 {
 	char * string = buffer;
-	string+= std::strftime (string, string - buffer + length, DAYTIME, localtime (& event));
+	string += std::strftime (string, string - buffer + length, DAYTIME, std::localtime (& event));
 	return (string - buffer);
 }
 
@@ -126,24 +125,24 @@ size_t oenviron::strfdate (char buffer [], size_t length, time_t event)
  *
  *--------------------------------------------------------------------*/
 
-size_t oenviron::strfwhen (char buffer [], size_t length, time_t event) 
+size_t osession::strfwhen (char buffer [], size_t length, time_t event) 
 
 {
 	char * string = buffer;
 
 #if defined (__linux__)
 
-	string+= std::snprintf (string, string - buffer + length, " at ");
-	string+= std::strftime (string, string - buffer + length, "%T %Z", localtime (& event));
-	string+= std::snprintf (string, string - buffer + length, " on ");
-	string+= std::strftime (string, string - buffer + length, "%a %d %b %y", localtime (& event));
+	string += std::snprintf (string, string - buffer + length, " at ");
+	string += std::strftime (string, string - buffer + length, "%T %Z", std::localtime (& event));
+	string += std::snprintf (string, string - buffer + length, " on ");
+	string += std::strftime (string, string - buffer + length, "%a %d %b %y", std::localtime (& event));
 
 #else
 
-	string+= snprintf (string, string - buffer + length, " at ");
-	string+= strftime (string, string - buffer + length, "%T %Z", localtime (& event));
-	string+= snprintf (string, string - buffer + length, " on ");
-	string+= strftime (string, string - buffer + length, "%a %d %b %y", localtime (& event));
+	string += snprintf (string, string - buffer + length, " at ");
+	string += strftime (string, string - buffer + length, "%T %Z", localtime (& event));
+	string += snprintf (string, string - buffer + length, " on ");
+	string += strftime (string, string - buffer + length, "%a %d %b %y", localtime (& event));
 
 #endif
 
@@ -162,24 +161,24 @@ size_t oenviron::strfwhen (char buffer [], size_t length, time_t event)
  *
  *--------------------------------------------------------------------*/
 
-size_t oenviron::strfwhom (char buffer [], size_t length) 
+size_t osession::strfwhom (char buffer [], size_t length) 
 
 {
 	char * string = buffer;
 
 #if defined (__linux__)
 
-	string+= std::snprintf (string, string - buffer + length, " by");
-	string+= std::snprintf (string, string - buffer + length, " %s", this->musername);
-	string+= std::snprintf (string, string - buffer + length, " on");
-	string+= std::snprintf (string, string - buffer + length, " %s", this->mhostname);
+	string += std::snprintf (string, string - buffer + length, " by");
+	string += std::snprintf (string, string - buffer + length, " %s", this->musername);
+	string += std::snprintf (string, string - buffer + length, " on");
+	string += std::snprintf (string, string - buffer + length, " %s", this->mhostname);
 
 #else
 
-	string+= snprintf (string, string - buffer + length, " by");
-	string+= snprintf (string, string - buffer + length, " %s", this->musername);
-	string+= snprintf (string, string - buffer + length, " on");
-	string+= snprintf (string, string - buffer + length, " %s", this->mhostname);
+	string += snprintf (string, string - buffer + length, " by");
+	string += snprintf (string, string - buffer + length, " %s", this->musername);
+	string += snprintf (string, string - buffer + length, " on");
+	string += snprintf (string, string - buffer + length, " %s", this->mhostname);
 
 #endif
 
@@ -188,7 +187,7 @@ size_t oenviron::strfwhom (char buffer [], size_t length)
 
 /*====================================================================*
  *
- *   oenviron();
+ *   osession();
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -196,7 +195,7 @@ size_t oenviron::strfwhom (char buffer [], size_t length)
  *
  *--------------------------------------------------------------------*/
 
-oenviron::oenviron () 
+osession::osession () 
 
 {
 	this->mhostname = new char [HOSTNAME_MAX];
@@ -215,7 +214,7 @@ oenviron::oenviron ()
 
 /*====================================================================*
  *
- *   ~oenviron();
+ *   ~osession();
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -223,7 +222,7 @@ oenviron::oenviron ()
  *
  *--------------------------------------------------------------------*/
 
-oenviron::~oenviron () 
+osession::~osession () 
 
 {
 	delete [] this->mhostname;

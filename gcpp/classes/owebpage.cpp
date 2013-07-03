@@ -30,7 +30,7 @@
  *   data initialization; 
  *--------------------------------------------------------------------*/
 
-oenviron session;
+osession session;
 
 /*====================================================================*
  * 
@@ -109,10 +109,10 @@ owebpage & owebpage::css2 (void)
 	std::cout << "a:visited { color: maroon; }" << std::endl;
 	std::cout << "body { background:white; color:black; font:normal 12pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
 	std::cout << "pre  { background:white; color:black; font:normal 12pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
-	std::cout << "div.pageheader { test-align: center; }" << std::endl;
-	std::cout << "div.linkheader { text-align: left; }" << std::endl;
-	std::cout << "div.linkfooter { text-align: right; }" << std::endl;
-	std::cout << "div.pagefooter { text-align: center; }" << std::endl;
+	std::cout << "div.bodyheader { margin: 10px 10px 10px 10px; test-align: center; }" << std::endl;
+	std::cout << "div.linkheader { margin: 10px 10px 10px 10px; text-align: left; }" << std::endl;
+	std::cout << "div.linkfooter { margin: 10px 10px 10px 10px; text-align: right; }" << std::endl;
+	std::cout << "div.bodyfooter { margin: 10px 10px 10px 10px; text-align: center; }" << std::endl;
 	return (* this);
 }
 
@@ -256,7 +256,7 @@ owebpage & owebpage::BodyFooter (void)
 	char buffer [512];
 	owebpage::session.strfwhat (buffer, sizeof (buffer), "Published");
 	owebpage::print (this->mlevel++, this->mspace, "<div class='" oWEBPAGE_BODY_FOOTER_CLASS "'>");
-	owebpage::print (this->mlevel, this->mspace, this->mowner);
+//	owebpage::print (this->mlevel, this->mspace, this->mowner);
 	owebpage::print (this->mlevel, this->mspace, "<br/>");
 	owebpage::print (this->mlevel, this->mspace, buffer);
 	owebpage::print (this->mlevel--, this->mspace, "</div>");

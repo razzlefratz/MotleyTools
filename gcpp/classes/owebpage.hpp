@@ -22,7 +22,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
-#include "../classes/oenviron.hpp"
+#include "../classes/osession.hpp"
 #include "../classes/oindent.hpp"
 #include "../classes/otext.hpp"
 #include "../classes/oPageLinkElement.hpp"
@@ -75,7 +75,7 @@ public:
 	owebpage & PageFooter (void);
 	owebpage & css2 (void);
 private:
-	oenviron session;
+	osession session;
 	char * mtitle;
 	char * mowner;
 	char * mstylesheet;

@@ -65,6 +65,10 @@ ochtml & ochtml::css2 (void)
 	std::cout << "a:visited { color: navy; }" << std::endl;
 	std::cout << "body { background:white; color:black; font:normal 12pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
 	std::cout << "pre  { background:white; color:black; font:normal 12pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
+	std::cout << "div.bodyheader { margin: 10px 10px 10px 10px; test-align: center; }" << std::endl;
+	std::cout << "div.linkheader { margin: 10px 10px 10px 10px; text-align: left; }" << std::endl;
+	std::cout << "div.linkfooter { margin: 10px 10px 10px 10px; text-align: right; }" << std::endl;
+	std::cout << "div.bodyfooter { margin: 10px 10px 10px 10px; text-align: center; }" << std::endl;
 	std::cout << "span.comments { color: green; }" << std::endl;
 	std::cout << "span.compiler { color: black; }" << std::endl;
 	std::cout << "span.language { color: black; }" << std::endl;
@@ -74,10 +78,6 @@ ochtml & ochtml::css2 (void)
 	std::cout << "span.variable { color: blue; }" << std::endl;
 	std::cout << "span.operator { color: black; }" << std::endl;
 	std::cout << "span.function { color: fuschia; }" << std::endl;
-	std::cout << "div.pageheader { test-align: center; }" << std::endl;
-	std::cout << "div.linkheader { text-align: left; }" << std::endl;
-	std::cout << "div.linkfooter { text-align: right; }" << std::endl;
-	std::cout << "div.pagefooter { test-align: center; }" << std::endl;
 	return (* this);
 }
 
@@ -259,6 +259,7 @@ ochtml & ochtml::html (char const * filename)
 	}
 	std::cout << "</pre>" << std::endl;
 	ochtml::LinkFooter ();
+	ochtml::BodyFooter ();
 	ochtml::PageFooter ();
 	this->mfile.clear ();
 	std::cout.rdbuf (buf);

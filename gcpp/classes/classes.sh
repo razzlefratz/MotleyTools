@@ -38,7 +38,7 @@ g++ -Wall -c odiscard.cpp
 # g++ -Wall -c odocument.cpp
 g++ -Wall -c oedge.cpp
 g++ -Wall -c oedges.cpp
-g++ -Wall -c oenviron.cpp
+g++ -Wall -c osession.cpp
 g++ -Wall -c oerror.cpp
 g++ -Wall -c oescape.cpp
 g++ -Wall -c oethernet.cpp

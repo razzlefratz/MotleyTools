@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   oenviron.hpp - interface for the oenviron class.
+ *   osession.hpp - interface for the osession class.
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -28,12 +28,12 @@
  * 
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oenviron 
+class __declspec (dllexport) osession 
 
 {
 public:
-	oenviron ();
-	virtual~ oenviron ();
+	osession ();
+	virtual~ osession ();
 	char const * hostname () const;
 	char const * username () const;
 	char const * datetime () const;
