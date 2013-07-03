@@ -107,11 +107,15 @@ signed ophptidy::program (signed c)
 	{
 		if (oascii::isspace (c)) 
 		{
-			do { c = std::cin.get (); } while (oascii::isspace (c));
+			do 
+			{
+				c = std::cin.get ();
+			}
+			while (oascii::isspace (c));
 			std::cout.put (' ');
 			continue;
 		}
-		if (oascii::isquote (c))
+		if (oascii::isquote (c)) 
 		{
 			c = ophptidy::literal (c);
 			continue;

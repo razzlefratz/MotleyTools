@@ -26,7 +26,7 @@ class __declspec (dllexport) osource
 {
 public:
 	osource ();
-	virtual~ osource ();
+	virtual ~ osource ();
 	signed context (signed c, char const * charset) const;
 	signed content (signed c, signed o, signed e) const;
 	signed context (signed c, signed o, signed e) const;

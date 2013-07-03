@@ -72,7 +72,7 @@ class __declspec (dllexport) onumber
 {
 public:
 	onumber ();
-	virtual~ onumber ();
+	virtual ~ onumber ();
 	static huge_t basespec (char const * string, unsigned base, unsigned size);
 	static huge_t uintspec (char const * string, huge_t minimum, huge_t maximum);
 	static size_t ipv4spec (char const * string, void * memory);

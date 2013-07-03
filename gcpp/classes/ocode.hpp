@@ -31,7 +31,7 @@ class __declspec (dllexport) ocode
 {
 public:
 	ocode ();
-	virtual~ ocode ();
+	virtual ~ ocode ();
 	char const * label (signed value, char const * label) const;
 	signed value (char const * label, signed value) const;
 protected:

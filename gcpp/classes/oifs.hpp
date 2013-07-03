@@ -36,7 +36,7 @@ class __declspec (dllexport) oifs
 {
 public:
 	oifs ();
-	virtual~ oifs ();
+	virtual ~ oifs ();
 	unsigned Count (void) const;
 	unsigned Index (void) const;
 	oifs & Select (unsigned);

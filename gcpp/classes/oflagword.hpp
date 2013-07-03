@@ -30,7 +30,7 @@ class __declspec (dllexport) oflagword
 public:
 	oflagword ();
 	oflagword (unsigned);
-	virtual~ oflagword ();
+	virtual ~ oflagword ();
 	unsigned state () const;
 	unsigned getword () const;
 	unsigned getbits (unsigned mask) const;

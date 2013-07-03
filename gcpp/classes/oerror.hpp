@@ -30,7 +30,7 @@ class oerror
 {
 public:
 	oerror ();
-	virtual~ oerror ();
+	virtual ~ oerror ();
 	static void print (char const * format, ...);
 	static void error (char const * format, ...);
 	static void syntax (char const * file, unsigned line, char const * format, ...);

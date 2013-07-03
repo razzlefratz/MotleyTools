@@ -28,7 +28,7 @@ class __declspec (dllexport) othread: private otext
 public:
 	othread ();
 	othread (char const * label, char const * title, char const * file);
-	virtual~ othread ();
+	virtual ~ othread ();
 	unsigned count () const;
 	bool isempty () const;
 	char const * name () const;

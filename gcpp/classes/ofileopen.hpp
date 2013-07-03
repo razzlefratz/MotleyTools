@@ -36,7 +36,7 @@ class __declspec (dllexport) ofileopen
 public:
 	ofileopen ();
 	ofileopen (unsigned limit);
-	virtual~ ofileopen ();
+	virtual ~ ofileopen ();
 	unsigned count () const;
 	unsigned versions () const;
 	bool permit (char const * filespec) const;

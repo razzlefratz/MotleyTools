@@ -33,7 +33,7 @@ class __declspec (dllexport) osession
 {
 public:
 	osession ();
-	virtual~ osession ();
+	virtual ~ osession ();
 	char const * hostname () const;
 	char const * username () const;
 	char const * datetime () const;

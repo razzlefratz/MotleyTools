@@ -79,7 +79,7 @@ class __declspec (dllexport) ocomment: private otext, public oflagword
 public:
 	ocomment (size_t length);
 	ocomment ();
-	virtual~ ocomment ();
+	virtual ~ ocomment ();
 	signed comment (signed c);
 	signed cplus (signed c);
 	signed clang (signed c);

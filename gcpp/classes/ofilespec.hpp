@@ -34,7 +34,7 @@ class __declspec (dllexport) ofilespec: private ocontext
 public:
 	ofilespec ();
 	ofilespec (char const * fullname);
-	virtual~ ofilespec ();
+	virtual ~ ofilespec ();
 	char const * fullpath ();
 	char const * fullname () const;
 	char const * pathname () const;

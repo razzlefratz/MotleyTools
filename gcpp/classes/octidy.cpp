@@ -1,4 +1,3 @@
-
 /*====================================================================*
  *
  *   octidy.cpp - definition of octidy class.
@@ -87,7 +86,7 @@ signed octidy::atheros (signed c)
 				octidy::newline ();
 				c = octidy::pack (c);
 			}
-			else
+			else 
 			{
 				c = octidy::pack (c);
 				octidy::endline (1);
@@ -190,7 +189,7 @@ signed octidy::charlie (signed c)
 				octidy::endline (2);
 				octidy::newline ();
 			}
-			else
+			else 
 			{
 				octidy::endline (1);
 				octidy::newline ();

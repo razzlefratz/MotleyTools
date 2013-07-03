@@ -29,7 +29,7 @@ class __declspec (dllexport) oAnchorElement
 {
 public:
 	oAnchorElement ();
-	virtual~ oAnchorElement ();
+	virtual ~ oAnchorElement ();
 	char const * ElementName () const;
 	oi18nAttributes i18nAttributes;
 	oCoreAttributes CoreAttributes;

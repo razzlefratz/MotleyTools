@@ -32,7 +32,7 @@ class __declspec (dllexport) oxyz
 {
 public:
 	oxyz ();
-	virtual~ oxyz ();
+	virtual ~ oxyz ();
 protected:
 	private:
 };

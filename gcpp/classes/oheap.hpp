@@ -36,7 +36,7 @@ class __declspec (dllexport) oheap
 public:
 	oheap ();
 	oheap (int order (char const *, char const *));
-	virtual~ oheap ();
+	virtual ~ oheap ();
 	oitem * item () const;
 	char const * title () const;
 	oheap & title (char const * string);

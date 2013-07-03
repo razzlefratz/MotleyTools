@@ -228,15 +228,15 @@ owebpage & owebpage::LinkFooter (void)
 
 {
 	owebpage::print (this->mlevel++, this->mspace, "<div class='" oWEBPAGE_LINK_FOOTER_CLASS "'>");
-	owebpage::newline();
+	owebpage::newline ();
 	owebpage::PrevPageLink.write ();
-	owebpage::endline();
-	owebpage::newline();
+	owebpage::endline ();
+	owebpage::newline ();
 	owebpage::HomePageLink.write ();
-	owebpage::endline();
-	owebpage::newline();
+	owebpage::endline ();
+	owebpage::newline ();
 	owebpage::NextPageLink.write ();
-	owebpage::endline();
+	owebpage::endline ();
 	owebpage::print (this->mlevel--, this->mspace, "</div>");
 	return (* this);
 }
@@ -256,7 +256,9 @@ owebpage & owebpage::BodyFooter (void)
 	char buffer [512];
 	owebpage::session.strfwhat (buffer, sizeof (buffer), "Published");
 	owebpage::print (this->mlevel++, this->mspace, "<div class='" oWEBPAGE_BODY_FOOTER_CLASS "'>");
-//	owebpage::print (this->mlevel, this->mspace, this->mowner);
+
+// owebpage::print (this->mlevel, this->mspace, this->mowner);
+
 	owebpage::print (this->mlevel, this->mspace, "<br/>");
 	owebpage::print (this->mlevel, this->mspace, buffer);
 	owebpage::print (this->mlevel--, this->mspace, "</div>");

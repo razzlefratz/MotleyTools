@@ -34,7 +34,7 @@ class __declspec (dllexport) oinclude: private otext
 public:
 	oinclude (char const * title, char const * label);
 	oinclude ();
-	virtual~ oinclude ();
+	virtual ~ oinclude ();
 	signed state () const;
 	char const * title () const;
 	char const * label () const;

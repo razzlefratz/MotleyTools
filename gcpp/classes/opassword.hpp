@@ -32,7 +32,7 @@ class __declspec (dllexport) opassword
 {
 public:
 	opassword (unsigned seed);
-	virtual~ opassword ();
+	virtual ~ opassword ();
 	unsigned count () const;
 	unsigned space () const;
 	unsigned group () const;

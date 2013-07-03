@@ -33,7 +33,7 @@ class __declspec (dllexport) oMACAddress
 {
 public:
 	oMACAddress ();
-	virtual~ oMACAddress ();
+	virtual ~ oMACAddress ();
 	const unsigned char * number () const;
 	char const * string () const;
 	errno_t error () const;

@@ -188,7 +188,7 @@ signed oprofile::number (char const * profile, char const * section, char const 
 	while (isdigit (* string)) 
 	{
 		value *= 10;
-		value+= * string++ - '0';
+		value += * string++ - '0';
 	}
 	if (* string) 
 	{

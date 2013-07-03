@@ -29,7 +29,7 @@ class __declspec (dllexport) oPageLinkElement: private otext
 public:
 	oPageLinkElement ();
 	oPageLinkElement (char const * string);
-	virtual~ oPageLinkElement ();
+	virtual ~ oPageLinkElement ();
 	char const * name () const;
 	oPageLinkElement & name (char const * string);
 	oPageLinkElement & link (char const * text, char const * path);

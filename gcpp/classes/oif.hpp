@@ -36,7 +36,7 @@ class __declspec (dllexport) oif
 public:
 	oif ();
 	oif (unsigned);
-	virtual~ oif ();
+	virtual ~ oif ();
 	unsigned Index (void) const;
 	char const * Name (void) const;
 	char const * Text (void) const;

@@ -182,10 +182,10 @@ int opage::put (int c)
 		this->mrow = 0;
 		this->mcol = 0;
 		this->mtab = 0;
-		length+= std::snprintf (header + length, sizeof (header) - length, "Page %03d", this->mpage);
-		length+= std::snprintf (header + length, sizeof (header) - length, "   %-*.*s   ", this->mhdr, this->mhdr, this->mtitle);
-		length+= std::strftime (header + length, sizeof (header) - length, DAYTIME, localtime (& stamp));
-		length+= std::snprintf (header + length, sizeof (header) - length, "\n\n");
+		length += std::snprintf (header + length, sizeof (header) - length, "Page %03d", this->mpage);
+		length += std::snprintf (header + length, sizeof (header) - length, "   %-*.*s   ", this->mhdr, this->mhdr, this->mtitle);
+		length += std::strftime (header + length, sizeof (header) - length, DAYTIME, localtime (& stamp));
+		length += std::snprintf (header + length, sizeof (header) - length, "\n\n");
 		this->put (header);
 		break;
 	case '\r':

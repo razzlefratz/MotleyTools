@@ -38,7 +38,7 @@ class __declspec (dllexport) oAttribute: private otext
 public:
 	oAttribute (char const * label);
 	oAttribute (char const * label, char const * value);
-	virtual~ oAttribute ();
+	virtual ~ oAttribute ();
 	char const * label () const;
 	char const * value () const;
 	oAttribute & value (char const * string);

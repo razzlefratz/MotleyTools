@@ -32,7 +32,7 @@ class __declspec (dllexport) osection
 {
 public:
 	osection ();
-	virtual~ osection ();
+	virtual ~ osection ();
 	osection & width (size_t width);
 	osection & title (char const * title);
 private:

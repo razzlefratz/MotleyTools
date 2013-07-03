@@ -28,7 +28,7 @@ class __declspec (dllexport) onode: private otext
 public:
 	onode ();
 	onode (char const * name);
-	virtual~ onode ();
+	virtual ~ onode ();
 	onode * node () const;
 	char const * name () const;
 	char const * text () const;

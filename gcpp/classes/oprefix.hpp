@@ -33,7 +33,7 @@ class __declspec (dllexport) oprefix
 public:
 	oprefix ();
 	oprefix (const unsigned c);
-	virtual~ oprefix ();
+	virtual ~ oprefix ();
 	oprefix * lookup (char const * symbol);
 	char const * assume (char const * symbol) const;
 	char const * revise (char const * symbol) const;

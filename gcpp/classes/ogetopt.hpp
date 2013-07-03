@@ -37,7 +37,7 @@ class __declspec (dllexport) ogetopt
 public:
 	ogetopt ();
 	ogetopt (const signed opterr);
-	virtual~ ogetopt ();
+	virtual ~ ogetopt ();
 	signed argc () const;
 	char const ** argv () const;
 	char * args ();

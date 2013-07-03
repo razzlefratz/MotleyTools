@@ -31,7 +31,7 @@ class __declspec (dllexport) olist
 public:
 	olist ();
 	olist (int order (char const *, char const *));
-	virtual~ olist ();
+	virtual ~ olist ();
 	char const * title () const;
 	olist & title (char const * title);
 	oitem * operator [] (signed index) const;

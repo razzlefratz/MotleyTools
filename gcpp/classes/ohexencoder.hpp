@@ -28,7 +28,7 @@ class __declspec (dllexport) ohexencoder: private oascii
 {
 public:
 	ohexencoder ();
-	virtual~ ohexencoder ();
+	virtual ~ ohexencoder ();
 	static char * encode (char const * string);
 	static char * decode (char * string);
 private:

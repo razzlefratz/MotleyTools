@@ -609,7 +609,7 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 			}
 			return (extent);
 		}
-		elapsed+= oCHANNEL_TIMEOUT;
+		elapsed += oCHANNEL_TIMEOUT;
 	}
 	while (elapsed < this->mtimer);
 

@@ -39,7 +39,7 @@ class __declspec (dllexport) omptidy: private otext, private oascii, private oso
 {
 public:
 	omptidy (void);
-	virtual~ omptidy (void);
+	virtual ~ omptidy (void);
 	char const * project (void) const;
 	char const * program (void) const;
 	char const * package (void) const;

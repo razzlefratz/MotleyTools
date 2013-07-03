@@ -50,7 +50,7 @@ class __declspec (dllexport) ointerfaces
 {
 public:
 	ointerfaces ();
-	virtual~ ointerfaces ();
+	virtual ~ ointerfaces ();
 	bool Empty (void) const;
 	bool End (void) const;
 	unsigned Count (void) const;

@@ -33,7 +33,7 @@ class __declspec (dllexport) obuffer
 public:
 	obuffer (size_t length);
 	obuffer ();
-	virtual~ obuffer ();
+	virtual ~ obuffer ();
 	char const * offset () const;
 	char const * record () const;
 	obuffer & offset (char const * offset);

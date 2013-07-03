@@ -226,9 +226,9 @@ ocontext & ocontext::merge (char const * prefix, char const * middle, char const
 
 {
 	size_t length = 0;
-	length+= std::strlen (prefix);
-	length+= std::strlen (middle);
-	length+= std::strlen (suffix);
+	length += std::strlen (prefix);
+	length += std::strlen (middle);
+	length += std::strlen (suffix);
 	delete [] this->mstring;
 	this->mprefix = this->msuffix = this->mstring = new char [length + 1];;
 	if ((prefix == (char const *) (0)) || (* prefix == (char) (0))) 

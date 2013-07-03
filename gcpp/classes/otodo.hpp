@@ -32,7 +32,7 @@ class __declspec (dllexport) otodo
 public:
 	otodo ();
 	otodo (int order (char const *, char const *));
-	virtual~ otodo ();
+	virtual ~ otodo ();
 	char const * title () const;
 	otodo & title (char const * string);
 	size_t index () const;

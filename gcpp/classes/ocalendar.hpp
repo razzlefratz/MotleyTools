@@ -29,7 +29,7 @@ class __declspec (dllexport) ocalendar
 public:
 	ocalendar ();
 	ocalendar (unsigned year);
-	virtual~ ocalendar ();
+	virtual ~ ocalendar ();
 	ocalendar & annum ();
 	ocalendar & month (unsigned index);
 	ocalendar & annum (unsigned level, unsigned space);

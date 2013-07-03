@@ -40,7 +40,7 @@ class __declspec (dllexport) opackage
 public:
 	opackage ();
 	opackage (char const * filespec);
-	virtual~ opackage ();
+	virtual ~ opackage ();
 	char const * archive () const;
 	char const * package () const;
 	char const * product () const;
