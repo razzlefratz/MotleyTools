@@ -35,7 +35,7 @@ public:
 	oitem (char const * name, void const * data);
 	oitem (char const * name, char const * text);
 	oitem (char const * name, char const * text, void const * data);
-	virtual~ oitem ();
+	virtual ~ oitem ();
 	char const * name () const;
 	char const * text () const;
 	void * data () const;

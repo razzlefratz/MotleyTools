@@ -65,6 +65,10 @@ ochtml & ochtml::css2 (void)
 	std::cout << "a:visited { color: navy; }" << std::endl;
 	std::cout << "body { background:white; color:black; font:normal 12pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
 	std::cout << "pre  { background:white; color:black; font:normal 12pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
+	std::cout << "div.bodyheader { margin: 10px 10px 10px 10px; test-align: center; }" << std::endl;
+	std::cout << "div.linkheader { margin: 10px 10px 10px 10px; text-align: left; }" << std::endl;
+	std::cout << "div.linkfooter { margin: 10px 10px 10px 10px; text-align: right; }" << std::endl;
+	std::cout << "div.bodyfooter { margin: 10px 10px 10px 10px; text-align: center; }" << std::endl;
 	std::cout << "span.comments { color: green; }" << std::endl;
 	std::cout << "span.compiler { color: black; }" << std::endl;
 	std::cout << "span.language { color: black; }" << std::endl;
@@ -94,6 +98,8 @@ ochtml & ochtml::html (char const * filename)
 {
 	std::ofstream output;
 	std::streambuf * buf;
+	ochtml::level (0);
+	ochtml::space (1);
 	this->mindex = 1;
 	filename = ochtml::filespec.filespec (filename).fullpath ();
 	if (this->mfile.read (filename).isempty ()) 
@@ -109,6 +115,7 @@ ochtml & ochtml::html (char const * filename)
 	buf = std::cout.rdbuf (output.rdbuf ());
 	ochtml::title (filename);
 	ochtml::PageHeader ();
+	ochtml::LinkHeader ();
 	std::cout << "<pre>" << std::endl;
 	while (!this->mfile.isempty ()) 
 	{
@@ -251,6 +258,8 @@ ochtml & ochtml::html (char const * filename)
 		}
 	}
 	std::cout << "</pre>" << std::endl;
+	ochtml::LinkFooter ();
+	ochtml::BodyFooter ();
 	ochtml::PageFooter ();
 	this->mfile.clear ();
 	std::cout.rdbuf (buf);

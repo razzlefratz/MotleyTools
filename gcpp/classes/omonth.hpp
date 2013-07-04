@@ -34,7 +34,7 @@ public:
 	omonth ();
 	omonth (signed month);
 	omonth (unsigned year, signed month);
-	virtual~ omonth ();
+	virtual ~ omonth ();
 	char const * title () const;
 	unsigned year () const;
 	unsigned month () const;

@@ -46,12 +46,12 @@ errno_t oMACAddress::error () const
 
 /*====================================================================*
  *   
- *   const unsigned char * number() const
+ *   unsigned char const * number () const
  *   
  *   
  *--------------------------------------------------------------------*/
 
-const unsigned char * oMACAddress::number () const 
+unsigned char const * oMACAddress::number () const 
 
 {
 	return ((const unsigned char *)(this->mnumber));
@@ -59,12 +59,12 @@ const unsigned char * oMACAddress::number () const
 
 /*====================================================================*
  *   
- *   const unsigned char * string () const
+ *   char const * string () const
  *   
  *   
  *--------------------------------------------------------------------*/
 
-char const * oMACAddress::string () const 
+unsigned char const * oMACAddress::string () const 
 
 {
 	return ((char const *)(this->mstring));
@@ -72,12 +72,8 @@ char const * oMACAddress::string () const
 
 /*====================================================================*
  *
- *   void spec (unsigned char number[], size_t octets, char const *string);
+ *   void spec (unsigned char number [], size_t octets, char const * string);
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 oMACAddress & oMACAddress::spec (char const * string) 
@@ -105,10 +101,6 @@ oMACAddress & oMACAddress::spec (char const * string)
  *   convert a hexadecimal MAC address string to the equivalent six
  *   octet value; return 0 on success or non-zero on failure;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 oMACAddress & oMACAddress::encode (char const * string) 
@@ -117,8 +109,8 @@ oMACAddress & oMACAddress::encode (char const * string)
 	size_t octet;
 	size_t upper;
 	size_t lower;
-	string = std::strncpy (this->mstring, string, oMACADDRESS_OCTET * 3);
-	for (octet = 0; octet < oMACADDRESS_OCTET; octet++) 
+	string = std::strncpy (this->mstring, string, ETHER_ADDR_LEN * 3);
+	for (octet = 0; octet < ETHER_ADDR_LEN; octet++) 
 	{
 		for (upper = 0; (oMACAddress::digit [upper] != std::toupper (* string)) && (oMACAddress::digit [upper] != (char) (0)); upper++);
 		if (* string++ == (char) (0)) 
@@ -148,7 +140,7 @@ oMACAddress & oMACAddress::encode (char const * string)
 			string++;
 		}
 	}
-	if (* string != (char) (0)) 
+	if (* string) 
 	{
 		this->merror = oMACADDRESS_TOOLONG;
 		return (* this);
@@ -163,18 +155,14 @@ oMACAddress & oMACAddress::encode (char const * string)
  *   decode numeric MAC address as hexadecimal string; MAC addresses
  *   are 6 octets but the number of octets is variable; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 oMACAddress & oMACAddress::decode (const unsigned char number []) 
 
 {
 	char * string = this->mstring;
-	std::memcpy (this->mnumber, number, oMACADDRESS_OCTET);
-	for (size_t octet = 0; octet < oMACADDRESS_OCTET; octet++) 
+	std::memcpy (this->mnumber, number, ETHER_ADDR_LEN);
+	for (size_t octet = 0; octet < ETHER_ADDR_LEN; octet++) 
 	{
 		if (octet) 
 		{
@@ -197,8 +185,8 @@ oMACAddress & oMACAddress::decode (const unsigned char number [])
 oMACAddress::oMACAddress () 
 
 {
-	this->mnumber = new unsigned char [oMACADDRESS_OCTET];
-	this->mstring = new char [oMACADDRESS_OCTET * 3];
+	this->mnumber = new unsigned char [ETHER_ADDR_LEN];
+	this->mstring = new char [ETHER_ADDR_LEN * 3];
 	std::memcpy (this->mnumber, 0, sizeof (this->mnumber));
 	this->decode (this->mnumber);
 	this->merror = (errno_t)(0);

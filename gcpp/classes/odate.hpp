@@ -27,7 +27,7 @@ class __declspec (dllexport) odate
 {
 public:
 	odate ();
-	virtual~ odate ();
+	virtual ~ odate ();
 	static char const * months [];
 	static char const * weekdays [];
 	static char const * monthname (signed month);

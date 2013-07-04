@@ -35,7 +35,7 @@ class __declspec (dllexport) osorter
 public:
 	osorter ();
 	osorter (int order (char const *, char const *));
-	virtual~ osorter ();
+	virtual ~ osorter ();
 	unsigned index () const;
 	unsigned start () const;
 	unsigned count () const;

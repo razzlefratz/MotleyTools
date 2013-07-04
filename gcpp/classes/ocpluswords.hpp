@@ -113,7 +113,7 @@ class __declspec (dllexport) ocpluswords: public okeywords
 {
 public:
 	ocpluswords ();
-	virtual~ ocpluswords ();
+	virtual ~ ocpluswords ();
 };
 
 /*====================================================================*

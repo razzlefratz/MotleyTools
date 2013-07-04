@@ -38,7 +38,7 @@ class __declspec (dllexport) oHTMLIndex: public owebpage
 {
 public:
 	oHTMLIndex (void);
-	virtual~ oHTMLIndex (void);
+	virtual ~ oHTMLIndex (void);
 	oHTMLIndex & css2 (void);
 	oHTMLIndex & include (char const * filename);
 	oHTMLIndex & collect (char const * pathname, char const * wildcard);

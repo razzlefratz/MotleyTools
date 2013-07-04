@@ -59,7 +59,7 @@ class __declspec (dllexport) oethernet
 public:
 	oethernet (void);
 	oethernet (uint16_t protocol);
-	virtual~ oethernet (void);
+	virtual ~ oethernet (void);
 	size_t HeaderLength (void) const;
 	byte const * HostAddress (void) const;
 	byte const * PeerAddress (void) const;

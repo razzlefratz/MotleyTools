@@ -32,18 +32,18 @@ class __declspec (dllexport) oinclude: private otext
 
 {
 public:
+	virtual ~ oinclude (void);
 	oinclude (char const * title, char const * label);
-	oinclude ();
-	virtual~ oinclude ();
-	signed state () const;
-	char const * title () const;
-	char const * label () const;
+	oinclude (void);
+	signed state (void) const;
+	char const * title (void) const;
+	char const * label (void) const;
 	oinclude & state (signed state);
 	oinclude & filename (char const * filename);
 	oinclude & title (char const * title);
 	oinclude & label (char const * label);
-	oinclude & header ();
-	oinclude & footer ();
+	oinclude & header (void);
+	oinclude & footer (void);
 private:
 	char * mtitle;
 	char * mclass;

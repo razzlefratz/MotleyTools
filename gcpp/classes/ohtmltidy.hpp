@@ -40,7 +40,7 @@ class __declspec (dllexport) ohtmltidy: private otext, private osource, public o
 {
 public:
 	ohtmltidy ();
-	virtual~ ohtmltidy ();
+	virtual ~ ohtmltidy ();
 	char quote () const;
 	ohtmltidy & quote (signed c);
 	char const * string () const;
@@ -70,6 +70,7 @@ protected:
 	char * mvalue;
 	char mquote;
 private:
+	
 };
 
 /*====================================================================*

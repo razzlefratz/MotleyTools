@@ -28,7 +28,7 @@ class __declspec (dllexport) ophptidy: public osource, public oindent
 {
 public:
 	ophptidy (void);
-	virtual~ ophptidy (void);
+	virtual ~ ophptidy (void);
 	signed page (signed c);
 	signed statement (signed c);
 	signed program (signed c);
@@ -41,9 +41,9 @@ public:
 	signed find (signed c);
 };
 
-
 /*====================================================================*
  *   end declaration;
  *--------------------------------------------------------------------*/
 
 #endif
+

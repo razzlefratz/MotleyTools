@@ -50,7 +50,7 @@ class __declspec (dllexport) oregex
 {
 public:
 	oregex (char const * expression);
-	virtual~ oregex ();
+	virtual ~ oregex ();
 	size_t length (char const * string) const;
 	char const * select (char const * string) const;
 	char const * span (char const * string) const;

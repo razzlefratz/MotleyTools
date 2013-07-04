@@ -16,8 +16,6 @@
  *--------------------------------------------------------------------*/
 
 #include <iostream>
-#include <cstring>
-#include <cstdio>
 #include <cctype>
 
 /*====================================================================*
@@ -28,17 +26,13 @@
 
 /*====================================================================*
  *
- *   oinclude & state() const;
+ *   oinclude & state (void) const;
  *   
  *   return the tri-state switch value as -1, 0 or 1;
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
-signed oinclude::state () const 
+signed oinclude::state (void) const 
 
 {
 	return (this->mstate);
@@ -50,10 +44,6 @@ signed oinclude::state () const
  *   
  *   set the tri-state switch value to -1, 0 or 1;
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 oinclude & oinclude::state (signed state) 
@@ -78,10 +68,6 @@ oinclude & oinclude::state (signed state)
  *   set include guard title to the basename portion of the filename
  *   string; 
  *   
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 oinclude & oinclude::filename (char const * string) 
@@ -99,7 +85,7 @@ oinclude & oinclude::filename (char const * string)
 	}
 	while ((* cp) && (* cp != '.')) 
 	{
-		* sp++ = toupper (* cp++);
+		* sp++ = std::toupper (* cp++);
 	}
 	* sp = (char) (0);
 	this->title (buffer);
@@ -108,17 +94,13 @@ oinclude & oinclude::filename (char const * string)
 
 /*====================================================================*
  *
- *   oinclude & title () const;
+ *   oinclude & title (void) const;
  *
  *   return include guard title string;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
-char const * oinclude::title () const 
+char const * oinclude::title (void) const 
 
 {
 	return (this->mtitle);
@@ -129,10 +111,6 @@ char const * oinclude::title () const
  *   oinclude & title (char const *title);
  *
  *   set include guard title if different from previous label;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -145,17 +123,13 @@ oinclude & oinclude::title (char const * title)
 
 /*====================================================================*
  *
- *   oinclude & label () const;
+ *   oinclude & label (void) const;
  *
  *   return include guard label string;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
-char const * oinclude::label () const 
+char const * oinclude::label (void) const 
 
 {
 	return (this->mclass);
@@ -166,10 +140,6 @@ char const * oinclude::label () const
  *   oinclude & label (char const *label);
  *
  *   set include guard label if different from previous label;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -182,18 +152,14 @@ oinclude & oinclude::label (char const * label)
 
 /*====================================================================*
  *
- *   oinclude & cheader ();
+ *   oinclude & cheader (void);
  *
  *   insert an include guard plus one blank line if tri-state switch 
  *   mstate is positive then toggle the switch;
  *  
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
-oinclude & oinclude::header () 
+oinclude & oinclude::header (void) 
 
 {
 	if (this->mstate > 0) 
@@ -208,18 +174,14 @@ oinclude & oinclude::header ()
 
 /*====================================================================*
  *
- *   oinclude & footer ();
+ *   oinclude & footer (void);
  *
  *   terminate inlude gurard plus one blank line if tri-state switch
  *   mstate is negative then toggle the switch;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
-oinclude & oinclude::footer () 
+oinclude & oinclude::footer (void) 
 
 {
 	if (this->mstate < 0) 
@@ -233,11 +195,7 @@ oinclude & oinclude::footer ()
 
 /*====================================================================*
  *
- *   oinclude(char const *title, char const *label);
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *   oinclude (char const * title, char const * label);
  *
  *--------------------------------------------------------------------*/
 
@@ -253,10 +211,6 @@ oinclude::oinclude (char const * title, char const * label)
 /*====================================================================*
  *
  *   oinclude()
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 

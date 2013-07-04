@@ -41,7 +41,7 @@ class __declspec (dllexport) omemory
 {
 public:
 	omemory ();
-	virtual~ omemory ();
+	virtual ~ omemory ();
 	static void endian (void *, size_t extent);
 	static void swap (void *, void *, size_t extent);
 	static void * encode (void * memory, void const * source, size_t extent);
@@ -76,7 +76,6 @@ public:
 private:
 	static char chr_nonprint;
 	static char const digits [];
-	static signed todigit (signed c);
 };
 
 /*====================================================================*

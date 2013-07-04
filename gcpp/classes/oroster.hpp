@@ -34,7 +34,7 @@ class __declspec (dllexport) oroster
 public:
 	oroster ();
 	oroster (signed order (char const *, char const *));
-	virtual~ oroster ();
+	virtual ~ oroster ();
 	char const * title () const;
 	oroster & title (char const * title);
 	char const * symbol () const;

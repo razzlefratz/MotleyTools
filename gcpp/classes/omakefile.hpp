@@ -46,7 +46,7 @@ class __declspec (dllexport) omakefile: private otext, private osection, public 
 {
 public:
 	omakefile ();
-	virtual~ omakefile ();
+	virtual ~ omakefile ();
 	char const * compiler () const;
 	char const * project () const;
 	char const * sourcedir () const;

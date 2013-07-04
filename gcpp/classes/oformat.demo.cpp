@@ -69,7 +69,7 @@ int main (int argc, char const * argv [])
 	format.indent (4).offset (0);
 	for (c = 0; c < 100; c++) 
 	{
-		if (c%13==0) 
+		if (c %13==0) 
 		{
 			format.flush (1);
 			format.offset (0);

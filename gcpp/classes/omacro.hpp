@@ -45,7 +45,7 @@ class __declspec (dllexport) omacro: public oflagword
 {
 public:
 	omacro ();
-	virtual~ omacro ();
+	virtual ~ omacro ();
 	bool defined (char const * symbol) const;
 	char const * expand (char const * string);
 	omacro & define (char const * string);

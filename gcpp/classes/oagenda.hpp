@@ -34,7 +34,7 @@ class __declspec (dllexport) oagenda
 public:
 	oagenda ();
 	oagenda (signed comp (char const *, char const *));
-	virtual~ oagenda ();
+	virtual ~ oagenda ();
 	unsigned count () const;
 	char const * event () const;
 	char const * title () const;

@@ -383,11 +383,14 @@ signed octidy::statement (signed c, signed level, signed space)
 			std::cout.put (')');
 		}
 	}
+
 #if 0
+
 /*
  *	this may be obsolete and assumes that a colon sollows the keyword;
  *	the check vof colon has been moved;
  */
+
 	else if (octidy::gotowords.defined (string)) 
 	{
 		octidy::print (level-1, 0, string);
@@ -395,14 +398,16 @@ signed octidy::statement (signed c, signed level, signed space)
 		octidy::space (1).level (level);
 		c = octidy::context (c, ",;{}#");
 	}
+
 #endif
+
 	else if (!std::strcmp (string, "case")) 
 	{
 		octidy::print (level-1, 0, string);
 		std::cout.put (' ');
 		c = octidy::context (c, ":");
 	}
-	else if (c == ':')
+	else if (c == ':') 
 	{
 		if (c == std::cin.peek ()) 
 		{
@@ -411,14 +416,14 @@ signed octidy::statement (signed c, signed level, signed space)
 			c = octidy::feed (c);
 			c = octidy::context (c, ",;{}#");
 		}
-		else
+		else 
 		{
 			octidy::print (level-1, 0, string);
 			c = octidy::feed (c);
 			c = octidy::find (c);
 			octidy::space (1).level (level);
 			c = octidy::context (c, ",;{}#");
-		}	
+		}
 	}
 	else 
 	{
@@ -443,9 +448,9 @@ signed octidy::statement (signed c, signed level, signed space)
 		{
 			std::cout.put (' ');
 		}
-		else if ((c == '+') || (c == '-'))
+		else if ((c == '+') || (c == '-')) 
 		{
-			if (std::cin.peek () == '=')
+			if (std::cin.peek () == '=') 
 			{
 				std::cout.put (' ');
 			}
@@ -570,9 +575,9 @@ signed octidy::context (signed c) const
 		{
 			std::cout.put (' ');
 		}
-		else if ((c == '+') || (c == '-'))
+		else if ((c == '+') || (c == '-')) 
 		{
-			if (std::cin.peek () == '=')
+			if (std::cin.peek () == '=') 
 			{
 				std::cout.put (' ');
 			}

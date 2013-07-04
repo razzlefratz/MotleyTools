@@ -77,15 +77,15 @@ oSHA256 & oSHA256::Write (void const * memory, size_t extent)
 		{
 			std::memcpy (this->mblock + left, buffer, (uint16_t) (fill));
 			this->Block (this->mblock);
-			extent-= fill;
-			buffer+= fill;
+			extent -= fill;
+			buffer += fill;
 			left = 0;
 		}
 		while (extent >= oSHA256_BUFFER_LENGTH) 
 		{
 			oSHA256::Block (buffer);
-			extent-= oSHA256_BUFFER_LENGTH;
-			buffer+= oSHA256_BUFFER_LENGTH;
+			extent -= oSHA256_BUFFER_LENGTH;
+			buffer += oSHA256_BUFFER_LENGTH;
 		}
 		if (extent) 
 		{

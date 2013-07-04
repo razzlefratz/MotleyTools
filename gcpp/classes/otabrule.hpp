@@ -27,7 +27,7 @@ class __declspec (dllexport) tabrule
 public:
 	tabrule ();
 	tabrule (unsigned margin, signed indent);
-	virtual~ tabrule ();
+	virtual ~ tabrule ();
 	unsigned margin () const;
 	unsigned indent () const;
 	tabrule & clear ();

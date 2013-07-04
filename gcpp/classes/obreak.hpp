@@ -26,7 +26,7 @@ class __declspec (dllexport) obreak
 {
 public:
 	obreak (size_t length);
-	virtual~ obreak ();
+	virtual ~ obreak ();
 	obreak & print (char const * string);
 private:
 	char * mupper;

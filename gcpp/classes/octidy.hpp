@@ -27,12 +27,12 @@
  *   interface declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) octidy: private ocoment, private oinclude, private osource, public oindent
+class __declspec (dllexport) octidy: private osource, public oindent, public oinclude, public ocomment
 
 {
 public:
 	octidy ();
-	virtual~ octidy ();
+	virtual ~ octidy ();
 	signed charlie (signed c);
 	signed atheros (signed c);
 	signed program (signed c);
@@ -42,11 +42,8 @@ public:
 	signed context (signed c, signed o, signed e) const;
 	signed context (signed c, signed e) const;
 	signed context (signed c) const;
-	signed comment (signed c) const;
-	signed escaped (signed c) const;
 	signed _context (signed c, signed o, signed e) const;
 	signed _context (signed c, signed e) const;
-	signed find (signed c) const;
 private:
 	static ocgotowords gotowords;
 	static ocexitwords exitwords;

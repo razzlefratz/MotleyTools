@@ -46,7 +46,7 @@ public:
 	oscantext ();
 	oscantext (std::ifstream * stream);
 	oscantext (char const * string);
-	virtual~ oscantext ();
+	virtual ~ oscantext ();
 	virtual oscantext & scantoken ();
 	virtual oscantext & elaborate ();
 	virtual oscantext & translate (char const * oldtoken, char const * newtoken);

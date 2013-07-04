@@ -29,7 +29,7 @@ class __declspec (dllexport) octype
 {
 public:
 	octype ();
-	virtual~ octype ();
+	virtual ~ octype ();
 	static bool isascii (signed c);
 	static bool isalpha (signed c);
 	static bool isupper (signed c);

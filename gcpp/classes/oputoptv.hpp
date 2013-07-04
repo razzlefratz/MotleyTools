@@ -54,7 +54,7 @@ class __declspec (dllexport) oputoptv
 {
 public:
 	oputoptv ();
-	virtual~ oputoptv ();
+	virtual ~ oputoptv ();
 	oputoptv & chkoptv (char const * optv []);
 	oputoptv & putoptv (char const * optv []);
 	oputoptv & putoptv (char const * optv [], signed exitcode);

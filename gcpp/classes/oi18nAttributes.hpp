@@ -27,7 +27,7 @@ class __declspec (dllexport) oi18nAttributes
 {
 public:
 	oi18nAttributes ();
-	virtual~ oi18nAttributes ();
+	virtual ~ oi18nAttributes ();
 	oAttribute * LanguageAttribute;
 	oAttribute * DirectionAttribute;
 	oi18nAttributes & write ();

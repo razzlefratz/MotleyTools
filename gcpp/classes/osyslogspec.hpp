@@ -21,6 +21,7 @@
 
 #include "../classes/stdafx.hpp"
 #include "../classes/oerror.hpp"
+
 // #include "../../gcc/tools/types.h"
 
 /*====================================================================*
@@ -44,7 +45,7 @@ class __declspec (dllexport) osyslogspec
 {
 public:
 	osyslogspec ();
-	virtual~ osyslogspec ();
+	virtual ~ osyslogspec ();
 	static const struct _code_ facilities [];
 	static const struct _code_ severities [];
 	char const * decode (int flagword) const;

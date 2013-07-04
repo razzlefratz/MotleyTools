@@ -49,7 +49,7 @@ oindent & oindent::space (signed space)
  *   
  *--------------------------------------------------------------------*/
 
-signed oindent::space (void) const
+signed oindent::space (void) const 
 
 {
 	return (this->mspace);
@@ -92,7 +92,7 @@ signed oindent::level (void) const
  *
  *--------------------------------------------------------------------*/
 
-oindent & oindent::increment ()
+oindent & oindent::increment () 
 
 {
 	this->mlevel++;
@@ -105,10 +105,10 @@ oindent & oindent::increment ()
  *
  *--------------------------------------------------------------------*/
 
-oindent & oindent::decrement ()
+oindent & oindent::decrement () 
 
 {
-	if (this->mlevel)
+	if (this->mlevel) 
 	{
 		this->mlevel--;
 	}
@@ -300,21 +300,21 @@ oindent & oindent::newline ()
 
 {
 	oindent::print (this->mmargin, this->moffset, this->mlevel);
-	return (*this);
+	return (* this);
 }
 
 oindent & oindent::newline (signed level) 
 
 {
 	oindent::print (this->mmargin, this->moffset, level);
-	return (*this);
+	return (* this);
 }
 
 oindent & oindent::newline (char const * margin, char const * indent, signed level) 
 
 {
 	oindent::print (margin, indent, level);
-	return (*this);
+	return (* this);
 }
 
 /*====================================================================*

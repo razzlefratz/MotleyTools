@@ -27,7 +27,7 @@ class __declspec (dllexport) oCoreAttributes
 {
 public:
 	oCoreAttributes ();
-	virtual~ oCoreAttributes ();
+	virtual ~ oCoreAttributes ();
 	oAttribute * IdentityAttribute;
 	oAttribute * TitleAttribute;
 	oAttribute * ClassAttribute;

@@ -38,7 +38,7 @@
 #include "../classes/opathspec.cpp"
 #include "../classes/ofindspec.cpp"
 #include "../classes/oindent.cpp"
-#include "../classes/oenviron.cpp"
+#include "../classes/osession.cpp"
 #endif
 
 #ifndef MAKEFILE

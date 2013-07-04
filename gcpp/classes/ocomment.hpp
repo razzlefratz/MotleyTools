@@ -78,19 +78,19 @@ class __declspec (dllexport) ocomment: private otext, public oflagword
 {
 public:
 	ocomment (size_t length);
-	ocomment ();
-	virtual~ ocomment ();
+	ocomment (void);
+	virtual ~ ocomment (void);
 	signed comment (signed c);
 	signed cplus (signed c);
 	signed clang (signed c);
 	signed preamble (signed c);
-	ocomment & preamble ();
+	ocomment & preamble (void);
 
 #if oCOMMENT_EXTENDBAR
 
-	unsigned char cupper () const;
-	unsigned char clower () const;
-	size_t width () const;
+	unsigned char cupper (void) const;
+	unsigned char clower (void) const;
+	size_t width (void) const;
 	ocomment & cupper (unsigned char c);
 	ocomment & clower (unsigned char c);
 	ocomment & width (size_t width);
@@ -99,11 +99,11 @@ public:
 
 #if oCOMMENT_CUSTOMIZE
 
-	char const * preface () const;
-	char const * package () const;
-	char const * release () const;
-	char const * license () const;
-	char const * special () const;
+	char const * preface (void) const;
+	char const * package (void) const;
+	char const * release (void) const;
+	char const * license (void) const;
+	char const * special (void) const;
 	ocomment & preface (char const * preface);
 	ocomment & package (char const * package);
 	ocomment & release (char const * release);
@@ -112,7 +112,6 @@ public:
 
 #endif
 
-	ocomment & preamble () const;
 private:
 	
 

@@ -28,7 +28,7 @@ class __declspec (dllexport) oprogram: public osource, public oindent
 {
 public:
 	oprogram ();
-	virtual~ oprogram ();
+	virtual ~ oprogram ();
 	signed css2 (signed c);
 	signed java (signed c);
 };

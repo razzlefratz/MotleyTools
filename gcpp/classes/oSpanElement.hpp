@@ -28,7 +28,7 @@ class __declspec (dllexport) oSpanElement
 {
 public:
 	oSpanElement ();
-	virtual~ oSpanElement ();
+	virtual ~ oSpanElement ();
 	char const * ElementName () const;
 	oCoreAttributes CoreAttributes;
 	oi18nAttributes i18nAttributes;

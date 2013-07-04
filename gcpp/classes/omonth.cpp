@@ -125,7 +125,7 @@ unsigned omonth::date (unsigned block) const
 	{
 		return (0);
 	}
-	block-= this->mstart - 1;
+	block -= this->mstart - 1;
 	if (block > this->mlimit) 
 	{
 		return (0);

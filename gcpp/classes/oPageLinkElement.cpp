@@ -66,8 +66,8 @@ oPageLinkElement & oPageLinkElement::link (char const * text, char const * path)
  *
  *   char const * write () 
  *
- *   format a page link element and return a pointer to it; page links are
- *   merely anchor elements enclosed in brackets ('[',']');
+ *   format a page link element and return a pointer to it; page 
+ *   links are anchor elements enclosed in brackets ('[',']');
  *
  *--------------------------------------------------------------------*/
 

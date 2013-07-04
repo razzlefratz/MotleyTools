@@ -34,7 +34,7 @@ class __declspec (dllexport) oescape: private oascii
 {
 public:
 	oescape ();
-	virtual~ oescape ();
+	virtual ~ oescape ();
 	static unsigned define (signed c, signed e);
 	static unsigned unescape (signed c);
 	static char * unescape (char * string);

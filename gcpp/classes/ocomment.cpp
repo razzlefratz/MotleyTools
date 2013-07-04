@@ -29,19 +29,15 @@
 
 /*====================================================================*
  *   
- *   size_t width () const;
+ *   size_t width (void) const;
  *   
  *   get and set the comment bar width;
- *
- *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
- *:  Copyright 2001-2006 by Charles Maier Associates;
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
 #if oCOMMENT_EXTENDBAR
 
-size_t ocomment::width () const 
+size_t ocomment::width (void) const 
 
 {
 	return (this->mwidth);
@@ -58,19 +54,15 @@ ocomment & ocomment::width (size_t width)
 
 /*====================================================================*
  *   
- *   unsigned char cupper () const;
+ *   unsigned char cupper (void) const;
  *   
  *   get and set the upper bar character;
  *   
- *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
- *:  Copyright 2001-2006 by Charles Maier Associates;
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 #if oCOMMENT_EXTENDBAR
 
-unsigned char ocomment::cupper () const 
+unsigned char ocomment::cupper (void) const 
 
 {
 	return (this->mupper);
@@ -87,19 +79,15 @@ ocomment & ocomment::cupper (unsigned char upper)
 
 /*====================================================================*
  *   
- *   unsigned char clower () const;
+ *   unsigned char clower (void) const;
  *   
  *   get and set the lower bar character;
  *   
- *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
- *:  Copyright 2001-2006 by Charles Maier Associates;
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 #if oCOMMENT_EXTENDBAR
 
-unsigned char ocomment::clower () const 
+unsigned char ocomment::clower (void) const 
 
 {
 	return (this->mlower);
@@ -116,20 +104,16 @@ ocomment & ocomment::clower (unsigned char lower)
 
 /*====================================================================*
  *   
- *   char const * preface () const;
+ *   char const * preface (void) const;
  *   
  *   get and set the preface comment string;
  *   
- *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
- *:  Copyright 2001-2006 by Charles Maier Associates;
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 #if oCOMMENT_EXTENDBAR
 #if oCOMMENT_CUSTOMIZE
 
-char const * ocomment::preface () const 
+char const * ocomment::preface (void) const 
 
 {
 	return (this->mpreface);
@@ -147,20 +131,16 @@ ocomment & ocomment::preface (char const * preface)
 
 /*====================================================================*
  *   
- *   char const * package () const;
+ *   char const * package (void) const;
  *   
  *   get and set the package comment string;
  *   
- *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
- *:  Copyright 2001-2006 by Charles Maier Associates;
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 #if oCOMMENT_EXTENDBAR
 #if oCOMMENT_CUSTOMIZE
 
-char const * ocomment::package () const 
+char const * ocomment::package (void) const 
 
 {
 	return (this->mpackage);
@@ -178,20 +158,16 @@ ocomment & ocomment::package (char const * package)
 
 /*====================================================================*
  *   
- *   char const * release () const;
+ *   char const * release (void) const;
  *   
  *   get and set the release comment string;
  *   
- *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
- *:  Copyright 2001-2006 by Charles Maier Associates;
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 #if oCOMMENT_EXTENDBAR
 #if oCOMMENT_CUSTOMIZE
 
-char const * ocomment::release () const 
+char const * ocomment::release (void) const 
 
 {
 	return (this->mrelease);
@@ -209,20 +185,16 @@ ocomment & ocomment::release (char const * release)
 
 /*====================================================================*
  *   
- *   char const * license () const;
+ *   char const * license (void) const;
  *   
  *   get and set the license comment string;
  *   
- *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
- *:  Copyright 2001-2006 by Charles Maier Associates;
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 #if oCOMMENT_EXTENDBAR
 #if oCOMMENT_CUSTOMIZE
 
-char const * ocomment::license () const 
+char const * ocomment::license (void) const 
 
 {
 	return (this->mlicense);
@@ -240,20 +212,16 @@ ocomment & ocomment::license (char const * license)
 
 /*====================================================================*
  *   
- *   char const * special () const;
+ *   char const * special (void) const;
  *   
  *   get and set the special comment string;
  *   
- *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
- *:  Copyright 2001-2006 by Charles Maier Associates;
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 #if oCOMMENT_EXTENDBAR
 #if oCOMMENT_CUSTOMIZE
 
-char const * ocomment::special () const 
+char const * ocomment::special (void) const 
 
 {
 	return (this->mspecial);
@@ -271,17 +239,13 @@ ocomment & ocomment::special (char const * special)
 
 /*====================================================================*
  *
- *   ocomment & ocomment::preamble ();
+ *   ocomment & ocomment::preamble (void);
  *
  *   insert an empty preamble comment block; 
  *   
- *.  Motley Tools by Charles Maier;
- *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
- *;  Licensed under the Internet Software Consortium License;
- *
  *--------------------------------------------------------------------*/
 
-ocomment & ocomment::preamble () 
+ocomment & ocomment::preamble (void) 
 
 {
 	std::cout << "/*===*" << std::endl;
@@ -308,10 +272,6 @@ ocomment & ocomment::preamble ()
  *
  *   insert an empty preamble comment block; 
  *   
- *.  Motley Tools by Charles Maier;
- *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
- *;  Licensed under the Internet Software Consortium License;
- *
  *--------------------------------------------------------------------*/
 
 signed ocomment::preamble (signed c) 
@@ -324,7 +284,6 @@ signed ocomment::preamble (signed c)
 			if (c == '/') 
 			{
 				c = ocomment::comment (c);
-				std::cout.put ('\n');
 				continue;
 			}
 			if (c == ';') 
@@ -349,12 +308,7 @@ signed ocomment::preamble (signed c)
  *
  *   signed comment (signed c) const;
  *
- *   read and write preamble comment blocks; preamble comment blocks
- *   are more complex; this comment block is one example;
- *
- *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
- *:  Copyright 2001-2006 by Charles Maier Associates;
- *;  Licensed under the Internet Software Consortium License
+ *   read and write comment blocks; 
  *
  *--------------------------------------------------------------------*/
 
@@ -390,10 +344,6 @@ signed ocomment::comment (signed c)
  *   if oCOMMENT_B_TRIPLE is set then convert C++ comment to a multi-line 
  *   C-style comment;
  *
- *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
- *:  Copyright 2001-2006 by Charles Maier Associates;
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ocomment::cplus (signed c) 
@@ -426,7 +376,7 @@ signed ocomment::cplus (signed c)
 		std::cout.put ('*');
 		std::cout.put ('/');
 	}
-	else 
+	else
 	{
 		bool space = false;
 		std::cout.put ('/');
@@ -493,10 +443,6 @@ signed ocomment::cplus (signed c)
  *      } while ((c != '/') && (c != EOF));
  *      putc ('/', stdout);
  *
- *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
- *:  Copyright 2001-2006 by Charles Maier Associates;
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 signed ocomment::clang (signed c) 
@@ -562,7 +508,7 @@ signed ocomment::clang (signed c)
 #endif
 
 		std::cin.putback (c);
-		do 
+		do
 		{
 			c = std::cin.get ();
 
@@ -586,7 +532,7 @@ signed ocomment::clang (signed c)
 				this->minsert = this->mbuffer;
 				std::cout.put (c);
 				std::cout.put (' ');
-				do 
+				do
 				{
 					c = std::cin.get ();
 				}
@@ -654,10 +600,6 @@ signed ocomment::clang (signed c)
  *   copy c then string to buffer; read and discard characters from
  *   stdin until newline or EOF is read; return read character; 
  *   
- *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
- *:  Copyright 2001-2006 by Charles Maier Associates;
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 #if oCOMMENT_EXTENDBAR
@@ -668,7 +610,7 @@ signed ocomment::message (signed c, char const * string)
 {
 	if (ocomment::anyset (oCOMMENT_B_DISCARD)) 
 	{
-		do 
+		do
 		{
 			c = std::cin.get ();
 		}
@@ -678,7 +620,7 @@ signed ocomment::message (signed c, char const * string)
 			c = std::cin.get ();
 		};
 	}
-	else 
+	else
 	{
 		* this->minsert++ = ocomment::anyset (oCOMMENT_B_PERMANENT)? ' ': c;
 		* this->minsert++ = ' ';
@@ -700,11 +642,7 @@ signed ocomment::message (signed c, char const * string)
 
 /*====================================================================*
  *
- *   ocomment(size_t length)
- *
- *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
- *:  Copyright 2001-2006 by Charles Maier Associates;
- *;  Licensed under the Internet Software Consortium License
+ *   ocomment (size_t length)
  *
  *--------------------------------------------------------------------*/
 
@@ -739,15 +677,11 @@ ocomment::ocomment (size_t length)
 
 /*====================================================================*
  *
- *   ocomment()
- *
- *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
- *:  Copyright 2001-2006 by Charles Maier Associates;
- *;  Licensed under the Internet Software Consortium License
+ *   ocomment (void)
  *
  *--------------------------------------------------------------------*/
 
-ocomment::ocomment () 
+ocomment::ocomment (void) 
 
 {
 	this->mlength = oCOMMENT_LENGTH;
@@ -782,15 +716,11 @@ ocomment::ocomment ()
 
 /*====================================================================*
  *
- *   ~ocomment()
- *
- *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
- *:  Copyright 2001-2006 by Charles Maier Associates;
- *;  Licensed under the Internet Software Consortium License
+ *   ~ ocomment (void)
  *
  *--------------------------------------------------------------------*/
 
-ocomment::~ocomment () 
+ocomment::~ocomment (void) 
 
 {
 

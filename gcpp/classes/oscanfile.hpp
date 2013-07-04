@@ -37,7 +37,7 @@ class __declspec (dllexport) oscanfile: public ocursor, private oascii, private 
 {
 public:
 	oscanfile ();
-	virtual~ oscanfile ();
+	virtual ~ oscanfile ();
 	size_t charcount () const;
 	size_t linecount () const;
 	size_t pagecount () const;

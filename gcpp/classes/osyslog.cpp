@@ -295,14 +295,14 @@ void osyslog::vsyslog (priority_t priority, char const * format, va_list arglist
 	length = prefix = snprintf (buffer + length, sizeof (buffer) - length, "<%d>", priority);
 	if (this->midentity != (char *) (0)) 
 	{
-		length+= snprintf (buffer + length, sizeof (buffer) - length, "%s: ", this->midentity);
+		length += snprintf (buffer + length, sizeof (buffer) - length, "%s: ", this->midentity);
 	}
 	if (this->moptions & SYSLOG_PROCESS) 
 	{
-		length+= snprintf (buffer + length, sizeof (buffer) - length, "[%d] ", getpid ());
+		length += snprintf (buffer + length, sizeof (buffer) - length, "[%d] ", getpid ());
 	}
-	length+= vsnprintf (buffer + length, sizeof (buffer) - length, format, arglist);
-	length+= snprintf (buffer + length, sizeof (buffer) - length, "\n");
+	length += vsnprintf (buffer + length, sizeof (buffer) - length, format, arglist);
+	length += snprintf (buffer + length, sizeof (buffer) - length, "\n");
 	if (this->moptions & SYSLOG_PERROR) 
 	{
 		std::cerr.write (buffer + prefix, length - prefix);

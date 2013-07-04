@@ -79,7 +79,7 @@ class __declspec (dllexport) ointerface
 public:
 	explicit ointerface (unsigned ifindex);
 	explicit ointerface (char const * ifname);
-	virtual~ ointerface ();
+	virtual ~ ointerface ();
 	unsigned Index (void) const;
 	char const * Name (void) const;
 	char const * Description (void) const;

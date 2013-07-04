@@ -44,7 +44,7 @@
 #include "../classes/opathspec.cpp"
 #include "../classes/okeywords.cpp"
 #include "../classes/oindent.cpp"
-#include "../classes/oenviron.cpp"
+#include "../classes/osession.cpp"
 #include "../classes/oscancode.cpp"
 #include "../classes/ochtml.cpp"
 #include "../classes/ocprocwords.cpp"

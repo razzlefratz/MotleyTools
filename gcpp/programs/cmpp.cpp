@@ -208,6 +208,7 @@ static void process (char const * pathname, char const * command, oflagword * fl
 			}
 			continue;
 		}
+
 /*
  * scan C Language comments;
  */

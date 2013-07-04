@@ -50,11 +50,16 @@ oHTMLIndex & oHTMLIndex::css2 (void)
 
 {
 	std::cout << "a:hover { text-decoration: underline; }" << std::endl;
-	std::cout << "a.index { text-decoration: none; }" << std::endl;
-	std::cout << "a:visited { color: #000080; }" << std::endl;
-	std::cout << "body { background:white; color:black; font:normal 10pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
-	std::cout << "pre  { background:white; color:black; font:normal 10pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
+	std::cout << "a { text-decoration: none; }" << std::endl;
+	std::cout << "a:link { color: navy; }" << std::endl;
+	std::cout << "a:active { }" << std::endl;
+	std::cout << "a:visited { color: maroon; }" << std::endl;
+	std::cout << "body { background:white; color:black; font:normal 12pt courier; margin: 10px 20px 10px 20px; }" << std::endl;
 	std::cout << "li.index { color: black; list-style: outside; padding: 00px 00px 00px 05px; }" << std::endl;
+	std::cout << "div.bodyheader { margin: 10px 10px 10px 10px; test-align: center; }" << std::endl;
+	std::cout << "div.linkheader { margin: 10px 10px 10px 10px; text-align: left; }" << std::endl;
+	std::cout << "div.linkfooter { margin: 10px 10px 10px 10px; text-align: right; }" << std::endl;
+	std::cout << "div.bodyfooter { margin: 10px 10px 10px 10px; text-align: center; }" << std::endl;
 	return (* this);
 }
 
@@ -122,7 +127,7 @@ oHTMLIndex & oHTMLIndex::publish (unsigned count)
 	unsigned index = 0;
 	unsigned limit = count = (oHTMLIndex::mlist.count () + (count - 1)) / count;
 	oHTMLIndex::PageHeader ();
-	oHTMLIndex::MarkStart ();
+	oHTMLIndex::LinkHeader ();
 	oHTMLIndex::print (this->mlevel++, this->mspace, "<h1>");
 	oHTMLIndex::print (this->mlevel, this->mspace, oHTMLIndex::title ());
 	oHTMLIndex::print (this->mlevel--, this->mspace, "</h1>");
@@ -158,7 +163,7 @@ oHTMLIndex & oHTMLIndex::publish (unsigned count)
 	}
 	oHTMLIndex::print (this->mlevel--, this->mspace, "</tr>");
 	oHTMLIndex::print (this->mlevel--, this->mspace, "</table>");
-	oHTMLIndex::MarkEnd ();
+	oHTMLIndex::LinkFooter ();
 	oHTMLIndex::BodyFooter ();
 	oHTMLIndex::PageFooter ();
 	return (* this);

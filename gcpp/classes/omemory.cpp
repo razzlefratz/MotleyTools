@@ -18,8 +18,6 @@
  *--------------------------------------------------------------------*/
 
 #include <cstdio>
-#include <cctype>
-#include <cstring>
 #include <cerrno>
 
 /*====================================================================*
@@ -27,6 +25,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/omemory.hpp"
+#include "../classes/oascii.hpp"
 #include "../classes/oerror.hpp"
 
 /*====================================================================*
@@ -196,8 +195,8 @@ uint16_t omemory::checksum16 (void const * memory, register size_t extent, regis
 	while (extent >= sizeof (checksum)) 
 	{
 		checksum^= *(uint16_t *)(offset);
-		offset+= sizeof (checksum);
-		extent-= sizeof (checksum);
+		offset += sizeof (checksum);
+		extent -= sizeof (checksum);
 	}
 	return (~checksum);
 }
@@ -227,8 +226,8 @@ uint32_t omemory::checksum32 (void const * memory, register size_t extent, regis
 	while (extent >= sizeof (checksum)) 
 	{
 		checksum^= *(uint32_t *)(offset);
-		offset+= sizeof (checksum);
-		extent-= sizeof (checksum);
+		offset += sizeof (checksum);
+		extent -= sizeof (checksum);
 	}
 	return (~checksum);
 }
@@ -388,13 +387,13 @@ size_t omemory::binencode (void * memory, register size_t extent, register char 
 		}
 		while (field--) 
 		{
-			if ((digit = omemory::todigit (* string)) >= radix) 
+			if ((digit = oascii::todigit (* string)) >= radix) 
 			{
 				errno = EINVAL;
 				return (0);
 			}
 			value *= radix;
-			value+= digit;
+			value += digit;
 			string++;
 		}
 		* offset = (byte)(value);
@@ -450,13 +449,13 @@ size_t omemory::decencode (void * memory, size_t extent, char const * string)
 		}
 		while (field--) 
 		{
-			if ((digit = omemory::todigit (* string)) >= radix) 
+			if ((digit = oascii::todigit (* string)) >= radix) 
 			{
 				errno = EINVAL;
 				return (0);
 			}
 			value *= radix;
-			value+= digit;
+			value += digit;
 			if (value >> 8) 
 			{
 				errno = ERANGE;
@@ -519,13 +518,13 @@ size_t omemory::hexencode (void * memory, register size_t extent, register char 
 		}
 		while (field--) 
 		{
-			if ((digit = omemory::todigit (* string)) >= radix) 
+			if ((digit = oascii::todigit (* string)) >= radix) 
 			{
 				errno = EINVAL;
 				return (0);
 			}
 			value *= radix;
-			value+= digit;
+			value += digit;
 			string++;
 		}
 		* offset = (byte)(value);
@@ -720,7 +719,7 @@ void omemory::hexdump (void const * memory, size_t offset, size_t extent, std::o
 			else if (index < extent) 
 			{
 				unsigned c = origin [index];
-				* output++ = std::isprint (c)? (char)(c): omemory::chr_nonprint;
+				* output++ = oascii::isprint (c)? (char)(c): omemory::chr_nonprint;
 			}
 			else 
 			{
@@ -729,8 +728,8 @@ void omemory::hexdump (void const * memory, size_t offset, size_t extent, std::o
 		}
 		* output++ = '\n';
 		stream->write (buffer, (signed)(output - buffer));
-		lower+= block;
-		upper+= block;
+		lower += block;
+		upper += block;
 	}
 	return;
 }
@@ -791,7 +790,7 @@ void omemory::hexview (void const * memory, size_t offset, size_t extent, std::o
 			else if (index < offset + extent) 
 			{
 				unsigned c = origin [index-offset];
-				* output++ = std::isprint (c)? (char)(c): omemory::chr_nonprint;
+				* output++ = oascii::isprint (c)? (char)(c): omemory::chr_nonprint;
 			}
 			else 
 			{
@@ -800,8 +799,8 @@ void omemory::hexview (void const * memory, size_t offset, size_t extent, std::o
 		}
 		* output++ = '\n';
 		stream->write (buffer, (signed)(output - buffer));
-		lower+= block;
-		upper+= block;
+		lower += block;
+		upper += block;
 	}
 	return;
 }
@@ -906,7 +905,7 @@ void omemory::binout (void const * memory, size_t extent, signed c, std::ostream
 		{
 			stream->put (omemory::digits [(* offset >> bits) & 1]);
 		}
-		if ((extent) && std::isprint (c)) 
+		if ((extent) && oascii::isprint (c)) 
 		{
 			stream->put ((char)(c));
 		}
@@ -945,7 +944,7 @@ void omemory::decout (void const * memory, size_t extent, signed c, std::ostream
 			stream->put (omemory::digits [(* offset / order) % 10]);
 			order /= 10;
 		}
-		if ((extent) && std::isprint (c)) 
+		if ((extent) && oascii::isprint (c)) 
 		{
 			stream->put ((char)(c));
 		}
@@ -979,7 +978,7 @@ void omemory::hexout (void const * memory, size_t extent, signed c, std::ostream
 	{
 		stream->put (omemory::digits [(* offset >> 4) & 0x0F]);
 		stream->put (omemory::digits [(* offset >> 0) & 0x0F]);
-		if ((extent) && std::isprint (c)) 
+		if ((extent) && oascii::isprint (c)) 
 		{
 			stream->put ((char)(c));
 		}
@@ -1154,36 +1153,6 @@ char * omemory::serial (register char buffer [], register size_t length, registe
 		value /= radix;
 	}
 	return (buffer);
-}
-
-/*====================================================================*
- *
- *   signed todigit (signed c);
- *  
- *   convert an ASCII digit to an integer;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
- *--------------------------------------------------------------------*/
-
-signed omemory::todigit (signed c) 
-
-{
-	if ((c >= '0') && (c <= '9')) 
-	{
-		return (c - '0');
-	}
-	if ((c >= 'A') && (c <= 'Z')) 
-	{
-		return (c - 'A' + 10);
-	}
-	if ((c >= 'a') && (c <= 'z')) 
-	{
-		return (c - 'a' + 10);
-	}
-	return (-1);
 }
 
 /*====================================================================*

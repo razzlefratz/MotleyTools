@@ -46,7 +46,7 @@ public:
 	ochtml & css2 (char const * filename);
 	ochtml & html (char const * pathname);
 private:
- 	ochtml & directive ();
+	ochtml & directive ();
 	static ofilespec filespec;
 	oscancode mfile;
 	ofunctions clibword;

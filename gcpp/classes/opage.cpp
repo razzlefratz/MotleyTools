@@ -295,7 +295,7 @@ opage & opage::footer ()
 	signed offset = this->mcols;
 	if (length < offset) 
 	{
-		offset-= length;
+		offset -= length;
 		offset /= 2;
 	}
 	else 

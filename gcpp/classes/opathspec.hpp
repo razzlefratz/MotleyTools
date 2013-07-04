@@ -33,7 +33,7 @@ class __declspec (dllexport) opathspec: private owildcard
 {
 public:
 	opathspec ();
-	virtual~ opathspec ();
+	virtual ~ opathspec ();
 	bool isdotdir (char const * filename);
 	bool exists (char const * pathname);
 	bool infolder (char fullname [], char const * wildcard, bool recurse);

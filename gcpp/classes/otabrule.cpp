@@ -132,7 +132,7 @@ tabrule & tabrule::tabset (unsigned column, signed indent)
 			if (mcolumn == column) 
 			{
 				mruler [mcolumn] = true;
-				column+= indent;
+				column += indent;
 			}
 			else 
 			{

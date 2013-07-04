@@ -22,7 +22,7 @@
 #define oMACADDRESS_TOOSHORT 1
 #define oMACADDRESS_TOOLONG  2
 #define oMACADDRESS_ILLEGAL  3
-#define oMACADDRESS_OCTET 6
+#define ETHER_ADDR_LEN 6
 
 /*====================================================================*
  * 
@@ -33,7 +33,7 @@ class __declspec (dllexport) oMACAddress
 {
 public:
 	oMACAddress ();
-	virtual~ oMACAddress ();
+	virtual ~ oMACAddress ();
 	const unsigned char * number () const;
 	char const * string () const;
 	errno_t error () const;

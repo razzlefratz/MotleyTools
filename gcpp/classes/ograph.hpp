@@ -42,7 +42,7 @@ class __declspec (dllexport) ograph: private otext, private oascii, public oflag
 {
 public:
 	ograph (void);
-	virtual~ ograph (void);
+	virtual ~ ograph (void);
 	char const * name (void);
 	onode * node (void) const;
 	ograph & name (char const * name);
