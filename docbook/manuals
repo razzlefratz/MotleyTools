@@ -1,0 +1,51 @@
+#!/bin/sh
+# file: docbook/manuals
+
+# ====================================================================
+# 
+# --------------------------------------------------------------------
+
+if [ ! -d /usr/local/bin/cmassoc  ]; then
+	echo "You do not have Motley Tools installed. Sorry!"
+	exit 1
+fi
+
+# ====================================================================
+#
+# --------------------------------------------------------------------
+
+export MANWIDTH=100
+INDEX=toolkit.html
+STYLE=intellon.css
+
+# ====================================================================
+#
+# --------------------------------------------------------------------
+
+# unset LANG
+
+# ====================================================================
+#
+# --------------------------------------------------------------------
+
+cp ../pib/piboffset.* .
+for file in ../*/*.7; do echo ${file}; man ${file} > $(basename ${file}); done
+for file in ../*/*.7a; do man ${file} > $(basename ${file}); done
+for file in ../scripts/*.sh; do cp ${file} .; done
+for file in ../scripts/*.bat; do cp ${file} .; done
+purge -vr ../t.c
+import -r . '../*.h' '../*.c' 
+
+# ====================================================================
+#
+# --------------------------------------------------------------------
+
+catalog -s ${STYLE} -gdp ${INDEX} -c 4 *.7 > manual.txt
+catalog -s ${STYLE} -gdp ${INDEX} -c 4 *.7a > applet.txt
+catalog -s ${STYLE} -gdp ${INDEX} -c 4 *.h > header.txt
+catalog -s ${STYLE} -gdp ${INDEX} -c 4 *.c > source.txt
+catalog -s ${STYLE} -gdp ${INDEX} -c 4 *.sh > script.txt
+catalog -s ${STYLE} -gdp ${INDEX} -c 4 *.bat > batch.txt
+cat part0.txt part1.txt manual.txt part2.txt header.txt part3.txt source.txt part4.txt script.txt batch.txt part5.txt applet.txt part6.txt> ${INDEX}
+rm -f manual.txt header.txt source.txt script.txt batch.txt applet.txt 
+

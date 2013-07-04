@@ -1,0 +1,2017 @@
+Motley Tools
+
+Charles Maier Associated Limited, Nashua NH USA
+
+Edited by
+
+Charles Maier
+
+cmassoc-tools-1.7.0
+
+Abstract
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Table of Contents
+
+1. Class oascii
+
+    Introduction
+
+        Inheritance
+        Dependence
+
+    Properties
+    Methods
+
+        isalpha
+        isalnum
+        isblank
+        isbreak
+        iscntrl
+        isdigit
+        isgraph
+        isident
+        islower
+        isprint
+        ospunct
+        isquote
+        isspace
+        isupper
+        isxdigit
+        nmtoken
+        nobreak
+        tolower
+        tocntrl
+        todigit
+        toupper
+
+2. Class oerror
+
+    Introduction
+
+        Inheritance
+        Dependence
+
+    Properties
+    Methods
+
+        error
+
+3. Class oethernet
+
+    Introduction
+
+        Inheritance
+        Dependence
+
+    Properties
+
+        BroadcastAddress
+        HeaderLength
+        HostAddress
+        HostAddressString
+        PeerAddress
+        PeerAddressString
+        Protocol
+        ProtocolString
+
+    Methods
+
+        ExportHeader
+        ExportHostAddress
+        ExportPeerAddress
+        ExportProtocol
+        ImportHeader
+        ImportHostAddress
+        ImportPeerAddress
+        ImportProtocol
+        Print
+        SetProtocol
+
+    Constructors
+    Examples
+
+4. Class oflagword
+
+    Introduction
+
+        Inheritance
+        Dependence
+
+    Properties
+    Methods
+
+        allclear
+        allset
+        anyclear
+        anyset
+        clearbits
+        getbits
+        getword
+        setbits
+        setword
+
+    Constructors
+
+5. Class ointerfaces
+
+    Introduction
+
+        Inheritance
+        Dependence
+
+    Properties
+
+        Count
+        Empty
+        End
+        Index
+        Interface
+        Selected
+
+    Methods
+
+        Enumerate
+        Select
+        SelectFirst
+        SelectFinal
+        SelectNext
+        SelectPrev
+
+    Operators
+
+        operator []
+        operator =
+
+    Constructors
+    Examples
+
+6. Class ointerface
+
+    Introduction
+
+        Inheritance
+        Dependence
+
+    Properties
+
+        Description
+        Index
+        Name
+        HardwareAddress
+        HardwareAddressString
+        InternetAddress
+        InternetAddressString
+
+    Methods
+
+        ExportHardwareAddress
+        ExportInternetAddress
+        Print
+        SetDescription
+
+    Constructors
+
+7. Class onumber
+
+    Introduction
+
+        Inheritance
+        Dependence
+
+    Constants
+    Properties
+    Methods
+
+        basespec
+        uintspec
+        ipv4spec
+        ipv6spec
+
+8. Class omemory
+
+    Introduction
+
+        Inheritance
+        Dependencies
+
+    Methods
+
+        bindecode
+        binout
+        binstring
+        checksum32
+        checksum32
+        decdecode
+        decode
+        decstring
+        decout
+        encode
+        endian
+        hexdecode
+        hexdump
+        hexencode
+        hexin
+        hexout
+        hexstring
+        hexview
+        memdecr
+        memincr
+        memtext
+        serial
+        strdecr
+        strincr
+        swap
+
+9. Class oSHA256
+
+    Introduction
+
+        Inheritance
+        Dependence
+
+    Properties
+
+        DigestLength
+
+    Methods
+
+        Fetch
+        Write
+        Reset
+
+    Examples
+
+List of Examples
+
+3.1. Encoding an Ethernet Header
+3.2. Decoding an Ethernet Header
+5.1. Interface Enumeration on Linux
+5.2. Interface Enumeration on Windows
+5.3. Enumerate Host Interfaces
+5.4. Enumerate Host Interfaces Using Class Methods
+6.1. Print ointerface properties on stdout
+9.1. Computing an SHA256 Digest
+
+Chapter 1.  Class oascii
+
+Table of Contents
+
+Introduction
+
+    Inheritance
+    Dependence
+
+Properties
+Methods
+
+    isalpha
+    isalnum
+    isblank
+    isbreak
+    iscntrl
+    isdigit
+    isgraph
+    isident
+    islower
+    isprint
+    ospunct
+    isquote
+    isspace
+    isupper
+    isxdigit
+    nmtoken
+    nobreak
+    tolower
+    tocntrl
+    todigit
+    toupper
+
+Introduction
+
+This class implements a collection of character classification and conversion
+methods. Anyone who is already familiar with Standard C Library ctype macros
+and function will feel comfortable using this class. There are also several
+useful non-standard methods, as well, such as isbreak, isident, nmtoken and
+todigit.
+
+This class is declared in oascii.hpp and defined in oascii.cpp.
+
+Inheritance
+
+None.
+
+Dependence
+
+None.
+
+Properties
+
+None.
+
+Methods
+
+isalpha
+
+bool oascii::isalpha (signed c);
+
+Return true if character c is a letter. This is the logical union of lower case
+and uppercase letters.
+
+isalnum
+
+bool oascii::alnum (signed c);
+
+Return true if character c is a letter or digit. This is the logical union of
+alphabetic and numeric characters. Use this method to detect the start and end
+of names.
+
+isblank
+
+bool oascii::isblank (signed c);
+
+Return true if character c is a space or horizontal tab. This is a subset of
+white space characters. Use this method to distinguish word breaks from generic
+white space.
+
+isbreak
+
+bool oascii::isbreak (signed c);
+
+Return true if character c is newline, NUL or EOF. This not a standard
+character classifiction function. Use this method to distinguish line breaks
+from generic white space.
+
+iscntrl
+
+bool oascii::iscntrl (signed c);
+
+Return true if character c is a control character.
+
+isdigit
+
+bool oascii::isdigit (signed c);
+
+Return true if character c is numeric. Use this method to detect the start and
+end of numberic values.
+
+isgraph
+
+bool oascii::isgraph (signed c);
+
+Return true if character c is a graphic character. Graphic characters leave a
+mark on the page. They are a subset of printable characters.
+
+isident
+
+bool oascii::isident (signed c);
+
+Return true if character c is permitted within an identifier. An identifier, in
+this context, includes alphanumeric characters plus underscores and dollar
+signs. This is not a standard character classification function. Use this
+method to detect the start and end of computer language identifiers.
+
+islower
+
+bool oascii::islower (signed c);
+
+Return true if character c is a lowercase letter.
+
+isprint
+
+bool oascii::isprint (signed c);
+
+Return true if character c is a printable character.
+
+ospunct
+
+bool oascii::ispunct (signed c);
+
+Return true if character c is punctuation. Punctuation is any character that is
+not a letter or digit or space or control character.
+
+isquote
+
+bool oascii::isquote (signed c);
+
+Return true if character c is either a quote or an apostrophe. This is not a
+standard character classification function.
+
+isspace
+
+bool oascii::isspace (signed c);
+
+Return true if character c is a space, horizontal tab, vertical tab, formfeed
+or carriage return.
+
+isupper
+
+bool oascii::isupper (signed c);
+
+Return true if character c is an uppercase letter.
+
+isxdigit
+
+bool oascii::isxdigit (signed c);
+
+Return true if character c is a hexadecimal digit.
+
+nmtoken
+
+bool oascii::nmtoken (signed c);
+
+Return true if character c is permitted within an nmtoken. An nmtoken (as
+defined by the World Wide Web Consortium) is an identifier consisting of
+alphanumeric characters, underscores, hyphens, periods and semicolons. This is
+not a standard character classification function.
+
+nobreak
+
+bool oascii::nobreak (signed c);
+
+Return true if character c is not newline, NUL or EOF. This not a standard
+character classifiction function. Use this method to distinguish line breaks
+from generic white space.
+
+tolower
+
+signed oascii::tolower (signed c);
+
+Return uppercase equivalent of character c if it is an uppercase letter;
+otherwise, return character c.
+
+tocntrl
+
+signed oascii::tocntrl (signed c);
+
+Return the ASCII equivalent of a character. Use this method to convert terminal
+control codes to control characters. For example, the character sequence “^M”
+means a carriage return and so this method will return a carriage return when
+given 'M' as the argument.
+
+todigit
+
+signed oascii::todigit (signed c);
+
+Return the integer equivalent of character c in base[36] notation.
+
+toupper
+
+signed oascii::toupper (signed c);
+
+Return uppercase equivalent of character c if it is an lower case letter;
+otherwise, return character c.
+
+Chapter 2.  Class oerror
+
+Table of Contents
+
+Introduction
+
+    Inheritance
+    Dependence
+
+Properties
+Methods
+
+    error
+
+Introduction
+
+This class implements a standard means of displaying system error messages.
+Class methods may be replaced or adapted to support either a console or a
+windowing environment.
+
+This class is declared in oerror.hpp and defined in oerror.cpp.
+
+Inheritance
+
+None.
+
+Dependence
+
+This references header file types.h to define data type “errno_t”.
+
+This classes references external character string program_name which must be
+defined and initialized somewhere in the environment. The simplest method is to
+define a global constant character pointer to the basename of argv[0] in
+function main().
+
+Properties
+
+None.
+
+Methods
+
+error
+
+oerror & oerror::error ( signed    status,
+                         errno_t   number,
+                         errno_t   format,
+                                   ...);
+
+Print an error message on stderr and optionally terminate the program. The
+message consists of the program name, system error message and a program error
+message. This method behaves the same as the GNU/Linux™ error function.
+
+status
+
+    The program exit status. if status is 0 then this method will return to the
+    caller after printing an error message. Otherwise, the program will exit
+    with this value after printing the message.
+
+errno
+
+    The error code. This is normally the value of global variable errno set by
+    system functions to indicate the cause of an error condition. If argument
+    number is 0 then no system error message is printed. Otherwise, the system
+    error message will appear
+
+format
+
+    The format string. The content is the same as required by standard library
+    function printf().
+
+...
+
+    A variable length argument list. On GNU/Linux™ systems, the gcc compiler
+    checks to ensure the number and type of each argument actually match the
+    corresponding format string specification.
+
+Chapter 3.  Class oethernet
+
+Table of Contents
+
+Introduction
+
+    Inheritance
+    Dependence
+
+Properties
+
+    BroadcastAddress
+    HeaderLength
+    HostAddress
+    HostAddressString
+    PeerAddress
+    PeerAddressString
+    Protocol
+    ProtocolString
+
+Methods
+
+    ExportHeader
+    ExportHostAddress
+    ExportPeerAddress
+    ExportProtocol
+    ImportHeader
+    ImportHostAddress
+    ImportPeerAddress
+    ImportProtocol
+    Print
+    SetProtocol
+
+Constructors
+Examples
+
+Introduction
+
+This class implements an Ethernet header encoder/decoder. When instantiated, it
+provides access to Ethernet header source, destination and protocol fields in
+binary and string format. Class methods may be used to encode/decode or import/
+export a complete Ethernet header or individual header fields that are stored
+in external memory in network byte order.
+
+Encode and export methods write class properties to external memory in network
+byte order. Decode and import methods read class properties from external
+memory in network byte order. Encode and decode methods always return the next
+unencoded or undecoded memory byte. Import and Export methods always return the
+object instance reference allowing class methods to be chained.
+
+The Protocol property and SetProtocol method perform implicit integer
+host-to-network and network-to-host byte ordering.
+
+This class is declared in oethernet.hpp and defined in oethernet.cpp.
+
+Inheritance
+
+None.
+
+Dependence
+
+This class references static class omemory to manipulate memory.
+
+This class references Ethernet related constants defined in header file net/
+ethernet.h which should be available on most systems. An abridged version is
+provided in VisualStudioNET/include/net/ethernet.h for systems that may not
+have it.
+
+Properties
+
+BroadcastAddress
+
+const uint8_t * BroadcastAddress ();
+
+Return the standard Ethernet broadcast address as a constant 48-bit integer in
+network byte order. The value is FF:FF:FF:FF:FF:FF and the length is
+ETHER_ADDR_LEN bytes. Although shown here as a property, this is implemented as
+a constant. Parentheses are omitted when referencing it.
+
+HeaderLength
+
+unsigned HeaderLength (void);
+
+Return the Ethernet header length in bytes. The header length is the sum of the
+Ethernet PeerAddress, HostAddress and Protocol lengths. For practical purposes,
+this property is a constant but should the VLAN tag be added then the length
+will change. Use this property to allocate buffer space in application
+programs.
+
+HostAddress
+
+const uint8_t * HostAddress (void);
+
+Return the host hardware address as a byte array in network byte order. The
+length is ETHER_ADDR_LEN bytes. The host hardware address is the same as the
+OSA field described in the HomePlug AV Specification and Firmware Technical
+Reference Manual. On instantiation, this property contains zeros.
+
+HostAddressString
+
+const char * HostAddressString (void);
+
+Return the host hardware address as a string. The length is ETHER_ADDR_LEN*3
+characters long including the NUL terminator. It may be used anywhere a NUL
+terminated string is expected. The string is formatted as a colon-separated,
+hexadecimal octets, as in “00:B0:52:BA:BE:15”.
+
+PeerAddress
+
+const uint8_t * PeerAddress (void);
+
+Return the peer hardware address as a byte array in network byte order. The
+length is in ETHER_ADDR_LEN bytes. The peer hardware address is the same as the
+ODA field described in the HomePlug AV Specification and Firmware Technical
+Reference Manual. On instantiation, this property contains zeros.
+
+PeerAddressString
+
+const char * PeerAddressString (void);
+
+Return the peer address as a string. The length is ETHER_ADDR_LEN*3 characters
+long including the NUL terminator. It may be used anywhere a NUL terminated
+string is expected. The string is formatted as a colon-separated, hexadecimal
+octets, as in “00:B0:52:DE:AD:99”.
+
+Protocol
+
+uint16_t Protocol (void);
+
+Return the Ethernet protocol as a 16-bit integer in host byte order. The
+Ethernet protocol is the same as the MTYPE field described in the HomePlug AV
+Specification and Firmware Technical Reference Manual. On instantiation, this
+property is 0x0000.
+
+ProtocolString
+
+char const * ProtocolString (void);
+
+Return the Ethernet protocol as a string. The length is ETHER_TYPE_LEN*3
+characters long including the NUL terminator. It is formatted as
+colon-seperated, hexadecimal octets, as in 88:E1.
+
+Methods
+
+ExportHeader
+
+void * ExportHeader (void * memory);
+
+Encode external memory with an Ethernet header and return the address of the
+next unencoded memory byte. No length argument is required. The number of bytes
+encoded will be HeaderLength. The memory address is incremented by that amount
+and returned as the method value for use in subsequent export operations. The
+encoded header will include the PeerAddress, HostAddress and Protocol. Instance
+properties are not modified by this operation.
+
+ExportHostAddress
+
+void * EncodeHostAddress (void * memory);
+
+Copy the host hardware address to external memory in binary format. Return the
+address of the next uncopied memory byte. No length argument is required. The
+host hardware address is ETHER_ADDR_LEN bytes. The memory address is
+incremented by that amount and returned as the method value for use in
+subsequent export operations.
+
+ExportPeerAddress
+
+void * ExportPeerAddress (void * memory);
+
+Copy the peer hardware address to external memory in binary format. Return the
+address of the next uncopied memory byte. No length argument is required. The
+peer hardware address is ETHER_ADDR_LEN bytes. The memory address is
+incremented by that amount and returned as the method value for use in
+subsequent export operations.
+
+ExportProtocol
+
+void * ExportProtocol (void * memory);
+
+Copy the Ethernet protocol to external memory in network byte order. Return the
+address of the next uncopied byte. No length argument is required. The Ethernet
+protocol is ETHER_TYPE_LEN bytes. The memory address is incremented by that
+amount and returned as the method value for use in subsequent export
+operations.
+
+ImportHeader
+
+void const * ImportHeader ( void const *   memory);
+
+Decode external memory containing an Ethernet header. Return the address of the
+next undecoded memory byte. No length argument is needed. The number of bytes
+decoded will be HeaderLength. The memory address is incremented by that amount
+and returned as the method value for use in subsequent import operations.
+External memory is unpacked and stored in the PeerAddress, HostAddress and
+Protocol properties. External memory is not modified by this operation.
+
+ImportHostAddress
+
+void const * ImportHostAddress ( void const *   memory);
+
+Copy the host hardware address from external memory in binary format. Return
+the address of the next uncopied memory byte. No length argument is needed. The
+host hardware address is ETHER_ADDR_LEN bytes. The memory address is
+incremented by that amount and returned as the method value for use in
+subsequent import operations.
+
+ImportPeerAddress
+
+void const * ImportPeerAddress ( void const *   memory);
+
+Copy the peer hardware address from external memory in binary format. Return
+the address of the next uncopied memory byte. No length argument is required.
+The host hardware address is ETHER_ADDR_LEN bytes. The memory address is
+incremented by that amount and returned as the method value for use in
+subsequent import operations.
+
+ImportProtocol
+
+void const * ImportProtocol (void * memory);
+
+Copy the Ethernet protocol from external memory in binary format. Return the
+address of the next uncopied memory byte. No length argument is required. The
+Ethernet protocol is ETHER_TYPE_LEN bytes. The memory address is incremented by
+that amount and returned as the method value for use in subsequent import
+operations.
+
+Print
+
+oethernet & Print (void);
+
+Print the Ethernet header on stdout in human-friendly format.
+
+SetProtocol
+
+oethernet & SetProtocol (uint16_t protocol);
+
+Specify the Ethernet protocol as an integer in host byte order. The protocol is
+stored internally in network byte order.
+
+Constructors
+
+oethernet (void);
+
+Initialize all properties to 0.
+
+oethernet (uint16_t protocol);
+
+Initialize the PeerAddress and HostAddress properties to 0 and the Protocol
+property to protocol.
+
+Examples
+
+There are several ways to use this class. One way is to set class properties
+and then export them to external memory. The other way is to import class
+properties from external memory and inspect them.
+
+Example 3.1.  Encoding an Ethernet Header
+
+oethernet header;
+byte hostaddress [] = { 0x00, 0xC7, 0x43, 0xDE, 0xAD, 0x02 }
+byte framebuffer [ETHER_MAX_LEN];
+byte framepointer;
+header.ImportHostAddress (oethernet::BroadcastAddress);
+header.ImportPeerAddress (hostaddress);
+framepointer = header.ExportHeader (framebuffer);
+
+This example instantiates an oethernet header and allocates a hostaddress
+buffer and an empty Ethernet framebuffer. It then invokes the class
+ImportHostAddress method to copy class constant Broadcast into the header
+source address property and the ImportPeerAddress method to copy the
+hostaddress value into the header destination address property. Finally, it
+invokes the ExportHeader method to encode the framebuffer with a complete
+Ethernet header. The framepointer now points to the next unencode framebuffer
+address which is the start of the Ethernet frame body.
+
+
+Example 3.2.  Decoding an Ethernet Header
+
+oethernet header;
+byte framebuffer [ETHER_MAX_LEN];
+...
+(fill the frame buffer with a valid Ethernet frame)
+...
+header.Print ();
+header.ImportHeader (framebuffer);
+header.Print();
+
+This example instantiates an oethernet header and allocates a framebuffer.
+Assuming that framebuffer contains a valid Ethernet frame from somewhere, it
+invokes the class Print method to print the contents of header then invokes the
+ImportHeader methoc to load the header portion of framebuffer in framebuffer
+then invokes the Print method again. This gives us a “before” and “after”
+picture of header content which illustrates frame decode functionality.
+
+
+Chapter 4.  Class oflagword
+
+Table of Contents
+
+Introduction
+
+    Inheritance
+    Dependence
+
+Properties
+Methods
+
+    allclear
+    allset
+    anyclear
+    anyset
+    clearbits
+    getbits
+    getword
+    setbits
+    setword
+
+Constructors
+
+Introduction
+
+A generic bit-mapped state variable.
+
+This class is declared in oflagword.hpp and defined in oflagword.cpp.
+
+Inheritance
+
+None.
+
+Dependence
+
+None.
+
+Properties
+
+None.
+
+Methods
+
+allclear
+
+bool allclear (unsigned bits);
+
+Return true if the logical product of the flagword and bits argument is 0. This
+indicates that the flagword has no bits of interest set.
+
+allset
+
+bool allset (unsigned bits);
+
+Return true if the logical product of the flagword and bits argument matches
+the bits argument. This indicates that the flagword has all bits of interest
+set.
+
+anyclear
+
+bool anyclear (unsigned bits);
+
+Return true if the logical product of the flagword and bits argument does not
+match the bits argument. This indicates that the flagword has some, or possibly
+all, bits of interest clear.
+
+anyset
+
+bool anyset (unsigned bits);
+
+Return true if the logical product of the flagword and bits argument is not 0.
+This indicates that the flagword has some, or possibly all, bits of interest
+set.
+
+clearbits
+
+oflagword & clearbits (unsigned bits);
+
+Clear selected flagword bits. Argument bits indicates which bits to clear. The
+flagword becomes the logical sum of the flagword and argument bits.
+
+getbits
+
+unsigned getbits (unsigned bits);
+
+Return selected flagword bits. Argument bits indicates which bits to return.
+The return value is the logical product of the flagword and argument bits.
+
+getword
+
+unsigned getword (void);
+
+Return the flagword as an unsigned integer. This is equivalent to “getbits (-1)
+”.
+
+setbits
+
+oflagword & setbits (unsigned bits);
+
+Set selected flagword bits. Argument bits indicates which bits to set. The
+flagword becomes the logical product of the flagword and argument bits.
+
+setword
+
+oflagword & setword (unsigned bits);
+
+Replace flagword with argument bits.
+
+Constructors
+
+oflagword (void);
+
+Initialize flagword to 0.
+
+oflagword (unsigned bits);
+
+Initialize flagword to bits.
+
+Chapter 5.  Class ointerfaces
+
+Table of Contents
+
+Introduction
+
+    Inheritance
+    Dependence
+
+Properties
+
+    Count
+    Empty
+    End
+    Index
+    Interface
+    Selected
+
+Methods
+
+    Enumerate
+    Select
+    SelectFirst
+    SelectFinal
+    SelectNext
+    SelectPrev
+
+Operators
+
+    operator []
+    operator =
+
+Constructors
+Examples
+
+Introduction
+
+This class implements a collection of host Ethernet interfaces. Class
+properties, methods and operators are used to iterate through the collection
+and obtain copies of individual interface instances. Interface instances are
+implemented using the ointerface class.
+
+This class is designed to be platform independent. Presently, it supports
+Microsoft Windows™, Apple Mac OSX™ and Linux. The principle benefit of this
+class is the simplicity. Applications instantiate it then iterate through it.
+All member interfaces are valid and interface details are directly accessible.
+
+This class is declared in ointerfaces.hpp and implemented in ointerfaces.cpp.
+
+Inheritance
+
+None.
+
+Dependence
+
+This class depends on static class oerror.
+
+Properties
+
+Count
+
+unsigned Count (void);
+
+Return the number of host interfaces detected on this computer. This property
+does not change over the instance lifetime and is he upper bound when iterating
+through collection interfaces.
+
+Empty
+
+bool Empty (void);
+
+Return logical true if the collection is empty. The collection is empty only if
+the Count property is 0.
+
+End
+
+bool End (void);
+
+Return logical true if the collection is exhausted. The collection is exhausted
+if the Index property equals or exceeds the Count property.
+
+Index
+
+unsigned Index (void);
+
+Return the index of the selected interface. The index ranges from 0 up to (but
+excluding) the value the Count property. Class methods and operators may be
+used to alter the value of this property.
+
+This property should not be confused with the ointerface::Index property
+assigned by the operating system.
+
+Interface
+
+ointerface & Interface (void);
+
+Return the selected ointerface object instance. This property is the same as
+the Selected property.
+
+Selected
+
+ointerface & Selected (void);
+
+Return the selected ointerface object instance. The selected instance is
+determined by the Index property. All ointerface class constants, properties,
+methods and operators are available to the application through this instance.
+
+Methods
+
+Enumerate
+
+ointerface & Enumerate (void);
+
+Prints the Index, HardwareAddress, InternetAddress, Name and Description for
+each available interface on stdout. This method is provided for convenience and
+debugging purposes. Application developers may prefer to iterate through the
+available devices using the other class methods and print only those properties
+of interest to them.
+
+Example 5.1.  Interface Enumeration on Linux
+
+0 00:00:00:00:00:00 127.000.000.001 lo lo
+1 00:50:04:A5:D8:98 192.168.099.003 eth4 eth4
+2 00:0F:EA:4B:98:CB 192.168.170.179 eth3 eth3
+
+
+Example 5.2.  Interface Enumeration on Windows
+
+0 00:00:00:00:00:00 000.000.000.000 \Device\NPF_GenericDialupAdapter Adapter for generic dialup and VPN capture
+1 00:0E:2E:03:5F:B8 192.168.099.033 \Device\NPF_{4CFAABD5-C929-4942-914B-BDFE72B13611} Realtek RTL8139 Family Fast Eth
+2 00:C0:49:D5:CB:14 102.168.199.005 \Device\NPF_{73E0D2EF-6069-4831-B379-507025F2BDCD} Realtek RTL8139 Family Fast Eth
+3 00:0C:76:87:3E:3D 192.168.200.001 \Device\NPF_{86B96905-3AA7-46F1-969A-6C23E3BBBA8B} Broadcom NetXtreme Gigabit Ethe
+
+
+Select
+
+ointerfaces & Select (unsigned index);
+
+Select an interface by index. This sets the Index property and determines the
+ointerface interface will be returned by the Selected and Interface properties.
+
+Remember that the index argument used here is not the same as the
+ointerface::Index property of the selected interface.
+
+SelectFirst
+
+ointerfaces & SelectFirst (void);
+
+Set the Index property to 0.
+
+SelectFinal
+
+ointerfaces & SelectFinal (void);
+
+Set the Index property to one less than the Count property.
+
+SelectNext
+
+ointerfaces & SelectNext (void);
+
+Increment the Index property if it is less than the Count property.
+
+SelectPrev
+
+ointerfaces & SelectPrev (void);
+
+Decrement the Index property if it is greater than 0.
+
+Operators
+
+operator []
+
+ointerface & operator [] (unsigned index);
+
+Select a host interface and return an instance of it. This operator has the
+same effect as calling the Select method with index then reading either the
+Selected or the Interface property.
+
+operator =
+
+ointerfaces & operator = (unsigned index);
+
+Select a host interface by interface index. This operator has the same effect
+as the Select method with index.
+
+Constructors
+
+ointerfaces ();
+
+Instantiate a collection of host interfaces. No arguments are required. Class
+properties and methods are used to iterate through the collection obtain copies
+of individual host interfaces.
+
+Examples
+
+Example 5.3.  Enumerate Host Interfaces
+
+The following example instantiates the ointerfaces class and prints information
+about each host interface on stdout using the Enumerate method. Several code
+variations are shown.
+
+ointerfaces interfaces;
+interfaces.Enumerate();
+
+The output might look something like this depending on the operating system and
+the available host interfaces:
+
+0 00:00:00:00:00:00 127.000.000.001 lo lo
+1 00:50:04:A5:D8:98 192.168.099.001 eth4 eth4
+2 00:0F:EA:4B:98:CB 192.168.170.179 eth3 eth3
+
+
+Example 5.4.  Enumerate Host Interfaces Using Class Methods
+
+The next example does the same thing as the first example but uses class
+methods to iterate through the host interfaces and print interface properties
+in the desired order or format.
+
+for (interfaces.SelectFirst (); interfaces.Index () < interfaces.Count (); interfaces.SelectNext ())
+{
+        ointerface ifp = interfaces.Selected ();
+        std::cout << "index=" << ifp.Index () << std::endl;
+        std::cout << "hwaddr=" << ifp.HardwareAddressString () << std::endl;
+        std::cout << "ipaddr=" << ifp.InternetAddressString () << std::endl;
+        std::cout << "name=" << ifp.Name () << std::endl;
+        std::cout << "text=" << ifp.Text () << std::endl;
+        std::cout << std::endl;
+}
+
+The output would look something like this:
+
+Enumerate interfaces (again)
+index=0
+hwaddr=00:00:00:00:00:00
+ipaddr=127.000.000.001
+name=lo
+text=lo
+
+index=1
+hwaddr=00:50:04:A5:D8:98
+ipaddr=192.168.099.001
+name=eth4
+text=eth4
+
+index=2
+hwaddr=00:0F:EA:4B:98:CB
+ipaddr=192.168.170.179
+name=eth3
+text=eth3
+
+
+Chapter 6.  Class ointerface
+
+Table of Contents
+
+Introduction
+
+    Inheritance
+    Dependence
+
+Properties
+
+    Description
+    Index
+    Name
+    HardwareAddress
+    HardwareAddressString
+    InternetAddress
+    InternetAddressString
+
+Methods
+
+    ExportHardwareAddress
+    ExportInternetAddress
+    Print
+    SetDescription
+
+Constructors
+
+Introduction
+
+This class stores information about a named host Ethernet interface.
+Instantiating it with either the interface index or the interface name causes
+it to collect the remaining information about the interfaces and make it
+available to your application. Once instantiated, you can access the interface
+Index, Name, Description, HardwareAddress and InternetAddress properties.
+
+This class is declared in ointerface.hpp and defined in ointerface.cpp.
+Application developers can access a collection of ointerface objects via the
+ointerfaces class.
+
+Inheritance
+
+None.
+
+Dependence
+
+This class depends on static classes omemory and oerror.
+
+This class references interface adapter related constants defined in header
+file net/if.h which should be available on most systems. An abridged version is
+provided in VisualStudioNET/include/net/if.h for systems that may not have it.
+
+This class references Ethernet related constants defined in header file net/
+ethernet.h which should be available on most systems. An abridged version is
+provided in VisualStudioNET/include/net/ethernet.h for systems that may not
+have it.
+
+Properties
+
+Description
+
+char const * Description (void);
+
+Return the interface description string. On Linux, this property defaults to
+the interface Name property. On Windows, this property contains the hardware
+manufacturer name string, such as “Realtek RTL83 Ethernet Adapter (Microsoft
+Packet Scheduler)”. On instantiation, this property contains an empty string.
+
+Index
+
+unsigned Index (void);
+
+Return the interface index. This is the number assigned to the interface by the
+operating system when it was discovered. It should not be confused with the
+ointerfaces::Index property. An index of 0 indicates that the interface is
+invalid. On instantiation, this property contains 0.
+
+Name
+
+char const * Name (void);
+
+Return the interface name string. On Linux, name strings are short, as in
+“eth0”, and do exceed IF_NAMESIZE characters. On Windows, name strings are
+longer, as in “\Device\NPF_{4CFAABD5-C929-4942-914B-BDFE72B13611}”, but do not
+exceed 255 characters. On instantiation, this property contains an empty
+string.
+
+HardwareAddress
+
+uint8_t const * HardwareAddress (void);
+
+Return the location of the interface hardware address. The hardware address is
+ETHER_ADDR_LEN binary bytes long. The hardware address is the same as the
+physical address, Ethernet address and MAC address.The hardware address
+location remains valid for the life of the object but the content may change if
+the Index or Name property changes. On instantiation, this property contains
+zeros.
+
+HardwareAddressString
+
+char const * HardwareAddressString (void);
+
+Return the location of the interface hardware address as a string. The string
+is 18 characters long including the NUL terminator, as in “00:B0:52:BA:BE:01”.
+This property may be used anywhere that a NUL terminated string is permitted.
+The string address remains valid for the life of the object but the content may
+change if the Index or Name property is changed.
+
+InternetAddress
+
+uint8_t const * InternetAddress (void);
+
+Return the location of the interface internet address. The internet address is
+4 binary bytes long. The internet address is the same as the IPv4 address. The
+internet address location remains valid for the life of the object but the
+content may change if the Index or Name property is changed. On instantiation,
+this property contains zeros.
+
+InternetAddressString
+
+char const * InternetAddressString (void);
+
+Return the location of the interface internet address string. The string is 16
+characters long including the NUL terminator, as in “192.168.099.001”. This
+property may be used anywhere that a NUL terminated string is permitted. The
+string address remains valid for the life of the object but the content may
+change if the Index or Name property changes.
+
+Methods
+
+ExportHardwareAddress
+
+ointerface & ExportHardwareAddress ( void *   memory);
+
+Copy the interface hardware address to external memory in binary format. The
+hardware address is ETHER_ADDR_LEN bytes so length argument is needed.
+
+ExportInternetAddress
+
+ointerface & ExportInternetAddress ( void *   memory);
+
+Copy the interface internet address to external memory in binary format. The
+internet address is 4 bytes so length argument is needed.
+
+Print
+
+ointerface & Print (void);
+
+Print instance properties on stdout in human-readable format. Output conisists
+of the index, hardware address string, internet address string, name and
+description properties, in that order.
+
+Example 6.1.  Print ointerface properties on stdout
+
+2 00:0F:EA:4B:98:CB 192.168.170.179 eth3 eth3
+
+This is typical output on a Linux™ or Mac OSX™ system. The device name (field
+4) is short and the description (field 5) is the same as the device name.
+
+1 00:0E:2E:03:5F:B8 192.168.099.033 \Device\NPF_{4CFAABD5-C929-4942-914B-BDFE72B13611} Realtek RTL8139 Family Fast Eth
+
+This is typical output on a Microsoft Windows™ system. The device name (field
+4) is long and the description (field 5) is not the same as device name.
+
+
+SetDescription
+
+ointerface & SetDescription ( char const *   string);
+
+Copy the interface text description from external memory. The string argument
+is truncated to 255 characters. The text description will change whenever the
+Index or Name properties change but changing the text description change the
+other properties.
+
+Constructors
+
+This class must be instantiated using either an interface number or interface
+name.
+
+ointerface (unsigned index);
+
+Instantiate the class as the numbered interface. Terminate the program if the
+numbered interface does not exist.
+
+ointerface (char const * name);
+
+Instantiate the class as the named interface. Terminate the program if the
+named interfaces does not exist.
+
+Chapter 7.  Class onumber
+
+Table of Contents
+
+Introduction
+
+    Inheritance
+    Dependence
+
+Constants
+Properties
+Methods
+
+    basespec
+    uintspec
+    ipv4spec
+    ipv6spec
+
+Introduction
+
+This class implements various types of numeric string conversions. Class
+methods basespec and uintspec perform numeric string conversions. Class methods
+ipv4spec and ipv6spec perform internet address string conversions. The class
+header file defines numeric string conversion constants that may be referenced
+by other classes. Such classes may merely include this header file to obtain
+these constant definitions.
+
+This class is declared in onumber.hpp and defined in onumber.cpp.
+
+Inheritance
+
+None.
+
+Dependence
+
+This class depends on classes oascii and oerror. It also needs custom header
+file types.h to define custom data type “huge_t”.
+
+Constants
+
+RADIX_BIN
+
+    Radix for string-to-binary and binary-to-string conversion. Value is 2.
+
+RADIX_OCT
+
+    Radix for string-to-octal and octal-to-string conversion. Value is 8.
+
+RADIX_DEC
+
+    Radix for string-to-decimal and decimal-to-string conversion. Value is 10.
+
+RADIX_HEX
+
+    Radix for string-to-hexadecimal and hexadecimal-to-string conversion. Value
+    is 16.
+
+BIN_DIGITS
+
+    The maximum number of binary digits needed to represent one octet. Value is
+    8.
+
+OCT_DIGITS
+
+    The maximum number of octal digits needed to represent one octet. Value is
+    3.
+
+DEC_DIGITS
+
+    The maximum number of decimal digits needed to represent one octer. Value
+    is 3.
+
+HEX_DIGITS
+
+    The maximum number of hexadecimal digits needed to represent one octet.
+    Value is 2.
+
+BIN_EXTENDER
+
+    The character used to separate binary octets. Value is '-' or hyphen.
+
+DEC_EXTENDER
+
+    The character used to separate decimal octets. Value is '.' or period.
+
+HEX_EXTENDER
+
+    The character used to separate decimal octets. Value is ':' or colon.
+
+IPv4_SIZE
+
+    The size of a binary IPv4 address in bytes. Value is 4.
+
+IPv6_SIZE
+
+    The size of a binary IPv6 address in bytes. Value is 16.
+
+Properties
+
+None.
+
+Methods
+
+basespec
+
+huge_t onumber::basespec ( const char *   string,
+                           unsigned       base,
+                           unsigned       size);
+
+Return the unsigned integer equivalent of a character string. The base argument
+determines the number base to be used for conversion. If base is 0 the number
+base is determined by the string prefix where “0b” or “0B” means binary format,
+no prefix or “od” or “0D” means decimal format and “0x” or “0X” means
+hexadecimal format. Otherwise, the string must conform to the specified number
+base with, or without, an appropriate prefix. The size argument is the maximum
+number of bits permitted in the resulting integer. This method is useful for
+converting strings to integers of unusual size.
+
+uintspec
+
+huge_t onumber::uintspec ( const char *   string,
+                           huge_t         minimum,
+                           huge_t         maximum);
+
+Return the unsigned interger equivalent of a character string. An error occurs
+if the integer value exceeds the specified maximum or minimum value. Errors are
+handled by the inherited oerror class.
+
+ipv4spec
+
+size_t onumber::ipv4spec ( const char *   string,
+                           void *         memory);
+
+Encode external memory with the binary equivalent of a variable-length IPv4
+dotted-decimal string and return the number of bytes encoded.
+
+ipv6spec
+
+size_t onumber::ipv6 ( const char *   string,
+                       void *         memory);
+
+Encode external memory with the binary equivalent of a variable-length IPv6
+hexadecimal string and return the number of bytes encoded.
+
+Chapter 8.  Class omemory
+
+Table of Contents
+
+Introduction
+
+    Inheritance
+    Dependencies
+
+Methods
+
+    bindecode
+    binout
+    binstring
+    checksum32
+    checksum32
+    decdecode
+    decode
+    decstring
+    decout
+    encode
+    endian
+    hexdecode
+    hexdump
+    hexencode
+    hexin
+    hexout
+    hexstring
+    hexview
+    memdecr
+    memincr
+    memtext
+    serial
+    strdecr
+    strincr
+    swap
+
+Introduction
+
+This class is a memory manipulation Easter basket. Class methods copy, reorder,
+increment, decrement, encode and decode variable-length memory regions on a
+byte level.
+
+It is declared in omemory.hpp and implemented in omemory.cpp.
+
+Inheritance
+
+None.
+
+Dependencies
+
+This class depends on static class oerror to report errors.
+
+This class needs header file stdint.h for the definition of POSIX data types
+uint8_t, uint16_t and uint32_t. An abridged version of this file is provided in
+VisualStudioNET/include/stdint.h for systems that do not have it.
+
+Methods
+
+bindecode
+
+signed bindecode ( void *       memory,
+                   size_t       extent,
+                   char const   buffer [],
+                   size_t       length);
+
+Decode a memory region as a string of ASCII binary digits. Convert memory until
+the buffer or memory exhausts and return the string length. Allow 9 buffer
+characters for each memory byte to ensure that the entire region is decoded. If
+buffer is less than 9 characters nothing will be decoded. The number of bytes
+decoded will be the lesser of extent or length divided by 9.
+
+binout
+
+void binout ( void const *   memory,
+              size_t         extent,
+              char           c,
+              FILE *         fp);
+
+Print a memory region as a series of binary octets separated by character c.
+Normally, character c will be BIN_EXTENDER, as defined in file onumber.hpp, but
+it could be any character value. For example, specifying c as '-' and extent as
+4 would produce output looking something like
+"10101010-1111111-00000000-11001100" where each octet is expressed as a binary
+integer. A typical use might be to print a register in readable format.
+
+binstring
+
+char * binstring ( char           buffer [],
+                   size_t         length,
+                   void const *   memory,
+                   size_t         extent);
+
+Convert a memory region to a NUL terminated string if ASCII binary digits and
+return the string address. This method is similar to method bindecode but the
+argument order in different and it returns the string address instead of the
+number of characters decoded.
+
+checksum32
+
+uint16_t checksum32 ( const void *   memory,
+                      size_t         extent,
+                      uint16_t       checksum);
+
+Return the 16-bit checksum of a memory region. The checksum is the one's
+complement of the XOR of all 16-bit words in the region. Argument extent is the
+region size in bytes and is rounded down to the neares multiple of two bytes.
+This method will return the computed checksum when argument checksum is 0 and
+return 0 when argument checksum matches the computed checksum.
+
+checksum32
+
+uint32_t checksum32 ( const void *   memory,
+                      size_t         extent,
+                      uint32_t       checksum);
+
+Return the 32-bit checksum of a memory region. The checksum is the one's
+complement of the XOR of all 32-bit words in the region. Argument length is the
+region size in bytes and is rounded down to the nearest multiple of four bytes.
+This method will return the computed checksum when argument checksum is 0 and
+return 0 when argument checksum matches the computed checksum. A typical use is
+.pib and .nvm file checksum computation or validation.
+
+decdecode
+
+signed decdecode ( void *       memory,
+                   size_t       extent,
+                   char const   buffer [],
+                   size_t       length);
+
+Decode a memory region as a NUL terminated string of ASCII decimal digits.
+Convert memory until the buffer or memory exhausts then return the string
+length. Allow 4 buffer characters for each memory byte to ensure that the
+entire region is decoded. If buffer is less than 4 characters nothing will be
+decoded. The number of bytes decoded will be the lesser of extent or length
+divided by 4.
+
+decode
+
+void const * decode ( void const *   memory,
+                      void *         target,
+                      size_t         extent);
+
+Copy a memory region to some target location and return the address of the next
+uncopied memory byte. The memory address is incremented by the region extent
+and returned as the method value. This method is similar to the encode method
+except for the direction of copy. This method may be used to sequentially
+unpack buffer fields into diverse memory locations.
+
+decstring
+
+char * decstring ( char           buffer [],
+                   size_t         length,
+                   void const *   memory,
+                   size_t         extent);
+
+Convert a memory region to a NUL terminated string and return the string
+address. This method is similar to method decdecode but the arguments are in
+different order and it returns the string address instead of the number of
+characters decoded.
+
+decout
+
+void decout ( void const *   memory,
+              size_t         extent,
+              char           c,
+              FILE *         fp);
+
+Print a memory region as a series of decimal octets separated by character c.
+Normally, character c will be DEC_EXTENDER, defined in file onumber.hpp, but it
+could be any character value. For example, specifying c as '.' and extent as 4
+would produce output looking something like "192.168.099.001" where each octet
+is expressed as a decimal integer. A typical use might be to print an IP or MAC
+address in readable format.
+
+encode
+
+void * encode ( void *         memory,
+                void const *   source,
+                size_t         extent);
+
+Copy a memory region from some source location and return the address of the
+next uncopied memory byte. The memory address is incremented by the region
+extent and returned as the method value. This method is similar to the decode
+method except for the direction of copy. This method can be used to
+sequentially pack buffer fields with data from diverse memory locations.
+
+endian
+
+void endian (void * memory, size_t extent);
+
+Reverse the byte order of a memory region. It is a variable-length version of
+methods like __bswap_16, __bswap_32 and __bswap_64.
+
+hexdecode
+
+signed hexdecode ( void *       memory,
+                   size_t       extent,
+                   char const   buffer [],
+                   size_t       length);
+
+Decode a memory region as a string of ASCII hexadecimal digits. Convert memory
+until the buffer or memory exhausts and return the string length. Allow 3
+buffer characters for each memory byte to ensure that the entire region is
+decoded. If buffer is less than 3 characters nothing will be decoded. The
+number of bytes decoded will be the lesser of extent or length divided by 3.
+
+hexdump
+
+void hexdump ( void const *   memory,
+               size_t         offset,
+               size_t         extent,
+               FILE *         fp);
+
+Print a full or partial memory region in hexadecimal format showing memory
+offsets, hexadecimal byte values and ASCII character values. Argumen extent is
+the region size in bytes. Argument offset is the starting display location.
+Locations memory [offset] up to memory [extent] are displayed, allowing a
+partial dump of the entire region. The entire region will be displayed when
+argument offset is 0.
+
+This method is similar to but different from method hexview .
+
+hexencode
+
+signed hexencode ( void const *   memory,
+                   size_t         extent,
+                   char const *   string);
+
+Encode a memory region with the binary equivalent of an ASCII hexadecimal
+string. Return the number of bytes encoded or 0 on error. The value of errno is
+set to EINVAL if the number of bytes encoded is less than extent or the entire
+string cannot be converted due to illegal digits or excessive digits. Ignore
+optional HEX_EXTENDER characters separating octets in argument string. Constant
+HEX_EXTENDER is defined in file onumber.hpp.
+
+hexin
+
+ssize_t hexin ( void *   memory,
+                size_t   extent,
+                FILE *   fp);
+
+This method is similar to hexencode but it reads from file, instead of a string
+and ignores non-hexadecimal text and comments within the input stream. Incoming
+text is binary encoded and written to the specified memory region. The actual
+number of bytes encoded is returned or -1 on error.
+
+hexout
+
+void hexout ( void const *   memory,
+              size_t         extent,
+              char           c,
+              FILE *         fp);
+
+Print a memory region as a series of decimal octets separated by character c.
+Normally, character c will be HEX_EXTENDER, defined in file onumber.hpp, but it
+could be any character value. For example, specifying c as ':' and extent as 6
+would produce output looking something like "00:B0:52:DA:DA:01" where each
+octet is expressed as a hexadecimal integer. A typical use might be to print a
+MAC or Ethernet address in readable format.
+
+hexstring
+
+char * hexstring ( char           buffer [],
+                   size_t         length,
+                   void const *   memory,
+                   size_t         extent);
+
+Convert a memory region to a NUL terminated string of ASCII hexadecimal digits
+and return the string address. This method is similar to method hexdecode but
+the arguments are in different order and it returns the string address instead
+of the number of characters decoded.
+
+hexview
+
+void hexview ( void const *   memory,
+               size_t         offset,
+               size_t         extent,
+               FILE *         fp);
+
+Print a partial memory region in hexadecimal format showing memory offsets,
+hexadecimal byte values and ASCII character values. Argument memory contains
+part of a larger memory region, much like a file window. Argument extent is the
+window length. Argument offset is the relative offset of the window within the
+region. Locations memory [0] up to memory [extent] are displayed as a partial
+dump, providing a window into the region.
+
+This method is similar to but different from method hexdump.
+
+memdecr
+
+signed memdecr ( void *   memory,
+                 size_t   extent);
+
+Decrement a multi-byte memory region. Return 0 on success or -1 if all bytes
+have decremented to 0x00. For example, { 0xFF, 0xFF, 0xFF } decrements to {
+0xFF, 0xFF, 0xFE } and { 0xFF, 0x00, 0x00 } decrements to { 0xFE, 0xFF, 0xFF }.
+A typical use is to iterate through a range if IP or MAC address values.
+
+memincr
+
+signed memincr (void * memory, size_t extent);
+
+Increment a multi-byte memory region. Return 0 on success or -1 once all bytes
+have been incremented to 0xFF. For example { 0x00, 0x00, 0x00 } increments to {
+0x00, 0x00, 0x01 } and { 0x00, 0xFF, 0xFF } increments to { 0x01, 0x00, 0x00 }.
+A typical use is to iterate through a range of IP or MAC address values.
+
+memtext
+
+void memtext ( char const *   string,
+               char           buffer [],
+               size_t         length);
+
+Copy a variable-length string to a fixed-length buffer ensuring that the buffer
+is NUL terminated. The string is right truncated on overflow and the buffer is
+right padded with NUL characters on undeflow. For all non-zero lengths, buffer
+[length-1] will be NUL. This method is an alternative to standard library
+function strncpy which does not terminate the destination string on overflow or
+pad the buffer on underflow.
+
+serial
+
+char const * serial ( void *     buffer,
+                      size_t     length,
+                      unsigned   value,
+                      unsigned   radix);
+
+Convert unsigned integer value to a NUL terminated numeric string of specified
+length and radix and return the string address. The string is stored in a user
+allocated buffer buffer and is left truncated or left padded with '0' to match
+the length. This method is similar to binstring, decstring and hexstring but
+the entire buffer is filled with digits plus the terminator and no seperators
+are used.
+
+strdecr
+
+signed strdecr ( void *   memory,
+                 size_t   extent,
+                 byte     min,
+                 byte     max);
+
+Decrement a multi-byte memory region using only ASCII character values in the
+range min through max. Return 0 on success or -1 once all characters have been
+decremented to the value of argument min. For example, if argument min is 'A'
+and argument max is 'Z' then { 'A', 'B', 'C' } decrements to { 'A', 'B', 'B' }
+and { 'B', 'Z', 'Z' } decrements to { 'A', 'A', 'A' }. A typical use is to
+generate a sequence of distinct character strings to seed encryption key
+methods.
+
+strincr
+
+signed strincr ( void *   memory,
+                 size_t   extent,
+                 byte     min,
+                 byte     max);
+
+Increment a multi-byte memory region using only ASCII character values in the
+range min through max. Return 0 on success or -1 once all characters have been
+incremented to the value of argument max. For example, if argument min is 'A'
+and argument max is 'Z' then { 'A', 'B', 'C' } increments to { 'A', 'B', 'D' }
+and { 'A', 'Z', 'Z' } increments to { 'B', 'A', 'A' }. A typical use is to
+generate a sequence of distinct character strings to seed encryption key
+methods.
+
+swap
+
+void swap (void *, void *, size_t length);
+
+Exchange the contents of two memory regions of equal length in bytes. No
+provision is made for memory overlap. This method may be used to sort a list of
+multi-byte entries or exchange the source and destination addresses in an
+Ethernet frame.
+
+Chapter 9.  Class oSHA256
+
+Table of Contents
+
+Introduction
+
+    Inheritance
+    Dependence
+
+Properties
+
+    DigestLength
+
+Methods
+
+    Fetch
+    Write
+    Reset
+
+Examples
+
+Introduction
+
+This class implements 256-bit encryption according to FIPS180-2 sec 5.3.2 by
+converting variable-length input to a fixed-length, 32-byte digest. The class
+is analagous to a file, allowing an unlimited amount of data may be written but
+only a fixed-length amount of data may be read and each read rewinds the file.
+
+This class is declared in oSHA256.hpp and defined in oSHA256.cpp.
+
+Inheritance
+
+None.
+
+Dependence
+
+None.
+
+Properties
+
+DigestLength
+
+unsigned DigestLength ();
+
+Return the digest length in bytes. The digest length is 32. This property is
+implemented as a constant and so parenthesis should be omitted when referencing
+it, despite what is shown.
+
+Methods
+
+Fetch
+
+oSHA256 & Fetch (void * memory []);
+
+End the current encryption cycle and copy the digest to external memory. The
+digest length is DigestLength bytes so no length argument is needed.
+Automatically, initialize the object instance for another encryption cycle once
+the digest has been copied.
+
+Write
+
+oSHA256 & Write ( void const *   memory [],
+                  size_t         extent);
+
+Encrypt a block of memory. Return the object instance address. This method may
+be called any number of times with any data of any length. Data encryption is
+cumulative such that data may be encrypted in one large block or many small
+ones. All writes prior to a Fetch comprise an “encryption cycle”
+
+Reset
+
+oSHA256 & Reset (void);
+
+Initialize the class instance in preparation for another encryption cycle.
+Return the object instance reference. This discards the computed digest in the
+process. If the digest is needed then call method Fetch, instead.
+
+Examples
+
+Example 9.1.  Computing an SHA256 Digest
+
+oSHA256 encoder;
+uint8_t digest [encoder.DigestLength];
+char buffer [1024];
+signed length;
+signed fd;
+while ((length = read (fd,  buffer, sizeof (buffer))) > 0)
+{
+        encoder.Write (buffer, length);
+}
+encoder.Fetch (digest);
+
+This example computes the SHA256 digest for an entire file. An encoder is
+instantiated and a digest buffer is reserved. As each buffer is read from file,
+it is encrypted using the Write method and, at the end, the digest is obtained
+using the Fetch method.
+
+The file content is not important. It may be either text or a binary. The
+computed digest will, for all practical purposes, be unique and may serve as
+the file “finger-print”. Therefore, two files having the same digest are, in
+all probability, identical.
+
+
+0

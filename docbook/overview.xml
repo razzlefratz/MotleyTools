@@ -1,0 +1,786 @@
+<chapter id='overview'>
+	<title>
+		Overview 
+		</title>
+	<section id='overview-intro'>
+		<title>
+			Introduction 
+			</title>
+		<para>
+			 The Intellon <application>Application Development Package</application> is a collection abstract classes and application templates for developing cross-platform, HomePlug AV specific, powerline applications. With modification, these classes and templates could support any HomePlug AV product but their default values and operational preferences are biased towards Intellon devices. Intellon does not support product modification for HomePlug AV products by other manufcturers
+			</para>
+		<para>
+			The principle benefits of using this package for application development are:
+			</para>
+		<itemizedlist>
+			<listitem>
+				<para>
+					Cross-platform support for Layer 2 network I/O on <productname>Linux</productname>, <productname>Mac OSX</productname> and <productname>Windows</productname>.
+					</para>
+				</listitem>
+			<listitem>
+				<para>
+					Abstraction and simplification of common, multi-message operations such as network enumeration, device initialization and firmware upgrade.
+					</para>
+				</listitem>
+			<listitem>
+				<para>
+					Decoupling of the network interface, the user interface and the application logic.
+					</para>
+				</listitem>
+			<listitem>
+				<para>
+					Freedom of user interface selection.
+					</para>
+				</listitem>
+			</itemizedlist>
+		</section>
+	<section id='overview-background'>
+		<title>
+			Background 
+			</title>
+		<para>
+			<trademark class='registered'>HomePlug</trademark> AV is an industry standard protocol for powerline communications developed by the <ulink url='http://www.homeplug.org/home'>HomePlug Powerline Alliance</ulink>.  Intellon  Corporation manufactures a family of chipsets that conform to that standard and have PCI, MII and Ethernet interfaces. The <productname>INT6000</productname>,  <productname>INT6300</productname> and <productname>INT6400</productname>chipsets are flagship members of that chipset family. The principle difference between the chipsets is their boot method,  cost and speed. The <trademark>INT6000</trademark> requires onboard NVRAM but the <productname>INT6300</productname> and <productname>INT6400</productname> do not. The <productname>INT6300</productname> is the fastest and cheapest chipset by all accounts. 
+			</para>
+		<para>
+			The <trademark class='registered'>HomePlug</trademark> AV protocol is based on IEEE-802.3, has ethertype <constant>0x88E1</constant> and uses special message formats. A subset of those message formats is reserved for each chipset vendor to define their own message formats.  Intellon uses this vendor-specific subset to communicate between host processors and Intellon devices. This package uses Intellon vendor-specific message formats to communicates with  Intellon devices. It also understands Intellon firmware and configuration file formats. 
+			</para>
+		<para>
+			This package sends and receives Intellon vendor-specific messages, not generic <trademark class='registered'>HomePlug</trademark> AV messages. Intellon vendor-specific management message formats are described in the  Intellon  <citetitle><trademark class='registered'>HomePlug</trademark> AV Firmware Technical Reference Manual</citetitle>. If you do not have a copy of this document then you may request one from Intellon.
+			</para>
+		</section>
+	<section id='overview-distribution'>
+		<title>
+			Package Distribution
+			</title>
+		<para>
+			The  Intellon  Cross-platform Application Development Package is distributed using compressed tape archive files named <filename>intellon-utils-x.x.x.tar.gz</filename>, <filename>intellon-utils-x.x.x.tar.bz2</filename> or <filename>intellon-utils-x.x.x.zip</filename>,  where <emphasis>x.x.x</emphasis> is the package release number. Archive files ending in <filename>.gz</filename> can be decompressed using the Linux <application>gzip</application> utility. Archive files ending in <filename>.bz2</filename> can be decompressed using the Linux <application>bzip2</application> utility. Archive files ending in <filename>.zip</filename> can be decompressed using either the Linux <application>unzip</application> utility or the Windows <application>WinZip</application> utility. The contents of decompressed archives can be extracted using the Linux <application>tar</application> utility or Windows <application>WinZip</application> utility. Recent versions of the Linux <application>tar</application> utility allow decompression and extraction in one operation. 
+			</para>
+		</section>
+	<section id="overview-install-linux">
+		<title>
+			Installation on Linux
+			</title>
+		<para>
+			The Linux version of the package must be compiled from source code. The only requirement is the standard <application>GNU/Linux</application> toolchain consisting of <application>make</application>,  <application>gcc</application> and <application>ld</application>. These are included with most <application>Linux</application> distributions but may require installation. On <productname>Debian</productname> based distributions, such as <productname>Ubuntu</productname>, they may be installed using <application>apt-get</application>. On <productname>RedHat</productname> distributions,  such as <productname>Fedora</productname>, they may be installed using <application>rpm</application>. On <productname>SuSE</productname> based distributions, they may be installed using <application>YaST2</application>.
+			</para>
+		<section>
+			<title>
+				Installation on GNU/<productname>Linux</productname>
+				</title>
+			<example>
+				<title>
+					Installation on GNU/<productname>Linux</productname>
+					</title>
+<screen>
+# cp intellon-utils-0.3.12.tar.gz /home/mydir
+# cd /home/mydir
+# tar -vzxf intellon-utils-0.3.12.tar.gz
+# cd intellon-utils-0.3.12
+# make
+# make install
+# make manuals
+</screen>
+				</example>
+			<para> 
+				Decompress the archive and extract the contents with the <application>tar</application> utility. This will create a folder having the same basename as the archive such that one version will not over-write another. Consult the <application>tar</application> man page on your system for detailed instructions. Change directory to the appropriate folder.
+				</para>
+			<para>
+				The main package folder contains a recursive <filename>Makefile</filename> that will compile and install all package programs. If you do not want to compile and install all programs then change directory to the appropriate folder and run <application>make</application> from there. To compile binary files, type <userinput>make</userinput>. To install binary files, type <userinput>make install</userinput>. To install man pages, type <userinput>make manuals</userinput>. The package does not automatically install examples, scripts, applets or man pages. 
+				</para>
+			<para>
+				We recommend that you <command>login</command> as <constant>root</constant> user before installing the package; otherwise, you will be prompted for the <constant>root</constant> password as each program or component is installed. 
+				</para>
+			<para>
+				Programs are installed in folder <filename>/usr/local/bin</filename> and man pages are installed in folders <filename>/usr/share/man/man7</filename>. If these folders are not correct for your system, or if you want to install in other folders, then edit the folder names defined in file <filename>make.def</filename> found in main folder or over-ride these definitions in subordinate makefiles.
+				</para>
+			</section>
+		<section>
+			<title>
+				Documentation on GNU/Linux
+				</title>
+			<para>
+				Toolkit web pages are not automatically installed. To access package documentation, point your browser to <ulink url="index.html">docbook/index.html</ulink> and add the page to the browser bookmark or favorites list. If you are interested in how the package has been implemented then do the same for page <ulink url="toolkit.html">docbook/toolkit.html</ulink>. 				</para>
+			<para>
+				The method described above is only recommended if you do not plan to move or remove the package folders. Otherwise,  you can merely copy the entire contents of the package <filename>docbook</filename> folder to another folder of your choice and point your browser to the new file locations.
+				</para>
+<screen>
+cp -rv docbook/* /home/mydir/intellon
+</screen>
+			</section>
+		<section>
+			<title>
+				Removal on GNU/<productname>Linux</productname>
+				</title>		
+			<para>
+				To uninstall installed programs and man pages on Linux, change to the main folder and type <userinput>make uninstall</userinput>.
+				</para>
+			<example>
+				<title>
+					Removal on GNU/<productname>Linux</productname>
+					</title>
+<screen>
+# cd /home/mydir/intellon-utils/0.3.12
+make uninstall
+</screen>
+				</example>
+			</section>
+		</section>
+	<section id="overview-install-osx">
+		<title>
+			Installation on Mac OS X
+			</title>
+		<para>
+			Toolkit installation on <productname>Mac OS X</productname> is essentially identical to installation on Linux but special steps are needed before starting.
+			</para>
+		<para>
+			First, you must install the package as the <varname>root</varname> user or you will be denied permission. The <varname>root</varname> user account is disabled by default and so you must enable it in order to login. Follow instructions at <ulink url='http://support.apple.com/kb/HT1528'>Enabling the &quot;root&quot; user in Mac OS X</ulink> to enable the account and login. After installation, programs should be run from a normal user account.
+			</para>
+		<para>
+			Second, <productname>Mac OS X</productname> does not include C Language development tools by default. You must download and install them in order to build the package. You can either download and install them from the Apple website or (if you are ambitious)  download,  compile and install them from various open source websites. Consider using <ulink url="http://developer.apple.com/technology/Xcode.html"><application>Xcode</application></ulink> on <application>Mac OS X Leopard</application>. 
+			</para>
+		<para>
+			Login as the root user and download or copy the package archive file to your preferred folder. Follow the <link linkend='overview-install-linux'>instructions</link> for installing the package on Linux.
+				</para>
+		<example>
+			<title>
+				Setting the <constant>PATH</constant> on <productname>OS X</productname>
+				</title>
+		<para>
+			While still logged in as the <varname>root</varname> user, edit <filename>/etc/profile</filename> and add folder<filename>/usr/local/bin</filename> to the <varname>PATH</varname> definition found there. This will ensure that all users can access the programs. The change may not take effect until the next time you login or open a new command shell.
+				</para>
+
+<screen>
+PATH="/bin:/sbin:/usr/local/bin"
+</screen>
+			</example>
+		<example>
+			<title>
+				Installation on <productname>Mac OS X</productname>
+				</title>
+		<para>
+			While still logged in as the <varname>root</varname> user,  remember to delete the package source folder or,  at least change ownership of all files in the folder, so that you can access and/or remove them later.
+			</para>
+<screen>
+cd ..
+rm -r intellon-utils-x.x.x
+</screen>
+			</example>
+		</section>
+	<section id="overview-install-windows">
+		<title>
+			Installation on <productname>Windows XP</productname>
+			</title>
+
+		<para>
+			The <productname>Windows</productname> version of the package comes pre-compiled and ready to install and run using the <application>Windows Installer</application>. You may copy and distribute installation file <filename>intellon-utils-x.x.x.msi</filename>. Users may then click on the installation file to install the package then discard it afterwards. The installation file permits remote installation over the network.
+			</para>
+		<para>
+			The package needs <productname>WinPcap 4.0.2</productname> or later from <ulink url="http://www.winpcap.org/install/default.htm">winpcap.org</ulink>. It may be installed either before or after package installation but many of the tools will not run without it. If you have <productname>Wireshark</productname> installed then you already have <productname>WinPcap</productname> installed. You may want to install <productname>WinPcap</productname> before starting installation.
+			</para>
+		<para>
+			The package needs Microsoft <productname>DotNet 1.1</productname> available from <ulink url="http://www.microsoft.com/downloads/details.aspx?FamilyID=a8f5654f-088e-40b2-bbdb-a83353618b38">Microsoft</ulink>. Newer versions of <productname>DotNet</productname> may not work. It must be installed before package installation or the <productname>Windows Installer</productname> will report depenency errors and may refuse to complete installation.
+			</para>
+		<para>
+			Failure to <link linkend='overview-removal-windows'>remove previous versions</link> on some systems may result in the message &quot;Another version of this product is already installed&quot; when trying to install a new version. You may want to remove prior version before starting packge installation.
+			</para>
+		<section>
+			<title>
+				Installation on <productname>Windows XP</productname>
+				</title>
+			<para>
+				Use a compression program like <application>WinZip</application> to decompress the archive file and extract all files. Use Microsoft <application>Windows Explorer</application> to locate file <filename>.\VisualStudioNET\Intellon-Utils-x.x.x.msi</filename> under the main folder. Click on the file to start the <application>Windows Installer</application> then follow the installation instructions.
+				</para>
+			<figure>
+				<title>
+					Windows Installer Dialogue
+					</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref='WindowsInstaller.png' align="center" />
+						</imageobject>
+					<caption>
+						</caption>
+					</mediaobject>
+				</figure>
+			<para>
+				 Toolkit programs are installed in folder <filename>C:\Program Files\Intellon\Toolkit</filename> by default. If you select a different folder, remember it for the next step. 
+				</para>
+			</section>
+		<section>
+			<title>
+				Setting the PATH variable
+				</title>
+			<para>
+				<application>Toolkit</application> programs have command line interfaces and must be run from an open console window. To simplify program access and minimize the typing required, add the installation path mentioned above to the <envar>PATH</envar> environment variable by following steps listed below. If you have <constant>Administrator</constant> priviledges then we recommend that you edit the system <envar>PATH</envar> variable; otherwise, you may need to create and/or edit a user <envar>PATH</envar> variable.
+				</para>
+			<figure>
+				<title>
+					Control Panel System Dialogue
+					</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref='PathVariable.png' format='PNG' align="center" />
+						</imageobject>
+					<caption>
+						</caption>
+					</mediaobject>
+				</figure>
+			<orderedlist>
+				<listitem>
+					<para>
+						On the <command>Start</command> menu,  select the <command>Control Panel</command> option.
+						</para>
+					</listitem>
+				<listitem>
+					<para>
+						In the <command>Control Panel</command> window,  select the <command>System</command> icon.
+						</para>
+					</listitem>
+				<listitem>
+					<para>
+						On the <command>System Properties</command> dialog box,  select the <command>Advanced</command> tab.
+						</para>
+					</listitem>
+				<listitem>
+					<para>
+						On the <command>Advanced</command> tab, press the <command>Environment Variables</command> button.
+						</para>
+					</listitem>
+				<listitem>
+					<para>
+						On the <command>Environment Variables</command> dialog box, scroll down the <command>System variables</command> list and select the <command>Path</command> variable then press the <command>Edit</command> button.
+						</para>
+					</listitem>
+				<listitem>
+					<para>
+						On the <command>Edit System Variable</command> dialogue box, append the installation path to the <command>Variable value</command> field.
+						</para>
+					</listitem>
+				<listitem>
+					<para>
+						Press the <command>OK</command> button.
+						</para>
+					</listitem>
+				</orderedlist> 
+			</section>
+		<section id="overview-removal-windows">
+			<title>
+				Removal on <productname>Windows XP</productname>
+				</title>
+			<para>
+				To remove an existing version of the Intellon <application>Linux Toolkit</application> from your system, follow the steps listed below. If the package is not installed on you rsystem then omit these steps. If you are unsure, you can follow them to determine if you have the package installed or you can attempt to install, anyway, and return here if installation is prevented.
+				</para>
+			<figure>
+				<title>
+					Control Panel Add/Remove Dialogue
+					</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="AddRemoveProgram.png" align="center"/>
+						</imageobject>
+					<caption>
+						</caption>
+					</mediaobject>
+				</figure>
+			<orderedlist>
+				<listitem>
+					<para>
+						On the <command>Start</command> menu, select the <option>Control Panel</option> option.
+						</para>
+					</listitem>
+				<listitem>
+					<para>
+						In the <command>Control Panel</command> window, select the <option>Add or Remove Programs</option> icon.
+						</para>
+					</listitem>
+				<listitem>
+					<para>
+						On the <command>Add or Remove Programs</command> dialog box, scroll down and select the <option>Intellon Toolkit</option> entry then press the <option>Remove</option> pushbutton.
+						</para>
+					</listitem>
+				</orderedlist>
+			</section>
+		</section>
+	<section id='overview-folders'>
+		<title>
+			Package Folders 
+			</title>
+		<para>
+			</para>
+		<para>
+			Folder descriptions appear below in alphabetical order: 
+			</para>
+		<variablelist>
+			<varlistentry id="folder-applets">
+				<term>
+					./classes
+					</term>
+				<listitem>
+					<para>
+						A collection of C++ classes and header files.   
+						</para>
+					</listitem>
+				</varlistentry>
+			<varlistentry id="folder-cgi">
+				<term>
+					./programs
+					</term>
+				<listitem>
+					<para>
+						A collection of C++ programs that use the classes. A few sample command line programs are included to demonstrate how classes can be used to emulate some of the Linux Toolkit programs.
+						</para>
+					</listitem>
+				</varlistentry>
+			<varlistentry id="folder-docbook">
+				<term>
+					./docbook
+					</term>
+				<listitem>
+					<para>
+						HTML pages generated by several methods, but mostly <ulink url="http://www.docbook.org/">Docbook 4.5</ulink>. Some pages have been created using special tools that are not provided and will not be made available. The <filename>Makefile</filename> in this folder will compile the core XML source files on GNU/Linux systems that have <application>Docbook 4.5</application> installed with extentions by <ulink url='http://nwalsh.com/'>Normal Walsh</ulink> but it does not install the pages. See <link linkend="overview-install-linux">Installation on Linux</link> for more information.
+						</para>
+					</listitem>
+				</varlistentry>
+			<varlistentry id="folder-visualstudio-net">
+				<term>
+					./VisualStudioNET 
+					</term>
+				<listitem>
+					<para>
+						A  <productname>Visual Studio .NET</productname> solution to compile some or all of the programs in this package using only Microsoft libraries and winpcap libraries. The resulting .exe files can then be run on <trademark>Windows</trademark> enabled systems having <application>winpcap</application> installed. This solution has been demonstrated but not adequately tested. Adjustments may be necessary depending on your environment. 
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		<para>
+			 Intellon  reserves the right to add, remove, rename or reorganize package files and folders in future releases without any obligation to notify or compensate users of this package. 
+			</para>
+		</section>
+	<section id='overview-programs'>
+		<title>
+			Example Programs 
+			</title>
+		<para>
+			</para>
+		<para>
+			Program descriptions appear below in alphabetical order: 
+			</para>
+		<variablelist>
+			<varlistentry id="program-example-1">
+				<term>
+					<application>
+						<ulink url='example-1.cpp.html'>example-1</ulink>
+						</application>
+					</term>
+				<listitem>
+					<para>
+						Illustrates the instantiation and enumeration of host interfaces using the <link linkend='ointerfaces'>ointerfaces</link> and <link linkend='ointerface'>ointerface</link> class. Four methods of interface enumaration as shown. See <ulink url='example-1.cpp.html'>example-1.cpp</ulink>.
+						</para>
+					</listitem>
+				</varlistentry>
+			<varlistentry id="program-example-2">
+				<term>
+					<application>
+						<ulink url='example-2.cpp.html'>example-2</ulink>
+						</application>
+					</term>
+				<listitem>
+					<para>
+						Illustrates the instantiation of a channel and the enumeration (discovery) of bridge and neighbor devices using the <link linkend='CPLChannel'>CPLChannel</link> class. See <ulink url='example-2.cpp.html'>example-2.cpp</ulink>.
+						</para>
+
+					</listitem>
+				</varlistentry>
+			<varlistentry id="program-example-3">
+				<term>
+					<application>
+						<ulink url='example-3.cpp.html'>example-3</ulink>
+						</application>
+					</term>
+				<listitem>
+					<para>
+						Illustrates the instantiation and enumeration of powerline network stations using the <link linkend='CPLChannel'>CPLChannel</link>, <link linkend='CPLNetwork'>CPLNetwork</link> and <link linkend='CPLStation'>CPLStation</link> classes. See <ulink url='example-3.cpp.html'>example-3.cpp</ulink>.
+						</para>
+					</listitem>
+				</varlistentry>
+			<varlistentry id="program-hpav">
+				<term>
+					<application>
+						<ulink url='hpavkey.cpp.html'>hpavkey</ulink>
+						</application>
+					</term>
+				<listitem>
+					<para>
+						Illustrate the generation of encryption keys from HomePlug AV compliant passwords using the <link linkend='oHPAVKey'>oHPAVKey</link> and <link linkend='oSHA256'>oSHA256</link> classes. In addition, this program illustrates the command line interface classes <varname>ogetoptv</varname>, <varname>oputoptv</varname> and <varname>oversion</varname> and low-level support classes <link linkend='oflagword'>oflagword</link> and <link linkend='oerror'>oerror</link>. The first three classes are not well documented here but developers familiar with the <function>getopt</function> function will have no trouble understanding them. See <ulink url='hpavkey.cpp.html'>hpavkey.cpp</ulink>.
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</section>
+	<section id='overview-classes'>
+		<title>
+			Powerline Classes
+			</title>
+		<para>
+			Powerline classes represent objects that relate specifically to powerline applications. Some provide read-only information, such as the <link linkend='CPLStation'>CPLStation</link> class. Others are collections, such as the <link linkend='CPLNetwork'>CPLNetwork</link> class. Others simplify complex powerline networking operations, such as the <link linkend='CPLNetwork'>CPLChannel</link> class. By convention, these classes start with <quote>CPL</quote> where <quote>C</quote> is for <quote>class</quote> and <quote>PL</quote> is for <quote>powerline</quote>.
+			</para>
+		<variablelist>
+			<varlistentry id="classes-CPLChannel">
+				<term>
+					<link linkend='CPLChannel'>CPLChannel</link>
+					</term>
+				<listitem>
+					<para>
+						An active host Ethernet interface, similar to a socket. All Ethernet frames between a host and a powerline station are exchanged through a channel. CPLChannel class default values,   properties and methods are tailored for Intellon vendor specific messaging.
+						</para>
+					</listitem>
+				</varlistentry>
+			<varlistentry id="classes-CPLNetwork">
+				<term>
+					<link linkend='CPLNetwork'>CPLNetwork</link>
+					</term>
+				<listitem>
+					<para>
+						A powerline network station enumerator. Instantiation creates a collection of powerline stations forming a single powerline network.
+						</para>
+					</listitem>
+				</varlistentry>
+			<varlistentry id="classes-CPLNetworks">
+				<term>
+					<link linkend='CPLNetworks'>CPLNetworks</link>
+					</term>
+				<listitem>
+					<para>
+						A powerline network enumerator. Instantiation creates a collection of powerline networks accessible through a given host interface.
+						</para>
+					</listitem>
+				</varlistentry>
+			<varlistentry id="classes-CPLParameters">
+				<term>
+					<link linkend='CPLParameters'>CPLParameters</link>
+					</term>
+				<listitem>
+					<para>
+						A powerline device parameter block read from a given powerline device or host file. The parameter block may be accessed and modified then written to a given powerline device or host file.
+						</para>
+					</listitem>
+				</varlistentry>
+			<varlistentry id="classes-CPLStation">
+				<term>
+					<link linkend='CPLStation'>CPLStation</link>
+					</term>
+				<listitem>
+					<para>
+						A single powerline station. 					
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</section>
+	<section id='overview-classes-2'>
+		<title>
+			Support Classes
+			</title>
+		<para>
+			Support classes represent generic objects that may be used in non-powerline applications. Some are static libraries of useful methods, such as the <link linkend='omemory'>omemory</link> class. Others are constainers of other classes, such as the <link linkend='ointerfaces'>ointerfaces</link> class. Others represent low-level behaviors that may be inherited by other classes, such as the <link linkend='oflagword'>oflagword</link> class. By convention, these classes start with <quote>o</quote> for <quote>object</quote>. How unimaginative is that?
+			</para>
+		<variablelist>
+			<varlistentry id="classes-oerror">
+				<term>
+					<link linkend='oerror'>oerror</link>
+					</term>
+				<listitem>
+					<para>
+						GNU/Linux style error message handler. This class is used to display informative error messages and optionally terminate the application program. A typical message includes the application progam name, an error description and other formatted text. This class isolates the application program from the method used to display the messages. Different implementations may be needed for console based applications and windows based applications. 
+						</para>
+					</listitem>
+				</varlistentry>
+			<varlistentry id="classes-oethernet">
+				<term>
+					<link linkend='oethernet'>oethernet</link>
+					</term>
+				<listitem>
+					<para>
+						An Ethernet frame header encoder/decoder. Class properties expose the <link linkend='oethernet-PeerAddress'>PeerAddress</link>, <link linkend='oethernet-HostAddress'>HostAddress</link> and <link linkend='oethernet-Protocol'>Protocol</link> fields. It is inherited by the <link linkend='ohomeplug'>ohomeplug</link>,  <link linkend='ointellon'>ointellon</link> and <link linkend='CPLChannel'>CPLChannel</link> classes.
+						</para>
+					</listitem>
+				</varlistentry>
+			<varlistentry id="classes-oflagword">
+				<term>
+					<link linkend='oflagword'>oflagword</link>
+					</term>
+				<listitem>
+					<para>
+						A generic bit-mapped flagword. Class methods permit individual bits to be <link linkend='oflagword-setbits'>set</link>, <link linkend='oflagword-clearbits'>cleared</link> and <link linkend='oflagword-anyset'>tested</link> in various ways. It is inherited by classes that need a bit-mapped state variable.
+						</para>
+					</listitem>
+				</varlistentry>
+			<varlistentry id="classes-ohomeplug">
+				<term>
+					<link linkend='ohomeplug'>ohomeplug</link>
+					</term>
+				<listitem>
+					<para>
+						A HomePlug AV message header encoder/decoder. Class properties expose the standard Ethernet header fields plus the HomePlug AV generic <link linkend='ohomeplug-MessageVersion'>MessageVersion</link> and <link linkend='ohomeplug-MessageType'>MessageType</link> fields. It may be inherited by classes that implement specific HomePlug AV messages.
+						</para>
+					</listitem>
+				</varlistentry>
+			<varlistentry id="classes-oHPAVKey">
+				<term>
+					<link linkend='oHPAVKey'>oHPAVKey</link>
+					</term>
+				<listitem>
+					<para>
+						A HomePlug AV key generator. 
+						</para>
+					</listitem>
+				</varlistentry>
+			<varlistentry id="classes-ointellon">
+				<term>
+					<link linkend='ointellon'>ointellon</link>
+					</term>
+				<listitem>
+					<para>
+						An Intellon vendor specific message header encoder/decoder. Class properties expose standard Ethernet header fields plus the vendor specific <link linkend='ointellon-MessageVersion'>MessageVersion</link>,  <link linkend='ointellon-MessageType'>MessageType</link> and <link linkend='ointellon-VendorOUI'>VendorOUI</link> fields. It may be inherited by classes that implement vendor specific HomePlug AV messages.
+						</para>
+					</listitem>
+				</varlistentry>
+			<varlistentry id="classes-ointerface">
+				<term>
+					<link linkend='ointerface'>ointerface</link>
+					</term>
+				<listitem>
+					<para>
+						A single host Ethernet interface. 
+						</para>
+					</listitem>
+				</varlistentry>
+			<varlistentry id="classes-ointerfaces">
+				<term>
+					<link linkend='ointerfaces'>ointerfaces</link>
+					</term>
+				<listitem>
+					<para>
+						A host interface enumerator.
+						</para>
+					</listitem>
+				</varlistentry>
+			<varlistentry id="classes-omemory">
+				<term>
+					<link linkend='omemory'>omemory</link>
+					</term>
+				<listitem>
+					<para>
+						Static class of memory manipulation methods. Class methods permit a variety of memory-to-memory, memory-to-string and string-to-memory conversions.    
+						</para>
+					</listitem>
+				</varlistentry>
+			<varlistentry id="classes-oSHA256">
+				<term>
+					<link linkend='oSHA256'>oSHA256</link>
+					</term>
+				<listitem>
+					<para>
+						An SHA-256 digest generator. Class methods implement the SHA-256 encryption algorithm used by class oHPAVKey. 
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</section>
+	<section id="overview-conventions">
+		<title>
+			Coding Conventions
+			</title>
+     		<section id="overview-build">
+			<title>
+				Build Conventions
+				</title>
+			<para>
+				Every class has one header file and one source file. Class header files end in <varname>.hpp</varname> and contain constant definitions and the class declaration statement. Source files end in <varname>.cpp</varname> and contain class property and method definitions. As a rule, header files never contain executable statements.
+				</para>
+			<para>
+				Classes may be compiled individually, as seperate object modules, by compiling their <filename>.cpp</filename> file. Compiled object modules may then be linked into those applications that need them. This approach is convenient on projects that use makefiles since each class is compiled once then linked may times. It may be less convenient on project that use an Integrated Development Environments (<acronym>IDE</acronym>) since classes must be manually included in many projects and re-compiled with each project.
+				</para>
+			</section>
+ 		<section id="overview-include-guards">
+			<title>
+				Include-guards
+				</title>
+			<para>
+				All files have include-guards so that they may be freely included in-line without risk of multiple inclusion. We specifically avoid the use of the <quote>#pragma once</quote> statement because it is not universally supported by all compilers. Include-guards follow specific conventions to avoid accidental duplication or conflict with other conventions.  
+				</para>
+			<example>
+				<title>
+					Header file include-guard
+					</title>
+<programlisting>
+#ifndef oCLASSNAME_HEADER
+#define oCLASSNAME_HEADER
+...
+#endif
+</programlisting>
+				<para>
+					Include-guard names for class header files start with the class name and have a <quote>_HEADER</quote> suffix. The entire include-guard name is in upper case except for the first letter. 
+					</para>
+				</example>
+			<example>
+				<title>
+					Source file include-guard
+					</title>
+<programlisting>
+#ifndef oCLASSNAME_SOURCE
+#define 0CLASSNAME_SOURCE
+...
+#endif
+</programlisting>
+				<para>
+					Include-guard names for class source files start with the class name and have a <quote>_SOURCE</quote> suffix. The entire include-guard name is in upper case except for the first letter.
+					</para> 
+				</example>
+			</section>
+		<section id="overview-datatypes">
+			<title>
+				Custom Data Types
+				</title>
+			<para>
+				The encoding and decoding of Ethernet frames requires detailed attention to variable size and byte order. Consequently, a few custom data types are declared to assist with this or to clarify the source code.
+				</para>
+			<variablelist>
+				<varlistentry>
+					<term>
+						byte
+						</term>
+					<listitem>
+						<para>
+							Several low-level classes declare the <quote> byte</quote> data type as an <quote>unsigned char</quote> using a standard typedef statement. There are several cases where this declaration is included more than once due to the nesting of package header files. This does no harm since C++ permits redeclaration of data types provided the declarations are the same.
+							</para>
+						</listitem>
+					</varlistentry>
+				</variablelist>
+			</section>
+		</section>
+	<section id='overview-windows'>
+		<title>
+			Microsoft <productname>Windows</productname>
+			</title>
+		<section id="overview-include-folder">
+			<title>
+				Include Directory
+				</title>
+			<para>
+				In accordance with good programming practice, system header filenames are enclosed in angle brackets, as in <quote>#include &lt;filename&gt;</quote>, and custom headers are enclosed in quotes, as in <quote>#include <quote>filename</quote></quote>. During complation, the compiler looks for system headers in system folders and looks for custom headers in application folders. Relative pathnames are used to assist compilers, linkers and programmers in locating files.
+				</para>
+			<para>
+				This package stores all <filename>.cpp</filename> and <filename>.hpp</filename> files in one application folder for simplicity of maintenance;  however, system headers are a different matter since Microsoft systems, and some other systems, may have their own folder structure or may not provide required files.
+				</para>
+			<para>
+				To maximize portability, this package includes several dummy and abridged headers known to be missing on certain system systems. This reduces, but does not elminate, the number of conditional compile statements needed in the code. The following paragraphs illustrate and explain how to take advantage of these files.
+				</para>
+<programlisting>
+VisualStudioNET\include\
+	arpa
+		inet.h
+	net
+		ethernet.h
+		if.h
+		if_arpa.h
+	netinet
+		if_ether.h
+		in.h
+	sys
+		socket.h
+	pcap
+	unistd.h
+	stdint.h
+	pcap-stdinc.h
+	pcap.h
+	pcap-bpf.h
+	ip6-misc.h
+	bittypes.h
+</programlisting>
+			<para>
+				Folder <filename>VisualStudioNET\include</filename> has a structure that mirrors most <ulink url='http://www.opengroup.org/onlinepubs/009695399/'>POSIX</ulink>, <ulink url='http://www.linuxfoundation.org/collaborate/workgroups/lsb'>LSB</ulink> and <ulink url='http://www.pathname.com/fhs/'>FHS</ulink> systems. The structure contains required system header files that are not provided on most Microsoft <productname>Windows</productname> systems. Without them, you may not be able to compile some classes and modules in this package. File placement is important since most include statements use relative path references to find them. 
+				</para>
+			<example>
+				<title>
+					Visual Studio .NET 2003 - Additional Include Directories
+					</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref='VisualStudioIncludeFolder.png' format='PNG' align="center" />
+						</imageobject>
+					</mediaobject>
+				<para>
+					The illustration above shows the <quote>Property Pages</quote> window for a project named <quote>example</quote> inside a solution file. The <quote>C/C++</quote> property group has been selected to show all properties in that group. The <quote>Additional Include Directories</quote> property is set to the package include folder location, <filename>..\include</filename>. Consequently, that folder will be searched for system header files during compilation.
+					</para>
+				</example>
+			</section>
+		<section id="overview-library-folder">
+			<title>
+				Library Directory
+				</title>
+<programlisting>
+VisualStudioNET\library\
+	packet.lib
+	wpcap.lib
+</programlisting>
+			<para>
+				Folder <filename>VisualStudioNET\library</filename> contains required static or dynamic link libraries that may not be available on Microsoft <productname>Windows</productname> systems. Without them, you may not be able to link some applications in this package. File placement is not critical here.
+				</para>
+			<example>
+				<title>
+					Visual Studio .NET 2003 - Additional Library Directories
+					</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref='VisualStudioLibraryFolder.png' format='PNG' align="center" />
+						</imageobject>
+					</mediaobject>
+				<para>
+					The illustration above shows the <quote>Property Pages</quote> window for a project named <quote>example</quote> inside a solution file. The <quote>Linker</quote> property group has been selected to show all properties in that group. The <quote>Additional Library Directories</quote> property is set to the package library folder location, <filename>..\library</filename>. Consequently, that folder will be searched for missing libraries during linking.
+					</para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref='VisualStudioLibraryFiles.png' format='PNG' align="center" />
+						</imageobject>
+					</mediaobject>
+				<para>
+					The illustration above shows the <quote>Property Pages</quote> window for the same project as before. The <quote>Linker</quote> property group has been selected to show all properties in that group. The <quote>Additional Dependencies</quote> property names libraries found in folder <filename>..\library</filename> and other locations. Those libraries will be searched for unresolved external references during linking. You may not need to specify these libraries if they exist on your system. Otherwise, you must specify them here.
+					</para>
+				</example>
+
+			</section>
+		</section>
+	<section id="overview-wxWidgets">
+		<title>
+			wxWidgets
+			</title>
+		<para>
+			When compiling using wxWidgets on Miscorosft Windows, define constant <quote>WIN32_LEAN_AND_MEAN</quote> in your main header file to avoid compiler warnings similar to the following:
+			</para>
+<programlisting><![CDATA[
+PlatformSDK\Include\WinSock2.h(109) : error C2011: 'fd_set' : 'struct' type redefinition
+PlatformSDK\Include\WinSock.h(54) : see declaration of 'fd_set'
+PlatformSDK\Include\WinSock2.h(144) : warning C4005: 'FD_SET' : macro redefinition
+PlatformSDK\Include\WinSock.h(88) : see previous definition of 'FD_SET'
+PlatformSDK\Include\WinSock2.h(153) : error C2011: 'timeval' : 'struct' type redefinition
+PlatformSDK\Include\WinSock.h(97) : see declaration of 'timeval'
+PlatformSDK\Include\WinSock2.h(209) : error C2011: 'hostent' : 'struct' type redefinition
+PlatformSDK\Include\WinSock.h(153) : see declaration of 'hostent'
+PlatformSDK\Include\WinSock2.h(222) : error C2011: 'netent' : 'struct' type redefinition
+PlatformSDK\Include\WinSock.h(166) : see declaration of 'netent'
+PlatformSDK\Include\WinSock2.h(229) : error C2011: 'servent' : 'struct' type redefinition
+PlatformSDK\Include\WinSock.h(173) : see declaration of 'servent'
+PlatformSDK\Include\WinSock2.h(241) : error C2011: 'protoent' : 'struct' type redefinition
+]]></programlisting>
+		</section>
+	<section id='overview-package-support'>
+		<title>
+			Technical Support 
+			</title>
+		<para>
+			Contact the Intellon Systems Application Engineering Team if you have questions concerning package content, operation,  application or direction.
+			</para>
+		</section>
+	</chapter>

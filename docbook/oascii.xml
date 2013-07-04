@@ -1,0 +1,341 @@
+<chapter id='oascii'>
+	<title>
+		Class oascii
+		</title>
+	<section id="oascii-class" >
+		<title>
+			Introduction
+			</title>
+		<para>
+			This class implements a collection of character classification and conversion methods. Anyone who is already familiar with Standard C Library <varname>ctype</varname> macros and function will feel comfortable using this class. There are also several useful non-standard methods, as well, such as <link linkend='oascii-isbreak'>isbreak</link>,  <link linkend='oascii-isident'>isident</link>, <link linkend='oascii-nmtoken'>nmtoken</link> and <link linkend='oascii-todigit'>todigit</link>.
+			</para>
+		<para>
+			This class is declared in <ulink url='oascii.hpp.html'>oascii.hpp</ulink> and defined in <ulink url='oascii.cpp.html'>oascii.cpp</ulink>.
+			</para>
+		<section id="oascii-inheritance">
+			<title>
+				Inheritance
+				</title>
+			<para>
+				None.
+				</para>
+			</section>
+		<section id="oascii-dependence">
+			<title>
+				Dependence
+				</title>
+			<para>
+				None.
+				</para>
+			</section>
+		</section>
+	<section id="oascii-Properties">
+		<title>
+			Properties
+			</title>
+		<para>
+			None.
+			</para>
+		</section>
+	<section id="oascii-methods">
+		<title>
+			Methods
+			</title>
+		<para>
+			</para>
+		<section id="oascii-isalpha">
+			<title>
+				isalpha
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>bool <function>oascii::isalpha</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return <constant>true</constant> if character <varname>c</varname> is a letter. This is the logical union of <link linkend='oascii-islower'>lower case</link> and <link linkend='oascii-isupper'>uppercase</link> letters. 
+
+				</para>
+			</section>
+		<section id="oascii-isalnum">
+			<title>
+				isalnum
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>bool <function>oascii::alnum</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return <constant>true</constant> if character <varname>c</varname> is a letter or digit. This is the logical union of <link linkend='oascii-isalpha'>alphabetic</link> and <link linkend='oascii-isdigit'>numeric</link> characters. Use this method to detect the start and end of names. 
+				</para>
+			</section>
+		<section id="oascii-isblank">
+			<title>
+				isblank
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>bool <function>oascii::isblank</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return <constant>true</constant> if character <varname>c</varname> is a space or horizontal tab. This is a subset of <link linkend='oascii-isspace'>white space</link> characters. Use this method to distinguish word breaks from generic white space.
+				</para>
+			</section>
+		<section id="oascii-isbreak">
+			<title>
+				isbreak
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>bool <function>oascii::isbreak</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return <constant>true</constant> if character <varname>c</varname> is newline, <constant>NUL</constant> or <constant>EOF</constant>.  This not a standard character classifiction function. Use this method to distinguish line breaks from generic white space. 
+				</para>
+			</section>
+		<section id="oascii-iscntrl">
+			<title>
+				iscntrl
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>bool <function>oascii::iscntrl</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return <constant>true</constant> if character <varname>c</varname> is a control character.  
+				</para>
+			</section>
+		<section id="oascii-isdigit">
+			<title>
+				isdigit
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>bool <function>oascii::isdigit</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return <constant>true</constant> if character <varname>c</varname> is numeric. Use this method to detect the start and end of numberic values.
+				</para>
+			</section>
+		<section id="oascii-isgraph">
+			<title>
+				isgraph
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>bool <function>oascii::isgraph</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return <constant>true</constant> if character <varname>c</varname> is a graphic character. Graphic characters leave a mark on the page. They are a subset of <link linkend='oascii-isprint'>printable</link> characters.
+				</para>
+			</section>
+		<section id="oascii-isident">
+			<title>
+				isident
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>bool <function>oascii::isident</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return <constant>true</constant> if character <varname>c</varname> is permitted within an identifier. An identifier,  in this context, includes <link linkend='oascii-isalnum'>alphanumeric</link> characters plus underscores and dollar signs. This is not a standard character classification function. Use this method to detect the start and end of computer language identifiers. 
+				</para>
+			</section>
+		<section id="oascii-islower">
+			<title>
+				islower
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>bool <function>oascii::islower</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return <constant>true</constant> if character <varname>c</varname> is a lowercase letter. 
+				</para>
+			</section>
+		<section id="oascii-isprint">
+			<title>
+				isprint
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>bool <function>oascii::isprint</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return <constant>true</constant> if character <varname>c</varname> is a printable character.
+				</para>
+			</section>
+		<section id="oascii-ispunct">
+			<title>
+				ospunct
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>bool <function>oascii::ispunct</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return <constant>true</constant> if character <varname>c</varname> is punctuation. Punctuation is any character that is not a letter or digit or space or control character.  
+				</para>
+			</section>
+		<section id="oascii-isquote">
+			<title>
+				isquote
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>bool <function>oascii::isquote</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return <constant>true</constant> if character <varname>c</varname> is either a quote or an apostrophe. This is not a standard character classification function.  
+				</para>
+			</section>
+		<section id="oascii-isspace">
+			<title>
+				isspace
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>bool <function>oascii::isspace</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return <constant>true</constant> if character <varname>c</varname> is a space, horizontal tab, vertical tab, formfeed or carriage return.
+				</para>
+			</section>
+		<section id="oascii-isupper">
+			<title>
+				isupper
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>bool <function>oascii::isupper</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return <constant>true</constant> if character <varname>c</varname> is an uppercase letter.
+				</para>
+			</section>
+		<section id="oascii-isxdigit">
+			<title>
+				isxdigit
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>bool <function>oascii::isxdigit</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return <constant>true</constant> if character <varname>c</varname> is a hexadecimal digit. 
+				</para>
+			</section>
+		<section id="oascii-nmtoken">
+			<title>
+				nmtoken
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>bool <function>oascii::nmtoken</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return <constant>true</constant> if character <varname>c</varname> is permitted within an nmtoken. An nmtoken (as defined by the <ulink url='http://www.w3.org'>World Wide Web Consortium</ulink>) is an identifier consisting of <link linkend='oascii-isalnum'>alphanumeric</link> characters,  underscores,  hyphens, periods and semicolons. This is not a standard character classification function. 
+				</para>
+			</section>
+		<section id="oascii-nobreak">
+			<title>
+				nobreak
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>bool <function>oascii::nobreak</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return <constant>true</constant> if character <varname>c</varname> is not newline, <constant>NUL</constant> or <constant>EOF</constant>.  This not a standard character classifiction function. Use this method to distinguish line breaks from generic white space. 
+				</para>
+			</section>
+		<section id="oascii-tolower">
+			<title>
+				tolower
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>signed <function>oascii::tolower</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return uppercase equivalent of character <varname>c</varname> if it is an <link linkend='oascii-isupper'>uppercase</link> letter;  otherwise, return character <varname>c</varname>. 
+				</para>
+			</section>
+		<section id="oascii-tocntrl">
+			<title>
+				tocntrl
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>signed <function>oascii::tocntrl</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return the <acronym>ASCII</acronym> equivalent of a character. Use this method to convert terminal control codes to control characters. For example, the character sequence <quote>^M</quote> means a carriage return and so this method will return a carriage return when given <constant>'M'</constant> as the argument.  
+				</para>
+			</section>
+		<section id="oascii-todigit">
+			<title>
+				todigit
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>signed <function>oascii::todigit</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return the integer equivalent of character <varname>c</varname> in base<subscript>36</subscript> notation. 				</para>
+			</section>
+		<section id="oascii-toupper">
+			<title>
+				toupper
+				</title>
+			<funcsynopsis>
+				<funcprototype>
+  					<funcdef>signed <function>oascii::toupper</function></funcdef>
+    					<paramdef>signed <parameter>c</parameter></paramdef> 
+					</funcprototype>
+				</funcsynopsis>
+			<para>
+				Return uppercase equivalent of character <varname>c</varname> if it is an <link linkend='oascii-islower'>lower case</link> letter;  otherwise, return character <varname>c</varname>. 
+				</para>
+			</section>
+		</section>
+	</chapter>

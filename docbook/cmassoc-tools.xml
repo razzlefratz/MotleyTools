@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+	<!ENTITY overview SYSTEM "overview.xml">
+	<!ENTITY ascii SYSTEM "oascii.xml">
+	<!ENTITY error SYSTEM "oerror.xml">
+	<!ENTITY ethernet SYSTEM "oethernet.xml">
+	<!ENTITY flagword SYSTEM "oflagword.xml">
+	<!ENTITY interface SYSTEM "ointerface.xml">
+	<!ENTITY interfaces SYSTEM "ointerfaces.xml">
+	<!ENTITY memory SYSTEM "omemory.xml">
+	<!ENTITY number SYSTEM "onumber.xml">
+	<!ENTITY sha256 SYSTEM "oSHA256.xml">
+]>
+<book lang='en'>
+	<bookinfo>
+		<title>
+			Motley Tools 
+			</title>
+		<authorgroup>
+			<corpauthor>
+				Charles Maier Associated Limited, Nashua NH USA
+				</corpauthor>
+			<editor>
+				<firstname>
+					Charles 
+					</firstname>
+				<surname>
+					Maier 
+					</surname>
+				</editor>
+			</authorgroup>
+		<date>
+			JAN 2006
+			</date>
+		<releaseinfo>
+			cmassoc-tools-1.7.0
+			</releaseinfo>
+		<abstract>
+			<para>
+				</para>
+			</abstract>
+		<!-- keywordset>
+			<keyword>
+				keyword 
+				</keyword>
+			<keyword>
+				keyword 
+				</keyword>
+			</keywordset -->
+		</bookinfo>
+	&ascii;
+	&error;
+	&ethernet;
+	&flagword;
+	&interfaces;
+	&interface;
+	&number;
+	&memory;
+	&sha256;
+	</book>
