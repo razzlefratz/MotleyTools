@@ -90,8 +90,8 @@ size_t osession::strfwhat (char buffer [], size_t length, char const * event)
 
 #endif
 
-	string += osession::strfwhen (string, string - buffer + length, timer);
 	string += osession::strfwhom (string, string - buffer + length);
+	string += osession::strfwhen (string, string - buffer + length, timer);
 	return (string - buffer);
 }
 
@@ -135,14 +135,14 @@ size_t osession::strfwhen (char buffer [], size_t length, time_t event)
 	string += std::snprintf (string, string - buffer + length, " at ");
 	string += std::strftime (string, string - buffer + length, "%T %Z", std::localtime (& event));
 	string += std::snprintf (string, string - buffer + length, " on ");
-	string += std::strftime (string, string - buffer + length, "%a %d %b %y", std::localtime (& event));
+	string += std::strftime (string, string - buffer + length, "%A %d %B %Y", std::localtime (& event));
 
 #else
 
 	string += snprintf (string, string - buffer + length, " at ");
 	string += strftime (string, string - buffer + length, "%T %Z", localtime (& event));
 	string += snprintf (string, string - buffer + length, " on ");
-	string += strftime (string, string - buffer + length, "%a %d %b %y", localtime (& event));
+	string += strftime (string, string - buffer + length, "%A %d %B %Y", localtime (& event));
 
 #endif
 
