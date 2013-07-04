@@ -133,7 +133,7 @@ char const * oprefix::revise (char const * symbol) const
 		{
 			temp = this->mprior->revise (symbol + 0);
 		}
-		else 
+		else
 		{
 			return ((char *) ("<"));
 		}
@@ -145,7 +145,7 @@ char const * oprefix::revise (char const * symbol) const
 		{
 			temp = this->mafter->revise (symbol + 0);
 		}
-		else 
+		else
 		{
 			return ((char *) (">"));
 		}
@@ -157,12 +157,12 @@ char const * oprefix::revise (char const * symbol) const
 		{
 			temp = this->mequal->revise (symbol + 1);
 		}
-		else 
+		else
 		{
 			return ((char *) ("="));
 		}
 	}
-	else 
+	else
 	{
 		return ((char *) ("?"));
 	}
@@ -300,7 +300,7 @@ oprefix & oprefix::define (char const * symbol, char const * string)
 			}
 			prefix = prefix->mequal;
 		}
-		else 
+		else
 		{
 			delete prefix->mstring;
 			prefix->mstring = new char [strlen (string) + 1];
@@ -336,7 +336,7 @@ oprefix & oprefix::report (char * buffer, size_t length)
 		this->mequal->report (buffer, length);
 		column--;
 	}
-	else 
+	else
 	{
 		std::cout << buffer << std::endl;
 	}

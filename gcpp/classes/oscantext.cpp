@@ -1138,7 +1138,7 @@ oscantext & oscantext::scantoken ()
 		this->mclass = TOKEN_DIGIT;
 		this->scandigit ();
 	}
-	else 
+	else
 	{
 		this->mclass = * this->mbreak++;
 	}

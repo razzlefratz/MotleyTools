@@ -376,7 +376,7 @@ oscanfile & oscanfile::scanbreak ()
 	{
 		this->mbreak = this->munget [--this->ucount];
 	}
-	else 
+	else
 	{
 		this->mbreak = std::cin.get ();
 	}
@@ -969,7 +969,7 @@ oscanfile & oscanfile::scantoken ()
 		this->mclass = TOKEN_DIGIT;
 		this->scandigit ();
 	}
-	else 
+	else
 	{
 		this->mclass = this->mbreak;
 		this->scanbreak ();
@@ -996,7 +996,7 @@ bool oscanfile::havetoken (char const * literal)
 		this->skiptoken ();
 		return (true);
 	}
-	else 
+	else
 	{
 		return (false);
 	}

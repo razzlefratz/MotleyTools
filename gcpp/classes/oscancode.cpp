@@ -104,7 +104,7 @@ oscancode & oscancode::scantoken ()
 		{
 			this->tokentype (CL_T_FUNCTION);
 		}
-		else 
+		else
 		{
 			this->tokentype (CL_T_VARIABLE);
 		}
@@ -154,7 +154,7 @@ oscancode & oscancode::scantoken ()
 		this->tokentype (CL_T_OPERATOR);
 		if (this->havebreak ('+'));
 		else if (this->havebreak ('='));
-		else 
+		else
 		{
 		}
 	}
@@ -164,7 +164,7 @@ oscancode & oscancode::scantoken ()
 		if (this->havebreak ('-'));
 		else if (this->havebreak ('='));
 		else if (this->havebreak ('>'));
-		else 
+		else
 		{
 		}
 	}
@@ -207,12 +207,12 @@ oscancode & oscancode::scantoken ()
 		{
 			this->tokentype (CL_T_OPERATOR);
 		}
-		else 
+		else
 		{
 			this->tokentype (CL_T_OPERATOR);
 		}
 	}
-	else 
+	else
 	{
 		this->tokentype (CL_T_SEPERATE);
 		this->scanbreak ();

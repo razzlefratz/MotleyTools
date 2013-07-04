@@ -150,7 +150,7 @@ void omonth::encode (char buffer [], size_t length)
 		{
 			buffer [--length]= '0' + number % 10;
 		}
-		else 
+		else
 		{
 			buffer [--length] = ' ';
 		}

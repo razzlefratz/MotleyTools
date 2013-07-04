@@ -58,7 +58,7 @@ signed octidy::atheros (signed c, signed e)
 		if (c == '#') 
 		{
 			octidy::space (space);
-			do 
+			do
 			{
 				c = octidy::command (c, '\n');
 			}
@@ -69,7 +69,7 @@ signed octidy::atheros (signed c, signed e)
 		if (c == '/') 
 		{
 			octidy::space (space);
-			do 
+			do
 			{
 				c = octidy::comment (c);
 			}
@@ -86,7 +86,7 @@ signed octidy::atheros (signed c, signed e)
 				c = octidy::find (c);
 				octidy::level (level++);
 			}
-			else 
+			else
 			{
 				c = octidy::feed (c);
 				c = octidy::find (c);
@@ -99,7 +99,7 @@ signed octidy::atheros (signed c, signed e)
 		{
 			octidy::space (1);
 			octidy::level (--level);
-			do 
+			do
 			{
 				c = octidy::feed (c);
 				c = octidy::find (c);
@@ -110,7 +110,7 @@ signed octidy::atheros (signed c, signed e)
 				octidy::space (1);
 				space = 1;
 			}
-			else 
+			else
 			{
 				space = 2;
 			}
@@ -163,7 +163,7 @@ signed octidy::charlie (signed c, signed e)
 		{
 			octidy::space (space);
 			oinclude::header ();
-			do 
+			do
 			{
 				c = octidy::command (c);
 			}
@@ -174,7 +174,7 @@ signed octidy::charlie (signed c, signed e)
 		if (c == '/') 
 		{
 			octidy::space (space);
-			do 
+			do
 			{
 				c = ocomment::comment (c);
 			}
@@ -199,7 +199,7 @@ signed octidy::charlie (signed c, signed e)
 		{
 			octidy::space (1);
 			octidy::level (--level);
-			do 
+			do
 			{
 				c = octidy::feed (c);
 				c = octidy::find (c);
@@ -211,7 +211,7 @@ signed octidy::charlie (signed c, signed e)
 				c = ocomment::preamble (c);
 				space = 1;
 			}
-			else 
+			else
 			{
 				space = 2;
 			}
@@ -260,7 +260,7 @@ signed octidy::program (signed c, signed e)
 		if (c == '#') 
 		{
 			octidy::space (space);
-			do 
+			do
 			{
 				c = octidy::command (c, '\n');
 			}
@@ -271,7 +271,7 @@ signed octidy::program (signed c, signed e)
 		if (c == '/') 
 		{
 			octidy::space (space);
-			do 
+			do
 			{
 				c = octidy::comment (c);
 			}
@@ -296,7 +296,7 @@ signed octidy::program (signed c, signed e)
 		{
 			octidy::space (1);
 			octidy::level (--level);
-			do 
+			do
 			{
 				c = octidy::feed (c);
 				c = octidy::find (c);
@@ -307,7 +307,7 @@ signed octidy::program (signed c, signed e)
 				octidy::space (1);
 				space = 1;
 			}
-			else 
+			else
 			{
 				space = 2;
 			}
@@ -375,7 +375,7 @@ signed octidy::statement (signed c, signed level, signed space)
 			std::cout.put (' ');
 			c = octidy::context (c, ",;{}#");
 		}
-		else 
+		else
 		{
 			std::cout.put (' ');
 			std::cout.put ('(');
@@ -416,7 +416,7 @@ signed octidy::statement (signed c, signed level, signed space)
 			c = octidy::feed (c);
 			c = octidy::context (c, ",;{}#");
 		}
-		else 
+		else
 		{
 			octidy::print (level-1, 0, string);
 			c = octidy::feed (c);
@@ -425,7 +425,7 @@ signed octidy::statement (signed c, signed level, signed space)
 			c = octidy::context (c, ",;{}#");
 		}
 	}
-	else 
+	else
 	{
 		octidy::print (level, 0, string);
 		if (oascii::isalnum (c) || (c == '_')) 
@@ -727,7 +727,7 @@ signed octidy::context (signed c) const
 		c = octidy::feed (c);
 		if (c == '*') 
 		{
-			do 
+			do
 			{
 				c = octidy::feed (c);
 			}
@@ -778,7 +778,7 @@ signed octidy::context (signed c) const
 	{
 		c = octidy::context (c, '}');
 	}
-	else 
+	else
 	{
 		c = octidy::feed (c);
 	}

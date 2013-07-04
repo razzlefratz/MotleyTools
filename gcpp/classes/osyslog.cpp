@@ -198,7 +198,7 @@ void osyslog::syslogerr (priority_t priority, errno_t errnum, char const * forma
 		std::snprintf (buffer, sizeof (buffer), "%s: %s", format, std::strerror (errnum));
 		osyslog::vsyslog (priority, buffer, arglist);
 	}
-	else 
+	else
 	{
 		osyslog::vsyslog (priority, format, arglist);
 	}
@@ -227,7 +227,7 @@ void osyslog::syslogerr_at_line (priority_t priority, errno_t errornum, char con
 		std::snprintf (buffer, sizeof (buffer), "%s: (%d) ", filename, lineno);
 		osyslog::vsyslog (priority, buffer, arglist);
 	}
-	else 
+	else
 	{
 		osyslog::vsyslog (priority, format, arglist);
 	}

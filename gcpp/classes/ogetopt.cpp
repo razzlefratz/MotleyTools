@@ -347,7 +347,7 @@ signed ogetopt::getopt (int argc, char const * argv [], char const * options)
 					}
 				}
 			}
-			else 
+			else
 			{
 				this->mstring = (char *) (0);
 			}

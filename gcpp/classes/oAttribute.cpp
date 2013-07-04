@@ -109,7 +109,7 @@ oAttribute & oAttribute::value (unsigned number)
 	char string [32];
 	char * sp = string + sizeof (string);
 	*--sp = (char)(0);
-	do 
+	do
 	{
 		*--sp = '0' + number % 10;
 		number /= 10;
@@ -134,7 +134,7 @@ oAttribute & oAttribute::value (unsigned number, unsigned digits)
 	char string [digits + 1];
 	char * sp = string + sizeof (string);
 	*--sp = (char)(0);
-	do 
+	do
 	{
 		* --sp = '0' + number % 10;
 		number /= 10;

@@ -404,7 +404,7 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 					std::exit (0);
 				}
 			}
-			else 
+			else
 			{
 				this->mstring = (char *) (0);
 			}

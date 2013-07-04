@@ -143,7 +143,7 @@ signed ocblock::program (signed c, signed e)
 		{
 			char string [100];
 			char * sp = string;
-			do 
+			do
 			{
 				* sp++ = c;
 				c = ocblock::feed (c);

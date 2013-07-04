@@ -232,7 +232,7 @@ signed osource::context (signed c) const
 	{
 		c = osource::context (c, '}');
 	}
-	else 
+	else
 	{
 		c = osource::feed (c);
 	}
@@ -357,7 +357,7 @@ signed osource::comment (signed c) const
 				if (c == '\n') 
 				{
 					std::cout.put (' ');
-					do 
+					do
 					{
 						c = std::cin.get ();
 					}
@@ -414,7 +414,7 @@ signed osource::_comment (signed c) const
 signed osource::moniker (signed c) const 
 
 {
-	do 
+	do
 	{
 		c = osource::feed (c);
 	}

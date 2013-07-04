@@ -159,7 +159,7 @@ signed omptidy::tidy (signed c)
 		if (c == '.') 
 		{
 			char * sp = this->mstring;
-			do 
+			do
 			{
 				* sp++ = c;
 				c = std::cin.get ();
@@ -206,7 +206,7 @@ signed omptidy::tidy (signed c)
 			{
 				std::cout << std::endl << this->mstring;
 			}
-			else 
+			else
 			{
 				std::cout << this->mstring;
 			}
@@ -223,7 +223,7 @@ signed omptidy::tidy (signed c)
 				c = omptidy::feed (c);
 				if (c == '.') 
 				{
-					do 
+					do
 					{
 						c = omptidy::feed (c);
 					}
@@ -232,7 +232,7 @@ signed omptidy::tidy (signed c)
 				}
 				if (oascii::isblank (c)) 
 				{
-					do 
+					do
 					{
 						c = std::cin.get ();
 					}

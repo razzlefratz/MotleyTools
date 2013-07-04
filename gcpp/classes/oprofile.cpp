@@ -300,7 +300,7 @@ bool oprofile::compare (char const * string)
 	}
 	while ((* string) && oascii::nobreak (this->mbreak) && oascii::ismatch (* string, this->mbreak)) 
 	{
-		do 
+		do
 		{
 			string++;
 		}
@@ -323,7 +323,7 @@ bool oprofile::compare (char const * string)
 oprofile & oprofile:: newchar () 
 
 {
-	do 
+	do
 	{
 		this->mbreak = this->mstream.get ();
 	}

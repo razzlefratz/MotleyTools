@@ -162,7 +162,7 @@ int opage::put (int c)
 	switch (c) 
 	{
 	case '\t':
-		do 
+		do
 		{
 			this->mtab++;
 		}

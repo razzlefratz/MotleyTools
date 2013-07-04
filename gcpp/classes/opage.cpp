@@ -202,7 +202,7 @@ signed opage::put (signed c)
 		std::cout.put (' ');
 		this->mcol++;
 	}
-	else 
+	else
 	{
 		std::cout.put (c);
 		this->mcol++;
@@ -298,7 +298,7 @@ opage & opage::footer ()
 		offset -= length;
 		offset /= 2;
 	}
-	else 
+	else
 	{
 		length = offset;
 		offset = 0;

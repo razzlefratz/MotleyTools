@@ -82,7 +82,7 @@ signed oenclose::expression (signed c)
 	{
 		c = oenclose::program ('(', ')');
 	}
-	else 
+	else
 	{
 		std::cout.put ('(');
 		c = oenclose::program1 (c, ';');
@@ -125,7 +125,7 @@ signed program1 (int c, int e)
 		{
 			char string [100];
 			char * sp = string;
-			do 
+			do
 			{
 				* sp++ = c;
 				c = oenclose::keep (c);

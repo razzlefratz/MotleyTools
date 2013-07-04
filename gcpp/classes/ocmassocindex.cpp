@@ -83,7 +83,7 @@ ocmassocindex & ocmassocindex::index2 (struct _topic_ topics [], unsigned count)
 						cout << "\t\t\t\t\t" << "</ul>" << NEWLINE;
 						cout << "\t\t\t\t" << "</li>" << NEWLINE;
 					}
-					else 
+					else
 					{
 						cout << "\t\t\t" << "<li style='" << this->mbelow << "'>" << NEWLINE;
 						cout << "\t\t\t\t" << "<a href='../" << topics [this->mindex].index << "'>" << topics [this->mindex].title << "</a>" << NEWLINE;

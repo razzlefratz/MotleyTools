@@ -590,7 +590,7 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 	struct pcap_pkthdr * header;
 	const uint8_t * data;
 	unsigned elapsed = 0;
-	do 
+	do
 	{
 		signed status = pcap_next_ex (this->msocket, & header, & data);
 		std::memset (memory, 0, extent);

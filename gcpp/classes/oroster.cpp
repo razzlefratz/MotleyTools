@@ -187,7 +187,7 @@ bool oroster::insert (char const * symbol)
 		this->mlist->insertitem (item);
 		return (true);
 	}
-	else 
+	else
 	{
 		return (false);
 	}
@@ -209,7 +209,7 @@ bool oroster::remove (char const * symbol)
 		this->mlist->removeitem ();
 		return (true);
 	}
-	else 
+	else
 	{
 		return (false);
 	}

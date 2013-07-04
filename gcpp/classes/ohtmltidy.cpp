@@ -120,13 +120,13 @@ signed ohtmltidy::page (signed c)
 			{
 				c = ohtmltidy::sgml (c);
 			}
-			else 
+			else
 			{
 				c = ohtmltidy::xhtml (c);
 			}
 			c = ohtmltidy::find (c);
 		}
-		else 
+		else
 		{
 			c = ohtmltidy::cdata (c);
 		}
@@ -215,7 +215,7 @@ signed ohtmltidy::sgml (signed c)
 	{
 		c = ohtmltidy::feed (c);
 		c = ohtmltidy::find (c);
-		do 
+		do
 		{
 			c = oascii::toupper (c);
 			c = ohtmltidy::feed (c);
@@ -226,7 +226,7 @@ signed ohtmltidy::sgml (signed c)
 	}
 	else if (oascii::isalpha (c)) 
 	{
-		do 
+		do
 		{
 			c = oascii::toupper (c);
 			c = ohtmltidy::feed (c);
@@ -253,7 +253,7 @@ signed ohtmltidy::sgml (signed c)
 		{
 			c = ohtmltidy::feed (c);
 			c = ohtmltidy::find (c);
-			do 
+			do
 			{
 				c = oascii::toupper (c);
 				c = ohtmltidy::feed (c);
@@ -268,7 +268,7 @@ signed ohtmltidy::sgml (signed c)
 		}
 		else if (oascii::isalpha (c) || (c == '#') || (c == '%')) 
 		{
-			do 
+			do
 			{
 				c = oascii::toupper (c);
 				c = ohtmltidy::feed (c);
@@ -277,7 +277,7 @@ signed ohtmltidy::sgml (signed c)
 		}
 		else if (oascii::isdigit (c)) 
 		{
-			do 
+			do
 			{
 				c = ohtmltidy::feed (c);
 			}
@@ -314,7 +314,7 @@ signed ohtmltidy::xhtml (signed c)
 		c = ohtmltidy::find (c);
 		ohtmltidy::decrement ();
 	}
-	else 
+	else
 	{
 		ohtmltidy::increment ();
 	}
@@ -326,7 +326,7 @@ signed ohtmltidy::xhtml (signed c)
 	{
 		c = ohtmltidy::enquote (c, c);
 	}
-	else 
+	else
 	{
 		c = ohtmltidy::unknown (c);
 	}
@@ -344,7 +344,7 @@ signed ohtmltidy::xhtml (signed c)
 		{
 			c = ohtmltidy::enquote (c, c);
 		}
-		else 
+		else
 		{
 			c = ohtmltidy::unknown (c);
 		}
@@ -359,7 +359,7 @@ signed ohtmltidy::xhtml (signed c)
 			{
 				c = ohtmltidy::dequote (c, c);
 			}
-			else 
+			else
 			{
 				c = ohtmltidy::unknown (c);
 			}
@@ -506,7 +506,7 @@ signed ohtmltidy::nmtoken (signed c)
 
 {
 	char * string = this->mstring;
-	do 
+	do
 	{
 		* string++ = c;
 		c = std::cin.get ();

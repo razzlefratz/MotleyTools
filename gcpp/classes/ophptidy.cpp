@@ -58,7 +58,7 @@ signed ophptidy::page (signed c)
 			{
 				char string [256];
 				char * cp = string;
-				do 
+				do
 				{
 					* cp++ = c;
 					c = std::cin.get ();
@@ -107,7 +107,7 @@ signed ophptidy::program (signed c)
 	{
 		if (oascii::isspace (c)) 
 		{
-			do 
+			do
 			{
 				c = std::cin.get ();
 			}
@@ -136,7 +136,7 @@ signed ophptidy::program (signed c)
 		if (c == '#') 
 		{
 			ophptidy::endline ();
-			do 
+			do
 			{
 				c = ophptidy::command ('#', '\n');
 			}
@@ -219,7 +219,7 @@ signed ophptidy::statement (signed c)
 	{
 		char string [512];
 		char * cp = string;
-		do 
+		do
 		{
 			* cp++ = c;
 			c = std::cin.get ();
@@ -238,7 +238,7 @@ signed ophptidy::statement (signed c)
 			std::cout << string;
 			c = ophptidy::context (c, ':');
 		}
-		else 
+		else
 		{
 			ophptidy::newline (this->mlevel);
 			std::cout << string;
@@ -249,7 +249,7 @@ signed ophptidy::statement (signed c)
 			c = ophptidy::context (c, ",;{}?#");
 		}
 	}
-	else 
+	else
 	{
 		ophptidy::newline (this->mlevel);
 		c = ophptidy::context (c, ",;{}?#");
@@ -369,7 +369,7 @@ signed ophptidy::context (signed c)
 	}
 	else if (oascii::isdigit (c)) 
 	{
-		do 
+		do
 		{
 			c = ophptidy::feed (c);
 		}
@@ -377,7 +377,7 @@ signed ophptidy::context (signed c)
 	}
 	else if (oascii::isalpha (c)) 
 	{
-		do 
+		do
 		{
 			c = ophptidy::feed (c);
 		}
@@ -407,7 +407,7 @@ signed ophptidy::context (signed c)
 	{
 		c = ophptidy::context ('(', ')');
 	}
-	else 
+	else
 	{
 		c = ophptidy::feed (c);
 	}

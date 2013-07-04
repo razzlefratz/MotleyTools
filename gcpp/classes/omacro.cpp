@@ -109,7 +109,7 @@ omacro & omacro::define (char const * string)
 	this->margument->define (source.tokentext (), this->argument (count++));
 	if (source.havebreak ('(')) 
 	{
-		do 
+		do
 		{
 			source.scanspace ();
 			source.flush ();
@@ -182,7 +182,7 @@ char const * omacro::expand (char const * string)
 	source.scanspace ();
 	if (source.havebreak ('(')) 
 	{
-		do 
+		do
 		{
 			source.scanspace ().flush ();
 			source.scangroup (",)");
@@ -290,7 +290,7 @@ char const * omacro::argument (unsigned number) const
 	char * string = buffer + sizeof (buffer);
 	*--string = (char) (0);
 	*--string = omacro::msuffix;
-	do 
+	do
 	{
 		*--string = '0' + (char) (number % 10);
 	}

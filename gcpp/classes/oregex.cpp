@@ -47,7 +47,7 @@ char const * oregex::select (char const * string) const
 			buffer [length] = (char) (0);
 			return (buffer);
 		}
-		else 
+		else
 		{
 			string++;
 		}
@@ -414,7 +414,7 @@ oregex::oregex (char const * string)
 			this->mcharset [1] = (char) (0);
 			string++;
 		}
-		else 
+		else
 		{
 			this->mexclude = false;
 			this->mcharset [0] = (char) (REGEX_C_ESC);

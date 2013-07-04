@@ -703,7 +703,7 @@ void omemory::hexdump (void const * memory, size_t offset, size_t extent, std::o
 				* output++ = omemory::digits [(origin [index] >> 4) & 0x0F];
 				* output++ = omemory::digits [(origin [index] >> 0) & 0x0F];
 			}
-			else 
+			else
 			{
 				* output++ = ' ';
 				* output++ = ' ';
@@ -721,7 +721,7 @@ void omemory::hexdump (void const * memory, size_t offset, size_t extent, std::o
 				unsigned c = origin [index];
 				* output++ = oascii::isprint (c)? (char)(c): omemory::chr_nonprint;
 			}
-			else 
+			else
 			{
 				* output++ = ' ';
 			}
@@ -774,7 +774,7 @@ void omemory::hexview (void const * memory, size_t offset, size_t extent, std::o
 				* output++ = omemory::digits [(origin [index-offset] >> 4) & 0x0F];
 				* output++ = omemory::digits [(origin [index-offset] >> 0) & 0x0F];
 			}
-			else 
+			else
 			{
 				* output++ = ' ';
 				* output++ = ' ';
@@ -792,7 +792,7 @@ void omemory::hexview (void const * memory, size_t offset, size_t extent, std::o
 				unsigned c = origin [index-offset];
 				* output++ = oascii::isprint (c)? (char)(c): omemory::chr_nonprint;
 			}
-			else 
+			else
 			{
 				* output++ = ' ';
 			}
@@ -1017,7 +1017,7 @@ size_t omemory::hexin (void * memory, size_t extent, std::istream * stream)
 	{
 		if (c == '#') 
 		{
-			do 
+			do
 			{
 				c = stream->get ();
 			}
@@ -1028,7 +1028,7 @@ size_t omemory::hexin (void * memory, size_t extent, std::istream * stream)
 			c = stream->get ();
 			if (c == '/') 
 			{
-				do 
+				do
 				{
 					c = stream->get ();
 				}

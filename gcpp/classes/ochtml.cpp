@@ -221,7 +221,7 @@ ochtml & ochtml::html (char const * filename)
 				this->mfile.write ();
 				this->mspan.EndTag ();
 			}
-			else 
+			else
 			{
 				this->mspan.CoreAttributes.IdentityAttribute->value ("");
 				this->mspan.CoreAttributes.ClassAttribute->value ("variable");
@@ -389,7 +389,7 @@ ochtml & ochtml::directive ()
 
 #endif
 
-		else 
+		else
 		{
 			this->mfile.write ();
 		}

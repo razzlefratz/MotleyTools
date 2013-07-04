@@ -158,7 +158,7 @@ signed odiscard::context (signed c) const
 	{
 		c = odiscard::context (c, '}');
 	}
-	else 
+	else
 	{
 		c = odiscard::feed (c);
 	}

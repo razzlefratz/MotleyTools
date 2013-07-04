@@ -205,7 +205,7 @@ bool oglossary::create (char const * symbol, char const * string)
 		this->mlist->insertitem (item);
 		return (true);
 	}
-	else 
+	else
 	{
 		return (false);
 	}
@@ -228,7 +228,7 @@ bool oglossary::define (char const * symbol, char const * string)
 		this->mlist->insertitem (item);
 		return (true);
 	}
-	else 
+	else
 	{
 		item->text (string);
 		return (false);
@@ -251,7 +251,7 @@ bool oglossary::assign (char const * symbol, char const * string)
 		item->text (string);
 		return (true);
 	}
-	else 
+	else
 	{
 		return (false);
 	}

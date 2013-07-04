@@ -558,7 +558,7 @@ void opathspec::partfile (char const * filespec, char filename [], char extender
 			* extender++ = * filespec++;
 		}
 	}
-	else 
+	else
 	{
 		while (filespec < string) 
 		{
@@ -730,7 +730,7 @@ void opathspec::mergepath ()
 				this->mstack [this->mlevel++] = this->mstack [this->mindex];
 				this->mstart++;
 			}
-			else 
+			else
 			{
 				this->mlevel--;
 			}

@@ -142,7 +142,7 @@ ograph & ograph::populate (char colon, char comma)
 		{
 			this->addedge (two, one);
 		}
-		else 
+		else
 		{
 			this->addedge (one, two);
 		}

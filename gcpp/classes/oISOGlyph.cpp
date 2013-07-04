@@ -309,7 +309,7 @@ char const * oISOGlyph::string (unsigned c)
 	{
 		* this->mascii++ = * this->mglyph;
 	}
-	else 
+	else
 	{
 		* this->mascii++ = '&';
 		while (* this->mglyph != (char)(0)) 

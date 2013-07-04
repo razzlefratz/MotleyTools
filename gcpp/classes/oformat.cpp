@@ -230,7 +230,7 @@ oformat & oformat::print (char const * string)
 		{
 			this->mbuffer [this->mcolumn++] = * string++;
 		}
-		else 
+		else
 		{
 			this->space (0);
 			this->flush (0);

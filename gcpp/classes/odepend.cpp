@@ -85,7 +85,7 @@ odepend & odepend::populate (char colon, char comma, bool invert)
 		{
 			this->connect (two, one);
 		}
-		else 
+		else
 		{
 			this->connect (one, two);
 		}
@@ -115,7 +115,7 @@ odepend & odepend::connect (char const * one, char const * two)
 	{
 		node->mbelow = new odepend (two);
 	}
-	else 
+	else
 	{
 		node->mbelow->store (two);
 	}

@@ -525,7 +525,7 @@ otree * otree::nodes (long index) const
 			{
 				node = node->mabove;
 			}
-			else 
+			else
 			{
 				node = node->mprior;
 			}
@@ -712,7 +712,7 @@ otree * otree::appendbelow (char const * nodename)
 		node->mprior = temp;
 		node->mabove = this;
 	}
-	else 
+	else
 	{
 		this->mbelow = node;
 		node->mabove = this;
@@ -803,7 +803,7 @@ otree * otree::createbelow (char const * nodename, const int order)
 	{
 		node = node->createafter (nodename, order);
 	}
-	else 
+	else
 	{
 		node = new otree (nodename);
 		node->mabove = this;
@@ -917,7 +917,7 @@ otree * otree::findnext (char const * nodename) const
 
 {
 	const otree * node = this;
-	do 
+	do
 	{
 		node = node->mafter;
 	}
@@ -940,7 +940,7 @@ otree * otree::findprev (char const * nodename) const
 
 {
 	const otree * node = this;
-	do 
+	do
 	{
 		node = node->mprior;
 	}

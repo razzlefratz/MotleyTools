@@ -72,7 +72,7 @@ char const * oIPAddress::string (unsigned number)
 			oIPAddress::buffer [--oIPAddress::digit] = oIPAddress::digits [10];
 		}
 		oIPAddress::value = oIPAddress::bitmap.field [octet];
-		do 
+		do
 		{
 			oIPAddress::buffer [--oIPAddress::digit] = oIPAddress::digits [0] + (char) (oIPAddress::value % 10);
 		}

@@ -134,7 +134,7 @@ unsigned odate::dayofweek (unsigned year, signed month, signed day)
 	{
 		--month;
 	}
-	else 
+	else
 	{
 		month += MONTHS_IN_YEAR;
 		--month;

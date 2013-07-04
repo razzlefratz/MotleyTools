@@ -215,7 +215,7 @@ ocontext & ocontext::split (char const * string, char const * charset, bool firs
 		this->msuffix = this->mprefix;
 		this->mprefix = this->mstring;
 	}
-	else 
+	else
 	{
 		this->msuffix = this->mstring;
 	}
