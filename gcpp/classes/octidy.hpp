@@ -27,7 +27,7 @@
  *   interface declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) octidy: public osource, public oindent, public oinclude, public ocomment 
+class __declspec (dllexport) octidy: private ocoment, private oinclude, private osource, public oindent
 
 {
 public:

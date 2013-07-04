@@ -39,10 +39,10 @@ class __declspec (dllexport) ochtml: public owebpage
 
 {
 public:
-	ochtml ();
+	ochtml (void);
 	ochtml (char const * stylesheet);
-	virtual ~ ochtml ();
-	ochtml & css2 ();
+	virtual ~ ochtml (void);
+	ochtml & css2 (void);
 	ochtml & css2 (char const * filename);
 	ochtml & html (char const * pathname);
 private:
@@ -57,7 +57,7 @@ private:
 	oSpanElement mspan;
 	oAnchorElement mlink;
 	oISOGlyph mglyph;
-	unsigned mcount;
+	unsigned mindex;
 };
 
 /*====================================================================*

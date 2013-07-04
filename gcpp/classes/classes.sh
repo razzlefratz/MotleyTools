@@ -24,7 +24,6 @@ g++ -Wall -c ochrtbl.cpp
 g++ -Wall -c ochrupr.cpp
 # g++ -Wall -c ocmassocindex.cpp
 g++ -Wall -c ocode.cpp
-g++ -Wall -c ocollect.cpp
 # g++ -Wall -c ocombine.cpp
 # g++ -Wall -c ocontext.cpp
 # g++ -Wall -c ocontext.demo.cpp
@@ -72,7 +71,6 @@ g++ -Wall -c ointerface.cpp
 g++ -Wall -c ointerfaces.cpp
 g++ -Wall -c oitem.cpp
 g++ -Wall -c okeep.cpp
-# g++ -Wall -c okeep.demo.cpp
 g++ -Wall -c okeywords.cpp
 g++ -Wall -c olist.cpp
 # g++ -Wall -c olist.demo.cpp
@@ -94,7 +92,6 @@ g++ -Wall -c opathspec.cpp
 g++ -Wall -c ophptidy.cpp
 g++ -Wall -c oprefix.cpp
 # g++ -Wall -c oprefix.demo.cpp
-# g++ -Wall -c oprofile1.cpp
 g++ -Wall -c oprofile.cpp
 # g++ -Wall -c oprofile.demo.cpp
 g++ -Wall -c oprogram.cpp
@@ -109,6 +106,7 @@ g++ -Wall -c oscantext.cpp
 g++ -Wall -c osection.cpp
 g++ -Wall -c osorter.cpp
 # g++ -Wall -c osorter.demo.cpp
+g++ -Wall -c osource.cpp
 g++ -Wall -c ostring.cpp
 g++ -Wall -c osuffix.cpp
 # g++ -Wall -c osuffix.demo.cpp
