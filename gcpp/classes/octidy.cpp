@@ -178,18 +178,15 @@ signed octidy::atheros (signed c)
 		}
 		if (c == '{') 
 		{
-			oindent::endline (1);
 			if (!this->mlevel) 
 			{
-				oindent::endline (1);
+				oindent::endline (2);
 				oindent::newline ();
 				c = osource::feed (c);
 			}
 			else
 			{
 				c = osource::feed (c);
-				oindent::endline (1);
-				oindent::newline ();
 			}
 			oindent::increment ();
 			oindent::space (1);
