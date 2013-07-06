@@ -173,12 +173,17 @@ oscancode & oscancode::scantoken ()
 		this->tokentype (CL_T_OPERATOR);
 		this->scanbreak ('=');
 	}
+	else if (this->havebreak ('%')) 
+	{
+		this->tokentype (CL_T_OPERATOR);
+		this->scanbreak ('=');
+	}
 	else if (this->havebreak ('=')) 
 	{
 		this->tokentype (CL_T_OPERATOR);
 		this->scanmatch ();
 	}
-	else if (this->havebreak ("!~")) 
+	else if (this->havebreak ("!~^")) 
 	{
 		this->tokentype (CL_T_OPERATOR);
 		this->scanbreak ('=');
