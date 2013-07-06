@@ -56,36 +56,36 @@
 
 static void function () 
 
-{
-	oscanfile source;
+{ 
+	oscanfile source; 
 	while (!source.end ()) 
-	{
-		<<<<<<< HEAD if (source.scantoken ().isspace ()) ======= source.scantoken ();
+	{ 
+		<<<<<<< HEAD if (source.scantoken ().isspace ()) ======= source.scantoken (); 
 		if (source.isspace ()) >>>>>>> 6f95020476b52cf467ba9cc9ea46d424fb7d7b40 
-		{
-			source.scanspace ();
-		}
+		{ 
+			source.scanspace (); 
+		} 
 		<<<<<<< HEAD else if (source.havetoken ("while")) 
-		{
-		}
+		{ 
+		} 
 		else if (source.havetoken ("do")) 
-		{
-		}
+		{ 
+		} 
 		else if (source.havetoken ("switch")) 
-		{
-		}
+		{ 
+		} 
 		else if (source.havetoken ("if")) 
-		{
-		}
+		{ 
+		} 
 		else if (source.havetoken ("return")) 
-		{
-		}
-		source.write ().flush ();
-		======= source.print ().flush ();
+		{ 
+		} 
+		source.write ().flush (); 
+		======= source.print ().flush (); 
 		>>>>>>> 6f95020476b52cf467ba9cc9ea46d424fb7d7b40
-	}
-	return;
-}
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *   main program;
@@ -93,41 +93,41 @@ static void function ()
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"",
-		oPUTOPTV_S_FUNNEL,
-		"C Language Block Manger",
+	{ 
+		"", 
+		oPUTOPTV_S_FUNNEL, 
+		"C Language Block Manger", 
 		(char const *) (0)
-	};
-	ofileopen fileopen;
-	opathspec pathspec;
-	ogetoptv getopt;
-	signed c;
+	}; 
+	ofileopen fileopen; 
+	opathspec pathspec; 
+	ogetoptv getopt; 
+	signed c; 
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
 		switch (c) 
-		{
+		{ 
 		default:
-			break;
-		}
-	}
+			break; 
+		} 
+	} 
 	if (!getopt.argc ()) 
-	{
-		function ();
-	}
+	{ 
+		function (); 
+	} 
 	while (getopt.argc () && * getopt.argv ()) 
-	{
-		char filename [FILENAME_MAX + 1];
-		pathspec.fullpath (filename, * getopt.argv ());
+	{ 
+		char filename [FILENAME_MAX + 1]; 
+		pathspec.fullpath (filename, * getopt.argv ()); 
 		if (fileopen.openedit (filename)) 
-		{
-			function ();
-			fileopen.close ();
-		}
-		getopt++;
-	}
-	std::exit (0);
-}
+		{ 
+			function (); 
+			fileopen.close (); 
+		} 
+		getopt++; 
+	} 
+	std::exit (0); 
+} 
 

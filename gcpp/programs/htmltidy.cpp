@@ -60,67 +60,67 @@
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"cm:o:st",
-		oPUTOPTV_S_FILTER,
-		"format html/xhtml/xml source files",
-		"c\tcompact source",
-		"m s\tmargin string is (s) [" LITERAL (oINDENT_MARGIN) "]",
-		"o s\toffset string is (s) [" LITERAL (oINDENT_OFFSET) "]",
-		"s\toffset string is 3 spaces",
-		"t\toffset string is 1 tab",
+	{ 
+		"cm:o:st", 
+		oPUTOPTV_S_FILTER, 
+		"format html/xhtml/xml source files", 
+		"c\tcompact source", 
+		"m s\tmargin string is (s) [" LITERAL (oINDENT_MARGIN) "]", 
+		"o s\toffset string is (s) [" LITERAL (oINDENT_OFFSET) "]", 
+		"s\toffset string is 3 spaces", 
+		"t\toffset string is 1 tab", 
 		(char const *) (0)
-	};
-	ogetoptv getopt;
-	oescape escape;
-	opathspec pathspec;
-	ofileopen fileopen;
-	ohtmltidy object;
-	signed (ohtmltidy::* method) (signed) = & ohtmltidy::page;
-	signed c;
+	}; 
+	ogetoptv getopt; 
+	oescape escape; 
+	opathspec pathspec; 
+	ofileopen fileopen; 
+	ohtmltidy object; 
+	signed (ohtmltidy::* method) (signed) = & ohtmltidy::page; 
+	signed c; 
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
 		switch (c) 
-		{
-		case 'c':
-			object.margin ("");
-			object.offset ("");
-			object.finish ("");
-			object.record ("");
-			break;
-		case 'm':
-			object.margin (escape.unescape ((char *)(getopt.args ())));
-			break;
-		case 'o':
-			object.offset (escape.unescape ((char *)(getopt.args ())));
-			break;
-		case 's':
-			object.offset ("   ");
-			break;
-		case 't':
-			object.offset ("\t");
-			break;
+		{ 
+		case 'c': 
+			object.margin (""); 
+			object.offset (""); 
+			object.finish (""); 
+			object.record (""); 
+			break; 
+		case 'm': 
+			object.margin (escape.unescape ((char *)(getopt.args ()))); 
+			break; 
+		case 'o': 
+			object.offset (escape.unescape ((char *)(getopt.args ()))); 
+			break; 
+		case 's': 
+			object.offset ("   "); 
+			break; 
+		case 't': 
+			object.offset ("\t"); 
+			break; 
 		default:
-			break;
-		}
-	}
+			break; 
+		} 
+	} 
 	if (!getopt.argc ()) 
-	{
-		(object.* method) (std::cin.get ());
-	}
+	{ 
+		(object.* method) (std::cin.get ()); 
+	} 
 	while (getopt.argc () && * getopt.argv ()) 
-	{
-		char filename [FILENAME_MAX + 1];
-		pathspec.fullpath (filename, * getopt.argv ());
+	{ 
+		char filename [FILENAME_MAX + 1]; 
+		pathspec.fullpath (filename, * getopt.argv ()); 
 		if (fileopen.openedit (filename)) 
-		{
-			(object.* method) (std::cin.get ());
-			fileopen.close ();
-		}
-		getopt++;
-	}
-	std::exit (0);
-}
+		{ 
+			(object.* method) (std::cin.get ()); 
+			fileopen.close (); 
+		} 
+		getopt++; 
+	} 
+	std::exit (0); 
+} 
 

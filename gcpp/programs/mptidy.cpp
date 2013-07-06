@@ -69,67 +69,67 @@
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"op:s:",
-		oPUTOPTV_S_FILTER,
-		"format C/C++ source code with preamble annotations",
-		"o\tprint default profile on stdout",
-		"p s\tprofile is (s) [" LITERAL (PROFILE_NAME) "]",
-		"s s\tsection is (s) [" LITERAL (SECTION_NAME) "]",
+	{ 
+		"op:s:", 
+		oPUTOPTV_S_FILTER, 
+		"format C/C++ source code with preamble annotations", 
+		"o\tprint default profile on stdout", 
+		"p s\tprofile is (s) [" LITERAL (PROFILE_NAME) "]", 
+		"s s\tsection is (s) [" LITERAL (SECTION_NAME) "]", 
 		(char const *) (0)
-	};
-	ogetoptv getopt;
-	ofileopen fileopen;
-	opathspec pathspec;
-	oprofile config;
-	omptidy object;
-	char const * profile = PROFILE_NAME;
-	char const * section = SECTION_NAME;
-	signed (omptidy::* method) (signed) = & omptidy::tidy;
-	signed c;
+	}; 
+	ogetoptv getopt; 
+	ofileopen fileopen; 
+	opathspec pathspec; 
+	oprofile config; 
+	omptidy object; 
+	char const * profile = PROFILE_NAME; 
+	char const * section = SECTION_NAME; 
+	signed (omptidy::* method) (signed) = & omptidy::tidy; 
+	signed c; 
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
 		switch (c) 
-		{
-		case 'o':
-			config.write (SECTION_NAME);
-			config.write (oMPTIDY_S_PROJECT, MPTIDY_S_PROJECT);
-			config.write (oMPTIDY_S_PACKAGE, MPTIDY_S_PACKAGE);
-			config.write (oMPTIDY_S_PROGRAM, MPTIDY_S_PROGRAM);
-			config.write (oMPTIDY_S_RELEASE, MPTIDY_S_RELEASE);
-			std::exit (0);
-		case 'p':
-			profile = getopt.optarg ();
-			break;
-		case 's':
-			section = getopt.optarg ();
-			break;
+		{ 
+		case 'o': 
+			config.write (SECTION_NAME); 
+			config.write (oMPTIDY_S_PROJECT, MPTIDY_S_PROJECT); 
+			config.write (oMPTIDY_S_PACKAGE, MPTIDY_S_PACKAGE); 
+			config.write (oMPTIDY_S_PROGRAM, MPTIDY_S_PROGRAM); 
+			config.write (oMPTIDY_S_RELEASE, MPTIDY_S_RELEASE); 
+			std::exit (0); 
+		case 'p': 
+			profile = getopt.optarg (); 
+			break; 
+		case 's': 
+			section = getopt.optarg (); 
+			break; 
 		default:
-			break;
-		}
-	}
-	object.project (config.string (profile, section, oMPTIDY_S_PROJECT, MPTIDY_S_PROJECT));
-	object.package (config.string (profile, section, oMPTIDY_S_PACKAGE, MPTIDY_S_PACKAGE));
-	object.program (config.string (profile, section, oMPTIDY_S_PROGRAM, MPTIDY_S_PROGRAM));
-	object.release (config.string (profile, section, oMPTIDY_S_RELEASE, MPTIDY_S_RELEASE));
+			break; 
+		} 
+	} 
+	object.project (config.string (profile, section, oMPTIDY_S_PROJECT, MPTIDY_S_PROJECT)); 
+	object.package (config.string (profile, section, oMPTIDY_S_PACKAGE, MPTIDY_S_PACKAGE)); 
+	object.program (config.string (profile, section, oMPTIDY_S_PROGRAM, MPTIDY_S_PROGRAM)); 
+	object.release (config.string (profile, section, oMPTIDY_S_RELEASE, MPTIDY_S_RELEASE)); 
 	if (!getopt.argc ()) 
-	{
-		(object.* method) (std::cin.get ());
-	}
+	{ 
+		(object.* method) (std::cin.get ()); 
+	} 
 	while (getopt.argc () && * getopt.argv ()) 
-	{
-		char filename [FILENAME_MAX];
-		pathspec.fullpath (filename, * getopt.argv ());
+	{ 
+		char filename [FILENAME_MAX]; 
+		pathspec.fullpath (filename, * getopt.argv ()); 
 		if (fileopen.openedit (filename)) 
-		{
-			object.filename (filename);
-			(object.* method) (std::cin.get ());
-			fileopen.close ();
-		}
-		getopt++;
-	}
-	std::exit (0);
-}
+		{ 
+			object.filename (filename); 
+			(object.* method) (std::cin.get ()); 
+			fileopen.close (); 
+		} 
+		getopt++; 
+	} 
+	std::exit (0); 
+} 
 

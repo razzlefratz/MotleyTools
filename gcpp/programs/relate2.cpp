@@ -53,7 +53,7 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-static odepend depend;
+static odepend depend; 
 
 /*====================================================================*
  *   main program;
@@ -61,59 +61,59 @@ static odepend depend;
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"nf",
-		oPUTOPTV_S_FUNNEL,
-		"organize dependency information",
-		"n\tneed summary ",
-		"f\tfeed summary ",
+	{ 
+		"nf", 
+		oPUTOPTV_S_FUNNEL, 
+		"organize dependency information", 
+		"n\tneed summary ", 
+		"f\tfeed summary ", 
 		(char const *) (0)
-	};
-	std::ifstream source;
-	ogetoptv getopt;
-	oflagword flags;
-	signed c;
+	}; 
+	std::ifstream source; 
+	ogetoptv getopt; 
+	oflagword flags; 
+	signed c; 
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
 		switch (c) 
-		{
-		case 'n':
-			flags.setbits (RELATE_B_REPORT);
-			flags.clearbits (RELATE_B_INVERT);
-			break;
-		case 'f':
-			flags.setbits (RELATE_B_REPORT);
-			flags.setbits (RELATE_B_INVERT);
-			break;
+		{ 
+		case 'n': 
+			flags.setbits (RELATE_B_REPORT); 
+			flags.clearbits (RELATE_B_INVERT); 
+			break; 
+		case 'f': 
+			flags.setbits (RELATE_B_REPORT); 
+			flags.setbits (RELATE_B_INVERT); 
+			break; 
 		default:
-			break;
-		}
-	}
+			break; 
+		} 
+	} 
 	if (!getopt.argc ()) 
-	{
-		depend.populate (RELATE_C_SEPARATOR, RELATE_C_TERMINATOR, flags.anyset (RELATE_B_INVERT));
-	}
+	{ 
+		depend.populate (RELATE_C_SEPARATOR, RELATE_C_TERMINATOR, flags.anyset (RELATE_B_INVERT)); 
+	} 
 	while (getopt.argc () && * getopt.argv ()) 
-	{
-		source.open (* getopt.argv (), std::ifstream::in);
+	{ 
+		source.open (* getopt.argv (), std::ifstream::in); 
 		if (source.good ()) 
-		{
-			std::cin.rdbuf (source.rdbuf ());
-			depend.populate (RELATE_C_SEPARATOR, RELATE_C_TERMINATOR, flags.anyset (RELATE_B_INVERT));
-		}
-		source.close ();
-		getopt++;
-	}
+		{ 
+			std::cin.rdbuf (source.rdbuf ()); 
+			depend.populate (RELATE_C_SEPARATOR, RELATE_C_TERMINATOR, flags.anyset (RELATE_B_INVERT)); 
+		} 
+		source.close (); 
+		getopt++; 
+	} 
 	if (flags.anyset (RELATE_B_REPORT)) 
-	{
-		depend.structure ();
-	}
-	else 
-	{
-		odepend::nodes.enumerate ();
-	}
-	std::exit (0);
-}
+	{ 
+		depend.structure (); 
+	} 
+	else
+	{ 
+		odepend::nodes.enumerate (); 
+	} 
+	std::exit (0); 
+} 
 

@@ -53,57 +53,57 @@
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"s:e:d:",
-		oPUTOPTV_S_FUNNEL,
-		"demonstrate oprofile object class",
-		"s s\tsection name is (s) [" SECTION "]",
-		"e s\telement name is (s) [" ELEMENT "]",
-		"d s\tdefault text is (s) [" DEFAULT "]",
+	{ 
+		"s:e:d:", 
+		oPUTOPTV_S_FUNNEL, 
+		"demonstrate oprofile object class", 
+		"s s\tsection name is (s) [" SECTION "]", 
+		"e s\telement name is (s) [" ELEMENT "]", 
+		"d s\tdefault text is (s) [" DEFAULT "]", 
 		(char const *) (0)
-	};
-	oprofile profile;
-	char const * section = SECTION;
-	char const * element = ELEMENT;
-	char const * content = DEFAULT;
-	ogetoptv getopt;
-	oputoptv putopt;
-	signed c;
+	}; 
+	oprofile profile; 
+	char const * section = SECTION; 
+	char const * element = ELEMENT; 
+	char const * content = DEFAULT; 
+	ogetoptv getopt; 
+	oputoptv putopt; 
+	signed c; 
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
 		switch (c) 
-		{
-		case 's':
-			section = getopt.args ();
-			break;
-		case 'e':
-			element = getopt.args ();
-			break;
-		case 'd':
-			content = getopt.args ();
-			break;
+		{ 
+		case 's': 
+			section = getopt.args (); 
+			break; 
+		case 'e': 
+			element = getopt.args (); 
+			break; 
+		case 'd': 
+			content = getopt.args (); 
+			break; 
 		default:
-			break;
-		}
-	}
+			break; 
+		} 
+	} 
 	if (getopt.argc ()) 
-	{
+	{ 
 		if ((section == (char *)(0)) || (* section == (char)(0))) 
-		{
-			oerror::error (1, EINVAL, "No profile section specified");
-		}
+		{ 
+			oerror::error (1, EINVAL, "No profile section specified"); 
+		} 
 		if ((element == (char *)(0)) || (* element == (char)(0))) 
-		{
-			oerror::error (1, EINVAL, "No section element specified");
-		}
-	}
+		{ 
+			oerror::error (1, EINVAL, "No section element specified"); 
+		} 
+	} 
 	while ((getopt.argc ()) && (* getopt.argv ())) 
-	{
-		std::cout << profile.string (* getopt.argv (), section, element, content) << "\n";
-		getopt++;
-	}
-	std::exit (0);
-}
+	{ 
+		std::cout << profile.string (* getopt.argv (), section, element, content) << "\n"; 
+		getopt++; 
+	} 
+	std::exit (0); 
+} 
 

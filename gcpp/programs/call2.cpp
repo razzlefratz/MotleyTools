@@ -69,9 +69,9 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-oflagword flagword;
-ocpluswords keywords;
-odiscard discard;
+oflagword flagword; 
+ocpluswords keywords; 
+odiscard discard; 
 
 /*====================================================================*
  *
@@ -87,123 +87,123 @@ odiscard discard;
 
 static signed function (signed c) 
 
-{
-	static unsigned level = 0;
-	char module [512];
-	char string [512];
+{ 
+	static unsigned level = 0; 
+	char module [512]; 
+	char string [512]; 
 	while (c != EOF) 
-	{
+	{ 
 		if (oascii::isspace (c)) 
-		{
-			c = std::cin.get ();
-			continue;
-		}
+		{ 
+			c = std::cin.get (); 
+			continue; 
+		} 
 		if (c == '#') 
-		{
-			do 
-			{
-				c = discard.command (c, '\n');
-			}
-			while (oascii::isspace (c));
-			continue;
-		}
+		{ 
+			do
+			{ 
+				c = discard.command (c, '\n'); 
+			} 
+			while (oascii::isspace (c)); 
+			continue; 
+		} 
 		if ((c == '{') || (c == '(') || (c == '[')) 
-		{
-			c = std::cin.get ();
-			level++;
-			continue;
-		}
+		{ 
+			c = std::cin.get (); 
+			level++; 
+			continue; 
+		} 
 		if ((c == '}') || (c == ')') || (c == ']')) 
-		{
-			c = std::cin.get ();
-			level--;
-			continue;
-		}
+		{ 
+			c = std::cin.get (); 
+			level--; 
+			continue; 
+		} 
 		if (c == '/') 
-		{
-			c = discard.comment (c);
-			continue;
-		}
+		{ 
+			c = discard.comment (c); 
+			continue; 
+		} 
 		if (oascii::isquote (c)) 
-		{
-			c = discard.literal (c);
-			continue;
-		}
+		{ 
+			c = discard.literal (c); 
+			continue; 
+		} 
 		if (oascii::isalpha (c) || (c == '_')) 
-		{
-			char * sp = string;
-			do 
-			{
-				* sp++ = (char)(c);
-				c = std::cin.get ();
-			}
-			while (isalnum (c) || (c == '_'));
-			* sp = (char)(0);
+		{ 
+			char * sp = string; 
+			do
+			{ 
+				* sp++ = (char)(c); 
+				c = std::cin.get (); 
+			} 
+			while (isalnum (c) || (c == '_')); 
+			* sp = (char)(0); 
 
 #if 1
 
-			std::cerr << string << std::endl;
+			std::cerr << string << std::endl; 
 
 #endif
 
 			if (keywords.defined (string)) 
-			{
-				continue;
-			}
+			{ 
+				continue; 
+			} 
 			while (oascii::isspace (c)) 
-			{
-				c = std::cin.get ();
-			}
+			{ 
+				c = std::cin.get (); 
+			} 
 			if (c == '(') 
-			{
+			{ 
 				if (!level) 
-				{
-					std::strcpy (module, string);
-				}
+				{ 
+					std::strcpy (module, string); 
+				} 
 				else if (flagword.anyset (CALL_B_INVERT)) 
-				{
-					std::cout << string << ":" << module << ";" << std::endl;
-				}
-				else 
-				{
-					std::cout << module << ":" << string << ";" << std::endl;
-				}
-			}
-			continue;
-		}
+				{ 
+					std::cout << string << ":" << module << ";" << std::endl; 
+				} 
+				else
+				{ 
+					std::cout << module << ":" << string << ";" << std::endl; 
+				} 
+			} 
+			continue; 
+		} 
 		if (oascii::isdigit (c)) 
-		{
-			do 
-			{
-				c = std::cin.get ();
-			}
-			while (oascii::isdigit (c) || (c == '.'));
+		{ 
+			do
+			{ 
+				c = std::cin.get (); 
+			} 
+			while (oascii::isdigit (c) || (c == '.')); 
 			if ((c == 'x') || (c == 'X')) 
-			{
-				do 
-				{
-					c = std::cin.get ();
-				}
-				while (oascii::isxdigit (c));
-			}
+			{ 
+				do
+				{ 
+					c = std::cin.get (); 
+				} 
+				while (oascii::isxdigit (c)); 
+			} 
 			if ((c == 'e') || (c == 'E')) 
-			{
-				c = std::cin.get ();
+			{ 
+				c = std::cin.get (); 
 				if ((c == '+') || (c == '-')) 
-				{
-					c = std::cin.get ();
-				}
+				{ 
+					c = std::cin.get (); 
+				} 
 				while (oascii::isdigit (c)) 
-				{
-					c = std::cin.get ();
-				}
-			}
-			continue;
-		}
-		c = std::cin.get ();
-	}
-	return (c);
-}
+				{ 
+					c = std::cin.get (); 
+				} 
+			} 
+			continue; 
+		} 
+		c = std::cin.get (); 
+	} 
+	return (c); 
+} 
 
 /*====================================================================*
  *   
@@ -217,43 +217,43 @@ static signed function (signed c)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"x",
-		oPUTOPTV_S_FUNNEL,
-		"print C language call dependencies",
-		"x\tinvert relationships",
+	{ 
+		"x", 
+		oPUTOPTV_S_FUNNEL, 
+		"print C language call dependencies", 
+		"x\tinvert relationships", 
 		(char const *) (0)
-	};
-	ogetoptv getopt;
-	opathspec pathspec;
-	signed c;
+	}; 
+	ogetoptv getopt; 
+	opathspec pathspec; 
+	signed c; 
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
 		switch (c) 
-		{
-		case 'x':
-			flagword.setbits (CALL_B_INVERT);
-			break;
+		{ 
+		case 'x': 
+			flagword.setbits (CALL_B_INVERT); 
+			break; 
 		default:
-			break;
-		}
-	}
+			break; 
+		} 
+	} 
 	if (!getopt.argc ()) 
-	{
-		function (std::cin.get ());
-	}
+	{ 
+		function (std::cin.get ()); 
+	} 
 	while (getopt.argc () && * getopt.argv ()) 
-	{
-		char filename [FILENAME_MAX];
-		pathspec.fullpath (filename, * getopt.argv ());
+	{ 
+		char filename [FILENAME_MAX]; 
+		pathspec.fullpath (filename, * getopt.argv ()); 
 		if (std::freopen (filename, "rb", stdin)) 
-		{
-			c = function (std::cin.get ());
-		}
-		getopt++;
-	}
-	std::exit (0);
-}
+		{ 
+			c = function (std::cin.get ()); 
+		} 
+		getopt++; 
+	} 
+	std::exit (0); 
+} 
 

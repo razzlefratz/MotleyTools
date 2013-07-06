@@ -41,43 +41,43 @@
 
 int main (int argc, char const * argv [], char const * envp []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"",
-		oPUTOPTV_S_FUNNEL,
-		"paginate files",
+	{ 
+		"", 
+		oPUTOPTV_S_FUNNEL, 
+		"paginate files", 
 		(char const *) (0)
-	};
-	ogetoptv getopt;
-	std::fstream source;
-	opage page ("Standard Input");
-	signed c;
+	}; 
+	ogetoptv getopt; 
+	std::fstream source; 
+	opage page ("Standard Input"); 
+	signed c; 
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
 		switch (c) 
-		{
+		{ 
 		default:
-			break;
-		}
-	}
+			break; 
+		} 
+	} 
 	if (!getopt.argc ()) 
-	{
-		page.title ("Standard Input");
-		while (page.put (std::cin.get ()) != EOF);
-	}
+	{ 
+		page.title ("Standard Input"); 
+		while (page.put (std::cin.get ()) != EOF); 
+	} 
 	while ((getopt.argc ()) && (* getopt.argv ())) 
-	{
-		source.open (* getopt.argv (), std::ifstream::in);
+	{ 
+		source.open (* getopt.argv (), std::ifstream::in); 
 		if (source.good ()) 
-		{
-			std::cin.rdbuf (source.rdbuf ());
-			page.title (* getopt.argv ());
-			while (page.put (std::cin.get ()) != EOF);
-			source.close ();
-		}
-		getopt++;
-	}
-	std::exit (0);
-}
+		{ 
+			std::cin.rdbuf (source.rdbuf ()); 
+			page.title (* getopt.argv ()); 
+			while (page.put (std::cin.get ()) != EOF); 
+			source.close (); 
+		} 
+		getopt++; 
+	} 
+	std::exit (0); 
+} 
 

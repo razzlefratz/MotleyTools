@@ -76,38 +76,38 @@
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"s:S",
-		oPUTOPTV_S_FUNNEL,
-		"c to html file formatter having absolutely no features !",
-		"s s\tuse CSS2 stylesheet (s) [" LITERAL (STYLESHEET) "]",
-		"S\tprint CSS2 stylesheet on stdout",
+	{ 
+		"s:S", 
+		oPUTOPTV_S_FUNNEL, 
+		"c to html file formatter having absolutely no features !", 
+		"s s\tuse CSS2 stylesheet (s) [" LITERAL (STYLESHEET) "]", 
+		"S\tprint CSS2 stylesheet on stdout", 
 		(char const *) (0)
-	};
-	ochtml page (STYLESHEET);
-	ogetoptv getopt;
-	signed c;
+	}; 
+	ochtml page (STYLESHEET); 
+	ogetoptv getopt; 
+	signed c; 
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
 		switch (c) 
-		{
-		case 's':
-			page.stylesheet (getopt.optarg ());
-			break;
-		case 'S':
-			page.css2 ();
-			return (0);
+		{ 
+		case 's': 
+			page.stylesheet (getopt.optarg ()); 
+			break; 
+		case 'S': 
+			page.css2 (); 
+			return (0); 
 		default:
-			break;
-		}
-	}
+			break; 
+		} 
+	} 
 	while (getopt.argc () && * getopt.argv ()) 
-	{
-		page.html (* getopt.argv ());
-		getopt++;
-	}
-	std::exit (0);
-}
+	{ 
+		page.html (* getopt.argv ()); 
+		getopt++; 
+	} 
+	std::exit (0); 
+} 
 
