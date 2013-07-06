@@ -1,9 +1,6 @@
 /*====================================================================*
  *
- *   ccat.c - merge C Language file;
- *
- *   copy one or more files to stdout; if no files are specified then copy
- *   stdin to stdout;
+ *   cmerge.c - include all supporting C language files;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -26,7 +23,22 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../tools/cmassoc.h"
+#include "../tools/putoptv.h"
+#include "../tools/version.h"
+#include "../tools/error.h"
+#include "../tools/tools.h"
+#include "../tools/chars.h"
+#include "../tools/flags.h"
+#include "../tools/paths.h"
+#include "../tools/sizes.h"
+#include "../tools/tools.h"
+#include "../tools/types.h"
+#include "../tools/vtdef.h"
+#include "../tools/memory.h"
+#include "../tools/number.h"
+#include "../tools/symbol.h"
+#include "../tools/format.h"
+#include "../files/files.h"
 #include "../linux/linux.h"
 #include "../clang/clang.h"
 #include "../date/date.h"
@@ -112,9 +124,9 @@ static char const * preamble = "/*==============================================
 void function (FIND * find, LIST * list, size_t length) 
 
 {
-	FILE * fp;
-	char buffer [length+1];
 	struct _scan_ scan;
+	char buffer [length];
+	FILE * fp;
 	if ((fp = efopen (find->fullname, "rb"))) 
 	{
 		scaninput (& scan, buffer, sizeof (buffer));
@@ -122,36 +134,20 @@ void function (FIND * find, LIST * list, size_t length)
 		{
 			scanstart (& scan);
 			nexttoken (& scan);
-			if (havetoken (& scan, "#")) 
+			if (havetoken (& scan, "#") && havetoken (& scan, "include") && havetoken (& scan, "\"")) 
 			{
-				if (havetoken (& scan, "include")) 
+				FIND file;
+				scanuntil (& scan, "\"");
+				makepath (file.fullname, find->pathname, tokentext (& scan));
+				partpath (file.fullname, file.pathname, file.filename);
+				partfile (file.filename, file.basename, file.extender);
+				if (listappend (list, file.fullname)) 
 				{
-					if (havetoken (& scan, "\"")) 
-					{
-						FIND file;
-						scanuntil (& scan, "\"");
-						makepath (file.fullname, find->pathname, tokentext (& scan));
-						partpath (file.fullname, file.pathname, file.filename);
-						partfile (file.filename, file.basename, file.extender);
-						if (listappend (list, file.fullname)) 
-						{
-							function (& file, list, length);
-						}
-					}
-					else 
-					{
-						fputs (buffer, stdout);
-					}
+					function (& file, list, length);
 				}
-				else 
-				{
-					fputs (buffer, stdout);
-				}
+				continue;
 			}
-			else 
-			{
-				fputs (buffer, stdout);
-			}
+			fputs (buffer, stdout);
 		}
 		fclose (fp);
 	}
@@ -161,7 +157,6 @@ void function (FIND * find, LIST * list, size_t length)
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
- *
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -176,7 +171,7 @@ int main (int argc, char const * argv [])
 	{
 		"",
 		PUTOPTV_S_FUNNEL,
-		"merge c language source files into one source file.",
+		"include all C language support files",
 		(char const *) (0)
 	};
 	LIST list;

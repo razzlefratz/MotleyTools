@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   cin.c - c language include file processor;
+ *   cinc.c - include all C language support files;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -25,7 +25,22 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../tools/cmassoc.h"
+#include "../tools/getoptv.h"
+#include "../tools/putoptv.h"
+#include "../tools/version.h"
+#include "../tools/error.h"
+#include "../tools/tools.h"
+#include "../tools/chars.h"
+#include "../tools/paths.h"
+#include "../tools/sizes.h"
+#include "../tools/tools.h"
+#include "../tools/types.h"
+#include "../tools/vtdef.h"
+#include "../tools/memory.h"
+#include "../tools/number.h"
+#include "../tools/symbol.h"
+#include "../tools/format.h"
+#include "../files/files.h"
 #include "../clang/clang.h"
 #include "../chrlib/chrlib.h"
 
@@ -49,7 +64,7 @@
 
 /*====================================================================*
  *
- *   void function (char const *pathname, flag_t flags);
+ *   void function (char const * pathname, char const * vector []);
  *
  *   read stdin and write stdout; copy targetfile tokens to stdout;
  *   intercept processor include directives and include local files
@@ -61,7 +76,7 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (char * fullpath, char const * vector [], flag_t flags) 
+void function (char * fullpath, char const * vector []) 
 
 {
 	FILE * fp;
@@ -171,7 +186,7 @@ void function (char * fullpath, char const * vector [], flag_t flags)
 					{
 						vector [index++] = strdup (fullpath);
 						vector [index] = (char *)(0);
-						function (fullpath, vector, flags);
+						function (fullpath, vector);
 					}
 					while (nobreak (c)) 
 					{
@@ -272,11 +287,10 @@ int main (int argc, char const * argv [])
 	{
 		"",
 		PUTOPTV_S_FILTER,
-		"merge c language source files onto one independent file",
+		"include all C language support files",
 		(char const *) (0)
 	};
 	char pathname [FILENAME_MAX];
-	flag_t flags = (flag_t) (0);
 	signed c;
 	while ((c = getoptv (argc, argv, optv)) != -1) 
 	{
@@ -294,7 +308,7 @@ int main (int argc, char const * argv [])
 		makepath (pathname, getenv ("PWD"), * argv);
 		vector [0] = strdup (pathname);
 		vector [1] = (char *)(0);
-		function (pathname, vector, flags);
+		function (pathname, vector);
 		for (argc = 0; vector [argc]; argc++) 
 		{
 			fprintf (stderr, "%s\n", vector [argc]);
