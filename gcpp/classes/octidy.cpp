@@ -48,15 +48,7 @@ signed octidy::program (signed c)
 	oindent::space (0);
 	while (c != EOF) 
 	{
-		if (oascii::isspace (c)) 
-		{
-			do
-			{
-				c = std::cin.get ();
-			}
-			while (oascii::isspace (c));
-			continue;
-		}
+		c = osource::find (c);
 		if (c == '#') 
 		{
 			oindent::endline ();
@@ -89,6 +81,7 @@ signed octidy::program (signed c)
 			oindent::endline (1);
 			oindent::newline ();
 			c = osource::feed (c);
+			std::cout.put (' ');
 			oindent::increment ();
 			oindent::space (2);
 			continue;
@@ -104,6 +97,7 @@ signed octidy::program (signed c)
 				c = osource::find (c);
 			}
 			while (c == ';');
+			std::cout.put (' ');
 			if (!this->mlevel) 
 			{
 				oindent::endline (1);
@@ -119,6 +113,7 @@ signed octidy::program (signed c)
 		{
 			c = osource::feed (c);
 			c = osource::find (c);
+			std::cout.put (' ');
 			oindent::space (2);
 			continue;
 		}
@@ -143,15 +138,7 @@ signed octidy::atheros (signed c)
 	oindent::space (0);
 	while (c != EOF) 
 	{
-		if (oascii::isspace (c)) 
-		{
-			do
-			{
-				c = std::cin.get ();
-			}
-			while (oascii::isspace (c));
-			continue;
-		}
+		c = osource::find (c);
 		if (c == '#') 
 		{
 			oindent::endline ();
@@ -182,12 +169,9 @@ signed octidy::atheros (signed c)
 			{
 				oindent::endline (2);
 				oindent::newline ();
-				c = osource::feed (c);
 			}
-			else
-			{
-				c = osource::feed (c);
-			}
+			c = osource::feed (c);
+			std::cout.put (' ');
 			oindent::increment ();
 			oindent::space (1);
 			continue;
@@ -203,6 +187,7 @@ signed octidy::atheros (signed c)
 				c = osource::find (c);
 			}
 			while (c == ';');
+			std::cout.put (' ');
 			if (!this->mlevel) 
 			{
 				oindent::endline (1);
@@ -218,6 +203,7 @@ signed octidy::atheros (signed c)
 		{
 			c = osource::feed (c);
 			c = osource::find (c);
+			std::cout.put (' ');
 			oindent::space (2);
 			continue;
 		}
@@ -248,15 +234,7 @@ signed octidy::charlie (signed c)
 	c = ocomment::preamble (c);
 	while (c != EOF) 
 	{
-		if (oascii::isspace (c)) 
-		{
-			do
-			{
-				c = std::cin.get ();
-			}
-			while (oascii::isspace (c));
-			continue;
-		}
+		c = osource::find (c);
 		if (c == '#') 
 		{
 			oindent::endline ();
@@ -289,6 +267,7 @@ signed octidy::charlie (signed c)
 			oindent::endline (1);
 			oindent::newline ();
 			c = osource::feed (c);
+			std::cout.put (' ');
 			oindent::increment ();
 			oindent::space (2);
 			continue;
@@ -304,6 +283,7 @@ signed octidy::charlie (signed c)
 				c = osource::find (c);
 			}
 			while (c == ';');
+			std::cout.put (' ');
 			if (!this->mlevel) 
 			{
 				oindent::endline (1);
@@ -320,6 +300,7 @@ signed octidy::charlie (signed c)
 		{
 			c = osource::feed (c);
 			c = osource::find (c);
+			std::cout.put (' ');
 			oindent::space (2);
 			continue;
 		}
