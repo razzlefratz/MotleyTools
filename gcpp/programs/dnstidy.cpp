@@ -154,17 +154,17 @@ int main (int argc, char const * argv [])
 	{
 		"m:o:st",
 		oPUTOPTV_S_FILTER,
-		"tidy DNS configuration files",
-		"m s\tmargin string [" LITERAL (MARGIN) "]",
-		"o s\toffset string [" LITERAL (OFFSET) "]",
-		"s\toffset is 3 spaces",
-		"t\toffset is 1 tab",
+		"format dns configuration files",
+		"m s\tmargin string is (s) [" LITERAL (MARGIN) "]",
+		"o s\toffset string is (s) [" LITERAL (OFFSET) "]",
+		"s\toffset string is 3 spaces",
+		"t\toffset string is 1 tab",
 		(char const *) (0)
 	};
 	ogetoptv getopt;
-	ofileopen fileopen;
-	opathspec pathspec;
 	oescape escape;
+	opathspec pathspec;
+	ofileopen fileopen;
 	oflagword flags;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
