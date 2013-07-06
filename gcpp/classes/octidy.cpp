@@ -178,18 +178,15 @@ signed octidy::atheros (signed c)
 		}
 		if (c == '{') 
 		{
-			oindent::endline (1);
 			if (!this->mlevel) 
 			{
-				oindent::endline (1);
+				oindent::endline (2);
 				oindent::newline ();
 				c = osource::feed (c);
 			}
 			else
 			{
 				c = osource::feed (c);
-				oindent::endline (1);
-				oindent::newline ();
 			}
 			oindent::increment ();
 			oindent::space (1);
@@ -351,11 +348,11 @@ signed octidy::statement (signed c)
 		* sp++ = c;
 		c = std::cin.get ();
 	}
-	* sp = (char) (0);
 	while (oascii::isspace (c)) 
 	{
 		c = std::cin.get ();
 	}
+	* sp = (char) (0);
 	if (sp == string) 
 	{
 		oindent::print (this->mlevel, 0, string);
@@ -437,15 +434,23 @@ signed octidy::statement (signed c)
 		{
 			std::cout.put (' ');
 		}
-		else if ((c == '(') || (c == '[')) 
+		else if ((c == '(') || (c == '[') || (c == '(')) 
 		{
 			std::cout.put (' ');
 		}
-		else if ((c == '=') || (c == '<') || (c == '>')) 
+		else if ((c == '!') || (c == '=')) 
 		{
 			std::cout.put (' ');
 		}
-		else if ((c == '!') || (c == '&') || (c == '|') || (c == '~')) 
+		else if ((c == '<') || (c == '>')) 
+		{
+			std::cout.put (' ');
+		}
+		else if ((c == '&') || (c == '|')) 
+		{
+			std::cout.put (' ');
+		}
+		else if ((c == '~') || (c == '^')) 
 		{
 			std::cout.put (' ');
 		}
@@ -545,20 +550,28 @@ signed octidy::context (signed c) const
 {
 	if (oascii::isalpha (c) || (c == '_')) 
 	{
-		c = octidy::moniker (c);
-		if ((c == '(') || (c == '[')) 
+		c = osource::moniker (c);
+		if ((c == '(') || (c == '[') || (c == '{')) 
 		{
 			std::cout.put (' ');
 		}
-		else if ((c == '=') || (c == '<') || (c == '>')) 
+		else if ((c == '!') || (c == '=')) 
+		{
+			std::cout.put (' ');
+		}
+		else if ((c == '<') || (c == '>')) 
+		{
+			std::cout.put (' ');
+		}
+		else if ((c == '&') || (c == '|')) 
+		{
+			std::cout.put (' ');
+		}
+		else if ((c == '~') || (c == '^')) 
 		{
 			std::cout.put (' ');
 		}
 		else if ((c == '*') || (c == '/') || (c == '%')) 
-		{
-			std::cout.put (' ');
-		}
-		else if ((c == '!') || (c == '&') || (c == '|') || (c == '~')) 
 		{
 			std::cout.put (' ');
 		}
