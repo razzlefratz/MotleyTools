@@ -64,18 +64,18 @@ int main (int argc, char const * argv [])
 	{
 		"cm:o:st",
 		oPUTOPTV_S_FILTER,
-		"format C/C++ source code",
+		"format c/c++ source code",
 		"c\tcompact source",
-		"m s\tmargin string [" LITERAL (oINDENT_MARGIN) "]",
-		"o s\toffset string [" LITERAL (oINDENT_OFFSET) "]",
-		"s\toffset is space",
-		"t\toffset is tabs",
+		"m s\tmargin string is (s) [" LITERAL (oINDENT_MARGIN) "]",
+		"o s\toffset string is (s) [" LITERAL (oINDENT_OFFSET) "]",
+		"s\toffset string is 3 spaces",
+		"t\toffset string is 1 tab",
 		(char const *) (0)
 	};
 	ogetoptv getopt;
-	ofileopen fileopen;
-	opathspec pathspec;
 	oescape escape;
+	opathspec pathspec;
+	ofileopen fileopen;
 	octidy object;
 	signed (octidy::* method) (signed) = & octidy::program;
 	signed c;

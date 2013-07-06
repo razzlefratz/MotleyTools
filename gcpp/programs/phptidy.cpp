@@ -65,12 +65,12 @@ int main (int argc, char const * argv [])
 	{
 		"cm:o:st",
 		oPUTOPTV_S_FILTER,
-		"format C/C++ source code",
+		"format php source code",
 		"c\tcompact source",
-		"m s\tmargin string [" LITERAL (oINDENT_MARGIN) "]",
-		"o s\toffset string [" LITERAL (oINDENT_OFFSET) "]",
-		"s\toffset is space",
-		"t\toffset is tabs",
+		"m s\tmargin string is (s) [" LITERAL (oINDENT_MARGIN) "]",
+		"o s\toffset string is (s) [" LITERAL (oINDENT_OFFSET) "]",
+		"s\toffset string is 3 spaces",
+		"t\toffset string is 1 tab",
 		(char const *) (0)
 	};
 	ogetoptv getopt;
@@ -78,7 +78,7 @@ int main (int argc, char const * argv [])
 	opathspec pathspec;
 	ofileopen fileopen;
 	ophptidy object;
-	int (ophptidy::* function) (signed) = & ophptidy::page;
+	signed (ophptidy::* method) (signed) = & ophptidy::page;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
 	{
@@ -108,7 +108,7 @@ int main (int argc, char const * argv [])
 	}
 	if (!getopt.argc ()) 
 	{
-		c = (object.* function) (std::cin.get ());
+		(object.* method) (std::cin.get ());
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
@@ -116,7 +116,7 @@ int main (int argc, char const * argv [])
 		pathspec.fullpath (filename, * getopt.argv ());
 		if (fileopen.openedit (filename)) 
 		{
-			c = (object.* function) (std::cin.get ());
+			(object.* method) (std::cin.get ());
 			fileopen.close ();
 		}
 		getopt++;

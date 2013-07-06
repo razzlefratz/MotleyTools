@@ -65,18 +65,18 @@ int main (int argc, char const * argv [])
 	{
 		"cm:o:st",
 		oPUTOPTV_S_FILTER,
-		"tidy html and xhtml source files",
-		"c\tcompact html",
+		"format html/xhtml/xml source files",
+		"c\tcompact source",
 		"m s\tmargin string is (s) [" LITERAL (oINDENT_MARGIN) "]",
-		"o s\tindent string is (c) [" LITERAL (oINDENT_OFFSET) "]",
-		"s\tindent is 3 spaces",
-		"t\tindent is 1 tab",
+		"o s\toffset string is (s) [" LITERAL (oINDENT_OFFSET) "]",
+		"s\toffset string is 3 spaces",
+		"t\toffset string is 1 tab",
 		(char const *) (0)
 	};
 	ogetoptv getopt;
-	ofileopen fileopen;
-	opathspec pathspec;
 	oescape escape;
+	opathspec pathspec;
+	ofileopen fileopen;
 	ohtmltidy object;
 	signed (ohtmltidy::* method) (signed) = & ohtmltidy::page;
 	signed c;
@@ -112,9 +112,9 @@ int main (int argc, char const * argv [])
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
-		char filespec [FILENAME_MAX + 1];
-		pathspec.fullpath (filespec, * getopt.argv ());
-		if (fileopen.openedit (filespec)) 
+		char filename [FILENAME_MAX + 1];
+		pathspec.fullpath (filename, * getopt.argv ());
+		if (fileopen.openedit (filename)) 
 		{
 			(object.* method) (std::cin.get ());
 			fileopen.close ();

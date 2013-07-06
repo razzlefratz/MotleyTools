@@ -58,19 +58,19 @@ int main (int argc, char const * argv [])
 	{
 		"cm:o:st",
 		oPUTOPTV_S_FILTER,
-		"program CSS functions",
-		"c\tcompact stylesheet",
-		"m s\tmargin string [" LITERAL (oINDEX_MARGIN) "]",
-		"o s\toffset string [" LITERAL (oINDEX_OFFSET) "]",
-		"s\toffset is space",
-		"t\toffset is tabs",
+		"format java source code",
+		"c\tcompact source",
+		"m s\tmargin string is (s) [" LITERAL (oINDENT_MARGIN) "]",
+		"o s\toffset string is (s) [" LITERAL (oINDENT_OFFSET) "]",
+		"s\toffset string is 3 spaces",
+		"t\toffset string is 1 tab",
 		(char const *) (0)
 	};
 	ogetoptv getopt;
-	ofileopen fileopen;
-	opathspec pathspec;
 	oescape escape;
-	oprogram program;
+	opathspec pathspec;
+	ofileopen fileopen;
+	oprogram object;
 	signed (oprogram::* method) (signed) = & oprogram::java;
 	signed c;
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
@@ -78,19 +78,22 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{
 		case 'c':
-			program.offset ("").record ("");
+			object.margin ("");
+			object.offset ("");
+			object.finish ("");
+			object.record ("");
 			break;
 		case 'm':
-			program.margin (escape.unescape ((char *)(getopt.args ())));
+			object.margin (escape.unescape ((char *)(getopt.args ())));
 			break;
 		case 'o':
-			program.offset (escape.unescape ((char *)(getopt.args ())));
+			object.offset (escape.unescape ((char *)(getopt.args ())));
 			break;
 		case 's':
-			program.offset ("   ");
+			object.offset ("   ");
 			break;
 		case 't':
-			program.offset ("\t");
+			object.offset ("\t");
 			break;
 		default:
 			break;
@@ -98,7 +101,7 @@ int main (int argc, char const * argv [])
 	}
 	if (!getopt.argc ()) 
 	{
-		(program.* method) (std::cin.get ());
+		(object.* method) (std::cin.get ());
 	}
 	while (getopt.argc () && * getopt.argv ()) 
 	{
@@ -106,7 +109,7 @@ int main (int argc, char const * argv [])
 		pathspec.fullpath (filename, * getopt.argv ());
 		if (fileopen.openedit (filename)) 
 		{
-			(program.* method) (std::cin.get ());
+			(object.* method) (std::cin.get ());
 			fileopen.close ();
 		}
 		getopt++;
