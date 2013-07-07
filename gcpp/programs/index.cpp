@@ -57,15 +57,7 @@
  *   program constants;
  *--------------------------------------------------------------------*/
 
-#define INDEX_COLUMNS 5
-
-/*====================================================================*
- *   program variables;
- *--------------------------------------------------------------------*/
-
-oerror message; 
-ofindspec findspec; 
-oHTMLIndex page; 
+#define INDEX_COLUMNS 3
 
 /*====================================================================*
  *   main program;
@@ -79,14 +71,17 @@ int main (int argc, char const * argv [])
 		"c:s:St:", 
 		oPUTOPTV_S_FUNNEL, 
 		"produce html file index", 
-		"c n\tdisplay n columns [" LITERAL (INDEX_COLUMNS) "]", 
+		"c n\tdisplay (n) columns [" LITERAL (INDEX_COLUMNS) "]", 
 		"s s\tuse CSS2 stylesheet (s)", 
 		"S\tprint CSS2 stylesheet on stdout", 
 		"t s\tHTML index title", 
 		(char const *) (0)
 	}; 
 	ogetoptv getopt; 
-	unsigned columns = 3; 
+	oerror message; 
+	ofindspec findspec; 
+	oHTMLIndex page; 
+	unsigned columns = INDEX_COLUMNS; 
 	signed c; 
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
 	{ 
