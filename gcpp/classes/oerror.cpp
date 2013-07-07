@@ -222,12 +222,12 @@ void oerror::error_at_line (int status, errno_t number, char const * file, unsig
 
 /*====================================================================*
  *   
- *   oerror ();
+ *   oerror (void);
  *   
  *   
  *--------------------------------------------------------------------*/
 
-oerror::oerror () 
+oerror::oerror (void) 
 
 {
 	extern char const * program_name;
@@ -251,12 +251,11 @@ oerror::oerror ()
 
 /*====================================================================*
  *   
- *   ~oerror ();
- *   
+ *   ~ oerror (void);
  *   
  *--------------------------------------------------------------------*/
 
-oerror::~oerror () 
+oerror::~oerror (void) 
 
 {
 	return;

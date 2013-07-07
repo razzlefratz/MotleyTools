@@ -29,8 +29,8 @@ class oerror
 
 {
 public:
-	oerror ();
-	virtual ~ oerror ();
+	oerror (void);
+	virtual ~ oerror (void);
 	static void print (char const * format, ...);
 	static void error (char const * format, ...);
 	static void syntax (char const * file, unsigned line, char const * format, ...);

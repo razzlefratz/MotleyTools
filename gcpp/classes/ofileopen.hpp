@@ -34,21 +34,21 @@ class __declspec (dllexport) ofileopen
 
 {
 public:
-	ofileopen ();
+	ofileopen (void);
 	ofileopen (unsigned limit);
-	virtual ~ ofileopen ();
-	unsigned count () const;
-	unsigned versions () const;
+	virtual ~ ofileopen (void);
+	unsigned count (void) const;
+	unsigned versions (void) const;
 	bool permit (char const * filespec) const;
 	bool filter (char const * filespec, char const * savespec);
 	bool opensave (char const * filespec, char const * extender);
 	bool openedit (char const * filespec);
-	ofileopen & close ();
+	ofileopen & close (void);
 protected:
 	private: static struct stat statinfo;
 	static std::ifstream source;
 	static std::ofstream target;
-	oerror message;
+	oerror merror;
 	unsigned mcount;
 	unsigned mlimit;
 	unsigned mdigit;

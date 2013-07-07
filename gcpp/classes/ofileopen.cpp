@@ -38,17 +38,13 @@ std::ofstream ofileopen::target;
 
 /*====================================================================*
  *
- *   unsigned ofileopen::versions () const;
+ *   unsigned versions (void) const;
  *
  *   return the maximum number of versions supported; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
-unsigned ofileopen::versions () const 
+unsigned ofileopen::versions (void) const 
 
 {
 	return (this->mlimit);
@@ -56,14 +52,10 @@ unsigned ofileopen::versions () const
 
 /*====================================================================*
  *
- *   bool opensave (char const *pathname, char const *extender);
+ *   bool opensave (char const * pathname, char const * extender);
  *
  *   open the named file as stdout and create a backup file having a
  *   specified file extension;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -81,7 +73,7 @@ bool ofileopen::opensave (char const * filespec, char const * extender)
 	{
 		if (!std::remove (savespec.fullname ())) 
 		{
-			ofileopen::message.error ("Can't remove %s", savespec.fullname ());
+			ofileopen::merror.error ("Can't remove %s", savespec.fullname ());
 			return (false);
 		}
 	}
@@ -90,14 +82,10 @@ bool ofileopen::opensave (char const * filespec, char const * extender)
 
 /*====================================================================*
  *
- *   bool openedit(char const *filespec);
+ *   bool openedit (char const *filespec);
  *
  *   open the named file as stdout and create a backup file having a
  *   numeric file extension; 
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -118,20 +106,16 @@ bool ofileopen::openedit (char const * filespec)
 			return (this->filter (loadspec.fullname (), savespec.fullname ()));
 		}
 	}
-	ofileopen::message.print ("can't open %s: too many file versions", loadspec.fullname ());
+	ofileopen::merror.print ("can't open %s: too many file versions", loadspec.fullname ());
 	return (false);
 }
 
 /*====================================================================*
  *
- *   bool ofileopen::permit (char const *filespec) const;
+ *   bool permit (char const * filespec) const;
  *
  *   confirm that filespec exists and check the file type; only open
- *   regular files; report messages in standard fashion;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *   regular files; report merrors in standard fashion;
  *
  *--------------------------------------------------------------------*/
 
@@ -140,37 +124,37 @@ bool ofileopen::permit (char const * filespec) const
 {
 	if (lstat (filespec, & this->statinfo)) 
 	{
-		ofileopen::message.error (filespec);
+		ofileopen::merror.error (filespec);
 		return (false);
 	}
 	if (S_ISDIR (this->statinfo.st_mode)) 
 	{
-		ofileopen::message.print ("Won't open %s: file is a folder", filespec);
+		ofileopen::merror.print ("Won't open %s: file is a folder", filespec);
 		return (false);
 	}
 	if (S_ISLNK (this->statinfo.st_mode)) 
 	{
-		ofileopen::message.print ("Won't open %s: file is a symlink", filespec);
+		ofileopen::merror.print ("Won't open %s: file is a symlink", filespec);
 		return (false);
 	}
 	if (S_ISBLK (this->statinfo.st_mode)) 
 	{
-		ofileopen::message.print ("Won't open %s: file is a device", filespec);
+		ofileopen::merror.print ("Won't open %s: file is a device", filespec);
 		return (false);
 	}
 	if (S_ISCHR (this->statinfo.st_mode)) 
 	{
-		ofileopen::message.print ("Won't open %s: file is a device", filespec);
+		ofileopen::merror.print ("Won't open %s: file is a device", filespec);
 		return (false);
 	}
 	if (S_ISFIFO (this->statinfo.st_mode)) 
 	{
-		ofileopen::message.print ("Won't open %s: file is a fifo", filespec);
+		ofileopen::merror.print ("Won't open %s: file is a fifo", filespec);
 		return (false);
 	}
 	if (S_ISSOCK (this->statinfo.st_mode)) 
 	{
-		ofileopen::message.print ("Won't open %s: file is a socket", filespec);
+		ofileopen::merror.print ("Won't open %s: file is a socket", filespec);
 		return (false);
 	}
 	if (S_ISREG (this->statinfo.st_mode)) 
@@ -182,13 +166,9 @@ bool ofileopen::permit (char const * filespec) const
 
 /*====================================================================*
  *   
- *   bool filter ();
+ *   bool filter (char const * filespec, char const * savespec);
  *
  *   
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -199,30 +179,30 @@ bool ofileopen::filter (char const * filespec, char const * savespec)
 	ofileopen::source.open (filespec, std::ios::binary | std::ios::in);
 	if (!ofileopen::source.is_open ()) 
 	{
-		ofileopen::message.error ("Can't open %s for input", filespec);
+		ofileopen::merror.error ("Can't open %s for input", filespec);
 		return (false);
 	}
 	std::cin.rdbuf (ofileopen::source.rdbuf ());
-	if (rename (filespec, savespec)) 
+	if (std::rename (filespec, savespec)) 
 	{
-		ofileopen::message.error ("Can't rename %s as %s", filespec, savespec);
+		ofileopen::merror.error ("Can't rename %s as %s", filespec, savespec);
 		return (false);
 	}
 	ofileopen::target.open (filespec, std::ios::binary | std::ios::out);
 	if (!ofileopen::target.is_open ()) 
 	{
-		ofileopen::message.error ("Can't open %s for output", filespec);
+		ofileopen::merror.error ("Can't open %s for output", filespec);
 		return (false);
 	}
 	std::cout.rdbuf (ofileopen::target.rdbuf ());
 	if (chmod (filespec, this->statinfo.st_mode)) 
 	{
-		ofileopen::message.error ("Can't preserve %s permissions", filespec);
+		ofileopen::merror.error ("Can't preserve %s permissions", filespec);
 		return (false);
 	}
 	if (chown (filespec, this->statinfo.st_uid, this->statinfo.st_gid)) 
 	{
-		ofileopen::message.error ("Can't preserve %s ownership", filespec);
+		ofileopen::merror.error ("Can't preserve %s ownership", filespec);
 		return (false);
 	}
 	return (true);
@@ -230,17 +210,13 @@ bool ofileopen::filter (char const * filespec, char const * savespec)
 
 /*====================================================================*
  *   
- *   ofileopen & close ();
+ *   ofileopen & close (void);
  *
  *   close source and target file streams; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
-ofileopen & ofileopen::close () 
+ofileopen & ofileopen::close (void) 
 
 {
 	if (ofileopen::source.is_open ()) 
@@ -260,10 +236,6 @@ ofileopen & ofileopen::close ()
  *
  *   initialize version limit and compute numeric field width; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 ofileopen::ofileopen (unsigned limit) 
@@ -282,17 +254,13 @@ ofileopen::ofileopen (unsigned limit)
 
 /*====================================================================*
  *   
- *   ofileopen ();
+ *   ofileopen (void);
  *
  *   initialize version limit and extension field width; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
-ofileopen::ofileopen () 
+ofileopen::ofileopen (void) 
 
 {
 	this->mcount = 0;
@@ -303,17 +271,13 @@ ofileopen::ofileopen ()
 
 /*====================================================================*
  *   
- *   ~ofileopen ();
+ *   ~ ofileopen (void);
  *
  *   Nothing to do;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
-ofileopen::~ofileopen () 
+ofileopen::~ofileopen (void) 
 
 {
 	return;
