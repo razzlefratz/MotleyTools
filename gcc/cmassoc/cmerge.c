@@ -23,6 +23,7 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
+#include "../tools/getoptv.h"
 #include "../tools/putoptv.h"
 #include "../tools/version.h"
 #include "../tools/error.h"
