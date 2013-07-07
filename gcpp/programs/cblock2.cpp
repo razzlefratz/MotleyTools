@@ -75,8 +75,8 @@ int main (int argc, char const * argv [])
 	ofileopen fileopen; 
 	opathspec pathspec; 
 	oescape escape; 
-	ocblock cblock; 
-	signed (ocblock::* function) (signed, signed) = & ocblock::program; 
+	ocblock object; 
+	signed (ocblock::* method) (signed, signed) = & ocblock::program; 
 	signed c; 
 	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
 	{ 
@@ -88,15 +88,13 @@ int main (int argc, char const * argv [])
 	} 
 	if (!getopt.argc ()) 
 	{ 
-		c = (cblock.* function) (std::cin.get (), EOF); 
+		c = (object.* method) (std::cin.get (), EOF); 
 	} 
 	while (getopt.argc () && * getopt.argv ()) 
 	{ 
-		char filename [FILENAME_MAX + 1]; 
-		pathspec.fullpath (filename, * getopt.argv ()); 
-		if (fileopen.openedit (filename)) 
+		if (fileopen.openedit (* getopt.argv ())) 
 		{ 
-			(cblock.* function) (std::cin.get (), EOF); 
+			(object.* method) (std::cin.get (), EOF); 
 			fileopen.close (); 
 		} 
 		getopt++; 

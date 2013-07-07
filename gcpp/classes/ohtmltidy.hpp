@@ -59,8 +59,6 @@ public:
 	signed dequote (signed c, signed e);
 	signed nmtoken (signed c);
 	signed unknown (signed c);
-	signed feed (signed c) const;
-	signed find (signed c) const;
 	ohtmltidy & print ();
 protected:
 	static oHTMLEmptyElements htmlempty;

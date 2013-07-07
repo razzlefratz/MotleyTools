@@ -199,7 +199,7 @@ int main (int argc, char const * argv [])
 	{ 
 		if (fileopen.openedit (* getopt.argv ())) 
 		{ 
-			object.filename (filename); 
+			object.filename (* getopt.argv ()); 
 			(object.* method) (std::cin.get ()); 
 			fileopen.close (); 
 		} 

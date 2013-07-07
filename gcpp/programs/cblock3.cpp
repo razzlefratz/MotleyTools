@@ -119,9 +119,7 @@ int main (int argc, char const * argv [])
 	} 
 	while (getopt.argc () && * getopt.argv ()) 
 	{ 
-		char filename [FILENAME_MAX + 1]; 
-		pathspec.fullpath (filename, * getopt.argv ()); 
-		if (fileopen.openedit (filename)) 
+		if (fileopen.openedit (* getopt.argv ())) 
 		{ 
 			function (); 
 			fileopen.close (); 
