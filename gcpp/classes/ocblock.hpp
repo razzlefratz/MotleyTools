@@ -28,7 +28,7 @@ class __declspec (dllexport) ocblock: private osource
 public:
 	ocblock ();
 	virtual ~ ocblock ();
-	signed program (signed c, signed e);
+	signed program (signed c);
 private:
 	signed statement (signed c);
 	signed condition (signed c);

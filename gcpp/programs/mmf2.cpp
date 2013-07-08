@@ -62,12 +62,12 @@ int main (int argc, char const * argv [])
 		"u\ttargets are utilities ", 
 		"l\ttargets are libraries ", 
 		"p\ttargets are programs ", 
-		(char const *) (0)
+		(char const * ) (0)
 	}; 
 	ogetoptv getopt; 
 	omakefile makefile; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
 	{ 
 		switch (c) 
 		{ 
@@ -89,7 +89,7 @@ int main (int argc, char const * argv [])
 			makefile.clearbits (oMAKEFILE_UTILITY); 
 			makefile.clearbits (oMAKEFILE_LIBRARY); 
 			break; 
-		default:
+		default: 
 			break; 
 		} 
 	} 
@@ -97,7 +97,7 @@ int main (int argc, char const * argv [])
 	while (getopt.argc () && * getopt.argv ()) 
 	{ 
 		makefile.includefile (* getopt.argv ()); 
-		getopt++; 
+		getopt++ ; 
 	} 
 	makefile.publish (); 
 	std::exit (0); 

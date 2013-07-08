@@ -100,7 +100,7 @@ static signed function (signed c)
 		} 
 		if (c == '#') 
 		{ 
-			do
+			do 
 			{ 
 				c = discard.command (c, '\n'); 
 			} 
@@ -110,13 +110,13 @@ static signed function (signed c)
 		if ((c == '{') || (c == '(') || (c == '[')) 
 		{ 
 			c = std::cin.get (); 
-			level++; 
+			level++ ; 
 			continue; 
 		} 
 		if ((c == '}') || (c == ')') || (c == ']')) 
 		{ 
 			c = std::cin.get (); 
-			level--; 
+			level-- ; 
 			continue; 
 		} 
 		if (c == '/') 
@@ -132,7 +132,7 @@ static signed function (signed c)
 		if (oascii::isalpha (c) || (c == '_')) 
 		{ 
 			char * sp = string; 
-			do
+			do 
 			{ 
 				* sp++ = (char)(c); 
 				c = std::cin.get (); 
@@ -156,7 +156,7 @@ static signed function (signed c)
 			} 
 			if (c == '(') 
 			{ 
-				if (!level) 
+				if (! level) 
 				{ 
 					std::strcpy (module, string); 
 				} 
@@ -164,7 +164,7 @@ static signed function (signed c)
 				{ 
 					std::cout << string << ":" << module << ";" << std::endl; 
 				} 
-				else
+				else 
 				{ 
 					std::cout << module << ":" << string << ";" << std::endl; 
 				} 
@@ -173,14 +173,14 @@ static signed function (signed c)
 		} 
 		if (oascii::isdigit (c)) 
 		{ 
-			do
+			do 
 			{ 
 				c = std::cin.get (); 
 			} 
 			while (oascii::isdigit (c) || (c == '.')); 
 			if ((c == 'x') || (c == 'X')) 
 			{ 
-				do
+				do 
 				{ 
 					c = std::cin.get (); 
 				} 
@@ -224,23 +224,23 @@ int main (int argc, char const * argv [])
 		oPUTOPTV_S_FUNNEL, 
 		"print C language call dependencies", 
 		"x\tinvert relationships", 
-		(char const *) (0)
+		(char const * ) (0)
 	}; 
 	ogetoptv getopt; 
 	opathspec pathspec; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
 	{ 
 		switch (c) 
 		{ 
 		case 'x': 
 			flagword.setbits (CALL_B_INVERT); 
 			break; 
-		default:
+		default: 
 			break; 
 		} 
 	} 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 		function (std::cin.get ()); 
 	} 
@@ -252,7 +252,7 @@ int main (int argc, char const * argv [])
 		{ 
 			c = function (std::cin.get ()); 
 		} 
-		getopt++; 
+		getopt++ ; 
 	} 
 	std::exit (0); 
 } 

@@ -47,21 +47,21 @@ int main (int argc, char const * argv [], char const * envp [])
 		"", 
 		oPUTOPTV_S_FUNNEL, 
 		"paginate files", 
-		(char const *) (0)
+		(char const * ) (0)
 	}; 
 	ogetoptv getopt; 
 	std::fstream source; 
 	opage page ("Standard Input"); 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
 	{ 
 		switch (c) 
 		{ 
-		default:
+		default: 
 			break; 
 		} 
 	} 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 		page.title ("Standard Input"); 
 		while (page.put (std::cin.get ()) != EOF); 
@@ -76,7 +76,7 @@ int main (int argc, char const * argv [], char const * envp [])
 			while (page.put (std::cin.get ()) != EOF); 
 			source.close (); 
 		} 
-		getopt++; 
+		getopt++ ; 
 	} 
 	std::exit (0); 
 } 

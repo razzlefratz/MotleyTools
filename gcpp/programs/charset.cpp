@@ -1,9 +1,11 @@
 /*====================================================================*
  *
- *   cblock.cpp - C Language blocker;
+ *   cfm.cpp - format C/C++ source files;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
+ *   custom C/C++ source code formatter;
+ *
+ *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
+ *:  Copyright 2001-2006 by Charles Maier Associates;
  *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
@@ -12,23 +14,14 @@
  *   system header files;
  *--------------------------------------------------------------------*/
 
-#include <cstring>
-#include <cstdlib>
 #include <iostream>
 
 /*====================================================================*
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/stdafx.hpp"
 #include "../classes/ogetoptv.hpp"
-#include "../classes/ofileopen.hpp"
-#include "../classes/ofilespec.hpp"
-#include "../classes/opathspec.hpp"
-#include "../classes/ocontext.hpp"
-#include "../classes/oescape.hpp"
-#include "../classes/ocblock.hpp"
-#include "../classes/oerror.hpp"
+#include "../classes/oascii.hpp"
 
 /*====================================================================*
  *   custom source files;
@@ -39,24 +32,17 @@
 #include "../classes/oputoptv.cpp"
 #include "../classes/oversion.cpp"
 #include "../classes/oerror.cpp"
-#include "../classes/ofileopen.cpp"
-#include "../classes/ofilespec.cpp"
-#include "../classes/opathspec.cpp"
-#include "../classes/ocontext.cpp"
-#include "../classes/owildcard.cpp"
-#include "../classes/oescape.cpp"
-#include "../classes/osource.cpp"
-#include "../classes/ocblock.cpp"
 #include "../classes/oascii.cpp"
 #include "../classes/otext.cpp"
 #endif
 
 /*====================================================================*
- *
+ *   
  *   int main (int argc, char const * argv []);
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
+ *   
+ *   
+ *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
+ *:  Copyright 2001-2006 by Charles Maier Associates;
  *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
@@ -66,17 +52,12 @@ int main (int argc, char const * argv [])
 { 
 	static char const * optv [] = 
 	{ 
-		"p", 
+		"", 
 		oPUTOPTV_S_FILTER, 
-		"C/C++ source code blocker", 
+		"enumerate character sets", 
 		(char const * ) (0)
 	}; 
 	ogetoptv getopt; 
-	oescape escape; 
-	opathspec pathspec; 
-	ofileopen fileopen; 
-	ocblock object; 
-	signed (ocblock::* method) (signed) = & ocblock::program; 
 	signed c; 
 	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
 	{ 
@@ -88,17 +69,56 @@ int main (int argc, char const * argv [])
 	} 
 	if (! getopt.argc ()) 
 	{ 
-		(object.* method) (std::cin.get ()); 
 	} 
 	while (getopt.argc () && * getopt.argv ()) 
 	{ 
-		if (fileopen.openedit (* getopt.argv ())) 
-		{ 
-			(object.* method) (std::cin.get ()); 
-			fileopen.close (); 
-		} 
 		getopt++ ; 
 	} 
+	std::printf ("arith"); 
+	for (c = 0; c < 127; c++ ) 
+	{ 
+		if (oascii::isarith (c)) 
+		{ 
+			std::printf (" %c", c); 
+		} 
+	} 
+	std::printf ("\n"); 
+	std::printf ("logic"); 
+	for (c = 0; c < 127; c++ ) 
+	{ 
+		if (oascii::islogic (c)) 
+		{ 
+			std::printf (" %c", c); 
+		} 
+	} 
+	std::printf ("\n"); 
+	std::printf ("group"); 
+	for (c = 0; c < 127; c++ ) 
+	{ 
+		if (oascii::isgroup (c)) 
+		{ 
+			std::printf (" %c", c); 
+		} 
+	} 
+	std::printf ("\n"); 
+	std::printf ("quote"); 
+	for (c = 0; c < 127; c++ ) 
+	{ 
+		if (oascii::isquote (c)) 
+		{ 
+			std::printf (" %c", c); 
+		} 
+	} 
+	std::printf ("\n"); 
+	std::printf ("punct"); 
+	for (c = 0; c < 127; c++ ) 
+	{ 
+		if (oascii::ispunct (c)) 
+		{ 
+			std::printf (" %c", c); 
+		} 
+	} 
+	std::printf ("\n"); 
 	std::exit (0); 
 } 
 

@@ -414,13 +414,54 @@ signed osource::_comment (signed c) const
 signed osource::moniker (signed c) const 
 
 {
-	do
-	{
-		c = osource::feed (c);
-	}
-	while (oascii::isalnum (c) || (c == '_'));
+	do { c = osource::feed (c); } while (oascii::isalnum (c) || (c == '_'));
 	return (c);
 }
+
+/*====================================================================*
+ *
+ *   signed enspace (signed c) const;
+
+ *   output one space prior to current character;
+ *
+ *--------------------------------------------------------------------*/
+
+signed osource::enspace (signed c) const
+
+{ 
+	if (oascii::isalnum(c) || (c == '_'))
+	{
+		std::cout.put (' '); 
+	}
+	else if (oascii::isquote(c))
+	{
+		std::cout.put (' '); 
+	}
+	else if ((c == '(') || (c == '[') || (c == '{')) 
+	{ 
+		std::cout.put (' '); 
+	} 
+	else if ((c == '!') || (c == '=') || (c == '<') || (c == '>')) 
+	{ 
+		std::cout.put (' '); 
+	} 
+	else if ((c == '&') || (c == '|') || (c == '~') || (c == '^')) 
+	{ 
+		std::cout.put (' '); 
+	} 
+	else if ((c == '*') || (c == '/') || (c == '%')) 
+	{ 
+		std::cout.put (' '); 
+	} 
+	else if ((c == '+') || (c == '-')) 
+	{ 
+		if (std::cin.peek () == '=') 
+		{ 
+			std::cout.put (' '); 
+		} 
+	} 
+	return (c); 
+} 
 
 /*====================================================================*
  *

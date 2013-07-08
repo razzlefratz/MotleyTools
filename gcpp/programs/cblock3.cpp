@@ -58,14 +58,14 @@ static void function ()
 
 { 
 	oscanfile source; 
-	while (!source.end ()) 
+	while (! source.end ()) 
 	{ 
-		<<<<<<< HEAD if (source.scantoken ().isspace ()) ======= source.scantoken (); 
-		if (source.isspace ()) >>>>>>> 6f95020476b52cf467ba9cc9ea46d424fb7d7b40 
+		<< << << < HEAD if (source.scantoken ().isspace ()) == == == = source.scantoken (); 
+		if (source.isspace ()) >> >> >> > 6f95020476b52cf467ba9cc9ea46d424fb7d7b40 
 		{ 
 			source.scanspace (); 
 		} 
-		<<<<<<< HEAD else if (source.havetoken ("while")) 
+		<< << << < HEAD else if (source.havetoken ("while")) 
 		{ 
 		} 
 		else if (source.havetoken ("do")) 
@@ -81,8 +81,8 @@ static void function ()
 		{ 
 		} 
 		source.write ().flush (); 
-		======= source.print ().flush (); 
-		>>>>>>> 6f95020476b52cf467ba9cc9ea46d424fb7d7b40
+		== == == = source.print ().flush (); 
+		>> >> >> > 6f95020476b52cf467ba9cc9ea46d424fb7d7b40
 	} 
 	return; 
 } 
@@ -99,21 +99,21 @@ int main (int argc, char const * argv [])
 		"", 
 		oPUTOPTV_S_FUNNEL, 
 		"C Language Block Manger", 
-		(char const *) (0)
+		(char const * ) (0)
 	}; 
 	ofileopen fileopen; 
 	opathspec pathspec; 
 	ogetoptv getopt; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
 	{ 
 		switch (c) 
 		{ 
-		default:
+		default: 
 			break; 
 		} 
 	} 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 		function (); 
 	} 
@@ -124,7 +124,7 @@ int main (int argc, char const * argv [])
 			function (); 
 			fileopen.close (); 
 		} 
-		getopt++; 
+		getopt++ ; 
 	} 
 	std::exit (0); 
 } 

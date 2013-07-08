@@ -75,7 +75,7 @@ static char const * folders [] =
 	"/usr/lib/gcc-lib/i386-linux/2.95.4/include", 
 	"/usr/lib/gcc-lib/i386-linux/3.0.4/include", 
 	"/usr/include/c++/3.3", 
-	(char const *) (0)
+	(char const * ) (0)
 }; 
 
 /*====================================================================*
@@ -95,7 +95,7 @@ static void relate (char const * one, char const * two, oflagword * flags)
 	{ 
 		sources.connect (two, one); 
 	} 
-	else
+	else 
 	{ 
 		sources.connect (one, two); 
 	} 
@@ -126,14 +126,14 @@ static void function (char const * target, size_t length, oflagword * flags)
 	if (stream.good ()) 
 	{ 
 		filespec.filespec (target); 
-		for (line = 1; !stream.getline (buffer, length).eof (); line++) 
+		for (line = 1; ! stream.getline (buffer, length).eof (); line++ ) 
 		{ 
 			scantext.copy (buffer).nexttoken (); 
-			if (!scantext.havetoken ("#")) 
+			if (! scantext.havetoken ("#")) 
 			{ 
 				continue; 
 			} 
-			if (!scantext.havetoken ("include")) 
+			if (! scantext.havetoken ("include")) 
 			{ 
 				continue; 
 			} 
@@ -194,13 +194,13 @@ int main (int argc, char const * argv [])
 		"n\tneed summary", 
 		"f\tfeed summary", 
 		"I s\tsearch include folder s", 
-		(char const *) (0)
+		(char const * ) (0)
 	}; 
 	ogetoptv getopt; 
 	oflagword flags; 
 	size_t length = FILENAME_MAX; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
 	{ 
 		switch (c) 
 		{ 
@@ -221,7 +221,7 @@ int main (int argc, char const * argv [])
 		case 'm': 
 			flags.setbits (DEPEND_B_MAKEFILE); 
 			break; 
-		default:
+		default: 
 			break; 
 		} 
 	} 
@@ -232,15 +232,15 @@ int main (int argc, char const * argv [])
 	} 
 	while ((getopt.argc ()) && (* getopt.argv ())) 
 	{ 
-		char filename [FILENAME_MAX + 1]; 
+		char filename [FILENAME_MAX +  1]; 
 		pathspec.fullpath (filename, * getopt.argv ()); 
 		odepend::nodes.store (filename); 
-		getopt++; 
+		getopt++ ; 
 	} 
-	while (!odepend::queue.empty ()) 
+	while (! odepend::queue.empty ()) 
 	{ 
-		odepend::nodes.store ((char *)(odepend::queue.head ()->data ())); 
-		function ((char *) (odepend::queue.head () ->data ()), length, & flags); 
+		odepend::nodes.store ((char * )(odepend::queue.head ()->data ())); 
+		function ((char * ) (odepend::queue.head () ->data ()), length, & flags); 
 		odepend::queue.remove (); 
 	} 
 	if (flags.anyset (DEPEND_B_REPORT)) 

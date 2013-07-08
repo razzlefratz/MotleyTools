@@ -57,10 +57,10 @@ public:
 private:
 	char const * moption;
 	char const * mstring;
-	int margc;
+	char const * moptarg;
 	char const ** margv;
 	char * margs;
-	char const * moptarg;
+	int margc;
 	int mopterr;
 	int moptind;
 	int moptmin;

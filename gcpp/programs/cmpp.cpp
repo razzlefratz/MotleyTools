@@ -100,7 +100,7 @@ static void process (char const * pathname, char const * command, oflagword * fl
 { 
 	oscantext source; 
 	source.read (pathname); 
-	while (!source.isempty ()) 
+	while (! source.isempty ()) 
 	{ 
 		if (source.flush ().scantoken ().istoken (command)) 
 		{ 
@@ -143,7 +143,7 @@ static void process (char const * pathname, char const * command, oflagword * fl
 					pathspec.makepath (fullpath, rootname, source.tokentext ()); 
 					source.scanbreak (); 
 					break; 
-				default:
+				default: 
 					source.flush (); 
 					source.scanuntil (gcsSpace); 
 					pathspec.makepath (fullpath, rootname, source.tokentext ()); 
@@ -151,7 +151,7 @@ static void process (char const * pathname, char const * command, oflagword * fl
 				} 
 				if (flags->anyset (CMPP_B_INCLUDE)) 
 				{ 
-					process ((char const *) (fullpath), command, flags); 
+					process ((char const * ) (fullpath), command, flags); 
 				} 
 				source.scanquote (gcsBreak); 
 				source.scanwhile (gcsBreak); 
@@ -202,7 +202,7 @@ static void process (char const * pathname, char const * command, oflagword * fl
 				macro.enumerate (pathname); 
 				source.scanwhile (gcsBreak); 
 			} 
-			else
+			else 
 			{ 
 				source.unget (); 
 			} 
@@ -246,7 +246,7 @@ static void process (char const * pathname, char const * command, oflagword * fl
 					source.scangroup (')'); 
 					source.scanbreak (')'); 
 				} 
-				else
+				else 
 				{ 
 					source.trimtoken (); 
 				} 
@@ -289,13 +289,13 @@ int main (int argc, char const * argv [], char const * envp [])
 		"d\tprint definitions on stderr", 
 		"e\tprint expansions on stderr", 
 		"v\tverbose messages", 
-		(char const *) (0)
+		(char const * ) (0)
 	}; 
 	ogetoptv getopt; 
 	oflagword flags; 
 	char const * command = CMPP_S_COMMAND; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
 	{ 
 		switch (c) 
 		{ 
@@ -323,7 +323,7 @@ int main (int argc, char const * argv [], char const * envp [])
 		case 'v': 
 			flags.setbits (CMPP_B_VERBOSE); 
 			break; 
-		default:
+		default: 
 			break; 
 		} 
 	} 
@@ -334,7 +334,7 @@ int main (int argc, char const * argv [], char const * envp [])
 	while (getopt.argc () && * getopt.argv ()) 
 	{ 
 		process (* getopt.argv (), command, & flags); 
-		getopt++; 
+		getopt++ ; 
 	} 
 	std::exit (0); 
 } 

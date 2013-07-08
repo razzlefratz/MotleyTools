@@ -78,14 +78,14 @@ int main (int argc, char const * argv [])
 		"s\tprint symbol", 
 		"t\tprint structure", 
 		"x\tinvert order", 
-		(char const *) (0)
+		(char const * ) (0)
 	}; 
 	std::ifstream stream; 
 	ogetoptv getopt; 
 	oputoptv putopt; 
 	ograph graph; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
 	{ 
 		switch (c) 
 		{ 
@@ -106,11 +106,11 @@ int main (int argc, char const * argv [])
 		case 'x': 
 			graph.setbits (oGRAPH_MODE_INVERT); 
 			break; 
-		default:
+		default: 
 			break; 
 		} 
 	} 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 		graph.populate (ORDER_C_SEPARATOR, ORDER_C_TERMINATOR); 
 	} 
@@ -123,7 +123,7 @@ int main (int argc, char const * argv [])
 			graph.populate (ORDER_C_SEPARATOR, ORDER_C_TERMINATOR); 
 			stream.close (); 
 		} 
-		getopt++; 
+		getopt++ ; 
 	} 
 	graph.discover (); 
 	std::exit (0); 

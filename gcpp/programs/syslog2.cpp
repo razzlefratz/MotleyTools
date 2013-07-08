@@ -102,7 +102,7 @@ int main (int argc, char const * argv [])
 		"p s\tpriority is s in facility.severity format", 
 		"n\tinclude PID number", 
 		"t\ttest", 
-		(char const *) (0)
+		(char const * ) (0)
 	}; 
 	ogetoptv getopt; 
 	oflagword flagword; 
@@ -112,13 +112,13 @@ int main (int argc, char const * argv [])
 	char const * identity = getlogin (); 
 	priority_t priority = SYSLOG_USER | SYSLOG_INFO; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
 	{ 
 		switch ((char) (c)) 
 		{ 
 		case 'b': 
 			identity = getopt.optarg (); 
-			for (char const * sp = identity; * sp != (char) (0); ++sp) 
+			for (char const * sp = identity; * sp != (char) (0); ++ sp) 
 			{ 
 				if (* sp == PATH_C_EXTENDER) 
 				{ 
@@ -130,7 +130,7 @@ int main (int argc, char const * argv [])
 			options.setbits (SYSLOG_PERROR); 
 			break; 
 		case 'f': 
-			if (freopen (getopt.optarg (), "r", stdin) == (FILE *) (0)) 
+			if (freopen (getopt.optarg (), "r", stdin) == (FILE * ) (0)) 
 			{ 
 				merror.error (1, errno, "%s", getopt.optarg ()); 
 			} 
@@ -147,7 +147,7 @@ int main (int argc, char const * argv [])
 		case 't': 
 			flagword.setbits (SYSLOG2_FLAG_TEST); 
 			break; 
-		default:
+		default: 
 			break; 
 		} 
 	} 
@@ -157,7 +157,7 @@ int main (int argc, char const * argv [])
 		mysyslogtest (priority); 
 		return (0); 
 	} 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 		while (std::cin.getline (message, sizeof (message)).good ()) 
 		{ 
@@ -170,9 +170,9 @@ int main (int argc, char const * argv [])
 		char const * sp = * getopt.argv (); 
 		while (* sp) 
 		{ 
-			if ((unsigned)(bp - message) < (sizeof (message)-1)) 
+			if ((unsigned)(bp - message) < (sizeof (message)- 1)) 
 			{ 
-				* bp++ = * sp++; 
+				* bp++ = * sp++ ; 
 			} 
 		} 
-		* bp++ = (* getopt.argv ()? ' ': (char) (0); getopt++; } msyslog.syslog (priority, "%s", message); return (0); } 
+		* bp++ = (* getopt.argv ()? ' ':(char) (0); getopt++ ; } msyslog.syslog (priority, "%s", message); return (0); } 

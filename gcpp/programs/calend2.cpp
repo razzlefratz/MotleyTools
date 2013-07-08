@@ -53,16 +53,16 @@ int main (int argc, char const * argv [])
 		"print html calendar on stdout", 
 		"m n\tmonth is (n)", 
 		"y n\tyear is (n)", 
-		(char const *) (0)
+		(char const * ) (0)
 	}; 
 	ogetoptv getopt; 
 	ocalendar * calendar; 
-	time_t now = time ((time_t *) (0)); 
+	time_t now = time ((time_t * ) (0)); 
 	struct tm * tm = localtime (& now); 
-	unsigned year = 1900 + tm->tm_year; 
+	unsigned year = 1900 +  tm->tm_year; 
 	signed month = tm->tm_mon; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
 	{ 
 		switch (c) 
 		{ 
@@ -71,9 +71,9 @@ int main (int argc, char const * argv [])
 			break; 
 		case 'm': 
 			month = std::atoi (getopt.optarg ()); 
-			month--; 
+			month-- ; 
 			break; 
-		default:
+		default: 
 			break; 
 		} 
 	} 

@@ -105,21 +105,7 @@ signed ophptidy::program (signed c)
 	ophptidy::level (0); 
 	while (c != EOF) 
 	{ 
-		if (oascii::isspace (c)) 
-		{ 
-			do
-			{ 
-				c = std::cin.get (); 
-			} 
-			while (oascii::isspace (c)); 
-			std::cout.put (' '); 
-			continue; 
-		} 
-		if (oascii::isquote (c)) 
-		{ 
-			c = osource::literal (c); 
-			continue; 
-		} 
+		c = osource::find (c);
 		if (c == '?') 
 		{ 
 			c = std::cin.get (); 
@@ -147,8 +133,17 @@ signed ophptidy::program (signed c)
 		if (c == '/') 
 		{ 
 			ophptidy::endline (); 
-			c = osource::comment (c); 
+			do 
+			{ 
+				c = osource::comment (c); 
+			} 
+			while (c == '/');
 			ophptidy::space (1); 
+			continue; 
+		} 
+		if (oascii::isquote (c)) 
+		{ 
+			c = osource::literal (c); 
 			continue; 
 		} 
 		if (c == '{') 
@@ -158,6 +153,7 @@ signed ophptidy::program (signed c)
 
 			c = osource::feed (c); 
 			c = osource::find (c); 
+			std::cout.put (' ');
 			ophptidy::increment (); 
 
 #else
@@ -171,6 +167,7 @@ signed ophptidy::program (signed c)
 			ophptidy::increment (); 
 			c = osource::feed (c); 
 			c = osource::find (c); 
+			std::cout.put (' ');
 
 #endif
 
@@ -184,6 +181,7 @@ signed ophptidy::program (signed c)
 			ophptidy::newline (); 
 			c = osource::feed (c); 
 			c = osource::find (c); 
+			std::cout.put (' ');
 			if (!this->mlevel) 
 			{ 
 				ophptidy::endline (1); 
@@ -195,6 +193,7 @@ signed ophptidy::program (signed c)
 		{ 
 			c = osource::feed (c); 
 			c = osource::find (c); 
+			std::cout.put (' ');
 			ophptidy::space (2); 
 			continue; 
 		} 
@@ -222,38 +221,32 @@ signed ophptidy::statement (signed c)
 		* sp++ = c; 
 		c = std::cin.get (); 
 	} 
-#if 0
 	while (oascii::isspace (c)) 
 	{ 
 		c = std::cin.get (); 
 	} 
-#endif
 	* sp = (char) (0); 
 	if (sp == string) 
 	{ 
-		ophptidy::newline (this->mlevel); 
+		oindent::print (this->mlevel, 0, string); 
 		c = ophptidy::context (c, ",;{}?#"); 
 	} 
 	else if (!std::strcmp (string, "case")) 
 	{ 
-		ophptidy::newline (this->mlevel-1); 
-		std::cout << string; 
+		oindent::print (this->mlevel-1, 0, string); 
 		c = ophptidy::context (c, ':'); 
 	} 
-	else if (!std::strcmp (string, "default")) 
+	else if (c == ':')
 	{ 
-		ophptidy::newline (this->mlevel-1); 
-		std::cout << string; 
-		c = ophptidy::context (c, ':'); 
+		oindent::print (this->mlevel-1, 0, string); 
+		c = osource::feed (c);
+		c = osource::find (c);
+		std::cout.put (' ');
 	} 
 	else
 	{ 
-		ophptidy::newline (this->mlevel); 
-		std::cout << string; 
-		if ((c == '(') || (c == '[') || (c == '{')) 
-		{ 
-			std::cout.put (' '); 
-		} 
+		oindent::print (this->mlevel, 0, string); 
+		c = osource::enspace (c);
 		c = ophptidy::context (c, ",;{}?#"); 
 	} 
 	return (c); 
@@ -261,7 +254,7 @@ signed ophptidy::statement (signed c)
 
 /*====================================================================*
  *
- *   signed context (signed o, char const *charset); 
+ *   signed context (signed o, char const * charset) const; 
  *
  *   read stdin and buffer characters until one of the chracters in
  *   charset is read; return that character as the function value;
@@ -273,7 +266,7 @@ signed ophptidy::statement (signed c)
  *
  *--------------------------------------------------------------------*/
 
-signed ophptidy::context (signed c, char const * charset) 
+signed ophptidy::context (signed c, char const * charset) const
 
 { 
 	while ((c) && (c != EOF) && !std::strchr (charset, c)) 
@@ -285,11 +278,11 @@ signed ophptidy::context (signed c, char const * charset)
 
 /*====================================================================*
  *
- *   signed context (signed c, signed o, signed e);
+ *   signed context (signed c, signed o, signed e) const;
  *
  *--------------------------------------------------------------------*/
 
-signed ophptidy::context (signed c, signed o, signed e) 
+signed ophptidy::context (signed c, signed o, signed e) const
 
 { 
 	c = osource::feed (c); 
@@ -298,7 +291,7 @@ signed ophptidy::context (signed c, signed o, signed e)
 	return (c); 
 } 
 
-signed ophptidy::_context (signed c, signed o, signed e) 
+signed ophptidy::_context (signed c, signed o, signed e) const
 
 { 
 	while ((c != e) && (c != EOF)) 
@@ -311,14 +304,14 @@ signed ophptidy::_context (signed c, signed o, signed e)
 
 /*====================================================================*
  *
- *   signed context (signed c, signed e); 
+ *   signed context (signed c, signed e) const; 
  *
  *   read and buffer nested expressions and literals until character
  *   (e) is encountered; buffer (e) and return the next character; 
  *
  *--------------------------------------------------------------------*/
 
-signed ophptidy::context (signed c, signed e) 
+signed ophptidy::context (signed c, signed e) const 
 
 { 
 	c = osource::feed (c); 
@@ -328,7 +321,7 @@ signed ophptidy::context (signed c, signed e)
 	return (c); 
 } 
 
-signed ophptidy::_context (signed c, signed e) 
+signed ophptidy::_context (signed c, signed e) const
 
 { 
 	while ((c != e) && (c != EOF)) 
@@ -340,25 +333,25 @@ signed ophptidy::_context (signed c, signed e)
 
 /*====================================================================*
  *
- *   signed context (signed  c); 
+ *   signed context (signed  c) const; 
  *
  *--------------------------------------------------------------------*/
 
-signed ophptidy::context (signed c) 
+signed ophptidy::context (signed c)  const
 
 { 
 	if (oascii::isspace (c)) 
 	{ 
 		c = osource::find (c); 
+		if ((c == ')') || (c == ']') || (c == '}')) 
+		{ 
+			return (c); 
+		} 
 		if ((c == ',') || (c == ';')) 
 		{ 
 			return (c); 
 		} 
 		if ((c == ':') || (c == '?')) 
-		{ 
-			return (c); 
-		} 
-		if ((c == ')') || (c == ']') || (c == '}')) 
 		{ 
 			return (c); 
 		} 
@@ -380,15 +373,8 @@ signed ophptidy::context (signed c)
 	} 
 	else if (oascii::isalpha (c)) 
 	{ 
-		do
-		{ 
-			c = osource::feed (c); 
-		} 
-		while (oascii::isalnum (c) || (c == '_')); 
-		if ((c == '(') || (c == '[') || (c == '{')) 
-		{ 
-			std::cout.put (' '); 
-		} 
+		c = osource::moniker (c);
+		c = osource::enspace (c);
 	} 
 	else if (oascii::isquote (c)) 
 	{ 

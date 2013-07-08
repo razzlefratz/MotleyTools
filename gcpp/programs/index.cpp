@@ -75,7 +75,7 @@ int main (int argc, char const * argv [])
 		"s s\tuse CSS2 stylesheet (s)", 
 		"S\tprint CSS2 stylesheet on stdout", 
 		"t s\tHTML index title", 
-		(char const *) (0)
+		(char const * ) (0)
 	}; 
 	ogetoptv getopt; 
 	oerror message; 
@@ -83,7 +83,7 @@ int main (int argc, char const * argv [])
 	oHTMLIndex page; 
 	unsigned columns = INDEX_COLUMNS; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
 	{ 
 		switch (c) 
 		{ 
@@ -99,7 +99,7 @@ int main (int argc, char const * argv [])
 		case 't': 
 			page.title (getopt.optarg ()); 
 			break; 
-		default:
+		default: 
 			break; 
 		} 
 	} 
@@ -107,7 +107,7 @@ int main (int argc, char const * argv [])
 	{ 
 		findspec.fullname (* getopt.argv ()); 
 		page.collect (findspec.pathname (), findspec.filename ()); 
-		getopt++; 
+		getopt++ ; 
 	} 
 	page.publish (columns); 
 	std::exit (0); 

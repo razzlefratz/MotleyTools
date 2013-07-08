@@ -46,10 +46,6 @@ const unsigned okeywords::words = SIZEOF (okeywords::table) - 1;
  *
  *   return the keyword count;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 size_t okeywords::count () const 
@@ -63,10 +59,6 @@ size_t okeywords::count () const
  *   char const keywords (size_t index) const;
  *
  *   return a keyword string by keyword index;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -82,10 +74,6 @@ char const * okeywords::keywords (size_t index) const
  *
  *   return true if a keyword is present in the keyword table;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 bool okeywords::defined (char const * string) const 
@@ -100,10 +88,6 @@ bool okeywords::defined (char const * string) const
  *
  *   return the keyword index, if present, or the keyword count, if
  *   missing; use a binary table search;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -137,10 +121,6 @@ size_t okeywords::indexof (char const * string) const
  *
  *   return the length of the longest stored keyword;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 size_t okeywords::longest () const 
@@ -163,10 +143,6 @@ size_t okeywords::longest () const
  *   okeywords & enumerate (); 
  *
  *   print a C Language source code table definition on stdout;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -222,10 +198,6 @@ okeywords & okeywords::enumerate ()
  *
  *   print keywords, with prefix and suffix strings, on stdout; 
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 okeywords & okeywords::enumerate (char const * prefix, char const * suffix) 
@@ -248,10 +220,6 @@ okeywords & okeywords::enumerate (char const * prefix, char const * suffix)
  *
  *   compute column width from vector string lengths; compute number 
  *   of columns from screen and column widths;  
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -310,10 +278,6 @@ okeywords & okeywords::enumerate (size_t columns)
  *   and exit program on failure; this ensures that a binary search 
  *   will not fail to find words;
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 okeywords & okeywords::mcheck () 
@@ -344,10 +308,6 @@ okeywords & okeywords::mcheck ()
  *
  *   okeywords ();
  *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
  *--------------------------------------------------------------------*/
 
 okeywords::okeywords () 
@@ -361,11 +321,7 @@ okeywords::okeywords ()
 
 /*====================================================================*
  *
- *   okeywords::~okeywords ();
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *   ~ okeywords ();
  *
  *--------------------------------------------------------------------*/
 

@@ -84,12 +84,12 @@ int main (int argc, char const * argv [])
 		"c to html file formatter having absolutely no features !", 
 		"s s\tuse CSS2 stylesheet (s) [" LITERAL (STYLESHEET) "]", 
 		"S\tprint CSS2 stylesheet on stdout", 
-		(char const *) (0)
+		(char const * ) (0)
 	}; 
 	ochtml page (STYLESHEET); 
 	ogetoptv getopt; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
 	{ 
 		switch (c) 
 		{ 
@@ -99,14 +99,14 @@ int main (int argc, char const * argv [])
 		case 'S': 
 			page.css2 (); 
 			return (0); 
-		default:
+		default: 
 			break; 
 		} 
 	} 
 	while (getopt.argc () && * getopt.argv ()) 
 	{ 
 		page.html (* getopt.argv ()); 
-		getopt++; 
+		getopt++ ; 
 	} 
 	std::exit (0); 
 } 

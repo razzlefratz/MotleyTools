@@ -32,12 +32,12 @@ public:
 	signed page (signed c);
 	signed statement (signed c);
 	signed program (signed c);
-	signed context (signed c, char const * charset);
-	signed context (signed c, signed o, signed e);
-	signed context (signed c, signed e);
-	signed context (signed c);
-	signed _context (signed c, signed o, signed e);
-	signed _context (signed c, signed e);
+	signed context (signed c, char const * charset) const;
+	signed context (signed c, signed o, signed e) const;
+	signed context (signed c, signed e) const;
+	signed context (signed c) const;
+	signed _context (signed c, signed o, signed e) const;
+	signed _context (signed c, signed e) const;
 };
 
 /*====================================================================*

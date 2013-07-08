@@ -102,7 +102,7 @@ int main (int argc, char const * argv [])
 		"t\tindent is 1 tab", 
 		"w n\tbar width is (n)", 
 		"x\terase markers", 
-		(char const *) (0)
+		(char const * ) (0)
 	}; 
 	char const * profile = PROFILE_NAME; 
 	char const * section = SECTION_NAME; 
@@ -113,7 +113,7 @@ int main (int argc, char const * argv [])
 	octidy object; 
 	signed (octidy::* method) (signed) = & octidy::charlie; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
 	{ 
 		switch (c) 
 		{ 
@@ -182,7 +182,7 @@ int main (int argc, char const * argv [])
 		case 'x': 
 			object.setbits (oCOMMENT_B_DISCARD); 
 			break; 
-		default:
+		default: 
 			break; 
 		} 
 	} 
@@ -191,7 +191,7 @@ int main (int argc, char const * argv [])
 	object.release (config.string (profile, section, oCOMMENT_S_RELEASE, oCOMMENT_T_RELEASE)); 
 	object.license (config.string (profile, section, oCOMMENT_S_LICENSE, oCOMMENT_T_LICENSE)); 
 	object.special (config.string (profile, section, oCOMMENT_S_SPECIAL, oCOMMENT_T_SPECIAL)); 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 		(object.* method) (std::cin.get ()); 
 	} 
@@ -203,7 +203,7 @@ int main (int argc, char const * argv [])
 			(object.* method) (std::cin.get ()); 
 			fileopen.close (); 
 		} 
-		getopt++; 
+		getopt++ ; 
 	} 
 	std::exit (0); 
 } 

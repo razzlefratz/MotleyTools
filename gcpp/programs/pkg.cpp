@@ -76,7 +76,7 @@ static void function (char const * string, oflagword * flags)
 	case PKG_B_TRAILER: 
 		std::cout << package.trailer () << "\n"; 
 		break; 
-	default:
+	default: 
 		std::cout << package.archive () << "\n"; 
 		break; 
 	} 
@@ -101,12 +101,12 @@ int main (int argc, char const * argv [])
 		"r\tprint version number", 
 		"e\tprint file extension", 
 		"x s\tremove extender s [.tar.bz2]", 
-		(char const *) (0)
+		(char const * ) (0)
 	}; 
 	ogetoptv getopt; 
 	oflagword flags; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
 	{ 
 		switch (c) 
 		{ 
@@ -128,27 +128,27 @@ int main (int argc, char const * argv [])
 		case 'x': 
 			package.extender (getopt.optarg ()); 
 			break; 
-		default:
+		default: 
 			break; 
 		} 
 	} 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 		char pathname [FILENAME_MAX]; 
-		while (!std::cin.getline (pathname, sizeof (pathname)).eof ()) 
+		while (! std::cin.getline (pathname, sizeof (pathname)).eof ()) 
 		{ 
 			std::streamsize length = std::cin.gcount (); 
-			while (isspace (pathname [--length])) 
+			while (isspace (pathname [-- length])) 
 			{ 
 				pathname [length] = (char) (0); 
 			} 
-			function ((char const *) (pathname), & flags); 
+			function ((char const * ) (pathname), & flags); 
 		} 
 	} 
 	while (getopt.argc () && * getopt.argv ()) 
 	{ 
 		function (* getopt.argv (), & flags); 
-		getopt++; 
+		getopt++ ; 
 	} 
 	std::exit (0); 
 } 

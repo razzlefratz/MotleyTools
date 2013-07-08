@@ -79,7 +79,7 @@ int main (int argc, char const * argv [])
 		"o\tprint default profile on stdout", 
 		"p s\tprofile is (s) [" LITERAL (PROFILE_NAME) "]", 
 		"s s\tsection is (s) [" LITERAL (SECTION_NAME) "]", 
-		(char const *) (0)
+		(char const * ) (0)
 	}; 
 	ogetoptv getopt; 
 	ofileopen fileopen; 
@@ -90,7 +90,7 @@ int main (int argc, char const * argv [])
 	char const * section = SECTION_NAME; 
 	signed (omptidy::* method) (signed) = & omptidy::tidy; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
 	{ 
 		switch (c) 
 		{ 
@@ -107,7 +107,7 @@ int main (int argc, char const * argv [])
 		case 's': 
 			section = getopt.optarg (); 
 			break; 
-		default:
+		default: 
 			break; 
 		} 
 	} 
@@ -115,7 +115,7 @@ int main (int argc, char const * argv [])
 	object.package (config.string (profile, section, oMPTIDY_S_PACKAGE, MPTIDY_S_PACKAGE)); 
 	object.program (config.string (profile, section, oMPTIDY_S_PROGRAM, MPTIDY_S_PROGRAM)); 
 	object.release (config.string (profile, section, oMPTIDY_S_RELEASE, MPTIDY_S_RELEASE)); 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 		(object.* method) (std::cin.get ()); 
 	} 
@@ -127,7 +127,7 @@ int main (int argc, char const * argv [])
 			(object.* method) (std::cin.get ()); 
 			fileopen.close (); 
 		} 
-		getopt++; 
+		getopt++ ; 
 	} 
 	std::exit (0); 
 } 

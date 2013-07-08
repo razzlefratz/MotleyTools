@@ -64,20 +64,20 @@ int main (int argc, char const * argv [])
 		oPUTOPTV_S_FUNNEL, 
 		"print C/C++ language tokens on stdout", 
 		"e\telaborate on tokens with typenames", 
-		(char const *) (0)
+		(char const * ) (0)
 	}; 
 	oflagword flags; 
 	oscancode source; 
 	ogetoptv getopt; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
 	{ 
 		switch (c) 
 		{ 
 		case 'e': 
 			flags.setbits (CTOKEN_B_ELABORATE); 
 			break; 
-		default:
+		default: 
 			break; 
 		} 
 	} 
@@ -87,11 +87,11 @@ int main (int argc, char const * argv [])
 		{ 
 			source.read (* getopt.argv ()).elaborate (); 
 		} 
-		else
+		else 
 		{ 
 			source.read (* getopt.argv ()).enumerate (); 
 		} 
-		getopt++; 
+		getopt++ ; 
 	} 
 	std::exit (0); 
 } 

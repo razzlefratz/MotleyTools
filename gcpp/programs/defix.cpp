@@ -62,7 +62,7 @@ int main (int argc, char const * argv [])
 		"o\tseparator is optional", 
 		"p\textract prefix", 
 		"s\textract suffix", 
-		(char const *) (0)
+		(char const * ) (0)
 	}; 
 	ogetoptv getopt; 
 	ocontext string; 
@@ -72,7 +72,7 @@ int main (int argc, char const * argv [])
 	bool optional = false; 
 	bool prefix = false; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
 	{ 
 		switch ((char) (c)) 
 		{ 
@@ -97,15 +97,15 @@ int main (int argc, char const * argv [])
 		case 's': 
 			prefix = false; 
 			break; 
-		default:
+		default: 
 			break; 
 		} 
 	} 
 	while (getopt.argc () && * getopt.argv ()) 
 	{ 
 		string.split (* getopt.argv (), character, initial, optional); 
-		std::printf (format, (prefix)? string.prefix (): string.suffix ()); 
-		getopt++; 
+		std::printf (format, (prefix)? string.prefix ():string.suffix ()); 
+		getopt++ ; 
 	} 
 	return (0); 
 } 
