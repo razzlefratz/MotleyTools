@@ -522,17 +522,7 @@ signed octidy::  context (signed c) const
 		c = osource::  find (c); 
 		std::cout.put (' '); 
 	} 
-	else if ((c == '~') || (c == '^') || (c == '%')) 
-	{ 
-		signed o = osource::  feed (c); 
-		if (o == '=') 
-		{ 
-			o = osource::  feed (o); 
-		} 
-		c = osource::  find (o); 
-		std::cout.put (' '); 
-	} 
-	else if ((c == '!') || (c == '='))
+	else if ((c == '!') || (c == '=') || (c == '~') || (c == '^') || (c == '%')) 
 	{ 
 		signed o = osource::  feed (c); 
 		if (o == '=') 
@@ -552,21 +542,7 @@ signed octidy::  context (signed c) const
 		c = osource::  find (o); 
 		std::cout.put (' '); 
 	} 
-	else if ((c == '<') || (c == '>')) 
-	{ 
-		signed o = osource::  feed (c); 
-		if (o == c) 
-		{ 
-			o = osource::  feed (o); 
-		} 
-		if (o == '=') 
-		{ 
-			o = osource::  feed (o); 
-		} 
-		c = osource::  find (o); 
-		std::cout.put (' '); 
-	} 
-	else if (c == '?') 
+	else if ((c == '<') || (c == '>') || (c == '?')) 
 	{ 
 		signed o = osource::  feed (c); 
 		if (o == c) 
@@ -586,17 +562,19 @@ signed octidy::  context (signed c) const
 		if (o == c) 
 		{ 
 			o = osource::  feed (o); 
+			c = osource::  find (o); 
 		} 
-		if (o == '=') 
-		{ 
+		else
+		{
 			o = osource::  feed (o); 
-		} 
-		c = osource::  find (o); 
+			c = osource::  find (o); 
+			std::cout.put (' '); 
+		}
 	} 
 	else if (c == '+') 
 	{ 
 		signed o = osource::  feed (c); 
-		if ((c == c) || (o == '='))
+		if ((o == c) || (o == '='))
 		{ 
 			o = osource::  feed (o); 
 		} 
