@@ -618,6 +618,10 @@ signed octidy::context (signed c) const
 			o = osource::feed (o); 
 		} 
 		c = osource::find (o); 
+		if ((c == ')') || (c == ']'))
+		{
+			return (c);
+		}
 		std::cout.put (' '); 
 	} 
 	else if (c == '/') 
