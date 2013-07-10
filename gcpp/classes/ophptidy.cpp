@@ -340,7 +340,12 @@ signed ophptidy::_context (signed c, signed e) const
 signed ophptidy::context (signed c)  const
 
 { 
-	if (oascii::isspace (c)) 
+	if (oascii::isalpha (c)) 
+	{ 
+		c = osource::moniker (c);
+		c = osource::enspace (c);
+	} 
+	else if (oascii::isspace (c)) 
 	{ 
 		c = osource::find (c); 
 		if ((c == ')') || (c == ']') || (c == '}')) 
@@ -362,19 +367,6 @@ signed ophptidy::context (signed c)  const
 		c = osource::feed (c); 
 		c = osource::find (c); 
 		std::cout.put (' '); 
-	} 
-	else if (oascii::isdigit (c)) 
-	{ 
-		do
-		{ 
-			c = osource::feed (c); 
-		} 
-		while (oascii::isdigit (c) || (c == '.')); 
-	} 
-	else if (oascii::isalpha (c)) 
-	{ 
-		c = osource::moniker (c);
-		c = osource::enspace (c);
 	} 
 	else if (oascii::isquote (c)) 
 	{ 

@@ -497,6 +497,12 @@ signed octidy::  context (signed c) const
 		} 
 		std::cout.put (' '); 
 	} 
+	else if ((c == ',') || (c == ';') || (c == '?')) 
+	{ 
+		c = osource::feed (c); 
+		c = osource::find (c); 
+		std::cout.put (' '); 
+	} 
 	else if (oascii::  isquote (c)) 
 	{ 
 		c = osource::  literal (c); 
@@ -542,7 +548,7 @@ signed octidy::  context (signed c) const
 		c = osource::  find (o); 
 		std::cout.put (' '); 
 	} 
-	else if ((c == '<') || (c == '>') || (c == '?')) 
+	else if ((c == '<') || (c == '>')) 
 	{ 
 		signed o = osource::  feed (c); 
 		if (o == c) 
