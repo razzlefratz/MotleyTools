@@ -36,6 +36,7 @@
 
 #include "../classes/oascii.hpp"
 #include "../classes/osource.hpp"
+#include "../classes/oindent.hpp"
 #include "../../gcc/tools/symbol.h"
 
 /*====================================================================*
@@ -453,15 +454,181 @@ signed osource::enspace (signed c) const
 	{ 
 		std::cout.put (' '); 
 	} 
-	else if ((c == '+') || (c == '-')) 
+	else if (c == '+') 
 	{ 
-		if (std::cin.peek () == '=') 
+		if (std::cin.peek () == c) 
 		{ 
-			std::cout.put (' '); 
+			return (c);
 		} 
+		std::cout.put (' '); 
+	} 
+	else if (c == '-') 
+	{ 
+		if (std::cin.peek () == '-') 
+		{ 
+			return (c);
+		} 
+		if (std::cin.peek () == '>') 
+		{ 
+			return (c);
+		} 
+		std::cout.put (' '); 
 	} 
 	return (c); 
 } 
+
+signed osource::despace (signed c) const
+{
+	if (oascii::isspace (c)) 
+	{ 
+		c = osource::find (c); 
+		if ((c == ')') || (c == ']') || (c == '}')) 
+		{ 
+			return (c); 
+		} 
+		if ((c == ',') || (c == ';')) 
+		{ 
+			return (c); 
+		} 
+		if ((c == '?') || (c == ':')) 
+		{ 
+			return (c); 
+		} 
+		if ((c == '.')) 
+		{ 
+			return (c); 
+		} 
+		std::cout.put (' '); 
+	} 
+	else if (oascii::isquote (c)) 
+	{ 
+		c = osource::literal (c); 
+	} 
+	else if ((c == '.')) 
+	{ 
+		c = osource::feed (c); 
+		c = osource::find (c); 
+	} 
+	else if ((c == ',') || (c == ';')) 
+	{ 
+		c = osource::feed (c); 
+		c = osource::find (c); 
+		std::cout.put (' '); 
+	} 
+	else if ((c == '!') || (c == '=') || (c == '~') || (c == '^') || (c == '%')) 
+	{ 
+		signed o = osource::feed (c); 
+		if (o == '=') 
+		{ 
+			o = osource::feed (o); 
+		} 
+		c = osource::find (o); 
+		std::cout.put (' '); 
+	} 
+	else if ((c == '&') || (c == '|')) 
+	{ 
+		signed o = osource::feed (c); 
+		if ((o == c) || (o == '=')) 
+		{ 
+			o = osource::feed (o); 
+		} 
+		c = osource::find (o); 
+		std::cout.put (' '); 
+	} 
+	else if ((c == '<') || (c == '>') || (c == '?')) 
+	{ 
+		signed o = osource::feed (c); 
+		if (o == c) 
+		{ 
+			o = osource::feed (o); 
+		} 
+		if (o == '=') 
+		{ 
+			o = osource::feed (o); 
+		} 
+		c = osource::find (o); 
+		std::cout.put (' '); 
+	} 
+	else if (c == ':') 
+	{ 
+		signed o = osource::feed (c); 
+		if (o == c) 
+		{ 
+			o = osource::feed (o); 
+			c = osource::find (o); 
+		} 
+		else 
+		{ 
+			o = osource::feed (o); 
+			c = osource::find (o); 
+			std::cout.put (' '); 
+		} 
+	} 
+	else if (c == '+') 
+	{ 
+		signed o = osource::feed (c); 
+		if ((o == c) || (o == '=')) 
+		{ 
+			o = osource::feed (o); 
+		} 
+		c = osource::find (o); 
+		std::cout.put (' '); 
+	} 
+	else if (c == '-') 
+	{ 
+		signed o = osource::feed (c); 
+		if ((o == c) || (o == '=')) 
+		{ 
+			o = osource::feed (o); 
+			c = osource::find (o); 
+			std::cout.put (' '); 
+		} 
+		else if (o == '>') 
+		{ 
+			c = osource::feed (o); 
+		} 
+		else 
+		{ 
+			c = osource::find (o); 
+			std::cout.put (' '); 
+		} 
+	} 
+	else if (c == '*') 
+	{ 
+		signed o = osource::feed (c); 
+		if ((o == c) || (o == '=')) 
+		{ 
+			o = osource::feed (o); 
+		} 
+		c = osource::find (o); 
+		std::cout.put (' '); 
+	} 
+	else if (c == '/') 
+	{ 
+		signed o = osource::feed (c); 
+		if (o == '=') 
+		{ 
+			o = osource::feed (o); 
+			c = osource::find (o); 
+			std::cout.put (' '); 
+		} 
+		else if (o == '/') 
+		{ 
+			c = osource::content (o, '\n'); 
+		} 
+		else if (o == '*') 
+		{ 
+			c = osource::content (o, '*', '/'); 
+		} 
+		else 
+		{ 
+			c = osource::find (o); 
+			std::cout.put (' '); 
+		} 
+	}
+	c = osource::feed (c);
+	return (c);
+}
 
 /*====================================================================*
  *
