@@ -81,64 +81,64 @@
 
 static void function (size_t length, flag_t flags) 
 
-{
-	int last = 0;
-	int next = 0;
-	int line = 0;
-	signed c;
+{ 
+	int last = 0; 
+	int next = 0; 
+	int line = 0; 
+	signed c; 
 	while ((c = getc (stdin)) != EOF) 
-	{
+	{ 
 		if (c == '\n') 
-		{
+		{ 
 			if (_anyset (flags, VR_B_FILL)) 
-			{
+			{ 
 				while (last++ < length) 
-				{
-					putc (SP, stdout);
-				}
-			}
-			putc ('\n', stdout);
-			last = next = 0;
-		}
+				{ 
+					putc (SP, stdout); 
+				} 
+			} 
+			putc ('\n', stdout); 
+			last = next = 0; 
+		} 
 		else if (next < length) 
-		{
+		{ 
 			if (c != SP) 
-			{
+			{ 
 				while (last++ < next) 
-				{
-					putc (SP, stdout);
-				}
-				putc (c, stdout);
-			}
-			next++;
-		}
+				{ 
+					putc (SP, stdout); 
+				} 
+				putc (c, stdout); 
+			} 
+			next++ ; 
+		} 
 		else if (_anyset (flags, VR_B_WRAP)) 
-		{
+		{ 
 			while (last++ < length) 
-			{
-				putc (SP, stdout);
-			}
-			putc ('\n', stdout);
-			next = last = 0;
+			{ 
+				putc (SP, stdout); 
+			} 
+			putc ('\n', stdout); 
+			next = last = 0; 
 			if (c != SP) 
-			{
+			{ 
 				while (last++ < next) 
-				{
-					putc (SP, stdout);
-				}
-				putc (c, stdout);
-			}
-			next++;
-			line++;
-		}
-		else line++;
-	}
+				{ 
+					putc (SP, stdout); 
+				} 
+				putc (c, stdout); 
+			} 
+			next++ ; 
+			line++ ; 
+		} 
+		else line++ ; 
+	} 
 	if (_anyset (flags, VR_B_COUNT) && (line > 0)) 
-	{
-		error (0, 0, "truncated %d records", line);
-	}
-	return;
-}
+	{ 
+		error (0, 0, "truncated %d records", line); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *  
@@ -146,56 +146,56 @@ static void function (size_t length, flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	char const * optv [] = 
-	{
-		"r:pwc",
-		PUTOPTV_S_FILTER,
-		"convert text file to fixed or variable length records",
-		"r n\tmaximum record length n ",
-		"p\tpad short records ",
-		"w\twrap long records ",
-		"c\tcount truncated records ",
-		(char const *)(0)
-	};
-	flag_t flags = (flag_t)(0);
-	size_t length = TEXTLINE_MAX;
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"r:pwc", 
+		PUTOPTV_S_FILTER, 
+		"convert text file to fixed or variable length records", 
+		"r n\tmaximum record length n ", 
+		"p\tpad short records ", 
+		"w\twrap long records ", 
+		"c\tcount truncated records ", 
+		(char const * )(0)
+	}; 
+	flag_t flags = (flag_t)(0); 
+	size_t length = TEXTLINE_MAX; 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'r':
-			length = uintspec (optarg, 0, SHRT_MAX);
-			break;
-		case 'p':
-			_setbits (flags, VR_B_FILL);
-			break;
-		case 'w':
-			_setbits (flags, VR_B_WRAP);
-			break;
-		case 'c':
-			_setbits (flags, VR_B_COUNT);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		function (length, flags);
-	}
+		{ 
+		case 'r': 
+			length = uintspec (optarg, 0, SHRT_MAX); 
+			break; 
+		case 'p': 
+			_setbits (flags, VR_B_FILL); 
+			break; 
+		case 'w': 
+			_setbits (flags, VR_B_WRAP); 
+			break; 
+		case 'c': 
+			_setbits (flags, VR_B_COUNT); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		function (length, flags); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (vfopen (* argv)) 
-		{
-			function (length, flags);
-		}
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+		{ 
+			function (length, flags); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

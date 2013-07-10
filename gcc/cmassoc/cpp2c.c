@@ -56,7 +56,7 @@
  *   program vaiables;
  *--------------------------------------------------------------------*/
 
-unsigned lineno = 0;
+unsigned lineno = 0; 
 
 /*====================================================================*
  *
@@ -73,68 +73,68 @@ unsigned lineno = 0;
 
 signed comment (signed c) 
 
-{
+{ 
 	if (c != EOF) 
-	{
-		c = keep (c);
-	}
+	{ 
+		c = keep (c); 
+	} 
 	if (c == '/') 
-	{
-		putc ('*', stdout);
+	{ 
+		putc ('*', stdout); 
 		do 
-		{
+		{ 
 			do 
-			{
-				c = getc (stdin);
-			}
-			while (c == '/');
+			{ 
+				c = getc (stdin); 
+			} 
+			while (c == '/'); 
 			if ((c != '\n') && (c != EOF)) 
-			{
-				putc ('\n', stdout);
-				putc (' ', stdout);
-				putc ('*', stdout);
+			{ 
+				putc ('\n', stdout); 
+				putc (' ', stdout); 
+				putc ('*', stdout); 
 				do 
-				{
-					c = keep (c);
-				}
-				while ((c != '\n') && (c != EOF));
-			}
+				{ 
+					c = keep (c); 
+				} 
+				while ((c != '\n') && (c != EOF)); 
+			} 
 			do 
-			{
-				c = getc (stdin);
-			}
-			while (c == '\n');
-		}
-		while (c == '/');
-		putc ('\n', stdout);
-		putc (' ', stdout);
-		putc ('*', stdout);
-		putc ('/', stdout);
-		putc ('\n', stdout);
-		return (c);
-	}
+			{ 
+				c = getc (stdin); 
+			} 
+			while (c == '\n'); 
+		} 
+		while (c == '/'); 
+		putc ('\n', stdout); 
+		putc (' ', stdout); 
+		putc ('*', stdout); 
+		putc ('/', stdout); 
+		putc ('\n', stdout); 
+		return (c); 
+	} 
 	if (c == '*') 
-	{
+	{ 
 		while ((c != '/') && (c != EOF)) 
-		{
+		{ 
 			while ((c != '*') && (c != EOF)) 
-			{
-				c = keep (c);
-			}
-			c = keep (c);
+			{ 
+				c = keep (c); 
+			} 
+			c = keep (c); 
 			while (c == '*') 
-			{
-				c = getc (stdin);
-			}
-		}
+			{ 
+				c = getc (stdin); 
+			} 
+		} 
 		if (c != EOF) 
-		{
-			c = keep (c);
-		}
-		return (c);
-	}
-	return (c);
-}
+		{ 
+			c = keep (c); 
+		} 
+		return (c); 
+	} 
+	return (c); 
+} 
 
 /*====================================================================*
  *
@@ -152,55 +152,55 @@ signed comment (signed c)
 
 void function (signed c, flag_t flags) 
 
-{
+{ 
 	while (c != EOF) 
-	{
+	{ 
 		if (isspace (c)) 
-		{
+		{ 
 			do 
-			{
-				c = keep (c);
-			}
-			while (isspace (c));
-			continue;
-		}
+			{ 
+				c = keep (c); 
+			} 
+			while (isspace (c)); 
+			continue; 
+		} 
 		if (isalpha (c)) 
-		{
+		{ 
 			do 
-			{
-				c = keep (c);
-			}
-			while (isalnum (c) || (c == '_'));
-			continue;
-		}
+			{ 
+				c = keep (c); 
+			} 
+			while (isalnum (c) || (c == '_')); 
+			continue; 
+		} 
 		if (isdigit (c)) 
-		{
+		{ 
 			do 
-			{
-				c = keep (c);
-			}
-			while (isdigit (c) || (c == '.'));
-			continue;
-		}
+			{ 
+				c = keep (c); 
+			} 
+			while (isdigit (c) || (c == '.')); 
+			continue; 
+		} 
 		if (c == '#') 
-		{
-			c = fortran (c);
-			continue;
-		}
+		{ 
+			c = fortran (c); 
+			continue; 
+		} 
 		if (c == '/') 
-		{
-			c = comment (c);
-			continue;
-		}
+		{ 
+			c = comment (c); 
+			continue; 
+		} 
 		if (isquote (c)) 
-		{
-			c = literal (c);
-			continue;
-		}
-		c = keep (c);
-	}
-	return;
-}
+		{ 
+			c = literal (c); 
+			continue; 
+		} 
+		c = keep (c); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -215,41 +215,41 @@ void function (signed c, flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"",
-		PUTOPTV_S_FILTER,
-		"convert C++ comments to C comments",
-		(char const *) (0)
-	};
-	flag_t flags = (flag_t)(0);
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"", 
+		PUTOPTV_S_FILTER, 
+		"convert C++ comments to C comments", 
+		(char const * ) (0)
+	}; 
+	flag_t flags = (flag_t)(0); 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		c = getc (stdin);
-		function (c, flags);
-	}
+		{ 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		c = getc (stdin); 
+		function (c, flags); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (vfopen (* argv)) 
-		{
-			c = getc (stdin);
-			function (c, flags);
-		}
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+		{ 
+			c = getc (stdin); 
+			function (c, flags); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

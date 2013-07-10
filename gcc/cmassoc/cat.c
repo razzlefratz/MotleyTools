@@ -54,17 +54,17 @@
 
 static signed function (signed extent) 
 
-{
-	byte memory [extent];
+{ 
+	byte memory [extent]; 
 	while ((extent = read (STDIN_FILENO, memory, extent)) > 0) 
-	{
+	{ 
 		if (write (STDOUT_FILENO, memory, extent) < extent) 
-		{
-			return (-1);
-		}
-	}
-	return (0);
-}
+		{ 
+			return (- 1); 
+		} 
+	} 
+	return (0); 
+} 
 
 /*====================================================================*
  *
@@ -79,47 +79,47 @@ static signed function (signed extent)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"b:u",
-		PUTOPTV_S_FUNNEL,
-		"copy one or more files to stdout",
-		"b n\tbuffer size is (n) bytes [" LITERAL (BUFFERSIZE) "]",
-		"u\tunbuffered copy",
-		(char const *)(0)
-	};
-	signed length = BUFFERSIZE;
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"b:u", 
+		PUTOPTV_S_FUNNEL, 
+		"copy one or more files to stdout", 
+		"b n\tbuffer size is (n) bytes [" LITERAL (BUFFERSIZE) "]", 
+		"u\tunbuffered copy", 
+		(char const * )(0)
+	}; 
+	signed length = BUFFERSIZE; 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'b':
-			length = uintspec (optarg, 1, SHRT_MAX);
-			break;
-		case 'u':
-			length = 1;
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		function (length);
-	}
+		{ 
+		case 'b': 
+			length = uintspec (optarg, 1, SHRT_MAX); 
+			break; 
+		case 'u': 
+			length = 1; 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		function (length); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (efreopen (* argv, "rb", stdin)) 
-		{
-			function (length);
-		}
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+		{ 
+			function (length); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

@@ -55,68 +55,68 @@
 
 void func (flag_t flags) 
 
-{
-	signed c;
+{ 
+	signed c; 
 	while ((c = getc (stdin)) != EOF) 
-	{
+	{ 
 		if (c == ' ') 
-		{
+		{ 
 			if ((c = getc (stdin)) == ' ') 
-			{
+			{ 
 				if ((c = getc (stdin)) == '-') 
-				{
+				{ 
 					if ((c = getc (stdin)) == '-') 
-					{
-						putc ('#', stdout);
-						putc ('\t', stdout);
-						putc ('-', stdout);
-						putc ('-', stdout);
-						c = getc (stdin);
+					{ 
+						putc ('#', stdout); 
+						putc ('\t', stdout); 
+						putc ('-', stdout); 
+						putc ('-', stdout); 
+						c = getc (stdin); 
 						while (isalnum (c) || (c == '-')) 
-						{
-							putc (c, stdout);
-							c = getc (stdin);
-						}
+						{ 
+							putc (c, stdout); 
+							c = getc (stdin); 
+						} 
 						if (c == '=') 
-						{
-							putc (c, stdout);
-							c = getc (stdin);
+						{ 
+							putc (c, stdout); 
+							c = getc (stdin); 
 							if (c == '\"') 
-							{
+							{ 
 								do 
-								{
-									putc (c, stdout);
-									c = getc (stdin);
-								}
-								while ((c != EOF) && (c != '\"'));
-								putc ('\"', stdout);
-								c = getc (stdin);
-							}
-							else while (!isspace (c)) 
-							{
-								putc (c, stdout);
-								c = getc (stdin);
-							}
-						}
-						else while (!isspace (c)) 
-						{
-							putc (c, stdout);
-							c = getc (stdin);
-						}
-						putc (' ', stdout);
-						putc ('\\', stdout);
-						putc ('\n', stdout);
-					}
-				}
-			}
-		}
+								{ 
+									putc (c, stdout); 
+									c = getc (stdin); 
+								} 
+								while ((c != EOF) && (c != '\"')); 
+								putc ('\"', stdout); 
+								c = getc (stdin); 
+							} 
+							else while (! isspace (c)) 
+							{ 
+								putc (c, stdout); 
+								c = getc (stdin); 
+							} 
+						} 
+						else while (! isspace (c)) 
+						{ 
+							putc (c, stdout); 
+							c = getc (stdin); 
+						} 
+						putc (' ', stdout); 
+						putc ('\\', stdout); 
+						putc ('\n', stdout); 
+					} 
+				} 
+			} 
+		} 
 		while (nobreak (c)) 
-		{
-			c = getc (stdin);
-		}
-	}
-	return;
-}
+		{ 
+			c = getc (stdin); 
+		} 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *   main program;
@@ -124,39 +124,39 @@ void func (flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"",
-		PUTOPTV_S_FUNNEL,
-		"extract package configuration options from stdin",
-		(char const *) (0)
-	};
-	flag_t flags = (flag_t) (0);
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"", 
+		PUTOPTV_S_FUNNEL, 
+		"extract package configuration options from stdin", 
+		(char const * ) (0)
+	}; 
+	flag_t flags = (flag_t) (0); 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		func (flags);
-	}
+		{ 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		func (flags); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (efreopen (* argv, "rb", stdin)) 
-		{
-			func (flags);
-		}
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+		{ 
+			func (flags); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

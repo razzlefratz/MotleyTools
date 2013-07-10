@@ -69,22 +69,22 @@
 
 void print (signed indent, NODE * node, flag_t flags) 
 
-{
+{ 
 	if (_anyset (flags, ORDER_B_ORDER)) 
-	{
-		printf ("%03d ", node->index);
-	}
+	{ 
+		printf ("%03d ", node->index); 
+	} 
 	if (_anyset (flags, ORDER_B_LEVEL)) 
-	{
-		printf ("%03d ", node->level);
-	}
+	{ 
+		printf ("%03d ", node->level); 
+	} 
 	while (indent-- > 0) 
-	{
-		printf ("\t");
-	}
-	printf ("%s\n", node->title);
-	return;
-}
+	{ 
+		printf ("\t"); 
+	} 
+	printf ("%s\n", node->title); 
+	return; 
+} 
 
 /*====================================================================*
  *   
@@ -102,41 +102,41 @@ void print (signed indent, NODE * node, flag_t flags)
 
 static void traverse (NODE * node, flag_t flags) 
 
-{
-	extern NODES nodes;
-	extern EDGES edges;
-	size_t index;
+{ 
+	extern NODES nodes; 
+	extern EDGES edges; 
+	size_t index; 
 	if (node->index) 
-	{
-		return;
-	}
+	{ 
+		return; 
+	} 
 	if (node->level) 
-	{
-		return;
-	}
-	node->index = 1;
-	for (index = 0; index < edges.count; index++) 
-	{
-		EDGE * edge = edges.table [index];
+	{ 
+		return; 
+	} 
+	node->index = 1; 
+	for (index = 0; index < edges.count; index++ ) 
+	{ 
+		EDGE * edge = edges.table [index]; 
 		if (edge->source != node) 
-		{
-			continue;
-		}
-		traverse (edge->target, flags);
+		{ 
+			continue; 
+		} 
+		traverse (edge->target, flags); 
 		if (node->level < edge->target->level) 
-		{
-			node->level = edge->target->level;
-		}
-	}
-	nodes.order++;
-	node->level++;
-	node->index = nodes.order;
+		{ 
+			node->level = edge->target->level; 
+		} 
+	} 
+	nodes.order++ ; 
+	node->level++ ; 
+	node->index = nodes.order; 
 	if (_anyset (flags, ORDER_B_SYMBOL)) 
-	{
-		print (0, node, flags);
-	}
-	return;
-}
+	{ 
+		print (0, node, flags); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *   
@@ -153,47 +153,47 @@ static void traverse (NODE * node, flag_t flags)
 
 static void organize (NODE * node, flag_t flags) 
 
-{
-	extern EDGES edges;
-	static signed margin = 0;
-	NODE * temp;
-	size_t index;
+{ 
+	extern EDGES edges; 
+	static signed margin = 0; 
+	NODE * temp; 
+	size_t index; 
 	if (_anyset (flags, ORDER_B_STRUCT)) 
-	{
-		print (margin, node, flags);
-	}
-	node->node = nodes.node;
-	nodes.node = node;
+	{ 
+		print (margin, node, flags); 
+	} 
+	node->node = nodes.node; 
+	nodes.node = node; 
 	for (temp = node->node; temp; temp = temp->node) 
-	{
+	{ 
 		if (temp == node) 
-		{
-			extern char const * program_name;
-			fprintf (stderr, "%s: ", program_name);
-			fprintf (stderr, "cyclic reference: ");
-			fprintf (stderr, "%s:", temp->title);
+		{ 
+			extern char const * program_name; 
+			fprintf (stderr, "%s: ", program_name); 
+			fprintf (stderr, "cyclic reference: "); 
+			fprintf (stderr, "%s:", temp->title); 
 			for (temp = node->node; temp != node; temp = temp->node) 
-			{
-				fprintf (stderr, "%s:", temp->title);
-			}
-			fprintf (stderr, "%s;\n", temp->title);
-			return;
-		}
-	}
-	margin++;
-	for (index = 0; index < edges.count; index++) 
-	{
-		EDGE * edge = edges.table [index];
+			{ 
+				fprintf (stderr, "%s:", temp->title); 
+			} 
+			fprintf (stderr, "%s;\n", temp->title); 
+			return; 
+		} 
+	} 
+	margin++ ; 
+	for (index = 0; index < edges.count; index++ ) 
+	{ 
+		EDGE * edge = edges.table [index]; 
 		if (edge->target == node) 
-		{
-			organize (edge->source, flags);
-		}
-	}
-	margin--;
-	nodes.node = node->node;
-	node->node = (NODE *)(0);
-	return;
-}
+		{ 
+			organize (edge->source, flags); 
+		} 
+	} 
+	margin-- ; 
+	nodes.node = node->node; 
+	node->node = (NODE * )(0); 
+	return; 
+} 
 
 /*====================================================================*
  *   
@@ -209,24 +209,24 @@ static void organize (NODE * node, flag_t flags)
 
 static void discover (flag_t flags) 
 
-{
-	extern NODES nodes;
-	size_t index;
-	for (index = 0; index < nodes.count; index++) 
-	{
-		NODE * node = nodes.table [index];
-		traverse (node, flags);
-	}
-	for (index = 0; index < nodes.count; index++) 
-	{
-		NODE * node = nodes.table [index];
+{ 
+	extern NODES nodes; 
+	size_t index; 
+	for (index = 0; index < nodes.count; index++ ) 
+	{ 
+		NODE * node = nodes.table [index]; 
+		traverse (node, flags); 
+	} 
+	for (index = 0; index < nodes.count; index++ ) 
+	{ 
+		NODE * node = nodes.table [index]; 
 		if (node->level == 1) 
-		{
-			organize (node, flags);
-		}
-	}
-	return;
-}
+		{ 
+			organize (node, flags); 
+		} 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -240,64 +240,64 @@ static void discover (flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"loptx",
-		PUTOPTV_S_DIVINE,
-		"topological sort program",
-		"l\tprint level",
-		"o\tprint order",
-		"p\tprint names",
-		"t\tprint nodes",
-		"x\texchange order",
-		(char const *) (0)
-	};
-	flag_t flags = (flag_t)(0);
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"loptx", 
+		PUTOPTV_S_DIVINE, 
+		"topological sort program", 
+		"l\tprint level", 
+		"o\tprint order", 
+		"p\tprint names", 
+		"t\tprint nodes", 
+		"x\texchange order", 
+		(char const * ) (0)
+	}; 
+	flag_t flags = (flag_t)(0); 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'l':
-			_setbits (flags, ORDER_B_LEVEL);
-			break;
-		case 'o':
-			_setbits (flags, ORDER_B_ORDER);
-			break;
-		case 'p':
-			_setbits (flags, ORDER_B_SYMBOL);
-			_clrbits (flags, ORDER_B_STRUCT);
-			break;
-		case 't':
-			_setbits (flags, ORDER_B_STRUCT);
-			_clrbits (flags, ORDER_B_SYMBOL);
-			break;
-		case 'x':
-			_setbits (flags, ORDER_B_INVERT);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	graphinit ();
-	if (!argc) 
-	{
-		populate (flags & ORDER_B_INVERT);
-	}
+		{ 
+		case 'l': 
+			_setbits (flags, ORDER_B_LEVEL); 
+			break; 
+		case 'o': 
+			_setbits (flags, ORDER_B_ORDER); 
+			break; 
+		case 'p': 
+			_setbits (flags, ORDER_B_SYMBOL); 
+			_clrbits (flags, ORDER_B_STRUCT); 
+			break; 
+		case 't': 
+			_setbits (flags, ORDER_B_STRUCT); 
+			_clrbits (flags, ORDER_B_SYMBOL); 
+			break; 
+		case 'x': 
+			_setbits (flags, ORDER_B_INVERT); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	graphinit (); 
+	if (! argc) 
+	{ 
+		populate (flags & ORDER_B_INVERT); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (efreopen (* argv, "rb", stdin)) 
-		{
-			populate (flags & ORDER_B_INVERT);
-		}
-		argc--;
-		argv++;
-	}
-	discover (flags);
-	graphfree ();
-	return (0);
-}
+		{ 
+			populate (flags & ORDER_B_INVERT); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	discover (flags); 
+	graphfree (); 
+	return (0); 
+} 
 

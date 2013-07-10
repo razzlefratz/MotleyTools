@@ -81,36 +81,36 @@
 
 void function (char const ctable [], flag_t flags) 
 
-{
-	bool word = false;
-	signed c;
+{ 
+	bool word = false; 
+	signed c; 
 	while ((c = getc (stdin)) != EOF) 
-	{
+	{ 
 		if (ctable [(unsigned) (c)]) 
-		{
-			word = true;
+		{ 
+			word = true; 
 			if (_anyset (flags, WL_FLAG_UPPER)) 
-			{
-				putc (chrupr (c), stdout);
-				continue;
-			}
+			{ 
+				putc (chrupr (c), stdout); 
+				continue; 
+			} 
 			if (_anyset (flags, WL_FLAG_LOWER)) 
-			{
-				putc (chrlwr (c), stdout);
-				continue;
-			}
-			putc (c, stdout);
-			continue;
-		}
+			{ 
+				putc (chrlwr (c), stdout); 
+				continue; 
+			} 
+			putc (c, stdout); 
+			continue; 
+		} 
 		if (word) 
-		{
-			word = false;
-			putc ('\n', stdout);
-			continue;
-		}
-	}
-	return;
-}
+		{ 
+			word = false; 
+			putc ('\n', stdout); 
+			continue; 
+		} 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -124,66 +124,66 @@ void function (char const ctable [], flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"fw:lu",
-		PUTOPTV_S_FUNNEL,
-		"prints a list of words read from the input stream",
-		"f\toutput filenames",
-		"w s\tword consists of character set (s) [" CHRLIB_WORDSET "]",
-		"l\toutput words in lower case ",
-		"u\toutput words in upper case ",
-		(char *) (0)
-	};
-	char words [UCHAR_MAX + 1];
-	char table [UCHAR_MAX + 1];
-	flag_t flags = (flag_t)(0);
-	signed c;
-	memset (table, 0, sizeof (table));
-	charset (CHRLIB_WORDSET, (char) (0), words, sizeof (words));
-	chrdef (table, words);
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"fw:lu", 
+		PUTOPTV_S_FUNNEL, 
+		"prints a list of words read from the input stream", 
+		"f\toutput filenames", 
+		"w s\tword consists of character set (s) [" CHRLIB_WORDSET "]", 
+		"l\toutput words in lower case ", 
+		"u\toutput words in upper case ", 
+		(char * ) (0)
+	}; 
+	char words [UCHAR_MAX + 1]; 
+	char table [UCHAR_MAX + 1]; 
+	flag_t flags = (flag_t)(0); 
+	signed c; 
+	memset (table, 0, sizeof (table)); 
+	charset (CHRLIB_WORDSET, (char) (0), words, sizeof (words)); 
+	chrdef (table, words); 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'f':
-			memset (table, 0, sizeof (table));
-			charset ("_[:alnum:].-", (char) (0), words, sizeof (words));
-			chrdef (table, words);
-			break;
-		case 'w':
-			memset (table, 0, sizeof (table));
-			charset (optarg, (char) (0), words, sizeof (words));
-			chrdef (table, words);
-			break;
-		case 'u':
-			_setbits (flags, WL_FLAG_UPPER);
-			_clrbits (flags, WL_FLAG_LOWER);
-			break;
-		case 'l':
-			_clrbits (flags, WL_FLAG_UPPER);
-			_setbits (flags, WL_FLAG_LOWER);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		function (table, flags);
-	}
+		{ 
+		case 'f': 
+			memset (table, 0, sizeof (table)); 
+			charset ("_[:alnum:].-", (char) (0), words, sizeof (words)); 
+			chrdef (table, words); 
+			break; 
+		case 'w': 
+			memset (table, 0, sizeof (table)); 
+			charset (optarg, (char) (0), words, sizeof (words)); 
+			chrdef (table, words); 
+			break; 
+		case 'u': 
+			_setbits (flags, WL_FLAG_UPPER); 
+			_clrbits (flags, WL_FLAG_LOWER); 
+			break; 
+		case 'l': 
+			_clrbits (flags, WL_FLAG_UPPER); 
+			_setbits (flags, WL_FLAG_LOWER); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		function (table, flags); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (efreopen (* argv, "rb", stdin)) 
-		{
-			function (table, flags);
-		}
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+		{ 
+			function (table, flags); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

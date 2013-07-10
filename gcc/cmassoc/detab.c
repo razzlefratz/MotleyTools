@@ -67,45 +67,45 @@
 
 void function (flag_t flags) 
 
-{
-	int col = 0;
-	int c;
+{ 
+	int col = 0; 
+	int c; 
 	while ((c = getc (stdin)) != EOF) 
-	{
+	{ 
 		if (isprint (c)) 
-		{
-			putc (c, stdout);
-			col++;
-			continue;
-		}
+		{ 
+			putc (c, stdout); 
+			col++ ; 
+			continue; 
+		} 
 		if (c == '\b') 
-		{
+		{ 
 			if (col > 0) 
-			{
-				col--;
-			}
-			putc (c, stdout);
-			continue;
-		}
+			{ 
+				col-- ; 
+			} 
+			putc (c, stdout); 
+			continue; 
+		} 
 		if (c == '\t') 
-		{
-			while (tabcol (++col) == false) 
-			{
-				putc (' ', stdout);
-			}
-			putc (' ', stdout);
-			continue;
-		}
+		{ 
+			while (tabcol (++ col) == false) 
+			{ 
+				putc (' ', stdout); 
+			} 
+			putc (' ', stdout); 
+			continue; 
+		} 
 		if ((c == '\r') || (c == '\n') || (c == '\t')) 
-		{
-			putc (c, stdout);
-			col = 0;
-			continue;
-		}
-		putc (c, stdout);
-	}
-	return;
-}
+		{ 
+			putc (c, stdout); 
+			col = 0; 
+			continue; 
+		} 
+		putc (c, stdout); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -120,43 +120,43 @@ void function (flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"t:",
-		PUTOPTV_S_FILTER,
-		"replace horizontal tabs with equivalent number of spaces",
-		"t n.m\tset tabs in column (n) and intervals (m) ",
-		(char const *)(0)
-	};
-	flag_t flags = (flag_t)(0);
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"t:", 
+		PUTOPTV_S_FILTER, 
+		"replace horizontal tabs with equivalent number of spaces", 
+		"t n.m\tset tabs in column (n) and intervals (m) ", 
+		(char const * )(0)
+	}; 
+	flag_t flags = (flag_t)(0); 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 't':
-			tabspec (optarg);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		function (flags);
-	}
+		{ 
+		case 't': 
+			tabspec (optarg); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		function (flags); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (vfopen (* argv)) 
-		{
-			function (flags);
-		}
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+		{ 
+			function (flags); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

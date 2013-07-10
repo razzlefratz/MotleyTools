@@ -75,77 +75,77 @@
 
 static void findfile (FIND * find, mode_t dirmode, mode_t regmode, flag_t flags) 
 
-{
-	DIR * dir;
+{ 
+	DIR * dir; 
 	if ((dir = opendir (find->fullname))) 
-	{
-		struct dirent * dirent;
-		char * filename;
-		for (filename = find->fullname; * filename; filename++);
-		* filename = PATH_C_EXTENDER;
+	{ 
+		struct dirent * dirent; 
+		char * filename; 
+		for (filename = find->fullname; * filename; filename++ ); 
+		* filename = PATH_C_EXTENDER; 
 		while ((dirent = readdir (dir))) 
-		{
-			strcpy (filename + 1, dirent->d_name);
+		{ 
+			strcpy (filename + 1, dirent->d_name); 
 			if (lstat (find->fullname, & find->statinfo)) 
-			{
-				error (0, 0, "can't stat %s.", find->fullname);
-				continue;
-			}
+			{ 
+				error (0, 0, "can't stat %s.", find->fullname); 
+				continue; 
+			} 
 			if (S_ISDIR (find->statinfo.st_mode)) 
-			{
-				char * sp = dirent->d_name;
+			{ 
+				char * sp = dirent->d_name; 
 				if (* sp == '.') 
-				{
-					sp++;
-				}
+				{ 
+					sp++ ; 
+				} 
 				if (* sp == '.') 
-				{
-					sp++;
-				}
+				{ 
+					sp++ ; 
+				} 
 				if (* sp == (char) (0)) 
-				{
-					continue;
-				}
+				{ 
+					continue; 
+				} 
 				if (flags & (CHPERM_B_RECURSE)) 
-				{
-					findfile (find, dirmode, regmode, flags);
-				}
+				{ 
+					findfile (find, dirmode, regmode, flags); 
+				} 
 				if (flags & (CHPERM_B_TESTRUN)) 
-				{
-					printf ("change %s\n", find->fullname);
-				}
+				{ 
+					printf ("change %s\n", find->fullname); 
+				} 
 				else if (chmod (find->fullname, dirmode)) 
-				{
-					error (0, 0, "can't change %s", find->fullname);
-				}
+				{ 
+					error (0, 0, "can't change %s", find->fullname); 
+				} 
 				else if (flags & (CHPERM_B_EVENTS)) 
-				{
-					error (0, 0, "changed %s", find->fullname);
-				}
-				continue;
-			}
+				{ 
+					error (0, 0, "changed %s", find->fullname); 
+				} 
+				continue; 
+			} 
 			if (S_ISREG (find->statinfo.st_mode)) 
-			{
+			{ 
 				if (flags & (CHPERM_B_TESTRUN)) 
-				{
-					printf ("change %s\n", find->fullname);
-				}
+				{ 
+					printf ("change %s\n", find->fullname); 
+				} 
 				else if (chmod (find->fullname, regmode)) 
-				{
-					error (0, 0, "can't change %s", find->fullname);
-				}
+				{ 
+					error (0, 0, "can't change %s", find->fullname); 
+				} 
 				else if (flags & (CHPERM_B_EVENTS)) 
-				{
-					error (0, 0, "changed %s", find->fullname);
-				}
-				continue;
-			}
-		}
-		* filename = (char) (0);
-		closedir (dir);
-	}
-	return;
-}
+				{ 
+					error (0, 0, "changed %s", find->fullname); 
+				} 
+				continue; 
+			} 
+		} 
+		* filename = (char) (0); 
+		closedir (dir); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *   main program;
@@ -153,52 +153,52 @@ static void findfile (FIND * find, mode_t dirmode, mode_t regmode, flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
-	extern FIND find;
+{ 
+	extern FIND find; 
 	static char const * optv [] = 
-	{
-		"d:f:rv",
-		PUTOPTV_S_SEARCH,
-		"set folder and file permissions",
-		"d m\tdirectory permission is m [0755]",
-		"f m\tfile permission is m [0664]",
-		"r\trecursive search",
-		"v\tverbose messages",
-		(char const *)(0)
-	};
-	mode_t dirmode = S_ISGID | S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH;
-	mode_t regmode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
-	flag_t flags = (flag_t) (0);
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"d:f:rv", 
+		PUTOPTV_S_SEARCH, 
+		"set folder and file permissions", 
+		"d m\tdirectory permission is m [0755]", 
+		"f m\tfile permission is m [0664]", 
+		"r\trecursive search", 
+		"v\tverbose messages", 
+		(char const * )(0)
+	}; 
+	mode_t dirmode = S_ISGID | S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH; 
+	mode_t regmode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH; 
+	flag_t flags = (flag_t) (0); 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'd':
-			dirmode = modespec (optarg);
-			break;
-		case 'f':
-			regmode = modespec (optarg);
-			break;
-		case 'r':
-			_setbits (flags, CHPERM_B_RECURSE);
-			break;
-		case 'v':
-			_setbits (flags, CHPERM_B_EVENTS);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
+		{ 
+		case 'd': 
+			dirmode = modespec (optarg); 
+			break; 
+		case 'f': 
+			regmode = modespec (optarg); 
+			break; 
+		case 'r': 
+			_setbits (flags, CHPERM_B_RECURSE); 
+			break; 
+		case 'v': 
+			_setbits (flags, CHPERM_B_EVENTS); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
 	while ((argc) && (* argv)) 
-	{
-		makefind (& find, * argv);
-		findfile (& find, dirmode, regmode, flags);
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+	{ 
+		makefind (& find, * argv); 
+		findfile (& find, dirmode, regmode, flags); 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

@@ -69,7 +69,7 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-static unsigned count = 1;
+static unsigned count = 1; 
 
 /*====================================================================*
  *   
@@ -86,10 +86,10 @@ static unsigned count = 1;
 
 static void stop (signo_t signal) 
 
-{
-	count = 0;
-	return;
-}
+{ 
+	count = 0; 
+	return; 
+} 
 
 /*====================================================================*
  *   
@@ -103,38 +103,38 @@ static void stop (signo_t signal)
 
 static void function (void * secret, size_t length, flag_t flags) 
 
-{
-	struct sigaction sa;
-	struct sha256 sha256;
-	byte digest [SHA256_DIGEST_LENGTH];
-	memset (& sa, 0, sizeof (struct sigaction));
-	sa.sa_handler = stop;
-	sigaction (SIGTERM, & sa, (struct sigaction *)(0));
-	sigaction (SIGQUIT, & sa, (struct sigaction *)(0));
-	sigaction (SIGTSTP, & sa, (struct sigaction *)(0));
-	sigaction (SIGINT, & sa, (struct sigaction *)(0));
-	sigaction (SIGHUP, & sa, (struct sigaction *)(0));
+{ 
+	struct sigaction sa; 
+	struct sha256 sha256; 
+	byte digest [SHA256_DIGEST_LENGTH]; 
+	memset (& sa, 0, sizeof (struct sigaction)); 
+	sa.sa_handler = stop; 
+	sigaction (SIGTERM, & sa, (struct sigaction * )(0)); 
+	sigaction (SIGQUIT, & sa, (struct sigaction * )(0)); 
+	sigaction (SIGTSTP, & sa, (struct sigaction * )(0)); 
+	sigaction (SIGINT, & sa, (struct sigaction * )(0)); 
+	sigaction (SIGHUP, & sa, (struct sigaction * )(0)); 
 	while (count-- > 0) 
-	{
-		memset (digest, 0, sizeof (digest));
+	{ 
+		memset (digest, 0, sizeof (digest)); 
 		if (_anyset (flags, KEY_ADVANCE) && strincr (secret, length, MIN, MAX)) 
-		{
-			error (1, errno, "Can't increment secret");
-		}
-		SHA256Reset (& sha256);
-		SHA256Write (& sha256, secret, length);
-		SHA256Fetch (& sha256, digest);
+		{ 
+			error (1, errno, "Can't increment secret"); 
+		} 
+		SHA256Reset (& sha256); 
+		SHA256Write (& sha256, secret, length); 
+		SHA256Fetch (& sha256, digest); 
 		if (_anyset (flags, KEY_VERBOSE)) 
-		{
-			SHA256Print (digest, secret);
-		}
+		{ 
+			SHA256Print (digest, secret); 
+		} 
 		else 
-		{
-			SHA256Print (digest, (char *)(0));
-		}
-	}
-	return;
-}
+		{ 
+			SHA256Print (digest, (char * )(0)); 
+		} 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -149,83 +149,83 @@ static void function (void * secret, size_t length, flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"f:n:oqv",
-		"keyfile",
-		"generate random SHA256 keys",
-		"f s\tuse seedfile (s) [" SEEDFILE "]",
-		"n n\tnumber of keys to compute",
-		"o\tuse old keyfile value",
-		"q\tquiet mode",
-		"v\tverbose mode",
-		(char const *)(0)
-	};
-	char const * file = SEEDFILE;
-	byte secret [65];
-	signed fd;
-	flag_t flags = KEY_ADVANCE;
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"f:n:oqv", 
+		"keyfile", 
+		"generate random SHA256 keys", 
+		"f s\tuse seedfile (s) [" SEEDFILE "]", 
+		"n n\tnumber of keys to compute", 
+		"o\tuse old keyfile value", 
+		"q\tquiet mode", 
+		"v\tverbose mode", 
+		(char const * )(0)
+	}; 
+	char const * file = SEEDFILE; 
+	byte secret [65]; 
+	signed fd; 
+	flag_t flags = KEY_ADVANCE; 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'f':
-			file = optarg;
-			break;
-		case 'n':
-			count = uintspec (optarg, 0, UINT_MAX);
-			break;
-		case 'o':
-			_clrbits (flags, KEY_ADVANCE);
-			break;
-		case 'q':
-			_setbits (flags, KEY_SILENCE);
-			break;
-		case 'v':
-			_setbits (flags, KEY_VERBOSE);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
+		{ 
+		case 'f': 
+			file = optarg; 
+			break; 
+		case 'n': 
+			count = uintspec (optarg, 0, UINT_MAX); 
+			break; 
+		case 'o': 
+			_clrbits (flags, KEY_ADVANCE); 
+			break; 
+		case 'q': 
+			_setbits (flags, KEY_SILENCE); 
+			break; 
+		case 'v': 
+			_setbits (flags, KEY_VERBOSE); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
 	if (argc) 
-	{
-		error (1, ENOTSUP, ERROR_TOOMANY);
-	}
-	memset (secret, 0, sizeof (secret));
-	if ((fd = open (file, O_BINARY |O_CREAT |O_RDWR, (S_IRUSR |S_IWUSR |S_IRGRP |S_IWGRP |S_IROTH |S_IWOTH))) == -1) 
-	{
-		error (1, errno, "%s", file);
-	}
-	if (read (fd, secret, sizeof (secret) - 1) == -1) 
-	{
-		error (1, errno, "%s", file);
-	}
-	for (c = 0; (size_t)(c) < sizeof (secret) - 1; c++) 
-	{
+	{ 
+		error (1, ENOTSUP, ERROR_TOOMANY); 
+	} 
+	memset (secret, 0, sizeof (secret)); 
+	if ((fd = open (file, O_BINARY | O_CREAT | O_RDWR, (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH))) == - 1) 
+	{ 
+		error (1, errno, "%s", file); 
+	} 
+	if (read (fd, secret, sizeof (secret) - 1) == - 1) 
+	{ 
+		error (1, errno, "%s", file); 
+	} 
+	for (c = 0; (size_t)(c) < sizeof (secret) - 1; c++ ) 
+	{ 
 		if (secret [c] < MIN) 
-		{
-			secret [c] = MIN;
-		}
+		{ 
+			secret [c] = MIN; 
+		} 
 		if (secret [c] > MAX) 
-		{
-			secret [c] = MAX;
-		}
-	}
-	function (secret, sizeof (secret) - 1, flags);
+		{ 
+			secret [c] = MAX; 
+		} 
+	} 
+	function (secret, sizeof (secret) - 1, flags); 
 	if (lseek (fd, 0, SEEK_SET)) 
-	{
-		error (1, errno, "%s", file);
-	}
-	if (write (fd, secret, sizeof (secret) - 1) == -1) 
-	{
-		error (1, errno, "%s", file);
-	}
-	close (fd);
-	return (0);
-}
+	{ 
+		error (1, errno, "%s", file); 
+	} 
+	if (write (fd, secret, sizeof (secret) - 1) == - 1) 
+	{ 
+		error (1, errno, "%s", file); 
+	} 
+	close (fd); 
+	return (0); 
+} 
 

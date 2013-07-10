@@ -58,93 +58,93 @@
 
 int main (int argc, const char * argv []) 
 
-{
-	extern const char * program_name;
+{ 
+	extern const char * program_name; 
 	static const char * optv [] = 
-	{
-		"bcnrt",
-		"message [message] [...] or [< stdin]",
-		"broadcast a message on all terminals",
-		"b\tprint each argument as one bullet point",
-		"n\tdiscard broadcast preamble for root only",
-		"c\tdisplay broadcast terminal count",
-		"t\tdisplay broadcast terminal names",
-		"r\tbroadcast on remote terminals only",
-		(const char *) (0)
-	};
-	flag_t flags = BROADCAST_B_BANNER;
-	char message [BROADCAST_MAXCHARS] = "";
-	size_t nlines = 0;
-	size_t nchars = 0;
-	signed c;
-	optind = 1;
-	opterr = 1;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"bcnrt", 
+		"message [message] [...] or [< stdin]", 
+		"broadcast a message on all terminals", 
+		"b\tprint each argument as one bullet point", 
+		"n\tdiscard broadcast preamble for root only", 
+		"c\tdisplay broadcast terminal count", 
+		"t\tdisplay broadcast terminal names", 
+		"r\tbroadcast on remote terminals only", 
+		(const char * ) (0)
+	}; 
+	flag_t flags = BROADCAST_B_BANNER; 
+	char message [BROADCAST_MAXCHARS] = ""; 
+	size_t nlines = 0; 
+	size_t nchars = 0; 
+	signed c; 
+	optind = 1; 
+	opterr = 1; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'n':
-			_clrbits (flags, BROADCAST_B_BANNER);
+		{ 
+		case 'n': 
+			_clrbits (flags, BROADCAST_B_BANNER); 
 			if (getuid ()) 
-			{
-				error (1, EPERM, "can't suppress the broadcast banner");
-			}
-			break;
-		case 'r':
-			_setbits (flags, BROADCAST_B_REMOTE);
-			break;
-		case 'b':
-			_setbits (flags, BROADCAST_B_BULLET);
-			break;
-		case 't':
-			_setbits (flags, BROADCAST_B_REPORT);
-			break;
-		case 'c':
-			_setbits (flags, BROADCAST_B_STATUS);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	openlog (program_name, 0, LOG_USER |LOG_INFO);
+			{ 
+				error (1, EPERM, "can't suppress the broadcast banner"); 
+			} 
+			break; 
+		case 'r': 
+			_setbits (flags, BROADCAST_B_REMOTE); 
+			break; 
+		case 'b': 
+			_setbits (flags, BROADCAST_B_BULLET); 
+			break; 
+		case 't': 
+			_setbits (flags, BROADCAST_B_REPORT); 
+			break; 
+		case 'c': 
+			_setbits (flags, BROADCAST_B_STATUS); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	openlog (program_name, 0, LOG_USER | LOG_INFO); 
 	if (geteuid ()) 
-	{
-		syslog_error (LOG_NOTICE, EPERM, "user %s tried to broadcast", getlogin ());
-		error (1, EPERM, NOTROOT);
-	}
-	if (!argc) 
-	{
-		if ((nchars = read (STDIN_FILENO, message, sizeof (message)-1)) != -1) 
-		{
-			message [nchars]=(char)(0);
-		}
-	}
+	{ 
+		syslog_error (LOG_NOTICE, EPERM, "user %s tried to broadcast", getlogin ()); 
+		error (1, EPERM, NOTROOT); 
+	} 
+	if (! argc) 
+	{ 
+		if ((nchars = read (STDIN_FILENO, message, sizeof (message)- 1)) != - 1) 
+		{ 
+			message [nchars]= (char)(0); 
+		} 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (_anyset (flags, BROADCAST_B_BULLET)) 
-		{
-			message [nchars++] = ' ';
-			message [nchars++] = '-';
-			message [nchars++] = ' ';
-		}
-		nchars+= snprintf (message + nchars, BROADCAST_MAXCHARS - nchars, "%s\n", * argv);
-		argc--;
-		argv++;
-	}
-	for (nchars = 0; (message [nchars] != (char) (0)) && (nchars < BROADCAST_MAXCHARS) && (nlines < BROADCAST_MAXLINES); nchars++) 
-	{
+		{ 
+			message [nchars++ ] = ' '; 
+			message [nchars++ ] = '-'; 
+			message [nchars++ ] = ' '; 
+		} 
+		nchars += snprintf (message + nchars, BROADCAST_MAXCHARS - nchars, "%s\n", * argv); 
+		argc-- ; 
+		argv++ ; 
+	} 
+	for (nchars = 0; (message [nchars] != (char) (0)) && (nchars < BROADCAST_MAXCHARS) && (nlines < BROADCAST_MAXLINES); nchars++ ) 
+	{ 
 		if (message [nchars] == '\n') 
-		{
-			nlines++;
-		}
-	}
-	message [nchars] = (char)(0);
-	syslog (LOG_SYSLOG |LOG_INFO, "user %s broadcast %d line(s) total %d char(s)", getlogin (), nlines, nchars);
-	unsetenv ("TZ");
-	broadcast (message, flags);
-	closelog ();
-	exit (0);
-}
+		{ 
+			nlines++ ; 
+		} 
+	} 
+	message [nchars] = (char)(0); 
+	syslog (LOG_SYSLOG | LOG_INFO, "user %s broadcast %d line(s) total %d char(s)", getlogin (), nlines, nchars); 
+	unsetenv ("TZ"); 
+	broadcast (message, flags); 
+	closelog (); 
+	exit (0); 
+} 
 

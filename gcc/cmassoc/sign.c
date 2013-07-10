@@ -48,41 +48,41 @@
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"c:w:",
-		PUTOPTV_S_DIVINE,
-		"print a simple sign on stdout",
-		"c c\tfill character is c [\'c\']",
-		"w n\tpage width is n [78]",
-		(char const *)(0)
-	};
-	char o = '#';
-	size_t width = 78;
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"c:w:", 
+		PUTOPTV_S_DIVINE, 
+		"print a simple sign on stdout", 
+		"c c\tfill character is c [\'c\']", 
+		"w n\tpage width is n [78]", 
+		(char const * )(0)
+	}; 
+	char o = '#'; 
+	size_t width = 78; 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'c':
-			o = * optarg;
-			break;
-		case 'w':
-			width = uintspec (optarg, 1, UCHAR_MAX);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
+		{ 
+		case 'c': 
+			o = * optarg; 
+			break; 
+		case 'w': 
+			width = uintspec (optarg, 1, UCHAR_MAX); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
 	while ((argc) && (* argv)) 
-	{
-		signf (* argv, o, width);
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+	{ 
+		signf (* argv, o, width); 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

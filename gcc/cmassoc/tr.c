@@ -64,17 +64,17 @@
 
 void function (char const ctable [], flag_t flags) 
 
-{
-	signed c;
+{ 
+	signed c; 
 	while ((c = getc (stdin)) != EOF) 
-	{
+	{ 
 		if (ctable [(unsigned) (c)]) 
-		{
-			putc (ctable [(unsigned) (c)], stdout);
-		}
-	}
-	return;
-}
+		{ 
+			putc (ctable [(unsigned) (c)], stdout); 
+		} 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -89,52 +89,52 @@ void function (char const ctable [], flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"f:t:",
-		PUTOPTV_S_FILTER,
-		"translate characters",
-		"f s\tfrom charset is (s) [\"\"]",
-		"t s\tto charset is (s) [\"\"]",
+	{ 
+		"f:t:", 
+		PUTOPTV_S_FILTER, 
+		"translate characters", 
+		"f s\tfrom charset is (s) [\"\"]", 
+		"t s\tto charset is (s) [\"\"]", 
 		NULL
-	};
-	char ctable [UCHAR_MAX + 1];
-	char control [UCHAR_MAX + 1] = "";
-	char replace [UCHAR_MAX + 1] = "";
-	flag_t flags = (flag_t)(0);
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	}; 
+	char ctable [UCHAR_MAX + 1]; 
+	char control [UCHAR_MAX + 1] = ""; 
+	char replace [UCHAR_MAX + 1] = ""; 
+	flag_t flags = (flag_t)(0); 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'f':
-			charset (optarg, 0, control, sizeof (control));
-			break;
-		case 't':
-			charset (optarg, 0, replace, sizeof (replace));
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	chrset (ctable);
-	chrsub (ctable, control, replace);
-	if (!argc) 
-	{
-		function (ctable, flags);
-	}
+		{ 
+		case 'f': 
+			charset (optarg, 0, control, sizeof (control)); 
+			break; 
+		case 't': 
+			charset (optarg, 0, replace, sizeof (replace)); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	chrset (ctable); 
+	chrsub (ctable, control, replace); 
+	if (! argc) 
+	{ 
+		function (ctable, flags); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (vfopen (* argv)) 
-		{
-			function (ctable, flags);
-		}
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+		{ 
+			function (ctable, flags); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

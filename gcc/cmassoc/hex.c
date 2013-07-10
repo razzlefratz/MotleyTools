@@ -68,10 +68,10 @@
 
 void encode (flag_t flags) 
 
-{
-	signed c;
+{ 
+	signed c; 
 	while ((c = getc (stdin)) != EOF) 
-	{
+	{ 
 
 #if 0
 
@@ -79,22 +79,22 @@ void encode (flag_t flags)
 
 #else
 
-		if (!isgraph (c)) 
+		if (! isgraph (c)) 
 
 #endif
 
-		{
-			putc ('%', stdout);
-			putc (DIGITS_HEX [(c >> 4) & 0x0F], stdout);
-			putc (DIGITS_HEX [(c >> 0) & 0x0F], stdout);
-		}
+		{ 
+			putc ('%', stdout); 
+			putc (DIGITS_HEX [(c >> 4) & 0x0F], stdout); 
+			putc (DIGITS_HEX [(c >> 0) & 0x0F], stdout); 
+		} 
 		else 
-		{
-			putc (c, stdout);
-		}
-	}
-	return;
-}
+		{ 
+			putc (c, stdout); 
+		} 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -111,49 +111,49 @@ void encode (flag_t flags)
 
 void decode (flag_t flags) 
 
-{
-	signed c;
-	signed upper;
-	signed lower;
-	unsigned value;
+{ 
+	signed c; 
+	signed upper; 
+	signed lower; 
+	unsigned value; 
 	while ((c = getc (stdin)) != EOF) 
-	{
+	{ 
 		if (c != '%') 
-		{
-			putc (c, stdout);
-			continue;
-		}
+		{ 
+			putc (c, stdout); 
+			continue; 
+		} 
 		if ((upper = getc (stdin)) == EOF) 
-		{
-			putc (c, stdout);
-			continue;
-		}
-		value = todigit (upper);
+		{ 
+			putc (c, stdout); 
+			continue; 
+		} 
+		value = todigit (upper); 
 		if (errno) 
-		{
-			putc (c, stdout);
-			putc (upper, stdout);
-			continue;
-		}
+		{ 
+			putc (c, stdout); 
+			putc (upper, stdout); 
+			continue; 
+		} 
 		if ((lower = getc (stdin)) == EOF) 
-		{
-			putc (c, stdout);
-			putc (upper, stdout);
-			putc (lower, stdout);
-			continue;
-		}
-		value = (value << 4) + todigit (lower);
+		{ 
+			putc (c, stdout); 
+			putc (upper, stdout); 
+			putc (lower, stdout); 
+			continue; 
+		} 
+		value = (value << 4) + todigit (lower); 
 		if (errno) 
-		{
-			putc (c, stdout);
-			putc (upper, stdout);
-			putc (lower, stdout);
-			continue;
-		}
-		putc (value, stdout);
-	}
-	return;
-}
+		{ 
+			putc (c, stdout); 
+			putc (upper, stdout); 
+			putc (lower, stdout); 
+			continue; 
+		} 
+		putc (value, stdout); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -161,25 +161,25 @@ void decode (flag_t flags)
 
 void function (flag_t flags) 
 
-{
-	signed c;
+{ 
+	signed c; 
 	switch (flags & (HEX_B_ENCODE | HEX_B_DECODE)) 
-	{
-	case HEX_B_ENCODE:
-		encode (flags);
-		break;
-	case HEX_B_DECODE:
-		decode (flags);
-		break;
-	default:
+	{ 
+	case HEX_B_ENCODE: 
+		encode (flags); 
+		break; 
+	case HEX_B_DECODE: 
+		decode (flags); 
+		break; 
+	default: 
 		while ((c = getc (stdin)) != EOF) 
-		{
-			putc (c, stdout);
-		}
-		break;
-	}
-	return;
-}
+		{ 
+			putc (c, stdout); 
+		} 
+		break; 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -190,49 +190,49 @@ void function (flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"deh",
-		PUTOPTV_S_FUNNEL,
-		"encode or decode text files in IETF hexidecimal octet format",
-		"d\tdecode files ",
-		"e\tencode files ",
-		(char const *)(0)
-	};
-	flag_t flags = (flag_t) (0);
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"deh", 
+		PUTOPTV_S_FUNNEL, 
+		"encode or decode text files in IETF hexidecimal octet format", 
+		"d\tdecode files ", 
+		"e\tencode files ", 
+		(char const * )(0)
+	}; 
+	flag_t flags = (flag_t) (0); 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'd':
-			_clrbits (flags, HEX_B_ENCODE);
-			_setbits (flags, HEX_B_DECODE);
-			break;
-		case 'e':
-			_clrbits (flags, HEX_B_DECODE);
-			_setbits (flags, HEX_B_ENCODE);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		function (flags);
-	}
+		{ 
+		case 'd': 
+			_clrbits (flags, HEX_B_ENCODE); 
+			_setbits (flags, HEX_B_DECODE); 
+			break; 
+		case 'e': 
+			_clrbits (flags, HEX_B_DECODE); 
+			_setbits (flags, HEX_B_ENCODE); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		function (flags); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (efreopen (* argv, "rb", stdin)) 
-		{
-			function (flags);
-		}
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+		{ 
+			function (flags); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

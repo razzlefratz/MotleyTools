@@ -45,34 +45,34 @@
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"",
-		PUTOPTV_S_FUNNEL,
-		"myprogram",
-		(char const *)(0)
-	};
-	flag_t flags = (flag_t) (0);
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"", 
+		PUTOPTV_S_FUNNEL, 
+		"myprogram", 
+		(char const * )(0)
+	}; 
+	flag_t flags = (flag_t) (0); 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-	}
+		{ 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+	} 
 	while ((argc) && (* argv)) 
-	{
-		argc--;
-		argv++;
-	}
-	return (0);
-}
+	{ 
+		argc-- ; 
+		argv++ ; 
+	} 
+	return (0); 
+} 
 

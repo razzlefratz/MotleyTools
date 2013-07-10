@@ -63,63 +63,64 @@
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"e:",
-		"literal [literal] [...]",
-		"compare example strings to a regular expression and report each outcome",
-		"e\tthe regular expression",
-		(char const *)(0)
-	};
-	regexp * pattern = (regexp *)(0);
-	char prefix [TEXTLINE_MAX];
-	char const * sp;
-	char const * cp;
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"e:", 
+		"literal [literal] [...]", 
+		"compare example strings to a regular expression and report each outcome", 
+		"e\tthe regular expression", 
+		(char const * )(0)
+	}; 
+	regexp * pattern = (regexp * )(0); 
+	char prefix [TEXTLINE_MAX]; 
+	char const * sp; 
+	char const * cp; 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'e':
-			pattern = regexmake (optarg);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
+		{ 
+		case 'e': 
+			pattern = regexmake (optarg); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
 	while ((argc) && (* argv)) 
-	{
-		sp = regexspan (pattern, * argv);
-		if (!sp) 
-		{
-			printf ("[] [%s]\n", * argv);
-		}
-		else if (!* sp) 
-		{
-			printf ("[%s] []\n", * argv);
-		}
+	{ 
+		sp = regexspan (pattern, * argv); 
+		if (! sp) 
+		{ 
+			printf ("[] [%s]\n", * argv); 
+		} 
+		else if (! * sp) 
+		{ 
+			printf ("[%s] []\n", * argv); 
+		} 
 		else 
-		{
-			for (cp = * argv; cp < sp; cp++) 
-			{
-				prefix [cp - * argv] = * cp;
-			}
-			prefix [cp - * argv] = (char)(0);
-			printf ("[%s] [%s]\n", prefix, sp);
-		}
-		argc--;
-		argv++;
-	}
+		{ 
+			for (cp = * argv; cp < sp; cp++ ) 
+			{ 
+				prefix [cp - * argv] = * cp; 
+			} 
+			prefix [cp - * argv] = (char)(0); 
+			printf ("[%s] [%s]\n", prefix, sp); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+
 #if 0
 
-	regexshow (pattern);
+	regexshow (pattern); 
 
 #endif
 
-	regexfree (pattern);
-	exit (0);
-}
+	regexfree (pattern); 
+	exit (0); 
+} 
 

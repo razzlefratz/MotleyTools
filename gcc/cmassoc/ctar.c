@@ -95,8 +95,8 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-static char ** args;
-char const * program_name = "ctar";
+static char ** args; 
+char const * program_name = "ctar"; 
 
 /*====================================================================*
  *
@@ -111,15 +111,15 @@ char const * program_name = "ctar";
 
 int main (int argc, char * argv []) 
 
-{
-	LIST files;
-	char filename [FILENAME_MAX];
+{ 
+	LIST files; 
+	char filename [FILENAME_MAX]; 
 	char const * paths [_LISTSIZE] = 
-	{
-		getenv ("PWD"),
-		(char const *)(0)
-	};
-	size_t path = 1;
+	{ 
+		getenv ("PWD"), 
+		(char const * )(0)
+	}; 
+	size_t path = 1; 
 
 #if CTAR_SEARCH
 
@@ -129,69 +129,69 @@ int main (int argc, char * argv [])
  * command line, we scan argv[] and strip out these extra arguments;
  */
 
-	int argn;
-	int argx;
-	for (argn = 1; argn < argc; argn++) 
-	{
-		char const * sp = argv [argn];
+	int argn; 
+	int argx; 
+	for (argn = 1; argn < argc; argn++ ) 
+	{ 
+		char const * sp = argv [argn]; 
 		if (* sp++ != GETOPTV_C_OPTION) 
-		{
-			continue;
-		}
+		{ 
+			continue; 
+		} 
 		if (* sp++ != 'I') 
-		{
-			continue;
-		}
+		{ 
+			continue; 
+		} 
 		if (* sp == (char)(0)) 
-		{
-			for (argx = argn; argx < argc; argx++) 
-			{
-				argv [argx] = argv [argx+1];
-			}
-			sp = argv [argn];
-			argc--;
-		}
-		paths [path++] = sp;
-		for (argx = argn; argx < argc; argx++) 
-		{
-			argv [argx] = argv [argx+1];
-		}
-		argn--;
-		argc--;
-	}
-	paths [path] = (char const *)(0);
-	argv [argc] = (char *)(0);
+		{ 
+			for (argx = argn; argx < argc; argx++ ) 
+			{ 
+				argv [argx] = argv [argx+ 1]; 
+			} 
+			sp = argv [argn]; 
+			argc-- ; 
+		} 
+		paths [path++ ] = sp; 
+		for (argx = argn; argx < argc; argx++ ) 
+		{ 
+			argv [argx] = argv [argx+ 1]; 
+		} 
+		argn-- ; 
+		argc-- ; 
+	} 
+	paths [path] = (char const * )(0); 
+	argv [argc] = (char * )(0); 
 
 #endif
 
 	if (argc < 4) 
-	{
-		printf ("%s [tar-options] archive program [-I path] [-I path] [...]\n", * argv);
-		exit (1);
-	}
-	makepath (filename, getenv ("PWD"), argv [--argc]);
-	listcreate (& files, _LISTSIZE);
-	listappend (& files, filename);
+	{ 
+		printf ("%s [tar-options] archive program [-I path] [-I path] [...]\n", * argv); 
+		exit (1); 
+	} 
+	makepath (filename, getenv ("PWD"), argv [-- argc]); 
+	listcreate (& files, _LISTSIZE); 
+	listappend (& files, filename); 
 	if (ccollect (& files, paths)) 
-	{
-		error (1, 0, "%s: missing %d file(s)", files.table [0], files.error);
-	}
-	if ((args = (char **)(malloc ((argc + files.count + 1) * sizeof (char *))))) 
-	{
-		error (1, 0, "%s: out of memory", basename ((char *)(* argv)));
-	}
-	args [0] = PATH_TAR;
-	for (argc = 1; argv [argc]; argc++) 
-	{
-		args [argc] = argv [argc];
-	}
-	for (files.lower = files.start; files.lower < files.count; files.lower++) 
-	{
-		args [argc++] = (char *)(files.table [files.lower]);
-	}
-	args [argc] = (char *)(0);
-	execv (* args, args);
-	error (1, errno, "can't execute %s", * args);
-	exit (0);
-}
+	{ 
+		error (1, 0, "%s: missing %d file(s)", files.table [0], files.error); 
+	} 
+	if ((args = (char ** )(malloc ((argc + files.count + 1) * sizeof (char * ))))) 
+	{ 
+		error (1, 0, "%s: out of memory", basename ((char * )(* argv))); 
+	} 
+	args [0] = PATH_TAR; 
+	for (argc = 1; argv [argc]; argc++ ) 
+	{ 
+		args [argc] = argv [argc]; 
+	} 
+	for (files.lower = files.start; files.lower < files.count; files.lower++ ) 
+	{ 
+		args [argc++ ] = (char * )(files.table [files.lower]); 
+	} 
+	args [argc] = (char * )(0); 
+	execv (* args, args); 
+	error (1, errno, "can't execute %s", * args); 
+	exit (0); 
+} 
 

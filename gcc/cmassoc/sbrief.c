@@ -70,9 +70,9 @@
 
 static signed noop (signed c) 
 
-{
-	return (c);
-}
+{ 
+	return (c); 
+} 
 
 /*====================================================================*
  *
@@ -89,55 +89,55 @@ static signed noop (signed c)
 
 static void function (signed comment, signed escape (signed)) 
 
-{
-	signed c = getc (stdin);
+{ 
+	signed c = getc (stdin); 
 	while (c != EOF) 
-	{
+	{ 
 		if (isblank (c)) 
-		{
+		{ 
 			do 
-			{
-				c = getc (stdin);
-			}
-			while (isblank (c));
+			{ 
+				c = getc (stdin); 
+			} 
+			while (isblank (c)); 
 			if (nobreak (c) && (c != comment)) 
-			{
-				putc ('\t', stdout);
-			}
-		}
+			{ 
+				putc ('\t', stdout); 
+			} 
+		} 
 		while (nobreak (c)) 
-		{
+		{ 
 			if (c == comment) 
-			{
-				c = consume ('\n');
-				continue;
-			}
+			{ 
+				c = consume ('\n'); 
+				continue; 
+			} 
 			if (isblank (c)) 
-			{
+			{ 
 				do 
-				{
-					c = getc (stdin);
-					c = escape (c);
-				}
-				while (isblank (c));
+				{ 
+					c = getc (stdin); 
+					c = escape (c); 
+				} 
+				while (isblank (c)); 
 				if (nobreak (c)) 
-				{
-					putc (' ', stdout);
-				}
-				continue;
-			}
+				{ 
+					putc (' ', stdout); 
+				} 
+				continue; 
+			} 
 			if (isquote (c)) 
-			{
-				c = literal (c);
-				continue;
-			}
-			c = escape (c);
-			c = keep (c);
-		}
-		c = keep (c);
-	}
-	return;
-}
+			{ 
+				c = literal (c); 
+				continue; 
+			} 
+			c = escape (c); 
+			c = keep (c); 
+		} 
+		c = keep (c); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *   main program;
@@ -145,48 +145,48 @@ static void function (signed comment, signed escape (signed))
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"c:m",
-		PUTOPTV_S_FILTER,
-		"remove comments, concatenate continuation lines and condense space",
-		"c c\tcomment character is (c) [" LITERAL (SBRIEF_C_COMMENT) "]",
-		"m\tmerge continuation lines",
-		(char const *) (0)
-	};
-	signed (* escape) (signed) = noop;
-	signed comment = SBRIEF_C_COMMENT;
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"c:m", 
+		PUTOPTV_S_FILTER, 
+		"remove comments, concatenate continuation lines and condense space", 
+		"c c\tcomment character is (c) [" LITERAL (SBRIEF_C_COMMENT) "]", 
+		"m\tmerge continuation lines", 
+		(char const * ) (0)
+	}; 
+	signed (* escape) (signed) = noop; 
+	signed comment = SBRIEF_C_COMMENT; 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'c':
-			comment = * optarg;
-			break;
-		case 'm':
-			escape = span;
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		function (comment, escape);
-	}
+		{ 
+		case 'c': 
+			comment = * optarg; 
+			break; 
+		case 'm': 
+			escape = span; 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		function (comment, escape); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (vfopen (* argv)) 
-		{
-			function (comment, escape);
-		}
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+		{ 
+			function (comment, escape); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

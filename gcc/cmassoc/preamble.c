@@ -71,24 +71,24 @@
 
 static void function (signed prefix, signed suffix, signed length) 
 
-{
-	byte buffer [length];
-	lseek (prefix, 0, SEEK_SET);
-	lseek (suffix, 0, SEEK_SET);
+{ 
+	byte buffer [length]; 
+	lseek (prefix, 0, SEEK_SET); 
+	lseek (suffix, 0, SEEK_SET); 
 	while ((length = read (prefix, buffer, sizeof (buffer))) > 0) 
-	{
-		write (STDOUT_FILENO, buffer, length);
-	}
+	{ 
+		write (STDOUT_FILENO, buffer, length); 
+	} 
 	while ((length = read (STDIN_FILENO, buffer, sizeof (buffer))) > 0) 
-	{
-		write (STDOUT_FILENO, buffer, length);
-	}
+	{ 
+		write (STDOUT_FILENO, buffer, length); 
+	} 
 	while ((length = read (suffix, buffer, sizeof (buffer))) > 0) 
-	{
-		write (STDOUT_FILENO, buffer, length);
-	}
-	return;
-}
+	{ 
+		write (STDOUT_FILENO, buffer, length); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -103,62 +103,62 @@ static void function (signed prefix, signed suffix, signed length)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"p:qs:v",
-		PUTOPTV_S_FILTER,
-		"prepend/append prefix/suffix to multiple files",
-		"p s\tprefix file is (s)",
-		"q\tquiet mode",
-		"s s\tsuffix file is (s)",
-		"v\tverbose mode",
-		(char const *) (0)
-	};
-	flag_t flags = (flag_t)(0);
-	signed length = 1024;
-	signed prefix = -1;
-	signed suffix = -1;
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"p:qs:v", 
+		PUTOPTV_S_FILTER, 
+		"prepend/append prefix/suffix to multiple files", 
+		"p s\tprefix file is (s)", 
+		"q\tquiet mode", 
+		"s s\tsuffix file is (s)", 
+		"v\tverbose mode", 
+		(char const * ) (0)
+	}; 
+	flag_t flags = (flag_t)(0); 
+	signed length = 1024; 
+	signed prefix = - 1; 
+	signed suffix = - 1; 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'h':
-			if ((prefix = open (optarg, O_RDONLY)) == -1) 
-			{
-				error (1, errno, "%s", optarg);
-			}
-			break;
-		case 'f':
-			if ((suffix = open (optarg, O_RDONLY)) == -1) 
-			{
-				error (1, errno, "%s", optarg);
-			}
-			break;
-		case 'q':
-			_setbits (flags, PREAMBLE_SILENCE);
-			break;
-		case 'v':
-			_setbits (flags, PREAMBLE_VERBOSE);
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		function (prefix, suffix, length);
-	}
+		{ 
+		case 'h': 
+			if ((prefix = open (optarg, O_RDONLY)) == - 1) 
+			{ 
+				error (1, errno, "%s", optarg); 
+			} 
+			break; 
+		case 'f': 
+			if ((suffix = open (optarg, O_RDONLY)) == - 1) 
+			{ 
+				error (1, errno, "%s", optarg); 
+			} 
+			break; 
+		case 'q': 
+			_setbits (flags, PREAMBLE_SILENCE); 
+			break; 
+		case 'v': 
+			_setbits (flags, PREAMBLE_VERBOSE); 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		function (prefix, suffix, length); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (vfopen (* argv)) 
-		{
-			function (prefix, suffix, length);
-		}
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+		{ 
+			function (prefix, suffix, length); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

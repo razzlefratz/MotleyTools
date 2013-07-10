@@ -51,37 +51,37 @@
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"tmb",
-		PUTOPTV_S_FUNNEL,
-		"clear screen and position cursor",
-		"t\ttop of screen",
-		"m\tmiddle of screen",
-		"b\tbottom of screen",
-		(char const *)(0)
-	};
-	unsigned line;
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"tmb", 
+		PUTOPTV_S_FUNNEL, 
+		"clear screen and position cursor", 
+		"t\ttop of screen", 
+		"m\tmiddle of screen", 
+		"b\tbottom of screen", 
+		(char const * )(0)
+	}; 
+	unsigned line; 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 't':
-			line = 0;
-			break;
-		case 'm':
-			line = VT_LINES >> 1;
-			break;
-		case 'b':
-			line = VT_LINES;
-			break;
-		default:
-			break;
-		}
-	}
-	fprintf (stderr, "\033[2J\033[%2d;1H", line);
-	exit (0);
-}
+		{ 
+		case 't': 
+			line = 0; 
+			break; 
+		case 'm': 
+			line = VT_LINES >> 1; 
+			break; 
+		case 'b': 
+			line = VT_LINES; 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	fprintf (stderr, "\033[2J\033[%2d;1H", line); 
+	exit (0); 
+} 
 
