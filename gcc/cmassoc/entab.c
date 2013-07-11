@@ -67,61 +67,61 @@
 
 void function (flag_t flags) 
 
-{
-	int next = 0;
-	int prev = 0;
-	int c;
+{ 
+	int next = 0; 
+	int prev = 0; 
+	int c; 
 	while ((c = getc (stdin)) != EOF) 
-	{
+	{ 
 		if (isgraph (c)) 
-		{
+		{ 
 			while (prev++ < next) 
-			{
-				putc (' ', stdout);
-			}
-			putc (c, stdout);
-			next++;
-			continue;
-		}
+			{ 
+				putc (' ', stdout); 
+			} 
+			putc (c, stdout); 
+			next++ ; 
+			continue; 
+		} 
 		if (c == ' ') 
-		{
-			if (tabcol (++next) == true) 
-			{
-				putc ('\t', stdout);
-				prev = next;
-			}
-			continue;
-		}
+		{ 
+			if (tabcol (++ next) == true) 
+			{ 
+				putc ('\t', stdout); 
+				prev = next; 
+			} 
+			continue; 
+		} 
 		if (c == '\b') 
-		{
-			if (prev == next--) 
-			{
-				prev--;
-			}
-			putc (c, stdout);
-			continue;
-		}
+		{ 
+			if (prev == next-- ) 
+			{ 
+				prev-- ; 
+			} 
+			putc (c, stdout); 
+			continue; 
+		} 
 		if (c == '\t') 
-		{
-			while (tabcol (++next) == false);
-			putc (c, stdout);
-			prev = next;
-			continue;
-		}
+		{ 
+			while (tabcol (++ next) == false); 
+			putc (c, stdout); 
+			prev = next; 
+			continue; 
+		} 
 		if ((c == '\r') || (c == '\n') || (c == '\f')) 
-		{
+		{ 
 			while (prev++ < next) 
-			{
-				putc (' ', stdout);
-			}
-			putc (c, stdout);
-			prev = next = 0;
-			continue;
-		}
-		putc (c, stdout);
-	}
-	return;
-}
+			{ 
+				putc (' ', stdout); 
+			} 
+			putc (c, stdout); 
+			prev = next = 0; 
+			continue; 
+		} 
+		putc (c, stdout); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *   main program;
@@ -129,43 +129,43 @@ void function (flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"t:",
-		PUTOPTV_S_FILTER,
-		"replace spaces with horizontal tabs ",
-		"t n.m\tset tabs in column (n) and interval (m) ",
-		(char const *) (0)
-	};
-	flag_t flags = (flag_t)(0);
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"t:", 
+		PUTOPTV_S_FILTER, 
+		"replace spaces with horizontal tabs ", 
+		"t n.m\tset tabs in column (n) and interval (m) ", 
+		(char const * ) (0)
+	}; 
+	flag_t flags = (flag_t)(0); 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 't':
-			tabspec (optarg);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		function (flags);
-	}
+		{ 
+		case 't': 
+			tabspec (optarg); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		function (flags); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (vfopen (* argv)) 
-		{
-			function (flags);
-		}
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+		{ 
+			function (flags); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

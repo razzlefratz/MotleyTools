@@ -65,59 +65,59 @@
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"el:w:",
-		"command [command] [...]",
-		"command sequence repeater",
-		"e\tdirect stderr to stdout",
-		"l n\tloop (n) times [" LITERAL (COUNT) "]",
-		"w n\twait (n) seconds [" LITERAL (PAUSE) "]",
-		(char const *) (0)
-	};
-	FILE * fp;
-	signed index = 0;
-	signed count = COUNT;
-	signed pause = PAUSE;
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"el:w:", 
+		"command [command] [...]", 
+		"command sequence repeater", 
+		"e\tdirect stderr to stdout", 
+		"l n\tloop (n) times [" LITERAL (COUNT) "]", 
+		"w n\twait (n) seconds [" LITERAL (PAUSE) "]", 
+		(char const * ) (0)
+	}; 
+	FILE * fp; 
+	signed index = 0; 
+	signed count = COUNT; 
+	signed pause = PAUSE; 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'l':
-			count = (unsigned)(uintspec (optarg, 1, USHRT_MAX));
-			break;
-		case 'w':
-			pause = (unsigned)(uintspec (optarg, 1, USHRT_MAX));
-			break;
-		case 'e':
-			dup2 (STDOUT_FILENO, STDERR_FILENO);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	while (count--) 
-	{
-		for (index = 0; index < argc; index++) 
-		{
+		{ 
+		case 'l': 
+			count = (unsigned)(uintspec (optarg, 1, USHRT_MAX)); 
+			break; 
+		case 'w': 
+			pause = (unsigned)(uintspec (optarg, 1, USHRT_MAX)); 
+			break; 
+		case 'e': 
+			dup2 (STDOUT_FILENO, STDERR_FILENO); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	while (count-- ) 
+	{ 
+		for (index = 0; index < argc; index++ ) 
+		{ 
 			if ((fp = popen (argv [index], "r"))) 
-			{
+			{ 
 				while ((c = getc (fp)) != EOF) 
-				{
-					putc (c, stdout);
-				}
-			}
-			putc ('\n', stdout);
-		}
+				{ 
+					putc (c, stdout); 
+				} 
+			} 
+			putc ('\n', stdout); 
+		} 
 		if (count) 
-		{
-			sleep (pause);
-		}
-	}
-	exit (0);
-}
+		{ 
+			sleep (pause); 
+		} 
+	} 
+	exit (0); 
+} 
 

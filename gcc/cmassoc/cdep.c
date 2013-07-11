@@ -111,9 +111,9 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-extern LINK * nodelist;
-extern TREE * nodetree;
-static TREE * pathtree = (TREE *) (0);
+extern LINK * nodelist; 
+extern TREE * nodetree; 
+static TREE * pathtree = (TREE * ) (0); 
 
 /*====================================================================*
  *
@@ -129,17 +129,17 @@ static TREE * pathtree = (TREE *) (0);
 
 static void relate (char const * one, char const * two, flag_t flags) 
 
-{
+{ 
 	if (_anyset (flags, DEP_B_INVERT)) 
-	{
-		pathtree = ordernode (pathtree, two, one, strcmp);
-	}
+	{ 
+		pathtree = ordernode (pathtree, two, one, strcmp); 
+	} 
 	else 
-	{
-		pathtree = ordernode (pathtree, one, two, strcmp);
-	}
-	return;
-}
+	{ 
+		pathtree = ordernode (pathtree, one, two, strcmp); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -177,58 +177,58 @@ static void relate (char const * one, char const * two, flag_t flags)
 
 void function (char const * pathname, char * buffer, size_t length, flag_t flags) 
 
-{
-	FILE * ifp;
-	SCAN scan;
-	FIND find;
-	size_t line;
+{ 
+	FILE * ifp; 
+	SCAN scan; 
+	FIND find; 
+	size_t line; 
 	if ((ifp = efopen (pathname, "rb"))) 
-	{
-		strcpy (find.fullname, pathname);
-		partpath (find.fullname, find.pathname, find.filename);
-		partfile (find.filename, find.basename, find.extender);
-		scaninput (& scan, buffer, length);
-		for (line = 0; fgetline (buffer, length, ifp) != -1; line++) 
-		{
-			scanstart (& scan);
-			nexttoken (& scan);
-			if (!havetoken (& scan, "#")) 
-			{
-				continue;
-			}
-			if (!havetoken (& scan, "include")) 
-			{
-				continue;
-			}
+	{ 
+		strcpy (find.fullname, pathname); 
+		partpath (find.fullname, find.pathname, find.filename); 
+		partfile (find.filename, find.basename, find.extender); 
+		scaninput (& scan, buffer, length); 
+		for (line = 0; fgetline (buffer, length, ifp) != - 1; line++ ) 
+		{ 
+			scanstart (& scan); 
+			nexttoken (& scan); 
+			if (! havetoken (& scan, "#")) 
+			{ 
+				continue; 
+			} 
+			if (! havetoken (& scan, "include")) 
+			{ 
+				continue; 
+			} 
 			if (havetoken (& scan, "<")) 
-			{
+			{ 
 				if (_anyset (flags, DEP_B_SYSTEM)) 
-				{
-					scanuntil (& scan, ">");
-					makepath (find.fullname, "/usr/include", tokentext (& scan));
-					relate (pathname, find.fullname, flags);
-				}
-				continue;
-			}
+				{ 
+					scanuntil (& scan, ">"); 
+					makepath (find.fullname, "/usr/include", tokentext (& scan)); 
+					relate (pathname, find.fullname, flags); 
+				} 
+				continue; 
+			} 
 			if (havetoken (& scan, "\"")) 
-			{
+			{ 
 				if (_anyset (flags, DEP_B_CUSTOM)) 
-				{
-					scanuntil (& scan, "\"");
-					makepath (find.fullname, find.pathname, tokentext (& scan));
-					relate (pathname, find.fullname, flags);
-				}
-				continue;
-			}
-		}
-		fclose (ifp);
-		if (!line) 
-		{
-			error (0, 0, "file %s is empty", pathname);
-		}
-	}
-	return;
-}
+				{ 
+					scanuntil (& scan, "\""); 
+					makepath (find.fullname, find.pathname, tokentext (& scan)); 
+					relate (pathname, find.fullname, flags); 
+				} 
+				continue; 
+			} 
+		} 
+		fclose (ifp); 
+		if (! line) 
+		{ 
+			error (0, 0, "file %s is empty", pathname); 
+		} 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -243,77 +243,77 @@ void function (char const * pathname, char * buffer, size_t length, flag_t flags
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"csnf",
-		PUTOPTV_S_FUNNEL,
-		"list supporting c language include files on stdout",
-		"c\tcustom files",
-		"s\tsystem files",
-		"n\tneed summary ",
-		"f\tfeed summary ",
-		(char const *) (0)
-	};
-	char buffer [TEXTLINE_MAX];
-	size_t length = TEXTLINE_MAX;
-	flag_t flags = DEP_B_SYSTEM;
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"csnf", 
+		PUTOPTV_S_FUNNEL, 
+		"list supporting c language include files on stdout", 
+		"c\tcustom files", 
+		"s\tsystem files", 
+		"n\tneed summary ", 
+		"f\tfeed summary ", 
+		(char const * ) (0)
+	}; 
+	char buffer [TEXTLINE_MAX]; 
+	size_t length = TEXTLINE_MAX; 
+	flag_t flags = DEP_B_SYSTEM; 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'n':
-			_setbits (flags, DEP_B_REPORT);
-			_clrbits (flags, DEP_B_INVERT);
-			break;
-		case 'f':
-			_setbits (flags, DEP_B_REPORT);
-			_setbits (flags, DEP_B_INVERT);
-			break;
-		case 's':
-			_setbits (flags, DEP_B_SYSTEM);
-			_clrbits (flags, DEP_B_CUSTOM);
-			break;
-		case 'c':
-			_clrbits (flags, DEP_B_SYSTEM);
-			_setbits (flags, DEP_B_CUSTOM);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		error (1, 0, "nothing to analyse");
-	}
+		{ 
+		case 'n': 
+			_setbits (flags, DEP_B_REPORT); 
+			_clrbits (flags, DEP_B_INVERT); 
+			break; 
+		case 'f': 
+			_setbits (flags, DEP_B_REPORT); 
+			_setbits (flags, DEP_B_INVERT); 
+			break; 
+		case 's': 
+			_setbits (flags, DEP_B_SYSTEM); 
+			_clrbits (flags, DEP_B_CUSTOM); 
+			break; 
+		case 'c': 
+			_clrbits (flags, DEP_B_SYSTEM); 
+			_setbits (flags, DEP_B_CUSTOM); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		error (1, 0, "nothing to analyse"); 
+	} 
 	while ((argc) && (* argv)) 
-	{
-		makepath (buffer, getenv ("PWD"), * argv);
-		nodetree = storenode (nodetree, (TREE *) (0), buffer, (void *) (0), strcmp);
-		argc--;
-		argv++;
-	}
+	{ 
+		makepath (buffer, getenv ("PWD"), * argv); 
+		nodetree = storenode (nodetree, (TREE * ) (0), buffer, (void * ) (0), strcmp); 
+		argc-- ; 
+		argv++ ; 
+	} 
 	if (nodelist) 
-	{
-		LINK * nodeitem = nodelist;
+	{ 
+		LINK * nodeitem = nodelist; 
 		do 
-		{
-			nodeitem = nodeitem->next;
-			function (nodeitem->name, buffer, length, flags);
-		}
-		while (nodeitem != nodelist);
-	}
+		{ 
+			nodeitem = nodeitem->next; 
+			function (nodeitem->name, buffer, length, flags); 
+		} 
+		while (nodeitem != nodelist); 
+	} 
 	if (_anyset (flags, DEP_B_REPORT)) 
-	{
-		structure (pathtree);
-	}
+	{ 
+		structure (pathtree); 
+	} 
 	else 
-	{
-		enumerate (nodetree);
-	}
-	exit (0);
-}
+	{ 
+		enumerate (nodetree); 
+	} 
+	exit (0); 
+} 
 

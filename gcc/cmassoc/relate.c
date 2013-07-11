@@ -53,8 +53,8 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-extern TREE * nodetree;
-static TREE * edgetree = (TREE *) (0);
+extern TREE * nodetree; 
+static TREE * edgetree = (TREE * ) (0); 
 
 /*====================================================================*
  *
@@ -70,66 +70,66 @@ static TREE * edgetree = (TREE *) (0);
 
 static void populate (flag_t flags) 
 
-{
-	char one [TEXTLINE_MAX];
-	char two [TEXTLINE_MAX];
-	signed c = getc (stdin);
+{ 
+	char one [TEXTLINE_MAX]; 
+	char two [TEXTLINE_MAX]; 
+	signed c = getc (stdin); 
 	while (c != EOF) 
-	{
-		char * sp;
+	{ 
+		char * sp; 
 		while (isspace (c)) 
-		{
-			c = getc (stdin);
-		}
-		sp = one;
+		{ 
+			c = getc (stdin); 
+		} 
+		sp = one; 
 		while (nobreak (c) && (c != ',') && (c != ':') && (c != ';')) 
-		{
-			* sp++ = (char) (c);
-			c = getc (stdin);
-		}
-		* sp = (char) (0);
+		{ 
+			* sp++ = (char) (c); 
+			c = getc (stdin); 
+		} 
+		* sp = (char) (0); 
 		while (isblank (c)) 
-		{
-			c = getc (stdin);
-		}
+		{ 
+			c = getc (stdin); 
+		} 
 		if ((c == ',') || (c == ':')) 
-		{
-			c = getc (stdin);
-		}
+		{ 
+			c = getc (stdin); 
+		} 
 		while (isblank (c)) 
-		{
-			c = getc (stdin);
-		}
-		sp = two;
+		{ 
+			c = getc (stdin); 
+		} 
+		sp = two; 
 		while (nobreak (c) && (c != ';')) 
-		{
-			* sp++ = (char) (c);
-			c = getc (stdin);
-		}
-		* sp = (char) (0);
+		{ 
+			* sp++ = (char) (c); 
+			c = getc (stdin); 
+		} 
+		* sp = (char) (0); 
 		while (isblank (c)) 
-		{
-			c = getc (stdin);
-		}
+		{ 
+			c = getc (stdin); 
+		} 
 		if (c == ';') 
-		{
-			c = getc (stdin);
-		}
+		{ 
+			c = getc (stdin); 
+		} 
 		while (isspace (c)) 
-		{
-			c = getc (stdin);
-		}
+		{ 
+			c = getc (stdin); 
+		} 
 		if (_anyset (flags, DEP_B_INVERT)) 
-		{
-			edgetree = ordernode (edgetree, two, one, strcmp);
-		}
+		{ 
+			edgetree = ordernode (edgetree, two, one, strcmp); 
+		} 
 		else 
-		{
-			edgetree = ordernode (edgetree, one, two, strcmp);
-		}
-	}
-	return;
-}
+		{ 
+			edgetree = ordernode (edgetree, one, two, strcmp); 
+		} 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -144,57 +144,57 @@ static void populate (flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"nf",
-		PUTOPTV_S_FUNNEL,
-		"organize dependency information",
-		"n\tneed summary ",
-		"f\tfeed summary ",
-		(char const *) (0)
-	};
-	flag_t flags = (flag_t) (0);
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"nf", 
+		PUTOPTV_S_FUNNEL, 
+		"organize dependency information", 
+		"n\tneed summary ", 
+		"f\tfeed summary ", 
+		(char const * ) (0)
+	}; 
+	flag_t flags = (flag_t) (0); 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'n':
-			_setbits (flags, DEP_B_REPORT);
-			_clrbits (flags, DEP_B_INVERT);
-			break;
-		case 'f':
-			_setbits (flags, DEP_B_REPORT);
-			_setbits (flags, DEP_B_INVERT);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		populate (flags);
-	}
+		{ 
+		case 'n': 
+			_setbits (flags, DEP_B_REPORT); 
+			_clrbits (flags, DEP_B_INVERT); 
+			break; 
+		case 'f': 
+			_setbits (flags, DEP_B_REPORT); 
+			_setbits (flags, DEP_B_INVERT); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		populate (flags); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (efreopen (* argv, "rb", stdin)) 
-		{
-			populate (flags);
-		}
-		argc--;
-		argv++;
-	}
+		{ 
+			populate (flags); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
 	if (_anyset (flags, DEP_B_REPORT)) 
-	{
-		structure (edgetree);
-	}
+	{ 
+		structure (edgetree); 
+	} 
 	else 
-	{
-		enumerate (nodetree);
-	}
-	return (0);
-}
+	{ 
+		enumerate (nodetree); 
+	} 
+	return (0); 
+} 
 

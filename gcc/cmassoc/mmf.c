@@ -129,23 +129,23 @@
 
 static char const * headerfiles [] = 
 
-{
-	"*.h",
-	"*.hpp",
-	(char const *)(0)
-};
+{ 
+	"*.h", 
+	"*.hpp", 
+	(char const * )(0)
+}; 
 
 static char const * sourcefiles [] = 
 
-{
-	"*.c",
-	"*.cpp",
-	(char const *)(0)
-};
+{ 
+	"*.c", 
+	"*.cpp", 
+	(char const * )(0)
+}; 
 
-static char const * mask = "?*";
-static char const * sourcedir = FILE_S_EXTENDER;
-static char const * targetdir = PATH_CMASSOC;
+static char const * mask = "?*"; 
+static char const * sourcedir = FILE_S_EXTENDER; 
+static char const * targetdir = PATH_CMASSOC; 
 
 /*====================================================================*
  *
@@ -160,16 +160,16 @@ static char const * targetdir = PATH_CMASSOC;
 
 static bool member (char const * name, char const * list [], char const * mask) 
 
-{
+{ 
 	if (list) while (* list) 
-	{
-		if (strwcmp (name, * list++, mask)) 
-		{
-			return (true);
-		}
-	}
-	return (false);
-}
+	{ 
+		if (strwcmp (name, * list++ , mask)) 
+		{ 
+			return (true); 
+		} 
+	} 
+	return (false); 
+} 
 
 /*====================================================================*
  *
@@ -183,15 +183,15 @@ static bool member (char const * name, char const * list [], char const * mask)
 
 static void listoutput (LIST * list, char const * target) 
 
-{
-	printf ("%s:", target);
-	for (list->index = list->start; list->index < list->count; list->index++) 
-	{
-		printf (" %s", list->table [list->index]);
-	}
-	printf ("\n");
-	return;
-}
+{ 
+	printf ("%s:", target); 
+	for (list->index = list->start; list->index < list->count; list->index++ ) 
+	{ 
+		printf (" %s", list->table [list->index]); 
+	} 
+	printf ("\n"); 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -205,35 +205,35 @@ static void listoutput (LIST * list, char const * target)
 
 static void compile (char * target, char const * source) 
 
-{
-	LIST list;
-	LIST name;
+{ 
+	LIST list; 
+	LIST name; 
 	char const * paths [] = 
-	{
-		"",
-		(char const *)(0)
-	};
-	listcreate (& list, _LISTSIZE);
-	listappend (& list, source);
+	{ 
+		"", 
+		(char const * )(0)
+	}; 
+	listcreate (& list, _LISTSIZE); 
+	listappend (& list, source); 
 	if (cinclude (& list, paths)) 
-	{
-		error (0, 0, "target %s is missing %d files.", list.table [0], list.error);
-	}
-	listcreate (& name, _LISTSIZE);
-	listappend (& name, filename (source));
-	name.start++;
-	for (list.index = list.start + 1; list.index < list.count; list.index++) 
-	{
-		listinsert (& name, filename (list.table [list.index]));
-	}
-	name.start--;
-	strcpy (target, filename (source));
-	setfiletype (target, ".o");
-	listoutput (& name, target);
-	listdelete (& name);
-	listdelete (& list);
-	return;
-}
+	{ 
+		error (0, 0, "target %s is missing %d files.", list.table [0], list.error); 
+	} 
+	listcreate (& name, _LISTSIZE); 
+	listappend (& name, filename (source)); 
+	name.start++ ; 
+	for (list.index = list.start + 1; list.index < list.count; list.index++ ) 
+	{ 
+		listinsert (& name, filename (list.table [list.index])); 
+	} 
+	name.start-- ; 
+	strcpy (target, filename (source)); 
+	setfiletype (target, ".o"); 
+	listoutput (& name, target); 
+	listdelete (& name); 
+	listdelete (& list); 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -247,34 +247,34 @@ static void compile (char * target, char const * source)
 
 static void include (char * target, char const * source) 
 
-{
-	LIST list;
-	LIST name;
+{ 
+	LIST list; 
+	LIST name; 
 	char const * paths [] = 
-	{
-		"",
-		(char const *)(0)
-	};
-	listcreate (& list, _LISTSIZE);
-	listappend (& list, source);
+	{ 
+		"", 
+		(char const * )(0)
+	}; 
+	listcreate (& list, _LISTSIZE); 
+	listappend (& list, source); 
 	if (cinclude (& list, paths)) 
-	{
-		error (0, 0, "target %s is missing %d files.", list.table [0], list.error);
-	}
+	{ 
+		error (0, 0, "target %s is missing %d files.", list.table [0], list.error); 
+	} 
 	if (list.count > 1) 
-	{
-		listcreate (& name, _LISTSIZE);
-		for (list.index = list.start + 1; list.index < list.count; list.index++) 
-		{
-			listinsert (& name, filename (list.table [list.index]));
-		}
-		strcpy (target, filename (source));
-		listoutput (& name, target);
-		listdelete (& name);
-	}
-	listdelete (& list);
-	return;
-}
+	{ 
+		listcreate (& name, _LISTSIZE); 
+		for (list.index = list.start + 1; list.index < list.count; list.index++ ) 
+		{ 
+			listinsert (& name, filename (list.table [list.index])); 
+		} 
+		strcpy (target, filename (source)); 
+		listoutput (& name, target); 
+		listdelete (& name); 
+	} 
+	listdelete (& list); 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -288,42 +288,42 @@ static void include (char * target, char const * source)
 
 void program_binary (char * target, char const * source, char const * ignore [], char const * mask) 
 
-{
-	LIST list;
-	LIST name;
+{ 
+	LIST list; 
+	LIST name; 
 	char const * paths [] = 
-	{
-		"",
-		(char const *)(0)
-	};
-	listcreate (& list, _LISTSIZE);
-	listappend (& list, source);
+	{ 
+		"", 
+		(char const * )(0)
+	}; 
+	listcreate (& list, _LISTSIZE); 
+	listappend (& list, source); 
 	if (cinclude (& list, paths)) 
-	{
-		error (0, 0, "target %s is missing %d files.", list.table [0], list.error);
-	}
-	listcreate (& name, _LISTSIZE);
-	strcpy (target, filename (source));
-	setfiletype (target, ".o");
-	listappend (& name, target);
-	name.start++;
-	for (list.index = list.start + 1; list.index < list.count; list.index++) 
-	{
-		strcpy (target, filename (list.table [list.index]));
-		if (!member (target, ignore, mask)) 
-		{
-			setfiletype (target, ".o");
-			listinsert (& name, target);
-		}
-	}
-	name.start--;
-	strcpy (target, filename (source));
-	setfiletype (target, "");
-	listoutput (& name, target);
-	listdelete (& name);
-	listdelete (& list);
-	return;
-}
+	{ 
+		error (0, 0, "target %s is missing %d files.", list.table [0], list.error); 
+	} 
+	listcreate (& name, _LISTSIZE); 
+	strcpy (target, filename (source)); 
+	setfiletype (target, ".o"); 
+	listappend (& name, target); 
+	name.start++ ; 
+	for (list.index = list.start + 1; list.index < list.count; list.index++ ) 
+	{ 
+		strcpy (target, filename (list.table [list.index])); 
+		if (! member (target, ignore, mask)) 
+		{ 
+			setfiletype (target, ".o"); 
+			listinsert (& name, target); 
+		} 
+	} 
+	name.start-- ; 
+	strcpy (target, filename (source)); 
+	setfiletype (target, ""); 
+	listoutput (& name, target); 
+	listdelete (& name); 
+	listdelete (& list); 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -337,40 +337,40 @@ void program_binary (char * target, char const * source, char const * ignore [],
 
 void program_object (char * target, char const * source, char const * ignore [], char const * mask) 
 
-{
-	LIST list;
-	LIST name;
+{ 
+	LIST list; 
+	LIST name; 
 	char const * paths [] = 
-	{
-		"",
-		(char const *)(0)
-	};
-	listcreate (& list, _LISTSIZE);
-	listappend (& list, source);
+	{ 
+		"", 
+		(char const * )(0)
+	}; 
+	listcreate (& list, _LISTSIZE); 
+	listappend (& list, source); 
 	if (cinclude (& list, paths)) 
-	{
-		error (0, 0, "target %s is missing %d files.", list.table [0], list.error);
-	}
-	listcreate (& name, _LISTSIZE);
-	strcpy (target, filename (source));
-	listappend (& name, target);
-	name.start++;
-	for (list.index = list.start + 1; list.index < list.count; list.index++) 
-	{
-		strcpy (target, filename (list.table [list.index]));
-		if (!member (target, ignore, mask)) 
-		{
-			listinsert (& name, target);
-		}
-	}
-	name.start--;
-	strcpy (target, filename (source));
-	setfiletype (target, ".o");
-	listoutput (& name, target);
-	listdelete (& name);
-	listdelete (& list);
-	return;
-}
+	{ 
+		error (0, 0, "target %s is missing %d files.", list.table [0], list.error); 
+	} 
+	listcreate (& name, _LISTSIZE); 
+	strcpy (target, filename (source)); 
+	listappend (& name, target); 
+	name.start++ ; 
+	for (list.index = list.start + 1; list.index < list.count; list.index++ ) 
+	{ 
+		strcpy (target, filename (list.table [list.index])); 
+		if (! member (target, ignore, mask)) 
+		{ 
+			listinsert (& name, target); 
+		} 
+	} 
+	name.start-- ; 
+	strcpy (target, filename (source)); 
+	setfiletype (target, ".o"); 
+	listoutput (& name, target); 
+	listdelete (& name); 
+	listdelete (& list); 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -384,29 +384,29 @@ void program_object (char * target, char const * source, char const * ignore [],
 
 void content (char * target, char const * source) 
 
-{
-	LIST list;
+{ 
+	LIST list; 
 	char const * paths [] = 
-	{
-		"",
-		(char const *)(0)
-	};
-	listcreate (& list, _LISTSIZE);
-	listappend (& list, source);
+	{ 
+		"", 
+		(char const * )(0)
+	}; 
+	listcreate (& list, _LISTSIZE); 
+	listappend (& list, source); 
 	if (ccollect (& list, paths)) 
-	{
-		error (0, 0, "target %s is missing %d files.", list.table [0], list.error);
-	}
-	list.start++;
-	listsort (& list);
-	list.start--;
-	for (list.index = list.start; list.index < list.count; list.index++) 
-	{
-		printf ("%s\n", list.table [list.index]);
-	}
-	listdelete (& list);
-	return;
-}
+	{ 
+		error (0, 0, "target %s is missing %d files.", list.table [0], list.error); 
+	} 
+	list.start++ ; 
+	listsort (& list); 
+	list.start-- ; 
+	for (list.index = list.start; list.index < list.count; list.index++ ) 
+	{ 
+		printf ("%s\n", list.table [list.index]); 
+	} 
+	listdelete (& list); 
+	return; 
+} 
 
 /*====================================================================*
  *   main program;
@@ -414,191 +414,191 @@ void content (char * target, char const * source)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"c:ef:imop",
-		"source-file [source-file] ...",
-		"create makefile for c source files",
-		"e\ttargets are program binary files",
-		"f s\tread target files from file (s)",
-		"i\toutput is an inventory",
-		"m\toutput a makefile",
-		"o\ttargets are general object files",
-		"p\ttargets are program object files",
-		(char const *)(0)
-	};
-	flag_t flags = (flag_t) (0);
-	time_t now = time ((time_t *)(0));
-	char string [TEXTLINE_MAX << 1];
-	char target [FILENAME_MAX] = "";
+	{ 
+		"c:ef:imop", 
+		"source-file [source-file] ...", 
+		"create makefile for c source files", 
+		"e\ttargets are program binary files", 
+		"f s\tread target files from file (s)", 
+		"i\toutput is an inventory", 
+		"m\toutput a makefile", 
+		"o\ttargets are general object files", 
+		"p\ttargets are program object files", 
+		(char const * )(0)
+	}; 
+	flag_t flags = (flag_t) (0); 
+	time_t now = time ((time_t * )(0)); 
+	char string [TEXTLINE_MAX << 1]; 
+	char target [FILENAME_MAX] = ""; 
 	char topbar [BARWIDTH_MAX + 1] = 
-	{
+	{ 
 		0
-	};
+	}; 
 	char botbar [BARWIDTH_MAX + 1] = 
-	{
+	{ 
 		0
-	};
-	LIST targets;
-	LIST sources;
-	signed c;
-	memset (topbar, '=', sizeof (topbar) - 1);
-	memset (botbar, '-', sizeof (botbar) - 1);
-	listcreate (& targets, _LISTSIZE);
-	listcreate (& sources, _LISTSIZE);
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	}; 
+	LIST targets; 
+	LIST sources; 
+	signed c; 
+	memset (topbar, '=', sizeof (topbar) - 1); 
+	memset (botbar, '-', sizeof (botbar) - 1); 
+	listcreate (& targets, _LISTSIZE); 
+	listcreate (& sources, _LISTSIZE); 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'f':
-			listload (& targets, optarg, string, sizeof (string));
-			break;
-		case 'i':
-			_setbits (flags, MMF_B_CONTENT);
-			break;
-		case 'm':
-			_setbits (flags, MMF_B_MAKEFILE);
-			break;
-		case 'o':
-			_setbits (flags, MMF_B_GENERIC_OBJECT);
-			break;
-		case 'p':
-			_setbits (flags, MMF_B_PROGRAM_OBJECT);
-			break;
-		case 'e':
-			_setbits (flags, MMF_B_PROGRAM_BINARY);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
+		{ 
+		case 'f': 
+			listload (& targets, optarg, string, sizeof (string)); 
+			break; 
+		case 'i': 
+			_setbits (flags, MMF_B_CONTENT); 
+			break; 
+		case 'm': 
+			_setbits (flags, MMF_B_MAKEFILE); 
+			break; 
+		case 'o': 
+			_setbits (flags, MMF_B_GENERIC_OBJECT); 
+			break; 
+		case 'p': 
+			_setbits (flags, MMF_B_PROGRAM_OBJECT); 
+			break; 
+		case 'e': 
+			_setbits (flags, MMF_B_PROGRAM_BINARY); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
 	while ((argc) && (* argv)) 
-	{
-		listinsert (& targets, * argv);
-		argc--;
-		argv++;
-	}
+	{ 
+		listinsert (& targets, * argv); 
+		argc-- ; 
+		argv++ ; 
+	} 
 	if (_anyset (flags, MMF_B_MAKEFILE)) 
-	{
-		printf ("#!/usr/bin/make -f\n");
-		strftime (string, sizeof (string), "Published %Y by Charles Maier for personal use;", localtime (& now));
-		printf ("# %s\n", string);
+	{ 
+		printf ("#!/usr/bin/make -f\n"); 
+		strftime (string, sizeof (string), "Published %Y by Charles Maier for personal use;", localtime (& now)); 
+		printf ("# %s\n", string); 
 
 #if 1
 
-		printf ("\n# %s\n# symbols;\n# %s\n\n", topbar, botbar);
-		printf ("ARCHIVE=%s\n", MMF_S_ARCHIVE);
-		printf ("PRIVATE=%s\n", MMF_S_PRIVATE);
-		printf ("CONTROL=%s\n", MMF_S_CONTROL);
-		printf ("EXCLUDE=%s\n", MMF_S_EXCLUDE);
-		printf ("PACKAGE=%s\n", MMF_S_PACKAGE);
-		printf ("CC=gcc\n");
-		printf ("INSTALL=install\n");
-		printf ("SRC=%s\n", sourcedir);
-		printf ("BIN=%s\n", targetdir);
-		printf ("CFLAGS=-Wall -DMAKEFILE\n");
-		printf ("LFLAGS=\n");
-		printf ("TRASH=*~ *.o t t.* *.[0-9][0-9][0-9]\n");
-		printf ("TOOLS=");
-		for (targets.index = targets.start; targets.index < targets.count; targets.index++) 
-		{
-			strcpy (target, filename (targets.table [targets.index]));
-			setfiletype (target, "");
-			printf ("%s ", target);
-		}
-		printf ("\n");
+		printf ("\n# %s\n# symbols;\n# %s\n\n", topbar, botbar); 
+		printf ("ARCHIVE=%s\n", MMF_S_ARCHIVE); 
+		printf ("PRIVATE=%s\n", MMF_S_PRIVATE); 
+		printf ("CONTROL=%s\n", MMF_S_CONTROL); 
+		printf ("EXCLUDE=%s\n", MMF_S_EXCLUDE); 
+		printf ("PACKAGE=%s\n", MMF_S_PACKAGE); 
+		printf ("CC=gcc\n"); 
+		printf ("INSTALL=install\n"); 
+		printf ("SRC=%s\n", sourcedir); 
+		printf ("BIN=%s\n", targetdir); 
+		printf ("CFLAGS=-Wall -DMAKEFILE\n"); 
+		printf ("LFLAGS=\n"); 
+		printf ("TRASH=*~ *.o t t.* *.[0-9][0-9][0-9]\n"); 
+		printf ("TOOLS="); 
+		for (targets.index = targets.start; targets.index < targets.count; targets.index++ ) 
+		{ 
+			strcpy (target, filename (targets.table [targets.index])); 
+			setfiletype (target, ""); 
+			printf ("%s ", target); 
+		} 
+		printf ("\n"); 
 
 #endif
 #if 1
 
-		printf ("\n# %s\n# targets;\n# %s\n\n", topbar, botbar);
-		printf (".PHONY: compile library scripts manuals install uninstall archive clean fresh\n");
-		printf ("compile: ${TOOLS}\n");
-		printf ("library:\n#\t${INSTALL} -m 0755 -o root -g root -d ${BIN}\n");
-		printf ("scripts:\n");
-		printf ("manuals:\n");
-		printf ("install: compile\n#\t${INSTALL} -m 0755 -o root -g root -s ${TOOLS} ${BIN}\n");
-		printf ("uninstall:\n#\tcd ${BIN}; rm -f ${TOOLS}\n");
-		printf ("clean:\n\trm -f ${TRASH}\n");
-		printf ("fresh: clean compile\n");
+		printf ("\n# %s\n# targets;\n# %s\n\n", topbar, botbar); 
+		printf (".PHONY: compile library scripts manuals install uninstall archive clean fresh\n"); 
+		printf ("compile: ${TOOLS}\n"); 
+		printf ("library:\n#\t${INSTALL} -m 0755 -o root -g root -d ${BIN}\n"); 
+		printf ("scripts:\n"); 
+		printf ("manuals:\n"); 
+		printf ("install: compile\n#\t${INSTALL} -m 0755 -o root -g root -s ${TOOLS} ${BIN}\n"); 
+		printf ("uninstall:\n#\tcd ${BIN}; rm -f ${TOOLS}\n"); 
+		printf ("clean:\n\trm -f ${TRASH}\n"); 
+		printf ("fresh: clean compile\n"); 
 
 #endif
 #if 1
 
-		printf ("\n# %s\n# objects;\n# %s\n\n", topbar, botbar);
-		printf ("nightly: clean\n");
-		printf ("\tif [ -d ${ARCHIVE} ]; then tar ${EXCLUDE} -vzcf ${ARCHIVE}/$$(date +%%y%%m%%d-%%H%%M%%S).tar.gz  -C .. ${PACKAGE}; fi\n");
-		printf ("\tif [ -d ${PRIVATE} ]; then tar ${EXCLUDE} -vzcf ${PRIVATE}/$$(date +%%y%%m%%d-%%H%%M%%S).tar.gz  -C .. ${PACKAGE}; fi\n");
-		printf ("snapshot: clean\n");
-		printf ("\tif [ -d ${ARCHIVE} ]; then tar ${EXCLUDE} -vzcf ${ARCHIVE}/$$(stamp).tar.gz  -C .. ${PACKAGE}; fi\n");
-		printf ("\tif [ -d ${PRIVATE} ]; then tar ${EXCLUDE} -vzcf ${PRIVATE}/$$(stamp).tar.gz  -C .. ${PACKAGE}; fi\n");
-		printf ("archive: clean\n");
-		printf ("\tif [ -d ${ARCHIVE} ]; then tar ${EXCLUDE} -vjcf ${ARCHIVE}/${PACKAGE}.tar.bz2 -C .. ${PACKAGE}; fi\n");
-		printf ("\tif [ -d ${ARCHIVE} ]; then tar ${EXCLUDE} -vzcf ${ARCHIVE}/${PACKAGE}.tar.gz  -C .. ${PACKAGE}; fi \n");
-		printf ("private: clean\n");
-		printf ("\tif [ -d ${PRIVATE} ]; then tar ${EXCLUDE} -vjcf ${PRIVATE}/${PACKAGE}.tar.bz2 -C .. ${PACKAGE}; fi\n");
-		printf ("\tif [ -d ${PRIVATE} ]; then tar ${EXCLUDE} -vzcf ${PRIVATE}/${PACKAGE}.tar.gz  -C .. ${PACKAGE}; fi\n");
-		printf ("control:\n");
-		printf ("\tif [ -d ${CONTROL} ]; then tar ${EXCLUDE} -vjcf ${CONTROL}/${PACKAGE}.tar.bz2 -C .. ${PACKAGE}; fi \n");
-		printf ("\tif [ -d ${CONTROL} ]; then tar ${EXCLUDE} -vzcf ${CONTROL}/${PACKAGE}.tar.gz  -C .. ${PACKAGE}; fi\n");
+		printf ("\n# %s\n# objects;\n# %s\n\n", topbar, botbar); 
+		printf ("nightly: clean\n"); 
+		printf ("\tif [ -d ${ARCHIVE} ]; then tar ${EXCLUDE} -vzcf ${ARCHIVE}/$$(date +%%y%%m%%d-%%H%%M%%S).tar.gz  -C .. ${PACKAGE}; fi\n"); 
+		printf ("\tif [ -d ${PRIVATE} ]; then tar ${EXCLUDE} -vzcf ${PRIVATE}/$$(date +%%y%%m%%d-%%H%%M%%S).tar.gz  -C .. ${PACKAGE}; fi\n"); 
+		printf ("snapshot: clean\n"); 
+		printf ("\tif [ -d ${ARCHIVE} ]; then tar ${EXCLUDE} -vzcf ${ARCHIVE}/$$(stamp).tar.gz  -C .. ${PACKAGE}; fi\n"); 
+		printf ("\tif [ -d ${PRIVATE} ]; then tar ${EXCLUDE} -vzcf ${PRIVATE}/$$(stamp).tar.gz  -C .. ${PACKAGE}; fi\n"); 
+		printf ("archive: clean\n"); 
+		printf ("\tif [ -d ${ARCHIVE} ]; then tar ${EXCLUDE} -vjcf ${ARCHIVE}/${PACKAGE}.tar.bz2 -C .. ${PACKAGE}; fi\n"); 
+		printf ("\tif [ -d ${ARCHIVE} ]; then tar ${EXCLUDE} -vzcf ${ARCHIVE}/${PACKAGE}.tar.gz  -C .. ${PACKAGE}; fi \n"); 
+		printf ("private: clean\n"); 
+		printf ("\tif [ -d ${PRIVATE} ]; then tar ${EXCLUDE} -vjcf ${PRIVATE}/${PACKAGE}.tar.bz2 -C .. ${PACKAGE}; fi\n"); 
+		printf ("\tif [ -d ${PRIVATE} ]; then tar ${EXCLUDE} -vzcf ${PRIVATE}/${PACKAGE}.tar.gz  -C .. ${PACKAGE}; fi\n"); 
+		printf ("control:\n"); 
+		printf ("\tif [ -d ${CONTROL} ]; then tar ${EXCLUDE} -vjcf ${CONTROL}/${PACKAGE}.tar.bz2 -C .. ${PACKAGE}; fi \n"); 
+		printf ("\tif [ -d ${CONTROL} ]; then tar ${EXCLUDE} -vzcf ${CONTROL}/${PACKAGE}.tar.gz  -C .. ${PACKAGE}; fi\n"); 
 
 #endif
 #if 1
 
-		printf ("\n# %s\n# objects;\n# %s\n\n", topbar, botbar);
-		printf ("%%.c: %%.o:\n\t${CC} -c ${<} ${CFLAGS}\n");
-		printf ("%%.o:\n\t${CC} -o ${@} ${^} ${LFLAGS}\n");
-		printf ("\n");
+		printf ("\n# %s\n# objects;\n# %s\n\n", topbar, botbar); 
+		printf ("%%.c: %%.o:\n\t${CC} -c ${<} ${CFLAGS}\n"); 
+		printf ("%%.o:\n\t${CC} -o ${@} ${^} ${LFLAGS}\n"); 
+		printf ("\n"); 
 
 #endif
 
-	}
+	} 
 	else if (_anyset (flags, MMF_B_PROGRAM_BINARY)) 
-	{
-		for (targets.index = targets.start; targets.index < targets.count; targets.index++) 
-		{
-			program_binary (target, targets.table [targets.index], headerfiles, mask);
-		}
-	}
+	{ 
+		for (targets.index = targets.start; targets.index < targets.count; targets.index++ ) 
+		{ 
+			program_binary (target, targets.table [targets.index], headerfiles, mask); 
+		} 
+	} 
 	else if (_anyset (flags, MMF_B_PROGRAM_OBJECT)) 
-	{
-		for (targets.index = targets.start; targets.index < targets.count; targets.index++) 
-		{
-			program_object (target, targets.table [targets.index], sourcefiles, mask);
-		}
-	}
+	{ 
+		for (targets.index = targets.start; targets.index < targets.count; targets.index++ ) 
+		{ 
+			program_object (target, targets.table [targets.index], sourcefiles, mask); 
+		} 
+	} 
 	else if (_anyset (flags, MMF_B_GENERIC_OBJECT)) 
-	{
-		for (targets.index = targets.start; targets.index < targets.count; targets.index++) 
-		{
-			char const * source = targets.table [targets.index];
+	{ 
+		for (targets.index = targets.start; targets.index < targets.count; targets.index++ ) 
+		{ 
+			char const * source = targets.table [targets.index]; 
 			if (member (source, sourcefiles, mask)) 
-			{
-				compile (target, source);
-				continue;
-			}
+			{ 
+				compile (target, source); 
+				continue; 
+			} 
 			if (member (source, headerfiles, mask)) 
-			{
-				include (target, source);
-				continue;
-			}
-			error (0, EINVAL, "%s", source);
-		}
-	}
+			{ 
+				include (target, source); 
+				continue; 
+			} 
+			error (0, EINVAL, "%s", source); 
+		} 
+	} 
 	else if (_anyset (flags, MMF_B_CONTENT)) 
-	{
-		for (targets.index = targets.start; targets.index < targets.count; targets.index++) 
-		{
-			content (target, targets.table [targets.index]);
-		}
-	}
-	printf ("\n");
-	listdelete (& targets);
-	listdelete (& sources);
-	fchmod (STDOUT_FILENO, MMF_B_FILEMODE);
-	exit (0);
-}
+	{ 
+		for (targets.index = targets.start; targets.index < targets.count; targets.index++ ) 
+		{ 
+			content (target, targets.table [targets.index]); 
+		} 
+	} 
+	printf ("\n"); 
+	listdelete (& targets); 
+	listdelete (& sources); 
+	fchmod (STDOUT_FILENO, MMF_B_FILEMODE); 
+	exit (0); 
+} 
 

@@ -45,73 +45,73 @@
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"o:n:v",
-		"file [file] [...]",
-		"replace file extension",
-		"o s\told file extension is (s)",
-		"n s\tnew file extension is (s)",
-		"v\tverbose messages ",
-		(char const *) (0)
-	};
-	char const * old = "";
-	char const * new = "";
-	char file [FILENAME_MAX];
-	char * sp;
-	char * cp;
-	flag_t flags = (flag_t) (0);
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"o:n:v", 
+		"file [file] [...]", 
+		"replace file extension", 
+		"o s\told file extension is (s)", 
+		"n s\tnew file extension is (s)", 
+		"v\tverbose messages ", 
+		(char const * ) (0)
+	}; 
+	char const * old = ""; 
+	char const * new = ""; 
+	char file [FILENAME_MAX]; 
+	char * sp; 
+	char * cp; 
+	flag_t flags = (flag_t) (0); 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'o':
-			old = optarg;
-			break;
-		case 'n':
-			new = optarg;
-			break;
-		case 'v':
-			_setbits (flags, RETYPE_EVENT);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
+		{ 
+		case 'o': 
+			old = optarg; 
+			break; 
+		case 'n': 
+			new = optarg; 
+			break; 
+		case 'v': 
+			_setbits (flags, RETYPE_EVENT); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
 	while ((argc) && (* argv)) 
-	{
-		for (cp = sp = strcpy (file, * argv); * sp; sp++) 
-		{
+	{ 
+		for (cp = sp = strcpy (file, * argv); * sp; sp++ ) 
+		{ 
 			if (* sp == FILE_C_EXTENDER) 
-			{
-				cp = sp;
-			}
-		}
+			{ 
+				cp = sp; 
+			} 
+		} 
 		if (cp > file) 
-		{
-			if (!strcmp (cp, old)) 
-			{
-				strcpy (cp, new);
-			}
-		}
+		{ 
+			if (! strcmp (cp, old)) 
+			{ 
+				strcpy (cp, new); 
+			} 
+		} 
 		if (strcmp (* argv, file)) 
-		{
+		{ 
 			if (rename (* argv, file)) 
-			{
-				error (0, errno, "can't rename %s to %s", * argv, file);
-			}
+			{ 
+				error (0, errno, "can't rename %s to %s", * argv, file); 
+			} 
 			else if (_anyset (flags, RETYPE_EVENT)) 
-			{
-				error (0, 0, "%s <-- %s", file, * argv);
-			}
-		}
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+			{ 
+				error (0, 0, "%s <-- %s", file, * argv); 
+			} 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

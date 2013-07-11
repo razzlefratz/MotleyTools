@@ -64,71 +64,71 @@
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"c:d:s:",
-		"file [file] [...]",
-		"display files sizes",
-		"d n\tdisplay (n) digits [" LITERAL (DIGIT) "]",
-		"s n\tscale size by (n) [" LITERAL (SCALE) "]",
-		"c n\tdisplay (n) characters [" LITERAL (SCALE) "]",
-		(char const *) (0)
-	};
-	struct stat statinfo;
-	signed width = WIDTH;
-	signed digit = DIGIT;
-	signed scale = SCALE;
-	off_t value;
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"c:d:s:", 
+		"file [file] [...]", 
+		"display files sizes", 
+		"d n\tdisplay (n) digits [" LITERAL (DIGIT) "]", 
+		"s n\tscale size by (n) [" LITERAL (SCALE) "]", 
+		"c n\tdisplay (n) characters [" LITERAL (SCALE) "]", 
+		(char const * ) (0)
+	}; 
+	struct stat statinfo; 
+	signed width = WIDTH; 
+	signed digit = DIGIT; 
+	signed scale = SCALE; 
+	off_t value; 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'c':
-			width = uintspec (optarg, 1, WIDTH_MAX);
-			break;
-		case 'd':
-			digit = uintspec (optarg, 1, DIGIT_MAX);
-			break;
-		case 's':
-			scale = uintspec (optarg, 1, SCALE_MAX);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
+		{ 
+		case 'c': 
+			width = uintspec (optarg, 1, WIDTH_MAX); 
+			break; 
+		case 'd': 
+			digit = uintspec (optarg, 1, DIGIT_MAX); 
+			break; 
+		case 's': 
+			scale = uintspec (optarg, 1, SCALE_MAX); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (lstat (* argv, & statinfo)) 
-		{
-			error (0, errno, "Can't stat %s", * argv);
-		}
+		{ 
+			error (0, errno, "Can't stat %s", * argv); 
+		} 
 		else 
-		{
-			printf ("%*.*s ", width, width, * argv);
+		{ 
+			printf ("%*.*s ", width, width, * argv); 
 
 #ifdef __APPLE__
 
-			printf ("%*llu ", digit, statinfo.st_size);
+			printf ("%*llu ", digit, statinfo.st_size); 
 
 #else
 
-			printf ("%*lu ", digit, statinfo.st_size);
+			printf ("%*lu ", digit, statinfo.st_size); 
 
 #endif
 
 			for (value = statinfo.st_size; value > (scale >> 1); value -= scale) 
-			{
-				putc ('#', stdout);
-			}
-			putc ('\n', stdout);
-		}
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+			{ 
+				putc ('#', stdout); 
+			} 
+			putc ('\n', stdout); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

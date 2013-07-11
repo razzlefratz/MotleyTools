@@ -70,22 +70,22 @@
 
 void csstree (struct node const * node) 
 
-{
+{ 
 	if (node) 
-	{
-		node = node->below;
-	}
+	{ 
+		node = node->below; 
+	} 
 	while ((node) && (node->type == NODE_ATTR)) 
-	{
-		if (!strcmp (node->text, "class")) 
-		{
-			printf ("%s.%s { }\n", node->above->text, node->below->text);
-		}
-		csstree (node);
-		node = node->after;
-	}
-	return;
-}
+	{ 
+		if (! strcmp (node->text, "class")) 
+		{ 
+			printf ("%s.%s { }\n", node->above->text, node->below->text); 
+		} 
+		csstree (node); 
+		node = node->after; 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -101,57 +101,57 @@ void csstree (struct node const * node)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"cdst",
-		PUTOPTV_S_FUNNEL,
-		"enumerate html/xhtml/xml document fragments",
-		"c\tprint CSS stylesheet on stdout",
-		"d\tprint document as text",
-		"s\tprint document as stream",
-		"t\tprint document as tree",
-		(char const *)(0)
-	};
-	struct node node;
-	void (* xmldump) (struct node const *) = xmlindent;
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"cdst", 
+		PUTOPTV_S_FUNNEL, 
+		"enumerate html/xhtml/xml document fragments", 
+		"c\tprint CSS stylesheet on stdout", 
+		"d\tprint document as text", 
+		"s\tprint document as stream", 
+		"t\tprint document as tree", 
+		(char const * )(0)
+	}; 
+	struct node node; 
+	void (* xmldump) (struct node const * ) = xmlindent; 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'c':
-			xmldump = csstree;
-			break;
-		case 'd':
-			xmldump = xmlindent;
-			break;
-		case 's':
-			xmldump = xmlstream;
-			break;
-		case 't':
-			xmldump = xmltree;
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		error (1, ENOTSUP, "No filenames given!");
-	}
+		{ 
+		case 'c': 
+			xmldump = csstree; 
+			break; 
+		case 'd': 
+			xmldump = xmlindent; 
+			break; 
+		case 's': 
+			xmldump = xmlstream; 
+			break; 
+		case 't': 
+			xmldump = xmltree; 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		error (1, ENOTSUP, "No filenames given!"); 
+	} 
 	while ((argc) && (* argv)) 
-	{
-		xmlread (& node, * argv);
-		xmlscan (& node);
-		reorder (& node);
-		xmldump (& node);
-		xmlfree (& node);
-		argc--;
-		argv++;
-	}
-	return (0);
-}
+	{ 
+		xmlread (& node, * argv); 
+		xmlscan (& node); 
+		reorder (& node); 
+		xmldump (& node); 
+		xmlfree (& node); 
+		argc-- ; 
+		argv++ ; 
+	} 
+	return (0); 
+} 
 

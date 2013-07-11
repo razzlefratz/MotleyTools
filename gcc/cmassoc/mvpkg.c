@@ -64,21 +64,21 @@
 
 static void myrename (char const * thisfile, char const * thatfile, flag_t flags) 
 
-{
+{ 
 	if (flags & (FIND_B_TESTRUN)) 
-	{
-		error (0, 0, "mv %s %s\n", thisfile, thatfile);
-	}
+	{ 
+		error (0, 0, "mv %s %s\n", thisfile, thatfile); 
+	} 
 	else if (rename (thisfile, thatfile)) 
-	{
-		error (0, errno, "can't move %s to %s", thisfile, thatfile);
-	}
+	{ 
+		error (0, errno, "can't move %s to %s", thisfile, thatfile); 
+	} 
 	else if (flags & (FIND_B_VERBOSE)) 
-	{
-		error (0, 0, "mv %s to %s", thisfile, thatfile);
-	}
-	return;
-}
+	{ 
+		error (0, 0, "mv %s to %s", thisfile, thatfile); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -92,21 +92,21 @@ static void myrename (char const * thisfile, char const * thatfile, flag_t flags
 
 static void myremove (char const * thisfile, flag_t flags) 
 
-{
+{ 
 	if (flags & (FIND_B_TESTRUN)) 
-	{
-		error (0, 0, "rm %s\n", thisfile);
-	}
+	{ 
+		error (0, 0, "rm %s\n", thisfile); 
+	} 
 	else if (remove (thisfile)) 
-	{
-		error (0, errno, "can't remove %s", thisfile);
-	}
+	{ 
+		error (0, errno, "can't remove %s", thisfile); 
+	} 
 	else if (flags & (FIND_B_VERBOSE)) 
-	{
-		error (0, errno, "rm %s", thisfile);
-	}
-	return;
-}
+	{ 
+		error (0, errno, "rm %s", thisfile); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -120,71 +120,71 @@ static void myremove (char const * thisfile, flag_t flags)
 
 static void findfile (char thispathname [], char thatpathname [], flag_t flags) 
 
-{
-	DIR * thisdir;
-	DIR * thatdir;
-	struct dirent * thisdirent;
-	struct dirent * thatdirent;
-	struct stat thisstatinfo;
-	struct stat thatstatinfo;
-	char * thisfilename;
-	char * thatfilename;
-	if ((thisdir = opendir (thispathname)) == (DIR *) (0)) 
-	{
-		error (0, errno, "%s", thispathname);
-		return;
-	}
-	for (thisfilename = thispathname; * thisfilename != (char) (0); thisfilename++);
-	* thisfilename = PATH_C_EXTENDER;
-	while ((thisdirent = readdir (thisdir)) != (struct dirent *) (0)) 
-	{
-		strcpy (thisfilename + 1, thisdirent->d_name);
+{ 
+	DIR * thisdir; 
+	DIR * thatdir; 
+	struct dirent * thisdirent; 
+	struct dirent * thatdirent; 
+	struct stat thisstatinfo; 
+	struct stat thatstatinfo; 
+	char * thisfilename; 
+	char * thatfilename; 
+	if ((thisdir = opendir (thispathname)) == (DIR * ) (0)) 
+	{ 
+		error (0, errno, "%s", thispathname); 
+		return; 
+	} 
+	for (thisfilename = thispathname; * thisfilename != (char) (0); thisfilename++ ); 
+	* thisfilename = PATH_C_EXTENDER; 
+	while ((thisdirent = readdir (thisdir)) != (struct dirent * ) (0)) 
+	{ 
+		strcpy (thisfilename + 1, thisdirent->d_name); 
 		if (lstat (thispathname, & thisstatinfo)) 
-		{
-			error (0, errno, "can't stat %s", thispathname);
-		}
+		{ 
+			error (0, errno, "can't stat %s", thispathname); 
+		} 
 		else if (S_ISREG (thisstatinfo.st_mode)) 
-		{
-			if ((thatdir = opendir (thatpathname)) == (DIR *) (0)) 
-			{
-				error (0, errno, "%s", thatpathname);
-				continue;
-			}
-			for (thatfilename = thatpathname; * thatfilename != (char) (0); thatfilename++);
-			* thatfilename = PATH_C_EXTENDER;
-			while ((thatdirent = readdir (thatdir)) != (struct dirent *) (0)) 
-			{
-				strcpy (thatfilename + 1, thatdirent->d_name);
+		{ 
+			if ((thatdir = opendir (thatpathname)) == (DIR * ) (0)) 
+			{ 
+				error (0, errno, "%s", thatpathname); 
+				continue; 
+			} 
+			for (thatfilename = thatpathname; * thatfilename != (char) (0); thatfilename++ ); 
+			* thatfilename = PATH_C_EXTENDER; 
+			while ((thatdirent = readdir (thatdir)) != (struct dirent * ) (0)) 
+			{ 
+				strcpy (thatfilename + 1, thatdirent->d_name); 
 				if (lstat (thatpathname, & thatstatinfo)) 
-				{
-					error (0, errno, "can't stat %s", thatpathname);
-				}
+				{ 
+					error (0, errno, "can't stat %s", thatpathname); 
+				} 
 				else if (S_ISDIR (thatstatinfo.st_mode)) 
-				{
-					continue;
-				}
+				{ 
+					continue; 
+				} 
 				else if (S_ISREG (thatstatinfo.st_mode)) 
-				{
-					int order = strpkgcmp (thisfilename, thatfilename, FILE_C_EXTENDER);
+				{ 
+					int order = strpkgcmp (thisfilename, thatfilename, FILE_C_EXTENDER); 
 					if (order > 0) 
-					{
-						strcpy (thatfilename + 1, thisdirent->d_name);
-						myrename (thispathname, thatpathname, flags);
-					}
+					{ 
+						strcpy (thatfilename + 1, thisdirent->d_name); 
+						myrename (thispathname, thatpathname, flags); 
+					} 
 					if (order == 0) 
-					{
-						myremove (thispathname, flags);
-					}
-				}
-			}
-			* thatfilename = (char) (0);
-			closedir (thatdir);
-		}
-	}
-	thisfilename = (char) (0);
-	closedir (thisdir);
-	return;
-}
+					{ 
+						myremove (thispathname, flags); 
+					} 
+				} 
+			} 
+			* thatfilename = (char) (0); 
+			closedir (thatdir); 
+		} 
+	} 
+	thisfilename = (char) (0); 
+	closedir (thisdir); 
+	return; 
+} 
 
 /*====================================================================*
  *   main program;
@@ -192,49 +192,49 @@ static void findfile (char thispathname [], char thatpathname [], flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"cvh",
-		"sourcepath targetpath [targetpath] ... [> stdout]",
-		"move like packages from current folder to a target folder.",
-		"c\treport but do not remove anything",
-		"v\tverbose messages",
-		(char const *) (0)
-	};
-	char thispath [FILENAME_MAX];
-	char thatpath [FILENAME_MAX];
-	flag_t flags = (flag_t) (0);
-	int c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"cvh", 
+		"sourcepath targetpath [targetpath] ... [> stdout]", 
+		"move like packages from current folder to a target folder.", 
+		"c\treport but do not remove anything", 
+		"v\tverbose messages", 
+		(char const * ) (0)
+	}; 
+	char thispath [FILENAME_MAX]; 
+	char thatpath [FILENAME_MAX]; 
+	flag_t flags = (flag_t) (0); 
+	int c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'c':
-			_setbits (flags, FIND_B_TESTRUN);
-			break;
-		case 'v':
-			_setbits (flags, FIND_B_VERBOSE);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
+		{ 
+		case 'c': 
+			_setbits (flags, FIND_B_TESTRUN); 
+			break; 
+		case 'v': 
+			_setbits (flags, FIND_B_VERBOSE); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
 	if (argc) 
-	{
-		strcpy (thispath, * argv);
-		argc--;
-		argv++;
-	}
+	{ 
+		strcpy (thispath, * argv); 
+		argc-- ; 
+		argv++ ; 
+	} 
 	while ((argc) && (* argv)) 
-	{
-		strcpy (thatpath, * argv);
-		findfile (thispath, thatpath, flags);
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+	{ 
+		strcpy (thatpath, * argv); 
+		findfile (thispath, thatpath, flags); 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

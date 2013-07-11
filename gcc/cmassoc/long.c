@@ -61,31 +61,31 @@
  *
  *--------------------------------------------------------------------*/
 
-signed noescape (signed c)
+signed noescape (signed c) 
 
-{
+{ 
 	while (c != EOF) 
-	{
-		if (c == '/')
-		{
-			c = comment (c);
-			continue;
-		}
-		if (isquote (c))
-		{
-			c = literal (c);
-			continue;
-		}
-		if (c == '#')
-		{
-			c = control (c, '\n');
-			continue;
-		}
-		c = span (c);
-		c = keep (c);
-	}
-	return (c);
-}
+	{ 
+		if (c == '/') 
+		{ 
+			c = comment (c); 
+			continue; 
+		} 
+		if (isquote (c)) 
+		{ 
+			c = literal (c); 
+			continue; 
+		} 
+		if (c == '#') 
+		{ 
+			c = control (c, '\n'); 
+			continue; 
+		} 
+		c = span (c); 
+		c = keep (c); 
+	} 
+	return (c); 
+} 
 
 /*====================================================================*
  *   main program;
@@ -93,39 +93,39 @@ signed noescape (signed c)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"",
-		PUTOPTV_S_FILTER,
-		"convert escaped newlines to form long lines;",
-		(char const *) (0)
-	};
-	signed (* function) (signed) = noescape;
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"", 
+		PUTOPTV_S_FILTER, 
+		"convert escaped newlines to form long lines;", 
+		(char const * ) (0)
+	}; 
+	signed (* function) (signed) = noescape; 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		function (getc (stdin));
-	}
+		{ 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		function (getc (stdin)); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (vfopen (* argv)) 
-		{
-			function (getc (stdin));
-		}
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+		{ 
+			function (getc (stdin)); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

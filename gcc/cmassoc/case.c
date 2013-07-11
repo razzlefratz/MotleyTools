@@ -75,7 +75,7 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-unsigned lineno = 0;
+unsigned lineno = 0; 
 
 /*====================================================================*
  *
@@ -108,54 +108,54 @@ unsigned lineno = 0;
 
 void function (signed c, flag_t flags) 
 
-{
+{ 
 	while (c != EOF) 
-	{
+	{ 
 		if (isalpha (c)) 
-		{
+		{ 
 			if (_anyset (flags, CASE_B_UPPER)) 
-			{
+			{ 
 				do 
-				{
-					c = keep (toupper (c));
-				}
-				while (isalpha (c));
-				continue;
-			}
+				{ 
+					c = keep (toupper (c)); 
+				} 
+				while (isalpha (c)); 
+				continue; 
+			} 
 			if (_anyset (flags, CASE_B_LOWER)) 
-			{
+			{ 
 				do 
-				{
-					c = keep (tolower (c));
-				}
-				while (isalpha (c));
-				continue;
-			}
+				{ 
+					c = keep (tolower (c)); 
+				} 
+				while (isalpha (c)); 
+				continue; 
+			} 
 			if (_anyset (flags, CASE_B_TITLE)) 
-			{
-				c = toupper (c);
-			}
+			{ 
+				c = toupper (c); 
+			} 
 			do 
-			{
-				c = keep (c);
-			}
-			while (isalnum (c));
-			continue;
-		}
+			{ 
+				c = keep (c); 
+			} 
+			while (isalnum (c)); 
+			continue; 
+		} 
 		if ((c == '\"') && _anyset (flags, CASE_B_QUOTE)) 
-		{
-			c = literal (c);
-			continue;
-		}
+		{ 
+			c = literal (c); 
+			continue; 
+		} 
 		if ((c == '\'') && _anyset (flags, CASE_B_APOST)) 
-		{
-			c = literal (c);
-			continue;
-		}
-		c = escaped (c);
-	}
-	return;
-}
+		{ 
+			c = literal (c); 
+			continue; 
+		} 
+		c = escaped (c); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -170,62 +170,62 @@ void function (signed c, flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	char const * optv [] = 
-	{
-		"luxtds",
-		PUTOPTV_S_FILTER,
-		"converts files to upper or lower case",
-		"l\tconvert text to lower case ",
-		"u\tconvert text to upper case ",
-		"t\tconvert text to title case ",
-		"d\texclude double quoted (\") text",
-		"s\texclude single quoted (\') text",
-		(char const *)(0)
-	};
-	flag_t flags = (flag_t) (0);
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"luxtds", 
+		PUTOPTV_S_FILTER, 
+		"converts files to upper or lower case", 
+		"l\tconvert text to lower case ", 
+		"u\tconvert text to upper case ", 
+		"t\tconvert text to title case ", 
+		"d\texclude double quoted (\") text", 
+		"s\texclude single quoted (\') text", 
+		(char const * )(0)
+	}; 
+	flag_t flags = (flag_t) (0); 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'u':
-			_clrbits (flags, CASE_B_LOWER | CASE_B_TITLE);
-			_setbits (flags, CASE_B_UPPER);
-			break;
-		case 'l':
-			_clrbits (flags, CASE_B_UPPER | CASE_B_TITLE);
-			_setbits (flags, CASE_B_LOWER);
-			break;
-		case 't':
-			_clrbits (flags, CASE_B_LOWER | CASE_B_UPPER);
-			_setbits (flags, CASE_B_TITLE);
-			break;
-		case 'd':
-			_setbits (flags, CASE_B_QUOTE);
-			break;
-		case 's':
-			_setbits (flags, CASE_B_APOST);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		function (getc (stdin), flags);
-	}
+		{ 
+		case 'u': 
+			_clrbits (flags, CASE_B_LOWER | CASE_B_TITLE); 
+			_setbits (flags, CASE_B_UPPER); 
+			break; 
+		case 'l': 
+			_clrbits (flags, CASE_B_UPPER | CASE_B_TITLE); 
+			_setbits (flags, CASE_B_LOWER); 
+			break; 
+		case 't': 
+			_clrbits (flags, CASE_B_LOWER | CASE_B_UPPER); 
+			_setbits (flags, CASE_B_TITLE); 
+			break; 
+		case 'd': 
+			_setbits (flags, CASE_B_QUOTE); 
+			break; 
+		case 's': 
+			_setbits (flags, CASE_B_APOST); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		function (getc (stdin), flags); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (vfopen (* argv)) 
-		{
-			function (getc (stdin), flags);
-		}
-		argv++;
-		argc--;
-	}
-	exit (0);
-}
+		{ 
+			function (getc (stdin), flags); 
+		} 
+		argv++ ; 
+		argc-- ; 
+	} 
+	exit (0); 
+} 
 

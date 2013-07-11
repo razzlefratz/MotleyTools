@@ -63,30 +63,30 @@
 
 void function (size_t offset, size_t length, flag_t flags) 
 
-{
-	signed c;
-	while (offset--) 
-	{
+{ 
+	signed c; 
+	while (offset-- ) 
+	{ 
 		if ((c = getc (stdin)) == EOF) 
-		{
-			error (1, errno, "Can't read file");
-		}
-	}
-	while (length--) 
-	{
+		{ 
+			error (1, errno, "Can't read file"); 
+		} 
+	} 
+	while (length-- ) 
+	{ 
 		if ((c = getc (stdin)) == EOF) 
-		{
-			error (1, errno, "Can't read file");
-		}
-		putc (DIGITS_HEX [(c >> 4) & 0x0f], stdout);
-		putc (DIGITS_HEX [(c >> 0) & 0x0f], stdout);
-	}
+		{ 
+			error (1, errno, "Can't read file"); 
+		} 
+		putc (DIGITS_HEX [(c >> 4) & 0x0f], stdout); 
+		putc (DIGITS_HEX [(c >> 0) & 0x0f], stdout); 
+	} 
 	if (_anyset (flags, GRAB_NEWLINE)) 
-	{
-		putc ('\n', stdout);
-	}
-	return;
-}
+	{ 
+		putc ('\n', stdout); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -100,61 +100,61 @@ void function (size_t offset, size_t length, flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"l:no:qv",
-		PUTOPTV_S_FILTER,
-		"byte stream grabber",
-		"l n\tlength to read in bytes",
-		"n\tappend newline on output",
-		"o x\toffset to read in bytes",
-		"q\tquiet mode",
-		"v\tverbose mode",
-		(char const *) (0)
-	};
-	size_t offset = 0;
-	size_t length = 0;
-	flag_t flags = (flag_t)(0);
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"l:no:qv", 
+		PUTOPTV_S_FILTER, 
+		"byte stream grabber", 
+		"l n\tlength to read in bytes", 
+		"n\tappend newline on output", 
+		"o x\toffset to read in bytes", 
+		"q\tquiet mode", 
+		"v\tverbose mode", 
+		(char const * ) (0)
+	}; 
+	size_t offset = 0; 
+	size_t length = 0; 
+	flag_t flags = (flag_t)(0); 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'l':
-			length = (size_t)(basespec (optarg, 10, sizeof (size_t)));
-			break;
-		case 'o':
-			offset = (size_t)(basespec (optarg, 16, sizeof (size_t)));
-			break;
-		case 'n':
-			_setbits (flags, GRAB_NEWLINE);
-			break;
-		case 'q':
-			_setbits (flags, GRAB_SILENCE);
-			break;
-		case 'v':
-			_setbits (flags, GRAB_VERBOSE);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		function (offset, length, flags);
-	}
+		{ 
+		case 'l': 
+			length = (size_t)(basespec (optarg, 10, sizeof (size_t))); 
+			break; 
+		case 'o': 
+			offset = (size_t)(basespec (optarg, 16, sizeof (size_t))); 
+			break; 
+		case 'n': 
+			_setbits (flags, GRAB_NEWLINE); 
+			break; 
+		case 'q': 
+			_setbits (flags, GRAB_SILENCE); 
+			break; 
+		case 'v': 
+			_setbits (flags, GRAB_VERBOSE); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		function (offset, length, flags); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (efreopen (* argv, "rb", stdin)) 
-		{
-			function (offset, length, flags);
-		}
-		argc--;
-		argv++;
-	}
-	return (0);
-}
+		{ 
+			function (offset, length, flags); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	return (0); 
+} 
 

@@ -66,23 +66,23 @@
 
 void function (char const * prefix, char const * suffix, flag_t flags) 
 
-{
-	signed c;
-	signed o = '\n';
+{ 
+	signed c; 
+	signed o = '\n'; 
 	while ((c = getc (stdin)) != EOF) 
-	{
+	{ 
 		if (o == '\n') 
-		{
-			fputs (prefix, stdout);
-		}
+		{ 
+			fputs (prefix, stdout); 
+		} 
 		if (c == '\n') 
-		{
-			fputs (suffix, stdout);
-		}
-		o = putc (c, stdout);
-	}
-	return;
-}
+		{ 
+			fputs (suffix, stdout); 
+		} 
+		o = putc (c, stdout); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *  main program;
@@ -90,49 +90,49 @@ void function (char const * prefix, char const * suffix, flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"p:s:",
-		PUTOPTV_S_FILTER,
-		"prepend/append text to each line of a text file",
-		"p s\tprefix is s",
-		"s s\tsuffix is s",
-		(char const *)(0)
-	};
-	flag_t flags = (flag_t)(0);
-	char * prefix = "";
-	char * suffix = "";
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"p:s:", 
+		PUTOPTV_S_FILTER, 
+		"prepend/append text to each line of a text file", 
+		"p s\tprefix is s", 
+		"s s\tsuffix is s", 
+		(char const * )(0)
+	}; 
+	flag_t flags = (flag_t)(0); 
+	char * prefix = ""; 
+	char * suffix = ""; 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'p':
-			prefix = struesc ((char *) (optarg));
-			break;
-		case 's':
-			suffix = struesc ((char *) (optarg));
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		function (prefix, suffix, flags);
-	}
+		{ 
+		case 'p': 
+			prefix = struesc ((char * ) (optarg)); 
+			break; 
+		case 's': 
+			suffix = struesc ((char * ) (optarg)); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		function (prefix, suffix, flags); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (vfopen (* argv)) 
-		{
-			function (prefix, suffix, flags);
-		}
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+		{ 
+			function (prefix, suffix, flags); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

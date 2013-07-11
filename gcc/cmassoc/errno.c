@@ -123,12 +123,12 @@
 
 int main (int argc, char const * argv []) 
 
-{
-	int error;
-	for (error = 0; error < 255; error++) 
-	{
-		printf ("%03d %s\n", error, strerror (error));
-	}
-	return (0);
-}
+{ 
+	int error; 
+	for (error = 0; error < 255; error++ ) 
+	{ 
+		printf ("%03d %s\n", error, strerror (error)); 
+	} 
+	return (0); 
+} 
 

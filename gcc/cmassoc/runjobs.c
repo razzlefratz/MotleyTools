@@ -86,8 +86,8 @@
  *   program functions;   
  *--------------------------------------------------------------------*/
 
-static void findfile (FIND * script, FIND * shell, flag_t flags);
-static void testfile (FIND * script, FIND * shell, flag_t flags);
+static void findfile (FIND * script, FIND * shell, flag_t flags); 
+static void testfile (FIND * script, FIND * shell, flag_t flags); 
 
 /*====================================================================*
  *
@@ -112,122 +112,122 @@ static void testfile (FIND * script, FIND * shell, flag_t flags);
 
 static signed runscript (FIND * script, FIND * shell, flag_t flags) 
 
-{
-	static char * argv [ARGVSIZE];
-	static int argc = 0;
-	char buffer [BUFSIZ];
-	char * sp = buffer;
-	file_t fd = (file_t) (0);
-	pid_t pid = (pid_t) (0);
+{ 
+	static char * argv [ARGVSIZE]; 
+	static int argc = 0; 
+	char buffer [BUFSIZ]; 
+	char * sp = buffer; 
+	file_t fd = (file_t) (0); 
+	pid_t pid = (pid_t) (0); 
 	if (access (script->fullname, (R_OK | X_OK))) 
-	{
+	{ 
 		if (_anyset (flags, FIND_B_VERBOSE)) 
-		{
-			syslog_error (LOG_ERR, errno, "%s", script->fullname);
-		}
-		return (0);
-	}
-	if ((fd = open (script->fullname, O_RDONLY)) == -1) 
-	{
+		{ 
+			syslog_error (LOG_ERR, errno, "%s", script->fullname); 
+		} 
+		return (0); 
+	} 
+	if ((fd = open (script->fullname, O_RDONLY)) == - 1) 
+	{ 
 		if ((flags & (FIND_B_VERBOSE)) != 0) 
-		{
-			syslog_error (LOG_ERR, errno, "%s", script->fullname);
-		}
-		return (-1);
-	}
+		{ 
+			syslog_error (LOG_ERR, errno, "%s", script->fullname); 
+		} 
+		return (- 1); 
+	} 
 	if ((read (fd, sp, 2) != 2) || (* sp++ != '#') || (* sp++ != '!')) 
-	{
+	{ 
 		if ((flags & (FIND_B_VERBOSE)) != 0) 
-		{
-			syslog (LOG_DEBUG, "Can't execute %s: Bad script header", script->fullname);
-		}
-		close (fd);
-		return (0);
-	}
-	for (sp = buffer; sp < (buffer + sizeof (buffer) - 1); sp++) 
-	{
+		{ 
+			syslog (LOG_DEBUG, "Can't execute %s: Bad script header", script->fullname); 
+		} 
+		close (fd); 
+		return (0); 
+	} 
+	for (sp = buffer; sp < (buffer + sizeof (buffer) - 1); sp++ ) 
+	{ 
 		if ((read (fd, sp, 1) != 1) || isspace (* sp) || iscntrl (* sp)) 
-		{
-			break;
-		}
-	}
-	* sp = (char) (0);
-	close (fd);
+		{ 
+			break; 
+		} 
+	} 
+	* sp = (char) (0); 
+	close (fd); 
 	if (stat (buffer, & script->statinfo)) 
-	{
+	{ 
 		if (_anyset (flags, FIND_B_VERBOSE)) 
-		{
-			syslog_error (LOG_ERR, errno, "%s", script->fullname);
-		}
-		return (-1);
-	}
+		{ 
+			syslog_error (LOG_ERR, errno, "%s", script->fullname); 
+		} 
+		return (- 1); 
+	} 
 	if (access (buffer, X_OK) != 0) 
-	{
+	{ 
 		if (_anyset (flags, FIND_B_VERBOSE)) 
-		{
-			syslog_error (LOG_ERR, errno, "%s", script->fullname);
-		}
-		return (-1);
-	}
+		{ 
+			syslog_error (LOG_ERR, errno, "%s", script->fullname); 
+		} 
+		return (- 1); 
+	} 
 	if (script->statinfo.st_ino != shell->statinfo.st_ino) 
-	{
+	{ 
 		if (_anyset (flags, FIND_B_VERBOSE)) 
-		{
-			syslog (LOG_DEBUG, "Can't execute %s: Wrong command interpreter", script->fullname);
-		}
-		return (-1);
-	}
+		{ 
+			syslog (LOG_DEBUG, "Can't execute %s: Wrong command interpreter", script->fullname); 
+		} 
+		return (- 1); 
+	} 
 	if (_anyset (flags, FIND_B_TESTRUN)) 
-	{
+	{ 
 		if (_anyset (flags, FIND_B_VERBOSE)) 
-		{
-			syslog (LOG_INFO, "Can execute %s", script->fullname);
-		}
-		return (0);
-	}
-	pid = fork ();
+		{ 
+			syslog (LOG_INFO, "Can execute %s", script->fullname); 
+		} 
+		return (0); 
+	} 
+	pid = fork (); 
 	if (pid < (pid_t) (0)) 
-	{
-		syslog_error (LOG_DEBUG, errno, "Can't start %s", shell->fullname);
-		return (1);
-	}
+	{ 
+		syslog_error (LOG_DEBUG, errno, "Can't start %s", shell->fullname); 
+		return (1); 
+	} 
 	if (pid > (pid_t) (0)) 
-	{
-		signed status;
+	{ 
+		signed status; 
 		if (_allclr (flags, FIND_B_SILENCE)) 
-		{
-			syslog (LOG_INFO, "Started %s", script->fullname);
-		}
-		waitpid (pid, & status, 0);
+		{ 
+			syslog (LOG_INFO, "Started %s", script->fullname); 
+		} 
+		waitpid (pid, & status, 0); 
 		if (WIFEXITED (status)) 
-		{
+		{ 
 			if ((status = WEXITSTATUS (status)) != 0) 
-			{
-				syslog (LOG_DEBUG, "Terminated %s with status %d", script->fullname, status);
-				return (1);
-			}
-		}
+			{ 
+				syslog (LOG_DEBUG, "Terminated %s with status %d", script->fullname, status); 
+				return (1); 
+			} 
+		} 
 		if (WIFSIGNALED (status)) 
-		{
+		{ 
 			if ((status = WTERMSIG (status)) != 0) 
-			{
-				syslog (LOG_DEBUG, "Terminated %s with signal %d", script->fullname, status);
-				return (1);
-			}
-		}
+			{ 
+				syslog (LOG_DEBUG, "Terminated %s with signal %d", script->fullname, status); 
+				return (1); 
+			} 
+		} 
 		if (_allclr (flags, FIND_B_SILENCE)) 
-		{
-			syslog (LOG_INFO, "Stopped %s", script->fullname);
-		}
-		return (0);
-	}
-	argv [argc++] = shell->fullname;
-	argv [argc++] = script->fullname;
-	argv [argc++] = (char *) (0);
-	execv (* argv, argv);
-	syslog_error (LOG_DEBUG, errno, "Can't start %s", shell->fullname);
-	exit (1);
-}
+		{ 
+			syslog (LOG_INFO, "Stopped %s", script->fullname); 
+		} 
+		return (0); 
+	} 
+	argv [argc++ ] = shell->fullname; 
+	argv [argc++ ] = script->fullname; 
+	argv [argc++ ] = (char * ) (0); 
+	execv (* argv, argv); 
+	syslog_error (LOG_DEBUG, errno, "Can't start %s", shell->fullname); 
+	exit (1); 
+} 
 
 /*====================================================================*
  *
@@ -251,62 +251,62 @@ static signed runscript (FIND * script, FIND * shell, flag_t flags)
 
 static void testfile (FIND * script, FIND * shell, flag_t flags) 
 
-{
+{ 
 	if (stat (script->fullname, & script->statinfo)) 
-	{
-		error (0, errno, "can't stat %s", script->fullname);
-		return;
-	}
+	{ 
+		error (0, errno, "can't stat %s", script->fullname); 
+		return; 
+	} 
 	if (S_ISDIR (script->statinfo.st_mode)) 
-	{
-		char * filename = script->filename;
+	{ 
+		char * filename = script->filename; 
 		if (* filename == '.') 
-		{
-			filename++;
-		}
+		{ 
+			filename++ ; 
+		} 
 		if (* filename == '.') 
-		{
-			filename++;
-		}
+		{ 
+			filename++ ; 
+		} 
 		if (* filename == (char) (0)) 
-		{
-			return;
-		}
+		{ 
+			return; 
+		} 
 		if (_anyset (flags, FIND_B_RECURSE)) 
-		{
-			findfile (script, shell, flags);
-		}
-		return;
-	}
+		{ 
+			findfile (script, shell, flags); 
+		} 
+		return; 
+	} 
 	if (_anyset (flags, FIND_B_FILENAME)) 
-	{
-		if (!plain (script->filename)) 
-		{
-			return;
-		}
-	}
+	{ 
+		if (! plain (script->filename)) 
+		{ 
+			return; 
+		} 
+	} 
 	else 
-	{
-		if (!match (script->filename, script->wildcard)) 
-		{
-			return;
-		}
-	}
+	{ 
+		if (! match (script->filename, script->wildcard)) 
+		{ 
+			return; 
+		} 
+	} 
 	if (S_ISLNK (script->statinfo.st_mode)) 
-	{
+	{ 
 		if (_anyset (flags, FIND_B_TRAVERSE)) 
-		{
-			runscript (script, shell, flags);
-		}
-		return;
-	}
+		{ 
+			runscript (script, shell, flags); 
+		} 
+		return; 
+	} 
 	if (S_ISREG (script->statinfo.st_mode)) 
-	{
-		runscript (script, shell, flags);
-		return;
-	}
-	return;
-}
+	{ 
+		runscript (script, shell, flags); 
+		return; 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -330,31 +330,31 @@ static void testfile (FIND * script, FIND * shell, flag_t flags)
 
 static void findfile (FIND * script, FIND * shell, flag_t flags) 
 
-{
-	DIR * dir;
-	char * filename = script->fullname;
+{ 
+	DIR * dir; 
+	char * filename = script->fullname; 
 	if ((dir = opendir (filename))) 
-	{
-		struct dirent * dirent;
+	{ 
+		struct dirent * dirent; 
 		while (* filename) 
-		{
-			filename++;
-		}
-		* filename = PATH_C_EXTENDER;
+		{ 
+			filename++ ; 
+		} 
+		* filename = PATH_C_EXTENDER; 
 		while ((dirent = readdir (dir))) 
-		{
-			strcpy (filename + 1, dirent->d_name);
-			partpath (script->fullname, script->pathname, script->basename);
-			partfile (script->basename, script->filename, script->extender);
-			testfile (script, shell, flags);
-		}
-		* filename = (char) (0);
-		closedir (dir);
-		return;
-	}
-	testfile (script, shell, flags);
-	return;
-}
+		{ 
+			strcpy (filename + 1, dirent->d_name); 
+			partpath (script->fullname, script->pathname, script->basename); 
+			partfile (script->basename, script->filename, script->extender); 
+			testfile (script, shell, flags); 
+		} 
+		* filename = (char) (0); 
+		closedir (dir); 
+		return; 
+	} 
+	testfile (script, shell, flags); 
+	return; 
+} 
 
 /*====================================================================*
  *  
@@ -368,138 +368,138 @@ static void findfile (FIND * script, FIND * shell, flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
-	extern char const * program_name;
+{ 
+	extern char const * program_name; 
 	static char const * optv [] = 
-	{
-		"a:elpqrs:Stu:v",
-		PUTOPTV_S_SEARCH,
-		"execute named scripts",
-		"a s\tpass argument s to all scripts",
-		"e\texit on first error",
-		"l\tfollow symbolic links",
-		"p\texecute plain filenames only",
-		"q\tsuppress normal messages",
-		"r\tconduct recursive search",
-		"s s\tshell program is s",
-		"S\tshell program is ${SHELL}",
-		"t\ttest mode (find but do not execute)",
-		"u n\tset umask value to n [022]",
-		"v\tdisplay verbose messages",
-		(char const *) (0)
-	};
+	{ 
+		"a:elpqrs:Stu:v", 
+		PUTOPTV_S_SEARCH, 
+		"execute named scripts", 
+		"a s\tpass argument s to all scripts", 
+		"e\texit on first error", 
+		"l\tfollow symbolic links", 
+		"p\texecute plain filenames only", 
+		"q\tsuppress normal messages", 
+		"r\tconduct recursive search", 
+		"s s\tshell program is s", 
+		"S\tshell program is ${SHELL}", 
+		"t\ttest mode (find but do not execute)", 
+		"u n\tset umask value to n [022]", 
+		"v\tdisplay verbose messages", 
+		(char const * ) (0)
+	}; 
 	FIND shell = 
-	{
-		{
-			0,
-			0,
-			0,
+	{ 
+		{ 
+			0, 
+			0, 
+			0, 
 			0
-		},
-		PATH_BSHELL,
-		"",
-		"",
-		"",
-		"",
-		FILE_S_WILDCARD,
+		} , 
+		PATH_BSHELL, 
+		"", 
+		"", 
+		"", 
+		"", 
+		FILE_S_WILDCARD, 
 		(flag_t) (0)
-	};
+	}; 
 	FIND script = 
-	{
-		{
-			0,
-			0,
-			0,
+	{ 
+		{ 
+			0, 
+			0, 
+			0, 
 			0
-		},
-		PATH_RUNJOBS,
-		FILE_S_EXTENDER,
-		FILE_S_WILDCARD,
-		"",
-		"",
-		FILE_S_WILDCARD,
+		} , 
+		PATH_RUNJOBS, 
+		FILE_S_EXTENDER, 
+		FILE_S_WILDCARD, 
+		"", 
+		"", 
+		FILE_S_WILDCARD, 
 		(flag_t) (0)
-	};
-	flag_t flags = (flag_t) (0);
-	signed c;
-	umask (022);
-	optind =1;
-	opterr =1;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	}; 
+	flag_t flags = (flag_t) (0); 
+	signed c; 
+	umask (022); 
+	optind = 1; 
+	opterr = 1; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'a':
+		{ 
+		case 'a': 
 			if (argc < ARGVSIZE - 1) 
-			{
-				argv [argc++] = optarg;
-				argv [argc] = (char *) (0);
-			}
-			break;
-		case 'e':
-			_setbits (flags, FIND_B_BAILOUT);
-			break;
-		case 'l':
-			_setbits (flags, FIND_B_TRAVERSE);
-			break;
-		case 'p':
-			_setbits (flags, FIND_B_FILENAME);
-			break;
-		case 'r':
-			_setbits (flags, FIND_B_RECURSE);
-			break;
-		case 's':
-			strcpy (shell.fullname, (char *) (optarg));
-			break;
-		case 'S':
-			if (getenv ("SHELL") == (char *) (0)) 
-			{
-				error (1, 0, "symbol ${SHELL} is not defined.");
-			}
-			strcpy (shell.fullname, getenv ("SHELL"));
-			break;
-		case 't':
-			_setbits (flags, FIND_B_TESTRUN);
-			_setbits (flags, FIND_B_VERBOSE);
-			break;
-		case 'u':
+			{ 
+				argv [argc++ ] = optarg; 
+				argv [argc] = (char * ) (0); 
+			} 
+			break; 
+		case 'e': 
+			_setbits (flags, FIND_B_BAILOUT); 
+			break; 
+		case 'l': 
+			_setbits (flags, FIND_B_TRAVERSE); 
+			break; 
+		case 'p': 
+			_setbits (flags, FIND_B_FILENAME); 
+			break; 
+		case 'r': 
+			_setbits (flags, FIND_B_RECURSE); 
+			break; 
+		case 's': 
+			strcpy (shell.fullname, (char * ) (optarg)); 
+			break; 
+		case 'S': 
+			if (getenv ("SHELL") == (char * ) (0)) 
+			{ 
+				error (1, 0, "symbol ${SHELL} is not defined."); 
+			} 
+			strcpy (shell.fullname, getenv ("SHELL")); 
+			break; 
+		case 't': 
+			_setbits (flags, FIND_B_TESTRUN); 
+			_setbits (flags, FIND_B_VERBOSE); 
+			break; 
+		case 'u': 
 			if (setumask (optarg) == 0) 
-			{
-				error (1, 0, "umask value %s is invalid or illegal.", optarg);
-			}
-			break;
-		case 'v':
-			_setbits (flags, FIND_B_VERBOSE);
-			break;
-		case 'q':
-			_setbits (flags, FIND_B_SILENCE);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	openlog (program_name, LOG_PERROR, LOG_USER);
+			{ 
+				error (1, 0, "umask value %s is invalid or illegal.", optarg); 
+			} 
+			break; 
+		case 'v': 
+			_setbits (flags, FIND_B_VERBOSE); 
+			break; 
+		case 'q': 
+			_setbits (flags, FIND_B_SILENCE); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	openlog (program_name, LOG_PERROR, LOG_USER); 
 	if (stat (shell.fullname, & shell.statinfo)) 
-	{
-		error (1, errno, "Can't execute shell %s", shell.fullname);
-	}
+	{ 
+		error (1, errno, "Can't execute shell %s", shell.fullname); 
+	} 
 	if (access (shell.fullname, X_OK)) 
-	{
-		error (1, errno, "Can't execute shell %s", shell.fullname);
-	}
-	if (!argc) 
-	{
-		findfile (& script, & shell, flags);
-	}
+	{ 
+		error (1, errno, "Can't execute shell %s", shell.fullname); 
+	} 
+	if (! argc) 
+	{ 
+		findfile (& script, & shell, flags); 
+	} 
 	while ((argc) && (* argv)) 
-	{
-		makefind (& script, * argv);
-		findfile (& script, & shell, flags);
-		argc--;
-		argv++;
-	}
-	return (0);
-}
+	{ 
+		makefind (& script, * argv); 
+		findfile (& script, & shell, flags); 
+		argc-- ; 
+		argv++ ; 
+	} 
+	return (0); 
+} 
 

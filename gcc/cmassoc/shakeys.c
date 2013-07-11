@@ -81,60 +81,60 @@
 
 void function (flag_t flags) 
 
-{
-	struct sha256 sha256;
-	byte digest [SHA256_DIGEST_LENGTH];
-	char phrase [BUFSIZ];
-	char * sp;
-	unsigned line = 0;
-	signed c;
+{ 
+	struct sha256 sha256; 
+	byte digest [SHA256_DIGEST_LENGTH]; 
+	char phrase [BUFSIZ]; 
+	char * sp; 
+	unsigned line = 0; 
+	signed c; 
 	while ((c = getc (stdin)) != EOF) 
-	{
-		if (!isprint (c)) 
-		{
+	{ 
+		if (! isprint (c)) 
+		{ 
 			if (c == '\n') 
-			{
-				line++;
-			}
-			continue;
-		}
-		sp = phrase;
+			{ 
+				line++ ; 
+			} 
+			continue; 
+		} 
+		sp = phrase; 
 		while (isprint (c)) 
-		{
+		{ 
 			if ((size_t)(sp - phrase) < (sizeof (phrase) - 1)) 
-			{
-				* sp++ = (char)(c);
-			}
-			c = getc (stdin);
-		}
-		* sp = (char)(0);
+			{ 
+				* sp++ = (char)(c); 
+			} 
+			c = getc (stdin); 
+		} 
+		* sp = (char)(0); 
 		if ((c != '\r') && (c != '\n') && (c != EOF)) 
-		{
-			error (0, ENOTSUP, "illegal characters on line %d", line);
-			continue;
-		}
+		{ 
+			error (0, ENOTSUP, "illegal characters on line %d", line); 
+			continue; 
+		} 
 		if ((sp - phrase) < PHRASE_MIN) 
-		{
-			error (0, ENOTSUP, "less than %d characters on line %d", PHRASE_MIN, line);
-			continue;
-		}
+		{ 
+			error (0, ENOTSUP, "less than %d characters on line %d", PHRASE_MIN, line); 
+			continue; 
+		} 
 		if ((sp - phrase) > PHRASE_MAX) 
-		{
-			error (0, ENOTSUP, "more than %d characters on line %d", PHRASE_MAX, line);
-			continue;
-		}
-		SHA256Reset (& sha256);
-		SHA256Write (& sha256, phrase, sp - phrase);
-		SHA256Fetch (& sha256, digest);
+		{ 
+			error (0, ENOTSUP, "more than %d characters on line %d", PHRASE_MAX, line); 
+			continue; 
+		} 
+		SHA256Reset (& sha256); 
+		SHA256Write (& sha256, phrase, sp - phrase); 
+		SHA256Fetch (& sha256, digest); 
 		if (_allclr (flags, KEY_VERBOSE)) 
-		{
-			SHA256Print (digest, (char const *)(0));
-			continue;
-		}
-		SHA256Print (digest, phrase);
-	}
-	return;
-}
+		{ 
+			SHA256Print (digest, (char const * )(0)); 
+			continue; 
+		} 
+		SHA256Print (digest, phrase); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -149,51 +149,51 @@ void function (flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"qv",
-		"password [password] [...]",
-		"SHA256 key generator",
-		"q\tquiet mode",
-		"v\tverbose mode",
-		(char const *) (0)
-	};
-	flag_t flags = (flag_t)(0);
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"qv", 
+		"password [password] [...]", 
+		"SHA256 key generator", 
+		"q\tquiet mode", 
+		"v\tverbose mode", 
+		(char const * ) (0)
+	}; 
+	flag_t flags = (flag_t)(0); 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'q':
-			_setbits (flags, KEY_SILENCE);
-			break;
-		case 'v':
-			_setbits (flags, KEY_VERBOSE);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		function (flags);
-	}
+		{ 
+		case 'q': 
+			_setbits (flags, KEY_SILENCE); 
+			break; 
+		case 'v': 
+			_setbits (flags, KEY_VERBOSE); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		function (flags); 
+	} 
 	while ((argc) && (* argv)) 
-	{
-		if (!freopen (* argv, "rb", stdin)) 
-		{
-			error (0, errno, FILE_CANTOPEN, * argv);
-		}
+	{ 
+		if (! freopen (* argv, "rb", stdin)) 
+		{ 
+			error (0, errno, FILE_CANTOPEN, * argv); 
+		} 
 		else 
-		{
-			function (flags);
-		}
-		argc--;
-		argv++;
-	}
-	return (0);
-}
+		{ 
+			function (flags); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	return (0); 
+} 
 

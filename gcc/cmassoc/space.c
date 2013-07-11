@@ -80,21 +80,21 @@
 
 static void GNUMake (unsigned spaces, unsigned tabs) 
 
-{
+{ 
 	if (tabs) 
-	{
+	{ 
 		do 
-		{
-			putc ('\t', stdout);
-		}
-		while (--tabs);
-	}
+		{ 
+			putc ('\t', stdout); 
+		} 
+		while (-- tabs); 
+	} 
 	else if (spaces) 
-	{
-		putc ('\t', stdout);
-	}
-	return;
-}
+	{ 
+		putc ('\t', stdout); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -108,21 +108,21 @@ static void GNUMake (unsigned spaces, unsigned tabs)
 
 static void OpenWRT (unsigned spaces, unsigned tabs) 
 
-{
+{ 
 	if (tabs) 
-	{
+	{ 
 		do 
-		{
-			putc ('\t', stdout);
-		}
-		while (--tabs);
-	}
+		{ 
+			putc ('\t', stdout); 
+		} 
+		while (-- tabs); 
+	} 
 	else if (spaces) 
-	{
-		putc (' ', stdout);
-	}
-	return;
-}
+	{ 
+		putc (' ', stdout); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -134,9 +134,9 @@ static void OpenWRT (unsigned spaces, unsigned tabs)
 
 static signed noop (signed c) 
 
-{
-	return (c);
-}
+{ 
+	return (c); 
+} 
 
 /*====================================================================*
  *
@@ -158,67 +158,67 @@ static signed noop (signed c)
 
 static void function (signed comment, void indent (unsigned, unsigned), signed escape (signed)) 
 
-{
-	signed c = getc (stdin);
+{ 
+	signed c = getc (stdin); 
 	while (c != EOF) 
-	{
+	{ 
 		if (isblank (c)) 
-		{
-			unsigned column = 0;
-			unsigned spaces = 0;
-			unsigned tabs = 0;
+		{ 
+			unsigned column = 0; 
+			unsigned spaces = 0; 
+			unsigned tabs = 0; 
 			while (isblank (c)) 
-			{
+			{ 
 				if (c == '\t') 
-				{
-					while (++column%8);
-					tabs++;
-				}
+				{ 
+					while (++ column % 8); 
+					tabs++ ; 
+				} 
 				else if (c == ' ') 
-				{
-					column++;
-					spaces++;
-				}
-				c = getc (stdin);
-			}
+				{ 
+					column++ ; 
+					spaces++ ; 
+				} 
+				c = getc (stdin); 
+			} 
 			if (nobreak (c) && (c != comment)) 
-			{
-				indent (spaces, tabs);
-			}
-		}
+			{ 
+				indent (spaces, tabs); 
+			} 
+		} 
 		while (nobreak (c)) 
-		{
+		{ 
 			if (c == comment) 
-			{
-				c = consume ('\n');
-				continue;
-			}
+			{ 
+				c = consume ('\n'); 
+				continue; 
+			} 
 			if (isblank (c)) 
-			{
+			{ 
 				do 
-				{
-					c = getc (stdin);
-					c = escape (c);
-				}
-				while (isblank (c));
+				{ 
+					c = getc (stdin); 
+					c = escape (c); 
+				} 
+				while (isblank (c)); 
 				if (nobreak (c)) 
-				{
-					putc (' ', stdout);
-				}
-				continue;
-			}
+				{ 
+					putc (' ', stdout); 
+				} 
+				continue; 
+			} 
 			if (isquote (c)) 
-			{
-				c = literal (c);
-				continue;
-			}
-			c = escape (c);
-			c = keep (c);
-		}
-		c = keep (c);
-	}
-	return;
-}
+			{ 
+				c = literal (c); 
+				continue; 
+			} 
+			c = escape (c); 
+			c = keep (c); 
+		} 
+		c = keep (c); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -233,56 +233,56 @@ static void function (signed comment, void indent (unsigned, unsigned), signed e
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"c:gm",
-		PUTOPTV_S_FILTER,
-		"white space manager",
-		"c c\tcomment character is (c) [" LITERAL (SPACE_C_COMMENT) "]",
-		"g\tsuitable for GNU makefiles",
-		"m\tmerge continuation lines",
-		(char *) (0)
-	};
-	void (* indent) (unsigned, unsigned) = GNUMake;
-	signed (* escape) (signed) = noop;
-	signed comment = SPACE_C_COMMENT;
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"c:gm", 
+		PUTOPTV_S_FILTER, 
+		"white space manager", 
+		"c c\tcomment character is (c) [" LITERAL (SPACE_C_COMMENT) "]", 
+		"g\tsuitable for GNU makefiles", 
+		"m\tmerge continuation lines", 
+		(char * ) (0)
+	}; 
+	void (* indent) (unsigned, unsigned) = GNUMake; 
+	signed (* escape) (signed) = noop; 
+	signed comment = SPACE_C_COMMENT; 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'c':
-			comment = * optarg;
-			break;
-		case 'g':
-			indent = GNUMake;
-			break;
-		case 'm':
-			escape = span;
-			break;
-		case 'w':
-			indent = OpenWRT;
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		function (comment, indent, escape);
-	}
+		{ 
+		case 'c': 
+			comment = * optarg; 
+			break; 
+		case 'g': 
+			indent = GNUMake; 
+			break; 
+		case 'm': 
+			escape = span; 
+			break; 
+		case 'w': 
+			indent = OpenWRT; 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		function (comment, indent, escape); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (vfopen (* argv)) 
-		{
-			function (comment, indent, escape);
-		}
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+		{ 
+			function (comment, indent, escape); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

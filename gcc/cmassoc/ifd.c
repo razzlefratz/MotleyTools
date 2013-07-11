@@ -77,118 +77,118 @@
 
 static void function (unsigned step, unsigned dir, unsigned width, flag_t flags) 
 
-{
-	char name [_NAMESIZE];
-	char * label;
-	unsigned space;
-	unsigned prior;
-	unsigned extra;
-	unsigned after;
-	signed c;
-	putc ('\n', stdout);
+{ 
+	char name [_NAMESIZE]; 
+	char * label; 
+	unsigned space; 
+	unsigned prior; 
+	unsigned extra; 
+	unsigned after; 
+	signed c; 
+	putc ('\n', stdout); 
 	while ((c = getc (stdin)) != EOF) 
-	{
-		space = 0;
-		label = name;
-		prior = width;
+	{ 
+		space = 0; 
+		label = name; 
+		prior = width; 
 		while (isspace (c)) 
-		{
+		{ 
 			if (c == '\n') 
-			{
-				space++;
-			}
-			c = getc (stdin);
-		}
+			{ 
+				space++ ; 
+			} 
+			c = getc (stdin); 
+		} 
 		if (space) 
-		{
-			unsigned count = width;
-			printf (IFD_LEFT0);
-			putc (' ', stdout);
-			while (count--) 
-			{
-				putc (' ', stdout);
-			}
-			putc (' ', stdout);
-			printf (IFD_RIGHT0);
-			putc ('\n', stdout);
-		}
+		{ 
+			unsigned count = width; 
+			printf (IFD_LEFT0); 
+			putc (' ', stdout); 
+			while (count-- ) 
+			{ 
+				putc (' ', stdout); 
+			} 
+			putc (' ', stdout); 
+			printf (IFD_RIGHT0); 
+			putc ('\n', stdout); 
+		} 
 		while ((c != '\n') && (c != EOF)) 
-		{
+		{ 
 			if (prior) 
-			{
-				prior--;
-			}
-			* label++ = (char)(c);
-			c = getc (stdin);
-		}
-		* label = (char)(0);
-		extra = prior % 2;
-		after = prior / 2;
-		prior = after;
-		if (++dir & 1) 
-		{
-			printf (IFD_RIGHT1, step++);
-			while (prior--) 
-			{
-				putc ('-', stdout);
-			}
-			printf (" %s ", name);
-			while (after--) 
-			{
-				putc ('-', stdout);
-			}
-			while (extra--) 
-			{
-				putc ('-', stdout);
-			}
+			{ 
+				prior-- ; 
+			} 
+			* label++ = (char)(c); 
+			c = getc (stdin); 
+		} 
+		* label = (char)(0); 
+		extra = prior % 2; 
+		after = prior / 2; 
+		prior = after; 
+		if (++ dir & 1) 
+		{ 
+			printf (IFD_RIGHT1, step++ ); 
+			while (prior-- ) 
+			{ 
+				putc ('-', stdout); 
+			} 
+			printf (" %s ", name); 
+			while (after-- ) 
+			{ 
+				putc ('-', stdout); 
+			} 
+			while (extra-- ) 
+			{ 
+				putc ('-', stdout); 
+			} 
 			if (_anyset (flags, IFD_ALTERNATE)) 
-			{
-				printf (IFD_RIGHT2);
-			}
+			{ 
+				printf (IFD_RIGHT2); 
+			} 
 			else 
-			{
-				printf (IFD_RIGHT3, step++);
-			}
-		}
+			{ 
+				printf (IFD_RIGHT3, step++ ); 
+			} 
+		} 
 		else 
-		{
+		{ 
 			if (_anyset (flags, IFD_ALTERNATE)) 
-			{
-				printf (IFD_LEFT1);
-			}
+			{ 
+				printf (IFD_LEFT1); 
+			} 
 			else 
-			{
-				printf (IFD_LEFT2, ++step);
-			}
-			while (prior--) 
-			{
-				putc ('-', stdout);
-			}
-			printf (" %s ", name);
-			while (after--) 
-			{
-				putc ('-', stdout);
-			}
-			while (extra--) 
-			{
-				putc ('-', stdout);
-			}
+			{ 
+				printf (IFD_LEFT2, ++ step); 
+			} 
+			while (prior-- ) 
+			{ 
+				putc ('-', stdout); 
+			} 
+			printf (" %s ", name); 
+			while (after-- ) 
+			{ 
+				putc ('-', stdout); 
+			} 
+			while (extra-- ) 
+			{ 
+				putc ('-', stdout); 
+			} 
 			if (_anyset (flags, IFD_ALTERNATE)) 
-			{
-				printf (IFD_LEFT3, step++);
-			}
+			{ 
+				printf (IFD_LEFT3, step++ ); 
+			} 
 			else 
-			{
-				printf (IFD_LEFT3, --step);
-				step++;
-				step++;
-			}
-		}
-		putc ('\n', stdout);
-	}
-	putc ('\n', stdout);
-	return;
-}
+			{ 
+				printf (IFD_LEFT3, -- step); 
+				step++ ; 
+				step++ ; 
+			} 
+		} 
+		putc ('\n', stdout); 
+	} 
+	putc ('\n', stdout); 
+	return; 
+} 
 
 /*====================================================================*
  *   
@@ -203,63 +203,63 @@ static void function (unsigned step, unsigned dir, unsigned width, flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"aln:rw:",
-		PUTOPTV_S_FUNNEL,
-		"interface diagram generator",
-		"a\talternate steps left/right",
-		"l\tstart direction is left",
-		"r\tstart direction is right",
-		"n n\tfirst step is (n) [" LITERAL (IFD_START) "]",
-		"w n\twidth in characters [" LITERAL (IFD_WIDTH) "]",
-		(char const *)(0)
-	};
-	flag_t flags = (flag_t)(0);
-	size_t width = IFD_WIDTH;
-	unsigned start = IFD_START;
-	unsigned dir = IFD_RIGHT;
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"aln:rw:", 
+		PUTOPTV_S_FUNNEL, 
+		"interface diagram generator", 
+		"a\talternate steps left/right", 
+		"l\tstart direction is left", 
+		"r\tstart direction is right", 
+		"n n\tfirst step is (n) [" LITERAL (IFD_START) "]", 
+		"w n\twidth in characters [" LITERAL (IFD_WIDTH) "]", 
+		(char const * )(0)
+	}; 
+	flag_t flags = (flag_t)(0); 
+	size_t width = IFD_WIDTH; 
+	unsigned start = IFD_START; 
+	unsigned dir = IFD_RIGHT; 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'a':
-			_setbits (flags, IFD_ALTERNATE);
-			break;
-		case 'l':
-			dir = 1;
-			break;
-		case 'n':
-			start = uintspec (optarg, 1, 512);
-			break;
-		case 'r':
-			dir = 0;
-			break;
-		case 'w':
-			width = (size_t)(uintspec (optarg, 0, 1024));
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		function (start, dir, width, flags);
-	}
+		{ 
+		case 'a': 
+			_setbits (flags, IFD_ALTERNATE); 
+			break; 
+		case 'l': 
+			dir = 1; 
+			break; 
+		case 'n': 
+			start = uintspec (optarg, 1, 512); 
+			break; 
+		case 'r': 
+			dir = 0; 
+			break; 
+		case 'w': 
+			width = (size_t)(uintspec (optarg, 0, 1024)); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		function (start, dir, width, flags); 
+	} 
 	while ((argc) && (* argv)) 
-	{
-		if (!freopen (* argv, "rb+", stdin)) 
-		{
-			error (1, errno, "%s", * argv);
-		}
-		function (start, dir, width, flags);
-		argc--;
-		argv++;
-	}
-	return (0);
-}
+	{ 
+		if (! freopen (* argv, "rb+", stdin)) 
+		{ 
+			error (1, errno, "%s", * argv); 
+		} 
+		function (start, dir, width, flags); 
+		argc-- ; 
+		argv++ ; 
+	} 
+	return (0); 
+} 
 

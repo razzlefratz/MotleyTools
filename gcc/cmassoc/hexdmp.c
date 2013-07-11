@@ -53,57 +53,59 @@
 
 static void function () 
 
-{
-	byte binary [RADIX_HEX];
-	char buffer [sizeof (void *) + sizeof (void *)];
-	size_t offset = 0;
-	size_t length = 0;
+{ 
+	byte binary [RADIX_HEX]; 
+	char buffer [sizeof (void * ) + sizeof (void * )]; 
+	size_t offset = 0; 
+	size_t length = 0; 
 	while ((length = read (STDIN_FILENO, & binary, sizeof (binary))) > 0) 
-	{
-		size_t memory = offset;
-		size_t column = sizeof (buffer);
-		while (column--) 
-		{
-			buffer [column] = DIGITS_HEX [memory % RADIX_HEX];
-			memory /= RADIX_HEX;
-		}
+	{ 
+		size_t memory = offset; 
+		size_t column = sizeof (buffer); 
+		while (column-- ) 
+		{ 
+			buffer [column] = DIGITS_HEX [memory % RADIX_HEX]; 
+			memory /= RADIX_HEX; 
+		} 
+
 #if 0
 
 		if ((offset) && ((offset % 0x0400) == 0)) 
-		{
-			write (STDOUT_FILENO, "\n", sizeof (char));
-		}
+		{ 
+			write (STDOUT_FILENO, "\n", sizeof (char)); 
+		} 
+
 #endif
 
-		write (STDOUT_FILENO, buffer, sizeof (buffer));
-		write (STDOUT_FILENO, " ", sizeof (char));
-		for (column = 0; column < length; column++) 
-		{
-			byte byte = binary [column];
-			write (STDOUT_FILENO, " ", sizeof (char));
-			write (STDOUT_FILENO, & DIGITS_HEX [(byte >> 4) & 0x0F], sizeof (char));
-			write (STDOUT_FILENO, & DIGITS_HEX [(byte >> 0) & 0x0F], sizeof (char));
-		}
+		write (STDOUT_FILENO, buffer, sizeof (buffer)); 
+		write (STDOUT_FILENO, " ", sizeof (char)); 
+		for (column = 0; column < length; column++ ) 
+		{ 
+			byte byte = binary [column]; 
+			write (STDOUT_FILENO, " ", sizeof (char)); 
+			write (STDOUT_FILENO, & DIGITS_HEX [(byte >> 4) & 0x0F], sizeof (char)); 
+			write (STDOUT_FILENO, & DIGITS_HEX [(byte >> 0) & 0x0F], sizeof (char)); 
+		} 
 		while (column < sizeof (binary)) 
-		{
-			write (STDOUT_FILENO, " ", sizeof (char));
-			write (STDOUT_FILENO, " ", sizeof (char));
-			write (STDOUT_FILENO, " ", sizeof (char));
-			column++;
-		}
-		write (STDOUT_FILENO, " ", sizeof (char));
-		write (STDOUT_FILENO, " ", sizeof (char));
-		for (column = 0; column < length; column++) 
-		{
-			char byte = binary [column];
-			write (STDOUT_FILENO, isprint (byte)? & byte: ".", sizeof (char));
-		}
-		write (STDOUT_FILENO, "\n", sizeof (char));
-		offset+= sizeof (binary);
-	}
-	write (STDOUT_FILENO, "\n", sizeof (char));
-	return;
-}
+		{ 
+			write (STDOUT_FILENO, " ", sizeof (char)); 
+			write (STDOUT_FILENO, " ", sizeof (char)); 
+			write (STDOUT_FILENO, " ", sizeof (char)); 
+			column++ ; 
+		} 
+		write (STDOUT_FILENO, " ", sizeof (char)); 
+		write (STDOUT_FILENO, " ", sizeof (char)); 
+		for (column = 0; column < length; column++ ) 
+		{ 
+			char byte = binary [column]; 
+			write (STDOUT_FILENO, isprint (byte)? & byte:  ".", sizeof (char)); 
+		} 
+		write (STDOUT_FILENO, "\n", sizeof (char)); 
+		offset += sizeof (binary); 
+	} 
+	write (STDOUT_FILENO, "\n", sizeof (char)); 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -118,38 +120,38 @@ static void function ()
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"",
-		PUTOPTV_S_FUNNEL,
-		"hexadecimal stream dump utility",
-		(char const *)(0)
-	};
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"", 
+		PUTOPTV_S_FUNNEL, 
+		"hexadecimal stream dump utility", 
+		(char const * )(0)
+	}; 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		function ();
-	}
+		{ 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		function (); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (efreopen (* argv, "rb", stdin)) 
-		{
-			function ();
-		}
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+		{ 
+			function (); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

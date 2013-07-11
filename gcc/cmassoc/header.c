@@ -61,25 +61,25 @@
 
 void function (signed count, signed width) 
 
-{
-	signed column = 0;
-	signed c = getc (stdin);
+{ 
+	signed column = 0; 
+	signed c = getc (stdin); 
 	while ((count) && (c != EOF)) 
-	{
+	{ 
 		if (c == '\n') 
-		{
-			column = width;
-			count--;
-		}
+		{ 
+			column = width; 
+			count-- ; 
+		} 
 		if (column < width) 
-		{
-			putc (c, stdout);
-			column++;
-		}
-		c = getc (stdin);
-	}
-	return;
-}
+		{ 
+			putc (c, stdout); 
+			column++ ; 
+		} 
+		c = getc (stdin); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -94,52 +94,52 @@ void function (signed count, signed width)
 
 int main (int argc, char const * argv []) 
 
-{
+{ 
 	static char const * optv [] = 
-	{
-		"l:w:",
-		PUTOPTV_S_FUNNEL,
-		"copy one or more file headers to stdout",
-		"l n\tdisplay line count is (n) [" LITERAL (VT_LINES) "]",
-		"w n\tdisplay line width is (n) [" LITERAL (VT_LIMIT) "]",
-		(char const *)(0)
-	};
-	unsigned lines = VT_LINES;
-	unsigned width = VT_LIMIT;
-	signed c;
-	getviewport (& lines, & width);
-	lines--;
-	lines--;
-	width--;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	{ 
+		"l:w:", 
+		PUTOPTV_S_FUNNEL, 
+		"copy one or more file headers to stdout", 
+		"l n\tdisplay line count is (n) [" LITERAL (VT_LINES) "]", 
+		"w n\tdisplay line width is (n) [" LITERAL (VT_LIMIT) "]", 
+		(char const * )(0)
+	}; 
+	unsigned lines = VT_LINES; 
+	unsigned width = VT_LIMIT; 
+	signed c; 
+	getviewport (& lines, & width); 
+	lines-- ; 
+	lines-- ; 
+	width-- ; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'l':
-			lines = uintspec (optarg, 1, SHRT_MAX);
-			break;
-		case 'w':
-			width = uintspec (optarg, 1, SHRT_MAX);
-			break;
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
-	if (!argc) 
-	{
-		function (lines, width);
-	}
+		{ 
+		case 'l': 
+			lines = uintspec (optarg, 1, SHRT_MAX); 
+			break; 
+		case 'w': 
+			width = uintspec (optarg, 1, SHRT_MAX); 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
+	if (! argc) 
+	{ 
+		function (lines, width); 
+	} 
 	while ((argc) && (* argv)) 
-	{
+	{ 
 		if (efreopen (* argv, "rb", stdin)) 
-		{
-			function (lines, width);
-		}
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+		{ 
+			function (lines, width); 
+		} 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 

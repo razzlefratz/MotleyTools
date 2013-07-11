@@ -102,21 +102,21 @@
 
 typedef struct _edit_ 
 
-{
-	regexp * list [_LISTSIZE];
-	size_t size;
-	char buffer [TEXTLINE_MAX];
-	size_t length;
-}
+{ 
+	regexp * list [_LISTSIZE]; 
+	size_t size; 
+	char buffer [TEXTLINE_MAX]; 
+	size_t length; 
+} 
 
-EDIT;
+EDIT; 
 
 /*====================================================================*
  *   program functions;
  *--------------------------------------------------------------------*/
 
-static void findfile (FIND * find, EDIT * edit, flag_t flags);
-static void testfile (FIND * find, EDIT * edit, flag_t flags);
+static void findfile (FIND * find, EDIT * edit, flag_t flags); 
+static void testfile (FIND * find, EDIT * edit, flag_t flags); 
 
 /*====================================================================*
  *
@@ -152,61 +152,61 @@ static void testfile (FIND * find, EDIT * edit, flag_t flags);
 
 static void editfile (FIND * find, EDIT * edit, flag_t flags) 
 
-{
-	size_t line = 0;
-	size_t item = 0;
-	size_t once = 0;
-	for (line = 1; fgetline (edit->buffer, edit->length, stdin) != -1; line++) 
-	{
-		for (item = 0; item < edit->size; item++) 
-		{
-			char const * sp;
-			for (sp = edit->buffer; * sp; sp++) 
-			{
-				char const * cp;
+{ 
+	size_t line = 0; 
+	size_t item = 0; 
+	size_t once = 0; 
+	for (line = 1; fgetline (edit->buffer, edit->length, stdin) != - 1; line++ ) 
+	{ 
+		for (item = 0; item < edit->size; item++ ) 
+		{ 
+			char const * sp; 
+			for (sp = edit->buffer; * sp; sp++ ) 
+			{ 
+				char const * cp; 
 				if ((cp = regexspan (edit->list [item], sp))) 
-				{
-					if (!once) 
-					{
+				{ 
+					if (! once) 
+					{ 
 						if (flags & GROPE_B_HEADER) 
-						{
+						{ 
 							if (flags & GROPE_B_NUMBER) 
-							{
-								fputn (NONE, RADIX, FIELD, stdout);
-								fputc (' ', stdout);
-							}
-							fputs (find->fullname, stdout);
-							fputc ('\n', stdout);
-							once = 1;
-						}
-					}
+							{ 
+								fputn (NONE, RADIX, FIELD, stdout); 
+								fputc (' ', stdout); 
+							} 
+							fputs (find->fullname, stdout); 
+							fputc ('\n', stdout); 
+							once = 1; 
+						} 
+					} 
 					if (flags & GROPE_B_RECORD) 
-					{
+					{ 
 						if (flags & GROPE_B_NUMBER) 
-						{
-							fputn (line, RADIX, FIELD, stdout);
-							fputc (' ', stdout);
-						}
+						{ 
+							fputn (line, RADIX, FIELD, stdout); 
+							fputc (' ', stdout); 
+						} 
 						while (sp < cp) 
-						{
-							fputc (* sp++, stdout);
-						}
-						fputc ('\n', stdout);
-						sp--;
-					}
-				}
-			}
-		}
-	}
+						{ 
+							fputc (* sp++ , stdout); 
+						} 
+						fputc ('\n', stdout); 
+						sp-- ; 
+					} 
+				} 
+			} 
+		} 
+	} 
 	if (once) 
-	{
+	{ 
 		if (flags & GROPE_B_RECORD) 
-		{
-			fputc ('\n', stdout);
-		}
-	}
-	return;
-}
+		{ 
+			fputc ('\n', stdout); 
+		} 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -220,18 +220,18 @@ static void editfile (FIND * find, EDIT * edit, flag_t flags)
 
 static void openfile (FIND * find, EDIT * edit, flag_t flags) 
 
-{
-	if (!match (find->filename, find->wildcard)) 
-	{
-		return;
-	}
-	if (!freopen (find->fullname, "rb", stdin)) 
-	{
-		return;
-	}
-	editfile (find, edit, flags);
-	return;
-}
+{ 
+	if (! match (find->filename, find->wildcard)) 
+	{ 
+		return; 
+	} 
+	if (! freopen (find->fullname, "rb", stdin)) 
+	{ 
+		return; 
+	} 
+	editfile (find, edit, flags); 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -245,55 +245,55 @@ static void openfile (FIND * find, EDIT * edit, flag_t flags)
 
 static void testfile (FIND * find, EDIT * edit, flag_t flags) 
 
-{
+{ 
 	if (lstat (find->fullname, & find->statinfo)) 
-	{
-		error (0, errno, "%s", find->fullname);
-		return;
-	}
+	{ 
+		error (0, errno, "%s", find->fullname); 
+		return; 
+	} 
 	if (S_ISDIR (find->statinfo.st_mode)) 
-	{
-		char const * filename = find->filename;
+	{ 
+		char const * filename = find->filename; 
 		if (* filename == '.') 
-		{
-			filename++;
-		}
+		{ 
+			filename++ ; 
+		} 
 		if (* filename == '.') 
-		{
-			filename++;
-		}
+		{ 
+			filename++ ; 
+		} 
 		if (* filename == (char) (0)) 
-		{
-			return;
-		}
+		{ 
+			return; 
+		} 
 		if (_anyset (find->flagword, FIND_B_DIR)) 
-		{
-			openfile (find, edit, flags);
-		}
+		{ 
+			openfile (find, edit, flags); 
+		} 
 		if (_anyset (find->flagword, FIND_B_RECURSE)) 
-		{
-			findfile (find, edit, flags);
-		}
-		return;
-	}
+		{ 
+			findfile (find, edit, flags); 
+		} 
+		return; 
+	} 
 	if (S_ISLNK (find->statinfo.st_mode)) 
-	{
+	{ 
 		if (_anyset (find->flagword, FIND_B_LNK)) 
-		{
-			openfile (find, edit, flags);
-		}
-		return;
-	}
+		{ 
+			openfile (find, edit, flags); 
+		} 
+		return; 
+	} 
 	if (S_ISREG (find->statinfo.st_mode)) 
-	{
+	{ 
 		if (_anyset (find->flagword, FIND_B_REG)) 
-		{
-			openfile (find, edit, flags);
-		}
-		return;
-	}
-	return;
-}
+		{ 
+			openfile (find, edit, flags); 
+		} 
+		return; 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -309,31 +309,31 @@ static void testfile (FIND * find, EDIT * edit, flag_t flags)
 
 static void findfile (FIND * find, EDIT * edit, flag_t flags) 
 
-{
-	DIR * dir;
-	char * filename = find->fullname;
+{ 
+	DIR * dir; 
+	char * filename = find->fullname; 
 	if ((dir = opendir (filename))) 
-	{
-		struct dirent * dirent;
+	{ 
+		struct dirent * dirent; 
 		while (* filename != (char) (0)) 
-		{
-			filename++;
-		}
-		* filename = PATH_C_EXTENDER;
-		while ((dirent = readdir (dir)) != (struct dirent *) (0)) 
-		{
-			strcpy (filename + 1, dirent->d_name);
-			partpath (find->fullname, find->pathname, find->filename);
-			partfile (find->filename, find->basename, find->extender);
-			testfile (find, edit, flags);
-		}
-		* filename = (char) (0);
-		closedir (dir);
-		return;
-	}
-	testfile (find, edit, flags);
-	return;
-}
+		{ 
+			filename++ ; 
+		} 
+		* filename = PATH_C_EXTENDER; 
+		while ((dirent = readdir (dir)) != (struct dirent * ) (0)) 
+		{ 
+			strcpy (filename + 1, dirent->d_name); 
+			partpath (find->fullname, find->pathname, find->filename); 
+			partfile (find->filename, find->basename, find->extender); 
+			testfile (find, edit, flags); 
+		} 
+		* filename = (char) (0); 
+		closedir (dir); 
+		return; 
+	} 
+	testfile (find, edit, flags); 
+	return; 
+} 
 
 /*====================================================================*
  *   main program;
@@ -341,98 +341,98 @@ static void findfile (FIND * find, EDIT * edit, flag_t flags)
 
 int main (int argc, char const * argv []) 
 
-{
-	extern const unsigned char ct_unescape [];
-	extern FIND find;
+{ 
+	extern const unsigned char ct_unescape []; 
+	extern FIND find; 
 	static char const * optv [] = 
-	{
-		"w:e:fnHrRT",
-		PUTOPTV_S_FUNNEL,
-		"extract and print regular expression substrings",
-		"w n\tmaximum line width is n [1024] ",
-		"e s\texpression (s) anywhere on line \".*(s).*\"",
-		"f\tdisplay filename only",
-		"n\tdisplay line numbers",
-		"r\trecursive search",
-		"H\treview expression expansion",
-		"R\tregular expression rules",
-		"T\tescape sequence rules",
-		(char const *)(0)
-	};
+	{ 
+		"w:e:fnHrRT", 
+		PUTOPTV_S_FUNNEL, 
+		"extract and print regular expression substrings", 
+		"w n\tmaximum line width is n [1024] ", 
+		"e s\texpression (s) anywhere on line \".*(s).*\"", 
+		"f\tdisplay filename only", 
+		"n\tdisplay line numbers", 
+		"r\trecursive search", 
+		"H\treview expression expansion", 
+		"R\tregular expression rules", 
+		"T\tescape sequence rules", 
+		(char const * )(0)
+	}; 
 	EDIT edit = 
-	{
-		{
-			(regexp *) (0)
-		},
-		(size_t) (0),
-		"",
+	{ 
+		{ 
+			(regexp * ) (0)
+		} , 
+		(size_t) (0), 
+		"", 
 		sizeof (edit.buffer)
-	};
-	flag_t flags = GROPE_B_RECORD;
-	signed c;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	}; 
+	flag_t flags = GROPE_B_RECORD; 
+	signed c; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch (c) 
-		{
-		case 'n':
-			_setbits (flags, GROPE_B_HEADER);
-			_setbits (flags, GROPE_B_RECORD);
-			_setbits (flags, GROPE_B_NUMBER);
-			break;
-		case 'f':
-			_setbits (flags, GROPE_B_HEADER);
-			_clrbits (flags, GROPE_B_RECORD);
-			_clrbits (flags, GROPE_B_NUMBER);
-			break;
-		case 'e':
-			strcpy (edit.buffer, struesc ((char *) (optarg)));
-			edit.list [edit.size++] = regexmake (edit.buffer);
-			edit.list [edit.size] = (regexp *) (0);
-			break;
-		case 'w':
-			edit.length = uintspec (optarg, 1, SHRT_MAX);
-			break;
-		case 'r':
-			_setbits (find.flagword, FIND_B_RECURSE);
-			break;
-		case 'R':
-			regexhelp ();
-			exit (0);
-		case 'H':
-			_setbits (flags, GROPE_B_REVIEW);
-			break;
-		case 'T':
-			chruescmap (ct_unescape, REGEX_C_ESC);
-			exit (0);
-		default:
-			break;
-		}
-	}
-	argc-= optind;
-	argv+= optind;
+		{ 
+		case 'n': 
+			_setbits (flags, GROPE_B_HEADER); 
+			_setbits (flags, GROPE_B_RECORD); 
+			_setbits (flags, GROPE_B_NUMBER); 
+			break; 
+		case 'f': 
+			_setbits (flags, GROPE_B_HEADER); 
+			_clrbits (flags, GROPE_B_RECORD); 
+			_clrbits (flags, GROPE_B_NUMBER); 
+			break; 
+		case 'e': 
+			strcpy (edit.buffer, struesc ((char * ) (optarg))); 
+			edit.list [edit.size++ ] = regexmake (edit.buffer); 
+			edit.list [edit.size] = (regexp * ) (0); 
+			break; 
+		case 'w': 
+			edit.length = uintspec (optarg, 1, SHRT_MAX); 
+			break; 
+		case 'r': 
+			_setbits (find.flagword, FIND_B_RECURSE); 
+			break; 
+		case 'R': 
+			regexhelp (); 
+			exit (0); 
+		case 'H': 
+			_setbits (flags, GROPE_B_REVIEW); 
+			break; 
+		case 'T': 
+			chruescmap (ct_unescape, REGEX_C_ESC); 
+			exit (0); 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
 	if (_allclr (find.flagword, FIND_B_REG | FIND_B_LNK)) 
-	{
-		_setbits (find.flagword, FIND_B_REG | FIND_B_LNK);
-	}
+	{ 
+		_setbits (find.flagword, FIND_B_REG | FIND_B_LNK); 
+	} 
 	if (flags & (GROPE_B_REVIEW)) 
-	{
-		for (edit.size = 0; edit.list [edit.size]; edit.size++) 
-		{
-			regexshow (edit.list [edit.size]);
-		}
-		exit (0);
-	}
-	if (!argc) 
-	{
-		editfile (& find, & edit, flags);
-	}
+	{ 
+		for (edit.size = 0; edit.list [edit.size]; edit.size++ ) 
+		{ 
+			regexshow (edit.list [edit.size]); 
+		} 
+		exit (0); 
+	} 
+	if (! argc) 
+	{ 
+		editfile (& find, & edit, flags); 
+	} 
 	while ((argc) && (* argv)) 
-	{
-		makefind (& find, * argv);
-		findfile (& find, & edit, flags);
-		argc--;
-		argv++;
-	}
-	exit (0);
-}
+	{ 
+		makefind (& find, * argv); 
+		findfile (& find, & edit, flags); 
+		argc-- ; 
+		argv++ ; 
+	} 
+	exit (0); 
+} 
 
