@@ -96,7 +96,7 @@ signed octidy::program (signed c)
 				c = osource::feed (c); 
 				c = osource::find (c); 
 			} 
-			while (c == ';'); 
+			while ((c == ',') || (c == ';')); 
 			std::cout.put (' '); 
 			if (! this->mlevel) 
 			{ 
@@ -186,7 +186,7 @@ signed octidy::atheros (signed c)
 				c = osource::feed (c); 
 				c = osource::find (c); 
 			} 
-			while (c == ';'); 
+			while ((c == ',') || (c == ';')); 
 			std::cout.put (' '); 
 			if (! this->mlevel) 
 			{ 
@@ -282,7 +282,7 @@ signed octidy::charlie (signed c)
 				c = osource::feed (c); 
 				c = osource::find (c); 
 			} 
-			while (c == ';'); 
+			while ((c == ',') || (c == ';')); 
 			std::cout.put (' '); 
 			if (! this->mlevel) 
 			{ 
