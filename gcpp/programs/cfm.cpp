@@ -14,6 +14,7 @@
  *   system header files;
  *--------------------------------------------------------------------*/
 
+#include <cstdlib>
 #include <iostream>
 
 /*====================================================================*
@@ -160,7 +161,7 @@ int main (int argc, char const * argv [])
 			config.write (oCOMMENT_S_RELEASE, oCOMMENT_T_RELEASE); 
 			config.write (oCOMMENT_S_LICENSE, oCOMMENT_T_LICENSE); 
 			config.write (oCOMMENT_S_SPECIAL, oCOMMENT_T_SPECIAL); 
-			std::exit (0); 
+			exit (0); 
 		case 'p': 
 			object.setbits (oCOMMENT_B_PACKAGE); 
 			break; 
@@ -177,7 +178,7 @@ int main (int argc, char const * argv [])
 			object.offset ("\t"); 
 			break; 
 		case 'w': 
-			object.width (std::atoi (getopt.args ())); 
+			object.width (atoi (getopt.args ())); 
 			break; 
 		case 'x': 
 			object.setbits (oCOMMENT_B_DISCARD); 
@@ -205,6 +206,6 @@ int main (int argc, char const * argv [])
 		} 
 		getopt++ ; 
 	} 
-	std::exit (0); 
+	exit (0); 
 } 
 
