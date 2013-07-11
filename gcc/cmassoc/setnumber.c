@@ -27,7 +27,7 @@ static byte void xmlnumber (char const * string, volatile byte buffer [], size_t
 	while (isdigit (* string)) 
 	{
 		number *= 10;
-		number+= * string - '0';
+		number += * string - '0';
 		if (number > maximum) 
 		{
 			error (bailout, EINVAL, "%s %s exceeds %ld bytes", DATA_MEMBER, member, length);
