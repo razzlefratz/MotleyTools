@@ -12,9 +12,8 @@
  *   system header files;
  *--------------------------------------------------------------------*/
 
-#include <iostream>
 #include <cstdlib>
-#include <cstdio>
+#include <iostream>
 
 /*====================================================================*
  *   custom header files;
