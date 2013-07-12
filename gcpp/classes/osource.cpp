@@ -209,13 +209,13 @@ signed osource::_context (signed c, signed e) const
 signed osource::context (signed c) const 
 
 {
-	if (c == '/') 
-	{
-		c = osource::comment (c);
-	}
-	else if (oascii::isquote (c)) 
+	if (oascii::isquote (c)) 
 	{
 		c = osource::literal (c);
+	}
+	else if (c == '/') 
+	{
+		c = osource::comment (c);
 	}
 	else if (c == '#') 
 	{
@@ -504,7 +504,7 @@ signed osource::despace (signed c) const
 	{ 
 		c = osource::literal (c); 
 	} 
-	else if ((c == '.')) 
+	else if ((c == '.') || (c == '!') || (c == '~')) 
 	{ 
 		c = osource::feed (c); 
 		c = osource::find (c); 
@@ -515,7 +515,7 @@ signed osource::despace (signed c) const
 		c = osource::find (c); 
 		std::cout.put (' '); 
 	} 
-	else if ((c == '!') || (c == '=') || (c == '~') || (c == '^') || (c == '%')) 
+	else if ((c == '=') || (c == '^') || (c == '%')) 
 	{ 
 		signed o = osource::feed (c); 
 		if (o == '=') 
