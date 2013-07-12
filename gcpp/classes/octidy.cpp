@@ -30,7 +30,6 @@
  *   class variables;        
  *--------------------------------------------------------------------*/
 
-ocgotowords octidy::gotowords; 
 ocexitwords octidy::exitwords; 
 
 /*====================================================================*
@@ -497,43 +496,33 @@ signed octidy::context (signed c) const
 		} 
 		std::cout.put (' '); 
 	} 
-	else if ((c == ',') || (c == ';') || (c == '?')) 
-	{ 
-		c = osource::feed (c); 
-		c = osource::find (c); 
-		std::cout.put (' '); 
-	} 
-	else if (oascii::  isquote (c)) 
+	else if (oascii::isquote (c)) 
 	{ 
 		c = osource::literal (c); 
 	} 
-	else if ((c == ',') || (c == ';') || (c == '?')) 
-	{ 
-		c = osource::feed (c); 
-		c = osource::find (c); 
-		std::cout.put (' '); 
-	} 
 	else if (c == '\\') 
 	{ 
-		c = osource::feed (c); 
-		c = osource::feed (c); 
-		if (c == '\n') 
+		signed o;
+		o = osource::feed (c); 
+		c = osource::feed (o); 
+		if (o == '\n') 
 		{ 
 			oindent::print (oindent::margin (), oindent::offset (), oindent::level ()); 
 		} 
+		c = osource::find (c); 
 	} 
-	else if ((c == '.')) 
+	else if ((c == '.') || (c == '!') || (c == '~')) 
 	{ 
 		c = osource::feed (c); 
 		c = osource::find (c); 
 	} 
-	else if ((c == ',') || (c == ';')) 
+	else if ((c == ',') || (c == ';') || (c == '?') || (c == ':')) 
 	{ 
 		c = osource::feed (c); 
 		c = osource::find (c); 
 		std::cout.put (' '); 
 	} 
-	else if ((c == '!') || (c == '=') || (c == '~') || (c == '^') || (c == '%')) 
+	else if ((c == '=') || (c == '^') || (c == '%')) 
 	{ 
 		c = osource::feed (c); 
 		if (c == '=') 
@@ -619,6 +608,14 @@ signed octidy::context (signed c) const
 		} 
 		c = osource::find (o); 
 		if ((c == ')') || (c == ']'))
+		{
+			return (c);
+		}
+		if ((c == ',') || (c == ';'))
+		{
+			return (c);
+		}
+		if ((c == '?') || (c == ':'))
 		{
 			return (c);
 		}

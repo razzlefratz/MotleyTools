@@ -20,7 +20,6 @@
 #include "../classes/oindent.hpp"
 #include "../classes/oinclude.hpp"
 #include "../classes/ocomment.hpp"
-#include "../classes/ocgotowords.hpp"
 #include "../classes/ocexitwords.hpp"
 
 /*====================================================================*
@@ -44,7 +43,6 @@ public:
 	signed _context (signed c, signed o, signed e) const; 
 	signed _context (signed c, signed e) const; 
 private: 
-	static ocgotowords gotowords; 
 	static ocexitwords exitwords; 
 }; 
 
