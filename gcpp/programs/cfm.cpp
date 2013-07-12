@@ -52,6 +52,7 @@
 #include "../classes/ocomment.cpp"
 #include "../classes/ocgotowords.cpp"
 #include "../classes/ocexitwords.cpp"
+#include "../classes/oclangwords.cpp"
 #include "../classes/octidy.cpp"
 #include "../classes/osource.cpp"
 #include "../classes/oindent.cpp"
