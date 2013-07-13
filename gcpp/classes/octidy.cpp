@@ -51,6 +51,7 @@ signed octidy::program (signed c)
 		if (c == '#') 
 		{ 
 			oindent::endline (); 
+			oinclude::header (); 
 			do 
 			{ 
 				c = osource::command (c, '\n'); 
@@ -121,6 +122,7 @@ signed octidy::program (signed c)
 		oindent::space (2); 
 	} 
 	oindent::endline (1); 
+	oinclude::footer (); 
 	return (c); 
 } 
 
@@ -209,9 +211,9 @@ signed octidy::atheros (signed c)
 		oindent::endline (1); 
 		c = octidy::statement (c); 
 		oindent::space (2); 
-		continue; 
 	} 
 	oindent::endline (1); 
+	oinclude::footer (); 
 	return (c); 
 } 
 
@@ -470,37 +472,7 @@ signed octidy::_context (signed c, signed e) const
 signed octidy::context (signed c) const 
 
 { 
-	if (oascii::isalpha (c) || (c == '_')) 
-	{ 
-		c = osource::moniker (c); 
-		c = osource::enspace (c); 
-	} 
-	else if (oascii::isspace (c)) 
-	{ 
-		c = osource::find (c); 
-		if ((c == ')') || (c == ']') || (c == '}')) 
-		{ 
-			return (c); 
-		} 
-		if ((c == ',') || (c == ';')) 
-		{ 
-			return (c); 
-		} 
-		if ((c == '?') || (c == ':')) 
-		{ 
-			return (c); 
-		} 
-		if ((c == '.')) 
-		{ 
-			return (c); 
-		} 
-		std::cout.put (' '); 
-	} 
-	else if (oascii::isquote (c)) 
-	{ 
-		c = osource::literal (c); 
-	} 
-	else if (c == '\\') 
+	if (c == '\\') 
 	{ 
 		signed o;
 		o = osource::feed (c); 
@@ -511,179 +483,6 @@ signed octidy::context (signed c) const
 		} 
 		c = osource::find (c); 
 	} 
-	else if ((c == '.') || (c == '!') || (c == '~')) 
-	{ 
-		c = osource::feed (c); 
-		c = osource::find (c); 
-	} 
-	else if ((c == ',') || (c == ';') || (c == '?')) 
-	{ 
-		c = osource::feed (c); 
-		c = osource::find (c); 
-		std::cout.put (' '); 
-	} 
-	else if ((c == '=') || (c == '^') || (c == '%')) 
-	{ 
-		c = osource::feed (c); 
-		if (c == '=') 
-		{ 
-			c = osource::feed (c); 
-		} 
-		c = osource::find (c); 
-		std::cout.put (' '); 
-	} 
-	else if ((c == '&') || (c == '|')) 
-	{ 
-		signed o = osource::feed (c); 
-		if ((o == c) || (o == '=')) 
-		{ 
-			o = osource::feed (o); 
-		} 
-		c = osource::find (o); 
-		std::cout.put (' '); 
-	} 
-	else if ((c == '<') || (c == '>')) 
-	{ 
-		signed o = osource::feed (c); 
-		if (o == c) 
-		{ 
-			o = osource::feed (o); 
-		} 
-		if (o == '=') 
-		{ 
-			o = osource::feed (o); 
-		} 
-		c = osource::find (o); 
-		std::cout.put (' '); 
-	} 
-	else if (c == ':') 
-	{ 
-		c = osource::feed (c); 
-		if (c == ':') 
-		{ 
-			c = osource::feed (c); 
-			c = osource::find (c); 
-		} 
-		else 
-		{ 
-			c = osource::find (c); 
-			std::cout.put (' '); 
-		} 
-	} 
-	else if (c == '+') 
-	{ 
-		c = osource::feed (c); 
-		if (c == '+')
-		{ 
-			c = osource::feed (c); 
-			c = osource::find (c); 
-			if ((c == ')') || (c == ']'))
-			{
-				return (c);
-			}
-			if ((c == ',') || (c == ';'))
-			{
-				return (c);
-			}
-			if ((c == '?') || (c == ':'))
-			{
-				return (c);
-			}
-			std::cout.put (' '); 
-		} 
-		else if (c == '=')
-		{ 
-			c = osource::feed (c); 
-			c = osource::find (c); 
-			std::cout.put (' '); 
-		} 
-	} 
-	else if (c == '-') 
-	{ 
-		c = osource::feed (c); 
-		if (c == '-')
-		{ 
-			c = osource::feed (c); 
-			c = osource::find (c); 
-			if ((c == ')') || (c == ']'))
-			{
-				return (c);
-			}
-			if ((c == ',') || (c == ';'))
-			{
-				return (c);
-			}
-			if ((c == '?') || (c == ':'))
-			{
-				return (c);
-			}
-			std::cout.put (' '); 
-		} 
-		else if (c == '=') 
-		{ 
-			c = osource::feed (c); 
-			c = osource::find (c); 
-			std::cout.put (' '); 
-		} 
-		else if (c == '>') 
-		{ 
-			c = osource::feed (c); 
-		} 
-		else 
-		{ 
-			c = osource::find (c); 
-			std::cout.put (' '); 
-		} 
-	} 
-	else if (c == '*') 
-	{ 
-		signed o = osource::feed (c); 
-		if ((o == c) || (o == '=')) 
-		{ 
-			o = osource::feed (o); 
-		} 
-		c = osource::find (o); 
-		if ((c == ')') || (c == ']'))
-		{
-			return (c);
-		}
-		if ((c == ',') || (c == ';'))
-		{
-			return (c);
-		}
-		if ((c == '?') || (c == ':'))
-		{
-			return (c);
-		}
-		std::cout.put (' '); 
-	} 
-	else if (c == '/') 
-	{ 
-		signed o = osource::feed (c); 
-		if (o == '=') 
-		{ 
-			o = osource::feed (o); 
-			c = osource::find (o); 
-			std::cout.put (' '); 
-		} 
-		else if (o == c) 
-		{ 
-			c = osource::content (o, '\n'); 
-		} 
-		else if (o == '*') 
-		{ 
-			c = osource::content (o, o, c); 
-		} 
-		else 
-		{ 
-			c = osource::find (o); 
-			std::cout.put (' '); 
-		} 
-	} 
-	else if (c == '#') 
-	{ 
-		c = osource::command (c, '\n'); 
-	} 
 	else if (c == '(') 
 	{ 
 		c = octidy::context (c, ')'); 
@@ -691,14 +490,16 @@ signed octidy::context (signed c) const
 	else if (c == '[') 
 	{ 
 		c = octidy::context (c, ']'); 
+		c = octidy::enspace (c); 
 	} 
 	else if (c == '{') 
 	{ 
 		c = octidy::context (c, '}'); 
+		c = octidy::enspace (c); 
 	} 
 	else 
 	{ 
-		c = osource::feed (c); 
+		c = osource::despace (c); 
 	} 
 	return (c); 
 } 

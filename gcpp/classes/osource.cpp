@@ -52,23 +52,23 @@
 
 signed osource::content (signed c, signed o, signed e) const 
 
-{
-	c = osource::feed (c);
-	c = osource::_content (c, o, e);
-	c = osource::feed (c);
-	return (c);
-}
+{ 
+	c = osource::feed (c); 
+	c = osource::_content (c, o, e); 
+	c = osource::feed (c); 
+	return (c); 
+} 
 
 signed osource::_content (signed c, signed o, signed e) const 
 
-{
+{ 
 	while ((c != e) && (c != EOF)) 
-	{
-		c = osource::_content (c, o);
-		c = osource::feed (c);
-	}
-	return (c);
-}
+	{ 
+		c = osource::_content (c, o); 
+		c = osource::feed (c); 
+	} 
+	return (c); 
+} 
 
 /*====================================================================*
  *
@@ -91,12 +91,12 @@ signed osource::_content (signed c, signed o, signed e) const
 
 signed osource::content (signed c, signed e) const 
 
-{
-	c = osource::feed (c);
-	c = osource::_content (c, e);
-	c = osource::feed (c);
-	return (c);
-}
+{ 
+	c = osource::feed (c); 
+	c = osource::_content (c, e); 
+	c = osource::feed (c); 
+	return (c); 
+} 
 
 /*====================================================================*
  *
@@ -115,13 +115,13 @@ signed osource::content (signed c, signed e) const
 
 signed osource::_content (signed c, signed e) const 
 
-{
+{ 
 	while ((c != e) && (c != EOF)) 
-	{
-		c = osource::feed (c);
-	}
-	return (c);
-}
+	{ 
+		c = osource::feed (c); 
+	} 
+	return (c); 
+} 
 
 /*====================================================================*
  *   
@@ -131,13 +131,13 @@ signed osource::_content (signed c, signed e) const
 
 signed osource::context (signed c, char const * charset) const 
 
-{
+{ 
 	while ((c) && (c != EOF) && !std::strchr (charset, c)) 
-	{
-		c = osource::context (c);
-	}
-	return (c);
-}
+	{ 
+		c = osource::context (c); 
+	} 
+	return (c); 
+} 
 
 /*====================================================================*
  *
@@ -148,24 +148,24 @@ signed osource::context (signed c, char const * charset) const
 
 signed osource::context (signed c, signed o, signed e) const 
 
-{
-	c = osource::feed (c);
-	c = osource::find (c);
-	c = osource::_context (c, o, e);
-	c = osource::feed (c);
-	return (c);
-}
+{ 
+	c = osource::feed (c); 
+	c = osource::find (c); 
+	c = osource::_context (c, o, e); 
+	c = osource::feed (c); 
+	return (c); 
+} 
 
 signed osource::_context (signed c, signed o, signed e) const 
 
-{
+{ 
 	while ((c != e) && (c != EOF)) 
-	{
-		c = osource::_context (c, o);
-		c = osource::feed (c);
-	}
-	return (c);
-}
+	{ 
+		c = osource::_context (c, o); 
+		c = osource::feed (c); 
+	} 
+	return (c); 
+} 
 
 /*====================================================================*
  *
@@ -175,23 +175,23 @@ signed osource::_context (signed c, signed o, signed e) const
 
 signed osource::context (signed c, signed e) const 
 
-{
-	c = osource::feed (c);
-	c = osource::find (c);
-	c = osource::_context (c, e);
-	c = osource::feed (c);
-	return (c);
-}
+{ 
+	c = osource::feed (c); 
+	c = osource::find (c); 
+	c = osource::_context (c, e); 
+	c = osource::feed (c); 
+	return (c); 
+} 
 
 signed osource::_context (signed c, signed e) const 
 
-{
+{ 
 	while ((c != e) && (c != EOF)) 
-	{
-		c = osource::context (c);
-	}
-	return (c);
-}
+	{ 
+		c = osource::context (c); 
+	} 
+	return (c); 
+} 
 
 /*====================================================================*
  *   
@@ -208,37 +208,37 @@ signed osource::_context (signed c, signed e) const
 
 signed osource::context (signed c) const 
 
-{
+{ 
 	if (oascii::isquote (c)) 
-	{
-		c = osource::literal (c);
-	}
+	{ 
+		c = osource::literal (c); 
+	} 
 	else if (c == '/') 
-	{
-		c = osource::comment (c);
-	}
+	{ 
+		c = osource::comment (c); 
+	} 
 	else if (c == '#') 
-	{
-		c = osource::command (c, '\n');
-	}
+	{ 
+		c = osource::command (c, '\n'); 
+	} 
 	else if (c == '(') 
-	{
-		c = osource::context (c, ')');
-	}
+	{ 
+		c = osource::context (c, ')'); 
+	} 
 	else if (c == '[') 
-	{
-		c = osource::context (c, ']');
-	}
+	{ 
+		c = osource::context (c, ']'); 
+	} 
 	else if (c == '{') 
-	{
-		c = osource::context (c, '}');
-	}
-	else
-	{
-		c = osource::feed (c);
-	}
-	return (c);
-}
+	{ 
+		c = osource::context (c, '}'); 
+	} 
+	else 
+	{ 
+		c = osource::feed (c); 
+	} 
+	return (c); 
+} 
 
 /*====================================================================*
  *
@@ -258,41 +258,41 @@ signed osource::context (signed c) const
 
 signed osource::command (signed c) const 
 
-{
-	c = osource::feed (c);
-	c = osource::_command (c, '\n');
-	c = osource::feed (c);
-	return (c);
-}
+{ 
+	c = osource::feed (c); 
+	c = osource::_command (c, '\n'); 
+	c = osource::feed (c); 
+	return (c); 
+} 
 
 signed osource::command (signed c, signed e) const 
 
-{
-	c = osource::feed (c);
-	c = osource::_command (c, e);
-	c = osource::feed (c);
-	return (c);
-}
+{ 
+	c = osource::feed (c); 
+	c = osource::_command (c, e); 
+	c = osource::feed (c); 
+	return (c); 
+} 
 
 signed osource::_command (signed c, signed e) const 
 
-{
+{ 
 	while ((c != e) && (c != EOF)) 
-	{
+	{ 
 		if (oascii::isquote (c)) 
-		{
-			c = osource::literal (c);
-			continue;
-		}
+		{ 
+			c = osource::literal (c); 
+			continue; 
+		} 
 		if (c == '/') 
-		{
-			c = osource::comment (c);
-			continue;
-		}
-		c = osource::escaped (c);
-	}
-	return (c);
-}
+		{ 
+			c = osource::comment (c); 
+			continue; 
+		} 
+		c = osource::escaped (c); 
+	} 
+	return (c); 
+} 
 
 /*====================================================================*
  *
@@ -306,29 +306,29 @@ signed osource::_command (signed c, signed e) const
 
 signed osource::literal (signed c) const 
 
-{
-	c = osource::literal (c, c);
-	return (c);
-}
+{ 
+	c = osource::literal (c, c); 
+	return (c); 
+} 
 
 signed osource::literal (signed c, signed e) const 
 
-{
-	c = osource::feed (c);
-	c = osource::_literal (c, e);
-	c = osource::feed (c);
-	return (c);
-}
+{ 
+	c = osource::feed (c); 
+	c = osource::_literal (c, e); 
+	c = osource::feed (c); 
+	return (c); 
+} 
 
 signed osource::_literal (signed c, signed e) const 
 
-{
+{ 
 	while ((c != e) && (c != EOF)) 
-	{
-		c = osource::escaped (c);
-	}
-	return (c);
-}
+	{ 
+		c = osource::escaped (c); 
+	} 
+	return (c); 
+} 
 
 /*====================================================================*
  *
@@ -341,46 +341,46 @@ signed osource::_literal (signed c, signed e) const
 
 signed osource::comment (signed c) const 
 
-{
-	c = osource::feed (c);
+{ 
+	c = osource::feed (c); 
 	if (c == '/') 
-	{
-		c = osource::content (c, '\n');
-		return (c);
-	}
+	{ 
+		c = osource::content (c, '\n'); 
+		return (c); 
+	} 
 	if (c == '*') 
-	{
+	{ 
 		while ((c != '/') && (c != EOF)) 
-		{
+		{ 
 			while ((c != '*') && (c != EOF)) 
-			{
-				std::cout.put (c);
+			{ 
+				std::cout.put (c); 
 				if (c == '\n') 
-				{
-					std::cout.put (' ');
-					do
-					{
-						c = std::cin.get ();
-					}
-					while (oascii::isblank (c));
+				{ 
+					std::cout.put (' '); 
+					do 
+					{ 
+						c = std::cin.get (); 
+					} 
+					while (oascii::isblank (c)); 
 					if (c != '*') 
-					{
-						std::cout.put ('*');
-						std::cout.put (' ');
-						std::cout.put (' ');
-						std::cout.put (' ');
-					}
-					continue;
-				}
-				c = std::cin.get ();
-			}
-			c = osource::feed (c);
-		}
-		c = osource::feed (c);
-		return (c);
-	}
-	return (c);
-}
+					{ 
+						std::cout.put ('*'); 
+						std::cout.put (' '); 
+						std::cout.put (' '); 
+						std::cout.put (' '); 
+					} 
+					continue; 
+				} 
+				c = std::cin.get (); 
+			} 
+			c = osource::feed (c); 
+		} 
+		c = osource::feed (c); 
+		return (c); 
+	} 
+	return (c); 
+} 
 
 /*====================================================================*
  *
@@ -391,20 +391,20 @@ signed osource::comment (signed c) const
 
 signed osource::_comment (signed c) const 
 
-{
-	c = osource::feed (c);
+{ 
+	c = osource::feed (c); 
 	if (c == '/') 
-	{
-		c = osource::content (c, '\n');
-		return (c);
-	}
+	{ 
+		c = osource::content (c, '\n'); 
+		return (c); 
+	} 
 	if (c == '*') 
-	{
-		c = osource::content (c, '*', '/');
-		return (c);
-	}
-	return (c);
-}
+	{ 
+		c = osource::content (c, '*', '/'); 
+		return (c); 
+	} 
+	return (c); 
+} 
 
 /*====================================================================*
  *
@@ -414,30 +414,34 @@ signed osource::_comment (signed c) const
 
 signed osource::moniker (signed c) const 
 
-{
-	do { c = osource::feed (c); } while (oascii::isalnum (c) || (c == '_'));
-	return (c);
-}
+{ 
+	do 
+	{ 
+		c = osource::feed (c); 
+	} 
+	while (oascii::isalnum (c) || (c == '_')); 
+	return (c); 
+} 
 
 /*====================================================================*
  *
  *   signed enspace (signed c) const;
-
+ *   
  *   output one space prior to current character;
  *
  *--------------------------------------------------------------------*/
 
-signed osource::enspace (signed c) const
+signed osource::enspace (signed c) const 
 
 { 
-	if (oascii::isalnum(c) || (c == '_'))
-	{
+	if (oascii::isalnum (c) || (c == '_')) 
+	{ 
 		std::cout.put (' '); 
-	}
-	else if (oascii::isquote(c))
-	{
+	} 
+	else if (oascii::isquote (c)) 
+	{ 
 		std::cout.put (' '); 
-	}
+	} 
 	else if ((c == '(') || (c == '[') || (c == '{')) 
 	{ 
 		std::cout.put (' '); 
@@ -458,7 +462,7 @@ signed osource::enspace (signed c) const
 	{ 
 		if (std::cin.peek () == c) 
 		{ 
-			return (c);
+			return (c); 
 		} 
 		std::cout.put (' '); 
 	} 
@@ -466,19 +470,28 @@ signed osource::enspace (signed c) const
 	{ 
 		if (std::cin.peek () == '-') 
 		{ 
-			return (c);
+			return (c); 
 		} 
 		if (std::cin.peek () == '>') 
 		{ 
-			return (c);
+			return (c); 
 		} 
 		std::cout.put (' '); 
 	} 
 	return (c); 
 } 
 
-signed osource::despace (signed c) const
-{
+/*====================================================================*
+ *
+ *   osource::despace (signed c) const;
+ *
+ *
+ *
+ *--------------------------------------------------------------------*/
+
+signed osource::despace (signed c) const 
+
+{ 
 	if (oascii::isspace (c)) 
 	{ 
 		c = osource::find (c); 
@@ -500,16 +513,26 @@ signed osource::despace (signed c) const
 		} 
 		std::cout.put (' '); 
 	} 
+	else if (oascii::isalpha (c) || (c == '_')) 
+	{ 
+		c = osource::moniker (c); 
+		c = osource::enspace (c); 
+	} 
 	else if (oascii::isquote (c)) 
 	{ 
 		c = osource::literal (c); 
 	} 
+	else if (c == '\\')
+	{
+		c = osource::feed (c);
+		c = osource::feed (c);
+	}
 	else if ((c == '.') || (c == '!') || (c == '~')) 
 	{ 
 		c = osource::feed (c); 
 		c = osource::find (c); 
 	} 
-	else if ((c == ',') || (c == ';')) 
+	else if ((c == ',') || (c == ';') || (c == '?')) 
 	{ 
 		c = osource::feed (c); 
 		c = osource::find (c); 
@@ -517,12 +540,12 @@ signed osource::despace (signed c) const
 	} 
 	else if ((c == '=') || (c == '^') || (c == '%')) 
 	{ 
-		signed o = osource::feed (c); 
-		if (o == '=') 
+		c = osource::feed (c); 
+		if (c == '=') 
 		{ 
-			o = osource::feed (o); 
+			c = osource::feed (c); 
 		} 
-		c = osource::find (o); 
+		c = osource::find (c); 
 		std::cout.put (' '); 
 	} 
 	else if ((c == '&') || (c == '|')) 
@@ -535,7 +558,7 @@ signed osource::despace (signed c) const
 		c = osource::find (o); 
 		std::cout.put (' '); 
 	} 
-	else if ((c == '<') || (c == '>') || (c == '?')) 
+	else if ((c == '<') || (c == '>')) 
 	{ 
 		signed o = osource::feed (c); 
 		if (o == c) 
@@ -551,45 +574,80 @@ signed osource::despace (signed c) const
 	} 
 	else if (c == ':') 
 	{ 
-		signed o = osource::feed (c); 
-		if (o == c) 
+		c = osource::feed (c); 
+		if (c == ':') 
 		{ 
-			o = osource::feed (o); 
-			c = osource::find (o); 
+			c = osource::feed (c); 
+			c = osource::find (c); 
 		} 
 		else 
 		{ 
-			o = osource::feed (o); 
-			c = osource::find (o); 
+			c = osource::find (c); 
 			std::cout.put (' '); 
 		} 
 	} 
 	else if (c == '+') 
 	{ 
-		signed o = osource::feed (c); 
-		if ((o == c) || (o == '=')) 
+		c = osource::feed (c); 
+		if (c == '+')
 		{ 
-			o = osource::feed (o); 
+			c = osource::feed (c); 
+			c = osource::find (c); 
+			if ((c == ')') || (c == ']'))
+			{
+				return (c);
+			}
+			if ((c == ',') || (c == ';'))
+			{
+				return (c);
+			}
+			if ((c == '?') || (c == ':'))
+			{
+				return (c);
+			}
+			std::cout.put (' '); 
 		} 
-		c = osource::find (o); 
-		std::cout.put (' '); 
+		else if (c == '=')
+		{ 
+			c = osource::feed (c); 
+			c = osource::find (c); 
+			std::cout.put (' '); 
+		} 
 	} 
 	else if (c == '-') 
 	{ 
-		signed o = osource::feed (c); 
-		if ((o == c) || (o == '=')) 
+		c = osource::feed (c); 
+		if (c == '-')
 		{ 
-			o = osource::feed (o); 
-			c = osource::find (o); 
+			c = osource::feed (c); 
+			c = osource::find (c); 
+			if ((c == ')') || (c == ']'))
+			{
+				return (c);
+			}
+			if ((c == ',') || (c == ';'))
+			{
+				return (c);
+			}
+			if ((c == '?') || (c == ':'))
+			{
+				return (c);
+			}
 			std::cout.put (' '); 
 		} 
-		else if (o == '>') 
+		else if (c == '=') 
 		{ 
-			c = osource::feed (o); 
+			c = osource::feed (c); 
+			c = osource::find (c); 
+			std::cout.put (' '); 
+		} 
+		else if (c == '>') 
+		{ 
+			c = osource::feed (c); 
 		} 
 		else 
 		{ 
-			c = osource::find (o); 
+			c = osource::find (c); 
 			std::cout.put (' '); 
 		} 
 	} 
@@ -601,6 +659,18 @@ signed osource::despace (signed c) const
 			o = osource::feed (o); 
 		} 
 		c = osource::find (o); 
+		if ((c == ')') || (c == ']'))
+		{
+			return (c);
+		}
+		if ((c == ',') || (c == ';'))
+		{
+			return (c);
+		}
+		if ((c == '?') || (c == ':'))
+		{
+			return (c);
+		}
 		std::cout.put (' '); 
 	} 
 	else if (c == '/') 
@@ -612,23 +682,30 @@ signed osource::despace (signed c) const
 			c = osource::find (o); 
 			std::cout.put (' '); 
 		} 
-		else if (o == '/') 
+		else if (o == c) 
 		{ 
 			c = osource::content (o, '\n'); 
 		} 
 		else if (o == '*') 
 		{ 
-			c = osource::content (o, '*', '/'); 
+			c = osource::content (o, o, c); 
 		} 
 		else 
 		{ 
 			c = osource::find (o); 
 			std::cout.put (' '); 
 		} 
-	}
-	c = osource::feed (c);
-	return (c);
-}
+	} 
+	else if (c == '#') 
+	{ 
+		c = osource::command (c, '\n'); 
+	} 
+	else 
+	{ 
+		c = osource::feed (c); 
+	} 
+	return (c); 
+} 
 
 /*====================================================================*
  *
@@ -644,14 +721,14 @@ signed osource::despace (signed c) const
 
 signed osource::escaped (signed c) const 
 
-{
+{ 
 	if (c == '\\') 
-	{
-		c = osource::feed (c);
-	}
-	c = osource::feed (c);
-	return (c);
-}
+	{ 
+		c = osource::feed (c); 
+	} 
+	c = osource::feed (c); 
+	return (c); 
+} 
 
 /*====================================================================*
  *   
@@ -664,14 +741,14 @@ signed osource::escaped (signed c) const
 
 signed osource::feed (signed c) const 
 
-{
+{ 
 	if ((c) && (c != EOF)) 
-	{
-		std::cout.put (c);
-	}
-	c = std::cin.get ();
-	return (c);
-}
+	{ 
+		std::cout.put (c); 
+	} 
+	c = std::cin.get (); 
+	return (c); 
+} 
 
 /*====================================================================*
  *   
@@ -684,13 +761,13 @@ signed osource::feed (signed c) const
 
 signed osource::find (signed c) const 
 
-{
+{ 
 	while (oascii::isspace (c)) 
-	{
-		c = std::cin.get ();
-	}
-	return (c);
-}
+	{ 
+		c = std::cin.get (); 
+	} 
+	return (c); 
+} 
 
 /*====================================================================*
  *
@@ -700,9 +777,9 @@ signed osource::find (signed c) const
 
 osource::osource () 
 
-{
-	return;
-}
+{ 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -712,13 +789,14 @@ osource::osource ()
 
 osource::~osource () 
 
-{
-	return;
-}
+{ 
+	return; 
+} 
 
 /*====================================================================*
  *   end implementation
  *--------------------------------------------------------------------*/
 
 #endif
+
 

@@ -340,57 +340,34 @@ signed ophptidy::_context (signed c, signed e) const
 signed ophptidy::context (signed c)  const
 
 { 
-	if (oascii::isalpha (c)) 
+	if (c == '\\') 
 	{ 
-		c = osource::moniker (c);
-		c = osource::enspace (c);
-	} 
-	else if (oascii::isspace (c)) 
-	{ 
+		signed o;
+		o = osource::feed (c); 
+		c = osource::feed (o); 
+		if (o == '\n') 
+		{ 
+			oindent::print (oindent::margin (), oindent::offset (), oindent::level ()); 
+		} 
 		c = osource::find (c); 
-		if ((c == ')') || (c == ']') || (c == '}')) 
-		{ 
-			return (c); 
-		} 
-		if ((c == ',') || (c == ';')) 
-		{ 
-			return (c); 
-		} 
-		if ((c == ':') || (c == '?')) 
-		{ 
-			return (c); 
-		} 
-		std::cout.put (' '); 
-	} 
-	else if ((c == ',') || (c == ';') || (c == '?')) 
-	{ 
-		c = osource::feed (c); 
-		c = osource::find (c); 
-		std::cout.put (' '); 
-	} 
-	else if (oascii::isquote (c)) 
-	{ 
-		c = osource::literal (c); 
-	} 
-	else if (c == '/') 
-	{ 
-		c = osource::comment (c); 
-	} 
-	else if (c == '{') 
-	{ 
-		c = ophptidy::context ('{', '}'); 
-	} 
-	else if (c == '[') 
-	{ 
-		c = ophptidy::context ('[', ']'); 
 	} 
 	else if (c == '(') 
 	{ 
-		c = ophptidy::context ('(', ')'); 
+		c = ophptidy::context (c, ')'); 
+		c = ophptidy::enspace (c); 
+	} 
+	else if (c == '[') 
+	{ 
+		c = ophptidy::context (c, ']'); 
+		c = ophptidy::enspace (c); 
+	} 
+	else if (c == '{') 
+	{ 
+		c = ophptidy::context (c, '}'); 
 	} 
 	else
 	{ 
-		c = osource::feed (c); 
+		c = osource::despace (c); 
 	} 
 	return (c); 
 } 
