@@ -40,10 +40,12 @@
 #define CTYPE_B_DIGIT (1 << 4) 
 #define CTYPE_B_HEX   (1 << 5) 
 #define CTYPE_B_PUNCT (1 << 6) 
-#define CTYPE_B_IDENT (1 << 7) 
-#define CTYPE_B_GROUP (1 << 8) 
-#define CTYPE_B_ARITH (1 << 9) 
-#define CTYPE_B_LOGIC (1 << 10) 
+#define CTYPE_B_ARITH (1 << 7) 
+#define CTYPE_B_LOGIC (1 << 8) 
+#define CTYPE_B_COMMA (1 << 9) 
+#define CTYPE_B_IDENT (1 << 10) 
+#define CTYPE_B_BEGIN (1 << 11) 
+#define CTYPE_B_CLOSE (1 << 12) 
 
 /*====================================================================*
  *   program variables;
@@ -203,7 +205,7 @@ const unsigned short oascii::mtable [UCHAR_MAX + 1] =
 
 /* 037 045 25 [%] */
 
-	CTYPE_B_PUNCT,
+	CTYPE_B_PUNCT | CTYPE_B_ARITH,
 
 /* 038 046 26 [&] */
 
@@ -215,11 +217,11 @@ const unsigned short oascii::mtable [UCHAR_MAX + 1] =
 
 /* 040 050 28 [(] */
 
-	CTYPE_B_PUNCT | CTYPE_B_GROUP,
+	CTYPE_B_PUNCT | CTYPE_B_BEGIN ,
 
 /* 041 051 29 [)] */
 
-	CTYPE_B_PUNCT | CTYPE_B_GROUP,
+	CTYPE_B_PUNCT | CTYPE_B_CLOSE,
 
 /* 042 052 2A [*] */
 
@@ -231,7 +233,7 @@ const unsigned short oascii::mtable [UCHAR_MAX + 1] =
 
 /* 044 054 2C [,] */
 
-	CTYPE_B_PUNCT | CTYPE_B_GROUP,
+	CTYPE_B_PUNCT | CTYPE_B_COMMA,
 
 /* 045 055 2D [-] */
 
@@ -239,7 +241,7 @@ const unsigned short oascii::mtable [UCHAR_MAX + 1] =
 
 /* 046 056 2E [.] */
 
-	CTYPE_B_PUNCT | CTYPE_B_ARITH,
+	CTYPE_B_PUNCT,
 
 /* 047 057 2F [/] */
 
@@ -287,11 +289,11 @@ const unsigned short oascii::mtable [UCHAR_MAX + 1] =
 
 /* 058 072 3A [:] */
 
-	CTYPE_B_PUNCT,
+	CTYPE_B_PUNCT | CTYPE_B_COMMA,
 
 /* 059 073 3B [;] */
 
-	CTYPE_B_PUNCT | CTYPE_B_GROUP,
+	CTYPE_B_PUNCT | CTYPE_B_COMMA,
 
 /* 060 074 3C [<] */
 
@@ -307,7 +309,7 @@ const unsigned short oascii::mtable [UCHAR_MAX + 1] =
 
 /* 063 077 3F [?] */
 
-	CTYPE_B_PUNCT,
+	CTYPE_B_PUNCT | CTYPE_B_COMMA,
 
 /* 064 100 40 [@] */
 
@@ -419,7 +421,7 @@ const unsigned short oascii::mtable [UCHAR_MAX + 1] =
 
 /* 091 133 5B [[] */
 
-	CTYPE_B_PUNCT | CTYPE_B_GROUP,
+	CTYPE_B_PUNCT | CTYPE_B_BEGIN,
 
 /* 092 134 5C [\] */
 
@@ -427,7 +429,7 @@ const unsigned short oascii::mtable [UCHAR_MAX + 1] =
 
 /* 093 135 5D []] */
 
-	CTYPE_B_PUNCT | CTYPE_B_GROUP,
+	CTYPE_B_PUNCT | CTYPE_B_CLOSE,
 
 /* 094 136 5E [^] */
 
@@ -547,7 +549,7 @@ const unsigned short oascii::mtable [UCHAR_MAX + 1] =
 
 /* 123 173 7B [{] */
 
-	CTYPE_B_PUNCT | CTYPE_B_GROUP,
+	CTYPE_B_PUNCT | CTYPE_B_BEGIN,
 
 /* 124 174 7C [|] */
 
@@ -555,11 +557,11 @@ const unsigned short oascii::mtable [UCHAR_MAX + 1] =
 
 /* 125 175 7D [}] */
 
-	CTYPE_B_PUNCT | CTYPE_B_GROUP,
+	CTYPE_B_PUNCT | CTYPE_B_CLOSE,
 
 /* 126 176 7E [~] */
 
-	CTYPE_B_PUNCT,
+	CTYPE_B_PUNCT | CTYPE_B_LOGIC,
 
 /* 127 177 7F DEL */
 
@@ -1271,12 +1273,58 @@ bool oascii::islogic (signed c)
 bool oascii::isgroup (signed c) 
 
 {
-	return ((oascii::mtable [c & UCHAR_MAX] & CTYPE_B_GROUP) != 0);
+	return ((oascii::mtable [c & UCHAR_MAX] & (CTYPE_B_BEGIN | CTYPE_B_CLOSE)) != 0);
+}
+
+/*====================================================================*
+ *
+ *   bool isbegin (signed c);
+ *
+ *   begin characters start a group like a conditional espression, an
+ *   argument list, an array element or a program code block;
+ *
+ *--------------------------------------------------------------------*/
+
+bool oascii::isbegin (signed c) 
+
+{
+	return ((oascii::mtable [c & UCHAR_MAX] & CTYPE_B_BEGIN) != 0);
+}
+
+/*====================================================================*
+ *
+ *   bool isclose (signed c);
+ *
+ *   begin characters end a group like a conditional espression, an
+ *   argument list, an array element or a program code block;
+ *
+ *--------------------------------------------------------------------*/
+
+bool oascii::isclose (signed c) 
+
+{
+	return ((oascii::mtable [c & UCHAR_MAX] & CTYPE_B_CLOSE) != 0);
+}
+
+/*====================================================================*
+ *
+ *   bool iscomma (signed c);
+ *
+ *   comma characters separate list items or terminate expressions;
+ *
+ *--------------------------------------------------------------------*/
+
+bool oascii::iscomma (signed c) 
+
+{
+	return ((oascii::mtable [c & UCHAR_MAX] & CTYPE_B_COMMA) != 0);
 }
 
 /*====================================================================*
  *
  *   bool nmtoken (signed c);
+ *
+ *   nmtoken is a w3c standard identifier;
  *
  *--------------------------------------------------------------------*/
 

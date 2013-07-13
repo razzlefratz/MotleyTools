@@ -53,6 +53,9 @@ public:
 	static bool isarith (signed c);
 	static bool islogic (signed c);
 	static bool isgroup (signed c);
+	static bool isbegin (signed c);
+	static bool isclose (signed c);
+	static bool iscomma (signed c);
 	static bool isquote (signed c);
 	static bool isblank (signed c);
 	static bool ismatch (signed c, signed o);
