@@ -516,7 +516,7 @@ signed octidy::context (signed c) const
 		c = osource::feed (c); 
 		c = osource::find (c); 
 	} 
-	else if ((c == ',') || (c == ';') || (c == '?') || (c == ':')) 
+	else if ((c == ',') || (c == ';') || (c == '?')) 
 	{ 
 		c = osource::feed (c); 
 		c = osource::find (c); 
@@ -558,44 +558,80 @@ signed octidy::context (signed c) const
 	} 
 	else if (c == ':') 
 	{ 
-		signed o = osource::feed (c); 
-		if (o == c) 
+		c = osource::feed (c); 
+		if (c == ':') 
 		{ 
-			o = osource::feed (o); 
-			c = osource::find (o); 
+			c = osource::feed (c); 
+			c = osource::find (c); 
 		} 
 		else 
 		{ 
-			c = osource::find (o); 
+			c = osource::find (c); 
 			std::cout.put (' '); 
 		} 
 	} 
 	else if (c == '+') 
 	{ 
-		signed o = osource::feed (c); 
-		if ((o == c) || (o == '=')) 
+		c = osource::feed (c); 
+		if (c == '+')
 		{ 
-			o = osource::feed (o); 
+			c = osource::feed (c); 
+			c = osource::find (c); 
+			if ((c == ')') || (c == ']'))
+			{
+				return (c);
+			}
+			if ((c == ',') || (c == ';'))
+			{
+				return (c);
+			}
+			if ((c == '?') || (c == ':'))
+			{
+				return (c);
+			}
+			std::cout.put (' '); 
 		} 
-		c = osource::find (o); 
-		std::cout.put (' '); 
+		else if (c == '=')
+		{ 
+			c = osource::feed (c); 
+			c = osource::find (c); 
+			std::cout.put (' '); 
+		} 
 	} 
 	else if (c == '-') 
 	{ 
-		signed o = osource::feed (c); 
-		if ((o == c) || (o == '=')) 
+		c = osource::feed (c); 
+		if (c == '-')
 		{ 
-			o = osource::feed (o); 
-			c = osource::find (o); 
+			c = osource::feed (c); 
+			c = osource::find (c); 
+			if ((c == ')') || (c == ']'))
+			{
+				return (c);
+			}
+			if ((c == ',') || (c == ';'))
+			{
+				return (c);
+			}
+			if ((c == '?') || (c == ':'))
+			{
+				return (c);
+			}
 			std::cout.put (' '); 
 		} 
-		else if (o == '>') 
+		else if (c == '=') 
 		{ 
-			c = osource::feed (o); 
+			c = osource::feed (c); 
+			c = osource::find (c); 
+			std::cout.put (' '); 
+		} 
+		else if (c == '>') 
+		{ 
+			c = osource::feed (c); 
 		} 
 		else 
 		{ 
-			c = osource::find (o); 
+			c = osource::find (c); 
 			std::cout.put (' '); 
 		} 
 	} 
