@@ -48,8 +48,8 @@ public:
 	signed comment (signed c) const;
 	signed moniker (signed c) const;
 	signed enspace (signed c) const;
-	signed despace (signed c) const;
 	signed escaped (signed c) const;
+	signed despace (signed c) const;
 	signed _context (signed c, signed o, signed e) const;
 	signed _content (signed c, signed o, signed e) const;
 	signed _context (signed c, signed e) const;
