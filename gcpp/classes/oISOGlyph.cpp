@@ -24,7 +24,7 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "oISOGlyph.hpp"
+#include "../classes/oISOGlyph.hpp"
 
 /*====================================================================*
  *   data initialization;
@@ -72,7 +72,7 @@ char const * oISOGlyph::mtable [UCHAR_MAX + 1] =
 	"$",
 	"%",
 	"amp",
-	"\'",
+	"apos",
 	"(",
 	")",
 	"*",
@@ -194,12 +194,12 @@ char const * oISOGlyph::mtable [UCHAR_MAX + 1] =
 	"#x9E",
 	"#x9F",
 	"nbsp",
-	"iexd",
+	"iexcl",
 	"cent",
 	"pound",
 	"curren",
 	"yen",
-	"brkbar",
+	"brvbar",
 	"sect",
 	"uml",
 	"copy",
@@ -288,53 +288,62 @@ char const * oISOGlyph::mtable [UCHAR_MAX + 1] =
 	"uuml",
 	"yacute",
 	"thorn",
-	"yuml",
+	"yuml"
 };
 
 /*====================================================================*
  *
- *   char oISOGlyph::string(unsigned c) const;
+ *   char const string (signed c) const;
  *
- *   return the ISO glyph string for the ASCII character argument; for
- *   example, '<' returns "&lt;" and '\t' returns "&0x09;";
+ *   return the ISO glyph string for the ASCII character argument; 
+ *   for example, 'A' returns "A", '<' returns "&lt;" and '\t' 
+ *   returns "&0x09;";
  *
  *--------------------------------------------------------------------*/
 
-char const * oISOGlyph::string (unsigned c) 
+char const * oISOGlyph::string (signed c) 
 
 {
-	this->mascii = this->mstring;
-	this->mglyph = oISOGlyph::mtable [c & UCHAR_MAX];
-	if (this->mglyph [1] == (char)(0)) 
+	char const * string = oISOGlyph::mtable [c & UCHAR_MAX];
+	char * sp = this->mstring;
+	if (string [1]) 
 	{
-		* this->mascii++ = * this->mglyph;
+		* sp++ = '&';
+		while (* string) 
+		{
+			* sp++ = * string++;
+		}
+		* sp++ = ';';
 	}
 	else
 	{
-		* this->mascii++ = '&';
-		while (* this->mglyph != (char)(0)) 
-		{
-			* this->mascii++ = * this->mglyph++;
-		}
-		* this->mascii++ = ';';
+		* sp++ = * string;
 	}
-	* this->mascii = (char)(0);
+	* sp = (char)(0);
 	return ((char const *)(this->mstring));
 }
 
 /*====================================================================*
  *
+ *   oISOGlyph (void);
+ *
  *--------------------------------------------------------------------*/
 
-oISOGlyph::oISOGlyph () 
+oISOGlyph::oISOGlyph (void) 
 
 {
-	this->mstring = new char [0x0F];
+	this->mstring = new char [16];
 	this->mstring [0] = (char)(0);
 	return;
 }
 
-oISOGlyph::~oISOGlyph () 
+/*====================================================================*
+ *
+~oISOGlyph (void);
+ *
+ *--------------------------------------------------------------------*/
+
+oISOGlyph::~oISOGlyph (void) 
 
 {
 	delete [] this->mstring;

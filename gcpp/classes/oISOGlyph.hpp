@@ -28,14 +28,12 @@ class __declspec (dllexport) oISOGlyph
 
 {
 public:
-	oISOGlyph ();
-	virtual ~ oISOGlyph ();
-	char const * string (unsigned c);
+	oISOGlyph (void);
+	virtual ~ oISOGlyph (void);
+	char const * string (signed c);
 private:
 	static char const * mtable [];
 	char * mstring;
-	char const * mglyph;
-	char * mascii;
 };
 
 /*====================================================================*
