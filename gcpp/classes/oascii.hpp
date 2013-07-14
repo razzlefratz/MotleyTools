@@ -20,6 +20,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
+#include "../../gcc/tools/types.h"
 
 /*====================================================================*
  *   class declaration;
@@ -55,6 +56,7 @@ public:
 	static bool isgroup (signed c);
 	static bool isbegin (signed c);
 	static bool isclose (signed c);
+	static bool isctype (signed c, unsigned short mask);
 	static bool iscomma (signed c);
 	static bool isquote (signed c);
 	static bool isblank (signed c);
@@ -75,8 +77,13 @@ public:
 
 #endif
 
+	unsigned ctypemask (char const * ctypename) const;
+	void matrix () const;
+
 private:
-	static const unsigned short mtable [];
+	static char const * mbits [];
+	static unsigned short const cmask [];
+	static char const * cname [];
 };
 
 /*====================================================================*

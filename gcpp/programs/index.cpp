@@ -74,7 +74,7 @@ int main (int argc, char const * argv [])
 		"c n\tdisplay (n) columns [" LITERAL (INDEX_COLUMNS) "]", 
 		"s s\tuse CSS2 stylesheet (s)", 
 		"S\tprint CSS2 stylesheet on stdout", 
-		"t s\tHTML index title", 
+		"t s\ttitle string is (s)", 
 		(char const * ) (0)
 	}; 
 	ogetoptv getopt; 
