@@ -48,9 +48,6 @@
 #include "../classes/ohtmltidy.cpp"
 #include "../classes/osource.cpp"
 #include "../classes/oindent.cpp"
-#endif
-
-#ifndef MAKEFILE
 #include "../classes/oHTMLEmptyElements.cpp"
 #endif
 
