@@ -56,7 +56,6 @@ public:
 	static bool isgroup (signed c);
 	static bool isbegin (signed c);
 	static bool isclose (signed c);
-	static bool isctype (signed c, unsigned short mask);
 	static bool iscomma (signed c);
 	static bool isquote (signed c);
 	static bool isblank (signed c);
@@ -77,10 +76,12 @@ public:
 
 #endif
 
-	unsigned ctypemask (char const * ctypename) const;
+	void enumerate () const;
 	void matrix () const;
 
 private:
+	unsigned ctypemask (char const * ctypename) const;
+	static bool isctype (signed c, unsigned short mask);
 	static char const * mbits [];
 	static unsigned short const cmask [];
 	static char const * cname [];
