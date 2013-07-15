@@ -63,7 +63,7 @@ void function (size_t lower, size_t upper, flag_t flags)
 { 
 	size_t column; 
 	signed c; 
-	for (column = 1; (c = getc (stdin)) != EOF; column++ ) 
+	for (column = 1; (c = getc (stdin)) != EOF; column++) 
 	{ 
 		if (c == '\n') 
 		{ 
@@ -111,7 +111,7 @@ int main (int argc, char const * argv [])
 		"discard character columns", 
 		"a n\tafter column (n)", 
 		"b n\tbefore column (n)", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = (flag_t) (0); 
 	unsigned lower = 0; 
@@ -133,7 +133,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (lower, upper, flags); 
 	} 
@@ -143,8 +143,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (lower, upper, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

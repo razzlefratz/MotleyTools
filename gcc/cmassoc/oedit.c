@@ -72,7 +72,7 @@ int main (int argc, char const * argv [])
 		"q\tquiet moedit", 
 		"v[v]\tverbose moedit", 
 		"w n\twindow is n bytes [32]", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	file file; 
 	byte * memory; 
@@ -107,7 +107,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		error (1, ECANCELED, "No file."); 
 	} 
@@ -133,9 +133,9 @@ int main (int argc, char const * argv [])
 		error (1, errno, "%s", file.name); 
 	} 
 	close (file.file); 
-	argc-- ; 
-	argv++ ; 
-	if (! argc) 
+	argc--; 
+	argv++; 
+	if (!argc) 
 	{ 
 		error (1, ECANCELED, "No offset"); 
 	} 
@@ -144,9 +144,9 @@ int main (int argc, char const * argv [])
 	{ 
 		error (1, ECANCELED, "Offset %X exceeds extent %X", offset, extent); 
 	} 
-	argc-- ; 
-	argv++ ; 
-	if (! argc) 
+	argc--; 
+	argv++; 
+	if (!argc) 
 	{ 
 		_setbits (flags, ODE_VERBOSE); 
 	} 

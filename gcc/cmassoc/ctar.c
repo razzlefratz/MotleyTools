@@ -117,7 +117,7 @@ int main (int argc, char * argv [])
 	char const * paths [_LISTSIZE] = 
 	{ 
 		getenv ("PWD"), 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	size_t path = 1; 
 
@@ -131,7 +131,7 @@ int main (int argc, char * argv [])
 
 	int argn; 
 	int argx; 
-	for (argn = 1; argn < argc; argn++ ) 
+	for (argn = 1; argn < argc; argn++) 
 	{ 
 		char const * sp = argv [argn]; 
 		if (* sp++ != GETOPTV_C_OPTION) 
@@ -144,23 +144,23 @@ int main (int argc, char * argv [])
 		} 
 		if (* sp == (char)(0)) 
 		{ 
-			for (argx = argn; argx < argc; argx++ ) 
+			for (argx = argn; argx < argc; argx++) 
 			{ 
-				argv [argx] = argv [argx+ 1]; 
+				argv [argx] = argv [argx + 1]; 
 			} 
 			sp = argv [argn]; 
-			argc-- ; 
+			argc--; 
 		} 
-		paths [path++ ] = sp; 
-		for (argx = argn; argx < argc; argx++ ) 
+		paths [path++] = sp; 
+		for (argx = argn; argx < argc; argx++) 
 		{ 
-			argv [argx] = argv [argx+ 1]; 
+			argv [argx] = argv [argx + 1]; 
 		} 
-		argn-- ; 
-		argc-- ; 
+		argn--; 
+		argc--; 
 	} 
-	paths [path] = (char const * )(0); 
-	argv [argc] = (char * )(0); 
+	paths [path] = (char const *)(0); 
+	argv [argc] = (char *)(0); 
 
 #endif
 
@@ -176,20 +176,20 @@ int main (int argc, char * argv [])
 	{ 
 		error (1, 0, "%s: missing %d file(s)", files.table [0], files.error); 
 	} 
-	if ((args = (char ** )(malloc ((argc + files.count + 1) * sizeof (char * ))))) 
+	if ((args = (char **)(malloc ((argc + files.count + 1) * sizeof (char *))))) 
 	{ 
-		error (1, 0, "%s: out of memory", basename ((char * )(* argv))); 
+		error (1, 0, "%s: out of memory", basename ((char *)(* argv))); 
 	} 
 	args [0] = PATH_TAR; 
-	for (argc = 1; argv [argc]; argc++ ) 
+	for (argc = 1; argv [argc]; argc++) 
 	{ 
 		args [argc] = argv [argc]; 
 	} 
-	for (files.lower = files.start; files.lower < files.count; files.lower++ ) 
+	for (files.lower = files.start; files.lower < files.count; files.lower++) 
 	{ 
-		args [argc++ ] = (char * )(files.table [files.lower]); 
+		args [argc++] = (char *)(files.table [files.lower]); 
 	} 
-	args [argc] = (char * )(0); 
+	args [argc] = (char *)(0); 
 	execv (* args, args); 
 	error (1, errno, "can't execute %s", * args); 
 	exit (0); 

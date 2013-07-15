@@ -88,7 +88,7 @@ static signed preamble (signed c)
 
 { 
 	extern unsigned level; 
-	if (! level) 
+	if (!level) 
 	{ 
 		while (c != EOF) 
 		{ 
@@ -210,11 +210,11 @@ static signed program (signed c, signed e)
 		} 
 		if (c == '{') 
 		{ 
-			level++ ; 
+			level++; 
 			c = keep (c); 
 			c = program (c, '}'); 
 			c = keep (c); 
-			level-- ; 
+			level--; 
 			c = preamble (c); 
 			continue; 
 		} 
@@ -244,40 +244,40 @@ static signed program (signed c, signed e)
 			} 
 			while (isalnum (c) || (c == '_') || (c == '.')); 
 			* sp = (char)(0); 
-			if (! strcmp (string, "while")) 
+			if (!strcmp (string, "while")) 
 			{ 
 				c = condition (c); 
 				c = statement (c); 
 				continue; 
 			} 
-			if (! strcmp (string, "for")) 
+			if (!strcmp (string, "for")) 
 			{ 
 				c = condition (c); 
 				c = statement (c); 
 				continue; 
 			} 
-			if (! strcmp (string, "if")) 
+			if (!strcmp (string, "if")) 
 			{ 
 				c = condition (c); 
 				c = statement (c); 
 				continue; 
 			} 
-			if (! strcmp (string, "else")) 
+			if (!strcmp (string, "else")) 
 			{ 
 				c = statement (c); 
 				continue; 
 			} 
-			if (! strcmp (string, "do")) 
+			if (!strcmp (string, "do")) 
 			{ 
 				c = statement (c); 
 				continue; 
 			} 
-			if (! strcmp (string, "return")) 
+			if (!strcmp (string, "return")) 
 			{ 
 				c = condition (c); 
 				continue; 
 			} 
-			if (! strcmp (string, "exit")) 
+			if (!strcmp (string, "exit")) 
 			{ 
 				c = condition (c); 
 				continue; 
@@ -308,7 +308,7 @@ int main (int argc, char const * argv [])
 		PUTOPTV_S_FILTER, 
 		"C/C++ language blocker", 
 		"p\tinsert empty function preambles", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	signed c; 
 	while ((c = getoptv (argc, argv, optv)) != - 1) 
@@ -324,7 +324,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		program (NUL, EOF); 
 	} 
@@ -334,8 +334,8 @@ int main (int argc, char const * argv [])
 		{ 
 			program (NUL, EOF); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

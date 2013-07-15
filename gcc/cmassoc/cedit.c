@@ -95,9 +95,9 @@ unsigned function (char const * oldname, char const * newname)
 			} 
 			while (isalnum (c) || (c == '_')); 
 			* sp = (char)(0); 
-			if (! strcmp (string, oldname)) 
+			if (!strcmp (string, oldname)) 
 			{ 
-				count++ ; 
+				count++; 
 				fputs (newname, stdout); 
 				continue; 
 			} 
@@ -220,7 +220,7 @@ int main (int argc, char const * argv [])
 		"c\treport changes", 
 		"o s\told token is s", 
 		"n s\tnew token is s", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = (flag_t)(0); 
 	char const * oldname = ""; 
@@ -244,13 +244,13 @@ int main (int argc, char const * argv [])
 			break; 
 		} 
 	} 
-	if (! oldname) 
+	if (!oldname) 
 	{ 
 		error (1, EINVAL, "No old name given"); 
 	} 
-	for (sp = oldname; * sp; sp++ ) 
+	for (sp = oldname; * sp; sp++) 
 	{ 
-		if (! isalnum (* sp) && (* sp != '_')) 
+		if (!isalnum (* sp) && (* sp != '_')) 
 		{ 
 			error (1, EINVAL, "%s is not a variable or constant name", oldname); 
 		} 
@@ -259,13 +259,13 @@ int main (int argc, char const * argv [])
 	{ 
 		error (1, EINVAL, "Old name is empty"); 
 	} 
-	if (! newname) 
+	if (!newname) 
 	{ 
 		error (1, EINVAL, "No new name given"); 
 	} 
-	for (sp = newname; * sp; sp++ ) 
+	for (sp = newname; * sp; sp++) 
 	{ 
-		if (! isalnum (* sp) && (* sp != '_')) 
+		if (!isalnum (* sp) && (* sp != '_')) 
 		{ 
 			error (1, EINVAL, "%s is not a variable or constant name", newname); 
 		} 
@@ -276,7 +276,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		if ((c = function (oldname, newname))) 
 		{ 
@@ -298,8 +298,8 @@ int main (int argc, char const * argv [])
 				} 
 			} 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

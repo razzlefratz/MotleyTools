@@ -71,28 +71,28 @@ signed header (signed margin, char const * string)
 { 
 	indent (margin, "<?xml version='%s' encoding='%s'?>", XML_VERSION, XML_CHARSET); 
 	indent (margin, "<!doctype html public '%s' '%s'>", W3C_STD, W3C_DTD); 
-	indent (margin++ , "<html xmlns='%s' lang='%s'>", XML_NAMESPACE, XML_LANGUAGE); 
-	indent (margin++ , "<head>"); 
-	indent (margin++ , "<title>"); 
+	indent (margin++, "<html xmlns='%s' lang='%s'>", XML_NAMESPACE, XML_LANGUAGE); 
+	indent (margin++, "<head>"); 
+	indent (margin++, "<title>"); 
 	indent (margin, "%s", string); 
-	indent (margin-- , "</title>"); 
+	indent (margin--, "</title>"); 
 	indent (margin, "<meta http-equiv='content-type' content='%s'/>", HTML_CONTENT); 
 	indent (margin, "<meta name='generator' content='%s'/>", HTML_PROGRAM); 
 	indent (margin, "<meta name='author' content='%s'/>", HTML_AUTHOR); 
 	indent (margin, "<meta name='robots' content='%s'/>", HTML_ROBOTS); 
 	indent (margin, "<link rel='stylesheet' href='%s' type='%s'/>", CSS_STYLESHEET, CSS_CONTENT); 
-	indent (margin++ , "<style type='text/css'>"); 
+	indent (margin++, "<style type='text/css'>"); 
 	indent (margin, "table { table-layout: fixed; background: transparent; border-collapse: separate; border-spacing: 1pt; font: normal 10pt verdana; }"); 
 	indent (margin, "th { background: inherit; padding: 2px 10px; text-align: center; vertical-align: middle; }"); 
 	indent (margin, "td { background: inherit; padding: 2px 10px; text-align: left; vertical-align: top; }"); 
-	indent (margin-- , "</style>"); 
-	indent (margin++ , "<style type='text/css'>"); 
+	indent (margin--, "</style>"); 
+	indent (margin++, "<style type='text/css'>"); 
 	indent (margin, "table.box { border: solid 1pt black; }"); 
 	indent (margin, "td.box { border: solid 1pt silver; }"); 
 	indent (margin, "th.box { border: solid 1pt silver; }"); 
-	indent (margin-- , "</style>"); 
-	indent (margin-- , "</head>"); 
-	indent (margin++ , "<body>"); 
+	indent (margin--, "</style>"); 
+	indent (margin--, "</head>"); 
+	indent (margin++, "<body>"); 
 	return (margin); 
 } 
 
@@ -109,8 +109,8 @@ signed header (signed margin, char const * string)
 signed footer (signed margin, char const * string) 
 
 { 
-	indent (margin-- , "</body>"); 
-	indent (margin-- , "</html>"); 
+	indent (margin--, "</body>"); 
+	indent (margin--, "</html>"); 
 	return (margin); 
 } 
 
@@ -142,11 +142,11 @@ static void function (char const * string, size_t column, flag_t flags)
 	{ 
 		margin = header (0, string); 
 	} 
-	indent (margin++ , "<h1>"); 
+	indent (margin++, "<h1>"); 
 	indent (margin, "%s", string); 
-	indent (margin-- , "</h1>"); 
-	indent (margin++ , "<table class='box'>"); 
-	for (row = 0; (c = getc (stdin)) != EOF; row++ ) 
+	indent (margin--, "</h1>"); 
+	indent (margin++, "<table class='box'>"); 
+	for (row = 0; (c = getc (stdin)) != EOF; row++) 
 	{ 
 		while (isspace (c)) 
 		{ 
@@ -161,8 +161,8 @@ static void function (char const * string, size_t column, flag_t flags)
 			while (nobreak (c)); 
 			continue; 
 		} 
-		indent (margin++ , "<tr>"); 
-		for (col = 0; nobreak (c); col++ ) 
+		indent (margin++, "<tr>"); 
+		for (col = 0; nobreak (c); col++) 
 		{ 
 			sp = cp = field; 
 			while (nobreak (c)) 
@@ -212,17 +212,17 @@ static void function (char const * string, size_t column, flag_t flags)
 			{ 
 				strcpy (field, "&nbsp;"); 
 			} 
-			if (! row) 
+			if (!row) 
 			{ 
-				indent (margin++ , "<th class='%s'>", STYLE); 
+				indent (margin++, "<th class='%s'>", STYLE); 
 				indent (margin, "%s", field); 
-				indent (margin-- , "</th>"); 
+				indent (margin--, "</th>"); 
 			} 
 			else 
 			{ 
-				indent (margin++ , "<td class='%s'>", STYLE); 
+				indent (margin++, "<td class='%s'>", STYLE); 
 				indent (margin, "%s", field); 
-				indent (margin-- , "</td>"); 
+				indent (margin--, "</td>"); 
 			} 
 			while (isblank (c)) 
 			{ 
@@ -231,22 +231,22 @@ static void function (char const * string, size_t column, flag_t flags)
 		} 
 		while (col++ < column) 
 		{ 
-			if (! row) 
+			if (!row) 
 			{ 
-				indent (margin++ , "<th class='%s'>", STYLE); 
+				indent (margin++, "<th class='%s'>", STYLE); 
 				indent (margin, "Column%d", col); 
-				indent (margin-- , "</th>"); 
+				indent (margin--, "</th>"); 
 			} 
 			else 
 			{ 
-				indent (margin++ , "<td class='%s'>", STYLE); 
+				indent (margin++, "<td class='%s'>", STYLE); 
 				indent (margin, "&nbsp;"); 
-				indent (margin-- , "</td>"); 
+				indent (margin--, "</td>"); 
 			} 
 		} 
-		indent (margin-- , "</tr>"); 
+		indent (margin--, "</tr>"); 
 	} 
-	indent (margin-- , "</table>"); 
+	indent (margin--, "</table>"); 
 	if (_anyset (flags, CSV2HTML_PAGE)) 
 	{ 
 		margin = footer (margin, string); 
@@ -277,10 +277,10 @@ int main (int argc, char const * argv [])
 		"p\tprint HTML page with header", 
 		"s s\tpage title string", 
 		"t\tprint HTML table only", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
-	char const * string = (char * )(0); 
-	char * field = (char * )(0); 
+	char const * string = (char *)(0); 
+	char * field = (char *)(0); 
 	unsigned length = 1024; 
 	unsigned column = 0; 
 	flag_t flags = (flag_t)(0); 
@@ -310,13 +310,13 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! (field = malloc (length))) 
+	if (!(field = malloc (length))) 
 	{ 
 		error (1, errno, "Can't allocate %u bytes", length); 
 	} 
-	if (! argc) 
+	if (!argc) 
 	{ 
-		if (! string) 
+		if (!string) 
 		{ 
 			string = "untitled"; 
 		} 
@@ -326,14 +326,14 @@ int main (int argc, char const * argv [])
 	{ 
 		if (efreopen (* argv, "rb", stdin)) 
 		{ 
-			if (! string) 
+			if (!string) 
 			{ 
 				string = filepart (* argv); 
 			} 
 			function (string, column, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

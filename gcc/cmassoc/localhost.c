@@ -57,7 +57,7 @@ int main (int argc, char const * argv [])
 		"d s\tset domainname to (s)", 
 		"h s\tset hostname to (s)", 
 		"l\tcreate link " HOSTNAME2 "-->" HOSTNAME1, 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	struct stat statinfo; 
 	char machine [1024] = ""; 

@@ -137,7 +137,7 @@ void func (int radix, flag_t flag, FILE * ifp, FILE * ofp)
 		return; 
 	} 
 	width <<= (flag & (SIZE)); 
-	for (rec = 0; (count = read (fileno (ifp), block, BUFSIZ)) > 0; rec++ ) 
+	for (rec = 0; (count = read (fileno (ifp), block, BUFSIZ)) > 0; rec++) 
 	{ 
 		fputs ("\nrecord = ", ofp); 
 		fputx (rec, 10, 4, ' ', ofp); 
@@ -152,7 +152,7 @@ void func (int radix, flag_t flag, FILE * ifp, FILE * ofp)
 			fputx ((lower >> (flag & (SIZE))), 16, 4, '0', ofp); 
 			fputc (' ', ofp); 
 			fputc (' ', ofp); 
-			for (index = lower; index < upper; index++ ) 
+			for (index = lower; index < upper; index++) 
 			{ 
 				switch (flag & (SIZE)) 
 				{ 
@@ -176,7 +176,7 @@ void func (int radix, flag_t flag, FILE * ifp, FILE * ofp)
 				fputc (' ', ofp); 
 			} 
 			fputc (' ', ofp); 
-			for (index = lower; index < upper; index++ ) 
+			for (index = lower; index < upper; index++) 
 			{ 
 				if ((unsigned) (block [index]) < 0x20) 
 				{ 
@@ -213,7 +213,7 @@ int main (int argc, char const * argv [])
 		"o\tdisplay in octal", 
 		"d\tdisplay in decimal ", 
 		"x\tdisplay in hexidecmal", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	flag_t flag = BYTE; 
 	int base = HEX; 
@@ -244,7 +244,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		func (base, flag, stdin, stdout); 
 	} 
@@ -254,8 +254,8 @@ int main (int argc, char const * argv [])
 		{ 
 			func (base, flag, stdin, stdout); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

@@ -70,7 +70,7 @@ int main (int argc, const char * argv [])
 		"c\tdisplay broadcast terminal count", 
 		"t\tdisplay broadcast terminal names", 
 		"r\tbroadcast on remote terminals only", 
-		(const char * ) (0)
+		(const char *) (0)
 	}; 
 	flag_t flags = BROADCAST_B_BANNER; 
 	char message [BROADCAST_MAXCHARS] = ""; 
@@ -114,30 +114,30 @@ int main (int argc, const char * argv [])
 		syslog_error (LOG_NOTICE, EPERM, "user %s tried to broadcast", getlogin ()); 
 		error (1, EPERM, NOTROOT); 
 	} 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		if ((nchars = read (STDIN_FILENO, message, sizeof (message)- 1)) != - 1) 
 		{ 
-			message [nchars]= (char)(0); 
+			message [nchars] = (char)(0); 
 		} 
 	} 
 	while ((argc) && (* argv)) 
 	{ 
 		if (_anyset (flags, BROADCAST_B_BULLET)) 
 		{ 
-			message [nchars++ ] = ' '; 
-			message [nchars++ ] = '-'; 
-			message [nchars++ ] = ' '; 
+			message [nchars++] = ' '; 
+			message [nchars++] = '-'; 
+			message [nchars++] = ' '; 
 		} 
 		nchars += snprintf (message + nchars, BROADCAST_MAXCHARS - nchars, "%s\n", * argv); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
-	for (nchars = 0; (message [nchars] != (char) (0)) && (nchars < BROADCAST_MAXCHARS) && (nlines < BROADCAST_MAXLINES); nchars++ ) 
+	for (nchars = 0; (message [nchars] != (char) (0)) && (nchars < BROADCAST_MAXCHARS) && (nlines < BROADCAST_MAXLINES); nchars++) 
 	{ 
 		if (message [nchars] == '\n') 
 		{ 
-			nlines++ ; 
+			nlines++; 
 		} 
 	} 
 	message [nchars] = (char)(0); 

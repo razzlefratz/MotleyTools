@@ -69,12 +69,12 @@ void function (signed count, signed width)
 		if (c == '\n') 
 		{ 
 			column = width; 
-			count-- ; 
+			count--; 
 		} 
 		if (column < width) 
 		{ 
 			putc (c, stdout); 
-			column++ ; 
+			column++; 
 		} 
 		c = getc (stdin); 
 	} 
@@ -102,15 +102,15 @@ int main (int argc, char const * argv [])
 		"copy one or more file headers to stdout", 
 		"l n\tdisplay line count is (n) [" LITERAL (VT_LINES) "]", 
 		"w n\tdisplay line width is (n) [" LITERAL (VT_LIMIT) "]", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	unsigned lines = VT_LINES; 
 	unsigned width = VT_LIMIT; 
 	signed c; 
 	getviewport (& lines, & width); 
-	lines-- ; 
-	lines-- ; 
-	width-- ; 
+	lines--; 
+	lines--; 
+	width--; 
 	while ((c = getoptv (argc, argv, optv)) != - 1) 
 	{ 
 		switch (c) 
@@ -127,7 +127,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (lines, width); 
 	} 
@@ -137,8 +137,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (lines, width); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

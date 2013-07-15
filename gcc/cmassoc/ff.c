@@ -158,11 +158,11 @@ static void testfile (FIND * find, flag_t flags)
 		char const * filename = find->filename; 
 		if (* filename == '.') 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		if (* filename == '.') 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		if (* filename == (char) (0)) 
 		{ 
@@ -217,7 +217,7 @@ static void findfile (FIND * find, flag_t flags)
 		struct dirent * dirent; 
 		while (* filename != (char)(0)) 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		* filename = PATH_C_EXTENDER; 
 		while ((dirent = readdir (dir))) 
@@ -261,11 +261,11 @@ int main (int argc, char const * argv [])
 		"B\tsearch binary folders", 
 		"L\tsearch library folders", 
 		"I\tsearch include folders", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	char * string = ""; 
-	char const ** folders = (char const ** ) (0); 
-	char const ** folder = (char const ** ) (0); 
+	char const ** folders = (char const **) (0); 
+	char const ** folder = (char const **) (0); 
 	size_t count = 0; 
 	flag_t flags = (flag_t) (0); 
 	signed c; 
@@ -341,7 +341,7 @@ int main (int argc, char const * argv [])
 	if ((string) && (* string)) 
 	{ 
 		count = 2 + chrcount (string, PATH_C_SEPARATOR); 
-		folders = (char const ** ) (emalloc (count * sizeof (char const ** ))); 
+		folders = (char const **) (emalloc (count * sizeof (char const **))); 
 		strsplit (folders, count, string, PATH_C_SEPARATOR); 
 	} 
 	while ((argc) && (* argv)) 
@@ -349,9 +349,9 @@ int main (int argc, char const * argv [])
 		makefind (& find, * argv); 
 		if (folders) 
 		{ 
-			for (folder = folders; * folder; folder++ ) 
+			for (folder = folders; * folder; folder++) 
 			{ 
-				if (! strcmp (* folder, "~")) 
+				if (!strcmp (* folder, "~")) 
 				{ 
 					continue; 
 				} 
@@ -365,8 +365,8 @@ int main (int argc, char const * argv [])
 			strcpy (find.fullname, find.pathname); 
 			findfile (& find, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

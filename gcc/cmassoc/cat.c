@@ -87,7 +87,7 @@ int main (int argc, char const * argv [])
 		"copy one or more files to stdout", 
 		"b n\tbuffer size is (n) bytes [" LITERAL (BUFFERSIZE) "]", 
 		"u\tunbuffered copy", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	signed length = BUFFERSIZE; 
 	signed c; 
@@ -107,7 +107,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (length); 
 	} 
@@ -117,8 +117,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (length); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

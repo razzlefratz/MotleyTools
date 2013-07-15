@@ -77,7 +77,7 @@ void function (char const * braces, flag_t flags)
 			c = getc (stdin); 
 			if (isalnum (c)) 
 			{ 
-				putc (* braces++ , stdout); 
+				putc (* braces++, stdout); 
 				while (isalnum (c) || (c == '_')) 
 				{ 
 					putc (c, stdout); 
@@ -103,21 +103,21 @@ void function (char const * braces, flag_t flags)
 #endif
 
 				} 
-				putc (* braces-- , stdout); 
+				putc (* braces--, stdout); 
 				continue; 
 			} 
 			if (isdigit (c)) 
 			{ 
-				putc (* braces++ , stdout); 
+				putc (* braces++, stdout); 
 				putc (c, stdout); 
-				putc (* braces-- , stdout); 
+				putc (* braces--, stdout); 
 				continue; 
 			} 
 			if ((c == '#') || (c == '?') || (c == '$')) 
 			{ 
-				putc (* braces++ , stdout); 
+				putc (* braces++, stdout); 
 				putc (c, stdout); 
-				putc (* braces-- , stdout); 
+				putc (* braces--, stdout); 
 				c = getc (stdin); 
 				continue; 
 			} 
@@ -140,7 +140,7 @@ int main (int argc, char const * argv [])
 		"", 
 		PUTOPTV_S_FILTER, 
 		"enclose symbols in braces", 
-		(char * ) (0)
+		(char *) (0)
 	}; 
 	flag_t flags = (flag_t) (0); 
 	char const * braces = "{}"; 
@@ -155,7 +155,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (braces, flags); 
 	} 
@@ -165,8 +165,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (braces, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

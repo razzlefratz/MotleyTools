@@ -75,7 +75,7 @@ int main (int argc, char const * argv [])
 		"file [file] [...]", 
 		"digital dactyloscope", 
 		"f f\tfingerprint registry [" REGISTRY "]", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	byte buffer [BUFFERSIZE]; 
 	byte digest [DIGESTSIZE]; 
@@ -108,10 +108,10 @@ int main (int argc, char const * argv [])
 		if (efreopen (* argv, "rb", stdin)) 
 		{ 
 			SHA256Ident (fileno (stdin), buffer, sizeof (buffer), digest); 
-			printf ("%s %s\n", SHA256Match (fd, digest)? "+":  "-", * argv); 
+			printf ("%s %s\n", SHA256Match (fd, digest)? "+": "-", * argv); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	close (fd); 
 	return (0); 

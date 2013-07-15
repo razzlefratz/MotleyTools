@@ -61,7 +61,7 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function (int argc, const char * argv [], size_t decode (void const * , size_t, char const * , char const * ), flag_t flags) 
+static void function (int argc, const char * argv [], size_t decode (void const *, size_t, char const *, char const *), flag_t flags) 
 
 { 
 	file file; 
@@ -79,7 +79,7 @@ static void function (int argc, const char * argv [], size_t decode (void const 
 	{ 
 		error (1, errno, "Can't size %s", file.name); 
 	} 
-	if (! (memory = malloc (extent))) 
+	if (!(memory = malloc (extent))) 
 	{ 
 		error (1, errno, "Can't span %s", file.name); 
 	} 
@@ -92,9 +92,9 @@ static void function (int argc, const char * argv [], size_t decode (void const 
 		error (1, errno, "Can't load %s", file.name); 
 	} 
 	close (file.file); 
-	argc-- ; 
-	argv++ ; 
-	if (! argc) 
+	argc--; 
+	argv++; 
+	if (!argc) 
 	{ 
 		error (1, ECANCELED, "Need an offset"); 
 	} 
@@ -103,9 +103,9 @@ static void function (int argc, const char * argv [], size_t decode (void const 
 	{ 
 		error (1, ECANCELED, "PIB offset %X exceeds PIB extent %d", offset, extent); 
 	} 
-	argc-- ; 
-	argv++ ; 
-	if (! argc) 
+	argc--; 
+	argv++; 
+	if (!argc) 
 	{ 
 		_setbits (flags, GETMEM_VERBOSE); 
 	} 
@@ -118,8 +118,8 @@ static void function (int argc, const char * argv [], size_t decode (void const 
 		putc (' ', stdout); 
 		memory += offset; 
 		extent -= offset; 
-		argv++ ; 
-		argc-- ; 
+		argv++; 
+		argc--; 
 	} 
 	if (_anyset (flags, GETMEM_NEWLINE)) 
 	{ 
@@ -145,15 +145,15 @@ int main (int argc, char const * argv [])
 	{ 
 		"qvn", 
 		"file offset type [size]\n\n" \
-		 "\t  standard-length types are 'byte'|'word'|'long'|'hfid'|'mac'|'key'\n" \
-		 "\t  variable-length types are 'data'|'text'", 
+		"\t  standard-length types are 'byte'|'word'|'long'|'hfid'|'mac'|'key'\n" \
+		"\t  variable-length types are 'data'|'text'", 
 		"PIB Data Extractor", 
 		"n\tappend newline", 
 		"q\tquiet mode", 
 		"v\tverbose mode", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
-	size_t (* decode)(void const * , size_t, char const * , char const * ) = memdecode; 
+	size_t (* decode)(void const *, size_t, char const *, char const *) = memdecode; 
 	flag_t flags = (flag_t)(0); 
 	signed c; 
 	opterr = 1; 

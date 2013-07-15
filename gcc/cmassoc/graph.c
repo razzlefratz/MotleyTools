@@ -90,10 +90,10 @@ static void display (signed x [], signed y [], signed count, struct graph * grap
 
 { 
 	printf ("%s\n", graph->title); 
-	for (graph->count = 0; graph->count < count; graph->count++ ) 
+	for (graph->count = 0; graph->count < count; graph->count++) 
 	{ 
 		signed value = * y; 
-		printf ("%6d[%6d]", * x++ , * y++ ); 
+		printf ("%6d[%6d]", * x++, * y++); 
 		if (value < graph->lower) 
 		{ 
 			graph->lower = value; 
@@ -137,9 +137,9 @@ static void arrange (signed x [], signed y [], signed count)
 	signed lower; 
 	signed upper; 
 	signed value; 
-	for (upper = 0; upper < count; upper++ ) 
+	for (upper = 0; upper < count; upper++) 
 	{ 
-		for (lower = upper; lower > 0; lower-- ) 
+		for (lower = upper; lower > 0; lower--) 
 		{ 
 			if (x [lower] < x [lower - 1]) 
 			{ 
@@ -191,7 +191,7 @@ static void collect (char const * filename, signed limit, struct graph * graph, 
 		{ 
 			if (c == '\n') 
 			{ 
-				line++ ; 
+				line++; 
 			} 
 			c = getc (stdin); 
 			continue; 
@@ -210,7 +210,7 @@ static void collect (char const * filename, signed limit, struct graph * graph, 
 		{ 
 			sign = 1; 
 		} 
-		if (! isdigit (c)) 
+		if (!isdigit (c)) 
 		{ 
 			error_on_line (1, EINVAL, filename, line, "x value"); 
 		} 
@@ -240,7 +240,7 @@ static void collect (char const * filename, signed limit, struct graph * graph, 
 		{ 
 			sign = 1; 
 		} 
-		if (! isdigit (c)) 
+		if (!isdigit (c)) 
 		{ 
 			error_on_line (1, EINVAL, filename, line, "y value"); 
 		} 
@@ -262,7 +262,7 @@ static void collect (char const * filename, signed limit, struct graph * graph, 
 		} 
 		if (x [index] || y [index]) 
 		{ 
-			index++ ; 
+			index++; 
 		} 
 	} 
 	if (_anyset (flags, GRAPH_INVERT)) 
@@ -306,7 +306,7 @@ int main (int argc, char const * argv [])
 		"s n\tscale data", 
 		"t s\tgraph title", 
 		"x\texchange x and y values", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	struct graph graph = 
 	{ 
@@ -346,7 +346,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		collect ("stdin", count, & graph, flags); 
 	} 
@@ -356,8 +356,8 @@ int main (int argc, char const * argv [])
 		{ 
 			collect (* argv, count, & graph, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

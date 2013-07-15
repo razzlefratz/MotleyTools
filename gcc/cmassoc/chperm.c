@@ -81,7 +81,7 @@ static void findfile (FIND * find, mode_t dirmode, mode_t regmode, flag_t flags)
 	{ 
 		struct dirent * dirent; 
 		char * filename; 
-		for (filename = find->fullname; * filename; filename++ ); 
+		for (filename = find->fullname; * filename; filename++); 
 		* filename = PATH_C_EXTENDER; 
 		while ((dirent = readdir (dir))) 
 		{ 
@@ -96,11 +96,11 @@ static void findfile (FIND * find, mode_t dirmode, mode_t regmode, flag_t flags)
 				char * sp = dirent->d_name; 
 				if (* sp == '.') 
 				{ 
-					sp++ ; 
+					sp++; 
 				} 
 				if (* sp == '.') 
 				{ 
-					sp++ ; 
+					sp++; 
 				} 
 				if (* sp == (char) (0)) 
 				{ 
@@ -164,7 +164,7 @@ int main (int argc, char const * argv [])
 		"f m\tfile permission is m [0664]", 
 		"r\trecursive search", 
 		"v\tverbose messages", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	mode_t dirmode = S_ISGID | S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH; 
 	mode_t regmode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH; 
@@ -196,8 +196,8 @@ int main (int argc, char const * argv [])
 	{ 
 		makefind (& find, * argv); 
 		findfile (& find, dirmode, regmode, flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

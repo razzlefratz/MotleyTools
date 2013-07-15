@@ -85,20 +85,20 @@ void function (char start, char space, size_t width, size_t length, flag_t flags
 { 
 	char buffer [length]; 
 	size_t column = 0; 
-	width++ ; 
-	width++ ; 
+	width++; 
+	width++; 
 	if (width > length) 
 	{ 
 		width = length; 
 	} 
 	for (column = 0; ~ (length = fgetline (buffer, sizeof (buffer), stdin)); column = 0) 
 	{ 
-		if (buffer [column++ ] != start) 
+		if (buffer [column++] != start) 
 		{ 
 			fputline (buffer, length, stdout); 
 			continue; 
 		} 
-		if (buffer [column++ ] != space) 
+		if (buffer [column++] != space) 
 		{ 
 			fputline (buffer, length, stdout); 
 			continue; 
@@ -107,7 +107,7 @@ void function (char start, char space, size_t width, size_t length, flag_t flags
 		{ 
 			while (column < width) 
 			{ 
-				buffer [column++ ] = CUPPER; 
+				buffer [column++] = CUPPER; 
 			} 
 			fputline (buffer, 0, stdout); 
 			fputline (buffer, column, stdout); 
@@ -117,7 +117,7 @@ void function (char start, char space, size_t width, size_t length, flag_t flags
 		{ 
 			while (column < width) 
 			{ 
-				buffer [column++ ] = CLOWER; 
+				buffer [column++] = CLOWER; 
 			} 
 			fputline (buffer, column, stdout); 
 			fputline (buffer, 0, stdout); 
@@ -151,7 +151,7 @@ int main (int argc, char const * argv [])
 		"c c\tcomments start with character c [" LITERAL (FBAR_START) "]", 
 		"w n\tbar width is (n) [" LITERAL (FBAR_WIDTH) "]", 
 		"x\tmake file executable", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = (flag_t) (0); 
 	size_t length = _LINESIZE; 
@@ -178,7 +178,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (start, space, width, length, flags); 
 	} 
@@ -195,8 +195,8 @@ int main (int argc, char const * argv [])
 				} 
 			} 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

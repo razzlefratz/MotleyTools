@@ -19,7 +19,7 @@ int main (int argc, char const * argv [])
 
 { 
 	char const ** argp; 
-	for (argp = argv; * argp; argp++ ) 
+	for (argp = argv; * argp; argp++) 
 	{ 
 		printf (" argv[%lu] = [%s]\n", (long unsigned)(argp - argv), * argp); 
 	} 

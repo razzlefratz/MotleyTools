@@ -203,7 +203,7 @@ int main (int argc, char const * argv [])
 		"strip C/C++ comments from code", 
 		"b\tdiscard comments and keep code", 
 		"v\tdiscard code and keep comments", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	void (* function) (void) = exclude; 
 	signed c; 
@@ -223,7 +223,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (); 
 	} 
@@ -233,8 +233,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (); 
 		} 
-		argv++ ; 
-		argc-- ; 
+		argv++; 
+		argc--; 
 	} 
 	return (0); 
 } 

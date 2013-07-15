@@ -86,7 +86,7 @@ int main (int argc, char const * argv [])
 		"l n\tpage length is (n)", 
 		"w n\tpage width is (n)", 
 		"t s\ttitle is (s)", 
-		(char * ) (0)
+		(char *) (0)
 	}; 
 	signed c; 
 	while ((c = getoptv (argc, argv, optv)) != - 1) 
@@ -108,7 +108,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		paginate (& page); 
 	} 
@@ -119,8 +119,8 @@ int main (int argc, char const * argv [])
 			page.title = filepart (* argv); 
 			paginate (& page); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

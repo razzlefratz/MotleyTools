@@ -133,7 +133,7 @@ int main (int argc, char const * argv [])
 		"s\tto stream format (no line breaks)", 
 		"u\tto standard Unix format [" "'\\n'" "]", 
 		"w\tto Microsoft Windows format [" "\"\\r\\n\"" "]", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = CRLF_B_LF; 
 	signed c; 
@@ -163,7 +163,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (flags); 
 	} 
@@ -173,8 +173,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

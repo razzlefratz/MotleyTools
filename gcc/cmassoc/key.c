@@ -109,11 +109,11 @@ static void function (void * secret, size_t length, flag_t flags)
 	byte digest [SHA256_DIGEST_LENGTH]; 
 	memset (& sa, 0, sizeof (struct sigaction)); 
 	sa.sa_handler = stop; 
-	sigaction (SIGTERM, & sa, (struct sigaction * )(0)); 
-	sigaction (SIGQUIT, & sa, (struct sigaction * )(0)); 
-	sigaction (SIGTSTP, & sa, (struct sigaction * )(0)); 
-	sigaction (SIGINT, & sa, (struct sigaction * )(0)); 
-	sigaction (SIGHUP, & sa, (struct sigaction * )(0)); 
+	sigaction (SIGTERM, & sa, (struct sigaction *)(0)); 
+	sigaction (SIGQUIT, & sa, (struct sigaction *)(0)); 
+	sigaction (SIGTSTP, & sa, (struct sigaction *)(0)); 
+	sigaction (SIGINT, & sa, (struct sigaction *)(0)); 
+	sigaction (SIGHUP, & sa, (struct sigaction *)(0)); 
 	while (count-- > 0) 
 	{ 
 		memset (digest, 0, sizeof (digest)); 
@@ -130,7 +130,7 @@ static void function (void * secret, size_t length, flag_t flags)
 		} 
 		else 
 		{ 
-			SHA256Print (digest, (char * )(0)); 
+			SHA256Print (digest, (char *)(0)); 
 		} 
 	} 
 	return; 
@@ -160,7 +160,7 @@ int main (int argc, char const * argv [])
 		"o\tuse old keyfile value", 
 		"q\tquiet mode", 
 		"v\tverbose mode", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	char const * file = SEEDFILE; 
 	byte secret [65]; 
@@ -205,7 +205,7 @@ int main (int argc, char const * argv [])
 	{ 
 		error (1, errno, "%s", file); 
 	} 
-	for (c = 0; (size_t)(c) < sizeof (secret) - 1; c++ ) 
+	for (c = 0; (size_t)(c) < sizeof (secret) - 1; c++) 
 	{ 
 		if (secret [c] < MIN) 
 		{ 

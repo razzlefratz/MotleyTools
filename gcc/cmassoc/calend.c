@@ -70,13 +70,13 @@ int main (int argc, char const * argv [])
 		"print three-month calendar on stdout", 
 		"y n\tyear is (n) or +(n) or -(n)", 
 		"m n\tmonth is (n) or +(n) or -(n)", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	time_t timer; 
 	struct tm * tm; 
 	int annums [MONTHS_IN_QUARTER]; 
 	int months [MONTHS_IN_QUARTER]; 
-	int blocks [MONTHS_IN_QUARTER][SQUARES_IN_MONTH]; 
+	int blocks [MONTHS_IN_QUARTER] [SQUARES_IN_MONTH]; 
 	int annum; 
 	int month; 
 	int block; 
@@ -95,9 +95,9 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{ 
 		case 'm': 
-			month++ ; 
+			month++; 
 			month = sintspec (optarg, month); 
-			month-- ; 
+			month--; 
 			break; 
 		case 'y': 
 			annum = sintspec (optarg, annum); 
@@ -116,22 +116,22 @@ int main (int argc, char const * argv [])
  * populate calendar blocks;
  */
 
-	for (block = 0; block < MONTHS_IN_QUARTER; block++ ) 
+	for (block = 0; block < MONTHS_IN_QUARTER; block++) 
 	{ 
 		index = annum * 12 + month + block - 1; 
 		annums [block] = index / MONTHS_IN_YEAR; 
 		months [block] = index % MONTHS_IN_YEAR; 
 		first = dayofwk (annums [block], months [block], 0); 
 		final = endofmo (annums [block], months [block]) + first - 1; 
-		for (index = 0; index < SQUARES_IN_MONTH; index++ ) 
+		for (index = 0; index < SQUARES_IN_MONTH; index++) 
 		{ 
 			if ((index < first) || (index > final)) 
 			{ 
-				blocks [block][index] = 0; 
+				blocks [block] [index] = 0; 
 			} 
 			else 
 			{ 
-				blocks [block][index] = index - first + 1; 
+				blocks [block] [index] = index - first + 1; 
 			} 
 		} 
 	} 
@@ -141,24 +141,24 @@ int main (int argc, char const * argv [])
  */
 
 	printf ("\n"); 
-	for (block = 0; block < MONTHS_IN_QUARTER; block++ ) 
+	for (block = 0; block < MONTHS_IN_QUARTER; block++) 
 	{ 
 		printf ("   %-10s      %04d", sv_month [months [block]], annums [block]); 
 	} 
 	printf ("\n"); 
-	for (block = 0; block < MONTHS_IN_QUARTER; block++ ) 
+	for (block = 0; block < MONTHS_IN_QUARTER; block++) 
 	{ 
 		printf ("    S  M  T  W  T  F  S"); 
 	} 
 	printf ("\n"); 
-	for (row = 0; row < WEEKS_IN_MONTH; row++ ) 
+	for (row = 0; row < WEEKS_IN_MONTH; row++) 
 	{ 
-		for (block = 0; block < MONTHS_IN_QUARTER; block++ ) 
+		for (block = 0; block < MONTHS_IN_QUARTER; block++) 
 		{ 
 			printf ("  "); 
-			for (col = 0; col < DAYS_IN_WEEK; col++ ) 
+			for (col = 0; col < DAYS_IN_WEEK; col++) 
 			{ 
-				printf (" %s", sv_date1 [blocks [block][row * DAYS_IN_WEEK + col]]); 
+				printf (" %s", sv_date1 [blocks [block] [row * DAYS_IN_WEEK + col]]); 
 			} 
 		} 
 		printf ("\n"); 

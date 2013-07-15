@@ -113,7 +113,7 @@
 
 extern LINK * nodelist; 
 extern TREE * nodetree; 
-static TREE * pathtree = (TREE * ) (0); 
+static TREE * pathtree = (TREE *) (0); 
 
 /*====================================================================*
  *
@@ -188,15 +188,15 @@ void function (char const * pathname, char * buffer, size_t length, flag_t flags
 		partpath (find.fullname, find.pathname, find.filename); 
 		partfile (find.filename, find.basename, find.extender); 
 		scaninput (& scan, buffer, length); 
-		for (line = 0; fgetline (buffer, length, ifp) != - 1; line++ ) 
+		for (line = 0; fgetline (buffer, length, ifp) != - 1; line++) 
 		{ 
 			scanstart (& scan); 
 			nexttoken (& scan); 
-			if (! havetoken (& scan, "#")) 
+			if (!havetoken (& scan, "#")) 
 			{ 
 				continue; 
 			} 
-			if (! havetoken (& scan, "include")) 
+			if (!havetoken (& scan, "include")) 
 			{ 
 				continue; 
 			} 
@@ -222,7 +222,7 @@ void function (char const * pathname, char * buffer, size_t length, flag_t flags
 			} 
 		} 
 		fclose (ifp); 
-		if (! line) 
+		if (!line) 
 		{ 
 			error (0, 0, "file %s is empty", pathname); 
 		} 
@@ -253,7 +253,7 @@ int main (int argc, char const * argv [])
 		"s\tsystem files", 
 		"n\tneed summary ", 
 		"f\tfeed summary ", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	char buffer [TEXTLINE_MAX]; 
 	size_t length = TEXTLINE_MAX; 
@@ -285,16 +285,16 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		error (1, 0, "nothing to analyse"); 
 	} 
 	while ((argc) && (* argv)) 
 	{ 
 		makepath (buffer, getenv ("PWD"), * argv); 
-		nodetree = storenode (nodetree, (TREE * ) (0), buffer, (void * ) (0), strcmp); 
-		argc-- ; 
-		argv++ ; 
+		nodetree = storenode (nodetree, (TREE *) (0), buffer, (void *) (0), strcmp); 
+		argc--; 
+		argv++; 
 	} 
 	if (nodelist) 
 	{ 

@@ -152,7 +152,7 @@ int main (int argc, char const * argv [])
 		"h", 
 		PUTOPTV_S_FILTER, 
 		"break double-dashed arguments out onto individual lines;", 
-		(char * ) (0)
+		(char *) (0)
 	}; 
 	flag_t flags = (flag_t) (0); 
 	signed c; 
@@ -173,7 +173,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (flags); 
 	} 
@@ -183,8 +183,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

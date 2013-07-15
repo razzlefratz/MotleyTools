@@ -107,10 +107,10 @@ void function (unsigned minimum, unsigned maximum, unsigned column, char cc)
 			} 
 			putc (c, stdout); 
 			c = getc (stdin); 
-			next++ ; 
+			next++; 
 			continue; 
 		} 
-		if (! isblank (c)) 
+		if (!isblank (c)) 
 		{ 
 			while (prev++ < next) 
 			{ 
@@ -118,11 +118,11 @@ void function (unsigned minimum, unsigned maximum, unsigned column, char cc)
 			} 
 			putc (c, stdout); 
 			c = getc (stdin); 
-			next++ ; 
+			next++; 
 			continue; 
 		} 
 		c = getc (stdin); 
-		next++ ; 
+		next++; 
 	} 
 	return; 
 } 
@@ -150,7 +150,7 @@ int main (int argc, char const * argv [])
 		"b n\tbefore column (n)", 
 		"c c\talignment character (c)", 
 		"t n\talignment column (n)", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	unsigned minimum = 0; 
 	unsigned maximum = - 1; 
@@ -179,7 +179,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (minimum, maximum, column, character); 
 	} 
@@ -189,8 +189,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (minimum, maximum, column, character); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

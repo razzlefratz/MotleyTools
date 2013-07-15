@@ -221,7 +221,7 @@ int main (int argc, char const * argv [])
 		"", 
 		PUTOPTV_S_FILTER, 
 		"convert C++ comments to C comments", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = (flag_t)(0); 
 	signed c; 
@@ -235,7 +235,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		c = getc (stdin); 
 		function (c, flags); 
@@ -247,8 +247,8 @@ int main (int argc, char const * argv [])
 			c = getc (stdin); 
 			function (c, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

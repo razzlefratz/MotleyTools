@@ -68,12 +68,12 @@ static bool disabled (struct nic * nic)
 { 
 	byte address [ETHER_ADDR_LEN]; 
 	memset (address, 0x00, sizeof (address)); 
-	if (! memcmp (address, nic->ethernet, sizeof (address))) 
+	if (!memcmp (address, nic->ethernet, sizeof (address))) 
 	{ 
 		return (true); 
 	} 
 	memset (address, 0xFF, sizeof (address)); 
-	if (! memcmp (address, nic->ethernet, sizeof (address))) 
+	if (!memcmp (address, nic->ethernet, sizeof (address))) 
 	{ 
 		return (true); 
 	} 
@@ -98,7 +98,7 @@ int main (int argc, char const * argv [])
 		"", 
 		PUTOPTV_S_DIVINE, 
 		"Ethernet Interface Enumerator", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	char string [ETHER_ADDR_LEN * 3]; 
 	struct nic nics [NICS]; 
@@ -119,9 +119,9 @@ int main (int argc, char const * argv [])
 	{ 
 		error (1, ENOTSUP, ERROR_TOOMANY); 
 	} 
-	while (size-- ) 
+	while (size--) 
 	{ 
-		if (! disabled (nic)) 
+		if (!disabled (nic)) 
 		{ 
 			printf (" %d", nic->ifindex); 
 			printf (" %s", hexstring (string, sizeof (string), nic->ethernet, sizeof (nic->ethernet))); 
@@ -130,7 +130,7 @@ int main (int argc, char const * argv [])
 			printf (" %s", nic->ifdesc); 
 			printf ("\n"); 
 		} 
-		nic++ ; 
+		nic++; 
 	} 
 	return (0); 
 } 

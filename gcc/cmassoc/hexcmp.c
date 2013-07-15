@@ -68,7 +68,7 @@ int main (int argc, char const * argv [])
 		"compare two binary files byte by byte", 
 		"q\tquiet mode", 
 		"v\tverbose mode", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	unsigned offset; 
 	unsigned column; 
@@ -108,17 +108,17 @@ int main (int argc, char const * argv [])
 	{ 
 		error (1, errno, FILE_CANTOPEN, * argv); 
 	} 
-	argc-- ; 
-	argv++ ; 
+	argc--; 
+	argv++; 
 	if ((fd2 = open (* argv, O_BINARY | O_RDONLY)) == - 1) 
 	{ 
 		error (1, errno, FILE_CANTOPEN, * argv); 
 	} 
-	argc-- ; 
-	argv++ ; 
+	argc--; 
+	argv++; 
 	length1 = read (fd1, & byte1, sizeof (byte1)); 
 	length2 = read (fd2, & byte2, sizeof (byte2)); 
-	for (offset = 0; (length1 > 0) || (length2 > 0); offset++ ) 
+	for (offset = 0; (length1 > 0) || (length2 > 0); offset++) 
 	{ 
 		if ((offset % HEXCMP_GROUP) == 0) 
 		{ 
@@ -135,7 +135,7 @@ int main (int argc, char const * argv [])
 						printf ("\n"); 
 					} 
 					printf ("-------- "); 
-					for (column = 0; column < HEXCMP_GROUP; column++ ) 
+					for (column = 0; column < HEXCMP_GROUP; column++) 
 					{ 
 						printf (" %02X", column); 
 					} 
@@ -145,13 +145,13 @@ int main (int argc, char const * argv [])
 			} 
 			printf ("%08X ", offset); 
 		} 
-		if (! length1) 
+		if (!length1) 
 		{ 
 			printf (" %s", HEXCMP_EXTRA); 
 			length2 = read (fd2, & byte2, sizeof (byte2)); 
 			continue; 
 		} 
-		if (! length2) 
+		if (!length2) 
 		{ 
 			printf (" %s", HEXCMP_SHORT); 
 			length1 = read (fd1, & byte1, sizeof (byte1)); 

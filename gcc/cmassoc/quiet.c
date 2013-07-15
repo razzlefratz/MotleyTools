@@ -61,7 +61,7 @@ int main (int argc, char const * argv [])
 		"", 
 		"[yes|no]", 
 		"permit or restrict public access to your terminal", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	struct stat statinfo; 
 	struct group * group; 
@@ -80,7 +80,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! isatty (STDIN_FILENO)) 
+	if (!isatty (STDIN_FILENO)) 
 	{ 
 		error (1, 0, "stdin is not a tty"); 
 	} 
@@ -88,10 +88,10 @@ int main (int argc, char const * argv [])
 	{ 
 		error (1, errno, "can't fstat stdin"); 
 	} 
-	if ((group = getgrnam (GROUPNAME)) != (struct group * ) (0)) 
+	if ((group = getgrnam (GROUPNAME)) != (struct group *) (0)) 
 	{ 
 		system = true; 
-		if ((group = getgrgid (statinfo.st_gid)) != (struct group * ) (0)) 
+		if ((group = getgrgid (statinfo.st_gid)) != (struct group *) (0)) 
 		{ 
 			if (strcmp (group->gr_name, GROUPNAME) == 0) 
 			{ 
@@ -99,10 +99,10 @@ int main (int argc, char const * argv [])
 			} 
 		} 
 	} 
-	if (! argc) 
+	if (!argc) 
 	{ 
-		mode = ((system) && (member))? (S_IWGRP | S_IWOTH):  (S_IWOTH); 
-		printf ("%s\n", (statinfo.st_mode & mode)? "no":  "yes"); 
+		mode = ((system) && (member))? (S_IWGRP | S_IWOTH): (S_IWOTH); 
+		printf ("%s\n", (statinfo.st_mode & mode)? "no": "yes"); 
 		return (0); 
 	} 
 	if (strcmp (* argv, "yes") && strcmp (* argv, "no")) 
@@ -114,8 +114,8 @@ int main (int argc, char const * argv [])
  * permit no but not yes if group is non-standard.
  */
 
-	mode = (system)? (S_IWGRP):  (S_IWGRP | S_IWOTH); 
-	if ((system) && (! member) && (strcmp (* argv, "yes") == 0)) 
+	mode = (system)? (S_IWGRP): (S_IWGRP | S_IWOTH); 
+	if ((system) && (!member) && (strcmp (* argv, "yes") == 0)) 
 	{ 
 		error (1, 0, "stdin is not a %s group member", GROUPNAME); 
 	} 

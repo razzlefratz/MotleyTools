@@ -79,7 +79,7 @@ static void function (char const * pathname, char const * prefix, char const * d
 			sp = cp; 
 		} 
 	} 
-	for (cp = sp; * prefix == * cp; prefix++ , cp++ ); 
+	for (cp = sp; * prefix == * cp; prefix++, cp++); 
 	if (* prefix) 
 	{ 
 		cp = sp; 
@@ -88,7 +88,7 @@ static void function (char const * pathname, char const * prefix, char const * d
 	{ 
 		if (strchr (discard, * cp)) 
 		{ 
-			cp++ ; 
+			cp++; 
 			continue; 
 		} 
 		if (strchr (replace, * cp)) 
@@ -99,16 +99,16 @@ static void function (char const * pathname, char const * prefix, char const * d
 		if (_anyset (flags, MUNGE_B_LOWER)) 
 		{ 
 			* cp = tolower (* cp); 
-			* sp++ = * cp++ ; 
+			* sp++ = * cp++; 
 			continue; 
 		} 
 		if (_anyset (flags, MUNGE_B_UPPER)) 
 		{ 
 			* cp = toupper (* cp); 
-			* sp++ = * cp++ ; 
+			* sp++ = * cp++; 
 			continue; 
 		} 
-		* sp++ = * cp++ ; 
+		* sp++ = * cp++; 
 	} 
 	if (sp > filename) 
 	{ 
@@ -193,8 +193,8 @@ int main (int argc, char const * argv [])
 	while ((argc) && (* argv)) 
 	{ 
 		function (* argv, prefix, discard, replace, flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

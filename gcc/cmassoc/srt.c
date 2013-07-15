@@ -99,9 +99,9 @@ size_t loadheap (char * heap [], size_t heapsize, size_t linesize, FILE * ifp)
 	char buffer [linesize]; 
 	while ((heapitem < heapsize) && fgets (buffer, linesize, ifp)) 
 	{ 
-		heap [heapitem] = (char * )(emalloc (strlen (buffer) + 1)); 
+		heap [heapitem] = (char *)(emalloc (strlen (buffer) + 1)); 
 		memcpy (heap [heapitem], buffer, strlen (buffer) + 1); 
-		adheap ((void * ) (heap), ++ heapitem, (int (* ) (void const * , void const * )) (comp), swap); 
+		adheap ((void *) (heap), ++ heapitem, (int (*) (void const *, void const *)) (comp), swap); 
 	} 
 	return (heapitem); 
 } 
@@ -123,8 +123,8 @@ size_t saveheap (char * heap [], size_t heapsize, FILE * ofp)
 { 
 	while ((heapsize > 0) && (fputs (heap [0], ofp) != EOF)) 
 	{ 
-		swap ((void * ) (heap), 0, -- heapsize); 
-		reheap ((void * ) (heap), heapsize, (int (* )(void const * , void const * )) (comp), swap); 
+		swap ((void *) (heap), 0, -- heapsize); 
+		reheap ((void *) (heap), heapsize, (int (*)(void const *, void const *)) (comp), swap); 
 		free (heap [heapsize]); 
 	} 
 	return (heapsize); 
@@ -161,7 +161,7 @@ size_t function (size_t heapsize, size_t linesize)
 	{ 
 		saveheap (heap, heapitem, stdout); 
 		line += heapitem; 
-		pass++ ; 
+		pass++; 
 	} 
 	if (pass > 1) 
 	{ 
@@ -192,7 +192,7 @@ int main (int argc, char const * argv [])
 		"b n\tmaximum sort block is (n) lines [0x1000]", 
 		"d\tarrange output in descending order", 
 		"l n\tmaximum line length is (n) bytes [0x0400]", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	size_t heapsize = _HEAPSIZE; 
 	size_t linesize = _LINESIZE; 
@@ -216,7 +216,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (heapsize, linesize); 
 	} 
@@ -226,8 +226,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (heapsize, linesize); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

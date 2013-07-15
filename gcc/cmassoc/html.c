@@ -79,11 +79,11 @@ static char const * charset = ISO_CHARSET;
 static unsigned links (unsigned margin, char const * style) 
 
 { 
-	indent (margin++ , "<div class='%s'>", style); 
+	indent (margin++, "<div class='%s'>", style); 
 	indent (margin, "[<a href='%s' title='%s'>%s</a>]", HTML_PATH, HTML_NAME, HTML_PREV); 
 	indent (margin, "[<a href='%s' title='%s'>%s</a>]", HTML_PATH, HTML_NAME, HTML_HOME); 
 	indent (margin, "[<a href='%s' title='%s'>%s</a>]", HTML_PATH, HTML_NAME, HTML_NEXT); 
-	indent (margin-- , "</div>"); 
+	indent (margin--, "</div>"); 
 	return (margin); 
 } 
 
@@ -105,24 +105,24 @@ static unsigned header (unsigned margin)
 	extern char const * subject; 
 	extern char const * cssfile; 
 	extern char const * charset; 
-	indent (margin++ , "<html>"); 
-	indent (margin++ , "<head>"); 
-	indent (margin++ , "<title>"); 
+	indent (margin++, "<html>"); 
+	indent (margin++, "<head>"); 
+	indent (margin++, "<title>"); 
 	indent (margin, "%s", subject); 
-	indent (margin-- , "</title>"); 
+	indent (margin--, "</title>"); 
 	indent (margin, "<meta http-equiv='content-type' content='%s;%s'/>", ISO_CONTENT, charset); 
 	indent (margin, "<meta name='author' content='%s'/>", contact); 
 	indent (margin, "<meta name='generator' content='%s'/>", HTML_PROGRAM); 
 	indent (margin, "<meta name='robots' content='%s'/>", HTML_ROBOTS); 
 	indent (margin, "<link rel='stylesheet' href='%s' type='%s'/>", cssfile, CSS_CONTENT); 
-	indent (margin++ , "<style type='text/css'>"); 
-	indent (margin-- , "</style>"); 
-	indent (margin-- , "</head>"); 
-	indent (margin++ , "<body class='%s'>", "standard"); 
+	indent (margin++, "<style type='text/css'>"); 
+	indent (margin--, "</style>"); 
+	indent (margin--, "</head>"); 
+	indent (margin++, "<body class='%s'>", "standard"); 
 	margin = links (margin, STYLE_TOPLINK); 
-	indent (margin++ , "<h1>"); 
+	indent (margin++, "<h1>"); 
 	indent (margin, "%s", subject); 
-	indent (margin-- , "</h1>"); 
+	indent (margin--, "</h1>"); 
 	indent (margin, "<!-- BEGIN CONTENT -->"); 
 	return (margin); 
 } 
@@ -163,8 +163,8 @@ static unsigned footer (unsigned margin)
 { 
 	indent (margin, "<!-- END CONTENT -->"); 
 	margin = links (margin, STYLE_BOTLINK); 
-	indent (margin-- , "</body>"); 
-	indent (margin-- , "</html>"); 
+	indent (margin--, "</body>"); 
+	indent (margin--, "</html>"); 
 	return (margin); 
 } 
 
@@ -192,7 +192,7 @@ int main (int argc, char const * argv [])
 		"o\tprint default profile on stdout", 
 		"p f\tuse profile (s) [" HTML_PROFILE "]", 
 		"s s\tuse profile section (s) [" HTML_SECTION "]", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	char const * profile = HTML_PROFILE; 
 	char const * section = HTML_SECTION; 
@@ -226,7 +226,7 @@ int main (int argc, char const * argv [])
 	cssfile = profilestring (profile, section, "cssfile", cssfile); 
 	charset = profilestring (profile, section, "charset", charset); 
 	margin = header (margin); 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		margin = body (margin); 
 	} 
@@ -236,8 +236,8 @@ int main (int argc, char const * argv [])
 		{ 
 			margin = body (margin); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	margin = footer (margin); 
 	return (0); 

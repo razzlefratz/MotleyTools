@@ -66,9 +66,9 @@ int main (int argc, char const * argv [])
 		"convert one or more numbers from one radix (number base) to another", 
 		"f n\tfrom base n in range 2 to 36 ", 
 		"t n\tto base n in range 2 to 36 ", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
-	char number [DIGITS_MAX+ 1]; 
+	char number [DIGITS_MAX + 1]; 
 	unsigned base1 = 10; 
 	unsigned base2 = 10; 
 	signed c; 
@@ -100,7 +100,7 @@ int main (int argc, char const * argv [])
 			{ 
 				value *= base1; 
 				value += digit; 
-				string++ ; 
+				string++; 
 				continue; 
 			} 
 			error (1, EINVAL, "%s", * argv); 
@@ -113,8 +113,8 @@ int main (int argc, char const * argv [])
 		} 
 		while ((index) && (value)); 
 		printf ("%s %s\n", * argv, & number [index]); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

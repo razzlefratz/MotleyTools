@@ -127,7 +127,7 @@ int main (int argc, char const * argv [])
 		"t n\tread timeout is (n) milliseconds [" LITERAL (CHANNEL_TIMEOUT) "]", 
 		"q\tquiet mode", 
 		"v\tverbose mode", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	signed c; 
 	if (getenv (ETHDEVICE)) 
@@ -148,7 +148,7 @@ int main (int argc, char const * argv [])
 			_setbits (channel.flags, CHANNEL_SILENCE); 
 			break; 
 		case 't': 
-			channel [.]timer = (unsigned)(uintspec (optarg, 0, UINT_MAX)); 
+			channel [.] timer = (unsigned)(uintspec (optarg, 0, UINT_MAX)); 
 			break; 
 		case 'v': 
 			_setbits (channel.flags, CHANNEL_VERBOSE); 
@@ -160,7 +160,7 @@ int main (int argc, char const * argv [])
 	argc -= optind; 
 	argv += optind; 
 	openchannel (& channel); 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (& channel, STDIN_FILENO); 
 	} 
@@ -170,8 +170,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (& channel, STDIN_FILENO); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	closechannel (& channel); 
 	exit (0); 

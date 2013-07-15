@@ -55,14 +55,14 @@ static void function ()
 
 { 
 	byte binary [RADIX_HEX]; 
-	char buffer [sizeof (void * ) + sizeof (void * )]; 
+	char buffer [sizeof (void *) + sizeof (void *)]; 
 	size_t offset = 0; 
 	size_t length = 0; 
 	while ((length = read (STDIN_FILENO, & binary, sizeof (binary))) > 0) 
 	{ 
 		size_t memory = offset; 
 		size_t column = sizeof (buffer); 
-		while (column-- ) 
+		while (column--) 
 		{ 
 			buffer [column] = DIGITS_HEX [memory % RADIX_HEX]; 
 			memory /= RADIX_HEX; 
@@ -79,7 +79,7 @@ static void function ()
 
 		write (STDOUT_FILENO, buffer, sizeof (buffer)); 
 		write (STDOUT_FILENO, " ", sizeof (char)); 
-		for (column = 0; column < length; column++ ) 
+		for (column = 0; column < length; column++) 
 		{ 
 			byte byte = binary [column]; 
 			write (STDOUT_FILENO, " ", sizeof (char)); 
@@ -91,14 +91,14 @@ static void function ()
 			write (STDOUT_FILENO, " ", sizeof (char)); 
 			write (STDOUT_FILENO, " ", sizeof (char)); 
 			write (STDOUT_FILENO, " ", sizeof (char)); 
-			column++ ; 
+			column++; 
 		} 
 		write (STDOUT_FILENO, " ", sizeof (char)); 
 		write (STDOUT_FILENO, " ", sizeof (char)); 
-		for (column = 0; column < length; column++ ) 
+		for (column = 0; column < length; column++) 
 		{ 
 			char byte = binary [column]; 
-			write (STDOUT_FILENO, isprint (byte)? & byte:  ".", sizeof (char)); 
+			write (STDOUT_FILENO, isprint (byte)? & byte: ".", sizeof (char)); 
 		} 
 		write (STDOUT_FILENO, "\n", sizeof (char)); 
 		offset += sizeof (binary); 
@@ -126,7 +126,7 @@ int main (int argc, char const * argv [])
 		"", 
 		PUTOPTV_S_FUNNEL, 
 		"hexadecimal stream dump utility", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	signed c; 
 	while ((c = getoptv (argc, argv, optv)) != - 1) 
@@ -139,7 +139,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (); 
 	} 
@@ -149,8 +149,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

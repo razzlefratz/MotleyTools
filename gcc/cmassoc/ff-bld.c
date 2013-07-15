@@ -123,15 +123,15 @@ static void findfile (FIND * find, flag_t flags)
 	DIR * dir; 
 	struct dirent * dirent; 
 	char * filename; 
-	if ((dir = opendir (find->fullname)) == (DIR * ) (0)) 
+	if ((dir = opendir (find->fullname)) == (DIR *) (0)) 
 	{ 
 		error (0, errno, "%s", find->fullname); 
 		return; 
 	} 
 	strcpy (find->pathname, find->fullname); 
-	for (filename = find->fullname; * filename != (char) (0); filename++ ); 
+	for (filename = find->fullname; * filename != (char) (0); filename++); 
 	* filename = PATH_C_EXTENDER; 
-	while ((dirent = readdir (dir)) != (struct dirent * ) (0)) 
+	while ((dirent = readdir (dir)) != (struct dirent *) (0)) 
 	{ 
 		strcpy (filename + 1, dirent->d_name); 
 		partpath (find->fullname, find->pathname, find->filename); 
@@ -145,11 +145,11 @@ static void findfile (FIND * find, flag_t flags)
 			char * filename = find->filename; 
 			if (* filename == '.') 
 			{ 
-				filename++ ; 
+				filename++; 
 			} 
 			if (* filename == '.') 
 			{ 
-				filename++ ; 
+				filename++; 
 			} 
 			if (* filename == (char) (0)) 
 			{ 
@@ -204,7 +204,7 @@ int main (int argc, char const * argv [])
 		"findspec [> stdout]", 
 		"print build file confirmation script", 
 		"r\tresursive search", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = (flag_t) (0); 
 	signed c; 
@@ -230,8 +230,8 @@ int main (int argc, char const * argv [])
 		makefind (& find, * argv); 
 		strcpy (find.fullname, find.pathname); 
 		findfile (& find, flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

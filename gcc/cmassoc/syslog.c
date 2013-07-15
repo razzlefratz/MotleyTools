@@ -115,7 +115,7 @@ static file_t myopenlog (char const * socketname, int sockettype)
 	{ 
 		error (1, errno, "can't open socket %s", sockaddr_un.sun_path); 
 	} 
-	if (connect (fd, (struct sockaddr * ) (& sockaddr_un), sizeof (sockaddr_un)) == - 1) 
+	if (connect (fd, (struct sockaddr *) (& sockaddr_un), sizeof (sockaddr_un)) == - 1) 
 	{ 
 		error (1, errno, "can't connect to socket %s", sockaddr_un.sun_path); 
 	} 
@@ -147,7 +147,7 @@ static void mysyslog (file_t fd, int options, int priority, char const * identit
 		length = snprintf (buffer + length, sizeof (buffer) - length, "<%d>", priority); 
 		length = strftime (buffer + length, sizeof (buffer) - length, LOGTIME, localtime (& now)); 
 		length = snprintf (buffer + length, sizeof (buffer) - length, ": "); 
-		if (identity != (char * ) (0)) 
+		if (identity != (char *) (0)) 
 		{ 
 			length = snprintf (buffer + length, sizeof (buffer) - length, "%s", identity); 
 		} 
@@ -155,7 +155,7 @@ static void mysyslog (file_t fd, int options, int priority, char const * identit
 		{ 
 			length += snprintf (buffer + length, sizeof (buffer) - length, "[%d]", getpid ()); 
 		} 
-		if ((identity != (char * ) (0)) || (options & SYSLOG_PROCESS)) 
+		if ((identity != (char *) (0)) || (options & SYSLOG_PROCESS)) 
 		{ 
 			length = snprintf (buffer + length, sizeof (buffer) - length, ": "); 
 		} 
@@ -198,12 +198,12 @@ int main (int argc, char const * argv [])
 		"d\tuse datagrams", 
 		"s s\tsocket filename", 
 		"t\tsend test messages", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	char message [TEXTLINE_MAX]; 
 	char * bp = message; 
-	char const * socketname = (char * ) (0); 
-	char const * identity = (char * )(0); 
+	char const * socketname = (char *) (0); 
+	char const * identity = (char *)(0); 
 	int priority = SYSLOG_USER | SYSLOG_INFO; 
 	code_t sockettype = SOCK_STREAM; 
 	flag_t options = (flag_t) (0); 
@@ -214,7 +214,7 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{ 
 		case 'b': 
-			for (identity = optarg; * optarg != (char) (0); optarg++ ) 
+			for (identity = optarg; * optarg != (char) (0); optarg++) 
 			{ 
 				if (* optarg == PATH_C_EXTENDER) 
 				{ 
@@ -229,7 +229,7 @@ int main (int argc, char const * argv [])
 			_setbits (options, SYSLOG_PERROR); 
 			break; 
 		case 'f': 
-			if (freopen (optarg, "rb", stdin) == (FILE * ) (0)) 
+			if (freopen (optarg, "rb", stdin) == (FILE *) (0)) 
 			{ 
 				error (1, errno, "%s", optarg); 
 			} 
@@ -264,7 +264,7 @@ int main (int argc, char const * argv [])
 	{ 
 		openlog (identity, options, priority); 
 	} 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		while ((c = getc (stdin)) != EOF) 
 		{ 
@@ -295,19 +295,19 @@ int main (int argc, char const * argv [])
 		for (bp = message; (argc) && (* argv); * bp++ = ' ') 
 		{ 
 			char const * string; 
-			for (string = * argv; * string; string++ ) 
+			for (string = * argv; * string; string++) 
 			{ 
 				if ((bp - message) < (sizeof (message) - 1)) 
 				{ 
 					* bp++ = * string; 
 				} 
 			} 
-			argc-- ; 
-			argv++ ; 
+			argc--; 
+			argv++; 
 		} 
 		if (bp > message) 
 		{ 
-			bp-- ; 
+			bp--; 
 		} 
 		* bp = (char) (0); 
 		if (socketname) 

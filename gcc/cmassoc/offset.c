@@ -85,8 +85,8 @@ static unsigned lineno = 0;
 static unsigned origin = 0; 
 static unsigned offset = 0; 
 static unsigned length = 0; 
-static char * symbol = (char * )(0); 
-static char * string = (char * )(0); 
+static char * symbol = (char *)(0); 
+static char * string = (char *)(0); 
 static signed c; 
 
 /*====================================================================*
@@ -143,7 +143,7 @@ static unsigned object ()
 	while (c == '0') 
 	{ 
 		c = getc (stdin); 
-		count++ ; 
+		count++; 
 	} 
 	while (isdigit (c)) 
 	{ 
@@ -203,7 +203,7 @@ static unsigned object ()
 	while (nobreak (c)) 
 	{ 
 		* cp++ = (char)(c); 
-		if (! isspace (c)) 
+		if (!isspace (c)) 
 		{ 
 			sp = cp; 
 		} 
@@ -288,15 +288,15 @@ static void html (char const * colors [], unsigned count, flag_t flags)
 	length = 0; 
 	if (_anyset (flags, OFFSET_PAGE)) 
 	{ 
-		indent (margin++ , "<html>"); 
-		indent (margin++ , "<title>"); 
-		indent (margin-- , "</title>"); 
-		indent (margin++ , "<head>"); 
-		indent (margin++ , "<style>"); 
+		indent (margin++, "<html>"); 
+		indent (margin++, "<title>"); 
+		indent (margin--, "</title>"); 
+		indent (margin++, "<head>"); 
+		indent (margin++, "<style>"); 
 		margin = stylesheet (margin); 
-		indent (margin-- , "</style>"); 
-		indent (margin-- , "</head>"); 
-		indent (margin++ , "<body>"); 
+		indent (margin--, "</style>"); 
+		indent (margin--, "</head>"); 
+		indent (margin++, "<body>"); 
 		indent (0, "<!-- BEGIN CONTENT -->"); 
 	} 
 	while ((c = getc (stdin)) != EOF) 
@@ -306,7 +306,7 @@ static void html (char const * colors [], unsigned count, flag_t flags)
 		{ 
 			if (c == '\n') 
 			{ 
-				lineno++ ; 
+				lineno++; 
 			} 
 			continue; 
 		} 
@@ -317,89 +317,89 @@ static void html (char const * colors [], unsigned count, flag_t flags)
 				c = getc (stdin); 
 			} 
 			while (nobreak (c)); 
-			lineno++ ; 
+			lineno++; 
 			continue; 
 		} 
 		index = object () % count; 
-		if (! length) 
+		if (!length) 
 		{ 
 			if (offset) 
 			{ 
-				indent (margin-- , "</table>"); 
+				indent (margin--, "</table>"); 
 			} 
-			indent (margin++ , "<h2 class='%s'>", style); 
+			indent (margin++, "<h2 class='%s'>", style); 
 			indent (margin, "%s %s", symbol, string); 
-			indent (margin-- , "</h2>"); 
-			indent (margin++ , "<table class='%s'>", style); 
-			indent (margin++ , "<tr class='%s'>", style); 
-			indent (margin++ , "<th class='%s'>", style_offset); 
+			indent (margin--, "</h2>"); 
+			indent (margin++, "<table class='%s'>", style); 
+			indent (margin++, "<tr class='%s'>", style); 
+			indent (margin++, "<th class='%s'>", style_offset); 
 			indent (margin, "%s", label_offset); 
-			indent (margin-- , "</th>"); 
-			indent (margin++ , "<th class='%s'>", style_length); 
+			indent (margin--, "</th>"); 
+			indent (margin++, "<th class='%s'>", style_length); 
 			indent (margin, "%s", label_length); 
-			indent (margin-- , "</th>"); 
-			indent (margin++ , "<th class='%s'>", style_symbol); 
+			indent (margin--, "</th>"); 
+			indent (margin++, "<th class='%s'>", style_symbol); 
 			indent (margin, "%s", label_symbol); 
-			indent (margin-- , "</th>"); 
-			indent (margin++ , "<th class='%s'>", style_string); 
+			indent (margin--, "</th>"); 
+			indent (margin++, "<th class='%s'>", style_string); 
 			indent (margin, "%s", label_string); 
-			indent (margin-- , "</th>"); 
-			indent (margin-- , "</tr>"); 
+			indent (margin--, "</th>"); 
+			indent (margin--, "</tr>"); 
 		} 
 		else 
 		{ 
-			if (! offset) 
+			if (!offset) 
 			{ 
-				indent (margin++ , "<h2 class='%s'>", style); 
+				indent (margin++, "<h2 class='%s'>", style); 
 				indent (margin, "No Title"); 
-				indent (margin-- , "</h2>"); 
-				indent (margin++ , "<table>"); 
-				indent (margin++ , "<table class='%s'>", style); 
-				indent (margin++ , "<tr class='%s'>", style); 
-				indent (margin++ , "<th class='%s'>", style_offset); 
+				indent (margin--, "</h2>"); 
+				indent (margin++, "<table>"); 
+				indent (margin++, "<table class='%s'>", style); 
+				indent (margin++, "<tr class='%s'>", style); 
+				indent (margin++, "<th class='%s'>", style_offset); 
 				indent (margin, "%s", label_offset); 
-				indent (margin-- , "</th>"); 
-				indent (margin++ , "<th class='%s'>", style_length); 
+				indent (margin--, "</th>"); 
+				indent (margin++, "<th class='%s'>", style_length); 
 				indent (margin, "%s", label_length); 
-				indent (margin-- , "</th>"); 
-				indent (margin++ , "<th class='%s'>", style_symbol); 
+				indent (margin--, "</th>"); 
+				indent (margin++, "<th class='%s'>", style_symbol); 
 				indent (margin, "%s", label_symbol); 
-				indent (margin-- , "</th>"); 
-				indent (margin++ , "<th class='%s'>", style_string); 
+				indent (margin--, "</th>"); 
+				indent (margin++, "<th class='%s'>", style_string); 
 				indent (margin, "%s", label_string); 
-				indent (margin-- , "</th>"); 
-				indent (margin-- , "</tr>"); 
+				indent (margin--, "</th>"); 
+				indent (margin--, "</tr>"); 
 			} 
-			indent (margin++ , "<tr class='%s'>", style); 
-			indent (margin++ , "<td class='%s' style='background: %s;'>", style_offset, colors [index]); 
+			indent (margin++, "<tr class='%s'>", style); 
+			indent (margin++, "<td class='%s' style='background: %s;'>", style_offset, colors [index]); 
 			indent (margin, "%08X", offset); 
-			indent (margin-- , "</td>"); 
-			indent (margin++ , "<td class='%s' style='background: %s;'>", style_length, colors [index]); 
+			indent (margin--, "</td>"); 
+			indent (margin++, "<td class='%s' style='background: %s;'>", style_length, colors [index]); 
 			indent (margin, "%6d", length); 
-			indent (margin-- , "</td>"); 
-			indent (margin++ , "<td class='%s' style='background: %s;'>", style_symbol, colors [index]); 
-			indent (margin, "%s", * symbol? symbol:  "&nbsp;"); 
-			indent (margin-- , "</td>"); 
-			indent (margin++ , "<td class='%s' style='background: %s;'>", style_string, colors [index]); 
-			indent (margin, "%s", * string? string:  "&nbsp;"); 
-			indent (margin-- , "</td>"); 
-			indent (margin-- , "</tr>"); 
+			indent (margin--, "</td>"); 
+			indent (margin++, "<td class='%s' style='background: %s;'>", style_symbol, colors [index]); 
+			indent (margin, "%s", * symbol? symbol: "&nbsp;"); 
+			indent (margin--, "</td>"); 
+			indent (margin++, "<td class='%s' style='background: %s;'>", style_string, colors [index]); 
+			indent (margin, "%s", * string? string: "&nbsp;"); 
+			indent (margin--, "</td>"); 
+			indent (margin--, "</tr>"); 
 		} 
 		offset += length; 
-		lineno++ ; 
+		lineno++; 
 	} 
 	if (offset) 
 	{ 
-		indent (margin-- , "</table>"); 
+		indent (margin--, "</table>"); 
 	} 
-	indent (margin++ , "<div class='%s'>", style_posted); 
+	indent (margin++, "<div class='%s'>", style_posted); 
 	indent (margin, "Posted %s on %s by %s", datetime, hostname (), username (getuid ())); 
-	indent (margin-- , "</div>"); 
+	indent (margin--, "</div>"); 
 	indent (0, "<!-- END CONTENT -->"); 
 	if (_anyset (flags, OFFSET_PAGE)) 
 	{ 
-		indent (margin-- , "</body>"); 
-		indent (margin-- , "</html>"); 
+		indent (margin--, "</body>"); 
+		indent (margin--, "</html>"); 
 	} 
 	return; 
 } 
@@ -437,7 +437,7 @@ static void text (flag_t flags)
 		{ 
 			if (c == '\n') 
 			{ 
-				lineno++ ; 
+				lineno++; 
 			} 
 			continue; 
 		} 
@@ -448,7 +448,7 @@ static void text (flag_t flags)
 				c = getc (stdin); 
 			} 
 			while (nobreak (c)); 
-			lineno++ ; 
+			lineno++; 
 			continue; 
 		} 
 		object (); 
@@ -475,7 +475,7 @@ static void text (flag_t flags)
 			origin = offset; 
 		} 
 		offset += length; 
-		lineno++ ; 
+		lineno++; 
 	} 
 	if (offset) 
 	{ 
@@ -518,7 +518,7 @@ static void efsu (flag_t flags)
 		{ 
 			if (c == '\n') 
 			{ 
-				lineno++ ; 
+				lineno++; 
 			} 
 			continue; 
 		} 
@@ -529,7 +529,7 @@ static void efsu (flag_t flags)
 				c = getc (stdin); 
 			} 
 			while (nobreak (c)); 
-			lineno++ ; 
+			lineno++; 
 			continue; 
 		} 
 		object (); 
@@ -541,7 +541,7 @@ static void efsu (flag_t flags)
 			{ 
 				putc ('0', stdout); 
 				putc ('0', stdout); 
-				putc (++ column % 16? ' ':  '\n', stdout); 
+				putc (++ column % 16? ' ': '\n', stdout); 
 			} 
 			if (column % 16) 
 			{ 
@@ -549,7 +549,7 @@ static void efsu (flag_t flags)
 			} 
 		} 
 		offset += length; 
-		lineno++ ; 
+		lineno++; 
 	} 
 	return; 
 } 
@@ -584,7 +584,7 @@ static void tabs (flag_t flags)
 		{ 
 			if (c == '\n') 
 			{ 
-				lineno++ ; 
+				lineno++; 
 			} 
 			continue; 
 		} 
@@ -595,7 +595,7 @@ static void tabs (flag_t flags)
 				c = getc (stdin); 
 			} 
 			while (nobreak (c)); 
-			lineno++ ; 
+			lineno++; 
 			continue; 
 		} 
 		object (); 
@@ -608,7 +608,7 @@ static void tabs (flag_t flags)
 			printf ("\n\t\t%s %s\n", symbol, string); 
 		} 
 		offset += length; 
-		lineno++ ; 
+		lineno++; 
 	} 
 	return; 
 } 
@@ -675,7 +675,7 @@ static void fold (flag_t flags)
 				length += c - '0'; 
 				c = getc (stdin); 
 			} 
-			if (! length) 
+			if (!length) 
 			{ 
 				if (_anyset (flags, OFFSET_HOLE)) 
 				{ 
@@ -757,7 +757,7 @@ static void zero (flag_t flags)
 		while (c == '0') 
 		{ 
 			c = getc (stdin); 
-			if (! isdigit (c)) 
+			if (!isdigit (c)) 
 			{ 
 				putc ('0', stdout); 
 				break; 
@@ -845,7 +845,7 @@ int main (int argc, char const * argv [])
 		"t\tprint text with TAB seperated columns", 
 		"x\thide unmarked objects", 
 		"z\tremove leading zeros", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	char const * colors [] = 
 	{ 
@@ -902,9 +902,9 @@ int main (int argc, char const * argv [])
 	argv += optind; 
 	symbol = emalloc (SYMBOLSIZE); 
 	string = emalloc (STRINGSIZE); 
-	if (! argc) 
+	if (!argc) 
 	{ 
-		function (colors, sizeof (colors) / sizeof (const char * ), flags); 
+		function (colors, sizeof (colors) / sizeof (const char *), flags); 
 	} 
 	while ((argc) && (* argv)) 
 	{ 
@@ -912,8 +912,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (colors, SIZEOF (colors), flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

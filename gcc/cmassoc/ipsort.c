@@ -98,10 +98,10 @@ TREE * catalog (TREE * node, const unsigned value [])
 { 
 	if (* value != END) 
 	{ 
-		if (node == (TREE * ) (0)) 
+		if (node == (TREE *) (0)) 
 		{ 
 			node = NEW (TREE); 
-			node->one = node->two = node->sub = (TREE * ) (0); 
+			node->one = node->two = node->sub = (TREE *) (0); 
 			node->value = * value; 
 			node->count = 0; 
 		} 
@@ -116,7 +116,7 @@ TREE * catalog (TREE * node, const unsigned value [])
 		else 
 		{ 
 			node->sub = catalog (node->sub, value + 1); 
-			node->count++ ; 
+			node->count++; 
 		} 
 	} 
 	return (node); 
@@ -135,11 +135,11 @@ void collate (TREE * node, char buffer [], size_t length, size_t offset, flag_t 
 { 
 	extern char const * rootnode; 
 	extern char const * leafnode; 
-	if (node != (TREE * ) (0)) 
+	if (node != (TREE *) (0)) 
 	{ 
 		size_t count = offset; 
 		collate (node->one, buffer, length, offset, flags); 
-		if (node->sub != (TREE * ) (0)) 
+		if (node->sub != (TREE *) (0)) 
 		{ 
 			count += snprintf (buffer + count, length - count, rootnode, node->value); 
 			collate (node->sub, buffer, length - count, count, flags); 
@@ -178,12 +178,12 @@ int main (int argc, char const * argv [])
 		"copy one or more files to stdout", 
 		"a\talign octet fields", 
 		"n\tprint occurances", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
-	TREE * tree = (TREE * ) (0); 
+	TREE * tree = (TREE *) (0); 
 	char buffer [TEXTLINE_MAX]; 
-	char const * strings [IP_ADDR_OCTETS+ 1]; 
-	unsigned values [IP_ADDR_OCTETS+ 1]; 
+	char const * strings [IP_ADDR_OCTETS + 1]; 
+	unsigned values [IP_ADDR_OCTETS + 1]; 
 	flag_t flags = (flag_t) (0); 
 	signed c; 
 	while ((c = getoptv (argc, argv, optv)) != - 1) 
@@ -203,12 +203,12 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		while (getIPv4 (buffer, sizeof (buffer), stdin)) 
 		{ 
-			strsplit (strings, IP_ADDR_OCTETS+ 1, buffer, IP_ADDR_EXTENDER); 
-			for (c = 0; strings [c] != (char * ) (0); c++ ) 
+			strsplit (strings, IP_ADDR_OCTETS + 1, buffer, IP_ADDR_EXTENDER); 
+			for (c = 0; strings [c] != (char *) (0); c++) 
 			{ 
 				values [c] = atoi (strings [c]); 
 			} 
@@ -223,7 +223,7 @@ int main (int argc, char const * argv [])
 			while (getIPv4 (buffer, sizeof (buffer), stdin)) 
 			{ 
 				strsplit (strings, IP_ADDR_OCTETS + 1, buffer, IP_ADDR_EXTENDER); 
-				for (c = 0; strings [c]; c++ ) 
+				for (c = 0; strings [c]; c++) 
 				{ 
 					values [c] = atoi (strings [c]); 
 				} 
@@ -231,8 +231,8 @@ int main (int argc, char const * argv [])
 				tree = catalog (tree, values); 
 			} 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	collate (tree, buffer, sizeof (buffer), 0, flags); 
 	exit (0); 

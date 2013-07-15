@@ -113,23 +113,23 @@ static signed header (signed margin, struct page * page, char const * stylesheet
 { 
 	indent (margin, "<?xml version='%s' encoding='%s'?>", XML_VERSION, XML_CHARSET); 
 	indent (margin, "<!doctype html public '%s' '%s'>", W3C_STD, W3C_DTD); 
-	indent (margin++ , "<html xmlns='%s' lang='%s'>", XML_NAMESPACE, XML_LANGUAGE); 
-	indent (margin++ , "<head>"); 
-	indent (margin++ , "<title>"); 
+	indent (margin++, "<html xmlns='%s' lang='%s'>", XML_NAMESPACE, XML_LANGUAGE); 
+	indent (margin++, "<head>"); 
+	indent (margin++, "<title>"); 
 	indent (margin, "%s", page->name); 
-	indent (margin-- , "</title>"); 
+	indent (margin--, "</title>"); 
 	indent (margin, "<meta http-equiv='content-type' content='%s'/>", HTML_CONTENT); 
 	indent (margin, "<meta name='generator' content='%s'/>", HTML_PROGRAM); 
 	indent (margin, "<meta name='author' content='%s'/>", HTML_AUTHOR); 
 	indent (margin, "<meta name='robots' content='%s'/>", HTML_ROBOTS); 
 	indent (margin, "<link href='%s' rel='stylesheet' type='%s'/>", stylesheet, CSS_CONTENT); 
-	indent (margin-- , "</head>"); 
-	indent (margin++ , "<body>"); 
-	indent (margin++ , "<div class='%s'>", STYLE_TOPLINK); 
+	indent (margin--, "</head>"); 
+	indent (margin++, "<body>"); 
+	indent (margin++, "<div class='%s'>", STYLE_TOPLINK); 
 	pagelink (margin, page->prev, HTML_PREV); 
 	pagelink (margin, page->home, HTML_HOME); 
 	pagelink (margin, page->next, HTML_NEXT); 
-	indent (margin-- , "</div>"); 
+	indent (margin--, "</div>"); 
 	return (margin); 
 } 
 
@@ -147,13 +147,13 @@ static signed header (signed margin, struct page * page, char const * stylesheet
 static signed footer (signed margin, struct page * page) 
 
 { 
-	indent (margin++ , "<div class='%s'>", STYLE_BOTLINK); 
+	indent (margin++, "<div class='%s'>", STYLE_BOTLINK); 
 	pagelink (margin, page->prev, HTML_PREV); 
 	pagelink (margin, page->home, HTML_HOME); 
 	pagelink (margin, page->next, HTML_NEXT); 
-	indent (margin-- , "</div>"); 
-	indent (margin-- , "</body>"); 
-	indent (margin-- , "</html>"); 
+	indent (margin--, "</div>"); 
+	indent (margin--, "</body>"); 
+	indent (margin--, "</html>"); 
 	return (margin); 
 } 
 
@@ -175,44 +175,44 @@ void htmlindex (struct page * page, char const * stylesheet, unsigned group, fla
 	unsigned margin = 0; 
 	unsigned count = 0; 
 	unsigned index = 0; 
-	if (! group) 
+	if (!group) 
 	{ 
 		return; 
 	} 
 	if (_anyset (flags, CATALOG_INDEX)) 
 	{ 
 		margin = header (margin, page, stylesheet); 
-		indent (margin++ , "<h1>"); 
+		indent (margin++, "<h1>"); 
 		indent (margin, "%s", page->name); 
-		indent (margin-- , "</h1>"); 
+		indent (margin--, "</h1>"); 
 	} 
-	indent (margin++ , "<table>"); 
-	indent (margin++ , "<tr valign='top'>"); 
+	indent (margin++, "<table>"); 
+	indent (margin++, "<tr valign='top'>"); 
 	for (page = page->next; page != page->home; page = page->next) 
 	{ 
-		count++ ; 
+		count++; 
 	} 
 	count = (count + group - 1)/ group; 
-	indent (margin++ , "<td>"); 
-	indent (margin++ , "<ol start='1'>"); 
+	indent (margin++, "<td>"); 
+	indent (margin++, "<ol start='1'>"); 
 	for (page = page->next; page != page->home; page = page->next) 
 	{ 
 		if ((index) && (index % count == 0)) 
 		{ 
-			indent (margin-- , "</ol>"); 
-			indent (margin-- , "</td>"); 
-			indent (margin++ , "<td>"); 
-			indent (margin++ , "<ol start='%d'>", index+ 1); 
+			indent (margin--, "</ol>"); 
+			indent (margin--, "</td>"); 
+			indent (margin++, "<td>"); 
+			indent (margin++, "<ol start='%d'>", index + 1); 
 		} 
-		indent (margin++ , "<li class='index'>"); 
+		indent (margin++, "<li class='index'>"); 
 		indent (margin, "<a href='%s'>%s</a>", page->path, page->name); 
-		indent (margin-- , "</li>"); 
-		index++ ; 
+		indent (margin--, "</li>"); 
+		index++; 
 	} 
-	indent (margin-- , "</ol>"); 
-	indent (margin-- , "</td>"); 
-	indent (margin-- , "</tr>"); 
-	indent (margin-- , "</table>"); 
+	indent (margin--, "</ol>"); 
+	indent (margin--, "</td>"); 
+	indent (margin--, "</tr>"); 
+	indent (margin--, "</table>"); 
 	if (_anyset (flags, CATALOG_INDEX)) 
 	{ 
 		margin = footer (margin, page); 
@@ -334,12 +334,12 @@ void function (struct page * page, char const * stylesheet, unsigned group, flag
 	htmlindex (page, stylesheet, group, flags); 
 	for (page = page->next; page != page->home; page = page->next) 
 	{ 
-		if (! freopen (page->file, "rb", stdin)) 
+		if (!freopen (page->file, "rb", stdin)) 
 		{ 
 			error (0, errno, "Can't open %s for input", page->file); 
 			continue; 
 		} 
-		if (! freopen (page->path, "wb", stdout)) 
+		if (!freopen (page->path, "wb", stdout)) 
 		{ 
 			error (0, errno, "Can't open %s for output", page->path); 
 			continue; 
@@ -382,7 +382,7 @@ int main (int argc, char const * argv [])
 		"n s\tindex page name is s [" HTML_NAME "]", 
 		"p f\tindex page path is f [" HTML_PATH "]", 
 		"s f\tstylesheet path is f [" CATALOG_STYLESHEET "]", 
-		(char * ) (0)
+		(char *) (0)
 	}; 
 	unsigned column = CATALOG_COLUMN; 
 	char filename [FILENAME_MAX]; 
@@ -428,7 +428,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (page, stylesheet, column, flags); 
 		free (page); 
@@ -447,8 +447,8 @@ int main (int argc, char const * argv [])
 		strcpy (filename, temp->file); 
 		strcat (filename, ".html"); 
 		temp->path = strdup (filename); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	function (page, stylesheet, column, flags); 
 	while (page->next != page->home) 
@@ -456,9 +456,9 @@ int main (int argc, char const * argv [])
 		temp = page->next; 
 		page->next = temp->next; 
 		temp->next->prev = page; 
-		temp->prev = (struct page * )(0); 
-		temp->next = (struct page * )(0); 
-		free ((char * )(temp->path)); 
+		temp->prev = (struct page *)(0); 
+		temp->next = (struct page *)(0); 
+		free ((char *)(temp->path)); 
 		free (temp); 
 	} 
 	free (page); 

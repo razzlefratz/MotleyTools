@@ -77,7 +77,7 @@ void csstree (struct node const * node)
 	} 
 	while ((node) && (node->type == NODE_ATTR)) 
 	{ 
-		if (! strcmp (node->text, "class")) 
+		if (!strcmp (node->text, "class")) 
 		{ 
 			printf ("%s.%s { }\n", node->above->text, node->below->text); 
 		} 
@@ -111,10 +111,10 @@ int main (int argc, char const * argv [])
 		"d\tprint document as text", 
 		"s\tprint document as stream", 
 		"t\tprint document as tree", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	struct node node; 
-	void (* xmldump) (struct node const * ) = xmlindent; 
+	void (* xmldump) (struct node const *) = xmlindent; 
 	signed c; 
 	while ((c = getoptv (argc, argv, optv)) != - 1) 
 	{ 
@@ -138,7 +138,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		error (1, ENOTSUP, "No filenames given!"); 
 	} 
@@ -149,8 +149,8 @@ int main (int argc, char const * argv [])
 		reorder (& node); 
 		xmldump (& node); 
 		xmlfree (& node); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

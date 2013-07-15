@@ -29,7 +29,7 @@ int main (int argc, char * argv [])
 
 { 
 	printf ("\n"); 
-	for (argc = 1; argv [argc]; argc++ ) 
+	for (argc = 1; argv [argc]; argc++) 
 	{ 
 		printf (" argv[%02d] = \"%s\"\n", argc, struesc (argv [argc])); 
 	} 

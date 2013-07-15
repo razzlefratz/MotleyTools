@@ -77,7 +77,7 @@ static void testfile (FIND * find, flag_t flags);
 static void function (struct _find_ * find, flag_t flags) 
 
 { 
-	if (! match (find->filename, find->wildcard)) 
+	if (!match (find->filename, find->wildcard)) 
 	{ 
 		return; 
 	} 
@@ -124,11 +124,11 @@ static void testfile (FIND * find, flag_t flags)
 		char const * filename = find->filename; 
 		if (* filename == '.') 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		if (* filename == '.') 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		if (* filename == (char) (0)) 
 		{ 
@@ -183,7 +183,7 @@ static void findfile (FIND * find, flag_t flags)
 		struct dirent * dirent; 
 		while (* filename) 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		* filename = PATH_C_EXTENDER; 
 		while ((dirent = readdir (dir))) 
@@ -218,7 +218,7 @@ int main (int argc, char const * argv [])
 		"q\tquiet (don't report failures)", 
 		"r\trecursive search", 
 		"v\tverbose (report successes)", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = (flag_t) (0); 
 	signed c; 
@@ -256,8 +256,8 @@ int main (int argc, char const * argv [])
 		makefind (& find, * argv); 
 		strcpy (find.fullname, find.pathname); 
 		findfile (& find, flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

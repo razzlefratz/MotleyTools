@@ -95,7 +95,7 @@ static void function (unsigned step, unsigned dir, unsigned width, flag_t flags)
 		{ 
 			if (c == '\n') 
 			{ 
-				space++ ; 
+				space++; 
 			} 
 			c = getc (stdin); 
 		} 
@@ -104,7 +104,7 @@ static void function (unsigned step, unsigned dir, unsigned width, flag_t flags)
 			unsigned count = width; 
 			printf (IFD_LEFT0); 
 			putc (' ', stdout); 
-			while (count-- ) 
+			while (count--) 
 			{ 
 				putc (' ', stdout); 
 			} 
@@ -116,7 +116,7 @@ static void function (unsigned step, unsigned dir, unsigned width, flag_t flags)
 		{ 
 			if (prior) 
 			{ 
-				prior-- ; 
+				prior--; 
 			} 
 			* label++ = (char)(c); 
 			c = getc (stdin); 
@@ -127,17 +127,17 @@ static void function (unsigned step, unsigned dir, unsigned width, flag_t flags)
 		prior = after; 
 		if (++ dir & 1) 
 		{ 
-			printf (IFD_RIGHT1, step++ ); 
-			while (prior-- ) 
+			printf (IFD_RIGHT1, step++); 
+			while (prior--) 
 			{ 
 				putc ('-', stdout); 
 			} 
 			printf (" %s ", name); 
-			while (after-- ) 
+			while (after--) 
 			{ 
 				putc ('-', stdout); 
 			} 
-			while (extra-- ) 
+			while (extra--) 
 			{ 
 				putc ('-', stdout); 
 			} 
@@ -147,7 +147,7 @@ static void function (unsigned step, unsigned dir, unsigned width, flag_t flags)
 			} 
 			else 
 			{ 
-				printf (IFD_RIGHT3, step++ ); 
+				printf (IFD_RIGHT3, step++); 
 			} 
 		} 
 		else 
@@ -160,28 +160,28 @@ static void function (unsigned step, unsigned dir, unsigned width, flag_t flags)
 			{ 
 				printf (IFD_LEFT2, ++ step); 
 			} 
-			while (prior-- ) 
+			while (prior--) 
 			{ 
 				putc ('-', stdout); 
 			} 
 			printf (" %s ", name); 
-			while (after-- ) 
+			while (after--) 
 			{ 
 				putc ('-', stdout); 
 			} 
-			while (extra-- ) 
+			while (extra--) 
 			{ 
 				putc ('-', stdout); 
 			} 
 			if (_anyset (flags, IFD_ALTERNATE)) 
 			{ 
-				printf (IFD_LEFT3, step++ ); 
+				printf (IFD_LEFT3, step++); 
 			} 
 			else 
 			{ 
 				printf (IFD_LEFT3, -- step); 
-				step++ ; 
-				step++ ; 
+				step++; 
+				step++; 
 			} 
 		} 
 		putc ('\n', stdout); 
@@ -214,7 +214,7 @@ int main (int argc, char const * argv [])
 		"r\tstart direction is right", 
 		"n n\tfirst step is (n) [" LITERAL (IFD_START) "]", 
 		"w n\twidth in characters [" LITERAL (IFD_WIDTH) "]", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	flag_t flags = (flag_t)(0); 
 	size_t width = IFD_WIDTH; 
@@ -246,19 +246,19 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (start, dir, width, flags); 
 	} 
 	while ((argc) && (* argv)) 
 	{ 
-		if (! freopen (* argv, "rb+", stdin)) 
+		if (!freopen (* argv, "rb+", stdin)) 
 		{ 
 			error (1, errno, "%s", * argv); 
 		} 
 		function (start, dir, width, flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

@@ -86,33 +86,33 @@ int faudit (char * filestate [])
 	if (type != atoin (filestate [TYPE], "01234567")) 
 	{ 
 		error (0, 0, "%s: type was %s now %04o", filestate [NAME], filestate [TYPE], type); 
-		errors++ ; 
+		errors++; 
 	} 
 	mode = (statinfo.st_mode >> 0) & FILE_MODE_MASK; 
 	if (mode != atoin (filestate [MODE], "01234567")) 
 	{ 
 		error (0, 0, "%s: mode was %s now %04o", filestate [NAME], filestate [MODE], mode); 
-		errors++ ; 
+		errors++; 
 	} 
-	if ((passwd = getpwuid (statinfo.st_uid)) == (struct passwd * ) (0)) 
+	if ((passwd = getpwuid (statinfo.st_uid)) == (struct passwd *) (0)) 
 	{ 
 		error (0, errno, "%s: unknown owner", filestate [NAME]); 
-		errors++ ; 
+		errors++; 
 	} 
 	else if (strcmp (passwd->pw_name, filestate [OWNER])) 
 	{ 
 		error (0, 0, "%s: owner was %s now %s", filestate [NAME], filestate [OWNER], passwd->pw_name); 
-		errors++ ; 
+		errors++; 
 	} 
-	if ((group = getgrgid (statinfo.st_gid)) == (struct group * ) (0)) 
+	if ((group = getgrgid (statinfo.st_gid)) == (struct group *) (0)) 
 	{ 
 		error (0, errno, "%s: unknown group", filestate [NAME]); 
-		errors++ ; 
+		errors++; 
 	} 
 	else if (strcmp (group->gr_name, filestate [GROUP])) 
 	{ 
 		error (0, 0, "%s: group was %s now %s", filestate [NAME], filestate [GROUP], group->gr_name); 
-		errors++ ; 
+		errors++; 
 	} 
 	return (errors); 
 } 
@@ -129,7 +129,7 @@ int main (int argc, char const * argv [])
 		"", 
 		PUTOPTV_S_FUNNEL, 
 		"audit file states against snapshot file;", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	FILE * fp; 
 	char buffer [255]; 
@@ -149,7 +149,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 	} 
 	while ((argc) && (* argv)) 
@@ -162,10 +162,10 @@ int main (int argc, char const * argv [])
 				switch (c) 
 				{ 
 				case LIST_C_EXTENDER: 
-					* attribute = (char * ) (0); 
+					* attribute = (char *) (0); 
 					* string = (char) (0); 
 					errors += faudit (attributes); 
-					index++ ; 
+					index++; 
 					attribute = attributes; 
 					* attribute++ = string = buffer; 
 					break; 
@@ -184,8 +184,8 @@ int main (int argc, char const * argv [])
 			} 
 			fclose (fp); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	if (errors > 0) 
 	{ 

@@ -165,7 +165,7 @@ static void enumerate (signed fields, size_t length)
 	while ((count = getfields (vector, fields, buffer, length))) 
 	{ 
 		signed index; 
-		for (index = 0; index < count; index++ ) 
+		for (index = 0; index < count; index++) 
 		{ 
 			printf ("field[%d]=[%s]\n", index, vector [index]); 
 		} 
@@ -199,7 +199,7 @@ int main (int argc, char const * argv [])
 		"p s\tpackage name is (s) [" LITERAL (OWRT_NAME_PACKAGE) "]", 
 		"q\tsuppress routine messages", 
 		"v\tenable verbose messages", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	char const * handler = OWRT_NAME_HANDLER; 
 	char const * package = OWRT_NAME_PACKAGE; 
@@ -236,7 +236,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		define_handler (handler, package); 
 	} 
@@ -246,8 +246,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (vectorsize, buffersize, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

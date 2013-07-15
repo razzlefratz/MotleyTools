@@ -65,14 +65,14 @@ void function (size_t offset, size_t length, flag_t flags)
 
 { 
 	signed c; 
-	while (offset-- ) 
+	while (offset--) 
 	{ 
 		if ((c = getc (stdin)) == EOF) 
 		{ 
 			error (1, errno, "Can't read file"); 
 		} 
 	} 
-	while (length-- ) 
+	while (length--) 
 	{ 
 		if ((c = getc (stdin)) == EOF) 
 		{ 
@@ -111,7 +111,7 @@ int main (int argc, char const * argv [])
 		"o x\toffset to read in bytes", 
 		"q\tquiet mode", 
 		"v\tverbose mode", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	size_t offset = 0; 
 	size_t length = 0; 
@@ -142,7 +142,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (offset, length, flags); 
 	} 
@@ -152,8 +152,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (offset, length, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

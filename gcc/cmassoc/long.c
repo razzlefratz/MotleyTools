@@ -99,7 +99,7 @@ int main (int argc, char const * argv [])
 		"", 
 		PUTOPTV_S_FILTER, 
 		"convert escaped newlines to form long lines;", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	signed (* function) (signed) = noescape; 
 	signed c; 
@@ -113,7 +113,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (getc (stdin)); 
 	} 
@@ -123,8 +123,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (getc (stdin)); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

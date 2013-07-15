@@ -60,10 +60,10 @@ int main (int argc, char const * argv [])
 		"command [command] [...]", 
 		"Log and execute command sequences", 
 		"c s\tcomment text", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	FILE * fp; 
-	char const * comment = (char const * )(0); 
+	char const * comment = (char const *)(0); 
 	signed c; 
 	while ((c = getoptv (argc, argv, optv)) != - 1) 
 	{ 
@@ -94,8 +94,8 @@ int main (int argc, char const * argv [])
 			} 
 		} 
 		printf ("\n"); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

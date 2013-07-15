@@ -86,7 +86,7 @@ void function (char const * path, char * file, size_t width, size_t count, bool 
 		struct stat statinfo; 
 		while (* file) 
 		{ 
-			file++ ; 
+			file++; 
 		} 
 		* file++ = PATH_C_EXTENDER; 
 		while ((dirent = readdir (dir))) 
@@ -94,11 +94,11 @@ void function (char const * path, char * file, size_t width, size_t count, bool 
 			char const * sp = dirent->d_name; 
 			if (* sp == FILE_C_EXTENDER) 
 			{ 
-				sp++ ; 
+				sp++; 
 			} 
 			if (* sp == FILE_C_EXTENDER) 
 			{ 
-				sp++ ; 
+				sp++; 
 			} 
 			if (* sp == (char) (0)) 
 			{ 
@@ -168,7 +168,7 @@ int main (int argc, char const * argv [])
 		"l\tlist symbolic links", 
 		"w n\tscreen width is (n) [" LITERAL (WIDTH) "]", 
 		"n\tnumber items", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	char filename [FILENAME_MAX]; 
 	bool index = false; 
@@ -214,7 +214,7 @@ int main (int argc, char const * argv [])
 	{ 
 		_setbits (flags, FIND_B_DIR); 
 	} 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		strcpy (filename, getenv ("PWD")); 
 		function (filename, filename, width, count, index, flags); 
@@ -223,8 +223,8 @@ int main (int argc, char const * argv [])
 	{ 
 		strcpy (filename, * argv); 
 		function (filename, filename, width, count, index, flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

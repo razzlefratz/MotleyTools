@@ -83,7 +83,7 @@ static void function (const unsigned limit, flag_t flags)
 		if (c == ' ') 
 		{ 
 			c = getc (stdin); 
-			length++ ; 
+			length++; 
 			continue; 
 		} 
 
@@ -110,7 +110,7 @@ static void function (const unsigned limit, flag_t flags)
 			else if (count < limit) 
 			{ 
 				putc (c, stdout); 
-				count++ ; 
+				count++; 
 			} 
 			c = getc (stdin); 
 			column = 0; 
@@ -123,7 +123,7 @@ static void function (const unsigned limit, flag_t flags)
 		} 
 		putc (c, stdout); 
 		c = getc (stdin); 
-		length++ ; 
+		length++; 
 	} 
 	if (column) 
 	{ 
@@ -152,7 +152,7 @@ int main (int argc, char const * argv [])
 		PUTOPTV_S_FILTER, 
 		"minimize blank lines and eliminate trailing spaces", 
 		"n n\treduce consecutive blank lines to (n) lines [" LITERAL (BLANK_COUNT) "]", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	flag_t flags = (flag_t)(0); 
 	size_t count = BLANK_COUNT; 
@@ -170,7 +170,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (count, flags); 
 	} 
@@ -180,8 +180,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (count, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (1); 
 } 

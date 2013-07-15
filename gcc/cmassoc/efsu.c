@@ -95,7 +95,7 @@
 static void function (struct channel * channel, void * memory, ssize_t extent) 
 
 { 
-	struct ether_header * frame = (struct ether_header * )(memory); 
+	struct ether_header * frame = (struct ether_header *)(memory); 
 	unsigned length; 
 	while ((length = (unsigned)(hexload (memory, extent, stdin))) > 0) 
 	{ 
@@ -139,19 +139,19 @@ static void iterate (int argc, char const * argv [], struct channel * channel, u
 
 { 
 	byte buffer [ETHER_MAX_LEN]; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (channel, buffer, sizeof (buffer)); 
 	} 
 	while ((argc) && (* argv)) 
 	{ 
-		if (! freopen (* argv, "rb", stdin)) 
+		if (!freopen (* argv, "rb", stdin)) 
 		{ 
 			error (1, errno, "Can't open %s", * argv); 
 		} 
 		function (channel, buffer, sizeof (buffer)); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 		if ((argc) && (* argv)) 
 		{ 
 			sleep (pause); 
@@ -188,7 +188,7 @@ int main (int argc, char const * argv [])
 		"t n\tread timeout is (n) milliseconds [" LITERAL (CHANNEL_TIMEOUT) "]", 
 		"v\tverbose messages", 
 		"w n\twait (n) seconds between counts [" LITERAL (EFSU_DELAY) "]", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	unsigned pause = EFSU_PAUSE; 
 	unsigned delay = EFSU_DELAY; 
@@ -204,7 +204,7 @@ int main (int argc, char const * argv [])
 		{ 
 		case 'd': 
 			_setbits (channel.flags, CHANNEL_UPDATE_TARGET); 
-			if (! hexencode (channel.peer, sizeof (channel.peer), optarg)) 
+			if (!hexencode (channel.peer, sizeof (channel.peer), optarg)) 
 			{ 
 				error (1, errno, "%s", optarg); 
 			} 
@@ -244,7 +244,7 @@ int main (int argc, char const * argv [])
 		error (1, EPERM, ERROR_NOTROOT); 
 	} 
 	openchannel (& channel); 
-	while (count-- ) 
+	while (count--) 
 	{ 
 		iterate (argc, argv, & channel, pause); 
 		if (count) 

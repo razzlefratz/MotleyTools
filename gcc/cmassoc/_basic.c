@@ -69,7 +69,7 @@ int main (int argc, char const * argv [])
 		"basic C language program", 
 		"q\tsuppress routine messages", 
 		"v\tenable verbose messages", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	flag_t flags = (flag_t)(0); 
 	signed c; 
@@ -89,7 +89,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (); 
 	} 
@@ -99,8 +99,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

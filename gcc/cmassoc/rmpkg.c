@@ -134,20 +134,21 @@ static void function (LIST * list, flag_t flags)
 	this = & one; 
 	one.next = & two; 
 	two.next = & one; 
-	this->name = list->table [list->index++ ]; 
+	this->name = list->table [list->index++]; 
 	while (list->index < list->count) 
 	{ 
 		char const * sp1; 
 		char const * sp2; 
-		this->next->name = list->table [list->index++ ]; 
+		this->next->name = list->table [list->index++]; 
 
 // printf ("[%s][%s]\n", this->name, this->next->name);
 
-		for (sp1 = this->name, sp2 = this->next->name; * sp1 == * sp2; sp1++ , sp2++ ) 
+
+		for (sp1 = this->name, sp2 = this->next->name; * sp1 == * sp2; sp1++, sp2++) 
 		{ 
 			if (* sp1 == (char) (0)) 
 			{ 
-				this->next->name = list->table [list->index++ ]; 
+				this->next->name = list->table [list->index++]; 
 				break; 
 			} 
 			if (* sp1 == FILE_C_EXTENDER) 
@@ -192,11 +193,11 @@ static void testfile (FIND * find, LIST * list, flag_t flags)
 		char * filename = find->filename; 
 		if (* filename == '.') 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		if (* filename == '.') 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		if (* filename == (char) (0)) 
 		{ 
@@ -235,17 +236,17 @@ static void findfile (FIND * find, LIST * list, flag_t flags)
 	struct dirent * dirent; 
 	char * filename = find->fullname; 
 	DIR * dir = opendir (filename); 
-	if (dir == (DIR * ) (0)) 
+	if (dir == (DIR *) (0)) 
 	{ 
 		testfile (find, list, flags); 
 		return; 
 	} 
 	while (* filename != (char) (0)) 
 	{ 
-		filename++ ; 
+		filename++; 
 	} 
 	* filename = PATH_C_EXTENDER; 
-	while ((dirent = readdir (dir)) != (struct dirent * ) (0)) 
+	while ((dirent = readdir (dir)) != (struct dirent *) (0)) 
 	{ 
 		strcpy (filename + 1, dirent->d_name); 
 		partpath (find->fullname, find->pathname, find->filename); 
@@ -273,7 +274,7 @@ int main (int argc, char const * argv [])
 		"c\tcheck but do not remove", 
 		"r\trecursive search", 
 		"v\tverbose messages", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	LIST list; 
 	flag_t flags = (flag_t) (0); 
@@ -304,8 +305,8 @@ int main (int argc, char const * argv [])
 		strcpy (find.fullname, find.pathname); 
 		findfile (& find, & list, flags); 
 		function (& list, flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	listdelete (& list); 
 	exit (0); 

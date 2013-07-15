@@ -60,7 +60,7 @@ int main (int argc, char const * argv [])
 		"t\ttop of screen", 
 		"m\tmiddle of screen", 
 		"b\tbottom of screen", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	unsigned line; 
 	signed c; 

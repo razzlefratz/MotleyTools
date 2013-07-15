@@ -172,12 +172,12 @@ static void function (signed comment, void indent (unsigned, unsigned), signed e
 				if (c == '\t') 
 				{ 
 					while (++ column % 8); 
-					tabs++ ; 
+					tabs++; 
 				} 
 				else if (c == ' ') 
 				{ 
-					column++ ; 
-					spaces++ ; 
+					column++; 
+					spaces++; 
 				} 
 				c = getc (stdin); 
 			} 
@@ -242,7 +242,7 @@ int main (int argc, char const * argv [])
 		"c c\tcomment character is (c) [" LITERAL (SPACE_C_COMMENT) "]", 
 		"g\tsuitable for GNU makefiles", 
 		"m\tmerge continuation lines", 
-		(char * ) (0)
+		(char *) (0)
 	}; 
 	void (* indent) (unsigned, unsigned) = GNUMake; 
 	signed (* escape) (signed) = noop; 
@@ -270,7 +270,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (comment, indent, escape); 
 	} 
@@ -280,8 +280,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (comment, indent, escape); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

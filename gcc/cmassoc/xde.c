@@ -88,7 +88,7 @@ int main (int argc, char const * argv [])
 		"o\tprint schema", 
 		"q\tquiet mode", 
 		"v\tverbose mode", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	struct node * markup; 
 	char const * filename; 
@@ -119,7 +119,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		error (1, ECANCELED, "No data file given"); 
 	} 
@@ -136,7 +136,7 @@ int main (int argc, char const * argv [])
 	{ 
 		error (1, errno, FILE_CANTHOME, filename); 
 	} 
-	if (! (buffer = malloc (length+ 1))) 
+	if (!(buffer = malloc (length + 1))) 
 	{ 
 		error (1, errno, "Need %d bytes", length); 
 	} 
@@ -145,15 +145,15 @@ int main (int argc, char const * argv [])
 		error (1, errno, FILE_CANTREAD, filename); 
 	} 
 	close (fd); 
-	argc-- ; 
-	argv++ ; 
+	argc--; 
+	argv++; 
 	while ((argc) && (* argv)) 
 	{ 
 		markup = xmlopen (* argv); 
 		xmledit (markup, buffer, length); 
 		xmlfree (markup); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	if (_anyset (flags, XDE_VERBOSE)) 
 	{ 

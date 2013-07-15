@@ -66,7 +66,7 @@ int main (int argc, char const * argv [])
 		"s\tprint switch statement", 
 		"t s\ttable name is (c) [" LITERAL (LISTNAME) "]", 
 		"v\tprint variable declaration", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	char const * name = LISTNAME; 
 	struct _type_ list [LISTSIZE]; 
@@ -101,11 +101,11 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! flags) 
+	if (!flags) 
 	{ 
 		flags = TOOLS_B_NORMAL; 
 	} 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		size = typeload (list, LISTSIZE); 
 		typesave (list, size, name, flags); 
@@ -117,8 +117,8 @@ int main (int argc, char const * argv [])
 			size = typeload (list, LISTSIZE); 
 			typesave (list, size, name, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

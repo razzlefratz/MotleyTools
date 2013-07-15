@@ -112,11 +112,11 @@ static void findfile (char * thispath, char * thatpath, char const * command, fl
 	{ 
 		while (* thisfile) 
 		{ 
-			thisfile++ ; 
+			thisfile++; 
 		} 
 		while (* thatfile) 
 		{ 
-			thatfile++ ; 
+			thatfile++; 
 		} 
 		* thisfile++ = PATH_C_EXTENDER; 
 		* thatfile++ = PATH_C_EXTENDER; 
@@ -139,11 +139,11 @@ static void findfile (char * thispath, char * thatpath, char const * command, fl
 				char * filename = dirent->d_name; 
 				if (* filename == '.') 
 				{ 
-					filename++ ; 
+					filename++; 
 				} 
 				if (* filename == '.') 
 				{ 
-					filename++ ; 
+					filename++; 
 				} 
 				if (* filename == (char)(0)) 
 				{ 
@@ -213,10 +213,10 @@ int main (int argc, char const * argv [])
 		"r\trecursive comparison", 
 		"x\tremove files", 
 		"v\tverbose messages", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
-	char thispath [FILENAME_MAX+ 1]; 
-	char thatpath [FILENAME_MAX+ 1]; 
+	char thispath [FILENAME_MAX + 1]; 
+	char thatpath [FILENAME_MAX + 1]; 
 	char const * command = SWEEP_S_COMMAND; 
 	flag_t flags = (flag_t) (0); 
 	signed c; 
@@ -249,15 +249,15 @@ int main (int argc, char const * argv [])
 	if (argc) 
 	{ 
 		strcpy (thispath, * argv); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	while ((argc) && (* argv)) 
 	{ 
 		strcpy (thatpath, * argv); 
 		findfile (thispath, thatpath, command, flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

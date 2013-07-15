@@ -153,7 +153,7 @@ void function (char * fullpath, char const * vector [])
 						c = getc (fp); 
 					} 
 					* sp++ = (char)(c); 
-					for (cp = buffer; cp < sp; putc (* cp++ , stdout)); 
+					for (cp = buffer; cp < sp; putc (* cp++, stdout)); 
 					c = getc (fp); 
 					continue; 
 				} 
@@ -175,17 +175,17 @@ void function (char * fullpath, char const * vector [])
 					} 
 					* cp = (char) (0); 
 					makepath (fullpath, pathname, filename); 
-					for (index = 0; vector [index] != (char * )(0); index++ ) 
+					for (index = 0; vector [index] != (char *)(0); index++) 
 					{ 
-						if (! strcmp (fullpath, vector [index])) 
+						if (!strcmp (fullpath, vector [index])) 
 						{ 
 							break; 
 						} 
 					} 
-					if (vector [index] == (char * )(0)) 
+					if (vector [index] == (char *)(0)) 
 					{ 
-						vector [index++ ] = strdup (fullpath); 
-						vector [index] = (char * )(0); 
+						vector [index++] = strdup (fullpath); 
+						vector [index] = (char *)(0); 
 						function (fullpath, vector); 
 					} 
 					while (nobreak (c)) 
@@ -203,7 +203,7 @@ void function (char * fullpath, char const * vector [])
 						c = getc (fp); 
 					} 
 					* sp++ = (char) (c); 
-					for (cp = buffer; cp < sp; putc (* cp++ , stdout)); 
+					for (cp = buffer; cp < sp; putc (* cp++, stdout)); 
 				} 
 				c = getc (fp); 
 				continue; 
@@ -288,7 +288,7 @@ int main (int argc, char const * argv [])
 		"", 
 		PUTOPTV_S_FILTER, 
 		"include all C language support files", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	char pathname [FILENAME_MAX]; 
 	signed c; 
@@ -307,14 +307,14 @@ int main (int argc, char const * argv [])
 		char const * vector [200]; 
 		makepath (pathname, getenv ("PWD"), * argv); 
 		vector [0] = strdup (pathname); 
-		vector [1] = (char * )(0); 
+		vector [1] = (char *)(0); 
 		function (pathname, vector); 
-		for (argc = 0; vector [argc]; argc++ ) 
+		for (argc = 0; vector [argc]; argc++) 
 		{ 
 			fprintf (stderr, "%s\n", vector [argc]); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

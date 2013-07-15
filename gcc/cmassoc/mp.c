@@ -106,13 +106,13 @@ static void template ()
 		"AUTHOR", 
 		"CREDITS", 
 		"SEE ALSO", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	char const ** subject = subjects; 
 	printf (".TH program 7 package"); 
 	while (* subject) 
 	{ 
-		printf ("\n.SH %s\n", * subject++ ); 
+		printf ("\n.SH %s\n", * subject++); 
 	} 
 	return; 
 } 
@@ -190,7 +190,7 @@ static void function (char const * program, char const * project, char const * p
 			} 
 			while (isalpha (c)); 
 			* sp = (char) (0); 
-			if (! strcmp (symbol, ".TH")) 
+			if (!strcmp (symbol, ".TH")) 
 			{ 
 				while (nobreak (c)) 
 				{ 
@@ -201,31 +201,31 @@ static void function (char const * program, char const * project, char const * p
 				sp += snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", package); 
 				sp += snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", project); 
 			} 
-			else if (! strcmp (symbol, ".SH")) 
+			else if (!strcmp (symbol, ".SH")) 
 			{ 
 				putc ('\n', stdout); 
 			} 
-			else if (! strcmp (symbol, ".SS")) 
+			else if (!strcmp (symbol, ".SS")) 
 			{ 
 				putc ('\n', stdout); 
 			} 
-			else if (! strcmp (symbol, ".TP")) 
+			else if (!strcmp (symbol, ".TP")) 
 			{ 
 				putc ('\n', stdout); 
 			} 
-			else if (! strcmp (symbol, ".HP")) 
+			else if (!strcmp (symbol, ".HP")) 
 			{ 
 				putc ('\n', stdout); 
 			} 
-			else if (! strcmp (symbol, ".IP")) 
+			else if (!strcmp (symbol, ".IP")) 
 			{ 
 				putc ('\n', stdout); 
 			} 
-			else if (! strcmp (symbol, ".PP")) 
+			else if (!strcmp (symbol, ".PP")) 
 			{ 
 				putc ('\n', stdout); 
 			} 
-			else if (! strcmp (symbol, ".P")) 
+			else if (!strcmp (symbol, ".P")) 
 			{ 
 				putc ('\n', stdout); 
 			} 
@@ -308,10 +308,10 @@ int main (int argc, char const * argv [])
 		"o\tprint default profile on stdout", 
 		"p f\tprofile is (s) [" MP_PROFILE "]", 
 		"s s\tsection is (s) [" MP_SECTION "]", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	char buffer [16]; 
-	time_t now = time ((time_t * )(0)); ; 
+	time_t now = time ((time_t *)(0)); ; 
 	char const * profile = MP_PROFILE; 
 	char const * section = MP_SECTION; 
 	char const * program = MP_PROGRAM; 
@@ -347,7 +347,7 @@ int main (int argc, char const * argv [])
 	project = profilestring (profile, section, "project", project); 
 	package = profilestring (profile, section, "package", package); 
 	release = profilestring (profile, section, "release", release); 
-	if ((! argc) || (! * argv)) 
+	if ((!argc) || (!* argv)) 
 	{ 
 		function ("unamed 7", project, package, release, flags); 
 	} 
@@ -356,7 +356,7 @@ int main (int argc, char const * argv [])
 		if (vfopen (* argv)) 
 		{ 
 			program = * argv; 
-			for (sp = (char * )(* argv); * sp; ++ sp) 
+			for (sp = (char *)(* argv); * sp; ++ sp) 
 			{ 
 				if (* sp == PATH_C_EXTENDER) 
 				{ 
@@ -369,8 +369,8 @@ int main (int argc, char const * argv [])
 			} 
 			function (program, project, package, release, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

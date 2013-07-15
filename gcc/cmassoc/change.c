@@ -111,15 +111,15 @@ void function (char const * filename, const regexp * remove, char const * insert
 { 
 	unsigned changes = 0; 
 	unsigned actual = 0; 
-	if (! remove) 
+	if (!remove) 
 	{ 
 		return; 
 	} 
-	if (! insert) 
+	if (!insert) 
 	{ 
 		return; 
 	} 
-	if (! buffer) 
+	if (!buffer) 
 	{ 
 		return; 
 	} 
@@ -133,7 +133,7 @@ void function (char const * filename, const regexp * remove, char const * insert
 			{ 
 				fputs (insert, stdout); 
 				sp = cp - 1; 
-				changes++ ; 
+				changes++; 
 			} 
 			else 
 			{ 
@@ -188,10 +188,10 @@ int main (int argc, char const * argv [])
 		"H\tshow expression expansion", 
 		"R\tregular expression rules", 
 		"T\tescape sequence rules", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
-	regexp * remove = (regexp * ) (0); 
-	char const * insert = (char const * ) (0); 
+	regexp * remove = (regexp *) (0); 
+	char const * insert = (char const *) (0); 
 	char buffer [TEXTLINE_MAX] = 
 	{ 
 		(char) (0)
@@ -213,17 +213,17 @@ int main (int argc, char const * argv [])
 			_clrbits (flags, CHANGE_B_RECORD); 
 			break; 
 		case 'e': 
-			strcpy (buffer, struesc ((char * )(optarg))); 
+			strcpy (buffer, struesc ((char *)(optarg))); 
 			remove = regexmake (buffer); 
 			break; 
 		case 'l': 
 			strcpy (buffer, REGEX_S_SPAN); 
-			strcat (buffer, struesc ((char * )(optarg))); 
+			strcat (buffer, struesc ((char *)(optarg))); 
 			strcat (buffer, REGEX_S_SPAN); 
 			remove = regexmake (buffer); 
 			break; 
 		case 't': 
-			insert = strdup (struesc ((char * )(optarg))); 
+			insert = strdup (struesc ((char *)(optarg))); 
 			break; 
 		case 'H': 
 			_setbits (flags, CHANGE_B_REVIEW); 
@@ -243,7 +243,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! remove) 
+	if (!remove) 
 	{ 
 		error (0, EINVAL, "no search expression."); 
 		exit (1); 
@@ -253,17 +253,17 @@ int main (int argc, char const * argv [])
 		regexshow (remove); 
 		exit (0); 
 	} 
-	if (! insert) 
+	if (!insert) 
 	{ 
 		error (0, EINVAL, "no replacement text."); 
 		exit (1); 
 	} 
-	if (! * insert) 
+	if (!* insert) 
 	{ 
 		error (0, EINVAL, "replacement string is empty."); 
 		exit (1); 
 	} 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function ("stdin", remove, insert, buffer, sizeof (buffer), flags); 
 	} 
@@ -273,8 +273,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (* argv, remove, insert, buffer, sizeof (buffer), flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

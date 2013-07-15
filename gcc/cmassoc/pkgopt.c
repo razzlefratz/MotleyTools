@@ -92,13 +92,13 @@ void func (flag_t flags)
 								putc ('\"', stdout); 
 								c = getc (stdin); 
 							} 
-							else while (! isspace (c)) 
+							else while (!isspace (c)) 
 							{ 
 								putc (c, stdout); 
 								c = getc (stdin); 
 							} 
 						} 
-						else while (! isspace (c)) 
+						else while (!isspace (c)) 
 						{ 
 							putc (c, stdout); 
 							c = getc (stdin); 
@@ -130,7 +130,7 @@ int main (int argc, char const * argv [])
 		"", 
 		PUTOPTV_S_FUNNEL, 
 		"extract package configuration options from stdin", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = (flag_t) (0); 
 	signed c; 
@@ -144,7 +144,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		func (flags); 
 	} 
@@ -154,8 +154,8 @@ int main (int argc, char const * argv [])
 		{ 
 			func (flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

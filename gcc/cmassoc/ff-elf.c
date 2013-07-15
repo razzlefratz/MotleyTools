@@ -112,7 +112,7 @@ static void testfile (FIND * find, flag_t flags);
 static void showfile (FIND * find, flag_t flags) 
 
 { 
-	if (! match (find->filename, find->wildcard)) 
+	if (!match (find->filename, find->wildcard)) 
 	{ 
 		return; 
 	} 
@@ -161,7 +161,7 @@ static void function (FIND * find, flag_t flags)
 	{ 
 		if ((length = read (fd, signature, sizeof (signature))) > 0) 
 		{ 
-			if (! memcmp (signature, ELF, sizeof (ELF) - 1)) 
+			if (!memcmp (signature, ELF, sizeof (ELF) - 1)) 
 			{ 
 				signature [sizeof (ELF) - 1] = (char) (0); 
 				if (_anyset (flags, FF_B_ELF)) 
@@ -177,7 +177,7 @@ static void function (FIND * find, flag_t flags)
 					showfile (find, flags); 
 				} 
 			} 
-			else if (! memcmp (signature, ARCH, sizeof (ARCH) - 1)) 
+			else if (!memcmp (signature, ARCH, sizeof (ARCH) - 1)) 
 			{ 
 				signature [sizeof (ARCH) - 1] = (char) (0); 
 				if (_anyset (flags, FF_B_ARCH)) 
@@ -193,7 +193,7 @@ static void function (FIND * find, flag_t flags)
 					showfile (find, flags); 
 				} 
 			} 
-			else if (! memcmp (signature, SCRIPT, sizeof (SCRIPT) - 1)) 
+			else if (!memcmp (signature, SCRIPT, sizeof (SCRIPT) - 1)) 
 			{ 
 				signature [sizeof (SCRIPT) - 1] = (char) (0); 
 				if (_anyset (flags, FF_B_SH)) 
@@ -238,11 +238,11 @@ static void testfile (FIND * find, flag_t flags)
 		char const * filename = find->filename; 
 		if (* filename == '.') 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		if (* filename == '.') 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		if (* filename == (char) (0)) 
 		{ 
@@ -299,17 +299,17 @@ static void findfile (FIND * find, flag_t flags)
 	struct dirent * dirent; 
 	char * filename = find->fullname; 
 	DIR * dir = opendir (filename); 
-	if (dir == (DIR * ) (0)) 
+	if (dir == (DIR *) (0)) 
 	{ 
 		testfile (find, flags); 
 		return; 
 	} 
 	while (* filename != (char) (0)) 
 	{ 
-		filename++ ; 
+		filename++; 
 	} 
 	* filename = PATH_C_EXTENDER; 
-	while ((dirent = readdir (dir)) != (struct dirent * ) (0)) 
+	while ((dirent = readdir (dir)) != (struct dirent *) (0)) 
 	{ 
 		strcpy (filename + 1, dirent->d_name); 
 		partpath (find->fullname, find->pathname, find->filename); 
@@ -346,11 +346,11 @@ int main (int argc, char const * argv [])
 		"S\tsearch system folders", 
 		"B\tsearch binary folders", 
 		"L\tsearch library folders", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
-	char * string = (char * ) (0); 
-	char const ** folders = (char const ** ) (0); 
-	char const ** folder = (char const ** ) (0); 
+	char * string = (char *) (0); 
+	char const ** folders = (char const **) (0); 
+	char const ** folder = (char const **) (0); 
 	flag_t flags = (flag_t) (0); 
 	signed c; 
 	while ((c = getoptv (argc, argv, optv)) != - 1) 
@@ -381,7 +381,7 @@ int main (int argc, char const * argv [])
 			_setbits (find.flagword, FIND_B_DATETIME); 
 			break; 
 		case 'E': 
-			if ((string = getenv (optarg)) == (char * ) (0)) 
+			if ((string = getenv (optarg)) == (char *) (0)) 
 			{ 
 				error (0, EINVAL, "symbol ${%s} is not defined", optarg); 
 			} 
@@ -412,17 +412,17 @@ int main (int argc, char const * argv [])
 	{ 
 		_setbits (find.flagword, (FIND_B_DIR | FIND_B_LNK | FIND_B_REG)); 
 	} 
-	if (string != (char * ) (0)) 
+	if (string != (char *) (0)) 
 	{ 
 		size_t count = chrcount (string, PATH_C_SEPARATOR) + 2; 
-		folders = (char const ** ) (emalloc (count * sizeof (char const ** ))); 
+		folders = (char const **) (emalloc (count * sizeof (char const **))); 
 		strsplit (folders, count, string, PATH_C_SEPARATOR); 
 	} 
 	while ((argc) && (* argv)) 
 	{ 
-		if (folders != (char const ** ) (0)) 
+		if (folders != (char const **) (0)) 
 		{ 
-			for (folder = folders; * folder != (char * ) (0); folder++ ) 
+			for (folder = folders; * folder != (char *) (0); folder++) 
 			{ 
 				makefind (& find, * argv); 
 				strcpy (find.pathname, * folder); 
@@ -435,8 +435,8 @@ int main (int argc, char const * argv [])
 			makefind (& find, * argv); 
 			findfile (& find, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

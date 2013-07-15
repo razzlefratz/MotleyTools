@@ -109,8 +109,8 @@ static void function (LIST * list)
 				signed length = read (fd, buffer, sizeof (buffer) - 1); 
 				buffer [length] = (char) (0); 
 				close (fd); 
-				strsplit ((char const ** ) (vector), PROCSTAT_CNT, buffer, ' '); 
-				for (string = vector [PROCSTAT_NAME]; * string != (char) (0); string++ ) 
+				strsplit ((char const **) (vector), PROCSTAT_CNT, buffer, ' '); 
+				for (string = vector [PROCSTAT_NAME]; * string != (char) (0); string++) 
 				{ 
 					* string = * (string + 1); 
 					if (* string == ')') 
@@ -147,7 +147,7 @@ int main (int argc, char const * argv [])
 		"c n\tcolumn count is (n) [" LITERAL (COUNT) "]", 
 		"w n\tscreen width is (n) [" LITERAL (WIDTH) "]", 
 		"n\tnumber each list items", 
-		(char * ) (0)
+		(char *) (0)
 	}; 
 	LIST list; 
 	size_t width = WIDTH; 

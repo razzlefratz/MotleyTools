@@ -100,11 +100,11 @@ static void function (size_t length, flag_t flags)
 	}; 
 	struct line one; 
 	struct line two; 
-	struct line * old = two.next = (struct line * ) (& one); 
-	struct line * new = one.next = (struct line * ) (& two); 
+	struct line * old = two.next = (struct line *) (& one); 
+	struct line * new = one.next = (struct line *) (& two); 
 	size_t count = 1; 
-	one.text = (char * )(malloc (length)); 
-	two.text = (char * )(malloc (length)); 
+	one.text = (char *)(malloc (length)); 
+	two.text = (char *)(malloc (length)); 
 	one.text [0] = (char) (0); 
 	two.text [0] = (char) (0); 
 	while (fgets (new->text, length, stdin)) 
@@ -113,8 +113,8 @@ static void function (size_t length, flag_t flags)
 		char * op = old->text; 
 		while ((* np) && (* op) && (* np == * op)) 
 		{ 
-			np++ ; 
-			op++ ; 
+			np++; 
+			op++; 
 		} 
 		if ((* np) || (* op)) 
 		{ 
@@ -148,7 +148,7 @@ static void function (size_t length, flag_t flags)
 		} 
 		old = old->next; 
 		new = new->next; 
-		count++ ; 
+		count++; 
 	} 
 	return; 
 } 
@@ -177,7 +177,7 @@ int main (int argc, char const * argv [])
 		"p\tignore consecutive C preprocessor directives", 
 		"r n\tmaximum line length is (n) bytes [" LITERAL (_LINESIZE) "]", 
 		"u\toutput unique lines", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	size_t length = _LINESIZE; 
 	flag_t flags = (flag_t) (0); 
@@ -207,7 +207,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (length, flags); 
 	} 
@@ -217,8 +217,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (length, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

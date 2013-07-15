@@ -98,7 +98,7 @@ int main (int argc, char const * argv [])
 		"prepend/append text to each line of a text file", 
 		"p s\tprefix is s", 
 		"s s\tsuffix is s", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	flag_t flags = (flag_t)(0); 
 	char * prefix = ""; 
@@ -109,10 +109,10 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{ 
 		case 'p': 
-			prefix = struesc ((char * ) (optarg)); 
+			prefix = struesc ((char *) (optarg)); 
 			break; 
 		case 's': 
-			suffix = struesc ((char * ) (optarg)); 
+			suffix = struesc ((char *) (optarg)); 
 			break; 
 		default: 
 			break; 
@@ -120,7 +120,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (prefix, suffix, flags); 
 	} 
@@ -130,8 +130,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (prefix, suffix, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

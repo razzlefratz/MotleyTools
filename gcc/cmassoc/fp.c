@@ -79,7 +79,7 @@ int main (int argc, char const * argv [])
 		"file finger-printer", 
 		"q\tsuppress routine messages", 
 		"v\tprint additions messages", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	byte buffer [BUFFERSIZE]; 
 	byte digest [DIGESTSIZE]; 
@@ -101,7 +101,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		SHA256Ident (STDIN_FILENO, buffer, sizeof (buffer), digest); 
 		hexout (digest, sizeof (digest), '\0', '\0', stdout); 
@@ -119,8 +119,8 @@ int main (int argc, char const * argv [])
 			} 
 			printf ("\n"); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

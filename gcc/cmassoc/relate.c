@@ -54,7 +54,7 @@
  *--------------------------------------------------------------------*/
 
 extern TREE * nodetree; 
-static TREE * edgetree = (TREE * ) (0); 
+static TREE * edgetree = (TREE *) (0); 
 
 /*====================================================================*
  *
@@ -152,7 +152,7 @@ int main (int argc, char const * argv [])
 		"organize dependency information", 
 		"n\tneed summary ", 
 		"f\tfeed summary ", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = (flag_t) (0); 
 	signed c; 
@@ -174,7 +174,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		populate (flags); 
 	} 
@@ -184,8 +184,8 @@ int main (int argc, char const * argv [])
 		{ 
 			populate (flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	if (_anyset (flags, DEP_B_REPORT)) 
 	{ 

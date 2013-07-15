@@ -88,7 +88,7 @@ static char * sv_prolog [] =
 	" *   ", 
 	" *----------------*/ ", 
 	" ", 
-	(char * ) (0)
+	(char *) (0)
 }; 
 
 static char buffer [TEXTLINE_MAX + 1]; 
@@ -123,7 +123,7 @@ void function1 (flag_t flags)
 	indent (margin, " *   program constants;"); 
 	indent (margin, " *---*/"); 
 	indent (margin, "#ifndef %s", title [1]); 
-	for (count = 0; fgetline (buffer, sizeof (buffer), stdin) != - 1; count++ ) 
+	for (count = 0; fgetline (buffer, sizeof (buffer), stdin) != - 1; count++) 
 	{ 
 		strselect (strupr (buffer), SV_S_RESTRICT); 
 		if (* buffer == (char) (0)) 
@@ -163,7 +163,7 @@ void function2 (flag_t flags)
 	indent (margin, "#define %sS ((sizeof (sv_%s) / sizeof (char const *)) - 1)", title [1], title [0]); 
 	indent (margin, "char const * sv_%s [] =", title [0]); 
 	indent (margin, "#endif"); 
-	indent (margin++ , "{"); 
+	indent (margin++, "{"); 
 	for (count = 0; (length = fgetline (buffer, sizeof (buffer), stdin)) != - 1; ++ count) 
 	{ 
 		indent (margin, "\"%s\",", buffer); 
@@ -192,17 +192,17 @@ void function3 (flag_t flags)
 	indent (margin, "/*=*"); 
 	indent (margin, " *   switch statement;"); 
 	indent (margin, " *-*/"); 
-	indent (margin++ , "#ifdef %s", title [1]); 
+	indent (margin++, "#ifdef %s", title [1]); 
 	indent (margin, "switch(count)"); 
-	indent (margin++ , "{"); 
+	indent (margin++, "{"); 
 	for (count = 0; fgetline (buffer, sizeof (buffer), stdin) != - 1; ++ count) 
 	{ 
 		strselect (strupr (buffer), SV_S_RESTRICT); 
-		indent (margin++ , "case %s_O_%s:", title [1], buffer); 
-		indent (margin-- , "break;"); 
+		indent (margin++, "case %s_O_%s:", title [1], buffer); 
+		indent (margin--, "break;"); 
 	} 
-	indent (margin++ , "default:"); 
-	indent (margin-- , "break;"); 
+	indent (margin++, "default:"); 
+	indent (margin--, "break;"); 
 	indent (-- margin, "}"); 
 	indent (-- margin, "#endif"); 
 	rewind (stdin); 
@@ -223,7 +223,7 @@ void function3 (flag_t flags)
 void function (flag_t flags) 
 
 { 
-	for (count = 0; sv_prolog [count]; count++ ) 
+	for (count = 0; sv_prolog [count]; count++) 
 	{ 
 		printf (sv_prolog [count], title [0]); 
 		printf ("\n"); 
@@ -259,7 +259,7 @@ int main (int argc, char const * argv [])
 		"d\tgenerate define block", 
 		"v\tgenerate vector table", 
 		"s\tgenerate switch block", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = (flag_t)(0); 
 	signed c; 
@@ -303,7 +303,7 @@ int main (int argc, char const * argv [])
 	{ 
 		width = DIGITS_MAX; 
 	} 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (flags); 
 	} 
@@ -313,8 +313,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

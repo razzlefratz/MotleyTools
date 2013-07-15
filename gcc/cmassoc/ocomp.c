@@ -80,12 +80,12 @@ void function (char const * filename [], flag_t flags)
 	unsigned offset = 0; 
 	signed length = 0; 
 	file_t file [2]; 
-	char memory [_ADDRSIZE+ 1]; 
+	char memory [_ADDRSIZE + 1]; 
 	char symbol [_NAMESIZE]; 
 	char string [_LINESIZE]; 
 	char * sp; 
 	signed c; 
-	for (c = 0; c < 2; c++ ) 
+	for (c = 0; c < 2; c++) 
 	{ 
 		if ((file [c] = open (filename [c], O_BINARY | O_RDONLY)) == - 1) 
 		{ 
@@ -101,14 +101,14 @@ void function (char const * filename [], flag_t flags)
 				c = getc (stdin); 
 			} 
 			while (nobreak (c)); 
-			lineno++ ; 
+			lineno++; 
 			continue; 
 		} 
 		if (isspace (c)) 
 		{ 
 			if (c == '\n') 
 			{ 
-				lineno++ ; 
+				lineno++; 
 			} 
 			continue; 
 		} 
@@ -180,12 +180,12 @@ void function (char const * filename [], flag_t flags)
 #if defined (WIN32)
 
 			char * buffer [2]; 
-			buffer [0] = (char * )(emalloc (length)); 
-			buffer [1] = (char * )(emalloc (length)); 
+			buffer [0] = (char *)(emalloc (length)); 
+			buffer [1] = (char *)(emalloc (length)); 
 
 #else
 
-			byte buffer [2][length]; 
+			byte buffer [2] [length]; 
 
 #endif
 
@@ -193,28 +193,28 @@ void function (char const * filename [], flag_t flags)
 			{ 
 				if (memcmp (buffer [0], buffer [1], length)) 
 				{ 
-					if (! object++ ) 
+					if (!object++) 
 					{ 
-						for (c = 0; c < _ADDRSIZE + 65; c++ ) 
+						for (c = 0; c < _ADDRSIZE + 65; c++) 
 						{ 
 							putc ('-', stdout); 
 						} 
 						putc ('\n', stdout); 
 					} 
 					printf ("%s %d %s\n", hexoffset (memory, sizeof (memory), offset), length, symbol); 
-					for (c = 0; c < _ADDRSIZE; c++ ) 
+					for (c = 0; c < _ADDRSIZE; c++) 
 					{ 
 						putc ('-', stdout); 
 					} 
 					printf (" %s\n", filename [0]); 
 					hexview (buffer [0], offset, length, stdout); 
-					for (c = 0; c < _ADDRSIZE; c++ ) 
+					for (c = 0; c < _ADDRSIZE; c++) 
 					{ 
 						putc ('-', stdout); 
 					} 
 					printf (" %s\n", filename [1]); 
 					hexview (buffer [1], offset, length, stdout); 
-					for (c = 0; c < _ADDRSIZE + 65; c++ ) 
+					for (c = 0; c < _ADDRSIZE + 65; c++) 
 					{ 
 						putc ('-', stdout); 
 					} 
@@ -231,12 +231,12 @@ void function (char const * filename [], flag_t flags)
 
 		} 
 		offset += length; 
-		lineno++ ; 
+		lineno++; 
 	} 
 	if (_allclr (flags, ODC_SILENCE)) 
 	{ 
 		unsigned extent [2]; 
-		for (c = 0; c < 2; c++ ) 
+		for (c = 0; c < 2; c++) 
 		{ 
 			if ((signed)(extent [c] = lseek (file [c], 0, SEEK_END)) == - 1) 
 			{ 
@@ -287,7 +287,7 @@ int main (int argc, char const * argv [])
 		"f f\tobject definition file", 
 		"q\tquiet mode", 
 		"v\tverbose mode", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	flag_t flags = (flag_t)(0); 
 	signed c; 
@@ -296,7 +296,7 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{ 
 		case 'f': 
-			if (! freopen (optarg, "rb", stdin)) 
+			if (!freopen (optarg, "rb", stdin)) 
 			{ 
 				error (1, errno, "%s", optarg); 
 			} 

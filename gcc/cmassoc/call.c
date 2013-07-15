@@ -147,13 +147,13 @@ static void function (flag_t flags)
 		if ((c == '{') || (c == '(') || (c == '[')) 
 		{ 
 			c = getc (stdin); 
-			level++ ; 
+			level++; 
 			continue; 
 		} 
 		if ((c == '}') || (c == ')') || (c == ']')) 
 		{ 
 			c = getc (stdin); 
-			level-- ; 
+			level--; 
 			continue; 
 		} 
 		if (c == '/') 
@@ -193,7 +193,7 @@ static void function (flag_t flags)
 			} 
 			if (c == '(') 
 			{ 
-				if (! level) 
+				if (!level) 
 				{ 
 					memcpy (module, string, sizeof (module)); 
 				} 
@@ -261,7 +261,7 @@ int main (int argc, char const * argv [])
 		PUTOPTV_S_FUNNEL, 
 		"print C language functional dependencies", 
 		"x\texchange objects", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = (flag_t) (0); 
 	signed c; 
@@ -278,7 +278,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (flags); 
 	} 
@@ -288,8 +288,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

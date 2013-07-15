@@ -54,7 +54,7 @@ int main (int argc, char const * argv [])
 		"o s\told file extension is (s)", 
 		"n s\tnew file extension is (s)", 
 		"v\tverbose messages ", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	char const * old = ""; 
 	char const * new = ""; 
@@ -84,7 +84,7 @@ int main (int argc, char const * argv [])
 	argv += optind; 
 	while ((argc) && (* argv)) 
 	{ 
-		for (cp = sp = strcpy (file, * argv); * sp; sp++ ) 
+		for (cp = sp = strcpy (file, * argv); * sp; sp++) 
 		{ 
 			if (* sp == FILE_C_EXTENDER) 
 			{ 
@@ -93,7 +93,7 @@ int main (int argc, char const * argv [])
 		} 
 		if (cp > file) 
 		{ 
-			if (! strcmp (cp, old)) 
+			if (!strcmp (cp, old)) 
 			{ 
 				strcpy (cp, new); 
 			} 
@@ -109,8 +109,8 @@ int main (int argc, char const * argv [])
 				error (0, 0, "%s <-- %s", file, * argv); 
 			} 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

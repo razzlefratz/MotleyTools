@@ -90,11 +90,11 @@ void function (flag_t flags)
 	signed c; 
 	while ((c = getc (stdin)) != EOF) 
 	{ 
-		if (! isprint (c)) 
+		if (!isprint (c)) 
 		{ 
 			if (c == '\n') 
 			{ 
-				line++ ; 
+				line++; 
 			} 
 			continue; 
 		} 
@@ -128,7 +128,7 @@ void function (flag_t flags)
 		SHA256Fetch (& sha256, digest); 
 		if (_allclr (flags, KEY_VERBOSE)) 
 		{ 
-			SHA256Print (digest, (char const * )(0)); 
+			SHA256Print (digest, (char const *)(0)); 
 			continue; 
 		} 
 		SHA256Print (digest, phrase); 
@@ -157,7 +157,7 @@ int main (int argc, char const * argv [])
 		"SHA256 key generator", 
 		"q\tquiet mode", 
 		"v\tverbose mode", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = (flag_t)(0); 
 	signed c; 
@@ -177,13 +177,13 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (flags); 
 	} 
 	while ((argc) && (* argv)) 
 	{ 
-		if (! freopen (* argv, "rb", stdin)) 
+		if (!freopen (* argv, "rb", stdin)) 
 		{ 
 			error (0, errno, FILE_CANTOPEN, * argv); 
 		} 
@@ -191,8 +191,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

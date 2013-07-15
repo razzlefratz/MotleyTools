@@ -112,7 +112,7 @@ static void function (LIST * list, regexp * regex, flag_t flags)
 		while ((passwd = getpwent ())) 
 		{ 
 			string = regexspan (regex, passwd->pw_name); 
-			if ((string) && (! * string)) 
+			if ((string) && (!* string)) 
 			{ 
 				listinsert (list, passwd->pw_name); 
 			} 
@@ -124,7 +124,7 @@ static void function (LIST * list, regexp * regex, flag_t flags)
 		while ((group = getgrent ())) 
 		{ 
 			string = regexspan (regex, group->gr_name); 
-			if ((string) && (! * string)) 
+			if ((string) && (!* string)) 
 			{ 
 				listinsert (list, group->gr_name); 
 			} 
@@ -161,10 +161,10 @@ int main (int argc, char const * argv [])
 		"n\tnumber list items", 
 		"R\tregular expression help", 
 		"T\tescape sequence rules", 
-		(char * ) (0)
+		(char *) (0)
 	}; 
 	LIST list; 
-	regexp * regex = (regexp * ) (0); 
+	regexp * regex = (regexp *) (0); 
 	char const * expression = ".+"; 
 	flag_t flags = (flag_t) (0); 
 	size_t count = COUNT; 

@@ -38,7 +38,7 @@ int main (int argc, char const * argv [])
 	unsigned value = 0x12; 
 	while (octet < sizeof (unsigned)) 
 	{ 
-		endian.octets [octet++ ] = value; 
+		endian.octets [octet++] = value; 
 		value += 0x22; 
 	} 
 	printf ("order         %8x\n", endian.number); 
@@ -54,13 +54,13 @@ int main (int argc, char const * argv [])
 	printf ("short         " SIZE_T_SPEC " bytes\n", sizeof (short)); 
 	printf ("char          " SIZE_T_SPEC " bytes\n", sizeof (char)); 
 	printf ("\n"); 
-	printf ("(double *)    " SIZE_T_SPEC " bytes\n", sizeof (double * )); 
-	printf ("(long long *) " SIZE_T_SPEC " bytes\n", sizeof (long long * )); 
-	printf ("(float *)     " SIZE_T_SPEC " bytes\n", sizeof (float * )); 
-	printf ("(long *)      " SIZE_T_SPEC " bytes\n", sizeof (long * )); 
-	printf ("(int *)       " SIZE_T_SPEC " bytes\n", sizeof (int * )); 
-	printf ("(short *)     " SIZE_T_SPEC " bytes\n", sizeof (short * )); 
-	printf ("(char *)      " SIZE_T_SPEC " bytes\n", sizeof (char * )); 
+	printf ("(double *)    " SIZE_T_SPEC " bytes\n", sizeof (double *)); 
+	printf ("(long long *) " SIZE_T_SPEC " bytes\n", sizeof (long long *)); 
+	printf ("(float *)     " SIZE_T_SPEC " bytes\n", sizeof (float *)); 
+	printf ("(long *)      " SIZE_T_SPEC " bytes\n", sizeof (long *)); 
+	printf ("(int *)       " SIZE_T_SPEC " bytes\n", sizeof (int *)); 
+	printf ("(short *)     " SIZE_T_SPEC " bytes\n", sizeof (short *)); 
+	printf ("(char *)      " SIZE_T_SPEC " bytes\n", sizeof (char *)); 
 	printf ("\n"); 
 	printf ("off_t         " SIZE_T_SPEC " bytes\n", sizeof (off_t)); 
 	printf ("size_t        " SIZE_T_SPEC " bytes\n", sizeof (size_t)); 

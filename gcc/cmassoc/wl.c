@@ -134,7 +134,7 @@ int main (int argc, char const * argv [])
 		"w s\tword consists of character set (s) [" CHRLIB_WORDSET "]", 
 		"l\toutput words in lower case ", 
 		"u\toutput words in upper case ", 
-		(char * ) (0)
+		(char *) (0)
 	}; 
 	char words [UCHAR_MAX + 1]; 
 	char table [UCHAR_MAX + 1]; 
@@ -171,7 +171,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (table, flags); 
 	} 
@@ -181,8 +181,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (table, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

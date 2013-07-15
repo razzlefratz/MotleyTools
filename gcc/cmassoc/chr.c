@@ -71,7 +71,7 @@ void function (flag_t flags)
 
 { 
 	extern char const * sv_ascii []; 
-	char const * format = (char const * )(0); 
+	char const * format = (char const *)(0); 
 	unsigned table [UCHAR_MAX + 1]; 
 	unsigned row; 
 	unsigned rows; 
@@ -89,7 +89,7 @@ void function (flag_t flags)
 	} 
 	if (_anyset (flags, CHR_B_TABLE)) 
 	{ 
-		for (c = 0; (unsigned)(c) < SIZEOF (table); c++ ) 
+		for (c = 0; (unsigned)(c) < SIZEOF (table); c++) 
 		{ 
 			table [c] = c; 
 		} 
@@ -99,7 +99,7 @@ void function (flag_t flags)
 		memset (table, 0, sizeof (table)); 
 		while ((c = fgetc (stdin)) != EOF) 
 		{ 
-			table [(unsigned)(c)]++ ; 
+			table [(unsigned)(c)]++; 
 		} 
 	} 
 	if (_anyset (flags, CHR_B_DEC)) 
@@ -120,7 +120,7 @@ void function (flag_t flags)
 	} 
 	rows = (max - min + col - 1) / (col); 
 	printf ("\n"); 
-	for (row = 0; row < rows; row++ ) 
+	for (row = 0; row < rows; row++) 
 	{ 
 		for (c = min + row; (unsigned)(c) < max; c += rows) 
 		{ 
@@ -158,7 +158,7 @@ int main (int argc, char const * argv [])
 		"o\tprint octal character codes", 
 		"t\tprint character table", 
 		"x\tprint hexadecimal character codes", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	flag_t flags = CHR_B_LOWER; 
 	signed c; 
@@ -196,7 +196,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (flags); 
 	} 
@@ -206,8 +206,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

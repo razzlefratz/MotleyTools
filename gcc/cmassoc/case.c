@@ -181,7 +181,7 @@ int main (int argc, char const * argv [])
 		"t\tconvert text to title case ", 
 		"d\texclude double quoted (\") text", 
 		"s\texclude single quoted (\') text", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	flag_t flags = (flag_t) (0); 
 	signed c; 
@@ -213,7 +213,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (getc (stdin), flags); 
 	} 
@@ -223,8 +223,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (getc (stdin), flags); 
 		} 
-		argv++ ; 
-		argc-- ; 
+		argv++; 
+		argc--; 
 	} 
 	exit (0); 
 } 

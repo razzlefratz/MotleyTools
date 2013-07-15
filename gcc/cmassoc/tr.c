@@ -122,7 +122,7 @@ int main (int argc, char const * argv [])
 	argv += optind; 
 	chrset (ctable); 
 	chrsub (ctable, control, replace); 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (ctable, flags); 
 	} 
@@ -132,8 +132,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (ctable, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

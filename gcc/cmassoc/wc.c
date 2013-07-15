@@ -152,22 +152,22 @@ void function (char const * pathname, char table [], struct wc * total, flag_t f
 		if (c == '\n') 
 		{ 
 			word = false; 
-			local._line++ ; 
+			local._line++; 
 		} 
 		else if (table [(unsigned) (c)]) 
 		{ 
 			if (word == false) 
 			{ 
 				word = true; 
-				local._word++ ; 
+				local._word++; 
 			} 
-			local._char++ ; 
+			local._char++; 
 		} 
 		else 
 		{ 
 			word = false; 
 		} 
-		local._byte++ ; 
+		local._byte++; 
 	} 
 	total->_line += local._line; 
 	total->_word += local._word; 
@@ -201,7 +201,7 @@ int main (int argc, char const * argv [])
 		"c\tdisplay char count", 
 		"b\tdisplay byte count", 
 		"t\tdisplay totals", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	struct wc total = 
 	{ 
@@ -253,7 +253,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function ("stdin", table, & total, flags); 
 	} 
@@ -263,8 +263,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (* argv, table, & total, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	show (& total, flags); 
 	exit (0); 

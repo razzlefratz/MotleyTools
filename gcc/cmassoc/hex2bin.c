@@ -63,7 +63,7 @@ static void function (char const * filename)
 		{ 
 			if (byte == '\n') 
 			{ 
-				line++ ; 
+				line++; 
 			} 
 			continue; 
 		} 
@@ -130,7 +130,7 @@ int main (int argc, char const * argv [])
 		"", 
 		PUTOPTV_S_FUNNEL, 
 		"hexadecimal to binary file concatenate", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	signed c; 
 	while ((c = getoptv (argc, argv, optv)) != - 1) 
@@ -143,19 +143,19 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function ("standard input"); 
 	} 
 	while ((argc) && (* argv)) 
 	{ 
-		if (! freopen (* argv, "rb", stdin)) 
+		if (!freopen (* argv, "rb", stdin)) 
 		{ 
 			error (1, errno, "%s", * argv); 
 		} 
 		function (* argv); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

@@ -75,14 +75,14 @@ void function (flag_t flags)
 		if (isprint (c)) 
 		{ 
 			putc (c, stdout); 
-			col++ ; 
+			col++; 
 			continue; 
 		} 
 		if (c == '\b') 
 		{ 
 			if (col > 0) 
 			{ 
-				col-- ; 
+				col--; 
 			} 
 			putc (c, stdout); 
 			continue; 
@@ -127,7 +127,7 @@ int main (int argc, char const * argv [])
 		PUTOPTV_S_FILTER, 
 		"replace horizontal tabs with equivalent number of spaces", 
 		"t n.m\tset tabs in column (n) and intervals (m) ", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	flag_t flags = (flag_t)(0); 
 	signed c; 
@@ -144,7 +144,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (flags); 
 	} 
@@ -154,8 +154,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

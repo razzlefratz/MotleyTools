@@ -113,7 +113,7 @@ int main (int argc, char const * argv [])
 		"q\tquiet mode", 
 		"s s\tsuffix file is (s)", 
 		"v\tverbose mode", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = (flag_t)(0); 
 	signed length = 1024; 
@@ -146,7 +146,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (prefix, suffix, length); 
 	} 
@@ -156,8 +156,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (prefix, suffix, length); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

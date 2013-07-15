@@ -72,7 +72,7 @@ static void function (file const * file, char const * schema, off_t extent, flag
 	char string [_LINESIZE]; 
 	char * sp; 
 	signed c; 
-	indent (margin++ , "<%s xmlns:xsi='%s' xsi:noNamespaceSchemaLocation='%s'>", DATA_OBJECT, XML_NAMESPACE, schema); 
+	indent (margin++, "<%s xmlns:xsi='%s' xsi:noNamespaceSchemaLocation='%s'>", DATA_OBJECT, XML_NAMESPACE, schema); 
 	while ((c = getc (stdin)) != EOF) 
 	{ 
 		if ((c == '#') || (c == ';')) 
@@ -82,14 +82,14 @@ static void function (file const * file, char const * schema, off_t extent, flag
 				c = getc (stdin); 
 			} 
 			while (nobreak (c)); 
-			lineno++ ; 
+			lineno++; 
 			continue; 
 		} 
 		if (isspace (c)) 
 		{ 
 			if (c == '\n') 
 			{ 
-				lineno++ ; 
+				lineno++; 
 			} 
 			continue; 
 		} 
@@ -164,37 +164,37 @@ static void function (file const * file, char const * schema, off_t extent, flag
 			byte buffer [length]; 
 			if (read (file->file, buffer, length) == (signed)(length)) 
 			{ 
-				indent (margin++ , "<%s name='%s'>", DATA_MEMBER, symbol); 
+				indent (margin++, "<%s name='%s'>", DATA_MEMBER, symbol); 
 				if (* string) 
 				{ 
-					indent (margin++ , "<text>"); 
+					indent (margin++, "<text>"); 
 					indent (margin, "%s", string); 
-					indent (margin-- , "</text>"); 
+					indent (margin--, "</text>"); 
 				} 
-				indent (margin++ , "<%s>", DATA_OFFSET); 
+				indent (margin++, "<%s>", DATA_OFFSET); 
 				indent (margin, "%04X", offset); 
-				indent (margin-- , "</%s>", DATA_OFFSET); 
-				indent (margin++ , "<%s>", DATA_LENGTH); 
+				indent (margin--, "</%s>", DATA_OFFSET); 
+				indent (margin++, "<%s>", DATA_LENGTH); 
 				indent (margin, "%u", length); 
-				indent (margin-- , "</%s>", DATA_LENGTH); 
-				indent (margin++ , "<%s>", DATA_MEMORY); 
-				for (c = 0; c < (signed)(margin); c++ ) 
+				indent (margin--, "</%s>", DATA_LENGTH); 
+				indent (margin++, "<%s>", DATA_MEMORY); 
+				for (c = 0; c < (signed)(margin); c++) 
 				{ 
 					printf ("\t"); 
 				} 
-				for (c = 0; c < (signed)(length); c++ ) 
+				for (c = 0; c < (signed)(length); c++) 
 				{ 
 					printf ("%02X", buffer [c]); 
 				} 
 				printf ("\n"); 
-				indent (margin-- , "</%s>", DATA_MEMORY); 
-				indent (margin-- , "</%s>", DATA_MEMBER); 
+				indent (margin--, "</%s>", DATA_MEMORY); 
+				indent (margin--, "</%s>", DATA_MEMBER); 
 			} 
 		} 
 		offset += length; 
-		lineno++ ; 
+		lineno++; 
 	} 
-	indent (margin-- , "</%s>", DATA_OBJECT); 
+	indent (margin--, "</%s>", DATA_OBJECT); 
 	if (_allclr (flags, ODX_SILENCE)) 
 	{ 
 		if (offset != (unsigned)(extent)) 
@@ -226,7 +226,7 @@ int main (int argc, char const * argv [])
 		"object driven XML dump utility", 
 		"f f\tobject definition file", 
 		"x\tprint an XML schema on stdout", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	char const * schema = DATA_SCHEMA; 
 	file file = 
@@ -241,7 +241,7 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{ 
 		case 'f': 
-			if (! freopen (optarg, "rb", stdin)) 
+			if (!freopen (optarg, "rb", stdin)) 
 			{ 
 				error (1, errno, FILE_CANTOPEN, optarg); 
 			} 

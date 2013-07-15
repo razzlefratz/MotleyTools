@@ -73,7 +73,7 @@ int main (int argc, char const * argv [])
 		"d n\tdisplay (n) digits [" LITERAL (DIGIT) "]", 
 		"s n\tscale size by (n) [" LITERAL (SCALE) "]", 
 		"c n\tdisplay (n) characters [" LITERAL (SCALE) "]", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	struct stat statinfo; 
 	signed width = WIDTH; 
@@ -126,8 +126,8 @@ int main (int argc, char const * argv [])
 			} 
 			putc ('\n', stdout); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

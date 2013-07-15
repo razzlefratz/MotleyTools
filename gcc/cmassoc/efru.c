@@ -100,7 +100,7 @@ int main (int argc, char const * argv [])
 		"q\tsuppress normal output", 
 		"t n\tread timeout is (n) milliseconds [" LITERAL (CHANNEL_TIMEOUT) "]", 
 		"v\tverbose messages on stdout", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	signed c; 
 	if (getenv (ETHDEVICE)) 

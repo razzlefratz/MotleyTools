@@ -89,30 +89,30 @@ static void encode (size_t width, flag_t flags)
 		{ 
 			bits -= BASE64_BYTESIZE; 
 			word |= c << bits; 
-			source++ ; 
-			byte++ ; 
+			source++; 
+			byte++; 
 		} 
 		if (byte) 
 		{ 
 			bits = BASE64_WORDSIZE - BASE64_BYTESIZE; 
-			for (byte++ ; (bits) && (byte); byte-- ) 
+			for (byte++; (bits) && (byte); byte--) 
 			{ 
 				bits -= BASE64_CHARSIZE; 
 				putc (BASE64_CHARSET [(word >> bits) & BASE64_CHARMASK], stdout); 
-				encode++ ; 
-				output++ ; 
+				encode++; 
+				output++; 
 			} 
 			while (bits) 
 			{ 
 				bits -= BASE64_CHARSIZE; 
 				putc ('=', stdout); 
-				encode++ ; 
-				output++ ; 
+				encode++; 
+				output++; 
 			} 
-			if ((width) && ! (encode % width)) 
+			if ((width) && !(encode % width)) 
 			{ 
 				putc ('\n', stdout); 
-				output++ ; 
+				output++; 
 			} 
 		} 
 	} 
@@ -150,7 +150,7 @@ static void decode (flag_t flags)
 		unsigned bits = BASE64_WORDSIZE - BASE64_BYTESIZE; 
 		while ((bits) && ((c = getc (stdin)) != EOF)) 
 		{ 
-			source++ ; 
+			source++; 
 			if (c == '\n') 
 			{ 
 				continue; 
@@ -192,17 +192,17 @@ static void decode (flag_t flags)
 			} 
 			bits -= BASE64_CHARSIZE; 
 			word |= c << bits; 
-			byte++ ; 
+			byte++; 
 		} 
-		if (byte-- ) 
+		if (byte--) 
 		{ 
 			bits = BASE64_WORDSIZE - BASE64_BYTESIZE; 
 			while ((bits) && (byte)) 
 			{ 
 				bits -= BASE64_BYTESIZE; 
 				putc ((word >> bits) & BASE64_BYTEMASK, stdout); 
-				output++ ; 
-				byte-- ; 
+				output++; 
+				byte--; 
 			} 
 		} 
 	} 
@@ -238,7 +238,7 @@ int main (int argc, char const * argv [])
 		"r\tremove illegal base64 input characters", 
 		"w n\twrap base64 output after n columns", 
 		"v\tverbose mode", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	flag_t flags = (flag_t) (0); 
 	size_t width = 0; 
@@ -271,7 +271,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		if (_anyset (flags, B64_DECODE)) 
 		{ 
@@ -295,8 +295,8 @@ int main (int argc, char const * argv [])
 				encode (width, flags); 
 			} 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

@@ -292,7 +292,7 @@ int main (int argc, char const * argv [])
 		"remove markup from document", 
 		"a\tremove attributes from markup", 
 		"m\tremove markup from document", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	signed (* function) (signed) = pcdata; 
 	signed c; 
@@ -312,7 +312,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (getc (stdin)); 
 	} 
@@ -322,8 +322,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (getc (stdin)); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

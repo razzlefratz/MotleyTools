@@ -116,14 +116,14 @@ static void findfile (FIND * find, flag_t flags)
 	struct dirent * dirent; 
 	char * filename = find->fullname; 
 	DIR * dir; 
-	if (! (dir = opendir (filename))) 
+	if (!(dir = opendir (filename))) 
 	{ 
 		testfile (find, flags); 
 		return; 
 	} 
 	while (* filename != (char) (0)) 
 	{ 
-		filename++ ; 
+		filename++; 
 	} 
 	* filename = PATH_C_EXTENDER; 
 	while ((dirent = readdir (dir))) 
@@ -161,11 +161,11 @@ static void testfile (FIND * find, flag_t flags)
 		char const * filename = find->filename; 
 		if (* filename == '.') 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		if (* filename == '.') 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		if (* filename == (char) (0)) 
 		{ 
@@ -186,7 +186,7 @@ static void testfile (FIND * find, flag_t flags)
 		makepath (link.fullname, link.pathname, link.filename); 
 		if (_anyset (flags, LINK_B_ACTIVE)) 
 		{ 
-			if (! lstat (link.fullname, & link.statinfo)) 
+			if (!lstat (link.fullname, & link.statinfo)) 
 			{ 
 				function (find, & link, flags); 
 			} 
@@ -225,7 +225,7 @@ int main (int argc, char const * argv [])
 		"x\tremove selected links", 
 		"r\trecursive search", 
 		"v\tverbose messages", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = (flag_t) (0); 
 	signed c; 
@@ -261,8 +261,8 @@ int main (int argc, char const * argv [])
 	{ 
 		makefind (& find, * argv); 
 		findfile (& find, flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

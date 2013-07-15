@@ -36,8 +36,8 @@ int main (int argc, char const * argv [])
 { 
 	char digits [8]; 
 	unsigned digit = sizeof (digits); 
-	time_t timer = time ((time_t * )(0)); 
-	while (digit-- ) 
+	time_t timer = time ((time_t *)(0)); 
+	while (digit--) 
 	{ 
 		digits [digit] = "0123456789" [timer % 10]; 
 		timer /= 10; 

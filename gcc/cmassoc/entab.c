@@ -80,7 +80,7 @@ void function (flag_t flags)
 				putc (' ', stdout); 
 			} 
 			putc (c, stdout); 
-			next++ ; 
+			next++; 
 			continue; 
 		} 
 		if (c == ' ') 
@@ -94,9 +94,9 @@ void function (flag_t flags)
 		} 
 		if (c == '\b') 
 		{ 
-			if (prev == next-- ) 
+			if (prev == next--) 
 			{ 
-				prev-- ; 
+				prev--; 
 			} 
 			putc (c, stdout); 
 			continue; 
@@ -136,7 +136,7 @@ int main (int argc, char const * argv [])
 		PUTOPTV_S_FILTER, 
 		"replace spaces with horizontal tabs ", 
 		"t n.m\tset tabs in column (n) and interval (m) ", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = (flag_t)(0); 
 	signed c; 
@@ -153,7 +153,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (flags); 
 	} 
@@ -163,8 +163,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

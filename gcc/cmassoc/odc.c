@@ -74,7 +74,7 @@ static void report (char const * filename [], off_t offset [])
 { 
 	off_t extent [2]; 
 	unsigned file; 
-	for (file = 0; file < SIZEOF (extent); file++ ) 
+	for (file = 0; file < SIZEOF (extent); file++) 
 	{ 
 		struct stat statinfo; 
 		if (stat (filename [file], & statinfo) == - 1) 
@@ -127,12 +127,12 @@ void function (char const * filename [], flag_t flags)
 	unsigned file; 
 	signed length = 0; 
 	signed c; 
-	char memory [_ADDRSIZE+ 1]; 
+	char memory [_ADDRSIZE + 1]; 
 	char symbol [_NAMESIZE]; 
 	char string [_LINESIZE]; 
 	char * sp; 
 	memset (origin, 0, sizeof (origin)); 
-	for (file = 0; file < SIZEOF (fd); file++ ) 
+	for (file = 0; file < SIZEOF (fd); file++) 
 	{ 
 		if ((fd [file] = open (filename [file], O_BINARY | O_RDONLY)) == - 1) 
 		{ 
@@ -148,14 +148,14 @@ void function (char const * filename [], flag_t flags)
 				c = getc (stdin); 
 			} 
 			while (nobreak (c)); 
-			lineno++ ; 
+			lineno++; 
 			continue; 
 		} 
 		if (isspace (c)) 
 		{ 
 			if (c == '\n') 
 			{ 
-				lineno++ ; 
+				lineno++; 
 			} 
 			continue; 
 		} 
@@ -235,12 +235,12 @@ void function (char const * filename [], flag_t flags)
 #if defined (WIN32)
 
 			char * buffer [2]; 
-			buffer [0] = (char * )(emalloc (length)); 
-			buffer [1] = (char * )(emalloc (length)); 
+			buffer [0] = (char *)(emalloc (length)); 
+			buffer [1] = (char *)(emalloc (length)); 
 
 #else
 
-			byte buffer [2][length]; 
+			byte buffer [2] [length]; 
 
 #endif
 
@@ -248,28 +248,28 @@ void function (char const * filename [], flag_t flags)
 			{ 
 				if (memcmp (buffer [0], buffer [1], length)) 
 				{ 
-					if (! object++ ) 
+					if (!object++) 
 					{ 
-						for (c = 0; c < _ADDRSIZE + 65; c++ ) 
+						for (c = 0; c < _ADDRSIZE + 65; c++) 
 						{ 
 							putc ('-', stdout); 
 						} 
 						putc ('\n', stdout); 
 					} 
 					printf ("%s %d %s\n", hexoffset (memory, sizeof (memory), offset [0]), length, symbol); 
-					for (c = 0; c < _ADDRSIZE; c++ ) 
+					for (c = 0; c < _ADDRSIZE; c++) 
 					{ 
 						putc ('-', stdout); 
 					} 
 					printf (" %s\n", filename [0]); 
 					hexview (buffer [0], offset [0], length, stdout); 
-					for (c = 0; c < _ADDRSIZE; c++ ) 
+					for (c = 0; c < _ADDRSIZE; c++) 
 					{ 
 						putc ('-', stdout); 
 					} 
 					printf (" %s\n", filename [1]); 
 					hexview (buffer [1], offset [1], length, stdout); 
-					for (c = 0; c < _ADDRSIZE + 65; c++ ) 
+					for (c = 0; c < _ADDRSIZE + 65; c++) 
 					{ 
 						putc ('-', stdout); 
 					} 
@@ -287,7 +287,7 @@ void function (char const * filename [], flag_t flags)
 		} 
 		offset [0] += length; 
 		offset [1] += length; 
-		lineno++ ; 
+		lineno++; 
 	} 
 	offset [0] += origin [0]; 
 	offset [1] += origin [1]; 
@@ -322,7 +322,7 @@ int main (int argc, char const * argv [])
 		"f f\tobject definition file", 
 		"q\tquiet mode", 
 		"v\tverbose mode", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	flag_t flags = (flag_t)(0); 
 	signed c; 
@@ -331,7 +331,7 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{ 
 		case 'f': 
-			if (! freopen (optarg, "rb", stdin)) 
+			if (!freopen (optarg, "rb", stdin)) 
 			{ 
 				error (1, errno, "%s", optarg); 
 			} 

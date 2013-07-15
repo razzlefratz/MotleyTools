@@ -70,14 +70,14 @@ void function (char const * path, char * file, unsigned depth)
 	{ 
 		return; 
 	} 
-	indent (level++ , "%s", file); 
+	indent (level++, "%s", file); 
 	if ((dir = opendir (path))) 
 	{ 
 		struct dirent * dirent; 
 		struct stat statinfo; 
 		while (* file) 
 		{ 
-			file++ ; 
+			file++; 
 		} 
 		* file++ = PATH_C_EXTENDER; 
 		while ((dirent = readdir (dir))) 
@@ -85,11 +85,11 @@ void function (char const * path, char * file, unsigned depth)
 			char const * sp = dirent->d_name; 
 			if (* sp == FILE_C_EXTENDER) 
 			{ 
-				sp++ ; 
+				sp++; 
 			} 
 			if (* sp == FILE_C_EXTENDER) 
 			{ 
-				sp++ ; 
+				sp++; 
 			} 
 			if (* sp == (char) (0)) 
 			{ 
@@ -118,7 +118,7 @@ void function (char const * path, char * file, unsigned depth)
 		* -- file = (char) (0); 
 		closedir (dir); 
 	} 
-	level-- ; 
+	level--; 
 	return; 
 } 
 
@@ -142,7 +142,7 @@ int main (int argc, char const * argv [])
 		"path [path] [...] [> stdout]", 
 		"print folder hierarchy on stdout", 
 		"n n\tshow n levels [" LITERAL (DEPTH) "]", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	char filename [FILENAME_MAX]; 
 	unsigned depth = DEPTH; 
@@ -160,7 +160,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		strcpy (filename, getenv ("PWD")); 
 		function (filename, filename, depth); 
@@ -169,8 +169,8 @@ int main (int argc, char const * argv [])
 	{ 
 		strcpy (filename, * argv); 
 		function (filename, filename, depth); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

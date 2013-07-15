@@ -87,14 +87,14 @@ static void function (file const * file, off_t extent, flag_t flags)
 				c = getc (stdin); 
 			} 
 			while (nobreak (c)); 
-			lineno++ ; 
+			lineno++; 
 			continue; 
 		} 
 		if (isspace (c)) 
 		{ 
 			if (c == '\n') 
 			{ 
-				lineno++ ; 
+				lineno++; 
 			} 
 			continue; 
 		} 
@@ -165,9 +165,9 @@ static void function (file const * file, off_t extent, flag_t flags)
 			byte buffer [length]; 
 			if (read (file->file, buffer, length) == (signed)(length)) 
 			{ 
-				if (! object++ ) 
+				if (!object++) 
 				{ 
-					for (c = 0; c < _ADDRSIZE + 65; c++ ) 
+					for (c = 0; c < _ADDRSIZE + 65; c++) 
 					{ 
 						putc ('-', stdout); 
 					} 
@@ -175,7 +175,7 @@ static void function (file const * file, off_t extent, flag_t flags)
 				} 
 				printf ("%s %u %s\n", hexoffset (memory, sizeof (memory), offset), length, symbol); 
 				hexview (buffer, offset, length, stdout); 
-				for (c = 0; c < _ADDRSIZE + 65; c++ ) 
+				for (c = 0; c < _ADDRSIZE + 65; c++) 
 				{ 
 					putc ('-', stdout); 
 				} 
@@ -183,7 +183,7 @@ static void function (file const * file, off_t extent, flag_t flags)
 			} 
 		} 
 		offset += length; 
-		lineno++ ; 
+		lineno++; 
 	} 
 	if (_allclr (flags, ODD_SILENCE)) 
 	{ 
@@ -217,7 +217,7 @@ int main (int argc, char const * argv [])
 		"f f\tobject definition file", 
 		"q\tquiet mode", 
 		"v\tverbose mode", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	file file = 
 	{ 
@@ -231,7 +231,7 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{ 
 		case 'f': 
-			if (! freopen (optarg, "rb", stdin)) 
+			if (!freopen (optarg, "rb", stdin)) 
 			{ 
 				error (1, errno, "%s", optarg); 
 			} 
@@ -265,8 +265,8 @@ int main (int argc, char const * argv [])
 			function (& file, statinfo.st_size, flags); 
 			close (file.file); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

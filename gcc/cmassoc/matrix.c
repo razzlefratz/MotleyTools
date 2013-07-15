@@ -112,7 +112,7 @@ static signed gettoken (char * string)
 		c = getc (stdin); 
 		if (c == '\n') 
 		{ 
-			line++ ; 
+			line++; 
 		} 
 	} 
 	while (isspace (c)); 
@@ -123,7 +123,7 @@ static signed gettoken (char * string)
 			* string++ = c; 
 			c = getc (stdin); 
 		} 
-		while (isalnum (c) || (c == '.') || (c == '_') || (c == '-')); 
+		while (isalnum (c) || (c == '.') || (c == ':') || (c == '_') || (c == '-')); 
 		ungetc (c, stdin); 
 		c = 'A'; 
 	} 
@@ -179,15 +179,15 @@ static void headers (struct column * column)
 	extern char string []; 
 	if (~ gettoken (string)) 
 	{ 
-		column->next = (struct column * ) (0); 
+		column->next = (struct column *) (0); 
 		column->name = strdup (string); 
 		column->label = label_empty; 
 		column->style = style_empty; 
-		for (cols = 0; ~ gettoken (string) && (* string != ';'); cols++ ) 
+		for (cols = 0; ~ gettoken (string) && (* string != ';'); cols++) 
 		{ 
-			column->next = (struct column * )(malloc (sizeof (struct column))); 
+			column->next = (struct column *)(malloc (sizeof (struct column))); 
 			column = column->next; 
-			column->next = (struct column * ) (0); 
+			column->next = (struct column *) (0); 
 			column->name = strdup (string); 
 			column->label = label_empty; 
 			column->style = style_empty; 
@@ -225,14 +225,14 @@ static void columns (struct column * column)
 			struct column * object; 
 			for (object = column->next; object; object = object->next) 
 			{ 
-				if (! strcmp (object->name, string)) 
+				if (!strcmp (object->name, string)) 
 				{ 
 					object->style = style_match; 
-					object->label = * label_match? label_match:  object->name; 
+					object->label = * label_match? label_match: object->name; 
 					break; 
 				} 
 			} 
-			if (! object) 
+			if (!object) 
 			{ 
 				error (0, 0, "%s \"%s\" on line %d is an orphan", column->name, string, line); 
 			} 
@@ -263,7 +263,7 @@ static void finish (struct column * column)
 	{ 
 		struct column * object = column->next; 
 		column->next = object->next; 
-		object->next = (struct column * )(0); 
+		object->next = (struct column *)(0); 
 		object->style = 0; 
 		object->label = 0; 
 		free (object->name); 
@@ -314,9 +314,9 @@ static unsigned posted (unsigned margin)
 	time_t now = time (& now); 
 	static char datetime [LOGTIME_LEN]; 
 	strftime (datetime, sizeof (datetime), LOGTIME, localtime (& now)); 
-	indent (margin++ , "<div class='%s'>", style_posted); 
+	indent (margin++, "<div class='%s'>", style_posted); 
 	indent (margin, "Posted %s on %s by %s", datetime, hostname (), username (getuid ())); 
-	indent (margin-- , "</div>"); 
+	indent (margin--, "</div>"); 
 	return (margin); 
 } 
 
@@ -342,35 +342,35 @@ static unsigned table1 (unsigned margin, char const * string, struct column * co
 	struct column * object; 
 	line = 1; 
 	headers (column); 
-	indent (margin++ , "<table class='%s'>", style); 
-	indent (margin++ , "<tr class='%s'>", style); 
-	indent (margin++ , "<th class='%s'>", style); 
+	indent (margin++, "<table class='%s'>", style); 
+	indent (margin++, "<tr class='%s'>", style); 
+	indent (margin++, "<th class='%s'>", style); 
 	indent (margin, "%s", column->name); 
-	indent (margin-- , "</th>"); 
-	for (object = column->next; object; object = object->next) 
+	indent (margin--, "</th>"); 
+	for (object = column -> next; object; object = object -> next) 
 	{ 
-		indent (margin++ , "<th class='%s'>", style); 
+		indent (margin++, "<th class='%s'>", style); 
 		indent (margin, "%s", object->name); 
-		indent (margin-- , "</th>"); 
+		indent (margin--, "</th>"); 
 	} 
-	indent (margin-- , "</tr>"); 
-	for (columns (column); ! feof (stdin); columns (column)) 
+	indent (margin--, "</tr>"); 
+	for (columns (column); !feof (stdin); columns (column)) 
 	{ 
-		indent (margin++ , "<tr class='%s'>", style); 
-		indent (margin++ , "<td class='%s'>", style); 
+		indent (margin++, "<tr class='%s'>", style); 
+		indent (margin++, "<td class='%s'>", style); 
 		indent (margin, "%s", column->name); 
-		indent (margin-- , "</td>"); 
-		for (object = column->next; object; object = object->next) 
+		indent (margin--, "</td>"); 
+		for (object = column -> next; object; object = object -> next) 
 		{ 
-			indent (margin++ , "<td class='%s'>", object->style); 
-			indent (margin, "%s", object->label); 
-			indent (margin-- , "</td>"); 
+			indent (margin++, "<td class='%s'>", object -> style); 
+			indent (margin, "%s", object -> label); 
+			indent (margin--, "</td>"); 
 			object->style = style_empty; 
 			object->label = label_empty; 
 		} 
-		indent (margin-- , "</tr>"); 
+		indent (margin--, "</tr>"); 
 	} 
-	indent (margin-- , "</table>"); 
+	indent (margin--, "</table>"); 
 	posted (margin); 
 	finish (column); 
 	return (margin); 
@@ -398,49 +398,49 @@ static unsigned table2 (unsigned margin, char const * string, struct column * co
 	struct column * object; 
 	line = 1; 
 	headers (column); 
-	indent (margin++ , "<table>"); 
-	indent (margin++ , "<title>"); 
+	indent (margin++, "<table>"); 
+	indent (margin++, "<title>"); 
 	indent (margin, "%s", string); 
-	indent (margin-- , "</title>"); 
-	indent (margin++ , "<tgroup cols='%d'>", cols); 
-	indent (margin, "<colspec colname='%s'/>", column->name); 
-	for (object = column->next; object; object = object->next) 
+	indent (margin--, "</title>"); 
+	indent (margin++, "<tgroup cols='%d'>", cols); 
+	indent (margin, "<colspec colname='%s'/>", column -> name); 
+	for (object = column -> next; object; object = object -> next) 
 	{ 
-		indent (margin, "<colspec colname='%s'/>", object->name); 
+		indent (margin, "<colspec colname='%s'/>", object -> name); 
 	} 
-	indent (margin++ , "<thead>"); 
-	indent (margin++ , "<row>"); 
-	indent (margin++ , "<entry>"); 
-	indent (margin, "%s", column->name); 
-	indent (margin-- , "</entry>"); 
-	for (object = column->next; object; object = object->next) 
+	indent (margin++, "<thead>"); 
+	indent (margin++, "<row>"); 
+	indent (margin++, "<entry>"); 
+	indent (margin, "%s", column -> name); 
+	indent (margin--, "</entry>"); 
+	for (object = column -> next; object; object = object -> next) 
 	{ 
-		indent (margin++ , "<entry>"); 
-		indent (margin, "%s", object->name); 
-		indent (margin-- , "</entry>"); 
+		indent (margin++, "<entry>"); 
+		indent (margin, "%s", object -> name); 
+		indent (margin--, "</entry>"); 
 	} 
-	indent (margin-- , "</row>"); 
-	indent (margin-- , "</thead>"); 
-	indent (margin++ , "<tbody>"); 
-	for (columns (column); ! feof (stdin); columns (column)) 
+	indent (margin--, "</row>"); 
+	indent (margin--, "</thead>"); 
+	indent (margin++, "<tbody>"); 
+	for (columns (column); !feof (stdin); columns (column)) 
 	{ 
-		indent (margin++ , "<row>"); 
-		indent (margin++ , "<entry>"); 
-		indent (margin, "%s", column->name); 
-		indent (margin-- , "</entry>"); 
-		for (object = column->next; object; object = object->next) 
+		indent (margin++, "<row>"); 
+		indent (margin++, "<entry>"); 
+		indent (margin, "%s", column -> name); 
+		indent (margin--, "</entry>"); 
+		for (object = column -> next; object; object = object -> next) 
 		{ 
-			indent (margin++ , "<entry>"); 
-			indent (margin, "%s", object->label); 
-			indent (margin-- , "</entry>"); 
+			indent (margin++, "<entry>"); 
+			indent (margin, "%s", object -> label); 
+			indent (margin--, "</entry>"); 
 			object->style = style_empty; 
 			object->label = label_empty; 
 		} 
-		indent (margin-- , "</row>"); 
+		indent (margin--, "</row>"); 
 	} 
-	indent (margin-- , "</tbody>"); 
-	indent (margin-- , "</tgroup>"); 
-	indent (margin-- , "</table>"); 
+	indent (margin--, "</tbody>"); 
+	indent (margin--, "</tgroup>"); 
+	indent (margin--, "</table>"); 
 	finish (column); 
 	return (margin); 
 } 
@@ -471,17 +471,17 @@ int main (int argc, char const * argv [])
 		"m s\tmatch label is (s) [" LITERAL (MATCH) "]", 
 		"s\tprint CSS2 stylesheet on stdout", 
 		"t s\ttitle is (s) [" LITERAL (TITLE) "]", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
-	unsigned (* table) (unsigned, char const * , struct column * ) = table1; 
+	unsigned (* table) (unsigned, char const *, struct column *) = table1; 
 	unsigned margin = LEVEL; 
 	char const * header = TITLE; 
 	struct column column = 
 	{ 
-		(struct column * ) (0), 
-		(char const * )(0), 
-		(char const * )(0), 
-		(char * )(0)
+		(struct column *) (0), 
+		(char const *)(0), 
+		(char const *)(0), 
+		(char *)(0)
 	}; 
 	signed c; 
 	while ((c = getoptv (argc, argv, optv)) != - 1) 
@@ -515,7 +515,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		margin = table (margin, header, & column); 
 	} 
@@ -525,8 +525,8 @@ int main (int argc, char const * argv [])
 		{ 
 			margin = table (margin, header, & column); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

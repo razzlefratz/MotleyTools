@@ -81,7 +81,7 @@ void encode (flag_t flags)
 
 #else
 
-		if (! isgraph (c)) 
+		if (!isgraph (c)) 
 
 #endif
 
@@ -226,8 +226,8 @@ int main (int argc, char const * argv [])
 				break; 
 			} 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

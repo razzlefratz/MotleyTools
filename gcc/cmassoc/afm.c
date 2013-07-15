@@ -103,19 +103,19 @@ static void func (unsigned column, signed cc, flag_t flags)
 		else if (pc == cc) 
 		{ 
 			putc (nc, stdout); 
-			col++ ; 
+			col++; 
 		} 
 		else if (nc == ',') 
 		{ 
 			pc = putc (nc, stdout); 
-			col++ ; 
+			col++; 
 			pc = putc (' ', stdout); 
-			col++ ; 
+			col++; 
 		} 
 		else if (isquote (nc)) 
 		{ 
 			putc (nc, stdout); 
-			col++ ; 
+			col++; 
 			if (nc == pc) 
 			{ 
 				pc = 0; 
@@ -128,18 +128,18 @@ static void func (unsigned column, signed cc, flag_t flags)
 				while (col < column) 
 				{ 
 					putc (' ', stdout); 
-					col++ ; 
+					col++; 
 				} 
 			} 
 			pc = putc (nc, stdout); 
-			col++ ; 
+			col++; 
 		} 
 		else if (isblank (nc)) 
 		{ 
 			if (pc != ' ') 
 			{ 
 				pc = putc (' ', stdout); 
-				col++ ; 
+				col++; 
 			} 
 		} 
 		else if (pc == ' ') 
@@ -147,15 +147,15 @@ static void func (unsigned column, signed cc, flag_t flags)
 			while (tabcol (col) == false) 
 			{ 
 				putc (SP, stdout); 
-				col++ ; 
+				col++; 
 			} 
-			pc = putc (_anyset (flags, AFM_B_UPPER)? chrupr (nc):  nc, stdout); 
-			col++ ; 
+			pc = putc (_anyset (flags, AFM_B_UPPER)? chrupr (nc): nc, stdout); 
+			col++; 
 		} 
 		else 
 		{ 
-			pc = putc (_anyset (flags, AFM_B_UPPER)? chrupr (nc):  nc, stdout); 
-			col++ ; 
+			pc = putc (_anyset (flags, AFM_B_UPPER)? chrupr (nc): nc, stdout); 
+			col++; 
 		} 
 	} 
 	return; 
@@ -184,7 +184,7 @@ int main (int argc, char const * argv [])
 		"c c\tcomment character is (c) [" LITERAL (COMMENT_CHR) "]", 
 		"u\tconvert opcodes to upper case", 
 		"t n.m\ttabspec is (n.m) ", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	flag_t flags = (flag_t)(0); 
 	unsigned column = COMMENT_COL; 
@@ -214,7 +214,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		func (column, character, flags); 
 	} 
@@ -224,8 +224,8 @@ int main (int argc, char const * argv [])
 		{ 
 			func (column, character, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

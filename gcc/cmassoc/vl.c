@@ -113,7 +113,7 @@ static void function (size_t length, flag_t flags)
 				} 
 				putc (c, stdout); 
 			} 
-			next++ ; 
+			next++; 
 		} 
 		else if (_anyset (flags, VR_B_WRAP)) 
 		{ 
@@ -131,10 +131,10 @@ static void function (size_t length, flag_t flags)
 				} 
 				putc (c, stdout); 
 			} 
-			next++ ; 
-			line++ ; 
+			next++; 
+			line++; 
 		} 
-		else line++ ; 
+		else line++; 
 	} 
 	if (_anyset (flags, VR_B_COUNT) && (line > 0)) 
 	{ 
@@ -166,7 +166,7 @@ int main (int argc, char const * argv [])
 		"l n\tmaximum line length is (n)", 
 		"p\tpad short lines with spaces", 
 		"w\twrap long lines", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	size_t length = TEXTLINE_MAX; 
 	flag_t flags = (flag_t)(0); 
@@ -193,7 +193,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (length, flags); 
 	} 
@@ -203,8 +203,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (length, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

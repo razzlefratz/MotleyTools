@@ -122,7 +122,7 @@ void function (char const * filename, char const * pathlist [], flag_t flags)
 	struct stat stat; 
 	listcreate (& list, _LISTSIZE); 
 	listappend (& list, filename); 
-	for (list.index = list.start; list.index < list.count; list.index++ ) 
+	for (list.index = list.start; list.index < list.count; list.index++) 
 	{ 
 		if ((fp = efopen (list.table [list.index], "rb"))) 
 		{ 
@@ -134,7 +134,7 @@ void function (char const * filename, char const * pathlist [], flag_t flags)
 			partpath (open.fullname, open.pathname, open.basename); 
 			partfile (open.basename, open.filename, open.extender); 
 			scaninput (& scan, buffer, sizeof (buffer)); 
-			for (line = 1; fgetline (buffer, TEXTLINE_MAX, fp) != - 1; line++ ) 
+			for (line = 1; fgetline (buffer, TEXTLINE_MAX, fp) != - 1; line++) 
 			{ 
 				nexttoken (& scan); 
 				if (havetoken (& scan, "#")) 
@@ -147,7 +147,7 @@ void function (char const * filename, char const * pathlist [], flag_t flags)
 							if (_anyset (flags, QCFLAG_SYSTEM)) 
 							{ 
 								size_t index; 
-								for (index = 0; pathlist [index] != (char const * ) (0); index++ ) 
+								for (index = 0; pathlist [index] != (char const *) (0); index++) 
 								{ 
 									makepath (open.fullname, pathlist [index], tokentext (& scan)); 
 									if (lstat (open.fullname, & stat) == 0) 
@@ -156,7 +156,7 @@ void function (char const * filename, char const * pathlist [], flag_t flags)
 										break; 
 									} 
 								} 
-								if (pathlist [index] == (char const * ) (0)) 
+								if (pathlist [index] == (char const *) (0)) 
 								{ 
 									error (0, 0, "%s:%ld system file %s is missing.", open.basename, line, open.fullname); 
 								} 
@@ -190,7 +190,7 @@ void function (char const * filename, char const * pathlist [], flag_t flags)
 	} 
 	if (flags & (QCFLAG_REPORT)) 
 	{ 
-		for (list.index = list.start; list.index < list.count; list.index++ ) 
+		for (list.index = list.start; list.index < list.count; list.index++) 
 		{ 
 			printf ("%s\n", list.table [list.index]); 
 		} 
@@ -216,7 +216,7 @@ int main (int argc, char const * argv [])
 		"i\toutput an inventory ", 
 		"s\tsystem files ", 
 		"v\tverbose messages", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	static char const * pathlist [] = 
 	{ 
@@ -227,7 +227,7 @@ int main (int argc, char const * argv [])
 		"/usr/lib/i686-linux/2.95.4/include", 
 		"/usr/lib/gcc-lib/i386-linux/2.95.4/include", 
 		"/usr/lib/gcc-lib/i386-linux/3.0.4/include", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = (flag_t)(0); 
 	char filename [FILENAME_MAX + 1]; 
@@ -262,8 +262,8 @@ int main (int argc, char const * argv [])
 	{ 
 		makepath (filename, getenv ("PWD"), * argv); 
 		function (filename, pathlist, flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

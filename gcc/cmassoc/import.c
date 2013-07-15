@@ -88,7 +88,7 @@ static void function (struct _find_ * find, struct _find_ * home, flag_t flags)
 { 
 	char buffer [BUFSIZ]; 
 	signed length; 
-	if (! match (find->filename, find->wildcard)) 
+	if (!match (find->filename, find->wildcard)) 
 	{ 
 		return; 
 	} 
@@ -145,11 +145,11 @@ static void testfile (FIND * find, FIND * home, flag_t flags)
 		char const * filename = find->filename; 
 		if (* filename == '.') 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		if (* filename == '.') 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		if (* filename == (char) (0)) 
 		{ 
@@ -204,10 +204,10 @@ static void findfile (FIND * find, FIND * home, flag_t flags)
 		struct dirent * dirent; 
 		while (* filename != (char) (0)) 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		* filename = PATH_C_EXTENDER; 
-		while ((dirent = readdir (dir)) != (struct dirent * ) (0)) 
+		while ((dirent = readdir (dir)) != (struct dirent *) (0)) 
 		{ 
 			strcpy (filename + 1, dirent->d_name); 
 			partpath (find->fullname, find->pathname, find->filename); 
@@ -238,7 +238,7 @@ int main (int argc, char const * argv [])
 		"q\tquiet (don't report failures)", 
 		"r\trecursive search", 
 		"v\tverbose (report successes)", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	FIND home; 
 	flag_t flags = (flag_t) (0); 
@@ -273,19 +273,19 @@ int main (int argc, char const * argv [])
 		{ 
 			error (1, errno, FILE_CANTSTAT, * argv); 
 		} 
-		if (! S_ISDIR (home.statinfo.st_mode)) 
+		if (!S_ISDIR (home.statinfo.st_mode)) 
 		{ 
 			error (1, EINVAL, "%s is not a folder", * argv); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	while ((argc) && (* argv)) 
 	{ 
 		makefind (& find, * argv); 
 		findfile (& find, & home, flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

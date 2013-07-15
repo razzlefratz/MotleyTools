@@ -74,7 +74,7 @@ int main (int argc, char const * argv [])
 		"e\tdirect stderr to stdout", 
 		"l n\tloop (n) times [" LITERAL (COUNT) "]", 
 		"w n\twait (n) seconds [" LITERAL (PAUSE) "]", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	FILE * fp; 
 	signed index = 0; 
@@ -100,9 +100,9 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	while (count-- ) 
+	while (count--) 
 	{ 
-		for (index = 0; index < argc; index++ ) 
+		for (index = 0; index < argc; index++) 
 		{ 
 			if ((fp = popen (argv [index], "r"))) 
 			{ 

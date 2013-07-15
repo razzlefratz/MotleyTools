@@ -129,14 +129,14 @@ static void findfile (char thispathname [], char thatpathname [], flag_t flags)
 	struct stat thatstatinfo; 
 	char * thisfilename; 
 	char * thatfilename; 
-	if ((thisdir = opendir (thispathname)) == (DIR * ) (0)) 
+	if ((thisdir = opendir (thispathname)) == (DIR *) (0)) 
 	{ 
 		error (0, errno, "%s", thispathname); 
 		return; 
 	} 
-	for (thisfilename = thispathname; * thisfilename != (char) (0); thisfilename++ ); 
+	for (thisfilename = thispathname; * thisfilename != (char) (0); thisfilename++); 
 	* thisfilename = PATH_C_EXTENDER; 
-	while ((thisdirent = readdir (thisdir)) != (struct dirent * ) (0)) 
+	while ((thisdirent = readdir (thisdir)) != (struct dirent *) (0)) 
 	{ 
 		strcpy (thisfilename + 1, thisdirent->d_name); 
 		if (lstat (thispathname, & thisstatinfo)) 
@@ -145,14 +145,14 @@ static void findfile (char thispathname [], char thatpathname [], flag_t flags)
 		} 
 		else if (S_ISREG (thisstatinfo.st_mode)) 
 		{ 
-			if ((thatdir = opendir (thatpathname)) == (DIR * ) (0)) 
+			if ((thatdir = opendir (thatpathname)) == (DIR *) (0)) 
 			{ 
 				error (0, errno, "%s", thatpathname); 
 				continue; 
 			} 
-			for (thatfilename = thatpathname; * thatfilename != (char) (0); thatfilename++ ); 
+			for (thatfilename = thatpathname; * thatfilename != (char) (0); thatfilename++); 
 			* thatfilename = PATH_C_EXTENDER; 
-			while ((thatdirent = readdir (thatdir)) != (struct dirent * ) (0)) 
+			while ((thatdirent = readdir (thatdir)) != (struct dirent *) (0)) 
 			{ 
 				strcpy (thatfilename + 1, thatdirent->d_name); 
 				if (lstat (thatpathname, & thatstatinfo)) 
@@ -200,7 +200,7 @@ int main (int argc, char const * argv [])
 		"move like packages from current folder to a target folder.", 
 		"c\treport but do not remove anything", 
 		"v\tverbose messages", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	char thispath [FILENAME_MAX]; 
 	char thatpath [FILENAME_MAX]; 
@@ -225,15 +225,15 @@ int main (int argc, char const * argv [])
 	if (argc) 
 	{ 
 		strcpy (thispath, * argv); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	while ((argc) && (* argv)) 
 	{ 
 		strcpy (thatpath, * argv); 
 		findfile (thispath, thatpath, flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

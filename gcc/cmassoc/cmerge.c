@@ -173,7 +173,7 @@ int main (int argc, char const * argv [])
 		"", 
 		PUTOPTV_S_FUNNEL, 
 		"include all C language support files", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	LIST list; 
 	FIND find; 
@@ -207,14 +207,14 @@ int main (int argc, char const * argv [])
 		listappend (& list, find.fullname); 
 		function (& find, & list, length); 
 		printf ("\n/*=*\n *\n"); 
-		for (list.index = list.start; list.index < list.count; list.index++ ) 
+		for (list.index = list.start; list.index < list.count; list.index++) 
 		{ 
 			printf (" *   %s\n", list.table [list.index]); 
 		} 
 		printf (" *\n *-*/\n"); 
 		listrubout (& list); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	listdelete (& list); 
 	exit (0); 

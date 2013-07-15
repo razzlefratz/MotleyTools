@@ -84,7 +84,7 @@ static void function (char const string [], char const * extenders [], flag_t fl
 	char const * package; 
 	char const * version; 
 	char const * trailer; 
-	for (package = version = trailer = string; * string != (char) (0); string++ ) 
+	for (package = version = trailer = string; * string != (char) (0); string++) 
 	{ 
 		if (* string == '/') 
 		{ 
@@ -103,9 +103,9 @@ static void function (char const string [], char const * extenders [], flag_t fl
 		{ 
 			char const ** extender = extenders; 
 			trailer = string; 
-			while (* extender != (char const * ) (0)) 
+			while (* extender != (char const *) (0)) 
 			{ 
-				if (! strcmp (string, * extender++ )) 
+				if (!strcmp (string, * extender++)) 
 				{ 
 					while (* ++ string != (char) (0)); 
 					break; 
@@ -121,10 +121,10 @@ static void function (char const string [], char const * extenders [], flag_t fl
 	{ 
 		memcpy (file.package, package, version - package); 
 		file.package [version - package] = (char) (0); 
-		version++ ; 
+		version++; 
 		memcpy (file.version, version, trailer - version); 
 		file.version [trailer - version] = (char) (0); 
-		trailer++ ; 
+		trailer++; 
 		memcpy (file.trailer, trailer, string - trailer); 
 		file.trailer [string - trailer] = (char) (0); 
 		memcpy (file.archive, package, string - package); 
@@ -167,7 +167,7 @@ int main (int argc, char const * argv [])
 		"v\tprint version number", 
 		"e\tprint file extension", 
 		"x s\tremove extender s [.tar.bz2]", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	char const ** extender; 
 	char const * extenders [100] = 
@@ -179,18 +179,18 @@ int main (int argc, char const * argv [])
 		".md5", 
 		".md5sum", 
 		".asc", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = (flag_t) (0); 
 	signed c; 
-	for (extender = extenders; * extender != (char const * ) (0); extender++ ); 
+	for (extender = extenders; * extender != (char const *) (0); extender++); 
 	while ((c = getoptv (argc, argv, optv)) != - 1) 
 	{ 
 		switch (c) 
 		{ 
 		case 'x': 
 			* extender++ = optarg; 
-			* extender = (char const * ) (0); 
+			* extender = (char const *) (0); 
 			break; 
 		case 'p': 
 			_setbits (flags, PKG_B_PACKAGE); 
@@ -207,7 +207,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		char pathname [TEXTLINE_MAX]; 
 		signed length; 
@@ -217,14 +217,14 @@ int main (int argc, char const * argv [])
 			{ 
 				pathname [length] = (char) (0); 
 			} 
-			function ((char const * ) (pathname), extenders, flags); 
+			function ((char const *) (pathname), extenders, flags); 
 		} 
 	} 
 	while ((argc) && (* argv)) 
 	{ 
 		function (* argv, extenders, flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

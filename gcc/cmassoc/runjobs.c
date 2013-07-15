@@ -144,7 +144,7 @@ static signed runscript (FIND * script, FIND * shell, flag_t flags)
 		close (fd); 
 		return (0); 
 	} 
-	for (sp = buffer; sp < (buffer + sizeof (buffer) - 1); sp++ ) 
+	for (sp = buffer; sp < (buffer + sizeof (buffer) - 1); sp++) 
 	{ 
 		if ((read (fd, sp, 1) != 1) || isspace (* sp) || iscntrl (* sp)) 
 		{ 
@@ -221,9 +221,9 @@ static signed runscript (FIND * script, FIND * shell, flag_t flags)
 		} 
 		return (0); 
 	} 
-	argv [argc++ ] = shell->fullname; 
-	argv [argc++ ] = script->fullname; 
-	argv [argc++ ] = (char * ) (0); 
+	argv [argc++] = shell->fullname; 
+	argv [argc++] = script->fullname; 
+	argv [argc++] = (char *) (0); 
 	execv (* argv, argv); 
 	syslog_error (LOG_DEBUG, errno, "Can't start %s", shell->fullname); 
 	exit (1); 
@@ -262,11 +262,11 @@ static void testfile (FIND * script, FIND * shell, flag_t flags)
 		char * filename = script->filename; 
 		if (* filename == '.') 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		if (* filename == '.') 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		if (* filename == (char) (0)) 
 		{ 
@@ -280,14 +280,14 @@ static void testfile (FIND * script, FIND * shell, flag_t flags)
 	} 
 	if (_anyset (flags, FIND_B_FILENAME)) 
 	{ 
-		if (! plain (script->filename)) 
+		if (!plain (script->filename)) 
 		{ 
 			return; 
 		} 
 	} 
 	else 
 	{ 
-		if (! match (script->filename, script->wildcard)) 
+		if (!match (script->filename, script->wildcard)) 
 		{ 
 			return; 
 		} 
@@ -338,7 +338,7 @@ static void findfile (FIND * script, FIND * shell, flag_t flags)
 		struct dirent * dirent; 
 		while (* filename) 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		* filename = PATH_C_EXTENDER; 
 		while ((dirent = readdir (dir))) 
@@ -386,7 +386,7 @@ int main (int argc, char const * argv [])
 		"t\ttest mode (find but do not execute)", 
 		"u n\tset umask value to n [022]", 
 		"v\tdisplay verbose messages", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	FIND shell = 
 	{ 
@@ -395,7 +395,7 @@ int main (int argc, char const * argv [])
 			0, 
 			0, 
 			0
-		} , 
+		}, 
 		PATH_BSHELL, 
 		"", 
 		"", 
@@ -411,7 +411,7 @@ int main (int argc, char const * argv [])
 			0, 
 			0, 
 			0
-		} , 
+		}, 
 		PATH_RUNJOBS, 
 		FILE_S_EXTENDER, 
 		FILE_S_WILDCARD, 
@@ -432,8 +432,8 @@ int main (int argc, char const * argv [])
 		case 'a': 
 			if (argc < ARGVSIZE - 1) 
 			{ 
-				argv [argc++ ] = optarg; 
-				argv [argc] = (char * ) (0); 
+				argv [argc++] = optarg; 
+				argv [argc] = (char *) (0); 
 			} 
 			break; 
 		case 'e': 
@@ -449,10 +449,10 @@ int main (int argc, char const * argv [])
 			_setbits (flags, FIND_B_RECURSE); 
 			break; 
 		case 's': 
-			strcpy (shell.fullname, (char * ) (optarg)); 
+			strcpy (shell.fullname, (char *) (optarg)); 
 			break; 
 		case 'S': 
-			if (getenv ("SHELL") == (char * ) (0)) 
+			if (getenv ("SHELL") == (char *) (0)) 
 			{ 
 				error (1, 0, "symbol ${SHELL} is not defined."); 
 			} 
@@ -489,7 +489,7 @@ int main (int argc, char const * argv [])
 	{ 
 		error (1, errno, "Can't execute shell %s", shell.fullname); 
 	} 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		findfile (& script, & shell, flags); 
 	} 
@@ -497,8 +497,8 @@ int main (int argc, char const * argv [])
 	{ 
 		makefind (& script, * argv); 
 		findfile (& script, & shell, flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

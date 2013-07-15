@@ -153,7 +153,7 @@ int main (int argc, char const * argv [])
 		"remove comments, concatenate continuation lines and condense space", 
 		"c c\tcomment character is (c) [" LITERAL (SBRIEF_C_COMMENT) "]", 
 		"m\tmerge continuation lines", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	signed (* escape) (signed) = noop; 
 	signed comment = SBRIEF_C_COMMENT; 
@@ -174,7 +174,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (comment, escape); 
 	} 
@@ -184,8 +184,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (comment, escape); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

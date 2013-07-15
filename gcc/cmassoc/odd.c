@@ -107,9 +107,9 @@ static void dump (int fd, char const * symbol, off_t offset, byte const * buffer
 	static unsigned object = 0; 
 	char memory [_ADDRSIZE + 1]; 
 	char c; 
-	if (! object++ ) 
+	if (!object++) 
 	{ 
-		for (c = 0; c < _ADDRSIZE + 65; c++ ) 
+		for (c = 0; c < _ADDRSIZE + 65; c++) 
 		{ 
 			putc ('-', stdout); 
 		} 
@@ -117,7 +117,7 @@ static void dump (int fd, char const * symbol, off_t offset, byte const * buffer
 	} 
 	printf ("%s %u %s\n", hexoffset (memory, sizeof (memory), offset), length, symbol); 
 	hexview (buffer, offset, length, stdout); 
-	for (c = 0; c < _ADDRSIZE + 65; c++ ) 
+	for (c = 0; c < _ADDRSIZE + 65; c++) 
 	{ 
 		putc ('-', stdout); 
 	} 
@@ -140,8 +140,8 @@ static void efsu (int fd, char const * symbol, off_t offset, byte const * buffer
 	printf ("# %s\n", symbol); 
 	while (column < length) 
 	{ 
-		printf ("%02X", buffer [column++ ]); 
-		putc (column % 16? ' ':  '\n', stdout); 
+		printf ("%02X", buffer [column++]); 
+		putc (column % 16? ' ': '\n', stdout); 
 	} 
 	if (column % 16) 
 	{ 
@@ -163,7 +163,7 @@ static void efsu (int fd, char const * symbol, off_t offset, byte const * buffer
  *
  *--------------------------------------------------------------------*/
 
-static void function (char const * filename, void output (int, char const * , off_t, byte const * , signed), flag_t flags) 
+static void function (char const * filename, void output (int, char const *, off_t, byte const *, signed), flag_t flags) 
 
 { 
 	off_t offset = 0; 
@@ -186,14 +186,14 @@ static void function (char const * filename, void output (int, char const * , of
 				c = getc (stdin); 
 			} 
 			while (nobreak (c)); 
-			lineno++ ; 
+			lineno++; 
 			continue; 
 		} 
 		if (isspace (c)) 
 		{ 
 			if (c == '\n') 
 			{ 
-				lineno++ ; 
+				lineno++; 
 			} 
 			continue; 
 		} 
@@ -273,7 +273,7 @@ static void function (char const * filename, void output (int, char const * , of
 			} 
 		} 
 		offset += length; 
-		lineno++ ; 
+		lineno++; 
 	} 
 	if (_allclr (flags, ODD_SILENCE)) 
 	{ 
@@ -307,9 +307,9 @@ int main (int argc, char const * argv [])
 		"f f\tobject definition file", 
 		"q\tquiet mode", 
 		"v\tverbose mode", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
-	void (* output) (int, char const * , off_t, byte const * , signed) = dump; 
+	void (* output) (int, char const *, off_t, byte const *, signed) = dump; 
 	flag_t flags = (flag_t)(0); 
 	signed c; 
 	while ((c = getoptv (argc, argv, optv)) != - 1) 
@@ -323,7 +323,7 @@ int main (int argc, char const * argv [])
 			output = efsu; 
 			break; 
 		case 'f': 
-			if (! freopen (optarg, "rb", stdin)) 
+			if (!freopen (optarg, "rb", stdin)) 
 			{ 
 				error (1, errno, "%s", optarg); 
 			} 
@@ -347,8 +347,8 @@ int main (int argc, char const * argv [])
 	if ((argc) && (* argv)) 
 	{ 
 		function (* argv, output, flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

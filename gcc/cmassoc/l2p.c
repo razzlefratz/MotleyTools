@@ -130,7 +130,7 @@ static void function (flag_t flags)
 		{ 
 			c = getc (stdin); 
 		} 
-		lineno++ ; 
+		lineno++; 
 	} 
 	fclose (stdin); 
 	return; 
@@ -158,7 +158,7 @@ int main (int argc, char const * argv [])
 		"q\tquiet mode", 
 		"v\tverbose mode", 
 		"x\texchange order", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	flag_t flags = (flag_t)(0); 
 	signed c; 
@@ -181,19 +181,19 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (flags); 
 	} 
 	while ((argc) && (* argv)) 
 	{ 
-		if (! freopen (* argv, "rb", stdin)) 
+		if (!freopen (* argv, "rb", stdin)) 
 		{ 
 			error (1, errno, "%s", * argv); 
 		} 
 		function (flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

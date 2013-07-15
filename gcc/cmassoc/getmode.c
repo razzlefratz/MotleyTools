@@ -100,14 +100,14 @@ static void findfile (FIND * find, flag_t flags)
 
 { 
 	DIR * dir; 
-	if ((dir = opendir (find->fullname)) != (DIR * ) (0)) 
+	if ((dir = opendir (find->fullname)) != (DIR *) (0)) 
 	{ 
 		struct dirent * dirent; 
 		char * filename; 
 		strcpy (find->pathname, find->fullname); 
-		for (filename = find->fullname; * filename != (char) (0); filename++ ); 
+		for (filename = find->fullname; * filename != (char) (0); filename++); 
 		* filename = PATH_C_EXTENDER; 
-		while ((dirent = readdir (dir)) != (struct dirent * ) (0)) 
+		while ((dirent = readdir (dir)) != (struct dirent *) (0)) 
 		{ 
 			strcpy (filename + 1, dirent->d_name); 
 			strcpy (find->filename, dirent->d_name); 
@@ -120,11 +120,11 @@ static void findfile (FIND * find, flag_t flags)
 				char * sp = dirent->d_name; 
 				if (* sp == '.') 
 				{ 
-					sp++ ; 
+					sp++; 
 				} 
 				if (* sp == '.') 
 				{ 
-					sp++ ; 
+					sp++; 
 				} 
 				if (* sp == (char) (0)) 
 				{ 
@@ -211,7 +211,7 @@ int main (int argc, char const * argv [])
 		PUTOPTV_S_FUNNEL, 
 		"print file name, type, mode, owner and group on stdout", 
 		"r\trecursive search", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	FIND find; 
 	flag_t flags = (flag_t) (0); 
@@ -258,8 +258,8 @@ int main (int argc, char const * argv [])
 	{ 
 		makefind (& find, * argv); 
 		findfile (& find, flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

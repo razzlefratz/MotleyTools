@@ -87,7 +87,7 @@ void function (signed start, signed space, size_t length, flag_t flags)
 	{ 
 		if (flags & SBAR_B_SHIFT) 
 		{ 
-			for (column = 0; isblank (c); column++ ) 
+			for (column = 0; isblank (c); column++) 
 			{ 
 				if (c == '\t') 
 				{ 
@@ -152,7 +152,7 @@ int main (int argc, char const * argv [])
 		"m\tshift comments to left margin", 
 		"w n\tmake bars n characters wide [" LITERAL (FBAR_WIDTH) "]", 
 		"x\tmake files executable", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = (flag_t) (0); 
 	size_t width = SBAR_WIDTH; 
@@ -181,7 +181,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (start, space, width, flags); 
 	} 
@@ -198,8 +198,8 @@ int main (int argc, char const * argv [])
 			} 
 			function (start, space, width, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

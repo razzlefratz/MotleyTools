@@ -61,17 +61,17 @@
 static void stylesheet (unsigned margin) 
 
 { 
-	indent (margin++ , "<style type='text/css'>"); 
+	indent (margin++, "<style type='text/css'>"); 
 	indent (margin, "table { table-layout: fixed; background: transparent; border-collapse: separate; border-spacing: 1pt; font: normal 10pt verdana; }"); 
 	indent (margin, "th { background: inherit; padding: 2px 10px; text-align: center; vertical-align: middle; }"); 
 	indent (margin, "td { background: inherit; padding: 2px 10px; text-align: left; vertical-align: top; }"); 
-	indent (margin-- , "</style>"); 
-	indent (margin++ , "<style type='text/css'>"); 
+	indent (margin--, "</style>"); 
+	indent (margin++, "<style type='text/css'>"); 
 	indent (margin, "table.%s { border: solid 1pt black; border-spacing: 1px; background: white; }", STYLE_DATA); 
 	indent (margin, "th.%s, td.%s { border: solid 1pt silver; text-align: left; width: 250px; }", STYLE_NAME, STYLE_NAME); 
 	indent (margin, "th.%s, td.%s { border: solid 1pt silver; text-align: right; width: 100px; }", STYLE_SIZE, STYLE_SIZE); 
 	indent (margin, "th.%s, td.%s { border: solid 1pt silver; text-align: left; };", STYLE_TEXT, STYLE_TEXT); 
-	indent (margin-- , "</style>"); 
+	indent (margin--, "</style>"); 
 	return; 
 } 
 
@@ -101,7 +101,7 @@ int main (int argc, char const * argv [])
 		"s\tprint switch statement", 
 		"v\tprint variable declaration", 
 		"x\tuse numbers instead of names", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	char const * name = LISTNAME; 
 	struct _type_ list [LISTSIZE]; 
@@ -139,11 +139,11 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! flags) 
+	if (!flags) 
 	{ 
 		flags = TOOLS_B_NORMAL; 
 	} 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		size = typeload (list, LISTSIZE); 
 		typesave (list, size, name, flags); 
@@ -155,8 +155,8 @@ int main (int argc, char const * argv [])
 			size = typeload (list, LISTSIZE); 
 			typesave (list, size, name, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

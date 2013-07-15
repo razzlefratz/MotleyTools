@@ -90,7 +90,7 @@ void checkmode (char * vector [])
 	{ 
 		error (0, 0, "%s filemode has changed.", vector [FSTAT_FILENAME]); 
 	} 
-	if ((passwd = getpwuid (stat.st_uid)) == (struct passwd * ) (0)) 
+	if ((passwd = getpwuid (stat.st_uid)) == (struct passwd *) (0)) 
 	{ 
 		error (0, 0, "%s has illegal owner.", vector [FSTAT_FILENAME]); 
 	} 
@@ -98,7 +98,7 @@ void checkmode (char * vector [])
 	{ 
 		error (0, 0, "%s owner has changed.", vector [FSTAT_FILENAME]); 
 	} 
-	if ((group = getgrgid (stat.st_gid)) == (struct group * ) (0)) 
+	if ((group = getgrgid (stat.st_gid)) == (struct group *) (0)) 
 	{ 
 		error (0, 0, "%s has illegal group.", vector [FSTAT_FILENAME]); 
 	} 
@@ -121,7 +121,7 @@ int main (int argc, char const * argv [])
 		"", 
 		PUTOPTV_S_FUNNEL, 
 		"set file modes from snapshot file", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	FILE * fp; 
 	char buffer [255]; 
@@ -150,7 +150,7 @@ int main (int argc, char const * argv [])
 				switch (c) 
 				{ 
 				case LIST_C_EXTENDER: 
-					* vp = (char * ) (0); 
+					* vp = (char *) (0); 
 					* sp = (char) (0); 
 					checkmode (vector); 
 					vp = vector; 
@@ -171,8 +171,8 @@ int main (int argc, char const * argv [])
 			} 
 			fclose (fp); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

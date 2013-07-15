@@ -58,7 +58,7 @@ void example (int argc, char const * argv [])
 { 
 	while ((argc) && (* argv)) 
 	{ 
-		printf ("|%-24.24s|\n", * argv++ ); 
+		printf ("|%-24.24s|\n", * argv++); 
 	} 
 	printf ("+------------------------+\n"); 
 	return; 
@@ -79,7 +79,7 @@ void function (int argc, char const * argv [])
 	fprintf (fp, "N\n"); 
 	while ((argc) && (* argv)) 
 	{ 
-		fprintf (fp, "A%03d,%03d,0,4,1,1,N,\"%-24.24s\"\n", over, down, * argv++ ); 
+		fprintf (fp, "A%03d,%03d,0,4,1,1,N,\"%-24.24s\"\n", over, down, * argv++); 
 		down += HIGH; 
 	} 
 	fprintf (fp, "P\n"); 
@@ -102,7 +102,7 @@ int main (int argc, char const * argv [])
 		"text [text] [...]", 
 		"Zebra LP 2824 Label Printer", 
 		"e\tprint example label on console", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = (flag_t) (0); 
 	signed c; 

@@ -156,17 +156,17 @@ static void editfile (FIND * find, EDIT * edit, flag_t flags)
 	size_t line = 0; 
 	size_t item = 0; 
 	size_t once = 0; 
-	for (line = 1; fgetline (edit->buffer, edit->length, stdin) != - 1; line++ ) 
+	for (line = 1; fgetline (edit->buffer, edit->length, stdin) != - 1; line++) 
 	{ 
-		for (item = 0; item < edit->size; item++ ) 
+		for (item = 0; item < edit->size; item++) 
 		{ 
 			char const * sp; 
-			for (sp = edit->buffer; * sp; sp++ ) 
+			for (sp = edit->buffer; * sp; sp++) 
 			{ 
 				char const * cp; 
 				if ((cp = regexspan (edit->list [item], sp))) 
 				{ 
-					if (! once) 
+					if (!once) 
 					{ 
 						if (flags & GROPE_B_HEADER) 
 						{ 
@@ -189,10 +189,10 @@ static void editfile (FIND * find, EDIT * edit, flag_t flags)
 						} 
 						while (sp < cp) 
 						{ 
-							fputc (* sp++ , stdout); 
+							fputc (* sp++, stdout); 
 						} 
 						fputc ('\n', stdout); 
-						sp-- ; 
+						sp--; 
 					} 
 				} 
 			} 
@@ -221,11 +221,11 @@ static void editfile (FIND * find, EDIT * edit, flag_t flags)
 static void openfile (FIND * find, EDIT * edit, flag_t flags) 
 
 { 
-	if (! match (find->filename, find->wildcard)) 
+	if (!match (find->filename, find->wildcard)) 
 	{ 
 		return; 
 	} 
-	if (! freopen (find->fullname, "rb", stdin)) 
+	if (!freopen (find->fullname, "rb", stdin)) 
 	{ 
 		return; 
 	} 
@@ -256,11 +256,11 @@ static void testfile (FIND * find, EDIT * edit, flag_t flags)
 		char const * filename = find->filename; 
 		if (* filename == '.') 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		if (* filename == '.') 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		if (* filename == (char) (0)) 
 		{ 
@@ -317,10 +317,10 @@ static void findfile (FIND * find, EDIT * edit, flag_t flags)
 		struct dirent * dirent; 
 		while (* filename != (char) (0)) 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		* filename = PATH_C_EXTENDER; 
-		while ((dirent = readdir (dir)) != (struct dirent * ) (0)) 
+		while ((dirent = readdir (dir)) != (struct dirent *) (0)) 
 		{ 
 			strcpy (filename + 1, dirent->d_name); 
 			partpath (find->fullname, find->pathname, find->filename); 
@@ -357,13 +357,13 @@ int main (int argc, char const * argv [])
 		"H\treview expression expansion", 
 		"R\tregular expression rules", 
 		"T\tescape sequence rules", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	EDIT edit = 
 	{ 
 		{ 
-			(regexp * ) (0)
-		} , 
+			(regexp *) (0)
+		}, 
 		(size_t) (0), 
 		"", 
 		sizeof (edit.buffer)
@@ -385,9 +385,9 @@ int main (int argc, char const * argv [])
 			_clrbits (flags, GROPE_B_NUMBER); 
 			break; 
 		case 'e': 
-			strcpy (edit.buffer, struesc ((char * ) (optarg))); 
-			edit.list [edit.size++ ] = regexmake (edit.buffer); 
-			edit.list [edit.size] = (regexp * ) (0); 
+			strcpy (edit.buffer, struesc ((char *) (optarg))); 
+			edit.list [edit.size++] = regexmake (edit.buffer); 
+			edit.list [edit.size] = (regexp *) (0); 
 			break; 
 		case 'w': 
 			edit.length = uintspec (optarg, 1, SHRT_MAX); 
@@ -416,13 +416,13 @@ int main (int argc, char const * argv [])
 	} 
 	if (flags & (GROPE_B_REVIEW)) 
 	{ 
-		for (edit.size = 0; edit.list [edit.size]; edit.size++ ) 
+		for (edit.size = 0; edit.list [edit.size]; edit.size++) 
 		{ 
 			regexshow (edit.list [edit.size]); 
 		} 
 		exit (0); 
 	} 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		editfile (& find, & edit, flags); 
 	} 
@@ -430,8 +430,8 @@ int main (int argc, char const * argv [])
 	{ 
 		makefind (& find, * argv); 
 		findfile (& find, & edit, flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

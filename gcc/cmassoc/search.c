@@ -157,12 +157,12 @@ static void editfile (FIND * find, EDIT * edit, flag_t flags)
 	size_t line; 
 	size_t item; 
 	size_t once = 0; 
-	for (line = 1; fgetline (edit->buffer, edit->length, stdin) != - 1; line++ ) 
+	for (line = 1; fgetline (edit->buffer, edit->length, stdin) != - 1; line++) 
 	{ 
-		for (item = 0; item < edit->size; item++ ) 
+		for (item = 0; item < edit->size; item++) 
 		{ 
 			char const * cp = regexspan (edit->list [item], edit->buffer); 
-			if (cp != (char * ) (0)) 
+			if (cp != (char *) (0)) 
 			{ 
 				if (* cp == (char) (0)) 
 				{ 
@@ -170,9 +170,9 @@ static void editfile (FIND * find, EDIT * edit, flag_t flags)
 				} 
 			} 
 		} 
-		if (! (flags & (SEARCH_B_INVERT)) == (item < edit->size)) 
+		if (!(flags & (SEARCH_B_INVERT)) == (item < edit->size)) 
 		{ 
-			if (! once) 
+			if (!once) 
 			{ 
 				if (flags & (SEARCH_B_HEADER)) 
 				{ 
@@ -259,11 +259,11 @@ static void testfile (FIND * find, EDIT * edit, flag_t flags)
 		char const * filename = find->filename; 
 		if (* filename == '.') 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		if (* filename == '.') 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		if (* filename == (char) (0)) 
 		{ 
@@ -311,7 +311,7 @@ static void findfile (FIND * find, EDIT * edit, flag_t flags)
 		struct dirent * dirent; 
 		while (* filename) 
 		{ 
-			filename++ ; 
+			filename++; 
 		} 
 		* filename = PATH_C_EXTENDER; 
 		while ((dirent = readdir (dir))) 
@@ -361,13 +361,13 @@ int main (int argc, char const * argv [])
 		"t\ttraverse file links", 
 		"T\tescape sequence rules", 
 		"v\tinvert selection", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	EDIT edit = 
 	{ 
 		{ 
-			(regexp * ) (0)
-		} , 
+			(regexp *) (0)
+		}, 
 		(size_t) (0), 
 		"", 
 		sizeof (edit.buffer)
@@ -389,16 +389,16 @@ int main (int argc, char const * argv [])
 			_clrbits (flags, SEARCH_B_RECORD); 
 			break; 
 		case 'l': 
-			strcpy (edit.buffer, struesc ((char * ) (optarg))); 
-			edit.list [edit.size++ ] = regexmake (edit.buffer); 
-			edit.list [edit.size] = (regexp * ) (0); 
+			strcpy (edit.buffer, struesc ((char *) (optarg))); 
+			edit.list [edit.size++] = regexmake (edit.buffer); 
+			edit.list [edit.size] = (regexp *) (0); 
 			break; 
 		case 'e': 
 			strcpy (edit.buffer, REGEX_S_SPAN); 
-			strcat (edit.buffer, struesc ((char * ) (optarg))); 
+			strcat (edit.buffer, struesc ((char *) (optarg))); 
 			strcat (edit.buffer, REGEX_S_SPAN); 
-			edit.list [edit.size++ ] = regexmake (edit.buffer); 
-			edit.list [edit.size] = (regexp * ) (0); 
+			edit.list [edit.size++] = regexmake (edit.buffer); 
+			edit.list [edit.size] = (regexp *) (0); 
 			break; 
 		case 'r': 
 			_setbits (find.flagword, FIND_B_RECURSE); 
@@ -426,13 +426,13 @@ int main (int argc, char const * argv [])
 	argv += optind; 
 	if (flags & (SEARCH_B_REVIEW)) 
 	{ 
-		for (edit.size = 0; edit.list [edit.size]; edit.size++ ) 
+		for (edit.size = 0; edit.list [edit.size]; edit.size++) 
 		{ 
 			regexshow (edit.list [edit.size]); 
 		} 
 		exit (0); 
 	} 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		editfile (& find, & edit, flags); 
 	} 
@@ -440,8 +440,8 @@ int main (int argc, char const * argv [])
 	{ 
 		makefind (& find, * argv); 
 		findfile (& find, & edit, flags); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

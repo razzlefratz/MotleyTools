@@ -76,7 +76,7 @@ int main (int argc, char const * argv [])
 		"SHA256 key generator", 
 		"q\tquiet mode", 
 		"v\tverbose mode", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	struct sha256 sha256; 
 	byte digest [SHA256_DIGEST_LENGTH]; 
@@ -100,7 +100,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		putoptv (optv); 
 		return (0); 
@@ -110,7 +110,7 @@ int main (int argc, char const * argv [])
 		sp = phrase = * argv; 
 		while (isprint (* sp)) 
 		{ 
-			sp++ ; 
+			sp++; 
 		} 
 		if (* sp) 
 		{ 
@@ -121,11 +121,11 @@ int main (int argc, char const * argv [])
 		SHA256Fetch (& sha256, digest); 
 		if (_allclr (flags, KEY_VERBOSE)) 
 		{ 
-			phrase = (char const * )(0); 
+			phrase = (char const *)(0); 
 		} 
 		SHA256Print (digest, phrase); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

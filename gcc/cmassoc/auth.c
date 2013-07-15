@@ -75,11 +75,11 @@ struct _column_ rootuser [] =
 	{ 
 		5, 
 		"Failed"
-	} , 
+	}, 
 	{ 
 		8, 
 		"root"
-	} , 
+	}, 
 	{ 
 		- 1, 
 		""
@@ -92,15 +92,15 @@ struct _column_ rootlist [] =
 	{ 
 		0, 
 		"date"
-	} , 
+	}, 
 	{ 
 		8, 
 		"user"
-	} , 
+	}, 
 	{ 
 		10, 
 		"host"
-	} , 
+	}, 
 	{ 
 		- 1, 
 		""
@@ -139,10 +139,10 @@ void function (struct _column_ columns [], struct _column_ outputs [], flag_t fl
 	one.next = & two; 
 	two.next = & one; 
 	record = & two; 
-	for (string = record->buffer; fgets (string, BUFFER_SIZE, stdin) != (char * )(0); string = record->buffer) 
+	for (string = record->buffer; fgets (string, BUFFER_SIZE, stdin) != (char *)(0); string = record->buffer) 
 	{ 
 		vector = record->vector; 
-		for (* vector++ = string; (* string != (char)(0)) && ((string - record->buffer) < (BUFFER_SIZE- 1)); string++ ) 
+		for (* vector++ = string; (* string != (char)(0)) && ((string - record->buffer) < (BUFFER_SIZE - 1)); string++) 
 		{ 
 			if (isspace (* string) && ((vector - record->vector) < (VECTOR_SIZE - 1))) 
 			{ 
@@ -150,8 +150,8 @@ void function (struct _column_ columns [], struct _column_ outputs [], flag_t fl
 				* string = (char)(0); 
 			} 
 		} 
-		* vector = (char * )(0); 
-		for (column = columns; column->number != - 1; column++ ) 
+		* vector = (char *)(0); 
+		for (column = columns; column->number != - 1; column++) 
 		{ 
 			if (strcmp (record->vector [column->number], column->string)) 
 			{ 
@@ -160,7 +160,7 @@ void function (struct _column_ columns [], struct _column_ outputs [], flag_t fl
 		} 
 		if (column->number == - 1) 
 		{ 
-			for (column = outputs; column->number != - 1; column++ ) 
+			for (column = outputs; column->number != - 1; column++) 
 			{ 
 				printf ("%4lu %s:%s\n", (long unsigned)(column->number), column->string, record->vector [column->number]); 
 			} 
@@ -183,7 +183,7 @@ int main (int argc, char const * argv [])
 		"", 
 		PUTOPTV_S_FUNNEL, 
 		"print auth.log statistics", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	struct _column_ * columns = rootuser; 
 	struct _column_ * outputs = rootlist; 
@@ -199,7 +199,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (columns, outputs, flags); 
 	} 
@@ -209,8 +209,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (columns, outputs, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

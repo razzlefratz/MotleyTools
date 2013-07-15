@@ -132,7 +132,7 @@ static char const * headerfiles [] =
 { 
 	"*.h", 
 	"*.hpp", 
-	(char const * )(0)
+	(char const *)(0)
 }; 
 
 static char const * sourcefiles [] = 
@@ -140,7 +140,7 @@ static char const * sourcefiles [] =
 { 
 	"*.c", 
 	"*.cpp", 
-	(char const * )(0)
+	(char const *)(0)
 }; 
 
 static char const * mask = "?*"; 
@@ -163,7 +163,7 @@ static bool member (char const * name, char const * list [], char const * mask)
 { 
 	if (list) while (* list) 
 	{ 
-		if (strwcmp (name, * list++ , mask)) 
+		if (strwcmp (name, * list++, mask)) 
 		{ 
 			return (true); 
 		} 
@@ -185,7 +185,7 @@ static void listoutput (LIST * list, char const * target)
 
 { 
 	printf ("%s:", target); 
-	for (list->index = list->start; list->index < list->count; list->index++ ) 
+	for (list->index = list->start; list->index < list->count; list->index++) 
 	{ 
 		printf (" %s", list->table [list->index]); 
 	} 
@@ -211,7 +211,7 @@ static void compile (char * target, char const * source)
 	char const * paths [] = 
 	{ 
 		"", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	listcreate (& list, _LISTSIZE); 
 	listappend (& list, source); 
@@ -221,12 +221,12 @@ static void compile (char * target, char const * source)
 	} 
 	listcreate (& name, _LISTSIZE); 
 	listappend (& name, filename (source)); 
-	name.start++ ; 
-	for (list.index = list.start + 1; list.index < list.count; list.index++ ) 
+	name.start++; 
+	for (list.index = list.start + 1; list.index < list.count; list.index++) 
 	{ 
 		listinsert (& name, filename (list.table [list.index])); 
 	} 
-	name.start-- ; 
+	name.start--; 
 	strcpy (target, filename (source)); 
 	setfiletype (target, ".o"); 
 	listoutput (& name, target); 
@@ -253,7 +253,7 @@ static void include (char * target, char const * source)
 	char const * paths [] = 
 	{ 
 		"", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	listcreate (& list, _LISTSIZE); 
 	listappend (& list, source); 
@@ -264,7 +264,7 @@ static void include (char * target, char const * source)
 	if (list.count > 1) 
 	{ 
 		listcreate (& name, _LISTSIZE); 
-		for (list.index = list.start + 1; list.index < list.count; list.index++ ) 
+		for (list.index = list.start + 1; list.index < list.count; list.index++) 
 		{ 
 			listinsert (& name, filename (list.table [list.index])); 
 		} 
@@ -294,7 +294,7 @@ void program_binary (char * target, char const * source, char const * ignore [],
 	char const * paths [] = 
 	{ 
 		"", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	listcreate (& list, _LISTSIZE); 
 	listappend (& list, source); 
@@ -306,17 +306,17 @@ void program_binary (char * target, char const * source, char const * ignore [],
 	strcpy (target, filename (source)); 
 	setfiletype (target, ".o"); 
 	listappend (& name, target); 
-	name.start++ ; 
-	for (list.index = list.start + 1; list.index < list.count; list.index++ ) 
+	name.start++; 
+	for (list.index = list.start + 1; list.index < list.count; list.index++) 
 	{ 
 		strcpy (target, filename (list.table [list.index])); 
-		if (! member (target, ignore, mask)) 
+		if (!member (target, ignore, mask)) 
 		{ 
 			setfiletype (target, ".o"); 
 			listinsert (& name, target); 
 		} 
 	} 
-	name.start-- ; 
+	name.start--; 
 	strcpy (target, filename (source)); 
 	setfiletype (target, ""); 
 	listoutput (& name, target); 
@@ -343,7 +343,7 @@ void program_object (char * target, char const * source, char const * ignore [],
 	char const * paths [] = 
 	{ 
 		"", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	listcreate (& list, _LISTSIZE); 
 	listappend (& list, source); 
@@ -354,16 +354,16 @@ void program_object (char * target, char const * source, char const * ignore [],
 	listcreate (& name, _LISTSIZE); 
 	strcpy (target, filename (source)); 
 	listappend (& name, target); 
-	name.start++ ; 
-	for (list.index = list.start + 1; list.index < list.count; list.index++ ) 
+	name.start++; 
+	for (list.index = list.start + 1; list.index < list.count; list.index++) 
 	{ 
 		strcpy (target, filename (list.table [list.index])); 
-		if (! member (target, ignore, mask)) 
+		if (!member (target, ignore, mask)) 
 		{ 
 			listinsert (& name, target); 
 		} 
 	} 
-	name.start-- ; 
+	name.start--; 
 	strcpy (target, filename (source)); 
 	setfiletype (target, ".o"); 
 	listoutput (& name, target); 
@@ -389,7 +389,7 @@ void content (char * target, char const * source)
 	char const * paths [] = 
 	{ 
 		"", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	listcreate (& list, _LISTSIZE); 
 	listappend (& list, source); 
@@ -397,10 +397,10 @@ void content (char * target, char const * source)
 	{ 
 		error (0, 0, "target %s is missing %d files.", list.table [0], list.error); 
 	} 
-	list.start++ ; 
+	list.start++; 
 	listsort (& list); 
-	list.start-- ; 
-	for (list.index = list.start; list.index < list.count; list.index++ ) 
+	list.start--; 
+	for (list.index = list.start; list.index < list.count; list.index++) 
 	{ 
 		printf ("%s\n", list.table [list.index]); 
 	} 
@@ -426,10 +426,10 @@ int main (int argc, char const * argv [])
 		"m\toutput a makefile", 
 		"o\ttargets are general object files", 
 		"p\ttargets are program object files", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	flag_t flags = (flag_t) (0); 
-	time_t now = time ((time_t * )(0)); 
+	time_t now = time ((time_t *)(0)); 
 	char string [TEXTLINE_MAX << 1]; 
 	char target [FILENAME_MAX] = ""; 
 	char topbar [BARWIDTH_MAX + 1] = 
@@ -478,8 +478,8 @@ int main (int argc, char const * argv [])
 	while ((argc) && (* argv)) 
 	{ 
 		listinsert (& targets, * argv); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	if (_anyset (flags, MMF_B_MAKEFILE)) 
 	{ 
@@ -503,7 +503,7 @@ int main (int argc, char const * argv [])
 		printf ("LFLAGS=\n"); 
 		printf ("TRASH=*~ *.o t t.* *.[0-9][0-9][0-9]\n"); 
 		printf ("TOOLS="); 
-		for (targets.index = targets.start; targets.index < targets.count; targets.index++ ) 
+		for (targets.index = targets.start; targets.index < targets.count; targets.index++) 
 		{ 
 			strcpy (target, filename (targets.table [targets.index])); 
 			setfiletype (target, ""); 
@@ -558,21 +558,21 @@ int main (int argc, char const * argv [])
 	} 
 	else if (_anyset (flags, MMF_B_PROGRAM_BINARY)) 
 	{ 
-		for (targets.index = targets.start; targets.index < targets.count; targets.index++ ) 
+		for (targets.index = targets.start; targets.index < targets.count; targets.index++) 
 		{ 
 			program_binary (target, targets.table [targets.index], headerfiles, mask); 
 		} 
 	} 
 	else if (_anyset (flags, MMF_B_PROGRAM_OBJECT)) 
 	{ 
-		for (targets.index = targets.start; targets.index < targets.count; targets.index++ ) 
+		for (targets.index = targets.start; targets.index < targets.count; targets.index++) 
 		{ 
 			program_object (target, targets.table [targets.index], sourcefiles, mask); 
 		} 
 	} 
 	else if (_anyset (flags, MMF_B_GENERIC_OBJECT)) 
 	{ 
-		for (targets.index = targets.start; targets.index < targets.count; targets.index++ ) 
+		for (targets.index = targets.start; targets.index < targets.count; targets.index++) 
 		{ 
 			char const * source = targets.table [targets.index]; 
 			if (member (source, sourcefiles, mask)) 
@@ -590,7 +590,7 @@ int main (int argc, char const * argv [])
 	} 
 	else if (_anyset (flags, MMF_B_CONTENT)) 
 	{ 
-		for (targets.index = targets.start; targets.index < targets.count; targets.index++ ) 
+		for (targets.index = targets.start; targets.index < targets.count; targets.index++) 
 		{ 
 			content (target, targets.table [targets.index]); 
 		} 

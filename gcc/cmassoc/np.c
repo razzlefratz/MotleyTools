@@ -69,7 +69,7 @@ static void function (char const * prefix, char const * string)
 	signed c; 
 	while ((c = getc (stdin)) != EOF) 
 	{ 
-		for (pp = prefix; c == * pp; pp++ ) 
+		for (pp = prefix; c == * pp; pp++) 
 		{ 
 			c = getc (stdin); 
 		} 
@@ -78,7 +78,7 @@ static void function (char const * prefix, char const * string)
 			sp = prefix; 
 			while (sp < pp) 
 			{ 
-				putc (* sp++ , stdout); 
+				putc (* sp++, stdout); 
 			} 
 			while (nobreak (c)) 
 			{ 
@@ -91,13 +91,13 @@ static void function (char const * prefix, char const * string)
 			sp = string; 
 			while (* sp) 
 			{ 
-				putc (* sp++ , stdout); 
+				putc (* sp++, stdout); 
 
 #if 1
 
 				if (* sp == '\\') 
 				{ 
-					sp++ ; 
+					sp++; 
 				} 
 
 #endif
@@ -137,7 +137,7 @@ int main (int argc, char const * argv [])
 		"new paragraph", 
 		"p s\tparagraph prefix", 
 		"s s\tparagraph string", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	char const * prefix = ""; 
 	char const * string = ""; 
@@ -158,15 +158,15 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! prefix || ! * prefix) 
+	if (!prefix || !* prefix) 
 	{ 
 		error (1, ECANCELED, "paragraph prefix is empty"); 
 	} 
-	if (! string || ! * string) 
+	if (!string || !* string) 
 	{ 
 		error (1, ECANCELED, "paragraph string is empty"); 
 	} 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (prefix, string); 
 	} 
@@ -176,8 +176,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (prefix, string); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

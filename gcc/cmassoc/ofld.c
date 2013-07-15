@@ -72,7 +72,7 @@ static void function (signed fields, unsigned length)
 	while ((limit = getfields (vector, fields, buffer, length))) 
 	{ 
 		signed count; 
-		for (count = 0; count < limit; count++ ) 
+		for (count = 0; count < limit; count++) 
 		{ 
 			printf ("field [%d] = [%s]\n", count, vector [count]); 
 		} 
@@ -102,7 +102,7 @@ int main (int argc, char const * argv [])
 		"generic field enumerator", 
 		"b n\tbuffer size is (n) [" LITERAL (OFLD_BUFFER) "]", 
 		"f n\tfield count is (n) [" LITERAL (OFLD_FIELDS) "]", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	signed fields = OFLD_FIELDS; 
 	size_t length = OFLD_BUFFER; 
@@ -123,7 +123,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (fields, length); 
 	} 
@@ -133,8 +133,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (fields, length); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

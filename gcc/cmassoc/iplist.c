@@ -87,7 +87,7 @@ int main (int argc, char const * argv [])
 		"d", 
 		PUTOPTV_S_FUNNEL, 
 		"read stdin and write IPv4 addresses to stdout", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	flag_t flags = 0; 
 	signed c; 
@@ -104,7 +104,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (flags); 
 	} 
@@ -114,8 +114,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

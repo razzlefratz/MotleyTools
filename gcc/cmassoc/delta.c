@@ -72,7 +72,7 @@ static void function (char const * file, unsigned width, flag_t flags)
 		{ 
 			if (c == '\n') 
 			{ 
-				line++ ; 
+				line++; 
 			} 
 			c = getc (stdin); 
 			continue; 
@@ -86,7 +86,7 @@ static void function (char const * file, unsigned width, flag_t flags)
 			while (nobreak (c)); 
 			continue; 
 		} 
-		if (! isdigit (c)) 
+		if (!isdigit (c)) 
 		{ 
 			c = getc (stdin); 
 			continue; 
@@ -114,12 +114,12 @@ static void function (char const * file, unsigned width, flag_t flags)
 			} 
 			while (digit < width) 
 			{ 
-				putc (number [digit++ ], stdout); 
+				putc (number [digit++], stdout); 
 			} 
 			putc ('\n', stdout); 
 		} 
 		prior = value; 
-		count++ ; 
+		count++; 
 	} 
 	return; 
 } 
@@ -144,7 +144,7 @@ int main (int argc, char const * argv [])
 		PUTOPTV_S_FUNNEL, 
 		"print difference between consecutive unsigned decimal integers", 
 		"w n\twidth in digits is (n) [" LITERAL (DIGITS) "]", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	unsigned width = DIGITS; 
 	flag_t flags = (flag_t)(0); 
@@ -161,7 +161,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function ("stdin", width, flags); 
 	} 
@@ -171,8 +171,8 @@ int main (int argc, char const * argv [])
 		{ 
 			function (* argv, width, flags); 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	return (0); 
 } 

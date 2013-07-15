@@ -56,7 +56,7 @@ int main (int argc, char const * argv [])
 		"print a simple sign on stdout", 
 		"c c\tfill character is c [\'c\']", 
 		"w n\tpage width is n [78]", 
-		(char const * )(0)
+		(char const *)(0)
 	}; 
 	char o = '#'; 
 	size_t width = 78; 
@@ -80,8 +80,8 @@ int main (int argc, char const * argv [])
 	while ((argc) && (* argv)) 
 	{ 
 		signf (* argv, o, width); 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 

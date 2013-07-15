@@ -115,7 +115,7 @@ int main (int argc, char const * argv [])
 		"e s\tpathname defined by environement variable s", 
 		"p s\tpathname string is s", 
 		"x\tmake file executable", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	char const * pathname = ""; 
 	flag_t flags = (flag_t) (0); 
@@ -126,13 +126,13 @@ int main (int argc, char const * argv [])
 		switch (c) 
 		{ 
 		case 'e': 
-			if ((pathname = getenv (optarg)) == (char * )(0)) 
+			if ((pathname = getenv (optarg)) == (char *)(0)) 
 			{ 
 				error (1, errno, "symbol %s not defined", optarg); 
 			} 
 			break; 
 		case 't': 
-			if ((pathname = getenv ("CMTOOLS")) == (char * )(0)) 
+			if ((pathname = getenv ("CMTOOLS")) == (char *)(0)) 
 			{ 
 				error (1, errno, "symbol CMTOOLS is undefined"); 
 			} 
@@ -149,7 +149,7 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (! argc) 
+	if (!argc) 
 	{ 
 		function (& find, length, flags); 
 	} 
@@ -158,7 +158,7 @@ int main (int argc, char const * argv [])
 		makefind (& find, * argv); 
 		if (vfopen (find.fullname)) 
 		{ 
-			if ((! pathname) || (! * pathname)) 
+			if ((!pathname) || (!* pathname)) 
 			{ 
 				strcpy (find.pathname, pathname); 
 			} 
@@ -173,8 +173,8 @@ int main (int argc, char const * argv [])
 				} 
 			} 
 		} 
-		argc-- ; 
-		argv++ ; 
+		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 
