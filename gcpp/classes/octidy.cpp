@@ -477,15 +477,16 @@ signed octidy::context (signed c) const
 		signed o;
 		o = osource::feed (c); 
 		c = osource::feed (o); 
+		c = osource::find (c); 
 		if (o == '\n') 
 		{ 
 			oindent::print (oindent::margin (), oindent::offset (), oindent::level ()); 
 		} 
-		c = osource::find (c); 
 	} 
 	else if (c == '(') 
 	{ 
 		c = octidy::context (c, ')'); 
+		c = octidy::enspace (c); 
 	} 
 	else if (c == '[') 
 	{ 

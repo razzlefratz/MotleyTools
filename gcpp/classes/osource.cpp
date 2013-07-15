@@ -442,44 +442,18 @@ signed osource::enspace (signed c) const
 	{ 
 		std::cout.put (' '); 
 	} 
-
-#if 1
-
 	else if (oascii::isbegin (c)) 
 	{ 
 		std::cout.put (' '); 
 	} 
-
-#else
-
-	else if ((c == '(') || (c == '[') || (c == '{')) 
+	else if (oascii::isequal (c)) 
 	{ 
 		std::cout.put (' '); 
 	} 
-
-#endif
-#if 1
-	else if (oascii::isequal (c))
+	else if (oascii::islogic (c)) 
 	{ 
 		std::cout.put (' '); 
 	} 
-#else
-	else if ((c == '!') || (c == '=') || (c == '<') || (c == '>')) 
-	{ 
-		std::cout.put (' '); 
-	} 
-#endif
-#if 1
-	else if (oascii::islogic (c))
-	{ 
-		std::cout.put (' '); 
-	} 
-#else
-	else if ((c == '&') || (c == '|') || (c == '~') || (c == '^')) 
-	{ 
-		std::cout.put (' '); 
-	} 
-#endif
 	else if ((c == '*') || (c == '/') || (c == '%')) 
 	{ 
 		std::cout.put (' '); 
@@ -521,43 +495,15 @@ signed osource::despace (signed c) const
 	if (oascii::isspace (c)) 
 	{ 
 		c = osource::find (c); 
-
-#if 0
-
-		if ((c == ')') || (c == ']') || (c == '}')) 
-		{ 
-			return (c); 
-		} 
-
-#else
-
 		if (oascii::isclose (c)) 
 		{ 
 			return (c); 
 		} 
-
-#endif
-#if 0
-
-		if ((c == ',') || (c == ';')) 
-		{ 
-			return (c); 
-		} 
-		if ((c == '?') || (c == ':')) 
-		{ 
-			return (c); 
-		} 
-
-#else
-
 		if (oascii::iscomma (c)) 
 		{ 
 			return (c); 
 		} 
-
-#endif
-
-		if ((c == '.')) 
+		if (c == '.') 
 		{ 
 			return (c); 
 		} 
@@ -643,15 +589,11 @@ signed osource::despace (signed c) const
 		{ 
 			c = osource::feed (c); 
 			c = osource::find (c); 
-			if ((c == ')') || (c == ']')) 
+			if (oascii::isclose (c)) 
 			{ 
 				return (c); 
 			} 
-			if ((c == ',') || (c == ';')) 
-			{ 
-				return (c); 
-			} 
-			if ((c == '?') || (c == ':')) 
+			if (oascii::iscomma (c)) 
 			{ 
 				return (c); 
 			} 
@@ -671,15 +613,11 @@ signed osource::despace (signed c) const
 		{ 
 			c = osource::feed (c); 
 			c = osource::find (c); 
-			if ((c == ')') || (c == ']')) 
+			if (oascii::isclose (c)) 
 			{ 
 				return (c); 
 			} 
-			if ((c == ',') || (c == ';')) 
-			{ 
-				return (c); 
-			} 
-			if ((c == '?') || (c == ':')) 
+			if (oascii::iscomma (c)) 
 			{ 
 				return (c); 
 			} 
@@ -709,15 +647,11 @@ signed osource::despace (signed c) const
 			o = osource::feed (o); 
 		} 
 		c = osource::find (o); 
-		if ((c == ')') || (c == ']')) 
+		if (oascii::isclose (c)) 
 		{ 
 			return (c); 
 		} 
-		if ((c == ',') || (c == ';')) 
-		{ 
-			return (c); 
-		} 
-		if ((c == '?') || (c == ':')) 
+		if (oascii::iscomma (c)) 
 		{ 
 			return (c); 
 		} 
@@ -837,7 +771,7 @@ osource::osource ()
  *
  *--------------------------------------------------------------------*/
 
-osource::~osource () 
+osource::~ osource () 
 
 { 
 	return; 
