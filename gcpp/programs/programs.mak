@@ -7,8 +7,9 @@
 calend2.o: calend2.cpp ogetoptv.hpp oputoptv.hpp ocalendar.hpp
 call2.o: call2.cpp ogetoptv.hpp oputoptv.hpp oascii.hpp ocpluswords.hpp okeywords.hpp oflagword.hpp ofileopen.hpp opathspec.hpp ospan.hpp 
 cblock2.o: cblock2.cpp stdafx.hpp ogetoptv.hpp ocontext.hpp owildcard.hpp ofileopen.hpp ofilespec.hpp opathspec.hpp ocgotowords.hpp oescape.hpp oindent.hpp oinclude.hpp ocollect.hpp ocblock.hpp 
+ascii.o: ascii.cpp oascii.hpp ogetoptv.hpp 
 chtml.o: chtml.cpp flags.h strlib.h ogetoptv.hpp oputoptv.hpp oversion.hpp ochtml.hpp
-cmpp.o: cmpp.cpp ogetopt.hpp oputopt.hpp oerror.hpp oscantext.hpp omacro.hpp ofilespec.hpp ofindfile.hpp charset.h strlib.h
+cmpp.o: cmpp.cpp ogetopt.hpp oputopt.hpp oerror.hpp oscantext.hpp omacro.hpp ofilespec.hpp ofindfile.hpp ascii.h strlib.h
 csstidy.o: csstidy.cpp ogetoptv.hpp oputoptv.hpp oversion.hpp oerror.hpp opathspec.hpp otidy.hpp tools.h flags.h
 ctidy.o: ctidy.cpp ogetoptv.hpp oputoptv.hpp oversion.hpp oerror.hpp opathspec.hpp otidy.hpp tools.h flags.h
 cfm.o: cfm.cpp ogetoptv.hpp oputoptv.hpp oversion.hpp oerror.hpp opathspec.hpp octidy.hpp tools.h flags.h
@@ -29,4 +30,5 @@ relate2.o: relate2.cpp ogetoptv.hpp oputoptv.hpp odepend.hpp
 sqltidy.o: sqltidy.cpp ogetoptv.hpp oputoptv.hpp oversion.hpp oerror.hpp opathspec.hpp otidy.hpp tools.h flags.h
 syslog2.o: syslog2.cpp ogetoptv.hpp oputoptv.hpp oversion.hpp osyslog.hpp oerror.hpp flags.h files.h
 tokens.o: tokens.cpp ogetoptv.hpp oputoptv.hpp oscantext.hpp flags.h
+
 

@@ -15,7 +15,7 @@ CFLAGS=-Wall -D_GNU_SOURCE -DMAKEFILE
 LFLAGS=
 VPATH=../classes:../../gcc/files
 TRASH=*~ *.[0-9][0-9][0-9] t t.* *.exe *.o *.html *.css
-TOOLS=calend2 cfm chtml cmpp csstidy ctidy ctokens dnstidy htmltidy index javatidy mptidy order2 phptidy sqltidy tokens profile page
+TOOLS=ascii calend2 cfm chtml cmpp csstidy ctidy ctokens dnstidy htmltidy index javatidy mptidy order2 phptidy sqltidy tokens profile page
 PAGES=cfm.1 ctidy.1 javatidy.1 csstidy.1 htmltidy.1 mptidy.1 phptidy.1
 
 ifeq ($(EXTRA), yes)
@@ -55,6 +55,7 @@ ignore:
 # targets;
 # --------------------------------------------------------------------
 
+ascii: ascii.o oascii.o oerror.o ogetoptv.o oputoptv.o otext.o oversion.o
 calend2: calend2.o ogetoptv.o oputoptv.o oversion.o otext.o ocalendar.o omonth.o odate.o oindex.o oindent.o
 call2: call2.o ogetoptv.o oputoptv.o oversion.o oerror.o oascii.o ocpluswords.o okeywords.o oflagword.o owildcard.o ofileopen.o ofilespec.o opathspec.o ocontext.o odiscard.o otext.o
 cblock2: cblock2.o ogetoptv.o oputoptv.o oversion.o oerror.o ofileopen.o ofilespec.o opathspec.o ocontext.o owildcard.o oescape.o osource.o oascii.o ocblock.o otext.o
@@ -89,4 +90,5 @@ profile: profile.o ogetoptv.o oputoptv.o oversion.o oprofile.o oswitch.o oerror.
 #include ../programs/programs.mak
 #include ../classes/classes.mak
 #include ../../gcc/files/files.mak
+
 
