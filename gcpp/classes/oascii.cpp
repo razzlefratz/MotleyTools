@@ -2,8 +2,8 @@
  *
  *   oascii.cpp - oascii class definition;
  *
- *   character classification and conversion; this is a customxed
- *   and customizable implementation of the standard ctype macros 
+ *   character classification and conversion; this is a customized
+ *   and customizable implementation of the standard ctype macros
  *   and library functions;
  *
  *.  Motley Tools by Charles Maier
@@ -41,12 +41,15 @@
 #define oASCII_DIGIT (1 << 4) 
 #define oASCII_HEX   (1 << 5) 
 #define oASCII_PUNCT (1 << 6) 
-#define oASCII_ARITH (1 << 7) 
-#define oASCII_LOGIC (1 << 8) 
-#define oASCII_COMMA (1 << 9) 
-#define oASCII_IDENT (1 << 10) 
-#define oASCII_BEGIN (1 << 11) 
-#define oASCII_CLOSE (1 << 12) 
+#define oASCII_QUOTE (1 << 7) 
+#define oASCII_ARITH (1 << 8) 
+#define oASCII_LOGIC (1 << 9) 
+#define oASCII_EQUAL (1 << 10) 
+#define oASCII_COMMA (1 << 11) 
+#define oASCII_TOKEN (1 << 12) 
+#define oASCII_IDENT (1 << 13) 
+#define oASCII_BEGIN (1 << 14) 
+#define oASCII_CLOSE (1 << 15) 
 
 /*====================================================================*
  *   program variables;
@@ -62,9 +65,12 @@ char const * oascii::mbits [] =
 	"digit", 
 	"hex", 
 	"punct", 
+	"quote", 
 	"arith", 
 	"logic", 
+	"equal", 
 	"comma", 
+	"token", 
 	"ident", 
 	"begin", 
 	"close"
@@ -208,11 +214,11 @@ const unsigned short oascii::cmask [] =
 
 /* 033 041 21 [!] */
 
-	oASCII_PUNCT | oASCII_LOGIC, 
+	oASCII_PUNCT | oASCII_EQUAL, 
 
 /* 034 042 22 ["] */
 
-	oASCII_PUNCT, 
+	oASCII_PUNCT | oASCII_QUOTE, 
 
 /* 035 043 23 [#] */
 
@@ -232,7 +238,7 @@ const unsigned short oascii::cmask [] =
 
 /* 039 047 27 ['] */
 
-	oASCII_PUNCT, 
+	oASCII_PUNCT | oASCII_QUOTE, 
 
 /* 040 050 28 [(] */
 
@@ -256,11 +262,11 @@ const unsigned short oascii::cmask [] =
 
 /* 045 055 2D [-] */
 
-	oASCII_PUNCT | oASCII_ARITH, 
+	oASCII_PUNCT | oASCII_ARITH | oASCII_TOKEN, 
 
 /* 046 056 2E [.] */
 
-	oASCII_PUNCT, 
+	oASCII_PUNCT | oASCII_TOKEN, 
 
 /* 047 057 2F [/] */
 
@@ -268,47 +274,47 @@ const unsigned short oascii::cmask [] =
 
 /* 048 060 30 [0] */
 
-	oASCII_DIGIT | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 049 061 31 [1] */
 
-	oASCII_DIGIT | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 050 062 32 [2] */
 
-	oASCII_DIGIT | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 051 063 33 [3] */
 
-	oASCII_DIGIT | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 052 064 34 [4] */
 
-	oASCII_DIGIT | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 053 065 35 [5] */
 
-	oASCII_DIGIT | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 054 066 36 [6] */
 
-	oASCII_DIGIT | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 055 067 37 [7] */
 
-	oASCII_DIGIT | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 056 070 38 [8] */
 
-	oASCII_DIGIT | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 057 071 39 [9] */
 
-	oASCII_DIGIT | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 058 072 3A [:] */
 
-	oASCII_PUNCT | oASCII_COMMA, 
+	oASCII_PUNCT | oASCII_TOKEN | oASCII_COMMA, 
 
 /* 059 073 3B [;] */
 
@@ -316,15 +322,15 @@ const unsigned short oascii::cmask [] =
 
 /* 060 074 3C [<] */
 
-	oASCII_PUNCT, 
+	oASCII_PUNCT | oASCII_EQUAL, 
 
 /* 061 075 3D [=] */
 
-	oASCII_PUNCT | oASCII_LOGIC, 
+	oASCII_PUNCT | oASCII_EQUAL, 
 
 /* 062 076 3E [>] */
 
-	oASCII_PUNCT, 
+	oASCII_PUNCT | oASCII_EQUAL, 
 
 /* 063 077 3F [?] */
 
@@ -336,107 +342,107 @@ const unsigned short oascii::cmask [] =
 
 /* 065 101 41 [A] */
 
-	oASCII_UPPER | oASCII_IDENT | oASCII_HEX, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 066 102 42 [B] */
 
-	oASCII_UPPER | oASCII_IDENT | oASCII_HEX, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 067 103 43 [C] */
 
-	oASCII_UPPER | oASCII_IDENT | oASCII_HEX, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 068 104 44 [D] */
 
-	oASCII_UPPER | oASCII_IDENT | oASCII_HEX, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 069 105 45 [E] */
 
-	oASCII_UPPER | oASCII_IDENT | oASCII_HEX, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 070 106 46 [F] */
 
-	oASCII_UPPER | oASCII_IDENT | oASCII_HEX, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 071 107 47 [G] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 072 110 48 [H] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 073 111 49 [I] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 074 112 4A [J] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 075 113 4B [K] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 076 114 4C [L] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 077 115 4D [M] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 078 116 4E [N] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 079 117 4F [O] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 080 120 50 [P] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 081 121 51 [Q] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 082 122 52 [R] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 083 123 53 [S] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 084 124 54 [T] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 085 125 55 [U] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 086 126 56 [V] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 087 127 57 [W] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 088 130 58 [X] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 089 131 59 [Y] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 090 132 5A [Z] */
 
-	oASCII_UPPER | oASCII_IDENT, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 091 133 5B [[] */
 
@@ -452,11 +458,11 @@ const unsigned short oascii::cmask [] =
 
 /* 094 136 5E [^] */
 
-	oASCII_PUNCT, 
+	oASCII_PUNCT | oASCII_LOGIC, 
 
 /* 095 137 5F [_] */
 
-	oASCII_PUNCT | oASCII_IDENT, 
+	oASCII_PUNCT | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 096 140 60 [`] */
 
@@ -464,107 +470,107 @@ const unsigned short oascii::cmask [] =
 
 /* 097 141 61 [a] */
 
-	oASCII_LOWER | oASCII_IDENT | oASCII_HEX, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 098 142 62 [b] */
 
-	oASCII_LOWER | oASCII_IDENT | oASCII_HEX, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 099 143 63 [c] */
 
-	oASCII_LOWER | oASCII_IDENT | oASCII_HEX, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 100 144 64 [d] */
 
-	oASCII_LOWER | oASCII_IDENT | oASCII_HEX, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 101 145 65 [e] */
 
-	oASCII_LOWER | oASCII_IDENT | oASCII_HEX, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 102 146 66 [f] */
 
-	oASCII_LOWER | oASCII_IDENT | oASCII_HEX, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
 
 /* 103 147 67 [g] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 104 150 68 [h] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 105 151 69 [i] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 106 152 6A [j] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 107 153 6B [k] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 108 154 6C [l] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 109 155 6D [m] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 110 156 6E [n] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 111 157 6F [o] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 112 160 70 [p] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 113 161 71 [q] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 114 162 72 [r] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 115 163 73 [s] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 116 164 74 [t] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 117 165 75 [u] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 118 166 76 [v] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 119 167 77 [w] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 120 170 78 [x] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 121 171 79 [y] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 122 172 7A [z] */
 
-	oASCII_LOWER | oASCII_IDENT, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT, 
 
 /* 123 173 7B [{] */
 
@@ -1121,6 +1127,19 @@ unsigned oascii::ctypemask (char const * ctypename) const
 
 /*====================================================================*
  *
+ *   bool isctype (signed c, unsigned short mask)
+ *
+ *
+ *--------------------------------------------------------------------*/
+
+bool oascii::isctype (signed c, unsigned short mask) 
+
+{ 
+	return (oascii::cmask [c & UCHAR_MAX] & (mask)); 
+} 
+
+/*====================================================================*
+ *
  *   bool isascii (signed c);
  *
  *--------------------------------------------------------------------*/
@@ -1233,18 +1252,6 @@ bool oascii::isspace (signed c)
 
 /*====================================================================*
  *
- *   bool ispunct (signed c);
- *
- *--------------------------------------------------------------------*/
-
-bool oascii::ispunct (signed c) 
-
-{ 
-	return (oascii::cmask [c & UCHAR_MAX] & (oASCII_PUNCT)); 
-} 
-
-/*====================================================================*
- *
  *   bool isgraph (signed c);
  *
  *--------------------------------------------------------------------*/
@@ -1252,7 +1259,7 @@ bool oascii::ispunct (signed c)
 bool oascii::isgraph (signed c) 
 
 { 
-	return (oascii::cmask [c & UCHAR_MAX] & (oASCII_UPPER|oASCII_LOWER|oASCII_DIGIT|oASCII_PUNCT)); 
+	return (oascii::cmask [c & UCHAR_MAX] & (oASCII_UPPER | oASCII_LOWER | oASCII_DIGIT | oASCII_PUNCT)); 
 } 
 
 /*====================================================================*
@@ -1269,6 +1276,18 @@ bool oascii::isprint (signed c)
 
 /*====================================================================*
  *
+ *   bool ispunct (signed c);
+ *
+ *--------------------------------------------------------------------*/
+
+bool oascii::ispunct (signed c) 
+
+{ 
+	return (oascii::cmask [c & UCHAR_MAX] & (oASCII_PUNCT)); 
+} 
+
+/*====================================================================*
+ *
  *   bool isident (signed c);
  *
  *--------------------------------------------------------------------*/
@@ -1277,6 +1296,18 @@ bool oascii::isident (signed c)
 
 { 
 	return (oascii::cmask [c & UCHAR_MAX] & (oASCII_IDENT)); 
+} 
+
+/*====================================================================*
+ *
+ *   bool isquote (signed c);
+ *
+ *--------------------------------------------------------------------*/
+
+bool oascii::isquote (signed c) 
+
+{ 
+	return (oascii::cmask [c & UCHAR_MAX] & (oASCII_QUOTE)); 
 } 
 
 /*====================================================================*
@@ -1293,6 +1324,18 @@ bool oascii::isarith (signed c)
 
 /*====================================================================*
  *
+ *   bool isequal (signed c);
+ *
+ *--------------------------------------------------------------------*/
+
+bool oascii::isequal (signed c) 
+
+{ 
+	return (oascii::cmask [c & UCHAR_MAX] & (oASCII_EQUAL)); 
+} 
+
+/*====================================================================*
+ *
  *   bool islogic (signed c);
  *
  *--------------------------------------------------------------------*/
@@ -1302,7 +1345,6 @@ bool oascii::islogic (signed c)
 { 
 	return (oascii::cmask [c & UCHAR_MAX] & (oASCII_LOGIC)); 
 } 
-
 /*====================================================================*
  *
  *   bool isgroup (signed c);
@@ -1312,7 +1354,7 @@ bool oascii::islogic (signed c)
 bool oascii::isgroup (signed c) 
 
 { 
-	return (oascii::cmask [c & UCHAR_MAX] & (oASCII_BEGIN|oASCII_CLOSE)); 
+	return (oascii::cmask [c & UCHAR_MAX] & (oASCII_BEGIN | oASCII_CLOSE)); 
 } 
 
 /*====================================================================*
@@ -1361,19 +1403,6 @@ bool oascii::iscomma (signed c)
 
 /*====================================================================*
  *
- *   bool isctype (signed c, unsigned short mask)
- *
- *
- *--------------------------------------------------------------------*/
-
-bool oascii::isctype (signed c, unsigned short mask) 
-
-{ 
-	return (oascii::cmask [c & UCHAR_MAX] & (mask)); 
-} 
-
-/*====================================================================*
- *
  *   bool nmtoken (signed c);
  *
  *   nmtoken is a w3c standard identifier;
@@ -1383,19 +1412,7 @@ bool oascii::isctype (signed c, unsigned short mask)
 bool oascii::nmtoken (signed c) 
 
 { 
-	return (oascii::isalnum (c) || (c == '_') || (c == '-') || (c == '.') || (c == ':')); 
-} 
-
-/*====================================================================*
- *
- *   bool isquote (signed c);
- *
- *--------------------------------------------------------------------*/
-
-bool oascii::isquote (signed c) 
-
-{ 
-	return ((c == '\'') || (c == '\"')); 
+	return (oascii::cmask [c & UCHAR_MAX] & (oASCII_TOKEN)); 
 } 
 
 /*====================================================================*
@@ -1597,12 +1614,12 @@ char const * oascii::cname [] =
 	"us", 
 	"sp", 
 	"!", 
-	"quot", 
+	"\"", 
 	"#", 
 	"$", 
 	"%", 
 	"&", 
-	"apos", 
+	"\'", 
 	"(", 
 	")", 
 	"*", 
@@ -1623,9 +1640,9 @@ char const * oascii::cname [] =
 	"9", 
 	":", 
 	";", 
-	"lt", 
+	"<", 
 	"=", 
-	"gt", 
+	">", 
 	"?", 
 	"@", 
 	"A", 
@@ -1866,7 +1883,34 @@ void oascii::matrix () const
 	std::cout << ";" << std::endl; 
 	for (signed c = 0; c <= SCHAR_MAX; c++) 
 	{ 
-		std::cout << oascii::cname [c]; 
+		if (c == '\\')
+		{
+			std::cout << "\"\\\\\""; 
+		}	
+		else if (c == '&')
+		{
+			std::cout << "\"&amp;\""; 
+		}	
+		else if (c == '<')
+		{
+			std::cout << "\"&lt;\""; 
+		}	
+		else if (c == '>')
+		{
+			std::cout << "\"&gt;\""; 
+		}	
+		else if (c == '\'')
+		{
+			std::cout << "\"&apos;\""; 
+		}	
+		else if (c == '\"')
+		{
+			std::cout << "\"&quot;\""; 
+		}	
+		else
+		{
+			std::cout << "\"" << oascii::cname [c] << "\""; 
+		}
 		for (unsigned bit = 0; bit < SIZEOF (mbits); bit++) 
 		{ 
 			if (oascii::cmask [c] & (1 << bit)) 

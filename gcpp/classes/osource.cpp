@@ -458,15 +458,28 @@ signed osource::enspace (signed c) const
 	} 
 
 #endif
-
+#if 1
+	else if (oascii::isequal (c))
+	{ 
+		std::cout.put (' '); 
+	} 
+#else
 	else if ((c == '!') || (c == '=') || (c == '<') || (c == '>')) 
 	{ 
 		std::cout.put (' '); 
 	} 
+#endif
+#if 1
+	else if (oascii::islogic (c))
+	{ 
+		std::cout.put (' '); 
+	} 
+#else
 	else if ((c == '&') || (c == '|') || (c == '~') || (c == '^')) 
 	{ 
 		std::cout.put (' '); 
 	} 
+#endif
 	else if ((c == '*') || (c == '/') || (c == '%')) 
 	{ 
 		std::cout.put (' '); 
@@ -509,35 +522,35 @@ signed osource::despace (signed c) const
 	{ 
 		c = osource::find (c); 
 
-#if 1
-
-		if (oascii::isclose (c)) 
-		{ 
-			return (c); 
-		} 
-
-#else
+#if 0
 
 		if ((c == ')') || (c == ']') || (c == '}')) 
 		{ 
 			return (c); 
 		} 
 
-#endif
-#if 1
+#else
 
-		if (oascii::iscomma (c)) 
+		if (oascii::isclose (c)) 
 		{ 
 			return (c); 
 		} 
 
-#else
+#endif
+#if 0
 
 		if ((c == ',') || (c == ';')) 
 		{ 
 			return (c); 
 		} 
 		if ((c == '?') || (c == ':')) 
+		{ 
+			return (c); 
+		} 
+
+#else
+
+		if (oascii::iscomma (c)) 
 		{ 
 			return (c); 
 		} 
@@ -564,7 +577,7 @@ signed osource::despace (signed c) const
 		c = osource::feed (c); 
 		c = osource::feed (c); 
 	} 
-	else if ((c == '.') || (c == '!') || (c == '~')) 
+	else if ((c == '.') || (c == '!')) 
 	{ 
 		c = osource::feed (c); 
 		c = osource::find (c); 
@@ -575,7 +588,7 @@ signed osource::despace (signed c) const
 		c = osource::find (c); 
 		std::cout.put (' '); 
 	} 
-	else if ((c == '=') || (c == '^') || (c == '%')) 
+	else if ((c == '=') || (c == '^') || (c == '%') || (c == '~')) 
 	{ 
 		c = osource::feed (c); 
 		if (c == '=') 

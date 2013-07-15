@@ -53,6 +53,7 @@ public:
 	static bool isident (signed c);
 	static bool isarith (signed c);
 	static bool islogic (signed c);
+	static bool isequal (signed c);
 	static bool isgroup (signed c);
 	static bool isbegin (signed c);
 	static bool isclose (signed c);
