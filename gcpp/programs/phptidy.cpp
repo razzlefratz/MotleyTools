@@ -71,7 +71,7 @@ int main (int argc, char const * argv [])
 		"o s\toffset string is (s) [" LITERAL (oINDENT_OFFSET) "]", 
 		"s\toffset string is 3 spaces", 
 		"t\toffset string is 1 tab", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	ogetoptv getopt; 
 	oescape escape; 
@@ -91,10 +91,10 @@ int main (int argc, char const * argv [])
 			object.record (""); 
 			break; 
 		case 'm': 
-			object.margin (escape.unescape ((char * )(getopt.args ()))); 
+			object.margin (escape.unescape ((char *)(getopt.args ()))); 
 			break; 
 		case 'o': 
-			object.offset (escape.unescape ((char * )(getopt.args ()))); 
+			object.offset (escape.unescape ((char *)(getopt.args ()))); 
 			break; 
 		case 's': 
 			object.offset ("   "); 
@@ -106,7 +106,7 @@ int main (int argc, char const * argv [])
 			break; 
 		} 
 	} 
-	if (! getopt.argc ()) 
+	if (!getopt.argc ()) 
 	{ 
 		(object.* method) (std::cin.get ()); 
 	} 
@@ -117,7 +117,7 @@ int main (int argc, char const * argv [])
 			(object.* method) (std::cin.get ()); 
 			fileopen.close (); 
 		} 
-		getopt++ ; 
+		getopt++; 
 	} 
 	std::exit (0); 
 } 

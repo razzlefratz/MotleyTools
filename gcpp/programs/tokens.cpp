@@ -57,7 +57,7 @@ int main (int argc, char const * argv [])
 		oPUTOPTV_S_FUNNEL, 
 		"print tokens on stdout", 
 		"e\telaborate on tokens with typenames", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	ogetoptv getopt; 
 	oflagword flags; 
@@ -84,7 +84,7 @@ int main (int argc, char const * argv [])
 		{ 
 			source.read (* getopt.argv ()).enumerate (); 
 		} 
-		getopt++ ; 
+		getopt++; 
 	} 
 	std::exit (0); 
 } 

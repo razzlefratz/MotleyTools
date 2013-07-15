@@ -110,13 +110,13 @@ static signed function (signed c)
 		if ((c == '{') || (c == '(') || (c == '[')) 
 		{ 
 			c = std::cin.get (); 
-			level++ ; 
+			level++; 
 			continue; 
 		} 
 		if ((c == '}') || (c == ')') || (c == ']')) 
 		{ 
 			c = std::cin.get (); 
-			level-- ; 
+			level--; 
 			continue; 
 		} 
 		if (c == '/') 
@@ -156,7 +156,7 @@ static signed function (signed c)
 			} 
 			if (c == '(') 
 			{ 
-				if (! level) 
+				if (!level) 
 				{ 
 					std::strcpy (module, string); 
 				} 
@@ -224,7 +224,7 @@ int main (int argc, char const * argv [])
 		oPUTOPTV_S_FUNNEL, 
 		"print C language call dependencies", 
 		"x\tinvert relationships", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	ogetoptv getopt; 
 	opathspec pathspec; 
@@ -240,7 +240,7 @@ int main (int argc, char const * argv [])
 			break; 
 		} 
 	} 
-	if (! getopt.argc ()) 
+	if (!getopt.argc ()) 
 	{ 
 		function (std::cin.get ()); 
 	} 
@@ -252,7 +252,7 @@ int main (int argc, char const * argv [])
 		{ 
 			c = function (std::cin.get ()); 
 		} 
-		getopt++ ; 
+		getopt++; 
 	} 
 	std::exit (0); 
 } 

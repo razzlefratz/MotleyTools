@@ -101,7 +101,7 @@ int main (int argc, char const * argv [])
 		"r\tprint version number", 
 		"e\tprint file extension", 
 		"x s\tremove extender s [.tar.bz2]", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	ogetoptv getopt; 
 	oflagword flags; 
@@ -132,23 +132,23 @@ int main (int argc, char const * argv [])
 			break; 
 		} 
 	} 
-	if (! getopt.argc ()) 
+	if (!getopt.argc ()) 
 	{ 
 		char pathname [FILENAME_MAX]; 
-		while (! std::cin.getline (pathname, sizeof (pathname)).eof ()) 
+		while (!std::cin.getline (pathname, sizeof (pathname)).eof ()) 
 		{ 
 			std::streamsize length = std::cin.gcount (); 
 			while (isspace (pathname [-- length])) 
 			{ 
 				pathname [length] = (char) (0); 
 			} 
-			function ((char const * ) (pathname), & flags); 
+			function ((char const *) (pathname), & flags); 
 		} 
 	} 
 	while (getopt.argc () && * getopt.argv ()) 
 	{ 
 		function (* getopt.argv (), & flags); 
-		getopt++ ; 
+		getopt++; 
 	} 
 	std::exit (0); 
 } 

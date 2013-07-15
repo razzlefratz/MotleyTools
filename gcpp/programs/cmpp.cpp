@@ -100,7 +100,7 @@ static void process (char const * pathname, char const * command, oflagword * fl
 { 
 	oscantext source; 
 	source.read (pathname); 
-	while (! source.isempty ()) 
+	while (!source.isempty ()) 
 	{ 
 		if (source.flush ().scantoken ().istoken (command)) 
 		{ 
@@ -151,7 +151,7 @@ static void process (char const * pathname, char const * command, oflagword * fl
 				} 
 				if (flags->anyset (CMPP_B_INCLUDE)) 
 				{ 
-					process ((char const * ) (fullpath), command, flags); 
+					process ((char const *) (fullpath), command, flags); 
 				} 
 				source.scanquote (gcsBreak); 
 				source.scanwhile (gcsBreak); 
@@ -289,7 +289,7 @@ int main (int argc, char const * argv [], char const * envp [])
 		"d\tprint definitions on stderr", 
 		"e\tprint expansions on stderr", 
 		"v\tverbose messages", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	ogetoptv getopt; 
 	oflagword flags; 
@@ -334,7 +334,7 @@ int main (int argc, char const * argv [], char const * envp [])
 	while (getopt.argc () && * getopt.argv ()) 
 	{ 
 		process (* getopt.argv (), command, & flags); 
-		getopt++ ; 
+		getopt++; 
 	} 
 	std::exit (0); 
 } 

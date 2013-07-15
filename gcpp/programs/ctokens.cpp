@@ -64,7 +64,7 @@ int main (int argc, char const * argv [])
 		oPUTOPTV_S_FUNNEL, 
 		"print C/C++ language tokens on stdout", 
 		"e\telaborate on tokens with typenames", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	oflagword flags; 
 	oscancode source; 
@@ -91,7 +91,7 @@ int main (int argc, char const * argv [])
 		{ 
 			source.read (* getopt.argv ()).enumerate (); 
 		} 
-		getopt++ ; 
+		getopt++; 
 	} 
 	std::exit (0); 
 } 

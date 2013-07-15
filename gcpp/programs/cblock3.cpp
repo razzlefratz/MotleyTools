@@ -58,7 +58,7 @@ static void function ()
 
 { 
 	oscanfile source; 
-	while (! source.end ()) 
+	while (!source.end ()) 
 	{ 
 		<< << << < HEAD if (source.scantoken ().isspace ()) == == == = source.scantoken (); 
 		if (source.isspace ()) >> >> >> > 6f95020476b52cf467ba9cc9ea46d424fb7d7b40 
@@ -99,7 +99,7 @@ int main (int argc, char const * argv [])
 		"", 
 		oPUTOPTV_S_FUNNEL, 
 		"C Language Block Manger", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	ofileopen fileopen; 
 	opathspec pathspec; 
@@ -113,7 +113,7 @@ int main (int argc, char const * argv [])
 			break; 
 		} 
 	} 
-	if (! getopt.argc ()) 
+	if (!getopt.argc ()) 
 	{ 
 		function (); 
 	} 
@@ -124,7 +124,7 @@ int main (int argc, char const * argv [])
 			function (); 
 			fileopen.close (); 
 		} 
-		getopt++ ; 
+		getopt++; 
 	} 
 	std::exit (0); 
 } 

@@ -69,7 +69,7 @@ int main (int argc, char const * argv [])
 		"organize dependency information", 
 		"n\tneed summary ", 
 		"f\tfeed summary ", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	std::ifstream source; 
 	ogetoptv getopt; 
@@ -91,7 +91,7 @@ int main (int argc, char const * argv [])
 			break; 
 		} 
 	} 
-	if (! getopt.argc ()) 
+	if (!getopt.argc ()) 
 	{ 
 		depend.populate (RELATE_C_SEPARATOR, RELATE_C_TERMINATOR, flags.anyset (RELATE_B_INVERT)); 
 	} 
@@ -104,7 +104,7 @@ int main (int argc, char const * argv [])
 			depend.populate (RELATE_C_SEPARATOR, RELATE_C_TERMINATOR, flags.anyset (RELATE_B_INVERT)); 
 		} 
 		source.close (); 
-		getopt++ ; 
+		getopt++; 
 	} 
 	if (flags.anyset (RELATE_B_REPORT)) 
 	{ 

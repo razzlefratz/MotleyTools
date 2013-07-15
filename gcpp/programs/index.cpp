@@ -75,7 +75,7 @@ int main (int argc, char const * argv [])
 		"s s\tuse CSS2 stylesheet (s)", 
 		"S\tprint CSS2 stylesheet on stdout", 
 		"t s\ttitle string is (s)", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	ogetoptv getopt; 
 	oerror message; 
@@ -107,7 +107,7 @@ int main (int argc, char const * argv [])
 	{ 
 		findspec.fullname (* getopt.argv ()); 
 		page.collect (findspec.pathname (), findspec.filename ()); 
-		getopt++ ; 
+		getopt++; 
 	} 
 	page.publish (columns); 
 	std::exit (0); 

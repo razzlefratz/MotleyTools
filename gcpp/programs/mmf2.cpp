@@ -62,7 +62,7 @@ int main (int argc, char const * argv [])
 		"u\ttargets are utilities ", 
 		"l\ttargets are libraries ", 
 		"p\ttargets are programs ", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	ogetoptv getopt; 
 	omakefile makefile; 
@@ -97,7 +97,7 @@ int main (int argc, char const * argv [])
 	while (getopt.argc () && * getopt.argv ()) 
 	{ 
 		makefile.includefile (* getopt.argv ()); 
-		getopt++ ; 
+		getopt++; 
 	} 
 	makefile.publish (); 
 	std::exit (0); 

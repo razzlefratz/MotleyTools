@@ -69,7 +69,7 @@ int main (int argc, char const * argv [])
 		"p", 
 		oPUTOPTV_S_FILTER, 
 		"C/C++ source code blocker", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	ogetoptv getopt; 
 	oescape escape; 
@@ -86,7 +86,7 @@ int main (int argc, char const * argv [])
 			break; 
 		} 
 	} 
-	if (! getopt.argc ()) 
+	if (!getopt.argc ()) 
 	{ 
 		(object.* method) (std::cin.get ()); 
 	} 
@@ -97,7 +97,7 @@ int main (int argc, char const * argv [])
 			(object.* method) (std::cin.get ()); 
 			fileopen.close (); 
 		} 
-		getopt++ ; 
+		getopt++; 
 	} 
 	std::exit (0); 
 } 

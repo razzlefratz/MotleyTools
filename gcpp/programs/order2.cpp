@@ -78,7 +78,7 @@ int main (int argc, char const * argv [])
 		"s\tprint symbol", 
 		"t\tprint structure", 
 		"x\tinvert order", 
-		(char const * ) (0)
+		(char const *) (0)
 	}; 
 	std::ifstream stream; 
 	ogetoptv getopt; 
@@ -110,7 +110,7 @@ int main (int argc, char const * argv [])
 			break; 
 		} 
 	} 
-	if (! getopt.argc ()) 
+	if (!getopt.argc ()) 
 	{ 
 		graph.populate (ORDER_C_SEPARATOR, ORDER_C_TERMINATOR); 
 	} 
@@ -123,7 +123,7 @@ int main (int argc, char const * argv [])
 			graph.populate (ORDER_C_SEPARATOR, ORDER_C_TERMINATOR); 
 			stream.close (); 
 		} 
-		getopt++ ; 
+		getopt++; 
 	} 
 	graph.discover (); 
 	std::exit (0); 
