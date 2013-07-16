@@ -410,6 +410,11 @@ signed osource::_comment (signed c) const
  *
  *   signed osource::moniker (signed c) const;
  *
+ *   read and write alphanumeric characters and underscore; do not
+ *   call istoken () here because colon and hyphen are treated as
+ *   part of the name and that conflicts with labels, arithmetic
+ *   operators and pointer operators;
+ *
  *--------------------------------------------------------------------*/
 
 signed osource::moniker (signed c) const 
@@ -427,7 +432,7 @@ signed osource::moniker (signed c) const
  *
  *   signed enspace (signed c) const;
  *   
- *   output one space prior to current character;
+ *   insert one space prior to current character;
  *
  *--------------------------------------------------------------------*/
 
