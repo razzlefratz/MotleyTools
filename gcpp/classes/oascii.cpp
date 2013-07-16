@@ -19,6 +19,7 @@
  *   system header files;
  *--------------------------------------------------------------------*/
 
+#include <cstdio>
 #include <climits>
 #include <cstring>
 #include <iostream>
@@ -39,7 +40,7 @@
 #define oASCII_UPPER (1 << 2) 
 #define oASCII_LOWER (1 << 3) 
 #define oASCII_DIGIT (1 << 4) 
-#define oASCII_HEX   (1 << 5) 
+#define oASCII_XDIGIT (1 << 5) 
 #define oASCII_PUNCT (1 << 6) 
 #define oASCII_QUOTE (1 << 7) 
 #define oASCII_UNARY (1 << 8) 
@@ -67,7 +68,7 @@ char const * oascii::mbits [] =
 	"upper", 
 	"lower", 
 	"digit", 
-	"hex", 
+	"xdigit", 
 	"punct", 
 	"quote", 
 	"unary", 
@@ -282,43 +283,43 @@ const unsigned oascii::cmask [] =
 
 /* 048 060 30 [0] */
 
-	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 049 061 31 [1] */
 
-	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 050 062 32 [2] */
 
-	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 051 063 33 [3] */
 
-	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 052 064 34 [4] */
 
-	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 053 065 35 [5] */
 
-	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 054 066 36 [6] */
 
-	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 055 067 37 [7] */
 
-	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 056 070 38 [8] */
 
-	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 057 071 39 [9] */
 
-	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_DIGIT | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 058 072 3A [:] */
 
@@ -350,27 +351,27 @@ const unsigned oascii::cmask [] =
 
 /* 065 101 41 [A] */
 
-	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 066 102 42 [B] */
 
-	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 067 103 43 [C] */
 
-	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 068 104 44 [D] */
 
-	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 069 105 45 [E] */
 
-	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 070 106 46 [F] */
 
-	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_UPPER | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 071 107 47 [G] */
 
@@ -478,27 +479,27 @@ const unsigned oascii::cmask [] =
 
 /* 097 141 61 [a] */
 
-	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 098 142 62 [b] */
 
-	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 099 143 63 [c] */
 
-	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 100 144 64 [d] */
 
-	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 101 145 65 [e] */
 
-	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 102 146 66 [f] */
 
-	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT | oASCII_HEX, 
+	oASCII_LOWER | oASCII_TOKEN | oASCII_IDENT | oASCII_XDIGIT, 
 
 /* 103 147 67 [g] */
 
@@ -1231,7 +1232,7 @@ bool oascii::isdigit (signed c)
 bool oascii::isxdigit (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_HEX))); 
+	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_XDIGIT))); 
 } 
 
 /*====================================================================*
@@ -1504,7 +1505,7 @@ bool oascii::ismatch (signed c, signed o)
 bool oascii::isbreak (signed c) 
 
 { 
-	return ((c == '\0') || (c == '\n') || (c == EOF)); 
+	return ((c == '\0') || (c == '\n') || (c == -1)); 
 } 
 
 /*====================================================================*
@@ -1516,7 +1517,7 @@ bool oascii::isbreak (signed c)
 bool oascii::isbreak (signed c, signed o) 
 
 { 
-	return ((c == o) || (c == '\0') || (c == '\n') || (c == EOF)); 
+	return ((c == o) || (c == '\0') || (c == '\n') || (c == -1)); 
 } 
 
 /*====================================================================*
@@ -1528,7 +1529,7 @@ bool oascii::isbreak (signed c, signed o)
 bool oascii::nobreak (signed c) 
 
 { 
-	return ((c != '\0') && (c != '\n') && (c != EOF)); 
+	return ((c != '\0') && (c != '\n') && (c != -1)); 
 } 
 
 /*====================================================================*
@@ -1540,7 +1541,7 @@ bool oascii::nobreak (signed c)
 bool oascii::nobreak (signed c, signed o) 
 
 { 
-	return ((c != o) && (c != '\0') && (c != '\n') && (c != EOF)); 
+	return ((c != o) && (c != '\0') && (c != '\n') && (c != -1)); 
 } 
 
 /*====================================================================*
