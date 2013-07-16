@@ -52,14 +52,17 @@ public:
 	static bool iscntrl (signed c);
 	static bool isident (signed c);
 	static bool isunary (signed c);
+	static bool isquote (signed c);
 	static bool isarith (signed c);
 	static bool islogic (signed c);
 	static bool isequal (signed c);
 	static bool isgroup (signed c);
 	static bool isbegin (signed c);
 	static bool isclose (signed c);
+	static bool ismoney (signed c);
+	static bool isfract (signed c);
+	static bool isexpon (signed c);
 	static bool iscomma (signed c);
-	static bool isquote (signed c);
 	static bool isblank (signed c);
 	static bool ismatch (signed c, signed o);
 	static bool isbreak (signed c);

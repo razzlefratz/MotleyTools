@@ -51,9 +51,12 @@
 #define oASCII_IDENT (1 << 14) 
 #define oASCII_BEGIN (1 << 15) 
 #define oASCII_CLOSE (1 << 16) 
+#define oASCII_MONEY (1 << 17) 
+#define oASCII_FRACT (1 << 18) 
+#define oASCII_EXPON (1 << 19) 
 
 /*====================================================================*
- *   program variables;
+ *   private variables;
  *--------------------------------------------------------------------*/
 
 char const * oascii::mbits [] = 
@@ -75,7 +78,10 @@ char const * oascii::mbits [] =
 	"token", 
 	"ident", 
 	"begin", 
-	"close"
+	"close",
+	"money",
+	"fract",
+	"expon"
 }; 
 
 const unsigned oascii::cmask [] = 
@@ -228,7 +234,7 @@ const unsigned oascii::cmask [] =
 
 /* 036 044 24 [$] */
 
-	oASCII_PUNCT | oASCII_IDENT, 
+	oASCII_PUNCT | oASCII_IDENT | oASCII_MONEY, 
 
 /* 037 045 25 [%] */
 
@@ -724,387 +730,387 @@ const unsigned oascii::cmask [] =
 
 /* 160 240 A0 [ ] */
 
-	oASCII_NTYPE, 
+	oASCII_SPACE, 
 
 /* 161 241 A1 [¡] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 162 242 A2 [¢] */
 
-	oASCII_NTYPE, 
+	oASCII_MONEY, 
 
 /* 163 243 A3 [£] */
 
-	oASCII_NTYPE, 
+	oASCII_MONEY, 
 
 /* 164 244 A4 [¤] */
 
-	oASCII_NTYPE, 
+	oASCII_MONEY, 
 
 /* 165 245 A5 [¥] */
 
-	oASCII_NTYPE, 
+	oASCII_MONEY, 
 
 /* 166 246 A6 [¦] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 167 247 A7 [§] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 168 250 A8 [¨] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 169 251 A9 [©] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 170 252 AA [ª] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 171 253 AB [«] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 172 254 AC [¬] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 173 255 AD [­] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 174 256 AE [®] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 175 257 AF [¯] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 176 260 B0 [°] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 177 261 B1 [±] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 178 262 B2 [²] */
 
-	oASCII_NTYPE, 
+	oASCII_EXPON, 
 
 /* 179 263 B3 [³] */
 
-	oASCII_NTYPE, 
+	oASCII_EXPON, 
 
 /* 180 264 B4 [´] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 181 265 B5 [µ] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 182 266 B6 [¶] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 183 267 B7 [·] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 184 270 B8 [¸] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 185 271 B9 [¹] */
 
-	oASCII_NTYPE, 
+	oASCII_EXPON, 
 
 /* 186 272 BA [º] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 187 273 BB [»] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 188 274 BC [¼] */
 
-	oASCII_NTYPE, 
+	oASCII_FRACT, 
 
 /* 189 275 BD [½] */
 
-	oASCII_NTYPE, 
+	oASCII_FRACT, 
 
 /* 190 276 BE [¾] */
 
-	oASCII_NTYPE, 
+	oASCII_FRACT, 
 
 /* 191 277 BF [¿] */
 
-	oASCII_NTYPE, 
+	oASCII_PUNCT, 
 
 /* 192 300 C0 [À] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 193 301 C1 [Á] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 194 302 C2 [Â] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 195 303 C3 [Ã] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 196 304 C4 [Ä] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 197 305 C5 [Å] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 198 306 C6 [Æ] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 199 307 C7 [Ç] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 200 310 C8 [È] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 201 311 C9 [É] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 202 312 CA [Ê] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 203 313 CB [Ë] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 204 314 CC [Ì] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 205 315 CD [Í] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 206 316 CE [Î] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 207 317 CF [Ï] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 208 320 D0 [Ð] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 209 321 D1 [Ñ] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 210 322 D2 [Ò] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 211 323 D3 [Ó] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 212 324 D4 [Ô] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 213 325 D5 [Õ] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 214 326 D6 [Ö] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 215 327 D7 [×] */
 
-	oASCII_NTYPE, 
+	oASCII_ARITH, 
 
 /* 216 330 D8 [Ø] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 217 331 D9 [Ù] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 218 332 DA [Ú] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 219 333 DB [Û] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 220 334 DC [Ü] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 221 335 DD [Ý] */
 
-	oASCII_NTYPE, 
+	oASCII_UPPER, 
 
 /* 222 336 DE [Þ] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 223 337 DF [ß] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 224 340 E0 [à] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 225 341 E1 [á] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 226 342 E2 [â] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 227 343 E3 [ã] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 228 344 E4 [ä] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 229 345 E5 [å] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 230 346 E6 [æ] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 231 347 E7 [ç] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 232 350 E8 [è] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 233 351 E9 [é] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 234 352 EA [ê] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 235 353 EB [ë] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 236 354 EC [ì] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 237 355 ED [í] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 238 356 EE [î] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 239 357 EF [ï] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 240 360 F0 [ð] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 241 361 F1 [ñ] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 242 362 F2 [ò] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 243 363 F3 [ó] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 244 364 F4 [ô] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 245 365 F5 [õ] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 246 366 F6 [ö] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 247 367 F7 [÷] */
 
-	oASCII_NTYPE, 
+	oASCII_ARITH, 
 
 /* 248 370 F8 [ø] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 249 371 F9 [ù] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 250 372 FA [ú] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 251 373 FB [û] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 252 374 FC [ü] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 253 375 FD [ý] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 254 376 FE [þ] */
 
-	oASCII_NTYPE, 
+	oASCII_LOWER, 
 
 /* 255 377 FF [ÿ] */
 
-	oASCII_NTYPE
+	oASCII_LOWER, 
 }; 
 
 /*====================================================================*
@@ -1410,6 +1416,42 @@ bool oascii::isclose (signed c)
  *--------------------------------------------------------------------*/
 
 bool oascii::iscomma (signed c) 
+
+{ 
+	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_COMMA))); 
+} 
+
+/*====================================================================*
+ *
+ *   bool ismoney (signed c);
+ *
+ *--------------------------------------------------------------------*/
+
+bool oascii::ismoney (signed c) 
+
+{ 
+	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_COMMA))); 
+} 
+
+/*====================================================================*
+ *
+ *   bool isfract (signed c);
+ *
+ *--------------------------------------------------------------------*/
+
+bool oascii::isfract (signed c) 
+
+{ 
+	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_COMMA))); 
+} 
+
+/*====================================================================*
+ *
+ *   bool isexpon (signed c);
+ *
+ *--------------------------------------------------------------------*/
+
+bool oascii::isexpon (signed c) 
 
 { 
 	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_COMMA))); 
