@@ -51,6 +51,7 @@ public:
 	static bool isgraph (signed c);
 	static bool iscntrl (signed c);
 	static bool isident (signed c);
+	static bool isunary (signed c);
 	static bool isarith (signed c);
 	static bool islogic (signed c);
 	static bool isequal (signed c);
@@ -84,7 +85,7 @@ private:
 	unsigned ctypemask (char const * ctypename) const;
 	static bool isctype (signed c, unsigned short mask);
 	static char const * mbits [];
-	static unsigned short const cmask [];
+	static unsigned const cmask [];
 	static char const * cname [];
 };
 

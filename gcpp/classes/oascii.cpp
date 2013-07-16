@@ -42,14 +42,15 @@
 #define oASCII_HEX   (1 << 5) 
 #define oASCII_PUNCT (1 << 6) 
 #define oASCII_QUOTE (1 << 7) 
-#define oASCII_ARITH (1 << 8) 
-#define oASCII_LOGIC (1 << 9) 
-#define oASCII_EQUAL (1 << 10) 
-#define oASCII_COMMA (1 << 11) 
-#define oASCII_TOKEN (1 << 12) 
-#define oASCII_IDENT (1 << 13) 
-#define oASCII_BEGIN (1 << 14) 
-#define oASCII_CLOSE (1 << 15) 
+#define oASCII_UNARY (1 << 8) 
+#define oASCII_ARITH (1 << 9) 
+#define oASCII_LOGIC (1 << 10) 
+#define oASCII_EQUAL (1 << 11) 
+#define oASCII_COMMA (1 << 12) 
+#define oASCII_TOKEN (1 << 13) 
+#define oASCII_IDENT (1 << 14) 
+#define oASCII_BEGIN (1 << 15) 
+#define oASCII_CLOSE (1 << 16) 
 
 /*====================================================================*
  *   program variables;
@@ -66,6 +67,7 @@ char const * oascii::mbits [] =
 	"hex", 
 	"punct", 
 	"quote", 
+	"unary", 
 	"arith", 
 	"logic", 
 	"equal", 
@@ -76,7 +78,7 @@ char const * oascii::mbits [] =
 	"close"
 }; 
 
-const unsigned short oascii::cmask [] = 
+const unsigned oascii::cmask [] = 
 
 { 
 
@@ -214,7 +216,7 @@ const unsigned short oascii::cmask [] =
 
 /* 033 041 21 [!] */
 
-	oASCII_PUNCT | oASCII_EQUAL, 
+	oASCII_PUNCT | oASCII_UNARY | oASCII_EQUAL, 
 
 /* 034 042 22 ["] */
 
@@ -234,7 +236,7 @@ const unsigned short oascii::cmask [] =
 
 /* 038 046 26 [&] */
 
-	oASCII_PUNCT | oASCII_LOGIC, 
+	oASCII_PUNCT | oASCII_UNARY | oASCII_LOGIC, 
 
 /* 039 047 27 ['] */
 
@@ -250,11 +252,11 @@ const unsigned short oascii::cmask [] =
 
 /* 042 052 2A [*] */
 
-	oASCII_PUNCT | oASCII_ARITH, 
+	oASCII_PUNCT | oASCII_UNARY | oASCII_ARITH, 
 
 /* 043 053 2B [+] */
 
-	oASCII_PUNCT | oASCII_ARITH, 
+	oASCII_PUNCT | oASCII_UNARY | oASCII_ARITH, 
 
 /* 044 054 2C [,] */
 
@@ -262,7 +264,7 @@ const unsigned short oascii::cmask [] =
 
 /* 045 055 2D [-] */
 
-	oASCII_PUNCT | oASCII_ARITH | oASCII_TOKEN, 
+	oASCII_PUNCT | oASCII_UNARY | oASCII_ARITH | oASCII_TOKEN, 
 
 /* 046 056 2E [.] */
 
@@ -586,7 +588,7 @@ const unsigned short oascii::cmask [] =
 
 /* 126 176 7E [~] */
 
-	oASCII_PUNCT | oASCII_LOGIC, 
+	oASCII_PUNCT | oASCII_UNARY | oASCII_LOGIC, 
 
 /* 127 177 7F DEL */
 
@@ -1308,6 +1310,18 @@ bool oascii::isquote (signed c)
 
 { 
 	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_QUOTE))); 
+} 
+
+/*====================================================================*
+ *
+ *   bool isunary (signed c);
+ *
+ *--------------------------------------------------------------------*/
+
+bool oascii::isunary (signed c) 
+
+{ 
+	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_UNARY))); 
 } 
 
 /*====================================================================*
