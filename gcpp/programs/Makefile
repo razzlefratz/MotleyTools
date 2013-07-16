@@ -19,7 +19,7 @@ TOOLS=ascii calend2 cfm chtml cmpp csstidy ctidy ctokens dnstidy htmltidy index 
 PAGES=cfm.1 ctidy.1 javatidy.1 csstidy.1 htmltidy.1 mptidy.1 phptidy.1
 
 ifeq ($(EXTRA), yes)
-TOOLS=call2 cblock2 cdep2 javatidy mmf2 pkg relate2 defix 
+TOOLS+=call2 cblock2 cdep2 javatidy mmf2 pkg relate2 defix 
 endif
 
 ifeq ($(SYSTEM),Linux)
