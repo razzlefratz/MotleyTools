@@ -1923,8 +1923,10 @@ void oascii::enumerate () const
  *
  *   void matrix () const;
  *
- *   print a character classification matrix on stdout suitable for
- *   input to program matrix which can print an HTML;
+ *   print character classification matrix on stdout where output is
+ *   suitable for input to program matrix; wrap characters in quotes
+ *   so that program matrix will detect and handle escape sequences; 
+ *   replace selected characters with ISO glpyh names for HTML use;
  *
  *--------------------------------------------------------------------*/
 
