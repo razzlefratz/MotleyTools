@@ -30,7 +30,7 @@
  *   be enough; or use our getoptv.h as an alternative; or you can add the
  *   following declarations in a header file, somwhere:
  *
- *    extern char *optarg;
+ *    extern char * optarg;
  *    extern int optopt;
  *    extern int optind;
  *    extern int opterr;
@@ -294,6 +294,7 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 			}
 		}
 		this->mstring = (char *) (0);
+		oversion::program (program_name);
 		if (this->margc == this->moptmin) 
 		{
 			oputoptv::putoptv (optv);
