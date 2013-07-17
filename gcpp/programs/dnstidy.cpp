@@ -175,10 +175,10 @@ int main (int argc, char const * argv [])
 #if 0
 
 		case 'm': 
-			tidy.margin (escape.unescape ((char *)(getopt.args ()))); 
+			tidy.margin (escape.unescape ((char *) (getopt.args ()))); 
 			break; 
 		case 'o': 
-			tidy.offset (escape.unescape ((char *)(getopt.args ()))); 
+			tidy.offset (escape.unescape ((char *) (getopt.args ()))); 
 			break; 
 		case 's': 
 			tidy.offset ("   "); 

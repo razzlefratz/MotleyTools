@@ -134,11 +134,11 @@ static signed function (signed c)
 			char * sp = string; 
 			do 
 			{ 
-				* sp++ = (char)(c); 
+				* sp++ = (char) (c); 
 				c = std::cin.get (); 
 			} 
 			while (isalnum (c) || (c == '_')); 
-			* sp = (char)(0); 
+			* sp = (char) (0); 
 
 #if 1
 

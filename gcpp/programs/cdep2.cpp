@@ -239,7 +239,7 @@ int main (int argc, char const * argv [])
 	} 
 	while (!odepend::queue.empty ()) 
 	{ 
-		odepend::nodes.store ((char *)(odepend::queue.head ()->data ())); 
+		odepend::nodes.store ((char *) (odepend::queue.head ()->data ())); 
 		function ((char *) (odepend::queue.head () ->data ()), length, & flags); 
 		odepend::queue.remove (); 
 	} 

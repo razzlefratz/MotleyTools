@@ -115,7 +115,7 @@ int main (int argc, char const * argv [])
 	octidy object; 
 	signed (octidy::* method) (signed) = & octidy::charlie; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getopt.getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

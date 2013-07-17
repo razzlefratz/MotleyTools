@@ -88,10 +88,10 @@ int main (int argc, char const * argv [])
 			object.record (""); 
 			break; 
 		case 'm': 
-			object.margin (escape.unescape ((char *)(getopt.args ()))); 
+			object.margin (escape.unescape ((char *) (getopt.args ()))); 
 			break; 
 		case 'o': 
-			object.offset (escape.unescape ((char *)(getopt.args ()))); 
+			object.offset (escape.unescape ((char *) (getopt.args ()))); 
 			break; 
 		case 's': 
 			object.offset ("   "); 

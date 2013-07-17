@@ -90,11 +90,11 @@ int main (int argc, char const * argv [])
 	} 
 	if (getopt.argc ()) 
 	{ 
-		if ((section == (char *)(0)) || (* section == (char)(0))) 
+		if ((section == (char *) (0)) || (* section == (char) (0))) 
 		{ 
 			oerror::error (1, EINVAL, "No profile section specified"); 
 		} 
-		if ((element == (char *)(0)) || (* element == (char)(0))) 
+		if ((element == (char *) (0)) || (* element == (char) (0))) 
 		{ 
 			oerror::error (1, EINVAL, "No section element specified"); 
 		} 

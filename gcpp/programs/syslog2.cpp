@@ -170,9 +170,9 @@ int main (int argc, char const * argv [])
 		char const * sp = * getopt.argv (); 
 		while (* sp) 
 		{ 
-			if ((unsigned)(bp - message) < (sizeof (message)- 1)) 
+			if ((unsigned) (bp - message) < (sizeof (message) - 1)) 
 			{ 
 				* bp++ = * sp++; 
 			} 
 		} 
-		* bp++ = (* getopt.argv ()? ' ': (char) (0); getopt++; } msyslog.syslog (priority, "%s", message); return (0); } 
+		* bp++ = (* getopt.argv ()? ' ': (char) (0); getopt++; } msyslog.syslog (priority, "%s", message); return (0); }  
