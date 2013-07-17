@@ -52,7 +52,7 @@ int main (int argc, char const * argv [])
 	static char const * optv [] = 
 	{ 
 		"em", 
-		oPUTOPTV_S_FILTER, 
+		oPUTOPTV_S_DIVINE, 
 		"display character classes", 
 		"e\tenumerate classes on stdout", 
 		"m\tprint class matrix on stdout", 
