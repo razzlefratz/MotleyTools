@@ -516,12 +516,18 @@ signed osource::despace (signed c) const
 	} 
 	else if (oascii::isalpha (c) || (c == '_')) 
 	{ 
-		c = osource::moniker (c); 
+		do { c = osource::feed (c); } while (oascii::isalnum (c) || (c == '_'));
+		c = osource::enspace (c); 
+	} 
+	else if (oascii::isdigit (c)) 
+	{ 
+		do { c = osource::feed (c); } while (oascii::isalnum (c) || (c == '.'));
 		c = osource::enspace (c); 
 	} 
 	else if (oascii::isquote (c)) 
 	{ 
 		c = osource::literal (c); 
+		c = osource::enspace (c); 
 	} 
 	else if (c == '\\') 
 	{ 
