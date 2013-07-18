@@ -295,7 +295,7 @@ int main (int argc, char const * argv [], char const * envp [])
 	oflagword flags; 
 	char const * command = CMPP_S_COMMAND; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getopt.getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

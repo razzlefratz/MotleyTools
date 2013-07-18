@@ -78,7 +78,7 @@ int main (int argc, char const * argv [])
 	oprogram object; 
 	signed (oprogram::* method) (signed) = & oprogram::css2; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getopt.getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

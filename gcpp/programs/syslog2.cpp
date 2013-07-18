@@ -112,7 +112,7 @@ int main (int argc, char const * argv [])
 	char const * identity = getlogin (); 
 	priority_t priority = SYSLOG_USER | SYSLOG_INFO; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getopt.getoptv (argc, argv, optv))) 
 	{ 
 		switch ((char) (c)) 
 		{ 

@@ -62,7 +62,7 @@ int main (int argc, char const * argv [])
 	unsigned year = 1900 + tm->tm_year; 
 	signed month = tm->tm_mon; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getopt.getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

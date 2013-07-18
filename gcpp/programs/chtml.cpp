@@ -89,7 +89,7 @@ int main (int argc, char const * argv [])
 	ochtml page (STYLESHEET); 
 	ogetoptv getopt; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getopt.getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 
