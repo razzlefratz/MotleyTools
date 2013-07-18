@@ -397,7 +397,7 @@ int main (int argc, char const * argv [])
 	page->file = HTML_PATH; 
 	page->path = HTML_PATH; 
 	page->name = HTML_NAME; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

@@ -312,7 +312,7 @@ int main (int argc, char const * argv [])
 	void (* output) (int, char const *, off_t, byte const *, signed) = dump; 
 	flag_t flags = (flag_t)(0); 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

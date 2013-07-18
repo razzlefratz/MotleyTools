@@ -159,7 +159,7 @@ int main (int argc, char const * argv [])
 	char start = SBAR_START; 
 	char space = SBAR_SPACE; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

@@ -370,7 +370,7 @@ int main (int argc, char const * argv [])
 	}; 
 	flag_t flags = GROPE_B_RECORD; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

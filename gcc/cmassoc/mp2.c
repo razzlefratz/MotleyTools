@@ -344,7 +344,7 @@ int main (int argc, char const * argv [])
 	flag_t flags; 
 	signed c; 
 	strftime (buffer, sizeof (buffer), MP_PUBLISH, localtime (& now)); 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

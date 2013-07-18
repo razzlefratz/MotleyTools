@@ -184,7 +184,7 @@ int main (int argc, char const * argv [])
 	flag_t flags = (flag_t) (0); 
 	signed c; 
 	for (extender = extenders; * extender != (char const *) (0); extender++); 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

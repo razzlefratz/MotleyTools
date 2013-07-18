@@ -111,7 +111,7 @@ int main (int argc, char const * argv [])
 	lines--; 
 	lines--; 
 	width--; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

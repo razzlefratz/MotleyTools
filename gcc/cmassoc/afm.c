@@ -192,7 +192,7 @@ int main (int argc, char const * argv [])
 	signed c; 
 	tabset (10, 0); 
 	tabset (16, 1); 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

@@ -61,7 +61,7 @@ int main (int argc, char const * argv [])
 	char o = '#'; 
 	size_t width = 78; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

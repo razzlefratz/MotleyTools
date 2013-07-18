@@ -63,7 +63,7 @@ int main (int argc, char const * argv [])
 	char machine [1024] = ""; 
 	char network [1024] = ""; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

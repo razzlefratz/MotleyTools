@@ -70,7 +70,7 @@ int main (int argc, char const * argv [])
 		(char const *)(0)
 	}; 
 	TREE * node = (TREE *)(0); 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

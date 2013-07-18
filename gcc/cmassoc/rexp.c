@@ -77,7 +77,7 @@ int main (int argc, char const * argv [])
 	char const * sp; 
 	char const * cp; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

@@ -176,7 +176,7 @@ int main (int argc, char const * argv [])
 	size_t width = WIDTH; 
 	size_t count = COUNT; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

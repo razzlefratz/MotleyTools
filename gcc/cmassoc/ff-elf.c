@@ -353,7 +353,7 @@ int main (int argc, char const * argv [])
 	char const ** folder = (char const **) (0); 
 	flag_t flags = (flag_t) (0); 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

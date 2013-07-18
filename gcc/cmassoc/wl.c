@@ -143,7 +143,7 @@ int main (int argc, char const * argv [])
 	memset (table, 0, sizeof (table)); 
 	charset (CHRLIB_WORDSET, (char) (0), words, sizeof (words)); 
 	chrdef (table, words); 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

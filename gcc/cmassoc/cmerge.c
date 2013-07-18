@@ -183,7 +183,7 @@ int main (int argc, char const * argv [])
 	size_t length = TEXTLINE_MAX; 
 	time_t now; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch ((char)(c)) 
 		{ 

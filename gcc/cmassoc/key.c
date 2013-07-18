@@ -167,7 +167,7 @@ int main (int argc, char const * argv [])
 	signed fd; 
 	flag_t flags = KEY_ADVANCE; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

@@ -209,7 +209,7 @@ int main (int argc, char const * argv [])
 	flag_t options = (flag_t) (0); 
 	file_t fd = (file_t) (- 1); 
 	int c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 
