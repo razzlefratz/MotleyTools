@@ -63,7 +63,7 @@ oinclude & oinclude::state (signed state)
 
 /*====================================================================*
  *
- *   oinclude & filename (char const *string);
+ *   oinclude & filename (char const * string);
  *   
  *   set include guard title to the basename portion of the filename
  *   string; 
@@ -108,7 +108,7 @@ char const * oinclude::title (void) const
 
 /*====================================================================*
  *
- *   oinclude & title (char const *title);
+ *   oinclude & title (char const * title);
  *
  *   set include guard title if different from previous label;
  *
@@ -117,7 +117,7 @@ char const * oinclude::title (void) const
 oinclude & oinclude::title (char const * title) 
 
 {
-	this->mtitle = oinclude::replace (this->mtitle, title);
+	this->mtitle = otext::replace (this->mtitle, title);
 	return (* this);
 }
 
@@ -137,7 +137,7 @@ char const * oinclude::label (void) const
 
 /*====================================================================*
  *
- *   oinclude & label (char const *label);
+ *   oinclude & label (char const * label);
  *
  *   set include guard label if different from previous label;
  *
@@ -146,7 +146,7 @@ char const * oinclude::label (void) const
 oinclude & oinclude::label (char const * label) 
 
 {
-	this->mclass = oinclude::replace (this->mclass, label);
+	this->mclass = otext::replace (this->mclass, label);
 	return (* this);
 }
 
@@ -210,7 +210,7 @@ oinclude::oinclude (char const * title, char const * label)
 
 /*====================================================================*
  *
- *   oinclude()
+ *   oinclude (void)
  *
  *--------------------------------------------------------------------*/
 
@@ -225,15 +225,11 @@ oinclude::oinclude ()
 
 /*====================================================================*
  *
- *   ~oinclude()
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
+ *   ~oinclude (void)
  *
  *--------------------------------------------------------------------*/
 
-oinclude::~oinclude () 
+oinclude::~oinclude (void) 
 
 {
 	delete [] this->mtitle;

@@ -84,8 +84,8 @@ bool ofileopen::opensave (char const * filespec, char const * extender)
  *
  *   bool openedit (char const *filespec);
  *
- *   open the named file as stdout and create a backup file having a
- *   numeric file extension; 
+ *   open the named file as stdout; create backup file having numeric 
+ *   file extension; 
  *
  *--------------------------------------------------------------------*/
 
