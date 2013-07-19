@@ -121,7 +121,7 @@ signed octidy::program (signed c)
 		c = octidy::statement (c); 
 		oindent::space (2); 
 	} 
-	oindent::endline (1); 
+	oindent::endline (); 
 	oinclude::footer (); 
 	return (c); 
 } 
@@ -212,7 +212,7 @@ signed octidy::atheros (signed c)
 		c = octidy::statement (c); 
 		oindent::space (2); 
 	} 
-	oindent::endline (1); 
+	oindent::endline (); 
 	oinclude::footer (); 
 	return (c); 
 } 
@@ -309,7 +309,7 @@ signed octidy::charlie (signed c)
 		c = octidy::statement (c); 
 		oindent::space (2); 
 	} 
-	oindent::endline (1); 
+	oindent::endline (); 
 	oinclude::footer (); 
 	return (c); 
 } 
