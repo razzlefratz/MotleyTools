@@ -52,11 +52,7 @@ signed octidy::program (signed c)
 		{ 
 			oindent::endline (); 
 			oinclude::header (); 
-			do 
-			{ 
-				c = osource::command (c, '\n'); 
-			} 
-			while (c == '#'); 
+			do { c = osource::command (c, '\n'); } while (c == '#'); 
 			oindent::space (1); 
 			continue; 
 		} 
@@ -121,7 +117,7 @@ signed octidy::program (signed c)
 		c = octidy::statement (c); 
 		oindent::space (2); 
 	} 
-	oindent::endline (1); 
+	oindent::endline (); 
 	oinclude::footer (); 
 	return (c); 
 } 
@@ -212,7 +208,7 @@ signed octidy::atheros (signed c)
 		c = octidy::statement (c); 
 		oindent::space (2); 
 	} 
-	oindent::endline (1); 
+	oindent::endline (); 
 	oinclude::footer (); 
 	return (c); 
 } 
@@ -309,7 +305,7 @@ signed octidy::charlie (signed c)
 		c = octidy::statement (c); 
 		oindent::space (2); 
 	} 
-	oindent::endline (1); 
+	oindent::endline (); 
 	oinclude::footer (); 
 	return (c); 
 } 
@@ -422,7 +418,7 @@ signed octidy::context (signed c, signed o, signed e) const
 	c = osource::feed (c); 
 	c = osource::find (c); 
 	c = octidy::_context (c, o, e); 
-	c = osource::feed (c); 
+	c = osource::feed (e); 
 	return (c); 
 } 
 
@@ -432,7 +428,7 @@ signed octidy::_context (signed c, signed o, signed e) const
 	while ((c != e) && (c != EOF)) 
 	{ 
 		c = octidy::_context (c, o); 
-		c = osource::feed (c); 
+		c = osource::feed (o); 
 	} 
 	return (c); 
 } 
@@ -449,7 +445,7 @@ signed octidy::context (signed c, signed e) const
 	c = osource::feed (c); 
 	c = osource::find (c); 
 	c = octidy::_context (c, e); 
-	c = osource::feed (c); 
+	c = osource::feed (e); 
 	return (c); 
 } 
 

@@ -259,9 +259,7 @@ signed osource::context (signed c) const
 signed osource::command (signed c) const 
 
 { 
-	c = osource::feed (c); 
-	c = osource::_command (c, '\n'); 
-	c = osource::feed (c); 
+	c = osource::command (c, '\n'); 
 	return (c); 
 } 
 
@@ -270,7 +268,7 @@ signed osource::command (signed c, signed e) const
 { 
 	c = osource::feed (c); 
 	c = osource::_command (c, e); 
-	c = osource::feed (c); 
+	c = osource::feed (e); 
 	return (c); 
 } 
 
@@ -316,7 +314,7 @@ signed osource::literal (signed c, signed e) const
 { 
 	c = osource::feed (c); 
 	c = osource::_literal (c, e); 
-	c = osource::feed (c); 
+	c = osource::feed (e); 
 	return (c); 
 } 
 
