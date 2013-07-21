@@ -735,7 +735,7 @@ signed osource::escaped (signed c) const
 signed osource::feed (signed c) const 
 
 { 
-	if ((c) && (c != EOF)) 
+	if ((c != NUL) && (c != EOF)) 
 	{ 
 		std::cout.put (c); 
 	} 

@@ -261,7 +261,7 @@ char const * oindent::record (void) const
 
 /*====================================================================*
  *   
- *   oindent & std::endline (char const *finish, char const *record, signed space);
+ *   oindent & std::endline (char const * finish, char const * record, signed space);
  *   
  *   output the finish string followed by count record strings;
  *   
@@ -290,9 +290,9 @@ oindent & oindent::endline (char const * finish, char const * record, signed spa
 
 /*====================================================================*
  *   
- *   oindent & newline (char const *margin, char const *indent, signed level)
+ *   oindent & newline (char const * margin, char const * offset, signed level)
  *   
- *   output the margin string followed by count indent strings;
+ *   output the margin string followed by level offset strings;
  *   
  *--------------------------------------------------------------------*/
 
@@ -310,10 +310,10 @@ oindent & oindent::newline (signed level)
 	return (* this);
 }
 
-oindent & oindent::newline (char const * margin, char const * indent, signed level) 
+oindent & oindent::newline (char const * margin, char const * offset, signed level) 
 
 {
-	oindent::print (margin, indent, level);
+	oindent::print (margin, offset, level);
 	return (* this);
 }
 
@@ -345,6 +345,7 @@ void oindent::print (char const * prefix, char const * suffix, signed count)
 
 {
 	for (std::cout << prefix; count-- > 0; std::cout << suffix);
+	std::cout.flush ();
 	return;
 }
 
