@@ -24,36 +24,37 @@
 #include "../tools/types.h"
 #include "../tools/flags.h"
 
-char const *syslog_decode (int priority) 
+char const * syslog_decode (int priority) 
 
-{
-	extern const struct _code_ syslog_facility_codes [];
-	extern const struct _code_ syslog_severity_codes [];
-	const struct _code_ *facility;
-	const struct _code_ *severity;
-	static char buffer [SYSLOG_SEVERITY_MAX] = "";
-	if (priority == -1) 
-	{
-		return (buffer);
-	}
+{ 
+	extern const struct _code_ syslog_facility_codes []; 
+	extern const struct _code_ syslog_severity_codes []; 
+	const struct _code_ * facility; 
+	const struct _code_ * severity; 
+	static char buffer [SYSLOG_SEVERITY_MAX] = ""; 
+	if (priority == - 1) 
+	{ 
+		return (buffer); 
+	} 
 	for (facility = syslog_facility_codes; facility->name != (char *) (0); facility++) 
-	{
+	{ 
 		if (facility->code == (priority & SYSLOG_FACILITY_MASK)) 
-		{
-			break;
-		}
-	}
+		{ 
+			break; 
+		} 
+	} 
 	for (severity = syslog_severity_codes; severity->name != (char *) (0); severity++) 
-	{
+	{ 
 		if (severity->code == (priority & SYSLOG_SEVERITY_MASK)) 
-		{
-			break;
-		}
-	}
-	snprintf (buffer, sizeof (buffer), "%s%c%s", facility->name, SYSLOG_EXTENDER, severity->name);
-	return (buffer);
-}
-
+		{ 
+			break; 
+		} 
+	} 
+	snprintf (buffer, sizeof (buffer), "%s%c%s", facility->name, SYSLOG_EXTENDER, severity->name); 
+	return (buffer); 
+} 
 
 #endif
+
+
 

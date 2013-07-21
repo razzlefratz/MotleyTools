@@ -25,29 +25,28 @@
 
 size_t strfpri (char buffer [], size_t length, flag_t option) 
 
-{
-	extern const struct _code_ syslog_facility_codes [];
-	extern const struct _code_ syslog_severity_codes [];
-	const struct _code_ *facility;
-	const struct _code_ *priority;
+{ 
+	extern const struct _code_ syslog_facility_codes []; 
+	extern const struct _code_ syslog_severity_codes []; 
+	const struct _code_ * facility; 
+	const struct _code_ * priority; 
 	for (facility = syslog_facility_codes; facility->name != (char *) (0); facility++) 
-	{
+	{ 
 		if (facility->code == (option & SYSLOG_FACILITY_MASK)) 
-		{
-			break;
-		}
-	}
+		{ 
+			break; 
+		} 
+	} 
 	for (priority = syslog_severity_codes; priority->name != (char *) (0); priority++) 
-	{
+	{ 
 		if (priority->code == (option & SYSLOG_SEVERITY_MASK)) 
-		{
-			break;
-		}
-	}
-	length = snprintf (buffer, length, "%s%c%s", facility->name, SYSLOG_EXTENDER, priority->name);
-	return (length);
-}
-
+		{ 
+			break; 
+		} 
+	} 
+	length = snprintf (buffer, length, "%s%c%s", facility->name, SYSLOG_EXTENDER, priority->name); 
+	return (length); 
+} 
 
 #endif
 

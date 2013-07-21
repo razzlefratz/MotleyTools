@@ -30,42 +30,43 @@
  *  syslog facility name by facility code; 
  *--------------------------------------------------------------------*/
 
-char const *syslog_facility_names [SYSLOG_FACILITIES+2] = 
+char const * syslog_facility_names [SYSLOG_FACILITIES +2] = 
 
-{
-	"kern",
-	"user",
-	"mail",
-	"daemon",
-	"auth",
-	"syslog",
-	"lpr",
-	"news",
-	"uucp",
-	"cron",
-	"authpriv",
-	"ftp",
-	"(n/a)",
-	"(n/a)",
-	"(n/a)",
-	"(n/a)",
-	"local0",
-	"local1",
-	"local2",
-	"local3",
-	"local4",
-	"local5",
-	"local6",
-	"local7",
-	"mark",
-	"*",
-	(char const *)(0)
-};
-
+{ 
+	"kern", 
+	"user", 
+	"mail", 
+	"daemon", 
+	"auth", 
+	"syslog", 
+	"lpr", 
+	"news", 
+	"uucp", 
+	"cron", 
+	"authpriv", 
+	"ftp", 
+	"(n/a)", 
+	"(n/a)", 
+	"(n/a)", 
+	"(n/a)", 
+	"local0", 
+	"local1", 
+	"local2", 
+	"local3", 
+	"local4", 
+	"local5", 
+	"local6", 
+	"local7", 
+	"mark", 
+	"*", 
+	(char const *) (0)
+}; 
 
 /*====================================================================*
  *   
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

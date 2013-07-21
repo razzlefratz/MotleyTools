@@ -124,7 +124,9 @@
 #include <string.h>
 #include <stdio.h>
 #include <errno.h>
-#include <error.h>
+
+// #include <error.h>
+
 #include <netdb.h>
 #include <sys/wait.h>
 #if defined(__linux__)
@@ -145,6 +147,7 @@
 #include "../tools/version.h"
 #include "../tools/tools.h"
 #include "../tools/flags.h"
+#include "../tools/error.h"
 #include "../tools/paths.h"
 #include "../linux/linux.h"
 #include "../linux/pidfile.h"
@@ -210,126 +213,125 @@
  *   program variables (public);
  *--------------------------------------------------------------------*/
 
-flag_t state = (flag_t) (SYSLOGD_STATE);
-time_t timer = (time_t) (SYSLOGD_TIMER);
-char const *host_name = "localhost";
-char const *domain_name = "";
-char const *cfgfile = _PATH_SYSLOG_CONF;
-char const *pidfile = _PATH_SYSLOGD_PID;
-char const *mapfile = (char const *) (0);
+flag_t state = (flag_t) (SYSLOGD_STATE); 
+time_t timer = (time_t) (SYSLOGD_TIMER); 
+char const * host_name = "localhost"; 
+char const * domain_name = ""; 
+char const * cfgfile = _PATH_SYSLOG_CONF; 
+char const * pidfile = _PATH_SYSLOGD_PID; 
+char const * mapfile = (char const *) (0); 
 
 #ifdef SYSLOGD_INETAF
 
-char const **ourhosts = (char const **) (0);
-char const **ourdomains = (char const **) (0);
+char const ** ourhosts = (char const **) (0); 
+char const ** ourdomains = (char const **) (0); 
 
 #endif
 
-static sig_atomic_t loop = true;
-static struct sigaction sighup;
-static struct sigaction sigquit;
-static struct sigaction sigterm;
-static struct sigaction sigalrm;
-static struct sigaction sigchld;
-static struct sigaction sigusr1;
+static sig_atomic_t loop = true; 
+static struct sigaction sighup; 
+static struct sigaction sigquit; 
+static struct sigaction sigterm; 
+static struct sigaction sigalrm; 
+static struct sigaction sigchld; 
+static struct sigaction sigusr1; 
 static struct sockaddr_un unixsock_addr = 
 
-{
-	AF_UNIX,
+{ 
+	AF_UNIX, 
 	_PATH_SYSLOG
-};
+}; 
 
 static struct sockaddr_in inetsock_addr = 
 
-{
-	AF_INET,
-	SYSLOGD_SERVICE_PORT,
-	{
+{ 
+	AF_INET, 
+	SYSLOGD_SERVICE_PORT, 
+	{ 
 		INADDR_ANY
-	}
-};
+	} 
+}; 
 
 static struct socket unixsock = 
 
-{
-	&unixsock,
-	&unixsock,
-	(file_t) (-1),
-	(size_t) (sizeof (unixsock_addr)),
-	(struct sockaddr *)(&unixsock_addr),
-	(char *)(0)
-};
+{ 
+	& unixsock, 
+	& unixsock, 
+	(file_t) (- 1), 
+	(size_t) (sizeof (unixsock_addr)), 
+	(struct sockaddr *) (& unixsock_addr), 
+	(char *) (0)
+}; 
 
 struct socket inetsock = 
 
-{
-	&inetsock,
-	&inetsock,
-	(file_t) (-1),
-	(size_t) (sizeof (inetsock_addr)),
-	(struct sockaddr *)(&inetsock_addr),
-	(char *)(0)
-};
+{ 
+	& inetsock, 
+	& inetsock, 
+	(file_t) (- 1), 
+	(size_t) (sizeof (inetsock_addr)), 
+	(struct sockaddr *) (& inetsock_addr), 
+	(char *) (0)
+}; 
 
 struct syslogd syslogs = 
 
-{
-	&syslogs,
-	&syslogs,
-	SYSLOGD_TYPE_CONSOLE,
-	_PATH_CONSOLE,
-	(size_t) (0),
-	(file_t) (-1),
-	(time_t) (0),
-	(flag_t) (0),
-	(struct sockaddr_in *)(0),
-	{
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0),
-		(severity_t)(0)
-	},
-	"",
+{ 
+	& syslogs, 
+	& syslogs, 
+	SYSLOGD_TYPE_CONSOLE, 
+	_PATH_CONSOLE, 
+	(size_t) (0), 
+	(file_t) (- 1), 
+	(time_t) (0), 
+	(flag_t) (0), 
+	(struct sockaddr_in *) (0), 
+	{ 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0), 
+		(severity_t) (0)
+	}, 
+	"", 
 
 #if SYSLOGD_ORIGIN
 
-	"",
+	"", 
 
 #endif
 #if SYSLOGD_NATURE
 
-	"",
+	"", 
 
 #endif
 
-	"",
-	(size_t) (0),
-	(size_t) (0),
-	(size_t) (0),
-	(size_t) (0),
-};
-
+	"", 
+	(size_t) (0), 
+	(size_t) (0), 
+	(size_t) (0), 
+	(size_t) (0), 
+}; 
 
 /*====================================================================*
  *   
@@ -345,23 +347,22 @@ struct syslogd syslogs =
 
 void syslogd_sighup (signo_t number) 
 
-{
-	extern flag_t state;
-	extern struct syslogd syslogs;
-	extern char const *cfgfile;
-	extern char const *mapfile;
-	syslogd_stop (&syslogs, state);
-	syslogd_start (&syslogs, state, cfgfile);
+{ 
+	extern flag_t state; 
+	extern struct syslogd syslogs; 
+	extern char const * cfgfile; 
+	extern char const * mapfile; 
+	syslogd_stop (& syslogs, state); 
+	syslogd_start (& syslogs, state, cfgfile); 
 
 #ifdef SYSLOGD_REPORT
 
-	syslogd_admin (&syslogs, state, mapfile);
+	syslogd_admin (& syslogs, state, mapfile); 
 
 #endif
 
-	return;
-}
-
+	return; 
+} 
 
 /*====================================================================*
  *   
@@ -379,18 +380,17 @@ void syslogd_sighup (signo_t number)
 
 void syslogd_sigalrm (signo_t number) 
 
-{
-	extern time_t timer;
-	static size_t index = 0;
-	syslogd_print (SYSLOG_MARK|SYSLOG_INFO, "--- MARK %06d ---", index++);
+{ 
+	extern time_t timer; 
+	static size_t index = 0; 
+	syslogd_print (SYSLOG_MARK | SYSLOG_INFO, "--- MARK %06d ---", index++); 
 	if (timer) 
-	{
-		time_t clock = time (&clock);
-		alarm (timer - clock % timer);
-	}
-	return;
-}
-
+	{ 
+		time_t clock = time (& clock); 
+		alarm (timer - clock % timer); 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -406,10 +406,9 @@ void syslogd_sigalrm (signo_t number)
 
 void syslogd_sigusr1 (signo_t number) 
 
-{
-	return;
-}
-
+{ 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -429,12 +428,11 @@ void syslogd_sigusr1 (signo_t number)
 
 void syslogd_sigchld (signo_t number) 
 
-{
-	signed status;
-	while (waitpid ((pid_t) (0), &status, WNOHANG) > 0);
-	return;
-}
-
+{ 
+	signed status; 
+	while (waitpid ((pid_t) (0), & status, WNOHANG) > 0); 
+	return; 
+} 
 
 /*====================================================================*
  *   
@@ -454,10 +452,9 @@ void syslogd_sigchld (signo_t number)
 
 void syslogd_sigquit (signo_t number) 
 
-{
-	exit (0);
-}
-
+{ 
+	exit (0); 
+} 
 
 /*====================================================================*
  *   
@@ -476,12 +473,11 @@ void syslogd_sigquit (signo_t number)
 
 void syslogd_sigterm (signo_t number) 
 
-{
-	extern sig_atomic_t loop;
-	loop = 0;
-	return;
-}
-
+{ 
+	extern sig_atomic_t loop; 
+	loop = 0; 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -494,13 +490,13 @@ void syslogd_sigterm (signo_t number)
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const *argv []) 
+int main (int argc, char const * argv []) 
 
-{
-	extern char const *host_name;
-	extern char const *domain_name;
-	static char const *optv [] = 
-	{
+{ 
+	extern char const * host_name; 
+	extern char const * domain_name; 
+	static char const * optv [] = 
+	{ 
 		"a:df:" 
 
 #ifdef SYSLOGD_INETAF
@@ -517,57 +513,57 @@ int main (int argc, char const *argv [])
 
 #endif
 
-		"xvw:",
-		"System Logging Daemon",
-		"a s\tadd unix socket path s",
-		"d\trun as daemon (background)",
-		"f s\tuse configuration file s [" _PATH_SYSLOG_CONF "]",
+		"xvw:", 
+		"System Logging Daemon", 
+		"a s\tadd unix socket path s", 
+		"d\trun as daemon (background)", 
+		"f s\tuse configuration file s [" _PATH_SYSLOG_CONF "]", 
 
 #ifdef SYSLOGD_INETAF
 
-		"h\tforward messages to other hosts",
-		"i n\tadd inet socket on port n",
-		"l s\tlist of hostnames separated by ':'",
+		"h\tforward messages to other hosts", 
+		"i n\tadd inet socket on port n", 
+		"l s\tlist of hostnames separated by ':'", 
 
 #endif
 
-		"m nn\tmark internal is nn[s|S|m|M|h|H]",
-		"n\trun as normal program (foreground)",
-		"o s\toutput file is s",
-		"p s\tlocal log device path is s [" _PATH_SYSLOG "]",
+		"m nn\tmark internal is nn[s|S|m|M|h|H]", 
+		"n\trun as normal program (foreground)", 
+		"o s\toutput file is s", 
+		"p s\tlocal log device path is s [" _PATH_SYSLOG "]", 
 
 #ifdef SYSLOGD_UNIXAF
 
-		"r\treceive messages from other hosts",
-		"s s\tdomain list is s",
+		"r\treceive messages from other hosts", 
+		"s s\tdomain list is s", 
 
 #endif
 
-		"v\tdisplay version and exit",
-		"w n\twait n seconds for klogd to start",
-		"x\tnot implemented",
+		"v\tdisplay version and exit", 
+		"w n\twait n seconds for klogd to start", 
+		"x\tnot implemented", 
 		(char const *) (0)
-	};
+	}; 
 
 #ifdef SYSLOGD_INETAF
 
-	struct servent *servent;
-	struct sockaddr_in *sockaddr_inet;
+	struct servent * servent; 
+	struct sockaddr_in * sockaddr_inet; 
 
 #endif
 #ifdef SYSLOGD_UNIXAF
 
-	struct socket * socket;
-	struct sockaddr_un *sockaddr_unix;
+	struct socket * socket; 
+	struct sockaddr_un * sockaddr_unix; 
 
 #endif
 
-	struct hostent *hostent;
-	char fqdn [HOSTNAME_MAX];
-	time_t delay = SYSLOGD_DELAY_TIME;
-	file_t fd;
-	int c;
-	chdir ("/");
+	struct hostent * hostent; 
+	char fqdn [HOSTNAME_MAX]; 
+	time_t delay = SYSLOGD_DELAY_TIME; 
+	file_t fd; 
+	int c; 
+	chdir ("/"); 
 
 /*--------------------------------------------------------------------*
  * point host_name and domain_name to constant strings; technically,
@@ -576,20 +572,20 @@ int main (int argc, char const *argv [])
  * '.', if present; 
  *--------------------------------------------------------------------*/
 
-	gethostname (fqdn, sizeof (fqdn));
+	gethostname (fqdn, sizeof (fqdn)); 
 	if ((hostent = gethostbyname (fqdn)) != (struct hostent *) (0)) 
-	{
-		strncpy (fqdn, hostent->h_name, sizeof (fqdn));
-	}
-	strlwr (fqdn);
-	for (host_name = domain_name = fqdn; *domain_name != (char) (0); domain_name++) 
-	{
-		if (*domain_name == '.') 
-		{
-			fqdn [domain_name++ - host_name] = (char) (0);
-			break;
-		}
-	}
+	{ 
+		strncpy (fqdn, hostent->h_name, sizeof (fqdn)); 
+	} 
+	strlwr (fqdn); 
+	for (host_name = domain_name = fqdn; * domain_name != (char) (0); domain_name++) 
+	{ 
+		if (* domain_name == '.') 
+		{ 
+			fqdn [domain_name++ - host_name] = (char) (0); 
+			break; 
+		} 
+	} 
 
 #ifdef SYSLOGD_INETAF
 
@@ -599,24 +595,24 @@ int main (int argc, char const *argv [])
  * port number in struct sockaddr_in for global reference;
  *--------------------------------------------------------------------*/
 
-	servent = getservbyname (SYSLOGD_SERVICE_NAME, SYSLOGD_SERVICE_TYPE);
+	servent = getservbyname (SYSLOGD_SERVICE_NAME, SYSLOGD_SERVICE_TYPE); 
 	if (servent == (struct servent *) (0)) 
-	{
-		error (1, ENOTSUP, "The %s %s service is not registered on %s", SYSLOGD_SERVICE_NAME, SYSLOGD_SERVICE_TYPE, host_name);
-	}
+	{ 
+		error (1, ENOTSUP, "The %s %s service is not registered on %s", SYSLOGD_SERVICE_NAME, SYSLOGD_SERVICE_TYPE, host_name); 
+	} 
 	if (servent != (struct servent *) (0)) 
-	{
-		inetsock_addr.sin_port = servent->s_port;
-	}
+	{ 
+		inetsock_addr.sin_port = servent->s_port; 
+	} 
 
 #endif
 
-	optind = 1;
-	opterr = 1;
-	while ((c = getoptv (argc, argv, optv)) != -1) 
-	{
+	optind = 1; 
+	opterr = 1; 
+	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	{ 
 		switch ((char) (c)) 
-		{
+		{ 
 
 #ifdef SYSLOGD_UNIXAF
 
@@ -625,209 +621,209 @@ int main (int argc, char const *argv [])
  * it to the sockets list; 
  *--------------------------------------------------------------------*/
 
-		case 'a':
-			sockaddr_unix = NEW (struct sockaddr_un);
-			if (sockaddr_unix == (struct sockaddr_un *)(0)) 
-			{
-				break;
-			}
-			memset (sockaddr_unix, 0, sizeof (struct sockaddr_un));
-			sockaddr_unix->sun_family = AF_UNIX;
-			memcpy (&sockaddr_unix->sun_path, optarg, sizeof (sockaddr_unix->sun_path));
-			socket = NEW (struct socket);
-			if (socket == (struct socket *)(0)) 
-			{
-				error (0, errno, "Can't add socket %s", optarg);
-				free (sockaddr_unix);
-				break;
-			}
-			memset (socket, 0, sizeof (struct socket));
-			socket->desc = -1;
-			socket->socksize = sizeof (struct sockaddr_un);
-			socket->sockaddr = (struct sockaddr *)(sockaddr_unix);
-			socket->next = &unixsock;
-			socket->prev = unixsock.prev;
-			unixsock.prev->next = socket;
-			unixsock.prev = socket;
-			break;
+		case 'a': 
+			sockaddr_unix = NEW (struct sockaddr_un); 
+			if (sockaddr_unix == (struct sockaddr_un *) (0)) 
+			{ 
+				break; 
+			} 
+			memset (sockaddr_unix, 0, sizeof (struct sockaddr_un)); 
+			sockaddr_unix->sun_family = AF_UNIX; 
+			memcpy (& sockaddr_unix->sun_path, optarg, sizeof (sockaddr_unix->sun_path)); 
+			socket = NEW (struct socket); 
+			if (socket == (struct socket *) (0)) 
+			{ 
+				error (0, errno, "Can't add socket %s", optarg); 
+				free (sockaddr_unix); 
+				break; 
+			} 
+			memset (socket, 0, sizeof (struct socket)); 
+			socket->desc = - 1; 
+			socket->socksize = sizeof (struct sockaddr_un); 
+			socket->sockaddr = (struct sockaddr *) (sockaddr_unix); 
+			socket->next = & unixsock; 
+			socket->prev = unixsock.prev; 
+			unixsock.prev->next = socket; 
+			unixsock.prev = socket; 
+			break; 
 
 #endif
 #ifdef SYSLOGD_INETAF
 
-		case 'i':
-			sockaddr_inet = NEW (struct sockaddr_in);
-			if (sockaddr_inet == (struct sockaddr_in *)(0)) 
-			{
-				break;
-			}
-			sockaddr_inet->sin_family = AF_INET;
-			sockaddr_inet->sin_port = (unsigned short)(uintspec (optarg, IPPORT_RESERVED, IPPORT_USERRESERVED));
-			socket = NEW (struct socket);
-			if (socket == (struct socket *)(0)) 
-			{
-				error (0, errno, "Can't add socket %s", optarg);
-				free (sockaddr_inet);
-				break;
-			}
-			memset (socket, 0, sizeof (struct socket));
-			socket->desc = -1;
-			socket->socksize = sizeof (struct sockaddr_in);
-			socket->sockaddr = (struct sockaddr *)(sockaddr_inet);
-			socket->next = &inetsock;
-			socket->prev = inetsock.prev;
-			inetsock.prev->next = socket;
-			inetsock.prev = socket;
-			break;
+		case 'i': 
+			sockaddr_inet = NEW (struct sockaddr_in); 
+			if (sockaddr_inet == (struct sockaddr_in *) (0)) 
+			{ 
+				break; 
+			} 
+			sockaddr_inet->sin_family = AF_INET; 
+			sockaddr_inet->sin_port = (unsigned short) (uintspec (optarg, IPPORT_RESERVED, IPPORT_USERRESERVED)); 
+			socket = NEW (struct socket); 
+			if (socket == (struct socket *) (0)) 
+			{ 
+				error (0, errno, "Can't add socket %s", optarg); 
+				free (sockaddr_inet); 
+				break; 
+			} 
+			memset (socket, 0, sizeof (struct socket)); 
+			socket->desc = - 1; 
+			socket->socksize = sizeof (struct sockaddr_in); 
+			socket->sockaddr = (struct sockaddr *) (sockaddr_inet); 
+			socket->next = & inetsock; 
+			socket->prev = inetsock.prev; 
+			inetsock.prev->next = socket; 
+			inetsock.prev = socket; 
+			break; 
 
 #endif
 
-		case 'd':
-			_setbits (state, SYSLOGD_STATE_DAEMON);
-			break;
-		case 'f':
-			cfgfile = optarg;
-			break;
+		case 'd': 
+			_setbits (state, SYSLOGD_STATE_DAEMON); 
+			break; 
+		case 'f': 
+			cfgfile = optarg; 
+			break; 
 
 #ifdef SYSLOGD_INETAF
 
-		case 'h':
-			_setbits (state, SYSLOGD_STATE_FORWARD);
-			break;
+		case 'h': 
+			_setbits (state, SYSLOGD_STATE_FORWARD); 
+			break; 
 
 #endif
 #ifdef SYSLOGD_INETAF
 
-		case 'l':
+		case 'l': 
 			if (ourhosts != (char const **) (0)) 
-			{
-				error (0, EINVAL, "discarding '%s': only one host list allowed", optarg);
-				break;
-			}
-			ourhosts = stov (optarg, ':');
-			break;
+			{ 
+				error (0, EINVAL, "discarding '%s': only one host list allowed", optarg); 
+				break; 
+			} 
+			ourhosts = stov (optarg, ':'); 
+			break; 
 
 #endif
 
-		case 'm':
-			timer = waitspec (optarg);
-			break;
-		case 'n':
-			_clrbits (state, SYSLOGD_STATE_DAEMON);
-			break;
-		case 'o':
-			mapfile = optarg;
-			break;
+		case 'm': 
+			timer = waitspec (optarg); 
+			break; 
+		case 'n': 
+			_clrbits (state, SYSLOGD_STATE_DAEMON); 
+			break; 
+		case 'o': 
+			mapfile = optarg; 
+			break; 
 
 #ifdef SYSLOGD_UNIXAF
 
-		case 'p':
-			strncpy (unixsock_addr.sun_path, optarg, sizeof (unixsock_addr.sun_path));
-			break;
+		case 'p': 
+			strncpy (unixsock_addr.sun_path, optarg, sizeof (unixsock_addr.sun_path)); 
+			break; 
 
 #endif
 #ifdef SYSLOGD_INETAF
 
-		case 'r':
-			_setbits (state, SYSLOGD_STATE_RECEIVE);
-			break;
+		case 'r': 
+			_setbits (state, SYSLOGD_STATE_RECEIVE); 
+			break; 
 
 #endif
 #ifdef SYSLOGD_INETAF
 
-		case 's':
+		case 's': 
 			if (ourdomains != (char const **) (0)) 
-			{
-				error (0, 0, "ignoring '%s': only one -s argument allowed", optarg);
-				break;
-			}
-			ourdomains = stov (optarg, ':');
-			break;
+			{ 
+				error (0, 0, "ignoring '%s': only one -s argument allowed", optarg); 
+				break; 
+			} 
+			ourdomains = stov (optarg, ':'); 
+			break; 
 
 #endif
 
-		case 't':
-			delay = uintspec (optarg, 0, 3600);
-			break;
-		case 'v':
-			version ();
-			exit (0);
-		case 'w':
-			delay = waitspec (optarg);
-			break;
-		case 'x':
-			break;
-		default:
-			break;
-		}
-	}
-	argc -= optind;
-	argv += optind;
+		case 't': 
+			delay = uintspec (optarg, 0, 3600); 
+			break; 
+		case 'v': 
+			version (); 
+			exit (0); 
+		case 'w': 
+			delay = waitspec (optarg); 
+			break; 
+		case 'x': 
+			break; 
+		default: 
+			break; 
+		} 
+	} 
+	argc -= optind; 
+	argv += optind; 
 	if (getuid ()) 
-	{
-		error (1, EACCES, NOTROOT);
-	}
+	{ 
+		error (1, EACCES, NOTROOT); 
+	} 
 	if (checkpf (pidfile)) 
-	{
-		error (1, 0, "service is already running");
-	}
+	{ 
+		error (1, 0, "service is already running"); 
+	} 
 
 #ifdef SYSLOGD_INETAF
 
-	if (_allset (state, (SYSLOGD_STATE_RECEIVE|SYSLOGD_STATE_FORWARD))) 
-	{
-		error (1, EPERM, "Can't receive and forward messages in same session");
-	}
+	if (_allset (state, (SYSLOGD_STATE_RECEIVE | SYSLOGD_STATE_FORWARD))) 
+	{ 
+		error (1, EPERM, "Can't receive and forward messages in same session"); 
+	} 
 
 #endif
 
-	memset (&sigquit, 0, sizeof (struct sigaction));
-	sigquit.sa_handler = syslogd_sigquit;
-	sigquit.sa_flags = SA_ONESHOT;
-	sigemptyset (&sigquit.sa_mask);
-	memset (&sigterm, 0, sizeof (struct sigaction));
-	sigterm.sa_handler = syslogd_sigterm;
-	sigterm.sa_flags = SA_ONESHOT;
-	sigemptyset (&sigterm.sa_mask);
-	memset (&sigchld, 0, sizeof (struct sigaction));
-	sigchld.sa_handler = syslogd_sigchld;
-	sigchld.sa_flags = 0;
-	sigemptyset (&sigchld.sa_mask);
-	memset (&sigalrm, 0, sizeof (struct sigaction));
-	sigalrm.sa_handler = syslogd_sigalrm;
-	sigalrm.sa_flags = 0;
-	sigemptyset (&sigalrm.sa_mask);
-	memset (&sigusr1, 0, sizeof (struct sigaction));
-	sigusr1.sa_handler = syslogd_sigusr1;
-	sigusr1.sa_flags = 0;
-	sigemptyset (&sigusr1.sa_mask);
-	memset (&sighup, 0, sizeof (struct sigaction));
-	sighup.sa_handler = syslogd_sighup;
-	sighup.sa_flags = 0;
-	sigemptyset (&sighup.sa_mask);
-	sigaction (SIGINT, &sigquit, (struct sigaction *) (0));
-	sigaction (SIGTERM, &sigquit, (struct sigaction *) (0));
-	sigaction (SIGQUIT, &sigquit, (struct sigaction *) (0));
+	memset (& sigquit, 0, sizeof (struct sigaction)); 
+	sigquit.sa_handler = syslogd_sigquit; 
+	sigquit.sa_flags = SA_ONESHOT; 
+	sigemptyset (& sigquit.sa_mask); 
+	memset (& sigterm, 0, sizeof (struct sigaction)); 
+	sigterm.sa_handler = syslogd_sigterm; 
+	sigterm.sa_flags = SA_ONESHOT; 
+	sigemptyset (& sigterm.sa_mask); 
+	memset (& sigchld, 0, sizeof (struct sigaction)); 
+	sigchld.sa_handler = syslogd_sigchld; 
+	sigchld.sa_flags = 0; 
+	sigemptyset (& sigchld.sa_mask); 
+	memset (& sigalrm, 0, sizeof (struct sigaction)); 
+	sigalrm.sa_handler = syslogd_sigalrm; 
+	sigalrm.sa_flags = 0; 
+	sigemptyset (& sigalrm.sa_mask); 
+	memset (& sigusr1, 0, sizeof (struct sigaction)); 
+	sigusr1.sa_handler = syslogd_sigusr1; 
+	sigusr1.sa_flags = 0; 
+	sigemptyset (& sigusr1.sa_mask); 
+	memset (& sighup, 0, sizeof (struct sigaction)); 
+	sighup.sa_handler = syslogd_sighup; 
+	sighup.sa_flags = 0; 
+	sigemptyset (& sighup.sa_mask); 
+	sigaction (SIGINT, & sigquit, (struct sigaction *) (0)); 
+	sigaction (SIGTERM, & sigquit, (struct sigaction *) (0)); 
+	sigaction (SIGQUIT, & sigquit, (struct sigaction *) (0)); 
 	if (_allset (state, SYSLOGD_STATE_DAEMON)) 
-	{
+	{ 
 		if (fork ()) 
-		{
-			sleep (delay);
-			error (1, 0, "daemon did not start");
-		}
-		setsid ();
-		for (fd = getdtablesize (); fd-- > 0; close (fd));
-		kill (getppid (), SIGTERM);
-		sigquit.sa_handler = SIG_IGN;
-	}
-	sigaction (SIGTERM, &sigterm, (struct sigaction *) (0));
-	sigaction (SIGCHLD, &sigchld, (struct sigaction *) (0));
-	sigaction (SIGALRM, &sigalrm, (struct sigaction *) (0));
-	sigaction (SIGHUP, &sighup, (struct sigaction *) (0));
-	setlinebuf (stdout);
+		{ 
+			sleep (delay); 
+			error (1, 0, "daemon did not start"); 
+		} 
+		setsid (); 
+		for (fd = getdtablesize (); fd-- > 0; close (fd)); 
+		kill (getppid (), SIGTERM); 
+		sigquit.sa_handler = SIG_IGN; 
+	} 
+	sigaction (SIGTERM, & sigterm, (struct sigaction *) (0)); 
+	sigaction (SIGCHLD, & sigchld, (struct sigaction *) (0)); 
+	sigaction (SIGALRM, & sigalrm, (struct sigaction *) (0)); 
+	sigaction (SIGHUP, & sighup, (struct sigaction *) (0)); 
+	setlinebuf (stdout); 
 	if (!writepf (pidfile)) 
-	{
-		error (1, errno, "can't create pidfile %s", pidfile);
-	}
+	{ 
+		error (1, errno, "can't create pidfile %s", pidfile); 
+	} 
 
 #ifdef SYSLOGD_INETAF
 
@@ -851,22 +847,22 @@ int main (int argc, char const *argv [])
  *--------------------------------------------------------------------*/
 
 	if (_anyset (state, SYSLOGD_STATE_RECEIVE)) 
-	{
-		socket = unixsock.next;
-		unixsock.next = inetsock.next;
-		inetsock.next = socket;
-		socket = unixsock.prev;
-		unixsock.prev = inetsock.prev;
-		inetsock.prev = socket;
-	}
+	{ 
+		socket = unixsock.next; 
+		unixsock.next = inetsock.next; 
+		inetsock.next = socket; 
+		socket = unixsock.prev; 
+		unixsock.prev = inetsock.prev; 
+		inetsock.prev = socket; 
+	} 
 	if (_anyset (state, SYSLOGD_STATE_FORWARD)) 
-	{
-		inetsock.desc = syslogd_inet_socket ((struct sockaddr_in *)(inetsock.sockaddr));
-		if (inetsock.desc == -1) 
-		{
-			error (1, errno, "Can't start %s %s service", SYSLOGD_SERVICE_NAME, SYSLOGD_SERVICE_TYPE);
-		}
-	}
+	{ 
+		inetsock.desc = syslogd_inet_socket ((struct sockaddr_in *) (inetsock.sockaddr)); 
+		if (inetsock.desc == - 1) 
+		{ 
+			error (1, errno, "Can't start %s %s service", SYSLOGD_SERVICE_NAME, SYSLOGD_SERVICE_TYPE); 
+		} 
+	} 
 
 #endif
 
@@ -878,10 +874,10 @@ int main (int argc, char const *argv [])
  *--------------------------------------------------------------------*/
 
 	if (timer) 
-	{
-		time_t clock = time (&clock);
-		alarm (timer - clock%timer);
-	}
+	{ 
+		time_t clock = time (& clock); 
+		alarm (timer - clock % timer); 
+	} 
 
 /*--------------------------------------------------------------------*
  * read configuration, create syslogs and open them; write the syslog
@@ -889,22 +885,22 @@ int main (int argc, char const *argv [])
  * dispatch them until terminated; close sockets then close syslogs;
  *--------------------------------------------------------------------*/
 
-	syslogd_start (&syslogs, state, cfgfile);
+	syslogd_start (& syslogs, state, cfgfile); 
 
 #ifdef SYSLOGD_REPORT
 
-	syslogd_admin (&syslogs, state, mapfile);
+	syslogd_admin (& syslogs, state, mapfile); 
 
 #endif
 
-	syslogd_open_sockets (&unixsock);
+	syslogd_open_sockets (& unixsock); 
 	while (loop) 
-	{
-		syslogd_read_sockets (&unixsock);
-	}
-	syslogd_close_sockets (&unixsock);
-	syslogd_stop (&syslogs, state);
-	removepf (pidfile);
-	exit (0);
-}
+	{ 
+		syslogd_read_sockets (& unixsock); 
+	} 
+	syslogd_close_sockets (& unixsock); 
+	syslogd_stop (& syslogs, state); 
+	removepf (pidfile); 
+	exit (0); 
+} 
 
