@@ -117,7 +117,7 @@ signed octidy::program (signed c)
 		c = octidy::statement (c); 
 		oindent::space (2); 
 	} 
-	oindent::endline (); 
+	oindent::endline (1); 
 	oinclude::footer (); 
 	return (c); 
 } 
@@ -208,7 +208,7 @@ signed octidy::atheros (signed c)
 		c = octidy::statement (c); 
 		oindent::space (2); 
 	} 
-	oindent::endline (); 
+	oindent::endline (1); 
 	oinclude::footer (); 
 	return (c); 
 } 
@@ -305,7 +305,7 @@ signed octidy::charlie (signed c)
 		c = octidy::statement (c); 
 		oindent::space (2); 
 	} 
-	oindent::endline (); 
+	oindent::endline (1); 
 	oinclude::footer (); 
 	return (c); 
 } 
@@ -323,14 +323,21 @@ signed octidy::statement (signed c)
 	char * sp = string; 
 	while (oascii::isalnum (c) || (c == '_')) 
 	{ 
-		* sp++ = c; 
+		if ((sp - string) <= (sizeof (string) - 1))
+		{
+			* sp++ = c; 
+		}
 		c = std::cin.get (); 
+		if (c == EOF)
+		{
+			return (c);
+		}
 	} 
 	while (oascii::isspace (c)) 
 	{ 
 		c = std::cin.get (); 
 	} 
-	* sp = (char) (0); 
+	*sp = (char)(0);
 	if (sp == string) 
 	{ 
 		oindent::print (this->mlevel, 0, string); 

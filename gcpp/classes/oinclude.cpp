@@ -168,7 +168,6 @@ oinclude & oinclude::header (void)
 		std::cout << "#ifndef " << this->mtitle << "_" << this->mclass << std::endl;
 		std::cout << "#define " << this->mtitle << "_" << this->mclass << std::endl;
 		std::cout << std::endl;
-		std::cout.flush ();
 	}
 	return (* this);
 }
@@ -190,7 +189,6 @@ oinclude & oinclude::footer (void)
 		this->mstate = -this->mstate;
 		std::cout << "#endif" << std::endl;
 		std::cout << std::endl;
-		std::cout.flush ();
 	}
 	return (* this);
 }

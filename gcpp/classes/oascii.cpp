@@ -60,7 +60,7 @@
  *   private variables;
  *--------------------------------------------------------------------*/
 
-char const * oascii::mbits [] = 
+char const * oascii::cbits [] = 
 
 { 
 	"cntrl", 
@@ -85,7 +85,7 @@ char const * oascii::mbits [] =
 	"expon"
 }; 
 
-const unsigned oascii::cmask [] = 
+const unsigned oascii::ctype [UCHAR_MAX + 1] = 
 
 { 
 
@@ -1124,9 +1124,9 @@ unsigned oascii::ctypemask (char const * ctypename) const
 
 { 
 	unsigned bit = 0; 
-	while (bit < SIZEOF (oascii::mbits)) 
+	while (bit < SIZEOF (oascii::cbits)) 
 	{ 
-		if (!std::strcmp (ctypename, oascii::mbits [bit])) 
+		if (!std::strcmp (ctypename, oascii::cbits [bit])) 
 		{ 
 			return (1 << bit); 
 		} 
@@ -1144,7 +1144,7 @@ unsigned oascii::ctypemask (char const * ctypename) const
 bool oascii::isctype (signed c, unsigned short mask) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (mask))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (mask))); 
 } 
 
 /*====================================================================*
@@ -1172,7 +1172,7 @@ bool oascii::isascii (signed c)
 bool oascii::iscntrl (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_CNTRL))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_CNTRL))); 
 } 
 
 /*====================================================================*
@@ -1184,7 +1184,7 @@ bool oascii::iscntrl (signed c)
 bool oascii::isupper (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_UPPER))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_UPPER))); 
 } 
 
 /*====================================================================*
@@ -1196,7 +1196,7 @@ bool oascii::isupper (signed c)
 bool oascii::islower (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_LOWER))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_LOWER))); 
 } 
 
 /*====================================================================*
@@ -1208,31 +1208,7 @@ bool oascii::islower (signed c)
 bool oascii::isalpha (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_LOWER | oASCII_UPPER))); 
-} 
-
-/*====================================================================*
- *
- *   bool isdigit (signed c);
- *
- *--------------------------------------------------------------------*/
-
-bool oascii::isdigit (signed c) 
-
-{ 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_DIGIT))); 
-} 
-
-/*====================================================================*
- *
- *   bool isxdigit (signed c);
- *
- *--------------------------------------------------------------------*/
-
-bool oascii::isxdigit (signed c) 
-
-{ 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_XDIGIT))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_LOWER | oASCII_UPPER))); 
 } 
 
 /*====================================================================*
@@ -1244,7 +1220,31 @@ bool oascii::isxdigit (signed c)
 bool oascii::isalnum (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_UPPER | oASCII_LOWER | oASCII_DIGIT))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_UPPER | oASCII_LOWER | oASCII_DIGIT))); 
+} 
+
+/*====================================================================*
+ *
+ *   bool isdigit (signed c);
+ *
+ *--------------------------------------------------------------------*/
+
+bool oascii::isdigit (signed c) 
+
+{ 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_DIGIT))); 
+} 
+
+/*====================================================================*
+ *
+ *   bool isxdigit (signed c);
+ *
+ *--------------------------------------------------------------------*/
+
+bool oascii::isxdigit (signed c) 
+
+{ 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_XDIGIT))); 
 } 
 
 /*====================================================================*
@@ -1256,7 +1256,7 @@ bool oascii::isalnum (signed c)
 bool oascii::isspace (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_SPACE))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_SPACE))); 
 } 
 
 /*====================================================================*
@@ -1268,7 +1268,7 @@ bool oascii::isspace (signed c)
 bool oascii::isgraph (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_UPPER | oASCII_LOWER | oASCII_DIGIT | oASCII_PUNCT))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_UPPER | oASCII_LOWER | oASCII_DIGIT | oASCII_PUNCT))); 
 } 
 
 /*====================================================================*
@@ -1280,7 +1280,7 @@ bool oascii::isgraph (signed c)
 bool oascii::isprint (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_CNTRL)) == 0); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_CNTRL)) == 0); 
 } 
 
 /*====================================================================*
@@ -1292,7 +1292,7 @@ bool oascii::isprint (signed c)
 bool oascii::ispunct (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_PUNCT))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_PUNCT))); 
 } 
 
 /*====================================================================*
@@ -1304,7 +1304,7 @@ bool oascii::ispunct (signed c)
 bool oascii::isident (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_IDENT))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_IDENT))); 
 } 
 
 /*====================================================================*
@@ -1316,7 +1316,7 @@ bool oascii::isident (signed c)
 bool oascii::isquote (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_QUOTE))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_QUOTE))); 
 } 
 
 /*====================================================================*
@@ -1328,7 +1328,7 @@ bool oascii::isquote (signed c)
 bool oascii::isunary (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_UNARY))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_UNARY))); 
 } 
 
 /*====================================================================*
@@ -1340,7 +1340,7 @@ bool oascii::isunary (signed c)
 bool oascii::isarith (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_ARITH))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_ARITH))); 
 } 
 
 /*====================================================================*
@@ -1352,7 +1352,7 @@ bool oascii::isarith (signed c)
 bool oascii::isequal (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_EQUAL))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_EQUAL))); 
 } 
 
 /*====================================================================*
@@ -1364,7 +1364,7 @@ bool oascii::isequal (signed c)
 bool oascii::islogic (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_LOGIC))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_LOGIC))); 
 } 
 /*====================================================================*
  *
@@ -1375,7 +1375,7 @@ bool oascii::islogic (signed c)
 bool oascii::isgroup (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_BEGIN | oASCII_CLOSE))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_BEGIN | oASCII_CLOSE))); 
 } 
 
 /*====================================================================*
@@ -1390,7 +1390,7 @@ bool oascii::isgroup (signed c)
 bool oascii::isbegin (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_BEGIN))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_BEGIN))); 
 } 
 
 /*====================================================================*
@@ -1405,7 +1405,7 @@ bool oascii::isbegin (signed c)
 bool oascii::isclose (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_CLOSE))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_CLOSE))); 
 } 
 
 /*====================================================================*
@@ -1419,7 +1419,7 @@ bool oascii::isclose (signed c)
 bool oascii::iscomma (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_COMMA))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_COMMA))); 
 } 
 
 /*====================================================================*
@@ -1431,7 +1431,7 @@ bool oascii::iscomma (signed c)
 bool oascii::ismoney (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_COMMA))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_COMMA))); 
 } 
 
 /*====================================================================*
@@ -1443,7 +1443,7 @@ bool oascii::ismoney (signed c)
 bool oascii::isfract (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_COMMA))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_COMMA))); 
 } 
 
 /*====================================================================*
@@ -1455,7 +1455,7 @@ bool oascii::isfract (signed c)
 bool oascii::isexpon (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_COMMA))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_COMMA))); 
 } 
 
 /*====================================================================*
@@ -1469,7 +1469,7 @@ bool oascii::isexpon (signed c)
 bool oascii::nmtoken (signed c) 
 
 { 
-	return ((oascii::cmask [c & UCHAR_MAX] & (oASCII_TOKEN))); 
+	return ((oascii::ctype [c & SCHAR_MAX] & (oASCII_TOKEN))); 
 } 
 
 /*====================================================================*
@@ -1904,12 +1904,12 @@ char const * oascii::cname [] =
 void oascii::enumerate () const 
 
 { 
-	for (unsigned bit = 0; bit < SIZEOF (oascii::mbits); bit++) 
+	for (unsigned bit = 0; bit < SIZEOF (oascii::cbits); bit++) 
 	{ 
-		std::cout << oascii::mbits [bit] << " "; 
+		std::cout << oascii::cbits [bit] << " "; 
 		for (signed c = 0; c <= SCHAR_MAX; c++) 
 		{ 
-			if (oascii::cmask [c] & (1 << bit)) 
+			if (oascii::ctype [c] & (1 << bit)) 
 			{ 
 				std::cout << " " << oascii::cname [c]; 
 			} 
@@ -1935,9 +1935,9 @@ void oascii::matrix () const
 
 { 
 	std::cout << "ascii"; 
-	for (unsigned bit = 0; bit < SIZEOF (oascii::mbits); bit++) 
+	for (unsigned bit = 0; bit < SIZEOF (oascii::cbits); bit++) 
 	{ 
-		std::cout << " " << oascii::mbits [bit]; 
+		std::cout << " " << oascii::cbits [bit]; 
 	} 
 	std::cout << ";" << std::endl; 
 	for (signed c = 0; c <= SCHAR_MAX; c++) 
@@ -1970,11 +1970,11 @@ void oascii::matrix () const
 		{
 			std::cout << "\"" << oascii::cname [c] << "\""; 
 		}
-		for (unsigned bit = 0; bit < SIZEOF (mbits); bit++) 
+		for (unsigned bit = 0; bit < SIZEOF (cbits); bit++) 
 		{ 
-			if (oascii::cmask [c] & (1 << bit)) 
+			if (oascii::ctype [c] & (1 << bit)) 
 			{ 
-				std::cout << " " << oascii::mbits [bit]; 
+				std::cout << " " << oascii::cbits [bit]; 
 			} 
 		} 
 		std::cout << ";" << std::endl; 

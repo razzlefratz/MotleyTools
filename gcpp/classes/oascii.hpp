@@ -87,8 +87,8 @@ public:
 private:
 	unsigned ctypemask (char const * ctypename) const;
 	static bool isctype (signed c, unsigned short mask);
-	static char const * mbits [];
-	static unsigned const cmask [];
+	static char const * cbits [];
+	static unsigned const ctype [];
 	static char const * cname [];
 };
 
