@@ -61,7 +61,7 @@ public:
 	static bool isclose (signed c);
 	static bool ismoney (signed c);
 	static bool isfract (signed c);
-	static bool isexpon (signed c);
+	static bool ispower (signed c);
 	static bool iscomma (signed c);
 	static bool isblank (signed c);
 	static bool ismatch (signed c, signed o);
@@ -86,7 +86,7 @@ public:
 
 private:
 	unsigned ctypemask (char const * ctypename) const;
-	static bool isctype (signed c, unsigned short mask);
+	static bool isctype (signed c, unsigned mask);
 	static char const * cbits [];
 	static unsigned const ctype [];
 	static char const * cname [];
