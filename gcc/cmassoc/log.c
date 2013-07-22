@@ -54,7 +54,7 @@ int main (int argc, char const * argv [])
 	FILE * files [argc]; 
 	size_t file = 0; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

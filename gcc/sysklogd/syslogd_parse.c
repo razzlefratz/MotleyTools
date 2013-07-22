@@ -63,183 +63,184 @@
 #include "../sysklogd/syslogd.h"
 #include "../tools/flags.h"
 
-void syslogd_parse (struct syslogd *syslog, flag_t flags, char const *string) 
+void syslogd_parse (struct syslogd * syslog, flag_t flags, char const * string) 
 
-{
-	extern const struct _code_ syslog_facility_codes [];
-	extern const struct _code_ syslog_severity_codes [];
-	facility_t facility = (facility_t) (0);
-	severity_t severity = (severity_t) (0);
-	char symbol [TEXTLINE_MAX];
-	char const *sp;
-	char *cp;
+{ 
+	extern const struct _code_ syslog_facility_codes []; 
+	extern const struct _code_ syslog_severity_codes []; 
+	facility_t facility = (facility_t) (0); 
+	severity_t severity = (severity_t) (0); 
+	char symbol [TEXTLINE_MAX]; 
+	char const * sp; 
+	char * cp; 
 
 #if SYSLOGD_TRACE
 
-	trace_enter ("syslogd_parse");
+	trace_enter ("syslogd_parse"); 
 
 #endif
 
 #if SYSLOGD_DEBUG
 
-	printf ("\nstatement=[%s]\n", string);
+	printf ("\nstatement=[%s]\n", string); 
 
 #endif
 
-	while (!strchr (" \t", *string)) 
-	{
-		for (sp = string; !strchr (".; \t", *string); string++);
-		if (*string == '.') 
-		{
-			string++;
-		}
-		for (cp = symbol; !strchr ("; \t", *string); *cp++ = *string++);
-		*cp = '\0';
+	while (!strchr (" \t", * string)) 
+	{ 
+		for (sp = string; !strchr (".; \t", * string); string++); 
+		if (* string == '.') 
+		{ 
+			string++; 
+		} 
+		for (cp = symbol; !strchr ("; \t", * string); * cp++ = * string++); 
+		* cp = '\0'; 
 
 #if SYSLOGD_DEBUG
 
-		printf ("severity=[%s]\n", symbol);
+		printf ("severity=[%s]\n", symbol); 
 
 #endif
 
-		cp = symbol;
-		if (*cp == '!') 
-		{
-			_setbits (syslog->f_flags, SYSLOGD_FLAG_NEGATE_PRIORITY);
-			cp++;
-		}
+		cp = symbol; 
+		if (* cp == '!') 
+		{ 
+			_setbits (syslog->f_flags, SYSLOGD_FLAG_NEGATE_PRIORITY); 
+			cp++; 
+		} 
 		else 
-		{
-			_clrbits (syslog->f_flags, SYSLOGD_FLAG_NEGATE_PRIORITY);
-		}
-		if (*cp == '=') 
-		{
-			_setbits (syslog->f_flags, SYSLOGD_FLAG_SINGLE_PRIORITY);
-			cp++;
-		}
+		{ 
+			_clrbits (syslog->f_flags, SYSLOGD_FLAG_NEGATE_PRIORITY); 
+		} 
+		if (* cp == '=') 
+		{ 
+			_setbits (syslog->f_flags, SYSLOGD_FLAG_SINGLE_PRIORITY); 
+			cp++; 
+		} 
 		else 
-		{
-			_clrbits (syslog->f_flags, SYSLOGD_FLAG_SINGLE_PRIORITY);
-		}
-		if ((severity = syslog_lookup (cp, syslog_severity_codes)) == -1) 
-		{
-			syslogd_error (EINVAL, "Don't recognize severity '%s' as per line %d", cp, syslog->f_line);
-			return;
-		}
-		while (!strchr (".; \t", *sp)) 
-		{
-			for (cp = symbol; !strchr (",.; \t", *sp); *cp++ = *sp++);
-			*cp = (char) (0);
+		{ 
+			_clrbits (syslog->f_flags, SYSLOGD_FLAG_SINGLE_PRIORITY); 
+		} 
+		if ((severity = syslog_lookup (cp, syslog_severity_codes)) == - 1) 
+		{ 
+			syslogd_error (EINVAL, "Don't recognize severity '%s' as per line %d", cp, syslog->f_line); 
+			return; 
+		} 
+		while (!strchr (".; \t", * sp)) 
+		{ 
+			for (cp = symbol; !strchr (",.; \t", * sp); * cp++ = * sp++); 
+			* cp = (char) (0); 
 
 #if SYSLOGD_DEBUG
 
-			printf ("facility=[%s]\n", symbol);
+			printf ("facility=[%s]\n", symbol); 
 
 #endif
 
-			if ((facility = syslog_lookup (symbol, syslog_facility_codes)) == -1) 
-			{
-				syslogd_error (EINVAL, "Don't recognize facility '%s' as per line %d", symbol, syslog->f_line);
-				return;
-			}
+			if ((facility = syslog_lookup (symbol, syslog_facility_codes)) == - 1) 
+			{ 
+				syslogd_error (EINVAL, "Don't recognize facility '%s' as per line %d", symbol, syslog->f_line); 
+				return; 
+			} 
 			if (facility == SYSLOG_FACILITIES) 
-			{
+			{ 
 				for (facility = 0; facility < SYSLOG_FACILITIES; facility++) 
-				{
+				{ 
 
 #if SYSLOGD_DEBUG
 
-					printf ("facility=[%04X] severity=[%02X]\n", facility, severity);
+					printf ("facility=[%04X] severity=[%02X]\n", facility, severity); 
 
 #endif
 
-					syslogd_index (syslog, flags, facility, severity);
-				}
-			}
+					syslogd_index (syslog, flags, facility, severity); 
+				} 
+			} 
 			else 
-			{
-				facility = SYSLOG_FACILITY (facility);
+			{ 
+				facility = SYSLOG_FACILITY (facility); 
 
 #if SYSLOGD_DEBUG
 
-				printf ("facility=[%04X] severity=[%02X]\n", facility, severity);
+				printf ("facility=[%04X] severity=[%02X]\n", facility, severity); 
 
 #endif
 
-				syslogd_index (syslog, flags, facility, severity);
-			}
-			if (*sp == ',') 
-			{
-				sp++;
-			}
-		}
-		if (*string == ';') 
-		{
-			string++;
-		}
-	}
-	while (isblank (*string)) 
-	{
-		string++;
-	}
+				syslogd_index (syslog, flags, facility, severity); 
+			} 
+			if (* sp == ',') 
+			{ 
+				sp++; 
+			} 
+		} 
+		if (* string == ';') 
+		{ 
+			string++; 
+		} 
+	} 
+	while (isblank (* string)) 
+	{ 
+		string++; 
+	} 
 
 #if SYSLOGD_DEBUG
 
-	printf ("resource=[%s]\n", string);
+	printf ("resource=[%s]\n", string); 
 
 #endif
 
-	if (*string == '-') 
-	{
-		_clrbits (syslog->f_flags, SYSLOGD_FLAG_SYNCHRONIZE);
-		string++;
-	}
+	if (* string == '-') 
+	{ 
+		_clrbits (syslog->f_flags, SYSLOGD_FLAG_SYNCHRONIZE); 
+		string++; 
+	} 
 	else 
-	{
-		_setbits (syslog->f_flags, SYSLOGD_FLAG_SYNCHRONIZE);
-	}
-	switch (*string) 
-	{
-	case '@':
-		syslog->f_type = SYSLOGD_TYPE_HOST;
-		syslog->f_name = strdup (++string);
-		break;
-	case '|':
-		syslog->f_type = SYSLOGD_TYPE_PIPE;
-		syslog->f_name = strdup (++string);
-		break;
-	case '/':
-		syslog->f_type = SYSLOGD_TYPE_FILE;
-		syslog->f_name = strdup (string);
+	{ 
+		_setbits (syslog->f_flags, SYSLOGD_FLAG_SYNCHRONIZE); 
+	} 
+	switch (* string) 
+	{ 
+	case '@': 
+		syslog->f_type = SYSLOGD_TYPE_HOST; 
+		syslog->f_name = strdup (++ string); 
+		break; 
+	case '|': 
+		syslog->f_type = SYSLOGD_TYPE_PIPE; 
+		syslog->f_name = strdup (++ string); 
+		break; 
+	case '/': 
+		syslog->f_type = SYSLOGD_TYPE_FILE; 
+		syslog->f_name = strdup (string); 
 		if (isatty (syslog->f_desc)) 
-		{
+		{ 
 			if (!strcmp (string, _PATH_CONSOLE)) 
-			{
-				syslog->f_type = SYSLOGD_TYPE_CONSOLE;
-				break;
-			}
-			syslog->f_type = SYSLOGD_TYPE_TERM;
-		}
-		break;
-	case '*':
-		syslog->f_type = SYSLOGD_TYPE_SITE;
-		syslog->f_name = strdup ("*");
-		break;
-	default:
-		syslog->f_type = SYSLOGD_TYPE_USER;
-		syslog->f_name = strdup (string);
-		break;
-	}
+			{ 
+				syslog->f_type = SYSLOGD_TYPE_CONSOLE; 
+				break; 
+			} 
+			syslog->f_type = SYSLOGD_TYPE_TERM; 
+		} 
+		break; 
+	case '*': 
+		syslog->f_type = SYSLOGD_TYPE_SITE; 
+		syslog->f_name = strdup ("*"); 
+		break; 
+	default: 
+		syslog->f_type = SYSLOGD_TYPE_USER; 
+		syslog->f_name = strdup (string); 
+		break; 
+	} 
 
 #if SYSLOGD_TRACE
 
-	trace_leave ("syslogd_parse");
+	trace_leave ("syslogd_parse"); 
 
 #endif
 
-	return;
-}
-
+	return; 
+} 
 
 #endif
+
+
 

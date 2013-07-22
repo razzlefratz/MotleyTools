@@ -34,35 +34,36 @@
 #include "../linux/syslog.h"
 #include "../tools/types.h"
 
-int syslog_lookup (char const *string, const struct _code_ table []) 
+int syslog_lookup (char const * string, const struct _code_ table []) 
 
-{
-	code_t code = 0;
-	char const *sp;
-	for (sp = string; isdigit (*sp); ++sp) 
-	{
-		code *= 10;
-		code += (int)(*sp - '0');
-	}
-	if (*sp != (char) (0)) 
-	{
-		code = -1;
-	}
+{ 
+	code_t code = 0; 
+	char const * sp; 
+	for (sp = string; isdigit (* sp); ++ sp) 
+	{ 
+		code *= 10; 
+		code += (int) (* sp - '0'); 
+	} 
+	if (* sp != (char) (0)) 
+	{ 
+		code = - 1; 
+	} 
 	while (table->name != (char const *) (0)) 
-	{
+	{ 
 		if (strcmp (string, table->name) == 0) 
-		{
-			break;
-		}
+		{ 
+			break; 
+		} 
 		if (code == table->code) 
-		{
-			break;
-		}
-		table++;
-	}
-	return (table->code);
-}
-
+		{ 
+			break; 
+		} 
+		table++; 
+	} 
+	return (table->code); 
+} 
 
 #endif
+
+
 

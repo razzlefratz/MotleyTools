@@ -54,74 +54,75 @@
 #include "../tools/flags.h"
 #include "../tools/types.h"
 
-void syslogd_start (struct syslogd *syslogs, flag_t flags, char const *filename) 
+void syslogd_start (struct syslogd * syslogs, flag_t flags, char const * filename) 
 
-{
-	extern char const *program_name;
-	char buffer [TEXTLINE_MAX];
-	size_t lineno = 0;
-	file_t fd;
+{ 
+	extern char const * program_name; 
+	char buffer [TEXTLINE_MAX]; 
+	size_t lineno = 0; 
+	file_t fd; 
 
 #if SYSLOGD_TRACE
 
-	trace_enter ("syslogd_start");
+	trace_enter ("syslogd_start"); 
 
 #endif
 
-	if ((fd = open (filename, O_RDONLY)) == -1) 
-	{
-		syslogd_error (errno, "Can't open %s", filename);
-		return;
-	}
-	while (statement (fd, buffer, sizeof (buffer), &lineno)) 
-	{
-		struct syslogd *syslog = NEW (struct syslogd);
-		memset (syslog, 0, sizeof (struct syslogd));
-		syslog->f_type = SYSLOGD_TYPE_NONE;
-		syslog->f_name = "";
-		syslog->f_line = lineno;
-		syslog->f_desc = -1;
-		syslog->f_time = time ((time_t *) (0));
-		syslogd_parse (syslog, flags, buffer);
-		syslogd_ready (syslog, flags);
+	if ((fd = open (filename, O_RDONLY)) == - 1) 
+	{ 
+		syslogd_error (errno, "Can't open %s", filename); 
+		return; 
+	} 
+	while (statement (fd, buffer, sizeof (buffer), & lineno)) 
+	{ 
+		struct syslogd * syslog = NEW (struct syslogd); 
+		memset (syslog, 0, sizeof (struct syslogd)); 
+		syslog->f_type = SYSLOGD_TYPE_NONE; 
+		syslog->f_name = ""; 
+		syslog->f_line = lineno; 
+		syslog->f_desc = - 1; 
+		syslog->f_time = time ((time_t *) (0)); 
+		syslogd_parse (syslog, flags, buffer); 
+		syslogd_ready (syslog, flags); 
 		if (syslog->f_type == SYSLOGD_TYPE_NONE) 
-		{
-			free (syslog->f_name);
-			free (syslog);
-			continue;
-		}
-		syslog->prev = syslogs->prev;
-		syslogs->prev->next = syslog;
-		syslogs->prev = syslog;
-		syslog->next = syslogs;
+		{ 
+			free (syslog->f_name); 
+			free (syslog); 
+			continue; 
+		} 
+		syslog->prev = syslogs->prev; 
+		syslogs->prev->next = syslog; 
+		syslogs->prev = syslog; 
+		syslog->next = syslogs; 
 		for (syslog = syslogs->next; syslog != syslogs->prev; syslog = syslog->next) 
-		{
+		{ 
 			if (!strcmp (syslog->f_name, syslogs->prev->f_name)) 
-			{
-				syslogd_print (SYSLOG_SYSLOG | SYSLOG_WARNING, "New %s selections on line %d replace old ones on line %d", syslogs->prev->f_name, syslogs->prev->f_line, syslog->f_line);
-				syslog->next->prev = syslog->prev;
-				syslog->prev->next = syslog->next;
-				syslog->prev = (struct syslogd *) (0);
-				syslog->next = (struct syslogd *) (0);
-				free (syslog->f_name);
-				free (syslog);
-				break;
-			}
-		}
-	}
-	close (fd);
-	syslogd_print (SYSLOG_SYSLOG | SYSLOG_NOTICE, "%s %s.%s started", program_name, VERSION, RELEASE);
-	syslogd_print (SYSLOG_SYSLOG | SYSLOG_INFO, "Configured with %s", filename);
+			{ 
+				syslogd_print (SYSLOG_SYSLOG | SYSLOG_WARNING, "New %s selections on line %d replace old ones on line %d", syslogs->prev->f_name, syslogs->prev->f_line, syslog->f_line); 
+				syslog->next->prev = syslog->prev; 
+				syslog->prev->next = syslog->next; 
+				syslog->prev = (struct syslogd *) (0); 
+				syslog->next = (struct syslogd *) (0); 
+				free (syslog->f_name); 
+				free (syslog); 
+				break; 
+			} 
+		} 
+	} 
+	close (fd); 
+	syslogd_print (SYSLOG_SYSLOG | SYSLOG_NOTICE, "%s %s.%s started", program_name, VERSION, RELEASE); 
+	syslogd_print (SYSLOG_SYSLOG | SYSLOG_INFO, "Configured with %s", filename); 
 
 #if SYSLOGD_TRACE
 
-	trace_leave ("syslogd_start");
+	trace_leave ("syslogd_start"); 
 
 #endif
 
-	return;
-}
-
+	return; 
+} 
 
 #endif
+
+
 

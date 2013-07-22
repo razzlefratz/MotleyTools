@@ -139,7 +139,7 @@ int main (int argc, char const * argv [])
 	signed errors = 0; 
 	signed index = 0; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

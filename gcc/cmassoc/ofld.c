@@ -107,7 +107,7 @@ int main (int argc, char const * argv [])
 	signed fields = OFLD_FIELDS; 
 	size_t length = OFLD_BUFFER; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

@@ -53,7 +53,7 @@ int main (int argc, char const * argv [], char const * envp [])
 	std::fstream source; 
 	opage page ("Standard Input"); 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getopt.getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

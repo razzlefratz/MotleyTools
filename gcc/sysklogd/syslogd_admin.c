@@ -26,45 +26,46 @@
 
 #ifdef SYSLOGD_REPORT
 
-void syslogd_admin (struct syslogd *syslogs, flag_t flags, char const *filename) 
+void syslogd_admin (struct syslogd * syslogs, flag_t flags, char const * filename) 
 
-{
-	FILE *fp;
-	struct syslogd *syslog;
+{ 
+	FILE * fp; 
+	struct syslogd * syslog; 
 
 #if SYSLOGD_TRACE
 
-	trace_enter ("syslogd_admin");
+	trace_enter ("syslogd_admin"); 
 
 #endif
 
-	if ((filename == (char *) (0)) || (*filename == (char) (0))) 
-	{
-		return;
-	}
+	if ((filename == (char *) (0)) || (* filename == (char) (0))) 
+	{ 
+		return; 
+	} 
 	if ((fp = fopen (filename, "w")) == (FILE *) (0)) 
-	{
-		syslogd_error (errno, "can't open %s", filename);
-		return;
-	}
-	syslogd_enumerate (syslogs, flags, fp);
+	{ 
+		syslogd_error (errno, "can't open %s", filename); 
+		return; 
+	} 
+	syslogd_enumerate (syslogs, flags, fp); 
 	for (syslog = syslogs->next; syslog != syslogs; syslog = syslog->next) 
-	{
-		syslogd_state (syslog, flags, fp);
-	}
-	syslogd_state (syslog, flags, fp);
-	fclose (fp);
+	{ 
+		syslogd_state (syslog, flags, fp); 
+	} 
+	syslogd_state (syslog, flags, fp); 
+	fclose (fp); 
 
 #if SYSLOGD_TRACE
 
-	trace_leave ("syslogd_admin");
+	trace_leave ("syslogd_admin"); 
 
 #endif
 
-	return;
-}
-
+	return; 
+} 
 
 #endif
 #endif
+
+
 

@@ -30,25 +30,26 @@
  *   syslog priority names by priority code;
  *--------------------------------------------------------------------*/
 
-char const *syslog_severity_names [SYSLOG_SEVERITIES+2] = 
+char const * syslog_severity_names [SYSLOG_SEVERITIES +2] = 
 
-{
-	"emerg",
-	"alert",
-	"crit",
-	"err",
-	"warn",
-	"notice",
-	"info",
-	"debug",
-	"*",
-	(char const *)(0)
-};
-
+{ 
+	"emerg", 
+	"alert", 
+	"crit", 
+	"err", 
+	"warn", 
+	"notice", 
+	"info", 
+	"debug", 
+	"*", 
+	(char const *) (0)
+}; 
 
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

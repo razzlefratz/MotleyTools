@@ -425,7 +425,7 @@ int main (int argc, char const * argv [])
 	umask (022); 
 	optind = 1; 
 	opterr = 1; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

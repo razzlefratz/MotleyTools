@@ -33,58 +33,59 @@
 #include "../tools/version.h"
 #include "../tools/types.h"
 
-void syslogd_stop (struct syslogd *syslogs, flag_t flags) 
+void syslogd_stop (struct syslogd * syslogs, flag_t flags) 
 
-{
-	extern char const *program_name;
-	struct syslogd *syslog;
+{ 
+	extern char const * program_name; 
+	struct syslogd * syslog; 
 
 #if SYSLOGD_TRACE
 
-	trace_enter ("syslogd_stop");
+	trace_enter ("syslogd_stop"); 
 
 #endif
 
-	syslogd_print (SYSLOG_SYSLOG|SYSLOG_NOTICE, "%s %s.%s stopped", program_name, VERSION, RELEASE);
+	syslogd_print (SYSLOG_SYSLOG | SYSLOG_NOTICE, "%s %s.%s stopped", program_name, VERSION, RELEASE); 
 	while (syslogs->next != syslogs) 
-	{
-		syslog = syslogs->next;
-		syslog->next->prev = syslogs;
-		syslogs->next = syslog->next;
+	{ 
+		syslog = syslogs->next; 
+		syslog->next->prev = syslogs; 
+		syslogs->next = syslog->next; 
 		if (syslog->f_repeat > 0) 
-		{
-			syslogd_write (syslog, flags);
-		}
-		if (syslog->f_sockaddr_in != (struct sockaddr_in *)(0)) 
-		{
-			free (syslog->f_sockaddr_in);
-			syslog->f_sockaddr_in = (struct sockaddr_in *)(0);
-		}
+		{ 
+			syslogd_write (syslog, flags); 
+		} 
+		if (syslog->f_sockaddr_in != (struct sockaddr_in *) (0)) 
+		{ 
+			free (syslog->f_sockaddr_in); 
+			syslog->f_sockaddr_in = (struct sockaddr_in *) (0); 
+		} 
 		switch (syslog->f_type) 
-		{
-		case SYSLOGD_TYPE_HOST:
-		case SYSLOGD_TYPE_FILE:
-		case SYSLOGD_TYPE_PIPE:
-		case SYSLOGD_TYPE_TERM:
-		case SYSLOGD_TYPE_CONSOLE:
-			close (syslog->f_desc);
-			break;
-		}
-		syslog->prev = (struct syslogd *) (0);
-		syslog->next = (struct syslogd *) (0);
-		free (syslog->f_name);
-		free (syslog);
-	}
+		{ 
+		case SYSLOGD_TYPE_HOST: 
+		case SYSLOGD_TYPE_FILE: 
+		case SYSLOGD_TYPE_PIPE: 
+		case SYSLOGD_TYPE_TERM: 
+		case SYSLOGD_TYPE_CONSOLE: 
+			close (syslog->f_desc); 
+			break; 
+		} 
+		syslog->prev = (struct syslogd *) (0); 
+		syslog->next = (struct syslogd *) (0); 
+		free (syslog->f_name); 
+		free (syslog); 
+	} 
 
 #if SYSLOGD_TRACE
 
-	trace_leave ("syslogd_stop");
+	trace_leave ("syslogd_stop"); 
 
 #endif
 
-	return;
-}
-
+	return; 
+} 
 
 #endif
+
+
 

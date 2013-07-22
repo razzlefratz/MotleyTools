@@ -129,18 +129,18 @@
 #include <linux/unistd.h>
 #define __NR_getsyms __NR_get_kernel_syms
 
-_syscall1 (int, getsyms, struct kernel_sym *, syms);
+_syscall1 (int, getsyms, struct kernel_sym *, syms); 
 
 #undef __LIBRARY__
 
-extern int getsyms (struct kernel_sym *);
+extern int getsyms (struct kernel_sym *); 
 
 /* __GLIBC__ */
 
 #else 
 
-extern __off64_t lseek64 __P ((int __fd, __off64_t __offset, int __whence));
-extern int get_kernel_syms __P ((struct kernel_sym * __table));
+extern __off64_t lseek64 __P ((int __fd, __off64_t __offset, int __whence)); 
+extern int get_kernel_syms __P ((struct kernel_sym * __table)); 
 
 /* __GLIBC__ */
 
@@ -151,17 +151,17 @@ extern int get_kernel_syms __P ((struct kernel_sym * __table));
  *   program variables;
  *--------------------------------------------------------------------*/
 
-static int num_modules = 0;
-struct _module_ *symbols_modules = (struct _module_ *) (0);
-static int have_modules = 0;
+static int num_modules = 0; 
+struct _module_ * symbols_modules = (struct _module_ *) (0); 
+static int have_modules = 0; 
 
 #if defined(TEST)
 
-static int debugging = 1;
+static int debugging = 1; 
 
 #else
 
-extern int debugging;
+extern int debugging; 
 
 #endif
 
@@ -169,10 +169,10 @@ extern int debugging;
  *   program vunctions;
  *--------------------------------------------------------------------*/
 
-static int AddSymbol (unsigned long address, char *symbol, struct _module_ *module);
-static int AddModule (unsigned long address, char *symbol);
-static void FreeModules ();
-static int symsort (void const *p1, void const *p2);
+static int AddSymbol (unsigned long address, char * symbol, struct _module_ * module); 
+static int AddModule (unsigned long address, char * symbol); 
+static void FreeModules (); 
+static int symsort (void const * p1, void const * p2); 
 
 /*====================================================================*
  *
@@ -194,17 +194,17 @@ static int symsort (void const *p1, void const *p2);
 
 extern int InitMsyms () 
 
-{
-	auto int rtn,
-	tmp;
-	auto struct kernel_sym *kmodule_symbol,
-	*p;
+{ 
+	auto int rtn, 
+	tmp; 
+	auto struct kernel_sym * kmodule_symbol, 
+	* p; 
 
 /*
  * Initialize the kernel module symbol table. 
  */
 
-	FreeModules ();
+	FreeModules (); 
 
 /*
  * The system call which returns the kernel symbol table has
@@ -224,58 +224,57 @@ extern int InitMsyms ()
  */
 
 	if ((rtn = getsyms ((struct kernel_sym *) 0)) < 0) 
-	{
-		if (errno == ENOSYS) Syslog (SYSLOG_INFO, "No module symbols loaded - kernel modules not enabled.\n");
-		else Syslog (LOG_ERR, "Error loading kernel symbols - %s\n", strerror (errno));
-		return (0);
-	}
-	if (debugging) fprintf (stderr, "Loading kernel module symbols - Size of table: %d\n", rtn);
-	kmodule_symbol = (struct kernel_sym *) malloc (rtn * sizeof (struct kernel_sym));
+	{ 
+		if (errno == ENOSYS) Syslog (SYSLOG_INFO, "No module symbols loaded - kernel modules not enabled.\n"); 
+		else Syslog (LOG_ERR, "Error loading kernel symbols - %s\n", strerror (errno)); 
+		return (0); 
+	} 
+	if (debugging) fprintf (stderr, "Loading kernel module symbols - Size of table: %d\n", rtn); 
+	kmodule_symbol = (struct kernel_sym *) malloc (rtn * sizeof (struct kernel_sym)); 
 	if (kmodule_symbol == (struct kernel_sym *) 0) 
-	{
-		Syslog (LOG_WARNING, " Failed memory allocation for kernel symbol table.\n");
-		return (0);
-	}
+	{ 
+		Syslog (LOG_WARNING, " Failed memory allocation for kernel symbol table.\n"); 
+		return (0); 
+	} 
 	if ((rtn = getsyms (kmodule_symbol)) < 0) 
-	{
-		Syslog (LOG_WARNING, "Error reading kernel symbols - %s\n", strerror (errno));
-		return (0);
-	}
+	{ 
+		Syslog (LOG_WARNING, "Error reading kernel symbols - %s\n", strerror (errno)); 
+		return (0); 
+	} 
 
 /*
  * Build a symbol table compatible with the other one used by
  * klogd.
  */
 
-	tmp = rtn;
-	p = kmodule_symbol;
+	tmp = rtn; 
+	p = kmodule_symbol; 
 	while (tmp--) 
-	{
+	{ 
 		if (!AddModule (p->value, p->name)) 
-		{
-			Syslog (LOG_WARNING, "Error adding kernel module table " "entry.\n");
-			free (kmodule_symbol);
-			return (0);
-		}
-		++p;
-	}
+		{ 
+			Syslog (LOG_WARNING, "Error adding kernel module table " "entry.\n"); 
+			free (kmodule_symbol); 
+			return (0); 
+		} 
+		++ p; 
+	} 
 
 /*
  * Sort the symbol tables in each module. 
  */
 
-	for (rtn = tmp = 0; tmp < num_modules; ++tmp) 
-	{
-		rtn += symbols_modules [tmp].num_syms;
-		if (symbols_modules [tmp].num_syms < 2) continue;
-		qsort (symbols_modules [tmp].symbols, symbols_modules [tmp].num_syms, sizeof (struct module_symbol), symsort);
-	}
-	if (rtn == 0) Syslog (SYSLOG_INFO, "No module symbols loaded.");
-	else Syslog (SYSLOG_INFO, "Loaded %d %s from %d module%s", rtn, (rtn == 1)? "symbol": "symbols", num_modules, (num_modules == 1)? ".": "s.");
-	free (kmodule_symbol);
-	return (1);
-}
-
+	for (rtn = tmp = 0; tmp < num_modules; ++ tmp) 
+	{ 
+		rtn += symbols_modules [tmp].num_syms; 
+		if (symbols_modules [tmp].num_syms < 2) continue; 
+		qsort (symbols_modules [tmp].symbols, symbols_modules [tmp].num_syms, sizeof (struct module_symbol), symsort); 
+	} 
+	if (rtn == 0) Syslog (SYSLOG_INFO, "No module symbols loaded."); 
+	else Syslog (SYSLOG_INFO, "Loaded %d %s from %d module%s", rtn, (rtn == 1)? "symbol": "symbols", num_modules, (num_modules == 1)? ".": "s."); 
+	free (kmodule_symbol); 
+	return (1); 
+} 
 
 /*====================================================================*
  *   
@@ -298,35 +297,35 @@ extern int InitMsyms ()
  *		closely matching the address is returned.
  *--------------------------------------------------------------------*/
 
-extern char const *LookupModuleSymbol (unsigned long address, struct symbol *symbol) 
+extern char const * LookupModuleSymbol (unsigned long address, struct symbol * symbol) 
 
-{
-	int nmod;
-	int nsym;
-	struct module_symbol *last;
-	struct _module_ *module;
-	symbol->size = 0;
-	symbol->offset = 0;
-	if (num_modules == 0) return ((char *) 0);
-	for (nmod = 0; nmod < num_modules; ++nmod) 
-	{
-		module = &symbols_modules [nmod];
+{ 
+	int nmod; 
+	int nsym; 
+	struct module_symbol * last; 
+	struct _module_ * module; 
+	symbol->size = 0; 
+	symbol->offset = 0; 
+	if (num_modules == 0) return ((char *) 0); 
+	for (nmod = 0; nmod < num_modules; ++ nmod) 
+	{ 
+		module = & symbols_modules [nmod]; 
 
 /*
  * Run through the list of symbols in this module and
  * see if the address can be resolved.
  */
 
-		for (nsym = 1, last = &module->symbols [0]; nsym < module->num_syms; ++nsym) 
-		{
+		for (nsym = 1, last = & module->symbols [0]; nsym < module->num_syms; ++ nsym) 
+		{ 
 			if (module->symbols [nsym].value > address) 
-			{
-				symbol->offset = address - last->value;
-				symbol->size = module->symbols [nsym].value - last->value;
-				return (last->name);
-			}
-			last = &module->symbols [nsym];
-		}
+			{ 
+				symbol->offset = address - last->value; 
+				symbol->size = module->symbols [nsym].value - last->value; 
+				return (last->name); 
+			} 
+			last = & module->symbols [nsym]; 
+		} 
 
 /*
  * At this stage of the game we still cannot give up the
@@ -348,7 +347,7 @@ extern char const *LookupModuleSymbol (unsigned long address, struct symbol *sym
 
 #endif
 
-		{
+		{ 
 
 /*
  * A special case needs to be checked for.  The above
@@ -366,22 +365,22 @@ extern char const *LookupModuleSymbol (unsigned long address, struct symbol *sym
  */
 
 			if (module->num_syms > 0) 
-			{
-				last = &module->symbols [module->num_syms - 1];
+			{ 
+				last = & module->symbols [module->num_syms - 1]; 
 
 #if LINUX_VERSION_CODE < 0x20112
 
-				symbol->size = (int) module->module.addr + (module->module.size * 4096) - address;
+				symbol->size = (int) module->module.addr + (module->module.size * 4096) - address; 
 
 #else
 
-				symbol->size = (int) module->module_info.addr + (module->module.size * 4096) - address;
+				symbol->size = (int) module->module_info.addr + (module->module.size * 4096) - address; 
 
 #endif
 
-				symbol->offset = address - last->value;
-				return (last->name);
-			}
+				symbol->offset = address - last->value; 
+				return (last->name); 
+			} 
 
 /*
  * There were no symbols defined for this module.
@@ -389,29 +388,28 @@ extern char const *LookupModuleSymbol (unsigned long address, struct symbol *sym
  * faulting address in the module.
  */
 
-			symbol->size = module->module.size * 4096;
+			symbol->size = module->module.size * 4096; 
 
 #if LINUX_VERSION_CODE < 0x20112
 
-			symbol->offset = (void *) (address) - module->module.addr;
+			symbol->offset = (void *) (address) - module->module.addr; 
 
 #else
 
-			symbol->offset = (address) - module->module_info.addr;
+			symbol->offset = (address) - module->module_info.addr; 
 
 #endif
 
-			return (module->name);
-		}
-	}
+			return (module->name); 
+		} 
+	} 
 
 /*
  * It has been a hopeless exercise. 
  */
 
-	return ((char *) 0);
-}
-
+	return ((char *) 0); 
+} 
 
 /*
  * Setting the -DTEST define enables the following code fragment to
@@ -435,17 +433,17 @@ extern char const *LookupModuleSymbol (unsigned long address, struct symbol *sym
  * Return:	int
  *--------------------------------------------------------------------*/
 
-static int AddModule (unsigned long address, char *symbol) 
+static int AddModule (unsigned long address, char * symbol) 
 
-{
-	auto int memfd;
-	auto struct _module_ *module;
+{ 
+	auto int memfd; 
+	auto struct _module_ * module; 
 
 /*
  * Return if we have loaded the modules. 
  */
 
-	if (have_modules) return (1);
+	if (have_modules) return (1); 
 
 /*
  * The following section of code is responsible for determining
@@ -453,9 +451,9 @@ static int AddModule (unsigned long address, char *symbol)
  */
 
 	if (symbol [0] == '#') 
-	{
+	{ 
 		if (symbol [1] == '\0') 
-		{
+		{ 
 
 /*
  * A symbol which consists of a # sign only
@@ -464,60 +462,59 @@ static int AddModule (unsigned long address, char *symbol)
  * module list.
  */
 
-			have_modules = 1;
-			return (1);
-		}
+			have_modules = 1; 
+			return (1); 
+		} 
 
 /*
  * Allocate space for the module. 
  */
 
-		symbols_modules = (struct _module_ *) (realloc (symbols_modules, (num_modules + 1) * sizeof (struct _module_)));
+		symbols_modules = (struct _module_ *) (realloc (symbols_modules, (num_modules + 1) * sizeof (struct _module_))); 
 		if (symbols_modules == (struct _module_ *) 0) 
-		{
-			Syslog (LOG_WARNING, "Cannot allocate Module array.\n");
-			return (0);
-		}
-		module = &symbols_modules [num_modules];
+		{ 
+			Syslog (LOG_WARNING, "Cannot allocate Module array.\n"); 
+			return (0); 
+		} 
+		module = & symbols_modules [num_modules]; 
 		if ((memfd = open ("/dev/kmem", O_RDONLY)) < 0) 
-		{
-			Syslog (LOG_WARNING, "Error opening /dev/kmem\n");
-			return (0);
-		}
+		{ 
+			Syslog (LOG_WARNING, "Error opening /dev/kmem\n"); 
+			return (0); 
+		} 
 		if (lseek64 (memfd, address, SEEK_SET) < 0) 
-		{
-			Syslog (LOG_WARNING, "Error seeking in /dev/kmem\n");
-			Syslog (LOG_WARNING, "Symbol %s, address %08x\n", symbol, address);
-			return (0);
-		}
-		if (read (memfd, (char *) &symbols_modules [num_modules].module, sizeof (struct module)) < 0) 
-		{
-			Syslog (LOG_WARNING, "Error reading module " "descriptor.\n");
-			return (0);
-		}
-		close (memfd);
+		{ 
+			Syslog (LOG_WARNING, "Error seeking in /dev/kmem\n"); 
+			Syslog (LOG_WARNING, "Symbol %s, address %08x\n", symbol, address); 
+			return (0); 
+		} 
+		if (read (memfd, (char *) & symbols_modules [num_modules].module, sizeof (struct module)) < 0) 
+		{ 
+			Syslog (LOG_WARNING, "Error reading module " "descriptor.\n"); 
+			return (0); 
+		} 
+		close (memfd); 
 
 /*
  * Save the module name. 
  */
 
-		module->name = (char *) malloc (strlen (&symbol [1]) + 1);
-		if (module->name == (char *) 0) return (0);
-		strcpy (module->name, &symbol [1]);
-		module->num_syms = 0;
-		module->symbols = (struct module_symbol *) 0;
-		++num_modules;
-		return (1);
-	}
+		module->name = (char *) malloc (strlen (& symbol [1]) + 1); 
+		if (module->name == (char *) 0) return (0); 
+		strcpy (module->name, & symbol [1]); 
+		module->num_syms = 0; 
+		module->symbols = (struct module_symbol *) 0; 
+		++ num_modules; 
+		return (1); 
+	} 
 	else 
-	{
-		if (num_modules > 0) module = &symbols_modules [num_modules - 1];
-		else module = &symbols_modules [0];
-		AddSymbol (address, symbol, module);
-	}
-	return (1);
-}
-
+	{ 
+		if (num_modules > 0) module = & symbols_modules [num_modules - 1]; 
+		else module = & symbols_modules [0]; 
+		AddSymbol (address, symbol, module); 
+	} 
+	return (1); 
+} 
 
 /*====================================================================*
  *   
@@ -541,40 +538,39 @@ static int AddModule (unsigned long address, char *symbol)
  *		successful.  False if not.
  *--------------------------------------------------------------------*/
 
-static int AddSymbol (unsigned long address, char *symbol, struct _module_ *module) 
+static int AddSymbol (unsigned long address, char * symbol, struct _module_ * module) 
 
-{
-	auto int tmp;
+{ 
+	auto int tmp; 
 
 /*
  * Allocate space for the symbol table entry. 
  */
 
-	module->symbols = (struct module_symbol *) realloc (module->symbols, (module->num_syms + 1) * sizeof (struct module_symbol));
-	if (module->symbols == (struct module_symbol *) 0) return (0);
+	module->symbols = (struct module_symbol *) realloc (module->symbols, (module->num_syms + 1) * sizeof (struct module_symbol)); 
+	if (module->symbols == (struct module_symbol *) 0) return (0); 
 
 /*
  * Then the space for the symbol. 
  */
 
-	tmp = strlen (symbol);
-	tmp += (strlen (module->name) + 1);
-	module->symbols [module->num_syms].name = (char *) malloc (tmp + 1);
-	if (module->symbols [module->num_syms].name == (char *) 0) return (0);
-	memset (module->symbols [module->num_syms].name, '\0', tmp + 1);
+	tmp = strlen (symbol); 
+	tmp += (strlen (module->name) + 1); 
+	module->symbols [module->num_syms].name = (char *) malloc (tmp + 1); 
+	if (module->symbols [module->num_syms].name == (char *) 0) return (0); 
+	memset (module->symbols [module->num_syms].name, '\0', tmp + 1); 
 
 /*
  * Stuff interesting information into the module. 
  */
 
-	module->symbols [module->num_syms].value = address;
-	strcpy (module->symbols [module->num_syms].name, module->name);
-	strcat (module->symbols [module->num_syms].name, ":");
-	strcat (module->symbols [module->num_syms].name, symbol);
-	++module->num_syms;
-	return (1);
-}
-
+	module->symbols [module->num_syms].value = address; 
+	strcpy (module->symbols [module->num_syms].name, module->name); 
+	strcat (module->symbols [module->num_syms].name, ":"); 
+	strcat (module->symbols [module->num_syms].name, symbol); 
+	++ module->num_syms; 
+	return (1); 
+} 
 
 /*====================================================================*
  *
@@ -590,33 +586,34 @@ static int AddSymbol (unsigned long address, char *symbol, struct _module_ *modu
 
 static void FreeModules () 
 
-{
-	int nmods;
-	int nsyms;
-	struct _module_ *module;
+{ 
+	int nmods; 
+	int nsyms; 
+	struct _module_ * module; 
 
 /*
  * Check to see if the module symbol tables need to be cleared. 
  */
 
-	have_modules = 0;
-	if (num_modules == 0) return;
-	for (nmods = 0; nmods < num_modules; ++nmods) 
-	{
-		module = &symbols_modules [nmods];
-		if (module->num_syms == 0) continue;
-		for (nsyms = 0; nsyms < module->num_syms; ++nsyms) 
-		{
-			free (module->symbols [nsyms].name);
-		}
-		free (module->symbols);
-	}
-	free (symbols_modules);
-	symbols_modules = (struct _module_ *) (0);
-	num_modules = 0;
-	return;
-}
-
+	have_modules = 0; 
+	if (num_modules) 
+	{ 
+		for (nmods = 0; nmods < num_modules; ++ nmods) 
+		{ 
+			module = & symbols_modules [nmods]; 
+			if (module->num_syms == 0) continue; 
+			for (nsyms = 0; nsyms < module->num_syms; ++ nsyms) 
+			{ 
+				free (module->symbols [nsyms].name); 
+			} 
+			free (module->symbols); 
+		} 
+		free (symbols_modules); 
+		symbols_modules = (struct _module_ *) (0); 
+		num_modules = 0; 
+	} 
+	return; 
+} 
 
 /*====================================================================*
  *
@@ -626,22 +623,21 @@ static void FreeModules ()
  *
  *--------------------------------------------------------------------*/
 
-static int symsort (void const *p1, void const *p2) 
+static int symsort (void const * p1, void const * p2) 
 
-{
-	const struct module_symbol *symbol1 = p1;
-	const struct module_symbol *symbol2 = p2;
+{ 
+	const struct module_symbol * symbol1 = p1; 
+	const struct module_symbol * symbol2 = p2; 
 	if (symbol1->value < symbol2->value) 
-	{
-		return (-1);
-	}
+	{ 
+		return (- 1); 
+	} 
 	if (symbol1->value > symbol2->value) 
-	{
-		return (1);
-	}
-	return (0);
-}
-
+	{ 
+		return (1); 
+	} 
+	return (0); 
+} 
 
 /*====================================================================*
  *
@@ -652,18 +648,17 @@ static int symsort (void const *p1, void const *p2)
 
 #ifdef TEST
 
-static void Syslog (int priority, char *fmt, ...) 
+static void Syslog (int priority, char * fmt, ...) 
 
-{
-	va_list ap;
-	va_start (ap, fmt);
-	fprintf (stdout, "Pr: %d, ", priority);
-	vfprintf (stdout, fmt, ap);
-	va_end (ap);
-	fputc ('\n', stdout);
-	return;
-}
-
+{ 
+	va_list ap; 
+	va_start (ap, fmt); 
+	fprintf (stdout, "Pr: %d, ", priority); 
+	vfprintf (stdout, fmt, ap); 
+	va_end (ap); 
+	fputc ('\n', stdout); 
+	return; 
+} 
 
 #endif
 
@@ -679,33 +674,34 @@ static void Syslog (int priority, char *fmt, ...)
 
 #include <stdarg.h>
 
-int main (int argc, char *argv []) 
+int main (int argc, char * argv []) 
 
-{
-	auto int lp,
-	syms;
+{ 
+	auto int lp, 
+	syms; 
 	if (!InitMsyms ()) 
-	{
-		fprintf (stderr, "Cannot load module symbols.\n");
-		return (1);
-	}
-	printf ("Number of modules: %d\n\n", num_modules);
-	for (lp = 0; lp < num_modules; ++lp) 
-	{
-		printf ("Module #%d = %s, Number of symbols = %d\n", lp + 1, symbols_modules [lp].name, symbols_modules [lp].num_syms);
-		for (syms = 0; syms < symbols_modules [lp].num_syms; ++syms) 
-		{
-			printf ("\tSymbol #%d\n", syms + 1);
-			printf ("\tName: %s\n", symbols_modules [lp].symbols [syms].name);
-			printf ("\tAddress: %lx\n\n", symbols_modules [lp].symbols [syms].address);
-		}
-	}
-	FreeModules ();
-	return (0);
-}
+	{ 
+		fprintf (stderr, "Cannot load module symbols.\n"); 
+		return (1); 
+	} 
+	printf ("Number of modules: %d\n\n", num_modules); 
+	for (lp = 0; lp < num_modules; ++ lp) 
+	{ 
+		printf ("Module #%d = %s, Number of symbols = %d\n", lp + 1, symbols_modules [lp].name, symbols_modules [lp].num_syms); 
+		for (syms = 0; syms < symbols_modules [lp].num_syms; ++ syms) 
+		{ 
+			printf ("\tSymbol #%d\n", syms + 1); 
+			printf ("\tName: %s\n", symbols_modules [lp].symbols [syms].name); 
+			printf ("\tAddress: %lx\n\n", symbols_modules [lp].symbols [syms].address); 
+		} 
+	} 
+	FreeModules (); 
+	return (0); 
+} 
 
+#endif
 
 #endif
 
-#endif
+
 

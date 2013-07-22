@@ -70,7 +70,7 @@ int main (int argc, char const * argv [])
 	oscancode source; 
 	ogetoptv getopt; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getopt.getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

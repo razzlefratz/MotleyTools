@@ -221,7 +221,7 @@ int main (int argc, char const * argv [])
 	unsigned start = IFD_START; 
 	unsigned dir = IFD_RIGHT; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

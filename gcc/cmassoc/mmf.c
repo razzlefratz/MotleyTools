@@ -447,7 +447,7 @@ int main (int argc, char const * argv [])
 	memset (botbar, '-', sizeof (botbar) - 1); 
 	listcreate (& targets, _LISTSIZE); 
 	listcreate (& sources, _LISTSIZE); 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

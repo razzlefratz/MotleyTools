@@ -23,24 +23,25 @@
  *   struct syslogd type names by type code; 
  *--------------------------------------------------------------------*/
 
-char const *syslogd_type_names [] = 
+char const * syslogd_type_names [] = 
 
-{
-	"none",
-	"file",
-	"pipe",
-	"term",
-	"console",
-	"user",
-	"site",
-	"host",
-	(char const *)(0)
-};
-
+{ 
+	"none", 
+	"file", 
+	"pipe", 
+	"term", 
+	"console", 
+	"user", 
+	"site", 
+	"host", 
+	(char const *) (0)
+}; 
 
 /*====================================================================*
  *   
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

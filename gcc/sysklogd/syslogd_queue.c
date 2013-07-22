@@ -55,53 +55,53 @@
  *
  *--------------------------------------------------------------------*/
 
-void syslogd_queue (int priority, char const *origin, char const *notice) 
+void syslogd_queue (int priority, char const * origin, char const * notice) 
 
-{
-	extern flag_t state;
-	extern struct syslogd syslogs;
-	struct syslogd *syslog;
-	facility_t facility = SYSLOG_FACILITY (priority);
-	severity_t severity = SYSLOG_SEVERITY (priority);
-	time_t now = time (&now);
+{ 
+	extern flag_t state; 
+	extern struct syslogd syslogs; 
+	struct syslogd * syslog; 
+	facility_t facility = SYSLOG_FACILITY (priority); 
+	severity_t severity = SYSLOG_SEVERITY (priority); 
+	time_t now = time (& now); 
 
 #if SYSLOGD_TRACE
 
-	trace_enter ("syslogd_queue");
+	trace_enter ("syslogd_queue"); 
 
 #endif
 
 #if SYSLOGD_ORIGIN
 
-	if (origin == (char const *)(0)) 
-	{
-		origin = "";
-	}
+	if (origin == (char const *) (0)) 
+	{ 
+		origin = ""; 
+	} 
 
 #endif
 
-	if (notice == (char const *)(0)) 
-	{
-		notice = "";
-	}
-	for (syslog = syslogs.next; syslog != &syslogs; syslog = syslog->next) 
-	{
+	if (notice == (char const *) (0)) 
+	{ 
+		notice = ""; 
+	} 
+	for (syslog = syslogs.next; syslog != & syslogs; syslog = syslog->next) 
+	{ 
 		if (_anyset (syslog->f_flags, SYSLOGD_FLAG_DISABLED)) 
-		{
-			continue;
-		}
+		{ 
+			continue; 
+		} 
 		if (_allclr (syslog->f_severity [facility], (1 << severity))) 
-		{
-			continue;
-		}
+		{ 
+			continue; 
+		} 
 		if (syslog->f_time > now) 
-		{
-			continue;
-		}
+		{ 
+			continue; 
+		} 
 		if (!syslog->f_retry) 
-		{
-			strftime (syslog->f_posted, sizeof (syslog->f_posted), LOGTIME, localtime (&now));
-		}
+		{ 
+			strftime (syslog->f_posted, sizeof (syslog->f_posted), LOGTIME, localtime (& now)); 
+		} 
 
 #if SYSLOGD_ORIGIN
 
@@ -113,37 +113,37 @@ void syslogd_queue (int priority, char const *origin, char const *notice)
 
 #endif
 
-		{
-			syslog->f_repeat++;
-			continue;
-		}
+		{ 
+			syslog->f_repeat++; 
+			continue; 
+		} 
 		if (syslog->f_repeat > 0) 
-		{
-			syslog->f_length = snprintf (syslog->f_notice, sizeof (syslog->f_notice), "Previous message received %d times", syslog->f_repeat + 1);
-			syslog->f_repeat = 0;
-			syslogd_write (syslog, state);
-		}
-		if (*notice != (char)(0)) 
-		{
-			syslog->f_priority = priority;
+		{ 
+			syslog->f_length = snprintf (syslog->f_notice, sizeof (syslog->f_notice), "Previous message received %d times", syslog->f_repeat + 1); 
+			syslog->f_repeat = 0; 
+			syslogd_write (syslog, state); 
+		} 
+		if (* notice != (char) (0)) 
+		{ 
+			syslog->f_priority = priority; 
 
 #if SYSLOGD_ORIGIN
 
-			strncpy (syslog->f_origin, origin, sizeof (syslog->f_origin));
+			strncpy (syslog->f_origin, origin, sizeof (syslog->f_origin)); 
 
 #endif
 #if SYSLOGD_NATURE
 
-			strfpri (syslog->f_nature, sizeof (syslog->f_nature), priority);
+			strfpri (syslog->f_nature, sizeof (syslog->f_nature), priority); 
 
 #endif
 
-			strncpy (syslog->f_notice, notice, sizeof (syslog->f_notice));
-			syslog->f_repeat = 0;
-			syslogd_ready (syslog, state);
-			syslogd_write (syslog, state);
-		}
-	}
+			strncpy (syslog->f_notice, notice, sizeof (syslog->f_notice)); 
+			syslog->f_repeat = 0; 
+			syslogd_ready (syslog, state); 
+			syslogd_write (syslog, state); 
+		} 
+	} 
 
 /*--------------------------------------------------------------------*
  * this loop executes only if the list has one member; in that case
@@ -153,24 +153,25 @@ void syslogd_queue (int priority, char const *origin, char const *notice)
  *--------------------------------------------------------------------*/
 
 	if (syslog->next == syslog) 
-	{
-		if ((syslog->f_desc = open (syslog->f_name, O_WRONLY | O_NOCTTY)) != -1) 
-		{
-			syslogd_write (syslog, state);
-			close (syslog->f_desc);
-			syslog->f_desc = -1;
-		}
-	}
+	{ 
+		if ((syslog->f_desc = open (syslog->f_name, O_WRONLY | O_NOCTTY)) != - 1) 
+		{ 
+			syslogd_write (syslog, state); 
+			close (syslog->f_desc); 
+			syslog->f_desc = - 1; 
+		} 
+	} 
 
 #if SYSLOGD_TRACE
 
-	trace_leave ("syslogd_queue");
+	trace_leave ("syslogd_queue"); 
 
 #endif
 
-	return;
-}
-
+	return; 
+} 
 
 #endif
+
+
 

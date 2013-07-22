@@ -15,29 +15,29 @@
 
 /* Function prototypes. */
 
-extern int main (int, char **);
-extern int main (argc, argv) int argc;
-char *argv [];
+extern int main (int, char **); 
+extern int main (argc, argv) int argc; 
+char * argv []; 
 
-{
-	auto int fd;
+{ 
+	auto int fd; 
 	if (argc != 2) 
-	{
-		fprintf (stderr, "No oops device specified.\n");
-		return (1);
-	}
+	{ 
+		fprintf (stderr, "No oops device specified.\n"); 
+		return (1); 
+	} 
 	if ((fd = open (argv [1], O_RDONLY)) < 0) 
-	{
-		fprintf (stderr, "Cannot open device: %s.\n", argv [1]);
-		return (1);
-	}
+	{ 
+		fprintf (stderr, "Cannot open device: %s.\n", argv [1]); 
+		return (1); 
+	} 
 	if (ioctl (fd, 1, 0) < 0) 
-	{
-		fprintf (stderr, "Failed on oops.\n");
-		return (1);
-	}
-	printf ("OOoops\n");
-	close (fd);
-	return (0);
-}
+	{ 
+		fprintf (stderr, "Failed on oops.\n"); 
+		return (1); 
+	} 
+	printf ("OOoops\n"); 
+	close (fd); 
+	return (0); 
+} 
 

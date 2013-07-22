@@ -24,73 +24,74 @@
 #include "../tools/tools.h"
 #include "../tools/flags.h"
 
-void syslogd_merge (struct socket *socket, char const *origin, char const record [], size_t length) 
+void syslogd_merge (struct socket * socket, char const * origin, char const record [], size_t length) 
 
-{
-	char buffer [TEXTLINE_MAX];
-	char *sp = buffer;
+{ 
+	char buffer [TEXTLINE_MAX]; 
+	char * sp = buffer; 
 
 #if SYSLOGD_TRACE
 
-	trace_enter ("syslogd_merge");
+	trace_enter ("syslogd_merge"); 
 
 #endif
 
-	if (socket->buffer != (char *) (0)) 
-	{
-		char const *record = socket->buffer;
-		while (*record != (char) (0)) 
-		{
+	if (socket->buffer) 
+	{ 
+		char const * record = socket->buffer; 
+		while (* record) 
+		{ 
 			if ((sp - buffer) > (sizeof (buffer) - 2)) 
-			{
-				*sp = (char) (0);
-				syslogd_scrub (origin, buffer);
-				sp = buffer;
-				*sp++ = '+';
-			}
-			*sp++ = *record++;
-		}
-		free (socket->buffer);
-		socket->buffer = (char *) (0);
-	}
+			{ 
+				* sp = (char) (0); 
+				syslogd_scrub (origin, buffer); 
+				sp = buffer; 
+				* sp++ = '+'; 
+			} 
+			* sp++ = * record++; 
+		} 
+		free (socket->buffer); 
+		socket->buffer = (char *) (0); 
+	} 
 	while (length-- > 0) 
-	{
-		if (*record == (char) (0)) 
-		{
-			*sp = (char) (0);
-			syslogd_scrub (origin, buffer);
-			sp = buffer;
-			record++;
-			continue;
-		}
+	{ 
+		if (* record == (char) (0)) 
+		{ 
+			* sp = (char) (0); 
+			syslogd_scrub (origin, buffer); 
+			sp = buffer; 
+			record++; 
+			continue; 
+		} 
 		if ((sp - buffer) > (sizeof (buffer) - 2)) 
-		{
-			*sp = (char) (0);
-			syslogd_scrub (origin, buffer);
-			sp = buffer;
-			*sp++ = '+';
-		}
-		*sp++ = *record++;
-	}
-	*sp = (char) (0);
+		{ 
+			* sp = (char) (0); 
+			syslogd_scrub (origin, buffer); 
+			sp = buffer; 
+			* sp++ = '+'; 
+		} 
+		* sp++ = * record++; 
+	} 
+	* sp = (char) (0); 
 	if (sp > buffer) 
-	{
-		socket->buffer = strdup (buffer);
+	{ 
+		socket->buffer = strdup (buffer); 
 		if (socket->buffer == (char *) (0)) 
-		{
-			syslogd_error (errno, "can't store message fragment");
-		}
-	}
+		{ 
+			syslogd_error (errno, "can't store message fragment"); 
+		} 
+	} 
 
 #if SYSLOGD_TRACE
 
-	trace_leave ("syslogd_merge");
+	trace_leave ("syslogd_merge"); 
 
 #endif
 
-	return;
-}
-
+	return; 
+} 
 
 #endif
+
+
 

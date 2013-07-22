@@ -232,7 +232,7 @@ int main (int argc, char const * argv [])
 	flag_t flags = (flag_t)(0); 
 	char filename [FILENAME_MAX + 1]; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

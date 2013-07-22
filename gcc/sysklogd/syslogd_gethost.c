@@ -30,68 +30,69 @@
 
 #ifdef SYSLOGD_INETAF
 
-char const *syslogd_gethost (struct sockaddr_in *sockaddr, char const *hosts [], char const *domains []) 
+char const * syslogd_gethost (struct sockaddr_in * sockaddr, char const * hosts [], char const * domains []) 
 
-{
-	extern char const *domain_name;
-	struct hostent *hostent;
-	char *sp;
+{ 
+	extern char const * domain_name; 
+	struct hostent * hostent; 
+	char * sp; 
 	if (sockaddr->sin_family != AF_INET) 
-	{
-		return ("nohost");
-	}
-	hostent = gethostbyaddr (&sockaddr->sin_addr, sizeof (struct in_addr), sockaddr->sin_family);
+	{ 
+		return ("nohost"); 
+	} 
+	hostent = gethostbyaddr (& sockaddr->sin_addr, sizeof (struct in_addr), sockaddr->sin_family); 
 	if (hostent == (struct hostent *) (0)) 
-	{
-		return ((char const *)(inet_ntoa (sockaddr->sin_addr)));
-	}
-	for (sp = hostent->h_name; *sp != (char) (0); sp++) 
-	{
-		if (isupper (*sp)) 
-		{
-			*sp = tolower (*sp);
-		}
-	}
-	for (sp = hostent->h_name; *sp != (char) (0); sp++) 
-	{
-		if (*sp != '.') 
-		{
-			continue;
-		}
+	{ 
+		return ((char const *) (inet_ntoa (sockaddr->sin_addr))); 
+	} 
+	for (sp = hostent->h_name; * sp != (char) (0); sp++) 
+	{ 
+		if (isupper (* sp)) 
+		{ 
+			* sp = tolower (* sp); 
+		} 
+	} 
+	for (sp = hostent->h_name; * sp != (char) (0); sp++) 
+	{ 
+		if (* sp != '.') 
+		{ 
+			continue; 
+		} 
 		if (!strcmp (sp + 1, domain_name)) 
-		{
-			*sp = (char) (0);
-			return (hostent->h_name);
-		}
+		{ 
+			* sp = (char) (0); 
+			return (hostent->h_name); 
+		} 
 		if (domains == (char const **) (0)) 
-		{
-			continue;
-		}
-		while (*domains != (char *) (0)) 
-		{
-			if (!strcmp (sp + 1, *domains)) 
-			{
-				*sp = (char) (0);
-				return (hostent->h_name);
-			}
-		}
+		{ 
+			continue; 
+		} 
+		while (* domains != (char *) (0)) 
+		{ 
+			if (!strcmp (sp + 1, * domains)) 
+			{ 
+				* sp = (char) (0); 
+				return (hostent->h_name); 
+			} 
+		} 
 		if (hosts == (char const **) (0)) 
-		{
-			continue;
-		}
-		while (*hosts != (char const *) (0)) 
-		{
-			if (!strcmp (hostent->h_name, *hosts)) 
-			{
-				*sp = (char) (0);
-				return (hostent->h_name);
-			}
-		}
-	}
-	return (hostent->h_name);
-}
-
+		{ 
+			continue; 
+		} 
+		while (* hosts != (char const *) (0)) 
+		{ 
+			if (!strcmp (hostent->h_name, * hosts)) 
+			{ 
+				* sp = (char) (0); 
+				return (hostent->h_name); 
+			} 
+		} 
+	} 
+	return (hostent->h_name); 
+} 
 
 #endif
 #endif
+
+
 

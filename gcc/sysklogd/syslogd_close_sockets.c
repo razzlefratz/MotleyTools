@@ -30,77 +30,78 @@
 #include "../sysklogd/syslogd.h"
 #include "../tools/sizes.h"
 
-void syslogd_close_sockets (struct socket *sockets) 
+void syslogd_close_sockets (struct socket * sockets) 
 
-{
-	struct socket *socket = sockets;
-	char buffer [HOSTADDR_MAX];
+{ 
+	struct socket * socket = sockets; 
+	char buffer [HOSTADDR_MAX]; 
 
 #if SYSLOGD_TRACE
 
-	trace_enter ("syslogd_close_sockets");
+	trace_enter ("syslogd_close_sockets"); 
 
 #endif
 
 	do 
-	{
-		socket = socket->next;
+	{ 
+		socket = socket->next; 
 		if (socket->desc < 0) 
-		{
-			continue;
-		}
+		{ 
+			continue; 
+		} 
 		if (socket->sockaddr == (struct sockaddr *) (0)) 
-		{
-			syslogd_error (EINVAL, "Invalid socket address structure");
-			continue;
-		}
+		{ 
+			syslogd_error (EINVAL, "Invalid socket address structure"); 
+			continue; 
+		} 
 
 #ifdef SYSLOGD_UNIXAF
 
 		if (socket->sockaddr->sa_family == AF_UNIX) 
-		{
-			struct sockaddr_un *sockaddr_un = (struct sockaddr_un *) (socket->sockaddr);
-			syslogd_print (SYSLOG_SYSLOG | SYSLOG_NOTICE, "Closing host connection on %s", sockaddr_un->sun_path);
-			close (socket->desc);
+		{ 
+			struct sockaddr_un * sockaddr_un = (struct sockaddr_un *) (socket->sockaddr); 
+			syslogd_print (SYSLOG_SYSLOG | SYSLOG_NOTICE, "Closing host connection on %s", sockaddr_un->sun_path); 
+			close (socket->desc); 
 			if (unlink (sockaddr_un->sun_path)) 
-			{
-				syslogd_error (errno, "Can't remove socket %s", sockaddr_un->sun_path);
-			}
-			socket->desc = -1;
-			continue;
-		}
+			{ 
+				syslogd_error (errno, "Can't remove socket %s", sockaddr_un->sun_path); 
+			} 
+			socket->desc = - 1; 
+			continue; 
+		} 
 
 #endif
 #ifdef SYSLOGD_INETAF
 
 		if (socket->sockaddr->sa_family == AF_INET) 
-		{
-			struct sockaddr_in *sockaddr_in = (struct sockaddr_in *) (socket->sockaddr);
-			getsocketname (buffer, sizeof (buffer), sockaddr_in);
-			syslogd_print (SYSLOG_SYSLOG | SYSLOG_NOTICE, "Closing inet connection on %s", buffer);
-			close (socket->desc);
-			socket->desc = -1;
-			continue;
-		}
+		{ 
+			struct sockaddr_in * sockaddr_in = (struct sockaddr_in *) (socket->sockaddr); 
+			getsocketname (buffer, sizeof (buffer), sockaddr_in); 
+			syslogd_print (SYSLOG_SYSLOG | SYSLOG_NOTICE, "Closing inet connection on %s", buffer); 
+			close (socket->desc); 
+			socket->desc = - 1; 
+			continue; 
+		} 
 
 #endif
 
-	}
-	while (socket != sockets);
+	} 
+	while (socket != sockets); 
 
 #if SYSLOGD_TRACE
 
-	trace_leave ("syslogd_close_sockets");
+	trace_leave ("syslogd_close_sockets"); 
 
 #endif
 
-	return;
-}
-
+	return; 
+} 
 
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

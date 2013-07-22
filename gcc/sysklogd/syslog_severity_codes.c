@@ -19,65 +19,66 @@
 
 const struct _code_ syslog_severity_codes [] = 
 
-{
-	{
-		SYSLOG_ALERT,
+{ 
+	{ 
+		SYSLOG_ALERT, 
 		"alert"
-	},
-	{
-		SYSLOG_CRIT,
+	}, 
+	{ 
+		SYSLOG_CRIT, 
 		"crit"
-	},
-	{
-		SYSLOG_DEBUG,
+	}, 
+	{ 
+		SYSLOG_DEBUG, 
 		"debug"
-	},
-	{
-		SYSLOG_EMERG,
+	}, 
+	{ 
+		SYSLOG_EMERG, 
 		"emerg"
-	},
-	{
-		SYSLOG_ERR,
+	}, 
+	{ 
+		SYSLOG_ERR, 
 		"err"
-	},
-	{
-		SYSLOG_ERR,
+	}, 
+	{ 
+		SYSLOG_ERR, 
 		"error"
-	},
-	{
-		SYSLOG_INFO,
+	}, 
+	{ 
+		SYSLOG_INFO, 
 		"info"
-	},
-	{
-		SYSLOG_SEVERITY_NONE,
+	}, 
+	{ 
+		SYSLOG_SEVERITY_NONE, 
 		"none"
-	},
-	{
-		SYSLOG_NOTICE,
+	}, 
+	{ 
+		SYSLOG_NOTICE, 
 		"notice"
-	},
-	{
-		SYSLOG_EMERG,
+	}, 
+	{ 
+		SYSLOG_EMERG, 
 		"panic"
-	},
-	{
-		SYSLOG_WARNING,
+	}, 
+	{ 
+		SYSLOG_WARNING, 
 		"warn"
-	},
-	{
-		SYSLOG_WARNING,
+	}, 
+	{ 
+		SYSLOG_WARNING, 
 		"warning"
-	},
-	{
-		SYSLOG_SEVERITIES,
+	}, 
+	{ 
+		SYSLOG_SEVERITIES, 
 		"*"
-	},
-	{
-		(signed)(-1),
+	}, 
+	{ 
+		(signed) (- 1), 
 		(char const *) (0)
-	}
-};
-
+	} 
+}; 
 
 #endif
+
+
 

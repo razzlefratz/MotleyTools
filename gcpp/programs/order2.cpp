@@ -85,7 +85,7 @@ int main (int argc, char const * argv [])
 	oputoptv putopt; 
 	ograph graph; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getopt.getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

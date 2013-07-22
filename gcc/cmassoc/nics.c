@@ -105,7 +105,7 @@ int main (int argc, char const * argv [])
 	struct nic * nic = nics; 
 	unsigned size = hostnics (nics, NICS); 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

@@ -35,46 +35,47 @@ __attribute__ ((format (printf, 2, 3)))
 
 #endif
 
-void syslogd_error (errno_t number, char const *format, ...) 
+void syslogd_error (errno_t number, char const * format, ...) 
 
-{
-	extern char const *host_name;
-	extern char const *program_name;
-	char buffer [TEXTLINE_MAX] = "no error message";
-	size_t length = 0;
+{ 
+	extern char const * host_name; 
+	extern char const * program_name; 
+	char buffer [TEXTLINE_MAX] = "no error message"; 
+	size_t length = 0; 
 
 #if SYSLOGD_TRACE
 
-	trace_enter ("syslogd_error");
+	trace_enter ("syslogd_error"); 
 
 #endif
 
-	if ((program_name != (char const *) (0)) && (*program_name != (char)(0))) 
-	{
-		length += snprintf (buffer + length, sizeof (buffer) - length, "%s: ", program_name);
-	}
-	if ((format != (char const *) (0)) && (*format != (char)(0))) 
-	{
-		va_list arglist;
-		va_start (arglist, format);
-		length += vsnprintf (buffer + length, sizeof (buffer) - length, format, arglist);
-		va_end (arglist);
-	}
+	if ((program_name != (char const *) (0)) && (* program_name != (char) (0))) 
+	{ 
+		length += snprintf (buffer + length, sizeof (buffer) - length, "%s: ", program_name); 
+	} 
+	if ((format != (char const *) (0)) && (* format != (char) (0))) 
+	{ 
+		va_list arglist; 
+		va_start (arglist, format); 
+		length += vsnprintf (buffer + length, sizeof (buffer) - length, format, arglist); 
+		va_end (arglist); 
+	} 
 	if (number != (errno_t) (0)) 
-	{
-		length += snprintf (buffer + length, sizeof (buffer) - length, ": %s", strerror (number));
-	}
-	syslogd_queue (SYSLOG_SYSLOG|SYSLOG_ERR, host_name, buffer);
+	{ 
+		length += snprintf (buffer + length, sizeof (buffer) - length, ": %s", strerror (number)); 
+	} 
+	syslogd_queue (SYSLOG_SYSLOG | SYSLOG_ERR, host_name, buffer); 
 
 #if SYSLOGD_TRACE
 
-	trace_leave ("syslogd_error");
+	trace_leave ("syslogd_error"); 
 
 #endif
 
-	return;
-}
-
+	return; 
+} 
 
 #endif
+
+
 

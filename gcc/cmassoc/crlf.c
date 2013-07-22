@@ -137,7 +137,7 @@ int main (int argc, char const * argv [])
 	}; 
 	flag_t flags = CRLF_B_LF; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

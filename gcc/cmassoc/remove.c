@@ -191,7 +191,7 @@ int main (int argc, char const * argv [])
 	size_t item = 0; 
 	flag_t flags = REMOVE_B_RECORD; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

@@ -321,7 +321,7 @@ int main (int argc, char const * argv [])
 	signed count = GRAPH_COUNT; 
 	flag_t flags = 0; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

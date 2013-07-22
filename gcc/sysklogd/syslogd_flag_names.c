@@ -23,21 +23,22 @@
  *   struct syslogd flag names by bit position; 
  *--------------------------------------------------------------------*/
 
-char const *syslogd_flag_names [] = 
+char const * syslogd_flag_names [] = 
 
-{
-	"disabled",
-	"condense",
-	"synchronize",
-	"ignore_priority",
-	"single_priority",
+{ 
+	"disabled", 
+	"condense", 
+	"synchronize", 
+	"ignore_priority", 
+	"single_priority", 
 	(char const *) (0)
-};
-
+}; 
 
 /*====================================================================*
  *   
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

@@ -259,7 +259,7 @@ int main (int argc, char const * argv [])
 	size_t length = TEXTLINE_MAX; 
 	flag_t flags = DEP_B_SYSTEM; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

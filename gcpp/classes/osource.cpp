@@ -259,9 +259,7 @@ signed osource::context (signed c) const
 signed osource::command (signed c) const 
 
 { 
-	c = osource::feed (c); 
-	c = osource::_command (c, '\n'); 
-	c = osource::feed (c); 
+	c = osource::command (c, '\n'); 
 	return (c); 
 } 
 
@@ -554,6 +552,13 @@ signed osource::despace (signed c) const
 		} 
 		c = osource::find (c); 
 		std::cout.put (' '); 
+#if 0
+		if (oascii::isunary (c))
+		{
+			c = osource::feed (c);
+			c = osource::find (c); 
+		}
+#endif
 	} 
 	else if ((c == '&') || (c == '|')) 
 	{ 
@@ -564,6 +569,13 @@ signed osource::despace (signed c) const
 		} 
 		c = osource::find (o); 
 		std::cout.put (' '); 
+#if 0
+		if (oascii::isunary (c))
+		{
+			c = osource::feed (c);
+			c = osource::find (c); 
+		}
+#endif
 	} 
 	else if ((c == '<') || (c == '>')) 
 	{ 
@@ -578,6 +590,13 @@ signed osource::despace (signed c) const
 		} 
 		c = osource::find (o); 
 		std::cout.put (' '); 
+#if 0
+		if (oascii::isunary (c))
+		{
+			c = osource::feed (c);
+			c = osource::find (c); 
+		}
+#endif
 	} 
 	else if (c == ':') 
 	{ 
@@ -737,7 +756,7 @@ signed osource::escaped (signed c) const
 signed osource::feed (signed c) const 
 
 { 
-	if ((c) && (c != EOF)) 
+	if ((c != NUL) && (c != EOF)) 
 	{ 
 		std::cout.put (c); 
 	} 

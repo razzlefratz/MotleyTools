@@ -90,7 +90,7 @@ int main (int argc, char const * argv [])
 	tm = localtime (& timer); 
 	annum = 1900 + tm->tm_year; 
 	month = tm->tm_mon; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

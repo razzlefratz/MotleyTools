@@ -19,105 +19,106 @@
 
 const struct _code_ syslog_facility_codes [] = 
 
-{
-	{
-		SYSLOG_AUTH,
+{ 
+	{ 
+		SYSLOG_AUTH, 
 		"auth"
-	},
-	{
-		SYSLOG_AUTHPRIV,
+	}, 
+	{ 
+		SYSLOG_AUTHPRIV, 
 		"authpriv"
-	},
-	{
-		SYSLOG_CRON,
+	}, 
+	{ 
+		SYSLOG_CRON, 
 		"cron"
-	},
-	{
-		SYSLOG_DAEMON,
+	}, 
+	{ 
+		SYSLOG_DAEMON, 
 		"daemon"
-	},
-	{
-		SYSLOG_KERN,
+	}, 
+	{ 
+		SYSLOG_KERN, 
 		"kern"
-	},
-	{
-		SYSLOG_LPR,
+	}, 
+	{ 
+		SYSLOG_LPR, 
 		"lpr"
-	},
-	{
-		SYSLOG_MAIL,
+	}, 
+	{ 
+		SYSLOG_MAIL, 
 		"mail"
-	},
-	{
-		SYSLOG_MARK,
+	}, 
+	{ 
+		SYSLOG_MARK, 
 		"mark"
-	},
-	{
-		SYSLOG_NEWS,
+	}, 
+	{ 
+		SYSLOG_NEWS, 
 		"news"
-	},
-	{
-		SYSLOG_AUTH,
+	}, 
+	{ 
+		SYSLOG_AUTH, 
 		"security"
-	},
-	{
-		SYSLOG_SYSLOG,
+	}, 
+	{ 
+		SYSLOG_SYSLOG, 
 		"syslog"
-	},
-	{
-		SYSLOG_USER,
+	}, 
+	{ 
+		SYSLOG_USER, 
 		"user"
-	},
-	{
-		SYSLOG_UUCP,
+	}, 
+	{ 
+		SYSLOG_UUCP, 
 		"uucp"
-	},
-	{
-		SYSLOG_FTP,
+	}, 
+	{ 
+		SYSLOG_FTP, 
 		"ftp"
-	},
-	{
-		SYSLOG_LOCAL0,
+	}, 
+	{ 
+		SYSLOG_LOCAL0, 
 		"local0"
-	},
-	{
-		SYSLOG_LOCAL1,
+	}, 
+	{ 
+		SYSLOG_LOCAL1, 
 		"local1"
-	},
-	{
-		SYSLOG_LOCAL2,
+	}, 
+	{ 
+		SYSLOG_LOCAL2, 
 		"local2"
-	},
-	{
-		SYSLOG_LOCAL3,
+	}, 
+	{ 
+		SYSLOG_LOCAL3, 
 		"local3"
-	},
-	{
-		SYSLOG_LOCAL4,
+	}, 
+	{ 
+		SYSLOG_LOCAL4, 
 		"local4"
-	},
-	{
-		SYSLOG_LOCAL5,
+	}, 
+	{ 
+		SYSLOG_LOCAL5, 
 		"local5"
-	},
-	{
-		SYSLOG_LOCAL6,
+	}, 
+	{ 
+		SYSLOG_LOCAL6, 
 		"local6"
-	},
-	{
-		SYSLOG_LOCAL7,
+	}, 
+	{ 
+		SYSLOG_LOCAL7, 
 		"local7"
-	},
-	{
-		SYSLOG_FACILITIES,
+	}, 
+	{ 
+		SYSLOG_FACILITIES, 
 		"*"
-	},
-	{
-		(signed)(-1),
+	}, 
+	{ 
+		(signed) (- 1), 
 		(char const *) (0)
-	},
-};
-
+	}, 
+}; 
 
 #endif
+
+
 

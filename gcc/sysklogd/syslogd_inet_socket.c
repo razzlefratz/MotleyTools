@@ -24,36 +24,37 @@
 
 #ifdef SYSLOGD_INETAF
 
-file_t syslogd_inet_socket (struct sockaddr_in *sockaddr_in) 
+file_t syslogd_inet_socket (struct sockaddr_in * sockaddr_in) 
 
-{
-	char buffer [HOSTADDR_MAX];
-	bool_t state = true;
-	file_t fd;
-	if ((fd = socket (AF_INET, SOCK_DGRAM, 0)) == -1) 
-	{
-		getsocketname (buffer, sizeof (buffer), sockaddr_in);
-		syslogd_error (errno, "Can't allocate socket for %s", buffer);
-		return (-1);
-	}
-	if (setsockopt (fd, SOL_SOCKET, SO_REUSEADDR, (char *) (&state), sizeof (state)) == -1) 
-	{
-		getsocketname (buffer, sizeof (buffer), sockaddr_in);
-		syslogd_error (errno, "Can't set socket options for %s", buffer);
-		close (fd);
-		return (-1);
-	}
-	if (bind (fd, (struct sockaddr *) (sockaddr_in), sizeof (struct sockaddr_in)) == -1) 
-	{
-		getsocketname (buffer, sizeof (buffer), sockaddr_in);
-		syslogd_error (errno, "Can't connect to %s", buffer);
-		close (fd);
-		return (-1);
-	}
-	return (fd);
-}
-
+{ 
+	char buffer [HOSTADDR_MAX]; 
+	bool_t state = true; 
+	file_t fd; 
+	if ((fd = socket (AF_INET, SOCK_DGRAM, 0)) == - 1) 
+	{ 
+		getsocketname (buffer, sizeof (buffer), sockaddr_in); 
+		syslogd_error (errno, "Can't allocate socket for %s", buffer); 
+		return (- 1); 
+	} 
+	if (setsockopt (fd, SOL_SOCKET, SO_REUSEADDR, (char *) (& state), sizeof (state)) == - 1) 
+	{ 
+		getsocketname (buffer, sizeof (buffer), sockaddr_in); 
+		syslogd_error (errno, "Can't set socket options for %s", buffer); 
+		close (fd); 
+		return (- 1); 
+	} 
+	if (bind (fd, (struct sockaddr *) (sockaddr_in), sizeof (struct sockaddr_in)) == - 1) 
+	{ 
+		getsocketname (buffer, sizeof (buffer), sockaddr_in); 
+		syslogd_error (errno, "Can't connect to %s", buffer); 
+		close (fd); 
+		return (- 1); 
+	} 
+	return (fd); 
+} 
 
 #endif
 #endif
+
+
 

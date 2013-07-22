@@ -35,53 +35,54 @@
 #include "../tools/tools.h"
 #include "../tools/types.h"
 
-void syslogd_configure (struct syslogd *syslogs, flag_t flags, char const *filename) 
+void syslogd_configure (struct syslogd * syslogs, flag_t flags, char const * filename) 
 
-{
-	file_t fd;
-	char string [TEXTLINE_MAX];
-	size_t lineno = 0;
+{ 
+	file_t fd; 
+	char string [TEXTLINE_MAX]; 
+	size_t lineno = 0; 
 
 #if SYSLOGD_TRACE
 
-	trace_enter ("syslogd_configure");
+	trace_enter ("syslogd_configure"); 
 
 #endif
 
-	if ((fd = open (filename, O_RDONLY)) == -1) 
-	{
-		syslogd_error (errno, "cant open %s", filename);
-		return;
-	}
-	while (statement (fd, string, sizeof (string), &lineno)) 
-	{
-		if (*string != (char) (0)) 
-		{
-			struct syslogd *syslog = NEW (struct syslogd);
-			syslogd_parse (syslog, flags, string);
+	if ((fd = open (filename, O_RDONLY)) == - 1) 
+	{ 
+		syslogd_error (errno, "cant open %s", filename); 
+		return; 
+	} 
+	while (statement (fd, string, sizeof (string), & lineno)) 
+	{ 
+		if (* string != (char) (0)) 
+		{ 
+			struct syslogd * syslog = NEW (struct syslogd); 
+			syslogd_parse (syslog, flags, string); 
 			if (syslog->f_type == SYSLOGD_TYPE_NONE) 
-			{
-				free (syslog->f_name);
-				free (syslog);
-				continue;
-			}
-			syslog->prev = syslogs->prev;
-			syslogs->prev->next = syslog;
-			syslogs->prev = syslog;
-			syslog->next = syslogs;
-		}
-	}
-	close (fd);
+			{ 
+				free (syslog->f_name); 
+				free (syslog); 
+				continue; 
+			} 
+			syslog->prev = syslogs->prev; 
+			syslogs->prev->next = syslog; 
+			syslogs->prev = syslog; 
+			syslog->next = syslogs; 
+		} 
+	} 
+	close (fd); 
 
 #if SYSLOGD_TRACE
 
-	trace_leave ("syslogd_configure");
+	trace_leave ("syslogd_configure"); 
 
 #endif
 
-	return;
-}
-
+	return; 
+} 
 
 #endif
+
+
 

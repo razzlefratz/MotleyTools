@@ -83,34 +83,33 @@
  *
  *--------------------------------------------------------------------*/
 
-static char *syslogd_facility (struct syslogd *syslog, char buffer [], size_t length) 
+static char * syslogd_facility (struct syslogd * syslog, char buffer [], size_t length) 
 
-{
-	facility_t facility;
-	size_t offset = 0;
-	if (syslog == (struct syslogd *)(0)) 
-	{
+{ 
+	facility_t facility; 
+	size_t offset = 0; 
+	if (syslog == (struct syslogd *) (0)) 
+	{ 
 		for (facility = 0; facility < SYSLOG_FACILITIES; facility++) 
-		{
-			offset += snprintf (buffer + offset, length - offset, " %02d", facility);
-		}
-		offset += snprintf (buffer + offset, length - offset, "\n");
-		return (buffer);
-	}
+		{ 
+			offset += snprintf (buffer + offset, length - offset, " %02d", facility); 
+		} 
+		offset += snprintf (buffer + offset, length - offset, "\n"); 
+		return (buffer); 
+	} 
 	for (facility = 0; facility < SYSLOG_FACILITIES; facility++) 
-	{
-		if (syslog->f_severity [facility] != (severity_t)(0)) 
-		{
-			offset += snprintf (buffer + offset, length - offset, " %02X", syslog->f_severity [facility]);
-		}
+	{ 
+		if (syslog->f_severity [facility] != (severity_t) (0)) 
+		{ 
+			offset += snprintf (buffer + offset, length - offset, " %02X", syslog->f_severity [facility]); 
+		} 
 		else 
-		{
-			offset += snprintf (buffer + offset, length - offset, " --");
-		}
-	}
-	return (buffer);
-}
-
+		{ 
+			offset += snprintf (buffer + offset, length - offset, " --"); 
+		} 
+	} 
+	return (buffer); 
+} 
 
 /*====================================================================*
  *   
@@ -128,28 +127,29 @@ static char *syslogd_facility (struct syslogd *syslog, char buffer [], size_t le
  *
  *--------------------------------------------------------------------*/
 
-void syslogd_enumerate (struct syslogd *syslogs, flag_t flags, FILE *fp) 
+void syslogd_enumerate (struct syslogd * syslogs, flag_t flags, FILE * fp) 
 
-{
-	extern char const *syslogd_type_names [];
-	struct syslogd *syslog;
-	char buffer [256];
-	fprintf (fp, " %s", syslogd_facility ((struct syslogd *)(0), buffer, sizeof (buffer)));
+{ 
+	extern char const * syslogd_type_names []; 
+	struct syslogd * syslog; 
+	char buffer [256]; 
+	fprintf (fp, " %s", syslogd_facility ((struct syslogd *) (0), buffer, sizeof (buffer))); 
 	for (syslog = syslogs->next; syslog != syslogs; syslog = syslog->next) 
-	{
-		fprintf (fp, " %s", syslogd_facility (syslog, buffer, sizeof (buffer)));
-		fprintf (fp, " %s", syslogd_type_names [syslog->f_type]);
-		fprintf (fp, " %s", syslog->f_name);
-		fprintf (fp, "\n");
-	}
-	fprintf (fp, " %s", syslogd_facility (syslog, buffer, sizeof (buffer)));
-	fprintf (fp, " %s", syslogd_type_names [syslog->f_type]);
-	fprintf (fp, " %s", syslog->f_name);
-	fprintf (fp, "\n");
-	fprintf (fp, "\n");
-	return;
-}
-
+	{ 
+		fprintf (fp, " %s", syslogd_facility (syslog, buffer, sizeof (buffer))); 
+		fprintf (fp, " %s", syslogd_type_names [syslog->f_type]); 
+		fprintf (fp, " %s", syslog->f_name); 
+		fprintf (fp, "\n"); 
+	} 
+	fprintf (fp, " %s", syslogd_facility (syslog, buffer, sizeof (buffer))); 
+	fprintf (fp, " %s", syslogd_type_names [syslog->f_type]); 
+	fprintf (fp, " %s", syslog->f_name); 
+	fprintf (fp, "\n"); 
+	fprintf (fp, "\n"); 
+	return; 
+} 
 
 #endif
+
+
 

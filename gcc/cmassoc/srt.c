@@ -197,7 +197,7 @@ int main (int argc, char const * argv [])
 	size_t heapsize = _HEAPSIZE; 
 	size_t linesize = _LINESIZE; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

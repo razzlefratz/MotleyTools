@@ -302,7 +302,7 @@ int main (int argc, char const * argv [])
 	size_t width = _WIDTH; 
 	flag_t flag = NONE; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

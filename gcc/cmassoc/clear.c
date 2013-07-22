@@ -64,7 +64,7 @@ int main (int argc, char const * argv [])
 	}; 
 	unsigned line; 
 	signed c; 
-	while ((c = getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

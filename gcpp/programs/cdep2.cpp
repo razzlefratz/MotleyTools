@@ -200,7 +200,7 @@ int main (int argc, char const * argv [])
 	oflagword flags; 
 	size_t length = FILENAME_MAX; 
 	signed c; 
-	while ((c = getopt.getoptv (argc, argv, optv)) != - 1) 
+	while (~ (c = getopt.getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 

@@ -31,31 +31,31 @@
 #include "../linux/syslog.h"
 #include "../tools/flags.h"
 
-void syslogd_scrub (char const *origin, char const *string) 
+void syslogd_scrub (char const * origin, char const * string) 
 
-{
-	char buffer [TEXTLINE_MAX + TEXTLINE_MAX];
-	char *sp = buffer;
-	int priority = 0;
+{ 
+	char buffer [TEXTLINE_MAX + TEXTLINE_MAX]; 
+	char * sp = buffer; 
+	int priority = 0; 
 
 #if SYSLOGD_TRACE
 
-	trace_enter ("syslogd_scrub");
+	trace_enter ("syslogd_scrub"); 
 
 #endif
 
-	if (*string == '<') 
-	{
-		while (isdigit (*++string)) 
-		{
-			priority *= 10;
-			priority += (*string - '0');
-		}
-		if (*string == '>') 
-		{
-			string++;
-		}
-	}
+	if (* string == '<') 
+	{ 
+		while (isdigit (* ++ string)) 
+		{ 
+			priority *= 10; 
+			priority += (* string - '0'); 
+		} 
+		if (* string == '>') 
+		{ 
+			string++; 
+		} 
+	} 
 
 #if SYSLOGD_NOTIME
 
@@ -67,64 +67,65 @@ void syslogd_scrub (char const *origin, char const *string)
 /* mmm dd hh:mm:ss yyy */
 
 	if ((string [3] == ' ') && (string [6] == ' ') && (string [9] == ':') && (string [12] == ':') && (string [15] == ' ')) 
-	{
-		string += 16;
-	}
+	{ 
+		string += 16; 
+	} 
 
 /* www mmm dd hh:mm:ss yyy */
 
 	else if ((string [3] == ' ') && (string [7] == ' ') && (string [10] == ' ') && (string [13] == ':') && (string [16] == ':') && (string [19] == ' ')) 
-	{
-		string += 24;
-	}
+	{ 
+		string += 24; 
+	} 
 	else if ((string [4] == '-') && (string [7] == '-') && (string [10] == ' ') && (string [13] == ':') && (string [16] == ':') && (string [19] == ' ')) 
-	{
-		string += 20;
-	}
+	{ 
+		string += 20; 
+	} 
 
 #endif
 
-	memset (buffer, 0, sizeof (buffer));
+	memset (buffer, 0, sizeof (buffer)); 
 	while (((sp - buffer) < (sizeof (buffer) - 4))) 
-	{
-		if (*string == (char)(0)) 
-		{
-			break;
-		}
-		else if (*string == '\n') 
-		{
-			*sp++ = ' ';
-		}
-		else if (*string < 0x20) 
-		{
-			*sp++ = '^';
-			*sp++ = *string | 0100;
-		}
-		else if ((*string == 0x3F) || ((*string & 0x3F) < 0x20)) 
-		{
-			*sp++ = '\\';
-			*sp++ = '0' + ((*string >> 6) & 07);
-			*sp++ = '0' + ((*string >> 3) & 07);
-			*sp++ = '0' + ((*string >> 0) & 07);
-		}
+	{ 
+		if (* string == (char) (0)) 
+		{ 
+			break; 
+		} 
+		else if (* string == '\n') 
+		{ 
+			* sp++ = ' '; 
+		} 
+		else if (* string < 0x20) 
+		{ 
+			* sp++ = '^'; 
+			* sp++ = * string | 0100; 
+		} 
+		else if ((* string == 0x3F) || ((* string & 0x3F) < 0x20)) 
+		{ 
+			* sp++ = '\\'; 
+			* sp++ = '0' + ((* string >> 6) & 07); 
+			* sp++ = '0' + ((* string >> 3) & 07); 
+			* sp++ = '0' + ((* string >> 0) & 07); 
+		} 
 		else 
-		{
-			*sp++ = *string;
-		}
-		string++;
-	}
-	*sp = (char) (0);
-	syslogd_queue (priority, origin, buffer);
+		{ 
+			* sp++ = * string; 
+		} 
+		string++; 
+	} 
+	* sp = (char) (0); 
+	syslogd_queue (priority, origin, buffer); 
 
 #if SYSLOGD_TRACE
 
-	trace_leave ("syslogd_scrub");
+	trace_leave ("syslogd_scrub"); 
 
 #endif
 
-	return;
-}
-
+	return; 
+} 
 
 #endif
+
+
 

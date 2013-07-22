@@ -15,3 +15,4 @@ include ../../make.def
 	${CC} -c ${<} ${CFLAGS}
 %: %.o
 	${CC} -o ${@} ${LFLAGS} ${^} 
+

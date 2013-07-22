@@ -52,11 +52,7 @@ signed octidy::program (signed c)
 		{ 
 			oindent::endline (); 
 			oinclude::header (); 
-			do 
-			{ 
-				c = osource::command (c, '\n'); 
-			} 
-			while (c == '#'); 
+			do { c = osource::command (c, '\n'); } while (c == '#'); 
 			oindent::space (1); 
 			continue; 
 		} 
@@ -327,14 +323,18 @@ signed octidy::statement (signed c)
 	char * sp = string; 
 	while (oascii::isalnum (c) || (c == '_')) 
 	{ 
-		* sp++ = c; 
+		if ((sp - string) <= (sizeof (string) - 1))
+		{
+			* sp++ = c; 
+		}
 		c = std::cin.get (); 
+		if (c == EOF)
+		{
+			return (c);
+		}
 	} 
-	while (oascii::isspace (c)) 
-	{ 
-		c = std::cin.get (); 
-	} 
-	* sp = (char) (0); 
+	c = osource::find (c);
+	*sp = (char)(0);
 	if (sp == string) 
 	{ 
 		oindent::print (this->mlevel, 0, string); 
@@ -432,7 +432,7 @@ signed octidy::_context (signed c, signed o, signed e) const
 	while ((c != e) && (c != EOF)) 
 	{ 
 		c = octidy::_context (c, o); 
-		c = osource::feed (c); 
+		c = osource::feed (o); 
 	} 
 	return (c); 
 } 
