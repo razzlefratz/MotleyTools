@@ -25,12 +25,12 @@ TOOLS=afm align argv argvesc b64 bang bin2hex blank calend call envp ether case 
 
 PAGES=toolkit.1 afm.1 align.1 argv.1 b64.1 bang.1 bin2hex.1 blank.1 calend.1 call.1 case.1 catalog.1 cblock.1 cbrief.1 cdep.1 cedit.1 change.1 chr.1 cinc.1 cmerge.1 crlf.1 csv2html.1 ctar.1 defix.1 delta.1 detab.1 dls.1 dmp2hex.1 ds.1 efsu.1 enbrace.1 enfix.1 englyph.1 entab.1 envp.1 fbar.1 ff.1 filesize.1 footer.1 fp.1 grab.1 graph.1 grope.1 hbrief.1 header.1 hex.1 hex2bin.1 hexcmp.1 hexdmp.1 html.1 ifd.1 import.1 key.1 l2p.1 lam.1 log.1 loop.1 matrix.1 mp.1 mrg.1 munge.1 nics.1 np.1 ocomp.1 odc.1 odd.1 ode.1 odump.1 odx.1 oedit.1 offset.1 order.1 preamble.1 relate.1 remove.1 rex.1 sbrief.1 search.1 shakey.1 shakeys.1 single.1 sizeof.1 space.1 srt.1 stamp.1 sweep.1 sv.1 symlinks.1 timer.1 typelist.1 tls.1 trim.1 try.1 unique.1 vl.1 vu.1 wl.1 xde.1 xml.1
 
-ifeq (${SYSTEM},Linux)
+ifeq (${system},Linux)
 TOOLS+=localhost quiet runjobs shout syslog what whom
 PAGES+=localhost.1 quiet.1 runjobs.1 shout.1 what.1 whom.1
 endif
 
-ifeq (${EXTRA},yes)
+ifeq (${extra},yes)
 TOOLS+=mvpkg octal pkgdep pkgopt qc rexp rmpkg chkbld chperm checkmode dif ff-bld ff-elf setmode undash 
 PAGES+=mvpkg.1 octal.1 pkgdep.1 pkgopt.1 qc.1 rexp.1 rmpkg.1 chkbld.1 chperm.1 checkmode.1 dif.1 ff-bld.1 ff-elf.1 setmode.1 undash.1 
 endif
