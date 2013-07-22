@@ -333,10 +333,7 @@ signed octidy::statement (signed c)
 			return (c);
 		}
 	} 
-	while (oascii::isspace (c)) 
-	{ 
-		c = std::cin.get (); 
-	} 
+	c = osource::find (c);
 	*sp = (char)(0);
 	if (sp == string) 
 	{ 
@@ -425,7 +422,7 @@ signed octidy::context (signed c, signed o, signed e) const
 	c = osource::feed (c); 
 	c = osource::find (c); 
 	c = octidy::_context (c, o, e); 
-	c = osource::feed (e); 
+	c = osource::feed (c); 
 	return (c); 
 } 
 
@@ -452,7 +449,7 @@ signed octidy::context (signed c, signed e) const
 	c = osource::feed (c); 
 	c = osource::find (c); 
 	c = octidy::_context (c, e); 
-	c = osource::feed (e); 
+	c = osource::feed (c); 
 	return (c); 
 } 
 

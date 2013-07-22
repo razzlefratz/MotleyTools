@@ -268,7 +268,7 @@ signed osource::command (signed c, signed e) const
 { 
 	c = osource::feed (c); 
 	c = osource::_command (c, e); 
-	c = osource::feed (e); 
+	c = osource::feed (c); 
 	return (c); 
 } 
 
@@ -314,7 +314,7 @@ signed osource::literal (signed c, signed e) const
 { 
 	c = osource::feed (c); 
 	c = osource::_literal (c, e); 
-	c = osource::feed (e); 
+	c = osource::feed (c); 
 	return (c); 
 } 
 
@@ -552,6 +552,13 @@ signed osource::despace (signed c) const
 		} 
 		c = osource::find (c); 
 		std::cout.put (' '); 
+#if 0
+		if (oascii::isunary (c))
+		{
+			c = osource::feed (c);
+			c = osource::find (c); 
+		}
+#endif
 	} 
 	else if ((c == '&') || (c == '|')) 
 	{ 
@@ -562,6 +569,13 @@ signed osource::despace (signed c) const
 		} 
 		c = osource::find (o); 
 		std::cout.put (' '); 
+#if 0
+		if (oascii::isunary (c))
+		{
+			c = osource::feed (c);
+			c = osource::find (c); 
+		}
+#endif
 	} 
 	else if ((c == '<') || (c == '>')) 
 	{ 
@@ -576,6 +590,13 @@ signed osource::despace (signed c) const
 		} 
 		c = osource::find (o); 
 		std::cout.put (' '); 
+#if 0
+		if (oascii::isunary (c))
+		{
+			c = osource::feed (c);
+			c = osource::find (c); 
+		}
+#endif
 	} 
 	else if (c == ':') 
 	{ 

@@ -79,9 +79,9 @@ char const * oascii::cbits [] =
 	"token", 
 	"ident", 
 	"begin", 
-	"close",
-	"money",
-	"power",
+	"close", 
+	"money", 
+	"power", 
 	"fract"
 }; 
 
@@ -1493,7 +1493,7 @@ bool oascii::ismatch (signed c, signed o)
 bool oascii::isbreak (signed c) 
 
 { 
-	return ((c == '\0') || (c == '\n') || (c == -1)); 
+	return ((c == '\0') || (c == '\n') || (c == - 1)); 
 } 
 
 /*====================================================================*
@@ -1505,7 +1505,7 @@ bool oascii::isbreak (signed c)
 bool oascii::isbreak (signed c, signed o) 
 
 { 
-	return ((c == o) || (c == '\0') || (c == '\n') || (c == -1)); 
+	return ((c == o) || (c == '\0') || (c == '\n') || (c == - 1)); 
 } 
 
 /*====================================================================*
@@ -1517,7 +1517,7 @@ bool oascii::isbreak (signed c, signed o)
 bool oascii::nobreak (signed c) 
 
 { 
-	return ((c != '\0') && (c != '\n') && (c != -1)); 
+	return ((c != '\0') && (c != '\n') && (c != - 1)); 
 } 
 
 /*====================================================================*
@@ -1529,7 +1529,7 @@ bool oascii::nobreak (signed c)
 bool oascii::nobreak (signed c, signed o) 
 
 { 
-	return ((c != o) && (c != '\0') && (c != '\n') && (c != -1)); 
+	return ((c != o) && (c != '\0') && (c != '\n') && (c != - 1)); 
 } 
 
 /*====================================================================*
@@ -1930,34 +1930,34 @@ void oascii::matrix () const
 	std::cout << ";" << std::endl; 
 	for (signed c = 0; c <= SCHAR_MAX; c++) 
 	{ 
-		if (c == '\\')
-		{
+		if (c == '\\') 
+		{ 
 			std::cout << "\"\\\\\""; 
-		}	
-		else if (c == '&')
-		{
+		} 
+		else if (c == '&') 
+		{ 
 			std::cout << "\"&amp;\""; 
-		}	
-		else if (c == '<')
-		{
+		} 
+		else if (c == '<') 
+		{ 
 			std::cout << "\"&lt;\""; 
-		}	
-		else if (c == '>')
-		{
+		} 
+		else if (c == '>') 
+		{ 
 			std::cout << "\"&gt;\""; 
-		}	
-		else if (c == '\'')
-		{
+		} 
+		else if (c == '\'') 
+		{ 
 			std::cout << "\"&apos;\""; 
-		}	
-		else if (c == '\"')
-		{
+		} 
+		else if (c == '\"') 
+		{ 
 			std::cout << "\"&quot;\""; 
-		}	
-		else
-		{
+		} 
+		else 
+		{ 
 			std::cout << "\"" << oascii::cname [c] << "\""; 
-		}
+		} 
 		for (unsigned bit = 0; bit < SIZEOF (cbits); bit++) 
 		{ 
 			if (oascii::ctype [c] & (1 << bit)) 
@@ -1972,7 +1972,7 @@ void oascii::matrix () const
 
 /*====================================================================*
  *
- *   bool isctype (signed c, unsigned short mask)
+ *   bool isctype (signed c, unsigned mask)
  *
  *
  *--------------------------------------------------------------------*/
@@ -2003,7 +2003,7 @@ oascii::oascii ()
  *
  *--------------------------------------------------------------------*/
 
-oascii::~oascii () 
+oascii::~ oascii () 
 
 { 
 	return; 
