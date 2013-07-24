@@ -18,6 +18,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/oconstants.hpp"
+#include "../../gcc/tools/types.h"
 
 /*====================================================================*
  *
@@ -68,7 +69,7 @@ oconstants::oconstants ()
 		(char const *)(0)
 	};
 	okeywords::mtitle = "constants";
-	okeywords::mcount = sizeof (table) / sizeof (char const *) - 1;
+	okeywords::mcount = SIZEOF (table) - 1;
 	okeywords::mtable = table;
 	okeywords::mcheck ();
 	return;
