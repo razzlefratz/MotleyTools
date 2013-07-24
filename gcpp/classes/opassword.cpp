@@ -122,7 +122,7 @@ opassword & opassword::print (unsigned salt)
 	while (this->mindex < this->mcount) 
 	{
 		unsigned c = (char)(std::rand () % (SCHAR_MAX+1));
-		if ((this->mindex) && (this->mgroup) && ((this->mindex % this->mgroup) == 0)) 
+		if ((this->mindex) && (this->mgroup) && !(this->mindex % this->mgroup)) 
 		{
 			std::cout << this->mbreak;
 		}
