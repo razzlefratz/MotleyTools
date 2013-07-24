@@ -42,18 +42,13 @@ public:
 	static bool isprint (signed c);
 	static bool isgraph (signed c);
 	static bool iscntrl (signed c);
-	static bool isident (signed c);
-	static bool isquote (signed c);
-	static bool isblank (signed c);
-	static bool isbreak (signed c);
-	static bool nobreak (signed c);
-	static bool nmtoken (signed c);
 	static signed toupper (signed c);
 	static signed tolower (signed c);
 	static signed tocntrl (signed c);
 	static signed toascii (signed c);
 	static signed todigit (signed c);
 private:
+	static bool isctype (signed c, unsigned mask);
 	static const unsigned short mtable [];
 };
 
