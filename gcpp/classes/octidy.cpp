@@ -432,7 +432,7 @@ signed octidy::_context (signed c, signed o, signed e) const
 	while ((c != e) && (c != EOF)) 
 	{ 
 		c = octidy::_context (c, o); 
-		c = osource::feed (o); 
+		c = osource::feed (c); 
 	} 
 	return (c); 
 } 
