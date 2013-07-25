@@ -32,6 +32,7 @@
 
 ocexitwords octidy::exitwords; 
 
+
 /*====================================================================*
  *
  *   signed program (signed c);
@@ -319,11 +320,12 @@ signed octidy::charlie (signed c)
 signed octidy::statement (signed c) 
 
 { 
+	char const * charset = ",;{}#";
 	char string [512]; 
 	char * sp = string; 
 	while (oascii::isalnum (c) || (c == '_')) 
 	{ 
-		if ((sp - string) <= (sizeof (string) - 1))
+		if ((sp - string) <= (signed)(sizeof (string) - 1))
 		{
 			* sp++ = c; 
 		}
@@ -338,7 +340,7 @@ signed octidy::statement (signed c)
 	if (sp == string) 
 	{ 
 		oindent::print (this->mlevel, 0, string); 
-		c = octidy::context (c, ",;{}#"); 
+		c = octidy::context (c, charset); 
 	} 
 	else if (! std::strcmp (string, "class")) 
 	{ 
@@ -352,7 +354,7 @@ signed octidy::statement (signed c)
 		if (c == '(') 
 		{ 
 			std::cout.put (' '); 
-			c = octidy::context (c, ",;{}#"); 
+			c = octidy::context (c, charset); 
 		} 
 		else if (c != ';') 
 		{ 
@@ -375,7 +377,7 @@ signed octidy::statement (signed c)
 			oindent::print (this->mlevel, 0, string); 
 			c = osource::feed (c); 
 			c = osource::feed (c); 
-			c = octidy::context (c, ",;{}#"); 
+			c = octidy::context (c, charset); 
 		} 
 		else 
 		{ 
@@ -389,7 +391,7 @@ signed octidy::statement (signed c)
 	{ 
 		oindent::print (this->mlevel, 0, string); 
 		c = osource::enspace (c); 
-		c = octidy::context (c, ",;{}#"); 
+		c = octidy::context (c, charset); 
 	} 
 	return (c); 
 } 
