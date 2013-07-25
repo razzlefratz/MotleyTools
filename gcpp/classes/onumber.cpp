@@ -29,7 +29,6 @@
 
 #include "../classes/onumber.hpp"
 #include "../classes/oerror.hpp"
-#include "../../gcc/tools/types.h"
 
 /*====================================================================*
  *

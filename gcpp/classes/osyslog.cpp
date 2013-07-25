@@ -40,7 +40,6 @@
  *--------------------------------------------------------------------*/
 
 #include "../../gcc/tools/paths.h"
-#include "../../gcc/tools/types.h"
 #include "../../gcc/tools/flags.h"
 
 #include "../classes/osyslog.hpp"
@@ -224,7 +223,7 @@ void osyslog::syslogerr_at_line (priority_t priority, errno_t errornum, char con
 	if (filename != (char const *) (0)) 
 	{
 		char buffer [strlen (format) + SYSLOG_STRERROR_MAX];
-		std::snprintf (buffer, sizeof (buffer), "%s: (%d) ", filename, lineno);
+		std::snprintf (buffer, sizeof (buffer), "%s: (%zu) ", filename, lineno);
 		osyslog::vsyslog (priority, buffer, arglist);
 	}
 	else

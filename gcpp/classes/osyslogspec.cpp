@@ -26,7 +26,6 @@
  *--------------------------------------------------------------------*/
 
 #include "../../gcc/tools/paths.h"
-#include "../../gcc/tools/types.h"
 #include "../../gcc/tools/flags.h"
 
 #include "../classes/osyslog.hpp"

@@ -26,7 +26,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/okeywords.hpp"
-#include "../../gcc/tools/types.h"
+#include "../classes/otypes.hpp"
 
 /*====================================================================*
  *   class variables;    

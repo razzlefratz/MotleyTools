@@ -47,10 +47,7 @@ char const * oregex::select (char const * string) const
 			buffer [length] = (char) (0);
 			return (buffer);
 		}
-		else
-		{
-			string++;
-		}
+		string++;
 	}
 	return ((char *) (0));
 }
