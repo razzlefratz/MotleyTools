@@ -63,6 +63,7 @@ public:
 	static bool isfract (signed c);
 	static bool ispower (signed c);
 	static bool iscomma (signed c);
+	static bool isblock (signed c);
 	static bool isblank (signed c);
 	static bool ismatch (signed c, signed o);
 	static bool isbreak (signed c);

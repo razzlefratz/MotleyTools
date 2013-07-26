@@ -48,13 +48,14 @@
 #define oASCII_LOGIC (1 << 10) 
 #define oASCII_EQUAL (1 << 11) 
 #define oASCII_COMMA (1 << 12) 
-#define oASCII_TOKEN (1 << 13) 
+#define oASCII_BLOCK (1 << 13) 
 #define oASCII_IDENT (1 << 14) 
-#define oASCII_BEGIN (1 << 15) 
-#define oASCII_CLOSE (1 << 16) 
-#define oASCII_MONEY (1 << 17) 
-#define oASCII_POWER (1 << 18) 
-#define oASCII_FRACT (1 << 19) 
+#define oASCII_TOKEN (1 << 15) 
+#define oASCII_BEGIN (1 << 16) 
+#define oASCII_CLOSE (1 << 17) 
+#define oASCII_MONEY (1 << 18) 
+#define oASCII_POWER (1 << 19) 
+#define oASCII_FRACT (1 << 20) 
 
 /*====================================================================*
  *   private variables;
@@ -76,8 +77,9 @@ char const * oascii::cbits [] =
 	"logic", 
 	"equal", 
 	"comma", 
-	"token", 
+	"block",
 	"ident", 
+	"token", 
 	"begin", 
 	"close", 
 	"money", 
@@ -231,7 +233,7 @@ const unsigned oascii::ctype [UCHAR_MAX + 1] =
 
 /* 035 043 23 [#] */
 
-	oASCII_PUNCT, 
+	oASCII_PUNCT | oASCII_BLOCK, 
 
 /* 036 044 24 [$] */
 
@@ -267,7 +269,7 @@ const unsigned oascii::ctype [UCHAR_MAX + 1] =
 
 /* 044 054 2C [,] */
 
-	oASCII_PUNCT | oASCII_COMMA, 
+	oASCII_PUNCT | oASCII_COMMA | oASCII_BLOCK, 
 
 /* 045 055 2D [-] */
 
@@ -327,7 +329,7 @@ const unsigned oascii::ctype [UCHAR_MAX + 1] =
 
 /* 059 073 3B [;] */
 
-	oASCII_PUNCT | oASCII_COMMA, 
+	oASCII_PUNCT | oASCII_COMMA | oASCII_BLOCK, 
 
 /* 060 074 3C [<] */
 
@@ -583,7 +585,7 @@ const unsigned oascii::ctype [UCHAR_MAX + 1] =
 
 /* 123 173 7B [{] */
 
-	oASCII_PUNCT | oASCII_BEGIN, 
+	oASCII_PUNCT | oASCII_BEGIN | oASCII_BLOCK, 
 
 /* 124 174 7C [|] */
 
@@ -591,7 +593,7 @@ const unsigned oascii::ctype [UCHAR_MAX + 1] =
 
 /* 125 175 7D [}] */
 
-	oASCII_PUNCT | oASCII_CLOSE, 
+	oASCII_PUNCT | oASCII_CLOSE | oASCII_BLOCK, 
 
 /* 126 176 7E [~] */
 
@@ -1458,6 +1460,20 @@ bool oascii::nmtoken (signed c)
 
 { 
 	return (oascii::isctype (c, (oASCII_TOKEN))); 
+} 
+
+/*====================================================================*
+ *
+ *   bool isblock (signed c);
+ *
+ *   block characters begin or end a C Language code block;
+ *
+ *--------------------------------------------------------------------*/
+
+bool oascii::isblock (signed c) 
+
+{ 
+	return (oascii::isctype (c, (oASCII_BLOCK))); 
 } 
 
 /*====================================================================*
