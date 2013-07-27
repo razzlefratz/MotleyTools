@@ -295,10 +295,10 @@ signed osource::_command (signed c, signed e) const
 /*====================================================================*
  *
  *   signed osource::literal (signed c) const;
- *   signed osource::literal (signed c, signed e) const;
  *   
- *   read and write characters up to (e); output (e) then return the
- *   next character or EOF; ignore escaped instances of (e);
+ *   output (c) then read and write characters upto the next (c); 
+ *   output (c) and return the next character; ignore escaped 
+ *   instances of (e);
  *
  *--------------------------------------------------------------------*/
 
@@ -309,6 +309,15 @@ signed osource::literal (signed c) const
 	return (c); 
 } 
 
+/*====================================================================*
+ *
+ *   signed osource::literal (signed c, signed e) const;
+ *   
+ *   read and write characters up to (e); output (e) and return the
+ *   next character; ignore escaped instances of (e);
+ *
+ *--------------------------------------------------------------------*/
+
 signed osource::literal (signed c, signed e) const 
 
 { 
@@ -317,6 +326,15 @@ signed osource::literal (signed c, signed e) const
 	c = osource::feed (c); 
 	return (c); 
 } 
+
+/*====================================================================*
+ *
+ *   signed osource::_literal (signed c, signed e) const;
+ *   
+ *   read and write characters up to (e); return (e); ignore escaped
+ *   instances of (e);
+ *
+ *--------------------------------------------------------------------*/
 
 signed osource::_literal (signed c, signed e) const 
 
