@@ -47,6 +47,7 @@ public:
 	signed literal (signed c) const;
 	signed comment (signed c) const;
 	signed moniker (signed c) const;
+	signed numeric (signed c) const;
 	signed enspace (signed c) const;
 	signed escaped (signed c) const;
 	signed despace (signed c) const;
