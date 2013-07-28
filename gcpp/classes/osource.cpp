@@ -426,6 +426,17 @@ signed osource::moniker (signed c) const
 	return (c); 
 } 
 
+signed osource::numeric (signed c) const 
+
+{ 
+	do 
+	{ 
+		c = osource::feed (c); 
+	} 
+	while (oascii::isalnum (c) || (c == '.')); 
+	return (c); 
+} 
+
 /*====================================================================*
  *
  *   signed enspace (signed c) const;
@@ -512,18 +523,22 @@ signed osource::despace (signed c) const
 	} 
 	else if (oascii::isalpha (c) || (c == '_')) 
 	{ 
-		do { c = osource::feed (c); } while (oascii::isalnum (c) || (c == '_'));
+		c = osource::moniker (c);
 		c = osource::enspace (c); 
 	} 
 	else if (oascii::isdigit (c)) 
 	{ 
-		do { c = osource::feed (c); } while (oascii::isalnum (c) || (c == '.'));
+		c = osource::numeric (c);
 		c = osource::enspace (c); 
 	} 
 	else if (oascii::isquote (c)) 
 	{ 
 		c = osource::literal (c); 
 		c = osource::enspace (c); 
+	} 
+	else if (c == '#') 
+	{ 
+		c = osource::command (c, '\n'); 
 	} 
 	else if (c == '\\') 
 	{ 
@@ -645,12 +660,12 @@ signed osource::despace (signed c) const
 	} 
 	else if (c == '*') 
 	{ 
-		signed o = osource::feed (c); 
-		if ((o == c) || (o == '=')) 
+		c = osource::feed (c); 
+		if ((c == '*') || (c == '=')) 
 		{ 
-			o = osource::feed (o); 
+			c = osource::feed (c); 
 		} 
-		c = osource::find (o); 
+		c = osource::find (c); 
 		if (oascii::isclose (c)) 
 		{ 
 			return (c); 
@@ -663,30 +678,26 @@ signed osource::despace (signed c) const
 	} 
 	else if (c == '/') 
 	{ 
-		signed o = osource::feed (c); 
-		if (o == '=') 
+		c = osource::feed (c); 
+		if (c == '=') 
 		{ 
-			o = osource::feed (o); 
-			c = osource::find (o); 
+			c = osource::feed (c); 
+			c = osource::find (c); 
 			std::cout.put (' '); 
 		} 
-		else if (o == c) 
+		else if (c == '/') 
 		{ 
-			c = osource::content (o, '\n'); 
+			c = osource::content (c, '\n'); 
 		} 
-		else if (o == '*') 
+		else if (c == '*') 
 		{ 
-			c = osource::content (o, o, c); 
+			c = osource::content (c, c, '/'); 
 		} 
 		else 
-		{ 
-			c = osource::find (o); 
+		{
+			c = osource::find (c); 
 			std::cout.put (' '); 
-		} 
-	} 
-	else if (c == '#') 
-	{ 
-		c = osource::command (c, '\n'); 
+		}
 	} 
 	else 
 	{ 
