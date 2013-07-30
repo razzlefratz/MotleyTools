@@ -219,7 +219,7 @@ signed osource::context (signed c) const
 	} 
 	else if (c == '#') 
 	{ 
-		c = osource::command (c, '\n'); 
+		c = osource::command (c); 
 	} 
 	else if (c == '(') 
 	{ 
@@ -556,7 +556,7 @@ signed osource::despace (signed c) const
 	} 
 	else if (c == '#') 
 	{ 
-		c = osource::command (c, '\n'); 
+		c = osource::command (c); 
 	} 
 	else if (c == '\\') 
 	{ 
