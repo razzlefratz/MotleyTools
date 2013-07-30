@@ -74,9 +74,10 @@ int main (int argc, char const * argv [])
 { 
 	static char const * optv [] = 
 	{ 
-		"op:s:", 
+		"mop:s:", 
 		oPUTOPTV_S_FILTER, 
 		"format C/C++ source code with preamble annotations", 
+		"m\tprint example manpage on stdout", 
 		"o\tprint default profile on stdout", 
 		"p s\tprofile is (s) [" LITERAL (PROFILE_NAME) "]", 
 		"s s\tsection is (s) [" LITERAL (SECTION_NAME) "]", 
@@ -95,6 +96,9 @@ int main (int argc, char const * argv [])
 	{ 
 		switch (c) 
 		{ 
+		case 'm':
+			object.example ();
+			std::exit (0);
 		case 'o': 
 			config.write (SECTION_NAME); 
 			config.write (oMPTIDY_S_PROJECT, MPTIDY_S_PROJECT); 

@@ -72,9 +72,9 @@
 
 /*====================================================================*
  *
- *   void template ()
+ *   void example ()
  *
- *   print a skeleton manpage template on stdout;
+ *   print a skeleton manpage example on stdout;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -82,7 +82,7 @@
  *
  *--------------------------------------------------------------------*/
 
-static void template () 
+static void example () 
 
 { 
 	char const * subjects [] = 
@@ -96,20 +96,18 @@ static void template ()
 		"EXAMPLES", 
 		"NOTES", 
 		"MESSAGES", 
-		"AUTHOR", 
 		"HISTORY", 
 		"RESOURCES", 
 		"FILES", 
 		"BUGS", 
 		"CAVEATS", 
-		"AUTHOR", 
-		"AUTHOR", 
+		"AUTHORS", 
 		"CREDITS", 
 		"SEE ALSO", 
 		(char const *)(0)
 	}; 
 	char const ** subject = subjects; 
-	printf (".TH program 7 package"); 
+	printf (".TH program 1 package"); 
 	while (* subject) 
 	{ 
 		printf ("\n.SH %s\n", * subject++); 
@@ -282,6 +280,7 @@ static void function (char const * program, char const * project, char const * p
 		} 
 		c = keep (c); 
 	} 
+	putc ('\n', stdout); 
 	return; 
 } 
 
@@ -306,8 +305,8 @@ int main (int argc, char const * argv [])
 		PUTOPTV_S_FILTER, 
 		"m\tprint example manpage on stdout", 
 		"o\tprint default profile on stdout", 
-		"p f\tprofile is (s) [" MP_PROFILE "]", 
-		"s s\tsection is (s) [" MP_SECTION "]", 
+		"p f\tprofile is (s) [" LITERAL (MP_PROFILE) "]", 
+		"s s\tsection is (s) [" LITERAL (MP_SECTION) "]", 
 		(char const *) (0)
 	}; 
 	char buffer [16]; 
@@ -333,7 +332,7 @@ int main (int argc, char const * argv [])
 			section = optarg; 
 			break; 
 		case 'm': 
-			template (release); 
+			example (release); 
 			return (0); 
 		case 'o': 
 			configure (section, project, package, release); 

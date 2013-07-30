@@ -49,6 +49,7 @@ public:
 	omptidy & package (char const *);
 	omptidy & release (char const *);
 	omptidy & filename (char const *);
+	omptidy & example (void);
 	signed tidy (signed c);
 private:
 	char * mproject;
