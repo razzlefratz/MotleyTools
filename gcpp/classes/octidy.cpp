@@ -390,7 +390,7 @@ signed octidy::statement (signed c)
 	else 
 	{ 
 		oindent::print (this->mlevel, 0, string); 
-		c = osource::enspace (c); 
+		c = osource::terminate (c); 
 		c = octidy::context (c, charset); 
 	} 
 	return (c); 
@@ -488,21 +488,21 @@ signed octidy::context (signed c) const
 	else if (c == '(') 
 	{ 
 		c = octidy::context (c, ')'); 
-		c = octidy::enspace (c); 
+		c = octidy::terminate (c); 
 	} 
 	else if (c == '[') 
 	{ 
 		c = octidy::context (c, ']'); 
-		c = octidy::enspace (c); 
+		c = octidy::terminate (c); 
 	} 
 	else if (c == '{') 
 	{ 
 		c = octidy::context (c, '}'); 
-		c = octidy::enspace (c); 
+		c = octidy::terminate (c); 
 	} 
 	else 
 	{ 
-		c = osource::despace (c); 
+		c = osource::operate (c); 
 	} 
 	return (c); 
 } 

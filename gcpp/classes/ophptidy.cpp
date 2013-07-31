@@ -246,7 +246,7 @@ signed ophptidy::statement (signed c)
 	else
 	{ 
 		oindent::print (this->mlevel, 0, string); 
-		c = osource::enspace (c);
+		c = osource::terminate (c);
 		c = ophptidy::context (c, ",;{}?#"); 
 	} 
 	return (c); 
@@ -354,12 +354,12 @@ signed ophptidy::context (signed c)  const
 	else if (c == '(') 
 	{ 
 		c = ophptidy::context (c, ')'); 
-		c = ophptidy::enspace (c); 
+		c = ophptidy::terminate (c); 
 	} 
 	else if (c == '[') 
 	{ 
 		c = ophptidy::context (c, ']'); 
-		c = ophptidy::enspace (c); 
+		c = ophptidy::terminate (c); 
 	} 
 	else if (c == '{') 
 	{ 
@@ -367,7 +367,7 @@ signed ophptidy::context (signed c)  const
 	} 
 	else
 	{ 
-		c = osource::despace (c); 
+		c = osource::operate (c); 
 	} 
 	return (c); 
 } 

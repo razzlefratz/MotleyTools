@@ -444,6 +444,17 @@ signed osource::moniker (signed c) const
 	return (c); 
 } 
 
+/*====================================================================*
+ *
+ *   signed osource::numeric (signed c) const;
+ *
+ *   read and write alphanumeric characters and underscore; do not
+ *   call istoken () here because colon and hyphen are treated as
+ *   part of the name and that conflicts with labels, arithmetic
+ *   operators and pointer operators;
+ *
+ *--------------------------------------------------------------------*/
+
 signed osource::numeric (signed c) const 
 
 { 
@@ -457,13 +468,12 @@ signed osource::numeric (signed c) const
 
 /*====================================================================*
  *
- *   signed enspace (signed c) const;
+ *   signed terminate (signed c) const;
  *   
- *   insert one space prior to current character;
  *
  *--------------------------------------------------------------------*/
 
-signed osource::enspace (signed c) const 
+signed osource::terminate (signed c) const 
 
 { 
 	if (oascii::isalnum (c) || (c == '_')) 
@@ -513,13 +523,13 @@ signed osource::enspace (signed c) const
 
 /*====================================================================*
  *
- *   osource::despace (signed c) const;
+ *   osource::operate (signed c) const;
  *
  *
  *
  *--------------------------------------------------------------------*/
 
-signed osource::despace (signed c) const 
+signed osource::operate (signed c) const 
 
 { 
 	if (oascii::isspace (c)) 
@@ -542,17 +552,17 @@ signed osource::despace (signed c) const
 	else if (oascii::isalpha (c) || (c == '_')) 
 	{ 
 		c = osource::moniker (c);
-		c = osource::enspace (c); 
+		c = osource::terminate (c); 
 	} 
 	else if (oascii::isdigit (c)) 
 	{ 
 		c = osource::numeric (c);
-		c = osource::enspace (c); 
+		c = osource::terminate (c); 
 	} 
 	else if (oascii::isquote (c)) 
 	{ 
 		c = osource::literal (c); 
-		c = osource::enspace (c); 
+		c = osource::terminate (c); 
 	} 
 	else if (c == '#') 
 	{ 
