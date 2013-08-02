@@ -32,6 +32,7 @@
  *   system header files;
  *--------------------------------------------------------------------*/
 
+#include <unistd.h>
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
