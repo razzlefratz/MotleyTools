@@ -123,7 +123,7 @@ signed ochrtbl::compare (char const * string1, char const * string2) const
 ochrtbl::ochrtbl () 
 
 {
-	this->c = (char) (0);
+	ochrtbl::c = (char) (0);
 	return;
 }
 
