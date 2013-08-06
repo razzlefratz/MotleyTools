@@ -16,7 +16,7 @@ fi
 
 export MANWIDTH=100
 INDEX=toolkit.html
-STYLE=intellon.css
+STYLE=toolkit.css
 
 # ====================================================================
 #
@@ -29,10 +29,11 @@ STYLE=intellon.css
 # --------------------------------------------------------------------
 
 cp ../pib/piboffset.* .
-for file in ../*/*.7; do echo ${file}; man ${file} > $(basename ${file}); done
-for file in ../*/*.7a; do man ${file} > $(basename ${file}); done
-for file in ../scripts/*.sh; do cp ${file} .; done
-for file in ../scripts/*.bat; do cp ${file} .; done
+for file in ../gcc/cmassoc/*.1; do echo ${file}; man ${file} > $(basename ${file}); done
+for file in ../gcpp/programs/*.1; do echo ${file}; man ${file} > $(basename ${file}); done
+if [ -f ../scripts/*.sh ]; then
+	for file in ../scripts/*.sh; do cp ${file} .; done
+	fi
 purge -vr ../t.c
 import -r . '../*.h' '../*.c' 
 
@@ -40,12 +41,14 @@ import -r . '../*.h' '../*.c'
 #
 # --------------------------------------------------------------------
 
-catalog -s ${STYLE} -gdp ${INDEX} -c 4 *.7 > manual.txt
-catalog -s ${STYLE} -gdp ${INDEX} -c 4 *.7a > applet.txt
+catalog -s ${STYLE} -gdp ${INDEX} -c 4 *.1 > manual.txt
 catalog -s ${STYLE} -gdp ${INDEX} -c 4 *.h > header.txt
 catalog -s ${STYLE} -gdp ${INDEX} -c 4 *.c > source.txt
-catalog -s ${STYLE} -gdp ${INDEX} -c 4 *.sh > script.txt
-catalog -s ${STYLE} -gdp ${INDEX} -c 4 *.bat > batch.txt
-cat part0.txt part1.txt manual.txt part2.txt header.txt part3.txt source.txt part4.txt script.txt batch.txt part5.txt applet.txt part6.txt> ${INDEX}
+if [ -f *.sh ]; then
+	catalog -s ${STYLE} -gdp ${INDEX} -c 4 *.sh > script.txt
+else
+	touch script.txt
+	fi
+cat part1.txt manual.txt part2.txt header.txt part3.txt source.txt part4.txt script.txt part5.txt > ${INDEX}
 rm -f manual.txt header.txt source.txt script.txt batch.txt applet.txt 
 

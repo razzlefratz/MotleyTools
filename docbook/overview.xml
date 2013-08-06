@@ -502,7 +502,7 @@ rm -r intellon-utils-x.x.x
 					</term>
 				<listitem>
 					<para>
-						An Ethernet frame header encoder/decoder. Class properties expose the <link linkend='oethernet-PeerAddress'>PeerAddress</link>, <link linkend='oethernet-HostAddress'>HostAddress</link> and <link linkend='oethernet-Protocol'>Protocol</link> fields. It is inherited by the <link linkend='ohomeplug'>ohomeplug</link>,  <link linkend='ointellon'>ointellon</link> and <link linkend='CPLChannel'>CPLChannel</link> classes.
+						An Ethernet frame header encoder/decoder. Class properties expose the <link linkend='oethernet-PeerAddress'>PeerAddress</link>, <link linkend='oethernet-HostAddress'>HostAddress</link> and <link linkend='oethernet-Protocol'>Protocol</link> fields. 
 						</para>
 					</listitem>
 				</varlistentry>
@@ -533,16 +533,6 @@ rm -r intellon-utils-x.x.x
 				<listitem>
 					<para>
 						A HomePlug AV key generator. 
-						</para>
-					</listitem>
-				</varlistentry>
-			<varlistentry id="classes-ointellon">
-				<term>
-					<link linkend='ointellon'>ointellon</link>
-					</term>
-				<listitem>
-					<para>
-						An Intellon vendor specific message header encoder/decoder. Class properties expose standard Ethernet header fields plus the vendor specific <link linkend='ointellon-MessageVersion'>MessageVersion</link>,  <link linkend='ointellon-MessageType'>MessageType</link> and <link linkend='ointellon-VendorOUI'>VendorOUI</link> fields. It may be inherited by classes that implement vendor specific HomePlug AV messages.
 						</para>
 					</listitem>
 				</varlistentry>
