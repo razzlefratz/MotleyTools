@@ -106,7 +106,7 @@ g++ -Wall -c oscanfile.cpp
 g++ -Wall -c oscantext.cpp
 g++ -Wall -c osection.cpp
 g++ -Wall -c osorter.cpp
-# g++ -Wall -c osorter.demo.cpp
+g++ -Wall -c oscript.cpp
 g++ -Wall -c osource.cpp
 g++ -Wall -c ostring.cpp
 g++ -Wall -c osuffix.cpp
