@@ -287,7 +287,11 @@ signed osource::_command (signed c, signed e) const
 			c = osource::comment (c); 
 			continue; 
 		} 
-		c = osource::escaped (c); 
+		if (c == '\\') 
+		{ 
+			c = osource::feed (c); 
+		} 
+		c = osource::feed (c); 
 	} 
 	return (c); 
 } 
@@ -341,7 +345,11 @@ signed osource::_literal (signed c, signed e) const
 { 
 	while ((c != e) && (c != EOF)) 
 	{ 
-		c = osource::escaped (c); 
+		if (c == '\\') 
+		{ 
+			c = osource::feed (c); 
+		} 
+		c = osource::feed (c); 
 	} 
 	return (c); 
 } 
