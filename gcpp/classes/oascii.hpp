@@ -51,6 +51,7 @@ public:
 	static bool isgraph (signed c);
 	static bool iscntrl (signed c);
 	static bool isident (signed c);
+	static bool istight (signed c);
 	static bool isunary (signed c);
 	static bool isquote (signed c);
 	static bool isarith (signed c);
