@@ -581,7 +581,7 @@ signed osource::operate (signed c) const
 		c = osource::feed (c); 
 		c = osource::feed (c); 
 	} 
-	else if ((c == '.') || (c == '!')) 
+	else if (oascii::istight (c))
 	{ 
 		c = osource::feed (c); 
 		c = osource::find (c); 
