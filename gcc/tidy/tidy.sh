@@ -8,7 +8,6 @@
 gcc -Wall -Wextra -Wno-unused-parameter -c advance.c
 gcc -Wall -Wextra -Wno-unused-parameter -c collect.c
 gcc -Wall -Wextra -Wno-unused-parameter -c comment.c
-gcc -Wall -Wextra -Wno-unused-parameter -c compact.c
 gcc -Wall -Wextra -Wno-unused-parameter -c content-css.c
 gcc -Wall -Wextra -Wno-unused-parameter -c content.c
 gcc -Wall -Wextra -Wno-unused-parameter -c context-css.c
@@ -26,7 +25,6 @@ gcc -Wall -Wextra -Wno-unused-parameter -c nocomment.c
 gcc -Wall -Wextra -Wno-unused-parameter -c nocontext.c
 gcc -Wall -Wextra -Wno-unused-parameter -c noliteral.c
 gcc -Wall -Wextra -Wno-unused-parameter -c consume.c
-gcc -Wall -Wextra -Wno-unused-parameter -c join.c
 gcc -Wall -Wextra -Wno-unused-parameter -c keep.c
 gcc -Wall -Wextra -Wno-unused-parameter -c find.c
 gcc -Wall -Wextra -Wno-unused-parameter -c tidy.c

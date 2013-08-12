@@ -112,7 +112,7 @@ ds: ds.o SHA256Block.o SHA256Fetch.o SHA256Ident.o SHA256Match.o SHA256Reset.o S
 dump: dump.o console.o
 efru: efru.o basespec.o channel.o closechannel.o error.o getoptv.o hexdecode.o hexdump.o hexstring.o openchannel.o putoptv.o readpacket.o sendpacket.o todigit.o uintspec.o version.o
 efsu: efsu.o basespec.o channel.o closechannel.o error.o getoptv.o hexdump.o hexencode.o hexload.o openchannel.o putoptv.o readpacket.o sendpacket.o todigit.o uintspec.o version.o
-enbrace: enbrace.o error.o getoptv.o makepath.o mergepath.o putoptv.o splitpath.o version.o vfopen.o
+enbrace: enbrace.o error.o getoptv.o makepath.o mergepath.o putoptv.o splitpath.o version.o vfopen.o keep.o escaped.o 
 enfix: enfix.o chruesc.o error.o getoptv.o makepath.o mergepath.o putoptv.o splitpath.o struesc.o todigit.o version.o vfopen.o
 englyph: englyph.o efreopen.o emalloc.o error.o getoptv.o putoptv.o strfglyph.o sv_glyph.o version.o
 entab: entab.o emalloc.o error.o getoptv.o makepath.o match.o mergepath.o putoptv.o splitpath.o tabs.o tabspec.o version.o vfopen.o
