@@ -523,7 +523,7 @@ signed oscript::find (signed c) const
 { 
 	while (oascii::isspace (c)) 
 	{ 
-		c = std::cin.get (); 
+		c = oscript::feed (c);
 	} 
 	return (c); 
 } 

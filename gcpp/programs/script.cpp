@@ -83,6 +83,7 @@ int main (int argc, char const * argv [])
 	ogetoptv getopt; 
 	opathspec pathspec; 
 	ofileopen fileopen; 
+	oscript object;
 	signed (oscript::* method) (signed) = & oscript::program; 
 	signed c; 
 	while (~ (c = getopt.getoptv (argc, argv, optv))) 
