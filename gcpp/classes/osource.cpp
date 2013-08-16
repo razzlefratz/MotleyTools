@@ -587,7 +587,7 @@ signed osource::operate (signed c) const
 		c = osource::find (c); 
 		std::cout.put (' '); 
 	} 
-	else if ((c == '=') || (c == '^') || (c == '%') || (c == '~')) 
+	else if ((c == '!') || (c == '=') || (c == '^') || (c == '%') || (c == '~')) 
 	{ 
 		c = osource::feed (c); 
 		if (c == '=') 
