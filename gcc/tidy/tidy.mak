@@ -4,6 +4,7 @@
 
 advance.o: advance.c tidy.h 
 collect.o: collect.c tidy.h 
+connect.o: collect.c tidy.h 
 comment.o: comment.c tidy.h 
 mention.o: mention.c tidy.h 
 literal.o: literal.c tidy.h 
