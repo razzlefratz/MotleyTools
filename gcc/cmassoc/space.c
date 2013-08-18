@@ -50,6 +50,7 @@
 #include "../tidy/literal.c"
 #include "../tidy/escaped.c"
 #include "../tidy/connect.c"
+#include "../tidy/span.c"
 #include "../tidy/keep.c"
 #endif
 
@@ -66,36 +67,20 @@
  *--------------------------------------------------------------------*/
 
 #define SPACE_NEWLINE '\t'
-#define SPACE_ENDLINE '\n'
+#define SPACE_ENDLINE '\0'
 
 /*====================================================================*
  *
- *   signed join (signed c);
- *
- *   tidy.h
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
- *--------------------------------------------------------------------*/
-
-signed join (signed c) 
-
-{
-	return (connect (getc (stdin), '\\', '\n'));
-}
-
-/*====================================================================*
- *
- *   void function (char newline, char endline);
+ *   void function (signed c, signed o, signed e);
  *
  *   read stdin and write stdout; replace leading spaces and tabs 
- *   with character newline unless newline is NUL; replace embedded 
- *   spaces and tabs with one space; discard trailing spaces and tabs;
+ *   with character o unless it is NUL; replace embedded spaces and 
+ *   tabs with one space; discard trailing spaces and tabs; replace
+ *   newline with character e unless it is NUL;
  *
  *   write literal strings, enclosed in quotes or apostrophes, as 
- *   as read; ignore escaped newlines as line terminators;
+ *   as read; ignore escaped newlines for lines that start in first
+ *   column;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -103,19 +88,33 @@ signed join (signed c)
  *
  *--------------------------------------------------------------------*/
 
-signed function (signed c, char newline, char endline) 
+static signed grab (signed c)
+
+{
+	return (getc (stdin));
+}
+
+static signed join (signed c) 
+
+{ 
+	return (span (getc (stdin))); 
+} 
+
+signed function (signed c, signed o, signed e) 
 
 { 
 	while (c != EOF) 
 	{ 
+		signed (* func) (c) = join; 
 		if (isblank (c)) 
 		{ 
-			do { c = join (c); } while (isblank (c)); 
+			func = grab; 
+			do { c = func (c); } while (isblank (c)); 
 			if (nobreak (c)) 
 			{ 
-				if (newline) 
+				if (o) 
 				{ 
-					putc (newline, stdout); 
+					putc (o, stdout); 
 				} 
 			} 
 		} 
@@ -137,7 +136,7 @@ signed function (signed c, char newline, char endline)
 			} 
 			if (isblank (c)) 
 			{ 
-				do { c = join (c); } while (isblank (c)); 
+				do { c = func (c); } while (isblank (c)); 
 				if (nobreak (c)) 
 				{ 
 					putc (' ', stdout); 
@@ -146,11 +145,11 @@ signed function (signed c, char newline, char endline)
 			} 
 			c = keep (c); 
 		} 
-		if (endline) 
+		if (e) 
 		{ 
-			putc (endline, stdout); 
+			putc (e, stdout); 
 		} 
-		c = getc (stdin); 
+		c = keep (c); 
 	} 
 	return (c); 
 } 
