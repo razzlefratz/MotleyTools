@@ -44,19 +44,18 @@
 #define oASCII_PUNCT (1 << 6) 
 #define oASCII_QUOTE (1 << 7) 
 #define oASCII_UNARY (1 << 8) 
-#define oASCII_TIGHT (1 << 9) 
-#define oASCII_ARITH (1 << 10) 
-#define oASCII_LOGIC (1 << 11) 
-#define oASCII_EQUAL (1 << 12) 
-#define oASCII_COMMA (1 << 13) 
-#define oASCII_BLOCK (1 << 14) 
-#define oASCII_IDENT (1 << 15) 
-#define oASCII_TOKEN (1 << 16) 
-#define oASCII_BEGIN (1 << 17) 
-#define oASCII_CLOSE (1 << 18) 
-#define oASCII_MONEY (1 << 19) 
-#define oASCII_POWER (1 << 20) 
-#define oASCII_FRACT (1 << 21) 
+#define oASCII_ARITH (1 << 9) 
+#define oASCII_LOGIC (1 << 10) 
+#define oASCII_EQUAL (1 << 11) 
+#define oASCII_COMMA (1 << 12) 
+#define oASCII_BLOCK (1 << 13) 
+#define oASCII_IDENT (1 << 14) 
+#define oASCII_TOKEN (1 << 15) 
+#define oASCII_BEGIN (1 << 16) 
+#define oASCII_CLOSE (1 << 17) 
+#define oASCII_MONEY (1 << 18) 
+#define oASCII_POWER (1 << 19) 
+#define oASCII_FRACT (1 << 20) 
 
 /*====================================================================*
  *   private variables;
@@ -74,7 +73,6 @@ char const * oascii::cbits [] =
 	"punct", 
 	"quote", 
 	"unary", 
-	"tight",
 	"arith", 
 	"logic", 
 	"equal", 
@@ -227,7 +225,7 @@ const unsigned oascii::ctype [UCHAR_MAX + 1] =
 
 /* 033 041 21 [!] */
 
-	oASCII_PUNCT | oASCII_UNARY | oASCII_EQUAL | oASCII_TIGHT, 
+	oASCII_PUNCT | oASCII_UNARY | oASCII_EQUAL, 
 
 /* 034 042 22 ["] */
 
@@ -239,7 +237,7 @@ const unsigned oascii::ctype [UCHAR_MAX + 1] =
 
 /* 036 044 24 [$] */
 
-	oASCII_PUNCT | oASCII_IDENT | oASCII_MONEY | oASCII_TIGHT, 
+	oASCII_PUNCT | oASCII_IDENT | oASCII_MONEY, 
 
 /* 037 045 25 [%] */
 
@@ -279,7 +277,7 @@ const unsigned oascii::ctype [UCHAR_MAX + 1] =
 
 /* 046 056 2E [.] */
 
-	oASCII_PUNCT | oASCII_TIGHT | oASCII_TOKEN, 
+	oASCII_PUNCT | oASCII_TOKEN, 
 
 /* 047 057 2F [/] */
 
@@ -351,7 +349,7 @@ const unsigned oascii::ctype [UCHAR_MAX + 1] =
 
 /* 064 100 40 [@] */
 
-	oASCII_PUNCT | oASCII_TIGHT, 
+	oASCII_PUNCT, 
 
 /* 065 101 41 [A] */
 
@@ -599,7 +597,7 @@ const unsigned oascii::ctype [UCHAR_MAX + 1] =
 
 /* 126 176 7E [~] */
 
-	oASCII_PUNCT | oASCII_UNARY | oASCII_LOGIC | oASCII_TIGHT, 
+	oASCII_PUNCT | oASCII_UNARY | oASCII_LOGIC, 
 
 /* 127 177 7F DEL */
 
@@ -1296,18 +1294,6 @@ bool oascii::isident (signed c)
 
 { 
 	return (oascii::isctype (c, (oASCII_IDENT))); 
-} 
-
-/*====================================================================*
- *
- *   bool istight (signed c);
- *
- *--------------------------------------------------------------------*/
-
-bool oascii::istight (signed c) 
-
-{ 
-	return (oascii::isctype (c, (oASCII_TIGHT))); 
 } 
 
 /*====================================================================*
