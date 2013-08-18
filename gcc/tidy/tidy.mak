@@ -24,7 +24,7 @@ consume.o: consume.c tidy.h
 noliteral.o: noliteral.c tidy.h chars.h
 nocontext.o: nocontext.c tidy.h chars.h
 nocomment.o: nocomment.c tidy.h chars.h
-join.o: join.c tidy.h 
+span.o: span.c tidy.h 
 keep.o: keep.c tidy.h 
 find.o: find.c tidy.h 
 
