@@ -739,6 +739,41 @@ signed osource::operate (signed c) const
 
 /*====================================================================*
  *
+ *   signed osource::escaped (signed c, signed o, signed e) const;
+ * 
+ *   read and discard character pair o followed by e and return the
+ *   next input character; 
+ *
+ *   some example character pairs are "\n", "\ " and "''";
+ *   
+ *   this method is used to ignore special characters such as quotes
+ *   and newlines within literals; 
+ *   
+ *--------------------------------------------------------------------*/
+
+signed osource::connect (signed o, signed e) const
+{
+	return (osource::connect (std::cin.get (), o, e));
+}
+
+signed osource::connect (signed c, signed o, signed e) const
+{
+	while (c == o)
+	{
+		signed o = std::cin.get ();
+		if (c == e)
+		{
+			c = std::cin.get ();
+			continue;
+		}
+		std::cin.putback (o);
+		break;
+	}
+	return (c);
+}
+
+/*====================================================================*
+ *
  *   signed osource::escaped (signed c) const;
  * 
  *   write (c) and read the next character; repeat once if (c) is

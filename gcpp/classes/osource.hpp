@@ -38,10 +38,12 @@ public:
 	signed context (signed c, char const * charset) const;
 	signed content (signed c, signed o, signed e) const;
 	signed context (signed c, signed o, signed e) const;
+	signed connect (signed c, signed o, signed e) const;
 	signed command (signed c, signed e) const;
 	signed content (signed c, signed e) const;
 	signed context (signed c, signed e) const;
 	signed literal (signed c, signed e) const;
+	signed connect (signed o, signed e) const;
 	signed context (signed c) const;
 	signed command (signed c) const;
 	signed literal (signed c) const;

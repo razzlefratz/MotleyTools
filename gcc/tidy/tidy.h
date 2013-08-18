@@ -78,6 +78,7 @@ signed mention (signed c);
 signed advance (signed c);
 signed nothing (signed c);
 signed literal (signed c);
+signed connect (signed c, signed o, signed e);
 signed context (signed c, signed e);
 signed control (signed c, signed e);
 signed discard (signed c, signed e);
