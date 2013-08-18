@@ -22,12 +22,12 @@ signed literal (signed c)
 
 {
 	signed e = c;
-	c = keep (e);
+	c = keep (c);
 	while ((c != e) && (c != EOF)) 
 	{
 		c = escaped (c);
 	}
-	c = keep (e);
+	c = keep (c);
 	return (c);
 }
 
