@@ -2,9 +2,9 @@
  *
  *   space.c - white space minimizer;
  *
- *.  Motley Tools by Charles Maier;
- *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
- *;  Licensed under the Internet Software Consortium License;
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -47,10 +47,9 @@
 #endif
 
 #ifndef MAKEFILE
-#include "../tidy/consume.c"
 #include "../tidy/literal.c"
 #include "../tidy/escaped.c"
-#include "../tidy/span.c"
+#include "../tidy/connect.c"
 #include "../tidy/keep.c"
 #endif
 
@@ -66,145 +65,69 @@
  *   program constants;
  *--------------------------------------------------------------------*/
 
-#define SPACE_C_COMMENT '#'
+#define SPACE_NEWLINE '\t'
+#define SPACE_ENDLINE '\n'
 
 /*====================================================================*
  *
- *   void GNUMake (unsigned spaces, unsigned tabs);
+ *   signed join (signed c);
  *
- *.  Motley Tools by Charles Maier;
- *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
- *;  Licensed under the Internet Software Consortium License;
+ *   tidy.h
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
-static void GNUMake (unsigned spaces, unsigned tabs) 
+signed join (signed c) 
 
-{ 
-	if (tabs) 
-	{ 
-		do 
-		{ 
-			putc ('\t', stdout); 
-		} 
-		while (-- tabs); 
-	} 
-	else if (spaces) 
-	{ 
-		putc ('\t', stdout); 
-	} 
-	return; 
-} 
+{
+	return (connect (getc (stdin), '\\', '\n'));
+}
 
 /*====================================================================*
  *
- *   void OpenWRT (unsigned spaces, unsigned tabs);
+ *   void function (char newline, char endline);
  *
- *.  Motley Tools by Charles Maier;
- *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
- *;  Licensed under the Internet Software Consortium License;
+ *   read stdin and write stdout; replace leading spaces and tabs 
+ *   with character newline unless newline is NUL; replace embedded 
+ *   spaces and tabs with one space; discard trailing spaces and tabs;
  *
- *--------------------------------------------------------------------*/
-
-static void OpenWRT (unsigned spaces, unsigned tabs) 
-
-{ 
-	if (tabs) 
-	{ 
-		do 
-		{ 
-			putc ('\t', stdout); 
-		} 
-		while (-- tabs); 
-	} 
-	else if (spaces) 
-	{ 
-		putc (' ', stdout); 
-	} 
-	return; 
-} 
-
-/*====================================================================*
+ *   write literal strings, enclosed in quotes or apostrophes, as 
+ *   as read; ignore escaped newlines as line terminators;
  *
- *   signed noop (signed c);
- *
- *   do nothing; return character argument;
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
-static signed noop (signed c) 
+signed function (signed c, char newline, char endline) 
 
 { 
-	return (c); 
-} 
-
-/*====================================================================*
- *
- *   void function (void indent (signed, unsigned, unsigned), signed escape (signed));
- *
- *   read stdin and write stdout; replace leading spaces character o
- *   unless it is NUL; preserve leading tabs; replace embedded spaces
- *   and tabs with one space; discard trailing spaces and tabs; write
- *   literal strings, enclosed in quotes or apostrophes, as as read; 
- *   ignore and discard escaped newline characters;
- *
- *   this function is taylored for OpenWRT make files;
- *
- *.  Motley Tools by Charles Maier;
- *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
- *;  Licensed under the Internet Software Consortium License;
- *
- *--------------------------------------------------------------------*/
-
-static void function (signed comment, void indent (unsigned, unsigned), signed escape (signed)) 
-
-{ 
-	signed c = getc (stdin); 
 	while (c != EOF) 
 	{ 
 		if (isblank (c)) 
 		{ 
-			unsigned column = 0; 
-			unsigned spaces = 0; 
-			unsigned tabs = 0; 
-			while (isblank (c)) 
+			do { c = join (c); } while (isblank (c)); 
+			if (nobreak (c)) 
 			{ 
-				if (c == '\t') 
+				if (newline) 
 				{ 
-					while (++ column % 8); 
-					tabs++; 
+					putc (newline, stdout); 
 				} 
-				else if (c == ' ') 
-				{ 
-					column++; 
-					spaces++; 
-				} 
-				c = getc (stdin); 
-			} 
-			if (nobreak (c) && (c != comment)) 
-			{ 
-				indent (spaces, tabs); 
 			} 
 		} 
 		while (nobreak (c)) 
 		{ 
-			if (c == comment) 
-			{ 
-				c = consume ('\n'); 
-				continue; 
-			} 
-			if (isblank (c)) 
+			if (c == '#') 
 			{ 
 				do 
 				{ 
-					c = getc (stdin); 
-					c = escape (c); 
+					c = keep (c); 
 				} 
-				while (isblank (c)); 
-				if (nobreak (c)) 
-				{ 
-					putc (' ', stdout); 
-				} 
+				while (nobreak (c)); 
 				continue; 
 			} 
 			if (isquote (c)) 
@@ -212,12 +135,24 @@ static void function (signed comment, void indent (unsigned, unsigned), signed e
 				c = literal (c); 
 				continue; 
 			} 
-			c = escape (c); 
+			if (isblank (c)) 
+			{ 
+				do { c = join (c); } while (isblank (c)); 
+				if (nobreak (c)) 
+				{ 
+					putc (' ', stdout); 
+				} 
+				continue; 
+			} 
 			c = keep (c); 
 		} 
-		c = keep (c); 
+		if (endline) 
+		{ 
+			putc (endline, stdout); 
+		} 
+		c = getc (stdin); 
 	} 
-	return; 
+	return (c); 
 } 
 
 /*====================================================================*
@@ -225,9 +160,9 @@ static void function (signed comment, void indent (unsigned, unsigned), signed e
  *   int main (int argc, char const * argv []);
  *
  *
- *.  Motley Tools by Charles Maier;
- *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
- *;  Licensed under the Internet Software Consortium License;
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
  *
  *--------------------------------------------------------------------*/
 
@@ -236,33 +171,37 @@ int main (int argc, char const * argv [])
 { 
 	static char const * optv [] = 
 	{ 
-		"c:gm", 
+		"c:e:nst", 
 		PUTOPTV_S_FILTER, 
-		"white space manager", 
-		"c c\tcomment character is (c) [" LITERAL (SPACE_C_COMMENT) "]", 
-		"g\tsuitable for GNU makefiles", 
-		"m\tmerge continuation lines", 
+		"white space minimizer", 
+		"c c\tindent character is (c) [" LITERAL (SPACE_NEWLINE) "]", 
+		"e c\treturn character is (c) [" LITERAL (SPACE_ENDLINE) "]", 
+		"n\tindent character is nothing", 
+		"s\tindent character is space [\' \']", 
+		"t\tindent character is tab [\'\\t\']", 
 		(char *) (0)
 	}; 
-	void (* indent) (unsigned, unsigned) = GNUMake; 
-	signed (* escape) (signed) = noop; 
-	signed comment = SPACE_C_COMMENT; 
+	char newline = SPACE_NEWLINE; 
+	char endline = SPACE_ENDLINE; 
 	signed c; 
 	while (~ (c = getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 
 		case 'c': 
-			comment = * optarg; 
+			newline = * struesc ((char *) (optarg)); 
 			break; 
-		case 'g': 
-			indent = GNUMake; 
+		case 'e': 
+			endline = * struesc ((char *) (optarg)); 
 			break; 
-		case 'm': 
-			escape = span; 
+		case 'n': 
+			newline = (char) (0); 
 			break; 
-		case 'w': 
-			indent = OpenWRT; 
+		case 's': 
+			newline = ' '; 
+			break; 
+		case 't': 
+			newline = '\t'; 
 			break; 
 		default: 
 			break; 
@@ -270,15 +209,15 @@ int main (int argc, char const * argv [])
 	} 
 	argc -= optind; 
 	argv += optind; 
-	if (!argc) 
+	if (! argc) 
 	{ 
-		function (comment, indent, escape); 
+		function (getc (stdin), newline, endline); 
 	} 
 	while ((argc) && (* argv)) 
 	{ 
 		if (vfopen (* argv)) 
 		{ 
-			function (comment, indent, escape); 
+			function (getc (stdin), newline, endline); 
 		} 
 		argc--; 
 		argv++; 
