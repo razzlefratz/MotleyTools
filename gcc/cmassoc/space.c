@@ -52,6 +52,7 @@
 #include "../tidy/connect.c"
 #include "../tidy/span.c"
 #include "../tidy/keep.c"
+#include "../tidy/grab.c"
 #endif
 
 #ifndef MAKEFILE
@@ -61,6 +62,8 @@
 #ifndef MAKEFILE
 #include "../chrlib/chruesc.c"
 #endif
+
+#include "../tidy/grab.c"
 
 /*====================================================================*
  *   program constants;
@@ -88,12 +91,6 @@
  *
  *--------------------------------------------------------------------*/
 
-static signed grab (signed c)
-
-{
-	return (getc (stdin));
-}
-
 static signed join (signed c) 
 
 { 
@@ -105,11 +102,11 @@ signed function (signed c, signed o, signed e)
 { 
 	while (c != EOF) 
 	{ 
-		signed (* func) (c) = join; 
+		signed (* edit) (signed) = join; 
 		if (isblank (c)) 
 		{ 
-			func = grab; 
-			do { c = func (c); } while (isblank (c)); 
+			edit = grab; 
+			do { c = edit (c); } while (isblank (c)); 
 			if (nobreak (c)) 
 			{ 
 				if (o) 
@@ -136,7 +133,7 @@ signed function (signed c, signed o, signed e)
 			} 
 			if (isblank (c)) 
 			{ 
-				do { c = func (c); } while (isblank (c)); 
+				do { c = edit (c); } while (isblank (c)); 
 				if (nobreak (c)) 
 				{ 
 					putc (' ', stdout); 

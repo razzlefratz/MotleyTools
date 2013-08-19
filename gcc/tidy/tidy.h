@@ -95,6 +95,7 @@ signed consume (signed e);
 signed span (signed c);
 signed keep (signed c);
 signed find (signed c);
+signed grab (signed c);
 
 /*====================================================================*
  *   end definitions;

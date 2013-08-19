@@ -29,6 +29,7 @@ gcc -Wall -Wextra -Wno-unused-parameter -c connect.c
 gcc -Wall -Wextra -Wno-unused-parameter -c span.c
 gcc -Wall -Wextra -Wno-unused-parameter -c keep.c
 gcc -Wall -Wextra -Wno-unused-parameter -c find.c
+gcc -Wall -Wextra -Wno-unused-parameter -c grab.c
 gcc -Wall -Wextra -Wno-unused-parameter -c tidy.c
 
 # ====================================================================

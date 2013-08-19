@@ -27,6 +27,7 @@ nocomment.o: nocomment.c tidy.h chars.h
 span.o: span.c tidy.h 
 keep.o: keep.c tidy.h 
 find.o: find.c tidy.h 
+grab.o: grab.c tidy.h 
 
 # ====================================================================
 # files;

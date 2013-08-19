@@ -15,7 +15,6 @@
 #include "../tidy/collect.c"
 #include "../tidy/discard.c"
 #include "../tidy/comment.c"
-#include "../tidy/compact.c"
 #include "../tidy/content.c"
 #include "../tidy/content-css.c"
 #include "../tidy/context.c"
@@ -25,5 +24,9 @@
 #include "../tidy/literal.c"
 #include "../tidy/endline.c"
 #include "../tidy/newline.c"
+#include "../tidy/span.c"
+#include "../tidy/keep.c"
+#include "../tidy/find.c"
+#include "../tidy/grab.c"
 #endif
 
