@@ -26,6 +26,7 @@
  *
  *--------------------------------------------------------------------*/
 
+#define CLANG_NUL '\0'
 #define CLANG_HT '\t'
 #define CLANG_CR '\r'
 #define CLANG_LF '\n'
