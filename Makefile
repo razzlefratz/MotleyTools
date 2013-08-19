@@ -26,7 +26,7 @@ FOLDERS := gcc gcpp misc
 # -------------------------------------------------------------------
 
 compile install scripts manuals uninstall fresh clean check ignore:
-	for folder in ${FOLDERS}; do ${MAKE} -C $${folder} ${@}; if [ $${?} -ne 0 ]; then exit 1; fi; done
+	for folder in ${FOLDERS}; do ${MAKE} -C $${folder} ${@} || exit 1; done
 
 # ===================================================================
 # snapshot targets;
