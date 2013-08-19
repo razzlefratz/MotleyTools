@@ -24,7 +24,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
-#include "../../gcc/tools/types.h"
+#include "../classes/otypes.hpp"
 #include "../../gcc/linux/syslog.h"
 
 /*====================================================================*

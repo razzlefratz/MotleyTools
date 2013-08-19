@@ -37,7 +37,7 @@
 #include "../classes/oascii.hpp"
 #include "../classes/osource.hpp"
 #include "../classes/oindent.hpp"
-#include "../../gcc/tools/symbol.h"
+#include "../classes/osymbol.hpp"
 
 /*====================================================================*
  *
@@ -739,22 +739,17 @@ signed osource::operate (signed c) const
 
 /*====================================================================*
  *
- *   signed osource::escaped (signed c, signed o, signed e) const;
+ *   signed osource::connect (signed c, signed o, signed e) const;
  * 
  *   read and discard character pair o followed by e and return the
  *   next input character; 
  *
- *   some example character pairs are "\n", "\ " and "''";
+ *   example character pairs are "\n", "\ " and "''";
  *   
  *   this method is used to ignore special characters such as quotes
  *   and newlines within literals; 
  *   
  *--------------------------------------------------------------------*/
-
-signed osource::connect (signed o, signed e) const
-{
-	return (osource::connect (std::cin.get (), o, e));
-}
 
 signed osource::connect (signed c, signed o, signed e) const
 {
@@ -797,10 +792,35 @@ signed osource::escaped (signed c) const
 
 /*====================================================================*
  *   
+ *   signed span (signed c) const;
+ *
+ *   inspect (c) to detect and remove continuation line escape 
+ *   sequences;
+ *   
+ *--------------------------------------------------------------------*/
+
+signed osource::span (signed c) const
+{
+	while (c == '\\')
+	{
+		signed o = std::cin.get ();
+		if (o == '\n')
+		{
+			c = std::cin.get ();
+			continue;
+		}
+		std::cin.putback (o);
+		break;
+	}
+	return (c);
+}
+
+/*====================================================================*
+ *   
  *   signed feed (signed c) const;
  *
- *   inspect (c); write (c) then read and return the next character
- *   if (c) is not NUL or EOF;
+ *   write (c) to stdout unless it is NUL or EOF; return the next 
+ *   character from stdin;
  *   
  *--------------------------------------------------------------------*/
 
@@ -819,8 +839,7 @@ signed osource::feed (signed c) const
  *   
  *   signed find (signed c) const;
  *
- *   inspect (c); read and discard white space characters; return 
- *   the next non-space input character;
+ *   discard (c); return the next non-space input character;
  *   
  *--------------------------------------------------------------------*/
 
@@ -831,6 +850,21 @@ signed osource::find (signed c) const
 	{ 
 		c = std::cin.get (); 
 	} 
+	return (c); 
+} 
+
+/*====================================================================*
+ *   
+ *   signed grab (signed c) const;
+ *
+ *   discard (c); return next character from stdin;
+ *   
+ *--------------------------------------------------------------------*/
+
+signed osource::grab (signed c) const 
+
+{ 
+	c = std::cin.get (); 
 	return (c); 
 } 
 

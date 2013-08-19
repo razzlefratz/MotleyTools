@@ -12,9 +12,6 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/tools.h"
-#include "../classes/oflags.h"
-
 #include "../classes/ogetoptv.hpp"
 #include "../classes/oputoptv.hpp"
 #include "../classes/oversion.hpp"

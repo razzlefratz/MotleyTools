@@ -43,7 +43,6 @@ public:
 	signed content (signed c, signed e) const;
 	signed context (signed c, signed e) const;
 	signed literal (signed c, signed e) const;
-	signed connect (signed o, signed e) const;
 	signed context (signed c) const;
 	signed command (signed c) const;
 	signed literal (signed c) const;
@@ -60,8 +59,10 @@ public:
 	signed _literal (signed c, signed e) const;
 	signed _content (signed c, signed e) const;
 	signed _comment (signed c) const;
+	signed span (signed c) const;
 	signed feed (signed c) const;
 	signed find (signed c) const;
+	signed grab (signed c) const;
 };
 
 /*====================================================================*
