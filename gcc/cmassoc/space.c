@@ -28,6 +28,7 @@
 #include "../tools/cmassoc.h"
 #include "../strlib/strlib.h"
 #include "../chrlib/chrlib.h"
+#include "../clang/clang.h"
 #include "../tidy/tidy.h"
 
 /*====================================================================*
@@ -66,8 +67,8 @@
  *   program constants;
  *--------------------------------------------------------------------*/
 
-#define SPACE_NEWLINE '\t'
-#define SPACE_ENDLINE '\0'
+#define SPACE_NEWLINE CLANG_HT
+#define SPACE_ENDLINE CLANG_NUL
 
 /*====================================================================*
  *
@@ -90,19 +91,35 @@
 
 signed grab (signed c) 
 
-// static signed grab (signed c)
-
 { 
 	c = getc (stdin); 
 	return (c); 
 } 
 
-static signed join (signed c) 
+signed join (signed c) 
 
 { 
-	return (span (getc (stdin))); 
+	c = grab (c); 
+	c = span (c);
+	return (c); 
 } 
 
+signed pack (signed c, signed (* edit)(signed), signed o)
+{
+	do 
+	{ 
+		c = edit (c); 
+	} 
+	while (isblank (c)); 
+	if (nobreak (c)) 
+	{ 
+		if (o) 
+		{ 
+			putc (o, stdout); 
+		} 
+	} 
+	return (c);
+}
 signed function (signed c, signed o, signed e) 
 
 { 
@@ -112,18 +129,7 @@ signed function (signed c, signed o, signed e)
 		if (isblank (c)) 
 		{ 
 			edit = grab; 
-			do 
-			{ 
-				c = edit (c); 
-			} 
-			while (isblank (c)); 
-			if (nobreak (c)) 
-			{ 
-				if (o) 
-				{ 
-					putc (o, stdout); 
-				} 
-			} 
+			c = pack (c, edit, o);
 		} 
 		while (nobreak (c)) 
 		{ 
@@ -143,15 +149,7 @@ signed function (signed c, signed o, signed e)
 			} 
 			if (isblank (c)) 
 			{ 
-				do 
-				{ 
-					c = edit (c); 
-				} 
-				while (isblank (c)); 
-				if (nobreak (c)) 
-				{ 
-					putc (' ', stdout); 
-				} 
+				c = pack (c, edit, ' ');
 				continue; 
 			} 
 			c = keep (c); 
@@ -187,8 +185,8 @@ int main (int argc, char const * argv [])
 		"c c\tindent character is (c) [" LITERAL (SPACE_NEWLINE) "]", 
 		"e c\treturn character is (c) [" LITERAL (SPACE_ENDLINE) "]", 
 		"n\tindent character is nothing", 
-		"s\tindent character is space [\' \']", 
-		"t\tindent character is tab [\'\\t\']", 
+		"s\tindent character is space [" LITERAL (CLANG_SP) "]", 
+		"t\tindent character is tab [" LITERAL (CLANG_HT) "]", 
 		(char *) (0)
 	}; 
 	char newline = SPACE_NEWLINE; 
@@ -208,10 +206,10 @@ int main (int argc, char const * argv [])
 			newline = (char) (0); 
 			break; 
 		case 's': 
-			newline = ' '; 
+			newline = CLANG_SP; 
 			break; 
 		case 't': 
-			newline = '\t'; 
+			newline = CLANG_HT; 
 			break; 
 		default: 
 			break; 
