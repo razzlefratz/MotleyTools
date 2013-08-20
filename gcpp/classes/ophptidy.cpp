@@ -122,23 +122,15 @@ signed ophptidy::program (signed c)
 		if (c == '#') 
 		{ 
 			ophptidy::endline (); 
-			do
-			{ 
-				c = osource::command ('#', '\n'); 
-			} 
-			while (c == '#'); 
+			do { c = osource::command ('#', '\n'); } while (c == '#');
 			ophptidy::space (1); 
 			continue; 
 		} 
 		if (c == '/') 
 		{ 
 			ophptidy::endline (); 
-			do 
-			{ 
-				c = osource::comment (c); 
-			} 
-			while (c == '/');
-			ophptidy::space (1); 
+			do { c = osource::comment (c); } while (c == '/');
+			ophptidy::space (2); 
 			continue; 
 		} 
 		if (oascii::isquote (c)) 
