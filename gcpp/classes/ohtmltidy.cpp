@@ -105,7 +105,7 @@ signed ohtmltidy::page (signed c)
 	{
 		if (c == '<') 
 		{
-			c = osource::feed (c);
+			c = osource::keep (c);
 			c = osource::find (c);
 			if (c == '?') 
 			{
@@ -198,12 +198,12 @@ signed ohtmltidy::sgml (signed c)
 {
 	if (c == '<') 
 	{
-		c = osource::feed (c);
+		c = osource::keep (c);
 		c = osource::find (c);
 	}
 	if (c == '!') 
 	{
-		c = osource::feed (c);
+		c = osource::keep (c);
 		c = osource::find (c);
 	}
 	if (c == '-') 
@@ -212,12 +212,12 @@ signed ohtmltidy::sgml (signed c)
 	}
 	else if (c == '[') 
 	{
-		c = osource::feed (c);
+		c = osource::keep (c);
 		c = osource::find (c);
 		do
 		{
 			c = oascii::toupper (c);
-			c = osource::feed (c);
+			c = osource::keep (c);
 		}
 		while (oascii::isalpha (c) || (c == '-'));
 		c = osource::find (c);
@@ -228,7 +228,7 @@ signed ohtmltidy::sgml (signed c)
 		do
 		{
 			c = oascii::toupper (c);
-			c = osource::feed (c);
+			c = osource::keep (c);
 		}
 		while (oascii::isalpha (c) || (c == '-'));
 	}
@@ -245,17 +245,17 @@ signed ohtmltidy::sgml (signed c)
 			c = osource::context ('(', ')');
 			if ((c == '*') || (c == '+')) 
 			{
-				c = osource::feed (c);
+				c = osource::keep (c);
 			}
 		}
 		else if (c == '[') 
 		{
-			c = osource::feed (c);
+			c = osource::keep (c);
 			c = osource::find (c);
 			do
 			{
 				c = oascii::toupper (c);
-				c = osource::feed (c);
+				c = osource::keep (c);
 			}
 			while (oascii::isalpha (c) || (c == '-'));
 			c = osource::find (c);
@@ -270,7 +270,7 @@ signed ohtmltidy::sgml (signed c)
 			do
 			{
 				c = oascii::toupper (c);
-				c = osource::feed (c);
+				c = osource::keep (c);
 			}
 			while (oascii::isalnum (c) || (c == '-') || (c == '.'));
 		}
@@ -278,7 +278,7 @@ signed ohtmltidy::sgml (signed c)
 		{
 			do
 			{
-				c = osource::feed (c);
+				c = osource::keep (c);
 			}
 			while (oascii::isdigit (c) || (c == '.'));
 		}
@@ -286,7 +286,7 @@ signed ohtmltidy::sgml (signed c)
 	}
 	if (c == '>') 
 	{
-		c = osource::feed (c);
+		c = osource::keep (c);
 	}
 	return (c);
 }
@@ -304,12 +304,12 @@ signed ohtmltidy::xhtml (signed c)
 {
 	if (c == '<') 
 	{
-		c = osource::feed (c);
+		c = osource::keep (c);
 		c = osource::find (c);
 	}
 	if (c == '/') 
 	{
-		c = osource::feed (c);
+		c = osource::keep (c);
 		c = osource::find (c);
 		oindent::decrement ();
 	}
@@ -352,7 +352,7 @@ signed ohtmltidy::xhtml (signed c)
 		c = osource::find (c);
 		if (c == '=') 
 		{
-			c = osource::feed (c);
+			c = osource::keep (c);
 			c = osource::find (c);
 			if (oascii::isquote (c)) 
 			{
@@ -371,7 +371,7 @@ signed ohtmltidy::xhtml (signed c)
 	}
 	if (c == '/') 
 	{
-		c = osource::feed (c);
+		c = osource::keep (c);
 		c = osource::find (c);
 		oindent::decrement ();
 	}
@@ -385,7 +385,7 @@ signed ohtmltidy::xhtml (signed c)
 	}
 	if (c == '>') 
 	{
-		c = osource::feed (c);
+		c = osource::keep (c);
 	}
 	return (c);
 }
@@ -399,24 +399,24 @@ signed ohtmltidy::xhtml (signed c)
 signed ohtmltidy::comment (signed c) const 
 
 {
-	c = osource::feed (c);
+	c = osource::keep (c);
 	if (c == '-') 
 	{
 		while (c == '-') 
 		{
-			c = osource::feed (c);
+			c = osource::keep (c);
 		}
 		while ((c != '-') && (c != EOF)) 
 		{
 			while ((c != '-') && (c != EOF)) 
 			{
-				c = osource::feed (c);
+				c = osource::keep (c);
 			}
-			c = osource::feed (c);
+			c = osource::keep (c);
 		}
 		while (c == '-') 
 		{
-			c = osource::feed (c);
+			c = osource::keep (c);
 		}
 	}
 	return (c);
@@ -448,7 +448,7 @@ signed ohtmltidy::cdata (signed c) const
 			space = 0;
 			continue;
 		}
-		c = osource::feed (c);
+		c = osource::keep (c);
 	}
 	return (c);
 }
@@ -463,13 +463,13 @@ signed ohtmltidy::enquote (signed c, signed e)
 
 {
 	char * string = this->mstring;
-	c = osource::feed (this->mquote);
+	c = osource::keep (this->mquote);
 	while ((c != e) && (c != EOF)) 
 	{
 		* string++ = c;
-		c = osource::feed (c);
+		c = osource::keep (c);
 	}
-	c = osource::feed (this->mquote);
+	c = osource::keep (this->mquote);
 	* string = (char) (0);
 	return (c);
 }

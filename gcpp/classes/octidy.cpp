@@ -77,7 +77,7 @@ signed octidy::program (signed c)
 			} 
 			oindent::endline (1); 
 			oindent::newline (); 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			std::cout.put (' '); 
 			oindent::increment (); 
 			oindent::space (2); 
@@ -90,7 +90,7 @@ signed octidy::program (signed c)
 			oindent::newline (); 
 			do 
 			{ 
-				c = osource::feed (c); 
+				c = osource::keep (c); 
 				c = osource::find (c); 
 			} 
 			while ((c == ',') || (c == ';')); 
@@ -108,7 +108,7 @@ signed octidy::program (signed c)
 		} 
 		if ((c == ',') || (c == ';') || (c == ':')) 
 		{ 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			c = osource::find (c); 
 			std::cout.put (' '); 
 			oindent::space (2); 
@@ -168,7 +168,7 @@ signed octidy::atheros (signed c)
 				oindent::endline (2); 
 				oindent::newline (); 
 			} 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			std::cout.put (' '); 
 			oindent::increment (); 
 			oindent::space (1); 
@@ -181,7 +181,7 @@ signed octidy::atheros (signed c)
 			oindent::newline (); 
 			do 
 			{ 
-				c = osource::feed (c); 
+				c = osource::keep (c); 
 				c = osource::find (c); 
 			} 
 			while ((c == ',') || (c == ';')); 
@@ -199,7 +199,7 @@ signed octidy::atheros (signed c)
 		} 
 		if ((c == ',') || (c == ';') || (c == ':')) 
 		{ 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			c = osource::find (c); 
 			std::cout.put (' '); 
 			oindent::space (2); 
@@ -264,7 +264,7 @@ signed octidy::charlie (signed c)
 			} 
 			oindent::endline (1); 
 			oindent::newline (); 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			std::cout.put (' '); 
 			oindent::increment (); 
 			oindent::space (2); 
@@ -277,7 +277,7 @@ signed octidy::charlie (signed c)
 			oindent::newline (); 
 			do 
 			{ 
-				c = osource::feed (c); 
+				c = osource::keep (c); 
 				c = osource::find (c); 
 			} 
 			while ((c == ',') || (c == ';')); 
@@ -296,7 +296,7 @@ signed octidy::charlie (signed c)
 		} 
 		if ((c == ',') || (c == ';') || (c == ':')) 
 		{ 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			c = osource::find (c); 
 			std::cout.put (' '); 
 			oindent::space (2); 
@@ -375,14 +375,14 @@ signed octidy::statement (signed c)
 		if (c == std::cin.peek ()) 
 		{ 
 			oindent::print (this->mlevel, 0, string); 
-			c = osource::feed (c); 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
+			c = osource::keep (c); 
 			c = octidy::context (c, charset); 
 		} 
 		else 
 		{ 
 			oindent::print (this->mlevel - 1, 0, string); 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			c = osource::find (c); 
 			std::cout.put (' '); 
 		} 
@@ -421,10 +421,10 @@ signed octidy::context (signed c, char const * charset) const
 signed octidy::context (signed c, signed o, signed e) const 
 
 { 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	c = osource::find (c); 
 	c = octidy::_context (c, o, e); 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	return (c); 
 } 
 
@@ -434,7 +434,7 @@ signed octidy::_context (signed c, signed o, signed e) const
 	while ((c != e) && (c != EOF)) 
 	{ 
 		c = octidy::_context (c, o); 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 	} 
 	return (c); 
 } 
@@ -448,10 +448,10 @@ signed octidy::_context (signed c, signed o, signed e) const
 signed octidy::context (signed c, signed e) const 
 
 { 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	c = osource::find (c); 
 	c = octidy::_context (c, e); 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	return (c); 
 } 
 
@@ -477,8 +477,8 @@ signed octidy::context (signed c) const
 	if (c == '\\') 
 	{ 
 		signed o;
-		o = osource::feed (c); 
-		c = osource::feed (o); 
+		o = osource::keep (c); 
+		c = osource::keep (o); 
 		c = osource::find (c); 
 		if (o == '\n') 
 		{ 

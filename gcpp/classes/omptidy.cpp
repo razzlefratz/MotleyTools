@@ -220,12 +220,12 @@ signed omptidy::tidy (signed c)
 			} 
 			if (c == '.') 
 			{ 
-				c = omptidy::feed (c); 
+				c = omptidy::keep (c); 
 				if (c == '.') 
 				{ 
 					do 
 					{ 
-						c = omptidy::feed (c); 
+						c = omptidy::keep (c); 
 					} 
 					while (c == '.'); 
 					continue; 
@@ -247,20 +247,20 @@ signed omptidy::tidy (signed c)
 
 			if (c == '\\') 
 			{ 
-				c = omptidy::feed (c); 
+				c = omptidy::keep (c); 
 				if (c == 'v') 
 				{ 
 					c = 'f'; 
 				} 
-				c = omptidy::feed (c); 
+				c = omptidy::keep (c); 
 				continue; 
 			} 
 
 #endif
 
-			c = omptidy::feed (c); 
+			c = omptidy::keep (c); 
 		} 
-		c = omptidy::feed (c); 
+		c = omptidy::keep (c); 
 	} 
 	std::cout.put ('\n'); 
 	return (c); 

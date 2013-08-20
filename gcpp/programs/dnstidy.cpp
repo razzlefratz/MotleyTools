@@ -93,7 +93,7 @@ void function (oflagword * flags)
 		} 
 		if ((c == ',') || (c == ';')) 
 		{ 
-			c = tidy.feed (c); 
+			c = tidy.keep (c); 
 			continue; 
 		} 
 		if (c == '#') 
@@ -114,7 +114,7 @@ void function (oflagword * flags)
 			} 
 			indent.endline (1); 
 			indent.newline (level++); 
-			c = tidy.feed (c); 
+			c = tidy.keep (c); 
 			space = 1; 
 			continue; 
 		} 
@@ -122,7 +122,7 @@ void function (oflagword * flags)
 		{ 
 			indent.endline (1); 
 			indent.newline (-- level); 
-			c = tidy.feed (c); 
+			c = tidy.keep (c); 
 			if (c != ';') 
 			{ 
 				std::cout.put (';'); 

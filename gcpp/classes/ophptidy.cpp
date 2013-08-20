@@ -42,7 +42,7 @@ signed ophptidy::page (signed c)
 	{ 
 		if (c == '<') 
 		{ 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			c = osource::find (c); 
 			if (c == '!') 
 			{ 
@@ -80,12 +80,12 @@ signed ophptidy::page (signed c)
 			} 
 			while (oascii::isalpha (c)) 
 			{ 
-				c = osource::feed (c); 
+				c = osource::keep (c); 
 			} 
 			c = ophptidy::context (c, '>'); 
 			continue; 
 		} 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 	} 
 	return (c); 
 } 
@@ -151,7 +151,7 @@ signed ophptidy::program (signed c)
 
 #if 0
 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			c = osource::find (c); 
 			std::cout.put (' ');
 			ophptidy::increment (); 
@@ -165,7 +165,7 @@ signed ophptidy::program (signed c)
 			ophptidy::endline (1); 
 			ophptidy::newline (); 
 			ophptidy::increment (); 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			c = osource::find (c); 
 			std::cout.put (' ');
 
@@ -179,7 +179,7 @@ signed ophptidy::program (signed c)
 			ophptidy::decrement (); 
 			ophptidy::endline (1); 
 			ophptidy::newline (); 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			c = osource::find (c); 
 			std::cout.put (' ');
 			if (!this->mlevel) 
@@ -191,7 +191,7 @@ signed ophptidy::program (signed c)
 		} 
 		if ((c == ',') || (c == ';') || (c == ':')) 
 		{ 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			c = osource::find (c); 
 			std::cout.put (' ');
 			ophptidy::space (2); 
@@ -201,7 +201,7 @@ signed ophptidy::program (signed c)
 		c = ophptidy::statement (c); 
 		ophptidy::space (2); 
 	} 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	return (c); 
 } 
 
@@ -239,7 +239,7 @@ signed ophptidy::statement (signed c)
 	else if (c == ':')
 	{ 
 		oindent::print (this->mlevel-1, 0, string); 
-		c = osource::feed (c);
+		c = osource::keep (c);
 		c = osource::find (c);
 		std::cout.put (' ');
 	} 
@@ -285,9 +285,9 @@ signed ophptidy::context (signed c, char const * charset) const
 signed ophptidy::context (signed c, signed o, signed e) const
 
 { 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	c = ophptidy::_context (c, o, e); 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	return (c); 
 } 
 
@@ -297,7 +297,7 @@ signed ophptidy::_context (signed c, signed o, signed e) const
 	while ((c != e) && (c != EOF)) 
 	{ 
 		c = ophptidy::_context (c, o); 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 	} 
 	return (c); 
 } 
@@ -314,10 +314,10 @@ signed ophptidy::_context (signed c, signed o, signed e) const
 signed ophptidy::context (signed c, signed e) const 
 
 { 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	c = osource::find (c); 
 	c = ophptidy::_context (c, e); 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	return (c); 
 } 
 
@@ -343,8 +343,8 @@ signed ophptidy::context (signed c)  const
 	if (c == '\\') 
 	{ 
 		signed o;
-		o = osource::feed (c); 
-		c = osource::feed (o); 
+		o = osource::keep (c); 
+		c = osource::keep (o); 
 		if (o == '\n') 
 		{ 
 			oindent::print (oindent::margin (), oindent::offset (), oindent::level ()); 

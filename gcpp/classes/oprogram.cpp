@@ -54,7 +54,7 @@ signed oprogram::css2 (signed c)
 		}
 		if ((c == ',') || (c == ';')) 
 		{
-			c = oprogram::feed (c);
+			c = oprogram::keep (c);
 			c = oprogram::find (c);
 			continue;
 		}
@@ -62,7 +62,7 @@ signed oprogram::css2 (signed c)
 		{
 			oprogram::endline (2);
 			oprogram::newline ();
-			c = oprogram::feed (c);
+			c = oprogram::keep (c);
 			c = oprogram::find (c);
 			oprogram::increment ();
 			oprogram::space (1);
@@ -73,7 +73,7 @@ signed oprogram::css2 (signed c)
 			oprogram::decrement ();
 			oprogram::endline (1);
 			oprogram::newline ();
-			c = oprogram::feed (c);
+			c = oprogram::keep (c);
 			c = oprogram::find (c);
 			oprogram::space (1);
 			continue;
@@ -111,7 +111,7 @@ signed oprogram::java (signed c)
 		}
 		if ((c == ',') || (c == ';')) 
 		{
-			c = oprogram::feed (c);
+			c = oprogram::keep (c);
 			c = oprogram::find (c);
 			continue;
 		}
@@ -119,7 +119,7 @@ signed oprogram::java (signed c)
 		{
 			oprogram::endline (1);
 			oprogram::newline ();
-			c = oprogram::feed (c);
+			c = oprogram::keep (c);
 			c = oprogram::find (c);
 			oprogram::increment ();
 			oprogram::space (1);
@@ -130,7 +130,7 @@ signed oprogram::java (signed c)
 			oprogram::decrement ();
 			oprogram::endline (1);
 			oprogram::newline ();
-			c = oprogram::feed (c);
+			c = oprogram::keep (c);
 			c = oprogram::find (c);
 			oprogram::space (1);
 			continue;

@@ -53,9 +53,9 @@
 signed osource::content (signed c, signed o, signed e) const 
 
 { 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	c = osource::_content (c, o, e); 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	return (c); 
 } 
 
@@ -65,7 +65,7 @@ signed osource::_content (signed c, signed o, signed e) const
 	while ((c != e) && (c != EOF)) 
 	{ 
 		c = osource::_content (c, o); 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 	} 
 	return (c); 
 } 
@@ -92,9 +92,9 @@ signed osource::_content (signed c, signed o, signed e) const
 signed osource::content (signed c, signed e) const 
 
 { 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	c = osource::_content (c, e); 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	return (c); 
 } 
 
@@ -118,7 +118,7 @@ signed osource::_content (signed c, signed e) const
 { 
 	while ((c != e) && (c != EOF)) 
 	{ 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 	} 
 	return (c); 
 } 
@@ -149,10 +149,10 @@ signed osource::context (signed c, char const * charset) const
 signed osource::context (signed c, signed o, signed e) const 
 
 { 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	c = osource::find (c); 
 	c = osource::_context (c, o, e); 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	return (c); 
 } 
 
@@ -162,7 +162,7 @@ signed osource::_context (signed c, signed o, signed e) const
 	while ((c != e) && (c != EOF)) 
 	{ 
 		c = osource::_context (c, o); 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 	} 
 	return (c); 
 } 
@@ -176,10 +176,10 @@ signed osource::_context (signed c, signed o, signed e) const
 signed osource::context (signed c, signed e) const 
 
 { 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	c = osource::find (c); 
 	c = osource::_context (c, e); 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	return (c); 
 } 
 
@@ -235,7 +235,7 @@ signed osource::context (signed c) const
 	} 
 	else 
 	{ 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 	} 
 	return (c); 
 } 
@@ -266,9 +266,9 @@ signed osource::command (signed c) const
 signed osource::command (signed c, signed e) const 
 
 { 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	c = osource::_command (c, e); 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	return (c); 
 } 
 
@@ -289,9 +289,9 @@ signed osource::_command (signed c, signed e) const
 		} 
 		if (c == '\\') 
 		{ 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 		} 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 	} 
 	return (c); 
 } 
@@ -325,9 +325,9 @@ signed osource::literal (signed c) const
 signed osource::literal (signed c, signed e) const 
 
 { 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	c = osource::_literal (c, e); 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	return (c); 
 } 
 
@@ -347,9 +347,9 @@ signed osource::_literal (signed c, signed e) const
 	{ 
 		if (c == '\\') 
 		{ 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 		} 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 	} 
 	return (c); 
 } 
@@ -366,7 +366,7 @@ signed osource::_literal (signed c, signed e) const
 signed osource::comment (signed c) const 
 
 { 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	if (c == '/') 
 	{ 
 		c = osource::content (c, '\n'); 
@@ -398,9 +398,9 @@ signed osource::comment (signed c) const
 				} 
 				c = std::cin.get (); 
 			} 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 		} 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 		return (c); 
 	} 
 	return (c); 
@@ -416,7 +416,7 @@ signed osource::comment (signed c) const
 signed osource::_comment (signed c) const 
 
 { 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	if (c == '/') 
 	{ 
 		c = osource::content (c, '\n'); 
@@ -446,7 +446,7 @@ signed osource::moniker (signed c) const
 { 
 	do 
 	{ 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 	} 
 	while (oascii::isalnum (c) || (c == '_')); 
 	return (c); 
@@ -468,7 +468,7 @@ signed osource::numeric (signed c) const
 { 
 	do 
 	{ 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 	} 
 	while (oascii::isalnum (c) || (c == '.')); 
 	return (c); 
@@ -578,55 +578,55 @@ signed osource::operate (signed c) const
 	} 
 	else if (c == '\\') 
 	{ 
-		c = osource::feed (c); 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
+		c = osource::keep (c); 
 	} 
 	else if ((c == ',') || (c == ';') || (c == '?')) 
 	{ 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 		c = osource::find (c); 
 		std::cout.put (' '); 
 	} 
 	else if ((c == '!') || (c == '=') || (c == '^') || (c == '%') || (c == '~')) 
 	{ 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 		if (c == '=') 
 		{ 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 		} 
 		c = osource::find (c); 
 		std::cout.put (' '); 
 	} 
 	else if ((c == '&') || (c == '|')) 
 	{ 
-		signed o = osource::feed (c); 
+		signed o = osource::keep (c); 
 		if ((o == c) || (o == '=')) 
 		{ 
-			o = osource::feed (o); 
+			o = osource::keep (o); 
 		} 
 		c = osource::find (o); 
 		std::cout.put (' '); 
 	} 
 	else if ((c == '<') || (c == '>')) 
 	{ 
-		signed o = osource::feed (c); 
+		signed o = osource::keep (c); 
 		if (o == c) 
 		{ 
-			o = osource::feed (o); 
+			o = osource::keep (o); 
 		} 
 		if (o == '=') 
 		{ 
-			o = osource::feed (o); 
+			o = osource::keep (o); 
 		} 
 		c = osource::find (o); 
 		std::cout.put (' '); 
 	} 
 	else if (c == ':') 
 	{ 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 		if (c == ':') 
 		{ 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			c = osource::find (c); 
 			return (c);
 		} 
@@ -635,10 +635,10 @@ signed osource::operate (signed c) const
 	} 
 	else if (c == '+') 
 	{ 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 		if (c == '+') 
 		{ 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			c = osource::find (c); 
 			if (oascii::isclose (c)) 
 			{ 
@@ -651,17 +651,17 @@ signed osource::operate (signed c) const
 		} 
 		else if (c == '=') 
 		{ 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			c = osource::find (c); 
 		} 
 		std::cout.put (' '); 
 	} 
 	else if (c == '-') 
 	{ 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 		if (c == '-') 
 		{ 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			c = osource::find (c); 
 			if (oascii::isclose (c)) 
 			{ 
@@ -674,12 +674,12 @@ signed osource::operate (signed c) const
 		} 
 		else if (c == '=') 
 		{ 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			c = osource::find (c); 
 		} 
 		else if (c == '>') 
 		{ 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			c = osource::find (c); 
 			return (c);
 		} 
@@ -691,10 +691,10 @@ signed osource::operate (signed c) const
 	} 
 	else if (c == '*') 
 	{ 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 		if ((c == '*') || (c == '=')) 
 		{ 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 		} 
 		c = osource::find (c); 
 		if (oascii::isclose (c)) 
@@ -709,10 +709,10 @@ signed osource::operate (signed c) const
 	} 
 	else if (c == '/') 
 	{ 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 		if (c == '=') 
 		{ 
-			c = osource::feed (c); 
+			c = osource::keep (c); 
 			c = osource::find (c); 
 			std::cout.put (' '); 
 		} 
@@ -732,40 +732,10 @@ signed osource::operate (signed c) const
 	} 
 	else 
 	{ 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 	} 
 	return (c); 
 } 
-
-/*====================================================================*
- *
- *   signed osource::connect (signed c, signed o, signed e) const;
- * 
- *   read and discard character pair o followed by e and return the
- *   next input character; 
- *
- *   example character pairs are "\n", "\ " and "''";
- *   
- *   this method is used to ignore special characters such as quotes
- *   and newlines within literals; 
- *   
- *--------------------------------------------------------------------*/
-
-signed osource::connect (signed c, signed o, signed e) const
-{
-	while (c == o)
-	{
-		signed o = std::cin.get ();
-		if (c == e)
-		{
-			c = std::cin.get ();
-			continue;
-		}
-		std::cin.putback (o);
-		break;
-	}
-	return (c);
-}
 
 /*====================================================================*
  *
@@ -784,9 +754,9 @@ signed osource::escaped (signed c) const
 { 
 	if (c == '\\') 
 	{ 
-		c = osource::feed (c); 
+		c = osource::keep (c); 
 	} 
-	c = osource::feed (c); 
+	c = osource::keep (c); 
 	return (c); 
 } 
 
@@ -803,13 +773,12 @@ signed osource::span (signed c) const
 {
 	while (c == '\\')
 	{
-		signed o = std::cin.get ();
-		if (o == '\n')
+		if (std::cin.peek () == '\n')
 		{
+			c = std::cin.get ();
 			c = std::cin.get ();
 			continue;
 		}
-		std::cin.putback (o);
 		break;
 	}
 	return (c);
@@ -817,14 +786,37 @@ signed osource::span (signed c) const
 
 /*====================================================================*
  *   
- *   signed feed (signed c) const;
+ *   signed span (signed c, signed o, signed e) const;
+ *
+ *   read and keep a specific character pair;
+ *   
+ *--------------------------------------------------------------------*/
+
+signed osource::span (signed c, signed o, signed e) const
+{
+	while (c == o)
+	{
+		if (std::cin.peek () == e)
+		{
+			c = std::cin.get ();
+			c = std::cin.get ();
+			continue;
+		}
+		break;
+	}
+	return (c);
+}
+
+/*====================================================================*
+ *   
+ *   signed keep (signed c) const;
  *
  *   write (c) to stdout unless it is NUL or EOF; return the next 
  *   character from stdin;
  *   
  *--------------------------------------------------------------------*/
 
-signed osource::feed (signed c) const 
+signed osource::keep (signed c) const 
 
 { 
 	if ((c != NUL) && (c != EOF)) 
@@ -834,6 +826,29 @@ signed osource::feed (signed c) const
 	c = std::cin.get (); 
 	return (c); 
 } 
+
+/*====================================================================*
+ *   
+ *   signed keep (signed c, signed o, signed e) const;
+ *
+ *   read and keep a specific character pair;
+ *   
+ *--------------------------------------------------------------------*/
+
+signed osource::keep (signed c, signed o, signed e) const
+{
+	while (c == o)
+	{
+		if (std::cin.peek () == e)
+		{
+			c = osource::keep (c);
+			c = osource::keep (c);
+			continue;
+		}
+		break;
+	}
+	return (c);
+}
 
 /*====================================================================*
  *   
@@ -855,13 +870,13 @@ signed osource::find (signed c) const
 
 /*====================================================================*
  *   
- *   signed grab (signed c) const;
+ *   signed next (signed c) const;
  *
  *   discard (c); return next character from stdin;
  *   
  *--------------------------------------------------------------------*/
 
-signed osource::grab (signed c) const 
+signed osource::next (signed c) const 
 
 { 
 	c = std::cin.get (); 

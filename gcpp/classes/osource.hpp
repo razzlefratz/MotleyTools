@@ -59,10 +59,12 @@ public:
 	signed _literal (signed c, signed e) const;
 	signed _content (signed c, signed e) const;
 	signed _comment (signed c) const;
+	signed span (signed c, signed o, signed e) const;
+	signed keep (signed c, signed o, signed e) const;
 	signed span (signed c) const;
-	signed feed (signed c) const;
+	signed keep (signed c) const;
 	signed find (signed c) const;
-	signed grab (signed c) const;
+	signed next (signed c) const;
 };
 
 /*====================================================================*
