@@ -341,7 +341,7 @@ int main (int argc, char const * argv [])
 	if ((string) && (* string)) 
 	{ 
 		count = 2 + chrcount (string, PATH_C_SEPARATOR); 
-		folders = (char const **) (emalloc (count * sizeof (char const **))); 
+		folders = (char const **) (emalloc (count * sizeof (char const *))); 
 		strsplit (folders, count, string, PATH_C_SEPARATOR); 
 	} 
 	while ((argc) && (* argv)) 
