@@ -75,7 +75,7 @@ mptidy: mptidy.o ogetoptv.o oputoptv.o oversion.o oflagword.o ofileopen.o ofiles
 order2: order2.o ogetoptv.o oputoptv.o oversion.o oerror.o ograph.o oedges.o onodes.o oedge.o onode.o oflagword.o oascii.o otext.o
 page: page.o ogetoptv.o oputoptv.o oversion.o opage.o otext.o
 relate2: relate2.o ogetoptv.o oputoptv.o oversion.o oerror.o oflagword.o odepend.o oqueue.o opathspec.o owildcard.o oascii.o otext.o
-space2: space2.o oascii.o ocontext.o oerror.o ofileopen.o ofilespec.o oflagword.o ogetoptv.o opathspec.o oputoptv.o osource.o otext.o oversion.o owildcard.o
+space2: space2.o oascii.o ocontext.o oerror.o oescape.o ofileopen.o ofilespec.o oflagword.o ogetoptv.o opathspec.o oputoptv.o osource.o otext.o oversion.o owildcard.o
 sqltidy: sqltidy.o ogetoptv.o oputoptv.o oversion.o oerror.o oflagword.o ofileopen.o ofilespec.o ocontext.o owildcard.o oescape.o opathspec.o osource.o oascii.o oindent.o otext.o
 defix: defix.o ogetoptv.o oputoptv.o oversion.o ocontext.o otext.o
 syslog2: syslog2.o ogetoptv.o oputoptv.o oversion.o osyslog.o osyslogspec.o oerror.o

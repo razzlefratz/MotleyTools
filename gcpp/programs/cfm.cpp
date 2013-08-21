@@ -23,7 +23,6 @@
 
 #include "../classes/ogetoptv.hpp"
 #include "../classes/ofileopen.hpp"
-#include "../classes/opathspec.hpp"
 #include "../classes/oprofile.hpp"
 #include "../classes/octidy.hpp"
 
@@ -40,7 +39,6 @@
 #include "../classes/ofileopen.cpp"
 #include "../classes/ofilespec.cpp"
 #include "../classes/okeywords.cpp"
-#include "../classes/opathspec.cpp"
 #include "../classes/oprofile.cpp"
 #include "../classes/ocontext.cpp"
 #include "../classes/owildcard.cpp"
@@ -110,7 +108,6 @@ int main (int argc, char const * argv [])
 	char const * section = SECTION_NAME; 
 	ogetoptv getopt; 
 	ofileopen fileopen; 
-	opathspec pathspec; 
 	oprofile config; 
 	octidy object; 
 	signed (octidy::* method) (signed) = & octidy::charlie; 
