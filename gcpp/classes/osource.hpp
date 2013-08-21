@@ -43,6 +43,7 @@ public:
 	static signed content (signed c, signed e);
 	static signed context (signed c, signed e);
 	static signed literal (signed c, signed e);
+	static signed consume (signed c);
 	static signed context (signed c);
 	static signed command (signed c);
 	static signed literal (signed c);

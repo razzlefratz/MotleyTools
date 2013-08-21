@@ -809,6 +809,19 @@ signed osource::span (signed c, signed o, signed e)
 }
 
 /*====================================================================*
+ *
+ *   signed consume (signed c);
+ *
+ *--------------------------------------------------------------------*/
+
+signed osource::consume (signed c)
+
+{
+	do { c = osource::keep (c); } while (oascii::nobreak (c));
+	return (c);
+}
+
+/*====================================================================*
  *   
  *   signed keep (signed c);
  *

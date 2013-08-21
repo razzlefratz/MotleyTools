@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   ctidy.cpp - tidy C/C++ source files;
+ *   space2.cpp - minimize white space;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -57,6 +57,10 @@
  *
  *   signed pack (signed c, signed o, signed (* get)(signed));
  *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
  *--------------------------------------------------------------------*/
 
 signed pack (signed c, signed (* get)(signed))
@@ -97,7 +101,7 @@ signed function (signed c)
 { 
 	while (c != EOF) 
 	{ 
-		int (* get) (int) = osource::span; 
+		signed (* get) (signed) = osource::span; 
 		if (oascii::isblank (c)) 
 		{ 
 			get = osource::next; 
@@ -107,11 +111,7 @@ signed function (signed c)
 		{ 
 			if (c == '#') 
 			{ 
-				do 
-				{ 
-					c = osource::keep (c); 
-				} 
-				while (oascii::nobreak (c)); 
+				c = osource::consume (c);
 				continue; 
 			} 
 			if (oascii::isquote (c)) 
