@@ -41,7 +41,7 @@
 
 /*====================================================================*
  *
- *   signed content (signed c, signed o, signed e) const;
+ *   signed content (signed c, signed o, signed e);
  *
  *   write (c) then read and write characters up to pair (oe); write
  *   both (o) and (e) then return either the next character or EOF;
@@ -50,7 +50,7 @@
  *
  *--------------------------------------------------------------------*/
 
-signed osource::content (signed c, signed o, signed e) const 
+signed osource::content (signed c, signed o, signed e) 
 
 { 
 	c = osource::keep (c); 
@@ -59,7 +59,7 @@ signed osource::content (signed c, signed o, signed e) const
 	return (c); 
 } 
 
-signed osource::_content (signed c, signed o, signed e) const 
+signed osource::_content (signed c, signed o, signed e) 
 
 { 
 	while ((c != e) && (c != EOF)) 
@@ -72,7 +72,7 @@ signed osource::_content (signed c, signed o, signed e) const
 
 /*====================================================================*
  *
- *   signed content (signed c, signed e) const;
+ *   signed content (signed c, signed e);
  *
  *   write (c) then read and write characters until (e); write (e) 
  *   then return the next character;
@@ -89,7 +89,7 @@ signed osource::_content (signed c, signed o, signed e) const
  *
  *--------------------------------------------------------------------*/
 
-signed osource::content (signed c, signed e) const 
+signed osource::content (signed c, signed e) 
 
 { 
 	c = osource::keep (c); 
@@ -100,7 +100,7 @@ signed osource::content (signed c, signed e) const
 
 /*====================================================================*
  *
- *   signed content (signed c, signed e) const;
+ *   signed content (signed c, signed e);
  *
  *   inspect (c) the write and read characters until (e); return (e)
  *   or EOF to the caller;
@@ -113,7 +113,7 @@ signed osource::content (signed c, signed e) const
  *
  *--------------------------------------------------------------------*/
 
-signed osource::_content (signed c, signed e) const 
+signed osource::_content (signed c, signed e) 
 
 { 
 	while ((c != e) && (c != EOF)) 
@@ -125,11 +125,11 @@ signed osource::_content (signed c, signed e) const
 
 /*====================================================================*
  *   
- *   signed context (signed c, char const * charset) const;
+ *   signed context (signed c, char const * charset);
  *   
  *--------------------------------------------------------------------*/
 
-signed osource::context (signed c, char const * charset) const 
+signed osource::context (signed c, char const * charset) 
 
 { 
 	while ((c) && (c != EOF) && !std::strchr (charset, c)) 
@@ -141,12 +141,12 @@ signed osource::context (signed c, char const * charset) const
 
 /*====================================================================*
  *
- *   signed context (signed c, signed o, signed e) const;
- *   signed _context (signed c, signed o, signed e) const;
+ *   signed context (signed c, signed o, signed e);
+ *   signed _context (signed c, signed o, signed e);
  *
  *--------------------------------------------------------------------*/
 
-signed osource::context (signed c, signed o, signed e) const 
+signed osource::context (signed c, signed o, signed e) 
 
 { 
 	c = osource::keep (c); 
@@ -156,7 +156,7 @@ signed osource::context (signed c, signed o, signed e) const
 	return (c); 
 } 
 
-signed osource::_context (signed c, signed o, signed e) const 
+signed osource::_context (signed c, signed o, signed e) 
 
 { 
 	while ((c != e) && (c != EOF)) 
@@ -169,11 +169,11 @@ signed osource::_context (signed c, signed o, signed e) const
 
 /*====================================================================*
  *
- *   signed context (signed c, signed e) const;
+ *   signed context (signed c, signed e);
  *
  *--------------------------------------------------------------------*/
 
-signed osource::context (signed c, signed e) const 
+signed osource::context (signed c, signed e) 
 
 { 
 	c = osource::keep (c); 
@@ -183,7 +183,7 @@ signed osource::context (signed c, signed e) const
 	return (c); 
 } 
 
-signed osource::_context (signed c, signed e) const 
+signed osource::_context (signed c, signed e) 
 
 { 
 	while ((c != e) && (c != EOF)) 
@@ -195,7 +195,7 @@ signed osource::_context (signed c, signed e) const
 
 /*====================================================================*
  *   
- *   signed context (signed c) const;
+ *   signed context (signed c);
  *   
  *   read stdin and write stdout; write initiator (c) then read and 
  *   write trailing characters upto and including any terminator in
@@ -206,7 +206,7 @@ signed osource::_context (signed c, signed e) const
  *   
  *--------------------------------------------------------------------*/
 
-signed osource::context (signed c) const 
+signed osource::context (signed c) 
 
 { 
 	if (oascii::isquote (c)) 
@@ -242,8 +242,8 @@ signed osource::context (signed c) const
 
 /*====================================================================*
  *
- *   signed osource::command (signed c) const;
- *   signed osource::command (signed c, signed e) const;
+ *   signed osource::command (signed c);
+ *   signed osource::command (signed c, signed e);
  *
  *   write (c) then read and write characters until (e); write (e) 
  *   then return the next character;
@@ -256,14 +256,14 @@ signed osource::context (signed c) const
  *
  *--------------------------------------------------------------------*/
 
-signed osource::command (signed c) const 
+signed osource::command (signed c) 
 
 { 
 	c = osource::command (c, '\n'); 
 	return (c); 
 } 
 
-signed osource::command (signed c, signed e) const 
+signed osource::command (signed c, signed e) 
 
 { 
 	c = osource::keep (c); 
@@ -272,7 +272,7 @@ signed osource::command (signed c, signed e) const
 	return (c); 
 } 
 
-signed osource::_command (signed c, signed e) const 
+signed osource::_command (signed c, signed e) 
 
 { 
 	while ((c != e) && (c != EOF)) 
@@ -298,7 +298,7 @@ signed osource::_command (signed c, signed e) const
 
 /*====================================================================*
  *
- *   signed osource::literal (signed c) const;
+ *   signed osource::literal (signed c);
  *   
  *   output (c) then read and write characters upto the next (c); 
  *   output (c) and return the next character; ignore escaped 
@@ -306,7 +306,7 @@ signed osource::_command (signed c, signed e) const
  *
  *--------------------------------------------------------------------*/
 
-signed osource::literal (signed c) const 
+signed osource::literal (signed c) 
 
 { 
 	c = osource::literal (c, c); 
@@ -315,14 +315,14 @@ signed osource::literal (signed c) const
 
 /*====================================================================*
  *
- *   signed osource::literal (signed c, signed e) const;
+ *   signed osource::literal (signed c, signed e);
  *   
  *   read and write characters up to (e); output (e) and return the
  *   next character; ignore escaped instances of (e);
  *
  *--------------------------------------------------------------------*/
 
-signed osource::literal (signed c, signed e) const 
+signed osource::literal (signed c, signed e) 
 
 { 
 	c = osource::keep (c); 
@@ -333,14 +333,14 @@ signed osource::literal (signed c, signed e) const
 
 /*====================================================================*
  *
- *   signed osource::_literal (signed c, signed e) const;
+ *   signed osource::_literal (signed c, signed e);
  *   
  *   read and write characters up to (e); return (e); ignore escaped
  *   instances of (e);
  *
  *--------------------------------------------------------------------*/
 
-signed osource::_literal (signed c, signed e) const 
+signed osource::_literal (signed c, signed e) 
 
 { 
 	while ((c != e) && (c != EOF)) 
@@ -356,14 +356,14 @@ signed osource::_literal (signed c, signed e) const
 
 /*====================================================================*
  *
- *   signed comment (signed c) const;
+ *   signed comment (signed c);
  *
  *   process multi-line comments; pad left margin with asterisks;
  *   donot manipulate comment content;
  *
  *--------------------------------------------------------------------*/
 
-signed osource::comment (signed c) const 
+signed osource::comment (signed c) 
 
 { 
 	c = osource::keep (c); 
@@ -408,12 +408,12 @@ signed osource::comment (signed c) const
 
 /*====================================================================*
  *
- *   signed _comment (signed c) const ;
+ *   signed _comment (signed c) ;
  *   
  *
  *--------------------------------------------------------------------*/
 
-signed osource::_comment (signed c) const 
+signed osource::_comment (signed c) 
 
 { 
 	c = osource::keep (c); 
@@ -432,7 +432,7 @@ signed osource::_comment (signed c) const
 
 /*====================================================================*
  *
- *   signed osource::moniker (signed c) const;
+ *   signed osource::moniker (signed c);
  *
  *   read and write alphanumeric characters and underscore; do not
  *   call istoken () here because colon and hyphen are treated as
@@ -441,7 +441,7 @@ signed osource::_comment (signed c) const
  *
  *--------------------------------------------------------------------*/
 
-signed osource::moniker (signed c) const 
+signed osource::moniker (signed c) 
 
 { 
 	do 
@@ -454,7 +454,7 @@ signed osource::moniker (signed c) const
 
 /*====================================================================*
  *
- *   signed osource::numeric (signed c) const;
+ *   signed osource::numeric (signed c);
  *
  *   read and write alphanumeric characters and underscore; do not
  *   call istoken () here because colon and hyphen are treated as
@@ -463,7 +463,7 @@ signed osource::moniker (signed c) const
  *
  *--------------------------------------------------------------------*/
 
-signed osource::numeric (signed c) const 
+signed osource::numeric (signed c) 
 
 { 
 	do 
@@ -476,12 +476,12 @@ signed osource::numeric (signed c) const
 
 /*====================================================================*
  *
- *   signed terminate (signed c) const;
+ *   signed terminate (signed c);
  *   
  *
  *--------------------------------------------------------------------*/
 
-signed osource::terminate (signed c) const 
+signed osource::terminate (signed c) 
 
 { 
 	if (oascii::isalnum (c) || (c == '_')) 
@@ -531,13 +531,13 @@ signed osource::terminate (signed c) const
 
 /*====================================================================*
  *
- *   osource::operate (signed c) const;
+ *   osource::operate (signed c);
  *
  *
  *
  *--------------------------------------------------------------------*/
 
-signed osource::operate (signed c) const 
+signed osource::operate (signed c) 
 
 { 
 	if (oascii::isspace (c)) 
@@ -739,7 +739,7 @@ signed osource::operate (signed c) const
 
 /*====================================================================*
  *
- *   signed osource::escaped (signed c) const;
+ *   signed osource::escaped (signed c);
  * 
  *   write (c) and read the next character; repeat once if (c) is
  *   the escape meta character;
@@ -749,7 +749,7 @@ signed osource::operate (signed c) const
  *   
  *--------------------------------------------------------------------*/
 
-signed osource::escaped (signed c) const 
+signed osource::escaped (signed c) 
 
 { 
 	if (c == '\\') 
@@ -762,14 +762,15 @@ signed osource::escaped (signed c) const
 
 /*====================================================================*
  *   
- *   signed span (signed c) const;
+ *   signed span (signed c);
  *
  *   inspect (c) to detect and remove continuation line escape 
  *   sequences;
  *   
  *--------------------------------------------------------------------*/
 
-signed osource::span (signed c) const
+signed osource::span (signed c)
+
 {
 	while (c == '\\')
 	{
@@ -786,13 +787,13 @@ signed osource::span (signed c) const
 
 /*====================================================================*
  *   
- *   signed span (signed c, signed o, signed e) const;
+ *   signed span (signed c, signed o, signed e);
  *
  *   read and keep a specific character pair;
  *   
  *--------------------------------------------------------------------*/
 
-signed osource::span (signed c, signed o, signed e) const
+signed osource::span (signed c, signed o, signed e)
 {
 	while (c == o)
 	{
@@ -809,14 +810,14 @@ signed osource::span (signed c, signed o, signed e) const
 
 /*====================================================================*
  *   
- *   signed keep (signed c) const;
+ *   signed keep (signed c);
  *
  *   write (c) to stdout unless it is NUL or EOF; return the next 
  *   character from stdin;
  *   
  *--------------------------------------------------------------------*/
 
-signed osource::keep (signed c) const 
+signed osource::keep (signed c) 
 
 { 
 	if ((c != NUL) && (c != EOF)) 
@@ -829,13 +830,13 @@ signed osource::keep (signed c) const
 
 /*====================================================================*
  *   
- *   signed keep (signed c, signed o, signed e) const;
+ *   signed keep (signed c, signed o, signed e);
  *
  *   read and keep a specific character pair;
  *   
  *--------------------------------------------------------------------*/
 
-signed osource::keep (signed c, signed o, signed e) const
+signed osource::keep (signed c, signed o, signed e)
 {
 	while (c == o)
 	{
@@ -852,13 +853,13 @@ signed osource::keep (signed c, signed o, signed e) const
 
 /*====================================================================*
  *   
- *   signed find (signed c) const;
+ *   signed find (signed c);
  *
  *   discard (c); return the next non-space input character;
  *   
  *--------------------------------------------------------------------*/
 
-signed osource::find (signed c) const 
+signed osource::find (signed c) 
 
 { 
 	while (oascii::isspace (c)) 
@@ -870,13 +871,13 @@ signed osource::find (signed c) const
 
 /*====================================================================*
  *   
- *   signed next (signed c) const;
+ *   signed next (signed c);
  *
  *   discard (c); return next character from stdin;
  *   
  *--------------------------------------------------------------------*/
 
-signed osource::next (signed c) const 
+signed osource::next (signed c) 
 
 { 
 	c = std::cin.get (); 
