@@ -33,6 +33,7 @@
 #include "../tools/putoptv.c"
 #include "../tools/version.c"
 #include "../tools/error.c"
+#include "../tools/efreopen.c"
 #endif
 
 #ifndef MAKEFILE
@@ -117,12 +118,12 @@ int main (int argc, char const * argv [])
 	} 
 	while ((argc) && (* argv)) 
 	{ 
-		if (vfopen (* argv)) 
+		if (efreopen (* argv, "rb", stdin)) 
 		{ 
 			function (getc (stdin)); 
 		} 
-		argv++; 
 		argc--; 
+		argv++; 
 	} 
 	exit (0); 
 } 
