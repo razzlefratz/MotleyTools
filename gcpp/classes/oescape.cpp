@@ -338,8 +338,8 @@ unsigned oescape::define (signed c, signed e)
  *
  *   unsigned oescape::unescaped (signed c) const;
  *
- *   return the equivalentconvert an ascii character to the equivalent escape character or
- *   itself, if no equivalent is defined;
+ *   return the equivalent an ascii character of an escape character 
+ *   or itself, if no equivalent is defined;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -355,7 +355,7 @@ unsigned oescape::unescape (signed c)
 
 /*====================================================================*
  *
- *   char *unescape (char *string) const;
+ *   char * unescape (char *string) const;
  *
  *   scan a string for character escape sequences of the form '\ddd', 
  *   '\c' and '^c'; replace each with an ASCII character value; return
