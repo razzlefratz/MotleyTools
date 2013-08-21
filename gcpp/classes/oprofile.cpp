@@ -169,7 +169,7 @@ signed oprofile::number (char const * profile, char const * section, char const 
 
 {
 	signed minus = 0;
-	char const * string = this->string (profile, section, element, "");
+	char const * string = oprofile::string (profile, section, element, "");
 	if (!* string) 
 	{
 		return (value);
@@ -218,7 +218,7 @@ signed oprofile::number (char const * profile, char const * section, char const 
 bool oprofile::enable (char const * profile, char const * section, char const * element, bool state) 
 
 {
-	this->string (profile, section, element, (char const *)(0));
+	oprofile::string (profile, section, element, (char const *)(0));
 	return (oprofile::state (this->mstring, state));
 }
 
@@ -280,7 +280,7 @@ oprofile & oprofile:: newtext ()
 
 /*====================================================================*
  *
- *   bool compare (char const *string);
+ *   bool compare (char const * string);
  *
  *   perform a case insensitive compare of string with the input and
  *   ignore embedded and trailing blank space;
