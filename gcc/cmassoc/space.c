@@ -104,7 +104,7 @@ signed join (signed c)
 	return (c); 
 } 
 
-signed pack (signed c, signed (* edit)(signed), signed o)
+signed pack (signed c, signed o, signed (* edit)(signed))
 {
 	do 
 	{ 
@@ -125,11 +125,11 @@ signed function (signed c, signed o, signed e)
 { 
 	while (c != EOF) 
 	{ 
-		signed (* edit) (signed) = join; 
+		signed (* func) (signed) = join; 
 		if (isblank (c)) 
 		{ 
 			edit = grab; 
-			c = pack (c, edit, o);
+			c = pack (c, o, func);
 		} 
 		while (nobreak (c)) 
 		{ 
@@ -149,7 +149,7 @@ signed function (signed c, signed o, signed e)
 			} 
 			if (isblank (c)) 
 			{ 
-				c = pack (c, edit, ' ');
+				c = pack (c, ' ', func);
 				continue; 
 			} 
 			c = keep (c); 
