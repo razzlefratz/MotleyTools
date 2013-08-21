@@ -761,54 +761,6 @@ signed osource::escaped (signed c)
 } 
 
 /*====================================================================*
- *   
- *   signed span (signed c);
- *
- *   inspect (c) to detect and remove continuation line escape 
- *   sequences;
- *   
- *--------------------------------------------------------------------*/
-
-signed osource::span (signed c)
-
-{
-	while (c == '\\')
-	{
-		if (std::cin.peek () == '\n')
-		{
-			c = std::cin.get ();
-			c = std::cin.get ();
-			continue;
-		}
-		break;
-	}
-	return (c);
-}
-
-/*====================================================================*
- *   
- *   signed span (signed c, signed o, signed e);
- *
- *   read and keep a specific character pair;
- *   
- *--------------------------------------------------------------------*/
-
-signed osource::span (signed c, signed o, signed e)
-{
-	while (c == o)
-	{
-		if (std::cin.peek () == e)
-		{
-			c = std::cin.get ();
-			c = std::cin.get ();
-			continue;
-		}
-		break;
-	}
-	return (c);
-}
-
-/*====================================================================*
  *
  *   signed consume (signed c);
  *
@@ -866,6 +818,54 @@ signed osource::keep (signed c, signed o, signed e)
 
 /*====================================================================*
  *   
+ *   signed span (signed c);
+ *
+ *   inspect (c) to detect and remove continuation line escape 
+ *   sequences;
+ *   
+ *--------------------------------------------------------------------*/
+
+signed osource::span (signed c)
+
+{
+	while (c == '\\')
+	{
+		if (std::cin.peek () == '\n')
+		{
+			c = std::cin.get ();
+			c = std::cin.get ();
+			continue;
+		}
+		break;
+	}
+	return (c);
+}
+
+/*====================================================================*
+ *   
+ *   signed span (signed c, signed o, signed e);
+ *
+ *   read and keep a specific character pair;
+ *   
+ *--------------------------------------------------------------------*/
+
+signed osource::span (signed c, signed o, signed e)
+{
+	while (c == o)
+	{
+		if (std::cin.peek () == e)
+		{
+			c = std::cin.get ();
+			c = std::cin.get ();
+			continue;
+		}
+		break;
+	}
+	return (c);
+}
+
+/*====================================================================*
+ *   
  *   signed find (signed c);
  *
  *   discard (c); return the next non-space input character;
@@ -877,23 +877,40 @@ signed osource::find (signed c)
 { 
 	while (oascii::isspace (c)) 
 	{ 
-		c = std::cin.get (); 
+		c = osource::skip (c); 
 	} 
 	return (c); 
 } 
 
 /*====================================================================*
  *   
- *   signed next (signed c);
+ *   signed peek (signed c);
+ *
+ *   discard (c); return next character from stdin; discard escaped
+ *   newline chracters;
+ *   
+ *--------------------------------------------------------------------*/
+
+signed osource::peek (signed c)
+
+{
+	c = osource::skip (c);
+	c = osource::span (c);
+	return (c);
+}
+
+/*====================================================================*
+ *   
+ *   signed skip (signed c);
  *
  *   discard (c); return next character from stdin;
  *   
  *--------------------------------------------------------------------*/
 
-signed osource::next (signed c) 
+signed osource::skip (signed c) 
 
 { 
-	c = std::cin.get (); 
+	c = std::cin.get ();
 	return (c); 
 } 
 

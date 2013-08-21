@@ -63,16 +63,16 @@
  *
  *--------------------------------------------------------------------*/
 
-signed pack (signed c, signed (* get)(signed))
+signed pack (signed c, signed o, signed (get)(signed))
 {
 	do 
 	{ 
-		c = get (c); 
+		c = get (c);
 	} 
 	while (oascii::isblank (c)); 
 	if (oascii::nobreak (c)) 
 	{ 
-		std::cout.put (' '); 
+		std::cout.put (o); 
 	} 
 	return (c);
 }
@@ -101,11 +101,11 @@ signed function (signed c)
 { 
 	while (c != EOF) 
 	{ 
-		signed (* get) (signed) = osource::span; 
+		signed (* get) (signed) = &osource::peek; 
 		if (oascii::isblank (c)) 
 		{ 
-			get = osource::next; 
-			c = pack (c, get);
+			get = &osource::skip; 
+			c = pack (c, '\t', get);
 		} 
 		while (oascii::nobreak (c)) 
 		{ 
@@ -121,7 +121,7 @@ signed function (signed c)
 			} 
 			if (oascii::isblank (c)) 
 			{ 
-				c = pack (c, get);
+				c = pack (c, ' ', get);
 				continue; 
 			} 
 			c = osource::keep (c); 

@@ -62,10 +62,11 @@ public:
 	static signed _comment (signed c);
 	static signed span (signed c, signed o, signed e);
 	static signed keep (signed c, signed o, signed e);
+	static signed peek (signed c);
 	static signed span (signed c);
 	static signed keep (signed c);
 	static signed find (signed c);
-	static signed next (signed c);
+	static signed skip (signed c);
 };
 
 /*====================================================================*
