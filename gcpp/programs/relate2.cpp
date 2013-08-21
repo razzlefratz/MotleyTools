@@ -91,7 +91,7 @@ int main (int argc, char const * argv [])
 			break; 
 		} 
 	} 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 		depend.populate (RELATE_C_SEPARATOR, RELATE_C_TERMINATOR, flags.anyset (RELATE_B_INVERT)); 
 	} 

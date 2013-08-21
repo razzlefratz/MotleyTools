@@ -126,14 +126,14 @@ static void function (char const * target, size_t length, oflagword * flags)
 	if (stream.good ()) 
 	{ 
 		filespec.filespec (target); 
-		for (line = 1; !stream.getline (buffer, length).eof (); line++) 
+		for (line = 1; ! stream.getline (buffer, length).eof (); line++) 
 		{ 
 			scantext.copy (buffer).nexttoken (); 
-			if (!scantext.havetoken ("#")) 
+			if (! scantext.havetoken ("#")) 
 			{ 
 				continue; 
 			} 
-			if (!scantext.havetoken ("include")) 
+			if (! scantext.havetoken ("include")) 
 			{ 
 				continue; 
 			} 
@@ -232,12 +232,12 @@ int main (int argc, char const * argv [])
 	} 
 	while ((getopt.argc ()) && (* getopt.argv ())) 
 	{ 
-		char filename [FILENAME_MAX + 1]; 
+		char filename [FILENAME_MAX +  1]; 
 		pathspec.fullpath (filename, * getopt.argv ()); 
 		odepend::nodes.store (filename); 
 		getopt++; 
 	} 
-	while (!odepend::queue.empty ()) 
+	while (! odepend::queue.empty ()) 
 	{ 
 		odepend::nodes.store ((char *) (odepend::queue.head ()->data ())); 
 		function ((char *) (odepend::queue.head () ->data ()), length, & flags); 

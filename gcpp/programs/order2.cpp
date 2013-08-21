@@ -110,7 +110,7 @@ int main (int argc, char const * argv [])
 			break; 
 		} 
 	} 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 		graph.populate (ORDER_C_SEPARATOR, ORDER_C_TERMINATOR); 
 	} 

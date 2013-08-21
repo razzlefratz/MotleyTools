@@ -104,7 +104,7 @@ int main (int argc, char const * argv [])
 			break; 
 		} 
 	} 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 		(object.* method) (std::cin.get ()); 
 	} 

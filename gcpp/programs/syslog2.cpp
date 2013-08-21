@@ -157,7 +157,7 @@ int main (int argc, char const * argv [])
 		mysyslogtest (priority); 
 		return (0); 
 	} 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 		while (std::cin.getline (message, sizeof (message)).good ()) 
 		{ 

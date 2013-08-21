@@ -100,7 +100,7 @@ static void process (char const * pathname, char const * command, oflagword * fl
 { 
 	oscantext source; 
 	source.read (pathname); 
-	while (!source.isempty ()) 
+	while (! source.isempty ()) 
 	{ 
 		if (source.flush ().scantoken ().istoken (command)) 
 		{ 

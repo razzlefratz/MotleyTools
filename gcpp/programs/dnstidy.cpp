@@ -108,7 +108,7 @@ void function (oflagword * flags)
 		} 
 		if (c == '{') 
 		{ 
-			if (!level) 
+			if (! level) 
 			{ 
 				indent.endline (1); 
 			} 
@@ -127,7 +127,7 @@ void function (oflagword * flags)
 			{ 
 				std::cout.put (';'); 
 			} 
-			if (!level) 
+			if (! level) 
 			{ 
 				indent.endline (1); 
 			} 
@@ -193,7 +193,7 @@ int main (int argc, char const * argv [])
 			break; 
 		} 
 	} 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 		function (& flags); 
 	} 

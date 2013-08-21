@@ -61,7 +61,7 @@ int main (int argc, char const * argv [], char const * envp [])
 			break; 
 		} 
 	} 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 		page.title ("Standard Input"); 
 		while (page.put (std::cin.get ()) != EOF); 

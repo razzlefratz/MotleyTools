@@ -83,7 +83,7 @@ int main (int argc, char const * argv [])
 	ogetoptv getopt; 
 	opathspec pathspec; 
 	ofileopen fileopen; 
-	oscript object;
+	oscript object; 
 	signed (oscript::* method) (signed) = & oscript::program; 
 	signed c; 
 	while (~ (c = getopt.getoptv (argc, argv, optv))) 
@@ -94,7 +94,7 @@ int main (int argc, char const * argv [])
 			break; 
 		} 
 	} 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 		(object.* method) (std::cin.get ()); 
 	} 

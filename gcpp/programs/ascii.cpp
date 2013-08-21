@@ -75,7 +75,7 @@ int main (int argc, char const * argv [])
 			break; 
 		} 
 	} 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 	} 
 	while (getopt.argc () && * getopt.argv ()) 

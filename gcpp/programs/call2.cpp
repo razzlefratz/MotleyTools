@@ -156,7 +156,7 @@ static signed function (signed c)
 			} 
 			if (c == '(') 
 			{ 
-				if (!level) 
+				if (! level) 
 				{ 
 					std::strcpy (module, string); 
 				} 
@@ -240,7 +240,7 @@ int main (int argc, char const * argv [])
 			break; 
 		} 
 	} 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 		function (std::cin.get ()); 
 	} 

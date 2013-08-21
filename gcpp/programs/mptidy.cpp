@@ -96,9 +96,9 @@ int main (int argc, char const * argv [])
 	{ 
 		switch (c) 
 		{ 
-		case 'm':
-			object.example ();
-			std::exit (0);
+		case 'm': 
+			object.example (); 
+			std::exit (0); 
 		case 'o': 
 			config.write (SECTION_NAME); 
 			config.write (oMPTIDY_S_PROJECT, MPTIDY_S_PROJECT); 
@@ -120,7 +120,7 @@ int main (int argc, char const * argv [])
 	object.package (config.string (profile, section, oMPTIDY_S_PACKAGE, MPTIDY_S_PACKAGE)); 
 	object.program (config.string (profile, section, oMPTIDY_S_PROGRAM, MPTIDY_S_PROGRAM)); 
 	object.release (config.string (profile, section, oMPTIDY_S_RELEASE, MPTIDY_S_RELEASE)); 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 		(object.* method) (std::cin.get ()); 
 	} 

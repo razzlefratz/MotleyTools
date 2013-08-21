@@ -193,7 +193,7 @@ int main (int argc, char const * argv [])
 	object.release (config.string (profile, section, oCOMMENT_S_RELEASE, oCOMMENT_T_RELEASE)); 
 	object.license (config.string (profile, section, oCOMMENT_S_LICENSE, oCOMMENT_T_LICENSE)); 
 	object.special (config.string (profile, section, oCOMMENT_S_SPECIAL, oCOMMENT_T_SPECIAL)); 
-	if (!getopt.argc ()) 
+	if (! getopt.argc ()) 
 	{ 
 		(object.* method) (std::cin.get ()); 
 	} 
