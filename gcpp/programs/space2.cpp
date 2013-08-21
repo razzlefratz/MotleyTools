@@ -20,11 +20,9 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/ogetoptv.hpp"
-#include "../classes/opathspec.hpp"
 #include "../classes/ofileopen.hpp"
-#include "../classes/oflagword.hpp"
+#include "../classes/osource.hpp"
 #include "../classes/oescape.hpp"
-#include "../classes/octidy.hpp"
 
 /*====================================================================*
  *   custom source files;
@@ -37,11 +35,11 @@
 #include "../classes/oerror.cpp"
 #include "../classes/ofileopen.cpp"
 #include "../classes/ofilespec.cpp"
-#include "../classes/opathspec.cpp"
 #include "../classes/ocontext.cpp"
 #include "../classes/owildcard.cpp"
 #include "../classes/oflagword.cpp"
 #include "../classes/osource.cpp"
+#include "../classes/oescape.cpp"
 #include "../classes/oascii.cpp"
 #include "../classes/otext.cpp"
 #endif
@@ -63,7 +61,7 @@
  *
  *--------------------------------------------------------------------*/
 
-signed pack (signed c, signed o, signed (get)(signed))
+signed pack (signed c, signed newline, signed (get)(signed))
 {
 	do 
 	{ 
@@ -72,14 +70,17 @@ signed pack (signed c, signed o, signed (get)(signed))
 	while (oascii::isblank (c)); 
 	if (oascii::nobreak (c)) 
 	{ 
-		std::cout.put (o); 
+		if (newline)
+		{
+			std::cout.put (newline); 
+		}
 	} 
 	return (c);
 }
 
 /*====================================================================*
  *
- *   void function (signed c, signed o, signed e);
+ *   void function (signed c, signed newline, signed endline);
  *
  *   read stdin and write stdout; replace leading spaces and tabs 
  *   with character o unless it is NUL; replace embedded spaces and 
@@ -96,7 +97,7 @@ signed pack (signed c, signed o, signed (get)(signed))
  *
  *--------------------------------------------------------------------*/
 
-signed function (signed c) 
+signed function (signed c, signed newline, signed endline) 
 
 { 
 	while (c != EOF) 
@@ -105,7 +106,7 @@ signed function (signed c)
 		if (oascii::isblank (c)) 
 		{ 
 			get = &osource::skip; 
-			c = pack (c, '\t', get);
+			c = pack (c, newline, get);
 		} 
 		while (oascii::nobreak (c)) 
 		{ 
@@ -126,6 +127,10 @@ signed function (signed c)
 			} 
 			c = osource::keep (c); 
 		} 
+		if (endline)
+		{
+			std::cout.put (endline);
+		}
 		c = osource::keep (c); 
 	} 
 	return (c); 
@@ -141,32 +146,39 @@ int main (int argc, char const * argv [])
 { 
 	static char const * optv [] = 
 	{ 
-		"", 
+		"c:r:", 
 		oPUTOPTV_S_FILTER, 
 		"minimize white space", 
 		(char const *) (0)
 	}; 
 	ogetoptv getopt; 
-	opathspec pathspec; 
 	ofileopen fileopen; 
+	signed newline = SPACE_NEWLINE;
+	signed endline = SPACE_ENDLINE;
 	signed c; 
 	while (~ (c = getopt.getoptv (argc, argv, optv))) 
 	{ 
 		switch (c) 
 		{ 
+		case 'c':
+			newline = * oescape::unescape ((char *) (getopt.args ())); 
+			break;
+		case 'r':
+			endline = * oescape::unescape ((char *) (getopt.args ())); 
+			break;
 		default: 
 			break; 
 		} 
 	} 
 	if (! getopt.argc ()) 
 	{ 
-		function (std::cin.get ()); 
+		function (std::cin.get (), newline, endline); 
 	} 
 	while (getopt.argc () && * getopt.argv ()) 
 	{ 
 		if (fileopen.openedit (* getopt.argv ())) 
 		{ 
-			function (std::cin.get ()); 
+			function (std::cin.get (), newline, endline); 
 			fileopen.close (); 
 		} 
 		getopt++; 
