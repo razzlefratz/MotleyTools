@@ -128,7 +128,7 @@ signed function (signed c, signed o, signed e)
 		signed (* func) (signed) = join; 
 		if (isblank (c)) 
 		{ 
-			edit = grab; 
+			func = grab; 
 			c = pack (c, o, func);
 		} 
 		while (nobreak (c)) 

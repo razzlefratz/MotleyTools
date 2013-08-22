@@ -16,10 +16,10 @@ LFLAGS=
 VPATH=../classes:../../gcc/files
 TRASH=*~ *.[0-9][0-9][0-9] t t.* *.exe *.o *.html *.css
 TOOLS=ascii calend2 cfm chtml cmpp csstidy ctidy ctokens dnstidy htmltidy index javatidy mptidy order2 phptidy sqltidy space2 tokens profile page
-PAGES=cfm.1 ctidy.1 javatidy.1 csstidy.1 htmltidy.1 mptidy.1 phptidy.1
+PAGES=cfm.1 ctidy.1 javatidy.1 csstidy.1 htmltidy.1 mptidy.1 phptidy.1 space2.1
 
 ifeq ($(EXTRA), yes)
-TOOLS+=call2 cblock2 cdep2 javatidy mmf2 pkg relate2 space2.1 defix 
+TOOLS+=call2 cblock2 cdep2 javatidy mmf2 pkg relate2 defix 
 endif
 
 ifeq ($(SYSTEM),Linux)
