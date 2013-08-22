@@ -1,4 +1,4 @@
-.TH cbrief 1 "May 2013" "cmassoc-tools-1.9.0" "Motley Tools"
+.TH cbrief 1 "August 2013" "cmassoc-tools-1.9.1" "Motley Tools"
 
 .SH NAME
 cbrief - strip C/C++ comments or source code
@@ -19,7 +19,8 @@ cbrief - strip C/C++ comments or source code
 .SH DESCRIPTION
 
 .PP
-Discard comments from C/C++ source files and leave leaving only the code. 
+Discard comments from C/C++ source files and leave leaving only the code.
+
 Conversely, discard the code and leave ony the comments.
 
 .PP
@@ -61,8 +62,10 @@ Use program \fBrex\fR to recover a prior version.
 
 .SH EXAMPLES
 The following example prints myprogram.c on the console with the linux cat utility.
-Notice that the program has many creative, meaningless, misaligned and annoying comments that make it hard to read. 
+Notice that the program has many creative, meaningless, misaligned and annoying comments that make it hard to read.
+
 One sign that a novice programmer wrote this program is the endless stating of the obvious.
+
 .PP
    # cat myprogram.c
        /*
@@ -75,7 +78,8 @@ One sign that a novice programmer wrote this program is the endless stating of t
     *   system header files;
     *--------------------------------------------------------------------*/
    
-   #include <stdio.h> /* include stdio.g here because we need it. */
+   #include <stdio.h> /* include stdio.g here because we need it.
+*/
    
    /*====================================================================*
    *
@@ -262,18 +266,21 @@ Unforunately, this program contains garbage comments but you probably get the id
    /* defined in getopt.h */
    /* defined in getopt.h */
    // if no arguments// do this quickly// end of program/* end of program */
+
 .PP
 A better example shows how cbrief can be used to inspect, and possibly document, a well commented file.
 The file is C++ class that is used to format C/C++ language comments.
 The coding standard used encourages uniform preambles and discourages comments within the code.
 There are examples of comments in code further down and they are visibly different from preambles.
+
 .PP
    # cbrief -c < ocomment.cpp
    /*====================================================================*
     *
     *   ocomment.cpp - definition of ocomment class.
     *
-    *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
+    *.
+Motley Tools by Charles Maier <cmaier@cmassoc.net>;
     *:  Copyright 2001-2006 by Charles Maier Associates;
     *;  Licensed under the Internet Software Consortium License
     *
@@ -405,6 +412,7 @@ There are examples of comments in code further down and they are visibly differe
    /*====================================================================*
     *   end definition
     *--------------------------------------------------------------------*/
+
 .SH SEE ALSO
 .BR call ( 1 ),
 .BR cblock ( 1 ),
@@ -417,3 +425,4 @@ There are examples of comments in code further down and they are visibly differe
 
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>
+
