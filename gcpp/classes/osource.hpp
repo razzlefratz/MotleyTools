@@ -60,12 +60,12 @@ public:
 	static signed _literal (signed c, signed e);
 	static signed _content (signed c, signed e);
 	static signed _comment (signed c);
-	static signed span (signed c, signed o, signed e);
+	static signed skip (signed c, signed o, signed e);
 	static signed keep (signed c, signed o, signed e);
 	static signed peek (signed c);
 	static signed span (signed c);
-	static signed keep (signed c);
 	static signed find (signed c);
+	static signed keep (signed c);
 	static signed skip (signed c);
 };
 
