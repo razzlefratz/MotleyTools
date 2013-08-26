@@ -92,10 +92,10 @@ signed nocontent (signed c, signed e);
 signed noliteral (signed e);
 signed noescaped (signed c);
 signed consume (signed e);
-signed span (signed c);
+signed span (signed c, signed o, signed e);
+signed skip (signed c, signed o, signed e);
 signed keep (signed c);
 signed find (signed c);
-signed grab (signed c);
 
 /*====================================================================*
  *   end definitions;

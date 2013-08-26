@@ -81,7 +81,7 @@ signed noescape (signed c)
 			c = control (c, '\n'); 
 			continue; 
 		} 
-		c = span (c); 
+		c = span (c, '\\', '\n'); 
 		c = keep (c); 
 	} 
 	return (c); 

@@ -50,8 +50,8 @@
 #ifndef MAKEFILE
 #include "../tidy/literal.c"
 #include "../tidy/escaped.c"
-#include "../tidy/connect.c"
 #include "../tidy/span.c"
+#include "../tidy/skip.c"
 #include "../tidy/keep.c"
 #endif
 
@@ -89,22 +89,19 @@
  *
  *--------------------------------------------------------------------*/
 
-signed grab (signed c) 
+static signed grab (signed c) 
 
 { 
-	c = getc (stdin); 
-	return (c); 
+	return (getc (stdin)); 
 } 
 
-signed join (signed c) 
+static signed join (signed c) 
 
 { 
-	c = grab (c); 
-	c = span (c);
-	return (c); 
+	return (span (getc (stdin), '\\', '\n'));
 } 
 
-signed pack (signed c, signed o, signed (* edit)(signed))
+static signed pack (signed c, signed o, signed (* edit)(signed))
 {
 	do 
 	{ 

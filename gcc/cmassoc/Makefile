@@ -202,7 +202,7 @@ shout: shout.o broadcast.o emalloc.o error.o getoptv.o putoptv.o syslog_basic.o 
 sign: sign.o console.o signf.o todigit.o uintspec.o
 single: single.o console.o makepath.o mergepath.o splitpath.o todigit.o uintspec.o vfopen.o
 sizeof: sizeof.o
-space: space.o chruesc.o console.o consume.o escaped.o keep.o literal.o makepath.o mergepath.o connect.o span.o splitpath.o struesc.o todigit.o vfopen.o
+space: space.o chruesc.o console.o consume.o escaped.o keep.o literal.o makepath.o mergepath.o skip.o span.o splitpath.o struesc.o todigit.o vfopen.o
 srt: srt.o adheap.o console.o deheap.o emalloc.o enheap.o makepath.o mergepath.o reheap.o splitpath.o swap.o todigit.o uintspec.o vfopen.o
 stamp: stamp.o
 str2hex: str2hex.o

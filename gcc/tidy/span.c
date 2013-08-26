@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   signed span (signed c);
+ *   signed span (signed c, signed o, signed e) 
  *
  *   join continuation lines; return first character of next line;
  *
@@ -17,19 +17,19 @@
 
 #include "../tidy/tidy.h"
 
-signed span (signed c) 
+signed span (signed c, signed o, signed e) 
 
 {
-	while (c == '\\') 
+	while (c == o) 
 	{
-		signed o = getc (stdin);
-		if (o == '\n') 
+		c = getc (stdin);
+		if (c == e) 
 		{
 			c = getc (stdin);
 			continue;
 		}
-		ungetc (o, stdin);
-		break;
+		ungetc (c, stdin);
+		return (o);
 	}
 	return (c);
 }
