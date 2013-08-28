@@ -1,4 +1,0 @@
-setenv CVSROOT cmaier@appslinux01:/home/cvs
-setenv CVS_RSH ssh
-alias cvsstat 'cvs_status \'* | grap Status: '
-alias cvswhat 'cvs_status \'* | grap Status: |& grep -v "to-date"'
