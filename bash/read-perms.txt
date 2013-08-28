@@ -1,0 +1,8 @@
+F:0540:root:root:/etc/init.d/*
+F:0640:root:root:/etc/passwd*
+F:0640:root:root:/etc/shadow*
+F:0640:root:root:/etc/group*
+F:0640:root:root:/etc/gshadow*
+F:0440:root:root:/etc/*tab
+F:0440:root:root:/etc/*.conf
+F:0540:postfix:postdrop:/usr/local/bin/postfix
