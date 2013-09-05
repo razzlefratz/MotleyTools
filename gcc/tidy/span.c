@@ -2,6 +2,8 @@
  *
  *   signed span (signed c, signed o, signed e) 
  *
+ *   tidy.h
+ *
  *   join continuation lines; return first character of next line;
  *
  *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>

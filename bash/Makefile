@@ -1,0 +1,42 @@
+#!/usr/bin/make -f
+# file: bash/Makefile
+# Published 2005 by Charles Maier Associates Limited for internal use;
+
+# ====================================================================
+# environment;
+# --------------------------------------------------------------------
+
+include ../make.def
+
+# ====================================================================
+# symbols;
+# --------------------------------------------------------------------
+
+ADMIN=ssh-keys.sh ubuntu.sh update.sh
+BUILD=definitions.sh directories.sh distributed.sh environment.sh permissions.sh
+ROOTONLY=mount.sh remount.sh unmount.sh ssh-rsa-perms.sh
+BOOTONLY=
+TOOLS=fetch.sh lockout.sh mkpatch.sh package.sh packup.sh save.sh sweep.sh unpack.sh show.sh unver.sh vi-all.sh
+TRASH=*~ *[.][0-9][0-9][0-9] t t.*
+
+# ====================================================================
+# targets;
+# --------------------------------------------------------------------
+
+.PHONY: all compile library scripts manuals install uninstall clean fresh
+all compile:
+library:
+	install -m 0755 -o ${OWNER} -g ${GROUP} -d ${BIN}
+scripts: library
+	install -m 0555 -o ${OWNER} -g ${GROUP} ${ADMIN} ${ROOTONLY} ~
+manuals:
+install: scripts
+	if [ -d /etc/profile.d ]; then install -m 775 -o root -g root motley-tools.sh /etc/profile.d; fi
+uninstall:
+	rm -fv ${BIN}/*.sh
+	cd ~; rm -fv ${ADMIN} ${BUILD} ${ROOTONLY}
+fresh:
+check:
+clean:
+	rm -f ${TRASH}
+

@@ -10,8 +10,8 @@
  *
  *--------------------------------------------------------------------*/
 
-#ifndef SPAN_SOURCE
-#define SPAN_SOURCE
+#ifndef SKIP_SOURCE
+#define SKIP_SOURCE
 
 #include <stdio.h>
 
