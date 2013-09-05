@@ -202,7 +202,7 @@ static void findfile (FIND * find, FIND * home, flag_t flags)
 	if ((dir = opendir (filename))) 
 	{ 
 		struct dirent * dirent; 
-		while (* filename != (char) (0)) 
+		while (* filename) 
 		{ 
 			filename++; 
 		} 

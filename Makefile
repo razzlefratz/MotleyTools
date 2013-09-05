@@ -49,7 +49,7 @@ private: clean
 	if [ -d ${PRIVATE} ]; then tar ${EXCLUDE} -vzcf ${PRIVATE}/${PACKAGE}.tar.gz  -C .. ${PACKAGE}; fi
 
 control: 
-	if [ -d ${CONTROL} ]; then tar ${EXCLUDE} -vjcf ${CONTROL}/${PACKAGE}.tar.bz2 -C .. ${PACKAGE}; fi 
+	if 	[    -d  ${CONTROL}           ];  then     tar ${EXCLUDE} -vjcf ${CONTROL}/${PACKAGE}.tar.bz2 -C .. ${PACKAGE}; fi 
 	if [ -d ${CONTROL} ]; then tar ${EXCLUDE} -vzcf ${CONTROL}/${PACKAGE}.tar.gz  -C .. ${PACKAGE}; fi
 
 # ===================================================================
@@ -66,3 +66,4 @@ unman:
 	for page in ${PAGES}; do rm -vfr /usr/share/man/man7/$${page}; done
 showme:
 	echo $(OS)
+
