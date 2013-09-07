@@ -19,10 +19,10 @@
  *   POSIX data types; (new or proposed)
  *--------------------------------------------------------------------*/
 
-typedef signed errno_t;
-typedef signed signo_t;
-typedef unsigned char byte;
-typedef unsigned word;
+typedef signed errno_t; 
+typedef signed signo_t; 
+typedef unsigned char byte; 
+typedef unsigned word; 
 
 /*====================================================================*
  *   define C++ style true and false for use in standard C programs;
@@ -32,12 +32,12 @@ typedef unsigned word;
 
 typedef enum 
 
-{
-	false,
+{ 
+	false, 
 	true
-}
+} 
 
-bool;
+bool; 
 
 #endif
 
@@ -50,21 +50,33 @@ bool;
 #endif
 
 #if defined (WIN32)
-	#define SIZE_T_SPEC "%I64d"
-	#define ADDR_T_SPEC "%04X"
-	#define OFF_T_SPEC "%I64d"
+
+#define SIZE_T_SPEC "%I64d"
+
+#define ADDR_T_SPEC "%04X"
+
+#define OFF_T_SPEC "%I64d"
 #elif defined (__APPLE__) 
-	#define SIZE_T_SPEC "%zu"
-	#define ADDR_T_SPEC "%04Xzu"
-	#define OFF_T_SPEC "%lld"
+
+#define SIZE_T_SPEC "%zu"
+
+#define ADDR_T_SPEC "%04Xzu"
+
+#define OFF_T_SPEC "%lld"
 #elif defined (__OpenBSD__)
-	#define SIZE_T_SPEC "%zu"
-	#define ADDR_T_SPEC "%04Xzu"
-	#define OFF_T_SPEC "%ld"
+
+#define SIZE_T_SPEC "%zu"
+
+#define ADDR_T_SPEC "%04Xzu"
+
+#define OFF_T_SPEC "%ld"
 #elif defined (__linux__)
-	#define SIZE_T_SPEC "%zu"
-	#define ADDR_T_SPEC "%04Xzu"
-	#define OFF_T_SPEC "%ld"
+
+#define SIZE_T_SPEC "%zu"
+
+#define ADDR_T_SPEC "%04Xzu"
+
+#define OFF_T_SPEC "%ld"
 #else
 #error "Unknown Environment!"
 #endif
@@ -85,64 +97,59 @@ bool;
  *   custom data types;
  *--------------------------------------------------------------------*/
 
-typedef signed file_t;
-typedef signed sock_t;
-typedef signed code_t;
-typedef signed bool_t;
-typedef unsigned type_t;
-typedef unsigned char byte_t;
-typedef unsigned flag_t;
+typedef signed file_t; 
+typedef signed sock_t; 
+typedef signed code_t; 
+typedef signed bool_t; 
+typedef unsigned type_t; 
+typedef unsigned char byte_t; 
+typedef unsigned flag_t; 
 typedef struct _file_ 
 
-{
-	file_t file;
-	char const * name;
-}
+{ 
+	file_t file; 
+	char const * name; 
+} 
 
-file;
+file; 
 typedef struct _code_ 
 
-{
-	code_t code;
-	char const * name;
-}
+{ 
+	code_t code; 
+	char const * name; 
+} 
 
-code;
+code; 
 typedef struct _type_ 
 
-{
-	type_t type;
-	char const * name;
-}
+{ 
+	type_t type; 
+	char const * name; 
+} 
 
-type;
+type; 
 typedef struct _flag_ 
 
-{
-	flag_t flag;
-	char const * name;
-}
+{ 
+	flag_t flag; 
+	char const * name; 
+} 
 
-flag;
+flag; 
 typedef struct _term_ 
 
-{
-	char const * term;
-	char const * text;
-}
+{ 
+	char const * term; 
+	char const * text; 
+} 
 
-term;
-typedef struct classvalue
-{
-	unsigned class;
-	unsigned value;
-	char const * title;
-}
-classvalue;
+term; 
 
 /*====================================================================*
  *   end definitions and declarations;
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

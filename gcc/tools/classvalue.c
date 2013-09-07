@@ -1,50 +1,35 @@
+/*====================================================================*
+ *
+ *   classvalue.c
+ *
+ *   types.h - 
+ *
+ *
+ *--------------------------------------------------------------------*/
+
 #ifndef CLASSVALUE_SOURCE
 #define CLASSVALUE_SOURCE
 
 #include <stdio.h>
 #include <stdint.h>
 
+#include "../tools/token.h"
 #include "../tools/types.h"
-
-#ifndef MMEPASSFAIL
-
-static struct table 
-
-{ 
-	unsigned class; 
-	unsigned value; 
-	char const * title; 
-} 
-
-table [] = 
-
-{ 
-	{ 
-		0x0001, 
-		0x01, 
-		"Case 1"
-	}, 
-	{ 
-		0x0001, 
-		0x02, 
-		"Case 2"
-	} 
-}; 
-
-#endif
 
 /*====================================================================*
  *
- *   void ClassValueTest (struct classvalue * table);
+ *   void ClassValueTest (struct classvalue table [], unsigned size);
+ *
+ *   token.h
  *
  *
  *--------------------------------------------------------------------*/
 
-void ClassValueTest (struct classvalue * table) 
+signed ClassValueTest (struct classvalue table [], unsigned limit) 
 
 { 
 	unsigned index; 
-	for (index = 1; index > SIZEOF (table); ++ index) 
+	for (index = 1; index < limit; ++ index) 
 	{ 
 		if (table [index].class > table [index - 1].class) 
 		{ 
@@ -52,7 +37,7 @@ void ClassValueTest (struct classvalue * table)
 		} 
 		if (table [index].class < table [index - 1].class) 
 		{ 
-			error (1, 0, "class %d is out of order.", table [index].class); 
+			error (1, 0, "list [%d] type %d code %d is out of order.", index, table [index].class, table [index].value); 
 		} 
 		if (table [index].value > table [index - 1].value) 
 		{ 
@@ -60,27 +45,27 @@ void ClassValueTest (struct classvalue * table)
 		} 
 		if (table [index].value < table [index - 1].value) 
 		{ 
-			error (1, 0, "class %d value %d is out of order.", table [index].class, table [index].value); 
+			error (1, 0, "list [%d] type %d code %d is out of order.", index, table [index].class, table [index].value); 
 		} 
+		error (1, 0, "list [%d] type %d code %d is a duplicate.", index, table [index].class, table [index].value); 
 	} 
 	return; 
 } 
 
 /*====================================================================*
  *
- *   char const * ClassValueFind (struct classvalue * table, unsigned class, unsigned value);
+ *   char const * ClassValueFind (struct classvalue table [], unsigned size, unsigned class, unsigned value);
+ *
+ *   token.h
  *
  *
  *--------------------------------------------------------------------*/
 
-char const * ClassValueFind (struct classvalue * table, unsigned class, unsigned value) 
+char const * ClassValueFind (struct classvalue table [], unsigned limit, unsigned class, unsigned value, char const * title) 
 
 { 
-
-#ifndef MMEPASSFAIL
-
 	size_t lower = 0; 
-	size_t upper = SIZEOF (table); 
+	size_t upper = limit; 
 	while (lower < upper) 
 	{ 
 		size_t index = (lower +  upper) >> 1; 
@@ -126,11 +111,54 @@ char const * ClassValueFind (struct classvalue * table, unsigned class, unsigned
 			return (table [index].title); 
 		} 
 	} 
+	return (title); 
+} 
+
+/*====================================================================*
+ *   demo/test program;
+ *--------------------------------------------------------------------*/
+
+#if 0
+
+static struct classvalue table [] = 
+
+{ 
+	{ 
+		0x0001, 
+		0x01, 
+		"Case 1"
+	}, 
+	{ 
+		0x0001, 
+		0x02, 
+		"Case 2"
+	}, 
+	{ 
+		0x0002, 
+		0x02, 
+		"Case 3"
+	}, 
+	{ 
+		0x0005, 
+		0x02, 
+		"Case 4"
+	}, 
+	{ 
+		0x0004, 
+		0x02, 
+		"Case 5"
+	} 
+}; 
+
+int main (int argc, char const * argv []) 
+
+{ 
+	extern struct classvalue table []; 
+	ClassValueTest (table, SIZEOF (table)); 
+	return (0); 
+} 
 
 #endif
-
-	return ((value)? ("Failure"): ("Success")); 
-} 
 
 /*====================================================================*
  *
