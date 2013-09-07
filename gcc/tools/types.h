@@ -132,6 +132,13 @@ typedef struct _term_
 }
 
 term;
+typedef struct classvalue
+{
+	unsigned class;
+	unsigned value;
+	char const * title;
+}
+classvalue;
 
 /*====================================================================*
  *   end definitions and declarations;
