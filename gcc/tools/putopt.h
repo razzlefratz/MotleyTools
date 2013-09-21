@@ -17,7 +17,7 @@
 
 #define PUTOPT_I_OPTIONS 0
 #define PUTOPT_I_COMMAND 1
-#define PUTOPT_I_PURPOSE 2
+#define PUTOPT_I_PROGRAM 2
 #define PUTOPT_I_DETAILS 3
 
 #define PUTOPT_S_FILTER "file [file] [...] or [< stdin][> stdout]"

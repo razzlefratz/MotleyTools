@@ -97,7 +97,7 @@ oputoptv & oputoptv::putoptv (char const * optv [])
 {
 	extern char const * program_name;
 	std::cout << std::endl;
-	std::cout << " purpose: " << optv [oPUTOPTV_I_PURPOSE] << std::endl << std::endl;
+	std::cout << " program: " << optv [oPUTOPTV_I_PROGRAM] << std::endl << std::endl;
 	std::cout << " command: " << program_name << " [options] " << optv [oPUTOPTV_I_COMMAND] << std::endl << std::endl;
 	std::cout << " options: [" << optv [oPUTOPTV_I_OPTIONS] << oGETOPTV_C_VERSION << oGETOPTV_C_SUMMARY << "]" << std::endl << std::endl;
 	for (int index = oPUTOPTV_I_DETAILS; optv [index]; index++) 
