@@ -19,22 +19,22 @@
 #include "../tools/tools.h"
 #include "../tools/number.h"
 
-char * ietfdecode (char *string) 
+char * ietfdecode(char * string)
 
 {
 	char * buffer = string;
 	char * offset = string;
-	while ((*offset = *string)) 
+	while ((* offset = * string))
 	{
-		if (*string == '%') 
+		if (* string == '%')
 		{
-			unsigned upper = todigit (string [1]);
-			unsigned lower = todigit (string [2]);
-			if ((upper < 16) && (lower < 16)) 
+			unsigned upper = todigit(string[1]);
+			unsigned lower = todigit(string[2]);
+			if ((upper < 16) && (lower < 16))
 			{
-				*offset = 0;
-				*offset += upper << 4;
-				*offset += lower << 0;
+				* offset = 0;
+				* offset += upper << 4;
+				* offset += lower << 0;
 				string++;
 				string++;
 			}
@@ -45,7 +45,6 @@ char * ietfdecode (char *string)
 	return (buffer);
 }
 
-
 /*====================================================================*
  *   test program;
  *--------------------------------------------------------------------*/
@@ -55,15 +54,14 @@ char * ietfdecode (char *string)
 
 #include "../tools/todigit.c"
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
 {
-	char string [] = "%0909hel%9lo%0A%%%world";
+	char string[] = "%0909hel%9lo%0A%%%world";
 	ietfdecode (string);
 	printf ("string=[%s]\n", string);
 	return;
 }
-
 
 #endif
 
@@ -72,4 +70,6 @@ int main (int argc, char const * argv [])
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

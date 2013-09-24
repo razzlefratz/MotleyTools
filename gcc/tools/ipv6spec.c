@@ -26,7 +26,7 @@
 #include "../tools/number.h"
 #include "../tools/error.h"
 
-size_t ipv6spec (char const * string, byte memory []) 
+size_t ipv6spec(char const * string, byte memory[])
 
 {
 	char const * number = string;
@@ -35,65 +35,64 @@ size_t ipv6spec (char const * string, byte memory [])
 	unsigned offset = 0;
 	unsigned radix = 16;
 	unsigned digit = 0;
-	while ((*number) && (offset < extent)) 
+	while ((* number) && (offset < extent))
 	{
 		uint32_t value = 0;
-		if (offset) 
+		if (offset)
 		{
-			if (*number == HEX_EXTENDER) 
+			if (* number == HEX_EXTENDER)
 			{
 				number++;
 			}
-			if (*number == HEX_EXTENDER) 
+			if (* number == HEX_EXTENDER)
 			{
 				marker = offset;
 			}
 		}
-		while ((digit = todigit (*number)) < radix) 
+		while ((digit = todigit(* number)) < radix)
 		{
 			value *= radix;
 			value += digit;
-			if (value > 0xFFFF) 
+			if (value > 0xFFFF)
 			{
 				error (1, ERANGE, "IPv6 '%s' field %d exceeds 16 bits", string, 1 + (offset >> 1));
 			}
 			number++;
 		}
-		memory [offset++] = (byte)(value >> 8);
-		memory [offset++] = (byte)(value >> 0);
+		memory [offset++] = (byte) (value >> 8);
+		memory [offset++] = (byte) (value >> 0);
 	}
 
 #if defined (WIN32)
 
-	while (isspace (*number)) 
+	while (isspace(* number))
 	{
 		number++;
 	}
 
 #endif
 
-	if (*number) 
+	if (* number)
 	{
 		error (1, EINVAL, "IPv6 '%s' includes trash '%s'", string, number);
 	}
-	if (offset < extent) 
+	if (offset < extent)
 	{
-		while (offset > marker) 
+		while (offset > marker)
 		{
-			memory [--extent] = memory [--offset];
+			memory [-- extent] = memory[-- offset];
 		}
-		while (extent > offset) 
+		while (extent > offset)
 		{
-			memory [--extent] = 0;
+			memory [-- extent] = 0;
 		}
 	}
-	if (offset < marker) 
+	if (offset < marker)
 	{
 		error (1, EINVAL, "IPv6 '%s' has only %d fields", string, offset >> 1);
 	}
 	return (offset);
 }
-
 
 /*====================================================================*
  *   demo/test program;
@@ -106,20 +105,19 @@ size_t ipv6spec (char const * string, byte memory [])
 #include "../tools/error.c"
 
 char const * program_name = "ipv6spec";
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
 {
-	byte memory [IPv6_LEN];
-	char string [IPv6_LEN * 3];
-	while (*++argv) 
+	byte memory[IPv6_LEN];
+	char string[IPv6_LEN * 3];
+	while (* ++ argv)
 	{
-		ipv6spec (*argv, memory);
-		hexdecode (memory, sizeof (memory), string, sizeof (string));
-		printf ("%s %s\n", string, *argv);
+		ipv6spec (* argv, memory);
+		hexdecode (memory, sizeof(memory), string, sizeof(string));
+		printf ("%s %s\n", string, * argv);
 	}
 	return (0);
 }
-
 
 #endif
 
@@ -128,4 +126,6 @@ int main (int argc, char const * argv [])
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

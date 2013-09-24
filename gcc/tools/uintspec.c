@@ -24,55 +24,55 @@
 #include "../tools/number.h"
 #include "../tools/error.h"
 
-unsigned long long uintspec (char const * string, unsigned long long minimum, unsigned long long maximum) 
+unsigned long long uintspec(char const * string, unsigned long long minimum, unsigned long long maximum)
 
 {
 	char const * number = string;
 	unsigned radix = 10;
 	unsigned long long value = 0;
 	unsigned digit;
-	if (!number) 
+	if (! number)
 	{
 		error (1, EINVAL, __func__);
 	}
-	while (isspace (*number)) 
+	while (isspace(* number))
 	{
 		number++;
 	}
-	if (*number == '0') 
+	if (* number == '0')
 	{
 		number++;
-		if ((*number == 'b') || (*number == 'B')) 
+		if ((* number == 'b') || (* number == 'B'))
 		{
 			radix = 2;
 			number++;
 		}
-		else if ((*number == 'd') || (*number == 'D')) 
+		else if((* number == 'd') || (* number == 'D'))
 		{
 			radix = 10;
 			number++;
 		}
-		else if ((*number == 'x') || (*number == 'X')) 
+		else if((* number == 'x') || (* number == 'X'))
 		{
 			radix = 16;
 			number++;
 		}
 	}
-	while ((digit = todigit (*number)) < radix) 
+	while ((digit = todigit(* number)) < radix)
 	{
 		value *= radix;
 		value += digit;
 		number++;
 	}
-	while (isspace (*number)) 
+	while (isspace(* number))
 	{
 		number++;
 	}
-	if (*number) 
+	if (* number)
 	{
 		error (1, EINVAL, "Have '%s' but need unsigned integer", string);
 	}
-	if ((value < minimum) || (value > maximum)) 
+	if ((value < minimum) || (value > maximum))
 	{
 
 #ifdef WIN32 
@@ -89,6 +89,7 @@ unsigned long long uintspec (char const * string, unsigned long long minimum, un
 	return (value);
 }
 
-
 #endif
+
+
 

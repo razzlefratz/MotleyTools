@@ -21,34 +21,35 @@
 #include "../tools/number.h"
 #include "../tools/types.h"
 
-size_t bindecode (void const * memory, size_t extent, char buffer [], size_t length) 
+size_t bindecode(void const * memory, size_t extent, char buffer[], size_t length)
 
 {
-	register char * string = (char *)(buffer);
-	register byte * offset = (byte *)(memory);
-	if (length) 
+	register char * string = (char *) (buffer);
+	register byte * offset = (byte *) (memory);
+	if (length)
 	{
-		length /= OCTETS_BIN + 1;
-		while ((length--) && (extent--)) 
+		length /= OCTETS_BIN +  1;
+		while ((length--) && (extent--))
 		{
 			unsigned digit = OCTETS_BIN;
-			unsigned value = *offset++;
-			while (digit--) 
+			unsigned value = * offset++;
+			while (digit--)
 			{
-				string [digit] = DIGITS_BIN [value % RADIX_BIN];
+				string [digit] = DIGITS_BIN[value % RADIX_BIN];
 				value /= RADIX_BIN;
 			}
 			string += OCTETS_BIN;
-			if ((length) && (extent)) 
+			if ((length) && (extent))
 			{
-				*string++ = BIN_EXTENDER;
+				* string++ = BIN_EXTENDER;
 			}
 		}
-		*string = (char) (0);
+		* string = (char)(0);
 	}
-	return ((size_t)(string - buffer));
+	return ((size_t) (string - buffer));
 }
 
-
 #endif
+
+
 

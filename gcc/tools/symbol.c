@@ -18,30 +18,31 @@
 
 #include "../tools/symbol.h"
 
-char const *symbol (signed code, struct _code_ list [], size_t size) 
+char const * symbol(signed code, struct _code_ list[], size_t size)
 
 {
 	size_t index;
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (!list) 
+	if (! list)
 	{
-		return ((char const *)(0));
+		return ((char const *) (0));
 	}
 
 #endif
 
-	for (index = 0; index < size; index++) 
+	for (index = 0; index < size; index++)
 	{
-		if (list [index].code == code) 
+		if (list[index].code == code)
 		{
-			return (list [index].name);
+			return (list[index].name);
 		}
 	}
-	return ((char const *) (0));
+	return ((char const *)(0));
 }
 
-
 #endif
+
+
 

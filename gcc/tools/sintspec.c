@@ -27,44 +27,44 @@
 #include "../tools/number.h"
 #include "../tools/error.h"
 
-signed long long sintspec (char const * string, signed long long number) 
+signed long long sintspec(char const * string, signed long long number)
 
 {
 	signed sign = 0;
 	signed long long offset = 0;
-	if (!string) 
+	if (! string)
 	{
 		error (1, EINVAL, __func__);
 	}
-	if (*string == '=') 
+	if (* string == '=')
 	{
 		string++;
 	}
-	else if (*string == '+') 
+	else if(* string == '+')
 	{
 		string++;
 		sign++;
 	}
-	else if (*string == '-') 
+	else if(* string == '-')
 	{
 		string++;
 		sign--;
 	}
-	while (isdigit (*string)) 
+	while (isdigit(* string))
 	{
 		offset *= 10;
-		offset += *string++ - '0';
+		offset += * string++ - '0';
 	}
-	if (*string) 
+	if (* string)
 	{
 		errno = EINVAL;
 		number = 0;
 	}
-	else if (sign > 0) 
+	else if(sign > 0)
 	{
 		number += offset;
 	}
-	else if (sign < 0) 
+	else if(sign < 0)
 	{
 		number -= offset;
 	}
@@ -75,6 +75,7 @@ signed long long sintspec (char const * string, signed long long number)
 	return (number);
 }
 
-
 #endif
+
+
 

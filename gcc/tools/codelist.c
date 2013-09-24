@@ -19,30 +19,31 @@
 
 #include "../tools/symbol.h"
 
-void codelist (struct _code_ const list [], size_t size, char const * group, char const * comma, FILE * fp) 
+void codelist(struct _code_ const list[], size_t size, char const * group, char const * comma, FILE * fp)
 
 {
 	struct _code_ const * item = list;
-	if (list) while ((size_t)(item - list) < size) 
+	if (list) while((size_t) (item - list) < size)
 	{
-		if (item > list) 
+		if (item > list)
 		{
 			fputs (comma, fp);
 		}
-		if ((group) && (*group)) 
+		if ((group) && (* group))
 		{
-			fputc (*group++, fp);
+			fputc (* group++, fp);
 		}
 		fprintf (fp, "%s", item->name);
-		if ((group) && (*group)) 
+		if ((group) && (* group))
 		{
-			fputc (*group++, fp);
+			fputc (* group++, fp);
 		}
 		item++;
 	}
 	return;
 }
 
-
 #endif
+
+
 

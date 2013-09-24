@@ -23,12 +23,12 @@
 #include "../html/cgi.h"
 #include "../tools/tools.h"
 
-void cgipeek (char const * vector []) 
+void cgipeek(char const * vector[])
 
 {
-	if (vector) 
+	if (vector)
 	{
-		char symbol [256];
+		char symbol[256];
 		signed margin = 0;
 		indent (margin++, "<div class='peek'>");
 		indent (margin++, "<style type='text/css'>");
@@ -36,15 +36,15 @@ void cgipeek (char const * vector [])
 		indent (margin, "td.peek { background:aqua;text-align:left;font:normal 10pt monospace;width: 75%%; }");
 		indent (margin--, "</style>");
 		indent (margin++, "<table style='width:100%%'>");
-		while (*vector) 
+		while (* vector)
 		{
 			char const * string = * vector;
-			memset (symbol, 0, sizeof (symbol));
-			while (*string) 
+			memset (symbol, 0, sizeof(symbol));
+			while (* string)
 			{
-				if (*string++ == '=') 
+				if (* string++ == '=')
 				{
-					memcpy (symbol, *vector, string - *vector - 1);
+					memcpy (symbol, * vector, string - * vector - 1);
 					break;
 				}
 			}
@@ -64,6 +64,7 @@ void cgipeek (char const * vector [])
 	return;
 }
 
-
 #endif
+
+
 

@@ -23,64 +23,65 @@
 #include "../tools/tools.h"
 #include "../tools/number.h"
 
-char *ietfencode (char const *string, char buffer [], size_t length) 
+char * ietfencode(char const * string, char buffer[], size_t length)
 
 {
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (string == (char *) (0)) 
+	if (string == (char *)(0))
 	{
 		return (buffer);
 	}
-	if (buffer == (char *) (0)) 
+	if (buffer == (char *)(0))
 	{
 		return (buffer);
 	}
 
 #endif
 
-	if (length-- > 0) 
+	if (length-- > 0)
 	{
-		char *sp = buffer;
+		char * sp = buffer;
 		buffer += length;
-		while ((*string != (char)(0)) && (sp < buffer)) 
+		while ((* string != (char) (0)) && (sp < buffer))
 		{
 
 #ifdef _CTYPE_H
 
-			if (!isgraph (*string)) 
+			if (! isgraph(* string)) 
 
 #else
 
-			if ((*string <= 0x0020) || (*string >= 0x007F)) 
+			if ((* string <= 0x0020) || (* string >= 0x007F)) 
 
 #endif
 
 			{
-				if (sp < (buffer - 3)) 
+				if (sp < (buffer - 3))
 				{
-					*sp++ = '%';
-					*sp++ = DIGITS_HEX [(*string >> 4) & 0x0F];
-					*sp++ = DIGITS_HEX [(*string >> 0) & 0x0F];
+					* sp++ = '%';
+					* sp++ = DIGITS_HEX[(* string >> 4) & 0x0F];
+					* sp++ = DIGITS_HEX[(* string >> 0) & 0x0F];
 				}
 				else 
 				{
-					*sp++ = *string;
+					* sp++ = * string;
 				}
 			}
 			else 
 			{
-				*sp++ = *string;
+				* sp++ = * string;
 			}
 			string++;
 		}
 		buffer -= length;
-		*sp = (char) (0);
+		* sp = (char)(0);
 	}
 	return (buffer);
 }
 
-
 #endif
+
+
 

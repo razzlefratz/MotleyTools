@@ -26,34 +26,35 @@
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 1, 2))) 
+__attribute__ ((format(printf, 1, 2))) 
 
 #endif
 
-void eperror (char const *format, ...) 
+void eperror(char const * format, ...)
 
 {
-	extern char const *program_name;
-	if ((program_name) && (*program_name)) 
+	extern char const * program_name;
+	if ((program_name) && (* program_name))
 	{
 		fprintf (stderr, "%s: ", program_name);
 	}
-	if ((format) && (*format)) 
+	if ((format) && (* format))
 	{
 		va_list arglist;
 		va_start (arglist, format);
 		vfprintf (stderr, format, arglist);
 		va_end (arglist);
 	}
-	if (errno) 
+	if (errno)
 	{
-		fprintf (stderr, ": %s", strerror (errno));
+		fprintf (stderr, ": %s", strerror(errno));
 	}
 	fprintf (stderr, "\n");
 	fflush (stderr);
 	return;
 }
 
-
 #endif
+
+
 

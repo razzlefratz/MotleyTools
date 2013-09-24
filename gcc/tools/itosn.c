@@ -35,43 +35,42 @@
 
 #include "../tools/number.h"
 
-char * itosn (char buffer [], size_t length, unsigned long number, char const * digits) 
+char * itosn(char buffer[], size_t length, unsigned long number, char const * digits)
 
 {
 	unsigned short radix = 0;
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (!string) 
+	if (! string)
 	{
 		return (string);
 	}
-	if (!digits) 
+	if (! digits)
 	{
 		return (string);
 	}
 
 #endif
 
-	if (length) 
+	if (length)
 	{
-		buffer [--length] = (char) (0);
+		buffer [-- length] = (char)(0);
 	}
-	while (digits [radix]) 
+	while (digits[radix])
 	{
 		radix++;
 	}
-	if (radix) 
+	if (radix)
 	{
-		while (length) 
+		while (length)
 		{
-			buffer [--length] = digits [number % radix];
+			buffer [-- length] = digits[number % radix];
 			number /= radix;
 		}
 	}
-	return (&buffer [length]);
+	return (& buffer[length]);
 }
-
 
 /*====================================================================*
  *   test/demo program;
@@ -81,20 +80,19 @@ char * itosn (char buffer [], size_t length, unsigned long number, char const * 
 #include <stdio.h>
 #include <stdlib.h>
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
 {
-	char buffer [20];
+	char buffer[20];
 	char * digits = "0123456789";
 	unsigned long value = 10000000;
-	printf ("%s\n", itosn (buffer, sizeof (buffer), value, digits));
-	printf ("%s\n", itosn (buffer, sizeof (buffer), value, digits));
-	printf ("%s\n", itosn (buffer, sizeof (buffer), value, digits));
-	printf ("%s\n", itosn (buffer, sizeof (buffer), value, "01"));
-	printf ("%s\n", itosn (buffer, sizeof (buffer), value, "0123456789ABCDEF"));
+	printf ("%s\n", itosn(buffer, sizeof(buffer), value, digits));
+	printf ("%s\n", itosn(buffer, sizeof(buffer), value, digits));
+	printf ("%s\n", itosn(buffer, sizeof(buffer), value, digits));
+	printf ("%s\n", itosn(buffer, sizeof(buffer), value, "01"));
+	printf ("%s\n", itosn(buffer, sizeof(buffer), value, "0123456789ABCDEF"));
 	exit (0);
 }
-
 
 #endif
 
@@ -103,4 +101,6 @@ int main (int argc, char const * argv [])
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

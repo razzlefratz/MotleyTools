@@ -21,30 +21,31 @@
 
 #include "../tools/symbol.h"
 
-char const * codename (struct _code_ const list [], size_t size, code_t code, char const * name) 
+char const * codename(struct _code_ const list[], size_t size, code_t code, char const * name)
 
 {
 	size_t lower = 0;
 	size_t upper = size;
-	while (lower < upper) 
+	while (lower < upper)
 	{
-		size_t index = (lower + upper) >> 1;
-		signed order = code - list [index].code;
-		if (order < 0) 
+		size_t index = (lower +  upper) >> 1;
+		signed order = code - list[index].code;
+		if (order < 0)
 		{
 			upper = index - 0;
 			continue;
 		}
-		if (order > 0) 
+		if (order > 0)
 		{
-			lower = index + 1;
+			lower = index +  1;
 			continue;
 		}
-		return (list [index].name);
+		return (list[index].name);
 	}
 	return (name);
 }
 
-
 #endif
+
+
 

@@ -46,21 +46,20 @@ static signed count = 0;
  *
  *--------------------------------------------------------------------*/
 
-void trace_enter (char const *string) 
+void trace_enter(char const * string)
 
 {
 	level++;
-	for (count = 0; count < level; count++) 
+	for (count = 0; count < level; count++)
 	{
-		write (STDERR_FILENO, LEVEL, sizeof (LEVEL)-1);
+		write (STDERR_FILENO, LEVEL, sizeof(LEVEL) - 1);
 	}
-	write (STDERR_FILENO, ENTER, sizeof (ENTER)-1);
-	write (STDERR_FILENO, SPACE, sizeof (SPACE)-1);
-	write (STDERR_FILENO, string, strlen (string));
+	write (STDERR_FILENO, ENTER, sizeof(ENTER) - 1);
+	write (STDERR_FILENO, SPACE, sizeof(SPACE) - 1);
+	write (STDERR_FILENO, string, strlen(string));
 	write (STDERR_FILENO, "\n", 1);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -74,25 +73,26 @@ void trace_enter (char const *string)
  *
  *--------------------------------------------------------------------*/
 
-void trace_leave (char const *string) 
+void trace_leave(char const * string)
 
 {
-	write (STDERR_FILENO, LEAVE, sizeof (LEAVE)-1);
-	for (count = 0; count < level; count++) 
+	write (STDERR_FILENO, LEAVE, sizeof(LEAVE) - 1);
+	for (count = 0; count < level; count++)
 	{
-		write (STDERR_FILENO, LEVEL, sizeof (LEVEL)-1);
+		write (STDERR_FILENO, LEVEL, sizeof(LEVEL) - 1);
 	}
-	write (STDERR_FILENO, SPACE, sizeof (SPACE)-1);
-	write (STDERR_FILENO, string, strlen (string));
+	write (STDERR_FILENO, SPACE, sizeof(SPACE) - 1);
+	write (STDERR_FILENO, string, strlen(string));
 	write (STDERR_FILENO, "\n", 1);
 	level--;
 	return;
 }
-
 
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

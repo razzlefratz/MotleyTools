@@ -20,32 +20,32 @@
 #include "../tools/number.h"
 #include "../chrlib/chrlib.h"
 
-char *unixdecode (char *string) 
+char * unixdecode(char * string)
 
 {
-	char *buffer = string;
-	if (string) 
+	char * buffer = string;
+	if (string)
 	{
-		while ((*buffer = *string)) 
+		while ((* buffer = * string))
 		{
-			if (*string == '\\') 
+			if (* string == '\\')
 			{
 				unsigned m;
 				unsigned n;
 				unsigned o;
-				if ((m = chrindex (DIGITS_OCT, string [1])) > 0x0003) 
+				if ((m = chrindex(DIGITS_OCT, string[1])) > 0x0003)
 				{
 					continue;
 				}
-				if ((n = chrindex (DIGITS_OCT, string [2])) > 0x0007) 
+				if ((n = chrindex(DIGITS_OCT, string[2])) > 0x0007)
 				{
 					continue;
 				}
-				if ((o = chrindex (DIGITS_OCT, string [3])) > 0x0007) 
+				if ((o = chrindex(DIGITS_OCT, string[3])) > 0x0007)
 				{
 					continue;
 				}
-				*buffer = (char) ((m << 6) + (n << 3) + o);
+				* buffer = (char)((m << 6) + (n << 3) +  o);
 				string += 3;
 			}
 			buffer++;
@@ -55,6 +55,7 @@ char *unixdecode (char *string)
 	return (buffer);
 }
 
-
 #endif
+
+
 

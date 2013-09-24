@@ -22,21 +22,22 @@
 
 #include "../tools/symbol.h"
 
-signed lookup (struct _code_ const list [], size_t size, char const * name) 
+signed lookup(struct _code_ const list[], size_t size, char const * name)
 
 {
 	const struct _code_ * item = list;
-	if ((name) && (*name)) while ((size_t)(item - list) < size) 
+	if ((name) && (* name)) while((size_t) (item - list) < size)
 	{
-		if (!strcasecmp (item->name, name)) 
+		if (! strcasecmp(item->name, name))
 		{
 			return (item->code);
 		}
 		item++;
 	}
-	return (-1);
+	return (- 1);
 }
 
-
 #endif
+
+
 

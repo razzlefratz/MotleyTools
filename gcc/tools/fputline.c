@@ -25,27 +25,27 @@
 #include <stdio.h>
 #include "../tools/tools.h"
 
-signed fputline (char const buffer [], size_t length, FILE * ofp) 
+signed fputline(char const buffer[], size_t length, FILE * ofp)
 
 {
 	static size_t output = 0;
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (!buffer) 
+	if (! buffer)
 	{
 		return (0);
 	}
 
 #endif
 
-	if ((output) || (length)) 
+	if ((output) || (length))
 	{
-		for (output = 0; (output < length) && (*buffer); output++) 
+		for (output = 0; (output < length) && (* buffer); output++)
 		{
-			if (fputc (*buffer++, ofp) == EOF) 
+			if (fputc(* buffer++, ofp) == EOF)
 			{
-				return (-1);
+				return (- 1);
 			}
 		}
 		fputc ('\n', ofp);
@@ -53,6 +53,7 @@ signed fputline (char const buffer [], size_t length, FILE * ofp)
 	return (output);
 }
 
-
 #endif
+
+
 

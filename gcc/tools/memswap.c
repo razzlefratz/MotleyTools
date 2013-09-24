@@ -22,20 +22,21 @@
 
 #include "../tools/memory.h"
 
-void memswap (void * memory1, void * memory2, size_t extent) 
+void memswap(void * memory1, void * memory2, size_t extent)
 
 {
-	register byte * byte1 = (byte *)(memory1);
-	register byte * byte2 = (byte *)(memory2);
-	if (memory1 != memory2) while (extent--) 
+	register byte * byte1 = (byte *) (memory1);
+	register byte * byte2 = (byte *) (memory2);
+	if (memory1 != memory2) while(extent--)
 	{
-		byte byte = *byte1;
-		*byte1++ = *byte2;
-		*byte2++ = byte;
+		byte byte = * byte1;
+		* byte1++ = * byte2;
+		* byte2++ = byte;
 	}
 	return;
 }
 
-
 #endif
+
+
 

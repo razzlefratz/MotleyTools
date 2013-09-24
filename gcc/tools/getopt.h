@@ -44,11 +44,13 @@ extern signed optmin;
  *   function declarations;
  *--------------------------------------------------------------------*/
 
-signed getopt (int argc, char *argv [], char const *options);
+signed getopt(int argc, char * argv[], char const * options);
 
 /*====================================================================*
  *   end definitions;
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

@@ -21,19 +21,19 @@
 
 #include "../tools/symbol.h"
 
-void synonyms (struct _term_ const list [], size_t size, char const * term, char const * type) 
+void synonyms(struct _term_ const list[], size_t size, char const * term, char const * type)
 
 {
 	extern char const * program_name;
 	const struct _term_ * item = list;
-	if ((program_name) && (*program_name)) 
+	if ((program_name) && (* program_name))
 	{
 		fprintf (stderr, "%s: ", program_name);
 	}
 	fprintf (stderr, "Have '%s' but need %s ", term, type);
-	while ((size_t)(item - list) < size) 
+	while ((size_t) (item - list) < size)
 	{
-		if (item > list) 
+		if (item > list)
 		{
 			fputc ('|', stderr);
 		}
@@ -44,6 +44,7 @@ void synonyms (struct _term_ const list [], size_t size, char const * term, char
 	exit (1);
 }
 
-
 #endif
+
+
 

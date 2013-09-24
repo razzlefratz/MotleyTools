@@ -26,12 +26,14 @@
  *   functions;
  *--------------------------------------------------------------------*/
 
-signed confignumber (char const * file, char const * part, char const * item, signed text);
-char const * configstring (char const * file, char const * part, char const * item, char const * text);
+signed confignumber(char const * file, char const * part, char const * item, signed text);
+char const * configstring(char const * file, char const * part, char const * item, char const * text);
 
 /*====================================================================*
  *   end definitions;
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

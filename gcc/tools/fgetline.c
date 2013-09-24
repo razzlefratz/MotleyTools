@@ -21,32 +21,33 @@
 
 #include "../tools/tools.h"
 
-signed fgetline (register char *buffer, size_t length, FILE *fp) 
+signed fgetline(register char * buffer, size_t length, FILE * fp)
 
 {
-	register char *bp = buffer;
+	register char * bp = buffer;
 	register int c = EOF;
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (buffer == (char *)(0)) 
+	if (buffer == (char *) (0))
 	{
-		return (-1);
+		return (- 1);
 	}
 
 #endif
 
-	if (length > 0) 
+	if (length > 0)
 	{
-		while ((--length > 0) && ((c = fgetc (fp)) != EOF) && (c != '\n')) 
+		while ((-- length > 0) && ((c = fgetc(fp)) != EOF) && (c != '\n'))
 		{
-			*bp++ = (char)(c);
+			* bp++ = (char) (c);
 		}
-		*bp = (char)(0);
+		* bp = (char) (0);
 	}
-	return ((c == EOF) && (bp == buffer)? (-1): (bp - buffer));
+	return ((c == EOF) && (bp == buffer)? (- 1): (bp - buffer));
 }
 
-
 #endif
+
+
 

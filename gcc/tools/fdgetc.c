@@ -18,13 +18,14 @@
 #include <stdio.h>
 #include <unistd.h>
 
-signed fdgetc (signed fd) 
+signed fdgetc(signed fd)
 
 {
 	char c;
-	return (read (fd, &c, sizeof (c)) == sizeof (c)? c: EOF);
+	return (read(fd, & c, sizeof(c)) == sizeof(c)? c: EOF);
 }
 
-
 #endif
+
+
 

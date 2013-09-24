@@ -18,38 +18,38 @@
 
 #include "../tools/tools.h"
 
-size_t cgets (char buffer [], size_t length) 
+size_t cgets(char buffer[], size_t length)
 
 {
 	char * string = buffer;
 	char * column = buffer;
-	if (fgets (buffer, length, stdin)) 
+	if (fgets(buffer, length, stdin))
 	{
-		while (length) 
+		while (length)
 		{
-			if (column > string) 
+			if (column > string)
 			{
-				*string = *column;
-				*column = 0x00;
+				* string = * column;
+				* column = 0x00;
 			}
-			if (*string == 0x00) 
+			if (* string == 0x00)
 			{
 				break;
 			}
-			if (*string == 0x08) 
+			if (* string == 0x08)
 			{
-				if (string > buffer) 
+				if (string > buffer)
 				{
-					*string-- = 0x00;
+					* string-- = 0x00;
 				}
 			}
-			else if (*string < 0x20) 
+			else if(* string < 0x20)
 			{
-				*string++ = 0x20;
+				* string++ = 0x20;
 			}
-			else if (*string > 0x7E) 
+			else if(* string > 0x7E)
 			{
-				*string++ = 0x20;
+				* string++ = 0x20;
 			}
 			else 
 			{
@@ -62,6 +62,7 @@ size_t cgets (char buffer [], size_t length)
 	return (string - buffer);
 }
 
-
 #endif
+
+
 

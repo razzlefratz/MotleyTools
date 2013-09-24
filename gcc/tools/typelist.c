@@ -19,30 +19,31 @@
 
 #include "../tools/symbol.h"
 
-void typelist (struct _type_ const list [], size_t size, char const * group, char const * comma, FILE * fp) 
+void typelist(struct _type_ const list[], size_t size, char const * group, char const * comma, FILE * fp)
 
 {
 	struct _type_ const * item = list;
-	if (list) while ((size_t)(item - list) < size) 
+	if (list) while((size_t) (item - list) < size)
 	{
-		if (item > list) 
+		if (item > list)
 		{
 			fputs (comma, fp);
 		}
-		if ((group) && (*group)) 
+		if ((group) && (* group))
 		{
-			fputc (*group++, stdout);
+			fputc (* group++, stdout);
 		}
 		fprintf (fp, "%s", item->name);
-		if ((group) && (*group)) 
+		if ((group) && (* group))
 		{
-			fputc (*group++, stdout);
+			fputc (* group++, stdout);
 		}
 		item++;
 	}
 	return;
 }
 
-
 #endif
+
+
 

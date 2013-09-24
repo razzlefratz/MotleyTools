@@ -20,30 +20,30 @@
 
 #include "../tools/format.h"
 
-void breakout (char const * string, size_t length) 
+void breakout(char const * string, size_t length)
 
 {
 	unsigned column;
 	putc ('#', stdout);
 	putc (' ', stdout);
-	for (column = 2; column < length; column++) 
+	for (column = 2; column < length; column++)
 	{
 		putc ('=', stdout);
 	}
 	putc ('\n', stdout);
 	putc ('#', stdout);
 	putc (' ', stdout);
-	if (string) 
+	if (string)
 	{
-		while (*string) 
+		while (* string)
 		{
-			putc (*string++, stdout);
+			putc (* string++, stdout);
 		}
 	}
 	putc ('\n', stdout);
 	putc ('#', stdout);
 	putc (' ', stdout);
-	for (column = 2; column < length; column++) 
+	for (column = 2; column < length; column++)
 	{
 		putc ('-', stdout);
 	}
@@ -52,6 +52,7 @@ void breakout (char const * string, size_t length)
 	return;
 }
 
-
 #endif
+
+
 

@@ -20,10 +20,10 @@
 
 #include "../tools/number.h"
 
-void printd (unsigned value, FILE * fp) 
+void printd(unsigned value, FILE * fp)
 
 {
-	if (value > 9) 
+	if (value > 9)
 	{
 		printd (value / 10, fp);
 	}
@@ -33,6 +33,7 @@ void printd (unsigned value, FILE * fp)
 	return;
 }
 
-
 #endif
+
+
 

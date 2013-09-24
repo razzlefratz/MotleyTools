@@ -15,12 +15,14 @@
  *   functions;
  *--------------------------------------------------------------------*/
 
-signed profilenumber (char const * profile, char const * section, char const * element, signed content);
-char const * profilestring (char const * profile, char const * section, char const * element, char const * content);
+signed profilenumber(char const * profile, char const * section, char const * element, signed content);
+char const * profilestring(char const * profile, char const * section, char const * element, char const * content);
 
 /*====================================================================*
  *   end definitions;
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

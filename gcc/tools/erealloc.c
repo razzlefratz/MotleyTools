@@ -23,17 +23,18 @@
 #include "../tools/memory.h"
 #include "../tools/error.h"
 
-void *erealloc (void * memory, size_t extent) 
+void * erealloc(void * memory, size_t extent)
 
 {
-	memory = realloc (memory, extent);
-	if (!memory) 
+	memory = realloc(memory, extent);
+	if (! memory)
 	{
 		error (1, errno, "Need %zu bytes", extent);
 	}
 	return (memory);
 }
 
-
 #endif
+
+
 

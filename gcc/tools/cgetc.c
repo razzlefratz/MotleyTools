@@ -18,27 +18,28 @@
 #include <unistd.h>
 #include <string.h>
 
-int cgetc (int fd) 
+int cgetc(int fd)
 
 {
 	extern char const * program_name;
 	static char c = '\n';
-	if (isatty (fd) && (c == '\n')) 
+	if (isatty(fd) && (c == '\n'))
 	{
-		write (fd, program_name, strlen (program_name));
+		write (fd, program_name, strlen(program_name));
 		write (fd, ": ", 2);
 	}
-	if (read (fd, &c, sizeof (c)) == sizeof (c)) 
+	if (read(fd, & c, sizeof(c)) == sizeof(c))
 	{
 		return (c);
 	}
-	if (isatty (fd)) 
+	if (isatty(fd))
 	{
-		write (fd, &c, sizeof (c));
+		write (fd, & c, sizeof(c));
 	}
 	return (EOF);
 }
 
-
 #endif
+
+
 

@@ -27,46 +27,47 @@
 #include <stdio.h>
 #include "tools.h"
 
-signed fgetlongline (register char *buffer, size_t length, unsigned preserve, FILE * stream) 
+signed fgetlongline(register char * buffer, size_t length, unsigned preserve, FILE * stream)
 
 {
-	register char *bp = buffer;
+	register char * bp = buffer;
 	register int c = EOF;
 	register int o = EOF;
-	if ((buffer != (char *)(0)) && (length > 0)) 
+	if ((buffer != (char *) (0)) && (length > 0))
 	{
-		while ((--length > 0) && ((c = fgetc (stream)) != EOF) && (c != '\n')) 
+		while ((-- length > 0) && ((c = fgetc(stream)) != EOF) && (c != '\n'))
 		{
-			if (c == '\\') 
+			if (c == '\\')
 			{
-				if ((o = fgetc (stream)) != EOF) 
+				if ((o = fgetc(stream)) != EOF)
 				{
-					if (o != '\n') 
+					if (o != '\n')
 					{
-						*bp++ = (char)(c);
-						*bp++ = (char)(o);
+						* bp++ = (char) (c);
+						* bp++ = (char) (o);
 					}
-					else if (preserve) 
+					else if(preserve)
 					{
-						*bp++ = (char)(c);
-						*bp++ = (char)(o);
+						* bp++ = (char) (c);
+						* bp++ = (char) (o);
 					}
 				}
 				else 
 				{
-					*bp++ = (char)(c);
+					* bp++ = (char) (c);
 				}
 			}
 			else 
 			{
-				*bp++ = (char)(c);
+				* bp++ = (char) (c);
 			}
 		}
-		*bp = (char)(0);
+		* bp = (char) (0);
 	}
-	return ((c == EOF) && (bp == buffer)? -1: bp - buffer);
+	return ((c == EOF) && (bp == buffer)? - 1: bp - buffer);
 }
 
-
 #endif
+
+
 

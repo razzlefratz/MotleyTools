@@ -20,19 +20,19 @@
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 1, 2))) 
+__attribute__ ((format(printf, 1, 2))) 
 
 #endif
 
-void eprintf (char const *format, ...) 
+void eprintf(char const * format, ...)
 
 {
-	extern char const *program_name;
-	if (program_name != (char const *) (0)) 
+	extern char const * program_name;
+	if (program_name != (char const *)(0))
 	{
 		fprintf (stderr, "%s: ", program_name);
 	}
-	if (format != (char const *) (0)) 
+	if (format != (char const *)(0))
 	{
 		va_list arglist;
 		va_start (arglist, format);
@@ -44,6 +44,7 @@ void eprintf (char const *format, ...)
 	return;
 }
 
-
 #endif
+
+
 

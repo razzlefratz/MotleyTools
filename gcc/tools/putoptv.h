@@ -29,12 +29,14 @@
  *   function declarations;
  *--------------------------------------------------------------------*/
 
-void putoptv (char const * optv []);
-void chkoptv (char const * optv []);
+void putoptv(char const * optv[]);
+void chkoptv(char const * optv[]);
 
 /*====================================================================*
  *   end definitions;
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

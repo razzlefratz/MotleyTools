@@ -26,13 +26,13 @@
 
 #include "../tools/memory.h"
 
-size_t gather (void * memory, size_t extent, struct field const * field, unsigned fields) 
+size_t gather(void * memory, size_t extent, struct field const * field, unsigned fields)
 
 {
-	byte * target = (byte *)(memory);
-	while ((fields--) && (field->size < extent)) 
+	byte * target = (byte *) (memory);
+	while ((fields--) && (field->size < extent))
 	{
-		if (!field->type) 
+		if (! field->type)
 		{
 			memcopy (target, field->base, field->size);
 		}
@@ -44,9 +44,8 @@ size_t gather (void * memory, size_t extent, struct field const * field, unsigne
 		extent -= field->size;
 		field++;
 	}
-	return (target - (byte *)(memory));
+	return (target - (byte *) (memory));
 }
-
 
 /*====================================================================*
  *   test/demo program;
@@ -61,16 +60,16 @@ size_t gather (void * memory, size_t extent, struct field const * field, unsigne
 #include "../tools/memcopy.c"
 #include "../tools/memfold.c"
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
 {
-	byte buffer [256];
-	char string [] = 
+	byte buffer[256];
+	char string[] = 
 	{
 		"Hello World"
 	};
 	unsigned number = 0x12345678;
-	struct field fields [] = 
+	struct field fields[] = 
 	{
 		{
 			0,
@@ -79,21 +78,20 @@ int main (int argc, char const * argv [])
 		},
 		{
 			0,
-			&number,
+			& number,
 			sizeof (number)
 		},
 		{
 			1,
-			&number,
+			& number,
 			sizeof (number)
 		}
 	};
-	memset (buffer, 0, sizeof (buffer));
-	gather (buffer, sizeof (buffer), fields, SIZEOF (fields));
-	hexdump (buffer, 0, sizeof (buffer), stdout);
+	memset (buffer, 0, sizeof(buffer));
+	gather (buffer, sizeof(buffer), fields, SIZEOF(fields));
+	hexdump (buffer, 0, sizeof(buffer), stdout);
 	return (0);
 }
-
 
 #endif
 
@@ -102,4 +100,6 @@ int main (int argc, char const * argv [])
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

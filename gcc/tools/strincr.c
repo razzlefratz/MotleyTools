@@ -18,21 +18,22 @@
 
 #include "../tools/memory.h"
 
-signed strincr (void * memory, register size_t extent, register byte min, register byte max) 
+signed strincr(void * memory, register size_t extent, register byte min, register byte max)
 
 {
-	register byte * offset = (byte *)(memory);
-	while (extent--) 
+	register byte * offset = (byte *) (memory);
+	while (extent--)
 	{
-		if (++ offset [extent] <= max) 
+		if (++ offset[extent] <= max)
 		{
 			return (0);
 		}
 		offset [extent] = min;
 	}
-	return (-1);
+	return (- 1);
 }
 
-
 #endif
+
+
 

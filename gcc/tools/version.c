@@ -20,10 +20,10 @@
 
 #include "../tools/version.h"
 
-void version () 
+void version()
 
 {
-	extern char const *program_name;
+	extern char const * program_name;
 	printf ("%s ", program_name);
 	printf (PACKAGE "-");
 	printf (VERSION " ");
@@ -34,6 +34,7 @@ void version ()
 	return;
 }
 
-
 #endif
+
+
 

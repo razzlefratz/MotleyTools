@@ -38,82 +38,81 @@
 #include "../tools/tools.h"
 #include "../tools/chars.h"
 
-size_t statement (int fd, char buffer [], size_t length, size_t * lineno) 
+size_t statement(int fd, char buffer[], size_t length, size_t * lineno)
 
 {
-	char *string = buffer;
-	int count = read (fd, string, 1);
+	char * string = buffer;
+	int count = read(fd, string, 1);
 	length--;
-	while (count > 0) 
+	while (count > 0)
 	{
-		if (*string == '#') 
+		if (* string == '#')
 		{
 			do 
 			{
-				count = read (fd, string, 1);
+				count = read(fd, string, 1);
 			}
-			while ((count > 0) && (*string != '\n'));
+			while ((count > 0) && (* string != '\n'));
 			continue;
 		}
-		if (isblank (*string)) 
+		if (isblank(* string))
 		{
-			if (string == buffer) 
+			if (string == buffer)
 			{
-				count = read (fd, string, 1);
+				count = read(fd, string, 1);
 				break;
 			}
-			if (string < (buffer + length)) 
+			if (string < (buffer +  length))
 			{
-				*string++ = ' ';
+				* string++ = ' ';
 			}
 			do 
 			{
-				count = read (fd, string, 1);
+				count = read(fd, string, 1);
 			}
-			while ((count > 0) && isblank (*string));
+			while ((count > 0) && isblank(* string));
 			continue;
 		}
-		if (*string == '\\') 
+		if (* string == '\\')
 		{
-			count = read (fd, string, 1);
-			if (*string == '\n') 
+			count = read(fd, string, 1);
+			if (* string == '\n')
 			{
-				count = read (fd, string, 1);
-				if (lineno != (size_t *) (0)) 
+				count = read(fd, string, 1);
+				if (lineno != (size_t *)(0))
 				{
-					(*lineno)++;
+					(* lineno)++;
 				}
 			}
 			continue;
 		}
-		if (*string == '\n') 
+		if (* string == '\n')
 		{
-			if (lineno) 
+			if (lineno)
 			{
-				(*lineno)++;
+				(* lineno)++;
 			}
-			if (string == buffer) 
+			if (string == buffer)
 			{
-				count = read (fd, string, 1);
+				count = read(fd, string, 1);
 				break;
 			}
 			count = 0;
 			continue;
 		}
-		if (string < (buffer + length)) 
+		if (string < (buffer +  length))
 		{
 			string++;
 		}
-		count = read (fd, string, 1);
+		count = read(fd, string, 1);
 	}
 	length++;
-	if (string < (buffer + length)) 
+	if (string < (buffer +  length))
 	{
-		*string = (char) (0);
+		* string = (char)(0);
 	}
 	return (string - buffer);
 }
-
 
 /*====================================================================*
  *   test program;
@@ -125,17 +124,17 @@ size_t statement (int fd, char buffer [], size_t length, size_t * lineno)
 #include <error.h>
 #include <errno.h>
 
-int main (int argc, char const *argv []) 
+int main(int argc, char const * argv[])
 
 {
-	char buffer [100];
+	char buffer[100];
 	size_t lineno = 0;
 	file_t fd;
-	if ((fd = open (*++argv, O_RDONLY)) == -1) 
+	if ((fd = open(* ++ argv, O_RDONLY)) == - 1)
 	{
-		error (1, errno, "can't open %s", *argv);
+		error (1, errno, "can't open %s", * argv);
 	}
-	while (statement (fd, buffer, sizeof (buffer), &lineno)) 
+	while (statement(fd, buffer, sizeof(buffer), & lineno))
 	{
 		printf ("%d [%s]\n", lineno, buffer);
 	}
@@ -143,8 +142,9 @@ int main (int argc, char const *argv [])
 	return;
 }
 
-
 #endif
 
 #endif
+
+
 

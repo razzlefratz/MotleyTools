@@ -28,41 +28,42 @@
 #include "../tools/number.h"
 #include "../tools/error.h"
 
-size_t bytespec (char const * string, void * memory, size_t extent) 
+size_t bytespec(char const * string, void * memory, size_t extent)
 
 {
 	char const * number = string;
-	byte * offset = (byte *)(memory);
-	if (!number) 
+	byte * offset = (byte *) (memory);
+	if (! number)
 	{
 		error (1, EINVAL, __func__);
 	}
-	while ((*number) && (extent--)) 
+	while ((* number) && (extent--))
 	{
 		unsigned digit;
-		if (((void *)(offset) > memory) && (*number == HEX_EXTENDER)) 
+		if (((void *) (offset) > memory) && (* number == HEX_EXTENDER))
 		{
 			number++;
 		}
-		if ((digit = todigit (*number++)) >= 0x10) 
+		if ((digit = todigit(* number++)) >= 0x10)
 		{
 			error (1, EINVAL, "Have %s but need valid hex digit", string);
 		}
-		*offset = digit << 4;
-		if ((digit = todigit (*number++)) >= 0x10) 
+		* offset = digit << 4;
+		if ((digit = todigit(* number++)) >= 0x10)
 		{
 			error (1, EINVAL, "Have %s but need valid hex digit", string);
 		}
-		*offset |= digit;
+		* offset |= digit;
 		offset++;
 	}
-	if ((*number) || (extent)) 
+	if ((* number) || (extent))
 	{
-		error (1, EINVAL, "%s is not %zd bytes", string, (void *)(offset) - memory + extent);
+		error (1, EINVAL, "%s is not %zd bytes", string, (void *) (offset) - memory +  extent);
 	}
-	return ((void *)(offset) - memory);
+	return ((void *) (offset) - memory);
 }
 
-
 #endif
+
+
 

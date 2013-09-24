@@ -32,67 +32,68 @@
 #include "../tools/tools.h"
 #include "../tools/types.h"
 
-signed fgetshortline (register char *buffer, size_t length, bool preserve, FILE * stream) 
+signed fgetshortline(register char * buffer, size_t length, bool preserve, FILE * stream)
 
 {
 	register size_t column = 0;
 	register int c = EOF;
 	register int o = EOF;
-	if ((buffer != (char *) (0)) && (length > 0) && (column < length)) 
+	if ((buffer != (char *)(0)) && (length > 0) && (column < length))
 	{
-		while (((c = fgetc (stream)) != EOF) && (c != '\n')) 
+		while (((c = fgetc(stream)) != EOF) && (c != '\n'))
 		{
-			if (c == '\\') 
+			if (c == '\\')
 			{
-				if ((o = fgetc (stream)) != EOF) 
+				if ((o = fgetc(stream)) != EOF)
 				{
-					if (o != '\n') 
+					if (o != '\n')
 					{
-						if (column < length) 
+						if (column < length)
 						{
-							buffer [column++] = (char) (c);
+							buffer [column++] = (char)(c);
 							length--;
 						}
-						if (column < length) 
+						if (column < length)
 						{
-							buffer [column++] = (char) (o);
+							buffer [column++] = (char)(o);
 							length--;
 						}
 					}
-					else if (preserve) 
+					else if(preserve)
 					{
-						if (column < length) 
+						if (column < length)
 						{
-							buffer [column++] = (char) (c);
+							buffer [column++] = (char)(c);
 							length--;
 						}
-						if (column < length) 
+						if (column < length)
 						{
-							buffer [column++] = (char) (o);
+							buffer [column++] = (char)(o);
 							length--;
 						}
 					}
 				}
-				else if (column < length) 
+				else if(column < length)
 				{
-					buffer [column++] = (char) (c);
+					buffer [column++] = (char)(c);
 					length--;
 				}
 			}
-			else if (column < length) 
+			else if(column < length)
 			{
-				buffer [column++] = (char) (c);
+				buffer [column++] = (char)(c);
 				length--;
 			}
 		}
-		if (length > 0) 
+		if (length > 0)
 		{
-			buffer [column] = (char) (0);
+			buffer [column] = (char)(0);
 		}
 	}
-	return ((c == EOF) && (column == 0)? -1: (signed)(column));
+	return ((c == EOF) && (column == 0)? - 1: (signed) (column));
 }
 
-
 #endif
+
+
 

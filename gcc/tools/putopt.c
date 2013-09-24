@@ -22,23 +22,24 @@
 #include "../tools/getopt.h"
 #include "../tools/putopt.h"
 
-void putopt (char const *optv []) 
+void putopt(char const * optv[])
 
 {
-	extern char const *program_name;
+	extern char const * program_name;
 	size_t index;
 	printf ("\n");
-	printf (" program: %s\n\n", optv [PUTOPT_I_PROGRAM]);
-	printf (" command: %s [options] %s\n\n", program_name, optv [PUTOPT_I_COMMAND]);
-	printf (" options: [%s]\n\n", optv [PUTOPT_I_OPTIONS]);
-	for (index = PUTOPT_I_DETAILS; optv [index] != (char *) (0); index++) 
+	printf (" program: %s\n\n", optv[PUTOPT_I_PROGRAM]);
+	printf (" command: %s [options] %s\n\n", program_name, optv[PUTOPT_I_COMMAND]);
+	printf (" options: [%s]\n\n", optv[PUTOPT_I_OPTIONS]);
+	for (index = PUTOPT_I_DETAILS; optv[index] != (char *)(0); index++)
 	{
-		printf (" %c%s\n", GETOPT_C_OPTION, optv [index]);
+		printf (" %c%s\n", GETOPT_C_OPTION, optv[index]);
 	}
 	printf ("\n");
 	return;
 }
 
-
 #endif
+
+
 

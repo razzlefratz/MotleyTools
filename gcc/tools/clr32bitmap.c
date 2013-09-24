@@ -21,13 +21,14 @@
 #include "../tools/flags.h"
 #include "../tools/endian.h"
 
-void clr32bitmap (uint32_t * map, unsigned bit) 
+void clr32bitmap(uint32_t * map, unsigned bit)
 
 {
-	map [bit / _bits (* map)] &= ~ HTOLE32 (1 << (bit % _bits (* map)));
+	map [bit / _bits(* map)] &= ~ HTOLE32(1 << (bit % _bits(* map)));
 	return;
 }
 
-
 #endif
+
+
 

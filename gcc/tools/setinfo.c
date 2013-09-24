@@ -26,18 +26,18 @@
 #include "../date/date.h"
 
 struct _info_ info;
-void setinfo () 
+void setinfo()
 
 {
 	static bool init = false;
-	if (!init) 
+	if (! init)
 	{
-		time_t now = time ((time_t *)(0));
-		strftime (info.thisyear, 5, "%Y", localtime (&now));
-		strftime (info.thisdate, DATETIME_MAX, DAYTIME, localtime (&now));
+		time_t now = time((time_t *) (0));
+		strftime (info.thisyear, 5, "%Y", localtime(& now));
+		strftime (info.thisdate, DATETIME_MAX, DAYTIME, localtime(& now));
 		strlwr (info.thisdate);
 		gethostname (info.hostname, HOSTNAME_MAX);
-		getusername (info.username, USERNAME_MAX, getuid ());
+		getusername (info.username, USERNAME_MAX, getuid());
 		sprintf (info.released, "  Released %s by %s for private use;", info.thisyear, PROJECT);
 		sprintf (info.licensed, "  Licensed is %s version 2 only;", LICENSE);
 		sprintf (info.packaged, "  Packaged as %s-%s.%s by %s;", PACKAGE, VERSION, RELEASE, CONTACT);
@@ -46,6 +46,7 @@ void setinfo ()
 	return;
 }
 
-
 #endif
+
+
 

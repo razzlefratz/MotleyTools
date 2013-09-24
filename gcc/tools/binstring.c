@@ -20,30 +20,29 @@
 #include "../tools/memory.h"
 #include "../tools/number.h"
 
-char * binstring (char buffer [], size_t length, const byte memory [], size_t extent) 
+char * binstring(char buffer[], size_t length, const byte memory[], size_t extent)
 
 {
-	char *string = buffer;
+	char * string = buffer;
 	length /= 9;
-	while ((length--) && (extent--)) 
+	while ((length--) && (extent--))
 	{
-		unsigned number = *memory++;
+		unsigned number = * memory++;
 		unsigned bits = 8;
-		while (bits--) 
+		while (bits--)
 		{
-			string [bits] = DIGITS_BIN [number & 1];
+			string [bits] = DIGITS_BIN[number & 1];
 			number >>= 1;
 		}
 		string += 8;
-		if ((length) && (extent)) 
+		if ((length) && (extent))
 		{
-			*string++ = BIN_EXTENDER;
+			* string++ = BIN_EXTENDER;
 		}
 	}
-	*string = (char) (0);
+	* string = (char)(0);
 	return (buffer);
 }
-
 
 /*====================================================================*
  * test program;
@@ -52,21 +51,20 @@ char * binstring (char buffer [], size_t length, const byte memory [], size_t ex
 #if 0
 #include <stdio.h>
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
 {
-	byte memory [] = 
+	byte memory[] = 
 	{
 		0x01,
 		0x02,
 		0x03,
 		0x04
 	};
-	char string [100]="$";
-	printf ("string=[%s]\n", binstring (string, sizeof (string), memory, sizeof (memory)));
+	char string[100] = "$";
+	printf ("string=[%s]\n", binstring(string, sizeof(string), memory, sizeof(memory)));
 	return (0);
 }
-
 
 #endif
 
@@ -75,4 +73,6 @@ int main (int argc, char const * argv [])
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

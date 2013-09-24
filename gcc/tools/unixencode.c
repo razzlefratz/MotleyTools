@@ -21,65 +21,66 @@
 #include "../tools/tools.h"
 #include "../tools/number.h"
 
-char *unixencode (char const *string, char buffer [], size_t length) 
+char * unixencode(char const * string, char buffer[], size_t length)
 
 {
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (string == (char *) (0)) 
+	if (string == (char *)(0))
 	{
 		return (buffer);
 	}
-	if (buffer == (char *) (0)) 
+	if (buffer == (char *)(0))
 	{
 		return (buffer);
 	}
 
 #endif
 
-	if (length-- > 0) 
+	if (length-- > 0)
 	{
-		char *sp = buffer;
+		char * sp = buffer;
 		buffer += length;
-		while ((*string) && (sp < buffer)) 
+		while ((* string) && (sp < buffer))
 		{
 
 #ifdef _CTYPE_H
 
-			if (!isgraph (*string)) 
+			if (! isgraph(* string)) 
 
 #else
 
-			if ((*string <= 0x0020) || (*string >= 0x007F)) 
+			if ((* string <= 0x0020) || (* string >= 0x007F)) 
 
 #endif
 
 			{
-				if (sp < (buffer - 4)) 
+				if (sp < (buffer - 4))
 				{
-					*sp++ = '%';
-					*sp++ = DIGITS_OCT [((*string) >> 6) & 0x03];
-					*sp++ = DIGITS_OCT [((*string) >> 3) & 0x07];
-					*sp++ = DIGITS_OCT [((*string) >> 0) & 0x07];
+					* sp++ = '%';
+					* sp++ = DIGITS_OCT[((* string) >> 6) & 0x03];
+					* sp++ = DIGITS_OCT[((* string) >> 3) & 0x07];
+					* sp++ = DIGITS_OCT[((* string) >> 0) & 0x07];
 				}
 				else 
 				{
-					*sp++ = *string;
+					* sp++ = * string;
 				}
 			}
 			else 
 			{
-				*sp++ = *string;
+				* sp++ = * string;
 			}
 			string++;
 		}
 		buffer -= length;
-		*sp = (char) (0);
+		* sp = (char)(0);
 	}
 	return (buffer);
 }
 
-
 #endif
+
+
 

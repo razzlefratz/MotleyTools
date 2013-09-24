@@ -23,33 +23,34 @@
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 3, 4))) 
+__attribute__ ((format(printf, 3, 4))) 
 
 #endif
 
-void markup (signed device, signed indent, char const *format, ...) 
+void markup(signed device, signed indent, char const * format, ...)
 
 {
 	static char tab = '\t';
 	static char end = '\n';
-	char buffer [1024];
+	char buffer[1024];
 	signed length = 0;
-	while (indent-- > 0) 
+	while (indent-- > 0)
 	{
-		write (device, &tab, sizeof (tab));
+		write (device, & tab, sizeof(tab));
 	}
-	if ((format) && (*format)) 
+	if ((format) && (* format))
 	{
 		va_list arglist;
 		va_start (arglist, format);
-		length = vsnprintf (buffer, sizeof (buffer), format, arglist);
+		length = vsnprintf(buffer, sizeof(buffer), format, arglist);
 		va_end (arglist);
 	}
 	write (device, buffer, length);
-	write (device, &end, sizeof (end));
+	write (device, & end, sizeof(end));
 	return;
 }
 
-
 #endif
+
+
 

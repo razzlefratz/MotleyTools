@@ -22,26 +22,27 @@
 #include "../tools/number.h"
 #include "../tools/memory.h"
 
-void hexwrite (signed fd, void const * memory, size_t extent, size_t column) 
+void hexwrite(signed fd, void const * memory, size_t extent, size_t column)
 
 {
-	byte * origin = (uint8_t *)(memory);
-	byte * offset = (uint8_t *)(memory);
-	while (extent--) 
+	byte * origin = (uint8_t *) (memory);
+	byte * offset = (uint8_t *) (memory);
+	while (extent--)
 	{
 		byte byte = * offset;
-		write (fd, &DIGITS_HEX [(byte >> 4) & 0x0F], sizeof (char));
-		write (fd, &DIGITS_HEX [(byte >> 0) & 0x0F], sizeof (char));
+		write (fd, & DIGITS_HEX[(byte >> 4) & 0x0F], sizeof(char));
+		write (fd, & DIGITS_HEX[(byte >> 0) & 0x0F], sizeof(char));
 		offset++;
-		if ((extent) && (column)) 
+		if ((extent) && (column))
 		{
-			write (fd, (offset-origin) % column? " ": "\n", sizeof (char));
+			write (fd, (offset - origin) % column? " ": "\n", sizeof(char));
 		}
 	}
-	write (fd, "\n", sizeof (char));
+	write (fd, "\n", sizeof(char));
 	return;
 }
 
-
 #endif
+
+
 

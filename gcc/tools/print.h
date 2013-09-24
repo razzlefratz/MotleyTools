@@ -30,26 +30,28 @@
  *   prototype basic print function;
  *--------------------------------------------------------------------*/
 
-void eprintf (char const *format, ...);
-int cmprintf (char const *format, ...);
-int cmvprintf (char const *format, va_list argp);
-int cmfprintf (FILE *stream, char const *format, ...);
-int cmvfprintf (FILE *stream, char const *format, va_list argp);
-int cmsprintf (char const *string, char const *format, ...);
-int cmvsprintf (char const *string, char const *format, va_list argp);
-int cmprint (char const *sp, void *op, int cout (int c, void *op), va_list ap);
+void eprintf(char const * format, ...);
+int cmprintf(char const * format, ...);
+int cmvprintf(char const * format, va_list argp);
+int cmfprintf(FILE * stream, char const * format, ...);
+int cmvfprintf(FILE * stream, char const * format, va_list argp);
+int cmsprintf(char const * string, char const * format, ...);
+int cmvsprintf(char const * string, char const * format, va_list argp);
+int cmprint(char const * sp, void * op, int cout(int c, void * op), va_list ap);
 
 /*====================================================================*
  *   numerical scaling and conversion functions;
  *--------------------------------------------------------------------*/
 
-size_t dtos (char *string, double number, int scale, int precision);
-int dscale (double *number, int places);
-int iscale (long int value);
+size_t dtos(char * string, double number, int scale, int precision);
+int dscale(double * number, int places);
+int iscale(long int value);
 
 /*====================================================================*
  *   end definitions;
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

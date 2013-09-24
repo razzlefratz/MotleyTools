@@ -24,13 +24,14 @@
 
 #include "tools.h"
 
-signed cread (signed fd) 
+signed cread(signed fd)
 
 {
 	char c;
-	return ((read (fd, &c, 1) > 0)? (signed) (c): EOF);
+	return ((read(fd, & c, 1) > 0)? (signed)(c): EOF);
 }
 
-
 #endif
+
+
 

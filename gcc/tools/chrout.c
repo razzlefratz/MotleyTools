@@ -21,22 +21,23 @@
 
 #include "../tools/memory.h"
 
-void chrout (void const * memory, size_t extent, char c, char e, FILE * fp) 
+void chrout(void const * memory, size_t extent, char c, char e, FILE * fp)
 
 {
-	byte * offset = (byte *)(memory);
-	while (extent--) 
+	byte * offset = (byte *) (memory);
+	while (extent--)
 	{
-		putc (isprint (* offset)? * offset: c, fp);
+		putc (isprint(* offset)? * offset: c, fp);
 		offset++;
 	}
-	if (e) 
+	if (e)
 	{
 		putc (e, fp);
 	}
 	return;
 }
 
-
 #endif
+
+
 

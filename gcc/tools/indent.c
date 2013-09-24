@@ -23,20 +23,20 @@
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 2, 3))) 
+__attribute__ ((format(printf, 2, 3))) 
 
 #endif
 
-void indent (signed margin, char const * format, ...) 
+void indent(signed margin, char const * format, ...)
 
 {
 	static char tab = '\t';
 	static char end = '\n';
-	while (margin-- > 0) 
+	while (margin-- > 0)
 	{
 		putc (tab, stdout);
 	}
-	if ((format) && (* format)) 
+	if ((format) && (* format))
 	{
 		va_list arglist;
 		va_start (arglist, format);
@@ -47,6 +47,7 @@ void indent (signed margin, char const * format, ...)
 	return;
 }
 
-
 #endif
+
+
 

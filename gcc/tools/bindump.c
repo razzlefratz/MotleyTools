@@ -24,80 +24,80 @@
 #include "../tools/memory.h"
 #include "../tools/number.h"
 
-void bindump (void const * memory, size_t offset, size_t extent, FILE *fp) 
+void bindump(void const * memory, size_t offset, size_t extent, FILE * fp)
 
 {
-	byte * origin = (byte *)(memory);
+	byte * origin = (byte *) (memory);
 	size_t block = 0x08;
 	size_t lower = block * (offset / block);
-	size_t upper = block + lower;
+	size_t upper = block +  lower;
 	size_t index = 0;
-	char buffer [100];
+	char buffer[100];
 	char * output;
-	while (lower < extent) 
+	while (lower < extent)
 	{
-		output = buffer + sizeof (extent) + sizeof (extent);
-		for (index = lower; output-- > buffer; index >>= 4) 
+		output = buffer +  sizeof(extent) +  sizeof(extent);
+		for (index = lower; output-- > buffer; index >>= 4)
 		{
-			*output = DIGITS_HEX [index & 0x0F];
+			* output = DIGITS_HEX[index & 0x0F];
 		}
-		output = buffer + sizeof (extent) + sizeof (extent);
-		for (index = lower; index < upper; index++) 
+		output = buffer +  sizeof(extent) +  sizeof(extent);
+		for (index = lower; index < upper; index++)
 		{
 			unsigned bits = 8;
-			*output++ = ' ';
-			if (index < offset) 
+			* output++ = ' ';
+			if (index < offset)
 			{
-				while (bits--) 
+				while (bits--)
 				{
-					*output++ = ' ';
+					* output++ = ' ';
 				}
 			}
-			else if (index < extent) 
+			else if(index < extent)
 			{
-				while (bits--) 
+				while (bits--)
 				{
-					*output++ = DIGITS_BIN [(origin [index] >> bits) & 0x01];
+					* output++ = DIGITS_BIN[(origin[index] >> bits) & 0x01];
 				}
 			}
 			else 
 			{
-				while (bits--) 
+				while (bits--)
 				{
-					*output++ = ' ';
+					* output++ = ' ';
 				}
 			}
 		}
-		*output++ = ' ';
-		for (index = lower; index < upper; index++) 
+		* output++ = ' ';
+		for (index = lower; index < upper; index++)
 		{
-			if (index < offset) 
+			if (index < offset)
 			{
-				*output++ = ' ';
+				* output++ = ' ';
 			}
-			else if (index < extent) 
+			else if(index < extent)
 			{
-				unsigned c = origin [index];
-				*output++ = isprint (c)? c: '.';
+				unsigned c = origin[index];
+				* output++ = isprint(c)? c: '.';
 			}
 			else 
 			{
-				*output++ = ' ';
+				* output++ = ' ';
 			}
 		}
 
 #ifdef HTML
 
-		*output++ = '<';
-		*output++ = 'b';
-		*output++ = 'r';
-		*output++ = '/';
-		*output++ = '>';
+		* output++ = '<';
+		* output++ = 'b';
+		* output++ = 'r';
+		* output++ = '/';
+		* output++ = '>';
 
 #endif
 
-		*output++ = '\n';
-		*output++ = '\0';
+		* output++ = '\n';
+		* output++ = '\0';
 		fputs (buffer, fp);
 		lower += block;
 		upper += block;
@@ -106,20 +106,21 @@ void bindump (void const * memory, size_t offset, size_t extent, FILE *fp)
 
 #ifdef HTML
 
-	*output++ = '<';
-	*output++ = 'b';
-	*output++ = 'r';
-	*output++ = '/';
-	*output++ = '>';
+	* output++ = '<';
+	* output++ = 'b';
+	* output++ = 'r';
+	* output++ = '/';
+	* output++ = '>';
 
 #endif
 
-	*output++ = '\n';
-	*output++ = '\0';
+	* output++ = '\n';
+	* output++ = '\0';
 	fputs (buffer, fp);
 	return;
 }
 
-
 #endif
+
+
 

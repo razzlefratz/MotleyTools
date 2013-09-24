@@ -30,21 +30,20 @@
  *
  *--------------------------------------------------------------------*/
 
-static int _numb (void * bp, int get (void * bp), int unget (int c, void * bp)) 
+static int _numb(void * bp, int get(void * bp), int unget(int c, void * bp))
 
 {
-	int c = get (bp);
+	int c = get(bp);
 	int n = 0;
-	while (isdigit (c)) 
+	while (isdigit(c))
 	{
 		n *= 10;
 		n += (c - '0');
-		c = get (bp);
+		c = get(bp);
 	}
 	unget (c, bp);
 	return (n);
 }
-
 
 /*====================================================================*
  *
@@ -61,23 +60,23 @@ static int _numb (void * bp, int get (void * bp), int unget (int c, void * bp))
  *
  *--------------------------------------------------------------------*/
 
-static int _fact (void * bp, int get (void * bp), int unget (int c, void * bp)) 
+static int _fact(void * bp, int get(void * bp), int unget(int c, void * bp))
 
 {
 	signed c;
 	int n = 1;
-	while ((c = get (bp)) != EOF) 
+	while ((c = get(bp)) != EOF)
 	{
-		if (isblank (c)) continue;
-		else if (isdigit (c)) 
+		if (isblank(c)) continue;
+		else if(isdigit(c))
 		{
 			unget (c, bp);
-			n *= _numb (bp, get, unget);
+			n *= _numb(bp, get, unget);
 		}
-		else if (c == '(') 
+		else if(c == '(')
 		{
-			n *= _numb (bp, get, unget);
-			if ((c = get (bp)) != ')') unget (c, bp);
+			n *= _numb(bp, get, unget);
+			if ((c = get(bp)) != ')') unget(c, bp);
 		}
 		else 
 		{
@@ -87,7 +86,6 @@ static int _fact (void * bp, int get (void * bp), int unget (int c, void * bp))
 	}
 	return (n);
 }
-
 
 /*====================================================================*
  *
@@ -104,17 +102,17 @@ static int _fact (void * bp, int get (void * bp), int unget (int c, void * bp))
  *
  *--------------------------------------------------------------------*/
 
-static int _term (void * bp, int get (void * bp), int unget (int c, void * bp)) 
+static int _term(void * bp, int get(void * bp), int unget(int c, void * bp))
 
 {
 	extern signed c;
-	int n = _fact (bp, get, unget);
-	while ((c = get (bp)) != EOF) 
+	int n = _fact(bp, get, unget);
+	while ((c = get(bp)) != EOF)
 	{
-		if (isblank (c)) continue;
-		else if (c == '*') n *= _fact (bp, get, unget);
-		else if (c == '/') n /= _fact (bp, get, unget);
-		else if (c == '%') n %= _fact (bp, get, unget);
+		if (isblank(c)) continue;
+		else if(c == '*') n *= _fact(bp, get, unget);
+		else if(c == '/') n /= _fact(bp, get, unget);
+		else if(c == '%') n %= _fact(bp, get, unget);
 		else 
 		{
 			unget (c, bp);
@@ -123,7 +121,6 @@ static int _term (void * bp, int get (void * bp), int unget (int c, void * bp))
 	}
 	return (n);
 }
-
 
 /*====================================================================*
  *
@@ -141,16 +138,16 @@ static int _term (void * bp, int get (void * bp), int unget (int c, void * bp))
  *
  *--------------------------------------------------------------------*/
 
-int value (void * bp, int get (void * bp), int unget (int c, void * bp)) 
+int value(void * bp, int get(void * bp), int unget(int c, void * bp))
 
 {
 	extern signed c;
-	int n = _term (bp, get, unget);
-	while ((c = get (bp)) != EOF) 
+	int n = _term(bp, get, unget);
+	while ((c = get(bp)) != EOF)
 	{
-		if (isblank (c)) continue;
-		else if (c == '+') n += _term (bp, get, unget);
-		else if (c == '-') n -= _term (bp, get, unget);
+		if (isblank(c)) continue;
+		else if(c == '+') n += _term(bp, get, unget);
+		else if(c == '-') n -= _term(bp, get, unget);
 		else 
 		{
 			unget (c, bp);

@@ -21,20 +21,21 @@
 #include "../tools/memory.h"
 #include "../tools/error.h"
 
-struct sockaddr_un *sockspec (char const *string) 
+struct sockaddr_un * sockspec(char const * string)
 
 {
-	struct sockaddr_un *sockaddr_un;
-	sockaddr_un = NEW (struct sockaddr_un);
-	if (sockaddr_un == (struct sockaddr_un *) (0)) 
+	struct sockaddr_un * sockaddr_un;
+	sockaddr_un = NEW(struct sockaddr_un);
+	if (sockaddr_un == (struct sockaddr_un *)(0))
 	{
 		error (1, errno, "Can't add sockaddr_un %s", string);
 	}
 	sockaddr_un->sun_family = AF_UNIX;
-	strncpy (sockaddr_un->sun_path, string, sizeof (sockaddr_un->sun_path));
+	strncpy (sockaddr_un->sun_path, string, sizeof(sockaddr_un->sun_path));
 	return (sockaddr_un);
 }
 
-
 #endif
+
+
 

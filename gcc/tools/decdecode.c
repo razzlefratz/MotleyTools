@@ -26,35 +26,36 @@
 #include "../tools/memory.h"
 #include "../tools/number.h"
 
-size_t decdecode (void const * memory, size_t extent, char buffer [], size_t length) 
+size_t decdecode(void const * memory, size_t extent, char buffer[], size_t length)
 
 {
-	char * string = (char *)(buffer);
-	byte * offset = (byte *)(memory);
-	if (length) 
+	char * string = (char *) (buffer);
+	byte * offset = (byte *) (memory);
+	if (length)
 	{
 		length /= 4;
-		while ((length--) && (extent--)) 
+		while ((length--) && (extent--))
 		{
 			unsigned digit = 3;
 			unsigned value = * offset;
-			while (digit-- > 0) 
+			while (digit-- > 0)
 			{
-				string [digit] = DIGITS_DEC [value % 10];
+				string [digit] = DIGITS_DEC[value % 10];
 				value /= 10;
 			}
 			string += 3;
-			if ((length) && (extent)) 
+			if ((length) && (extent))
 			{
-				*string++ = DEC_EXTENDER;
+				* string++ = DEC_EXTENDER;
 			}
 			offset++;
 		}
-		*string = (char) (0);
+		* string = (char)(0);
 	}
-	return ((size_t)(string - buffer));
+	return ((size_t) (string - buffer));
 }
 
-
 #endif
+
+
 

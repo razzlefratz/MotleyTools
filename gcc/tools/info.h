@@ -30,24 +30,26 @@
  *   data type declarations; 
  *--------------------------------------------------------------------*/
 
-typedef struct _info_ 
+typedef struct _info_
 
 {
-	char thisyear [5];
-	char thisdate [DATETIME_MAX];
-	char hostname [HOSTNAME_MAX];
-	char username [USERNAME_MAX];
-	char released [PREAMBLE_MAX];
-	char licensed [PREAMBLE_MAX];
-	char packaged [PREAMBLE_MAX];
+	char thisyear[5];
+	char thisdate[DATETIME_MAX];
+	char hostname[HOSTNAME_MAX];
+	char username[USERNAME_MAX];
+	char released[PREAMBLE_MAX];
+	char licensed[PREAMBLE_MAX];
+	char packaged[PREAMBLE_MAX];
 }
 
 INFO;
-void setinfo ();
+void setinfo();
 
 /*====================================================================*
  *   end definitions;
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

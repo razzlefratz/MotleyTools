@@ -49,29 +49,31 @@
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 3, 4))) 
+__attribute__ ((format(printf, 3, 4))) 
 
 #endif
 
-void fdprint (signed device, signed margin, char const * format, ...);
+void fdprint(signed device, signed margin, char const * format, ...);
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 2, 3))) 
+__attribute__ ((format(printf, 2, 3))) 
 
 #endif
 
-void indent (signed margin, char const * format, ...);
+void indent(signed margin, char const * format, ...);
 
 /*====================================================================*
  *   
  *--------------------------------------------------------------------*/
 
-void breakout (char const * string, size_t length);
+void breakout(char const * string, size_t length);
 
 /*====================================================================*
  *   end definitions;
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

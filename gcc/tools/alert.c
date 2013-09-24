@@ -24,19 +24,19 @@
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 1, 2))) 
+__attribute__ ((format(printf, 1, 2))) 
 
 #endif
 
-signed alert (char const *format, ...) 
+signed alert(char const * format, ...)
 
 {
-	extern char const *program_name;
-	if ((program_name) && (*program_name)) 
+	extern char const * program_name;
+	if ((program_name) && (* program_name))
 	{
 		fprintf (stderr, "%s: ", program_name);
 	}
-	if ((format) && (*format)) 
+	if ((format) && (* format))
 	{
 		va_list arglist;
 		va_start (arglist, format);
@@ -45,9 +45,10 @@ signed alert (char const *format, ...)
 	}
 	fprintf (stderr, "\n");
 	fflush (stderr);
-	return (-1);
+	return (- 1);
 }
 
-
 #endif
+
+
 

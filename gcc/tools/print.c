@@ -22,18 +22,18 @@
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 2, 3))) 
+__attribute__ ((format(printf, 2, 3))) 
 
 #endif
 
-void print (signed level, char const *format, ...) 
+void print(signed level, char const * format, ...)
 
 {
-	while (level-- > 0) 
+	while (level-- > 0)
 	{
 		putc ('\t', stdout);
 	}
-	if ((format) && (*format)) 
+	if ((format) && (* format))
 	{
 		va_list arglist;
 		va_start (arglist, format);
@@ -44,6 +44,7 @@ void print (signed level, char const *format, ...)
 	return;
 }
 
-
 #endif
+
+
 

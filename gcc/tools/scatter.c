@@ -26,13 +26,13 @@
 
 #include "../tools/memory.h"
 
-size_t scatter (void const * memory, size_t extent, struct field const * field, unsigned fields) 
+size_t scatter(void const * memory, size_t extent, struct field const * field, unsigned fields)
 
 {
-	byte const * source = (byte const *)(memory);
-	while ((fields--) && (field->size < extent)) 
+	byte const * source = (byte const *) (memory);
+	while ((fields--) && (field->size < extent))
 	{
-		if (!field->type) 
+		if (! field->type)
 		{
 			memcopy (field->base, source, field->size);
 		}
@@ -44,9 +44,10 @@ size_t scatter (void const * memory, size_t extent, struct field const * field, 
 		extent -= field->size;
 		field++;
 	}
-	return (source - (byte *)(memory));
+	return (source - (byte *) (memory));
 }
 
-
 #endif
+
+
 

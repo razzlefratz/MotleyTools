@@ -27,27 +27,28 @@
 #include "../tools/memory.h"
 #include "../tools/number.h"
 
-void hexout (void const * memory, size_t extent, char c, char e, FILE * fp) 
+void hexout(void const * memory, size_t extent, char c, char e, FILE * fp)
 
 {
-	byte * offset = (byte *)(memory);
-	while (extent--) 
+	byte * offset = (byte *) (memory);
+	while (extent--)
 	{
-		putc (DIGITS_HEX [(* offset >> 4) & 0x0F], fp);
-		putc (DIGITS_HEX [(* offset >> 0) & 0x0F], fp);
-		if ((extent) && (c)) 
+		putc (DIGITS_HEX[(* offset >> 4) & 0x0F], fp);
+		putc (DIGITS_HEX[(* offset >> 0) & 0x0F], fp);
+		if ((extent) && (c))
 		{
 			putc (c, fp);
 		}
 		offset++;
 	}
-	if (e) 
+	if (e)
 	{
 		putc (e, fp);
 	}
 	return;
 }
 
-
 #endif
+
+
 

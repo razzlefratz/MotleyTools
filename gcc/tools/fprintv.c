@@ -19,20 +19,21 @@
 
 #include "tools.h"
 
-int fprintv (FILE *fp, char const *list [], size_t size) 
+int fprintv(FILE * fp, char const * list[], size_t size)
 
 {
 	size_t item = 0;
 	size_t length = 0;
-	while (item < size) 
+	while (item < size)
 	{
-		length += fprintf (fp, "%3zd [%s]\n", item, list [item]);
+		length += fprintf(fp, "%3zd [%s]\n", item, list[item]);
 		item++;
 	}
-	length += fprintf (fp, "\n");
+	length += fprintf(fp, "\n");
 	return (length);
 }
 
-
 #endif
+
+
 

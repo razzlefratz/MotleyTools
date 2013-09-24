@@ -24,13 +24,14 @@
 
 #include "../tools/memory.h"
 
-char * hexstring (char buffer [], size_t length, const byte memory [], size_t extent) 
+char * hexstring(char buffer[], size_t length, const byte memory[], size_t extent)
 
 {
 	hexdecode (memory, extent, buffer, length);
 	return (buffer);
 }
 
-
 #endif
+
+
 

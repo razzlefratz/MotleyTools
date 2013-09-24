@@ -105,12 +105,12 @@
 #define _swrite(d,s) write(d,(s),sizeof(s)-1)
 #define _ewrite(s) write(STDERR_FILENO,(s),sizeof(s)-1)
 
-signed cread (signed fd);
-signed cwrite (signed fd, signed c);
+signed cread(signed fd);
+signed cwrite(signed fd, signed c);
 
 // size_t statement (int fd, char buffer [], size_t length, size_t * lineno);
 
-int cgetc (int fd);
+int cgetc(int fd);
 
 /*====================================================================*
  *   function prototypes;
@@ -134,8 +134,8 @@ int cgetc (int fd);
  *   file open functions;
  *--------------------------------------------------------------------*/
 
-FILE *efopen (char const *pathname, char const *openmode);
-FILE *efreopen (char const *pathname, char const *openmode, FILE * fp);
+FILE * efopen(char const * pathname, char const * openmode);
+FILE * efreopen(char const * pathname, char const * openmode, FILE * fp);
 
 /*====================================================================*
  *   error message functions;
@@ -143,63 +143,65 @@ FILE *efreopen (char const *pathname, char const *openmode, FILE * fp);
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 1, 2))) 
+__attribute__ ((format(printf, 1, 2))) 
 
 #endif
 
-void eprintf (char const *format, ...);
+void eprintf(char const * format, ...);
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 1, 2))) 
+__attribute__ ((format(printf, 1, 2))) 
 
 #endif
 
-void eperror (char const *format, ...);
+void eperror(char const * format, ...);
 
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
 
-signed fgetline (char * buffer, size_t length, FILE * fp);
-signed fgetlongline (char * buffer, size_t length, unsigned preserve, FILE * fp);
-signed fputline (char const * buffer, size_t length, FILE * fp);
-void fputn (unsigned value, unsigned short radix, size_t width, FILE * ofp);
-size_t fgetv (char * list [], size_t size, char * buffer, size_t length, FILE * fp);
-void fputv (char const * list [], size_t size, FILE * fp);
-int fprintv (FILE *fp, char const *list [], size_t size);
-void signf (char const * string, int c, size_t width);
-size_t cgets (char buffer [], size_t length);
-char * argv2str (char * argv []);
-void center (char const buffer [], unsigned length, unsigned margin);
+signed fgetline(char * buffer, size_t length, FILE * fp);
+signed fgetlongline(char * buffer, size_t length, unsigned preserve, FILE * fp);
+signed fputline(char const * buffer, size_t length, FILE * fp);
+void fputn(unsigned value, unsigned short radix, size_t width, FILE * ofp);
+size_t fgetv(char * list[], size_t size, char * buffer, size_t length, FILE * fp);
+void fputv(char const * list[], size_t size, FILE * fp);
+int fprintv(FILE * fp, char const * list[], size_t size);
+void signf(char const * string, int c, size_t width);
+size_t cgets(char buffer[], size_t length);
+char * argv2str(char * argv[]);
+void center(char const buffer[], unsigned length, unsigned margin);
 
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
 
-char const * termspec (char const * term, char const * type, const struct _term_ list [], size_t size);
-void nodef (char const * term, char const * type, const struct _term_ list [], size_t size);
+char const * termspec(char const * term, char const * type, const struct _term_ list[], size_t size);
+void nodef(char const * term, char const * type, const struct _term_ list[], size_t size);
 
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
 
-char *unixencode (char const *string, char *buffer, size_t length);
-char *ietfencode (char const *string, char *buffer, size_t length);
-char *unixdecode (char *string);
-char *ietfdecode (char *string);
+char * unixencode(char const * string, char * buffer, size_t length);
+char * ietfencode(char const * string, char * buffer, size_t length);
+char * unixdecode(char * string);
+char * ietfdecode(char * string);
 
 /*====================================================================*
  *   string based character i/o functions;
  *--------------------------------------------------------------------*/
 
-signed sgetc (char **bp);
-signed sputc (int c, char **bp);
-signed sungetc (int c, char **bp);
+signed sgetc(char ** bp);
+signed sputc(int c, char ** bp);
+signed sungetc(int c, char ** bp);
 
 /*====================================================================*
  *   end definitions;
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

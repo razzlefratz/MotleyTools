@@ -18,20 +18,21 @@
 
 #include "../tools/memory.h"
 
-void reverse (void * memory, size_t extent) 
+void reverse(void * memory, size_t extent)
 
 {
-	register byte * first = (byte *)(memory);
-	register byte * final = first + extent;
-	while (first < final) 
+	register byte * first = (byte *) (memory);
+	register byte * final = first +  extent;
+	while (first < final)
 	{
-		register byte byte = *first;
-		*first++ = *--final;
-		*final = byte;
+		register byte byte = * first;
+		* first++ = * -- final;
+		* final = byte;
 	}
 	return;
 }
 
-
 #endif
+
+
 

@@ -92,51 +92,51 @@
 #include "../tools/version.h"
 #include "../tools/error.h"
 
-char const *program_name = "";
-char *optarg = (char *) (0);
-signed optopt = (char) (0);
+char const * program_name = "";
+char * optarg = (char *)(0);
+signed optopt = (char)(0);
 signed optind = 1;
 signed opterr = 1;
-signed getopt (int argc, char *argv [], char const *options) 
+signed getopt(int argc, char * argv[], char const * options)
 
 {
-	static char *string;
+	static char * string;
 	static unsigned count;
 	unsigned index;
-	if ((optind == 0) || (optind == 1)) 
+	if ((optind == 0) || (optind == 1))
 	{
-		for (program_name = string = argv [0]; *string != (char) (0); string++) 
+		for (program_name = string = argv[0]; * string != (char)(0); string++)
 		{
-			if (*string == '/') 
+			if (* string == '/')
 			{
-				program_name = string + 1;
+				program_name = string +  1;
 			}
 		}
-		string = (char *) (0);
+		string = (char *)(0);
 		count = optind = 1;
 	}
-	while ((count < argc) || (string != (char *) (0))) 
+	while ((count < argc) || (string != (char *)(0)))
 	{
-		if (string) 
+		if (string)
 		{
-			if (*string) 
+			if (* string)
 			{
-				char const *option;
-				optarg = (char *) (0);
-				optopt = *string++;
-				for (option = options; *option != (char) (0); option++) 
+				char const * option;
+				optarg = (char *)(0);
+				optopt = * string++;
+				for (option = options; * option != (char)(0); option++)
 				{
-					if (optopt == GETOPT_C_OPERAND) 
+					if (optopt == GETOPT_C_OPERAND)
 					{
 						continue;
 					}
-					if (*option == GETOPT_C_OPERAND) 
+					if (* option == GETOPT_C_OPERAND)
 					{
 						continue;
 					}
-					if (*option == optopt) 
+					if (* option == optopt)
 					{
-						if (*option == GETOPTV_C_IGNORE) 
+						if (* option == GETOPTV_C_IGNORE)
 						{
 							option++;
 
@@ -152,27 +152,27 @@ signed getopt (int argc, char *argv [], char const *options)
 
 							return (optopt);
 						}
-						if (*++option != GETOPT_C_OPERAND) 
+						if (* ++ option != GETOPT_C_OPERAND)
 						{
 							return (optopt);
 						}
-						if (*string != (char) (0)) 
+						if (* string != (char)(0))
 						{
-							optarg = (char *) (string);
-							string = (char *) (0);
+							optarg = (char *)(string);
+							string = (char *)(0);
 							return (optopt);
 						}
-						if (count < argc) 
+						if (count < argc)
 						{
-							optarg = argv [count];
-							for (index = count++; index > optind; index--) 
+							optarg = argv[count];
+							for (index = count++; index > optind; index--)
 							{
-								argv [index] = argv [index - 1];
+								argv [index] = argv[index - 1];
 							}
 							argv [optind++] = optarg;
 							return (optopt);
 						}
-						if (opterr > 0) 
+						if (opterr > 0)
 						{
 
 #ifdef __GNUC__
@@ -187,14 +187,14 @@ signed getopt (int argc, char *argv [], char const *options)
 #endif
 
 						}
-						if (*options == GETOPT_C_OPERAND) 
+						if (* options == GETOPT_C_OPERAND)
 						{
 							return (GETOPT_C_OPERAND);
 						}
 						return (GETOPT_C_ILLEGAL);
 					}
 				}
-				if (opterr > 0) 
+				if (opterr > 0)
 				{
 
 #ifdef __GNUC__
@@ -213,24 +213,24 @@ signed getopt (int argc, char *argv [], char const *options)
 			}
 			else 
 			{
-				string = (char *) (0);
+				string = (char *)(0);
 			}
 		}
-		if (count < argc) 
+		if (count < argc)
 		{
-			string = argv [count];
-			if (*string == GETOPT_C_OPTION) 
+			string = argv[count];
+			if (* string == GETOPT_C_OPTION)
 			{
-				for (index = count; index > optind; index--) 
+				for (index = count; index > optind; index--)
 				{
-					argv [index] = argv [index - 1];
+					argv [index] = argv[index - 1];
 				}
 				argv [optind++] = string++;
 
 #if 0
 #ifdef GETOPT_VERSION
 
-				if (*string == GETOPT_C_VERSION) 
+				if (* string == GETOPT_C_VERSION)
 				{
 					version ();
 					exit (0);
@@ -239,7 +239,7 @@ signed getopt (int argc, char *argv [], char const *options)
 #endif
 #ifdef GETOPT_SUMMARY
 
-				if (*string == GETOPT_C_SUMMARY) 
+				if (* string == GETOPT_C_SUMMARY)
 				{
 					exit (0);
 				}
@@ -247,18 +247,18 @@ signed getopt (int argc, char *argv [], char const *options)
 #endif
 #endif
 
-				if (*string == GETOPT_C_OPTION) 
+				if (* string == GETOPT_C_OPTION)
 				{
-					if (*++string == (char)(0)) 
+					if (* ++ string == (char) (0))
 					{
 						break;
 					}
-					else if (strcmp (string, "version") == 0) 
+					else if(strcmp(string, "version") == 0)
 					{
 						version ();
 						exit (0);
 					}
-					else if (strcmp (string, "help") == 0) 
+					else if(strcmp(string, "help") == 0)
 					{
 						exit (0);
 					}
@@ -266,16 +266,17 @@ signed getopt (int argc, char *argv [], char const *options)
 			}
 			else 
 			{
-				string = (char *) (0);
+				string = (char *)(0);
 			}
 			count++;
 		}
 	}
-	optarg = (char *) (0);
-	optopt = (char) (0);
-	return (-1);
+	optarg = (char *)(0);
+	optopt = (char)(0);
+	return (- 1);
 }
 
-
 #endif
+
+
 

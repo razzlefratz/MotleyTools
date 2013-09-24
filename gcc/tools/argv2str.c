@@ -15,18 +15,18 @@
 
 #include <ctype.h>
 
-char * argv2str (char * argv []) 
+char * argv2str(char * argv[])
 
 {
-	char * sp = *argv;
-	char * cp = *argv;
-	if (*argv) while (*++argv) 
+	char * sp = * argv;
+	char * cp = * argv;
+	if (* argv) while(* ++ argv)
 	{
-		while (cp < *argv) 
+		while (cp < * argv)
 		{
-			if (iscntrl (*cp)) 
+			if (iscntrl(* cp))
 			{
-				*cp = ' ';
+				* cp = ' ';
 			}
 			cp++;
 		}
@@ -34,6 +34,7 @@ char * argv2str (char * argv [])
 	return (sp);
 }
 
-
 #endif
+
+
 

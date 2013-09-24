@@ -25,13 +25,13 @@
 #include "../tools/symbol.h"
 #include "../tools/error.h"
 
-void assist (struct _code_ const list [], size_t size, char const * name, char const * type, FILE *fp) 
+void assist(struct _code_ const list[], size_t size, char const * name, char const * type, FILE * fp)
 
 {
 	extern char const * program_name;
 	fprintf (fp, "%s: ", program_name);
-	fprintf (fp, "%s: ", strerror (EINVAL));
-	if (name) 
+	fprintf (fp, "%s: ", strerror(EINVAL));
+	if (name)
 	{
 		fprintf (fp, "Have %s '%s' but need ", type, name);
 	}
@@ -44,6 +44,7 @@ void assist (struct _code_ const list [], size_t size, char const * name, char c
 	exit (1);
 }
 
-
 #endif
+
+
 

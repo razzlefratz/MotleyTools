@@ -25,62 +25,62 @@
 #include "../tools/number.h"
 #include "../tools/sizes.h"
 
-void hexview (void const * memory, size_t offset, size_t extent, FILE *fp) 
+void hexview(void const * memory, size_t offset, size_t extent, FILE * fp)
 
 {
-	byte * origin = (byte *)(memory);
+	byte * origin = (byte *) (memory);
 	unsigned block = 0x10;
 	size_t lower = block * (offset / block);
-	size_t upper = block + lower;
+	size_t upper = block +  lower;
 	size_t index = 0;
-	char buffer [_ADDRSIZE + 72];
+	char buffer[_ADDRSIZE +  72];
 	char * output;
-	while (lower < offset + extent) 
+	while (lower < offset +  extent)
 	{
-		output = buffer + _ADDRSIZE;
-		for (index = lower; output-- > buffer; index >>= 4) 
+		output = buffer +  _ADDRSIZE;
+		for (index = lower; output-- > buffer; index >>= 4)
 		{
-			*output = DIGITS_HEX [index & 0x0F];
+			* output = DIGITS_HEX[index & 0x0F];
 		}
-		output = buffer + _ADDRSIZE;
-		for (index = lower; index < upper; index++) 
+		output = buffer +  _ADDRSIZE;
+		for (index = lower; index < upper; index++)
 		{
-			*output++ = ' ';
-			if (index < offset) 
+			* output++ = ' ';
+			if (index < offset)
 			{
-				*output++ = ' ';
-				*output++ = ' ';
+				* output++ = ' ';
+				* output++ = ' ';
 			}
-			else if (index < offset + extent) 
+			else if(index < offset +  extent)
 			{
-				*output++ = DIGITS_HEX [(origin [index-offset] >> 4) & 0x0F];
-				*output++ = DIGITS_HEX [(origin [index-offset] >> 0) & 0x0F];
+				* output++ = DIGITS_HEX[(origin[index - offset] >> 4) & 0x0F];
+				* output++ = DIGITS_HEX[(origin[index - offset] >> 0) & 0x0F];
 			}
 			else 
 			{
-				*output++ = ' ';
-				*output++ = ' ';
+				* output++ = ' ';
+				* output++ = ' ';
 			}
 		}
-		*output++ = ' ';
-		for (index = lower; index < upper; index++) 
+		* output++ = ' ';
+		for (index = lower; index < upper; index++)
 		{
-			if (index < offset) 
+			if (index < offset)
 			{
-				*output++ = ' ';
+				* output++ = ' ';
 			}
-			else if (index < offset + extent) 
+			else if(index < offset +  extent)
 			{
-				unsigned c = origin [index-offset];
-				*output++ = isprint (c)? c: '.';
+				unsigned c = origin[index - offset];
+				* output++ = isprint(c)? c: '.';
 			}
 			else 
 			{
-				*output++ = ' ';
+				* output++ = ' ';
 			}
 		}
-		*output++ = '\n';
-		*output++ = '\0';
+		* output++ = '\n';
+		* output++ = '\0';
 		fputs (buffer, fp);
 		lower += block;
 		upper += block;
@@ -94,8 +94,8 @@ void hexview (void const * memory, size_t offset, size_t extent, FILE *fp)
  */
 
 	output = buffer;
-	*output++ = '\n';
-	*output++ = '\0';
+	* output++ = '\n';
+	* output++ = '\0';
 	fputs (buffer, fp);
 
 #endif
@@ -103,6 +103,7 @@ void hexview (void const * memory, size_t offset, size_t extent, FILE *fp)
 	return;
 }
 
-
 #endif
+
+
 

@@ -17,30 +17,31 @@
 
 #include "../tools/symbol.h"
 
-char const * termname (const struct _term_ const list [], size_t size, char const * term) 
+char const * termname(const struct _term_ const list[], size_t size, char const * term)
 
 {
 	size_t lower = 0;
 	size_t upper = size;
-	while (lower < upper) 
+	while (lower < upper)
 	{
-		size_t index = (lower + upper) >> 1;
-		signed order = strcmp (term, list [index].term);
-		if (order < 0) 
+		size_t index = (lower +  upper) >> 1;
+		signed order = strcmp(term, list[index].term);
+		if (order < 0)
 		{
 			upper = index - 0;
 			continue;
 		}
-		if (order > 0) 
+		if (order > 0)
 		{
-			lower = index + 1;
+			lower = index +  1;
 			continue;
 		}
-		return (list [index].text);
+		return (list[index].text);
 	}
 	return (term);
 }
 
-
 #endif
+
+
 

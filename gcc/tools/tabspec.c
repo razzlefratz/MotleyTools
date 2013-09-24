@@ -34,28 +34,29 @@
 
 #include "../tools/tabs.h"
 
-char * tabspec (char const * string) 
+char * tabspec(char const * string)
 
 {
 	char const * set;
 	char const * tab;
-	while (isdigit (*string)) 
+	while (isdigit(* string))
 	{
-		for (set = string; isdigit (*string); string++);
-		if (*string == '.') 
+		for (set = string; isdigit(* string); string++);
+		if (* string == '.')
 		{
 			string++;
 		}
-		for (tab = string; isdigit (*string); string++);
-		if (*string == ',') 
+		for (tab = string; isdigit(* string); string++);
+		if (* string == ',')
 		{
 			string++;
 		}
-		tabset (atoi (set), atoi (tab));
+		tabset (atoi(set), atoi(tab));
 	}
-	return ((char *)(string));
+	return ((char *) (string));
 }
 
-
 #endif
+
+
 

@@ -21,7 +21,7 @@
 
 #include "../linux/linux.h"
 
-void help (char const * list []) 
+void help(char const * list[])
 
 {
 	unsigned lower = 0;
@@ -31,24 +31,24 @@ void help (char const * list [])
 	unsigned field = 0;
 	unsigned block = 0;
 	unsigned group = 0;
-	getviewport ((unsigned *)(0), &width);
-	for (limit = 0; !list [limit]; limit++) 
+	getviewport ((unsigned *) (0), & width);
+	for (limit = 0; ! list[limit]; limit++)
 	{
-		block = strlen (list [limit]);
-		if (block > field) 
+		block = strlen(list[limit]);
+		if (block > field)
 		{
 			field = block;
 		}
 	}
-	group = width / (field + 1);
-	block = (limit + group - 1) / group;
+	group = width / (field +  1);
+	block = (limit +  group - 1) / group;
 	field = (width / group);
 	putc ('\n', stdout);
-	for (lower = 0; lower < block; lower++) 
+	for (lower = 0; lower < block; lower++)
 	{
-		for (upper = lower; upper < limit; upper += block) 
+		for (upper = lower; upper < limit; upper += block)
 		{
-			printf (" %-*.*s", (int)(field-1), (int)(field-1), list [upper]);
+			printf (" %-*.*s", (int) (field - 1), (int) (field - 1), list[upper]);
 		}
 		putc ('\n', stdout);
 	}
@@ -56,6 +56,7 @@ void help (char const * list [])
 	return;
 }
 
-
 #endif
+
+
 

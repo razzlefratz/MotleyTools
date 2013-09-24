@@ -20,15 +20,15 @@
 
 #include "../tools/number.h"
 
-void printb (unsigned value, unsigned field, unsigned group, FILE *fp) 
+void printb(unsigned value, unsigned field, unsigned group, FILE * fp)
 
 {
-	if (field > 0) 
+	if (field > 0)
 	{
 		printb (value >> 1, field - 1, group, fp);
-		if (group > 0) 
+		if (group > 0)
 		{
-			if ((field % group) == 0) 
+			if ((field % group) == 0)
 			{
 				putc (' ', fp);
 			}
@@ -40,6 +40,7 @@ void printb (unsigned value, unsigned field, unsigned group, FILE *fp)
 	return;
 }
 
-
 #endif
+
+
 

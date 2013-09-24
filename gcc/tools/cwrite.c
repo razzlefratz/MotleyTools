@@ -23,12 +23,13 @@
 
 #include "../tools/symbol.h"
 
-signed cwrite (signed fd, signed c) 
+signed cwrite(signed fd, signed c)
 
 {
-	return ((write (fd, &c, 1))? (signed) (c): EOF);
+	return ((write(fd, & c, 1))? (signed)(c): EOF);
 }
 
-
 #endif
+
+
 

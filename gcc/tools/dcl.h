@@ -33,19 +33,19 @@
  *   functions;
  *--------------------------------------------------------------------*/
 
-TREE * DCLLine ();
-void DCLTree (TREE * node);
-void DCLFree (TREE * node);
-void DCLInit ();
-signed cgetc (signed fd);
+TREE * DCLLine();
+void DCLTree(TREE * node);
+void DCLFree(TREE * node);
+void DCLInit();
+signed cgetc(signed fd);
 
 #if 0
 
-TREE *DCLName ();
-TREE *DCLText (char c);
-TREE *DCLList (char c, TREE * func ());
-TREE *DCLItem ();
-TREE *DCLTerm ();
+TREE * DCLName();
+TREE * DCLText(char c);
+TREE * DCLList(char c, TREE * func());
+TREE * DCLItem();
+TREE * DCLTerm();
 
 #endif
 
@@ -54,4 +54,6 @@ TREE *DCLTerm ();
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

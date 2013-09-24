@@ -23,10 +23,10 @@
 #include "../tools/number.h"
 #include "../tools/types.h"
 
-signed totruth (char const * string) 
+signed totruth(char const * string)
 
 {
-	static struct item 
+	static struct item
 	{
 		char const * name;
 		char code;
@@ -66,30 +66,31 @@ signed totruth (char const * string)
 			1
 		}
 	};
-	if ((string) && (*string)) 
+	if ((string) && (* string))
 	{
 		size_t lower = 0;
-		size_t upper = sizeof (list) / sizeof (struct item);
-		while (lower < upper) 
+		size_t upper = sizeof(list) / sizeof(struct item);
+		while (lower < upper)
 		{
-			size_t index = (lower + upper) >> 1;
-			signed order = strcasecmp (string, list [index].name);
-			if (order < 0) 
+			size_t index = (lower +  upper) >> 1;
+			signed order = strcasecmp(string, list[index].name);
+			if (order < 0)
 			{
 				upper = index - 0;
 				continue;
 			}
-			if (order > 0) 
+			if (order > 0)
 			{
-				lower = index + 1;
+				lower = index +  1;
 				continue;
 			}
-			return (list [index].code);
+			return (list[index].code);
 		}
 	}
-	return (-1);
+	return (- 1);
 }
 
-
 #endif
+
+
 

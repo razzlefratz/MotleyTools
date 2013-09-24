@@ -34,92 +34,93 @@
 #include "../tools/chars.h"
 #include "../tools/sizes.h"
 
-signed getargv (signed argc, char const * argv []) 
+signed getargv(signed argc, char const * argv[])
 
 {
-	static char string [_LINESIZE];
+	static char string[_LINESIZE];
 	char * sp = string;
 	signed argn = 0;
 	signed c;
-	memset (string, 0, sizeof (string));
-	memset (argv, 0, argc * sizeof (*argv));
+	memset (string, 0, sizeof(string));
+	memset (argv, 0, argc * sizeof(* argv));
 	argv [argn++] = sp;
 	do 
 	{
-		c = getc (stdin);
-		if (c == '#') 
+		c = getc(stdin);
+		if (c == '#')
 		{
 			do 
 			{
-				c = getc (stdin);
+				c = getc(stdin);
 			}
-			while (nobreak (c));
+			while (nobreak(c));
 		}
 	}
-	while (isspace (c));
-	while (nobreak (c)) 
+	while (isspace(c));
+	while (nobreak(c))
 	{
-		if (isblank (c)) 
+		if (isblank(c))
 		{
 			do 
 			{
-				c = getc (stdin);
+				c = getc(stdin);
 			}
-			while (isblank (c));
-			if (argn < argc) 
+			while (isblank(c));
+			if (argn < argc)
 			{
-				argv [argn++] = ++sp;
+				argv [argn++] = ++ sp;
 			}
 			else 
 			{
-				*sp++ = ' ';
+				* sp++ = ' ';
 			}
 			continue;
 		}
-		if (isquote (c)) 
+		if (isquote(c))
 		{
 			signed quote = c;
 
 #if 0
 
-			*sp++ = (char)(quote);
+			* sp++ = (char) (quote);
 
 #endif
 
-			while (((c = getc (stdin)) != quote) && nobreak (c)) 
+			while (((c = getc(stdin)) != quote) && nobreak(c))
 			{
-				if (c == '\\') 
+				if (c == '\\')
 				{
-					if ((c = getc (stdin)) == EOF) 
+					if ((c = getc(stdin)) == EOF)
 					{
 						break;
 					}
 				}
-				*sp++ = (char) (c);
+				* sp++ = (char)(c);
 			}
 
 #if 0
 
-			*sp++ = (char)(quote);
+			* sp++ = (char) (quote);
 
 #endif
 
-			if (c == quote) 
+			if (c == quote)
 			{
-				c = getc (stdin);
+				c = getc(stdin);
 			}
 			continue;
 		}
-		*sp++ = (char)(c);
-		c = getc (stdin);
+		* sp++ = (char) (c);
+		c = getc(stdin);
 	}
-	if (--argn) 
+	if (-- argn)
 	{
-		++argn;
+		++ argn;
 	}
 	return (argn);
 }
 
-
 #endif
+
+
 

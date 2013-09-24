@@ -15,10 +15,10 @@
 
 #include <stdio.h>
 
-void center (char const buffer [], unsigned length, unsigned margin) 
+void center(char const buffer[], unsigned length, unsigned margin)
 
 {
-	if (length < margin) 
+	if (length < margin)
 	{
 		margin -= length;
 		margin /= 2;
@@ -28,17 +28,18 @@ void center (char const buffer [], unsigned length, unsigned margin)
 		length = margin;
 		margin = 0;
 	}
-	while (margin-- > 0) 
+	while (margin-- > 0)
 	{
 		putc (' ', stdout);
 	}
-	while (length-- > 0) 
+	while (length-- > 0)
 	{
-		putc (*buffer++, stdout);
+		putc (* buffer++, stdout);
 	}
 	return;
 }
 
-
 #endif
+
+
 

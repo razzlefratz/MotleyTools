@@ -35,44 +35,45 @@
 
 #include "../tools/number.h"
 
-char * itoax (unsigned long value, char buffer [], size_t length, char const * digits) 
+char * itoax(unsigned long value, char buffer[], size_t length, char const * digits)
 
 {
 	unsigned short radix;
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (!buffer) 
+	if (! buffer)
 	{
 		return (buffer);
 	}
-	if (!digits) 
+	if (! digits)
 	{
 		return (buffer);
 	}
 
 #endif
 
-	for (radix = 0; digits [radix]; radix++);
-	if (length) 
+	for (radix = 0; digits[radix]; radix++);
+	if (length)
 	{
-		buffer [--length] = (char) (0);
+		buffer [-- length] = (char)(0);
 	}
-	while (length) 
+	while (length)
 	{
-		if (radix > 1) 
+		if (radix > 1)
 		{
-			buffer [--length] = digits [value % radix];
+			buffer [-- length] = digits[value % radix];
 			value /= radix;
 		}
 		else 
 		{
-			buffer [--length] = digits [0];
+			buffer [-- length] = digits[0];
 		}
 	}
-	return (&buffer [length]);
+	return (& buffer[length]);
 }
 
-
 #endif
+
+
 

@@ -44,7 +44,6 @@ struct _page_ page =
 	0
 };
 
-
 /*====================================================================*
  *
  *   void setup_page (PAGE * page);
@@ -59,7 +58,7 @@ struct _page_ page =
  *
  *--------------------------------------------------------------------*/
 
-void setup_page (PAGE * page) 
+void setup_page(PAGE * page)
 
 {
 	page->flags = 0;
@@ -74,7 +73,6 @@ void setup_page (PAGE * page)
 	return;
 }
 
-
 /*====================================================================*
  *
  *   void reset_page(PAGE * page);
@@ -88,7 +86,7 @@ void setup_page (PAGE * page)
  *
  *--------------------------------------------------------------------*/
 
-void reset_page (PAGE * page) 
+void reset_page(PAGE * page)
 
 {
 	page->page = 1;
@@ -97,7 +95,6 @@ void reset_page (PAGE * page)
 	page->col = 0;
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -113,29 +110,28 @@ void reset_page (PAGE * page)
  *
  *--------------------------------------------------------------------*/
 
-static void header (struct _page_ * page) 
+static void header(struct _page_ * page)
 
 {
-	char buffer [page->cols];
-	time_t stamp = time ((time_t *)(0));
+	char buffer[page->cols];
+	time_t stamp = time((time_t *) (0));
 	signed length;
 	signed offset;
 	length = page->cols - DAYTIME_LEN - 2;
-	length = snprintf (buffer, page->cols, "%-*.*s  ", length, length, page->title);
-	for (offset = 0; offset < length; offset++) 
+	length = snprintf(buffer, page->cols, "%-*.*s  ", length, length, page->title);
+	for (offset = 0; offset < length; offset++)
 	{
-		putc (buffer [offset], stdout);
+		putc (buffer[offset], stdout);
 	}
-	length = strftime (buffer, sizeof (buffer), DAYTIME, localtime (&stamp));
-	for (offset = 0; offset < length; offset++) 
+	length = strftime(buffer, sizeof(buffer), DAYTIME, localtime(& stamp));
+	for (offset = 0; offset < length; offset++)
 	{
-		putc (buffer [offset], stdout);
+		putc (buffer[offset], stdout);
 	}
 	putc ('\n', stdout);
 	putc ('\n', stdout);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -151,13 +147,13 @@ static void header (struct _page_ * page)
  *
  *--------------------------------------------------------------------*/
 
-static void footer (struct _page_ * page) 
+static void footer(struct _page_ * page)
 
 {
-	char buffer [page->cols];
-	signed length = snprintf (buffer, page->cols, "- %d -", page->page);
+	char buffer[page->cols];
+	signed length = snprintf(buffer, page->cols, "- %d -", page->page);
 	signed offset = page->cols;
-	if (length < offset) 
+	if (length < offset)
 	{
 		offset -= length;
 		offset /= 2;
@@ -168,20 +164,19 @@ static void footer (struct _page_ * page)
 		offset = 0;
 	}
 	putc ('\n', stdout);
-	while (offset > 0) 
+	while (offset > 0)
 	{
 		putc (' ', stdout);
 		offset--;
 	}
-	while (length > 0) 
+	while (length > 0)
 	{
-		putc (buffer [offset++], stdout);
+		putc (buffer[offset++], stdout);
 		length--;
 	}
 	putc ('\n', stdout);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -195,18 +190,18 @@ static void footer (struct _page_ * page)
  *
  *--------------------------------------------------------------------*/
 
-signed pageputc (signed c, struct _page_ * page) 
+signed pageputc(signed c, struct _page_ * page)
 
 {
-	if (!page->row && !page->col) 
+	if (! page->row && ! page->col)
 	{
 		header (page);
 		page->row = 1;
 		page->col = 1;
 	}
-	if ((c == '\f') || (c == EOF)) 
+	if ((c == '\f') || (c == EOF))
 	{
-		while (page->row < page->rows) 
+		while (page->row < page->rows)
 		{
 			pageputc ('\n', page);
 		}
@@ -215,27 +210,27 @@ signed pageputc (signed c, struct _page_ * page)
 		page->row = 0;
 		page->col = 0;
 	}
-	else if (c == '\r') 
+	else if(c == '\r')
 	{
 		putc (c, stdout);
 		page->col = 1;
 	}
-	else if (c == '\n') 
+	else if(c == '\n')
 	{
 		putc (c, stdout);
 		page->line++;
 		page->row++;
 		page->col = 1;
 	}
-	else if (c == '\t') 
+	else if(c == '\t')
 	{
-		while (page->col % page->tabs) 
+		while (page->col % page->tabs)
 		{
 			pageputc (' ', page);
 		}
 		pageputc (' ', page);
 	}
-	else if (iscntrl (c)) 
+	else if(iscntrl(c))
 	{
 		putc (' ', stdout);
 		page->col++;
@@ -245,17 +240,18 @@ signed pageputc (signed c, struct _page_ * page)
 		putc (c, stdout);
 		page->col++;
 	}
-	if (page->col > page->cols) 
+	if (page->col > page->cols)
 	{
 		pageputc ('\n', page);
 	}
-	if (page->row > page->rows) 
+	if (page->row > page->rows)
 	{
 		pageputc ('\f', page);
 	}
 	return (c);
 }
 
-
 #endif
+
+
 

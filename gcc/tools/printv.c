@@ -14,16 +14,16 @@
 
 #include "../tools/tools.h"
 
-signed printv (char const *vector [], size_t count) 
+signed printv(char const * vector[], size_t count)
 
 {
 	size_t index;
 	signed nchar;
-	for (index = nchar = 0; (index < count) && (vector [index] != (char *)(0)); index++) 
+	for (index = nchar = 0; (index < count) && (vector[index] != (char *) (0)); index++)
 	{
-		nchar += printf ("%03zd %s\n", index, vector [index]);
+		nchar += printf("%03zd %s\n", index, vector[index]);
 	}
-	nchar += printf ("\n");
+	nchar += printf("\n");
 	return (nchar);
 }
 

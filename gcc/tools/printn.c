@@ -20,10 +20,10 @@
 
 #include "../tools/number.h"
 
-void printn (unsigned long value, unsigned field, FILE *fp) 
+void printn(unsigned long value, unsigned field, FILE * fp)
 
 {
-	if (field > 0) 
+	if (field > 0)
 	{
 		printn (value / 10, field - 1, fp);
 		value %= 10;
@@ -33,6 +33,7 @@ void printn (unsigned long value, unsigned field, FILE *fp)
 	return;
 }
 
-
 #endif
+
+
 

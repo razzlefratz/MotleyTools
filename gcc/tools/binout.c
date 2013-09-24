@@ -28,30 +28,31 @@
 #include "../tools/memory.h"
 #include "../tools/number.h"
 
-void binout (void const * memory, size_t extent, char c, char e, FILE * fp) 
+void binout(void const * memory, size_t extent, char c, char e, FILE * fp)
 
 {
-	byte * offset = (byte *)(memory);
-	while (extent--) 
+	byte * offset = (byte *) (memory);
+	while (extent--)
 	{
 		unsigned bits = 8;
-		while (bits--) 
+		while (bits--)
 		{
-			putc (DIGITS_BIN [(* offset >> bits) & 1], fp);
+			putc (DIGITS_BIN[(* offset >> bits) & 1], fp);
 		}
-		if ((extent) && (c)) 
+		if ((extent) && (c))
 		{
 			putc (c, fp);
 		}
 		offset++;
 	}
-	if (e) 
+	if (e)
 	{
 		putc (e, fp);
 	}
 	return;
 }
 
-
 #endif
+
+
 

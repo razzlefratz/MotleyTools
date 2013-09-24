@@ -17,7 +17,7 @@
 
 #include "../tools/symbol.h"
 
-signed equate (struct _code_ const list [], size_t size, char const * name, signed fail) 
+signed equate(struct _code_ const list[], size_t size, char const * name, signed fail)
 
 {
 	size_t lower = 0;
@@ -25,36 +25,37 @@ signed equate (struct _code_ const list [], size_t size, char const * name, sign
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (!name) 
+	if (! name)
 	{
 		return (fail);
 	}
-	if (!list) 
+	if (! list)
 	{
 		return (fail);
 	}
 
 #endif
 
-	while (lower < upper) 
+	while (lower < upper)
 	{
-		size_t index = (lower + upper) >> 1;
-		signed order = strcmp (name, list [index].name);
-		if (order < 0) 
+		size_t index = (lower +  upper) >> 1;
+		signed order = strcmp(name, list[index].name);
+		if (order < 0)
 		{
 			upper = index - 0;
 			continue;
 		}
-		if (order > 0) 
+		if (order > 0)
 		{
-			lower = index + 1;
+			lower = index +  1;
 			continue;
 		}
-		return (list [index].code);
+		return (list[index].code);
 	}
 	return (fail);
 }
 
-
 #endif
+
+
 

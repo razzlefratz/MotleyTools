@@ -61,27 +61,27 @@
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 3, 4))) 
+__attribute__ ((format(printf, 3, 4))) 
 
 #endif
 
-signed  error (int status, errno_t number, char const * format, ...);
+signed error(int status, errno_t number, char const * format, ...);
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 3, 4))) 
+__attribute__ ((format(printf, 3, 4))) 
 
 #endif
 
-signed debug (int status, char const * string, char const * format, ...);
+signed debug(int status, char const * string, char const * format, ...);
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 5, 6))) 
+__attribute__ ((format(printf, 5, 6))) 
 
 #endif
 
-signed error_on_line (int status, errno_t number, char const * filename, unsigned lineno, char const * format, ...);
+signed error_on_line(int status, errno_t number, char const * filename, unsigned lineno, char const * format, ...);
 
 /*====================================================================*
  *   declare custom alternative error () function;  
@@ -89,19 +89,19 @@ signed error_on_line (int status, errno_t number, char const * filename, unsigne
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 1, 2))) 
+__attribute__ ((format(printf, 1, 2))) 
 
 #endif
 
-signed alert (char const *format, ...);
+signed alert(char const * format, ...);
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 3, 4))) 
+__attribute__ ((format(printf, 3, 4))) 
 
 #endif
 
-signed event (int status, signo_t number, char const * format, ...);
+signed event(int status, signo_t number, char const * format, ...);
 
 /*====================================================================*
  *   error message functions;
@@ -109,37 +109,39 @@ signed event (int status, signo_t number, char const * format, ...);
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 1, 2))) 
+__attribute__ ((format(printf, 1, 2))) 
 
 #endif
 
-void eprintf (char const * format, ...);
+void eprintf(char const * format, ...);
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 1, 2))) 
+__attribute__ ((format(printf, 1, 2))) 
 
 #endif
 
-void eperror (char const * format, ...);
+void eperror(char const * format, ...);
 
 /*====================================================================*
  *   memory allocation functions (also declared in memory.h);
  *--------------------------------------------------------------------*/
 
-void * emalloc (size_t nbytes);
-void * erealloc (void *address, size_t nbytes);
+void * emalloc(size_t nbytes);
+void * erealloc(void * address, size_t nbytes);
 
 /*====================================================================*
  *   file open functions (also declared in files.h);
  *--------------------------------------------------------------------*/
 
-FILE * efopen (char const * pathname, char const * openmode);
-FILE * efreopen (char const * pathname, char const * openmode, FILE * fp);
+FILE * efopen(char const * pathname, char const * openmode);
+FILE * efreopen(char const * pathname, char const * openmode, FILE * fp);
 
 /*====================================================================*
  *   end definitions and declarations;
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

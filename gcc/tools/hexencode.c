@@ -28,24 +28,24 @@
 #include "../tools/number.h"
 #include "../tools/types.h"
 
-size_t hexencode (void * memory, register size_t extent, register char const * string) 
+size_t hexencode(void * memory, register size_t extent, register char const * string)
 
 {
-	register byte * origin = (byte *)(memory);
-	register byte * offset = (byte *)(memory);
+	register byte * origin = (byte *) (memory);
+	register byte * offset = (byte *) (memory);
 	unsigned radix = RADIX_HEX;
 	unsigned digit = 0;
-	while ((extent--) && (*string)) 
+	while ((extent--) && (* string))
 	{
 		unsigned field = OCTETS_HEX;
 		unsigned value = 0;
-		if ((offset > origin) && (*string == HEX_EXTENDER)) 
+		if ((offset > origin) && (* string == HEX_EXTENDER))
 		{
 			string++;
 		}
-		while (field--) 
+		while (field--)
 		{
-			if ((digit = todigit (*string)) < radix) 
+			if ((digit = todigit(* string)) < radix)
 			{
 				value *= radix;
 				value += digit;
@@ -55,20 +55,20 @@ size_t hexencode (void * memory, register size_t extent, register char const * s
 			errno = EINVAL;
 			return (0);
 		}
-		*offset = value;
+		* offset = value;
 		offset++;
 	}
 
 #if defined (WIN32)
 
-	while (isspace (*string)) 
+	while (isspace(* string))
 	{
 		string++;
 	}
 
 #endif
 
-	if ((extent) || (*string)) 
+	if ((extent) || (* string))
 	{
 		errno = EINVAL;
 		return (0);
@@ -76,6 +76,7 @@ size_t hexencode (void * memory, register size_t extent, register char const * s
 	return (offset - origin);
 }
 
-
 #endif
+
+
 

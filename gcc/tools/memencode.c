@@ -23,81 +23,82 @@
 #include "../tools/number.h"
 #include "../tools/error.h"
 
-size_t memencode (void * memory, size_t extent, char const * type, char const * data) 
+size_t memencode(void * memory, size_t extent, char const * type, char const * data)
 
 {
-	if (!strcmp (type, "byte")) 
+	if (! strcmp(type, "byte"))
 	{
-		uint8_t * number = (typeof (number))(memory);
-		if (extent < sizeof (* number)) 
+		uint8_t * number = (typeof(number)) (memory);
+		if (extent < sizeof(* number))
 		{
 			error (1, ECANCELED, "Overflow at %s %s", type, data);
 		}
-		* number = (typeof (* number))(basespec (data, 0, sizeof (* number)));
-		return (sizeof (* number));
+		* number = (typeof(* number)) (basespec(data, 0, sizeof(* number)));
+		return (sizeof(* number));
 	}
-	if (!strcmp (type, "word")) 
+	if (! strcmp(type, "word"))
 	{
-		uint16_t * number = (typeof (number))(memory);
-		if (extent < sizeof (* number)) 
+		uint16_t * number = (typeof(number)) (memory);
+		if (extent < sizeof(* number))
 		{
 			error (1, ECANCELED, "Overflow at %s %s", type, data);
 		}
-		* number = (typeof (* number))(basespec (data, 0, sizeof (* number)));
-		return (sizeof (* number));
+		* number = (typeof(* number)) (basespec(data, 0, sizeof(* number)));
+		return (sizeof(* number));
 	}
-	if (!strcmp (type, "long")) 
+	if (! strcmp(type, "long"))
 	{
-		uint32_t * number = (typeof (number))(memory);
-		if (extent < sizeof (* number)) 
+		uint32_t * number = (typeof(number)) (memory);
+		if (extent < sizeof(* number))
 		{
 			error (1, ECANCELED, "Overflow at %s %s", type, data);
 		}
-		* number = (typeof (* number))(basespec (data, 0, sizeof (* number)));
-		return (sizeof (* number));
+		* number = (typeof(* number)) (basespec(data, 0, sizeof(* number)));
+		return (sizeof(* number));
 	}
-	if (!strcmp (type, "huge")) 
+	if (! strcmp(type, "huge"))
 	{
-		uint64_t * number = (typeof (number))(memory);
-		if (extent < sizeof (* number)) 
+		uint64_t * number = (typeof(number)) (memory);
+		if (extent < sizeof(* number))
 		{
 			error (1, ECANCELED, "Overflow at %s %s", type, data);
 		}
-		* number = (typeof (* number))(basespec (data, 0, sizeof (* number)));
-		return (sizeof (* number));
+		* number = (typeof(* number)) (basespec(data, 0, sizeof(* number)));
+		return (sizeof(* number));
 	}
-	if (!strcmp (type, "text")) 
+	if (! strcmp(type, "text"))
 	{
-		extent = strlen (data);
+		extent = strlen(data);
 		memcpy (memory, data, extent);
 		return (extent);
 	}
-	if (!strcmp (type, "data")) 
+	if (! strcmp(type, "data"))
 	{
-		extent = (unsigned)(dataspec (data, memory, extent));
+		extent = (unsigned) (dataspec(data, memory, extent));
 		return (extent);
 	}
-	if (!strcmp (type, "zero")) 
+	if (! strcmp(type, "zero"))
 	{
-		extent = (typeof (extent))(uintspec (data, 0, extent));
+		extent = (typeof(extent)) (uintspec(data, 0, extent));
 		memset (memory, 0x00, extent);
 		return (extent);
 	}
-	if (!strcmp (type, "fill")) 
+	if (! strcmp(type, "fill"))
 	{
-		extent = (typeof (extent))(uintspec (data, 0, extent));
+		extent = (typeof(extent)) (uintspec(data, 0, extent));
 		memset (memory, 0xff, extent);
 		return (extent);
 	}
-	if (!strcmp (type, "skip")) 
+	if (! strcmp(type, "skip"))
 	{
-		extent = (typeof (extent))(uintspec (data, 0, extent));
+		extent = (typeof(extent)) (uintspec(data, 0, extent));
 		return (extent);
 	}
 	error (1, ENOTSUP, "%s", type);
 	return (0);
 }
 
-
 #endif
+
+
 

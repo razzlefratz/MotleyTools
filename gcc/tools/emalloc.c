@@ -23,17 +23,18 @@
 #include "../tools/memory.h"
 #include "../tools/error.h"
 
-void *emalloc (size_t extent) 
+void * emalloc(size_t extent)
 
 {
-	void * memory = malloc (extent);;
-	if (!memory) 
+	void * memory = malloc(extent);;
+	if (! memory)
 	{
 		error (1, errno, "Need %zu bytes", extent);
 	}
 	return (memory);
 }
 
-
 #endif
+
+
 

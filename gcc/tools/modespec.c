@@ -21,31 +21,32 @@
 #include "../tools/chars.h"
 #include "../tools/error.h"
 
-mode_t modespec (char const *string) 
+mode_t modespec(char const * string)
 
 {
-	char const *sp = string;
+	char const * sp = string;
 	mode_t mode = 0;
-	if (!string) 
+	if (! string)
 	{
 		error (1, EINVAL, __func__);
 	}
-	while (isoctal (*sp)) 
+	while (isoctal(* sp))
 	{
 		mode *= 8;
-		mode += *sp++ - '0';
+		mode += * sp++ - '0';
 	}
-	if (*sp) 
+	if (* sp)
 	{
 		error (1, EINVAL, "[%s]", string);
 	}
-	if ((mode < 0x0001) || (mode > 0x0FFF)) 
+	if ((mode < 0x0001) || (mode > 0x0FFF))
 	{
 		error (1, EINVAL, "Mode %s exceeds range %04o to %04o", string, 0x0001, 0x0FFFF);
 	}
 	return (mode);
 }
 
-
 #endif
+
+
 

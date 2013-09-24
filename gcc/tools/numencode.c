@@ -24,27 +24,27 @@
 #include "../tools/number.h"
 #include "../tools/types.h"
 
-size_t numencode (void * memory, register size_t extent, register char const * string, unsigned radix, unsigned comma) 
+size_t numencode(void * memory, register size_t extent, register char const * string, unsigned radix, unsigned comma)
 
 {
-	register byte * origin = (byte *)(memory);
-	register byte * offset = (byte *)(memory);
-	while ((extent--) && (*string)) 
+	register byte * origin = (byte *) (memory);
+	register byte * offset = (byte *) (memory);
+	while ((extent--) && (* string))
 	{
 		unsigned digit = 0;
 		unsigned octet = 0;
-		if ((offset > origin) && (*string == comma)) 
+		if ((offset > origin) && (* string == comma))
 		{
 			string++;
 		}
-		while ((digit = todigit (*string)) < radix) 
+		while ((digit = todigit(* string)) < radix)
 		{
 			octet *= radix;
 			octet += digit;
-			if (octet > 255) 
+			if (octet > 255)
 			{
 				errno = EINVAL;
-				return (-1);
+				return (- 1);
 			}
 			string++;
 		}
@@ -54,21 +54,20 @@ size_t numencode (void * memory, register size_t extent, register char const * s
 
 #if defined (WIN32)
 
-	while (isspace (*string)) 
+	while (isspace(* string))
 	{
 		string++;
 	}
 
 #endif
 
-	if ((*string) || (extent)) 
+	if ((* string) || (extent))
 	{
 		errno = EINVAL;
-		return (-1);
+		return (- 1);
 	}
-	return ((size_t)(offset - origin));
+	return ((size_t) (offset - origin));
 }
-
 
 /*====================================================================*
  *    test/demo program;
@@ -80,21 +79,20 @@ size_t numencode (void * memory, register size_t extent, register char const * s
 #include "../tools/hexdecode.c"
 #include "../tools/todigit.c"
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
 {
-	byte memory [16];
-	char buffer [100];
-	while (*++argv) 
+	byte memory[16];
+	char buffer[100];
+	while (* ++ argv)
 	{
-		memset (memory, 0, sizeof (memory));
-		numencode (memory, sizeof (memory), *argv, 10, '.');
-		hexdecode (memory, sizeof (memory), buffer, sizeof (buffer));
-		printf ("%s=[%s]\n", *argv, buffer);
+		memset (memory, 0, sizeof(memory));
+		numencode (memory, sizeof(memory), * argv, 10, '.');
+		hexdecode (memory, sizeof(memory), buffer, sizeof(buffer));
+		printf ("%s=[%s]\n", * argv, buffer);
 	}
 	return (0);
 }
-
 
 #endif
 
@@ -103,4 +101,6 @@ int main (int argc, char const * argv [])
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

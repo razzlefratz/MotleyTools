@@ -44,20 +44,19 @@ static signed c;
  *
  *--------------------------------------------------------------------*/
 
-static signed _number (void * op, signed get (void * op), signed unget (signed c, void * op)) 
+static signed _number(void * op, signed get(void * op), signed unget(signed c, void * op))
 
 {
 	signed n = 0;
-	while (isdigit (c)) 
+	while (isdigit(c))
 	{
 		n *= 10;
 		n += (c - '0');
-		c = get (op);
+		c = get(op);
 	}
 	printf ("number=%d\n", n);
 	return (n);
 }
-
 
 /*====================================================================*
  *
@@ -74,28 +73,28 @@ static signed _number (void * op, signed get (void * op), signed unget (signed c
  *
  *--------------------------------------------------------------------*/
 
-static signed _factor (void * op, signed get (void * op), signed unget (signed c, void * op)) 
+static signed _factor(void * op, signed get(void * op), signed unget(signed c, void * op))
 
 {
 	signed n = 1;
-	while (c != EOF) 
+	while (c != EOF)
 	{
-		if (isblank (c)) 
+		if (isblank(c))
 		{
-			c = get (op);
+			c = get(op);
 			continue;
 		}
-		if (isdigit (c)) 
+		if (isdigit(c))
 		{
-			n *= _number (op, get, unget);
+			n *= _number(op, get, unget);
 			continue;
 		}
-		if (c == '(') 
+		if (c == '(')
 		{
-			n *= value (op, get, unget);
-			if (c == ')') 
+			n *= value(op, get, unget);
+			if (c == ')')
 			{
-				c = get (op);
+				c = get(op);
 			}
 			continue;
 		}
@@ -104,7 +103,6 @@ static signed _factor (void * op, signed get (void * op), signed unget (signed c
 	printf ("factor=%d\n", n);
 	return (n);
 }
-
 
 /*====================================================================*
  *
@@ -121,33 +119,33 @@ static signed _factor (void * op, signed get (void * op), signed unget (signed c
  *
  *--------------------------------------------------------------------*/
 
-static signed _term (void * op, signed get (void * op), signed unget (signed c, void * op)) 
+static signed _term(void * op, signed get(void * op), signed unget(signed c, void * op))
 
 {
-	signed n = _factor (op, get, unget);
-	while (c != EOF) 
+	signed n = _factor(op, get, unget);
+	while (c != EOF)
 	{
-		if (isblank (c)) 
+		if (isblank(c))
 		{
-			c = get (op);
+			c = get(op);
 			continue;
 		}
-		if (c == '*') 
+		if (c == '*')
 		{
-			c = get (op);
-			n *= _factor (op, get, unget);
+			c = get(op);
+			n *= _factor(op, get, unget);
 			continue;
 		}
-		if (c == '/') 
+		if (c == '/')
 		{
-			c = get (op);
-			n /= _factor (op, get, unget);
+			c = get(op);
+			n /= _factor(op, get, unget);
 			continue;
 		}
-		if (c == '%') 
+		if (c == '%')
 		{
-			c = get (op);
-			n %= _factor (op, get, unget);
+			c = get(op);
+			n %= _factor(op, get, unget);
 			continue;
 		}
 		break;
@@ -155,7 +153,6 @@ static signed _term (void * op, signed get (void * op), signed unget (signed c, 
 	printf ("term=%d\n", n);
 	return (n);
 }
-
 
 /*====================================================================*
  *
@@ -173,35 +170,34 @@ static signed _term (void * op, signed get (void * op), signed unget (signed c, 
  *
  *--------------------------------------------------------------------*/
 
-signed value (void * op, signed get (void * op), signed unget (signed c, void * op)) 
+signed value(void * op, signed get(void * op), signed unget(signed c, void * op))
 
 {
-	c = get (op);
-	signed n = _term (op, get, unget);
-	while (c != EOF) 
+	c = get(op);
+	signed n = _term(op, get, unget);
+	while (c != EOF)
 	{
-		if (isblank (c)) 
+		if (isblank(c))
 		{
-			c = get (op);
+			c = get(op);
 			continue;
 		}
-		if (c == '+') 
+		if (c == '+')
 		{
-			c = get (op);
-			n += _term (op, get, unget);
+			c = get(op);
+			n += _term(op, get, unget);
 			continue;
 		}
-		if (c == '-') 
+		if (c == '-')
 		{
-			c = get (op);
-			n -= _term (op, get, unget);
+			c = get(op);
+			n -= _term(op, get, unget);
 			continue;
 		}
 		break;
 	}
 	return (n);
 }
-
 
 /*====================================================================*
  *
@@ -211,13 +207,14 @@ signed value (void * op, signed get (void * op), signed unget (signed c, void * 
 
 #include <stdio.h>
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
 {
-	printf ("%d\n", value (stdin, getc, ungetc));
+	printf ("%d\n", value(stdin, getc, ungetc));
 	return (0);
 }
 
-
 #endif
+
+
 

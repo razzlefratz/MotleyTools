@@ -21,26 +21,26 @@
 
 #include "../tools/memory.h"
 
-void memwrap (void * memory, size_t extent, ssize_t offset) 
+void memwrap(void * memory, size_t extent, ssize_t offset)
 
 {
-	byte * buffer = (byte *)(memory);
+	byte * buffer = (byte *) (memory);
 	size_t start = 0;
 	size_t moved = 0;
-	if ((offset %= extent) < 0) 
+	if ((offset %= extent) < 0)
 	{
 		offset += extent;
 	}
-	while (moved < extent) 
+	while (moved < extent)
 	{
 		size_t store = start;
 		size_t fetch = start;
-		byte temp = buffer [fetch];
+		byte temp = buffer[fetch];
 		fetch += offset;
 		fetch %= extent;
-		while (fetch != start) 
+		while (fetch != start)
 		{
-			buffer [store] = buffer [fetch];
+			buffer [store] = buffer[fetch];
 			store = fetch;
 			fetch += offset;
 			fetch %= extent;
@@ -53,29 +53,28 @@ void memwrap (void * memory, size_t extent, ssize_t offset)
 	return;
 }
 
-
 /*====================================================================*
  *   demo/test program;
  *--------------------------------------------------------------------*/
 
 #if 0
 
-void dump (byte memory [], size_t extent) 
+void dump(byte memory[], size_t extent)
 
 {
 	size_t offset = 0;
-	while (offset < extent) 
+	while (offset < extent)
 	{
-		printf (" %02d", memory [offset++]);
+		printf (" %02d", memory[offset++]);
 	}
 	printf ("\n");
 	return;
 }
 
-int main (signed argc, char const * atgv []) 
+int main(signed argc, char const * atgv[])
 
 {
-	byte memory [] = 
+	byte memory[] = 
 	{
 		0,
 		1,
@@ -88,16 +87,17 @@ int main (signed argc, char const * atgv [])
 		8,
 		9
 	};
-	dump (memory, sizeof (memory));
-	memwrap (memory, sizeof (memory), 5);
-	dump (memory, sizeof (memory));
-	memwrap (memory, sizeof (memory), -3);
-	dump (memory, sizeof (memory));
+	dump (memory, sizeof(memory));
+	memwrap (memory, sizeof(memory), 5);
+	dump (memory, sizeof(memory));
+	memwrap (memory, sizeof(memory), - 3);
+	dump (memory, sizeof(memory));
 	return (0);
 }
 
-
 #endif
 
 #endif
+
+
 

@@ -19,14 +19,14 @@
 
 #include "../tools/memory.h"
 
-void hexpeek (const void * memory, size_t origin, size_t offset, size_t extent, size_t window, FILE * fp) 
+void hexpeek(const void * memory, size_t origin, size_t offset, size_t extent, size_t window, FILE * fp)
 
 {
-	if (offset == origin) 
+	if (offset == origin)
 	{
 		offset++;
 	}
-	hexdump (memory, window < origin? origin - window: 0, offset + window < extent? offset + window: extent, fp);
+	hexdump (memory, window < origin? origin - window: 0, offset +  window < extent? offset +  window: extent, fp);
 	return;
 }
 

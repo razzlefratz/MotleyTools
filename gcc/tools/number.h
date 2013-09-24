@@ -65,39 +65,41 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned long basespec (char const * string, unsigned base, unsigned size);
-unsigned long long uintspec (char const * string, unsigned long long minimum, unsigned long long maximum);
-signed long long tonumber (char const * string, signed long long minimum, signed long long maximum, signed long long nominal);
-signed long long sintspec (char const * string, signed long long number);
-signed totruth (char const * string);
-signed todigit (unsigned c);
+unsigned long basespec(char const * string, unsigned base, unsigned size);
+unsigned long long uintspec(char const * string, unsigned long long minimum, unsigned long long maximum);
+signed long long tonumber(char const * string, signed long long minimum, signed long long maximum, signed long long nominal);
+signed long long sintspec(char const * string, signed long long number);
+signed totruth(char const * string);
+signed todigit(unsigned c);
 
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
 
-void printb (unsigned value, unsigned field, unsigned group, FILE *fp);
-void printx (unsigned value, unsigned field, FILE *fp);
-void printd (unsigned value, FILE *fp);
-void printn (unsigned long value, unsigned field, FILE *fp);
+void printb(unsigned value, unsigned field, unsigned group, FILE * fp);
+void printx(unsigned value, unsigned field, FILE * fp);
+void printd(unsigned value, FILE * fp);
+void printn(unsigned long value, unsigned field, FILE * fp);
 
 /*====================================================================*
  *   ascii to integer convertion;
  *--------------------------------------------------------------------*/
 
-unsigned long atoin (char const *string, char const *digits);
+unsigned long atoin(char const * string, char const * digits);
 
 /*====================================================================*
  *   integer to ascii conversion;
  *--------------------------------------------------------------------*/
 
-char * serial (char buffer [], size_t length, char c, unsigned number);
-char *itosn (char buffer [], size_t length, unsigned long number, char const * digits);
-char *itosm (char buffer [], size_t length, unsigned long number, char const * digits, unsigned group, char comma);
+char * serial(char buffer[], size_t length, char c, unsigned number);
+char * itosn(char buffer[], size_t length, unsigned long number, char const * digits);
+char * itosm(char buffer[], size_t length, unsigned long number, char const * digits, unsigned group, char comma);
 
 /*====================================================================*
  *   end definitions;
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

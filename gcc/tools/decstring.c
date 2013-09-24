@@ -26,30 +26,29 @@
 #include "../tools/memory.h"
 #include "../tools/number.h"
 
-char * decstring (char buffer [], size_t length, const byte memory [], size_t extent) 
+char * decstring(char buffer[], size_t length, const byte memory[], size_t extent)
 
 {
 	char * string = buffer;
 	length /= 4;
-	while ((length--) && (extent--)) 
+	while ((length--) && (extent--))
 	{
-		unsigned number = *memory++;
+		unsigned number = * memory++;
 		unsigned digit = 3;
-		while (digit--) 
+		while (digit--)
 		{
-			string [digit] = '0' + number % 10;
+			string [digit] = '0' +  number % 10;
 			number /= 10;
 		}
 		string += 3;
-		if ((length) && (extent)) 
+		if ((length) && (extent))
 		{
-			*string++ = DEC_EXTENDER;
+			* string++ = DEC_EXTENDER;
 		}
 	}
-	*string = (char) (0);
+	* string = (char)(0);
 	return (buffer);
 }
-
 
 /*====================================================================*
  * test program;
@@ -58,21 +57,20 @@ char * decstring (char buffer [], size_t length, const byte memory [], size_t ex
 #if 0
 #include <stdio.h>
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
 {
-	byte memory [] = 
+	byte memory[] = 
 	{
 		0x01,
 		0x02,
 		0x03,
 		0x04
 	};
-	char string [100]="$";
-	printf ("string=[%s]\n", netstring (string, sizeof (string), memory, sizeof (memory)));
+	char string[100] = "$";
+	printf ("string=[%s]\n", netstring(string, sizeof(string), memory, sizeof(memory)));
 	return (0);
 }
-
 
 #endif
 
@@ -81,4 +79,6 @@ int main (int argc, char const * argv [])
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

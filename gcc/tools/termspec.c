@@ -22,37 +22,37 @@
 #include "../tools/tools.h"
 #include "../tools/types.h"
 
-char const * termspec (char const * term, char const * type, struct _term_ const list [], size_t size) 
+char const * termspec(char const * term, char const * type, struct _term_ const list[], size_t size)
 
 {
 	extern char const * program_name;
 	const struct _term_ * item = list;
 	size_t lower = 0;
 	size_t upper = size;
-	while (lower < upper) 
+	while (lower < upper)
 	{
-		size_t index = (lower + upper) >> 1;
-		signed order = strcmp (term, list [index].term);
-		if (order < 0) 
+		size_t index = (lower +  upper) >> 1;
+		signed order = strcmp(term, list[index].term);
+		if (order < 0)
 		{
 			upper = index - 0;
 			continue;
 		}
-		if (order > 0) 
+		if (order > 0)
 		{
-			lower = index + 1;
+			lower = index +  1;
 			continue;
 		}
-		return (list [index].text);
+		return (list[index].text);
 	}
-	if ((program_name) && (*program_name)) 
+	if ((program_name) && (* program_name))
 	{
 		fprintf (stderr, "%s: ", program_name);
 	}
 	fprintf (stderr, "Have '%s' but need %s ", term, type);
-	while ((size_t)(item - list) < size) 
+	while ((size_t) (item - list) < size)
 	{
-		if (item > list) 
+		if (item > list)
 		{
 			fputc ('|', stderr);
 		}
@@ -63,6 +63,7 @@ char const * termspec (char const * term, char const * type, struct _term_ const
 	exit (1);
 }
 
-
 #endif
+
+
 

@@ -15,22 +15,22 @@
  *   variables;
  *--------------------------------------------------------------------*/
 
-typedef struct classvalue 
+typedef struct classvalue
 
-{ 
-	unsigned class; 
-	unsigned value; 
-	char const * title; 
-} 
+{
+	unsigned class;
+	unsigned value;
+	char const * title;
+}
 
-classvalue; 
+classvalue;
 
 /*====================================================================*
  *   functions;
  *--------------------------------------------------------------------*/
 
-signed ClassValueTest (struct classvalue table [], unsigned limit); 
-char const * ClassValueFind (struct classvalue table [], unsigned limit, unsigned class, unsigned value, char const * title); 
+signed ClassValueTest(struct classvalue table[], unsigned limit);
+char const * ClassValueFind(struct classvalue table[], unsigned limit, unsigned class, unsigned value, char const * title);
 
 /*====================================================================*
  *   end definitions and declarations;

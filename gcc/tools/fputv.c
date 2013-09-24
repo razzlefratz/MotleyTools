@@ -16,18 +16,19 @@
 #include <stdio.h>
 #include "tools.h"
 
-void fputv (char const *string [], size_t size, FILE *fp) 
+void fputv(char const * string[], size_t size, FILE * fp)
 
 {
 	size_t item;
-	for (item = 0; item < size; ++item) 
+	for (item = 0; item < size; ++ item)
 	{
-		fputs (string [item], fp);
+		fputs (string[item], fp);
 		fputc ('\n', fp);
 	}
 	return;
 }
 
-
 #endif
+
+
 

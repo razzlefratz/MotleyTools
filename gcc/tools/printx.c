@@ -20,18 +20,19 @@
 
 #include "../tools/number.h"
 
-void printx (unsigned value, unsigned field, FILE *fp) 
+void printx(unsigned value, unsigned field, FILE * fp)
 
 {
-	if (field > 0) 
+	if (field > 0)
 	{
 		printx (value >> 4, field - 1, fp);
-		putc (DIGITS_HEX [value & 0x0F], fp);
+		putc (DIGITS_HEX[value & 0x0F], fp);
 		return;
 	}
 	return;
 }
 
-
 #endif
+
+
 

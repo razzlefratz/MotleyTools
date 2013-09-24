@@ -28,22 +28,23 @@
 #include "../tools/memory.h"
 #include "../tools/error.h"
 
-uint32_t fdchecksum32 (int fd, register size_t extent, register uint32_t checksum) 
+uint32_t fdchecksum32(int fd, register size_t extent, register uint32_t checksum)
 
 {
 	uint32_t memory;
-	while (extent >= sizeof (memory)) 
+	while (extent >= sizeof(memory))
 	{
-		if (read (fd, &memory, sizeof (memory)) != sizeof (memory)) 
+		if (read(fd, & memory, sizeof(memory)) != sizeof(memory))
 		{
 			error (1, errno, "Can't compute checksum");
 		}
-		extent -= sizeof (memory);
+		extent -= sizeof(memory);
 		checksum ^= memory;
 	}
-	return (~checksum);
+	return (~ checksum);
 }
 
-
 #endif
+
+
 

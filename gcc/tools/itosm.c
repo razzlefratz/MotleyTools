@@ -28,7 +28,7 @@
 
 #include "../tools/number.h"
 
-char * itosm (char buffer [], size_t length, unsigned long number, char const * digits, unsigned group, char comma) 
+char * itosm(char buffer[], size_t length, unsigned long number, char const * digits, unsigned group, char comma)
 
 {
 	unsigned short radix;
@@ -36,34 +36,33 @@ char * itosm (char buffer [], size_t length, unsigned long number, char const * 
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (!buffer) 
+	if (! buffer)
 	{
 		return (buffer);
 	}
-	if (!digits) 
+	if (! digits)
 	{
 		return (buffer);
 	}
 
 #endif
 
-	for (radix = 0; digits [radix]; radix++);
-	if (length && radix) 
+	for (radix = 0; digits[radix]; radix++);
+	if (length && radix)
 	{
-		buffer [--length] = (char) (0);
-		for (count = 1; length && number; count++) 
+		buffer [-- length] = (char)(0);
+		for (count = 1; length && number; count++)
 		{
-			buffer [--length] = digits [number % radix];
+			buffer [-- length] = digits[number % radix];
 			number /= radix;
-			if (length && number && group && comma && !(count%group)) 
+			if (length && number && group && comma && ! (count % group))
 			{
-				buffer [--length] = comma;
+				buffer [-- length] = comma;
 			}
 		}
 	}
-	return (buffer + length);
+	return (buffer +  length);
 }
-
 
 /*====================================================================*
  *   test/demo program;
@@ -73,20 +72,19 @@ char * itosm (char buffer [], size_t length, unsigned long number, char const * 
 #include <stdio.h>
 #include <stdlib.h>
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
 {
-	char buffer [100];
+	char buffer[100];
 	char * digits = "0123456789";
 	unsigned long value = 10000000;
-	printf ("%s\n", itosm (buffer, sizeof (buffer), value, digits, 3, ','));
-	printf ("%s\n", itosm (buffer, sizeof (buffer), value, digits, 0, ','));
-	printf ("%s\n", itosm (buffer, sizeof (buffer), value, digits, 3, 0));
-	printf ("%s\n", itosm (buffer, sizeof (buffer), value, "01", 8, '-'));
-	printf ("%s\n", itosm (buffer, sizeof (buffer), value, "0123456789ABCDEF", 2, ':'));
+	printf ("%s\n", itosm(buffer, sizeof(buffer), value, digits, 3, ','));
+	printf ("%s\n", itosm(buffer, sizeof(buffer), value, digits, 0, ','));
+	printf ("%s\n", itosm(buffer, sizeof(buffer), value, digits, 3, 0));
+	printf ("%s\n", itosm(buffer, sizeof(buffer), value, "01", 8, '-'));
+	printf ("%s\n", itosm(buffer, sizeof(buffer), value, "0123456789ABCDEF", 2, ':'));
 	exit (0);
 }
-
 
 #endif
 
@@ -95,4 +93,6 @@ int main (int argc, char const * argv [])
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

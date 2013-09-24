@@ -16,12 +16,13 @@
 #include <stdio.h>
 #include <unistd.h>
 
-signed fdputc (signed fd, char c) 
+signed fdputc(signed fd, char c)
 
 {
-	return (write (fd, &c, sizeof (c)) == sizeof (c)? c: EOF);
+	return (write(fd, & c, sizeof(c)) == sizeof(c)? c: EOF);
 }
 
-
 #endif
+
+
 

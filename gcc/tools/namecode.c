@@ -21,30 +21,31 @@
 
 #include "../tools/symbol.h"
 
-code_t namecode (struct _code_ const list [], size_t size, char const * name, code_t code) 
+code_t namecode(struct _code_ const list[], size_t size, char const * name, code_t code)
 
 {
 	size_t lower = 0;
 	size_t upper = size;
-	while (lower < upper) 
+	while (lower < upper)
 	{
-		size_t index = (lower + upper) >> 1;
-		signed order = strcmp (name, list [index].name);
-		if (order < 0) 
+		size_t index = (lower +  upper) >> 1;
+		signed order = strcmp(name, list[index].name);
+		if (order < 0)
 		{
 			upper = index - 0;
 			continue;
 		}
-		if (order > 0) 
+		if (order > 0)
 		{
-			lower = index + 1;
+			lower = index +  1;
 			continue;
 		}
-		return (list [index].code);
+		return (list[index].code);
 	}
 	return (code);
 }
 
-
 #endif
+
+
 

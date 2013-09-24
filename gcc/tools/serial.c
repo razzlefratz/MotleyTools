@@ -24,21 +24,22 @@
 
 #include "../tools/number.h"
 
-char *serial (char buffer [], size_t length, char c, unsigned number) 
+char * serial(char buffer[], size_t length, char c, unsigned number)
 
 {
-	if ((buffer) && (length)) 
+	if ((buffer) && (length))
 	{
-		buffer [--length] = c;
-		while (length) 
+		buffer [-- length] = c;
+		while (length)
 		{
-			buffer [--length] = '0' + number % 10;
+			buffer [-- length] = '0' +  number % 10;
 			number /= 10;
 		}
 	}
 	return (buffer);
 }
 
-
 #endif
+
+
 

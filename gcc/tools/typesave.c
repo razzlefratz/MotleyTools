@@ -22,31 +22,31 @@
 #include "../tools/format.h"
 #include "../tools/error.h"
 
-void typesave (struct _type_ const list [], size_t size, char const * name, flag_t flags) 
+void typesave(struct _type_ const list[], size_t size, char const * name, flag_t flags)
 
 {
 	size_t item;
-	for (item = 1; item < size; item++) 
+	for (item = 1; item < size; item++)
 	{
-		if (list [item].type == list [item-1].type) 
+		if (list[item].type == list[item - 1].type)
 		{
 			error (1, EINVAL, "item %zu is a duplicate", item);
 		}
-		if (list [item].type < list [item-1].type) 
+		if (list[item].type < list[item - 1].type)
 		{
 			error (1, EINVAL, "item %zu is out of order", item);
 		}
 	}
-	if (flags & TOOLS_B_DEFINE) 
+	if (flags & TOOLS_B_DEFINE)
 	{
 		printf ("/*=*\n *   constants;\n *-*/\n\n");
-		for (item = 0; item < size; item++) 
+		for (item = 0; item < size; item++)
 		{
-			printf ("#define %s 0x%04X\n", list [item].name, list [item].type);
+			printf ("#define %s 0x%04X\n", list[item].name, list[item].type);
 		}
 		printf ("\n");
 	}
-	if (flags & TOOLS_B_DECLARE) 
+	if (flags & TOOLS_B_DECLARE)
 	{
 		printf ("/*=*\n *   constants;\n *-*/\n\n");
 
@@ -72,35 +72,35 @@ void typesave (struct _type_ const list [], size_t size, char const * name, flag
 
 #endif
 
-		for (item = 0; item < size; item++) 
+		for (item = 0; item < size; item++)
 		{
-			if (flags & TOOLS_B_NUMBER) 
+			if (flags & TOOLS_B_NUMBER)
 			{
-				printf ("\t{\n\t\t0x%04X,\n\t\t\"%s\"\n\t},\n", list [item].type, list [item].name);
+				printf ("\t{\n\t\t0x%04X,\n\t\t\"%s\"\n\t},\n", list[item].type, list[item].name);
 			}
 			else 
 			{
-				printf ("\t{\n\t\t%s,\n\t\t\"%s\"\n\t},\n", list [item].name, list [item].name);
+				printf ("\t{\n\t\t%s,\n\t\t\"%s\"\n\t},\n", list[item].name, list[item].name);
 			}
 		}
 		printf ("};\n\n");
 	}
-	if (flags & TOOLS_B_SWITCH) 
+	if (flags & TOOLS_B_SWITCH)
 	{
 		signed margin = 1;
 		printf ("/*=*\n *   variables;\n *-*/\n\n");
 		indent (margin, "switch (type)");
 		indent (margin, "{");
-		for (item = 0; item < size; item++) 
+		for (item = 0; item < size; item++)
 		{
-			if (flags & TOOLS_B_NUMBER) 
+			if (flags & TOOLS_B_NUMBER)
 			{
-				indent (margin++, "case 0x%04X:", list [item].type);
+				indent (margin++, "case 0x%04X:", list[item].type);
 				indent (margin--, "break;");
 			}
 			else 
 			{
-				indent (margin++, "case %s:", list [item].name);
+				indent (margin++, "case %s:", list[item].name);
 				indent (margin--, "break;");
 			}
 		}
@@ -108,7 +108,7 @@ void typesave (struct _type_ const list [], size_t size, char const * name, flag
 		indent (margin--, "break;");
 		indent (margin, "}\n");
 	}
-	if (flags & TOOLS_B_MARKUP) 
+	if (flags & TOOLS_B_MARKUP)
 	{
 		signed margin = 1;
 		indent (margin++, "<h2>");
@@ -126,14 +126,14 @@ void typesave (struct _type_ const list [], size_t size, char const * name, flag
 		indent (margin, "Description");
 		indent (margin--, "</th>");
 		indent (margin--, "</tr>");
-		for (item = 0; item < size; item++) 
+		for (item = 0; item < size; item++)
 		{
 			indent (margin++, "<tr>");
 			indent (margin++, "<td class='%s'>", STYLE_NAME);
-			indent (margin, "%s", list [item].name);
+			indent (margin, "%s", list[item].name);
 			indent (margin--, "</td>");
 			indent (margin++, "<td class='%s'>", STYLE_SIZE);
-			indent (margin, "0x%04X", list [item].type);
+			indent (margin, "0x%04X", list[item].type);
 			indent (margin--, "</td>");
 			indent (margin++, "<td class='%s'>", STYLE_TEXT);
 			indent (margin, "&nbsp;");
@@ -145,6 +145,7 @@ void typesave (struct _type_ const list [], size_t size, char const * name, flag
 	return;
 }
 
-
 #endif
+
+
 

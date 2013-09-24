@@ -19,40 +19,41 @@
 
 #include "../tools/number.h"
 
-char *itoan (unsigned long number, char buffer [], size_t length, register char const *digits) 
+char * itoan(unsigned long number, char buffer[], size_t length, register char const * digits)
 
 {
 	unsigned short radix;
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (buffer == (char *) (0)) 
+	if (buffer == (char *)(0))
 	{
 		return (buffer);
 	}
-	if (digits == (char const *) (0)) 
+	if (digits == (char const *)(0))
 	{
 		return (buffer);
 	}
 
 #endif
 
-	for (radix = 0; digits [radix]; radix++);
-	if (length > 0) 
+	for (radix = 0; digits[radix]; radix++);
+	if (length > 0)
 	{
-		buffer [--length] = (char) (0);
-		if (radix > 1) 
+		buffer [-- length] = (char)(0);
+		if (radix > 1)
 		{
 			do 
 			{
-				buffer [--length] = digits [number % radix];
+				buffer [-- length] = digits[number % radix];
 			}
 			while (number /= radix);
 		}
 	}
-	return (&buffer [length]);
+	return (& buffer[length]);
 }
 
-
 #endif
+
+
 

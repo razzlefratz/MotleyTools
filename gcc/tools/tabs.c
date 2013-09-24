@@ -28,7 +28,7 @@
  *   local definitions and declarations;
  *--------------------------------------------------------------------*/
 
-static signed *ruler = NULL;
+static signed * ruler = NULL;
 static size_t limit = TABS_L_RULER;
 
 /*====================================================================*
@@ -68,20 +68,20 @@ static size_t limit = TABS_L_RULER;
  *
  *--------------------------------------------------------------------*/
 
-bool tabset (size_t set, int tab) 
+bool tabset(size_t set, int tab)
 
 {
 	size_t col = 0;
-	if (ruler == NULL) 
+	if (ruler == NULL)
 	{
-		ruler = (signed *)(emalloc (limit * sizeof (signed)));
+		ruler = (signed *) (emalloc(limit * sizeof(signed)));
 		tabset (0, 0);
 	}
-	if (tab >= 0) 
+	if (tab >= 0)
 	{
-		for (col = set; col < limit; col++) 
+		for (col = set; col < limit; col++)
 		{
-			if (col == set) 
+			if (col == set)
 			{
 				ruler [col] = true;
 				set += tab;
@@ -96,9 +96,8 @@ bool tabset (size_t set, int tab)
 	{
 		ruler [set] = true;
 	}
-	return ((tab > 0)? (set-tab):(set));
+	return ((tab > 0)? (set - tab): (set));
 }
-
 
 /*====================================================================*
  *
@@ -118,19 +117,18 @@ bool tabset (size_t set, int tab)
  *
  *--------------------------------------------------------------------*/
 
-bool tabcol (size_t col) 
+bool tabcol(size_t col)
 
 {
-	if (ruler) 
+	if (ruler)
 	{
-		return ((col < limit)? (ruler [col]):true);
+		return ((col < limit)? (ruler[col]): true);
 	}
 	else 
 	{
-		return (col%TABS_O_SPACE == 0);
+		return (col % TABS_O_SPACE == 0);
 	}
 }
-
 
 /*====================================================================*
  *
@@ -148,10 +146,10 @@ bool tabcol (size_t col)
  *
  *--------------------------------------------------------------------*/
 
-size_t tabend (size_t col) 
+size_t tabend(size_t col)
 
 {
-	if ((!ruler) || (col < limit)) limit = col;
+	if ((! ruler) || (col < limit)) limit = col;
 	return (limit);
 }
 

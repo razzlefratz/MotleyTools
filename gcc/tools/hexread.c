@@ -30,83 +30,83 @@
 #include "../tools/memory.h"
 #include "../tools/error.h"
 
-size_t hexread (signed fd, void * memory, size_t extent) 
+size_t hexread(signed fd, void * memory, size_t extent)
 
 {
-	uint8_t * origin = (uint8_t *)(memory);
-	uint8_t * offset = (uint8_t *)(memory);
+	uint8_t * origin = (uint8_t *) (memory);
+	uint8_t * offset = (uint8_t *) (memory);
 	unsigned digits = 0;
 	signed c = EOF;
-	while ((extent) && ((c = fdgetc (fd)) != EOF) && (c != ';')) 
+	while ((extent) && ((c = fdgetc(fd)) != EOF) && (c != ';'))
 	{
-		if (isspace (c)) 
+		if (isspace(c))
 		{
 			continue;
 		}
-		if (c == '#') 
+		if (c == '#')
 		{
 			do 
 			{
-				c = fdgetc (fd);
+				c = fdgetc(fd);
 			}
 			while ((c != '\n') && (c != EOF));
 			continue;
 		}
-		if (c == '/') 
+		if (c == '/')
 		{
-			c = fdgetc (fd);
-			if (c == '/') 
+			c = fdgetc(fd);
+			if (c == '/')
 			{
 				do 
 				{
-					c = fdgetc (fd);
+					c = fdgetc(fd);
 				}
 				while ((c != '\n') && (c != EOF));
 				continue;
 			}
-			if (c == '*') 
+			if (c == '*')
 			{
-				while ((c != '/') && (c != EOF)) 
+				while ((c != '/') && (c != EOF))
 				{
-					while ((c != '*') && (c != EOF)) 
+					while ((c != '*') && (c != EOF))
 					{
-						c = fdgetc (fd);
+						c = fdgetc(fd);
 					}
-					c = fdgetc (fd);
+					c = fdgetc(fd);
 				}
 				continue;
 			}
 			continue;
 		}
-		if ((c >= '0') && (c <= '9')) 
+		if ((c >= '0') && (c <= '9'))
 		{
-			*offset *= 16;
-			*offset += c - '0';
-			if (digits++ & 1) 
+			* offset *= 16;
+			* offset += c - '0';
+			if (digits++ & 1)
 			{
 				offset++;
 				extent--;
 			}
 			continue;
 		}
-		if ((c >= 'A') && (c <= 'F')) 
+		if ((c >= 'A') && (c <= 'F'))
 		{
-			*offset *= 16;
-			*offset += 10;
-			*offset += c - 'A';
-			if (digits++ & 1) 
+			* offset *= 16;
+			* offset += 10;
+			* offset += c - 'A';
+			if (digits++ & 1)
 			{
 				offset++;
 				extent--;
 			}
 			continue;
 		}
-		if ((c >= 'a') && (c <= 'f')) 
+		if ((c >= 'a') && (c <= 'f'))
 		{
-			*offset *= 16;
-			*offset += 10;
-			*offset += c - 'a';
-			if (digits++ & 1) 
+			* offset *= 16;
+			* offset += 10;
+			* offset += c - 'a';
+			if (digits++ & 1)
 			{
 				offset++;
 				extent--;
@@ -120,12 +120,12 @@ size_t hexread (signed fd, void * memory, size_t extent)
 
 #else
 
-		return ((size_t)(-1));
+		return ((size_t) (- 1));
 
 #endif
 
 	}
-	if ((extent) && (digits & 1)) 
+	if ((extent) && (digits & 1))
 	{
 
 #if defined (BAILOUT)
@@ -134,7 +134,7 @@ size_t hexread (signed fd, void * memory, size_t extent)
 
 #else
 
-		return ((size_t)(-1));
+		return ((size_t) (- 1));
 
 #endif
 
@@ -142,9 +142,9 @@ size_t hexread (signed fd, void * memory, size_t extent)
 
 #if 0
 
-	while ((c != ';') && (c != EOF)) 
+	while ((c != ';') && (c != EOF))
 	{
-		c = fdgetc (fd);
+		c = fdgetc(fd);
 	}
 
 #endif
@@ -152,6 +152,7 @@ size_t hexread (signed fd, void * memory, size_t extent)
 	return (offset - origin);
 }
 
-
 #endif
+
+
 

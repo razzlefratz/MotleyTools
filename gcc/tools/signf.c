@@ -133,13 +133,12 @@
  *
  *--------------------------------------------------------------------*/
 
-static unsigned char FILL [2] = 
+static unsigned char FILL[2] = 
 
 {
 	' ',
 	'@'
 };
-
 
 /*====================================================================*
  *
@@ -149,7 +148,7 @@ static unsigned char FILL [2] =
  *
  *--------------------------------------------------------------------*/
 
-static unsigned char LINE [64][6] = 
+static unsigned char LINE[64] [6] = 
 
 {
 	{
@@ -666,7 +665,6 @@ static unsigned char LINE [64][6] =
 	}
 };
 
-
 /*====================================================================*
  *
  *   this matrix defines each character font by row; each row points
@@ -674,7 +672,7 @@ static unsigned char LINE [64][6] =
  *
  *--------------------------------------------------------------------*/
 
-static unsigned char FONT [128][10] = 
+static unsigned char FONT[128] [10] = 
 
 {
 
@@ -2471,7 +2469,6 @@ static unsigned char FONT [128][10] =
 	},
 };
 
-
 /*====================================================================*
  *
  *   char const *signf(char const *string, int c, size_t width);
@@ -2502,29 +2499,29 @@ static unsigned char FONT [128][10] =
  *
  *--------------------------------------------------------------------*/
 
-void signf (char const *string, int c, size_t limit) 
+void signf(char const * string, int c, size_t limit)
 
 {
-	char const *sp;
+	char const * sp;
 	size_t width;
 	size_t col;
 	size_t row;
-	FILL [FILL_CHR] = (unsigned char)((isprint (c))? (c):('@'));
-	for (width = row = 0; row < FONT_ROW; width = 0, row++) 
+	FILL [FILL_CHR] = (unsigned char) ((isprint(c))? (c): ('@'));
+	for (width = row = 0; row < FONT_ROW; width = 0, row++)
 	{
-		for (sp = string; *sp != (char)(0); sp++) 
+		for (sp = string; * sp != (char) (0); sp++)
 		{
-			if (*sp == '\\') 
+			if (* sp == '\\')
 			{
 				sp++;
 			}
-			if (*sp == (char) (0)) 
+			if (* sp == (char)(0))
 			{
 				break;
 			}
-			for (col = 0; (col < FONT_COL) && (width < limit); width++, col++) 
+			for (col = 0; (col < FONT_COL) && (width < limit); width++, col++)
 			{
-				putc (FILL [LINE [FONT [(unsigned char)(*sp)&(SCHAR_MAX)][row]][col]], stdout);
+				putc (FILL[LINE[FONT[(unsigned char) (* sp) & (SCHAR_MAX)] [row]] [col]], stdout);
 			}
 		}
 		putc ('\n', stdout);

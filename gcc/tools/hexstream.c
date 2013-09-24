@@ -23,24 +23,25 @@
 #include "../tools/memory.h"
 #include "../tools/number.h"
 
-char * hexstream (char buffer [], size_t length, const byte memory [], size_t extent) 
+char * hexstream(char buffer[], size_t length, const byte memory[], size_t extent)
 
 {
-	char *string = buffer;
-	if (length) 
+	char * string = buffer;
+	if (length)
 	{
 		length >>= 1;
-		while ((length--) && (extent--)) 
+		while ((length--) && (extent--))
 		{
-			*string++ = DIGITS_HEX [(*memory >> 4) & 0x0F];
-			*string++ = DIGITS_HEX [(*memory >> 0) & 0x0F];
+			* string++ = DIGITS_HEX[(* memory >> 4) & 0x0F];
+			* string++ = DIGITS_HEX[(* memory >> 0) & 0x0F];
 			memory++;
 		}
-		*string = (char) (0);
+		* string = (char)(0);
 	}
 	return (buffer);
 }
 
-
 #endif
+
+
 

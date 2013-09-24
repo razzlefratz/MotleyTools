@@ -35,50 +35,56 @@
 #include "../tools/sizes.h"
 
 #if 0
-static int mygetc () 
+
+static int mygetc()
 
 {
 	signed c;
-	while (((c = getc (stdin)) == '\\') && ((c = getc (stdin)) == '\n')); 
+	while (((c = getc(stdin)) == '\\') && ((c = getc(stdin)) == '\n'));
 	return (c);
 }
+
 #endif
 
-signed getfields (char const * vector [], signed limit, char buffer [], size_t length) 
+signed getfields(char const * vector[], signed limit, char buffer[], size_t length)
 
 {
 	signed field = 0;
 	signed count = 0;
 	signed c;
 	vector [field] = buffer;
-	if (field < limit) 
+	if (field < limit)
 	{
 		field++;
 	}
 	do 
 	{
-		c = getc (stdin);
-		while (c == '#') 
+		c = getc(stdin);
+		while (c == '#')
 		{
 			do 
 			{
-				c = getc (stdin);
+				c = getc(stdin);
 			}
-			while (nobreak (c));
-			c = getc (stdin);
+			while (nobreak(c));
+			c = getc(stdin);
 		}
 	}
-	while (isspace (c));
-	while (nobreak (c)) 
+	while (isspace(c));
+	while (nobreak(c))
 	{
-		if (isblank (c)) 
+		if (isblank(c))
 		{
-			do { c = getc (stdin); } while (isblank (c));
-			if (field < limit) 
+			do 
 			{
-				if (length) 
+				c = getc(stdin);
+			}
+			while (isblank(c));
+			if (field < limit)
+			{
+				if (length)
 				{
-					*buffer = (char)(0);
+					* buffer = (char) (0);
 					buffer++;
 					length--;
 					vector [field++] = buffer;
@@ -86,42 +92,42 @@ signed getfields (char const * vector [], signed limit, char buffer [], size_t l
 			}
 			else 
 			{
-				if (length) 
+				if (length)
 				{
-					*buffer = ' ';
+					* buffer = ' ';
 					buffer++;
 					length--;
 				}
 			}
 			continue;
 		}
-		if (isquote (c)) 
+		if (isquote(c))
 		{
 			signed quote = c;
 
 #if 0
 
-			if (length) 
+			if (length)
 			{
-				*buffer = (char)(quote);
+				* buffer = (char) (quote);
 				buffer++;
 				length--;
 			}
 
 #endif
 
-			while (((c = getc (stdin)) != quote) && nobreak (c)) 
+			while (((c = getc(stdin)) != quote) && nobreak(c))
 			{
-				if (c == '\\') 
+				if (c == '\\')
 				{
-					if ((c = getc (stdin)) == EOF) 
+					if ((c = getc(stdin)) == EOF)
 					{
 						break;
 					}
 				}
-				if (length) 
+				if (length)
 				{
-					*buffer = (char) (c);
+					* buffer = (char)(c);
 					buffer++;
 					length--;
 				}
@@ -129,39 +135,40 @@ signed getfields (char const * vector [], signed limit, char buffer [], size_t l
 
 #if 0
 
-			if (length) 
+			if (length)
 			{
-				*buffer = (char)(quote);
+				* buffer = (char) (quote);
 				buffer++;
 				length--;
 			}
 
 #endif
 
-			if (c == quote) 
+			if (c == quote)
 			{
-				c = getc (stdin);
+				c = getc(stdin);
 			}
 			count = field;
 			continue;
 		}
-		if (length) 
+		if (length)
 		{
-			*buffer = (char)(c);
+			* buffer = (char) (c);
 			buffer++;
 			length--;
 		}
-		c = getc (stdin);
+		c = getc(stdin);
 		count = field;
 	}
-	if (count < limit) 
+	if (count < limit)
 	{
-		vector [count] = (char const *)(0);
+		vector [count] = (char const *) (0);
 	}
-	*buffer = (char)(0);
+	* buffer = (char) (0);
 	return (count);
 }
 
-
 #endif
+
+
 

@@ -23,7 +23,7 @@
  *   static variables;
  *--------------------------------------------------------------------*/
 
-static char string [_MAXUNGET];
+static char string[_MAXUNGET];
 static char * sp = string;
 
 /*====================================================================*
@@ -36,12 +36,11 @@ static char * sp = string;
  *
  *--------------------------------------------------------------------*/
 
-int getch (FILE * ifp) 
+int getch(FILE * ifp)
 
 {
-	return ((sp > string)? *--sp: getc (ifp));
+	return ((sp > string)? * -- sp: getc(ifp));
 }
-
 
 /*====================================================================*
  *
@@ -53,12 +52,12 @@ int getch (FILE * ifp)
  *
  *--------------------------------------------------------------------*/
 
-int ungetch (int c, FILE * ifp) 
+int ungetch(int c, FILE * ifp)
 
 {
-	if (sp < (string + sizeof (string))) 
+	if (sp < (string +  sizeof(string)))
 	{
-		*sp++ = c;
+		* sp++ = c;
 		return (c);
 	}
 	else 

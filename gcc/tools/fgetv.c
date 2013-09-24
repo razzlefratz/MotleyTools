@@ -22,18 +22,19 @@
 
 #include "tools.h"
 
-size_t fgetv (char * vector [], size_t size, char buffer [], size_t length, FILE * ifp) 
+size_t fgetv(char * vector[], size_t size, char buffer[], size_t length, FILE * ifp)
 
 {
 	size_t index = 0;
-	while ((index < size) && (fgetline (buffer, length, ifp) != -1)) 
+	while ((index < size) && (fgetline(buffer, length, ifp) != - 1))
 	{
-		vector [index++] = strdup (buffer);
+		vector [index++] = strdup(buffer);
 	}
-	vector [index] = (char *)(0);
+	vector [index] = (char *) (0);
 	return (index);
 }
 
-
 #endif
+
+
 

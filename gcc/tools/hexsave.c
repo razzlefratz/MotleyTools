@@ -22,17 +22,17 @@
 #include "../tools/memory.h"
 #include "../tools/number.h"
 
-void hexsave (void const * memory, size_t extent, size_t column, FILE *fp) 
+void hexsave(void const * memory, size_t extent, size_t column, FILE * fp)
 
 {
-	byte * origin = (uint8_t *)(memory);
-	byte * offset = (uint8_t *)(memory);
-	while (extent--) 
+	byte * origin = (uint8_t *) (memory);
+	byte * offset = (uint8_t *) (memory);
+	while (extent--)
 	{
-		putc (DIGITS_HEX [(* offset >> 4) & 0x0F], fp);
-		putc (DIGITS_HEX [(* offset >> 0) & 0x0F], fp);
+		putc (DIGITS_HEX[(* offset >> 4) & 0x0F], fp);
+		putc (DIGITS_HEX[(* offset >> 0) & 0x0F], fp);
 		offset++;
-		if ((extent) && (column)) 
+		if ((extent) && (column))
 		{
 			putc ((offset - origin) % column? ' ': '\n', fp);
 		}
@@ -41,6 +41,7 @@ void hexsave (void const * memory, size_t extent, size_t column, FILE *fp)
 	return;
 }
 
-
 #endif
+
+
 

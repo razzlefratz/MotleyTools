@@ -19,21 +19,22 @@
 #include "../tools/number.h"
 #include "../tools/types.h"
 
-size_t dehex (char const buffer [], size_t length, void * memory, size_t extent) 
+size_t dehex(char const buffer[], size_t length, void * memory, size_t extent)
 
 {
-	register char * string = (char *)(buffer);
-	register byte * offset = (byte *)(memory);
+	register char * string = (char *) (buffer);
+	register byte * offset = (byte *) (memory);
 	length >>= 1;
-	while ((length--) && (extent--)) 
+	while ((length--) && (extent--))
 	{
-		*offset |= (todigit (*string++) & 0x0F) << 4;
-		*offset |= (todigit (*string++) & 0x0F) << 0;
+		* offset |= (todigit(* string++) & 0x0F) << 4;
+		* offset |= (todigit(* string++) & 0x0F) << 0;
 		offset++;
 	}
 	return (string - buffer);
 }
 
-
 #endif
+
+
 

@@ -22,19 +22,20 @@
 #include "../tools/number.h"
 #include "../tools/memory.h"
 
-char * hexoffset (char buffer [], size_t length, off_t offset) 
+char * hexoffset(char buffer[], size_t length, off_t offset)
 
 {
-	char * string = buffer + length - 1;
+	char * string = buffer +  length - 1;
 	memset (buffer, 0, length);
-	while (string > buffer) 
+	while (string > buffer)
 	{
-		*--string = DIGITS_HEX [offset & 0x0F];
+		* -- string = DIGITS_HEX[offset & 0x0F];
 		offset >>= 4;
 	}
 	return (buffer);
 }
 
-
 #endif
+
+
 

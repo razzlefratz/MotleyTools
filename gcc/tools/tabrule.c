@@ -16,19 +16,20 @@
 #include <stdio.h>
 #include "../tools/tabs.h"
 
-void tabrule (size_t length) 
+void tabrule(size_t length)
 
 {
 	size_t column = 0;
-	while (column < length) 
+	while (column < length)
 	{
-		putchar (column? '^':'0'+column%10);
+		putchar (column? '^': '0' + column % 10);
 		column++;
 	}
 	putchar ('\n');
 	return;
 }
 
-
 #endif
+
+
 

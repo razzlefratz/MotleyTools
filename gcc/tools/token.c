@@ -31,7 +31,7 @@
 #include "../tools/symbol.h"
 #include "../tools/chars.h"
 
-signed token (char buffer [], size_t length, unsigned * lineno, void * bp, int get (void * bp), int unget (int c, void * bp)) 
+signed token(char buffer[], size_t length, unsigned * lineno, void * bp, int get(void * bp), int unget(int c, void * bp))
 
 {
 	unsigned column = 0;
@@ -39,82 +39,82 @@ signed token (char buffer [], size_t length, unsigned * lineno, void * bp, int g
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (!buffer) 
+	if (! buffer)
 	{
 		return (EOF);
 	}
-	if (!length) 
+	if (! length)
 	{
 		return (EOF);
 	}
-	if (!bp) 
+	if (! bp)
 	{
 		return (EOF);
 	}
-	if (!get) 
+	if (! get)
 	{
 		return (EOF);
 	}
-	if (!unget) 
+	if (! unget)
 	{
 		return (EOF);
 	}
 
 #endif
 
-	c = get (bp);
-	if (isspace (c)) 
+	c = get(bp);
+	if (isspace(c))
 	{
 		do 
 		{
-			if (length) 
+			if (length)
 			{
-				*buffer = c;
+				* buffer = c;
 				buffer++;
 				length--;
 			}
-			if (lineno) 
+			if (lineno)
 			{
-				if (c == '\n') 
+				if (c == '\n')
 				{
-					++*lineno;
+					++ * lineno;
 				}
 			}
-			c = get (bp);
+			c = get(bp);
 		}
-		while (isspace (c));
+		while (isspace(c));
 		unget (c, bp);
 		c = TOKEN_SPACE;
 	}
-	else if (isalpha (c)) 
+	else if(isalpha(c))
 	{
 		do 
 		{
-			if (length) 
+			if (length)
 			{
-				*buffer = c;
+				* buffer = c;
 				buffer++;
 				length--;
 			}
-			c = get (bp);
+			c = get(bp);
 		}
-		while (isalpha (c));
+		while (isalpha(c));
 		unget (c, bp);
 		c = TOKEN_ALPHA;
 	}
-	else if (isdigit (c)) 
+	else if(isdigit(c))
 	{
 		do 
 		{
-			if (length) 
+			if (length)
 			{
-				*buffer = c;
+				* buffer = c;
 				buffer++;
 				length--;
 			}
-			c = get (bp);
+			c = get(bp);
 		}
-		while (isdigit (c));
+		while (isdigit(c));
 		unget (c, bp);
 		c = TOKEN_DIGIT;
 	}
@@ -129,43 +129,43 @@ signed token (char buffer [], size_t length, unsigned * lineno, void * bp, int g
  * missing; 
  */
 
-	else if (isquote (c)) 
+	else if(isquote(c))
 	{
 		signed o = c;
 		do 
 		{
-			if (length) 
+			if (length)
 			{
-				*buffer = o;
+				* buffer = o;
 				buffer++;
 				length--;
 			}
-			o = get (bp);
-			if (o == '\\') 
+			o = get(bp);
+			if (o == '\\')
 			{
-				if (length) 
+				if (length)
 				{
-					*buffer = o;
+					* buffer = o;
 					buffer++;
 					length--;
 				}
-				o = get (bp);
-				if (o != EOF) 
+				o = get(bp);
+				if (o != EOF)
 				{
-					if (length) 
+					if (length)
 					{
-						*buffer = o;
+						* buffer = o;
 						buffer++;
 						length--;
 					}
-					o = get (bp);
+					o = get(bp);
 				}
 			}
 		}
 		while ((o != c) && (o != EOF));
-		if (length) 
+		if (length)
 		{
-			*buffer = c;
+			* buffer = c;
 			buffer++;
 			length--;
 		}
@@ -179,56 +179,56 @@ signed token (char buffer [], size_t length, unsigned * lineno, void * bp, int g
  * treat c language comments as distinct tokens
  */
 
-	else if (c == '/') 
+	else if(c == '/')
 	{
-		if (length) 
+		if (length)
 		{
-			*buffer = c;
+			* buffer = c;
 			buffer++;
 			length--;
 		}
-		c = get (bp);
-		if (c == '*') 
+		c = get(bp);
+		if (c == '*')
 		{
-			while ((c != '/') && (c != EOF)) 
+			while ((c != '/') && (c != EOF))
 			{
-				while ((c != '*') && (c != EOF)) 
+				while ((c != '*') && (c != EOF))
 				{
-					if (length) 
+					if (length)
 					{
-						*buffer = c;
+						* buffer = c;
 						buffer++;
 						length--;
 					}
-					c = get (bp);
+					c = get(bp);
 				}
-				if (length) 
+				if (length)
 				{
-					*buffer = c;
+					* buffer = c;
 					buffer++;
 					length--;
 				}
-				c = get (bp);
+				c = get(bp);
 			}
-			if (length) 
+			if (length)
 			{
-				*buffer = '/';
+				* buffer = '/';
 				buffer++;
 				length--;
 			}
 			c = 'C';
 		}
-		else if (c == '/') 
+		else if(c == '/')
 		{
 			do 
 			{
-				if (length) 
+				if (length)
 				{
-					*buffer = c;
+					* buffer = c;
 					buffer++;
 					length--;
 				}
-				c = get (bp);
+				c = get(bp);
 			}
 			while ((c != '\n') && (c != EOF));
 			unget (c, bp);
@@ -242,27 +242,26 @@ signed token (char buffer [], size_t length, unsigned * lineno, void * bp, int g
 
 #endif
 
-	else if (c != EOF) 
+	else if(c != EOF)
 	{
-		if (length) 
+		if (length)
 		{
-			*buffer = c;
+			* buffer = c;
 			buffer++;
 			length--;
 		}
 	}
-	if (column < length) 
+	if (column < length)
 	{
-		if (length) 
+		if (length)
 		{
-			*buffer = (char)(0);
+			* buffer = (char) (0);
 			buffer++;
 			length--;
 		}
 	}
 	return (c);
 }
-
 
 /*====================================================================*
  *   demo/test program;
@@ -271,18 +270,17 @@ signed token (char buffer [], size_t length, unsigned * lineno, void * bp, int g
 #if 0
 #include <stdio.h>
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
 {
-	char buffer [4096];
+	char buffer[4096];
 	char c;
-	while ((c = token (buffer, sizeof (buffer), stdin, getc, ungetc)) != EOF) 
+	while ((c = token(buffer, sizeof(buffer), stdin, getc, ungetc)) != EOF)
 	{
 		printf ("[%c]=[%s]\n", c, buffer);
 	}
 	return (0);
 }
-
 
 #endif
 
@@ -291,4 +289,6 @@ int main (int argc, char const * argv [])
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

@@ -30,66 +30,67 @@
 #include "../tools/tools.h"
 #include "../tools/chars.h"
 
-int readtoken (signed fd, char *buffer, size_t length) 
+int readtoken(signed fd, char * buffer, size_t length)
 
 {
-	static int c = (char) (0);
+	static int c = (char)(0);
 	static int n = 0;
-	if (buffer != (char *) (0)) 
+	if (buffer != (char *)(0))
 	{
-		if (n < 1) 
+		if (n < 1)
 		{
-			n = read (fd, &c, 1);
+			n = read(fd, & c, 1);
 		}
-		if (n < 1) 
+		if (n < 1)
 		{
-			*buffer = (char) (0);
+			* buffer = (char)(0);
 			return (EOF);
 		}
-		else if (isblank (c)) 
+		else if(isblank(c))
 		{
 			do 
 			{
-				*buffer++ = (char) (c);
-				n = read (fd, &c, 1);
+				* buffer++ = (char)(c);
+				n = read(fd, & c, 1);
 			}
-			while ((n > 0) && isblank (c) && (length-- > 1));
-			*buffer = (char) (0);
+			while ((n > 0) && isblank(c) && (length-- > 1));
+			* buffer = (char)(0);
 			return (' ');
 		}
-		else if (isalpha (c)) 
+		else if(isalpha(c))
 		{
 			do 
 			{
-				*buffer++ = (char) (c);
-				n = read (fd, &c, 1);
+				* buffer++ = (char)(c);
+				n = read(fd, & c, 1);
 			}
-			while ((n > 0) && isalnum (c) && (length-- > 1));
-			*buffer = (char) (0);
+			while ((n > 0) && isalnum(c) && (length-- > 1));
+			* buffer = (char)(0);
 			return ('A');
 		}
-		else if (isdigit (c)) 
+		else if(isdigit(c))
 		{
 			do 
 			{
-				*buffer++ = (char) (c);
-				n = read (fd, &c, 1);
+				* buffer++ = (char)(c);
+				n = read(fd, & c, 1);
 			}
-			while ((n > 0) && isdigit (c) && (length-- > 1));
-			*buffer = (char) (0);
+			while ((n > 0) && isdigit(c) && (length-- > 1));
+			* buffer = (char)(0);
 			return ('0');
 		}
 		else 
 		{
-			buffer [0] = (char) (c);
-			buffer [1] = (char) (0);
-			n = read (fd, &c, 1);
-			return (*buffer);
+			buffer [0] = (char)(c);
+			buffer [1] = (char)(0);
+			n = read(fd, & c, 1);
+			return (* buffer);
 		}
 	}
-	return (-1);
+	return (- 1);
 }
 
-
 #endif
+
+
 

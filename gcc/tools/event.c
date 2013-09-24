@@ -29,23 +29,23 @@
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 3, 4))) 
+__attribute__ ((format(printf, 3, 4))) 
 
 #endif
 
-signed event (int status, signo_t number, char const *format, ...) 
+signed event(int status, signo_t number, char const * format, ...)
 
 {
-	extern char const *program_name;
-	if (program_name != (char const *) (0)) 
+	extern char const * program_name;
+	if (program_name != (char const *)(0))
 	{
 		fprintf (stderr, "%s: ", program_name);
 	}
-	if (number) 
+	if (number)
 	{
-		fprintf (stderr, "%s: ", signalname (number));
+		fprintf (stderr, "%s: ", signalname(number));
 	}
-	if ((format) && (*format)) 
+	if ((format) && (* format))
 	{
 		va_list arglist;
 		va_start (arglist, format);
@@ -54,13 +54,14 @@ signed event (int status, signo_t number, char const *format, ...)
 	}
 	fprintf (stderr, "\n");
 	fflush (stderr);
-	if (status) 
+	if (status)
 	{
 		exit (status);
 	}
-	return (-1);
+	return (- 1);
 }
 
-
 #endif
+
+
 

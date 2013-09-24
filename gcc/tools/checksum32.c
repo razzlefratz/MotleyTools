@@ -30,33 +30,32 @@
 
 #include "../tools/memory.h"
 
-uint32_t checksum32 (register void const * memory, register size_t extent, register uint32_t checksum) 
+uint32_t checksum32(register void const * memory, register size_t extent, register uint32_t checksum)
 
 {
 
 #ifdef __GNUC__
 
-	while (extent >= sizeof (checksum)) 
+	while (extent >= sizeof(checksum))
 	{
-		checksum ^= *(typeof (checksum) *)(memory);
-		memory += sizeof (checksum);
-		extent -= sizeof (checksum);
+		checksum ^= * (typeof(checksum) *) (memory);
+		memory += sizeof(checksum);
+		extent -= sizeof(checksum);
 	}
 
 #else
 
-	uint32_t * offset = (uint32_t *)(memory);
-	while (extent >= sizeof (* offset)) 
+	uint32_t * offset = (uint32_t *) (memory);
+	while (extent >= sizeof(* offset))
 	{
-		checksum ^= *offset++;
-		extent -= sizeof (* offset);
+		checksum ^= * offset++;
+		extent -= sizeof(* offset);
 	}
 
 #endif
 
-	return (~checksum);
+	return (~ checksum);
 }
-
 
 /*====================================================================*
  *   demo/test program;
@@ -65,23 +64,22 @@ uint32_t checksum32 (register void const * memory, register size_t extent, regis
 #if 0
 #include <stdio.h>
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
 {
-	uint32_t data [100];
-	read (0, data, sizeof (data));
+	uint32_t data[100];
+	read (0, data, sizeof(data));
 	data [10] = 0;
-	data [10] = checksum32 (data, sizeof (data), data [10]);
-	printf ("data [10] = 0x%08x\n", data [10]);
-	data [10] = checksum32 (data, sizeof (data), data [10]);
-	printf ("data [10] = 0x%08x\n", data [10]);
-	data [10] = checksum32 (data, sizeof (data), 0);
-	printf ("data [10] = 0x%08x\n", data [10]);
-	data [10] = checksum32 (data, sizeof (data), 0);
-	printf ("data [10] = 0x%08x\n", data [10]);
+	data [10] = checksum32(data, sizeof(data), data[10]);
+	printf ("data [10] = 0x%08x\n", data[10]);
+	data [10] = checksum32(data, sizeof(data), data[10]);
+	printf ("data [10] = 0x%08x\n", data[10]);
+	data [10] = checksum32(data, sizeof(data), 0);
+	printf ("data [10] = 0x%08x\n", data[10]);
+	data [10] = checksum32(data, sizeof(data), 0);
+	printf ("data [10] = 0x%08x\n", data[10]);
 	return (0);
 }
-
 
 #endif
 
@@ -90,4 +88,6 @@ int main (int argc, char const * argv [])
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

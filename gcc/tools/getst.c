@@ -30,25 +30,24 @@
  *
  *--------------------------------------------------------------------*/
 
-char *getst (char *string, size_t length, FILE * ifp) 
+char * getst(char * string, size_t length, FILE * ifp)
 
 {
-	char *sp = string;
+	char * sp = string;
 	signed c;
-	if (string != (char *)(0)) 
+	if (string != (char *) (0))
 	{
-		if (length-- > 0) 
+		if (length-- > 0)
 		{
-			while ((length-- > 0) && ((c = getch (ifp)) != EOF) && (c != '\n')) 
+			while ((length-- > 0) && ((c = getch(ifp)) != EOF) && (c != '\n'))
 			{
-				*sp++ = c;
+				* sp++ = c;
 			}
-			*sp = (char)(0);
+			* sp = (char) (0);
 		}
 	}
 	return (string);
 }
-
 
 /*====================================================================*
  *
@@ -60,18 +59,18 @@ char *getst (char *string, size_t length, FILE * ifp)
  *
  *--------------------------------------------------------------------*/
 
-signed ungetst (char *string, FILE * ifp) 
+signed ungetst(char * string, FILE * ifp)
 
 {
-	char *sp = string;
+	char * sp = string;
 	signed c;
-	if (string != (char *)(0)) 
+	if (string != (char *) (0))
 	{
-		while (*sp != (char)(0)) 
+		while (* sp != (char) (0))
 		{
 			sp++;
 		}
-		while ((--sp != (char)(0)) && ((c = ungetch (*sp, ifp)) != EOF));
+		while ((-- sp != (char) (0)) && ((c = ungetch(* sp, ifp)) != EOF));
 		return (c);
 	}
 	else 
@@ -80,6 +79,7 @@ signed ungetst (char *string, FILE * ifp)
 	}
 }
 
-
 #endif
+
+
 

@@ -21,14 +21,16 @@
  *   
  *--------------------------------------------------------------------*/
 
-int getch (FILE * ifp);
-int ungetch (int c, FILE * ifp);
-char *getst (char *string, size_t length, FILE * ifp);
-int ungetst (char *string, FILE * ifp);
+int getch(FILE * ifp);
+int ungetch(int c, FILE * ifp);
+char * getst(char * string, size_t length, FILE * ifp);
+int ungetst(char * string, FILE * ifp);
 
 /*====================================================================*
  *   end definitions;
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

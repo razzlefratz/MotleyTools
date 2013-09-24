@@ -25,29 +25,30 @@
 #include "../tools/number.h"
 #include "../tools/types.h"
 
-size_t hexdecode (void const * memory, register size_t extent, char buffer [], register size_t length) 
+size_t hexdecode(void const * memory, register size_t extent, char buffer[], register size_t length)
 
 {
-	register char * string = (char *)(buffer);
-	register byte * offset = (byte *)(memory);
-	if (length) 
+	register char * string = (char *) (buffer);
+	register byte * offset = (byte *) (memory);
+	if (length)
 	{
-		length /= OCTETS_HEX + 1;
-		while ((length--) && (extent--)) 
+		length /= OCTETS_HEX +  1;
+		while ((length--) && (extent--))
 		{
-			*string++ = DIGITS_HEX [(*offset >> 4) & 0x0F];
-			*string++ = DIGITS_HEX [(*offset >> 0) & 0x0F];
-			if ((length) && (extent)) 
+			* string++ = DIGITS_HEX[(* offset >> 4) & 0x0F];
+			* string++ = DIGITS_HEX[(* offset >> 0) & 0x0F];
+			if ((length) && (extent))
 			{
-				*string++ = HEX_EXTENDER;
+				* string++ = HEX_EXTENDER;
 			}
 			offset++;
 		}
-		*string = (char) (0);
+		* string = (char)(0);
 	}
 	return (string - buffer);
 }
 
-
 #endif
+
+
 

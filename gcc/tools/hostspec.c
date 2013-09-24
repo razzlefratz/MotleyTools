@@ -25,48 +25,49 @@
 #include "../tools/sizes.h"
 #include "../strlib/strlib.h"
 
-struct sockaddr_in * hostspec (char const * string) 
+struct sockaddr_in * hostspec(char const * string)
 
 {
 	struct sockaddr_in * sockaddr_in;
 	struct hostent * hostent;
-	char buffer [HOSTNAME_MAX];
-	char const *sp = string;
-	char *cp = buffer;
+	char buffer[HOSTNAME_MAX];
+	char const * sp = string;
+	char * cp = buffer;
 	unsigned port = 0;
-	while (isdigit (*sp) || (*sp == '.')) 
+	while (isdigit(* sp) || (* sp == '.'))
 	{
-		*cp++ = *sp++;
+		* cp++ = * sp++;
 	}
-	*cp = (char) (0);
-	if ((hostent = gethostbyname (buffer)) == (struct hostent *) (0)) 
+	* cp = (char)(0);
+	if ((hostent = gethostbyname(buffer)) == (struct hostent *)(0))
 	{
 		error (1, 0, "Can't resolve hostname %s", string);
 	}
-	if (*sp == ':') 
+	if (* sp == ':')
 	{
-		while (isdigit (*++sp)) 
+		while (isdigit(* ++ sp))
 		{
 			port *= 10;
-			port += *sp - '0';
+			port += * sp - '0';
 		}
 	}
-	if (*sp) 
+	if (* sp)
 	{
 		error (1, 0, "Bad inet address syntax: %s", string);
 	}
-	sockaddr_in = NEW (struct sockaddr_in);
-	if (sockaddr_in == (struct sockaddr_in *)(0)) 
+	sockaddr_in = NEW(struct sockaddr_in);
+	if (sockaddr_in == (struct sockaddr_in *) (0))
 	{
 		error (1, errno, "Can't create socket %s", string);
 	}
-	memset (sockaddr_in, 0, sizeof (struct sockaddr_in));
+	memset (sockaddr_in, 0, sizeof(struct sockaddr_in));
 	sockaddr_in->sin_family = AF_INET;
 	sockaddr_in->sin_port = port;
-	memcpy (&sockaddr_in->sin_addr, *hostent->h_addr_list, hostent->h_length);
+	memcpy (& sockaddr_in->sin_addr, * hostent->h_addr_list, hostent->h_length);
 	return (sockaddr_in);
 }
 
-
 #endif
+
+
 

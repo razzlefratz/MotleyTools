@@ -11,8 +11,10 @@
 #ifndef TRACE_SOURCE
 #define TRACE_SOURCE
 
-void trace_enter (char const *string);
-void trace_leave (char const *string);
+void trace_enter(char const * string);
+void trace_leave(char const * string);
 
 #endif
+
+
 

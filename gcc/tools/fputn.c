@@ -22,25 +22,26 @@
 #include "../tools/tools.h"
 #include "../tools/number.h"
 
-void fputn (unsigned value, unsigned short radix, size_t width, FILE * ofp) 
+void fputn(unsigned value, unsigned short radix, size_t width, FILE * ofp)
 
 {
-	if (width > 0) 
+	if (width > 0)
 	{
-		if ((radix < RADIX_MIN) || (radix > RADIX_MAX)) 
+		if ((radix < RADIX_MIN) || (radix > RADIX_MAX))
 		{
 			fputn (value, radix, width, ofp);
-			fputc (DIGITS_B36 [0], ofp);
+			fputc (DIGITS_B36[0], ofp);
 		}
 		else 
 		{
-			fputn (value / radix, radix, width-1, ofp);
-			fputc (DIGITS_B36 [value % radix], ofp);
+			fputn (value / radix, radix, width - 1, ofp);
+			fputc (DIGITS_B36[value % radix], ofp);
 		}
 	}
 	return;
 }
 
-
 #endif
+
+
 

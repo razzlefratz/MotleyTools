@@ -18,21 +18,22 @@
 
 #include "../tools/memory.h"
 
-signed strdecr (void * memory, register size_t extent, register byte min, register byte max) 
+signed strdecr(void * memory, register size_t extent, register byte min, register byte max)
 
 {
-	register byte * offset = (byte *)(memory);
-	while (extent--) 
+	register byte * offset = (byte *) (memory);
+	while (extent--)
 	{
-		if (-- offset [extent] >= min) 
+		if (-- offset[extent] >= min)
 		{
 			return (0);
 		}
 		offset [extent] = max;
 	}
-	return (-1);
+	return (- 1);
 }
 
-
 #endif
+
+
 

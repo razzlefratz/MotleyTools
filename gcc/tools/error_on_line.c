@@ -26,27 +26,27 @@
 
 #ifdef __GNUC__
 
-__attribute__ ((format (printf, 5, 6))) 
+__attribute__ ((format(printf, 5, 6))) 
 
 #endif
 
-signed error_on_line (int status, errno_t number, char const *filename, unsigned lineno, char const *format, ...) 
+signed error_on_line(int status, errno_t number, char const * filename, unsigned lineno, char const * format, ...)
 
 {
-	extern char const *program_name;
-	if ((program_name) && (*program_name)) 
+	extern char const * program_name;
+	if ((program_name) && (* program_name))
 	{
 		fprintf (stderr, "%s: ", program_name);
 	}
-	if ((filename) && (*filename)) 
+	if ((filename) && (* filename))
 	{
 		fprintf (stderr, "%s (%d): ", filename, lineno);
 	}
-	if (number) 
+	if (number)
 	{
-		fprintf (stderr, "%s: ", strerror (number));
+		fprintf (stderr, "%s: ", strerror(number));
 	}
-	if ((format) && (*format)) 
+	if ((format) && (* format))
 	{
 		va_list arglist;
 		va_start (arglist, format);
@@ -55,13 +55,14 @@ signed error_on_line (int status, errno_t number, char const *filename, unsigned
 	}
 	fprintf (stderr, "\n");
 	fflush (stderr);
-	if (status) 
+	if (status)
 	{
 		exit (status);
 	}
-	return (-1);
+	return (- 1);
 }
 
-
 #endif
+
+
 

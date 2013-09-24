@@ -19,17 +19,19 @@
 
 #include "../tools/memory.h"
 
-void memfold (void * target, void const * source, size_t extent) 
+void memfold(void * target, void const * source, size_t extent)
 
 {
-	byte * byte1 = (byte *)(target);
-	byte * byte2 = (byte *)(source) + extent;
-	while (extent--) 
+	byte * byte1 = (byte *) (target);
+	byte * byte2 = (byte *) (source) +  extent;
+	while (extent--)
 	{
-		*byte1++ = *--byte2;
+		* byte1++ = * -- byte2;
 	}
 	return;
 }
 
 #endif
+
+
 

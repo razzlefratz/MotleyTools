@@ -39,11 +39,13 @@ extern signed optmin;
  *   function declarations;
  *--------------------------------------------------------------------*/
 
-signed getoptv (int argc, char const * argv [], char const * optv []);
+signed getoptv(int argc, char const * argv[], char const * optv[]);
 
 /*====================================================================*
  *   end definitions;
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

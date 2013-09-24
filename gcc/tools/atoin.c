@@ -22,7 +22,7 @@
 
 #include "../tools/number.h"
 
-unsigned long atoin (char const *string, char const *digits) 
+unsigned long atoin(char const * string, char const * digits)
 
 {
 	unsigned short radix;
@@ -31,30 +31,30 @@ unsigned long atoin (char const *string, char const *digits)
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (string == (char const *) (0)) 
+	if (string == (char const *)(0))
 	{
 		return (0);
 	}
-	if (digits == (char const *) (0)) 
+	if (digits == (char const *)(0))
 	{
 		return (0);
 	}
 
 #endif
 
-	for (radix = 0; digits [radix]; radix++);
-	while (*string) 
+	for (radix = 0; digits[radix]; radix++);
+	while (* string)
 	{
-		for (digit = 0; digit < radix; digit++) 
+		for (digit = 0; digit < radix; digit++)
 		{
-			if (*string++ == digits [digit]) 
+			if (* string++ == digits[digit])
 			{
 				value *= radix;
 				value += digit;
 				break;
 			}
 		}
-		if (digit == radix) 
+		if (digit == radix)
 		{
 			return (0);
 		}
@@ -62,6 +62,7 @@ unsigned long atoin (char const *string, char const *digits)
 	return (value);
 }
 
-
 #endif
+
+
 

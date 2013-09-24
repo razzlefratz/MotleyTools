@@ -26,71 +26,72 @@
 
 #include "../tools/error.h"
 
-char const ** cgistov (char * string) 
+char const ** cgistov(char * string)
 
 {
 	char ** vector;
 	char ** vp;
 	char * sp;
 	signed item = 2;
-	if (!string) 
+	if (! string)
 	{
 		string = "";
 	}
-	for (sp = string; *sp; sp++) 
+	for (sp = string; * sp; sp++)
 	{
-		if (*sp == '&') 
+		if (* sp == '&')
 		{
 			item++;
 		}
 	}
-	if (!(sp = malloc (strlen (string) + 1))) 
+	if (! (sp = malloc(strlen(string) +  1)))
 	{
 		error (1, errno, "Can't allocate string space");
 	}
-	if (!(vp = vector = malloc (item * sizeof (char *)))) 
+	if (! (vp = vector = malloc(item * sizeof(char *))))
 	{
 		error (1, errno, "Can't allocate vector space");
 	}
-	for (*vp++ = sp; *string; string++) 
+	for (* vp++ = sp; * string; string++)
 	{
-		if (*string == '&') 
+		if (* string == '&')
 		{
-			if (item-- > 1) 
+			if (item-- > 1)
 			{
-				*vp++ = sp + 1;
-				*sp++ = (char) (0);
+				* vp++ = sp +  1;
+				* sp++ = (char)(0);
 			}
 			continue;
 		}
-		if (*string == '%') 
+		if (* string == '%')
 		{
 			unsigned ascii = 0;
-			ascii += todigit (*++string);
+			ascii += todigit(* ++ string);
 			ascii *= 16;
-			ascii += todigit (*++string);
-			if (ascii >> 8) 
+			ascii += todigit(* ++ string);
+			if (ascii >> 8)
 			{
 				string--;
 				string--;
-				*sp++ = *string;
+				* sp++ = * string;
 				continue;
 			}
-			*sp++ = ascii;
+			* sp++ = ascii;
 			continue;
 		}
-		if (*string == '+') 
+		if (* string == '+')
 		{
-			*sp++ = ' ';
+			* sp++ = ' ';
 			continue;
 		}
-		*sp++ = *string;
+		* sp++ = * string;
 	}
-	*vp = (char *) (0);
-	*sp = (char) (0);
-	return ((char const **)(vector));
+	* vp = (char *)(0);
+	* sp = (char)(0);
+	return ((char const **) (vector));
 }
 
-
 #endif
+
+
 

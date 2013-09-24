@@ -19,10 +19,10 @@
  *   POSIX data types; (new or proposed)
  *--------------------------------------------------------------------*/
 
-typedef signed errno_t; 
-typedef signed signo_t; 
-typedef unsigned char byte; 
-typedef unsigned word; 
+typedef signed errno_t;
+typedef signed signo_t;
+typedef unsigned char byte;
+typedef unsigned word;
 
 /*====================================================================*
  *   define C++ style true and false for use in standard C programs;
@@ -30,14 +30,14 @@ typedef unsigned word;
 
 #ifndef __cplusplus
 
-typedef enum 
+typedef enum
 
-{ 
-	false, 
+{
+	false,
 	true
-} 
+}
 
-bool; 
+bool;
 
 #endif
 
@@ -97,53 +97,53 @@ bool;
  *   custom data types;
  *--------------------------------------------------------------------*/
 
-typedef signed file_t; 
-typedef signed sock_t; 
-typedef signed code_t; 
-typedef signed bool_t; 
-typedef unsigned type_t; 
-typedef unsigned char byte_t; 
-typedef unsigned flag_t; 
-typedef struct _file_ 
+typedef signed file_t;
+typedef signed sock_t;
+typedef signed code_t;
+typedef signed bool_t;
+typedef unsigned type_t;
+typedef unsigned char byte_t;
+typedef unsigned flag_t;
+typedef struct _file_
 
-{ 
-	file_t file; 
-	char const * name; 
-} 
+{
+	file_t file;
+	char const * name;
+}
 
-file; 
-typedef struct _code_ 
+file;
+typedef struct _code_
 
-{ 
-	code_t code; 
-	char const * name; 
-} 
+{
+	code_t code;
+	char const * name;
+}
 
-code; 
-typedef struct _type_ 
+code;
+typedef struct _type_
 
-{ 
-	type_t type; 
-	char const * name; 
-} 
+{
+	type_t type;
+	char const * name;
+}
 
-type; 
-typedef struct _flag_ 
+type;
+typedef struct _flag_
 
-{ 
-	flag_t flag; 
-	char const * name; 
-} 
+{
+	flag_t flag;
+	char const * name;
+}
 
-flag; 
-typedef struct _term_ 
+flag;
+typedef struct _term_
 
-{ 
-	char const * term; 
-	char const * text; 
-} 
+{
+	char const * term;
+	char const * text;
+}
 
-term; 
+term;
 
 /*====================================================================*
  *   end definitions and declarations;

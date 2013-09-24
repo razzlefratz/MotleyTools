@@ -61,7 +61,7 @@
  *   variables;
  *--------------------------------------------------------------------*/
 
-typedef struct field 
+typedef struct field
 
 {
 	signed type;
@@ -75,101 +75,103 @@ FIELD;
  *   memory allocation functions (also declared in error.h);
  *--------------------------------------------------------------------*/
 
-void *emalloc (size_t extent);
-void *erealloc (void * memory, size_t extent);
+void * emalloc(size_t extent);
+void * erealloc(void * memory, size_t extent);
 
 /*====================================================================*
  *   memory increment/decrement functions;
  *--------------------------------------------------------------------*/
 
-void reverse (void * memory, size_t extent);
-void memwrap (void * memory, size_t extent, ssize_t offset);
-void memswap (void *, void *, size_t extent);
-void memcopy (void *, void const *, size_t extent);
-void memfold (void *, void const *, size_t extent);
-signed strincr (void * memory, size_t extent, byte min, byte max);
-signed strdecr (void * memory, size_t extent, byte min, byte max);
-signed memincr (void * memory, size_t extent);
-signed memdecr (void * memory, size_t extent);
+void reverse(void * memory, size_t extent);
+void memwrap(void * memory, size_t extent, ssize_t offset);
+void memswap(void *, void *, size_t extent);
+void memcopy(void *, void const *, size_t extent);
+void memfold(void *, void const *, size_t extent);
+signed strincr(void * memory, size_t extent, byte min, byte max);
+signed strdecr(void * memory, size_t extent, byte min, byte max);
+signed memincr(void * memory, size_t extent);
+signed memdecr(void * memory, size_t extent);
 
 /*====================================================================*
  *   memory validation functions;
  *--------------------------------------------------------------------*/
 
-uint16_t checksum16 (void const * memory, size_t extent, uint16_t checksum);
-uint32_t checksum32 (void const * memory, size_t extent, uint32_t checksum);
-uint16_t fdchecksum16 (int fd, size_t extent, uint16_t checksum);
-uint32_t fdchecksum32 (int fd, size_t extent, uint32_t checksum);
+uint16_t checksum16(void const * memory, size_t extent, uint16_t checksum);
+uint32_t checksum32(void const * memory, size_t extent, uint32_t checksum);
+uint16_t fdchecksum16(int fd, size_t extent, uint16_t checksum);
+uint32_t fdchecksum32(int fd, size_t extent, uint32_t checksum);
 
 /*====================================================================*
  *   memory encode functions;
  *--------------------------------------------------------------------*/
 
-size_t decencode (void * memory, size_t extent, char const * string);
-size_t hexencode (void * memory, size_t extent, char const * string);
-size_t binencode (void * memory, size_t extent, char const * string);
-size_t numencode (void * memory, size_t extent, char const * string, unsigned radix, unsigned comma);
-size_t memencode (void * memory, size_t extent, char const * type, char const * data);
+size_t decencode(void * memory, size_t extent, char const * string);
+size_t hexencode(void * memory, size_t extent, char const * string);
+size_t binencode(void * memory, size_t extent, char const * string);
+size_t numencode(void * memory, size_t extent, char const * string, unsigned radix, unsigned comma);
+size_t memencode(void * memory, size_t extent, char const * type, char const * data);
 
 /*====================================================================*
  *   memory decode functions;
  *--------------------------------------------------------------------*/
 
-size_t enhex (char buffer [], size_t length, void const * memory, size_t extent);
-size_t dehex (char const buffer [], size_t length, void * memory, size_t extent);
-size_t decdecode (void const * memory, size_t extent, char buffer [], size_t length);
-size_t hexdecode (void const * memory, size_t extent, char buffer [], size_t length);
-size_t bindecode (void const * memory, size_t extent, char buffer [], size_t length);
-size_t memdecode (void const * memory, size_t extent, char const * object, char const * string);
-char * decstring (char buffer [], size_t length, const byte memory [], size_t extent);
-char * hexstring (char buffer [], size_t length, const byte memory [], size_t extent);
-char * binstring (char buffer [], size_t length, const byte memory [], size_t extent);
-char * hexoffset (char buffer [], size_t length, off_t offset);
+size_t enhex(char buffer[], size_t length, void const * memory, size_t extent);
+size_t dehex(char const buffer[], size_t length, void * memory, size_t extent);
+size_t decdecode(void const * memory, size_t extent, char buffer[], size_t length);
+size_t hexdecode(void const * memory, size_t extent, char buffer[], size_t length);
+size_t bindecode(void const * memory, size_t extent, char buffer[], size_t length);
+size_t memdecode(void const * memory, size_t extent, char const * object, char const * string);
+char * decstring(char buffer[], size_t length, const byte memory[], size_t extent);
+char * hexstring(char buffer[], size_t length, const byte memory[], size_t extent);
+char * binstring(char buffer[], size_t length, const byte memory[], size_t extent);
+char * hexoffset(char buffer[], size_t length, off_t offset);
 
 /*====================================================================*
  *   memory input functions;
  *--------------------------------------------------------------------*/
 
-size_t hexread (signed fd, void * memory, size_t extent);
-size_t hexload (void * memory, size_t extent, FILE * fp);
-void hexwrite (signed fd, void const * memory, size_t extent, size_t column);
-size_t gather (void * memory, size_t extent, struct field const *, unsigned fields);
-size_t scatter (void const * memory, size_t extent, struct field const *, unsigned fields);
+size_t hexread(signed fd, void * memory, size_t extent);
+size_t hexload(void * memory, size_t extent, FILE * fp);
+void hexwrite(signed fd, void const * memory, size_t extent, size_t column);
+size_t gather(void * memory, size_t extent, struct field const *, unsigned fields);
+size_t scatter(void const * memory, size_t extent, struct field const *, unsigned fields);
 
 /*====================================================================*
  *   memory print functions;
  *--------------------------------------------------------------------*/
 
-void hexout (void const * memory, size_t extent, char c, char e, FILE * fp);
-void binout (void const * memory, size_t extent, char c, char e, FILE * fp);
-void decout (void const * memory, size_t extent, char c, char e, FILE * fp);
-void chrout (void const * memory, size_t extent, char c, char e, FILE * fp);
-void bindump (void const * memory, size_t offset, size_t extent, FILE * fp);
-void hexdump (void const * memory, size_t offset, size_t extent, FILE * fp);
-void hexview (void const * memory, size_t offset, size_t extent, FILE * fp);
-void regview (void const * memory, size_t offset, size_t extent, FILE * fp);
-void hexsave (void const * memory, size_t extent, size_t column, FILE * fp);
-void hexpeek (void const * memory, size_t origin, size_t offset, size_t extent, size_t window, FILE * fp);
+void hexout(void const * memory, size_t extent, char c, char e, FILE * fp);
+void binout(void const * memory, size_t extent, char c, char e, FILE * fp);
+void decout(void const * memory, size_t extent, char c, char e, FILE * fp);
+void chrout(void const * memory, size_t extent, char c, char e, FILE * fp);
+void bindump(void const * memory, size_t offset, size_t extent, FILE * fp);
+void hexdump(void const * memory, size_t offset, size_t extent, FILE * fp);
+void hexview(void const * memory, size_t offset, size_t extent, FILE * fp);
+void regview(void const * memory, size_t offset, size_t extent, FILE * fp);
+void hexsave(void const * memory, size_t extent, size_t column, FILE * fp);
+void hexpeek(void const * memory, size_t origin, size_t offset, size_t extent, size_t window, FILE * fp);
 
 /*====================================================================*
  *   network address functions; 
  *--------------------------------------------------------------------*/
 
-size_t dataspec (char const * string, void * memory, size_t extent);
-size_t bytespec (char const * string, void * memory, size_t extent);
-size_t ipv4spec (char const * string, byte memory []);
-size_t ipv6spec (char const * string, byte memory []);
+size_t dataspec(char const * string, void * memory, size_t extent);
+size_t bytespec(char const * string, void * memory, size_t extent);
+size_t ipv4spec(char const * string, byte memory[]);
+size_t ipv6spec(char const * string, byte memory[]);
 
 /*====================================================================*
  *   
  *--------------------------------------------------------------------*/
 
-signed fdputc (signed fd, signed c);
-signed fdgetc (signed fd);
+signed fdputc(signed fd, signed c);
+signed fdgetc(signed fd);
 
 /*====================================================================*
  *   end definitions;
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

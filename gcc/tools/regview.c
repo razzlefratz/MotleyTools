@@ -32,31 +32,32 @@
 #include "../tools/memory.h"
 #include "../tools/endian.h"
 
-void regview (void const * memory, size_t offset, size_t extent, FILE *fp) 
+void regview(void const * memory, size_t offset, size_t extent, FILE * fp)
 
 {
-	uint32_t * origin = (uint32_t *)(memory);
-	while (extent >= sizeof (* origin)) 
+	uint32_t * origin = (uint32_t *) (memory);
+	while (extent >= sizeof(* origin))
 	{
-		signed bit = sizeof (* origin) << 3;
-		printf ("%08X ", (uint32_t)(offset));
-		printf ("%08X ", LE32TOH (* origin));
-		while (bit--) 
+		signed bit = sizeof(* origin) << 3;
+		printf ("%08X ", (uint32_t) (offset));
+		printf ("%08X ", LE32TOH(* origin));
+		while (bit--)
 		{
-			putc (((LE32TOH (* origin) >> bit) & 1)? '1': '0', fp);
-			if ((bit) && !(bit%8)) 
+			putc (((LE32TOH(* origin) >> bit) & 1)? '1': '0', fp);
+			if ((bit) && ! (bit % 8))
 			{
 				putc (' ', fp);
 			}
 		}
 		putc ('\n', fp);
-		offset += sizeof (* origin);
-		extent -= sizeof (* origin);
+		offset += sizeof(* origin);
+		extent -= sizeof(* origin);
 		origin++;
 	}
 	return;
 }
 
-
 #endif
+
+
 

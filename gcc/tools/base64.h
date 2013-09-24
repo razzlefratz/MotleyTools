@@ -32,11 +32,13 @@
  *   encode/decode functions;
  *--------------------------------------------------------------------*/
 
-void b64dump (void const * memory, size_t extent, size_t column, FILE *fp);
+void b64dump(void const * memory, size_t extent, size_t column, FILE * fp);
 
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

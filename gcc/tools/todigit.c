@@ -17,24 +17,25 @@
 
 #include "../tools/number.h"
 
-signed todigit (unsigned c) 
+signed todigit(unsigned c)
 
 {
-	if ((c >= '0') && (c <= '9')) 
+	if ((c >= '0') && (c <= '9'))
 	{
 		return (c - '0');
 	}
-	if ((c >= 'A') && (c <= 'Z')) 
+	if ((c >= 'A') && (c <= 'Z'))
 	{
-		return (c - 'A' + 10);
+		return (c - 'A' +  10);
 	}
-	if ((c >= 'a') && (c <= 'z')) 
+	if ((c >= 'a') && (c <= 'z'))
 	{
-		return (c - 'a' + 10);
+		return (c - 'a' +  10);
 	}
-	return (-1);
+	return (- 1);
 }
 
-
 #endif
+
+
 

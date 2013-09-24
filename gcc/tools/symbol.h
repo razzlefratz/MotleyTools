@@ -73,8 +73,8 @@
 #define _swrite(d,s) write(d,(s),sizeof(s)-1)
 #define _ewrite(s) write(STDERR_FILENO,(s),sizeof(s)-1)
 
-signed cread (signed fd);
-signed cwrite (signed fd, signed c);
+signed cread(signed fd);
+signed cwrite(signed fd, signed c);
 
 /*====================================================================*
  *   token parsing functions;
@@ -85,8 +85,10 @@ signed cwrite (signed fd, signed c);
 #define TOKEN_DIGIT '0'
 
 #ifndef __cplusplus
-signed token (char buffer [], size_t length, unsigned * lineno, void * bp, signed get (void * bp), signed unget (signed c, void * bp));
-signed value (void * bp, signed get (void * bp), signed unget (signed c, void * bp));
+
+signed token(char buffer[], size_t length, unsigned * lineno, void * bp, signed get(void * bp), signed unget(signed c, void * bp));
+signed value(void * bp, signed get(void * bp), signed unget(signed c, void * bp));
+
 #endif
 
 /*====================================================================*
@@ -94,16 +96,18 @@ signed value (void * bp, signed get (void * bp), signed unget (signed c, void * 
  *--------------------------------------------------------------------*/
 
 #ifndef __cplusplus
-char const * codename (struct _code_ const list [], size_t size, code_t code, char const * name);
-char const * typename (struct _type_ const list [], size_t size, type_t type, char const * name);
-code_t namecode (struct _code_ const list [], size_t size, char const * name, code_t code);
-type_t nametype (struct _type_ const list [], size_t size, char const * name, type_t type);
-size_t typeload (struct _type_ list [], size_t size);
-size_t codeload (struct _code_ list [], size_t size);
-void codelist (struct _code_ const list [], size_t size, char const * group, char const * comma, FILE *);
-void typelist (struct _type_ const list [], size_t size, char const * group, char const * comma, FILE *);
-void typesave (struct _type_ const list [], size_t size, char const * name, flag_t);
-void codesave (struct _code_ const list [], size_t size, char const * name, flag_t);
+
+char const * codename(struct _code_ const list[], size_t size, code_t code, char const * name);
+char const * typename(struct _type_ const list[], size_t size, type_t type, char const * name);
+code_t namecode(struct _code_ const list[], size_t size, char const * name, code_t code);
+type_t nametype(struct _type_ const list[], size_t size, char const * name, type_t type);
+size_t typeload(struct _type_ list[], size_t size);
+size_t codeload(struct _code_ list[], size_t size);
+void codelist(struct _code_ const list[], size_t size, char const * group, char const * comma, FILE *);
+void typelist(struct _type_ const list[], size_t size, char const * group, char const * comma, FILE *);
+void typesave(struct _type_ const list[], size_t size, char const * name, flag_t);
+void codesave(struct _code_ const list[], size_t size, char const * name, flag_t);
+
 #endif
 
 /*====================================================================*
@@ -111,10 +115,12 @@ void codesave (struct _code_ const list [], size_t size, char const * name, flag
  *--------------------------------------------------------------------*/
 
 #ifndef __cplusplus
-char const * synonym (struct _term_ const list [], size_t size, const char * term);
-void synonyms (struct _term_ const list [], size_t size, const char * term, const char * type);
-signed getfields (char const * fields [], signed limit, char buffer [], size_t length);
-signed getargv (signed argc, char const * argv []);
+
+char const * synonym(struct _term_ const list[], size_t size, const char * term);
+void synonyms(struct _term_ const list[], size_t size, const char * term, const char * type);
+signed getfields(char const * fields[], signed limit, char buffer[], size_t length);
+signed getargv(signed argc, char const * argv[]);
+
 #endif
 
 /*====================================================================*
@@ -122,9 +128,11 @@ signed getargv (signed argc, char const * argv []);
  *--------------------------------------------------------------------*/
 
 #ifndef __cplusplus
-signed equate (struct _code_ const list [], size_t size, const char * name, signed fail);
-signed lookup (struct _code_ const list [], size_t size, const char * name);
-void assist (struct _code_ const list [], size_t size, const char * name, const char * type, FILE *fp);
+
+signed equate(struct _code_ const list[], size_t size, const char * name, signed fail);
+signed lookup(struct _code_ const list[], size_t size, const char * name);
+void assist(struct _code_ const list[], size_t size, const char * name, const char * type, FILE * fp);
+
 #endif
 
 /*====================================================================*
@@ -132,4 +140,6 @@ void assist (struct _code_ const list [], size_t size, const char * name, const 
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

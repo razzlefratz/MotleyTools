@@ -28,15 +28,15 @@
 
 #include "../tools/memory.h"
 
-void memout (void const * memory, size_t extent, char const * format, unsigned group, signed c, FILE *fp) 
+void memout(void const * memory, size_t extent, char const * format, unsigned group, signed c, FILE * fp)
 
 {
-	byte * origin = (byte *) (memory);
-	byte * offset = (byte *) (memory);
-	while (extent--) 
+	byte * origin = (byte *)(memory);
+	byte * offset = (byte *)(memory);
+	while (extent--)
 	{
 		fprintf (fp, format, * offset++);
-		if ((extent) && !((offset - origin) % group)) 
+		if ((extent) && ! ((offset - origin) % group))
 		{
 			putc (c, fp);
 		}
@@ -44,6 +44,7 @@ void memout (void const * memory, size_t extent, char const * format, unsigned g
 	return;
 }
 
-
 #endif
+
+
 

@@ -21,30 +21,31 @@
 
 #include "../tools/symbol.h"
 
-type_t nametype (struct _type_ const list [], size_t size, char const * name, type_t type) 
+type_t nametype(struct _type_ const list[], size_t size, char const * name, type_t type)
 
 {
 	size_t lower = 0;
 	size_t upper = size;
-	while (lower < upper) 
+	while (lower < upper)
 	{
-		size_t index = (lower + upper) >> 1;
-		signed order = strcmp (name, list [index].name);
-		if (order < 0) 
+		size_t index = (lower +  upper) >> 1;
+		signed order = strcmp(name, list[index].name);
+		if (order < 0)
 		{
 			upper = index - 0;
 			continue;
 		}
-		if (order > 0) 
+		if (order > 0)
 		{
-			lower = index + 1;
+			lower = index +  1;
 			continue;
 		}
-		return (list [index].type);
+		return (list[index].type);
 	}
 	return (type);
 }
 
-
 #endif
+
+
 

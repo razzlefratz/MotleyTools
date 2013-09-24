@@ -46,12 +46,14 @@
  *   
  *--------------------------------------------------------------------*/
 
-void set32bitmap (uint32_t * map, unsigned bit);
-void clr32bitmap (uint32_t * map, unsigned bit);
+void set32bitmap(uint32_t * map, unsigned bit);
+void clr32bitmap(uint32_t * map, unsigned bit);
 
 /*====================================================================*
  *   end definitions and declarations;
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

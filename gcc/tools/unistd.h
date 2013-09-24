@@ -17,11 +17,13 @@
 #define _lseek(fd, offset, length) lseek(fd, offset, length)
 #define _close(fd) close(fd)
 
-size_t read (int, void *, size_t);
-size_t write (int, void const *, size_t);
-int close (int);
+size_t read(int, void *, size_t);
+size_t write(int, void const *, size_t);
+int close(int);
 
 #define STDIN_FILENO  0
 #define STDOUT_FILENO 1
 #define STDERR_FILENO 2
+
+
 

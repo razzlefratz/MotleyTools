@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
-float fvalue (void *bp, int get (void *bp), int unget (int c, void *bp));
+float fvalue(void * bp, int get(void * bp), int unget(int c, void * bp));
 
 /*====================================================================*
  *
@@ -25,33 +25,32 @@ float fvalue (void *bp, int get (void *bp), int unget (int c, void *bp));
  *
  *--------------------------------------------------------------------*/
 
-static float _numb (void *bp, int get (void *bp), int unget (int c, void *bp)) 
+static float _numb(void * bp, int get(void * bp), int unget(int c, void * bp))
 
 {
 	float n = 0.0;
 	float p = 1.0;
-	int c = get (bp);
-	while (isdigit (c)) 
+	int c = get(bp);
+	while (isdigit(c))
 	{
 		n *= 10.0;
-		n += (c)-('0');
-		c = get (bp);
+		n += (c) - ('0');
+		c = get(bp);
 	}
-	if (c == '.') 
+	if (c == '.')
 	{
-		c = get (bp);
+		c = get(bp);
 	}
-	while (isdigit (c)) 
+	while (isdigit(c))
 	{
 		p *= 10.0;
 		n *= 10.0;
-		n += (c)-('0');
-		c = get (bp);
+		n += (c) - ('0');
+		c = get(bp);
 	}
 	unget (c, bp);
-	return (n/p);
+	return (n / p);
 }
-
 
 /*====================================================================*
  *
@@ -67,23 +66,23 @@ static float _numb (void *bp, int get (void *bp), int unget (int c, void *bp))
  *
  *--------------------------------------------------------------------*/
 
-static float _fact (void *bp, int get (void *bp), int unget (int c, void *bp)) 
+static float _fact(void * bp, int get(void * bp), int unget(int c, void * bp))
 
 {
 	signed c;
 	float n = 1.0;
-	while ((c = get (bp)) != EOF) 
+	while ((c = get(bp)) != EOF)
 	{
-		if (isspace (c)) continue;
-		else if (isdigit (c)) 
+		if (isspace(c)) continue;
+		else if(isdigit(c))
 		{
 			unget (c, bp);
-			n *= _numb (bp, get, unget);
+			n *= _numb(bp, get, unget);
 		}
-		else if (c == '(') 
+		else if(c == '(')
 		{
-			n *= fvalue (bp, get, unget);
-			if ((c = get (bp)) != ')') unget (c, bp);
+			n *= fvalue(bp, get, unget);
+			if ((c = get(bp)) != ')') unget(c, bp);
 		}
 		else 
 		{
@@ -93,7 +92,6 @@ static float _fact (void *bp, int get (void *bp), int unget (int c, void *bp))
 	}
 	return (n);
 }
-
 
 /*====================================================================*
  *
@@ -109,16 +107,16 @@ static float _fact (void *bp, int get (void *bp), int unget (int c, void *bp))
  *
  *--------------------------------------------------------------------*/
 
-static float _term (void *bp, int get (void *bp), int unget (int c, void *bp)) 
+static float _term(void * bp, int get(void * bp), int unget(int c, void * bp))
 
 {
 	signed c;
-	float n = _fact (bp, get, unget);
-	while ((c = get (bp)) != EOF) 
+	float n = _fact(bp, get, unget);
+	while ((c = get(bp)) != EOF)
 	{
-		if (isspace (c)) continue;
-		else if (c == '*') n *= _fact (bp, get, unget);
-		else if (c == '/') n /= _fact (bp, get, unget);
+		if (isspace(c)) continue;
+		else if(c == '*') n *= _fact(bp, get, unget);
+		else if(c == '/') n /= _fact(bp, get, unget);
 		else 
 		{
 			unget (c, bp);
@@ -127,7 +125,6 @@ static float _term (void *bp, int get (void *bp), int unget (int c, void *bp))
 	}
 	return (n);
 }
-
 
 /*====================================================================*
  *
@@ -143,16 +140,16 @@ static float _term (void *bp, int get (void *bp), int unget (int c, void *bp))
  *
  *--------------------------------------------------------------------*/
 
-float fvalue (void *bp, int get (void *bp), int unget (int c, void *bp)) 
+float fvalue(void * bp, int get(void * bp), int unget(int c, void * bp))
 
 {
 	signed c;
-	float n = _term (bp, get, unget);
-	while ((c = get (bp)) != EOF) 
+	float n = _term(bp, get, unget);
+	while ((c = get(bp)) != EOF)
 	{
-		if (isspace (c)) continue;
-		else if (c == '+') n += _term (bp, get, unget);
-		else if (c == '-') n -= _term (bp, get, unget);
+		if (isspace(c)) continue;
+		else if(c == '+') n += _term(bp, get, unget);
+		else if(c == '-') n -= _term(bp, get, unget);
 		else 
 		{
 			unget (c, bp);

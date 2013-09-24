@@ -35,16 +35,18 @@
  *   prototype tabstop functions;
  *--------------------------------------------------------------------*/
 
-void putruler (size_t length);
-void tabrule (size_t length);
-char *tabspec (char const *string);
-bool tabset (size_t column, int offset);
-bool tabcol (size_t column);
-size_t tabend (size_t column);
+void putruler(size_t length);
+void tabrule(size_t length);
+char * tabspec(char const * string);
+bool tabset(size_t column, int offset);
+bool tabcol(size_t column);
+size_t tabend(size_t column);
 
 /*====================================================================*
  *   end definitions;
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

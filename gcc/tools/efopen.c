@@ -26,17 +26,18 @@
 #include "../tools/tools.h"
 #include "../tools/error.h"
 
-FILE *efopen (char const *filename, char const *openmode) 
+FILE * efopen(char const * filename, char const * openmode)
 
 {
-	FILE *fp;
-	if ((fp = fopen (filename, openmode)) == (FILE *)(0)) 
+	FILE * fp;
+	if ((fp = fopen(filename, openmode)) == (FILE *) (0))
 	{
 		error (0, errno, "%s", filename);
 	}
 	return (fp);
 }
 
-
 #endif
+
+
 

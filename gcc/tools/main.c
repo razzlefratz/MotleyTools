@@ -2,10 +2,10 @@
 #include <stdint.h>
 #include "../tools/hexwrite.c"
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
 {
-	uint8_t buffer [100] = 
+	uint8_t buffer[100] = 
 	{
 		0x00,
 		0x01,
@@ -104,7 +104,7 @@ int main (int argc, char const * argv [])
 		0x0E,
 		0x0F
 	};
-	hexwrite (STDOUT_FILENO, buffer, sizeof (buffer));
+	hexwrite (STDOUT_FILENO, buffer, sizeof(buffer));
 	return (0);
 }
 

@@ -25,7 +25,7 @@
 #include "../tools/number.h"
 #include "../tools/error.h"
 
-size_t ipv4spec (char const *string, byte memory []) 
+size_t ipv4spec(char const * string, byte memory[])
 
 {
 	char const * number = string;
@@ -33,23 +33,23 @@ size_t ipv4spec (char const *string, byte memory [])
 	unsigned offset = 0;
 	unsigned radix = 10;
 	unsigned digit = 0;
-	while ((*number) && (offset < extent)) 
+	while ((* number) && (offset < extent))
 	{
 		unsigned value = 0;
-		if (offset) 
+		if (offset)
 		{
-			if (*number == DEC_EXTENDER) 
+			if (* number == DEC_EXTENDER)
 			{
 				number++;
 			}
 		}
-		while ((digit = todigit (*number)) < radix) 
+		while ((digit = todigit(* number)) < radix)
 		{
 			value *= radix;
 			value += digit;
-			if (value > 0xFF) 
+			if (value > 0xFF)
 			{
-				error (1, ERANGE, "IPv4 '%s' octet %d exceeds 8 bits", string, offset+1);
+				error (1, ERANGE, "IPv4 '%s' octet %d exceeds 8 bits", string, offset + 1);
 			}
 			number++;
 		}
@@ -58,24 +58,23 @@ size_t ipv4spec (char const *string, byte memory [])
 
 #if defined (WIN32)
 
-	while (isspace (*number)) 
+	while (isspace(* number))
 	{
 		number++;
 	}
 
 #endif
 
-	if (offset < extent) 
+	if (offset < extent)
 	{
 		error (1, EINVAL, "IPv4 '%s' has only %d octets", string, offset);
 	}
-	if (*number) 
+	if (* number)
 	{
 		error (1, EINVAL, "IPv4 '%s' contains trash '%s'", string, number);
 	}
 	return (offset);
 }
-
 
 /*====================================================================*
  *   demo/test program;
@@ -88,20 +87,19 @@ size_t ipv4spec (char const *string, byte memory [])
 #include "../tools/error.c"
 
 char const * program_name = "ipv4spec";
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
 {
-	byte memory [IPv4_LEN];
-	char string [IPv4_LEN * 4];
-	while (*++argv) 
+	byte memory[IPv4_LEN];
+	char string[IPv4_LEN * 4];
+	while (* ++ argv)
 	{
-		ipv4spec (*argv, memory);
-		hexdecode (memory, sizeof (memory), string, sizeof (string));
-		printf ("%s %s\n", string, *argv);
+		ipv4spec (* argv, memory);
+		hexdecode (memory, sizeof(memory), string, sizeof(string));
+		printf ("%s %s\n", string, * argv);
 	}
 	return (0);
 }
-
 
 #endif
 
@@ -110,4 +108,6 @@ int main (int argc, char const * argv [])
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

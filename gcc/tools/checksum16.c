@@ -29,18 +29,19 @@
 
 #include "../tools/memory.h"
 
-uint16_t checksum16 (void const * memory, register size_t extent, register uint16_t checksum) 
+uint16_t checksum16(void const * memory, register size_t extent, register uint16_t checksum)
 
 {
-	while (extent >= sizeof (checksum)) 
+	while (extent >= sizeof(checksum))
 	{
-		checksum ^= *(typeof (checksum) *)(memory);
-		memory += sizeof (checksum);
-		extent -= sizeof (checksum);
+		checksum ^= * (typeof(checksum) *) (memory);
+		memory += sizeof(checksum);
+		extent -= sizeof(checksum);
 	}
-	return (~checksum);
+	return (~ checksum);
 }
 
-
 #endif
+
+
 

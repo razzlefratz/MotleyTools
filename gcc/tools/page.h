@@ -30,7 +30,7 @@
  *
  *--------------------------------------------------------------------*/
 
-typedef struct _page_ 
+typedef struct _page_
 
 {
 	unsigned flags;
@@ -50,14 +50,16 @@ PAGE;
  *
  *--------------------------------------------------------------------*/
 
-void setup_page (PAGE * page);
-void reset_page (PAGE * page);
-int pageputc (int c, PAGE * page);
-char const * pageputs (char const *string, PAGE * page);
+void setup_page(PAGE * page);
+void reset_page(PAGE * page);
+int pageputc(int c, PAGE * page);
+char const * pageputs(char const * string, PAGE * page);
 
 /*====================================================================*
  *   end definitions and declarations;
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

@@ -24,20 +24,21 @@
 
 #include "../tools/memory.h"
 
-signed memincr (void * memory, register size_t extent) 
+signed memincr(void * memory, register size_t extent)
 
 {
-	register byte * offset = (byte *)(memory);
-	while (extent--) 
+	register byte * offset = (byte *) (memory);
+	while (extent--)
 	{
-		if (++ offset [extent] != 0x00) 
+		if (++ offset[extent] != 0x00)
 		{
 			return (0);
 		}
 	}
-	return (-1);
+	return (- 1);
 }
 
-
 #endif
+
+
 

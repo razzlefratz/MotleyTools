@@ -50,7 +50,7 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-static char buffer [1024] = "";
+static char buffer[1024] = "";
 static signed c;
 
 /*====================================================================*
@@ -65,17 +65,16 @@ static signed c;
  *
  *--------------------------------------------------------------------*/
 
-static void _newchar (FILE * fp) 
+static void _newchar(FILE * fp)
 
 {
 	do 
 	{
-		c = getc (fp);
+		c = getc(fp);
 	}
-	while (isblank (c));
+	while (isblank(c));
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -91,17 +90,16 @@ static void _newchar (FILE * fp)
  *
  *--------------------------------------------------------------------*/
 
-static void _newline (FILE * fp) 
+static void _newline(FILE * fp)
 
 {
-	while (nobreak (c)) 
+	while (nobreak(c))
 	{
-		c = getc (fp);
+		c = getc(fp);
 	}
 	_newchar (fp);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -121,25 +119,24 @@ static void _newline (FILE * fp)
  *
  *--------------------------------------------------------------------*/
 
-static bool compare (FILE * fp, char const * sp) 
+static bool compare(FILE * fp, char const * sp)
 
 {
-	while (isblank (*sp)) 
+	while (isblank(* sp))
 	{
 		sp++;
 	}
-	while ((*sp) && (toupper (c) == toupper (*sp)) && nobreak (c)) 
+	while ((* sp) && (toupper(c) == toupper(* sp)) && nobreak(c))
 	{
 		do 
 		{
 			sp++;
 		}
-		while (isblank (*sp));
+		while (isblank(* sp));
 		_newchar (fp);
 	}
-	return (!*sp);
+	return (! * sp);
 }
-
 
 /*====================================================================*
  *
@@ -154,39 +151,38 @@ static bool compare (FILE * fp, char const * sp)
  *
  *--------------------------------------------------------------------*/
 
-static void _collect (FILE * fp) 
+static void _collect(FILE * fp)
 
 {
-	char *bp = buffer;
-	char *cp = buffer;
-	while ((c != ';') && nobreak (c)) 
+	char * bp = buffer;
+	char * cp = buffer;
+	while ((c != ';') && nobreak(c))
 	{
-		if (c == '\\') 
+		if (c == '\\')
 		{
-			c = getc (fp);
-			if (c == 'n') 
+			c = getc(fp);
+			if (c == 'n')
 			{
 				c = '\n';
 			}
-			if (c == 't') 
+			if (c == 't')
 			{
 				c = '\t';
 			}
 		}
-		if ((size_t)(cp - buffer) < (sizeof (buffer) - 1)) 
+		if ((size_t) (cp - buffer) < (sizeof(buffer) - 1))
 		{
-			*cp++ = c;
+			* cp++ = c;
 		}
-		if (!isspace (c)) 
+		if (! isspace(c))
 		{
 			bp = cp;
 		}
-		c = getc (fp);
+		c = getc(fp);
 	}
-	*bp = (char) (0);
+	* bp = (char)(0);
 	return;
 }
-
 
 /*====================================================================*
  *
@@ -206,62 +202,62 @@ static void _collect (FILE * fp)
  *
  *--------------------------------------------------------------------*/
 
-char const * profilestring (char const * profile, char const * section, char const * element, char const * content) 
+char const * profilestring(char const * profile, char const * section, char const * element, char const * content)
 
 {
-	FILE *fp;
+	FILE * fp;
 
 #if CMASSOC_SAFEMODE
 
-	if (!profile) 
+	if (! profile)
 	{
 		return (content);
 	}
-	if (!section) 
+	if (! section)
 	{
 		return (content);
 	}
-	if (!element) 
+	if (! element)
 	{
 		return (content);
 	}
 
 #endif
 
-	if ((fp = fopen (profile, "rb"))) 
+	if ((fp = fopen(profile, "rb")))
 	{
-		for (_newchar (fp); c != EOF; _newline (fp)) 
+		for (_newchar(fp); c != EOF; _newline(fp))
 		{
-			if (c != '[') 
+			if (c != '[')
 			{
 				continue;
 			}
 			_newchar (fp);
-			if (!compare (fp, section)) 
+			if (! compare(fp, section))
 			{
 				continue;
 			}
-			if (c != ']') 
+			if (c != ']')
 			{
 				continue;
 			}
-			for (_newline (fp); (c != '[') && (c != EOF); _newline (fp)) 
+			for (_newline(fp); (c != '[') && (c != EOF); _newline(fp))
 			{
-				if (c == ';') 
+				if (c == ';')
 				{
 					continue;
 				}
-				if (!compare (fp, element)) 
+				if (! compare(fp, element))
 				{
 					continue;
 				}
-				if (c != '=') 
+				if (c != '=')
 				{
 					continue;
 				}
 				_newchar (fp);
 				_collect (fp);
-				content = strdup (buffer);
+				content = strdup(buffer);
 				break;
 			}
 			break;
@@ -270,7 +266,6 @@ char const * profilestring (char const * profile, char const * section, char con
 	}
 	return (content);
 }
-
 
 /*====================================================================*
  *
@@ -292,29 +287,29 @@ char const * profilestring (char const * profile, char const * section, char con
  *
  *--------------------------------------------------------------------*/
 
-signed profilenumber (char const * profile, char const * section, char const * element, signed content) 
+signed profilenumber(char const * profile, char const * section, char const * element, signed content)
 
 {
-	char const * string = profilestring (profile, section, element, "");
-	signed integer = totruth (string);
-	if (integer == -1) 
+	char const * string = profilestring(profile, section, element, "");
+	signed integer = totruth(string);
+	if (integer == - 1)
 	{
 		signed sign = 1;
-		if (*string == '+') 
+		if (* string == '+')
 		{
 			string++;
 		}
-		else if (*string == '-') 
+		else if(* string == '-')
 		{
-			sign = -sign;
+			sign = - sign;
 			string++;
 		}
-		for (integer = 0; isdigit (*string); string++) 
+		for (integer = 0; isdigit(* string); string++)
 		{
 			integer *= 10;
-			integer += *string - '0';
+			integer += * string - '0';
 		}
-		if (*string) 
+		if (* string)
 		{
 			return (content);
 		}
@@ -323,6 +318,30 @@ signed profilenumber (char const * profile, char const * section, char const * e
 	return (integer);
 }
 
+/*====================================================================*
+ *
+ *   int main (int argc, char const * argv []);
+ *
+ *   demo/test program; arguments are profile, section, element and content in 
+ *   that order; you can construct your own configuration profile and
+ *   observe behaviour; 
+ *
+ *--------------------------------------------------------------------*/
+
+#if 0
+
+#include <stdio.h>
+#include "../tools/totruth.c"
+
+int main(int argc, char const * argv[])
+
+{
+	char const * content = proprofilecontent(argv[1], argv[2], argv[3], argv[4]);
+	printf ("profile=[%s] section=[%s] element=[%s] content=[%s]\n", argv[1], argv[2], argv[3], content);
+	return (0);
+}
+
+#endif
 
 /*====================================================================*
  *
@@ -339,40 +358,13 @@ signed profilenumber (char const * profile, char const * section, char const * e
 #include <stdio.h>
 #include "../tools/totruth.c"
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
 {
-	char const * content = proprofilecontent (argv [1], argv [2], argv [3], argv [4]);
-	printf ("profile=[%s] section=[%s] element=[%s] content=[%s]\n", argv [1], argv [2], argv [3], content);
+	signed content = profilenumber(argv[1], argv[2], argv[3], atoi(argv[4]));
+	printf ("profile=[%s] section=[%s] element=[%s] content=[%d]\n", argv[1], argv[2], argv[3], content);
 	return (0);
 }
-
-
-#endif
-
-/*====================================================================*
- *
- *   int main (int argc, char const * argv []);
- *
- *   demo/test program; arguments are profile, section, element and content in 
- *   that order; you can construct your own configuration profile and
- *   observe behaviour; 
- *
- *--------------------------------------------------------------------*/
-
-#if 0
-
-#include <stdio.h>
-#include "../tools/totruth.c"
-
-int main (int argc, char const * argv []) 
-
-{
-	signed content = profilenumber (argv [1], argv [2], argv [3], atoi (argv [4]));
-	printf ("profile=[%s] section=[%s] element=[%s] content=[%d]\n", argv [1], argv [2], argv [3], content);
-	return (0);
-}
-
 
 #endif
 
@@ -381,4 +373,6 @@ int main (int argc, char const * argv [])
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 
