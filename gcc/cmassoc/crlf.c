@@ -67,48 +67,48 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function (flag_t flags) 
+static void function(flag_t flags)
 
-{ 
-	int c; 
-	while ((c = getc (stdin)) != EOF) 
-	{ 
-		if (c == '\r') 
-		{ 
-			if ((c = getc (stdin)) != '\n') 
-			{ 
-				ungetc (c, stdin); 
-			} 
-			if (_anyset (flags, CRLF_B_CR)) 
-			{ 
-				putc ('\r', stdout); 
-			} 
-			if (_anyset (flags, CRLF_B_LF)) 
-			{ 
-				putc ('\n', stdout); 
-			} 
-			continue; 
-		} 
-		if (c == '\n') 
-		{ 
-			if ((c = getc (stdin)) != '\r') 
-			{ 
-				ungetc (c, stdin); 
-			} 
-			if (_anyset (flags, CRLF_B_CR)) 
-			{ 
-				putc ('\r', stdout); 
-			} 
-			if (_anyset (flags, CRLF_B_LF)) 
-			{ 
-				putc ('\n', stdout); 
-			} 
-			continue; 
-		} 
-		putc (c, stdout); 
-	} 
-	return; 
-} 
+{
+	int c;
+	while ((c = getc(stdin)) != EOF)
+	{
+		if (c == '\r')
+		{
+			if ((c = getc(stdin)) != '\n')
+			{
+				ungetc (c, stdin);
+			}
+			if (_anyset(flags, CRLF_B_CR))
+			{
+				putc ('\r', stdout);
+			}
+			if (_anyset(flags, CRLF_B_LF))
+			{
+				putc ('\n', stdout);
+			}
+			continue;
+		}
+		if (c == '\n')
+		{
+			if ((c = getc(stdin)) != '\r')
+			{
+				ungetc (c, stdin);
+			}
+			if (_anyset(flags, CRLF_B_CR))
+			{
+				putc ('\r', stdout);
+			}
+			if (_anyset(flags, CRLF_B_LF))
+			{
+				putc ('\n', stdout);
+			}
+			continue;
+		}
+		putc (c, stdout);
+	}
+	return;
+}
 
 /*====================================================================*
  *
@@ -121,61 +121,61 @@ static void function (flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"asuw", 
-		PUTOPTV_S_FILTER, 
-		"change text line termination", 
-		"a\tto Apple computer format [" "'\\r'" "]", 
-		"s\tto stream format (no line breaks)", 
-		"u\tto standard Unix format [" "'\\n'" "]", 
-		"w\tto Microsoft Windows format [" "\"\\r\\n\"" "]", 
-		(char const *) (0)
-	}; 
-	flag_t flags = CRLF_B_LF; 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 's': 
-			_clrbits (flags, CRLF_B_CR); 
-			_clrbits (flags, CRLF_B_LF); 
-			break; 
-		case 'u': 
-			_clrbits (flags, CRLF_B_CR); 
-			_setbits (flags, CRLF_B_LF); 
-			break; 
-		case 'a': 
-			_setbits (flags, CRLF_B_CR); 
-			_clrbits (flags, CRLF_B_LF); 
-			break; 
-		case 'w': 
-			_setbits (flags, CRLF_B_CR); 
-			_setbits (flags, CRLF_B_LF); 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"asuw",
+		PUTOPTV_S_FILTER,
+		"change text line termination",
+		"a\tto Apple computer format [" "'\\r'" "]",
+		"s\tto stream format (no line breaks)",
+		"u\tto standard Unix format [" "'\\n'" "]",
+		"w\tto Microsoft Windows format [" "\"\\r\\n\"" "]",
+		(char const *)(0)
+	};
+	flag_t flags = CRLF_B_LF;
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 's':
+			_clrbits (flags, CRLF_B_CR);
+			_clrbits (flags, CRLF_B_LF);
+			break;
+		case 'u':
+			_clrbits (flags, CRLF_B_CR);
+			_setbits (flags, CRLF_B_LF);
+			break;
+		case 'a':
+			_setbits (flags, CRLF_B_CR);
+			_clrbits (flags, CRLF_B_LF);
+			break;
+		case 'w':
+			_setbits (flags, CRLF_B_CR);
+			_setbits (flags, CRLF_B_LF);
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		function (flags); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (vfopen (* argv)) 
-		{ 
-			function (flags); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	exit (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		function (flags);
+	}
+	while ((argc) && (* argv))
+	{
+		if (vfopen(* argv))
+		{
+			function (flags);
+		}
+		argc--;
+		argv++;
+	}
+	exit (0);
+}
 

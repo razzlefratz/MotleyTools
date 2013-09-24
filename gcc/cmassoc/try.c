@@ -51,52 +51,52 @@
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"c:", 
-		"command [command] [...]", 
-		"Log and execute command sequences", 
-		"c s\tcomment text", 
-		(char const *) (0)
-	}; 
-	FILE * fp; 
-	char const * comment = (char const *)(0); 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'c': 
-			comment = optarg; 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"c:",
+		"command [command] [...]",
+		"Log and execute command sequences",
+		"c s\tcomment text",
+		(char const *)(0)
+	};
+	FILE * fp;
+	char const * comment = (char const *) (0);
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'c':
+			comment = optarg;
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	dup2 (STDOUT_FILENO, STDERR_FILENO); 
-	if ((comment) && (* comment)) 
-	{ 
-		breakout (comment, BARWIDTH_MAX); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		printf ("# %s\n", * argv); 
-		if ((fp = popen (* argv, "r"))) 
-		{ 
-			while ((c = getc (fp)) != EOF) 
-			{ 
-				putc (c, stdout); 
-			} 
-		} 
-		printf ("\n"); 
-		argc--; 
-		argv++; 
-	} 
-	exit (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	dup2 (STDOUT_FILENO, STDERR_FILENO);
+	if ((comment) && (* comment))
+	{
+		breakout (comment, BARWIDTH_MAX);
+	}
+	while ((argc) && (* argv))
+	{
+		printf ("# %s\n", * argv);
+		if ((fp = popen(* argv, "r")))
+		{
+			while ((c = getc(fp)) != EOF)
+			{
+				putc (c, stdout);
+			}
+		}
+		printf ("\n");
+		argc--;
+		argv++;
+	}
+	exit (0);
+}
 

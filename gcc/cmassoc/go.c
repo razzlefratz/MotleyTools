@@ -58,40 +58,40 @@
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	extern char c; 
-	static char const * optv [] = 
-	{ 
-		"", 
-		PUTOPTV_S_FUNNEL, 
-		"example command line program", 
-		(char const *)(0)
-	}; 
-	TREE * node = (TREE *)(0); 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
+{
+	extern char c;
+	static char const * optv[] = 
+	{
+		"",
+		PUTOPTV_S_FUNNEL,
+		"example command line program",
+		(char const *) (0)
+	};
+	TREE * node = (TREE *) (0);
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	printf ("stdin %s a tty\n", isatty (STDIN_FILENO)? "is": "is not"); 
-	while ((c = cgetc (STDIN_FILENO)) != EOF) 
-	{ 
-		DCLInit (); 
-		node = DCLLine (); 
-		if ((c != ';') && (c != EOF)) 
-		{ 
-			error (1, 0, "Have '%c' but need ';'", c); 
-		} 
-		DCLTree (node); 
-		DCLFree (node); 
-	} 
-	return (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	printf ("stdin %s a tty\n", isatty(STDIN_FILENO)? "is": "is not");
+	while ((c = cgetc(STDIN_FILENO)) != EOF)
+	{
+		DCLInit ();
+		node = DCLLine();
+		if ((c != ';') && (c != EOF))
+		{
+			error (1, 0, "Have '%c' but need ';'", c);
+		}
+		DCLTree (node);
+		DCLFree (node);
+	}
+	return (0);
+}
 

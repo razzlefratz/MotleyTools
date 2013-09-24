@@ -63,13 +63,13 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-static unsigned level = 1; 
+static unsigned level = 1;
 
 /*====================================================================*
  *   program functions;
  *--------------------------------------------------------------------*/
 
-static signed program (signed c, signed e); 
+static signed program(signed c, signed e);
 
 /*====================================================================*
  *
@@ -84,35 +84,35 @@ static signed program (signed c, signed e);
  *
  *--------------------------------------------------------------------*/
 
-static signed preamble (signed c) 
+static signed preamble(signed c)
 
-{ 
-	extern unsigned level; 
-	if (!level) 
-	{ 
-		while (c != EOF) 
-		{ 
-			if (isspace (c)) 
-			{ 
-				c = getc (stdin); 
-				continue; 
-			} 
-			if (c == '/') 
-			{ 
-				c = comment (c); 
-				continue; 
-			} 
-			if (c == ';') 
-			{ 
-				c = keep (c); 
-				continue; 
-			} 
-			printf ("\n\n/*===*\n *\n *\n *\n *.\n *:\n *;\n *---*/\n\n"); 
-			break; 
-		} 
-	} 
-	return (c); 
-} 
+{
+	extern unsigned level;
+	if (! level)
+	{
+		while (c != EOF)
+		{
+			if (isspace(c))
+			{
+				c = getc(stdin);
+				continue;
+			}
+			if (c == '/')
+			{
+				c = comment(c);
+				continue;
+			}
+			if (c == ';')
+			{
+				c = keep(c);
+				continue;
+			}
+			printf ("\n\n/*===*\n *\n *\n *\n *.\n *:\n *;\n *---*/\n\n");
+			break;
+		}
+	}
+	return (c);
+}
 
 /*====================================================================*
  *
@@ -124,30 +124,30 @@ static signed preamble (signed c)
  *
  *--------------------------------------------------------------------*/
 
-static signed statement (signed c) 
+static signed statement(signed c)
 
-{ 
-	while (isspace (c)) 
-	{ 
-		c = keep (c); 
-	} 
-	if (c == '{') 
-	{ 
-		c = keep (c); 
-		c = program (c, '}'); 
-		c = keep (c); 
-	} 
-	else if (c != ';') 
-	{ 
-		putc ('{', stdout); 
-		putc (' ', stdout); 
-		c = program (c, ';'); 
-		c = keep (c); 
-		putc (' ', stdout); 
-		putc ('}', stdout); 
-	} 
-	return (c); 
-} 
+{
+	while (isspace(c))
+	{
+		c = keep(c);
+	}
+	if (c == '{')
+	{
+		c = keep(c);
+		c = program(c, '}');
+		c = keep(c);
+	}
+	else if(c != ';')
+	{
+		putc ('{', stdout);
+		putc (' ', stdout);
+		c = program(c, ';');
+		c = keep(c);
+		putc (' ', stdout);
+		putc ('}', stdout);
+	}
+	return (c);
+}
 
 /*====================================================================*
  *
@@ -159,27 +159,27 @@ static signed statement (signed c)
  *
  *--------------------------------------------------------------------*/
 
-static signed condition (signed c) 
+static signed condition(signed c)
 
-{ 
-	while (isspace (c)) 
-	{ 
-		c = keep (c); 
-	} 
-	if (c == '(') 
-	{ 
-		c = context (c, ')'); 
-	} 
-	else if (c != ';') 
-	{ 
-		putc (' ', stdout); 
-		putc ('(', stdout); 
-		c = program (c, ';'); 
-		putc (')', stdout); 
-		putc (' ', stdout); 
-	} 
-	return (c); 
-} 
+{
+	while (isspace(c))
+	{
+		c = keep(c);
+	}
+	if (c == '(')
+	{
+		c = context(c, ')');
+	}
+	else if(c != ';')
+	{
+		putc (' ', stdout);
+		putc ('(', stdout);
+		c = program(c, ';');
+		putc (')', stdout);
+		putc (' ', stdout);
+	}
+	return (c);
+}
 
 /*====================================================================*
  *
@@ -191,103 +191,103 @@ static signed condition (signed c)
  *
  *--------------------------------------------------------------------*/
 
-static signed program (signed c, signed e) 
+static signed program(signed c, signed e)
 
-{ 
-	extern unsigned level; 
-	c = preamble (c); 
-	while ((c != e) && (c != EOF)) 
-	{ 
-		if (c == '#') 
-		{ 
-			c = fortran (c); 
-			continue; 
-		} 
-		if (c == '/') 
-		{ 
-			c = comment (c); 
-			continue; 
-		} 
-		if (c == '{') 
-		{ 
-			level++; 
-			c = keep (c); 
-			c = program (c, '}'); 
-			c = keep (c); 
-			level--; 
-			c = preamble (c); 
-			continue; 
-		} 
-		if (c == '(') 
-		{ 
-			c = context ('(', ')'); 
-			continue; 
-		} 
-		if (c == '[') 
-		{ 
-			c = context ('[', ']'); 
-			continue; 
-		} 
-		if (isquote (c)) 
-		{ 
-			c = literal (c); 
-			continue; 
-		} 
-		if (isalnum (c) || (c == '_') || (c == '.')) 
-		{ 
-			char string [100]; 
-			char * sp = string; 
+{
+	extern unsigned level;
+	c = preamble(c);
+	while ((c != e) && (c != EOF))
+	{
+		if (c == '#')
+		{
+			c = fortran(c);
+			continue;
+		}
+		if (c == '/')
+		{
+			c = comment(c);
+			continue;
+		}
+		if (c == '{')
+		{
+			level++;
+			c = keep(c);
+			c = program(c, '}');
+			c = keep(c);
+			level--;
+			c = preamble(c);
+			continue;
+		}
+		if (c == '(')
+		{
+			c = context('(', ')');
+			continue;
+		}
+		if (c == '[')
+		{
+			c = context('[', ']');
+			continue;
+		}
+		if (isquote(c))
+		{
+			c = literal(c);
+			continue;
+		}
+		if (isalnum(c) || (c == '_') || (c == '.'))
+		{
+			char string[100];
+			char * sp = string;
 			do 
-			{ 
-				* sp++ = c; 
-				c = keep (c); 
-			} 
-			while (isalnum (c) || (c == '_') || (c == '.')); 
-			* sp = (char)(0); 
-			if (!strcmp (string, "while")) 
-			{ 
-				c = condition (c); 
-				c = statement (c); 
-				continue; 
-			} 
-			if (!strcmp (string, "for")) 
-			{ 
-				c = condition (c); 
-				c = statement (c); 
-				continue; 
-			} 
-			if (!strcmp (string, "if")) 
-			{ 
-				c = condition (c); 
-				c = statement (c); 
-				continue; 
-			} 
-			if (!strcmp (string, "else")) 
-			{ 
-				c = statement (c); 
-				continue; 
-			} 
-			if (!strcmp (string, "do")) 
-			{ 
-				c = statement (c); 
-				continue; 
-			} 
-			if (!strcmp (string, "return")) 
-			{ 
-				c = condition (c); 
-				continue; 
-			} 
-			if (!strcmp (string, "exit")) 
-			{ 
-				c = condition (c); 
-				continue; 
-			} 
-			continue; 
-		} 
-		c = keep (c); 
-	} 
-	return (e); 
-} 
+			{
+				* sp++ = c;
+				c = keep(c);
+			}
+			while (isalnum(c) || (c == '_') || (c == '.'));
+			* sp = (char) (0);
+			if (! strcmp(string, "while"))
+			{
+				c = condition(c);
+				c = statement(c);
+				continue;
+			}
+			if (! strcmp(string, "for"))
+			{
+				c = condition(c);
+				c = statement(c);
+				continue;
+			}
+			if (! strcmp(string, "if"))
+			{
+				c = condition(c);
+				c = statement(c);
+				continue;
+			}
+			if (! strcmp(string, "else"))
+			{
+				c = statement(c);
+				continue;
+			}
+			if (! strcmp(string, "do"))
+			{
+				c = statement(c);
+				continue;
+			}
+			if (! strcmp(string, "return"))
+			{
+				c = condition(c);
+				continue;
+			}
+			if (! strcmp(string, "exit"))
+			{
+				c = condition(c);
+				continue;
+			}
+			continue;
+		}
+		c = keep(c);
+	}
+	return (e);
+}
 
 /*====================================================================*
  *   
@@ -299,44 +299,44 @@ static signed program (signed c, signed e)
  *   
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"p", 
-		PUTOPTV_S_FILTER, 
-		"C/C++ language blocker", 
-		"p\tinsert empty function preambles", 
-		(char const *) (0)
-	}; 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'p': 
-			level = 0; 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"p",
+		PUTOPTV_S_FILTER,
+		"C/C++ language blocker",
+		"p\tinsert empty function preambles",
+		(char const *)(0)
+	};
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'p':
+			level = 0;
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		program (NUL, EOF); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (vfopen (* argv)) 
-		{ 
-			program (NUL, EOF); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	return (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		program (NUL, EOF);
+	}
+	while ((argc) && (* argv))
+	{
+		if (vfopen(* argv))
+		{
+			program (NUL, EOF);
+		}
+		argc--;
+		argv++;
+	}
+	return (0);
+}
 

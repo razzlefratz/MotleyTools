@@ -89,76 +89,78 @@
  *
  *--------------------------------------------------------------------*/
 
-static signed grab (signed c) 
+static signed grab(signed c)
 
-{ 
-	return (getc (stdin)); 
-} 
+{
+	return (getc(stdin));
+}
 
-static signed join (signed c) 
+static signed join(signed c)
 
-{ 
-	return (span (getc (stdin), '\\', '\n'));
-} 
+{
+	return (span(getc(stdin), '\\', '\n'));
+}
 
-static signed pack (signed c, signed o, signed (* edit)(signed))
+static signed pack(signed c, signed o, signed(* edit) (signed))
+
 {
 	do 
-	{ 
-		c = edit (c); 
-	} 
-	while (isblank (c)); 
-	if (nobreak (c)) 
-	{ 
-		if (o) 
-		{ 
-			putc (o, stdout); 
-		} 
-	} 
+	{
+		c = edit(c);
+	}
+	while (isblank(c));
+	if (nobreak(c))
+	{
+		if (o)
+		{
+			putc (o, stdout);
+		}
+	}
 	return (c);
 }
-signed function (signed c, signed o, signed e) 
 
-{ 
-	while (c != EOF) 
-	{ 
-		signed (* func) (signed) = join; 
-		if (isblank (c)) 
-		{ 
-			func = grab; 
-			c = pack (c, o, func);
-		} 
-		while (nobreak (c)) 
-		{ 
-			if (c == '#') 
-			{ 
+signed function(signed c, signed o, signed e)
+
+{
+	while (c != EOF)
+	{
+		signed (* func)(signed) = join;
+		if (isblank(c))
+		{
+			func = grab;
+			c = pack(c, o, func);
+		}
+		while (nobreak(c))
+		{
+			if (c == '#')
+			{
 				do 
-				{ 
-					c = keep (c); 
-				} 
-				while (nobreak (c)); 
-				continue; 
-			} 
-			if (isquote (c)) 
-			{ 
-				c = literal (c); 
-				continue; 
-			} 
-			if (isblank (c)) 
-			{ 
-				c = pack (c, ' ', func);
-				continue; 
-			} 
-			c = keep (c); 
-		} 
-		if (e) 
-		{ 
-			putc (e, stdout); 
-		} 
-		c = keep (c); 
-	} 
-	return (c); 
-} 
+				{
+					c = keep(c);
+				}
+				while (nobreak(c));
+				continue;
+			}
+			if (isquote(c))
+			{
+				c = literal(c);
+				continue;
+			}
+			if (isblank(c))
+			{
+				c = pack(c, ' ', func);
+				continue;
+			}
+			c = keep(c);
+		}
+		if (e)
+		{
+			putc (e, stdout);
+		}
+		c = keep(c);
+	}
+	return (c);
+}
 
 /*====================================================================*
  *
@@ -171,62 +173,62 @@ signed function (signed c, signed o, signed e)
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"c:e:nst", 
-		PUTOPTV_S_FILTER, 
-		"white space minimizer", 
-		"c c\tindent character is (c) [" LITERAL (SPACE_NEWLINE) "]", 
-		"e c\treturn character is (c) [" LITERAL (SPACE_ENDLINE) "]", 
-		"n\tindent character is nothing", 
-		"s\tindent character is space [" LITERAL (CLANG_SP) "]", 
-		"t\tindent character is tab [" LITERAL (CLANG_HT) "]", 
-		(char *) (0)
-	}; 
-	char newline = SPACE_NEWLINE; 
-	char endline = SPACE_ENDLINE; 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'c': 
-			newline = * struesc ((char *) (optarg)); 
-			break; 
-		case 'e': 
-			endline = * struesc ((char *) (optarg)); 
-			break; 
-		case 'n': 
-			newline = (char) (0); 
-			break; 
-		case 's': 
-			newline = CLANG_SP; 
-			break; 
-		case 't': 
-			newline = CLANG_HT; 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"c:e:nst",
+		PUTOPTV_S_FILTER,
+		"white space minimizer",
+		"c c\tindent character is (c) [" LITERAL(SPACE_NEWLINE) "]",
+		"e c\treturn character is (c) [" LITERAL(SPACE_ENDLINE) "]",
+		"n\tindent character is nothing",
+		"s\tindent character is space [" LITERAL(CLANG_SP) "]",
+		"t\tindent character is tab [" LITERAL(CLANG_HT) "]",
+		(char *)(0)
+	};
+	char newline = SPACE_NEWLINE;
+	char endline = SPACE_ENDLINE;
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'c':
+			newline = * struesc((char *)(optarg));
+			break;
+		case 'e':
+			endline = * struesc((char *)(optarg));
+			break;
+		case 'n':
+			newline = (char)(0);
+			break;
+		case 's':
+			newline = CLANG_SP;
+			break;
+		case 't':
+			newline = CLANG_HT;
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (! argc) 
-	{ 
-		function (getc (stdin), newline, endline); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (vfopen (* argv)) 
-		{ 
-			function (getc (stdin), newline, endline); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	exit (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		function (getc(stdin), newline, endline);
+	}
+	while ((argc) && (* argv))
+	{
+		if (vfopen(* argv))
+		{
+			function (getc(stdin), newline, endline);
+		}
+		argc--;
+		argv++;
+	}
+	exit (0);
+}
 

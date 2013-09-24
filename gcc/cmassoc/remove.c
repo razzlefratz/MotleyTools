@@ -114,154 +114,154 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (char const * filename, regexp * list [], size_t size, char buffer [], size_t length, flag_t flags) 
+void function(char const * filename, regexp * list[], size_t size, char buffer[], size_t length, flag_t flags)
 
-{ 
-	unsigned line; 
-	unsigned removed = 0; 
-	for (line = 1; fgetline (buffer, length, stdin) != - 1; line++) 
-	{ 
-		size_t item; 
-		for (item = 0; item < size; item++) 
-		{ 
-			char const * cp = regexspan (list [item], buffer); 
-			if (cp) 
-			{ 
-				if (* cp == (char) (0)) 
-				{ 
-					break; 
-				} 
-			} 
-		} 
-		if (!(flags & (REMOVE_B_INVERT)) != (item < size)) 
-		{ 
-			fputline (buffer, length, stdout); 
-		} 
+{
+	unsigned line;
+	unsigned removed = 0;
+	for (line = 1; fgetline(buffer, length, stdin) != - 1; line++)
+	{
+		size_t item;
+		for (item = 0; item < size; item++)
+		{
+			char const * cp = regexspan(list[item], buffer);
+			if (cp)
+			{
+				if (* cp == (char)(0))
+				{
+					break;
+				}
+			}
+		}
+		if (! (flags & (REMOVE_B_INVERT)) != (item < size))
+		{
+			fputline (buffer, length, stdout);
+		}
 		else 
-		{ 
-			removed++; 
-		} 
-	} 
-	if (removed > 0) 
-	{ 
-		if (flags & (REMOVE_B_HEADER)) 
-		{ 
-			if (flags & (REMOVE_B_NUMBER)) 
-			{ 
-				fprintf (stderr, "%3u ", removed); 
-			} 
-			fprintf (stderr, "%s\n", filename); 
-		} 
-	} 
-	return; 
-} 
+		{
+			removed++;
+		}
+	}
+	if (removed > 0)
+	{
+		if (flags & (REMOVE_B_HEADER))
+		{
+			if (flags & (REMOVE_B_NUMBER))
+			{
+				fprintf (stderr, "%3u ", removed);
+			}
+			fprintf (stderr, "%s\n", filename);
+		}
+	}
+	return;
+}
 
 /*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	extern const unsigned char ct_unescape []; 
-	static char const * optv [] = 
-	{ 
-		"e:fHl:nRTv", 
-		PUTOPTV_S_FILTER, 
-		"remove lines that match any of several regular expressions", 
-		"e e\texpression (e) anywhere on line as in \".*{e}.*\"", 
-		"f\tdisplay filename only", 
-		"H\tview expression expansion", 
-		"l e\texpression (e) is complete line as in \"^{e}$\"", 
-		"n\tdisplay line numbers", 
-		"R\tregular expression rules", 
-		"T\tescape sequence rules", 
-		"v\texclude matching lines", 
-		(char const *) (0)
-	}; 
-	regexp * remove [_LISTSIZE] = 
-	{ 
-		(regexp *) (0)
-	}; 
-	char buffer [TEXTLINE_MAX] = 
-	{ 
-		(char) (0)
-	}; 
-	size_t size = 0; 
-	size_t item = 0; 
-	flag_t flags = REMOVE_B_RECORD; 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'n': 
-			_setbits (flags, REMOVE_B_HEADER); 
-			_setbits (flags, REMOVE_B_NUMBER); 
-			_setbits (flags, REMOVE_B_RECORD); 
-			break; 
-		case 'f': 
-			_setbits (flags, REMOVE_B_HEADER); 
-			_clrbits (flags, REMOVE_B_NUMBER); 
-			_clrbits (flags, REMOVE_B_RECORD); 
-			break; 
-		case 'l': 
-			strcpy (buffer, struesc ((char *)(optarg))); 
-			remove [size++] = regexmake (buffer); 
-			remove [size] = (regexp *) (0); 
-			break; 
-		case 'e': 
-			strcpy (buffer, REGEX_S_SPAN); 
-			strcat (buffer, struesc ((char *)(optarg))); 
-			strcat (buffer, REGEX_S_SPAN); 
-			remove [size++] = regexmake (buffer); 
-			remove [size] = (regexp *) (0); 
-			break; 
-		case 'v': 
-			_setbits (flags, REMOVE_B_INVERT); 
-			break; 
-		case 'r': 
-			_setbits (flags, FIND_B_RECURSE); 
-			break; 
-		case 't': 
-			_setbits (flags, FIND_B_TRAVERSE); 
-			break; 
-		case 'H': 
-			_setbits (flags, REMOVE_B_REVIEW); 
-			break; 
-		case 'R': 
-			regexhelp (); 
-			exit (0); 
-		case 'T': 
-			chruescmap (ct_unescape, REGEX_C_ESC); 
-			exit (0); 
+{
+	extern const unsigned char ct_unescape[];
+	static char const * optv[] = 
+	{
+		"e:fHl:nRTv",
+		PUTOPTV_S_FILTER,
+		"remove lines that match any of several regular expressions",
+		"e e\texpression (e) anywhere on line as in \".*{e}.*\"",
+		"f\tdisplay filename only",
+		"H\tview expression expansion",
+		"l e\texpression (e) is complete line as in \"^{e}$\"",
+		"n\tdisplay line numbers",
+		"R\tregular expression rules",
+		"T\tescape sequence rules",
+		"v\texclude matching lines",
+		(char const *)(0)
+	};
+	regexp * remove[_LISTSIZE] = 
+	{
+		(regexp *)(0)
+	};
+	char buffer[TEXTLINE_MAX] = 
+	{
+		(char)(0)
+	};
+	size_t size = 0;
+	size_t item = 0;
+	flag_t flags = REMOVE_B_RECORD;
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'n':
+			_setbits (flags, REMOVE_B_HEADER);
+			_setbits (flags, REMOVE_B_NUMBER);
+			_setbits (flags, REMOVE_B_RECORD);
+			break;
+		case 'f':
+			_setbits (flags, REMOVE_B_HEADER);
+			_clrbits (flags, REMOVE_B_NUMBER);
+			_clrbits (flags, REMOVE_B_RECORD);
+			break;
+		case 'l':
+			strcpy (buffer, struesc((char *) (optarg)));
+			remove [size++] = regexmake(buffer);
+			remove [size] = (regexp *)(0);
+			break;
+		case 'e':
+			strcpy (buffer, REGEX_S_SPAN);
+			strcat (buffer, struesc((char *) (optarg)));
+			strcat (buffer, REGEX_S_SPAN);
+			remove [size++] = regexmake(buffer);
+			remove [size] = (regexp *)(0);
+			break;
+		case 'v':
+			_setbits (flags, REMOVE_B_INVERT);
+			break;
+		case 'r':
+			_setbits (flags, FIND_B_RECURSE);
+			break;
+		case 't':
+			_setbits (flags, FIND_B_TRAVERSE);
+			break;
+		case 'H':
+			_setbits (flags, REMOVE_B_REVIEW);
+			break;
+		case 'R':
+			regexhelp ();
+			exit (0);
+		case 'T':
+			chruescmap (ct_unescape, REGEX_C_ESC);
+			exit (0);
 		default: 
-			exit (1); 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (flags & (REMOVE_B_REVIEW)) 
-	{ 
-		for (item = 0; item < size; item++) 
-		{ 
-			regexshow (remove [item]); 
-		} 
-		exit (0); 
-	} 
-	if (!argc) 
-	{ 
-		function ("stdin", remove, size, buffer, sizeof (buffer), flags); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (vfopen (* argv)) 
-		{ 
-			function (* argv, remove, size, buffer, sizeof (buffer), flags); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	exit (0); 
-} 
+			exit (1);
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (flags & (REMOVE_B_REVIEW))
+	{
+		for (item = 0; item < size; item++)
+		{
+			regexshow (remove[item]);
+		}
+		exit (0);
+	}
+	if (! argc)
+	{
+		function ("stdin", remove, size, buffer, sizeof(buffer), flags);
+	}
+	while ((argc) && (* argv))
+	{
+		if (vfopen(* argv))
+		{
+			function (* argv, remove, size, buffer, sizeof(buffer), flags);
+		}
+		argc--;
+		argv++;
+	}
+	exit (0);
+}
 

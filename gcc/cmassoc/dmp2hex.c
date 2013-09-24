@@ -50,32 +50,32 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function () 
+static void function()
 
-{ 
-	char c; 
-	while ((c = getc (stdin)) != EOF) 
-	{ 
-		if (isxdigit (c)) 
-		{ 
-			while (isxdigit (c)) 
-			{ 
-				c = getc (stdin); 
-			} 
-			while (isblank (c) || isxdigit (c)) 
-			{ 
-				putc (c, stdout); 
-				c = getc (stdin); 
-			} 
-		} 
-		while (nobreak (c)) 
-		{ 
-			c = getc (stdin); 
-		} 
-		putc ('\n', stdout); 
-	} 
-	return; 
-} 
+{
+	char c;
+	while ((c = getc(stdin)) != EOF)
+	{
+		if (isxdigit(c))
+		{
+			while (isxdigit(c))
+			{
+				c = getc(stdin);
+			}
+			while (isblank(c) || isxdigit(c))
+			{
+				putc (c, stdout);
+				c = getc(stdin);
+			}
+		}
+		while (nobreak(c))
+		{
+			c = getc(stdin);
+		}
+		putc ('\n', stdout);
+	}
+	return;
+}
 
 /*====================================================================*
  *
@@ -88,41 +88,41 @@ static void function ()
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"", 
-		PUTOPTV_S_FUNNEL, 
-		"hex dump to hex file converter", 
-		(char const *)(0)
-	}; 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
+{
+	static char const * optv[] = 
+	{
+		"",
+		PUTOPTV_S_FUNNEL,
+		"hex dump to hex file converter",
+		(char const *) (0)
+	};
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		function (); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (!freopen (* argv, "rb", stdin)) 
-		{ 
-			error (1, errno, "%s", * argv); 
-		} 
-		function (); 
-		argc--; 
-		argv++; 
-	} 
-	return (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		function ();
+	}
+	while ((argc) && (* argv))
+	{
+		if (! freopen(* argv, "rb", stdin))
+		{
+			error (1, errno, "%s", * argv);
+		}
+		function ();
+		argc--;
+		argv++;
+	}
+	return (0);
+}
 

@@ -62,22 +62,22 @@
  *
  *--------------------------------------------------------------------*/
 
-static signed function (signed blocksize) 
+static signed function(signed blocksize)
 
-{ 
-	void * memory = malloc (blocksize); 
-	if (memory) 
-	{ 
-		memset (memory, 0, blocksize); 
-		while (read (STDIN_FILENO, memory, blocksize) > 0) 
-		{ 
-			write (STDOUT_FILENO, memory, blocksize); 
-			memset (memory, 0, blocksize); 
-		} 
-		free (memory); 
-	} 
-	return (0); 
-} 
+{
+	void * memory = malloc(blocksize);
+	if (memory)
+	{
+		memset (memory, 0, blocksize);
+		while (read(STDIN_FILENO, memory, blocksize) > 0)
+		{
+			write (STDOUT_FILENO, memory, blocksize);
+			memset (memory, 0, blocksize);
+		}
+		free (memory);
+	}
+	return (0);
+}
 
 /*====================================================================*
  *
@@ -90,49 +90,49 @@ static signed function (signed blocksize)
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"b:u", 
-		PUTOPTV_S_FUNNEL, 
-		"copy one or more files to stdout", 
-		"b n\tblock size is (n) bytes [" LITERAL (BLOCKSIZE) "]", 
-		"u\tunbuffered copy", 
-		(char const *)(0)
-	}; 
-	signed blocksize = BLOCKSIZE; 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'b': 
-			blocksize = uintspec (optarg, 1, SHRT_MAX); 
-			break; 
-		case 'u': 
-			blocksize = 1; 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"b:u",
+		PUTOPTV_S_FUNNEL,
+		"copy one or more files to stdout",
+		"b n\tblock size is (n) bytes [" LITERAL(BLOCKSIZE) "]",
+		"u\tunbuffered copy",
+		(char const *) (0)
+	};
+	signed blocksize = BLOCKSIZE;
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'b':
+			blocksize = uintspec(optarg, 1, SHRT_MAX);
+			break;
+		case 'u':
+			blocksize = 1;
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		function (blocksize); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (efreopen (* argv, "rb", stdin)) 
-		{ 
-			function (blocksize); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	exit (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		function (blocksize);
+	}
+	while ((argc) && (* argv))
+	{
+		if (efreopen(* argv, "rb", stdin))
+		{
+			function (blocksize);
+		}
+		argc--;
+		argv++;
+	}
+	exit (0);
+}
 

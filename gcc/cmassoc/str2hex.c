@@ -14,19 +14,19 @@
 
 #define DIGITS_HEX "0123456789ABCDEF"
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	char const * sp; 
-	while ((-- argc) && (* ++ argv)) 
-	{ 
-		for (sp = * argv; * sp; ++ sp) 
-		{ 
-			putc (DIGITS_HEX [(* sp >> 4) & 0x0F], stdout); 
-			putc (DIGITS_HEX [(* sp >> 0) & 0x0F], stdout); 
-		} 
-		putc ('\n', stdout); 
-	} 
-	return (0); 
-} 
+{
+	char const * sp;
+	while ((-- argc) && (* ++ argv))
+	{
+		for (sp = * argv; * sp; ++ sp)
+		{
+			putc (DIGITS_HEX[(* sp >> 4) & 0x0F], stdout);
+			putc (DIGITS_HEX[(* sp >> 0) & 0x0F], stdout);
+		}
+		putc ('\n', stdout);
+	}
+	return (0);
+}
 

@@ -71,66 +71,66 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function (const unsigned limit, flag_t flags) 
+static void function(const unsigned limit, flag_t flags)
 
-{ 
-	size_t count = limit; 
-	size_t column = 0; 
-	size_t length = 0; 
-	signed c = getc (stdin); 
-	while (c != EOF) 
-	{ 
-		if (c == ' ') 
-		{ 
-			c = getc (stdin); 
-			length++; 
-			continue; 
-		} 
+{
+	size_t count = limit;
+	size_t column = 0;
+	size_t length = 0;
+	signed c = getc(stdin);
+	while (c != EOF)
+	{
+		if (c == ' ')
+		{
+			c = getc(stdin);
+			length++;
+			continue;
+		}
 
 #if 0
 
-		if (c == '\t') 
-		{ 
-			length %= 8; 
-			length *= 8; 
-			length += 8; 
-			c = getc (stdin); 
-			continue; 
-		} 
+		if (c == '\t')
+		{
+			length %= 8;
+			length *= 8;
+			length += 8;
+			c = getc(stdin);
+			continue;
+		}
 
 #endif
 
-		if (c == '\n') 
-		{ 
-			if (column) 
-			{ 
-				putc (c, stdout); 
-				count = 0; 
-			} 
-			else if (count < limit) 
-			{ 
-				putc (c, stdout); 
-				count++; 
-			} 
-			c = getc (stdin); 
-			column = 0; 
-			length = 0; 
-			continue; 
-		} 
-		while (column++ < length) 
-		{ 
-			putc (' ', stdout); 
-		} 
-		putc (c, stdout); 
-		c = getc (stdin); 
-		length++; 
-	} 
-	if (column) 
-	{ 
-		putc ('\n', stdout); 
-	} 
-	return; 
-} 
+		if (c == '\n')
+		{
+			if (column)
+			{
+				putc (c, stdout);
+				count = 0;
+			}
+			else if(count < limit)
+			{
+				putc (c, stdout);
+				count++;
+			}
+			c = getc(stdin);
+			column = 0;
+			length = 0;
+			continue;
+		}
+		while (column++ < length)
+		{
+			putc (' ', stdout);
+		}
+		putc (c, stdout);
+		c = getc(stdin);
+		length++;
+	}
+	if (column)
+	{
+		putc ('\n', stdout);
+	}
+	return;
+}
 
 /*====================================================================*
  *
@@ -143,46 +143,46 @@ static void function (const unsigned limit, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"n:", 
-		PUTOPTV_S_FILTER, 
-		"minimize blank lines and eliminate trailing spaces", 
-		"n n\treduce consecutive blank lines to (n) lines [" LITERAL (BLANK_COUNT) "]", 
-		(char const *)(0)
-	}; 
-	flag_t flags = (flag_t)(0); 
-	size_t count = BLANK_COUNT; 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'n': 
-			count = uintspec (optarg, 0, SHRT_MAX); 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"n:",
+		PUTOPTV_S_FILTER,
+		"minimize blank lines and eliminate trailing spaces",
+		"n n\treduce consecutive blank lines to (n) lines [" LITERAL(BLANK_COUNT) "]",
+		(char const *) (0)
+	};
+	flag_t flags = (flag_t) (0);
+	size_t count = BLANK_COUNT;
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'n':
+			count = uintspec(optarg, 0, SHRT_MAX);
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		function (count, flags); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (vfopen (* argv)) 
-		{ 
-			function (count, flags); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	exit (1); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		function (count, flags);
+	}
+	while ((argc) && (* argv))
+	{
+		if (vfopen(* argv))
+		{
+			function (count, flags);
+		}
+		argc--;
+		argv++;
+	}
+	exit (1);
+}
 

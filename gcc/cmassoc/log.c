@@ -38,58 +38,58 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"a", 
-		"[file] [file] [> stdout]", 
-		"write stdin to stdout plus named files", 
-		"a\tappend output to files", 
-		(char const *)(0)
-	}; 
-	char buffer [TEXTLINE_MAX]; 
-	char * openmode = "wb"; 
-	FILE * files [argc]; 
-	size_t file = 0; 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'a': 
-			openmode = "ab"; 
-			break; 
-		case 'w': 
-			openmode = "wb"; 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"a",
+		"[file] [file] [> stdout]",
+		"write stdin to stdout plus named files",
+		"a\tappend output to files",
+		(char const *) (0)
+	};
+	char buffer[TEXTLINE_MAX];
+	char * openmode = "wb";
+	FILE * files[argc];
+	size_t file = 0;
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'a':
+			openmode = "ab";
+			break;
+		case 'w':
+			openmode = "wb";
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	files [file++] = stdout; 
-	while ((argc) && (* argv)) 
-	{ 
-		files [file] = fopen (* argv, openmode); 
-		if (!files [file++]) 
-		{ 
-			error (0, errno, FILE_CANTOPEN, * argv); 
-			file--; 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	files [file] = (FILE *) (0); 
-	while (fgets (buffer, sizeof (buffer), stdin)) 
-	{ 
-		for (file = 0; files [file]; file++) 
-		{ 
-			fputs (buffer, files [file]); 
-		} 
-	} 
-	exit (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	files [file++] = stdout;
+	while ((argc) && (* argv))
+	{
+		files [file] = fopen(* argv, openmode);
+		if (! files[file++])
+		{
+			error (0, errno, FILE_CANTOPEN, * argv);
+			file--;
+		}
+		argc--;
+		argv++;
+	}
+	files [file] = (FILE *)(0);
+	while (fgets(buffer, sizeof(buffer), stdin))
+	{
+		for (file = 0; files[file]; file++)
+		{
+			fputs (buffer, files[file]);
+		}
+	}
+	exit (0);
+}
 

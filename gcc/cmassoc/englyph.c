@@ -59,58 +59,58 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (flag_t flags) 
+void function(flag_t flags)
 
-{ 
-	char buffer [GLYPH_MAX]; 
-	signed c; 
-	while ((c = getc (stdin)) != EOF) 
-	{ 
-		strfglyph (buffer, sizeof (buffer), (unsigned)(c)); 
-		fputs (buffer, stdout); 
-	} 
-	return; 
-} 
+{
+	char buffer[GLYPH_MAX];
+	signed c;
+	while ((c = getc(stdin)) != EOF)
+	{
+		strfglyph (buffer, sizeof(buffer), (unsigned) (c));
+		fputs (buffer, stdout);
+	}
+	return;
+}
 
 /*====================================================================*
  *   main function
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"", 
-		PUTOPTV_S_FUNNEL, 
-		"convert special characters to ISO glyph codes", 
-		(char const *)(0)
-	}; 
-	flag_t flags = (flag_t) (0); 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
+{
+	static char const * optv[] = 
+	{
+		"",
+		PUTOPTV_S_FUNNEL,
+		"convert special characters to ISO glyph codes",
+		(char const *) (0)
+	};
+	flag_t flags = (flag_t)(0);
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		function (flags); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (efreopen (* argv, "rb", stdin)) 
-		{ 
-			function (flags); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	exit (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		function (flags);
+	}
+	while ((argc) && (* argv))
+	{
+		if (efreopen(* argv, "rb", stdin))
+		{
+			function (flags);
+		}
+		argc--;
+		argv++;
+	}
+	exit (0);
+}
 

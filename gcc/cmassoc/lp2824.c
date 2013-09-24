@@ -53,16 +53,16 @@
  *
  *--------------------------------------------------------------------*/
 
-void example (int argc, char const * argv []) 
+void example(int argc, char const * argv[])
 
-{ 
-	while ((argc) && (* argv)) 
-	{ 
-		printf ("|%-24.24s|\n", * argv++); 
-	} 
-	printf ("+------------------------+\n"); 
-	return; 
-} 
+{
+	while ((argc) && (* argv))
+	{
+		printf ("|%-24.24s|\n", * argv++);
+	}
+	printf ("+------------------------+\n");
+	return;
+}
 
 /*====================================================================*
  *
@@ -70,22 +70,22 @@ void example (int argc, char const * argv [])
  *
  *--------------------------------------------------------------------*/
 
-void function (int argc, char const * argv []) 
+void function(int argc, char const * argv[])
 
-{ 
-	FILE * fp = efopen ("/dev/lp0", "w"); 
-	unsigned over = OVER; 
-	unsigned down = DOWN; 
-	fprintf (fp, "N\n"); 
-	while ((argc) && (* argv)) 
-	{ 
-		fprintf (fp, "A%03d,%03d,0,4,1,1,N,\"%-24.24s\"\n", over, down, * argv++); 
-		down += HIGH; 
-	} 
-	fprintf (fp, "P\n"); 
-	fclose (fp); 
-	return; 
-} 
+{
+	FILE * fp = efopen("/dev/lp0", "w");
+	unsigned over = OVER;
+	unsigned down = DOWN;
+	fprintf (fp, "N\n");
+	while ((argc) && (* argv))
+	{
+		fprintf (fp, "A%03d,%03d,0,4,1,1,N,\"%-24.24s\"\n", over, down, * argv++);
+		down += HIGH;
+	}
+	fprintf (fp, "P\n");
+	fclose (fp);
+	return;
+}
 
 /*====================================================================*
  *
@@ -93,44 +93,44 @@ void function (int argc, char const * argv [])
  *   
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"e", 
-		"text [text] [...]", 
-		"Zebra LP 2824 Label Printer", 
-		"e\tprint example label on console", 
-		(char const *) (0)
-	}; 
-	flag_t flags = (flag_t) (0); 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'e': 
-			_setbits (flags, LP2824_EXAMPLE); 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"e",
+		"text [text] [...]",
+		"Zebra LP 2824 Label Printer",
+		"e\tprint example label on console",
+		(char const *)(0)
+	};
+	flag_t flags = (flag_t)(0);
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'e':
+			_setbits (flags, LP2824_EXAMPLE);
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (argc > 4) 
-	{ 
-		error (1, 0, "Maximum 4 lines per label"); 
-	} 
-	if (_anyset (flags, LP2824_EXAMPLE)) 
-	{ 
-		example (argc, argv); 
-	} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (argc > 4)
+	{
+		error (1, 0, "Maximum 4 lines per label");
+	}
+	if (_anyset(flags, LP2824_EXAMPLE))
+	{
+		example (argc, argv);
+	}
 	else 
-	{ 
-		function (argc, argv); 
-	} 
-	return (0); 
-} 
+	{
+		function (argc, argv);
+	}
+	return (0);
+}
 

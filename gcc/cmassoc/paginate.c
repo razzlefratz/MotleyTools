@@ -56,12 +56,12 @@
  *
  *--------------------------------------------------------------------*/
 
-static void paginate (struct _page_ * page) 
+static void paginate(struct _page_ * page)
 
-{ 
-	while (pageputc (getc (stdin), page) != EOF); 
-	return; 
-} 
+{
+	while (pageputc(getc(stdin), page) != EOF);
+	return;
+}
 
 /*====================================================================*
  *
@@ -74,54 +74,54 @@ static void paginate (struct _page_ * page)
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	extern struct _page_ page; 
-	static char const * optv [] = 
-	{ 
-		"l:w:t:", 
-		PUTOPTV_S_FUNNEL, 
-		"paginate text files", 
-		"l n\tpage length is (n)", 
-		"w n\tpage width is (n)", 
-		"t s\ttitle is (s)", 
-		(char *) (0)
-	}; 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'l': 
-			page.rows = uintspec (optarg, 16, UCHAR_MAX); 
-			break; 
-		case 'w': 
-			page.cols = uintspec (optarg, 32, UCHAR_MAX); 
-			break; 
-		case 't': 
-			page.title = optarg; 
-			break; 
+{
+	extern struct _page_ page;
+	static char const * optv[] = 
+	{
+		"l:w:t:",
+		PUTOPTV_S_FUNNEL,
+		"paginate text files",
+		"l n\tpage length is (n)",
+		"w n\tpage width is (n)",
+		"t s\ttitle is (s)",
+		(char *)(0)
+	};
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'l':
+			page.rows = uintspec(optarg, 16, UCHAR_MAX);
+			break;
+		case 'w':
+			page.cols = uintspec(optarg, 32, UCHAR_MAX);
+			break;
+		case 't':
+			page.title = optarg;
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		paginate (& page); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (efreopen (* argv, "rb", stdin)) 
-		{ 
-			page.title = filepart (* argv); 
-			paginate (& page); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	return (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		paginate (& page);
+	}
+	while ((argc) && (* argv))
+	{
+		if (efreopen(* argv, "rb", stdin))
+		{
+			page.title = filepart(* argv);
+			paginate (& page);
+		}
+		argc--;
+		argv++;
+	}
+	return (0);
+}
 

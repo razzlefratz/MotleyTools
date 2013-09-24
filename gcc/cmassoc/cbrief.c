@@ -54,62 +54,62 @@
  *
  *--------------------------------------------------------------------*/
 
-static void exclude (void) 
+static void exclude(void)
 
-{ 
-	signed c = getc (stdin); 
-	while (c != EOF) 
-	{ 
-		if (c == '/') 
-		{ 
-			c = getc (stdin); 
-			if (c == '/') 
-			{ 
-				while ((c != '\n') && (c != EOF)) 
-				{ 
-					c = getc (stdin); 
-				} 
-				continue; 
-			} 
-			if (c == '*') 
-			{ 
-				while ((c != '/') && (c != EOF)) 
-				{ 
-					while ((c != '*') && (c != EOF)) 
-					{ 
-						c = getc (stdin); 
-					} 
-					c = getc (stdin); 
-				} 
-				c = getc (stdin); 
-				continue; 
-			} 
-			putc ('/', stdout); 
-			continue; 
-		} 
-		if (isquote (c)) 
-		{ 
-			signed quote = c; 
-			putc (c, stdout); 
-			c = getc (stdin); 
-			while ((c != quote) && (c != EOF)) 
-			{ 
-				if (c == '\\') 
-				{ 
-					putc (c, stdout); 
-					c = getc (stdin); 
-				} 
-				putc (c, stdout); 
-				c = getc (stdin); 
-			} 
-			putc (c, stdout); 
-			c = getc (stdin); 
-		} 
-		putc (c, stdout); 
-		c = getc (stdin); 
-	} 
-	return; 
-} 
+{
+	signed c = getc(stdin);
+	while (c != EOF)
+	{
+		if (c == '/')
+		{
+			c = getc(stdin);
+			if (c == '/')
+			{
+				while ((c != '\n') && (c != EOF))
+				{
+					c = getc(stdin);
+				}
+				continue;
+			}
+			if (c == '*')
+			{
+				while ((c != '/') && (c != EOF))
+				{
+					while ((c != '*') && (c != EOF))
+					{
+						c = getc(stdin);
+					}
+					c = getc(stdin);
+				}
+				c = getc(stdin);
+				continue;
+			}
+			putc ('/', stdout);
+			continue;
+		}
+		if (isquote(c))
+		{
+			signed quote = c;
+			putc (c, stdout);
+			c = getc(stdin);
+			while ((c != quote) && (c != EOF))
+			{
+				if (c == '\\')
+				{
+					putc (c, stdout);
+					c = getc(stdin);
+				}
+				putc (c, stdout);
+				c = getc(stdin);
+			}
+			putc (c, stdout);
+			c = getc(stdin);
+		}
+		putc (c, stdout);
+		c = getc(stdin);
+	}
+	return;
+}
 
 /*====================================================================*
  *
@@ -125,63 +125,63 @@ static void exclude (void)
  *
  *--------------------------------------------------------------------*/
 
-static void include (void) 
+static void include(void)
 
-{ 
-	signed c = getc (stdin); 
-	while (c != EOF) 
-	{ 
-		if (c == '/') 
-		{ 
-			c = getc (stdin); 
-			if (c == '/') 
-			{ 
-				putc ('/', stdout); 
-				while ((c != '\n') && (c != EOF)) 
-				{ 
-					putc (c, stdout); 
-					c = getc (stdin); 
-				} 
-				continue; 
-			} 
-			if (c == '*') 
-			{ 
-				putc ('/', stdout); 
-				while ((c != '/') && (c != EOF)) 
-				{ 
-					while ((c != '*') && (c != EOF)) 
-					{ 
-						putc (c, stdout); 
-						c = getc (stdin); 
-					} 
-					putc (c, stdout); 
-					c = getc (stdin); 
-				} 
-				putc (c, stdout); 
-				c = getc (stdin); 
-				putc ('\n', stdout); 
-				continue; 
-			} 
-		} 
-		if (isquote (c)) 
-		{ 
-			signed quote = c; 
-			c = getc (stdin); 
-			while ((c != quote) && (c != EOF)) 
-			{ 
-				if (c == '\\') 
-				{ 
-					c = getc (stdin); 
-				} 
-				c = getc (stdin); 
-			} 
-			c = getc (stdin); 
-			continue; 
-		} 
-		c = getc (stdin); 
-	} 
-	return; 
-} 
+{
+	signed c = getc(stdin);
+	while (c != EOF)
+	{
+		if (c == '/')
+		{
+			c = getc(stdin);
+			if (c == '/')
+			{
+				putc ('/', stdout);
+				while ((c != '\n') && (c != EOF))
+				{
+					putc (c, stdout);
+					c = getc(stdin);
+				}
+				continue;
+			}
+			if (c == '*')
+			{
+				putc ('/', stdout);
+				while ((c != '/') && (c != EOF))
+				{
+					while ((c != '*') && (c != EOF))
+					{
+						putc (c, stdout);
+						c = getc(stdin);
+					}
+					putc (c, stdout);
+					c = getc(stdin);
+				}
+				putc (c, stdout);
+				c = getc(stdin);
+				putc ('\n', stdout);
+				continue;
+			}
+		}
+		if (isquote(c))
+		{
+			signed quote = c;
+			c = getc(stdin);
+			while ((c != quote) && (c != EOF))
+			{
+				if (c == '\\')
+				{
+					c = getc(stdin);
+				}
+				c = getc(stdin);
+			}
+			c = getc(stdin);
+			continue;
+		}
+		c = getc(stdin);
+	}
+	return;
+}
 
 /*====================================================================*
  *
@@ -193,49 +193,49 @@ static void include (void)
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"bv", 
-		PUTOPTV_S_FILTER, 
-		"strip C/C++ comments from code", 
-		"b\tdiscard comments and keep code", 
-		"v\tdiscard code and keep comments", 
-		(char const *) (0)
-	}; 
-	void (* function) (void) = exclude; 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'b': 
-			function = exclude; 
-			break; 
-		case 'v': 
-			function = include; 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"bv",
+		PUTOPTV_S_FILTER,
+		"strip C/C++ comments from code",
+		"b\tdiscard comments and keep code",
+		"v\tdiscard code and keep comments",
+		(char const *)(0)
+	};
+	void (* function)(void) = exclude;
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'b':
+			function = exclude;
+			break;
+		case 'v':
+			function = include;
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		function (); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (vfopen (* argv)) 
-		{ 
-			function (); 
-		} 
-		argv++; 
-		argc--; 
-	} 
-	return (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		function ();
+	}
+	while ((argc) && (* argv))
+	{
+		if (vfopen(* argv))
+		{
+			function ();
+		}
+		argv++;
+		argc--;
+	}
+	return (0);
+}
 

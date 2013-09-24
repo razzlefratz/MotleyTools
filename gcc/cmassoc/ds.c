@@ -66,54 +66,54 @@
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"f:", 
-		"file [file] [...]", 
-		"digital dactyloscope", 
-		"f f\tfingerprint registry [" REGISTRY "]", 
-		(char const *)(0)
-	}; 
-	byte buffer [BUFFERSIZE]; 
-	byte digest [DIGESTSIZE]; 
-	char const * registry = REGISTRY; 
-	signed fd; 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'f': 
-			registry = optarg; 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"f:",
+		"file [file] [...]",
+		"digital dactyloscope",
+		"f f\tfingerprint registry [" REGISTRY "]",
+		(char const *) (0)
+	};
+	byte buffer[BUFFERSIZE];
+	byte digest[DIGESTSIZE];
+	char const * registry = REGISTRY;
+	signed fd;
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'f':
+			registry = optarg;
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if ((fd = open (registry, O_BINARY | O_RDONLY)) == - 1) 
-	{ 
-		error (1, errno, FILE_CANTOPEN, registry); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (lseek (fd, 0, SEEK_SET)) 
-		{ 
-			error (1, errno, FILE_CANTHOME, registry); 
-		} 
-		if (efreopen (* argv, "rb", stdin)) 
-		{ 
-			SHA256Ident (fileno (stdin), buffer, sizeof (buffer), digest); 
-			printf ("%s %s\n", SHA256Match (fd, digest)? "+": "-", * argv); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	close (fd); 
-	return (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if ((fd = open(registry, O_BINARY | O_RDONLY)) == - 1)
+	{
+		error (1, errno, FILE_CANTOPEN, registry);
+	}
+	while ((argc) && (* argv))
+	{
+		if (lseek(fd, 0, SEEK_SET))
+		{
+			error (1, errno, FILE_CANTHOME, registry);
+		}
+		if (efreopen(* argv, "rb", stdin))
+		{
+			SHA256Ident (fileno(stdin), buffer, sizeof(buffer), digest);
+			printf ("%s %s\n", SHA256Match(fd, digest)? "+": "-", * argv);
+		}
+		argc--;
+		argv++;
+	}
+	close (fd);
+	return (0);
+}
 

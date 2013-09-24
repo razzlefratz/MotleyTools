@@ -63,60 +63,60 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function (flag_t flags) 
+static void function(flag_t flags)
 
-{ 
-	char buffer [100]; 
-	while (getIPv4 (buffer, sizeof (buffer), stdin)) 
-	{ 
-		write (STDOUT_FILENO, buffer, strlen (buffer)); 
-		write (STDOUT_FILENO, "\n", 1); 
-	} 
-	return; 
-} 
+{
+	char buffer[100];
+	while (getIPv4(buffer, sizeof(buffer), stdin))
+	{
+		write (STDOUT_FILENO, buffer, strlen(buffer));
+		write (STDOUT_FILENO, "\n", 1);
+	}
+	return;
+}
 
 /*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"d", 
-		PUTOPTV_S_FUNNEL, 
-		"read stdin and write IPv4 addresses to stdout", 
-		(char const *) (0)
-	}; 
-	flag_t flags = 0; 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'd': 
-			_setbits (flags, IPLIST_DEBUG); 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"d",
+		PUTOPTV_S_FUNNEL,
+		"read stdin and write IPv4 addresses to stdout",
+		(char const *)(0)
+	};
+	flag_t flags = 0;
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'd':
+			_setbits (flags, IPLIST_DEBUG);
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		function (flags); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (efreopen (* argv, "rb", stdin)) 
-		{ 
-			function (flags); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	exit (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		function (flags);
+	}
+	while ((argc) && (* argv))
+	{
+		if (efreopen(* argv, "rb", stdin))
+		{
+			function (flags);
+		}
+		argc--;
+		argv++;
+	}
+	exit (0);
+}
 

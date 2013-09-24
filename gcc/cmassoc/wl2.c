@@ -53,33 +53,33 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (signed c) 
+void function(signed c)
 
-{ 
-	while (c != EOF) 
-	{ 
-		if (isupper (c) || (c == '_')) 
-		{ 
-			char symbol [1024]; 
-			char * sp = symbol; 
-			while (isupper (c) || (c == '_')) 
-			{ 
-				if (sp < (symbol + sizeof (symbol) - 1))
+{
+	while (c != EOF)
+	{
+		if (isupper(c) || (c == '_'))
+		{
+			char symbol[1024];
+			char * sp = symbol;
+			while (isupper(c) || (c == '_'))
+			{
+				if (sp < (symbol +  sizeof(symbol) - 1))
 				{
-					* sp++ = c; 
+					* sp++ = c;
 				}
-				c = getc (stdin); 
-			} 
-			* sp = (char) (0); 
+				c = getc(stdin);
+			}
+			* sp = (char)(0);
 			if ((sp - symbol) > 2)
 			{
 				printf ("\t@echo %s=${%s}\n", symbol, symbol);
 			}
-		} 
-		c = getc (stdin); 
-	} 
-	return; 
-} 
+		}
+		c = getc(stdin);
+	}
+	return;
+}
 
 /*====================================================================*
  *
@@ -91,40 +91,40 @@ void function (signed c)
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	char const * optv [] = 
-	{ 
-		"", 
-		PUTOPTV_S_FILTER, 
-		"symbol outpt utility", 
-		(char const *) (0)
-	}; 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
+{
+	char const * optv[] = 
+	{
+		"",
+		PUTOPTV_S_FILTER,
+		"symbol outpt utility",
+		(char const *)(0)
+	};
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (! argc) 
-	{ 
-		function (getc (stdin)); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (efreopen (* argv, "rb", stdin)) 
-		{ 
-			function (getc (stdin)); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	exit (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		function (getc(stdin));
+	}
+	while ((argc) && (* argv))
+	{
+		if (efreopen(* argv, "rb", stdin))
+		{
+			function (getc(stdin));
+		}
+		argc--;
+		argv++;
+	}
+	exit (0);
+}
 

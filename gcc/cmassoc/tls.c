@@ -61,66 +61,66 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (char const * path, char * file, unsigned depth) 
+void function(char const * path, char * file, unsigned depth)
 
-{ 
-	DIR * dir; 
-	static unsigned level = 0; 
-	if (level > depth) 
-	{ 
-		return; 
-	} 
-	indent (level++, "%s", file); 
-	if ((dir = opendir (path))) 
-	{ 
-		struct dirent * dirent; 
-		struct stat statinfo; 
-		while (* file) 
-		{ 
-			file++; 
-		} 
-		* file++ = PATH_C_EXTENDER; 
-		while ((dirent = readdir (dir))) 
-		{ 
-			char const * sp = dirent->d_name; 
-			if (* sp == FILE_C_EXTENDER) 
-			{ 
-				sp++; 
-			} 
-			if (* sp == FILE_C_EXTENDER) 
-			{ 
-				sp++; 
-			} 
-			if (* sp == (char) (0)) 
-			{ 
-				continue; 
-			} 
-			strcpy (file, dirent->d_name); 
-			if (stat (path, & statinfo)) 
-			{ 
-				error (0, errno, "%s", path); 
-				continue; 
-			} 
-			if (S_ISDIR (statinfo.st_mode)) 
-			{ 
-				function (path, file, depth); 
-				continue; 
-			} 
-			if (S_ISREG (statinfo.st_mode)) 
-			{ 
-				continue; 
-			} 
-			if (S_ISLNK (statinfo.st_mode)) 
-			{ 
-				continue; 
-			} 
-		} 
-		* -- file = (char) (0); 
-		closedir (dir); 
-	} 
-	level--; 
-	return; 
-} 
+{
+	DIR * dir;
+	static unsigned level = 0;
+	if (level > depth)
+	{
+		return;
+	}
+	indent (level++, "%s", file);
+	if ((dir = opendir(path)))
+	{
+		struct dirent * dirent;
+		struct stat statinfo;
+		while (* file)
+		{
+			file++;
+		}
+		* file++ = PATH_C_EXTENDER;
+		while ((dirent = readdir(dir)))
+		{
+			char const * sp = dirent->d_name;
+			if (* sp == FILE_C_EXTENDER)
+			{
+				sp++;
+			}
+			if (* sp == FILE_C_EXTENDER)
+			{
+				sp++;
+			}
+			if (* sp == (char)(0))
+			{
+				continue;
+			}
+			strcpy (file, dirent->d_name);
+			if (stat(path, & statinfo))
+			{
+				error (0, errno, "%s", path);
+				continue;
+			}
+			if (S_ISDIR(statinfo.st_mode))
+			{
+				function (path, file, depth);
+				continue;
+			}
+			if (S_ISREG(statinfo.st_mode))
+			{
+				continue;
+			}
+			if (S_ISLNK(statinfo.st_mode))
+			{
+				continue;
+			}
+		}
+		* -- file = (char)(0);
+		closedir (dir);
+	}
+	level--;
+	return;
+}
 
 /*====================================================================*
  *
@@ -133,45 +133,45 @@ void function (char const * path, char * file, unsigned depth)
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"n:", 
-		"path [path] [...] [> stdout]", 
-		"print folder hierarchy on stdout", 
-		"n n\tshow n levels [" LITERAL (DEPTH) "]", 
-		(char const *) (0)
-	}; 
-	char filename [FILENAME_MAX]; 
-	unsigned depth = DEPTH; 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'n': 
-			depth = (unsigned)(uintspec (optarg, 1, FILE_DIR_MAX)); 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"n:",
+		"path [path] [...] [> stdout]",
+		"print folder hierarchy on stdout",
+		"n n\tshow n levels [" LITERAL(DEPTH) "]",
+		(char const *)(0)
+	};
+	char filename[FILENAME_MAX];
+	unsigned depth = DEPTH;
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'n':
+			depth = (unsigned) (uintspec(optarg, 1, FILE_DIR_MAX));
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		strcpy (filename, getenv ("PWD")); 
-		function (filename, filename, depth); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		strcpy (filename, * argv); 
-		function (filename, filename, depth); 
-		argc--; 
-		argv++; 
-	} 
-	exit (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		strcpy (filename, getenv("PWD"));
+		function (filename, filename, depth);
+	}
+	while ((argc) && (* argv))
+	{
+		strcpy (filename, * argv);
+		function (filename, filename, depth);
+		argc--;
+		argv++;
+	}
+	exit (0);
+}
 

@@ -62,79 +62,79 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function (flag_t flags) 
+static void function(flag_t flags)
 
-{ 
-	unsigned lineno = 1; 
-	char symbol [_NAMESIZE]; 
-	char string [_LINESIZE]; 
-	char * sp; 
-	signed c; 
-	while ((c = getc (stdin)) != EOF) 
-	{ 
-		while (isblank (c)) 
-		{ 
-			c = getc (stdin); 
-		} 
-		sp = symbol; 
-		if (isident (c)) 
-		{ 
+{
+	unsigned lineno = 1;
+	char symbol[_NAMESIZE];
+	char string[_LINESIZE];
+	char * sp;
+	signed c;
+	while ((c = getc(stdin)) != EOF)
+	{
+		while (isblank(c))
+		{
+			c = getc(stdin);
+		}
+		sp = symbol;
+		if (isident(c))
+		{
 			do 
-			{ 
-				* sp++ = c; 
-				c = getc (stdin); 
-			} 
-			while (isident (c) || (c == '-') || (c == '.')); 
-		} 
-		* sp = (char)(0); 
-		while (isblank (c)) 
-		{ 
-			c = getc (stdin); 
-		} 
-		if (c == ':') 
-		{ 
+			{
+				* sp++ = c;
+				c = getc(stdin);
+			}
+			while (isident(c) || (c == '-') || (c == '.'));
+		}
+		* sp = (char) (0);
+		while (isblank(c))
+		{
+			c = getc(stdin);
+		}
+		if (c == ':')
+		{
 			do 
-			{ 
-				c = getc (stdin); 
-			} 
-			while (isblank (c)); 
+			{
+				c = getc(stdin);
+			}
+			while (isblank(c));
 			do 
-			{ 
-				sp = string; 
-				if (isident (c)) 
-				{ 
+			{
+				sp = string;
+				if (isident(c))
+				{
 					do 
-					{ 
-						* sp++ = c; 
-						c = getc (stdin); 
-					} 
-					while (isident (c) || (c == '-') || (c == '.')); 
-				} 
-				* sp = (char)(0); 
-				while (isblank (c)) 
-				{ 
-					c = getc (stdin); 
-				} 
-				if (_anyset (flags, L2P_REVERSE)) 
-				{ 
-					printf ("%s:%s;\n", string, symbol); 
-				} 
+					{
+						* sp++ = c;
+						c = getc(stdin);
+					}
+					while (isident(c) || (c == '-') || (c == '.'));
+				}
+				* sp = (char) (0);
+				while (isblank(c))
+				{
+					c = getc(stdin);
+				}
+				if (_anyset(flags, L2P_REVERSE))
+				{
+					printf ("%s:%s;\n", string, symbol);
+				}
 				else 
-				{ 
-					printf ("%s:%s;\n", symbol, string); 
-				} 
-			} 
-			while ((c != ';') && (c != '\n') && (c != EOF)); 
-		} 
-		while ((c != ';') && (c != '\n') && (c != EOF)) 
-		{ 
-			c = getc (stdin); 
-		} 
-		lineno++; 
-	} 
-	fclose (stdin); 
-	return; 
-} 
+				{
+					printf ("%s:%s;\n", symbol, string);
+				}
+			}
+			while ((c != ';') && (c != '\n') && (c != EOF));
+		}
+		while ((c != ';') && (c != '\n') && (c != EOF))
+		{
+			c = getc(stdin);
+		}
+		lineno++;
+	}
+	fclose (stdin);
+	return;
+}
 
 /*====================================================================*
  *   
@@ -147,54 +147,54 @@ static void function (flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"qvx", 
-		"file [file] [...]", 
-		"list-to-pair conversion", 
-		"q\tquiet mode", 
-		"v\tverbose mode", 
-		"x\texchange order", 
-		(char const *)(0)
-	}; 
-	flag_t flags = (flag_t)(0); 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'q': 
-			_setbits (flags, L2P_SILENCE); 
-			break; 
-		case 'v': 
-			_setbits (flags, L2P_VERBOSE); 
-			break; 
-		case 'x': 
-			_setbits (flags, L2P_REVERSE); 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"qvx",
+		"file [file] [...]",
+		"list-to-pair conversion",
+		"q\tquiet mode",
+		"v\tverbose mode",
+		"x\texchange order",
+		(char const *) (0)
+	};
+	flag_t flags = (flag_t) (0);
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'q':
+			_setbits (flags, L2P_SILENCE);
+			break;
+		case 'v':
+			_setbits (flags, L2P_VERBOSE);
+			break;
+		case 'x':
+			_setbits (flags, L2P_REVERSE);
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		function (flags); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (!freopen (* argv, "rb", stdin)) 
-		{ 
-			error (1, errno, "%s", * argv); 
-		} 
-		function (flags); 
-		argc--; 
-		argv++; 
-	} 
-	return (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		function (flags);
+	}
+	while ((argc) && (* argv))
+	{
+		if (! freopen(* argv, "rb", stdin))
+		{
+			error (1, errno, "%s", * argv);
+		}
+		function (flags);
+		argc--;
+		argv++;
+	}
+	return (0);
+}
 

@@ -66,67 +66,67 @@
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"qv", 
-		"phrase [phrase] [...]", 
-		"SHA256 key generator", 
-		"q\tquiet mode", 
-		"v\tverbose mode", 
-		(char const *) (0)
-	}; 
-	struct sha256 sha256; 
-	byte digest [SHA256_DIGEST_LENGTH]; 
-	char const * phrase; 
-	char const * sp; 
-	flag_t flags = (flag_t)(0); 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'q': 
-			_setbits (flags, KEY_SILENCE); 
-			break; 
-		case 'v': 
-			_setbits (flags, KEY_VERBOSE); 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"qv",
+		"phrase [phrase] [...]",
+		"SHA256 key generator",
+		"q\tquiet mode",
+		"v\tverbose mode",
+		(char const *)(0)
+	};
+	struct sha256 sha256;
+	byte digest[SHA256_DIGEST_LENGTH];
+	char const * phrase;
+	char const * sp;
+	flag_t flags = (flag_t) (0);
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'q':
+			_setbits (flags, KEY_SILENCE);
+			break;
+		case 'v':
+			_setbits (flags, KEY_VERBOSE);
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		putoptv (optv); 
-		return (0); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		sp = phrase = * argv; 
-		while (isprint (* sp)) 
-		{ 
-			sp++; 
-		} 
-		if (* sp) 
-		{ 
-			error (1, ENOTSUP, "Illegal characters: %s", phrase); 
-		} 
-		SHA256Reset (& sha256); 
-		SHA256Write (& sha256, phrase, sp - phrase); 
-		SHA256Fetch (& sha256, digest); 
-		if (_allclr (flags, KEY_VERBOSE)) 
-		{ 
-			phrase = (char const *)(0); 
-		} 
-		SHA256Print (digest, phrase); 
-		argc--; 
-		argv++; 
-	} 
-	return (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		putoptv (optv);
+		return (0);
+	}
+	while ((argc) && (* argv))
+	{
+		sp = phrase = * argv;
+		while (isprint(* sp))
+		{
+			sp++;
+		}
+		if (* sp)
+		{
+			error (1, ENOTSUP, "Illegal characters: %s", phrase);
+		}
+		SHA256Reset (& sha256);
+		SHA256Write (& sha256, phrase, sp - phrase);
+		SHA256Fetch (& sha256, digest);
+		if (_allclr(flags, KEY_VERBOSE))
+		{
+			phrase = (char const *) (0);
+		}
+		SHA256Print (digest, phrase);
+		argc--;
+		argv++;
+	}
+	return (0);
+}
 

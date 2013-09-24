@@ -69,19 +69,19 @@
  *   program variables;  
  *--------------------------------------------------------------------*/
 
-char const * rootnode = "%d."; 
-char const * leafnode = "%d"; 
-typedef struct _tree_ 
+char const * rootnode = "%d.";
+char const * leafnode = "%d";
+typedef struct _tree_
 
-{ 
-	struct _tree_ * one; 
-	struct _tree_ * two; 
-	struct _tree_ * sub; 
-	unsigned value; 
-	unsigned count; 
-} 
+{
+	struct _tree_ * one;
+	struct _tree_ * two;
+	struct _tree_ * sub;
+	unsigned value;
+	unsigned count;
+}
 
-TREE; 
+TREE;
 
 /*====================================================================*
  *
@@ -93,34 +93,34 @@ TREE;
  *
  *--------------------------------------------------------------------*/
 
-TREE * catalog (TREE * node, const unsigned value []) 
+TREE * catalog(TREE * node, const unsigned value[])
 
-{ 
-	if (* value != END) 
-	{ 
-		if (node == (TREE *) (0)) 
-		{ 
-			node = NEW (TREE); 
-			node->one = node->two = node->sub = (TREE *) (0); 
-			node->value = * value; 
-			node->count = 0; 
-		} 
-		if (* value < node->value) 
-		{ 
-			node->one = catalog (node->one, value); 
-		} 
-		else if (* value > node->value) 
-		{ 
-			node->two = catalog (node->two, value); 
-		} 
+{
+	if (* value != END)
+	{
+		if (node == (TREE *)(0))
+		{
+			node = NEW(TREE);
+			node->one = node->two = node->sub = (TREE *)(0);
+			node->value = * value;
+			node->count = 0;
+		}
+		if (* value < node->value)
+		{
+			node->one = catalog(node->one, value);
+		}
+		else if(* value > node->value)
+		{
+			node->two = catalog(node->two, value);
+		}
 		else 
-		{ 
-			node->sub = catalog (node->sub, value + 1); 
-			node->count++; 
-		} 
-	} 
-	return (node); 
-} 
+		{
+			node->sub = catalog(node->sub, value +  1);
+			node->count++;
+		}
+	}
+	return (node);
+}
 
 /*====================================================================*
  *
@@ -130,33 +130,33 @@ TREE * catalog (TREE * node, const unsigned value [])
  *
  *--------------------------------------------------------------------*/
 
-void collate (TREE * node, char buffer [], size_t length, size_t offset, flag_t flags) 
+void collate(TREE * node, char buffer[], size_t length, size_t offset, flag_t flags)
 
-{ 
-	extern char const * rootnode; 
-	extern char const * leafnode; 
-	if (node != (TREE *) (0)) 
-	{ 
-		size_t count = offset; 
-		collate (node->one, buffer, length, offset, flags); 
-		if (node->sub != (TREE *) (0)) 
-		{ 
-			count += snprintf (buffer + count, length - count, rootnode, node->value); 
-			collate (node->sub, buffer, length - count, count, flags); 
-		} 
+{
+	extern char const * rootnode;
+	extern char const * leafnode;
+	if (node != (TREE *)(0))
+	{
+		size_t count = offset;
+		collate (node->one, buffer, length, offset, flags);
+		if (node->sub != (TREE *)(0))
+		{
+			count += snprintf(buffer +  count, length - count, rootnode, node->value);
+			collate (node->sub, buffer, length - count, count, flags);
+		}
 		else 
-		{ 
-			count += snprintf (buffer + count, length - count, leafnode, node->value); 
-			if (flags & IPSORT_COUNT) 
-			{ 
-				printf ("%6d ", node->count); 
-			} 
-			printf ("%s\n", buffer); 
-		} 
-		collate (node->two, buffer, length, offset, flags); 
-	} 
-	return; 
-} 
+		{
+			count += snprintf(buffer +  count, length - count, leafnode, node->value);
+			if (flags & IPSORT_COUNT)
+			{
+				printf ("%6d ", node->count);
+			}
+			printf ("%s\n", buffer);
+		}
+		collate (node->two, buffer, length, offset, flags);
+	}
+	return;
+}
 
 /*====================================================================*
  *
@@ -166,75 +166,75 @@ void collate (TREE * node, char buffer [], size_t length, size_t offset, flag_t 
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	extern char const * rootnode; 
-	extern char const * leafnode; 
-	static char const * optv [] = 
-	{ 
-		"an", 
-		"ipaddr [ipaddr] [...]", 
-		"copy one or more files to stdout", 
-		"a\talign octet fields", 
-		"n\tprint occurances", 
-		(char const *) (0)
-	}; 
-	TREE * tree = (TREE *) (0); 
-	char buffer [TEXTLINE_MAX]; 
-	char const * strings [IP_ADDR_OCTETS + 1]; 
-	unsigned values [IP_ADDR_OCTETS + 1]; 
-	flag_t flags = (flag_t) (0); 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'a': 
-			rootnode = "%3d."; 
-			leafnode = "%3d"; 
-			break; 
-		case 'n': 
-			_setbits (flags, IPSORT_COUNT); 
-			break; 
+{
+	extern char const * rootnode;
+	extern char const * leafnode;
+	static char const * optv[] = 
+	{
+		"an",
+		"ipaddr [ipaddr] [...]",
+		"copy one or more files to stdout",
+		"a\talign octet fields",
+		"n\tprint occurances",
+		(char const *)(0)
+	};
+	TREE * tree = (TREE *)(0);
+	char buffer[TEXTLINE_MAX];
+	char const * strings[IP_ADDR_OCTETS +  1];
+	unsigned values[IP_ADDR_OCTETS +  1];
+	flag_t flags = (flag_t)(0);
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'a':
+			rootnode = "%3d.";
+			leafnode = "%3d";
+			break;
+		case 'n':
+			_setbits (flags, IPSORT_COUNT);
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		while (getIPv4 (buffer, sizeof (buffer), stdin)) 
-		{ 
-			strsplit (strings, IP_ADDR_OCTETS + 1, buffer, IP_ADDR_EXTENDER); 
-			for (c = 0; strings [c] != (char *) (0); c++) 
-			{ 
-				values [c] = atoi (strings [c]); 
-			} 
-			values [c] = END; 
-			tree = catalog (tree, values); 
-		} 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (efreopen (* argv, "rb", stdin)) 
-		{ 
-			while (getIPv4 (buffer, sizeof (buffer), stdin)) 
-			{ 
-				strsplit (strings, IP_ADDR_OCTETS + 1, buffer, IP_ADDR_EXTENDER); 
-				for (c = 0; strings [c]; c++) 
-				{ 
-					values [c] = atoi (strings [c]); 
-				} 
-				values [c] = END; 
-				tree = catalog (tree, values); 
-			} 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	collate (tree, buffer, sizeof (buffer), 0, flags); 
-	exit (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		while (getIPv4(buffer, sizeof(buffer), stdin))
+		{
+			strsplit (strings, IP_ADDR_OCTETS +  1, buffer, IP_ADDR_EXTENDER);
+			for (c = 0; strings[c] != (char *)(0); c++)
+			{
+				values [c] = atoi(strings[c]);
+			}
+			values [c] = END;
+			tree = catalog(tree, values);
+		}
+	}
+	while ((argc) && (* argv))
+	{
+		if (efreopen(* argv, "rb", stdin))
+		{
+			while (getIPv4(buffer, sizeof(buffer), stdin))
+			{
+				strsplit (strings, IP_ADDR_OCTETS +  1, buffer, IP_ADDR_EXTENDER);
+				for (c = 0; strings[c]; c++)
+				{
+					values [c] = atoi(strings[c]);
+				}
+				values [c] = END;
+				tree = catalog(tree, values);
+			}
+		}
+		argc--;
+		argv++;
+	}
+	collate (tree, buffer, sizeof(buffer), 0, flags);
+	exit (0);
+}
 

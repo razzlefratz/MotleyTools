@@ -59,49 +59,49 @@
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"qv", 
-		PUTOPTV_S_FUNNEL, 
-		"basic C language program", 
-		"q\tsuppress routine messages", 
-		"v\tenable verbose messages", 
-		(char const *)(0)
-	}; 
-	flag_t flags = (flag_t)(0); 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'q': 
-			_setbits (flags, BASIC_SILENCE); 
-			break; 
-		case 'v': 
-			_setbits (flags, BASIC_VERBOSE); 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"qv",
+		PUTOPTV_S_FUNNEL,
+		"basic C language program",
+		"q\tsuppress routine messages",
+		"v\tenable verbose messages",
+		(char const *) (0)
+	};
+	flag_t flags = (flag_t) (0);
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'q':
+			_setbits (flags, BASIC_SILENCE);
+			break;
+		case 'v':
+			_setbits (flags, BASIC_VERBOSE);
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		function (); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (efreopen (* argv, "rb", stdin)) 
-		{ 
-			function (); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	exit (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		function ();
+	}
+	while ((argc) && (* argv))
+	{
+		if (efreopen(* argv, "rb", stdin))
+		{
+			function ();
+		}
+		argc--;
+		argv++;
+	}
+	exit (0);
+}
 

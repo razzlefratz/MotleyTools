@@ -73,132 +73,132 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (flag_t flags) 
+void function(flag_t flags)
 
-{ 
-	extern char const * sv_ascii []; 
-	extern char const * sv_glyph []; 
-	char * sp1 = ""; 
-	char * sp2 = ""; 
-	signed c; 
-	if (_anyset (flags, VIS_B_BOLD)) 
-	{ 
-		if (isatty (fileno (stdout))) 
-		{ 
-			sp1 = VIS_S_ENBOLD; 
-			sp2 = VIS_S_NORMAL; 
-		} 
-	} 
-	while ((c = getc (stdin)) != EOF) 
-	{ 
-		if (c == '\n') 
-		{ 
-			putc (c, stdout); 
-			continue; 
-		} 
-		if (iscntrl (c)) 
-		{ 
-			fputs (sp1, stdout); 
-			if (_anyset (flags, VIS_B_NAME)) 
-			{ 
-				printf ("[%s]", sv_ascii [(unsigned) (c)]); 
-			} 
-			else if (_anyset (flags, VIS_B_HTML)) 
-			{ 
-				printf ("&%s;", sv_glyph [(unsigned) (c)]); 
-			} 
-			else if (_anyset (flags, VIS_B_CNTL)) 
-			{ 
-				printf ("^%c", ((unsigned) (c) | (0x0040))); 
-			} 
-			else if (_anyset (flags, VIS_B_UNIX)) 
-			{ 
-				printf ("\\%03o", (unsigned) (c)); 
-			} 
-			else if (_anyset (flags, VIS_B_IETF)) 
-			{ 
-				printf ("%%%02X", (unsigned) (c)); 
-			} 
+{
+	extern char const * sv_ascii[];
+	extern char const * sv_glyph[];
+	char * sp1 = "";
+	char * sp2 = "";
+	signed c;
+	if (_anyset(flags, VIS_B_BOLD))
+	{
+		if (isatty(fileno(stdout)))
+		{
+			sp1 = VIS_S_ENBOLD;
+			sp2 = VIS_S_NORMAL;
+		}
+	}
+	while ((c = getc(stdin)) != EOF)
+	{
+		if (c == '\n')
+		{
+			putc (c, stdout);
+			continue;
+		}
+		if (iscntrl(c))
+		{
+			fputs (sp1, stdout);
+			if (_anyset(flags, VIS_B_NAME))
+			{
+				printf ("[%s]", sv_ascii[(unsigned)(c)]);
+			}
+			else if(_anyset(flags, VIS_B_HTML))
+			{
+				printf ("&%s;", sv_glyph[(unsigned)(c)]);
+			}
+			else if(_anyset(flags, VIS_B_CNTL))
+			{
+				printf ("^%c", ((unsigned)(c) | (0x0040)));
+			}
+			else if(_anyset(flags, VIS_B_UNIX))
+			{
+				printf ("\\%03o", (unsigned)(c));
+			}
+			else if(_anyset(flags, VIS_B_IETF))
+			{
+				printf ("%%%02X", (unsigned)(c));
+			}
 			else 
-			{ 
-				putc (' ', stdout); 
-			} 
-			fputs (sp2, stdout); 
-			continue; 
-		} 
-		putc (c, stdout); 
-	} 
-	return; 
-} 
+			{
+				putc (' ', stdout);
+			}
+			fputs (sp2, stdout);
+			continue;
+		}
+		putc (c, stdout);
+	}
+	return;
+}
 
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"acgoxb", 
-		PUTOPTV_S_FUNNEL, 
-		"display control characters in visible formats", 
-		"a\tshow ASCII character names", 
-		"c\tshow ANSI control codes", 
-		"g\tshow ISO glyph codes", 
-		"x\tshow IETF hexidecimal octets", 
-		"o\tshow UNIX octal codes", 
-		"b\tshow in bold", 
-		(char const *)(0)
-	}; 
-	flag_t flags = (flag_t)(0); 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'a': 
-			_clrbits (flags, VIS_B_MASK); 
-			_setbits (flags, VIS_B_NAME); 
-			break; 
-		case 'c': 
-			_clrbits (flags, VIS_B_MASK); 
-			_setbits (flags, VIS_B_CNTL); 
-			break; 
-		case 'g': 
-			_clrbits (flags, VIS_B_MASK); 
-			_setbits (flags, VIS_B_HTML); 
-			break; 
-		case 'o': 
-			_clrbits (flags, VIS_B_MASK); 
-			_setbits (flags, VIS_B_UNIX); 
-			break; 
-		case 'x': 
-			_clrbits (flags, VIS_B_MASK); 
-			_setbits (flags, VIS_B_IETF); 
-			break; 
-		case 'b': 
-			_setbits (flags, VIS_B_BOLD); 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"acgoxb",
+		PUTOPTV_S_FUNNEL,
+		"display control characters in visible formats",
+		"a\tshow ASCII character names",
+		"c\tshow ANSI control codes",
+		"g\tshow ISO glyph codes",
+		"x\tshow IETF hexidecimal octets",
+		"o\tshow UNIX octal codes",
+		"b\tshow in bold",
+		(char const *) (0)
+	};
+	flag_t flags = (flag_t) (0);
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'a':
+			_clrbits (flags, VIS_B_MASK);
+			_setbits (flags, VIS_B_NAME);
+			break;
+		case 'c':
+			_clrbits (flags, VIS_B_MASK);
+			_setbits (flags, VIS_B_CNTL);
+			break;
+		case 'g':
+			_clrbits (flags, VIS_B_MASK);
+			_setbits (flags, VIS_B_HTML);
+			break;
+		case 'o':
+			_clrbits (flags, VIS_B_MASK);
+			_setbits (flags, VIS_B_UNIX);
+			break;
+		case 'x':
+			_clrbits (flags, VIS_B_MASK);
+			_setbits (flags, VIS_B_IETF);
+			break;
+		case 'b':
+			_setbits (flags, VIS_B_BOLD);
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		function (flags); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (efreopen (* argv, "rb", stdin)) 
-		{ 
-			function (flags); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	exit (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		function (flags);
+	}
+	while ((argc) && (* argv))
+	{
+		if (efreopen(* argv, "rb", stdin))
+		{
+			function (flags);
+		}
+		argc--;
+		argv++;
+	}
+	exit (0);
+}
 

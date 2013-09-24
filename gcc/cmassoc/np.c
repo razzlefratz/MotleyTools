@@ -61,60 +61,60 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function (char const * prefix, char const * string) 
+static void function(char const * prefix, char const * string)
 
-{ 
-	char const * pp; 
-	char const * sp; 
-	signed c; 
-	while ((c = getc (stdin)) != EOF) 
-	{ 
-		for (pp = prefix; c == * pp; pp++) 
-		{ 
-			c = getc (stdin); 
-		} 
-		if (* pp) 
-		{ 
-			sp = prefix; 
-			while (sp < pp) 
-			{ 
-				putc (* sp++, stdout); 
-			} 
-			while (nobreak (c)) 
-			{ 
-				putc (c, stdout); 
-				c = getc (stdin); 
-			} 
-		} 
+{
+	char const * pp;
+	char const * sp;
+	signed c;
+	while ((c = getc(stdin)) != EOF)
+	{
+		for (pp = prefix; c == * pp; pp++)
+		{
+			c = getc(stdin);
+		}
+		if (* pp)
+		{
+			sp = prefix;
+			while (sp < pp)
+			{
+				putc (* sp++, stdout);
+			}
+			while (nobreak(c))
+			{
+				putc (c, stdout);
+				c = getc(stdin);
+			}
+		}
 		else 
-		{ 
-			sp = string; 
-			while (* sp) 
-			{ 
-				putc (* sp++, stdout); 
+		{
+			sp = string;
+			while (* sp)
+			{
+				putc (* sp++, stdout);
 
 #if 1
 
-				if (* sp == '\\') 
-				{ 
-					sp++; 
-				} 
+				if (* sp == '\\')
+				{
+					sp++;
+				}
 
 #endif
 
-			} 
-			while (nobreak (c)) 
-			{ 
-				c = getc (stdin); 
-			} 
-		} 
-		if (c != EOF) 
-		{ 
-			putc (c, stdout); 
-		} 
-	} 
-	return; 
-} 
+			}
+			while (nobreak(c))
+			{
+				c = getc(stdin);
+			}
+		}
+		if (c != EOF)
+		{
+			putc (c, stdout);
+		}
+	}
+	return;
+}
 
 /*====================================================================*
  *
@@ -127,58 +127,58 @@ static void function (char const * prefix, char const * string)
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"p:s:", 
-		PUTOPTV_S_FILTER, 
-		"new paragraph", 
-		"p s\tparagraph prefix", 
-		"s s\tparagraph string", 
-		(char const *) (0)
-	}; 
-	char const * prefix = ""; 
-	char const * string = ""; 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'p': 
-			prefix = optarg; 
-			break; 
-		case 's': 
-			string = optarg; 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"p:s:",
+		PUTOPTV_S_FILTER,
+		"new paragraph",
+		"p s\tparagraph prefix",
+		"s s\tparagraph string",
+		(char const *)(0)
+	};
+	char const * prefix = "";
+	char const * string = "";
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'p':
+			prefix = optarg;
+			break;
+		case 's':
+			string = optarg;
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!prefix || !* prefix) 
-	{ 
-		error (1, ECANCELED, "paragraph prefix is empty"); 
-	} 
-	if (!string || !* string) 
-	{ 
-		error (1, ECANCELED, "paragraph string is empty"); 
-	} 
-	if (!argc) 
-	{ 
-		function (prefix, string); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (vfopen (* argv)) 
-		{ 
-			function (prefix, string); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	exit (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! prefix || ! * prefix)
+	{
+		error (1, ECANCELED, "paragraph prefix is empty");
+	}
+	if (! string || ! * string)
+	{
+		error (1, ECANCELED, "paragraph string is empty");
+	}
+	if (! argc)
+	{
+		function (prefix, string);
+	}
+	while ((argc) && (* argv))
+	{
+		if (vfopen(* argv))
+		{
+			function (prefix, string);
+		}
+		argc--;
+		argv++;
+	}
+	exit (0);
+}
 

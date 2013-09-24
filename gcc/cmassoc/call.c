@@ -60,50 +60,50 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-unsigned lineno = 0; 
+unsigned lineno = 0;
 
 /*====================================================================*
  *   program variables;
  *--------------------------------------------------------------------*/
 
-static char const * reserved [] = 
+static char const * reserved[] = 
 
-{ 
-	"auto", 
-	"bool", 
-	"break", 
-	"case", 
-	"char", 
-	"const", 
-	"continue", 
-	"default", 
-	"do", 
-	"double", 
-	"else", 
-	"entry", 
-	"enum", 
-	"extern", 
-	"float", 
-	"for", 
-	"goto", 
-	"if", 
-	"int", 
-	"long", 
-	"register", 
-	"return", 
-	"short", 
-	"signed", 
-	"sizeof", 
-	"static", 
-	"struct", 
-	"switch", 
-	"typedef", 
-	"union", 
-	"unsigned", 
-	"void", 
-	"volatile", 
+{
+	"auto",
+	"bool",
+	"break",
+	"case",
+	"char",
+	"const",
+	"continue",
+	"default",
+	"do",
+	"double",
+	"else",
+	"entry",
+	"enum",
+	"extern",
+	"float",
+	"for",
+	"goto",
+	"if",
+	"int",
+	"long",
+	"register",
+	"return",
+	"short",
+	"signed",
+	"sizeof",
+	"static",
+	"struct",
+	"switch",
+	"typedef",
+	"union",
+	"unsigned",
+	"void",
+	"volatile",
 	"while"
-}; 
+};
 
 /*====================================================================*
  *
@@ -117,130 +117,130 @@ static char const * reserved [] =
  *
  *--------------------------------------------------------------------*/
 
-static void function (flag_t flags) 
+static void function(flag_t flags)
 
-{ 
-	static unsigned level = 0; 
-	char module [_NAMESIZE]; 
-	char string [_NAMESIZE]; 
-	signed c = getc (stdin); 
-	while (c != EOF) 
-	{ 
-		while (isspace (c)) 
-		{ 
-			c = getc (stdin); 
-		} 
-		if (c == '#') 
-		{ 
+{
+	static unsigned level = 0;
+	char module[_NAMESIZE];
+	char string[_NAMESIZE];
+	signed c = getc(stdin);
+	while (c != EOF)
+	{
+		while (isspace(c))
+		{
+			c = getc(stdin);
+		}
+		if (c == '#')
+		{
 			do 
-			{ 
-				c = getc (stdin); 
-				if (c == '\\') 
-				{ 
-					c = getc (stdin); 
-					c = getc (stdin); 
-				} 
-			} 
-			while (nobreak (c)); 
-			continue; 
-		} 
-		if ((c == '{') || (c == '(') || (c == '[')) 
-		{ 
-			c = getc (stdin); 
-			level++; 
-			continue; 
-		} 
-		if ((c == '}') || (c == ')') || (c == ']')) 
-		{ 
-			c = getc (stdin); 
-			level--; 
-			continue; 
-		} 
-		if (c == '/') 
-		{ 
-			c = nocomment (c); 
-			continue; 
-		} 
-		if (isquote (c)) 
-		{ 
-			c = noliteral (c); 
-			continue; 
-		} 
-		if (isalpha (c) || (c == '_')) 
-		{ 
-			char * sp = string; 
+			{
+				c = getc(stdin);
+				if (c == '\\')
+				{
+					c = getc(stdin);
+					c = getc(stdin);
+				}
+			}
+			while (nobreak(c));
+			continue;
+		}
+		if ((c == '{') || (c == '(') || (c == '['))
+		{
+			c = getc(stdin);
+			level++;
+			continue;
+		}
+		if ((c == '}') || (c == ')') || (c == ']'))
+		{
+			c = getc(stdin);
+			level--;
+			continue;
+		}
+		if (c == '/')
+		{
+			c = nocomment(c);
+			continue;
+		}
+		if (isquote(c))
+		{
+			c = noliteral(c);
+			continue;
+		}
+		if (isalpha(c) || (c == '_'))
+		{
+			char * sp = string;
 			do 
-			{ 
-				* sp++ = (char)(c); 
-				c = getc (stdin); 
-			} 
-			while (isalnum (c) || (c == '_')); 
-			* sp = (char)(0); 
+			{
+				* sp++ = (char) (c);
+				c = getc(stdin);
+			}
+			while (isalnum(c) || (c == '_'));
+			* sp = (char) (0);
 
 #if 0
 
-			printf ("[%s]\n", string); 
+			printf ("[%s]\n", string);
 
 #endif
 
-			if (svindex (string, reserved, SIZEOF (reserved), strcmp) < SIZEOF (reserved)) 
-			{ 
-				continue; 
-			} 
-			while (isspace (c)) 
-			{ 
-				c = getc (stdin); 
-			} 
-			if (c == '(') 
-			{ 
-				if (!level) 
-				{ 
-					memcpy (module, string, sizeof (module)); 
-				} 
-				else if (_anyset (flags, CALL_B_INVERT)) 
-				{ 
-					printf ("%s:%s;\n", string, module); 
-				} 
+			if (svindex(string, reserved, SIZEOF(reserved), strcmp) < SIZEOF(reserved))
+			{
+				continue;
+			}
+			while (isspace(c))
+			{
+				c = getc(stdin);
+			}
+			if (c == '(')
+			{
+				if (! level)
+				{
+					memcpy (module, string, sizeof(module));
+				}
+				else if(_anyset(flags, CALL_B_INVERT))
+				{
+					printf ("%s:%s;\n", string, module);
+				}
 				else 
-				{ 
-					printf ("%s:%s;\n", module, string); 
-				} 
-			} 
-			continue; 
-		} 
-		if (isdigit (c)) 
-		{ 
+				{
+					printf ("%s:%s;\n", module, string);
+				}
+			}
+			continue;
+		}
+		if (isdigit(c))
+		{
 			do 
-			{ 
-				c = getc (stdin); 
-			} 
-			while (isdigit (c) || (c == '.')); 
-			if ((c == 'x') || (c == 'X')) 
-			{ 
+			{
+				c = getc(stdin);
+			}
+			while (isdigit(c) || (c == '.'));
+			if ((c == 'x') || (c == 'X'))
+			{
 				do 
-				{ 
-					c = getc (stdin); 
-				} 
-				while (isxdigit (c)); 
-			} 
-			if ((c == 'e') || (c == 'E')) 
-			{ 
-				c = getc (stdin); 
-				if ((c == '+') || (c == '-')) 
-				{ 
-					c = getc (stdin); 
-				} 
-				while (isdigit (c)) 
-				{ 
-					c = getc (stdin); 
-				} 
-			} 
-			continue; 
-		} 
-		c = getc (stdin); 
-	} 
-	return; 
-} 
+				{
+					c = getc(stdin);
+				}
+				while (isxdigit(c));
+			}
+			if ((c == 'e') || (c == 'E'))
+			{
+				c = getc(stdin);
+				if ((c == '+') || (c == '-'))
+				{
+					c = getc(stdin);
+				}
+				while (isdigit(c))
+				{
+					c = getc(stdin);
+				}
+			}
+			continue;
+		}
+		c = getc(stdin);
+	}
+	return;
+}
 
 /*====================================================================*
  *   
@@ -252,45 +252,45 @@ static void function (flag_t flags)
  *   
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"x", 
-		PUTOPTV_S_FUNNEL, 
-		"print C language functional dependencies", 
-		"x\texchange objects", 
-		(char const *) (0)
-	}; 
-	flag_t flags = (flag_t) (0); 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'x': 
-			_setbits (flags, CALL_B_INVERT); 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"x",
+		PUTOPTV_S_FUNNEL,
+		"print C language functional dependencies",
+		"x\texchange objects",
+		(char const *)(0)
+	};
+	flag_t flags = (flag_t)(0);
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'x':
+			_setbits (flags, CALL_B_INVERT);
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		function (flags); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (efreopen (* argv, "rb", stdin)) 
-		{ 
-			function (flags); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	return (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		function (flags);
+	}
+	while ((argc) && (* argv))
+	{
+		if (efreopen(* argv, "rb", stdin))
+		{
+			function (flags);
+		}
+		argc--;
+		argv++;
+	}
+	return (0);
+}
 

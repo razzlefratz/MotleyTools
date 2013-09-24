@@ -82,38 +82,38 @@
  *
  *--------------------------------------------------------------------*/
 
-static void example () 
+static void example()
 
-{ 
-	char const * subjects [] = 
-	{ 
-		"NAME", 
-		"SYNTAX", 
-		"SYNOPSIS", 
-		"AVAILABILITY", 
-		"DESCRIPTION", 
-		"OPTIONS", 
-		"EXAMPLES", 
-		"NOTES", 
-		"MESSAGES", 
-		"HISTORY", 
-		"RESOURCES", 
-		"FILES", 
-		"BUGS", 
-		"CAVEATS", 
-		"AUTHORS", 
-		"CREDITS", 
-		"SEE ALSO", 
-		(char const *)(0)
-	}; 
-	char const ** subject = subjects; 
-	printf (".TH program 1 package"); 
-	while (* subject) 
-	{ 
-		printf ("\n.SH %s\n", * subject++); 
-	} 
-	return; 
-} 
+{
+	char const * subjects[] = 
+	{
+		"NAME",
+		"SYNTAX",
+		"SYNOPSIS",
+		"AVAILABILITY",
+		"DESCRIPTION",
+		"OPTIONS",
+		"EXAMPLES",
+		"NOTES",
+		"MESSAGES",
+		"HISTORY",
+		"RESOURCES",
+		"FILES",
+		"BUGS",
+		"CAVEATS",
+		"AUTHORS",
+		"CREDITS",
+		"SEE ALSO",
+		(char const *) (0)
+	};
+	char const ** subject = subjects;
+	printf (".TH program 1 package");
+	while (* subject)
+	{
+		printf ("\n.SH %s\n", * subject++);
+	}
+	return;
+}
 
 /*====================================================================*
  *
@@ -125,15 +125,15 @@ static void example ()
  * 
  *--------------------------------------------------------------------*/
 
-static void configure (char const * section, char const * project, char const * package, char const * release) 
+static void configure(char const * section, char const * project, char const * package, char const * release)
 
-{ 
-	printf ("[%s]\n", section); 
-	printf ("project=%s\n", project); 
-	printf ("package=%s\n", package); 
-	printf ("release=%s\n", release); 
-	return; 
-} 
+{
+	printf ("[%s]\n", section);
+	printf ("project=%s\n", project);
+	printf ("package=%s\n", package);
+	printf ("release=%s\n", release);
+	return;
+}
 
 /*====================================================================*
  *
@@ -167,122 +167,122 @@ static void configure (char const * section, char const * project, char const * 
  * 
  *--------------------------------------------------------------------*/
 
-static void function (char const * program, char const * project, char const * package, char const * release, flag_t flags) 
+static void function(char const * program, char const * project, char const * package, char const * release, flag_t flags)
 
-{ 
-	signed c = getc (stdin); 
-	while (c != EOF) 
-	{ 
-		while ((c == '\r') || (c == '\n')) 
-		{ 
-			c = getc (stdin); 
-		} 
-		if (c == '.') 
-		{ 
-			char symbol [SYMBOLSIZE]; 
-			char * sp = symbol; 
+{
+	signed c = getc(stdin);
+	while (c != EOF)
+	{
+		while ((c == '\r') || (c == '\n'))
+		{
+			c = getc(stdin);
+		}
+		if (c == '.')
+		{
+			char symbol[SYMBOLSIZE];
+			char * sp = symbol;
 			do 
-			{ 
-				* sp++ = c; 
-				c = getc (stdin); 
-			} 
-			while (isalpha (c)); 
-			* sp = (char) (0); 
-			if (!strcmp (symbol, ".TH")) 
-			{ 
-				while (nobreak (c)) 
-				{ 
-					c = getc (stdin); 
-				} 
-				sp += snprintf (sp, sizeof (symbol) + sp - symbol, " %s", program); 
-				sp += snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", release); 
-				sp += snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", package); 
-				sp += snprintf (sp, sizeof (symbol) + sp - symbol, " \"%s\"", project); 
-			} 
-			else if (!strcmp (symbol, ".SH")) 
-			{ 
-				putc ('\n', stdout); 
-			} 
-			else if (!strcmp (symbol, ".SS")) 
-			{ 
-				putc ('\n', stdout); 
-			} 
-			else if (!strcmp (symbol, ".TP")) 
-			{ 
-				putc ('\n', stdout); 
-			} 
-			else if (!strcmp (symbol, ".HP")) 
-			{ 
-				putc ('\n', stdout); 
-			} 
-			else if (!strcmp (symbol, ".IP")) 
-			{ 
-				putc ('\n', stdout); 
-			} 
-			else if (!strcmp (symbol, ".PP")) 
-			{ 
-				putc ('\n', stdout); 
-			} 
-			else if (!strcmp (symbol, ".P")) 
-			{ 
-				putc ('\n', stdout); 
-			} 
-			fputs (symbol, stdout); 
-		} 
-		while (nobreak (c)) 
-		{ 
-			if (isquote (c)) 
-			{ 
-				c = literal (c); 
-				continue; 
-			} 
-			if (c == '.') 
-			{ 
-				c = keep (c); 
-				if (c == '.') 
-				{ 
+			{
+				* sp++ = c;
+				c = getc(stdin);
+			}
+			while (isalpha(c));
+			* sp = (char)(0);
+			if (! strcmp(symbol, ".TH"))
+			{
+				while (nobreak(c))
+				{
+					c = getc(stdin);
+				}
+				sp += snprintf(sp, sizeof(symbol) +  sp - symbol, " %s", program);
+				sp += snprintf(sp, sizeof(symbol) +  sp - symbol, " \"%s\"", release);
+				sp += snprintf(sp, sizeof(symbol) +  sp - symbol, " \"%s\"", package);
+				sp += snprintf(sp, sizeof(symbol) +  sp - symbol, " \"%s\"", project);
+			}
+			else if(! strcmp(symbol, ".SH"))
+			{
+				putc ('\n', stdout);
+			}
+			else if(! strcmp(symbol, ".SS"))
+			{
+				putc ('\n', stdout);
+			}
+			else if(! strcmp(symbol, ".TP"))
+			{
+				putc ('\n', stdout);
+			}
+			else if(! strcmp(symbol, ".HP"))
+			{
+				putc ('\n', stdout);
+			}
+			else if(! strcmp(symbol, ".IP"))
+			{
+				putc ('\n', stdout);
+			}
+			else if(! strcmp(symbol, ".PP"))
+			{
+				putc ('\n', stdout);
+			}
+			else if(! strcmp(symbol, ".P"))
+			{
+				putc ('\n', stdout);
+			}
+			fputs (symbol, stdout);
+		}
+		while (nobreak(c))
+		{
+			if (isquote(c))
+			{
+				c = literal(c);
+				continue;
+			}
+			if (c == '.')
+			{
+				c = keep(c);
+				if (c == '.')
+				{
 					do 
-					{ 
-						c = keep (c); 
-					} 
-					while (c == '.'); 
-					continue; 
-				} 
-				if (isblank (c)) 
-				{ 
+					{
+						c = keep(c);
+					}
+					while (c == '.');
+					continue;
+				}
+				if (isblank(c))
+				{
 					do 
-					{ 
-						c = getc (stdin); 
-					} 
-					while (isblank (c)); 
-					putc ('\n', stdout); 
-					continue; 
-				} 
-				continue; 
-			} 
+					{
+						c = getc(stdin);
+					}
+					while (isblank(c));
+					putc ('\n', stdout);
+					continue;
+				}
+				continue;
+			}
 
 #if 1
 
-			if (c == '\\') 
-			{ 
-				c = keep (c); 
-				if (c == 'v') 
-				{ 
-					c = 'f'; 
-				} 
-				c = keep (c); 
-				continue; 
+			if (c == '\\')
+			{
+				c = keep(c);
+				if (c == 'v')
+				{
+					c = 'f';
+				}
+				c = keep(c);
+				continue;
 
 #endif
 
-			} 
-			c = keep (c); 
-		} 
-		c = keep (c); 
-	} 
-	putc ('\n', stdout); 
-	return; 
-} 
+			}
+			c = keep(c);
+		}
+		c = keep(c);
+	}
+	putc ('\n', stdout);
+	return;
+}
 
 /*====================================================================*
  *
@@ -295,82 +295,82 @@ static void function (char const * program, char const * project, char const * p
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"mop:s:", 
-		"tidy Linux manpage", 
-		PUTOPTV_S_FILTER, 
-		"m\tprint example manpage on stdout", 
-		"o\tprint default profile on stdout", 
-		"p f\tprofile is (s) [" LITERAL (MP_PROFILE) "]", 
-		"s s\tsection is (s) [" LITERAL (MP_SECTION) "]", 
-		(char const *) (0)
-	}; 
-	char buffer [16]; 
-	time_t now = time ((time_t *)(0)); ; 
-	char const * profile = MP_PROFILE; 
-	char const * section = MP_SECTION; 
-	char const * program = MP_PROGRAM; 
-	char const * project = MP_PROJECT; 
-	char const * package = MP_PACKAGE; 
-	char const * release = buffer; 
-	char * sp; 
-	flag_t flags = (flag_t)(0); 
-	signed c; 
-	strftime (buffer, sizeof (buffer), MP_PUBLISH, localtime (& now)); 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'p': 
-			profile = optarg; 
-			break; 
-		case 's': 
-			section = optarg; 
-			break; 
-		case 'm': 
-			example (release); 
-			return (0); 
-		case 'o': 
-			configure (section, project, package, release); 
-			return (0); 
+{
+	static char const * optv[] = 
+	{
+		"mop:s:",
+		"tidy Linux manpage",
+		PUTOPTV_S_FILTER,
+		"m\tprint example manpage on stdout",
+		"o\tprint default profile on stdout",
+		"p f\tprofile is (s) [" LITERAL(MP_PROFILE) "]",
+		"s s\tsection is (s) [" LITERAL(MP_SECTION) "]",
+		(char const *)(0)
+	};
+	char buffer[16];
+	time_t now = time((time_t *) (0));;
+	char const * profile = MP_PROFILE;
+	char const * section = MP_SECTION;
+	char const * program = MP_PROGRAM;
+	char const * project = MP_PROJECT;
+	char const * package = MP_PACKAGE;
+	char const * release = buffer;
+	char * sp;
+	flag_t flags = (flag_t) (0);
+	signed c;
+	strftime (buffer, sizeof(buffer), MP_PUBLISH, localtime(& now));
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'p':
+			profile = optarg;
+			break;
+		case 's':
+			section = optarg;
+			break;
+		case 'm':
+			example (release);
+			return (0);
+		case 'o':
+			configure (section, project, package, release);
+			return (0);
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	project = profilestring (profile, section, "project", project); 
-	package = profilestring (profile, section, "package", package); 
-	release = profilestring (profile, section, "release", release); 
-	if ((!argc) || (!* argv)) 
-	{ 
-		function ("unamed 7", project, package, release, flags); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (vfopen (* argv)) 
-		{ 
-			program = * argv; 
-			for (sp = (char *)(* argv); * sp; ++ sp) 
-			{ 
-				if (* sp == PATH_C_EXTENDER) 
-				{ 
-					program = sp + 1; 
-				} 
-				if (* sp == FILE_C_EXTENDER) 
-				{ 
-					* sp = ' '; 
-				} 
-			} 
-			function (program, project, package, release, flags); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	exit (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	project = profilestring(profile, section, "project", project);
+	package = profilestring(profile, section, "package", package);
+	release = profilestring(profile, section, "release", release);
+	if ((! argc) || (! * argv))
+	{
+		function ("unamed 7", project, package, release, flags);
+	}
+	while ((argc) && (* argv))
+	{
+		if (vfopen(* argv))
+		{
+			program = * argv;
+			for (sp = (char *) (* argv); * sp; ++ sp)
+			{
+				if (* sp == PATH_C_EXTENDER)
+				{
+					program = sp +  1;
+				}
+				if (* sp == FILE_C_EXTENDER)
+				{
+					* sp = ' ';
+				}
+			}
+			function (program, project, package, release, flags);
+		}
+		argc--;
+		argv++;
+	}
+	exit (0);
+}
 

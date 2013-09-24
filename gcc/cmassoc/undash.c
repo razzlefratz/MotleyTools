@@ -59,133 +59,133 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (flag_t flags) 
+void function(flag_t flags)
 
-{ 
-	signed c; 
-	signed o; 
-	while ((c = getc (stdin)) != EOF) 
-	{ 
-		switch (c) 
-		{ 
-		case '#': 
+{
+	signed c;
+	signed o;
+	while ((c = getc(stdin)) != EOF)
+	{
+		switch (c)
+		{
+		case '#':
 			do 
-			{ 
-				putc (c, stdout); 
-				c = getc (stdin); 
-			} 
-			while (nobreak (c)); 
-			putc ('\n', stdout); 
-			break; 
-		case '\\': 
-			c = getc (stdin); 
-			if (c == '\n') 
-			{ 
+			{
+				putc (c, stdout);
+				c = getc(stdin);
+			}
+			while (nobreak(c));
+			putc ('\n', stdout);
+			break;
+		case '\\':
+			c = getc(stdin);
+			if (c == '\n')
+			{
 				do 
-				{ 
-					c = getc (stdin); 
-				} 
-				while (isblank (c)); 
-				ungetc (c, stdin); 
-			} 
-			else if (c == EOF) 
-			{ 
-				putc ('\\', stdout); 
-				putc ('\n', stdout); 
-			} 
+				{
+					c = getc(stdin);
+				}
+				while (isblank(c));
+				ungetc (c, stdin);
+			}
+			else if(c == EOF)
+			{
+				putc ('\\', stdout);
+				putc ('\n', stdout);
+			}
 			else 
-			{ 
-				putc ('\\', stdout); 
-				putc (c, stdout); 
-			} 
-			break; 
-		case '\"': 
-		case '\'': 
-			o = c; 
+			{
+				putc ('\\', stdout);
+				putc (c, stdout);
+			}
+			break;
+		case '\"':
+		case '\'':
+			o = c;
 			do 
-			{ 
-				putc (c, stdout); 
-				o = getc (stdin); 
-				if (c == '\\') 
-				{ 
-					putc (c, stdout); 
-					c = getc (stdin); 
-					putc (c, stdout); 
-					c = getc (stdin); 
-				} 
-			} 
-			while ((c != EOF) && (c != o)); 
-			putc (o, stdout); 
-			break; 
-		case '-': 
-			c = getc (stdin); 
-			if (c == '-') 
-			{ 
-				putc ('\\', stdout); 
-				putc ('\n', stdout); 
-				putc ('\t', stdout); 
-				putc ('-', stdout); 
-			} 
+			{
+				putc (c, stdout);
+				o = getc(stdin);
+				if (c == '\\')
+				{
+					putc (c, stdout);
+					c = getc(stdin);
+					putc (c, stdout);
+					c = getc(stdin);
+				}
+			}
+			while ((c != EOF) && (c != o));
+			putc (o, stdout);
+			break;
+		case '-':
+			c = getc(stdin);
+			if (c == '-')
+			{
+				putc ('\\', stdout);
+				putc ('\n', stdout);
+				putc ('\t', stdout);
+				putc ('-', stdout);
+			}
 			else 
-			{ 
-				ungetc (c, stdin); 
-			} 
-			putc ('-', stdout); 
-			break; 
+			{
+				ungetc (c, stdin);
+			}
+			putc ('-', stdout);
+			break;
 		default: 
-			putc (c, stdout); 
-			break; 
-		} 
-	} 
-	return; 
-} 
+			putc (c, stdout);
+			break;
+		}
+	}
+	return;
+}
 
 /*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"h", 
-		PUTOPTV_S_FILTER, 
-		"break double-dashed arguments out onto individual lines;", 
-		(char *) (0)
-	}; 
-	flag_t flags = (flag_t) (0); 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'h': 
-			putoptv (optv); 
-			exit (0); 
-		case ':': 
-			exit (1); 
-		case '?': 
-			exit (1); 
+{
+	static char const * optv[] = 
+	{
+		"h",
+		PUTOPTV_S_FILTER,
+		"break double-dashed arguments out onto individual lines;",
+		(char *)(0)
+	};
+	flag_t flags = (flag_t)(0);
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'h':
+			putoptv (optv);
+			exit (0);
+		case ':':
+			exit (1);
+		case '?':
+			exit (1);
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		function (flags); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (vfopen (* argv)) 
-		{ 
-			function (flags); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	exit (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		function (flags);
+	}
+	while ((argc) && (* argv))
+	{
+		if (vfopen(* argv))
+		{
+			function (flags);
+		}
+		argc--;
+		argv++;
+	}
+	exit (0);
+}
 

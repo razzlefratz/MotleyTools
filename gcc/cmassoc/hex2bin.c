@@ -50,66 +50,66 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function (char const * filename) 
+static void function(char const * filename)
 
-{ 
-	byte byte; 
-	unsigned line = 1; 
-	unsigned digit = 0; 
-	unsigned value = 0; 
-	while (read (STDIN_FILENO, & byte, sizeof (byte)) > 0) 
-	{ 
-		if (isspace (byte)) 
-		{ 
-			if (byte == '\n') 
-			{ 
-				line++; 
-			} 
-			continue; 
-		} 
-		if ((byte >= '0') && (byte <= '9')) 
-		{ 
-			value *= 16; 
-			value += byte - '0'; 
-			if (digit++ & 1) 
-			{ 
-				write (STDOUT_FILENO, & value, sizeof (char)); 
-				value = 0; 
-			} 
-			continue; 
-		} 
-		if ((byte >= 'A') && (byte <= 'F')) 
-		{ 
-			value *= 16; 
-			value += 10; 
-			value += byte - 'A'; 
-			if (digit++ & 1) 
-			{ 
-				write (STDOUT_FILENO, & value, sizeof (char)); 
-				value = 0; 
-			} 
-			continue; 
-		} 
-		if ((byte >= 'a') && (byte <= 'f')) 
-		{ 
-			value *= 16; 
-			value += 10; 
-			value += byte - 'a'; 
-			if (digit++ & 1) 
-			{ 
-				write (STDOUT_FILENO, & value, sizeof (char)); 
-				value = 0; 
-			} 
-			continue; 
-		} 
-		error (1, ENOTSUP, "Illegal hex digit '%c' (0x%02X) on line %d", byte, byte, line); 
-	} 
-	if (digit & 1) 
-	{ 
-		error (1, ENOTSUP, "Odd digit count (%d) from %s", digit, filename); 
-	} 
-	return; 
-} 
+{
+	byte byte;
+	unsigned line = 1;
+	unsigned digit = 0;
+	unsigned value = 0;
+	while (read(STDIN_FILENO, & byte, sizeof(byte)) > 0)
+	{
+		if (isspace(byte))
+		{
+			if (byte == '\n')
+			{
+				line++;
+			}
+			continue;
+		}
+		if ((byte >= '0') && (byte <= '9'))
+		{
+			value *= 16;
+			value += byte - '0';
+			if (digit++ & 1)
+			{
+				write (STDOUT_FILENO, & value, sizeof(char));
+				value = 0;
+			}
+			continue;
+		}
+		if ((byte >= 'A') && (byte <= 'F'))
+		{
+			value *= 16;
+			value += 10;
+			value += byte - 'A';
+			if (digit++ & 1)
+			{
+				write (STDOUT_FILENO, & value, sizeof(char));
+				value = 0;
+			}
+			continue;
+		}
+		if ((byte >= 'a') && (byte <= 'f'))
+		{
+			value *= 16;
+			value += 10;
+			value += byte - 'a';
+			if (digit++ & 1)
+			{
+				write (STDOUT_FILENO, & value, sizeof(char));
+				value = 0;
+			}
+			continue;
+		}
+		error (1, ENOTSUP, "Illegal hex digit '%c' (0x%02X) on line %d", byte, byte, line);
+	}
+	if (digit & 1)
+	{
+		error (1, ENOTSUP, "Odd digit count (%d) from %s", digit, filename);
+	}
+	return;
+}
 
 /*====================================================================*
  *
@@ -122,41 +122,41 @@ static void function (char const * filename)
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"", 
-		PUTOPTV_S_FUNNEL, 
-		"hexadecimal to binary file concatenate", 
-		(char const *)(0)
-	}; 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
+{
+	static char const * optv[] = 
+	{
+		"",
+		PUTOPTV_S_FUNNEL,
+		"hexadecimal to binary file concatenate",
+		(char const *) (0)
+	};
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		function ("standard input"); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (!freopen (* argv, "rb", stdin)) 
-		{ 
-			error (1, errno, "%s", * argv); 
-		} 
-		function (* argv); 
-		argc--; 
-		argv++; 
-	} 
-	return (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		function ("standard input");
+	}
+	while ((argc) && (* argv))
+	{
+		if (! freopen(* argv, "rb", stdin))
+		{
+			error (1, errno, "%s", * argv);
+		}
+		function (* argv);
+		argc--;
+		argv++;
+	}
+	return (0);
+}
 

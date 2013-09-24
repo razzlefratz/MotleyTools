@@ -69,59 +69,59 @@
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"qv", 
-		PUTOPTV_S_FUNNEL, 
-		"file finger-printer", 
-		"q\tsuppress routine messages", 
-		"v\tprint additions messages", 
-		(char const *) (0)
-	}; 
-	byte buffer [BUFFERSIZE]; 
-	byte digest [DIGESTSIZE]; 
-	flag_t flags = (flag_t)(0); 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'q': 
-			_setbits (flags, FP_B_SILENCE); 
-			break; 
-		case 'v': 
-			_setbits (flags, FP_B_VERBOSE); 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"qv",
+		PUTOPTV_S_FUNNEL,
+		"file finger-printer",
+		"q\tsuppress routine messages",
+		"v\tprint additions messages",
+		(char const *)(0)
+	};
+	byte buffer[BUFFERSIZE];
+	byte digest[DIGESTSIZE];
+	flag_t flags = (flag_t) (0);
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'q':
+			_setbits (flags, FP_B_SILENCE);
+			break;
+		case 'v':
+			_setbits (flags, FP_B_VERBOSE);
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		SHA256Ident (STDIN_FILENO, buffer, sizeof (buffer), digest); 
-		hexout (digest, sizeof (digest), '\0', '\0', stdout); 
-		printf ("\n"); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (efreopen (* argv, "rb", stdin)) 
-		{ 
-			SHA256Ident (STDIN_FILENO, buffer, sizeof (buffer), digest); 
-			hexout (digest, sizeof (digest), '\0', '\0', stdout); 
-			if (_anyset (flags, FP_B_VERBOSE)) 
-			{ 
-				printf (" %s", * argv); 
-			} 
-			printf ("\n"); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	return (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		SHA256Ident (STDIN_FILENO, buffer, sizeof(buffer), digest);
+		hexout (digest, sizeof(digest), '\0', '\0', stdout);
+		printf ("\n");
+	}
+	while ((argc) && (* argv))
+	{
+		if (efreopen(* argv, "rb", stdin))
+		{
+			SHA256Ident (STDIN_FILENO, buffer, sizeof(buffer), digest);
+			hexout (digest, sizeof(digest), '\0', '\0', stdout);
+			if (_anyset(flags, FP_B_VERBOSE))
+			{
+				printf (" %s", * argv);
+			}
+			printf ("\n");
+		}
+		argc--;
+		argv++;
+	}
+	return (0);
+}
 

@@ -58,37 +58,37 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (size_t lower, size_t upper, flag_t flags) 
+void function(size_t lower, size_t upper, flag_t flags)
 
-{ 
-	size_t column; 
-	signed c; 
-	for (column = 1; (c = getc (stdin)) != EOF; column++) 
-	{ 
-		if (c == '\n') 
-		{ 
-			putc (c, stdout); 
-			column = 0; 
-			continue; 
-		} 
-		if (lower < upper) 
-		{ 
-			if ((column < lower) || (column > upper)) 
-			{ 
-				continue; 
-			} 
-		} 
-		if (lower > upper) 
-		{ 
-			if ((column < lower) && (column > upper)) 
-			{ 
-				continue; 
-			} 
-		} 
-		putc (c, stdout); 
-	} 
-	return; 
-} 
+{
+	size_t column;
+	signed c;
+	for (column = 1; (c = getc(stdin)) != EOF; column++)
+	{
+		if (c == '\n')
+		{
+			putc (c, stdout);
+			column = 0;
+			continue;
+		}
+		if (lower < upper)
+		{
+			if ((column < lower) || (column > upper))
+			{
+				continue;
+			}
+		}
+		if (lower > upper)
+		{
+			if ((column < lower) && (column > upper))
+			{
+				continue;
+			}
+		}
+		putc (c, stdout);
+	}
+	return;
+}
 
 /*====================================================================*
  *
@@ -101,51 +101,51 @@ void function (size_t lower, size_t upper, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"a:b:", 
-		PUTOPTV_S_FILTER, 
-		"discard character columns", 
-		"a n\tafter column (n)", 
-		"b n\tbefore column (n)", 
-		(char const *) (0)
-	}; 
-	flag_t flags = (flag_t) (0); 
-	unsigned lower = 0; 
-	unsigned upper = 0; 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'a': 
-			upper = uintspec (optarg, 0, USHRT_MAX); 
-			break; 
-		case 'b': 
-			lower = uintspec (optarg, 0, USHRT_MAX); 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"a:b:",
+		PUTOPTV_S_FILTER,
+		"discard character columns",
+		"a n\tafter column (n)",
+		"b n\tbefore column (n)",
+		(char const *)(0)
+	};
+	flag_t flags = (flag_t)(0);
+	unsigned lower = 0;
+	unsigned upper = 0;
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'a':
+			upper = uintspec(optarg, 0, USHRT_MAX);
+			break;
+		case 'b':
+			lower = uintspec(optarg, 0, USHRT_MAX);
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		function (lower, upper, flags); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (vfopen (* argv)) 
-		{ 
-			function (lower, upper, flags); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	exit (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		function (lower, upper, flags);
+	}
+	while ((argc) && (* argv))
+	{
+		if (vfopen(* argv))
+		{
+			function (lower, upper, flags);
+		}
+		argc--;
+		argv++;
+	}
+	exit (0);
+}
 

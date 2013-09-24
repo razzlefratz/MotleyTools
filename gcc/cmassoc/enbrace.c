@@ -62,62 +62,77 @@
  *
  *--------------------------------------------------------------------*/
 
-signed wrap (signed c, char const * braces) 
+signed wrap(signed c, char const * braces)
 
-{ 
-	while (c == '$') { c = keep (c); }
-	if (isalnum (c) || (c == '_')) 
-	{ 
-		putc (* braces++, stdout); 
-		while (isalnum (c) || (c == '_')) 
-		{ 
-			putc (c, stdout); 
-			c = getc (stdin); 
+{
+	while (c == '$')
+	{
+		c = keep(c);
+	}
+	if (isalnum(c) || (c == '_'))
+	{
+		putc (* braces++, stdout);
+		while (isalnum(c) || (c == '_'))
+		{
+			putc (c, stdout);
+			c = getc(stdin);
 
 #ifdef PHP
 
-			if (c != '-') 
-			{ 
-				continue; 
-			} 
-			c = getc (stdin); 
-			if (c != '>') 
-			{ 
-				ungetc (c, stdin); 
-				c = '-'; 
-				continue; 
-			} 
-			putc ('-', stdout); 
-			putc ('>', stdout); 
-			c = getc (stdin); 
+			if (c != '-')
+			{
+				continue;
+			}
+			c = getc(stdin);
+			if (c != '>')
+			{
+				ungetc (c, stdin);
+				c = '-';
+				continue;
+			}
+			putc ('-', stdout);
+			putc ('>', stdout);
+			c = getc(stdin);
 
 #endif
 
-		} 
-		putc (* braces--, stdout); 
-	} 
-	else if (c == '{')
-	{
-		do { c = keep (c); } while ((c != '}') && (c != EOF));
+		}
+		putc (* braces--, stdout);
 	}
-	else if (c == '[')
+	else if(c == '{')
 	{
-		do { c = keep (c); } while ((c != ']') && (c != EOF));
+		do 
+		{
+			c = keep(c);
+		}
+		while ((c != '}') && (c != EOF));
 	}
-	else if (c == '(')
+	else if(c == '[')
 	{
-		do { c = keep (c); } while ((c != ')') && (c != EOF));
+		do 
+		{
+			c = keep(c);
+		}
+		while ((c != ']') && (c != EOF));
 	}
-	else if (ispunct (c))
-	{ 
-		putc (* braces++, stdout); 
-		putc (c, stdout); 
-		c = getc (stdin); 
-		putc (* braces--, stdout); 
+	else if(c == '(')
+	{
+		do 
+		{
+			c = keep(c);
+		}
+		while ((c != ')') && (c != EOF));
+	}
+	else if(ispunct(c))
+	{
+		putc (* braces++, stdout);
+		putc (c, stdout);
+		c = getc(stdin);
+		putc (* braces--, stdout);
 		return (c);
-	} 
-	return (c); 
-} 
+	}
+	return (c);
+}
 
 /*====================================================================*
  *
@@ -129,85 +144,89 @@ signed wrap (signed c, char const * braces)
  *
  *--------------------------------------------------------------------*/
 
-void function (signed c, char const * braces) 
+void function(signed c, char const * braces)
 
-{ 
-	while (c != EOF) 
-	{ 
-		if (c == '#') 
-		{ 
-			do { c = keep (c); } while (nobreak (c));
+{
+	while (c != EOF)
+	{
+		if (c == '#')
+		{
+			do 
+			{
+				c = keep(c);
+			}
+			while (nobreak(c));
 			continue;
-		} 
-		if (isquote (c))
+		}
+		if (isquote(c))
 		{
 			signed o = c;
-			c = keep (c);
+			c = keep(c);
 			while ((c != o) && (c != EOF))
 			{
 				if (c == '$')
-				{	
-					c = wrap (c, braces);
+				{
+					c = wrap(c, braces);
 					continue;
 				}
 				if (c == '\\')
 				{
-					c = keep (c);
+					c = keep(c);
 				}
-				c = keep (c);
+				c = keep(c);
 			}
-			c = keep (c);
+			c = keep(c);
 			continue;
 		}
-		if (c == '$') 
-		{ 
-			c = wrap (c, braces);
+		if (c == '$')
+		{
+			c = wrap(c, braces);
 			continue;
-		} 
-		c = keep (c);
-	} 
-	return; 
-} 
+		}
+		c = keep(c);
+	}
+	return;
+}
 
 /*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"", 
-		PUTOPTV_S_FILTER, 
-		"wrap symbols in braces", 
-		(char *) (0)
-	}; 
-	char const * braces = "{}"; 
-	signed c; 
-	while (~ (c = getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
+{
+	static char const * optv[] = 
+	{
+		"",
+		PUTOPTV_S_FILTER,
+		"wrap symbols in braces",
+		(char *)(0)
+	};
+	char const * braces = "{}";
+	signed c;
+	while (~ (c = getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
 		default: 
-			break; 
-		} 
-	} 
-	argc -= optind; 
-	argv += optind; 
-	if (!argc) 
-	{ 
-		function (getc (stdin), braces); 
-	} 
-	while ((argc) && (* argv)) 
-	{ 
-		if (vfopen (* argv)) 
-		{ 
-			function (getc (stdin), braces); 
-		} 
-		argc--; 
-		argv++; 
-	} 
-	exit (0); 
-} 
+			break;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	if (! argc)
+	{
+		function (getc(stdin), braces);
+	}
+	while ((argc) && (* argv))
+	{
+		if (vfopen(* argv))
+		{
+			function (getc(stdin), braces);
+		}
+		argc--;
+		argv++;
+	}
+	exit (0);
+}
 
