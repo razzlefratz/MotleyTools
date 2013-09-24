@@ -22,38 +22,39 @@
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, int argv []) 
+int main (int argc, int argv [])
 
 {
 	std::cout << "running....\n";
 	try 
 	{
 		ServerSocket server (30000);
-		while (true) 
+		while (true)
 		{
 			ServerSocket new_sock;
 			server.accept (new_sock);
 			try 
 			{
-				while (true) 
+				while (true)
 				{
 					std::string data;
 					new_sock >> data;
 					new_sock << data;
 				}
 			}
-			catch (SocketException &) 
+			catch (SocketException & )
 			{
 			}
 		}
 	}
-	catch (SocketException & e) 
+	catch (SocketException & e)
 	{
 		std::cout << "Exception was caught:" << e.description () << "\nExiting.\n";
 	}
 	exit (0);
 }
 
-
 #endif
+
+
 
