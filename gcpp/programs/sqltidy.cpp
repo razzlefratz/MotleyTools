@@ -83,14 +83,14 @@ static osource tidy;
  *
  *--------------------------------------------------------------------*/
 
-void function(oflagword * flags)
+void function (oflagword * flags)
 
 {
 	size_t level = 0;
-	int c = std::cin.get();
+	int c = std::cin.get ();
 	while (c != EOF)
 	{
-		switch ((char)(c))
+		switch ((char) (c))
 		{
 		case ' ':
 		case '\t':
@@ -98,45 +98,45 @@ void function(oflagword * flags)
 		case '\n':
 		case '\f':
 		case '\0':
-			c = std::cin.get();
+			c = std::cin.get ();
 			break;
 		case '#':
-			indent.endline(2);
+			indent.endline (2);
 			do 
 			{
-				c = tidy.content(c, '\n');
+				c = tidy.content (c, '\n');
 			}
 			while (c == '#');
 			break;
 		case '(':
-			indent.endline(1);
-			indent.newline(level++);
-			c = tidy.keep(c);
+			indent.endline (1);
+			indent.newline (level++);
+			c = tidy.keep (c);
 			break;
 		case ')':
-			indent.endline(1);
-			indent.newline(-- level);
-			c = tidy.keep(c);
-			c = tidy.find(c);
+			indent.endline (1);
+			indent.newline (-- level);
+			c = tidy.keep (c);
+			c = tidy.find (c);
 			if ((c == ',') || (c == ';'))
 			{
-				c = tidy.keep(c);
+				c = tidy.keep (c);
 				break;
 			}
-			std::cout.put(' ');
+			std::cout.put (' ');
 			break;
 		case ',':
 		case ';':
-			c = tidy.keep(c);
+			c = tidy.keep (c);
 			break;
 		default: 
-			indent.endline(1);
-			indent.newline(level);
-			c = tidy.context(c, "(,)#");
+			indent.endline (1);
+			indent.newline (level);
+			c = tidy.context (c, "(,)#");
 			break;
 		}
 	}
-	indent.endline(2);
+	indent.endline (2);
 	return;
 }
 
@@ -144,24 +144,24 @@ void function(oflagword * flags)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"m:o:st",
 		oPUTOPTV_S_FILTER,
 		"format sql source code",
-		"m s\tmargin string is (s) [" LITERAL(MARGIN) "]",
-		"o s\toffset string is (s) [" LITERAL(OFFSET) "]",
+		"m s\tmargin string is (s) [" LITERAL (MARGIN) "]",
+		"o s\toffset string is (s) [" LITERAL (OFFSET) "]",
 		"s\toffset string is 3 spaces",
 		"t\toffset string is 1 tab",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	ogetoptv getopt;
 	oflagword flags;
 	signed c;
-	while (~ (c = getopt.getoptv(argc, argv, optv)))
+	while (~ (c = getopt.getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -169,16 +169,16 @@ int main(int argc, char const * argv[])
 #if 0
 
 		case 'm':
-			tidy.margin(escape.unescape((char *)(getopt.args())));
+			tidy.margin (escape.unescape ((char *) (getopt.args ())));
 			break;
 		case 'o':
-			tidy.offset(escape.unescape((char *)(getopt.args())));
+			tidy.offset (escape.unescape ((char *) (getopt.args ())));
 			break;
 		case 's':
-			tidy.offset("    ");
+			tidy.offset ("    ");
 			break;
 		case 't':
-			tidy.offset("\t");
+			tidy.offset ("\t");
 			break;
 
 #endif
@@ -187,19 +187,19 @@ int main(int argc, char const * argv[])
 			break;
 		}
 	}
-	if (! getopt.argc())
+	if (! getopt.argc ())
 	{
 		function (& flags);
 	}
-	while (getopt.argc() && * getopt.argv())
+	while (getopt.argc () && * getopt.argv ())
 	{
-		if (fileopen.openedit(* getopt.argv()))
+		if (fileopen.openedit (* getopt.argv ()))
 		{
 			function (& flags);
-			fileopen.close();
+			fileopen.close ();
 		}
 		getopt++;
 	}
-	std::exit(0);
+	std::exit (0);
 }
 

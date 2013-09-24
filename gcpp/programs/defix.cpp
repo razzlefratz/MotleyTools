@@ -47,22 +47,22 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"c:f:iomps",
 		oPUTOPTV_S_DIVINE,
 		"extract and format prefix or suffix from string arguments",
-		"c c\tcomponent separator is (c) [" LITERAL(CBREAK) "]",
-		"f s\tformat string is (s) [" LITERAL(FORMAT) "]",
+		"c c\tcomponent separator is (c) [" LITERAL (CBREAK) "]",
+		"f s\tformat string is (s) [" LITERAL (FORMAT) "]",
 		"i\tbreak on initial separator",
 		"m\tseparator is mandatory",
 		"o\tseparator is optional",
 		"p\textract prefix",
 		"s\textract suffix",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	ogetoptv getopt;
 	ocontext string;
@@ -72,15 +72,15 @@ int main(int argc, char const * argv[])
 	bool optional = false;
 	bool prefix = false;
 	signed c;
-	while (~ (c = getopt.getoptv(argc, argv, optv)))
+	while (~ (c = getopt.getoptv (argc, argv, optv)))
 	{
-		switch ((char)(c))
+		switch ((char) (c))
 		{
 		case 'c':
-			character = * getopt.optarg();
+			character = * getopt.optarg ();
 			break;
 		case 'f':
-			format = getopt.optarg();
+			format = getopt.optarg ();
 			break;
 		case 'i':
 			initial = true;
@@ -101,10 +101,10 @@ int main(int argc, char const * argv[])
 			break;
 		}
 	}
-	while (getopt.argc() && * getopt.argv())
+	while (getopt.argc () && * getopt.argv ())
 	{
-		string.split(* getopt.argv(), character, initial, optional);
-		std::printf(format, (prefix)? string.prefix(): string.suffix());
+		string.split (* getopt.argv (), character, initial, optional);
+		std::printf (format, (prefix)? string.prefix (): string.suffix ());
 		getopt++;
 	}
 	return (0);

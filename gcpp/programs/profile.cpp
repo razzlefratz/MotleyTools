@@ -51,10 +51,10 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"s:e:d:",
 		oPUTOPTV_S_FUNNEL,
@@ -62,7 +62,7 @@ int main(int argc, char const * argv[])
 		"s s\tsection name is (s) [" SECTION "]",
 		"e s\telement name is (s) [" ELEMENT "]",
 		"d s\tdefault text is (s) [" DEFAULT "]",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	oprofile profile;
 	char const * section = SECTION;
@@ -71,39 +71,39 @@ int main(int argc, char const * argv[])
 	ogetoptv getopt;
 	oputoptv putopt;
 	signed c;
-	while (~ (c = getopt.getoptv(argc, argv, optv)))
+	while (~ (c = getopt.getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 's':
-			section = getopt.args();
+			section = getopt.args ();
 			break;
 		case 'e':
-			element = getopt.args();
+			element = getopt.args ();
 			break;
 		case 'd':
-			content = getopt.args();
+			content = getopt.args ();
 			break;
 		default: 
 			break;
 		}
 	}
-	if (getopt.argc())
+	if (getopt.argc ())
 	{
-		if ((section == (char *)(0)) || (* section == (char)(0)))
+		if ((section == (char *) (0)) || (* section == (char) (0)))
 		{
-			oerror::error(1, EINVAL, "No profile section specified");
+			oerror::error (1, EINVAL, "No profile section specified");
 		}
-		if ((element == (char *)(0)) || (* element == (char)(0)))
+		if ((element == (char *) (0)) || (* element == (char) (0)))
 		{
-			oerror::error(1, EINVAL, "No section element specified");
+			oerror::error (1, EINVAL, "No section element specified");
 		}
 	}
-	while ((getopt.argc()) && (* getopt.argv()))
+	while ((getopt.argc ()) && (* getopt.argv ()))
 	{
-		std::cout << profile.string(* getopt.argv(), section, element, content) << "\n";
+		std::cout << profile.string (* getopt.argv (), section, element, content) << "\n";
 		getopt++;
 	}
-	std::exit(0);
+	std::exit (0);
 }
 

@@ -49,10 +49,10 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"c:f:ulp",
 		oPUTOPTV_S_FUNNEL,
@@ -62,44 +62,44 @@ int main(int argc, char const * argv[])
 		"u\ttargets are utilities ",
 		"l\ttargets are libraries ",
 		"p\ttargets are programs ",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	ogetoptv getopt;
 	omakefile makefile;
 	signed c;
-	while (~ (c = getopt.getoptv(argc, argv, optv)))
+	while (~ (c = getopt.getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'c':
-			makefile.compiler(getopt.optarg());
+			makefile.compiler (getopt.optarg ());
 			break;
 		case 'f':
-			makefile.projectfile(getopt.optarg());
+			makefile.projectfile (getopt.optarg ());
 			break;
 		case 'u':
-			makefile.setbits(oMAKEFILE_UTILITY);
-			makefile.clearbits(oMAKEFILE_LIBRARY);
+			makefile.setbits (oMAKEFILE_UTILITY);
+			makefile.clearbits (oMAKEFILE_LIBRARY);
 			break;
 		case 'l':
-			makefile.clearbits(oMAKEFILE_UTILITY);
-			makefile.setbits(oMAKEFILE_LIBRARY);
+			makefile.clearbits (oMAKEFILE_UTILITY);
+			makefile.setbits (oMAKEFILE_LIBRARY);
 			break;
 		case 'p':
-			makefile.clearbits(oMAKEFILE_UTILITY);
-			makefile.clearbits(oMAKEFILE_LIBRARY);
+			makefile.clearbits (oMAKEFILE_UTILITY);
+			makefile.clearbits (oMAKEFILE_LIBRARY);
 			break;
 		default: 
 			break;
 		}
 	}
-	makefile.linebreak();
-	while (getopt.argc() && * getopt.argv())
+	makefile.linebreak ();
+	while (getopt.argc () && * getopt.argv ())
 	{
-		makefile.includefile(* getopt.argv());
+		makefile.includefile (* getopt.argv ());
 		getopt++;
 	}
-	makefile.publish();
-	std::exit(0);
+	makefile.publish ();
+	std::exit (0);
 }
 

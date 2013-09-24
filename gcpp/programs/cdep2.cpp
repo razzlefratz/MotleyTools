@@ -66,8 +66,8 @@
 static opathspec pathspec;
 static ofilespec filespec;
 static oscantext scantext;
-static odepend sources("project");
-static char const * folders[] = 
+static odepend sources ("project");
+static char const * folders [] = 
 
 {
 	"/usr/include",
@@ -75,7 +75,7 @@ static char const * folders[] =
 	"/usr/lib/gcc-lib/i386-linux/2.95.4/include",
 	"/usr/lib/gcc-lib/i386-linux/3.0.4/include",
 	"/usr/include/c++/3.3",
-	(char const *)(0)
+	(char const *) (0)
 };
 
 /*====================================================================*
@@ -88,16 +88,16 @@ static char const * folders[] =
  *
  *--------------------------------------------------------------------*/
 
-static void relate(char const * one, char const * two, oflagword * flags)
+static void relate (char const * one, char const * two, oflagword * flags)
 
 {
-	if (flags->anyset(DEPEND_B_INVERT))
+	if (flags->anyset (DEPEND_B_INVERT))
 	{
-		sources.connect(two, one);
+		sources.connect (two, one);
 	}
 	else 
 	{
-		sources.connect(one, two);
+		sources.connect (one, two);
 	}
 	return;
 }
@@ -115,53 +115,53 @@ static void relate(char const * one, char const * two, oflagword * flags)
  *
  *--------------------------------------------------------------------*/
 
-static void function(char const * target, size_t length, oflagword * flags)
+static void function (char const * target, size_t length, oflagword * flags)
 
 {
 	std::ifstream stream;
-	char source[FILENAME_MAX] = "";
-	char buffer[length];
+	char source [FILENAME_MAX] = "";
+	char buffer [length];
 	unsigned line;
-	stream.open(target, std::ifstream::in);
-	if (stream.good())
+	stream.open (target, std::ifstream::in);
+	if (stream.good ())
 	{
-		filespec.filespec(target);
-		for (line = 1; ! stream.getline(buffer, length).eof(); line++)
+		filespec.filespec (target);
+		for (line = 1; ! stream.getline (buffer, length).eof (); line++)
 		{
-			scantext.copy(buffer).nexttoken();
-			if (! scantext.havetoken("#"))
+			scantext.copy (buffer).nexttoken ();
+			if (! scantext.havetoken ("#"))
 			{
 				continue;
 			}
-			if (! scantext.havetoken("include"))
+			if (! scantext.havetoken ("include"))
 			{
 				continue;
 			}
-			if (scantext.havetoken("<"))
+			if (scantext.havetoken ("<"))
 			{
-				scantext.scanuntil(">");
-				if (flags->anyset(DEPEND_B_SYSTEM))
+				scantext.scanuntil (">");
+				if (flags->anyset (DEPEND_B_SYSTEM))
 				{
-					if (pathspec.invector(source, folders, scantext.tokentext(), false))
+					if (pathspec.invector (source, folders, scantext.tokentext (), false))
 					{
 						relate (target, source, flags);
 						continue;
 					}
-					if (pathspec.invector(source, folders, scantext.tokentext(), true))
+					if (pathspec.invector (source, folders, scantext.tokentext (), true))
 					{
 						relate (target, source, flags);
 						continue;
 					}
-					oerror::print("can't find <%s> included by %s (%d)", scantext.tokentext(), target, line);
+					oerror::print ("can't find <%s> included by %s (%d)", scantext.tokentext (), target, line);
 				}
 				continue;
 			}
-			if (scantext.havetoken("\""))
+			if (scantext.havetoken ("\""))
 			{
-				scantext.scanuntil("\"");
-				if (flags->anyset(DEPEND_B_CUSTOM))
+				scantext.scanuntil ("\"");
+				if (flags->anyset (DEPEND_B_CUSTOM))
 				{
-					pathspec.makepath(source, filespec.basename(), scantext.tokentext());
+					pathspec.makepath (source, filespec.basename (), scantext.tokentext ());
 					relate (target, source, flags);
 				}
 				continue;
@@ -169,10 +169,10 @@ static void function(char const * target, size_t length, oflagword * flags)
 		}
 		if (line == 1)
 		{
-			oerror::print("target %s is empty.", target);
+			oerror::print ("target %s is empty.", target);
 		}
 	}
-	stream.close();
+	stream.close ();
 	return;
 }
 
@@ -180,10 +180,10 @@ static void function(char const * target, size_t length, oflagword * flags)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"csmnfI",
 		oPUTOPTV_S_FUNNEL,
@@ -194,66 +194,66 @@ int main(int argc, char const * argv[])
 		"n\tneed summary",
 		"f\tfeed summary",
 		"I s\tsearch include folder s",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	ogetoptv getopt;
 	oflagword flags;
 	size_t length = FILENAME_MAX;
 	signed c;
-	while (~ (c = getopt.getoptv(argc, argv, optv)))
+	while (~ (c = getopt.getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'n':
-			flags.setbits(DEPEND_B_REPORT);
-			flags.clearbits(DEPEND_B_INVERT);
+			flags.setbits (DEPEND_B_REPORT);
+			flags.clearbits (DEPEND_B_INVERT);
 			break;
 		case 'f':
-			flags.setbits(DEPEND_B_REPORT);
-			flags.setbits(DEPEND_B_INVERT);
+			flags.setbits (DEPEND_B_REPORT);
+			flags.setbits (DEPEND_B_INVERT);
 			break;
 		case 's':
-			flags.setbits(DEPEND_B_SYSTEM);
+			flags.setbits (DEPEND_B_SYSTEM);
 			break;
 		case 'c':
-			flags.setbits(DEPEND_B_CUSTOM);
+			flags.setbits (DEPEND_B_CUSTOM);
 			break;
 		case 'm':
-			flags.setbits(DEPEND_B_MAKEFILE);
+			flags.setbits (DEPEND_B_MAKEFILE);
 			break;
 		default: 
 			break;
 		}
 	}
-	if (flags.allclear(DEPEND_B_SYSTEM | DEPEND_B_CUSTOM))
+	if (flags.allclear (DEPEND_B_SYSTEM | DEPEND_B_CUSTOM))
 	{
-		oerror::print("specify a search type!");
+		oerror::print ("specify a search type!");
 		return (1);
 	}
-	while ((getopt.argc()) && (* getopt.argv()))
+	while ((getopt.argc ()) && (* getopt.argv ()))
 	{
-		char filename[FILENAME_MAX +  1];
-		pathspec.fullpath(filename, * getopt.argv());
-		odepend::nodes.store(filename);
+		char filename [FILENAME_MAX +  1];
+		pathspec.fullpath (filename, * getopt.argv ());
+		odepend::nodes.store (filename);
 		getopt++;
 	}
-	while (! odepend::queue.empty())
+	while (! odepend::queue.empty ())
 	{
-		odepend::nodes.store((char *)(odepend::queue.head()->data()));
-		function ((char *)(odepend::queue.head() ->data()), length, & flags);
-		odepend::queue.remove();
+		odepend::nodes.store ((char *) (odepend::queue.head ()->data ()));
+		function ((char *) (odepend::queue.head () ->data ()), length, & flags);
+		odepend::queue.remove ();
 	}
-	if (flags.anyset(DEPEND_B_REPORT))
+	if (flags.anyset (DEPEND_B_REPORT))
 	{
-		sources.structure();
+		sources.structure ();
 		return (0);
 	}
-	if (flags.anyset(DEPEND_B_MAKEFILE))
+	if (flags.anyset (DEPEND_B_MAKEFILE))
 	{
-		sources.targets();
+		sources.targets ();
 		return (0);
 	}
-	sources.enumerate();
-	std::exit(0);
+	sources.enumerate ();
+	std::exit (0);
 }
 

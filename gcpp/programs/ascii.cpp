@@ -46,42 +46,42 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"em",
 		oPUTOPTV_S_DIVINE,
 		"display character classes",
 		"e\tenumerate classes on stdout",
 		"m\tprint class matrix on stdout",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	ogetoptv getopt;
 	oascii ascii;
 	signed c;
-	while (~ (c = getopt.getoptv(argc, argv, optv)))
+	while (~ (c = getopt.getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'e':
-			ascii.enumerate();
+			ascii.enumerate ();
 			break;
 		case 'm':
-			ascii.matrix();
+			ascii.matrix ();
 			break;
 		default: 
 			break;
 		}
 	}
-	if (! getopt.argc())
+	if (! getopt.argc ())
 	{
 	}
-	while (getopt.argc() && * getopt.argv())
+	while (getopt.argc () && * getopt.argv ())
 	{
 		getopt++;
 	}
-	std::exit(0);
+	std::exit (0);
 }
 

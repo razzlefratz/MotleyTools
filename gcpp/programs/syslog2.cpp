@@ -68,18 +68,18 @@ static oerror merror;
  *
  *--------------------------------------------------------------------*/
 
-static void mysyslogtest(unsigned priority)
+static void mysyslogtest (unsigned priority)
 
 {
 	unsigned facility = (priority & SYSLOG_FACILITY_MASK);
-	msyslog.syslog(facility | SYSLOG_EMERG, "sample emergency message");
-	msyslog.syslog(facility | SYSLOG_ALERT, "sample alert message");
-	msyslog.syslog(facility | SYSLOG_CRIT, "sample critical message");
-	msyslog.syslog(facility | SYSLOG_ERR, "sample error message");
-	msyslog.syslog(facility | SYSLOG_WARNING, "sample warning message");
-	msyslog.syslog(facility | SYSLOG_NOTICE, "sample notice message");
-	msyslog.syslog(facility | SYSLOG_INFO, "sample information message");
-	msyslog.syslog(facility | SYSLOG_DEBUG, "sample debug messaage");
+	msyslog.syslog (facility | SYSLOG_EMERG, "sample emergency message");
+	msyslog.syslog (facility | SYSLOG_ALERT, "sample alert message");
+	msyslog.syslog (facility | SYSLOG_CRIT, "sample critical message");
+	msyslog.syslog (facility | SYSLOG_ERR, "sample error message");
+	msyslog.syslog (facility | SYSLOG_WARNING, "sample warning message");
+	msyslog.syslog (facility | SYSLOG_NOTICE, "sample notice message");
+	msyslog.syslog (facility | SYSLOG_INFO, "sample information message");
+	msyslog.syslog (facility | SYSLOG_DEBUG, "sample debug messaage");
 	return;
 }
 
@@ -87,10 +87,10 @@ static void mysyslogtest(unsigned priority)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"b:ef:i:np:t",
 		"[message]",
@@ -102,23 +102,23 @@ int main(int argc, char const * argv[])
 		"p s\tpriority is s in facility.severity format",
 		"n\tinclude PID number",
 		"t\ttest",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	ogetoptv getopt;
 	oflagword flagword;
 	oflagword options;
-	char message[BUFSIZ] = "";
+	char message [BUFSIZ] = "";
 	char * bp = message;
-	char const * identity = getlogin();
+	char const * identity = getlogin ();
 	priority_t priority = SYSLOG_USER | SYSLOG_INFO;
 	signed c;
-	while (~ (c = getopt.getoptv(argc, argv, optv)))
+	while (~ (c = getopt.getoptv (argc, argv, optv)))
 	{
-		switch ((char)(c))
+		switch ((char) (c))
 		{
 		case 'b':
-			identity = getopt.optarg();
-			for (char const * sp = identity; * sp != (char)(0); ++ sp)
+			identity = getopt.optarg ();
+			for (char const * sp = identity; * sp != (char) (0); ++ sp)
 			{
 				if (* sp == PATH_C_EXTENDER)
 				{
@@ -127,53 +127,53 @@ int main(int argc, char const * argv[])
 			}
 			break;
 		case 'e':
-			options.setbits(SYSLOG_PERROR);
+			options.setbits (SYSLOG_PERROR);
 			break;
 		case 'f':
-			if (freopen(getopt.optarg(), "r", stdin) == (FILE *)(0))
+			if (freopen (getopt.optarg (), "r", stdin) == (FILE *) (0))
 			{
-				merror.error(1, errno, "%s", getopt.optarg());
+				merror.error (1, errno, "%s", getopt.optarg ());
 			}
 			break;
 		case 'i':
-			identity = getopt.optarg();
+			identity = getopt.optarg ();
 			break;
 		case 'n':
-			options.setbits(SYSLOG_PROCESS);
+			options.setbits (SYSLOG_PROCESS);
 			break;
 		case 'p':
-			priority = msyslogspec.encode(getopt.optarg());
+			priority = msyslogspec.encode (getopt.optarg ());
 			break;
 		case 't':
-			flagword.setbits(SYSLOG2_FLAG_TEST);
+			flagword.setbits (SYSLOG2_FLAG_TEST);
 			break;
 		default: 
 			break;
 		}
 	}
-	msyslog.identity(identity).facility(priority).options(options.getbits());
-	if (flagword.anyset(SYSLOG2_FLAG_TEST))
+	msyslog.identity (identity).facility (priority).options (options.getbits ());
+	if (flagword.anyset (SYSLOG2_FLAG_TEST))
 	{
 		mysyslogtest (priority);
 		return (0);
 	}
-	if (! getopt.argc())
+	if (! getopt.argc ())
 	{
-		while (std::cin.getline(message, sizeof(message)).good())
+		while (std::cin.getline (message, sizeof (message)).good ())
 		{
-			msyslog.syslog(priority, "%s", message);
+			msyslog.syslog (priority, "%s", message);
 		}
 		return (0);
 	}
-	while (getopt.argc() && * getopt.argv())
+	while (getopt.argc () && * getopt.argv ())
 	{
-		char const * sp = * getopt.argv();
+		char const * sp = * getopt.argv ();
 		while (* sp)
 		{
-			if ((unsigned)(bp - message) < (sizeof(message) - 1))
+			if ((unsigned) (bp - message) < (sizeof (message) - 1))
 			{
 				* bp++ = * sp++;
 			}
 		}
-		* bp++ = (* getopt.argv()? ' ': (char)(0); getopt++; } msyslog.syslog(priority, "%s", message); return(0); } 
+		* bp++ = (* getopt.argv ()? ' ': (char) (0); getopt++; } msyslog.syslog (priority, "%s", message); return (0); } 
 

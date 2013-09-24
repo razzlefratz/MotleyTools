@@ -55,29 +55,29 @@ opackage package;
  *
  *--------------------------------------------------------------------*/
 
-static void function(char const * string, oflagword * flags)
+static void function (char const * string, oflagword * flags)
 
 {
 	package = string;
-	switch (flags->getbits(PKG_B_ARCHIVE | PKG_B_PACKAGE | PKG_B_PRODUCT | PKG_B_RELEASE | PKG_B_TRAILER))
+	switch (flags->getbits (PKG_B_ARCHIVE | PKG_B_PACKAGE | PKG_B_PRODUCT | PKG_B_RELEASE | PKG_B_TRAILER))
 	{
 	case PKG_B_ARCHIVE:
-		std::cout << package.archive() << "\n";
+		std::cout << package.archive () << "\n";
 		break;
 	case PKG_B_PACKAGE:
-		std::cout << package.package() << "\n";
+		std::cout << package.package () << "\n";
 		break;
 	case PKG_B_PRODUCT:
-		std::cout << package.product() << "\n";
+		std::cout << package.product () << "\n";
 		break;
 	case PKG_B_RELEASE:
-		std::cout << package.release() << "\n";
+		std::cout << package.release () << "\n";
 		break;
 	case PKG_B_TRAILER:
-		std::cout << package.trailer() << "\n";
+		std::cout << package.trailer () << "\n";
 		break;
 	default: 
-		std::cout << package.archive() << "\n";
+		std::cout << package.archive () << "\n";
 		break;
 	}
 	return;
@@ -87,10 +87,10 @@ static void function(char const * string, oflagword * flags)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"apkrex:",
 		oPUTOPTV_S_DIVINE,
@@ -101,55 +101,55 @@ int main(int argc, char const * argv[])
 		"r\tprint version number",
 		"e\tprint file extension",
 		"x s\tremove extender s [.tar.bz2]",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	ogetoptv getopt;
 	oflagword flags;
 	signed c;
-	while (~ (c = getopt.getoptv(argc, argv, optv)))
+	while (~ (c = getopt.getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'a':
-			flags.setbits(PKG_B_ARCHIVE);
+			flags.setbits (PKG_B_ARCHIVE);
 			break;
 		case 'k':
-			flags.setbits(PKG_B_PACKAGE);
+			flags.setbits (PKG_B_PACKAGE);
 			break;
 		case 'p':
-			flags.setbits(PKG_B_PRODUCT);
+			flags.setbits (PKG_B_PRODUCT);
 			break;
 		case 'r':
-			flags.setbits(PKG_B_RELEASE);
+			flags.setbits (PKG_B_RELEASE);
 			break;
 		case 'e':
-			flags.setbits(PKG_B_TRAILER);
+			flags.setbits (PKG_B_TRAILER);
 			break;
 		case 'x':
-			package.extender(getopt.optarg());
+			package.extender (getopt.optarg ());
 			break;
 		default: 
 			break;
 		}
 	}
-	if (! getopt.argc())
+	if (! getopt.argc ())
 	{
-		char pathname[FILENAME_MAX];
-		while (! std::cin.getline(pathname, sizeof(pathname)).eof())
+		char pathname [FILENAME_MAX];
+		while (! std::cin.getline (pathname, sizeof (pathname)).eof ())
 		{
-			std::streamsize length = std::cin.gcount();
-			while (isspace(pathname[-- length]))
+			std::streamsize length = std::cin.gcount ();
+			while (isspace (pathname [-- length]))
 			{
-				pathname [length] = (char)(0);
+				pathname [length] = (char) (0);
 			}
-			function ((char const *)(pathname), & flags);
+			function ((char const *) (pathname), & flags);
 		}
 	}
-	while (getopt.argc() && * getopt.argv())
+	while (getopt.argc () && * getopt.argv ())
 	{
-		function (* getopt.argv(), & flags);
+		function (* getopt.argv (), & flags);
 		getopt++;
 	}
-	std::exit(0);
+	std::exit (0);
 }
 

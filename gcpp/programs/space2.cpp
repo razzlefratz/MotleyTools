@@ -61,19 +61,19 @@
  *
  *--------------------------------------------------------------------*/
 
-signed pack(signed c, signed newline, signed(get) (signed))
+signed pack (signed c, signed newline, signed (get) (signed))
 
 {
 	do 
 	{
-		c = get(c);
+		c = get (c);
 	}
-	while (oascii::isblank(c));
-	if (oascii::nobreak(c))
+	while (oascii::isblank (c));
+	if (oascii::nobreak (c))
 	{
 		if (newline)
 		{
-			std::cout.put(newline);
+			std::cout.put (newline);
 		}
 	}
 	return (c);
@@ -98,41 +98,41 @@ signed pack(signed c, signed newline, signed(get) (signed))
  *
  *--------------------------------------------------------------------*/
 
-signed function(signed c, signed newline, signed endline)
+signed function (signed c, signed newline, signed endline)
 
 {
 	while (c != EOF)
 	{
-		signed (* get)(signed) = & osource::peek;
-		if (oascii::isblank(c))
+		signed (* get) (signed) = & osource::peek;
+		if (oascii::isblank (c))
 		{
 			get = & osource::skip;
-			c = pack(c, newline, get);
+			c = pack (c, newline, get);
 		}
-		while (oascii::nobreak(c))
+		while (oascii::nobreak (c))
 		{
 			if (c == '#')
 			{
-				c = osource::consume(c);
+				c = osource::consume (c);
 				continue;
 			}
-			if (oascii::isquote(c))
+			if (oascii::isquote (c))
 			{
-				c = osource::literal(c);
+				c = osource::literal (c);
 				continue;
 			}
-			if (oascii::isblank(c))
+			if (oascii::isblank (c))
 			{
-				c = pack(c, ' ', get);
+				c = pack (c, ' ', get);
 				continue;
 			}
-			c = osource::keep(c);
+			c = osource::keep (c);
 		}
 		if (endline)
 		{
-			std::cout.put(endline);
+			std::cout.put (endline);
 		}
-		c = osource::keep(c);
+		c = osource::keep (c);
 	}
 	return (c);
 }
@@ -141,48 +141,48 @@ signed function(signed c, signed newline, signed endline)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"c:r:",
 		oPUTOPTV_S_FILTER,
 		"minimize white space",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	ogetoptv getopt;
 	ofileopen fileopen;
 	signed newline = SPACE_NEWLINE;
 	signed endline = SPACE_ENDLINE;
 	signed c;
-	while (~ (c = getopt.getoptv(argc, argv, optv)))
+	while (~ (c = getopt.getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'c':
-			newline = * oescape::unescape((char *)(getopt.args()));
+			newline = * oescape::unescape ((char *) (getopt.args ()));
 			break;
 		case 'r':
-			endline = * oescape::unescape((char *)(getopt.args()));
+			endline = * oescape::unescape ((char *) (getopt.args ()));
 			break;
 		default: 
 			break;
 		}
 	}
-	if (! getopt.argc())
+	if (! getopt.argc ())
 	{
-		function (std::cin.get(), newline, endline);
+		function (std::cin.get (), newline, endline);
 	}
-	while (getopt.argc() && * getopt.argv())
+	while (getopt.argc () && * getopt.argv ())
 	{
-		if (fileopen.openedit(* getopt.argv()))
+		if (fileopen.openedit (* getopt.argv ()))
 		{
-			function (std::cin.get(), newline, endline);
-			fileopen.close();
+			function (std::cin.get (), newline, endline);
+			fileopen.close ();
 		}
 		getopt++;
 	}
-	std::exit(0);
+	std::exit (0);
 }
 

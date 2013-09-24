@@ -48,44 +48,44 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"e",
 		oPUTOPTV_S_FUNNEL,
 		"print tokens on stdout",
 		"e\telaborate on tokens with typenames",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	ogetoptv getopt;
 	oflagword flags;
 	oscantext source;
 	signed c;
-	while (~ (c = getopt.getoptv(argc, argv, optv)))
+	while (~ (c = getopt.getoptv (argc, argv, optv)))
 	{
-		switch ((char)(c))
+		switch ((char) (c))
 		{
 		case 'e':
-			flags.setbits(TOKEN_B_ELABORATE);
+			flags.setbits (TOKEN_B_ELABORATE);
 			break;
 		default: 
 			break;
 		}
 	}
-	while (getopt.argc() && * getopt.argv())
+	while (getopt.argc () && * getopt.argv ())
 	{
-		if (flags.anyset(TOKEN_B_ELABORATE))
+		if (flags.anyset (TOKEN_B_ELABORATE))
 		{
-			source.read(* getopt.argv()).elaborate();
+			source.read (* getopt.argv ()).elaborate ();
 		}
 		else 
 		{
-			source.read(* getopt.argv()).enumerate();
+			source.read (* getopt.argv ()).enumerate ();
 		}
 		getopt++;
 	}
-	std::exit(0);
+	std::exit (0);
 }
 

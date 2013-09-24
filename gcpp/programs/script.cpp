@@ -68,25 +68,25 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"",
 		oPUTOPTV_S_FILTER,
 		"format script files",
-		"f s\tuse profile (s) [" LITERAL(PROFILE_NAME) "]",
-		"g s\tuse profile section (s) [" LITERAL(SECTION_NAME) "]",
-		(char const *)(0)
+		"f s\tuse profile (s) [" LITERAL (PROFILE_NAME) "]",
+		"g s\tuse profile section (s) [" LITERAL (SECTION_NAME) "]",
+		(char const *) (0)
 	};
 	ogetoptv getopt;
 	opathspec pathspec;
 	ofileopen fileopen;
 	oscript object;
-	signed (oscript::* method)(signed) = & oscript::program;
+	signed (oscript::* method) (signed) = & oscript::program;
 	signed c;
-	while (~ (c = getopt.getoptv(argc, argv, optv)))
+	while (~ (c = getopt.getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -94,17 +94,17 @@ int main(int argc, char const * argv[])
 			break;
 		}
 	}
-	if (! getopt.argc())
+	if (! getopt.argc ())
 	{
-		(object.* method)(std::cin.get());
+		(object.* method) (std::cin.get ());
 	}
-	while (getopt.argc() && * getopt.argv())
+	while (getopt.argc () && * getopt.argv ())
 	{
-		if (fileopen.openedit(* getopt.argv()))
+		if (fileopen.openedit (* getopt.argv ()))
 		{
-			object.filename(* getopt.argv());
-			(object.* method)(std::cin.get());
-			fileopen.close();
+			object.filename (* getopt.argv ());
+			(object.* method) (std::cin.get ());
+			fileopen.close ();
 		}
 		getopt++;
 	}

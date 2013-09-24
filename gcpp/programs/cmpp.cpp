@@ -95,116 +95,116 @@ oerror error;
  *
  *--------------------------------------------------------------------*/
 
-static void process(char const * pathname, char const * command, oflagword * flags)
+static void process (char const * pathname, char const * command, oflagword * flags)
 
 {
 	oscantext source;
-	source.read(pathname);
-	while (! source.isempty())
+	source.read (pathname);
+	while (! source.isempty ())
 	{
-		if (source.flush().scantoken().istoken(command))
+		if (source.flush ().scantoken ().istoken (command))
 		{
-			source.scanblank().flush().scantoken();
-			if (source.istoken("include"))
+			source.scanblank ().flush ().scantoken ();
+			if (source.istoken ("include"))
 			{
-				char fullpath[FILENAME_MAX] = "";
-				char rootname[FILENAME_MAX] = "";
-				char filename[FILENAME_MAX] = "";
-				pathspec.findpath(pathname, rootname, filename);
-				switch (source.scanblank().character())
+				char fullpath [FILENAME_MAX] = "";
+				char rootname [FILENAME_MAX] = "";
+				char filename [FILENAME_MAX] = "";
+				pathspec.findpath (pathname, rootname, filename);
+				switch (source.scanblank ().character ())
 				{
 				case '\"':
-					source.scanbreak().flush();
-					source.scanuntil('\"');
-					pathspec.makepath(fullpath, rootname, source.tokentext());
-					source.scanbreak();
+					source.scanbreak ().flush ();
+					source.scanuntil ('\"');
+					pathspec.makepath (fullpath, rootname, source.tokentext ());
+					source.scanbreak ();
 					break;
 				case '\'':
-					source.scanbreak().flush();
-					source.scanuntil('\'');
-					pathspec.makepath(fullpath, rootname, source.tokentext());
-					source.scanbreak();
+					source.scanbreak ().flush ();
+					source.scanuntil ('\'');
+					pathspec.makepath (fullpath, rootname, source.tokentext ());
+					source.scanbreak ();
 					break;
 				case '<':
-					source.scanbreak().flush();
-					source.scanuntil('>');
-					pathspec.makepath(fullpath, rootname, source.tokentext());
-					source.scanbreak();
+					source.scanbreak ().flush ();
+					source.scanuntil ('>');
+					pathspec.makepath (fullpath, rootname, source.tokentext ());
+					source.scanbreak ();
 					break;
 				case '(':
-					source.scanbreak().flush();
-					source.scanuntil(')');
-					pathspec.makepath(fullpath, rootname, source.tokentext());
-					source.scanbreak();
+					source.scanbreak ().flush ();
+					source.scanuntil (')');
+					pathspec.makepath (fullpath, rootname, source.tokentext ());
+					source.scanbreak ();
 					break;
 				case '[':
-					source.scanbreak().flush();
-					source.scanuntil(']');
-					pathspec.makepath(fullpath, rootname, source.tokentext());
-					source.scanbreak();
+					source.scanbreak ().flush ();
+					source.scanuntil (']');
+					pathspec.makepath (fullpath, rootname, source.tokentext ());
+					source.scanbreak ();
 					break;
 				default: 
-					source.flush();
-					source.scanuntil(gcsSpace);
-					pathspec.makepath(fullpath, rootname, source.tokentext());
+					source.flush ();
+					source.scanuntil (gcsSpace);
+					pathspec.makepath (fullpath, rootname, source.tokentext ());
 					break;
 				}
-				if (flags->anyset(CMPP_B_INCLUDE))
+				if (flags->anyset (CMPP_B_INCLUDE))
 				{
-					process ((char const *)(fullpath), command, flags);
+					process ((char const *) (fullpath), command, flags);
 				}
-				source.scanquote(gcsBreak);
-				source.scanwhile(gcsBreak);
+				source.scanquote (gcsBreak);
+				source.scanwhile (gcsBreak);
 			}
-			else if(source.istoken("define"))
+			else if (source.istoken ("define"))
 			{
-				source.scanblank().flush();
-				source.scanquote(gcsBreak);
-				macro.define(source.tokentext());
-				source.scanwhile(gcsBreak);
+				source.scanblank ().flush ();
+				source.scanquote (gcsBreak);
+				macro.define (source.tokentext ());
+				source.scanwhile (gcsBreak);
 			}
-			else if(source.istoken("undef"))
+			else if (source.istoken ("undef"))
 			{
-				source.scanblank().flush();
-				source.scanquote(gcsBreak);
-				macro.revert(source.tokentext());
-				source.scanwhile(gcsBreak);
+				source.scanblank ().flush ();
+				source.scanquote (gcsBreak);
+				macro.revert (source.tokentext ());
+				source.scanwhile (gcsBreak);
 			}
-			else if(source.istoken("ifdef"))
+			else if (source.istoken ("ifdef"))
 			{
-				source.scanblank().flush();
-				source.scanquote(gcsBreak);
-				source.scanwhile(gcsBreak);
+				source.scanblank ().flush ();
+				source.scanquote (gcsBreak);
+				source.scanwhile (gcsBreak);
 			}
-			else if(source.istoken("ifndef"))
+			else if (source.istoken ("ifndef"))
 			{
-				source.scanblank().flush();
-				source.scanquote(gcsBreak);
-				source.scanwhile(gcsBreak);
+				source.scanblank ().flush ();
+				source.scanquote (gcsBreak);
+				source.scanwhile (gcsBreak);
 			}
-			else if(source.istoken("else"))
+			else if (source.istoken ("else"))
 			{
-				source.scanblank().flush();
-				source.scanquote(gcsBreak);
-				source.scanwhile(gcsBreak);
+				source.scanblank ().flush ();
+				source.scanquote (gcsBreak);
+				source.scanwhile (gcsBreak);
 			}
-			else if(source.istoken("endif"))
+			else if (source.istoken ("endif"))
 			{
-				source.scanblank().flush();
-				source.scanquote(gcsBreak);
-				source.scanwhile(gcsBreak);
+				source.scanblank ().flush ();
+				source.scanquote (gcsBreak);
+				source.scanwhile (gcsBreak);
 			}
-			else if(source.istoken("enumerate"))
+			else if (source.istoken ("enumerate"))
 			{
-				source.scanblank();
-				source.flush();
-				source.scanquote(gcsBreak);
-				macro.enumerate(pathname);
-				source.scanwhile(gcsBreak);
+				source.scanblank ();
+				source.flush ();
+				source.scanquote (gcsBreak);
+				macro.enumerate (pathname);
+				source.scanwhile (gcsBreak);
 			}
 			else 
 			{
-				source.unget();
+				source.unget ();
 			}
 			continue;
 		}
@@ -213,54 +213,54 @@ static void process(char const * pathname, char const * command, oflagword * fla
  * scan C Language comments;
  */
 
-		if (source.isclass('/'))
+		if (source.isclass ('/'))
 		{
-			if (source.havebreak('*'))
+			if (source.havebreak ('*'))
 			{
-				source.scanblock();
-				source.scanmatch();
-				if (flags->anyset(CMPP_B_COMMENT))
+				source.scanblock ();
+				source.scanmatch ();
+				if (flags->anyset (CMPP_B_COMMENT))
 				{
-					source.write();
+					source.write ();
 				}
 				continue;
 			}
-			if (source.havebreak("/"))
+			if (source.havebreak ("/"))
 			{
-				source.scanquote('\n');
-				source.scanbreak('\n');
-				if (flags->anyset(CMPP_B_COMMENT))
+				source.scanquote ('\n');
+				source.scanbreak ('\n');
+				if (flags->anyset (CMPP_B_COMMENT))
 				{
-					source.write();
+					source.write ();
 				}
 				continue;
 			}
 		}
-		if (source.isclass("_A"))
+		if (source.isclass ("_A"))
 		{
-			if (macro.defined(source.scanident().tokentext()))
+			if (macro.defined (source.scanident ().tokentext ()))
 			{
-				source.scanspace();
-				if (source.havebreak('('))
+				source.scanspace ();
+				if (source.havebreak ('('))
 				{
-					source.scangroup(')');
-					source.scanbreak(')');
+					source.scangroup (')');
+					source.scanbreak (')');
 				}
 				else 
 				{
-					source.trimtoken();
+					source.trimtoken ();
 				}
-				if (flags->anyset(CMPP_B_VERBOSE))
+				if (flags->anyset (CMPP_B_VERBOSE))
 				{
-					error.error(0, 0, "%s: expand %s", pathname, source.tokentext());
+					error.error (0, 0, "%s: expand %s", pathname, source.tokentext ());
 				}
-				source.unget(macro.expand(source.tokentext()));
+				source.unget (macro.expand (source.tokentext ()));
 				continue;
 			}
 		}
-		if (flags->anyset(CMPP_B_CONTENT))
+		if (flags->anyset (CMPP_B_CONTENT))
 		{
-			source.write();
+			source.write ();
 		}
 	}
 	return;
@@ -277,10 +277,10 @@ static void process(char const * pathname, char const * command, oflagword * fla
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[], char const * envp[])
+int main (int argc, char const * argv [], char const * envp [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"c:dev",
 		oPUTOPTV_S_FUNNEL,
@@ -289,53 +289,53 @@ int main(int argc, char const * argv[], char const * envp[])
 		"d\tprint definitions on stderr",
 		"e\tprint expansions on stderr",
 		"v\tverbose messages",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	ogetoptv getopt;
 	oflagword flags;
 	char const * command = CMPP_S_COMMAND;
 	signed c;
-	while (~ (c = getopt.getoptv(argc, argv, optv)))
+	while (~ (c = getopt.getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'c':
-			command = getopt.optarg();
+			command = getopt.optarg ();
 			break;
 		case 'd':
-			macro.setbits(oMACRO_B_DEFINE);
+			macro.setbits (oMACRO_B_DEFINE);
 			break;
 		case 'e':
-			macro.setbits(oMACRO_B_EXPAND);
+			macro.setbits (oMACRO_B_EXPAND);
 			break;
 		case 'N':
-			flags.setbits(CMPP_B_COMMENT);
+			flags.setbits (CMPP_B_COMMENT);
 			break;
 		case 'C':
-			flags.setbits(CMPP_B_CONTENT);
+			flags.setbits (CMPP_B_CONTENT);
 			break;
 		case 'I':
-			flags.setbits(CMPP_B_INCLUDE);
+			flags.setbits (CMPP_B_INCLUDE);
 			break;
 		case 'q':
-			flags.setbits(CMPP_B_SILENCE);
+			flags.setbits (CMPP_B_SILENCE);
 			break;
 		case 'v':
-			flags.setbits(CMPP_B_VERBOSE);
+			flags.setbits (CMPP_B_VERBOSE);
 			break;
 		default: 
 			break;
 		}
 	}
-	if (flags.allclear(CMPP_B_DEFAULT))
+	if (flags.allclear (CMPP_B_DEFAULT))
 	{
-		flags.setbits(CMPP_B_DEFAULT);
+		flags.setbits (CMPP_B_DEFAULT);
 	}
-	while (getopt.argc() && * getopt.argv())
+	while (getopt.argc () && * getopt.argv ())
 	{
-		process (* getopt.argv(), command, & flags);
+		process (* getopt.argv (), command, & flags);
 		getopt++;
 	}
-	std::exit(0);
+	std::exit (0);
 }
 
