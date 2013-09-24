@@ -601,7 +601,34 @@ signed osource::operate (signed c)
 		c = osource::find (c);
 		std::cout.put (' ');
 	}
-	else if ((c == '!') || (c == '=') || (c == '^') || (c == '%') || (c == '~'))
+	else if ((c == '!') || (c == '='))
+	{
+		c = osource::keep (c);
+		if (c == '=')
+		{
+			c = osource::keep (c);
+		}
+		c = osource::find (c);
+
+#if 1
+
+/*
+ *	treat "-1" as one token;
+ */
+
+		if (c == '-')
+		{
+			if (std::cin.peek () == '1')
+			{
+				c = osource::keep (c);
+			}
+		}
+
+#endif
+
+		std::cout.put (' ');
+	}
+	else if ((c == '^') || (c == '%') || (c == '~'))
 	{
 		c = osource::keep (c);
 		if (c == '=')
@@ -700,10 +727,20 @@ signed osource::operate (signed c)
 		else 
 		{
 			c = osource::find (c);
+
+#if 1
+
+/*
+ *	convert "- 1" to "-1";
+ */
+
 			if (c == '1')
 			{
 				return (c);
 			}
+
+#endif
+
 		}
 		std::cout.put (' ');
 	}
