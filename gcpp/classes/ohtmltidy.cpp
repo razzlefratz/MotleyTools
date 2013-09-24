@@ -40,22 +40,22 @@ oHTMLEmptyElements ohtmltidy::htmlempty;
  *
  *--------------------------------------------------------------------*/
 
-char const * ohtmltidy::element() const
+char const * ohtmltidy::element () const
 
 {
-	return ((char const *)(this->melement));
+	return ((char const *) (this->melement));
 }
 
-char const * ohtmltidy::attribute() const
+char const * ohtmltidy::attribute () const
 
 {
-	return ((char const *)(this->mattribute));
+	return ((char const *) (this->mattribute));
 }
 
-char const * ohtmltidy::value() const
+char const * ohtmltidy::value () const
 
 {
-	return ((char const *)(this->mvalue));
+	return ((char const *) (this->mvalue));
 }
 
 /*====================================================================*
@@ -66,7 +66,7 @@ char const * ohtmltidy::value() const
  *
  *--------------------------------------------------------------------*/
 
-char ohtmltidy::quote() const
+char ohtmltidy::quote () const
 
 {
 	return (this->mquote);
@@ -81,7 +81,7 @@ char ohtmltidy::quote() const
  *
  *--------------------------------------------------------------------*/
 
-ohtmltidy & ohtmltidy::quote(signed quote)
+ohtmltidy & ohtmltidy::quote (signed quote)
 
 {
 	this->mquote = quote;
@@ -96,41 +96,41 @@ ohtmltidy & ohtmltidy::quote(signed quote)
  *
  *--------------------------------------------------------------------*/
 
-signed ohtmltidy::page(signed c)
+signed ohtmltidy::page (signed c)
 
 {
-	ohtmltidy::space(1);
-	ohtmltidy::level(0);
+	ohtmltidy::space (1);
+	ohtmltidy::level (0);
 	while (c != EOF)
 	{
 		if (c == '<')
 		{
-			c = osource::keep(c);
-			c = osource::find(c);
+			c = osource::keep (c);
+			c = osource::find (c);
 			if (c == '?')
 			{
-				c = osource::context(c, '?', '>');
+				c = osource::context (c, '?', '>');
 			}
-			else if(c == '%')
+			else if (c == '%')
 			{
-				c = osource::context(c, '%', '>');
+				c = osource::context (c, '%', '>');
 			}
-			else if(c == '!')
+			else if (c == '!')
 			{
-				c = ohtmltidy::sgml(c);
+				c = ohtmltidy::sgml (c);
 			}
 			else 
 			{
-				c = ohtmltidy::xhtml(c);
+				c = ohtmltidy::xhtml (c);
 			}
-			c = osource::find(c);
+			c = osource::find (c);
 		}
 		else 
 		{
-			c = ohtmltidy::cdata(c);
+			c = ohtmltidy::cdata (c);
 		}
-		oindent::endline();
-		oindent::newline();
+		oindent::endline ();
+		oindent::newline ();
 	}
 	return (c);
 }
@@ -144,10 +144,10 @@ signed ohtmltidy::page(signed c)
  *   
  *--------------------------------------------------------------------*/
 
-signed ohtmltidy::xml(signed c) const
+signed ohtmltidy::xml (signed c) const
 
 {
-	c = osource::context(c, '?', '>');
+	c = osource::context (c, '?', '>');
 	return (c);
 }
 
@@ -160,10 +160,10 @@ signed ohtmltidy::xml(signed c) const
  *
  *--------------------------------------------------------------------*/
 
-signed ohtmltidy::php(signed c) const
+signed ohtmltidy::php (signed c) const
 
 {
-	c = osource::context(c, '?', '>');
+	c = osource::context (c, '?', '>');
 	return (c);
 }
 
@@ -176,10 +176,10 @@ signed ohtmltidy::php(signed c) const
  *
  *--------------------------------------------------------------------*/
 
-signed ohtmltidy::asp(signed c) const
+signed ohtmltidy::asp (signed c) const
 
 {
-	c = osource::context(c, '%', '>');
+	c = osource::context (c, '%', '>');
 	return (c);
 }
 
@@ -193,100 +193,100 @@ signed ohtmltidy::asp(signed c) const
  *
  *--------------------------------------------------------------------*/
 
-signed ohtmltidy::sgml(signed c)
+signed ohtmltidy::sgml (signed c)
 
 {
 	if (c == '<')
 	{
-		c = osource::keep(c);
-		c = osource::find(c);
+		c = osource::keep (c);
+		c = osource::find (c);
 	}
 	if (c == '!')
 	{
-		c = osource::keep(c);
-		c = osource::find(c);
+		c = osource::keep (c);
+		c = osource::find (c);
 	}
 	if (c == '-')
 	{
-		c = ohtmltidy::comment(c);
+		c = ohtmltidy::comment (c);
 	}
-	else if(c == '[')
+	else if (c == '[')
 	{
-		c = osource::keep(c);
-		c = osource::find(c);
+		c = osource::keep (c);
+		c = osource::find (c);
 		do 
 		{
-			c = oascii::toupper(c);
-			c = osource::keep(c);
+			c = oascii::toupper (c);
+			c = osource::keep (c);
 		}
-		while (oascii::isalpha(c) || (c == '-'));
-		c = osource::find(c);
-		c = osource::content(c, ']', ']');
+		while (oascii::isalpha (c) || (c == '-'));
+		c = osource::find (c);
+		c = osource::content (c, ']', ']');
 	}
-	else if(oascii::isalpha(c))
+	else if (oascii::isalpha (c))
 	{
 		do 
 		{
-			c = oascii::toupper(c);
-			c = osource::keep(c);
+			c = oascii::toupper (c);
+			c = osource::keep (c);
 		}
-		while (oascii::isalpha(c) || (c == '-'));
+		while (oascii::isalpha (c) || (c == '-'));
 	}
-	c = osource::find(c);
+	c = osource::find (c);
 	while ((c != '<') && (c != '>') && (c != EOF))
 	{
-		std::cout.put(' ');
+		std::cout.put (' ');
 		if (c == '-')
 		{
-			c = ohtmltidy::comment(c);
+			c = ohtmltidy::comment (c);
 		}
-		else if(c == '(')
+		else if (c == '(')
 		{
-			c = osource::context('(', ')');
+			c = osource::context ('(', ')');
 			if ((c == '*') || (c == '+'))
 			{
-				c = osource::keep(c);
+				c = osource::keep (c);
 			}
 		}
-		else if(c == '[')
+		else if (c == '[')
 		{
-			c = osource::keep(c);
-			c = osource::find(c);
+			c = osource::keep (c);
+			c = osource::find (c);
 			do 
 			{
-				c = oascii::toupper(c);
-				c = osource::keep(c);
+				c = oascii::toupper (c);
+				c = osource::keep (c);
 			}
-			while (oascii::isalpha(c) || (c == '-'));
-			c = osource::find(c);
-			c = osource::content(c, ']', ']');
+			while (oascii::isalpha (c) || (c == '-'));
+			c = osource::find (c);
+			c = osource::content (c, ']', ']');
 		}
-		else if(oascii::isquote(c))
+		else if (oascii::isquote (c))
 		{
-			c = ohtmltidy::enquote(c, c);
+			c = ohtmltidy::enquote (c, c);
 		}
-		else if(oascii::isalpha(c) || (c == '#') || (c == '%'))
-		{
-			do 
-			{
-				c = oascii::toupper(c);
-				c = osource::keep(c);
-			}
-			while (oascii::isalnum(c) || (c == '-') || (c == '.'));
-		}
-		else if(oascii::isdigit(c))
+		else if (oascii::isalpha (c) || (c == '#') || (c == '%'))
 		{
 			do 
 			{
-				c = osource::keep(c);
+				c = oascii::toupper (c);
+				c = osource::keep (c);
 			}
-			while (oascii::isdigit(c) || (c == '.'));
+			while (oascii::isalnum (c) || (c == '-') || (c == '.'));
 		}
-		c = osource::find(c);
+		else if (oascii::isdigit (c))
+		{
+			do 
+			{
+				c = osource::keep (c);
+			}
+			while (oascii::isdigit (c) || (c == '.'));
+		}
+		c = osource::find (c);
 	}
 	if (c == '>')
 	{
-		c = osource::keep(c);
+		c = osource::keep (c);
 	}
 	return (c);
 }
@@ -299,93 +299,93 @@ signed ohtmltidy::sgml(signed c)
  *   
  *--------------------------------------------------------------------*/
 
-signed ohtmltidy::xhtml(signed c)
+signed ohtmltidy::xhtml (signed c)
 
 {
 	if (c == '<')
 	{
-		c = osource::keep(c);
-		c = osource::find(c);
+		c = osource::keep (c);
+		c = osource::find (c);
 	}
 	if (c == '/')
 	{
-		c = osource::keep(c);
-		c = osource::find(c);
-		oindent::decrement();
+		c = osource::keep (c);
+		c = osource::find (c);
+		oindent::decrement ();
 	}
 	else 
 	{
-		oindent::increment();
+		oindent::increment ();
 	}
-	if (oascii::isalpha(c))
+	if (oascii::isalpha (c))
 	{
-		c = ohtmltidy::nmtoken(c);
+		c = ohtmltidy::nmtoken (c);
 	}
-	else if(oascii::isquote(c))
+	else if (oascii::isquote (c))
 	{
-		c = ohtmltidy::enquote(c, c);
+		c = ohtmltidy::enquote (c, c);
 	}
 	else 
 	{
-		c = ohtmltidy::unknown(c);
+		c = ohtmltidy::unknown (c);
 	}
-	this->melement = otext::replace(this->melement, this->mstring);
+	this->melement = otext::replace (this->melement, this->mstring);
 	std::cout << this->melement;
-	c = osource::find(c);
+	c = osource::find (c);
 	while ((c != '/') && (c != '>') && (c != EOF))
 	{
-		std::cout.put(' ');
-		if (oascii::isalpha(c))
+		std::cout.put (' ');
+		if (oascii::isalpha (c))
 		{
-			c = ohtmltidy::nmtoken(c);
+			c = ohtmltidy::nmtoken (c);
 		}
-		else if(oascii::isquote(c))
+		else if (oascii::isquote (c))
 		{
-			c = ohtmltidy::enquote(c, c);
+			c = ohtmltidy::enquote (c, c);
 		}
 		else 
 		{
-			c = ohtmltidy::unknown(c);
+			c = ohtmltidy::unknown (c);
 		}
-		this->mattribute = otext::replace(this->mattribute, this->mstring);
+		this->mattribute = otext::replace (this->mattribute, this->mstring);
 		std::cout << this->mattribute;
-		c = osource::find(c);
+		c = osource::find (c);
 		if (c == '=')
 		{
-			c = osource::keep(c);
-			c = osource::find(c);
-			if (oascii::isquote(c))
+			c = osource::keep (c);
+			c = osource::find (c);
+			if (oascii::isquote (c))
 			{
-				c = ohtmltidy::dequote(c, c);
+				c = ohtmltidy::dequote (c, c);
 			}
 			else 
 			{
-				c = ohtmltidy::unknown(c);
+				c = ohtmltidy::unknown (c);
 			}
-			this->mvalue = otext::replace(this->mvalue, this->mstring);
-			std::cout.put(this->mquote);
+			this->mvalue = otext::replace (this->mvalue, this->mstring);
+			std::cout.put (this->mquote);
 			std::cout << this->mvalue;
-			std::cout.put(this->mquote);
-			c = osource::find(c);
+			std::cout.put (this->mquote);
+			c = osource::find (c);
 		}
 	}
 	if (c == '/')
 	{
-		c = osource::keep(c);
-		c = osource::find(c);
-		oindent::decrement();
+		c = osource::keep (c);
+		c = osource::find (c);
+		oindent::decrement ();
 	}
-	else if(ohtmltidy::htmlempty.defined(this->melement))
+	else if (ohtmltidy::htmlempty.defined (this->melement))
 	{
-		if (ohtmltidy::anyset(oMARKUP_REPAIR))
+		if (ohtmltidy::anyset (oMARKUP_REPAIR))
 		{
-			std::cout.put('/');
-			oindent::decrement();
+			std::cout.put ('/');
+			oindent::decrement ();
 		}
 	}
 	if (c == '>')
 	{
-		c = osource::keep(c);
+		c = osource::keep (c);
 	}
 	return (c);
 }
@@ -396,27 +396,27 @@ signed ohtmltidy::xhtml(signed c)
  *
  *--------------------------------------------------------------------*/
 
-signed ohtmltidy::comment(signed c) const
+signed ohtmltidy::comment (signed c) const
 
 {
-	c = osource::keep(c);
+	c = osource::keep (c);
 	if (c == '-')
 	{
 		while (c == '-')
 		{
-			c = osource::keep(c);
+			c = osource::keep (c);
 		}
 		while ((c != '-') && (c != EOF))
 		{
 			while ((c != '-') && (c != EOF))
 			{
-				c = osource::keep(c);
+				c = osource::keep (c);
 			}
-			c = osource::keep(c);
+			c = osource::keep (c);
 		}
 		while (c == '-')
 		{
-			c = osource::keep(c);
+			c = osource::keep (c);
 		}
 	}
 	return (c);
@@ -430,25 +430,25 @@ signed ohtmltidy::comment(signed c) const
  *   
  *--------------------------------------------------------------------*/
 
-signed ohtmltidy::cdata(signed c) const
+signed ohtmltidy::cdata (signed c) const
 
 {
 	signed space = 0;
 	while ((c != '<') && (c != EOF))
 	{
-		if (oascii::isspace(c))
+		if (oascii::isspace (c))
 		{
-			c = std::cin.get();
+			c = std::cin.get ();
 			space = 1;
 			continue;
 		}
 		if (space)
 		{
-			std::cout.put(' ');
+			std::cout.put (' ');
 			space = 0;
 			continue;
 		}
-		c = osource::keep(c);
+		c = osource::keep (c);
 	}
 	return (c);
 }
@@ -459,18 +459,18 @@ signed ohtmltidy::cdata(signed c) const
  *   
  *--------------------------------------------------------------------*/
 
-signed ohtmltidy::enquote(signed c, signed e)
+signed ohtmltidy::enquote (signed c, signed e)
 
 {
 	char * string = this->mstring;
-	c = osource::keep(this->mquote);
+	c = osource::keep (this->mquote);
 	while ((c != e) && (c != EOF))
 	{
 		* string++ = c;
-		c = osource::keep(c);
+		c = osource::keep (c);
 	}
-	c = osource::keep(this->mquote);
-	* string = (char)(0);
+	c = osource::keep (this->mquote);
+	* string = (char) (0);
 	return (c);
 }
 
@@ -480,18 +480,18 @@ signed ohtmltidy::enquote(signed c, signed e)
  *   
  *--------------------------------------------------------------------*/
 
-signed ohtmltidy::dequote(signed c, signed e)
+signed ohtmltidy::dequote (signed c, signed e)
 
 {
 	char * string = this->mstring;
-	c = std::cin.get();
+	c = std::cin.get ();
 	while ((c != e) && (c != EOF))
 	{
 		* string++ = c;
-		c = std::cin.get();
+		c = std::cin.get ();
 	}
-	c = std::cin.get();
-	* string = (char)(0);
+	c = std::cin.get ();
+	* string = (char) (0);
 	return (c);
 }
 
@@ -501,17 +501,17 @@ signed ohtmltidy::dequote(signed c, signed e)
  *   
  *--------------------------------------------------------------------*/
 
-signed ohtmltidy::nmtoken(signed c)
+signed ohtmltidy::nmtoken (signed c)
 
 {
 	char * string = this->mstring;
 	do 
 	{
 		* string++ = c;
-		c = std::cin.get();
+		c = std::cin.get ();
 	}
-	while (oascii::nmtoken(c));
-	* string = (char)(0);
+	while (oascii::nmtoken (c));
+	* string = (char) (0);
 	return (c);
 }
 
@@ -521,16 +521,16 @@ signed ohtmltidy::nmtoken(signed c)
  *   
  *--------------------------------------------------------------------*/
 
-signed ohtmltidy::unknown(signed c)
+signed ohtmltidy::unknown (signed c)
 
 {
 	char * string = this->mstring;
-	while (! isspace(c) && (c != '<') && (c != '=') && (c != '/') && (c != '?') && (c != '>'))
+	while (! isspace (c) && (c != '<') && (c != '=') && (c != '/') && (c != '?') && (c != '>'))
 	{
 		* string++ = c;
-		c = std::cin.get();
+		c = std::cin.get ();
 	}
-	* string = (char)(0);
+	* string = (char) (0);
 	return (c);
 }
 
@@ -540,7 +540,7 @@ signed ohtmltidy::unknown(signed c)
  *
  *--------------------------------------------------------------------*/
 
-ohtmltidy & ohtmltidy::print()
+ohtmltidy & ohtmltidy::print ()
 
 {
 	std::cout << this->mstring;
@@ -553,14 +553,14 @@ ohtmltidy & ohtmltidy::print()
  *
  *--------------------------------------------------------------------*/
 
-ohtmltidy::ohtmltidy()
+ohtmltidy::ohtmltidy ()
 
 {
-	this->mstring = new char[1024];
-	this->mstring[0] = (char)(0);
-	this->melement = otext::save("");
-	this->mattribute = otext::save("");
-	this->mvalue = otext::save("");
+	this->mstring = new char [1024];
+	this->mstring [0] = (char) (0);
+	this->melement = otext::save ("");
+	this->mattribute = otext::save ("");
+	this->mvalue = otext::save ("");
 	this->mquote = '\"';
 	return;
 }
@@ -571,7 +571,7 @@ ohtmltidy::ohtmltidy()
  *
  *--------------------------------------------------------------------*/
 
-ohtmltidy::~ ohtmltidy()
+ohtmltidy::~ ohtmltidy ()
 
 {
 	delete [] this->mstring;

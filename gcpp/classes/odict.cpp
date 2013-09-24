@@ -48,13 +48,13 @@
  *
  *--------------------------------------------------------------------*/
 
-odict & odict::define(char const * symbol, char const * string)
+odict & odict::define (char const * symbol, char const * string)
 
 {
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (symbol == (char const *)(0))
+	if (symbol == (char const *) (0))
 	{
 		return (* this);
 	}
@@ -62,30 +62,30 @@ odict & odict::define(char const * symbol, char const * string)
 #endif
 
 	odict * node = this;
-	while (node != (odict *)(0))
+	while (node != (odict *) (0))
 	{
-		signed order = odict::comp(symbol, node->msymbol);
+		signed order = odict::comp (symbol, node->msymbol);
 		if (order < 0)
 		{
-			if (node->mprior == (odict *)(0))
+			if (node->mprior == (odict *) (0))
 			{
-				node->mprior = new odict(symbol);
+				node->mprior = new odict (symbol);
 			}
 			node = node->mprior;
 			continue;
 		}
 		if (order > 0)
 		{
-			if (node->mafter == (odict *)(0))
+			if (node->mafter == (odict *) (0))
 			{
-				node->mafter = new odict(symbol);
+				node->mafter = new odict (symbol);
 			}
 			node = node->mafter;
 			continue;
 		}
 		delete [] node->mstring;
-		node->mstring = new char[strlen(string) +  1];
-		std::strcpy(node->mstring, string);
+		node->mstring = new char [strlen (string) +  1];
+		std::strcpy (node->mstring, string);
 		break;
 	}
 	return (* this);
@@ -103,10 +103,10 @@ odict & odict::define(char const * symbol, char const * string)
  *
  *--------------------------------------------------------------------*/
 
-bool odict::defined(char const * symbol) const
+bool odict::defined (char const * symbol) const
 
 {
-	return (odict::node(symbol));
+	return (odict::node (symbol));
 }
 
 /*====================================================================*
@@ -122,15 +122,15 @@ bool odict::defined(char const * symbol) const
  *
  *--------------------------------------------------------------------*/
 
-char const * odict::lookup(char const * symbol) const
+char const * odict::lookup (char const * symbol) const
 
 {
-	const odict * node = odict::node(symbol);
-	if (node != (odict *)(0))
+	const odict * node = odict::node (symbol);
+	if (node != (odict *) (0))
 	{
 		return (node->mstring);
 	}
-	return ((char const *)(0));
+	return ((char const *) (0));
 }
 
 /*====================================================================*
@@ -146,11 +146,11 @@ char const * odict::lookup(char const * symbol) const
  *
  *--------------------------------------------------------------------*/
 
-char const * odict::expand(char const * symbol) const
+char const * odict::expand (char const * symbol) const
 
 {
-	const odict * node = odict::node(symbol);
-	if (node != (odict *)(0))
+	const odict * node = odict::node (symbol);
+	if (node != (odict *) (0))
 	{
 		return (node->mstring);
 	}
@@ -168,17 +168,17 @@ char const * odict::expand(char const * symbol) const
  *
  *--------------------------------------------------------------------*/
 
-odict & odict::enumerate()
+odict & odict::enumerate ()
 
 {
-	if (this->mprior != (odict *)(0))
+	if (this->mprior != (odict *) (0))
 	{
-		this->mprior->enumerate();
+		this->mprior->enumerate ();
 	}
 	std::cout << this->msymbol << "=" << this->mstring << std::endl;
-	if (this->mafter != (odict *)(0))
+	if (this->mafter != (odict *) (0))
 	{
-		this->mafter->enumerate();
+		this->mafter->enumerate ();
 	}
 	return (* this);
 }
@@ -194,15 +194,15 @@ odict & odict::enumerate()
  *
  *--------------------------------------------------------------------*/
 
-odict & odict::clear()
+odict & odict::clear ()
 
 {
 	delete [] this->msymbol;
 	delete [] this->mstring;
 	delete this->mprior;
 	delete this->mafter;
-	this->mprior = (odict *)(0);
-	this->mafter = (odict *)(0);
+	this->mprior = (odict *) (0);
+	this->mafter = (odict *) (0);
 	return (* this);
 }
 
@@ -219,23 +219,23 @@ odict & odict::clear()
  *
  *--------------------------------------------------------------------*/
 
-const odict * odict::node(char const * symbol) const
+const odict * odict::node (char const * symbol) const
 
 {
 	const odict * node = this;
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (symbol == (char const *)(0))
+	if (symbol == (char const *) (0))
 	{
-		return ((odict *)(0));
+		return ((odict *) (0));
 	}
 
 #endif
 
-	while (node != (odict *)(0))
+	while (node != (odict *) (0))
 	{
-		signed order = odict::comp(symbol, node->msymbol);
+		signed order = odict::comp (symbol, node->msymbol);
 		if (order < 0)
 		{
 			node = node->mprior;
@@ -272,7 +272,7 @@ const odict * odict::node(char const * symbol) const
  *
  *--------------------------------------------------------------------*/
 
-signed odict::comp(register char const * string1, register char const * string2)
+signed odict::comp (register char const * string1, register char const * string2)
 
 {
 
@@ -282,31 +282,31 @@ signed odict::comp(register char const * string1, register char const * string2)
 	{
 		return (0);
 	}
-	if (string1 == (char *)(0))
+	if (string1 == (char *) (0))
 	{
 		return (- 1);
 	}
-	if (string2 == (char *)(0))
+	if (string2 == (char *) (0))
 	{
-		return (+ 1);
+		return (+  1);
 	}
 
 #endif
 
 	while (* string1 == * string2)
 	{
-		if (* string1 == (char)(0))
+		if (* string1 == (char) (0))
 		{
 			return (0);
 		}
 		string1++;
 		string2++;
 	}
-	if (toupper(* string1) != toupper(* string2))
+	if (toupper (* string1) != toupper (* string2))
 	{
-		return (toupper(* string1) < toupper(* string2)? - 1: + 1);
+		return (toupper (* string1) < toupper (* string2)? - 1: +  1);
 	}
-	return (* string1 > * string2? - 1: + 1);
+	return (* string1 > * string2? - 1: +  1);
 }
 
 /*====================================================================*
@@ -322,15 +322,15 @@ signed odict::comp(register char const * string1, register char const * string2)
  *
  *--------------------------------------------------------------------*/
 
-odict::odict(char const * symbol)
+odict::odict (char const * symbol)
 
 {
-	this->msymbol = new char[strlen(symbol) +  1];
-	std::strcpy(this->msymbol, symbol);
-	this->mstring = new char[1];
-	this->mstring[0] = (char) (0);
-	this->mprior = (odict *)(0);
-	this->mafter = (odict *)(0);
+	this->msymbol = new char [strlen (symbol) +  1];
+	std::strcpy (this->msymbol, symbol);
+	this->mstring = new char [1];
+	this->mstring [0] = (char) (0);
+	this->mprior = (odict *) (0);
+	this->mafter = (odict *) (0);
 	return;
 }
 
@@ -347,15 +347,15 @@ odict::odict(char const * symbol)
  *
  *--------------------------------------------------------------------*/
 
-odict::odict(char const * symbol, char const * string)
+odict::odict (char const * symbol, char const * string)
 
 {
-	this->msymbol = new char[strlen(symbol) +  1];
-	std::strcpy(this->msymbol, symbol);
-	this->mstring = new char[strlen(string) +  1];
-	std::strcpy(this->mstring, string);
-	this->mprior = (odict *)(0);
-	this->mafter = (odict *)(0);
+	this->msymbol = new char [strlen (symbol) +  1];
+	std::strcpy (this->msymbol, symbol);
+	this->mstring = new char [strlen (string) +  1];
+	std::strcpy (this->mstring, string);
+	this->mprior = (odict *) (0);
+	this->mafter = (odict *) (0);
 	return;
 }
 
@@ -372,7 +372,7 @@ odict::odict(char const * symbol, char const * string)
  *
  *--------------------------------------------------------------------*/
 
-odict::~ odict()
+odict::~ odict ()
 
 {
 	delete [] this->msymbol;

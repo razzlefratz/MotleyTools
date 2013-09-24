@@ -45,18 +45,18 @@ typedef unsigned char byte;
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oSHA256
+class __declspec (dllexport) oSHA256
 
 {
 public: 
 	oSHA256 ();
-	~ oSHA256();
+	~ oSHA256 ();
 	static unsigned DigestLength;
-	oSHA256 & Reset(void);
-	oSHA256 & Write(void const * memory, size_t length);
-	oSHA256 & Fetch(byte digest[]);
+	oSHA256 & Reset (void);
+	oSHA256 & Write (void const * memory, size_t length);
+	oSHA256 & Fetch (byte digest []);
 private: 
-	oSHA256 & Block(byte const buffer[]);
+	oSHA256 & Block (byte const buffer []);
 	uint32_t * mcount;
 	uint32_t * mstate;
 	uint8_t * mblock;

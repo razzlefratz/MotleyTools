@@ -58,7 +58,7 @@ char const * oAttribute::mcomma = "";
  *
  *--------------------------------------------------------------------*/
 
-char const * oAttribute::label() const
+char const * oAttribute::label () const
 
 {
 	return (this->mlabel);
@@ -72,7 +72,7 @@ char const * oAttribute::label() const
  *
  *--------------------------------------------------------------------*/
 
-char const * oAttribute::value() const
+char const * oAttribute::value () const
 
 {
 	return (this->mvalue);
@@ -86,10 +86,10 @@ char const * oAttribute::value() const
  *
  *--------------------------------------------------------------------*/
 
-oAttribute & oAttribute::value(char const * string)
+oAttribute & oAttribute::value (char const * string)
 
 {
-	this->mvalue = otext::replace(this->mvalue, string);
+	this->mvalue = otext::replace (this->mvalue, string);
 	return (* this);
 }
 
@@ -103,11 +103,11 @@ oAttribute & oAttribute::value(char const * string)
  *
  *--------------------------------------------------------------------*/
 
-oAttribute & oAttribute::value(unsigned number)
+oAttribute & oAttribute::value (unsigned number)
 
 {
-	char string[32];
-	char * sp = string +  sizeof(string);
+	char string [32];
+	char * sp = string +  sizeof (string);
 	* -- sp = (char) (0);
 	do 
 	{
@@ -115,7 +115,7 @@ oAttribute & oAttribute::value(unsigned number)
 		number /= 10;
 	}
 	while ((sp > string) && (number));
-	this->mvalue = otext::replace(this->mvalue, sp);
+	this->mvalue = otext::replace (this->mvalue, sp);
 	return (* this);
 }
 
@@ -128,11 +128,11 @@ oAttribute & oAttribute::value(unsigned number)
  *
  *--------------------------------------------------------------------*/
 
-oAttribute & oAttribute::value(unsigned number, unsigned digits)
+oAttribute & oAttribute::value (unsigned number, unsigned digits)
 
 {
-	char string[digits +  1];
-	char * sp = string +  sizeof(string);
+	char string [digits +  1];
+	char * sp = string +  sizeof (string);
 	* -- sp = (char) (0);
 	do 
 	{
@@ -140,7 +140,7 @@ oAttribute & oAttribute::value(unsigned number, unsigned digits)
 		number /= 10;
 	}
 	while ((sp > string) || (number));
-	this->mvalue = otext::replace(this->mvalue, sp);
+	this->mvalue = otext::replace (this->mvalue, sp);
 	return (* this);
 }
 
@@ -152,7 +152,7 @@ oAttribute & oAttribute::value(unsigned number, unsigned digits)
  *
  *--------------------------------------------------------------------*/
 
-oAttribute & oAttribute::write()
+oAttribute & oAttribute::write ()
 
 {
 	if (* this->mvalue)
@@ -174,11 +174,11 @@ oAttribute & oAttribute::write()
  *   
  *--------------------------------------------------------------------*/
 
-oAttribute::oAttribute(char const * label, char const * value)
+oAttribute::oAttribute (char const * label, char const * value)
 
 {
-	this->mlabel = otext::save(label);
-	this->mvalue = otext::save(value);
+	this->mlabel = otext::save (label);
+	this->mvalue = otext::save (value);
 	return;
 }
 
@@ -188,11 +188,11 @@ oAttribute::oAttribute(char const * label, char const * value)
  *   
  *--------------------------------------------------------------------*/
 
-oAttribute::oAttribute(char const * label)
+oAttribute::oAttribute (char const * label)
 
 {
-	this->mlabel = otext::save(label);
-	this->mvalue = otext::save("");
+	this->mlabel = otext::save (label);
+	this->mvalue = otext::save ("");
 	return;
 }
 
@@ -203,7 +203,7 @@ oAttribute::oAttribute(char const * label)
  *   
  *--------------------------------------------------------------------*/
 
-oAttribute::~ oAttribute()
+oAttribute::~ oAttribute ()
 
 {
 	delete [] this->mlabel;

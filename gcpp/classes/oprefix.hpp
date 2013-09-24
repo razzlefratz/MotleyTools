@@ -27,20 +27,20 @@
  *7
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oprefix
+class __declspec (dllexport) oprefix
 
 {
 public: 
 	oprefix ();
 	oprefix (const unsigned c);
-	virtual ~ oprefix();
-	oprefix * lookup(char const * symbol);
-	char const * assume(char const * symbol) const;
-	char const * revise(char const * symbol) const;
-	char const * prefix(char const * symbol) const;
-	char const * suffix(char const * symbol) const;
-	oprefix & define(char const * symbol, char const * string);
-	oprefix & report(char * buffer, size_t length);
+	virtual ~ oprefix ();
+	oprefix * lookup (char const * symbol);
+	char const * assume (char const * symbol) const;
+	char const * revise (char const * symbol) const;
+	char const * prefix (char const * symbol) const;
+	char const * suffix (char const * symbol) const;
+	oprefix & define (char const * symbol, char const * string);
+	oprefix & report (char * buffer, size_t length);
 private: 
 	char msymbol;
 	char * mstring;

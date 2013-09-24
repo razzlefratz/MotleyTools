@@ -35,16 +35,16 @@
  *   
  *--------------------------------------------------------------------*/
 
-char const * omptidy::program(void) const
+char const * omptidy::program (void) const
 
 {
 	return (this->mprogram);
 }
 
-omptidy & omptidy::program(char const * program)
+omptidy & omptidy::program (char const * program)
 
 {
-	this->mprogram = otext::replace(this->mprogram, program);
+	this->mprogram = otext::replace (this->mprogram, program);
 	return (* this);
 }
 
@@ -56,16 +56,16 @@ omptidy & omptidy::program(char const * program)
  *   
  *--------------------------------------------------------------------*/
 
-char const * omptidy::project(void) const
+char const * omptidy::project (void) const
 
 {
 	return (this->mproject);
 }
 
-omptidy & omptidy::project(char const * project)
+omptidy & omptidy::project (char const * project)
 
 {
-	this->mproject = otext::replace(this->mproject, project);
+	this->mproject = otext::replace (this->mproject, project);
 	return (* this);
 }
 
@@ -77,16 +77,16 @@ omptidy & omptidy::project(char const * project)
  *   
  *--------------------------------------------------------------------*/
 
-char const * omptidy::package(void) const
+char const * omptidy::package (void) const
 
 {
 	return (this->mpackage);
 }
 
-omptidy & omptidy::package(char const * package)
+omptidy & omptidy::package (char const * package)
 
 {
-	this->mpackage = otext::replace(this->mpackage, package);
+	this->mpackage = otext::replace (this->mpackage, package);
 	return (* this);
 }
 
@@ -98,16 +98,16 @@ omptidy & omptidy::package(char const * package)
  *   
  *--------------------------------------------------------------------*/
 
-char const * omptidy::release(void) const
+char const * omptidy::release (void) const
 
 {
 	return (this->mrelease);
 }
 
-omptidy & omptidy::release(char const * release)
+omptidy & omptidy::release (char const * release)
 
 {
-	this->mrelease = otext::replace(this->mrelease, release);
+	this->mrelease = otext::replace (this->mrelease, release);
 	return (* this);
 }
 
@@ -117,7 +117,7 @@ omptidy & omptidy::release(char const * release)
  *
  *--------------------------------------------------------------------*/
 
-omptidy & omptidy::filename(char const * filename)
+omptidy & omptidy::filename (char const * filename)
 
 {
 	char const * basename;
@@ -128,12 +128,12 @@ omptidy & omptidy::filename(char const * filename)
 			basename = filename +  1;
 		}
 	}
-	this->mprogram = otext::replace(this->mprogram, basename);
+	this->mprogram = otext::replace (this->mprogram, basename);
 	for (filename = basename; * filename; filename++)
 	{
 		if (* filename == '.')
 		{
-			this->mprogram[filename - basename] = ' ';
+			this->mprogram [filename - basename] = ' ';
 		}
 	}
 	return (* this);
@@ -147,14 +147,14 @@ omptidy & omptidy::filename(char const * filename)
  *
  *--------------------------------------------------------------------*/
 
-signed omptidy::tidy(signed c)
+signed omptidy::tidy (signed c)
 
 {
 	while (c != EOF)
 	{
 		while ((c == '\r') || (c == '\n'))
 		{
-			c = std::cin.get();
+			c = std::cin.get ();
 		}
 		if (c == '.')
 		{
@@ -162,15 +162,15 @@ signed omptidy::tidy(signed c)
 			do 
 			{
 				* sp++ = c;
-				c = std::cin.get();
+				c = std::cin.get ();
 			}
-			while (oascii::isalpha(c));
-			* sp = (char)(0);
-			if (! std::strcmp(this->mstring, ".TH"))
+			while (oascii::isalpha (c));
+			* sp = (char) (0);
+			if (! std::strcmp (this->mstring, ".TH"))
 			{
-				while (oascii::nobreak(c))
+				while (oascii::nobreak (c))
 				{
-					c = std::cin.get();
+					c = std::cin.get ();
 				}
 				std::cout << this->mstring;
 				std::cout << " " << this->mprogram;
@@ -178,31 +178,31 @@ signed omptidy::tidy(signed c)
 				std::cout << " \"" << this->mpackage << "\"";
 				std::cout << " \"" << this->mproject << "\"";
 			}
-			else if(! std::strcmp(this->mstring, ".SH"))
+			else if (! std::strcmp (this->mstring, ".SH"))
 			{
 				std::cout << std::endl << this->mstring;
 			}
-			else if(! std::strcmp(this->mstring, ".SS"))
+			else if (! std::strcmp (this->mstring, ".SS"))
 			{
 				std::cout << std::endl << this->mstring;
 			}
-			else if(! std::strcmp(this->mstring, ".TP"))
+			else if (! std::strcmp (this->mstring, ".TP"))
 			{
 				std::cout << std::endl << this->mstring;
 			}
-			else if(! std::strcmp(this->mstring, ".HP"))
+			else if (! std::strcmp (this->mstring, ".HP"))
 			{
 				std::cout << std::endl << this->mstring;
 			}
-			else if(! std::strcmp(this->mstring, ".IP"))
+			else if (! std::strcmp (this->mstring, ".IP"))
 			{
 				std::cout << std::endl << this->mstring;
 			}
-			else if(! std::strcmp(this->mstring, ".PP"))
+			else if (! std::strcmp (this->mstring, ".PP"))
 			{
 				std::cout << std::endl << this->mstring;
 			}
-			else if(! std::strcmp(this->mstring, ".P"))
+			else if (! std::strcmp (this->mstring, ".P"))
 			{
 				std::cout << std::endl << this->mstring;
 			}
@@ -211,33 +211,33 @@ signed omptidy::tidy(signed c)
 				std::cout << this->mstring;
 			}
 		}
-		while (oascii::nobreak(c))
+		while (oascii::nobreak (c))
 		{
-			if (oascii::isquote(c))
+			if (oascii::isquote (c))
 			{
-				c = omptidy::literal(c, c);
+				c = omptidy::literal (c, c);
 				continue;
 			}
 			if (c == '.')
 			{
-				c = omptidy::keep(c);
+				c = omptidy::keep (c);
 				if (c == '.')
 				{
 					do 
 					{
-						c = omptidy::keep(c);
+						c = omptidy::keep (c);
 					}
 					while (c == '.');
 					continue;
 				}
-				if (oascii::isblank(c))
+				if (oascii::isblank (c))
 				{
 					do 
 					{
-						c = std::cin.get();
+						c = std::cin.get ();
 					}
-					while (oascii::isblank(c));
-					std::cout.put('\n');
+					while (oascii::isblank (c));
+					std::cout.put ('\n');
 					continue;
 				}
 				continue;
@@ -247,22 +247,22 @@ signed omptidy::tidy(signed c)
 
 			if (c == '\\')
 			{
-				c = omptidy::keep(c);
+				c = omptidy::keep (c);
 				if (c == 'v')
 				{
 					c = 'f';
 				}
-				c = omptidy::keep(c);
+				c = omptidy::keep (c);
 				continue;
 			}
 
 #endif
 
-			c = omptidy::keep(c);
+			c = omptidy::keep (c);
 		}
-		c = omptidy::keep(c);
+		c = omptidy::keep (c);
 	}
-	std::cout.put('\n');
+	std::cout.put ('\n');
 	return (c);
 }
 
@@ -278,10 +278,10 @@ signed omptidy::tidy(signed c)
  *
  *--------------------------------------------------------------------*/
 
-omptidy & omptidy::example(void)
+omptidy & omptidy::example (void)
 
 {
-	char const * subjects[] = 
+	char const * subjects [] = 
 	{
 		"NAME",
 		"SYNTAX",
@@ -300,7 +300,7 @@ omptidy & omptidy::example(void)
 		"AUTHORS",
 		"CREDITS",
 		"SEE ALSO",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	char const ** subject = subjects;
 	std::cout << ".TH program 1 package" << std::endl;
@@ -318,19 +318,19 @@ omptidy & omptidy::example(void)
  *
  *--------------------------------------------------------------------*/
 
-omptidy::omptidy(void)
+omptidy::omptidy (void)
 
 {
-	this->mproject = new char[1];
-	this->mproject[0] = (char)(0);
-	this->mprogram = new char[1];
-	this->mprogram[0] = (char)(0);
-	this->mpackage = new char[1];
-	this->mpackage[0] = (char)(0);
-	this->mrelease = new char[1];
-	this->mrelease[0] = (char)(0);
-	this->mstring = new char[oMPTIDY_SYMBOLSIZE];
-	this->mstring[0] = (char)(0);
+	this->mproject = new char [1];
+	this->mproject [0] = (char) (0);
+	this->mprogram = new char [1];
+	this->mprogram [0] = (char) (0);
+	this->mpackage = new char [1];
+	this->mpackage [0] = (char) (0);
+	this->mrelease = new char [1];
+	this->mrelease [0] = (char) (0);
+	this->mstring = new char [oMPTIDY_SYMBOLSIZE];
+	this->mstring [0] = (char) (0);
 	return;
 }
 
@@ -340,7 +340,7 @@ omptidy::omptidy(void)
  *
  *--------------------------------------------------------------------*/
 
-omptidy::~ omptidy(void)
+omptidy::~ omptidy (void)
 
 {
 	delete [] this->mproject;

@@ -21,20 +21,20 @@
  *   start class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) ohexencode
+class __declspec (dllexport) ohexencode
 
 {
 public: 
 	ohexencode ();
-	virtual ~ ohexencode();
-	static char * octet(char * string, char const c);
-	static char * literal(char * string, char const c);
-	static char * clang(char * string, char const c);
-	static char * iso(char * string, char const c);
-	static char * html(char * string, char const c);
-	static char * ietf(char * string, char const c);
+	virtual ~ ohexencode ();
+	static char * octet (char * string, char const c);
+	static char * literal (char * string, char const c);
+	static char * clang (char * string, char const c);
+	static char * iso (char * string, char const c);
+	static char * html (char * string, char const c);
+	static char * ietf (char * string, char const c);
 private: 
-	static char const mdigit[];
+	static char const mdigit [];
 };
 
 /*====================================================================*

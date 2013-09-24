@@ -33,7 +33,7 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned opassword::count() const
+unsigned opassword::count () const
 
 {
 	return (this->mcount);
@@ -46,7 +46,7 @@ unsigned opassword::count() const
  *
  *--------------------------------------------------------------------*/
 
-opassword & opassword::count(unsigned count)
+opassword & opassword::count (unsigned count)
 
 {
 	this->mcount = count;
@@ -60,7 +60,7 @@ opassword & opassword::count(unsigned count)
  *
  *--------------------------------------------------------------------*/
 
-unsigned opassword::group() const
+unsigned opassword::group () const
 
 {
 	return (this->mgroup);
@@ -73,7 +73,7 @@ unsigned opassword::group() const
  *
  *--------------------------------------------------------------------*/
 
-opassword & opassword::group(unsigned group)
+opassword & opassword::group (unsigned group)
 
 {
 	this->mgroup = group;
@@ -87,7 +87,7 @@ opassword & opassword::group(unsigned group)
  *
  *--------------------------------------------------------------------*/
 
-unsigned opassword::space() const
+unsigned opassword::space () const
 
 {
 	return (this->mbreak);
@@ -100,7 +100,7 @@ unsigned opassword::space() const
  *
  *--------------------------------------------------------------------*/
 
-opassword & opassword::space(unsigned space)
+opassword & opassword::space (unsigned space)
 
 {
 	this->mbreak = space;
@@ -114,19 +114,19 @@ opassword & opassword::space(unsigned space)
  *
  *--------------------------------------------------------------------*/
 
-opassword & opassword::print(unsigned salt)
+opassword & opassword::print (unsigned salt)
 
 {
-	std::srand(salt);
+	std::srand (salt);
 	this->mindex = 0;
 	while (this->mindex < this->mcount)
 	{
-		unsigned c = (char) (std::rand() % (SCHAR_MAX + 1));
+		unsigned c = (char) (std::rand () % (SCHAR_MAX +  1));
 		if ((this->mindex) && (this->mgroup) && ! (this->mindex % this->mgroup))
 		{
 			std::cout << this->mbreak;
 		}
-		std::cout << this->mcharset[c];
+		std::cout << this->mcharset [c];
 		this->mindex++;
 	}
 	return (* this);
@@ -139,16 +139,16 @@ opassword & opassword::print(unsigned salt)
  *
  *--------------------------------------------------------------------*/
 
-opassword::opassword(unsigned seed)
+opassword::opassword (unsigned seed)
 
 {
-	std::srand(seed);
-	this->mcharset = new char[UCHAR_MAX];
+	std::srand (seed);
+	this->mcharset = new char [UCHAR_MAX];
 	this->mindex = 0;
 	while (this->mindex < UCHAR_MAX)
 	{
-		char c = (char) (std::rand() % (SCHAR_MAX + 1));
-		if (std::isupper(c))
+		char c = (char) (std::rand () % (SCHAR_MAX +  1));
+		if (std::isupper (c))
 		{
 			mcharset [this->mindex++] = c;
 		}
@@ -166,7 +166,7 @@ opassword::opassword(unsigned seed)
  *
  *--------------------------------------------------------------------*/
 
-opassword::~ opassword()
+opassword::~ opassword ()
 
 {
 	delete [] this->mcharset;

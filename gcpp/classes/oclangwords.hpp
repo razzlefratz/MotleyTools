@@ -60,12 +60,12 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oclangwords: public okeywords
+class __declspec (dllexport) oclangwords: public okeywords
 
 {
 public: 
 	oclangwords ();
-	~ oclangwords();
+	~ oclangwords ();
 };
 
 /*====================================================================*

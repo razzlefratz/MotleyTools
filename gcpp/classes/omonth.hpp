@@ -27,22 +27,22 @@
  *   interface definition;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) omonth
+class __declspec (dllexport) omonth
 
 {
 public: 
 	omonth ();
 	omonth (signed month);
 	omonth (unsigned year, signed month);
-	virtual ~ omonth();
-	char const * title() const;
-	unsigned year() const;
-	unsigned month() const;
-	unsigned weekday() const;
-	unsigned lastday() const;
-	unsigned date(unsigned block) const;
-	unsigned date(unsigned week, unsigned weekday) const;
-	void encode(char buffer[], size_t length);
+	virtual ~ omonth ();
+	char const * title () const;
+	unsigned year () const;
+	unsigned month () const;
+	unsigned weekday () const;
+	unsigned lastday () const;
+	unsigned date (unsigned block) const;
+	unsigned date (unsigned week, unsigned weekday) const;
+	void encode (char buffer [], size_t length);
 protected: 
 private: 
 	static odate mdate;

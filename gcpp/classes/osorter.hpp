@@ -29,38 +29,38 @@
  *
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) osorter
+class __declspec (dllexport) osorter
 
 {
 public: 
 	osorter ();
-	osorter (int order(char const *, char const *));
-	virtual ~ osorter();
-	unsigned index() const;
-	unsigned start() const;
-	unsigned count() const;
-	bool insert(char const * string);
-	bool remove(char const * string);
+	osorter (int order (char const *, char const *));
+	virtual ~ osorter ();
+	unsigned index () const;
+	unsigned start () const;
+	unsigned count () const;
+	bool insert (char const * string);
+	bool remove (char const * string);
 	void operator ++ ();
 	bool operator += (char const * string);
 	bool operator -= (char const * string);
-	char const * string();
-	char const * strings(unsigned index);
-	char const * operator[](unsigned index);
-	unsigned indexof(char const * string);
-	bool defined(char const * string);
-	osorter & define(char string[], unsigned char c);
-	osorter & clear();
-	void home();
-	bool more();
-	void next();
+	char const * string ();
+	char const * strings (unsigned index);
+	char const * operator [] (unsigned index);
+	unsigned indexof (char const * string);
+	bool defined (char const * string);
+	osorter & define (char string [], unsigned char c);
+	osorter & clear ();
+	void home ();
+	bool more ();
+	void next ();
 private: 
-	osorter & store(char const * string);
+	osorter & store (char const * string);
 	char const ** mtable;
 
 /* the table */
 
-	signed (* morder)(char const *, char const *);
+	signed (* morder) (char const *, char const *);
 	unsigned mblock;
 
 /* table allocation block size */

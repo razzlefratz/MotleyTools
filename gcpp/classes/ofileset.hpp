@@ -23,29 +23,29 @@
  *7
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) ofileset: private otext
+class __declspec (dllexport) ofileset: private otext
 
 {
 public: 
 	ofileset ();
 	ofileset (char const * pathname);
-	virtual ~ ofileset();
-	char const * fullpath(bool increment);
-	char const * fullname() const;
-	char const * pathname() const;
-	char const * filename() const;
-	char const * basename() const;
-	char const * extender() const;
-	ofileset & makepath();
-	ofileset & filespec(char const * filespec);
-	ofileset & pathname(char const * filespec);
-	ofileset & filename(char const * filespec);
-	ofileset & basename(char const * filespec);
-	ofileset & extender(char const * filespec);
-	unsigned int index() const;
-	unsigned int field() const;
-	ofileset & index(unsigned int index);
-	ofileset & field(unsigned int field);
+	virtual ~ ofileset ();
+	char const * fullpath (bool increment);
+	char const * fullname () const;
+	char const * pathname () const;
+	char const * filename () const;
+	char const * basename () const;
+	char const * extender () const;
+	ofileset & makepath ();
+	ofileset & filespec (char const * filespec);
+	ofileset & pathname (char const * filespec);
+	ofileset & filename (char const * filespec);
+	ofileset & basename (char const * filespec);
+	ofileset & extender (char const * filespec);
+	unsigned int index () const;
+	unsigned int field () const;
+	ofileset & index (unsigned int index);
+	ofileset & field (unsigned int field);
 private: 
 	ocontext * mcontext;
 	char * mfullname;

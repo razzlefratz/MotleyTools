@@ -30,7 +30,7 @@
  *
  *--------------------------------------------------------------------*/
 
-size_t ocursor::charcount() const
+size_t ocursor::charcount () const
 
 {
 	return (this->mchar);
@@ -43,7 +43,7 @@ size_t ocursor::charcount() const
  *
  *--------------------------------------------------------------------*/
 
-size_t ocursor::linecount() const
+size_t ocursor::linecount () const
 
 {
 	return (this->mline);
@@ -56,7 +56,7 @@ size_t ocursor::linecount() const
  *
  *--------------------------------------------------------------------*/
 
-size_t ocursor::pagecount() const
+size_t ocursor::pagecount () const
 
 {
 	return (this->mpage);
@@ -69,7 +69,7 @@ size_t ocursor::pagecount() const
  *
  *--------------------------------------------------------------------*/
 
-size_t ocursor::rowcount() const
+size_t ocursor::rowcount () const
 
 {
 	return (this->mrow);
@@ -82,7 +82,7 @@ size_t ocursor::rowcount() const
  *
  *--------------------------------------------------------------------*/
 
-size_t ocursor::colcount() const
+size_t ocursor::colcount () const
 
 {
 	return (this->mcol);
@@ -95,10 +95,10 @@ size_t ocursor::colcount() const
  *
  *--------------------------------------------------------------------*/
 
-ocursor & ocursor::count(char c)
+ocursor & ocursor::count (char c)
 
 {
-	switch ((char)(c))
+	switch ((char) (c))
 	{
 	case '\f':
 		mchar++;
@@ -135,7 +135,7 @@ ocursor & ocursor::count(char c)
  *
  *--------------------------------------------------------------------*/
 
-ocursor & ocursor::clear()
+ocursor & ocursor::clear ()
 
 {
 	mchar = 0;
@@ -150,14 +150,14 @@ ocursor & ocursor::clear()
  *
  *--------------------------------------------------------------------*/
 
-ocursor::ocursor()
+ocursor::ocursor ()
 
 {
-	this->clear();
+	this->clear ();
 	return;
 };
 
-ocursor::~ ocursor()
+ocursor::~ ocursor ()
 
 {
 	return;

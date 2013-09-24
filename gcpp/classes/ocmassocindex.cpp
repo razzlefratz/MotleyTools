@@ -40,45 +40,45 @@
  *
  *--------------------------------------------------------------------*/
 
-ocmassocindex & ocmassocindex::index1(struct _topic_ topics[], unsigned count)
+ocmassocindex & ocmassocindex::index1 (struct _topic_ topics [], unsigned count)
 
 {
-	this->mfilespec->pathname(topics[0].index);
-	if (freopen(this->mfilespec->pathname(), "w", stdout) != (FILE *)(0))
+	this->mfilespec->pathname (topics [0].index);
+	if (freopen (this->mfilespec->pathname (), "w", stdout) != (FILE *) (0))
 	{
-		this->mwebpage->title(topics[0].title);
-		this->mwebpage->topPage(stdout);
-		this->mwebpage->print(2, 1, "<ul>", stdout);
+		this->mwebpage->title (topics [0].title);
+		this->mwebpage->topPage (stdout);
+		this->mwebpage->print (2, 1, "<ul>", stdout);
 		for (this->mindex = 1; this->mindex < count; this->mindex++)
 		{
 			cout << "\t\t\t" << "<li style='" << this->mbelow << "'>" << NEWLINE;
-			cout << "\t\t\t\t" << "<a target='" << this->mframe << "' href='" << topics[this->mindex].index << "'>" << topics[this->mindex].title << "</a>" << NEWLINE;
+			cout << "\t\t\t\t" << "<a target='" << this->mframe << "' href='" << topics [this->mindex].index << "'>" << topics [this->mindex].title << "</a>" << NEWLINE;
 			cout << "\t\t\t\t" << "</li>" << NEWLINE;
 		}
-		this->mwebpage->print(3, 1, "</ul>", stdout);
-		this->mwebpage->botPage(stdout);
+		this->mwebpage->print (3, 1, "</ul>", stdout);
+		this->mwebpage->botPage (stdout);
 	}
 }
 
-ocmassocindex & ocmassocindex::index2(struct _topic_ topics[], unsigned count)
+ocmassocindex & ocmassocindex::index2 (struct _topic_ topics [], unsigned count)
 
 {
 	for (this->mtopic = 1; this->mtopic < count; this->mtopic++)
 	{
-		this->mfilespec->pathname(topics[this->mtopic].index);
-		if (mkdir(this->mfilespec->basename(), 0755))
+		this->mfilespec->pathname (topics [this->mtopic].index);
+		if (mkdir (this->mfilespec->basename (), 0755))
 		{
-			if (freopen(this->mfilespec->pathname(), "w", stdout) != (FILE *)(0))
+			if (freopen (this->mfilespec->pathname (), "w", stdout) != (FILE *) (0))
 			{
-				this->mwebpage->title(topics[this->mtopic].title);
-				this->mwebpage->topPage(stdout);
-				this->mwebpage->print(2, 1, "<ul>", stdout);
+				this->mwebpage->title (topics [this->mtopic].title);
+				this->mwebpage->topPage (stdout);
+				this->mwebpage->print (2, 1, "<ul>", stdout);
 				for (this->mindex = 1; this->mindex < count; this->mindex++)
 				{
 					if (this->mindex == this->mtopic)
 					{
 						cout << "\t\t\t<li style='" << this->mabove << "%s'>" << NEWLINE;
-						cout << "\t\t\t\t" << "<a target='" << this->mframe << "' href='../" << topics[0].index << "'>" << topics[this->mindex].title << "</a>" << NEWLINE;
+						cout << "\t\t\t\t" << "<a target='" << this->mframe << "' href='../" << topics [0].index << "'>" << topics [this->mindex].title << "</a>" << NEWLINE;
 						cout << "\t\t\t\t" << "<ul>" << NEWLINE;
 						cout << "\t\t\t\t\t" << "</ul>" << NEWLINE;
 						cout << "\t\t\t\t" << "</li>" << NEWLINE;
@@ -86,12 +86,12 @@ ocmassocindex & ocmassocindex::index2(struct _topic_ topics[], unsigned count)
 					else 
 					{
 						cout << "\t\t\t" << "<li style='" << this->mbelow << "'>" << NEWLINE;
-						cout << "\t\t\t\t" << "<a href='../" << topics[this->mindex].index << "'>" << topics[this->mindex].title << "</a>" << NEWLINE;
+						cout << "\t\t\t\t" << "<a href='../" << topics [this->mindex].index << "'>" << topics [this->mindex].title << "</a>" << NEWLINE;
 						cout << "\t\t\t\t" << "</li>" << NEWLINE;
 					}
 				}
-				this->mwebpage->print(3, 1, "</ul>", stdout);
-				this->mwebpage->botPage(stdout);
+				this->mwebpage->print (3, 1, "</ul>", stdout);
+				this->mwebpage->botPage (stdout);
 			}
 		}
 	}
@@ -105,15 +105,15 @@ ocmassocindex & ocmassocindex::index2(struct _topic_ topics[], unsigned count)
  *   
  *--------------------------------------------------------------------*/
 
-ocmassocindex::ocmassocindex()
+ocmassocindex::ocmassocindex ()
 
 {
 	this->mwebpage = new owebpage;
-	this->mwebpage->stylesheet("http://www.cmassoc.net/styles/CMAssocIndex.css");
+	this->mwebpage->stylesheet ("http://www.cmassoc.net/styles/CMAssocIndex.css");
 	this->mfilespec = new ofilespec;
-	this->mframe = ocmassocindex::save("CMAssocTopic");
-	this->mabove = ocmassocindex::save("above");
-	this->mbelow = ocmassocindex::save("below");
+	this->mframe = ocmassocindex::save ("CMAssocTopic");
+	this->mabove = ocmassocindex::save ("above");
+	this->mbelow = ocmassocindex::save ("below");
 	return;
 }
 
@@ -124,7 +124,7 @@ ocmassocindex::ocmassocindex()
  *   
  *--------------------------------------------------------------------*/
 
-ocmassocindex::~ ocmassocindex()
+ocmassocindex::~ ocmassocindex ()
 
 {
 	return;

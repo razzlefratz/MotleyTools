@@ -31,13 +31,13 @@
  *
  *--------------------------------------------------------------------*/
 
-char * otext::replace(char * memory, char const * string)
+char * otext::replace (char * memory, char const * string)
 
 {
-	if (std::strcmp(memory, string))
+	if (std::strcmp (memory, string))
 	{
 		delete [] memory;
-		memory = otext::save(string);
+		memory = otext::save (string);
 	}
 	return (memory);
 }
@@ -48,11 +48,11 @@ char * otext::replace(char * memory, char const * string)
  *
  *--------------------------------------------------------------------*/
 
-char * otext::save(char const * string)
+char * otext::save (char const * string)
 
 {
-	char * memory = new char[std::strlen(string) +  1];
-	std::strcpy(memory, string);
+	char * memory = new char [std::strlen (string) +  1];
+	std::strcpy (memory, string);
 	return (memory);
 }
 

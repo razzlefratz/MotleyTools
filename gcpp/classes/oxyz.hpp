@@ -27,12 +27,12 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oxyz
+class __declspec (dllexport) oxyz
 
 {
 public: 
 	oxyz ();
-	virtual ~ oxyz();
+	virtual ~ oxyz ();
 protected: 
 private: 
 };

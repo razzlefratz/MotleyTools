@@ -21,14 +21,14 @@
  *
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) okeep
+class __declspec (dllexport) okeep
 
 {
 public: 
 	okeep ();
-	virtual ~ okeep();
-	void * fetch(char const * string) const;
-	void * store(char const * string, void * object);
+	virtual ~ okeep ();
+	void * fetch (char const * string) const;
+	void * store (char const * string, void * object);
 private: 
 	char * mstring;
 	void * mobject;

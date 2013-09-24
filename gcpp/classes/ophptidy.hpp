@@ -23,21 +23,21 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) ophptidy: public osource, public oindent
+class __declspec (dllexport) ophptidy: public osource, public oindent
 
 {
 public: 
 	ophptidy (void);
-	virtual ~ ophptidy(void);
-	signed page(signed c);
-	signed statement(signed c);
-	signed program(signed c);
-	signed context(signed c, char const * charset) const;
-	signed context(signed c, signed o, signed e) const;
-	signed context(signed c, signed e) const;
-	signed context(signed c) const;
-	signed _context(signed c, signed o, signed e) const;
-	signed _context(signed c, signed e) const;
+	virtual ~ ophptidy (void);
+	signed page (signed c);
+	signed statement (signed c);
+	signed program (signed c);
+	signed context (signed c, char const * charset) const;
+	signed context (signed c, signed o, signed e) const;
+	signed context (signed c, signed e) const;
+	signed context (signed c) const;
+	signed _context (signed c, signed o, signed e) const;
+	signed _context (signed c, signed e) const;
 };
 
 /*====================================================================*

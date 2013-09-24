@@ -40,7 +40,7 @@ osession session;
  *
  *--------------------------------------------------------------------*/
 
-char const * owebpage::title(void) const
+char const * owebpage::title (void) const
 
 {
 	return (this->mtitle);
@@ -54,10 +54,10 @@ char const * owebpage::title(void) const
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::title(char const * title)
+owebpage & owebpage::title (char const * title)
 
 {
-	this->mtitle = otext::replace(this->mtitle, title);
+	this->mtitle = otext::replace (this->mtitle, title);
 	return (* this);
 }
 
@@ -69,7 +69,7 @@ owebpage & owebpage::title(char const * title)
  *
  *--------------------------------------------------------------------*/
 
-char const * owebpage::stylesheet(void) const
+char const * owebpage::stylesheet (void) const
 
 {
 	return (this->mstylesheet);
@@ -83,10 +83,10 @@ char const * owebpage::stylesheet(void) const
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::stylesheet(char const * stylesheet)
+owebpage & owebpage::stylesheet (char const * stylesheet)
 
 {
-	this->mstylesheet = otext::replace(this->mstylesheet, stylesheet);
+	this->mstylesheet = otext::replace (this->mstylesheet, stylesheet);
 	return (* this);
 }
 
@@ -99,7 +99,7 @@ owebpage & owebpage::stylesheet(char const * stylesheet)
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::css2(void)
+owebpage & owebpage::css2 (void)
 
 {
 	std::cout << "a:hover { text-decoration: underline; }" << std::endl;
@@ -123,25 +123,25 @@ owebpage & owebpage::css2(void)
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::PageHeader(void)
+owebpage & owebpage::PageHeader (void)
 
 {
-	owebpage::print(this->mlevel, this->mspace, "<?xml version='1.0' encoding='iso-8859-1'?>");
-	owebpage::print(this->mlevel, this->mspace, "<!DOCTYPE HTML PUBLIC '//W3C//DTD XHTML 1.0 Transitional//EN'>");
-	owebpage::print(this->mlevel++, this->mspace, "<html xmlns='http://www.w3.org/1999/xhtml'>");
-	owebpage::print(this->mlevel++, this->mspace, "<head>");
-	owebpage::print(this->mlevel++, this->mspace, "<title>");
-	owebpage::print(this->mlevel, this->mspace, this->mtitle);
-	owebpage::print(this->mlevel--, this->mspace, "</title>");
-	owebpage::MetaElement.Contents("robots", "noindex,nofollow").EmptyTag(this->mlevel, this->mspace);
-	owebpage::MetaElement.Contents("author", "charles maier").EmptyTag(this->mlevel, this->mspace);
-	owebpage::MetaElement.Contents("generator", "Motley Tools").EmptyTag(this->mlevel, this->mspace);
-	owebpage::MetaElement.Contents("keywords", "peace, love, beauty, truth").EmptyTag(this->mlevel, this->mspace);
-	owebpage::print(this->mlevel, 0, "<link href='");
-	owebpage::print(0, 0, this->mstylesheet);
-	owebpage::print(0, this->mspace, "' rel='stylesheet' type='text/css'/>");
-	owebpage::print(this->mlevel--, this->mspace, "</head>");
-	owebpage::print(this->mlevel++, this->mspace, "<body>");
+	owebpage::print (this->mlevel, this->mspace, "<?xml version='1.0' encoding='iso-8859-1'?>");
+	owebpage::print (this->mlevel, this->mspace, "<!DOCTYPE HTML PUBLIC '//W3C//DTD XHTML 1.0 Transitional//EN'>");
+	owebpage::print (this->mlevel++, this->mspace, "<html xmlns='http://www.w3.org/1999/xhtml'>");
+	owebpage::print (this->mlevel++, this->mspace, "<head>");
+	owebpage::print (this->mlevel++, this->mspace, "<title>");
+	owebpage::print (this->mlevel, this->mspace, this->mtitle);
+	owebpage::print (this->mlevel--, this->mspace, "</title>");
+	owebpage::MetaElement.Contents ("robots", "noindex,nofollow").EmptyTag (this->mlevel, this->mspace);
+	owebpage::MetaElement.Contents ("author", "charles maier").EmptyTag (this->mlevel, this->mspace);
+	owebpage::MetaElement.Contents ("generator", "Motley Tools").EmptyTag (this->mlevel, this->mspace);
+	owebpage::MetaElement.Contents ("keywords", "peace, love, beauty, truth").EmptyTag (this->mlevel, this->mspace);
+	owebpage::print (this->mlevel, 0, "<link href='");
+	owebpage::print (0, 0, this->mstylesheet);
+	owebpage::print (0, this->mspace, "' rel='stylesheet' type='text/css'/>");
+	owebpage::print (this->mlevel--, this->mspace, "</head>");
+	owebpage::print (this->mlevel++, this->mspace, "<body>");
 	return (* this);
 }
 
@@ -153,11 +153,11 @@ owebpage & owebpage::PageHeader(void)
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::BodyHeader(void)
+owebpage & owebpage::BodyHeader (void)
 
 {
-	owebpage::print(this->mlevel++, this->mspace, "<div class='" oWEBPAGE_BODY_HEADER_CLASS "'>");
-	owebpage::print(this->mlevel--, this->mspace, "</div>");
+	owebpage::print (this->mlevel++, this->mspace, "<div class='" oWEBPAGE_BODY_HEADER_CLASS "'>");
+	owebpage::print (this->mlevel--, this->mspace, "</div>");
 	return (* this);
 }
 
@@ -169,20 +169,20 @@ owebpage & owebpage::BodyHeader(void)
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::LinkHeader(void)
+owebpage & owebpage::LinkHeader (void)
 
 {
-	owebpage::print(this->mlevel++, this->mspace, "<div class='" oWEBPAGE_LINK_HEADER_CLASS "'>");
-	owebpage::newline();
-	owebpage::PrevPageLink.write();
-	owebpage::endline();
-	owebpage::newline();
-	owebpage::HomePageLink.write();
-	owebpage::endline();
-	owebpage::newline();
-	owebpage::NextPageLink.write();
-	owebpage::endline();
-	owebpage::print(this->mlevel--, this->mspace, "</div>");
+	owebpage::print (this->mlevel++, this->mspace, "<div class='" oWEBPAGE_LINK_HEADER_CLASS "'>");
+	owebpage::newline ();
+	owebpage::PrevPageLink.write ();
+	owebpage::endline ();
+	owebpage::newline ();
+	owebpage::HomePageLink.write ();
+	owebpage::endline ();
+	owebpage::newline ();
+	owebpage::NextPageLink.write ();
+	owebpage::endline ();
+	owebpage::print (this->mlevel--, this->mspace, "</div>");
 	return (* this);
 }
 
@@ -194,10 +194,10 @@ owebpage & owebpage::LinkHeader(void)
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::MarkStart(void)
+owebpage & owebpage::MarkStart (void)
 
 {
-	owebpage::print(0, this->mspace, "<!-- BEGIN CONTENT -->");
+	owebpage::print (0, this->mspace, "<!-- BEGIN CONTENT -->");
 	return (* this);
 }
 
@@ -209,10 +209,10 @@ owebpage & owebpage::MarkStart(void)
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::MarkEnd(void)
+owebpage & owebpage::MarkEnd (void)
 
 {
-	owebpage::print(0, this->mspace, "<!-- END CONTENT -->");
+	owebpage::print (0, this->mspace, "<!-- END CONTENT -->");
 	return (* this);
 }
 
@@ -224,20 +224,20 @@ owebpage & owebpage::MarkEnd(void)
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::LinkFooter(void)
+owebpage & owebpage::LinkFooter (void)
 
 {
-	owebpage::print(this->mlevel++, this->mspace, "<div class='" oWEBPAGE_LINK_FOOTER_CLASS "'>");
-	owebpage::newline();
-	owebpage::PrevPageLink.write();
-	owebpage::endline();
-	owebpage::newline();
-	owebpage::HomePageLink.write();
-	owebpage::endline();
-	owebpage::newline();
-	owebpage::NextPageLink.write();
-	owebpage::endline();
-	owebpage::print(this->mlevel--, this->mspace, "</div>");
+	owebpage::print (this->mlevel++, this->mspace, "<div class='" oWEBPAGE_LINK_FOOTER_CLASS "'>");
+	owebpage::newline ();
+	owebpage::PrevPageLink.write ();
+	owebpage::endline ();
+	owebpage::newline ();
+	owebpage::HomePageLink.write ();
+	owebpage::endline ();
+	owebpage::newline ();
+	owebpage::NextPageLink.write ();
+	owebpage::endline ();
+	owebpage::print (this->mlevel--, this->mspace, "</div>");
 	return (* this);
 }
 
@@ -250,18 +250,18 @@ owebpage & owebpage::LinkFooter(void)
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::BodyFooter(void)
+owebpage & owebpage::BodyFooter (void)
 
 {
-	char buffer[512];
-	owebpage::session.strfwhat(buffer, sizeof(buffer), "Published");
-	owebpage::print(this->mlevel++, this->mspace, "<div class='" oWEBPAGE_BODY_FOOTER_CLASS "'>");
+	char buffer [512];
+	owebpage::session.strfwhat (buffer, sizeof (buffer), "Published");
+	owebpage::print (this->mlevel++, this->mspace, "<div class='" oWEBPAGE_BODY_FOOTER_CLASS "'>");
 
 // owebpage::print (this->mlevel, this->mspace, this->mowner);
 
-	owebpage::print(this->mlevel, this->mspace, "<br/>");
-	owebpage::print(this->mlevel, this->mspace, buffer);
-	owebpage::print(this->mlevel--, this->mspace, "</div>");
+	owebpage::print (this->mlevel, this->mspace, "<br/>");
+	owebpage::print (this->mlevel, this->mspace, buffer);
+	owebpage::print (this->mlevel--, this->mspace, "</div>");
 	return (* this);
 }
 
@@ -272,11 +272,11 @@ owebpage & owebpage::BodyFooter(void)
  *
  *--------------------------------------------------------------------*/
 
-owebpage & owebpage::PageFooter(void)
+owebpage & owebpage::PageFooter (void)
 
 {
-	owebpage::print(this->mlevel--, this->mspace, "</body>");
-	owebpage::print(this->mlevel--, this->mspace, "</html>");
+	owebpage::print (this->mlevel--, this->mspace, "</body>");
+	owebpage::print (this->mlevel--, this->mspace, "</html>");
 	return (* this);
 }
 
@@ -287,15 +287,15 @@ owebpage & owebpage::PageFooter(void)
  *   
  *--------------------------------------------------------------------*/
 
-owebpage::owebpage(void)
+owebpage::owebpage (void)
 
 {
-	this->mtitle = otext::save(oWEBPAGE_PAGE_TITLE);
-	this->mstylesheet = otext::save(oWEBPAGE_PAGE_STYLE);
-	this->mowner = otext::save("Courtesy of <a href='mailto:cmaier@cmassoc.net'>Charles Maier Associates Limited</a>, The Motley Tools Folks, Nashua NH, USA");
-	owebpage::PrevPageLink.name("PREV").link(oWEBPAGE_LINK_PREV_NAME, oWEBPAGE_LINK_PREV_PAGE);
-	owebpage::HomePageLink.name("HOME").link(oWEBPAGE_LINK_HOME_NAME, oWEBPAGE_LINK_HOME_PAGE);
-	owebpage::NextPageLink.name("NEXT").link(oWEBPAGE_LINK_NEXT_NAME, oWEBPAGE_LINK_NEXT_PAGE);
+	this->mtitle = otext::save (oWEBPAGE_PAGE_TITLE);
+	this->mstylesheet = otext::save (oWEBPAGE_PAGE_STYLE);
+	this->mowner = otext::save ("Courtesy of <a href='mailto:cmaier@cmassoc.net'>Charles Maier Associates Limited</a>, The Motley Tools Folks, Nashua NH, USA");
+	owebpage::PrevPageLink.name ("PREV").link (oWEBPAGE_LINK_PREV_NAME, oWEBPAGE_LINK_PREV_PAGE);
+	owebpage::HomePageLink.name ("HOME").link (oWEBPAGE_LINK_HOME_NAME, oWEBPAGE_LINK_HOME_PAGE);
+	owebpage::NextPageLink.name ("NEXT").link (oWEBPAGE_LINK_NEXT_NAME, oWEBPAGE_LINK_NEXT_PAGE);
 	return;
 }
 
@@ -306,7 +306,7 @@ owebpage::owebpage(void)
  *   
  *--------------------------------------------------------------------*/
 
-owebpage::~ owebpage(void)
+owebpage::~ owebpage (void)
 
 {
 	delete [] this->mtitle;

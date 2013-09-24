@@ -25,10 +25,10 @@
  *
  *--------------------------------------------------------------------*/
 
-char const * ooutline::title() const
+char const * ooutline::title () const
 
 {
-	return (this->mtree->nodename());
+	return (this->mtree->nodename ());
 }
 
 /*====================================================================*
@@ -39,10 +39,10 @@ char const * ooutline::title() const
  *
  *--------------------------------------------------------------------*/
 
-char const * ooutline::string() const
+char const * ooutline::string () const
 
 {
-	return (this->mtree->nodetext());
+	return (this->mtree->nodetext ());
 }
 
 /*====================================================================*
@@ -53,10 +53,10 @@ char const * ooutline::string() const
  *
  *--------------------------------------------------------------------*/
 
-void * ooutline::object() const
+void * ooutline::object () const
 
 {
-	return (this->mtree->nodedata());
+	return (this->mtree->nodedata ());
 }
 
 /*====================================================================*
@@ -67,10 +67,10 @@ void * ooutline::object() const
  *
  *--------------------------------------------------------------------*/
 
-long ooutline::first() const
+long ooutline::first () const
 
 {
-	return (this->mtree->first());
+	return (this->mtree->first ());
 }
 
 /*====================================================================*
@@ -81,10 +81,10 @@ long ooutline::first() const
  *
  *--------------------------------------------------------------------*/
 
-long ooutline::final() const
+long ooutline::final () const
 
 {
-	return (this->mtree->final());
+	return (this->mtree->final ());
 }
 
 /*====================================================================*
@@ -95,10 +95,10 @@ long ooutline::final() const
  *
  *--------------------------------------------------------------------*/
 
-long ooutline::count() const
+long ooutline::count () const
 
 {
-	return (this->mtree->count());
+	return (this->mtree->count ());
 }
 
 /*====================================================================*
@@ -109,7 +109,7 @@ long ooutline::count() const
  *
  *--------------------------------------------------------------------*/
 
-otree * ooutline::tree() const
+otree * ooutline::tree () const
 
 {
 	return (this->mtree);
@@ -123,10 +123,10 @@ otree * ooutline::tree() const
  *
  *--------------------------------------------------------------------*/
 
-otree * ooutline::nodes(long index) const
+otree * ooutline::nodes (long index) const
 
 {
-	return (this->mtree->nodes(index));
+	return (this->mtree->nodes (index));
 }
 
 /*====================================================================*
@@ -137,10 +137,10 @@ otree * ooutline::nodes(long index) const
  *
  *--------------------------------------------------------------------*/
 
-char const * ooutline::strings(long index) const
+char const * ooutline::strings (long index) const
 
 {
-	return (this->mtree->strings(index));
+	return (this->mtree->strings (index));
 }
 
 /*====================================================================*
@@ -151,10 +151,10 @@ char const * ooutline::strings(long index) const
  *
  *--------------------------------------------------------------------*/
 
-void * ooutline::objects(long index) const
+void * ooutline::objects (long index) const
 
 {
-	return (this->mtree->objects(index));
+	return (this->mtree->objects (index));
 }
 
 /*====================================================================*
@@ -165,10 +165,10 @@ void * ooutline::objects(long index) const
  *
  *--------------------------------------------------------------------*/
 
-ooutline & ooutline::object(void * object)
+ooutline & ooutline::object (void * object)
 
 {
-	this->mtree->nodedata(object);
+	this->mtree->nodedata (object);
 	return (* this);
 }
 
@@ -180,40 +180,40 @@ ooutline & ooutline::object(void * object)
  *
  *--------------------------------------------------------------------*/
 
-otree * ooutline::insert(long index, unsigned order, char const * symbol)
+otree * ooutline::insert (long index, unsigned order, char const * symbol)
 
 {
-	otree * node = this->mtree->nodes(index);
+	otree * node = this->mtree->nodes (index);
 	if (node)
 	{
 		switch (order)
 		{
 		case ABOVE_NODE:
-			node = node->insertabove(symbol);
+			node = node->insertabove (symbol);
 			break;
 		case BELOW_NODE:
-			node = node->insertbelow(symbol);
+			node = node->insertbelow (symbol);
 			break;
 		case PRIOR_NODE:
-			node = node->insertprior(symbol);
+			node = node->insertprior (symbol);
 			break;
 		case AFTER_NODE:
-			node = node->insertafter(symbol);
+			node = node->insertafter (symbol);
 			break;
 		case FIRST_NODE:
-			node = node->appendprior(symbol);
+			node = node->appendprior (symbol);
 			break;
 		case FINAL_NODE:
-			node = node->appendafter(symbol);
+			node = node->appendafter (symbol);
 			break;
 		case UNDER_NODE:
-			node = node->appendbelow(symbol);
+			node = node->appendbelow (symbol);
 			break;
 		default: 
-			node = (otree *)(0);
+			node = (otree *) (0);
 			break;
 		}
-		this->mtree->reorder(0, 0);
+		this->mtree->reorder (0, 0);
 	}
 	return (node);
 }
@@ -225,7 +225,7 @@ otree * ooutline::insert(long index, unsigned order, char const * symbol)
  *   
  *--------------------------------------------------------------------*/
 
-ooutline & ooutline::clear()
+ooutline & ooutline::clear ()
 
 {
 	delete this->mtree;
@@ -239,10 +239,10 @@ ooutline & ooutline::clear()
  *   
  *--------------------------------------------------------------------*/
 
-ooutline::ooutline(char const * symbol)
+ooutline::ooutline (char const * symbol)
 
 {
-	this->mtree = new otree(symbol);
+	this->mtree = new otree (symbol);
 }
 
 /*====================================================================*
@@ -252,7 +252,7 @@ ooutline::ooutline(char const * symbol)
  *   
  *--------------------------------------------------------------------*/
 
-ooutline::~ ooutline()
+ooutline::~ ooutline ()
 
 {
 	delete this->mtree;

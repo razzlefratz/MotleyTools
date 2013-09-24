@@ -67,7 +67,7 @@
  *
  *--------------------------------------------------------------------*/
 
-bool ointerfaces::Empty(void) const
+bool ointerfaces::Empty (void) const
 
 {
 	return (! this->mcount);
@@ -81,7 +81,7 @@ bool ointerfaces::Empty(void) const
  *
  *--------------------------------------------------------------------*/
 
-bool ointerfaces::End(void) const
+bool ointerfaces::End (void) const
 
 {
 	return (this->mindex >= this->mcount);
@@ -95,7 +95,7 @@ bool ointerfaces::End(void) const
  *
  *--------------------------------------------------------------------*/
 
-unsigned ointerfaces::Count(void) const
+unsigned ointerfaces::Count (void) const
 
 {
 	return (this->mcount);
@@ -109,7 +109,7 @@ unsigned ointerfaces::Count(void) const
  *
  *--------------------------------------------------------------------*/
 
-unsigned ointerfaces::Index(void) const
+unsigned ointerfaces::Index (void) const
 
 {
 	return (this->mindex);
@@ -123,7 +123,7 @@ unsigned ointerfaces::Index(void) const
  *
  *--------------------------------------------------------------------*/
 
-ointerfaces & ointerfaces::SelectFirst(void)
+ointerfaces & ointerfaces::SelectFirst (void)
 
 {
 	this->mindex = 0;
@@ -138,7 +138,7 @@ ointerfaces & ointerfaces::SelectFirst(void)
  *
  *--------------------------------------------------------------------*/
 
-ointerfaces & ointerfaces::SelectFinal(void)
+ointerfaces & ointerfaces::SelectFinal (void)
 
 {
 	this->mindex = this->mcount - 1;
@@ -154,7 +154,7 @@ ointerfaces & ointerfaces::SelectFinal(void)
  *
  *--------------------------------------------------------------------*/
 
-ointerfaces & ointerfaces::SelectPrev(void)
+ointerfaces & ointerfaces::SelectPrev (void)
 
 {
 	if (this->mindex > 0)
@@ -173,7 +173,7 @@ ointerfaces & ointerfaces::SelectPrev(void)
  *
  *--------------------------------------------------------------------*/
 
-ointerfaces & ointerfaces::SelectNext(void)
+ointerfaces & ointerfaces::SelectNext (void)
 
 {
 	if (this->mindex < this->mcount)
@@ -191,7 +191,7 @@ ointerfaces & ointerfaces::SelectNext(void)
  *
  *--------------------------------------------------------------------*/
 
-ointerfaces & ointerfaces::Select(unsigned index)
+ointerfaces & ointerfaces::Select (unsigned index)
 
 {
 	this->mindex = index;
@@ -214,7 +214,7 @@ ointerfaces & ointerfaces::Select(unsigned index)
 ointerfaces & ointerfaces::operator = (unsigned index)
 
 {
-	return (this->Select(index));
+	return (this->Select (index));
 }
 
 /*====================================================================*
@@ -227,10 +227,10 @@ ointerfaces & ointerfaces::operator = (unsigned index)
  *
  *--------------------------------------------------------------------*/
 
-ointerface & ointerfaces::operator[](unsigned index)
+ointerface & ointerfaces::operator [] (unsigned index)
 
 {
-	return (this->Select(index).Selected());
+	return (this->Select (index).Selected ());
 }
 
 /*====================================================================*
@@ -242,10 +242,10 @@ ointerface & ointerfaces::operator[](unsigned index)
  *
  *--------------------------------------------------------------------*/
 
-ointerface & ointerfaces::Selected(void) const
+ointerface & ointerfaces::Selected (void) const
 
 {
-	return (* this->mtable[this->mindex]);
+	return (* this->mtable [this->mindex]);
 }
 
 /*====================================================================*
@@ -257,10 +257,10 @@ ointerface & ointerfaces::Selected(void) const
  *
  *--------------------------------------------------------------------*/
 
-ointerface & ointerfaces::Interface(void) const
+ointerface & ointerfaces::Interface (void) const
 
 {
-	return (* this->mtable[this->mindex]);
+	return (* this->mtable [this->mindex]);
 }
 
 /*====================================================================*
@@ -272,15 +272,15 @@ ointerface & ointerfaces::Interface(void) const
  *
  *--------------------------------------------------------------------*/
 
-ointerfaces & ointerfaces::Enumerate(void)
+ointerfaces & ointerfaces::Enumerate (void)
 
 {
 	for (unsigned index = 0; index < this->mcount; index++)
 	{
-		ointerface * ifp = this->mtable[index];
-		if (! ifp->Disabled())
+		ointerface * ifp = this->mtable [index];
+		if (! ifp->Disabled ())
 		{
-			ifp->Print();
+			ifp->Print ();
 		}
 	}
 	return (* this);
@@ -298,18 +298,18 @@ ointerfaces & ointerfaces::Enumerate(void)
  *
  *--------------------------------------------------------------------*/
 
-ointerfaces::ointerfaces()
+ointerfaces::ointerfaces ()
 
 {
 
 #if defined (WINPCAP) 
 
-	char buffer[PCAP_ERRBUF_SIZE];
+	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *) (0);
 	pcap_if_t * device;
 	this->mindex = 0;
 	this->mcount = 0;
-	if (pcap_findalldevs(& devices, buffer) != - 1)
+	if (pcap_findalldevs (& devices, buffer) != - 1)
 	{
 		for (device = devices; device; device = device->next)
 		{
@@ -318,16 +318,16 @@ ointerfaces::ointerfaces()
 		this->mtable = new ointerface * [this->mcount];
 		for (device = devices; device; device = device->next)
 		{
-			ointerface * ifo = new ointerface(device->name);
-			ifo->Description(device->description);
-			this->mtable[this->mindex++] = ifo;
+			ointerface * ifo = new ointerface (device->name);
+			ifo->Description (device->description);
+			this->mtable [this->mindex++] = ifo;
 		}
 		pcap_freealldevs (devices);
 	}
 
 #else
 
-	struct if_nameindex * ifs = if_nameindex();
+	struct if_nameindex * ifs = if_nameindex ();
 	struct if_nameindex * ifp;
 	this->mindex = 0;
 	this->mcount = 0;
@@ -338,9 +338,9 @@ ointerfaces::ointerfaces()
 	this->mtable = new ointerface * [this->mcount];
 	for (ifp = ifs; ifp->if_index; ++ ifp)
 	{
-		ointerface * ifo = new ointerface(ifp->if_name);
-		ifo->Description(ifp->if_name);
-		this->mtable[this->mindex++] = ifo;
+		ointerface * ifo = new ointerface (ifp->if_name);
+		ifo->Description (ifp->if_name);
+		this->mtable [this->mindex++] = ifo;
 	}
 	if_freenameindex (ifs);
 
@@ -362,12 +362,12 @@ ointerfaces::ointerfaces()
  *
  *--------------------------------------------------------------------*/
 
-ointerfaces::~ ointerfaces()
+ointerfaces::~ ointerfaces ()
 
 {
 	while (this->mcount--)
 	{
-		delete this->mtable[this->mcount];
+		delete this->mtable [this->mcount];
 	}
 	delete [] this->mtable;
 	return;

@@ -29,17 +29,17 @@
  *   declarations;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oescape: private oascii
+class __declspec (dllexport) oescape: private oascii
 
 {
 public: 
 	oescape ();
-	virtual ~ oescape();
-	static unsigned define(signed c, signed e);
-	static unsigned unescape(signed c);
-	static char * unescape(char * string);
+	virtual ~ oescape ();
+	static unsigned define (signed c, signed e);
+	static unsigned unescape (signed c);
+	static char * unescape (char * string);
 private: 
-	static unsigned char mtable[];
+	static unsigned char mtable [];
 };
 
 /*====================================================================*

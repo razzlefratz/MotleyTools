@@ -48,7 +48,7 @@ extern char const * program_name;
  *
  *--------------------------------------------------------------------*/
 
-void oerror::print(char const * format, ...)
+void oerror::print (char const * format, ...)
 
 {
 	if ((program_name) && (* program_name))
@@ -59,7 +59,7 @@ void oerror::print(char const * format, ...)
 	{
 		va_list argp;
 		va_start (argp, format);
-		std::vfprintf(stderr, format, argp);
+		std::vfprintf (stderr, format, argp);
 		va_end (argp);
 	}
 	std::cerr << std::endl;
@@ -76,7 +76,7 @@ void oerror::print(char const * format, ...)
  *
  *--------------------------------------------------------------------*/
 
-void oerror::error(char const * format, ...)
+void oerror::error (char const * format, ...)
 
 {
 	if ((program_name) && (* program_name))
@@ -85,14 +85,14 @@ void oerror::error(char const * format, ...)
 	}
 	if (errno)
 	{
-		std::cerr << std::strerror(errno) << ": ";
+		std::cerr << std::strerror (errno) << ": ";
 		errno = 0;
 	}
 	if ((format) && (* format))
 	{
 		va_list argp;
 		va_start (argp, format);
-		std::vfprintf(stderr, format, argp);
+		std::vfprintf (stderr, format, argp);
 		va_end (argp);
 	}
 	std::cerr << std::endl;
@@ -111,7 +111,7 @@ void oerror::error(char const * format, ...)
  *
  *--------------------------------------------------------------------*/
 
-void oerror::error(int status, errno_t number, char const * format, ...)
+void oerror::error (int status, errno_t number, char const * format, ...)
 
 {
 	if ((program_name) && (* program_name))
@@ -120,20 +120,20 @@ void oerror::error(int status, errno_t number, char const * format, ...)
 	}
 	if (number)
 	{
-		std::cerr << std::strerror(number) << ": ";
+		std::cerr << std::strerror (number) << ": ";
 		errno = 0;
 	}
 	if ((format) && (* format))
 	{
 		va_list arglist;
 		va_start (arglist, format);
-		std::vfprintf(stderr, format, arglist);
+		std::vfprintf (stderr, format, arglist);
 		va_end (arglist);
 	}
 	std::cerr << std::endl;
 	if (status)
 	{
-		std::exit(status);
+		std::exit (status);
 	}
 	return;
 }
@@ -150,7 +150,7 @@ void oerror::error(int status, errno_t number, char const * format, ...)
  *
  *--------------------------------------------------------------------*/
 
-void oerror::error(int status, char const * string, char const * format, ...)
+void oerror::error (int status, char const * string, char const * format, ...)
 
 {
 	if ((program_name) && (* program_name))
@@ -166,13 +166,13 @@ void oerror::error(int status, char const * string, char const * format, ...)
 	{
 		va_list arglist;
 		va_start (arglist, format);
-		std::vfprintf(stderr, format, arglist);
+		std::vfprintf (stderr, format, arglist);
 		va_end (arglist);
 	}
 	std::cerr << std::endl;
 	if (status)
 	{
-		std::exit(status);
+		std::exit (status);
 	}
 	return;
 }
@@ -190,7 +190,7 @@ void oerror::error(int status, char const * string, char const * format, ...)
  *
  *--------------------------------------------------------------------*/
 
-void oerror::error_at_line(int status, errno_t number, char const * file, unsigned line, char const * format, ...)
+void oerror::error_at_line (int status, errno_t number, char const * file, unsigned line, char const * format, ...)
 
 {
 	if ((program_name) && (* program_name))
@@ -203,19 +203,19 @@ void oerror::error_at_line(int status, errno_t number, char const * file, unsign
 	}
 	if (number)
 	{
-		std::cerr << std::strerror(number) << ": ";
+		std::cerr << std::strerror (number) << ": ";
 	}
 	if ((format) && (* format))
 	{
 		va_list arglist;
 		va_start (arglist, format);
-		std::vfprintf(stderr, format, arglist);
+		std::vfprintf (stderr, format, arglist);
 		va_end (arglist);
 	}
 	std::cerr << std::endl;
 	if (status)
 	{
-		std::exit(status);
+		std::exit (status);
 	}
 	return;
 }
@@ -227,7 +227,7 @@ void oerror::error_at_line(int status, errno_t number, char const * file, unsign
  *   
  *--------------------------------------------------------------------*/
 
-oerror::oerror(void)
+oerror::oerror (void)
 
 {
 	extern char const * program_name;
@@ -236,7 +236,7 @@ oerror::oerror(void)
 
 #if defined (__linux__)
 
-		program_name = ::getlogin();
+		program_name = ::getlogin ();
 
 #else
 
@@ -255,7 +255,7 @@ oerror::oerror(void)
  *   
  *--------------------------------------------------------------------*/
 
-oerror::~ oerror(void)
+oerror::~ oerror (void)
 
 {
 	return;

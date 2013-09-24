@@ -40,7 +40,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const * omakefile::compiler() const
+char const * omakefile::compiler () const
 
 {
 	return (this->mcompiler);
@@ -59,17 +59,17 @@ char const * omakefile::compiler() const
  *
  *--------------------------------------------------------------------*/
 
-omakefile & omakefile::compiler(char const * string)
+omakefile & omakefile::compiler (char const * string)
 
 {
-	otext::replace(this->mcompiler, string);
+	otext::replace (this->mcompiler, string);
 	return (* this);
 }
 
-omakefile & omakefile::linebreak()
+omakefile & omakefile::linebreak ()
 
 {
-	otext::replace(this->mlinebreak, "\\\n\t");
+	otext::replace (this->mlinebreak, "\\\n\t");
 	return (* this);
 }
 
@@ -85,7 +85,7 @@ omakefile & omakefile::linebreak()
  *
  *--------------------------------------------------------------------*/
 
-char const * omakefile::sourcedir() const
+char const * omakefile::sourcedir () const
 
 {
 	return (this->msourcedir);
@@ -103,10 +103,10 @@ char const * omakefile::sourcedir() const
  *
  *--------------------------------------------------------------------*/
 
-omakefile & omakefile::sourcedir(char const * string)
+omakefile & omakefile::sourcedir (char const * string)
 
 {
-	otext::replace(this->msourcedir, string);
+	otext::replace (this->msourcedir, string);
 	return (* this);
 }
 
@@ -122,7 +122,7 @@ omakefile & omakefile::sourcedir(char const * string)
  *
  *--------------------------------------------------------------------*/
 
-char const * omakefile::targetdir() const
+char const * omakefile::targetdir () const
 
 {
 	return (this->mtargetdir);
@@ -140,10 +140,10 @@ char const * omakefile::targetdir() const
  *
  *--------------------------------------------------------------------*/
 
-omakefile & omakefile::targetdir(char const * string)
+omakefile & omakefile::targetdir (char const * string)
 
 {
-	otext::replace(this->mtargetdir, string);
+	otext::replace (this->mtargetdir, string);
 	return (* this);
 }
 
@@ -160,18 +160,18 @@ omakefile & omakefile::targetdir(char const * string)
  *
  *--------------------------------------------------------------------*/
 
-omakefile & omakefile::projectfile(char const * pathname)
+omakefile & omakefile::projectfile (char const * pathname)
 
 {
-	this->stream.open(pathname, std::ifstream::in);
-	while (this->stream.getline(this->mbuffer, this->mlength).good())
+	this->stream.open (pathname, std::ifstream::in);
+	while (this->stream.getline (this->mbuffer, this->mlength).good ())
 	{
 		char * sp = this->mbuffer;;
 		while ((* sp == ' ') && (* sp == '\t'))
 		{
 			sp++;
 		}
-		if ((* sp == (char)(0)) || (* sp == '\n'))
+		if ((* sp == (char) (0)) || (* sp == '\n'))
 		{
 			continue;
 		}
@@ -179,9 +179,9 @@ omakefile & omakefile::projectfile(char const * pathname)
 		{
 			continue;
 		}
-		this->includefile(sp);
+		this->includefile (sp);
 	}
-	this->stream.close();
+	this->stream.close ();
 	return (* this);
 }
 
@@ -198,12 +198,12 @@ omakefile & omakefile::projectfile(char const * pathname)
  *
  *--------------------------------------------------------------------*/
 
-omakefile & omakefile::includefile(char const * pathname)
+omakefile & omakefile::includefile (char const * pathname)
 
 {
-	if (! list.defined(pathname))
+	if (! list.defined (pathname))
 	{
-		list.insertitem(new oitem(pathname));
+		list.insertitem (new oitem (pathname));
 	}
 	return (* this);
 }
@@ -219,13 +219,13 @@ omakefile & omakefile::includefile(char const * pathname)
  *
  *--------------------------------------------------------------------*/
 
-omakefile & omakefile::publish()
+omakefile & omakefile::publish ()
 
 {
 	std::cout << "#!/usr/bin/make -f" << std::endl;
-	this->title("compile constants");
+	this->title ("compile constants");
 	std::cout << "cc=" << this->mcompiler << std::endl;
-	switch (omakefile::getbits(oMAKEFILE_LIBRARY | oMAKEFILE_UTILITY))
+	switch (omakefile::getbits (oMAKEFILE_LIBRARY | oMAKEFILE_UTILITY))
 	{
 	case oMAKEFILE_UTILITY:
 		std::cout << "src=" << this->msourcedir << std::endl;
@@ -242,12 +242,12 @@ omakefile & omakefile::publish()
 	}
 	std::cout << "ccflags=" << this->mccflags << std::endl;
 	std::cout << "ldflags=" << this->mldflags << std::endl;
-	this->title("build instructions");
+	this->title ("build instructions");
 	std::cout << ".PHONY: compile library scripts manuals install uninstall clean fresh" << std::endl;
 	std::cout << "compile:";
-	for (size_t index = 0; index < list.count(); index++)
+	for (size_t index = 0; index < list.count (); index++)
 	{
-		std::cout << " " << this->mlinebreak << this->filespec.filespec(list.items(index)->name()).likename(".o");
+		std::cout << " " << this->mlinebreak << this->filespec.filespec (list.items (index)->name ()).likename (".o");
 	}
 	std::cout << std::endl;
 	std::cout << "library:" << std::endl;
@@ -262,10 +262,10 @@ omakefile & omakefile::publish()
 	std::cout << "\t${cc} ${ccflags} -c ${<}" << std::endl;
 	std::cout << ".o:" << std::endl;
 	std::cout << "\t${cc} ${ldflags} -o ${@} ${^}" << std::endl;
-	this->title("build instructions");
-	for (size_t index = 0; index < list.count(); index++)
+	this->title ("build instructions");
+	for (size_t index = 0; index < list.count (); index++)
 	{
-		this->section(list.items(index)->name());
+		this->section (list.items (index)->name ());
 	}
 	return (* this);
 }
@@ -281,31 +281,31 @@ omakefile & omakefile::publish()
  *
  *--------------------------------------------------------------------*/
 
-omakefile & omakefile::section(char const * filespec)
+omakefile & omakefile::section (char const * filespec)
 
 {
-	this->stream.open(filespec);
-	if (this->stream.good())
+	this->stream.open (filespec);
+	if (this->stream.good ())
 	{
-		this->filespec.filespec(filespec);
-		std::cout << this->filespec.likename(".o") << ": " << this->filespec.filename();
-		while (this->stream.getline(this->mbuffer, this->mlength).good())
+		this->filespec.filespec (filespec);
+		std::cout << this->filespec.likename (".o") << ": " << this->filespec.filename ();
+		while (this->stream.getline (this->mbuffer, this->mlength).good ())
 		{
-			if (this->scantext.copy(this->mbuffer).nexttoken().havetoken("#"))
+			if (this->scantext.copy (this->mbuffer).nexttoken ().havetoken ("#"))
 			{
-				if (this->scantext.havetoken("include"))
+				if (this->scantext.havetoken ("include"))
 				{
-					if (this->scantext.havetoken("\""))
+					if (this->scantext.havetoken ("\""))
 					{
-						std::cout << " " << this->mlinebreak << this->scantext.scanuntil("\"").tokentext();
+						std::cout << " " << this->mlinebreak << this->scantext.scanuntil ("\"").tokentext ();
 					}
 				}
 			}
-			this->scantext.clear();
+			this->scantext.clear ();
 		}
 		std::cout << "\n";
 	}
-	this->stream.close();
+	this->stream.close ();
 	return (* this);
 }
 
@@ -319,22 +319,22 @@ omakefile & omakefile::section(char const * filespec)
  *
  *--------------------------------------------------------------------*/
 
-omakefile::omakefile()
+omakefile::omakefile ()
 
 {
-	this->mlinebreak = new char[1];
-	this->mlinebreak[0] = (char) (0);
-	this->mcompiler = otext::save("g++");
-	this->msourcedir = otext::save(getenv("PWD"));
-	this->mtargetdir = otext::save(PATH_CMASSOC);
-	this->mccflags = otext::save("-Wall -D_GNU_SOURCE");
-	this->mldflags = otext::save("");
+	this->mlinebreak = new char [1];
+	this->mlinebreak [0] = (char) (0);
+	this->mcompiler = otext::save ("g++");
+	this->msourcedir = otext::save (getenv ("PWD"));
+	this->mtargetdir = otext::save (PATH_CMASSOC);
+	this->mccflags = otext::save ("-Wall -D_GNU_SOURCE");
+	this->mldflags = otext::save ("");
 	this->mlength = 0x0400;
-	this->mbuffer = new char[this->mlength +  1];
-	this->mbuffer[0] = (char)(0);
-	this->moutput = new char[this->mlength +  1];
-	this->moutput[0] = (char)(0);
-	this->width(oSECTION_BARWIDTH);
+	this->mbuffer = new char [this->mlength +  1];
+	this->mbuffer [0] = (char) (0);
+	this->moutput = new char [this->mlength +  1];
+	this->moutput [0] = (char) (0);
+	this->width (oSECTION_BARWIDTH);
 	return;
 }
 
@@ -348,7 +348,7 @@ omakefile::omakefile()
  *
  *--------------------------------------------------------------------*/
 
-omakefile::~ omakefile()
+omakefile::~ omakefile ()
 
 {
 	delete [] this->mcompiler;

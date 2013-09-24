@@ -16,25 +16,25 @@
  *   
  *--------------------------------------------------------------------*/
 
-signed oenclose::statement(signed c) const
+signed oenclose::statement (signed c) const
 
 {
-	while (oascii::isspace(c))
+	while (oascii::isspace (c))
 	{
-		c = oenclose::keep(c);
+		c = oenclose::keep (c);
 	}
 	if (c == '{')
 	{
-		c = oenclose::program('{', '}');
+		c = oenclose::program ('{', '}');
 	}
-	else if(c != ';')
+	else if (c != ';')
 	{
-		std::cout.put('{');
-		std::cout.put(' ');
-		c = oenclose::inner_context(c, ';');
-		c = oenclose::keep(c);
-		std::cout.put(' ');
-		std::cout.put('}');
+		std::cout.put ('{');
+		std::cout.put (' ');
+		c = oenclose::inner_context (c, ';');
+		c = oenclose::keep (c);
+		std::cout.put (' ');
+		std::cout.put ('}');
 	}
 	return (c);
 }
@@ -45,22 +45,22 @@ signed oenclose::statement(signed c) const
  *   
  *--------------------------------------------------------------------*/
 
-signed oenclose::condition(signed c)
+signed oenclose::condition (signed c)
 
 {
-	while (oascii::isspace(c))
+	while (oascii::isspace (c))
 	{
-		c = oenclose::keep(c);
+		c = oenclose::keep (c);
 	}
 	if (c == '(')
 	{
-		c = oenclose::program('(', ')');
+		c = oenclose::program ('(', ')');
 	}
-	else if(c != ';')
+	else if (c != ';')
 	{
-		std::cout.put(')');
-		c = oenclose::context1(c, ';');
-		std::cout.put(')');
+		std::cout.put (')');
+		c = oenclose::context1 (c, ';');
+		std::cout.put (')');
 	}
 	return (c);
 }
@@ -71,22 +71,22 @@ signed oenclose::condition(signed c)
  *   
  *--------------------------------------------------------------------*/
 
-signed oenclose::expression(signed c)
+signed oenclose::expression (signed c)
 
 {
-	while (oascii::isspace(c))
+	while (oascii::isspace (c))
 	{
-		c = oenclose::keep(c);
+		c = oenclose::keep (c);
 	}
 	if (c == '(')
 	{
-		c = oenclose::program('(', ')');
+		c = oenclose::program ('(', ')');
 	}
 	else 
 	{
-		std::cout.put('(');
-		c = oenclose::program1(c, ';');
-		std::cout.put(')');
+		std::cout.put ('(');
+		c = oenclose::program1 (c, ';');
+		std::cout.put (')');
 	}
 	return (c);
 }
@@ -97,12 +97,12 @@ signed oenclose::expression(signed c)
  *
  *--------------------------------------------------------------------*/
 
-signed oenclose::program(signed c, signed e) const
+signed oenclose::program (signed c, signed e) const
 
 {
-	c = oenclose::keep(c);
-	c = oenclose::inner_program(c, e);
-	c = oenclose::keep(c);
+	c = oenclose::keep (c);
+	c = oenclose::inner_program (c, e);
+	c = oenclose::keep (c);
 	return (c);
 }
 
@@ -112,97 +112,97 @@ signed oenclose::program(signed c, signed e) const
  *   
  *--------------------------------------------------------------------*/
 
-signed program1(int c, int e)
+signed program1 (int c, int e)
 
 {
 	while ((c != e) && (c != EOF))
 	{
-		while (oascii::isspace(c))
+		while (oascii::isspace (c))
 		{
-			c = oenclose::keep(c);
+			c = oenclose::keep (c);
 		}
-		if (oascii::isalpha(c) || (c == '_'))
+		if (oascii::isalpha (c) || (c == '_'))
 		{
-			char string[100];
+			char string [100];
 			char * sp = string;
 			do 
 			{
 				* sp++ = c;
-				c = oenclose::keep(c);
+				c = oenclose::keep (c);
 			}
-			while (oascii::isalnum(c) || (c == '_'));
+			while (oascii::isalnum (c) || (c == '_'));
 			* sp = (char) (0);
-			if (! strcmp(string, "do"))
+			if (! strcmp (string, "do"))
 			{
-				c = oenclose::statement(c);
+				c = oenclose::statement (c);
 				continue;
 			}
-			if (! strcmp(string, "if"))
+			if (! strcmp (string, "if"))
 			{
-				c = oenclose::condition(c);
-				c = oenclose::statement(c);
+				c = oenclose::condition (c);
+				c = oenclose::statement (c);
 				continue;
 			}
-			if (! strcmp(string, "else"))
+			if (! strcmp (string, "else"))
 			{
-				c = oenclose::statement(c);
+				c = oenclose::statement (c);
 				continue;
 			}
-			if (! strcmp(string, "while"))
+			if (! strcmp (string, "while"))
 			{
-				c = oenclose::condition(c);
-				c = oenclose::statement(c);
+				c = oenclose::condition (c);
+				c = oenclose::statement (c);
 				continue;
 			}
-			if (! strcmp(string, "for"))
+			if (! strcmp (string, "for"))
 			{
-				c = oenclose::condition(c);
-				c = oenclose::statement(c);
+				c = oenclose::condition (c);
+				c = oenclose::statement (c);
 				continue;
 			}
-			if (! strcmp(string, "return"))
+			if (! strcmp (string, "return"))
 			{
-				c = oenclose::expression(c);
+				c = oenclose::expression (c);
 				continue;
 			}
-			if (! strcmp(string, "exit"))
+			if (! strcmp (string, "exit"))
 			{
-				c = oenclose::expression(c);
+				c = oenclose::expression (c);
 				continue;
 			}
 			continue;
 		}
-		if (oascii::isquote(c))
+		if (oascii::isquote (c))
 		{
-			c = oenclose::literal(c, c);
+			c = oenclose::literal (c, c);
 			continue;
 		}
 		if (c == '#')
 		{
-			c = oenclose::command('#', '\n');
+			c = oenclose::command ('#', '\n');
 			continue;
 		}
 		if (c == '/')
 		{
-			c = oenclose::comment('/');
+			c = oenclose::comment ('/');
 			continue;
 		}
 		if (c == '{')
 		{
-			c = oenclose::program('{', '}');
+			c = oenclose::program ('{', '}');
 			continue;
 		}
 		if (c == '(')
 		{
-			c = oenclose::context('(', ')');
+			c = oenclose::context ('(', ')');
 			continue;
 		}
 		if (c == '[')
 		{
-			c = oenclose::context('[', ']');
+			c = oenclose::context ('[', ']');
 			continue;
 		}
-		c = oenclose::keep(c);
+		c = oenclose::keep (c);
 	}
 	return (c);
 }
@@ -217,7 +217,7 @@ signed program1(int c, int e)
  *
  *--------------------------------------------------------------------*/
 
-oenclose::oenclose()
+oenclose::oenclose ()
 
 {
 	return;
@@ -233,7 +233,7 @@ oenclose::oenclose()
  *
  *--------------------------------------------------------------------*/
 
-oenclose::~ oenclose()
+oenclose::~ oenclose ()
 
 {
 	return;

@@ -45,26 +45,26 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) ointerfaces
+class __declspec (dllexport) ointerfaces
 
 {
 public: 
 	ointerfaces ();
-	virtual ~ ointerfaces();
-	bool Empty(void) const;
-	bool End(void) const;
-	unsigned Count(void) const;
-	unsigned Index(void) const;
-	ointerfaces & Select(unsigned);
-	ointerfaces & SelectPrev();
-	ointerfaces & SelectNext();
-	ointerfaces & SelectFirst();
-	ointerfaces & SelectFinal();
-	ointerfaces & Enumerate(void);
+	virtual ~ ointerfaces ();
+	bool Empty (void) const;
+	bool End (void) const;
+	unsigned Count (void) const;
+	unsigned Index (void) const;
+	ointerfaces & Select (unsigned);
+	ointerfaces & SelectPrev ();
+	ointerfaces & SelectNext ();
+	ointerfaces & SelectFirst ();
+	ointerfaces & SelectFinal ();
+	ointerfaces & Enumerate (void);
 	ointerfaces & operator = (unsigned);
-	ointerface & Selected() const;
-	ointerface & Interface() const;
-	ointerface & operator[](unsigned);
+	ointerface & Selected () const;
+	ointerface & Interface () const;
+	ointerface & operator [] (unsigned);
 private: 
 	ointerface ** mtable;
 	unsigned mcount;

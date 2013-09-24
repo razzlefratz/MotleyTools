@@ -46,7 +46,7 @@ olist mlist;
  *
  *--------------------------------------------------------------------*/
 
-oHTMLIndex & oHTMLIndex::css2(void)
+oHTMLIndex & oHTMLIndex::css2 (void)
 
 {
 	std::cout << "a:hover { text-decoration: underline; }" << std::endl;
@@ -71,12 +71,12 @@ oHTMLIndex & oHTMLIndex::css2(void)
  *
  *--------------------------------------------------------------------*/
 
-oHTMLIndex & oHTMLIndex::include(char const * filename)
+oHTMLIndex & oHTMLIndex::include (char const * filename)
 
 {
-	if (! oHTMLIndex::mlist.item(filename))
+	if (! oHTMLIndex::mlist.item (filename))
 	{
-		oHTMLIndex::mlist.insertitem(new oitem(filename));
+		oHTMLIndex::mlist.insertitem (new oitem (filename));
 	}
 	return (* this);
 }
@@ -90,18 +90,18 @@ oHTMLIndex & oHTMLIndex::include(char const * filename)
  *
  *--------------------------------------------------------------------*/
 
-oHTMLIndex & oHTMLIndex::collect(char const * pathname, char const * filename)
+oHTMLIndex & oHTMLIndex::collect (char const * pathname, char const * filename)
 
 {
 	DIR * dir;
-	if ((dir = opendir(pathname)) != (DIR *)(0))
+	if ((dir = opendir (pathname)) != (DIR *) (0))
 	{
 		struct dirent * dirent;
-		while ((dirent = readdir(dir)) != (struct dirent *) (0))
+		while ((dirent = readdir (dir)) != (struct dirent *) (0))
 		{
-			if (oHTMLIndex::mwildcard.match(dirent->d_name, filename))
+			if (oHTMLIndex::mwildcard.match (dirent->d_name, filename))
 			{
-				this->include(dirent->d_name);
+				this->include (dirent->d_name);
 			}
 		}
 		closedir (dir);
@@ -121,51 +121,51 @@ oHTMLIndex & oHTMLIndex::collect(char const * pathname, char const * filename)
  *
  *--------------------------------------------------------------------*/
 
-oHTMLIndex & oHTMLIndex::publish(unsigned count)
+oHTMLIndex & oHTMLIndex::publish (unsigned count)
 
 {
 	unsigned index = 0;
-	unsigned limit = count = (oHTMLIndex::mlist.count() + (count - 1)) / count;
-	oHTMLIndex::PageHeader();
-	oHTMLIndex::LinkHeader();
-	oHTMLIndex::print(this->mlevel++, this->mspace, "<h1>");
-	oHTMLIndex::print(this->mlevel, this->mspace, oHTMLIndex::title());
-	oHTMLIndex::print(this->mlevel--, this->mspace, "</h1>");
-	oHTMLIndex::print(this->mlevel++, this->mspace, "<table class='" oHTMLINDEX_CLASS "'>");
-	oHTMLIndex::print(this->mlevel++, this->mspace, "<tr class='" oHTMLINDEX_CLASS "'>");
+	unsigned limit = count = (oHTMLIndex::mlist.count () +  (count - 1)) / count;
+	oHTMLIndex::PageHeader ();
+	oHTMLIndex::LinkHeader ();
+	oHTMLIndex::print (this->mlevel++, this->mspace, "<h1>");
+	oHTMLIndex::print (this->mlevel, this->mspace, oHTMLIndex::title ());
+	oHTMLIndex::print (this->mlevel--, this->mspace, "</h1>");
+	oHTMLIndex::print (this->mlevel++, this->mspace, "<table class='" oHTMLINDEX_CLASS "'>");
+	oHTMLIndex::print (this->mlevel++, this->mspace, "<tr class='" oHTMLINDEX_CLASS "'>");
 	while (index < limit)
 	{
-		oHTMLIndex::print(this->mlevel++, this->mspace, "<td class='" oHTMLINDEX_CLASS "'>");
-		oHTMLIndex::newline(this->mlevel++);
+		oHTMLIndex::print (this->mlevel++, this->mspace, "<td class='" oHTMLINDEX_CLASS "'>");
+		oHTMLIndex::newline (this->mlevel++);
 		std::cout << "<ol start='" << index +  1 << "'>";
-		oHTMLIndex::endline(1);
+		oHTMLIndex::endline (1);
 		while (index < limit)
 		{
-			oHTMLIndex::mitem = oHTMLIndex::mlist.items(index++);
-			oHTMLIndex::print(this->mlevel++, this->mspace, "<li class='" oHTMLINDEX_CLASS "'>");
-			oHTMLIndex::print(this->mlevel, 0, "");
-			oHTMLIndex::manchor.CoreAttributes.IdentityAttribute->value(index);
-			oHTMLIndex::manchor.CoreAttributes.ClassAttribute->value("index");
-			oHTMLIndex::manchor.CoreAttributes.TitleAttribute->value(oHTMLIndex::mitem->name());
-			oHTMLIndex::manchor.LinkAttributes.ReferenceAttribute->value(oHTMLIndex::mitem->name());
-			oHTMLIndex::manchor.StartTag();
-			oHTMLIndex::print(0, 0, oHTMLIndex::mitem->name());
-			oHTMLIndex::manchor.EndTag();
-			oHTMLIndex::print(0, this->mspace, "");
-			oHTMLIndex::print(this->mlevel--, this->mspace, "</li>");
+			oHTMLIndex::mitem = oHTMLIndex::mlist.items (index++);
+			oHTMLIndex::print (this->mlevel++, this->mspace, "<li class='" oHTMLINDEX_CLASS "'>");
+			oHTMLIndex::print (this->mlevel, 0, "");
+			oHTMLIndex::manchor.CoreAttributes.IdentityAttribute->value (index);
+			oHTMLIndex::manchor.CoreAttributes.ClassAttribute->value ("index");
+			oHTMLIndex::manchor.CoreAttributes.TitleAttribute->value (oHTMLIndex::mitem->name ());
+			oHTMLIndex::manchor.LinkAttributes.ReferenceAttribute->value (oHTMLIndex::mitem->name ());
+			oHTMLIndex::manchor.StartTag ();
+			oHTMLIndex::print (0, 0, oHTMLIndex::mitem->name ());
+			oHTMLIndex::manchor.EndTag ();
+			oHTMLIndex::print (0, this->mspace, "");
+			oHTMLIndex::print (this->mlevel--, this->mspace, "</li>");
 		}
-		oHTMLIndex::print(this->mlevel--, this->mspace, "</ol>");
-		oHTMLIndex::print(this->mlevel--, this->mspace, "</td>");
-		if ((limit += count) > oHTMLIndex::mlist.count())
+		oHTMLIndex::print (this->mlevel--, this->mspace, "</ol>");
+		oHTMLIndex::print (this->mlevel--, this->mspace, "</td>");
+		if ((limit += count) > oHTMLIndex::mlist.count ())
 		{
-			limit = oHTMLIndex::mlist.count();
+			limit = oHTMLIndex::mlist.count ();
 		}
 	}
-	oHTMLIndex::print(this->mlevel--, this->mspace, "</tr>");
-	oHTMLIndex::print(this->mlevel--, this->mspace, "</table>");
-	oHTMLIndex::LinkFooter();
-	oHTMLIndex::BodyFooter();
-	oHTMLIndex::PageFooter();
+	oHTMLIndex::print (this->mlevel--, this->mspace, "</tr>");
+	oHTMLIndex::print (this->mlevel--, this->mspace, "</table>");
+	oHTMLIndex::LinkFooter ();
+	oHTMLIndex::BodyFooter ();
+	oHTMLIndex::PageFooter ();
 	return (* this);
 }
 
@@ -175,10 +175,10 @@ oHTMLIndex & oHTMLIndex::publish(unsigned count)
  *   
  *--------------------------------------------------------------------*/
 
-oHTMLIndex::oHTMLIndex(void)
+oHTMLIndex::oHTMLIndex (void)
 
 {
-	owebpage::stylesheet(oHTMLINDEX_STYLESHEET);
+	owebpage::stylesheet (oHTMLINDEX_STYLESHEET);
 	this->mlevel = 0;
 	this->mspace = 1;
 	return;
@@ -190,7 +190,7 @@ oHTMLIndex::oHTMLIndex(void)
  *   
  *--------------------------------------------------------------------*/
 
-oHTMLIndex::~ oHTMLIndex(void)
+oHTMLIndex::~ oHTMLIndex (void)
 
 {
 	return;

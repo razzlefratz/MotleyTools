@@ -23,25 +23,25 @@
  *   interface definition;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) ocalendar
+class __declspec (dllexport) ocalendar
 
 {
 public: 
 	ocalendar ();
 	ocalendar (unsigned year);
-	virtual ~ ocalendar();
-	ocalendar & annum();
-	ocalendar & month(unsigned index);
-	ocalendar & annum(unsigned level, unsigned space);
-	ocalendar & month(unsigned level, unsigned space, unsigned index);
-	ocalendar & stylesheet(unsigned level, unsigned space);
-	ocalendar & print(unsigned index);
+	virtual ~ ocalendar ();
+	ocalendar & annum ();
+	ocalendar & month (unsigned index);
+	ocalendar & annum (unsigned level, unsigned space);
+	ocalendar & month (unsigned level, unsigned space, unsigned index);
+	ocalendar & stylesheet (unsigned level, unsigned space);
+	ocalendar & print (unsigned index);
 private: 
 	omonth ** mmonth;
 	oindent mindent;
-	static char const * mdays[];
-	static char const * mdate1[];
-	static char const * mdate2[];
+	static char const * mdays [];
+	static char const * mdate1 [];
+	static char const * mdate2 [];
 	char * mtitle;
 };
 

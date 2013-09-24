@@ -31,21 +31,21 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"",
 		"filespec [filespec] ...",
 		"ofilespec object class demonstration and test utility",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	oprofile profile;
-	ogetoptv getopt(1);
+	ogetoptv getopt (1);
 	oputoptv putopt;
 	signed c;
-	while ((c = getopt.getoptv(argc, argv, optv)) != - 1)
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1)
 	{
 		switch (c)
 		{

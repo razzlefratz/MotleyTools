@@ -21,7 +21,7 @@
  *   constant definitions and declarations; 
  *--------------------------------------------------------------------*/
 
-char const ooctencode::mdigit[] = "01234567";
+char const ooctencode::mdigit [] = "01234567";
 
 /*====================================================================*
  *
@@ -32,13 +32,13 @@ char const ooctencode::mdigit[] = "01234567";
  *
  *--------------------------------------------------------------------*/
 
-char * ooctencode::numeric(char * string, const unsigned c)
+char * ooctencode::numeric (char * string, const unsigned c)
 
 {
-	* string++ = ooctencode::mdigit[(c >> 6) & 0x0003];
-	* string++ = ooctencode::mdigit[(c >> 3) & 0x0007];
-	* string++ = ooctencode::mdigit[(c >> 0) & 0x0007];
-	* string = (char)(0);
+	* string++ = ooctencode::mdigit [(c >> 6) & 0x0003];
+	* string++ = ooctencode::mdigit [(c >> 3) & 0x0007];
+	* string++ = ooctencode::mdigit [(c >> 0) & 0x0007];
+	* string = (char) (0);
 	return (string);
 }
 
@@ -51,11 +51,11 @@ char * ooctencode::numeric(char * string, const unsigned c)
  *
  *--------------------------------------------------------------------*/
 
-char * ooctencode::literal(char * string, const unsigned c)
+char * ooctencode::literal (char * string, const unsigned c)
 
 {
 	* string++ = '\\';
-	string = ooctencode::numeric(string, c);
+	string = ooctencode::numeric (string, c);
 	return (string);
 }
 
@@ -63,13 +63,13 @@ char * ooctencode::literal(char * string, const unsigned c)
  *
  *--------------------------------------------------------------------*/
 
-ooctencode::ooctencode()
+ooctencode::ooctencode ()
 
 {
 	return;
 }
 
-ooctencode::~ ooctencode()
+ooctencode::~ ooctencode ()
 
 {
 	return;

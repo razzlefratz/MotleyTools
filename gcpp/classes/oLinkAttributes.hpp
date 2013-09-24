@@ -22,12 +22,12 @@
  *   class declarations;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oLinkAttributes
+class __declspec (dllexport) oLinkAttributes
 
 {
 public: 
 	oLinkAttributes ();
-	virtual ~ oLinkAttributes();
+	virtual ~ oLinkAttributes ();
 	oAttribute * ReferenceAttribute;
 	oAttribute * ReferenceLanguageAttribute;
 	oAttribute * ForwardLinkTypeAttribute;
@@ -36,7 +36,7 @@ public:
 	oAttribute * AccessKeyAttribute;
 	oAttribute * NavigationIndexAttribute;
 	oAttribute * BaseURLAttribute;
-	oLinkAttributes & write();
+	oLinkAttributes & write ();
 private: 
 };
 

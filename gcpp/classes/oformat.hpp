@@ -25,28 +25,28 @@
  *
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oformat
+class __declspec (dllexport) oformat
 
 {
 public: 
 	oformat ();
-	virtual ~ oformat();
-	unsigned offset() const;
-	unsigned indent() const;
-	unsigned margin() const;
-	unsigned length() const;
-	unsigned column() const;
-	oformat & status();
-	oformat & offset(unsigned column);
-	oformat & indent(unsigned column);
-	oformat & margin(unsigned column);
-	oformat & length(unsigned column);
-	oformat & print(char const * string);
-	oformat & space(unsigned count);
-	oformat & flush(unsigned count);
-	oformat & table(unsigned count);
-	oformat & shift(unsigned count);
-	oformat & align();
+	virtual ~ oformat ();
+	unsigned offset () const;
+	unsigned indent () const;
+	unsigned margin () const;
+	unsigned length () const;
+	unsigned column () const;
+	oformat & status ();
+	oformat & offset (unsigned column);
+	oformat & indent (unsigned column);
+	oformat & margin (unsigned column);
+	oformat & length (unsigned column);
+	oformat & print (char const * string);
+	oformat & space (unsigned count);
+	oformat & flush (unsigned count);
+	oformat & table (unsigned count);
+	oformat & shift (unsigned count);
+	oformat & align ();
 private: 
 	char * mbuffer;
 	unsigned mlength;

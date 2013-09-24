@@ -34,14 +34,14 @@
  *
  *--------------------------------------------------------------------*/
 
-oversion & oversion::program(char const * program)
+oversion & oversion::program (char const * program)
 
 {
-	this->mprogram = otext::replace(this->mprogram, program);
+	this->mprogram = otext::replace (this->mprogram, program);
 	return (* this);
 }
 
-char const * oversion::program() const
+char const * oversion::program () const
 
 {
 	return (this->mprogram);
@@ -58,14 +58,14 @@ char const * oversion::program() const
  *
  *--------------------------------------------------------------------*/
 
-oversion & oversion::company(char const * company)
+oversion & oversion::company (char const * company)
 
 {
-	this->mcompany = otext::replace(this->mcompany, company);
+	this->mcompany = otext::replace (this->mcompany, company);
 	return (* this);
 }
 
-char const * oversion::company() const
+char const * oversion::company () const
 
 {
 	return (this->mcompany);
@@ -82,14 +82,14 @@ char const * oversion::company() const
  *
  *--------------------------------------------------------------------*/
 
-oversion & oversion::project(char const * project)
+oversion & oversion::project (char const * project)
 
 {
-	this->mproject = otext::replace(this->mproject, project);
+	this->mproject = otext::replace (this->mproject, project);
 	return (* this);
 }
 
-char const * oversion::project() const
+char const * oversion::project () const
 
 {
 	return (this->mproject);
@@ -106,14 +106,14 @@ char const * oversion::project() const
  *
  *--------------------------------------------------------------------*/
 
-oversion & oversion::package(char const * package)
+oversion & oversion::package (char const * package)
 
 {
-	this->mpackage = otext::replace(this->mpackage, package);
+	this->mpackage = otext::replace (this->mpackage, package);
 	return (* this);
 }
 
-char const * oversion::package() const
+char const * oversion::package () const
 
 {
 	return (this->mpackage);
@@ -129,14 +129,14 @@ char const * oversion::package() const
  *
  *--------------------------------------------------------------------*/
 
-oversion & oversion::version(char const * version)
+oversion & oversion::version (char const * version)
 
 {
-	this->mversion = otext::replace(this->mversion, version);
+	this->mversion = otext::replace (this->mversion, version);
 	return (* this);
 }
 
-char const * oversion::version() const
+char const * oversion::version () const
 
 {
 	return (this->mversion);
@@ -153,14 +153,14 @@ char const * oversion::version() const
  *
  *--------------------------------------------------------------------*/
 
-oversion & oversion::release(char const * release)
+oversion & oversion::release (char const * release)
 
 {
-	this->mrelease = otext::replace(this->mrelease, release);
+	this->mrelease = otext::replace (this->mrelease, release);
 	return (* this);
 }
 
-char const * oversion::release() const
+char const * oversion::release () const
 
 {
 	return (this->mrelease);
@@ -177,14 +177,14 @@ char const * oversion::release() const
  *
  *--------------------------------------------------------------------*/
 
-oversion & oversion::contact(char const * contact)
+oversion & oversion::contact (char const * contact)
 
 {
-	this->mcontact = otext::replace(this->mcontact, contact);
+	this->mcontact = otext::replace (this->mcontact, contact);
 	return (* this);
 }
 
-char const * oversion::contact() const
+char const * oversion::contact () const
 
 {
 	return (this->mcontact);
@@ -202,7 +202,7 @@ char const * oversion::contact() const
  *
  *--------------------------------------------------------------------*/
 
-oversion & oversion::print(void)
+oversion & oversion::print (void)
 
 {
 	std::cerr << this->mprogram << " ";
@@ -226,17 +226,17 @@ oversion & oversion::print(void)
  *
  *--------------------------------------------------------------------*/
 
-oversion::oversion()
+oversion::oversion ()
 
 {
-	this->mprogram = otext::save(PROGRAM);
-	this->mcompany = otext::save(COMPANY);
-	this->mproject = otext::save(PROJECT);
-	this->mpackage = otext::save(PACKAGE);
-	this->mversion = otext::save(VERSION);
-	this->mrelease = otext::save(RELEASE);
-	this->mlicense = otext::save(LICENSE);
-	this->mcontact = otext::save(CONTACT);
+	this->mprogram = otext::save (PROGRAM);
+	this->mcompany = otext::save (COMPANY);
+	this->mproject = otext::save (PROJECT);
+	this->mpackage = otext::save (PACKAGE);
+	this->mversion = otext::save (VERSION);
+	this->mrelease = otext::save (RELEASE);
+	this->mlicense = otext::save (LICENSE);
+	this->mcontact = otext::save (CONTACT);
 	return;
 }
 
@@ -250,7 +250,7 @@ oversion::oversion()
  *
  *--------------------------------------------------------------------*/
 
-oversion::~ oversion()
+oversion::~ oversion ()
 
 {
 	return;

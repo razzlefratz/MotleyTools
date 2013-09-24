@@ -22,12 +22,12 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oHTMLEmptyElements: public okeywords
+class __declspec (dllexport) oHTMLEmptyElements: public okeywords
 
 {
 public: 
 	oHTMLEmptyElements ();
-	~ oHTMLEmptyElements();
+	~ oHTMLEmptyElements ();
 };
 
 /*====================================================================*

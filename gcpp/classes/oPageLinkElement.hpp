@@ -23,18 +23,18 @@
  *
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oPageLinkElement: private otext
+class __declspec (dllexport) oPageLinkElement: private otext
 
 {
 public: 
 	oPageLinkElement ();
 	oPageLinkElement (char const * string);
-	virtual ~ oPageLinkElement();
-	char const * name() const;
-	oPageLinkElement & name(char const * string);
-	oPageLinkElement & link(char const * text, char const * path);
+	virtual ~ oPageLinkElement ();
+	char const * name () const;
+	oPageLinkElement & name (char const * string);
+	oPageLinkElement & link (char const * text, char const * path);
 	oAnchorElement AnchorElement;
-	oPageLinkElement & write();
+	oPageLinkElement & write ();
 private: 
 	char * mname;
 };

@@ -30,36 +30,36 @@
  *   class interface;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oindent
+class __declspec (dllexport) oindent
 
 {
 public: 
 	oindent (void);
-	virtual ~ oindent(void);
-	signed space(void) const;
-	signed level(void) const;
-	char const * margin(void) const;
-	char const * offset(void) const;
-	char const * finish(void) const;
-	char const * record(void) const;
-	oindent & increment(void);
-	oindent & decrement(void);
-	oindent & space(signed space);
-	oindent & level(signed level);
-	oindent & margin(char const * string);
-	oindent & offset(char const * string);
-	oindent & finish(char const * string);
-	oindent & record(char const * string);
-	oindent & endline();
-	oindent & endline(signed space);
-	oindent & endline(char const * finish, char const * record, signed space);
-	oindent & newline();
-	oindent & newline(signed level);
-	oindent & newline(char const * margin, char const * offset, signed level);
-	oindent & print(void);
-	oindent & print(char const * string);
-	oindent & print(signed level, signed space, char const * string);
-	static void print(char const * prefix, char const * suffix, signed count);
+	virtual ~ oindent (void);
+	signed space (void) const;
+	signed level (void) const;
+	char const * margin (void) const;
+	char const * offset (void) const;
+	char const * finish (void) const;
+	char const * record (void) const;
+	oindent & increment (void);
+	oindent & decrement (void);
+	oindent & space (signed space);
+	oindent & level (signed level);
+	oindent & margin (char const * string);
+	oindent & offset (char const * string);
+	oindent & finish (char const * string);
+	oindent & record (char const * string);
+	oindent & endline ();
+	oindent & endline (signed space);
+	oindent & endline (char const * finish, char const * record, signed space);
+	oindent & newline ();
+	oindent & newline (signed level);
+	oindent & newline (char const * margin, char const * offset, signed level);
+	oindent & print (void);
+	oindent & print (char const * string);
+	oindent & print (signed level, signed space, char const * string);
+	static void print (char const * prefix, char const * suffix, signed count);
 protected: 
 	signed mlevel;
 	signed mspace;

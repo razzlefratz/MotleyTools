@@ -21,14 +21,14 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oindex
+class __declspec (dllexport) oindex
 
 {
 public: 
 	oindex ();
-	virtual ~ oindex();
-	static unsigned qmod(signed domain, signed range);
-	static unsigned pmod(signed domain, signed range);
+	virtual ~ oindex ();
+	static unsigned qmod (signed domain, signed range);
+	static unsigned pmod (signed domain, signed range);
 protected: 
 private: 
 };

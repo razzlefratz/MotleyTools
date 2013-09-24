@@ -28,7 +28,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const * oPageLinkElement::name() const
+char const * oPageLinkElement::name () const
 
 {
 	return (this->mname);
@@ -40,10 +40,10 @@ char const * oPageLinkElement::name() const
  *
  *--------------------------------------------------------------------*/
 
-oPageLinkElement & oPageLinkElement::name(char const * string)
+oPageLinkElement & oPageLinkElement::name (char const * string)
 
 {
-	this->mname = otext::replace(this->mname, string);
+	this->mname = otext::replace (this->mname, string);
 	return (* this);
 }
 
@@ -54,11 +54,11 @@ oPageLinkElement & oPageLinkElement::name(char const * string)
  *
  *--------------------------------------------------------------------*/
 
-oPageLinkElement & oPageLinkElement::link(char const * text, char const * path)
+oPageLinkElement & oPageLinkElement::link (char const * text, char const * path)
 
 {
-	AnchorElement.CoreAttributes.TitleAttribute->value(text);
-	AnchorElement.LinkAttributes.ReferenceAttribute->value(path);
+	AnchorElement.CoreAttributes.TitleAttribute->value (text);
+	AnchorElement.LinkAttributes.ReferenceAttribute->value (path);
 	return (* this);
 }
 
@@ -71,14 +71,14 @@ oPageLinkElement & oPageLinkElement::link(char const * text, char const * path)
  *
  *--------------------------------------------------------------------*/
 
-oPageLinkElement & oPageLinkElement::write()
+oPageLinkElement & oPageLinkElement::write ()
 
 {
-	std::cout.put('[');
-	this->AnchorElement.StartTag();
+	std::cout.put ('[');
+	this->AnchorElement.StartTag ();
 	std::cout << this->mname;
-	this->AnchorElement.EndTag();
-	std::cout.put(']');
+	this->AnchorElement.EndTag ();
+	std::cout.put (']');
 	return (* this);
 }
 
@@ -89,10 +89,10 @@ oPageLinkElement & oPageLinkElement::write()
  *   
  *--------------------------------------------------------------------*/
 
-oPageLinkElement::oPageLinkElement(char const * name)
+oPageLinkElement::oPageLinkElement (char const * name)
 
 {
-	this->mname = otext::save(name);
+	this->mname = otext::save (name);
 	return;
 }
 
@@ -103,10 +103,10 @@ oPageLinkElement::oPageLinkElement(char const * name)
  *   
  *--------------------------------------------------------------------*/
 
-oPageLinkElement::oPageLinkElement()
+oPageLinkElement::oPageLinkElement ()
 
 {
-	this->mname = otext::save("LINK");
+	this->mname = otext::save ("LINK");
 	return;
 }
 
@@ -117,7 +117,7 @@ oPageLinkElement::oPageLinkElement()
  *   
  *--------------------------------------------------------------------*/
 
-oPageLinkElement::~ oPageLinkElement()
+oPageLinkElement::~ oPageLinkElement ()
 
 {
 	delete [] this->mname;

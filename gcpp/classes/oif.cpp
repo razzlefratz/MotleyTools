@@ -65,7 +65,7 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned oif::Index(void) const
+unsigned oif::Index (void) const
 
 {
 	return (this->mindex);
@@ -79,7 +79,7 @@ unsigned oif::Index(void) const
  *
  *--------------------------------------------------------------------*/
 
-char const * oif::Name(void) const
+char const * oif::Name (void) const
 
 {
 	return (this->mname);
@@ -94,7 +94,7 @@ char const * oif::Name(void) const
  *
  *--------------------------------------------------------------------*/
 
-char const * oif::Text(void) const
+char const * oif::Text (void) const
 
 {
 	return (this->mtext);
@@ -109,7 +109,7 @@ char const * oif::Text(void) const
  *
  *--------------------------------------------------------------------*/
 
-char const * oif::HardwareAddress(void) const
+char const * oif::HardwareAddress (void) const
 
 {
 	return (this->mhwstring);
@@ -124,7 +124,7 @@ char const * oif::HardwareAddress(void) const
  *
  *--------------------------------------------------------------------*/
 
-char const * oif::EthernetAddress(void) const
+char const * oif::EthernetAddress (void) const
 
 {
 	return (this->mhwstring);
@@ -139,7 +139,7 @@ char const * oif::EthernetAddress(void) const
  *
  *--------------------------------------------------------------------*/
 
-char const * oif::InternetAddress(void) const
+char const * oif::InternetAddress (void) const
 
 {
 	return (this->mipstring);
@@ -154,10 +154,10 @@ char const * oif::InternetAddress(void) const
  *
  *--------------------------------------------------------------------*/
 
-oif & oif::GetHardwareAddress(void * memory)
+oif & oif::GetHardwareAddress (void * memory)
 
 {
-	std::memcpy(memory, this->mhwaddr, sizeof(this->mhwaddr));
+	std::memcpy (memory, this->mhwaddr, sizeof (this->mhwaddr));
 	return (* this);
 }
 
@@ -170,10 +170,10 @@ oif & oif::GetHardwareAddress(void * memory)
  *
  *--------------------------------------------------------------------*/
 
-oif & oif::GetEthernetAddress(void * memory)
+oif & oif::GetEthernetAddress (void * memory)
 
 {
-	std::memcpy(memory, this->mhwaddr, sizeof(this->mhwaddr));
+	std::memcpy (memory, this->mhwaddr, sizeof (this->mhwaddr));
 	return (* this);
 }
 
@@ -186,10 +186,10 @@ oif & oif::GetEthernetAddress(void * memory)
  *
  *--------------------------------------------------------------------*/
 
-oif & oif::GetInternetAddress(void * memory)
+oif & oif::GetInternetAddress (void * memory)
 
 {
-	std::memcpy(memory, this->mipaddr, sizeof(this->mipaddr));
+	std::memcpy (memory, this->mipaddr, sizeof (this->mipaddr));
 	return (* this);
 }
 
@@ -202,14 +202,14 @@ oif & oif::GetInternetAddress(void * memory)
  *
  *--------------------------------------------------------------------*/
 
-oif & oif::Print(void)
+oif & oif::Print (void)
 
 {
-	std::cout << this->Index() << " ";
-	std::cout << this->HardwareAddress() << " ";
-	std::cout << this->InternetAddress() << " ";
-	std::cout << this->Name() << " ";
-	std::cout << this->Text() << std::endl;
+	std::cout << this->Index () << " ";
+	std::cout << this->HardwareAddress () << " ";
+	std::cout << this->InternetAddress () << " ";
+	std::cout << this->Name () << " ";
+	std::cout << this->Text () << std::endl;
 	return (* this);
 }
 
@@ -226,14 +226,14 @@ oif & oif::Print(void)
  *
  *--------------------------------------------------------------------*/
 
-oif & oif::SetIndex(unsigned index)
+oif & oif::SetIndex (unsigned index)
 
 {
 	this->mindex = index;
 
 #if defined (WINPCAP)
 
-	oif::pcap_indextoname(this->mindex, this->mname);
+	oif::pcap_indextoname (this->mindex, this->mname);
 
 #else
 
@@ -241,8 +241,8 @@ oif & oif::SetIndex(unsigned index)
 
 #endif
 
-	std::memcpy(this->mtext, this->mname, sizeof(this->mname));
-	oif::lookup();
+	std::memcpy (this->mtext, this->mname, sizeof (this->mname));
+	oif::lookup ();
 	return (* this);
 }
 
@@ -259,23 +259,23 @@ oif & oif::SetIndex(unsigned index)
  *
  *--------------------------------------------------------------------*/
 
-oif & oif::SetName(char const * name)
+oif & oif::SetName (char const * name)
 
 {
 
 #if defined (WINPCAP) 
 
-	this->mindex = oif::pcap_nametoindex(name);
+	this->mindex = oif::pcap_nametoindex (name);
 
 #else
 
-	this->mindex = if_nametoindex(name);
+	this->mindex = if_nametoindex (name);
 
 #endif
 
-	std::memcpy(this->mname, name, std::strlen(name));
-	std::memcpy(this->mtext, name, std::strlen(name));
-	oif::lookup();
+	std::memcpy (this->mname, name, std::strlen (name));
+	std::memcpy (this->mtext, name, std::strlen (name));
+	oif::lookup ();
 	return (* this);
 }
 
@@ -290,10 +290,10 @@ oif & oif::SetName(char const * name)
  *
  *--------------------------------------------------------------------*/
 
-oif & oif::SetText(char const * text)
+oif & oif::SetText (char const * text)
 
 {
-	std::memcpy(this->mtext, text, std::strlen(text));
+	std::memcpy (this->mtext, text, std::strlen (text));
 	return (* this);
 }
 
@@ -309,11 +309,11 @@ oif & oif::SetText(char const * text)
  *
  *--------------------------------------------------------------------*/
 
-oif & oif::SetHardwareAddress(void const * memory)
+oif & oif::SetHardwareAddress (void const * memory)
 
 {
-	std::memcpy(this->mhwaddr, memory, sizeof(this->mhwaddr));
-	oif::format();
+	std::memcpy (this->mhwaddr, memory, sizeof (this->mhwaddr));
+	oif::format ();
 	return (* this);
 }
 
@@ -329,11 +329,11 @@ oif & oif::SetHardwareAddress(void const * memory)
  *
  *--------------------------------------------------------------------*/
 
-oif & oif::SetEthernetAddress(void const * memory)
+oif & oif::SetEthernetAddress (void const * memory)
 
 {
-	std::memcpy(this->mhwaddr, memory, sizeof(this->mhwaddr));
-	oif::format();
+	std::memcpy (this->mhwaddr, memory, sizeof (this->mhwaddr));
+	oif::format ();
 	return (* this);
 }
 
@@ -349,11 +349,11 @@ oif & oif::SetEthernetAddress(void const * memory)
  *
  *--------------------------------------------------------------------*/
 
-oif & oif::SetInternetAddress(void const * memory)
+oif & oif::SetInternetAddress (void const * memory)
 
 {
-	std::memcpy(this->mipaddr, memory, sizeof(this->mipaddr));
-	oif::format();
+	std::memcpy (this->mipaddr, memory, sizeof (this->mipaddr));
+	oif::format ();
 	return (* this);
 }
 
@@ -366,7 +366,7 @@ oif & oif::SetInternetAddress(void const * memory)
  *   
  *--------------------------------------------------------------------*/
 
-oif & oif::lookup()
+oif & oif::lookup ()
 
 {
 
@@ -375,41 +375,41 @@ oif & oif::lookup()
 	struct ifreq ifreq;
 	struct sockaddr_in * sockaddr_in = (struct sockaddr_in *) (& ifreq.ifr_ifru.ifru_addr);
 	int fd;
-	if ((fd = socket(AF_INET, SOCK_RAW, 0)) < 0)
+	if ((fd = socket (AF_INET, SOCK_RAW, 0)) < 0)
 	{
-		oerror::error(1, errno, "Can't open socket: %s", this->mname);
+		oerror::error (1, errno, "Can't open socket: %s", this->mname);
 	}
-	std::memcpy(ifreq.ifr_name, this->mname, sizeof(ifreq.ifr_name));
-	if (ioctl(fd, SIOCGIFHWADDR, & ifreq) == - 1)
+	std::memcpy (ifreq.ifr_name, this->mname, sizeof (ifreq.ifr_name));
+	if (ioctl (fd, SIOCGIFHWADDR, & ifreq) == - 1)
 	{
-		oerror::error(1, errno, "Can't fetch hardware address: %s", this->mname);
+		oerror::error (1, errno, "Can't fetch hardware address: %s", this->mname);
 		close (fd);
 		return (* this);
 	}
-	std::memcpy(this->mhwaddr, ifreq.ifr_ifru.ifru_hwaddr.sa_data, sizeof(this->mhwaddr));
-	if (ioctl(fd, SIOCGIFADDR, & ifreq) == - 1)
+	std::memcpy (this->mhwaddr, ifreq.ifr_ifru.ifru_hwaddr.sa_data, sizeof (this->mhwaddr));
+	if (ioctl (fd, SIOCGIFADDR, & ifreq) == - 1)
 	{
-		oerror::error(1, errno, "Can't fetch ethernet address: %s", this->mname);
+		oerror::error (1, errno, "Can't fetch ethernet address: %s", this->mname);
 		close (fd);
 		return (* this);
 	}
-	std::memcpy(this->mipaddr, & sockaddr_in->sin_addr.s_addr, sizeof(this->mipaddr));
+	std::memcpy (this->mipaddr, & sockaddr_in->sin_addr.s_addr, sizeof (this->mipaddr));
 	close (fd);
 
 #elif defined (__APPLE__)
 
-	oif::osx_gethwaddr();
+	oif::osx_gethwaddr ();
 
 #elif defined (WINPCAP) 
 
-	oif::pcap_gethwaddr();
-	oif::pcap_getipaddr();
+	oif::pcap_gethwaddr ();
+	oif::pcap_getipaddr ();
 
 #else
 #error "Unknown environment."
 #endif
 
-	oif::format();
+	oif::format ();
 	return (* this);
 }
 
@@ -422,11 +422,11 @@ oif & oif::lookup()
  *
  *--------------------------------------------------------------------*/
 
-oif & oif::format()
+oif & oif::format ()
 
 {
-	omemory::hexdecode(this->mhwaddr, sizeof(this->mhwaddr), this->mhwstring, sizeof(this->mhwstring));
-	omemory::decdecode(this->mipaddr, sizeof(this->mipaddr), this->mipstring, sizeof(this->mipstring));
+	omemory::hexdecode (this->mhwaddr, sizeof (this->mhwaddr), this->mhwstring, sizeof (this->mhwstring));
+	omemory::decdecode (this->mipaddr, sizeof (this->mipaddr), this->mipstring, sizeof (this->mipstring));
 	return (* this);
 }
 
@@ -439,7 +439,7 @@ oif & oif::format()
  *
  *--------------------------------------------------------------------*/
 
-void oif::osx_gethwaddr()
+void oif::osx_gethwaddr ()
 
 {
 
@@ -447,13 +447,13 @@ void oif::osx_gethwaddr()
 
 	struct ifaddrs * ifaddrs;
 	struct ifaddrs * ifaddr;
-	if (getifaddrs(& ifaddrs) == - 1)
+	if (getifaddrs (& ifaddrs) == - 1)
 	{
-		oerror::error(1, errno, "No interfaces available");
+		oerror::error (1, errno, "No interfaces available");
 	}
 	for (ifaddr = ifaddrs; ifaddr; ifaddr = ifaddr->ifa_next)
 	{
-		if (std::strcmp(this->mname, ifaddr->ifa_name))
+		if (std::strcmp (this->mname, ifaddr->ifa_name))
 		{
 			continue;
 		}
@@ -463,14 +463,14 @@ void oif::osx_gethwaddr()
 		}
 		if (ifaddr->ifa_addr->sa_family == AF_INET)
 		{
-			struct sockaddr_in * sockaddr_in = (struct sockaddr_in *)(ifaddr->ifa_addr);
-			std::memcpy(this->mipaddr, & sockaddr_in->sa_data.s_addr, sizeof(this->mipaddr));
+			struct sockaddr_in * sockaddr_in = (struct sockaddr_in *) (ifaddr->ifa_addr);
+			std::memcpy (this->mipaddr, & sockaddr_in->sa_data.s_addr, sizeof (this->mipaddr));
 			continue;
 		}
 		if (ifaddr->ifa_addr->sa_family == AF_LINK)
 		{
-			struct sockaddr_dl * sockaddr_dl = (struct sockaddr_dl *)(ifaddr->ifa_addr);
-			std::memcpy(this->mhwaddr, LLADDR(sockaddr_dl), sizeof(this->mhwaddr));
+			struct sockaddr_dl * sockaddr_dl = (struct sockaddr_dl *) (ifaddr->ifa_addr);
+			std::memcpy (this->mhwaddr, LLADDR (sockaddr_dl), sizeof (this->mhwaddr));
 			continue;
 		}
 	}
@@ -494,21 +494,21 @@ void oif::osx_gethwaddr()
  *
  *--------------------------------------------------------------------*/
 
-unsigned oif::pcap_nametoindex(char const * name) const
+unsigned oif::pcap_nametoindex (char const * name) const
 
 {
 
 #if defined (WINPCAP)
 
-	char buffer[PCAP_ERRBUF_SIZE];
+	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *) (0);
 	pcap_if_t * device;
-	if (pcap_findalldevs(& devices, buffer) != - 1)
+	if (pcap_findalldevs (& devices, buffer) != - 1)
 	{
 		unsigned index = 1;
 		for (device = devices; device; device = device->next)
 		{
-			if (std::strcmp(name, device->name))
+			if (std::strcmp (name, device->name))
 			{
 				index++;
 				continue;
@@ -538,22 +538,22 @@ unsigned oif::pcap_nametoindex(char const * name) const
  *
  *--------------------------------------------------------------------*/
 
-char * oif::pcap_indextoname(unsigned ifindex, char * ifname) const
+char * oif::pcap_indextoname (unsigned ifindex, char * ifname) const
 
 {
 
 #if defined (WINPCAP)
 
-	char buffer[PCAP_ERRBUF_SIZE];
+	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *) (0);
 	pcap_if_t * device;
-	if ((ifindex--) && (pcap_findalldevs(& devices, buffer) != - 1))
+	if ((ifindex--) && (pcap_findalldevs (& devices, buffer) != - 1))
 	{
 		for (device = devices; device; device = device->next)
 		{
 			if (! ifindex--)
 			{
-				std::memcpy(ifname, device->name, std::strlen(device->name));
+				std::memcpy (ifname, device->name, std::strlen (device->name));
 				pcap_freealldevs (devices);
 				return (ifname);
 			}
@@ -576,31 +576,31 @@ char * oif::pcap_indextoname(unsigned ifindex, char * ifname) const
  *
  *--------------------------------------------------------------------*/
 
-void oif::pcap_gethwaddr()
+void oif::pcap_gethwaddr ()
 
 {
 
 #if defined (WINPCAP)
 
-	LPADAPTER adapter = PacketOpenAdapter((PCHAR) (this->mname));
-	PPACKET_OID_DATA data = (PPACKET_OID_DATA) (std::malloc(ETHER_ADDR_LEN +  sizeof(PACKET_OID_DATA)));
+	LPADAPTER adapter = PacketOpenAdapter ((PCHAR) (this->mname));
+	PPACKET_OID_DATA data = (PPACKET_OID_DATA) (std::malloc (ETHER_ADDR_LEN +  sizeof (PACKET_OID_DATA)));
 	if (! data)
 	{
-		oerror::error(1, 0, "Can't allocate packet: %s", this->mname);
+		oerror::error (1, 0, "Can't allocate packet: %s", this->mname);
 	}
 	data->Oid = OID_802_3_CURRENT_ADDRESS;
 	data->Length = ETHER_ADDR_LEN;
 	if ((! adapter) || (adapter->hFile == INVALID_HANDLE_VALUE))
 	{
-		oerror::error(1, 0, "Can't access %s", this->mname);
+		oerror::error (1, 0, "Can't access %s", this->mname);
 	}
-	std::memset(this->mhwaddr, 0, sizeof(this->mhwaddr));
-	if (PacketRequest(adapter, FALSE, data))
+	std::memset (this->mhwaddr, 0, sizeof (this->mhwaddr));
+	if (PacketRequest (adapter, FALSE, data))
 	{
-		std::memcpy(this->mhwaddr, data->Data, data->Length);
+		std::memcpy (this->mhwaddr, data->Data, data->Length);
 	}
 	PacketCloseAdapter (adapter);
-	std::free(data);
+	std::free (data);
 
 #endif
 
@@ -616,31 +616,31 @@ void oif::pcap_gethwaddr()
  *
  *--------------------------------------------------------------------*/
 
-void oif::pcap_getipaddr()
+void oif::pcap_getipaddr ()
 
 {
 
 #if defined (WINPCAP)
 
-	char buffer[PCAP_ERRBUF_SIZE];
+	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *) (0);
 	pcap_if_t * device;
-	if (pcap_findalldevs(& devices, buffer) == - 1)
+	if (pcap_findalldevs (& devices, buffer) == - 1)
 	{
-		oerror::error(1, errno, "Can't enumerate interfaces");
+		oerror::error (1, errno, "Can't enumerate interfaces");
 	}
 	for (device = devices; device; device = device->next)
 	{
-		if (std::strcmp(this->mname, device->name))
+		if (std::strcmp (this->mname, device->name))
 		{
 			continue;
 		}
-		std::memcpy(this->mtext, device->description, std::strlen(device->description));
+		std::memcpy (this->mtext, device->description, std::strlen (device->description));
 		if (device->addresses)
 		{
 			struct pcap_addr * pcap_addr = device->addresses;
 			struct sockaddr_in * sockaddr_in = (struct sockaddr_in *) (pcap_addr->addr->sa_data);
-			std::memcpy(this->mipaddr, & sockaddr_in->sin_addr.s_addr, sizeof(this->mipaddr));
+			std::memcpy (this->mipaddr, & sockaddr_in->sin_addr.s_addr, sizeof (this->mipaddr));
 		}
 		break;
 	}
@@ -657,15 +657,15 @@ void oif::pcap_getipaddr()
  *
  *--------------------------------------------------------------------*/
 
-oif::oif()
+oif::oif ()
 
 {
 	this->mindex = 0;
-	std::memset(this->mname, 0, sizeof(this->mname));
-	std::memset(this->mtext, 0, sizeof(this->mtext));
-	std::memset(this->mhwaddr, 0, sizeof(this->mhwaddr));
-	std::memset(this->mipaddr, 0, sizeof(this->mipaddr));
-	oif::format();
+	std::memset (this->mname, 0, sizeof (this->mname));
+	std::memset (this->mtext, 0, sizeof (this->mtext));
+	std::memset (this->mhwaddr, 0, sizeof (this->mhwaddr));
+	std::memset (this->mipaddr, 0, sizeof (this->mipaddr));
+	oif::format ();
 	return;
 }
 
@@ -675,7 +675,7 @@ oif::oif()
  *
  *--------------------------------------------------------------------*/
 
-oif::~ oif()
+oif::~ oif ()
 
 {
 	return;

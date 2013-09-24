@@ -37,7 +37,7 @@ char const * oSpanElement::mtitle = "span";
  *
  *--------------------------------------------------------------------*/
 
-char const * oSpanElement::ElementName() const
+char const * oSpanElement::ElementName () const
 
 {
 	return (oSpanElement::mtitle);
@@ -51,19 +51,19 @@ char const * oSpanElement::ElementName() const
  *
  *--------------------------------------------------------------------*/
 
-oSpanElement & oSpanElement::StartTag()
+oSpanElement & oSpanElement::StartTag ()
 
 {
-	std::cout.put('<');
+	std::cout.put ('<');
 	if (* this->mscope)
 	{
 		std::cout << this->mscope;
-		std::cout.put(':');
+		std::cout.put (':');
 	}
 	std::cout << this->mtitle;
-	oSpanElement::i18nAttributes.write();
-	oSpanElement::CoreAttributes.write();
-	std::cout.put('>');
+	oSpanElement::i18nAttributes.write ();
+	oSpanElement::CoreAttributes.write ();
+	std::cout.put ('>');
 	return (* this);
 }
 
@@ -75,20 +75,20 @@ oSpanElement & oSpanElement::StartTag()
  *
  *--------------------------------------------------------------------*/
 
-oSpanElement & oSpanElement::EmptyTag()
+oSpanElement & oSpanElement::EmptyTag ()
 
 {
-	std::cout.put('<');
+	std::cout.put ('<');
 	if (* this->mscope)
 	{
 		std::cout << this->mscope;
-		std::cout.put(':');
+		std::cout.put (':');
 	}
 	std::cout << this->mtitle;
-	oSpanElement::i18nAttributes.write();
-	oSpanElement::CoreAttributes.write();
-	std::cout.put('/');
-	std::cout.put('>');
+	oSpanElement::i18nAttributes.write ();
+	oSpanElement::CoreAttributes.write ();
+	std::cout.put ('/');
+	std::cout.put ('>');
 	return (* this);
 }
 
@@ -100,18 +100,18 @@ oSpanElement & oSpanElement::EmptyTag()
  *
  *--------------------------------------------------------------------*/
 
-oSpanElement & oSpanElement::EndTag()
+oSpanElement & oSpanElement::EndTag ()
 
 {
-	std::cout.put('<');
-	std::cout.put('/');
+	std::cout.put ('<');
+	std::cout.put ('/');
 	if (* this->mscope)
 	{
 		std::cout << this->mscope;
-		std::cout.put(':');
+		std::cout.put (':');
 	}
 	std::cout << this->mtitle;
-	std::cout.put('>');
+	std::cout.put ('>');
 	return (* this);
 }
 
@@ -121,7 +121,7 @@ oSpanElement & oSpanElement::EndTag()
  *
  *--------------------------------------------------------------------*/
 
-oSpanElement::oSpanElement()
+oSpanElement::oSpanElement ()
 
 {
 	return;
@@ -133,7 +133,7 @@ oSpanElement::oSpanElement()
  *
  *--------------------------------------------------------------------*/
 
-oSpanElement::~ oSpanElement()
+oSpanElement::~ oSpanElement ()
 
 {
 	return;

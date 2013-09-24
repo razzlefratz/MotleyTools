@@ -35,10 +35,10 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * usage[] = 
+	static char const * usage [] = 
 	{
 		"h",
 		"expression [expression] ...",
@@ -46,24 +46,24 @@ int main(int argc, char const * argv[])
 		"h\thelp summary ",
 		NULL
 	};
-	ogetopt getopt(1);
+	ogetopt getopt (1);
 	oputopt putopt;
 	oregex * regex;
 	signed c;
-	while ((c = getopt.getopt(argc, argv, usage[PUTOPT_I_OPTIONS])) != - 1)
+	while ((c = getopt.getopt (argc, argv, usage [PUTOPT_I_OPTIONS])) != - 1)
 	{
 		switch (c)
 		{
 		case 'h':
-			putopt.putopt(usage);
+			putopt.putopt (usage);
 		default: 
 			break;
 		}
 	}
-	while (getopt.optcnt())
+	while (getopt.optcnt ())
 	{
-		regex = new oregex(argv[getopt.optind()]);
-		regex->show();
+		regex = new oregex (argv [getopt.optind ()]);
+		regex->show ();
 		getopt++;
 	}
 	return (0);

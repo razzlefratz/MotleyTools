@@ -35,18 +35,18 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) ochtml: public owebpage
+class __declspec (dllexport) ochtml: public owebpage
 
 {
 public: 
 	ochtml (void);
 	ochtml (char const * stylesheet);
-	virtual ~ ochtml(void);
-	ochtml & css2(void);
-	ochtml & css2(char const * filename);
-	ochtml & html(char const * pathname);
+	virtual ~ ochtml (void);
+	ochtml & css2 (void);
+	ochtml & css2 (char const * filename);
+	ochtml & html (char const * pathname);
 private: 
-	ochtml & directive();
+	ochtml & directive ();
 	static ofilespec filespec;
 	oscancode mfile;
 	ofunctions clibword;

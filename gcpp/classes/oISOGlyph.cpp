@@ -30,7 +30,7 @@
  *   data initialization;
  *--------------------------------------------------------------------*/
 
-char const * oISOGlyph::mtable[UCHAR_MAX +  1] = 
+char const * oISOGlyph::mtable [UCHAR_MAX +  1] = 
 
 {
 	"#x00",
@@ -301,12 +301,12 @@ char const * oISOGlyph::mtable[UCHAR_MAX +  1] =
  *
  *--------------------------------------------------------------------*/
 
-char const * oISOGlyph::string(signed c)
+char const * oISOGlyph::string (signed c)
 
 {
-	char const * string = oISOGlyph::mtable[c & UCHAR_MAX];
+	char const * string = oISOGlyph::mtable [c & UCHAR_MAX];
 	char * sp = this->mstring;
-	if (string[1])
+	if (string [1])
 	{
 		* sp++ = '&';
 		while (* string)
@@ -329,11 +329,11 @@ char const * oISOGlyph::string(signed c)
  *
  *--------------------------------------------------------------------*/
 
-oISOGlyph::oISOGlyph(void)
+oISOGlyph::oISOGlyph (void)
 
 {
-	this->mstring = new char[16];
-	this->mstring[0] = (char) (0);
+	this->mstring = new char [16];
+	this->mstring [0] = (char) (0);
 	return;
 }
 
@@ -343,7 +343,7 @@ oISOGlyph::oISOGlyph(void)
  *
  *--------------------------------------------------------------------*/
 
-oISOGlyph::~ oISOGlyph(void)
+oISOGlyph::~ oISOGlyph (void)
 
 {
 	delete [] this->mstring;

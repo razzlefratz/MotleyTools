@@ -42,12 +42,12 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) ocprocwords: public okeywords
+class __declspec (dllexport) ocprocwords: public okeywords
 
 {
 public: 
 	ocprocwords ();
-	~ ocprocwords();
+	~ ocprocwords ();
 };
 
 /*====================================================================*

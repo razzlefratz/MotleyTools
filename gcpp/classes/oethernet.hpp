@@ -53,34 +53,34 @@ typedef unsigned char byte;
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oethernet
+class __declspec (dllexport) oethernet
 
 {
 public: 
 	oethernet (void);
 	oethernet (uint16_t protocol);
-	virtual ~ oethernet(void);
-	size_t HeaderLength(void) const;
-	byte const * HostAddress(void) const;
-	byte const * PeerAddress(void) const;
-	uint16_t Protocol(void) const;
-	void * ExportHeader(void * memory) const;
-	void * ExportPeerAddress(void * memory) const;
-	void * ExportHostAddress(void * memory) const;
-	void * ExportProtocol(void * memory) const;
-	void const * ImportHeader(void const * memory);
-	void const * ImportPeerAddress(void const * memory);
-	void const * ImportHostAddress(void const * memory);
-	void const * ImportProtocol(void const * memory);
-	char const * HostAddressString(void) const;
-	char const * PeerAddressString(void) const;
-	char const * ProtocolString(void) const;
-	oethernet & SetProtocol(uint16_t);
-	oethernet & Print();
-	static byte const BroadcastAddress[ETHER_ADDR_LEN];
+	virtual ~ oethernet (void);
+	size_t HeaderLength (void) const;
+	byte const * HostAddress (void) const;
+	byte const * PeerAddress (void) const;
+	uint16_t Protocol (void) const;
+	void * ExportHeader (void * memory) const;
+	void * ExportPeerAddress (void * memory) const;
+	void * ExportHostAddress (void * memory) const;
+	void * ExportProtocol (void * memory) const;
+	void const * ImportHeader (void const * memory);
+	void const * ImportPeerAddress (void const * memory);
+	void const * ImportHostAddress (void const * memory);
+	void const * ImportProtocol (void const * memory);
+	char const * HostAddressString (void) const;
+	char const * PeerAddressString (void) const;
+	char const * ProtocolString (void) const;
+	oethernet & SetProtocol (uint16_t);
+	oethernet & Print ();
+	static byte const BroadcastAddress [ETHER_ADDR_LEN];
 private: 
-	byte mpeeraddr[ETHER_ADDR_LEN];
-	byte mhostaddr[ETHER_ADDR_LEN];
+	byte mpeeraddr [ETHER_ADDR_LEN];
+	byte mhostaddr [ETHER_ADDR_LEN];
 	uint16_t mprotocol;
 };
 

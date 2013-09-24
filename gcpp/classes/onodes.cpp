@@ -30,7 +30,7 @@
  *
  *--------------------------------------------------------------------*/
 
-size_t onodes::block() const
+size_t onodes::block () const
 
 {
 	return (this->mblock);
@@ -43,7 +43,7 @@ size_t onodes::block() const
  *
  *--------------------------------------------------------------------*/
 
-size_t onodes::limit() const
+size_t onodes::limit () const
 
 {
 	return (this->mlimit);
@@ -56,7 +56,7 @@ size_t onodes::limit() const
  *
  *--------------------------------------------------------------------*/
 
-size_t onodes::count() const
+size_t onodes::count () const
 
 {
 	return (this->mcount);
@@ -69,7 +69,7 @@ size_t onodes::count() const
  *
  *--------------------------------------------------------------------*/
 
-size_t onodes::index() const
+size_t onodes::index () const
 
 {
 	return (this->mindex);
@@ -82,7 +82,7 @@ size_t onodes::index() const
  *
  *--------------------------------------------------------------------*/
 
-onodes & onodes::index(size_t index)
+onodes & onodes::index (size_t index)
 
 {
 	this->mindex = index;
@@ -112,10 +112,10 @@ onodes & onodes::operator++ ()
  *
  *--------------------------------------------------------------------*/
 
-onode * onodes::operator[](size_t index) const
+onode * onodes::operator [] (size_t index) const
 
 {
-	return (index < this->mcount? this->mtable[index]: (onode *)(0));
+	return (index < this->mcount? this->mtable [index]: (onode *) (0));
 }
 
 /*====================================================================*
@@ -127,10 +127,10 @@ onode * onodes::operator[](size_t index) const
  *
  *--------------------------------------------------------------------*/
 
-onode * onodes::node(size_t index) const
+onode * onodes::node (size_t index) const
 
 {
-	return (index < this->mcount? this->mtable[index]: (onode *)(0));
+	return (index < this->mcount? this->mtable [index]: (onode *) (0));
 }
 
 /*====================================================================*
@@ -142,10 +142,10 @@ onode * onodes::node(size_t index) const
  *
  *--------------------------------------------------------------------*/
 
-onode * onodes::node() const
+onode * onodes::node () const
 
 {
-	return (this->mindex < this->mcount? this->mtable[this->mindex]: (onode *)(0));
+	return (this->mindex < this->mcount? this->mtable [this->mindex]: (onode *) (0));
 }
 
 /*====================================================================*
@@ -156,12 +156,12 @@ onode * onodes::node() const
  *
  *--------------------------------------------------------------------*/
 
-onodes & onodes::add(char const * nodename)
+onodes & onodes::add (char const * nodename)
 
 {
 	for (this->mindex = 0; this->mindex < this->mcount; this->mindex++)
 	{
-		if (! std::strcmp(nodename, this->mtable[this->mindex] ->name()))
+		if (! std::strcmp (nodename, this->mtable [this->mindex] ->name ()))
 		{
 			return (* this);
 		}
@@ -174,11 +174,11 @@ onodes & onodes::add(char const * nodename)
 		this->mtable = new onode * [this->mlimit];
 		for (this->mindex = 0; this->mindex < this->mcount; this->mindex++)
 		{
-			this->mtable[this->mindex] = ntable[this->mindex];
+			this->mtable [this->mindex] = ntable [this->mindex];
 		}
 		delete [] ntable;
 	}
-	this->mtable[this->mcount++] = new onode(nodename);
+	this->mtable [this->mcount++] = new onode (nodename);
 	return (* this);
 }
 
@@ -190,13 +190,13 @@ onodes & onodes::add(char const * nodename)
  *
  *--------------------------------------------------------------------*/
 
-onodes & onodes::clear()
+onodes & onodes::clear ()
 
 {
 	for (this->mindex = 0; this->mindex < this->mcount; this->mindex++)
 	{
-		this->mentry = this->mtable[this->mindex];
-		this->mtable[this->mindex] = (onode *)(0);
+		this->mentry = this->mtable [this->mindex];
+		this->mtable [this->mindex] = (onode *) (0);
 		delete this->mentry;
 	}
 	return (* this);
@@ -209,13 +209,13 @@ onodes & onodes::clear()
  *
  *--------------------------------------------------------------------*/
 
-onodes::onodes()
+onodes::onodes ()
 
 {
 	this->mtable = new onode * [NODES_MAX];
 	this->mlimit = this->mblock = NODES_MAX;
 	this->mcount = this->mindex = 0;
-	this->mentry = (onode *)(0);
+	this->mentry = (onode *) (0);
 	return;
 }
 
@@ -226,10 +226,10 @@ onodes::onodes()
  *
  *--------------------------------------------------------------------*/
 
-onodes::~ onodes()
+onodes::~ onodes ()
 
 {
-	this->mentry = (onode *)(0);
+	this->mentry = (onode *) (0);
 	delete [] this->mtable;
 	return;
 }

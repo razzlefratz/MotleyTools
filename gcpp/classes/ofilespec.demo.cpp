@@ -38,21 +38,21 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"",
 		"filespec [filespec] ...",
 		"ofilespec object class demonstration and test utility",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	ofilespec filespec;
-	ogetoptv getopt(1);
+	ogetoptv getopt (1);
 	oputoptv putopt;
 	signed c;
-	while ((c = getopt.getoptv(argc, argv, optv)) != - 1)
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1)
 	{
 		switch (c)
 		{
@@ -60,9 +60,9 @@ int main(int argc, char const * argv[])
 			break;
 		}
 	}
-	while ((getopt.argc() > 0) && (* getopt.argv() != (char *)(0)))
+	while ((getopt.argc () > 0) && (* getopt.argv () != (char *) (0)))
 	{
-		filespec.filespec(* getopt.argv()).peek();
+		filespec.filespec (* getopt.argv ()).peek ();
 		getopt++;
 	}
 	return (0);

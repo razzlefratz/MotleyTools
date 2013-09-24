@@ -22,13 +22,13 @@
  *
  *--------------------------------------------------------------------*/
 
-oCoreAttributes & oCoreAttributes::write()
+oCoreAttributes & oCoreAttributes::write ()
 
 {
-	this->IdentityAttribute->write();
-	this->TitleAttribute->write();
-	this->ClassAttribute->write();
-	this->StyleAttribute->write();
+	this->IdentityAttribute->write ();
+	this->TitleAttribute->write ();
+	this->ClassAttribute->write ();
+	this->StyleAttribute->write ();
 	return (* this);
 }
 
@@ -38,13 +38,13 @@ oCoreAttributes & oCoreAttributes::write()
  *   
  *--------------------------------------------------------------------*/
 
-oCoreAttributes::oCoreAttributes()
+oCoreAttributes::oCoreAttributes ()
 
 {
-	this->IdentityAttribute = new oAttribute("id");
-	this->TitleAttribute = new oAttribute("title");
-	this->ClassAttribute = new oAttribute("class");
-	this->StyleAttribute = new oAttribute("style");
+	this->IdentityAttribute = new oAttribute ("id");
+	this->TitleAttribute = new oAttribute ("title");
+	this->ClassAttribute = new oAttribute ("class");
+	this->StyleAttribute = new oAttribute ("style");
 	return;
 }
 
@@ -55,7 +55,7 @@ oCoreAttributes::oCoreAttributes()
  *   
  *--------------------------------------------------------------------*/
 
-oCoreAttributes::~ oCoreAttributes()
+oCoreAttributes::~ oCoreAttributes ()
 
 {
 	return;

@@ -30,13 +30,13 @@ class oerror
 {
 public: 
 	oerror (void);
-	virtual ~ oerror(void);
-	static void print(char const * format, ...);
-	static void error(char const * format, ...);
-	static void syntax(char const * file, unsigned line, char const * format, ...);
-	static void error(signed status, errno_t number, char const * format, ...);
-	static void error(signed status, char const * string, char const * format, ...);
-	static void error_at_line(signed status, errno_t number, char const * file, unsigned line, char const * format, ...);
+	virtual ~ oerror (void);
+	static void print (char const * format, ...);
+	static void error (char const * format, ...);
+	static void syntax (char const * file, unsigned line, char const * format, ...);
+	static void error (signed status, errno_t number, char const * format, ...);
+	static void error (signed status, char const * string, char const * format, ...);
+	static void error_at_line (signed status, errno_t number, char const * file, unsigned line, char const * format, ...);
 };
 
 /*====================================================================*

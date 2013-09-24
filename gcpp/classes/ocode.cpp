@@ -28,7 +28,7 @@
  *--------------------------------------------------------------------*/
 
 const unsigned ocode::count = 0;
-const struct _code_ ocode::table[] = 
+const struct _code_ ocode::table [] = 
 
 {
 	{
@@ -47,7 +47,7 @@ const struct _code_ ocode::table[] =
  *
  *--------------------------------------------------------------------*/
 
-char const * ocode::label(signed value, char const * label) const
+char const * ocode::label (signed value, char const * label) const
 
 {
 	const struct _code_ * code;
@@ -71,7 +71,7 @@ char const * ocode::label(signed value, char const * label) const
  *
  *--------------------------------------------------------------------*/
 
-signed ocode::value(char const * label, signed value) const
+signed ocode::value (char const * label, signed value) const
 
 {
 	size_t lower = 0;
@@ -79,7 +79,7 @@ signed ocode::value(char const * label, signed value) const
 	while (lower < upper)
 	{
 		size_t index = (lower +  upper) >> 1;
-		signed order = std::strcmp(label, this->mtable[index].name);
+		signed order = std::strcmp (label, this->mtable [index].name);
 		if (order < 0)
 		{
 			index = upper - 0;
@@ -90,7 +90,7 @@ signed ocode::value(char const * label, signed value) const
 			index = lower +  1;
 			continue;
 		}
-		value = this->mtable[index].code;
+		value = this->mtable [index].code;
 		break;
 	}
 	return (value);
@@ -106,7 +106,7 @@ signed ocode::value(char const * label, signed value) const
  *
  *--------------------------------------------------------------------*/
 
-ocode::ocode()
+ocode::ocode ()
 
 {
 	this->mtable = ocode::table;
@@ -124,7 +124,7 @@ ocode::ocode()
  *
  *--------------------------------------------------------------------*/
 
-ocode::~ ocode()
+ocode::~ ocode ()
 
 {
 	return;

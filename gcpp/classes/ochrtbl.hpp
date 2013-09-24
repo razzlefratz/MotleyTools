@@ -21,15 +21,15 @@
  *
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) ochrtbl
+class __declspec (dllexport) ochrtbl
 
 {
 public: 
 	ochrtbl ();
-	virtual ~ ochrtbl();
-	unsigned convert(unsigned c) const;
-	signed compare(char const * string1, char const * string2) const;
-	ochrtbl & convert(char * string);
+	virtual ~ ochrtbl ();
+	unsigned convert (unsigned c) const;
+	signed compare (char const * string1, char const * string2) const;
+	ochrtbl & convert (char * string);
 protected: 
 	const unsigned char * mtable;
 private: 

@@ -37,7 +37,7 @@ char const * oMetaElement::mtitle = "meta";
  *
  *--------------------------------------------------------------------*/
 
-char const * oMetaElement::ElementName() const
+char const * oMetaElement::ElementName () const
 
 {
 	return (oMetaElement::mtitle);
@@ -52,11 +52,11 @@ char const * oMetaElement::ElementName() const
  *
  *--------------------------------------------------------------------*/
 
-oMetaElement & oMetaElement::Contents(char const * name, char const * type)
+oMetaElement & oMetaElement::Contents (char const * name, char const * type)
 
 {
-	this->NameAttribute->value(name);
-	this->ContentTypeAttribute->value(type);
+	this->NameAttribute->value (name);
+	this->ContentTypeAttribute->value (type);
 	return (* this);
 }
 
@@ -69,24 +69,24 @@ oMetaElement & oMetaElement::Contents(char const * name, char const * type)
  *
  *--------------------------------------------------------------------*/
 
-oMetaElement & oMetaElement::EmptyTag(unsigned level, unsigned space)
+oMetaElement & oMetaElement::EmptyTag (unsigned level, unsigned space)
 
 {
 	while (level--)
 	{
-		std::cout.put('\t');
+		std::cout.put ('\t');
 	}
-	std::cout.put('<');
+	std::cout.put ('<');
 	std::cout << oMetaElement::mtitle;
-	this->NameAttribute->write();
-	this->ContentTypeAttribute->write();
-	this->SchemeAttribute->write();
-	this->ResponseAttribute->write();
-	std::cout.put('/');
-	std::cout.put('>');
+	this->NameAttribute->write ();
+	this->ContentTypeAttribute->write ();
+	this->SchemeAttribute->write ();
+	this->ResponseAttribute->write ();
+	std::cout.put ('/');
+	std::cout.put ('>');
 	while (space--)
 	{
-		std::cout.put('\n');
+		std::cout.put ('\n');
 	}
 	return (* this);
 }
@@ -97,13 +97,13 @@ oMetaElement & oMetaElement::EmptyTag(unsigned level, unsigned space)
  *   
  *--------------------------------------------------------------------*/
 
-oMetaElement::oMetaElement()
+oMetaElement::oMetaElement ()
 
 {
-	this->NameAttribute = new oAttribute("name", "content-type");
-	this->ContentTypeAttribute = new oAttribute("content", "text/html;iso-8895-1");
-	this->SchemeAttribute = new oAttribute("scheme");
-	this->ResponseAttribute = new oAttribute("http-equiv");
+	this->NameAttribute = new oAttribute ("name", "content-type");
+	this->ContentTypeAttribute = new oAttribute ("content", "text/html;iso-8895-1");
+	this->SchemeAttribute = new oAttribute ("scheme");
+	this->ResponseAttribute = new oAttribute ("http-equiv");
 	return;
 }
 
@@ -113,7 +113,7 @@ oMetaElement::oMetaElement()
  *   
  *--------------------------------------------------------------------*/
 
-oMetaElement::~ oMetaElement()
+oMetaElement::~ oMetaElement ()
 
 {
 	return;

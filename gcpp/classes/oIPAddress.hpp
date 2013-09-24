@@ -23,25 +23,25 @@
  *7
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oIPAddress
+class __declspec (dllexport) oIPAddress
 
 {
 public: 
 	oIPAddress ();
-	virtual ~ oIPAddress();
-	char const * string(unsigned address);
-	char const * padded(unsigned address);
-	unsigned number(char const * address);
-	unsigned inaddr(char const * address);
+	virtual ~ oIPAddress ();
+	char const * string (unsigned address);
+	char const * padded (unsigned address);
+	unsigned number (char const * address);
+	unsigned inaddr (char const * address);
 private: 
 	union bits
 	{
 		unsigned value;
-		unsigned char field[OCTETS];
+		unsigned char field [OCTETS];
 	};
 	static bits bitmap;
-	static char digits[];
-	static char buffer[];
+	static char digits [];
+	static char buffer [];
 	static unsigned octet;
 	static unsigned digit;
 	static unsigned value;

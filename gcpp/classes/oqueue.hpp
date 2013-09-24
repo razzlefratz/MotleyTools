@@ -27,25 +27,25 @@
  *
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oqueue
+class __declspec (dllexport) oqueue
 
 {
 public: 
 	oqueue ();
 	oqueue (void * object);
-	virtual ~ oqueue();
-	unsigned count() const;
-	bool empty() const;
-	void * data() const;
-	oqueue * head() const;
-	oqueue * tail() const;
-	oqueue & clear();
-	oqueue & insert(void * object);
-	oqueue & append(void * object);
-	oqueue & remove();
-	oqueue & unwind();
-	oqueue & attach(oqueue * queue);
-	oqueue & detach();
+	virtual ~ oqueue ();
+	unsigned count () const;
+	bool empty () const;
+	void * data () const;
+	oqueue * head () const;
+	oqueue * tail () const;
+	oqueue & clear ();
+	oqueue & insert (void * object);
+	oqueue & append (void * object);
+	oqueue & remove ();
+	oqueue & unwind ();
+	oqueue & attach (oqueue * queue);
+	oqueue & detach ();
 private: 
 	oqueue * mhead;
 	oqueue * mtail;

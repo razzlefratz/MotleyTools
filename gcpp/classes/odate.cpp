@@ -28,7 +28,7 @@ oindex odate::mindex;
  *   class variables;
  *--------------------------------------------------------------------*/
 
-char const * odate::months[MONTHS_IN_YEAR + 1] = 
+char const * odate::months [MONTHS_IN_YEAR +  1] = 
 
 {
 	"January",
@@ -46,7 +46,7 @@ char const * odate::months[MONTHS_IN_YEAR + 1] =
 	(char const *) (0)
 };
 
-char const * odate::weekdays[DAYS_IN_WEEK + 1] = 
+char const * odate::weekdays [DAYS_IN_WEEK +  1] = 
 
 {
 	"Sunday",
@@ -67,11 +67,11 @@ char const * odate::weekdays[DAYS_IN_WEEK + 1] =
  *
  *--------------------------------------------------------------------*/
 
-char const * odate::monthname(signed month)
+char const * odate::monthname (signed month)
 
 {
-	month = odate::mindex.qmod(month, MONTHS_IN_YEAR);
-	return (odate::months[month]);
+	month = odate::mindex.qmod (month, MONTHS_IN_YEAR);
+	return (odate::months [month]);
 }
 
 /*====================================================================*
@@ -82,11 +82,11 @@ char const * odate::monthname(signed month)
  *
  *--------------------------------------------------------------------*/
 
-char const * odate::weekdayname(signed weekday)
+char const * odate::weekdayname (signed weekday)
 
 {
-	weekday = odate::mindex.qmod(weekday, DAYS_IN_WEEK);
-	return (odate::weekdays[weekday]);
+	weekday = odate::mindex.qmod (weekday, DAYS_IN_WEEK);
+	return (odate::weekdays [weekday]);
 }
 
 /*====================================================================*
@@ -100,7 +100,7 @@ char const * odate::weekdayname(signed weekday)
  *
  *--------------------------------------------------------------------*/
 
-bool odate::isleap(unsigned year)
+bool odate::isleap (unsigned year)
 
 {
 	return (((year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0))));
@@ -125,11 +125,11 @@ bool odate::isleap(unsigned year)
  *
  *--------------------------------------------------------------------*/
 
-unsigned odate::dayofweek(unsigned year, signed month, signed day)
+unsigned odate::dayofweek (unsigned year, signed month, signed day)
 
 {
 	unsigned century;
-	odate::normalize(& year, & month);
+	odate::normalize (& year, & month);
 	if (month > 1)
 	{
 		-- month;
@@ -143,7 +143,7 @@ unsigned odate::dayofweek(unsigned year, signed month, signed day)
 	century = year / 100;
 	year = year % 100;
 	day += (26 * month - 1) / 10 +  5 * year / 4 +  century / 4 - 2 * century +  1;
-	return (odate::mindex.qmod(day, DAYS_IN_WEEK));
+	return (odate::mindex.qmod (day, DAYS_IN_WEEK));
 }
 
 /*====================================================================*
@@ -154,10 +154,10 @@ unsigned odate::dayofweek(unsigned year, signed month, signed day)
  *
  *--------------------------------------------------------------------*/
 
-unsigned odate::dayofyear(unsigned year, signed month, signed day)
+unsigned odate::dayofyear (unsigned year, signed month, signed day)
 
 {
-	static const signed days[MONTHS_IN_YEAR] = 
+	static const signed days [MONTHS_IN_YEAR] = 
 	{
 		0,
 		31,
@@ -175,8 +175,8 @@ unsigned odate::dayofyear(unsigned year, signed month, signed day)
 	month += year * MONTHS_IN_YEAR;
 	year = month / MONTHS_IN_YEAR;
 	month = month % MONTHS_IN_YEAR;
-	day += days[month];
-	if ((day > days[1]) && odate::isleap(year))
+	day += days [month];
+	if ((day > days [1]) && odate::isleap (year))
 	{
 		day++;
 	}
@@ -196,10 +196,10 @@ unsigned odate::dayofyear(unsigned year, signed month, signed day)
  *
  *--------------------------------------------------------------------*/
 
-unsigned odate::endofmonth(unsigned year, signed month)
+unsigned odate::endofmonth (unsigned year, signed month)
 
 {
-	static const unsigned days[MONTHS_IN_YEAR] = 
+	static const unsigned days [MONTHS_IN_YEAR] = 
 	{
 		31,
 		28,
@@ -215,9 +215,9 @@ unsigned odate::endofmonth(unsigned year, signed month)
 		31
 	};
 	unsigned day;
-	odate::normalize(& year, & month);
-	day = days[month];
-	if ((month == 1) && odate::isleap(year))
+	odate::normalize (& year, & month);
+	day = days [month];
+	if ((month == 1) && odate::isleap (year))
 	{
 		day++;
 	}
@@ -232,7 +232,7 @@ unsigned odate::endofmonth(unsigned year, signed month)
  *
  *--------------------------------------------------------------------*/
 
-void odate::normalize(unsigned * year, signed * month)
+void odate::normalize (unsigned * year, signed * month)
 
 {
 	* month += * year * MONTHS_IN_YEAR;
@@ -249,7 +249,7 @@ void odate::normalize(unsigned * year, signed * month)
  *
  *--------------------------------------------------------------------*/
 
-odate::odate()
+odate::odate ()
 
 {
 	return;
@@ -263,7 +263,7 @@ odate::odate()
  *
  *--------------------------------------------------------------------*/
 
-odate::~ odate()
+odate::~ odate ()
 
 {
 	return;

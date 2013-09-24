@@ -29,10 +29,10 @@
  *
  *--------------------------------------------------------------------*/
 
-ofunctions::ofunctions()
+ofunctions::ofunctions ()
 
 {
-	static char const * table[] = 
+	static char const * table [] = 
 	{
 		"_exit",
 		"abort",
@@ -173,9 +173,9 @@ ofunctions::ofunctions()
 		(char const *) (0)
 	};
 	okeywords::mtitle = "functions";
-	okeywords::mcount = sizeof(table) / sizeof(char const *) - 1;
+	okeywords::mcount = sizeof (table) / sizeof (char const *) - 1;
 	okeywords::mtable = table;
-	okeywords::mcheck();
+	okeywords::mcheck ();
 	return;
 }
 
@@ -189,7 +189,7 @@ ofunctions::ofunctions()
  *
  *--------------------------------------------------------------------*/
 
-ofunctions::~ ofunctions()
+ofunctions::~ ofunctions ()
 
 {
 	return;

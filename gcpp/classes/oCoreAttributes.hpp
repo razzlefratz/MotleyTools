@@ -22,17 +22,17 @@
  *   class declarations;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oCoreAttributes
+class __declspec (dllexport) oCoreAttributes
 
 {
 public: 
 	oCoreAttributes ();
-	virtual ~ oCoreAttributes();
+	virtual ~ oCoreAttributes ();
 	oAttribute * IdentityAttribute;
 	oAttribute * TitleAttribute;
 	oAttribute * ClassAttribute;
 	oAttribute * StyleAttribute;
-	oCoreAttributes & write();
+	oCoreAttributes & write ();
 private: 
 };
 

@@ -34,26 +34,26 @@
  *
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) ooutline
+class __declspec (dllexport) ooutline
 
 {
 public: 
 	ooutline (char const * symbol);
-	virtual ~ ooutline();
-	char const * title() const;
-	char const * string() const;
-	void * object() const;
-	otree * tree() const;
-	otree * nodes(long index) const;
-	otree * insert(long index, unsigned order, char const * symbol);
-	long first() const;
-	long final() const;
-	long count() const;
-	ooutline & string(char * string);
-	ooutline & object(void * object);
-	char const * strings(long index) const;
-	void * objects(long index) const;
-	ooutline & clear();
+	virtual ~ ooutline ();
+	char const * title () const;
+	char const * string () const;
+	void * object () const;
+	otree * tree () const;
+	otree * nodes (long index) const;
+	otree * insert (long index, unsigned order, char const * symbol);
+	long first () const;
+	long final () const;
+	long count () const;
+	ooutline & string (char * string);
+	ooutline & object (void * object);
+	char const * strings (long index) const;
+	void * objects (long index) const;
+	ooutline & clear ();
 private: 
 	otree * mtree;
 };

@@ -27,7 +27,7 @@
  *   class variables;     
  *--------------------------------------------------------------------*/
 
-char const * oswitch::mstate[] = 
+char const * oswitch::mstate [] = 
 
 {
 	"0",
@@ -68,12 +68,12 @@ char const * oswitch::mstate[] =
  *
  *--------------------------------------------------------------------*/
 
-bool oswitch::state(char const * string, bool state)
+bool oswitch::state (char const * string, bool state)
 
 {
-	for (unsigned index = 0; this->mstate[index]; index++)
+	for (unsigned index = 0; this->mstate [index]; index++)
 	{
-		if (! strcasecmp(this->mstate[index], string))
+		if (! strcasecmp (this->mstate [index], string))
 		{
 			return (index & 1);
 		}
@@ -91,7 +91,7 @@ bool oswitch::state(char const * string, bool state)
  *
  *--------------------------------------------------------------------*/
 
-oswitch::oswitch()
+oswitch::oswitch ()
 
 {
 	return;
@@ -107,7 +107,7 @@ oswitch::oswitch()
  *
  *--------------------------------------------------------------------*/
 
-oswitch::~ oswitch()
+oswitch::~ oswitch ()
 
 {
 	return;

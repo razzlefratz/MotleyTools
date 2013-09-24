@@ -28,14 +28,14 @@
  * 
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) odocument
+class __declspec (dllexport) odocument
 
 {
 public: 
 	odocument ();
-	virtual ~ odocument();
-	char const * title() const;
-	odocument & title(char const * title);
+	virtual ~ odocument ();
+	char const * title () const;
+	odocument & title (char const * title);
 private: 
 	char * mtitle;
 	otree root;

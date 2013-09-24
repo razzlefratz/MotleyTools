@@ -27,19 +27,19 @@
  *   declare interfaces;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) opassword
+class __declspec (dllexport) opassword
 
 {
 public: 
 	opassword (unsigned seed);
-	virtual ~ opassword();
-	unsigned count() const;
-	unsigned space() const;
-	unsigned group() const;
-	opassword & count(unsigned count);
-	opassword & space(unsigned space);
-	opassword & group(unsigned group);
-	opassword & print(unsigned value);
+	virtual ~ opassword ();
+	unsigned count () const;
+	unsigned space () const;
+	unsigned group () const;
+	opassword & count (unsigned count);
+	opassword & space (unsigned space);
+	opassword & group (unsigned group);
+	opassword & print (unsigned value);
 private: 
 	unsigned mindex;
 	unsigned mcount;

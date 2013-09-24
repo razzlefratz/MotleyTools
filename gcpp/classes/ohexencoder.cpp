@@ -21,7 +21,7 @@
  *   constant definitions an declarations;
  *--------------------------------------------------------------------*/
 
-char const ohexencoder::mdigit[] = "0123456789ABCDEF";
+char const ohexencoder::mdigit [] = "0123456789ABCDEF";
 
 /*====================================================================*
  *
@@ -30,7 +30,7 @@ char const ohexencoder::mdigit[] = "0123456789ABCDEF";
  *
  *--------------------------------------------------------------------*/
 
-char * ohexencoder::decode(char * string)
+char * ohexencoder::decode (char * string)
 
 {
 	char * target = string;
@@ -44,17 +44,17 @@ char * ohexencoder::decode(char * string)
 
 #endif
 
-	while ((* target = * string) != (char)(0))
+	while ((* target = * string) != (char) (0))
 	{
 		if (* string == '%')
 		{
-			signed upper = oascii::todigit(string[1]);
-			signed lower = oascii::todigit(string[2]);
+			signed upper = oascii::todigit (string [1]);
+			signed lower = oascii::todigit (string [2]);
 			if ((upper == - 1) || (lower == - 1))
 			{
 				continue;
 			}
-			* target = (char)((upper << 4) | lower);
+			* target = (char) ((upper << 4) | lower);
 			string++;
 			string++;
 		}
@@ -71,7 +71,7 @@ char * ohexencoder::decode(char * string)
  *
  *--------------------------------------------------------------------*/
 
-ohexencoder::ohexencoder()
+ohexencoder::ohexencoder ()
 
 {
 	return;
@@ -84,7 +84,7 @@ ohexencoder::ohexencoder()
  *   
  *--------------------------------------------------------------------*/
 
-ohexencoder::~ ohexencoder()
+ohexencoder::~ ohexencoder ()
 
 {
 	return;

@@ -33,7 +33,7 @@
  *   
  *--------------------------------------------------------------------*/
 
-oindent & oindent::space(signed space)
+oindent & oindent::space (signed space)
 
 {
 	this->mspace = space;
@@ -49,7 +49,7 @@ oindent & oindent::space(signed space)
  *   
  *--------------------------------------------------------------------*/
 
-signed oindent::space(void) const
+signed oindent::space (void) const
 
 {
 	return (this->mspace);
@@ -64,7 +64,7 @@ signed oindent::space(void) const
  *   
  *--------------------------------------------------------------------*/
 
-oindent & oindent::level(signed level)
+oindent & oindent::level (signed level)
 
 {
 	this->mlevel = level;
@@ -80,7 +80,7 @@ oindent & oindent::level(signed level)
  *   
  *--------------------------------------------------------------------*/
 
-signed oindent::level(void) const
+signed oindent::level (void) const
 
 {
 	return (this->mlevel);
@@ -92,7 +92,7 @@ signed oindent::level(void) const
  *
  *--------------------------------------------------------------------*/
 
-oindent & oindent::increment()
+oindent & oindent::increment ()
 
 {
 	this->mlevel++;
@@ -105,7 +105,7 @@ oindent & oindent::increment()
  *
  *--------------------------------------------------------------------*/
 
-oindent & oindent::decrement()
+oindent & oindent::decrement ()
 
 {
 	if (this->mlevel)
@@ -124,14 +124,14 @@ oindent & oindent::decrement()
  *
  *--------------------------------------------------------------------*/
 
-oindent & oindent::margin(char const * string)
+oindent & oindent::margin (char const * string)
 
 {
-	if (std::strcmp(string, this->mmargin))
+	if (std::strcmp (string, this->mmargin))
 	{
 		delete [] mmargin;
-		this->mmargin = new char[strlen(string) + 1];
-		std::strcpy(this->mmargin, string);
+		this->mmargin = new char [strlen (string) +  1];
+		std::strcpy (this->mmargin, string);
 	}
 	return (* this);
 }
@@ -145,10 +145,10 @@ oindent & oindent::margin(char const * string)
  *
  *--------------------------------------------------------------------*/
 
-char const * oindent::margin(void) const
+char const * oindent::margin (void) const
 
 {
-	return ((char const *)(this->mmargin));
+	return ((char const *) (this->mmargin));
 }
 
 /*====================================================================*
@@ -160,14 +160,14 @@ char const * oindent::margin(void) const
  *
  *--------------------------------------------------------------------*/
 
-oindent & oindent::offset(char const * string)
+oindent & oindent::offset (char const * string)
 
 {
-	if (std::strcmp(string, this->moffset))
+	if (std::strcmp (string, this->moffset))
 	{
 		delete [] moffset;
-		this->moffset = new char[strlen(string) + 1];
-		std::strcpy(this->moffset, string);
+		this->moffset = new char [strlen (string) +  1];
+		std::strcpy (this->moffset, string);
 	}
 	return (* this);
 }
@@ -181,10 +181,10 @@ oindent & oindent::offset(char const * string)
  *
  *--------------------------------------------------------------------*/
 
-char const * oindent::offset(void) const
+char const * oindent::offset (void) const
 
 {
-	return ((char const *)(this->moffset));
+	return ((char const *) (this->moffset));
 }
 
 /*====================================================================*
@@ -196,14 +196,14 @@ char const * oindent::offset(void) const
  *
  *--------------------------------------------------------------------*/
 
-oindent & oindent::finish(char const * string)
+oindent & oindent::finish (char const * string)
 
 {
-	if (std::strcmp(string, this->mfinish))
+	if (std::strcmp (string, this->mfinish))
 	{
 		delete [] mfinish;
-		this->mfinish = new char[strlen(string) + 1];
-		std::strcpy(this->mfinish, string);
+		this->mfinish = new char [strlen (string) +  1];
+		std::strcpy (this->mfinish, string);
 	}
 	return (* this);
 }
@@ -217,10 +217,10 @@ oindent & oindent::finish(char const * string)
  *
  *--------------------------------------------------------------------*/
 
-char const * oindent::finish(void) const
+char const * oindent::finish (void) const
 
 {
-	return ((char const *)(this->mfinish));
+	return ((char const *) (this->mfinish));
 }
 
 /*====================================================================*
@@ -232,14 +232,14 @@ char const * oindent::finish(void) const
  *
  *--------------------------------------------------------------------*/
 
-oindent & oindent::record(char const * string)
+oindent & oindent::record (char const * string)
 
 {
-	if (std::strcmp(string, this->mrecord))
+	if (std::strcmp (string, this->mrecord))
 	{
 		delete [] mrecord;
-		this->mrecord = new char[strlen(string) + 1];
-		std::strcpy(this->mrecord, string);
+		this->mrecord = new char [strlen (string) +  1];
+		std::strcpy (this->mrecord, string);
 	}
 	return (* this);
 }
@@ -253,10 +253,10 @@ oindent & oindent::record(char const * string)
  *
  *--------------------------------------------------------------------*/
 
-char const * oindent::record(void) const
+char const * oindent::record (void) const
 
 {
-	return ((char const *)(this->mrecord));
+	return ((char const *) (this->mrecord));
 }
 
 /*====================================================================*
@@ -269,24 +269,24 @@ char const * oindent::record(void) const
  *   
  *--------------------------------------------------------------------*/
 
-oindent & oindent::endline(void)
+oindent & oindent::endline (void)
 
 {
-	oindent::print(this->mfinish, this->mrecord, this->mspace);
+	oindent::print (this->mfinish, this->mrecord, this->mspace);
 	return (* this);
 }
 
-oindent & oindent::endline(signed space)
+oindent & oindent::endline (signed space)
 
 {
-	oindent::print(this->mfinish, this->mrecord, space);
+	oindent::print (this->mfinish, this->mrecord, space);
 	return (* this);
 }
 
-oindent & oindent::endline(char const * finish, char const * record, signed space)
+oindent & oindent::endline (char const * finish, char const * record, signed space)
 
 {
-	oindent::print(finish, record, space);
+	oindent::print (finish, record, space);
 	return (* this);
 }
 
@@ -300,24 +300,24 @@ oindent & oindent::endline(char const * finish, char const * record, signed spac
  *   
  *--------------------------------------------------------------------*/
 
-oindent & oindent::newline(void)
+oindent & oindent::newline (void)
 
 {
-	oindent::print(this->mmargin, this->moffset, this->mlevel);
+	oindent::print (this->mmargin, this->moffset, this->mlevel);
 	return (* this);
 }
 
-oindent & oindent::newline(signed level)
+oindent & oindent::newline (signed level)
 
 {
-	oindent::print(this->mmargin, this->moffset, level);
+	oindent::print (this->mmargin, this->moffset, level);
 	return (* this);
 }
 
-oindent & oindent::newline(char const * margin, char const * offset, signed level)
+oindent & oindent::newline (char const * margin, char const * offset, signed level)
 
 {
-	oindent::print(margin, offset, level);
+	oindent::print (margin, offset, level);
 	return (* this);
 }
 
@@ -327,12 +327,12 @@ oindent & oindent::newline(char const * margin, char const * offset, signed leve
  *
  *--------------------------------------------------------------------*/
 
-oindent & oindent::print(signed level, signed space, char const * string)
+oindent & oindent::print (signed level, signed space, char const * string)
 
 {
-	oindent::print(this->mmargin, this->moffset, level);
+	oindent::print (this->mmargin, this->moffset, level);
 	std::cout << string;
-	oindent::print(this->mfinish, this->mrecord, space);
+	oindent::print (this->mfinish, this->mrecord, space);
 	return (* this);
 }
 
@@ -345,7 +345,7 @@ oindent & oindent::print(signed level, signed space, char const * string)
  *   
  *--------------------------------------------------------------------*/
 
-void oindent::print(char const * prefix, char const * suffix, signed count)
+void oindent::print (char const * prefix, char const * suffix, signed count)
 
 {
 	for (std::cout << prefix; count-- > 0; std::cout << suffix);
@@ -359,19 +359,19 @@ void oindent::print(char const * prefix, char const * suffix, signed count)
  *
  *--------------------------------------------------------------------*/
 
-oindent::oindent(void)
+oindent::oindent (void)
 
 {
-	this->mmargin = new char[1];
-	this->mmargin[0] = '\0';
-	this->moffset = new char[2];
-	this->moffset[0] = '\t';
-	this->moffset[1] = '\0';
-	this->mfinish = new char[1];
-	this->mfinish[0] = '\0';
-	this->mrecord = new char[2];
-	this->mrecord[0] = '\n';
-	this->mrecord[1] = '\0';
+	this->mmargin = new char [1];
+	this->mmargin [0] = '\0';
+	this->moffset = new char [2];
+	this->moffset [0] = '\t';
+	this->moffset [1] = '\0';
+	this->mfinish = new char [1];
+	this->mfinish [0] = '\0';
+	this->mrecord = new char [2];
+	this->mrecord [0] = '\n';
+	this->mrecord [1] = '\0';
 	this->mspace = 1;
 	this->mlevel = 0;
 	return;
@@ -384,7 +384,7 @@ oindent::oindent(void)
  *
  *--------------------------------------------------------------------*/
 
-oindent::~ oindent(void)
+oindent::~ oindent (void)
 
 {
 	delete [] this->mmargin;

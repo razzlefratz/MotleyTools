@@ -35,7 +35,7 @@
  *
  *--------------------------------------------------------------------*/
 
-bool owildcard::match(char const * literal, char const * pattern)
+bool owildcard::match (char const * literal, char const * pattern)
 
 {
 
@@ -46,15 +46,15 @@ bool owildcard::match(char const * literal, char const * pattern)
 
 // cerr << "[" << *literal << "] [" << *pattern << "]" << std::endl;
 
-		if (* pattern == (char)(0))
+		if (* pattern == (char) (0))
 		{
 			return (false);
 		}
 		if (* pattern == this->allchar)
 		{
-			for (++ pattern; * literal != (char)(0); ++ literal)
+			for (++ pattern; * literal != (char) (0); ++ literal)
 			{
-				if (this->match(literal, pattern))
+				if (this->match (literal, pattern))
 				{
 					return (true);
 				}
@@ -75,7 +75,7 @@ bool owildcard::match(char const * literal, char const * pattern)
 		}
 		break;
 	}
-	return (* pattern == (char)(0));
+	return (* pattern == (char) (0));
 
 #else
 
@@ -92,7 +92,7 @@ bool owildcard::match(char const * literal, char const * pattern)
 		}
 		if (* cliteral == * cpattern)
 		{
-			if (* cpattern == (char)(0))
+			if (* cpattern == (char) (0))
 			{
 				return (true);
 			}
@@ -100,7 +100,7 @@ bool owildcard::match(char const * literal, char const * pattern)
 			cpattern++;
 			continue;
 		}
-		if (* cliteral == (char)(0))
+		if (* cliteral == (char) (0))
 		{
 			break;
 		}
@@ -132,7 +132,7 @@ bool owildcard::match(char const * literal, char const * pattern)
  *   
  *--------------------------------------------------------------------*/
 
-owildcard::owildcard()
+owildcard::owildcard ()
 
 {
 	this->anychar = '?';
@@ -149,11 +149,11 @@ owildcard::owildcard()
  *
  *--------------------------------------------------------------------*/
 
-owildcard::owildcard(unsigned char anychar, unsigned char allchar)
+owildcard::owildcard (unsigned char anychar, unsigned char allchar)
 
 {
-	this->anychar = (char)(anychar);
-	this->allchar = (char)(allchar);
+	this->anychar = (char) (anychar);
+	this->allchar = (char) (allchar);
 	return;
 }
 
@@ -163,7 +163,7 @@ owildcard::owildcard(unsigned char anychar, unsigned char allchar)
  *
  *--------------------------------------------------------------------*/
 
-owildcard::~ owildcard()
+owildcard::~ owildcard ()
 
 {
 	return;

@@ -28,22 +28,22 @@
  *
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oinclude: private otext
+class __declspec (dllexport) oinclude: private otext
 
 {
 public: 
-	virtual ~ oinclude(void);
+	virtual ~ oinclude (void);
 	oinclude (char const * title, char const * label);
 	oinclude (void);
-	signed state(void) const;
-	char const * title(void) const;
-	char const * label(void) const;
-	oinclude & state(signed state);
-	oinclude & filename(char const * filename);
-	oinclude & title(char const * title);
-	oinclude & label(char const * label);
-	oinclude & header(void);
-	oinclude & footer(void);
+	signed state (void) const;
+	char const * title (void) const;
+	char const * label (void) const;
+	oinclude & state (signed state);
+	oinclude & filename (char const * filename);
+	oinclude & title (char const * title);
+	oinclude & label (char const * label);
+	oinclude & header (void);
+	oinclude & footer (void);
 private: 
 	char * mtitle;
 	char * mclass;

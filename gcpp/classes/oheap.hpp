@@ -30,24 +30,24 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oheap
+class __declspec (dllexport) oheap
 
 {
 public: 
 	oheap ();
-	oheap (int order(char const *, char const *));
-	virtual ~ oheap();
-	oitem * item() const;
-	char const * title() const;
-	oheap & title(char const * string);
-	size_t count() const;
-	oitem * item();
-	oheap & insertitem(oitem * item);
-	oheap & clear();
+	oheap (int order (char const *, char const *));
+	virtual ~ oheap ();
+	oitem * item () const;
+	char const * title () const;
+	oheap & title (char const * string);
+	size_t count () const;
+	oitem * item ();
+	oheap & insertitem (oitem * item);
+	oheap & clear ();
 private: 
 	char * mtitle;
 	oitem ** mtable;
-	signed (* morder)(char const *, char const *);
+	signed (* morder) (char const *, char const *);
 	unsigned mstart;
 
 /* table lower bound */

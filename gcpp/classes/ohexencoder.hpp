@@ -23,17 +23,17 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) ohexencoder: private oascii
+class __declspec (dllexport) ohexencoder: private oascii
 
 {
 public: 
 	ohexencoder ();
-	virtual ~ ohexencoder();
-	static char * encode(char const * string);
-	static char * decode(char * string);
+	virtual ~ ohexencoder ();
+	static char * encode (char const * string);
+	static char * decode (char * string);
 private: 
 	static ochrupr mchrupr;
-	static char const mdigit[];
+	static char const mdigit [];
 	char * mbuffer;
 	size_t mlength;
 };

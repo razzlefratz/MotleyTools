@@ -55,7 +55,7 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned char oescape::mtable[UCHAR_MAX +  1] = 
+unsigned char oescape::mtable [UCHAR_MAX +  1] = 
 
 {
 	0,
@@ -328,10 +328,10 @@ unsigned char oescape::mtable[UCHAR_MAX +  1] =
  *
  *--------------------------------------------------------------------*/
 
-unsigned oescape::define(signed c, signed e)
+unsigned oescape::define (signed c, signed e)
 
 {
-	return (oescape::mtable[c & UCHAR_MAX] = e & UCHAR_MAX);
+	return (oescape::mtable [c & UCHAR_MAX] = e & UCHAR_MAX);
 }
 
 /*====================================================================*
@@ -347,10 +347,10 @@ unsigned oescape::define(signed c, signed e)
  *
  *--------------------------------------------------------------------*/
 
-unsigned oescape::unescape(signed c)
+unsigned oescape::unescape (signed c)
 
 {
-	return (oescape::mtable[(unsigned)(c) & UCHAR_MAX]);
+	return (oescape::mtable [(unsigned) (c) & UCHAR_MAX]);
 }
 
 /*====================================================================*
@@ -367,19 +367,19 @@ unsigned oescape::unescape(signed c)
  *
  *--------------------------------------------------------------------*/
 
-char * oescape::unescape(register char * string)
+char * oescape::unescape (register char * string)
 
 {
 	register char * sp = string;
 	register char * cp = string;
-	if (string) for(sp = cp = string; (* sp = * cp++); ++ sp)
+	if (string) for (sp = cp = string; (* sp = * cp++); ++ sp)
 	{
 		if (* sp == '\\')
 		{
-			if (isoctal(* cp))
+			if (isoctal (* cp))
 			{
 				unsigned digits = 3;
-				while ((digits--) && isoctal(* cp))
+				while ((digits--) && isoctal (* cp))
 				{
 					* sp *= 8;
 					* sp += * cp++ - '0';
@@ -390,13 +390,13 @@ char * oescape::unescape(register char * string)
 			{
 				cp++;
 				* sp = 0;
-				if (oascii::isxdigit(* cp))
+				if (oascii::isxdigit (* cp))
 				{
-					* sp = (* sp << 4) +  oascii::todigit(* cp++);
+					* sp = (* sp << 4) +  oascii::todigit (* cp++);
 				}
-				if (oascii::isxdigit(* cp))
+				if (oascii::isxdigit (* cp))
 				{
-					* sp = (* sp << 4) +  oascii::todigit(* cp++);
+					* sp = (* sp << 4) +  oascii::todigit (* cp++);
 				}
 				continue;
 			}
@@ -446,7 +446,7 @@ char * oescape::unescape(register char * string)
 
 #else
 
-			* sp = oescape::unescape(* cp++);
+			* sp = oescape::unescape (* cp++);
 
 #endif
 
@@ -502,7 +502,7 @@ char * oescape::unescape(register char * string)
 
 		if (* sp == '^')
 		{
-			* sp = oascii::tocntrl(* cp++);
+			* sp = oascii::tocntrl (* cp++);
 			continue;
 		}
 	}
@@ -520,7 +520,7 @@ char * oescape::unescape(register char * string)
  *
  *--------------------------------------------------------------------*/
 
-oescape::oescape()
+oescape::oescape ()
 
 {
 	return;
@@ -537,7 +537,7 @@ oescape::oescape()
  *
  *--------------------------------------------------------------------*/
 
-oescape::~ oescape()
+oescape::~ oescape ()
 
 {
 	return;

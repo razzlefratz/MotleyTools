@@ -44,7 +44,7 @@
  *
  *--------------------------------------------------------------------*/
 
-huge_t onumber::uintspec(char const * string, huge_t minimum, huge_t maximum)
+huge_t onumber::uintspec (char const * string, huge_t minimum, huge_t maximum)
 
 {
 	char const * number = string;
@@ -59,13 +59,13 @@ huge_t onumber::uintspec(char const * string, huge_t minimum, huge_t maximum)
 			radix = BIN_RADIX;
 			number++;
 		}
-		else if((* number == 'x') || (* number == 'X'))
+		else if ((* number == 'x') || (* number == 'X'))
 		{
 			radix = HEX_RADIX;
 			number++;
 		}
 	}
-	while ((digit = onumber::todigit(* number)) < radix)
+	while ((digit = onumber::todigit (* number)) < radix)
 	{
 		value *= radix;
 		value += digit;
@@ -73,11 +73,11 @@ huge_t onumber::uintspec(char const * string, huge_t minimum, huge_t maximum)
 	}
 	if (* number)
 	{
-		oerror::error(1, EINVAL, "Have '%s' but want an unsigned integer", string);
+		oerror::error (1, EINVAL, "Have '%s' but want an unsigned integer", string);
 	}
 	if ((value < minimum) || (value > maximum))
 	{
-		oerror::error(1, ERANGE, "Have '%s' but want %llu thru %llu", string, minimum, maximum);
+		oerror::error (1, ERANGE, "Have '%s' but want %llu thru %llu", string, minimum, maximum);
 	}
 	return (value);
 }
@@ -102,7 +102,7 @@ huge_t onumber::uintspec(char const * string, huge_t minimum, huge_t maximum)
  *
  *--------------------------------------------------------------------*/
 
-huge_t onumber::basespec(char const * string, unsigned base, unsigned size)
+huge_t onumber::basespec (char const * string, unsigned base, unsigned size)
 
 {
 	char const * number = string;
@@ -110,7 +110,7 @@ huge_t onumber::basespec(char const * string, unsigned base, unsigned size)
 	unsigned digit = 0;
 	huge_t limit = ~ 0;
 	huge_t value = 0;
-	if (size < sizeof(limit))
+	if (size < sizeof (limit))
 	{
 		limit <<= size << 3;
 		limit = ~ limit;
@@ -127,12 +127,12 @@ huge_t onumber::basespec(char const * string, unsigned base, unsigned size)
 			radix = BIN_RADIX;
 			number++;
 		}
-		else if((* number == 'd') || (* number == 'D'))
+		else if ((* number == 'd') || (* number == 'D'))
 		{
 			radix = DEC_RADIX;
 			number++;
 		}
-		else if((* number == 'x') || (* number == 'X'))
+		else if ((* number == 'x') || (* number == 'X'))
 		{
 			radix = HEX_RADIX;
 			number++;
@@ -140,22 +140,22 @@ huge_t onumber::basespec(char const * string, unsigned base, unsigned size)
 	}
 	if ((base) && (base != radix))
 	{
-		oerror::error(1, EINVAL, "%s is not base %d notation", string, base);
+		oerror::error (1, EINVAL, "%s is not base %d notation", string, base);
 	}
-	while ((digit = onumber::todigit(* number)) < radix)
+	while ((digit = onumber::todigit (* number)) < radix)
 	{
 		value *= radix;
 		value += digit;
 		if (value > limit)
 		{
-			oerror::error(1, ERANGE, "%s exceeds %d bits", string, (size << 3));
+			oerror::error (1, ERANGE, "%s exceeds %d bits", string, (size << 3));
 		}
 		number++;
 	}
 
 #ifdef WIN32
 
-	while (std::isspace(* number))
+	while (std::isspace (* number))
 	{
 		number++;
 	}
@@ -164,7 +164,7 @@ huge_t onumber::basespec(char const * string, unsigned base, unsigned size)
 
 	if (* number)
 	{
-		oerror::error(1, EINVAL, "%s is not base %d notation", string, radix);
+		oerror::error (1, EINVAL, "%s is not base %d notation", string, radix);
 	}
 	return (value);
 }
@@ -187,7 +187,7 @@ huge_t onumber::basespec(char const * string, unsigned base, unsigned size)
  *
  *--------------------------------------------------------------------*/
 
-size_t onumber::ipv4spec(char const * string, void * memory)
+size_t onumber::ipv4spec (char const * string, void * memory)
 
 {
 	char const * number = string;
@@ -206,13 +206,13 @@ size_t onumber::ipv4spec(char const * string, void * memory)
 				number++;
 			}
 		}
-		while ((digit = onumber::todigit(* number)) < radix)
+		while ((digit = onumber::todigit (* number)) < radix)
 		{
 			value *= radix;
 			value += digit;
 			if (value >> 8)
 			{
-				oerror::error(1, ERANGE, "IPv4 '%s' octet %d exceeds 8 bits", string, ((offset - origin) >> 1) +  1);
+				oerror::error (1, ERANGE, "IPv4 '%s' octet %d exceeds 8 bits", string, ((offset - origin) >> 1) +  1);
 			}
 			number++;
 		}
@@ -221,7 +221,7 @@ size_t onumber::ipv4spec(char const * string, void * memory)
 
 #if defined (WIN32)
 
-	while (std::isspace(* number))
+	while (std::isspace (* number))
 	{
 		number++;
 	}
@@ -230,11 +230,11 @@ size_t onumber::ipv4spec(char const * string, void * memory)
 
 	if (offset < extent)
 	{
-		oerror::error(1, EINVAL, "IPv4 '%s' has only %d octets", string, offset - origin);
+		oerror::error (1, EINVAL, "IPv4 '%s' has only %d octets", string, offset - origin);
 	}
 	if (* number)
 	{
-		oerror::error(1, EINVAL, "IPv4 '%s' contains trash '%s'", string, number);
+		oerror::error (1, EINVAL, "IPv4 '%s' contains trash '%s'", string, number);
 	}
 	return (offset - origin);
 }
@@ -254,7 +254,7 @@ size_t onumber::ipv4spec(char const * string, void * memory)
  *
  *--------------------------------------------------------------------*/
 
-size_t onumber::ipv6spec(char const * string, void * memory)
+size_t onumber::ipv6spec (char const * string, void * memory)
 
 {
 	char const * number = string;
@@ -278,13 +278,13 @@ size_t onumber::ipv6spec(char const * string, void * memory)
 				marker = offset;
 			}
 		}
-		while ((digit = onumber::todigit(* number)) < radix)
+		while ((digit = onumber::todigit (* number)) < radix)
 		{
 			value *= radix;
 			value += digit;
 			if (value >> 16)
 			{
-				oerror::error(1, ERANGE, "IPv6 '%s' field %d exceeds 16 bits", string, ((offset - origin) >> 1) +  1);
+				oerror::error (1, ERANGE, "IPv6 '%s' field %d exceeds 16 bits", string, ((offset - origin) >> 1) +  1);
 			}
 			number++;
 		}
@@ -294,7 +294,7 @@ size_t onumber::ipv6spec(char const * string, void * memory)
 
 #if defined (WIN32)
 
-	while (std::isspace(* number))
+	while (std::isspace (* number))
 	{
 		number++;
 	}
@@ -303,7 +303,7 @@ size_t onumber::ipv6spec(char const * string, void * memory)
 
 	if (* number)
 	{
-		oerror::error(1, EINVAL, "IPv6 '%s' includes trash '%s'", string, number);
+		oerror::error (1, EINVAL, "IPv6 '%s' includes trash '%s'", string, number);
 	}
 	if (offset < extent)
 	{
@@ -318,7 +318,7 @@ size_t onumber::ipv6spec(char const * string, void * memory)
 	}
 	if (offset < marker)
 	{
-		oerror::error(1, EINVAL, "IPv6 '%s' has only %d fields", string, (offset - origin) >> 1);
+		oerror::error (1, EINVAL, "IPv6 '%s' has only %d fields", string, (offset - origin) >> 1);
 	}
 	return (offset - origin);
 }
@@ -344,7 +344,7 @@ size_t onumber::ipv6spec(char const * string, void * memory)
  *
  *--------------------------------------------------------------------*/
 
-void * onumber::ipv4encode(char const * string, void * memory)
+void * onumber::ipv4encode (char const * string, void * memory)
 
 {
 	char const * number = string;
@@ -363,13 +363,13 @@ void * onumber::ipv4encode(char const * string, void * memory)
 				number++;
 			}
 		}
-		while ((digit = onumber::todigit(* number)) < radix)
+		while ((digit = onumber::todigit (* number)) < radix)
 		{
 			value *= radix;
 			value += digit;
 			if (value >> 8)
 			{
-				oerror::error(1, ERANGE, "IPv4 '%s' octet %d exceeds 8 bits", string, ((offset - origin) >> 1) +  1);
+				oerror::error (1, ERANGE, "IPv4 '%s' octet %d exceeds 8 bits", string, ((offset - origin) >> 1) +  1);
 			}
 			number++;
 		}
@@ -378,7 +378,7 @@ void * onumber::ipv4encode(char const * string, void * memory)
 
 #if defined (WIN32)
 
-	while (std::isspace(* number))
+	while (std::isspace (* number))
 	{
 		number++;
 	}
@@ -387,11 +387,11 @@ void * onumber::ipv4encode(char const * string, void * memory)
 
 	if (offset < extent)
 	{
-		oerror::error(1, EINVAL, "IPv4 '%s' has only %d octets", string, offset - origin);
+		oerror::error (1, EINVAL, "IPv4 '%s' has only %d octets", string, offset - origin);
 	}
 	if (* number)
 	{
-		oerror::error(1, EINVAL, "IPv4 '%s' contains trash '%s'", string, number);
+		oerror::error (1, EINVAL, "IPv4 '%s' contains trash '%s'", string, number);
 	}
 	return ((void *) (offset));
 }
@@ -411,7 +411,7 @@ void * onumber::ipv4encode(char const * string, void * memory)
  *
  *--------------------------------------------------------------------*/
 
-void * onumber::ipv6encode(char const * string, void * memory)
+void * onumber::ipv6encode (char const * string, void * memory)
 
 {
 	char const * number = string;
@@ -435,13 +435,13 @@ void * onumber::ipv6encode(char const * string, void * memory)
 				marker = offset;
 			}
 		}
-		while ((digit = onumber::todigit(* number)) < radix)
+		while ((digit = onumber::todigit (* number)) < radix)
 		{
 			value *= radix;
 			value += digit;
 			if (value >> 16)
 			{
-				oerror::error(1, ERANGE, "IPv6 '%s' field %d exceeds 16 bits", string, ((offset - origin) >> 1) +  1);
+				oerror::error (1, ERANGE, "IPv6 '%s' field %d exceeds 16 bits", string, ((offset - origin) >> 1) +  1);
 			}
 			number++;
 		}
@@ -451,7 +451,7 @@ void * onumber::ipv6encode(char const * string, void * memory)
 
 #if defined (WIN32)
 
-	while (std::isspace(* number))
+	while (std::isspace (* number))
 	{
 		number++;
 	}
@@ -460,7 +460,7 @@ void * onumber::ipv6encode(char const * string, void * memory)
 
 	if (* number)
 	{
-		oerror::error(1, EINVAL, "IPv6 '%s' includes trash '%s'", string, number);
+		oerror::error (1, EINVAL, "IPv6 '%s' includes trash '%s'", string, number);
 	}
 	if (offset < extent)
 	{
@@ -475,7 +475,7 @@ void * onumber::ipv6encode(char const * string, void * memory)
 	}
 	if (offset < marker)
 	{
-		oerror::error(1, EINVAL, "IPv6 '%s' has only %d fields", string, (offset - origin) >> 1);
+		oerror::error (1, EINVAL, "IPv6 '%s' has only %d fields", string, (offset - origin) >> 1);
 	}
 	return ((void *) (offset));
 }
@@ -488,7 +488,7 @@ void * onumber::ipv6encode(char const * string, void * memory)
  *
  *--------------------------------------------------------------------*/
 
-signed onumber::todigit(signed c)
+signed onumber::todigit (signed c)
 
 {
 	if ((c >= '0') && (c <= '9'))
@@ -512,7 +512,7 @@ signed onumber::todigit(signed c)
  *   
  *--------------------------------------------------------------------*/
 
-onumber::onumber()
+onumber::onumber ()
 
 {
 	return;
@@ -524,7 +524,7 @@ onumber::onumber()
  *
  *--------------------------------------------------------------------*/
 
-onumber::~ onumber()
+onumber::~ onumber ()
 
 {
 	return;

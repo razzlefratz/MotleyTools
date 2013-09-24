@@ -55,31 +55,31 @@ ofileopen fileopen;
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"",
 		PUTOPTV_S_FILTER,
 		"demonstrate ofileopen object featureS",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	ogetoptv getopt(1);
+	ogetoptv getopt (1);
 	oputoptv putopt;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
-	while ((c = getopt.getoptv(argc, argv, optv)) != - 1)
+	while ((c = getopt.getoptv (argc, argv, optv)) != - 1)
 	{
-		switch ((char)(c))
+		switch ((char) (c))
 		{
 		default: 
 			break;
 		}
 	}
-	while ((getopt.argc() > 0) && (* getopt.argv() != (char *)(0)))
+	while ((getopt.argc () > 0) && (* getopt.argv () != (char *) (0)))
 	{
-		if (fileopen.opensave(* getopt.argv(), "bak"))
+		if (fileopen.opensave (* getopt.argv (), "bak"))
 		{
 		}
 		getopt++;

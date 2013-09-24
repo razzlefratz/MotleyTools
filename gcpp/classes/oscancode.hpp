@@ -44,14 +44,14 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oscancode: public oscantext
+class __declspec (dllexport) oscancode: public oscantext
 
 {
 public: 
 	oscancode ();
-	~ oscancode();
-	oscancode & scantoken();
-	oscancode & elaborate();
+	~ oscancode ();
+	oscancode & scantoken ();
+	oscancode & elaborate ();
 private: 
 	static ocprocwords cprocword;
 	static oclangwords clangword;

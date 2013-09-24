@@ -35,7 +35,7 @@
  *   variable definitions;
  *--------------------------------------------------------------------*/
 
-const struct _code_ osyslogspec::facilities[] = 
+const struct _code_ osyslogspec::facilities [] = 
 
 {
 	{
@@ -128,11 +128,11 @@ const struct _code_ osyslogspec::facilities[] =
 	},
 	{
 		(- 1),
-		(char const *)(0)
+		(char const *) (0)
 	}
 };
 
-const struct _code_ osyslogspec::severities[] = 
+const struct _code_ osyslogspec::severities [] = 
 
 {
 	{
@@ -189,7 +189,7 @@ const struct _code_ osyslogspec::severities[] =
 	},
 	{
 		(- 1),
-		(char const *)(0),
+		(char const *) (0),
 	}
 };
 
@@ -207,33 +207,33 @@ const struct _code_ osyslogspec::severities[] =
  *
  *--------------------------------------------------------------------*/
 
-int osyslogspec::encode(char const * string) const
+int osyslogspec::encode (char const * string) const
 
 {
 	facility_t facility;
 	severity_t severity;
-	char buffer[SYSLOG_FACILITY_MAX];
+	char buffer [SYSLOG_FACILITY_MAX];
 	char * sp;
-	for (sp = buffer; * string != (char)(0); string++)
+	for (sp = buffer; * string != (char) (0); string++)
 	{
 		if (* string == SYSLOG_EXTENDER)
 		{
 			string++;
 			break;
 		}
-		if ((sp - buffer) < (int) (sizeof(buffer) - 1))
+		if ((sp - buffer) < (int) (sizeof (buffer) - 1))
 		{
 			* sp++ = * string;
 		}
 	}
 	* sp = (char) (0);
-	if ((facility = lookup(buffer, osyslogspec::facilities)) == (facility_t) (- 1))
+	if ((facility = lookup (buffer, osyslogspec::facilities)) == (facility_t) (- 1))
 	{
-		oerror::error(1, 0, "%s: illegal facility name", buffer);
+		oerror::error (1, 0, "%s: illegal facility name", buffer);
 	}
-	if ((severity = lookup(string, osyslogspec::severities)) == (severity_t) (- 1))
+	if ((severity = lookup (string, osyslogspec::severities)) == (severity_t) (- 1))
 	{
-		oerror::error(1, 0, "%s: illegal severity name", string);
+		oerror::error (1, 0, "%s: illegal severity name", string);
 	}
 	return (facility | severity);
 }
@@ -251,27 +251,27 @@ int osyslogspec::encode(char const * string) const
  *
  *--------------------------------------------------------------------*/
 
-char const * osyslogspec::decode(int flagword) const
+char const * osyslogspec::decode (int flagword) const
 
 {
 	const struct _code_ * facility;
 	const struct _code_ * severity;
-	static char buffer[SYSLOG_FACILITY_MAX +  SYSLOG_SEVERITY_MAX];
-	for (facility = osyslogspec::facilities; facility->name != (char *)(0); facility++)
+	static char buffer [SYSLOG_FACILITY_MAX +  SYSLOG_SEVERITY_MAX];
+	for (facility = osyslogspec::facilities; facility->name != (char *) (0); facility++)
 	{
 		if (facility->code & flagword)
 		{
 			break;
 		}
 	}
-	for (severity = osyslogspec::severities; severity->name != (char *)(0); severity++)
+	for (severity = osyslogspec::severities; severity->name != (char *) (0); severity++)
 	{
 		if (severity->code & flagword)
 		{
 			break;
 		}
 	}
-	std::snprintf(buffer, sizeof(buffer), "[%s.%s][%04X]", facility->name, severity->name, flagword);
+	std::snprintf (buffer, sizeof (buffer), "[%s.%s][%04X]", facility->name, severity->name, flagword);
 	return (buffer);
 }
 
@@ -288,20 +288,20 @@ char const * osyslogspec::decode(int flagword) const
  *
  *--------------------------------------------------------------------*/
 
-int osyslogspec::lookup(char const * string, const struct _code_ table[]) const
+int osyslogspec::lookup (char const * string, const struct _code_ table []) const
 
 {
 	const struct _code_ * index;
 	char const * sp;
 	int code = 0;
-	for (sp = string; isdigit(* sp); code = (code * 10) + (* sp++ - '0'));
-	if (* sp == (char)(0))
+	for (sp = string; isdigit (* sp); code = (code * 10) +  (* sp++ - '0'));
+	if (* sp == (char) (0))
 	{
 		return (code);
 	}
-	for (index = table; index->name != (char const *)(0); index++)
+	for (index = table; index->name != (char const *) (0); index++)
 	{
-		if (strcmp(string, index->name) == 0)
+		if (strcmp (string, index->name) == 0)
 		{
 			return (index->code);
 		}
@@ -320,7 +320,7 @@ int osyslogspec::lookup(char const * string, const struct _code_ table[]) const
  *
  *--------------------------------------------------------------------*/
 
-osyslogspec::osyslogspec()
+osyslogspec::osyslogspec ()
 
 {
 	return;
@@ -337,7 +337,7 @@ osyslogspec::osyslogspec()
  *
  *--------------------------------------------------------------------*/
 
-osyslogspec::~ osyslogspec()
+osyslogspec::~ osyslogspec ()
 
 {
 	return;

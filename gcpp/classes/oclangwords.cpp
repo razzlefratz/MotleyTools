@@ -30,10 +30,10 @@
  *
  *--------------------------------------------------------------------*/
 
-oclangwords::oclangwords()
+oclangwords::oclangwords ()
 
 {
-	static char const * table[] = 
+	static char const * table [] = 
 	{
 		"auto",
 		"break",
@@ -69,12 +69,12 @@ oclangwords::oclangwords()
 		"void",
 		"volatile",
 		"while",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	okeywords::mtitle = "clangwords";
-	okeywords::mcount = SIZEOF(table) - 1;
+	okeywords::mcount = SIZEOF (table) - 1;
 	okeywords::mtable = table;
-	okeywords::mcheck();
+	okeywords::mcheck ();
 	return;
 }
 
@@ -88,7 +88,7 @@ oclangwords::oclangwords()
  *
  *--------------------------------------------------------------------*/
 
-oclangwords::~ oclangwords()
+oclangwords::~ oclangwords ()
 
 {
 	return;

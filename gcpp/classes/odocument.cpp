@@ -33,10 +33,10 @@
  *
  *--------------------------------------------------------------------*/
 
-char const * odocument::title() const
+char const * odocument::title () const
 
 {
-	return (this->root->title());
+	return (this->root->title ());
 }
 
 /*====================================================================*
@@ -47,10 +47,10 @@ char const * odocument::title() const
  *
  *--------------------------------------------------------------------*/
 
-odocument & odocument::title(char const * title)
+odocument & odocument::title (char const * title)
 
 {
-	this->root->title(title);
+	this->root->title (title);
 	return (* this);
 }
 
@@ -58,21 +58,21 @@ odocument & odocument::title(char const * title)
  *
  *--------------------------------------------------------------------*/
 
-odocument::odocument()
+odocument::odocument ()
 
 {
-	this->root = new otree();
+	this->root = new otree ();
 	return;
 }
 
-odocument::odocument(char const * title)
+odocument::odocument (char const * title)
 
 {
-	this->root = new otree(title);
+	this->root = new otree (title);
 	return;
 }
 
-odocument::~ odocument()
+odocument::~ odocument ()
 
 {
 	delete [] this->mtitle;

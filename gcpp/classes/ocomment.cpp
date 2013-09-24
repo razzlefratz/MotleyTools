@@ -37,13 +37,13 @@
 
 #if oCOMMENT_EXTENDBAR
 
-size_t ocomment::width(void) const
+size_t ocomment::width (void) const
 
 {
 	return (this->mwidth);
 }
 
-ocomment & ocomment::width(size_t width)
+ocomment & ocomment::width (size_t width)
 
 {
 	this->mwidth = width;
@@ -62,13 +62,13 @@ ocomment & ocomment::width(size_t width)
 
 #if oCOMMENT_EXTENDBAR
 
-unsigned char ocomment::cupper(void) const
+unsigned char ocomment::cupper (void) const
 
 {
 	return (this->mupper);
 }
 
-ocomment & ocomment::cupper(unsigned char upper)
+ocomment & ocomment::cupper (unsigned char upper)
 
 {
 	this->mupper = upper;
@@ -87,13 +87,13 @@ ocomment & ocomment::cupper(unsigned char upper)
 
 #if oCOMMENT_EXTENDBAR
 
-unsigned char ocomment::clower(void) const
+unsigned char ocomment::clower (void) const
 
 {
 	return (this->mlower);
 }
 
-ocomment & ocomment::clower(unsigned char lower)
+ocomment & ocomment::clower (unsigned char lower)
 
 {
 	this->mlower = lower;
@@ -113,16 +113,16 @@ ocomment & ocomment::clower(unsigned char lower)
 #if oCOMMENT_EXTENDBAR
 #if oCOMMENT_CUSTOMIZE
 
-char const * ocomment::preface(void) const
+char const * ocomment::preface (void) const
 
 {
 	return (this->mpreface);
 }
 
-ocomment & ocomment::preface(char const * preface)
+ocomment & ocomment::preface (char const * preface)
 
 {
-	this->mpreface = otext::replace(this->mpreface, preface);
+	this->mpreface = otext::replace (this->mpreface, preface);
 	return (* this);
 }
 
@@ -140,16 +140,16 @@ ocomment & ocomment::preface(char const * preface)
 #if oCOMMENT_EXTENDBAR
 #if oCOMMENT_CUSTOMIZE
 
-char const * ocomment::package(void) const
+char const * ocomment::package (void) const
 
 {
 	return (this->mpackage);
 }
 
-ocomment & ocomment::package(char const * package)
+ocomment & ocomment::package (char const * package)
 
 {
-	this->mpackage = otext::replace(this->mpackage, package);
+	this->mpackage = otext::replace (this->mpackage, package);
 	return (* this);
 }
 
@@ -167,16 +167,16 @@ ocomment & ocomment::package(char const * package)
 #if oCOMMENT_EXTENDBAR
 #if oCOMMENT_CUSTOMIZE
 
-char const * ocomment::release(void) const
+char const * ocomment::release (void) const
 
 {
 	return (this->mrelease);
 }
 
-ocomment & ocomment::release(char const * release)
+ocomment & ocomment::release (char const * release)
 
 {
-	this->mrelease = otext::replace(this->mrelease, release);
+	this->mrelease = otext::replace (this->mrelease, release);
 	return (* this);
 }
 
@@ -194,16 +194,16 @@ ocomment & ocomment::release(char const * release)
 #if oCOMMENT_EXTENDBAR
 #if oCOMMENT_CUSTOMIZE
 
-char const * ocomment::license(void) const
+char const * ocomment::license (void) const
 
 {
 	return (this->mlicense);
 }
 
-ocomment & ocomment::license(char const * license)
+ocomment & ocomment::license (char const * license)
 
 {
-	this->mlicense = otext::replace(this->mlicense, license);
+	this->mlicense = otext::replace (this->mlicense, license);
 	return (* this);
 }
 
@@ -221,16 +221,16 @@ ocomment & ocomment::license(char const * license)
 #if oCOMMENT_EXTENDBAR
 #if oCOMMENT_CUSTOMIZE
 
-char const * ocomment::special(void) const
+char const * ocomment::special (void) const
 
 {
 	return (this->mspecial);
 }
 
-ocomment & ocomment::special(char const * special)
+ocomment & ocomment::special (char const * special)
 
 {
-	this->mspecial = otext::replace(this->mspecial, special);
+	this->mspecial = otext::replace (this->mspecial, special);
 	return (* this);
 }
 
@@ -245,7 +245,7 @@ ocomment & ocomment::special(char const * special)
  *   
  *--------------------------------------------------------------------*/
 
-ocomment & ocomment::preamble(void)
+ocomment & ocomment::preamble (void)
 
 {
 	std::cout << "/*===*" << std::endl;
@@ -274,30 +274,30 @@ ocomment & ocomment::preamble(void)
  *   
  *--------------------------------------------------------------------*/
 
-signed ocomment::preamble(signed c)
+signed ocomment::preamble (signed c)
 
 {
-	if (ocomment::anyset(oCOMMENT_B_COMMENT))
+	if (ocomment::anyset (oCOMMENT_B_COMMENT))
 	{
 		while (c != EOF)
 		{
 			if (c == '/')
 			{
-				c = ocomment::comment(c);
+				c = ocomment::comment (c);
 				continue;
 			}
 			if (c == ';')
 			{
-				std::cout.put(c);
-				c = std::cin.get();
+				std::cout.put (c);
+				c = std::cin.get ();
 				continue;
 			}
-			if (oascii::isspace(c))
+			if (oascii::isspace (c))
 			{
-				c = std::cin.get();
+				c = std::cin.get ();
 				continue;
 			}
-			ocomment::preamble();
+			ocomment::preamble ();
 			break;
 		}
 	}
@@ -312,21 +312,21 @@ signed ocomment::preamble(signed c)
  *
  *--------------------------------------------------------------------*/
 
-signed ocomment::comment(signed c)
+signed ocomment::comment (signed c)
 
 {
-	c = std::cin.get();
+	c = std::cin.get ();
 	if (c == '/')
 	{
-		c = ocomment::cplus(c);
+		c = ocomment::cplus (c);
 		return (c);
 	}
 	if (c == '*')
 	{
-		c = ocomment::clang(c);
+		c = ocomment::clang (c);
 		return (c);
 	}
-	std::cout.put('/');
+	std::cout.put ('/');
 	return (c);
 }
 
@@ -346,64 +346,64 @@ signed ocomment::comment(signed c)
  *
  *--------------------------------------------------------------------*/
 
-signed ocomment::cplus(signed c)
+signed ocomment::cplus (signed c)
 
 {
 	while (c == '/')
 	{
-		c = std::cin.get();
+		c = std::cin.get ();
 	}
-	if (ocomment::anyset(oCOMMENT_B_DOUBLE))
+	if (ocomment::anyset (oCOMMENT_B_DOUBLE))
 	{
-		std::cout.put('/');
-		std::cout.put('*');
-		if (ocomment::anyset(oCOMMENT_B_TRIPLE))
+		std::cout.put ('/');
+		std::cout.put ('*');
+		if (ocomment::anyset (oCOMMENT_B_TRIPLE))
 		{
-			std::cout.put('\n');
-			std::cout.put(' ');
-			std::cout.put('*');
+			std::cout.put ('\n');
+			std::cout.put (' ');
+			std::cout.put ('*');
 		}
-		while (oascii::nobreak(c))
+		while (oascii::nobreak (c))
 		{
-			std::cout.put(c);
-			c = std::cin.get();
+			std::cout.put (c);
+			c = std::cin.get ();
 		}
-		if (ocomment::anyset(oCOMMENT_B_TRIPLE))
+		if (ocomment::anyset (oCOMMENT_B_TRIPLE))
 		{
-			std::cout.put('\n');
+			std::cout.put ('\n');
 		}
-		std::cout.put(' ');
-		std::cout.put('*');
-		std::cout.put('/');
+		std::cout.put (' ');
+		std::cout.put ('*');
+		std::cout.put ('/');
 	}
 	else 
 	{
 		bool space = false;
-		std::cout.put('/');
-		std::cout.put('/');
-		while (oascii::nobreak(c))
+		std::cout.put ('/');
+		std::cout.put ('/');
+		while (oascii::nobreak (c))
 		{
-			if (oascii::isblank(c))
+			if (oascii::isblank (c))
 			{
-				c = std::cin.get();
+				c = std::cin.get ();
 				space = true;
 				continue;
 			}
 			if (space)
 			{
-				std::cout.put(' ');
+				std::cout.put (' ');
 				space = false;
 				continue;
 			}
-			std::cout.put(c);
-			c = std::cin.get();
+			std::cout.put (c);
+			c = std::cin.get ();
 		}
 		if (c != EOF)
 		{
-			std::cout.put(c);
+			std::cout.put (c);
 		}
 	}
-	c = std::cin.get();
+	c = std::cin.get ();
 	return (c);
 }
 
@@ -445,11 +445,11 @@ signed ocomment::cplus(signed c)
  *
  *--------------------------------------------------------------------*/
 
-signed ocomment::clang(signed c)
+signed ocomment::clang (signed c)
 
 {
 	this->mcount = 0;
-	std::cout.put('/');
+	std::cout.put ('/');
 	while ((c != '/') && (c != EOF))
 	{
 
@@ -468,7 +468,7 @@ signed ocomment::clang(signed c)
 			signed start = c;
 			while (c == start)
 			{
-				c = std::cin.get();
+				c = std::cin.get ();
 				width++;
 			}
 			if (c == '*')
@@ -477,40 +477,40 @@ signed ocomment::clang(signed c)
 			}
 			while (width-- > 0)
 			{
-				* this->minsert++ = (char)(start);
+				* this->minsert++ = (char) (start);
 			}
 		}
 
 #if oCOMMENT_CUSTOMIZE
 
-		else if(ocomment::anyset(oCOMMENT_B_PREFACE) && (c == oCOMMENT_C_PREFACE))
+		else if (ocomment::anyset (oCOMMENT_B_PREFACE) && (c == oCOMMENT_C_PREFACE))
 		{
-			c = ocomment::message(c, this->mpreface);
+			c = ocomment::message (c, this->mpreface);
 		}
-		else if(ocomment::anyset(oCOMMENT_B_SPECIAL) && (c == oCOMMENT_C_SPECIAL))
+		else if (ocomment::anyset (oCOMMENT_B_SPECIAL) && (c == oCOMMENT_C_SPECIAL))
 		{
-			c = ocomment::message(c, this->mspecial);
+			c = ocomment::message (c, this->mspecial);
 		}
-		else if(ocomment::anyset(oCOMMENT_B_PACKAGE) && (c == oCOMMENT_C_PACKAGE))
+		else if (ocomment::anyset (oCOMMENT_B_PACKAGE) && (c == oCOMMENT_C_PACKAGE))
 		{
-			c = ocomment::message(c, this->mpackage);
+			c = ocomment::message (c, this->mpackage);
 		}
-		else if(ocomment::anyset(oCOMMENT_B_RELEASE) && (c == oCOMMENT_C_RELEASE))
+		else if (ocomment::anyset (oCOMMENT_B_RELEASE) && (c == oCOMMENT_C_RELEASE))
 		{
-			c = ocomment::message(c, this->mrelease);
+			c = ocomment::message (c, this->mrelease);
 		}
-		else if(ocomment::anyset(oCOMMENT_B_LICENSE) && (c == oCOMMENT_C_LICENSE))
+		else if (ocomment::anyset (oCOMMENT_B_LICENSE) && (c == oCOMMENT_C_LICENSE))
 		{
-			c = ocomment::message(c, this->mlicense);
+			c = ocomment::message (c, this->mlicense);
 		}
 
 #endif
 #endif
 
-		std::cin.putback(c);
+		std::cin.putback (c);
 		do 
 		{
-			c = std::cin.get();
+			c = std::cin.get ();
 
 #if oCOMMENT_PADMARGIN
 
@@ -527,16 +527,16 @@ signed ocomment::clang(signed c)
 				this->moutput = this->mbuffer;
 				while (this->moutput < this->minsert)
 				{
-					std::cout.put(* this->moutput++);
+					std::cout.put (* this->moutput++);
 				}
 				this->minsert = this->mbuffer;
-				std::cout.put(c);
-				std::cout.put(' ');
+				std::cout.put (c);
+				std::cout.put (' ');
 				do 
 				{
-					c = std::cin.get();
+					c = std::cin.get ();
 				}
-				while (oascii::isblank(c));
+				while (oascii::isblank (c));
 				if (c != '*')
 				{
 					* this->minsert++ = '*';
@@ -551,43 +551,43 @@ signed ocomment::clang(signed c)
 			* this->minsert++ = c;
 		}
 		while ((c != '*') && (c != EOF));
-		c = std::cin.get();
+		c = std::cin.get ();
 
 #if 1
 
-		if (ocomment::anyset(oCOMMENT_B_SHORT))
+		if (ocomment::anyset (oCOMMENT_B_SHORT))
 		{
 			while (c == '*')
 			{
-				c = std::cin.get();
+				c = std::cin.get ();
 			}
 		}
 
 #endif
 
 	}
-	if (ocomment::anyset(oCOMMENT_B_TRIPLE) && ! this->mcount)
+	if (ocomment::anyset (oCOMMENT_B_TRIPLE) && ! this->mcount)
 	{
-		std::cout.put('*');
-		std::cout.put('\n');
-		std::cout.put(' ');
+		std::cout.put ('*');
+		std::cout.put ('\n');
+		std::cout.put (' ');
 		this->minsert--;
 	}
 	this->moutput = this->mbuffer;
 	while (this->moutput < this->minsert)
 	{
-		std::cout.put(* this->moutput++);
+		std::cout.put (* this->moutput++);
 	}
 	this->minsert = this->mbuffer;
-	if (ocomment::anyset(oCOMMENT_B_TRIPLE) && ! this->mcount)
+	if (ocomment::anyset (oCOMMENT_B_TRIPLE) && ! this->mcount)
 	{
-		std::cout.put('\n');
-		std::cout.put(' ');
-		std::cout.put('*');
+		std::cout.put ('\n');
+		std::cout.put (' ');
+		std::cout.put ('*');
 	}
-	std::cout.put('/');
-	std::cout.put('\n');
-	c = std::cin.get();
+	std::cout.put ('/');
+	std::cout.put ('\n');
+	c = std::cin.get ();
 	return (c);
 }
 
@@ -605,24 +605,24 @@ signed ocomment::clang(signed c)
 #if oCOMMENT_EXTENDBAR
 #if oCOMMENT_CUSTOMIZE
 
-signed ocomment::message(signed c, char const * string)
+signed ocomment::message (signed c, char const * string)
 
 {
-	if (ocomment::anyset(oCOMMENT_B_DISCARD))
+	if (ocomment::anyset (oCOMMENT_B_DISCARD))
 	{
 		do 
 		{
-			c = std::cin.get();
+			c = std::cin.get ();
 		}
-		while (oascii::isblank(c));
+		while (oascii::isblank (c));
 		while (c == * string++)
 		{
-			c = std::cin.get();
+			c = std::cin.get ();
 		};
 	}
 	else 
 	{
-		* this->minsert++ = ocomment::anyset(oCOMMENT_B_PERMANENT)? ' ': c;
+		* this->minsert++ = ocomment::anyset (oCOMMENT_B_PERMANENT)? ' ': c;
 		* this->minsert++ = ' ';
 		* this->minsert++ = ' ';
 		while (* string)
@@ -630,9 +630,9 @@ signed ocomment::message(signed c, char const * string)
 			* this->minsert++ = * string++;
 		}
 	}
-	while (oascii::nobreak(c))
+	while (oascii::nobreak (c))
 	{
-		c = std::cin.get();
+		c = std::cin.get ();
 	}
 	return (c);
 }
@@ -646,10 +646,10 @@ signed ocomment::message(signed c, char const * string)
  *
  *--------------------------------------------------------------------*/
 
-ocomment::ocomment(size_t length)
+ocomment::ocomment (size_t length)
 
 {
-	this->mbuffer = new char[length];
+	this->mbuffer = new char [length];
 	this->minsert = this->mbuffer;
 	this->mlength = length;
 	this->mcount = 0;
@@ -662,12 +662,12 @@ ocomment::ocomment(size_t length)
 
 #if oCOMMENT_CUSTOMIZE
 
-	this->mpackage = new char[1];
-	this->mpackage[0] = (char) (0);
-	this->mrelease = new char[1];
-	this->mrelease[0] = (char) (0);
-	this->mlicense = new char[1];
-	this->mlicense[0] = (char) (0);
+	this->mpackage = new char [1];
+	this->mpackage [0] = (char) (0);
+	this->mrelease = new char [1];
+	this->mrelease [0] = (char) (0);
+	this->mlicense = new char [1];
+	this->mlicense [0] = (char) (0);
 
 #endif
 #endif
@@ -681,11 +681,11 @@ ocomment::ocomment(size_t length)
  *
  *--------------------------------------------------------------------*/
 
-ocomment::ocomment(void)
+ocomment::ocomment (void)
 
 {
 	this->mlength = oCOMMENT_LENGTH;
-	this->mbuffer = new char[this->mlength];
+	this->mbuffer = new char [this->mlength];
 	this->minsert = this->mbuffer;
 	this->mcount = 0;
 
@@ -697,16 +697,16 @@ ocomment::ocomment(void)
 
 #if oCOMMENT_CUSTOMIZE
 
-	this->mpreface = new char[1];
-	this->mpreface[0] = (char) (0);
-	this->mpackage = new char[1];
-	this->mpackage[0] = (char) (0);
-	this->mrelease = new char[1];
-	this->mrelease[0] = (char) (0);
-	this->mlicense = new char[1];
-	this->mlicense[0] = (char) (0);
-	this->mspecial = new char[1];
-	this->mspecial[0] = (char) (0);
+	this->mpreface = new char [1];
+	this->mpreface [0] = (char) (0);
+	this->mpackage = new char [1];
+	this->mpackage [0] = (char) (0);
+	this->mrelease = new char [1];
+	this->mrelease [0] = (char) (0);
+	this->mlicense = new char [1];
+	this->mlicense [0] = (char) (0);
+	this->mspecial = new char [1];
+	this->mspecial [0] = (char) (0);
 
 #endif
 #endif
@@ -720,7 +720,7 @@ ocomment::ocomment(void)
  *
  *--------------------------------------------------------------------*/
 
-ocomment::~ ocomment(void)
+ocomment::~ ocomment (void)
 
 {
 

@@ -30,7 +30,7 @@
  *
  *--------------------------------------------------------------------*/
 
-tabrule & tabrule::clear()
+tabrule & tabrule::clear ()
 
 {
 	for (mcolumn = 0; mcolumn < mmargin; ++ mcolumn)
@@ -47,7 +47,7 @@ tabrule & tabrule::clear()
  *
  *--------------------------------------------------------------------*/
 
-tabrule & tabrule::reset()
+tabrule & tabrule::reset ()
 
 {
 	for (mcolumn = 0; mcolumn < mmargin; ++ mcolumn)
@@ -64,7 +64,7 @@ tabrule & tabrule::reset()
  *
  *--------------------------------------------------------------------*/
 
-unsigned tabrule::margin() const
+unsigned tabrule::margin () const
 
 {
 	return (mmargin);
@@ -77,7 +77,7 @@ unsigned tabrule::margin() const
  *
  *--------------------------------------------------------------------*/
 
-unsigned tabrule::indent() const
+unsigned tabrule::indent () const
 
 {
 	return (mindent);
@@ -92,10 +92,10 @@ unsigned tabrule::indent() const
  *
  *--------------------------------------------------------------------*/
 
-bool tabrule::tabcol(unsigned column)
+bool tabrule::tabcol (unsigned column)
 
 {
-	return ((column < mmargin)? (mruler[column]): true);
+	return ((column < mmargin)? (mruler [column]): true);
 }
 
 /*====================================================================*
@@ -122,7 +122,7 @@ bool tabrule::tabcol(unsigned column)
  *
  *--------------------------------------------------------------------*/
 
-tabrule & tabrule::tabset(unsigned column, signed indent)
+tabrule & tabrule::tabset (unsigned column, signed indent)
 
 {
 	if (indent >= 0)
@@ -140,7 +140,7 @@ tabrule & tabrule::tabset(unsigned column, signed indent)
 			}
 		}
 	}
-	else if(column < mmargin)
+	else if (column < mmargin)
 	{
 		mruler [column] = true;
 	}
@@ -151,27 +151,27 @@ tabrule & tabrule::tabset(unsigned column, signed indent)
  *
  *--------------------------------------------------------------------*/
 
-tabrule::tabrule(unsigned margin, signed indent)
+tabrule::tabrule (unsigned margin, signed indent)
 
 {
 	mmargin = margin;
 	mindent = indent;
-	mruler = new bool[mmargin];
+	mruler = new bool [mmargin];
 	for (mcolumn = 0; mcolumn < mmargin; ++ mcolumn)
 	{
 		mruler [mcolumn] = mcolumn % mindent? false: true;
 	}
 };
 
-tabrule::tabrule()
+tabrule::tabrule ()
 
 {
 	mmargin = 0xFF;
 	mindent = 0x08;
-	mruler = new bool[mmargin];
+	mruler = new bool [mmargin];
 };
 
-tabrule::~ tabrule()
+tabrule::~ tabrule ()
 
 {
 	delete [] mruler;

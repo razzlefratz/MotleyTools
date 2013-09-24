@@ -51,7 +51,7 @@
  *
  *--------------------------------------------------------------------*/
 
-oprofile & oprofile::write(char const * section)
+oprofile & oprofile::write (char const * section)
 
 {
 	std::cout << "[" << section << "]" << std::endl;
@@ -67,7 +67,7 @@ oprofile & oprofile::write(char const * section)
  *
  *--------------------------------------------------------------------*/
 
-oprofile & oprofile::write(char const * element, char const * content)
+oprofile & oprofile::write (char const * element, char const * content)
 
 {
 	std::cout << element << "=";
@@ -95,7 +95,7 @@ oprofile & oprofile::write(char const * element, char const * content)
  *
  *--------------------------------------------------------------------*/
 
-char const * oprofile::string(char const * profile, char const * section, char const * element, char const * content)
+char const * oprofile::string (char const * profile, char const * section, char const * element, char const * content)
 
 {
 
@@ -108,17 +108,17 @@ char const * oprofile::string(char const * profile, char const * section, char c
 
 #endif
 
-	this->mstream.open(profile, std::ifstream::in);
-	if (this->mstream.good())
+	this->mstream.open (profile, std::ifstream::in);
+	if (this->mstream.good ())
 	{
-		for (this->newchar(); this->mbreak != EOF; this->newline())
+		for (this->newchar (); this->mbreak != EOF; this->newline ())
 		{
 			if (this->mbreak != '[')
 			{
 				continue;
 			}
-			this->newchar();
-			if (! this->compare(section))
+			this->newchar ();
+			if (! this->compare (section))
 			{
 				continue;
 			}
@@ -126,13 +126,13 @@ char const * oprofile::string(char const * profile, char const * section, char c
 			{
 				continue;
 			}
-			for (this->newline(); this->mbreak != EOF; this->newline())
+			for (this->newline (); this->mbreak != EOF; this->newline ())
 			{
 				if (this->mbreak == ';')
 				{
 					continue;
 				}
-				if (! this->compare(element))
+				if (! this->compare (element))
 				{
 					continue;
 				}
@@ -140,15 +140,15 @@ char const * oprofile::string(char const * profile, char const * section, char c
 				{
 					continue;
 				}
-				this->newchar();
-				this->newtext();
+				this->newchar ();
+				this->newtext ();
 				content = this->mbuffer;
 				break;
 			}
 			break;
 		}
 	}
-	this->mstream.close();
+	this->mstream.close ();
 	return (content);
 }
 
@@ -165,27 +165,27 @@ char const * oprofile::string(char const * profile, char const * section, char c
  *
  *--------------------------------------------------------------------*/
 
-signed oprofile::number(char const * profile, char const * section, char const * element, signed value)
+signed oprofile::number (char const * profile, char const * section, char const * element, signed value)
 
 {
 	signed minus = 0;
-	char const * string = oprofile::string(profile, section, element, "");
+	char const * string = oprofile::string (profile, section, element, "");
 	if (! * string)
 	{
 		return (value);
 	}
-	else if(* string == '+')
+	else if (* string == '+')
 	{
 		minus = 0;
 		string++;
 	}
-	else if(* string == '-')
+	else if (* string == '-')
 	{
 		minus = 1;
 		string++;
 	}
 	value = 0;
-	while (isdigit(* string))
+	while (isdigit (* string))
 	{
 		value *= 10;
 		value += * string++ - '0';
@@ -215,11 +215,11 @@ signed oprofile::number(char const * profile, char const * section, char const *
  *
  *--------------------------------------------------------------------*/
 
-bool oprofile::enable(char const * profile, char const * section, char const * element, bool state)
+bool oprofile::enable (char const * profile, char const * section, char const * element, bool state)
 
 {
-	oprofile::string(profile, section, element, (char const *) (0));
-	return (oprofile::state(this->mstring, state));
+	oprofile::string (profile, section, element, (char const *) (0));
+	return (oprofile::state (this->mstring, state));
 }
 
 /*====================================================================*
@@ -237,16 +237,16 @@ bool oprofile::enable(char const * profile, char const * section, char const * e
  *
  *--------------------------------------------------------------------*/
 
-oprofile & oprofile::newtext()
+oprofile & oprofile::newtext ()
 
 {
 	this->moutput = 0;
 	this->mappend = 0;
-	while ((this->mbreak != ';') && oascii::nobreak(this->mbreak))
+	while ((this->mbreak != ';') && oascii::nobreak (this->mbreak))
 	{
 		if (this->mbreak == '\\')
 		{
-			this->mbreak = this->mstream.get();
+			this->mbreak = this->mstream.get ();
 			if (this->mbreak == 'n')
 			{
 				this->mbreak = '\n';
@@ -261,20 +261,20 @@ oprofile & oprofile::newtext()
 			this->mlength = this->mlength +  this->mrecord;
 			this->mrecord = this->mlength - this->mrecord;
 			this->mbuffer = this->mstring;
-			this->mstring = new char[this->mlength];
-			std::memcpy(this->mstring, this->mbuffer, this->mappend);
+			this->mstring = new char [this->mlength];
+			std::memcpy (this->mstring, this->mbuffer, this->mappend);
 			delete [] this->mbuffer;
 		}
-		this->mstring[this->mappend++] = this->mbreak;
-		if (! isblank(this->mbreak))
+		this->mstring [this->mappend++] = this->mbreak;
+		if (! isblank (this->mbreak))
 		{
 			this->moutput = this->mappend;
 		}
-		this->mbreak = this->mstream.get();
+		this->mbreak = this->mstream.get ();
 	}
-	this->mstring[this->moutput++] = (char) (0);
-	this->mbuffer = new char[this->moutput];
-	std::memcpy(this->mbuffer, this->mstring, this->moutput);
+	this->mstring [this->moutput++] = (char) (0);
+	this->mbuffer = new char [this->moutput];
+	std::memcpy (this->mbuffer, this->mstring, this->moutput);
 	return (* this);
 }
 
@@ -291,21 +291,21 @@ oprofile & oprofile::newtext()
  *
  *--------------------------------------------------------------------*/
 
-bool oprofile::compare(char const * string)
+bool oprofile::compare (char const * string)
 
 {
-	while (oascii::isblank(* string))
+	while (oascii::isblank (* string))
 	{
 		string++;
 	}
-	while ((* string) && oascii::nobreak(this->mbreak) && oascii::ismatch(* string, this->mbreak))
+	while ((* string) && oascii::nobreak (this->mbreak) && oascii::ismatch (* string, this->mbreak))
 	{
 		do 
 		{
 			string++;
 		}
-		while (oascii::isblank(* string));
-		this->newchar();
+		while (oascii::isblank (* string));
+		this->newchar ();
 	}
 	return (! * string);
 }
@@ -320,14 +320,14 @@ bool oprofile::compare(char const * string)
  *
  *--------------------------------------------------------------------*/
 
-oprofile & oprofile::newchar()
+oprofile & oprofile::newchar ()
 
 {
 	do 
 	{
-		this->mbreak = this->mstream.get();
+		this->mbreak = this->mstream.get ();
 	}
-	while (oascii::isblank(this->mbreak));
+	while (oascii::isblank (this->mbreak));
 	return (* this);
 }
 
@@ -344,14 +344,14 @@ oprofile & oprofile::newchar()
  *
  *--------------------------------------------------------------------*/
 
-oprofile & oprofile::newline()
+oprofile & oprofile::newline ()
 
 {
-	while (oascii::nobreak(this->mbreak))
+	while (oascii::nobreak (this->mbreak))
 	{
-		this->mbreak = this->mstream.get();
+		this->mbreak = this->mstream.get ();
 	}
-	this->newchar();
+	this->newchar ();
 	return (* this);
 }
 
@@ -367,13 +367,13 @@ oprofile & oprofile::newline()
  *
  *--------------------------------------------------------------------*/
 
-oprofile::oprofile()
+oprofile::oprofile ()
 
 {
 	this->mrecord = 256;
 	this->mlength = 256;
-	this->mstring = new char[this->mlength];
-	this->mstring[0] = (char)(0);
+	this->mstring = new char [this->mlength];
+	this->mstring [0] = (char) (0);
 	return;
 }
 
@@ -388,7 +388,7 @@ oprofile::oprofile()
  *
  *--------------------------------------------------------------------*/
 
-oprofile::~ oprofile()
+oprofile::~ oprofile ()
 
 {
 	delete [] this->mstring;

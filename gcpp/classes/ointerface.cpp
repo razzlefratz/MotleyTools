@@ -85,7 +85,7 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned ointerface::Index(void) const
+unsigned ointerface::Index (void) const
 
 {
 	return (this->mifindex);
@@ -99,7 +99,7 @@ unsigned ointerface::Index(void) const
  *
  *--------------------------------------------------------------------*/
 
-char const * ointerface::Name(void) const
+char const * ointerface::Name (void) const
 
 {
 	return (this->mifname);
@@ -114,7 +114,7 @@ char const * ointerface::Name(void) const
  *
  *--------------------------------------------------------------------*/
 
-char const * ointerface::Description(void) const
+char const * ointerface::Description (void) const
 
 {
 	return (this->miftext);
@@ -129,7 +129,7 @@ char const * ointerface::Description(void) const
  *
  *--------------------------------------------------------------------*/
 
-byte const * ointerface::HardwareAddress(void) const
+byte const * ointerface::HardwareAddress (void) const
 
 {
 	return (this->mhwaddr);
@@ -144,7 +144,7 @@ byte const * ointerface::HardwareAddress(void) const
  *
  *--------------------------------------------------------------------*/
 
-byte const * ointerface::InternetAddress(void) const
+byte const * ointerface::InternetAddress (void) const
 
 {
 	return (this->mipaddr);
@@ -159,7 +159,7 @@ byte const * ointerface::InternetAddress(void) const
  *
  *--------------------------------------------------------------------*/
 
-char const * ointerface::HardwareAddressString(void) const
+char const * ointerface::HardwareAddressString (void) const
 
 {
 	return (this->mhwstring);
@@ -174,7 +174,7 @@ char const * ointerface::HardwareAddressString(void) const
  *
  *--------------------------------------------------------------------*/
 
-char const * ointerface::InternetAddressString(void) const
+char const * ointerface::InternetAddressString (void) const
 
 {
 	return (this->mipstring);
@@ -189,10 +189,10 @@ char const * ointerface::InternetAddressString(void) const
  *
  *--------------------------------------------------------------------*/
 
-ointerface & ointerface::ExportHardwareAddress(void * memory)
+ointerface & ointerface::ExportHardwareAddress (void * memory)
 
 {
-	std::memcpy(memory, this->mhwaddr, sizeof(this->mhwaddr));
+	std::memcpy (memory, this->mhwaddr, sizeof (this->mhwaddr));
 	return (* this);
 }
 
@@ -205,10 +205,10 @@ ointerface & ointerface::ExportHardwareAddress(void * memory)
  *
  *--------------------------------------------------------------------*/
 
-ointerface & ointerface::ExportInternetAddress(void * memory)
+ointerface & ointerface::ExportInternetAddress (void * memory)
 
 {
-	std::memcpy(memory, this->mipaddr, sizeof(this->mipaddr));
+	std::memcpy (memory, this->mipaddr, sizeof (this->mipaddr));
 	return (* this);
 }
 
@@ -223,10 +223,10 @@ ointerface & ointerface::ExportInternetAddress(void * memory)
  *
  *--------------------------------------------------------------------*/
 
-ointerface & ointerface::Description(char const * string)
+ointerface & ointerface::Description (char const * string)
 
 {
-	omemory::memtext(string, this->miftext, sizeof(this->miftext));
+	omemory::memtext (string, this->miftext, sizeof (this->miftext));
 	return (* this);
 }
 
@@ -239,14 +239,14 @@ ointerface & ointerface::Description(char const * string)
  *
  *--------------------------------------------------------------------*/
 
-ointerface & ointerface::Print()
+ointerface & ointerface::Print ()
 
 {
-	std::cout << this->Index() << " ";
-	std::cout << this->HardwareAddressString() << " ";
-	std::cout << this->InternetAddressString() << " ";
-	std::cout << this->Name() << " ";
-	std::cout << this->Description() << std::endl;
+	std::cout << this->Index () << " ";
+	std::cout << this->HardwareAddressString () << " ";
+	std::cout << this->InternetAddressString () << " ";
+	std::cout << this->Name () << " ";
+	std::cout << this->Description () << std::endl;
 	return (* this);
 }
 
@@ -258,17 +258,17 @@ ointerface & ointerface::Print()
  *
  *--------------------------------------------------------------------*/
 
-bool ointerface::Disabled() const
+bool ointerface::Disabled () const
 
 {
-	byte sample[ETHER_ADDR_LEN];
-	std::memset(sample, 0x00, sizeof(sample));
-	if (! std::memcmp(sample, this->mhwaddr, sizeof(sample)))
+	byte sample [ETHER_ADDR_LEN];
+	std::memset (sample, 0x00, sizeof (sample));
+	if (! std::memcmp (sample, this->mhwaddr, sizeof (sample)))
 	{
 		return (true);
 	}
-	std::memset(sample, 0xFF, sizeof(sample));
-	if (! std::memcmp(sample, this->mhwaddr, sizeof(sample)))
+	std::memset (sample, 0xFF, sizeof (sample));
+	if (! std::memcmp (sample, this->mhwaddr, sizeof (sample)))
 	{
 		return (true);
 	}
@@ -288,7 +288,7 @@ bool ointerface::Disabled() const
  *
  *--------------------------------------------------------------------*/
 
-ointerface & ointerface::lookup()
+ointerface & ointerface::lookup ()
 
 {
 
@@ -299,18 +299,18 @@ ointerface & ointerface::lookup()
  */
 
 	int fd;
-	if ((fd = socket(AF_INET, SOCK_DGRAM, 0)) != - 1)
+	if ((fd = socket (AF_INET, SOCK_DGRAM, 0)) != - 1)
 	{
 		struct ifreq ifreq;
-		std::memcpy(ifreq.ifr_name, this->mifname, sizeof(ifreq.ifr_name));
-		if (ioctl(fd, SIOCGIFHWADDR, & ifreq) != - 1)
+		std::memcpy (ifreq.ifr_name, this->mifname, sizeof (ifreq.ifr_name));
+		if (ioctl (fd, SIOCGIFHWADDR, & ifreq) != - 1)
 		{
-			std::memcpy(this->mhwaddr, ifreq.ifr_ifru.ifru_hwaddr.sa_data, sizeof(this->mhwaddr));
+			std::memcpy (this->mhwaddr, ifreq.ifr_ifru.ifru_hwaddr.sa_data, sizeof (this->mhwaddr));
 		}
-		if (ioctl(fd, SIOCGIFADDR, & ifreq) != - 1)
+		if (ioctl (fd, SIOCGIFADDR, & ifreq) != - 1)
 		{
 			struct sockaddr_in * sockaddr_in = (struct sockaddr_in *) (& ifreq.ifr_ifru.ifru_addr);
-			std::memcpy(this->mipaddr, & sockaddr_in->sin_addr.s_addr, sizeof(this->mipaddr));
+			std::memcpy (this->mipaddr, & sockaddr_in->sin_addr.s_addr, sizeof (this->mipaddr));
 		}::
 		close (fd);
 	}
@@ -318,12 +318,12 @@ ointerface & ointerface::lookup()
 #elif defined (__linux__) || defined (__APPLE__) || defined (__OpenBSD__) 
 
 	struct ifaddrs * ifaddrs;
-	if (getifaddrs(& ifaddrs) != - 1)
+	if (getifaddrs (& ifaddrs) != - 1)
 	{
 		struct ifaddrs * ifaddr;
 		for (ifaddr = ifaddrs; ifaddr; ifaddr = ifaddr->ifa_next)
 		{
-			if (std::strcmp(this->mifname, ifaddr->ifa_name))
+			if (std::strcmp (this->mifname, ifaddr->ifa_name))
 			{
 				continue;
 			}
@@ -333,27 +333,27 @@ ointerface & ointerface::lookup()
 			}
 			if (ifaddr->ifa_addr->sa_family == AF_INET)
 			{
-				struct sockaddr_in * sockaddr_in = (struct sockaddr_in *)(ifaddr->ifa_addr);
+				struct sockaddr_in * sockaddr_in = (struct sockaddr_in *) (ifaddr->ifa_addr);
 				struct in_addr * in_addr = (struct in_addr *) (& sockaddr_in->sin_addr);
-				std::memcpy(this->mipaddr, & in_addr->s_addr, sizeof(this->mipaddr));
+				std::memcpy (this->mipaddr, & in_addr->s_addr, sizeof (this->mipaddr));
 			}
 
 #if defined (__linux__)
 
 			if (ifaddr->ifa_addr->sa_family == AF_PACKET)
 			{
-				struct sockaddr_ll * sockaddr_ll = (struct sockaddr_ll *)(ifaddr->ifa_addr);
-				memcpy (this->mhwaddr, sockaddr_ll->sll_addr, sizeof(this->mhwaddr));
+				struct sockaddr_ll * sockaddr_ll = (struct sockaddr_ll *) (ifaddr->ifa_addr);
+				memcpy (this->mhwaddr, sockaddr_ll->sll_addr, sizeof (this->mhwaddr));
 			}
 
 #elif defined (__APPLE__) || defined (__OpenBSD__)
 
 			if (ifaddr->ifa_addr->sa_family == AF_LINK)
 			{
-				struct sockaddr_dl * sockaddr_dl = (struct sockaddr_dl *)(ifaddr->ifa_addr);
+				struct sockaddr_dl * sockaddr_dl = (struct sockaddr_dl *) (ifaddr->ifa_addr);
 				if (sockaddr_dl->sdl_type == IFT_ETHER)
 				{
-					std::memcpy(this->mhwaddr, LLADDR(sockaddr_dl), sizeof(this->mhwaddr));
+					std::memcpy (this->mhwaddr, LLADDR (sockaddr_dl), sizeof (this->mhwaddr));
 				}
 			}
 
@@ -367,15 +367,15 @@ ointerface & ointerface::lookup()
 
 #elif defined (WINPCAP) 
 
-	ointerface::pcap_gethwaddr();
-	ointerface::pcap_getipaddr();
+	ointerface::pcap_gethwaddr ();
+	ointerface::pcap_getipaddr ();
 
 #else
 #error "Unknown environment."
 #endif
 
-	omemory::hexdecode(this->mhwaddr, sizeof(this->mhwaddr), this->mhwstring, sizeof(this->mhwstring));
-	omemory::decdecode(this->mipaddr, sizeof(this->mipaddr), this->mipstring, sizeof(this->mipstring));
+	omemory::hexdecode (this->mhwaddr, sizeof (this->mhwaddr), this->mhwstring, sizeof (this->mhwstring));
+	omemory::decdecode (this->mipaddr, sizeof (this->mipaddr), this->mipstring, sizeof (this->mipstring));
 	return (* this);
 }
 
@@ -394,21 +394,21 @@ ointerface & ointerface::lookup()
  *
  *--------------------------------------------------------------------*/
 
-unsigned ointerface::pcap_nametoindex(char const * name) const
+unsigned ointerface::pcap_nametoindex (char const * name) const
 
 {
 
 #if defined (WINPCAP)
 
-	char buffer[PCAP_ERRBUF_SIZE];
+	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *) (0);
 	pcap_if_t * device;
-	if (pcap_findalldevs(& devices, buffer) != - 1)
+	if (pcap_findalldevs (& devices, buffer) != - 1)
 	{
 		unsigned index = 1;
 		for (device = devices; device; device = device->next)
 		{
-			if (std::strcmp(name, device->name))
+			if (std::strcmp (name, device->name))
 			{
 				index++;
 				continue;
@@ -440,22 +440,22 @@ unsigned ointerface::pcap_nametoindex(char const * name) const
  *
  *--------------------------------------------------------------------*/
 
-char * ointerface::pcap_indextoname(unsigned ifindex, char * ifname) const
+char * ointerface::pcap_indextoname (unsigned ifindex, char * ifname) const
 
 {
 
 #if defined (WINPCAP)
 
-	char buffer[PCAP_ERRBUF_SIZE];
+	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *) (0);
 	pcap_if_t * device;
-	if ((ifindex--) && (pcap_findalldevs(& devices, buffer) != - 1))
+	if ((ifindex--) && (pcap_findalldevs (& devices, buffer) != - 1))
 	{
 		for (device = devices; device; device = device->next)
 		{
 			if (! ifindex--)
 			{
-				omemory::memtext(device->name, ifname, IF_NAMESIZE);
+				omemory::memtext (device->name, ifname, IF_NAMESIZE);
 				pcap_freealldevs (devices);
 				return (ifname);
 			}
@@ -481,31 +481,31 @@ char * ointerface::pcap_indextoname(unsigned ifindex, char * ifname) const
  *
  *--------------------------------------------------------------------*/
 
-void ointerface::pcap_gethwaddr()
+void ointerface::pcap_gethwaddr ()
 
 {
 
 #if defined (WINPCAP)
 
-	LPADAPTER adapter = PacketOpenAdapter((PCHAR) (this->mifname));
-	PPACKET_OID_DATA data = (PPACKET_OID_DATA) (std::malloc(ETHER_ADDR_LEN +  sizeof(PACKET_OID_DATA)));
+	LPADAPTER adapter = PacketOpenAdapter ((PCHAR) (this->mifname));
+	PPACKET_OID_DATA data = (PPACKET_OID_DATA) (std::malloc (ETHER_ADDR_LEN +  sizeof (PACKET_OID_DATA)));
 	if (! data)
 	{
-		oerror::error(1, 0, "Can't allocate packet: %s", this->mifname);
+		oerror::error (1, 0, "Can't allocate packet: %s", this->mifname);
 	}
 	data->Oid = OID_802_3_CURRENT_ADDRESS;
 	data->Length = ETHER_ADDR_LEN;
 	if ((! adapter) || (adapter->hFile == INVALID_HANDLE_VALUE))
 	{
-		oerror::error(1, 0, "Can't access interface: %s", this->mifname);
+		oerror::error (1, 0, "Can't access interface: %s", this->mifname);
 	}
-	std::memset(this->mhwaddr, 0, ETHER_ADDR_LEN);
-	if (PacketRequest(adapter, FALSE, data))
+	std::memset (this->mhwaddr, 0, ETHER_ADDR_LEN);
+	if (PacketRequest (adapter, FALSE, data))
 	{
-		std::memcpy(this->mhwaddr, data->Data, data->Length);
+		std::memcpy (this->mhwaddr, data->Data, data->Length);
 	}
 	PacketCloseAdapter (adapter);
-	std::free(data);
+	std::free (data);
 
 #endif
 
@@ -521,32 +521,32 @@ void ointerface::pcap_gethwaddr()
  *
  *--------------------------------------------------------------------*/
 
-void ointerface::pcap_getipaddr()
+void ointerface::pcap_getipaddr ()
 
 {
 
 #if defined (WINPCAP)
 
-	char buffer[PCAP_ERRBUF_SIZE];
+	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *) (0);
 	pcap_if_t * device;
-	if (pcap_findalldevs(& devices, buffer) == - 1)
+	if (pcap_findalldevs (& devices, buffer) == - 1)
 	{
-		oerror::error(1, errno, "Can't enumerate interfaces");
+		oerror::error (1, errno, "Can't enumerate interfaces");
 	}
 	for (device = devices; device; device = device->next)
 	{
-		if (std::strcmp(this->mifname, device->name))
+		if (std::strcmp (this->mifname, device->name))
 		{
 			continue;
 		}
-		std::memcpy(this->miftext, device->description, std::strlen(device->description));
+		std::memcpy (this->miftext, device->description, std::strlen (device->description));
 		if (device->addresses)
 		{
 			struct pcap_addr * pcap_addr = device->addresses;
 			struct sockaddr_in * sockaddr_in = (struct sockaddr_in *) (pcap_addr->addr);
 			struct in_addr * in_addr = (struct in_addr *) (& sockaddr_in->sin_addr);
-			std::memcpy(this->mipaddr, & in_addr->s_addr, sizeof(this->mipaddr));
+			std::memcpy (this->mipaddr, & in_addr->s_addr, sizeof (this->mipaddr));
 		}
 		break;
 	}
@@ -565,32 +565,32 @@ void ointerface::pcap_getipaddr()
  *
  *--------------------------------------------------------------------*/
 
-ointerface::ointerface(unsigned ifindex)
+ointerface::ointerface (unsigned ifindex)
 
 {
 	this->mifindex = ifindex;
-	std::memset(this->mhwaddr, 0, sizeof(this->mhwaddr));
-	std::memset(this->mipaddr, 0, sizeof(this->mipaddr));
-	omemory::hexdecode(this->mhwaddr, sizeof(this->mhwaddr), this->mhwstring, sizeof(this->mhwstring));
-	omemory::decdecode(this->mipaddr, sizeof(this->mipaddr), this->mipstring, sizeof(this->mipstring));
-	omemory::memtext("none", this->mifname, sizeof(this->mifname));
-	omemory::memtext("none", this->miftext, sizeof(this->miftext));
+	std::memset (this->mhwaddr, 0, sizeof (this->mhwaddr));
+	std::memset (this->mipaddr, 0, sizeof (this->mipaddr));
+	omemory::hexdecode (this->mhwaddr, sizeof (this->mhwaddr), this->mhwstring, sizeof (this->mhwstring));
+	omemory::decdecode (this->mipaddr, sizeof (this->mipaddr), this->mipstring, sizeof (this->mipstring));
+	omemory::memtext ("none", this->mifname, sizeof (this->mifname));
+	omemory::memtext ("none", this->miftext, sizeof (this->miftext));
 
 #if defined (WINPCAP)
 
-	if (! ointerface::pcap_indextoname(this->mifindex, this->mifname)) 
+	if (! ointerface::pcap_indextoname (this->mifindex, this->mifname)) 
 
 #else
 
-	if (! if_indextoname(this->mifindex, this->mifname)) 
+	if (! if_indextoname (this->mifindex, this->mifname)) 
 
 #endif
 
 	{
-		oerror::error(1, errno, "%d", this->mifindex);
+		oerror::error (1, errno, "%d", this->mifindex);
 	}
-	omemory::memtext(this->mifname, this->miftext, sizeof(this->miftext));
-	ointerface::lookup();
+	omemory::memtext (this->mifname, this->miftext, sizeof (this->miftext));
+	ointerface::lookup ();
 	return;
 }
 
@@ -602,31 +602,31 @@ ointerface::ointerface(unsigned ifindex)
  *
  *--------------------------------------------------------------------*/
 
-ointerface::ointerface(char const * ifname)
+ointerface::ointerface (char const * ifname)
 
 {
-	std::memset(this->mhwaddr, 0, sizeof(this->mhwaddr));
-	std::memset(this->mipaddr, 0, sizeof(this->mipaddr));
-	omemory::hexdecode(this->mhwaddr, sizeof(this->mhwaddr), this->mhwstring, sizeof(this->mhwstring));
-	omemory::decdecode(this->mipaddr, sizeof(this->mipaddr), this->mipstring, sizeof(this->mipstring));
-	omemory::memtext("none", this->mifname, sizeof(this->mifname));
-	omemory::memtext("none", this->miftext, sizeof(this->miftext));
+	std::memset (this->mhwaddr, 0, sizeof (this->mhwaddr));
+	std::memset (this->mipaddr, 0, sizeof (this->mipaddr));
+	omemory::hexdecode (this->mhwaddr, sizeof (this->mhwaddr), this->mhwstring, sizeof (this->mhwstring));
+	omemory::decdecode (this->mipaddr, sizeof (this->mipaddr), this->mipstring, sizeof (this->mipstring));
+	omemory::memtext ("none", this->mifname, sizeof (this->mifname));
+	omemory::memtext ("none", this->miftext, sizeof (this->miftext));
 
 #if defined (WINPCAP)
 
-	this->mifindex = ointerface::pcap_nametoindex(ifname);
+	this->mifindex = ointerface::pcap_nametoindex (ifname);
 
 #else
 
-	this->mifindex = if_nametoindex(ifname);
+	this->mifindex = if_nametoindex (ifname);
 
 #endif
 
 	if (this->mifindex)
 	{
-		omemory::memtext(ifname, this->mifname, sizeof(this->mifname));
-		omemory::memtext(ifname, this->miftext, sizeof(this->miftext));
-		ointerface::lookup();
+		omemory::memtext (ifname, this->mifname, sizeof (this->mifname));
+		omemory::memtext (ifname, this->miftext, sizeof (this->miftext));
+		ointerface::lookup ();
 	}
 	return;
 }
@@ -637,7 +637,7 @@ ointerface::ointerface(char const * ifname)
  *
  *--------------------------------------------------------------------*/
 
-ointerface::~ ointerface()
+ointerface::~ ointerface ()
 
 {
 	return;

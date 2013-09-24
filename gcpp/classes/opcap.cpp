@@ -48,21 +48,21 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned opcap::if_nametoindex(char const * name)
+unsigned opcap::if_nametoindex (char const * name)
 
 {
 
 #if defined (WINPCAP)
 
-	char buffer[PCAP_ERRBUF_SIZE];
+	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *) (0);
 	pcap_if_t * device;
-	if (pcap_findalldevs(& devices, buffer) != - 1)
+	if (pcap_findalldevs (& devices, buffer) != - 1)
 	{
 		unsigned index = 1;
 		for (device = devices; device; device = device->next)
 		{
-			if (std::strcmp(name, device->name))
+			if (std::strcmp (name, device->name))
 			{
 				index++;
 				continue;
@@ -92,22 +92,22 @@ unsigned opcap::if_nametoindex(char const * name)
  *
  *--------------------------------------------------------------------*/
 
-char * opcap::if_indextoname(unsigned ifindex, char * ifname)
+char * opcap::if_indextoname (unsigned ifindex, char * ifname)
 
 {
 
 #if defined (WINPCAP)
 
-	char buffer[PCAP_ERRBUF_SIZE];
+	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *) (0);
 	pcap_if_t * device;
-	if ((ifindex--) && (pcap_findalldevs(& devices, buffer) != - 1))
+	if ((ifindex--) && (pcap_findalldevs (& devices, buffer) != - 1))
 	{
 		for (device = devices; device; device = device->next)
 		{
 			if (! ifindex--)
 			{
-				std::memcpy(ifname, device->name, std::strlen(device->name));
+				std::memcpy (ifname, device->name, std::strlen (device->name));
 				pcap_freealldevs (devices);
 				return (ifname);
 			}
@@ -139,16 +139,16 @@ char * opcap::if_indextoname(unsigned ifindex, char * ifname)
  *
  *--------------------------------------------------------------------*/
 
-struct if_nameindex * opcap::if_nameindex(void)
+struct if_nameindex * opcap::if_nameindex (void)
 
 {
 
 #if defined (WINPCAP)
 
-	char buffer[PCAP_ERRBUF_SIZE];
+	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *) (0);
 	pcap_if_t * device;
-	if (pcap_findalldevs(& devices, buffer) != - 1)
+	if (pcap_findalldevs (& devices, buffer) != - 1)
 	{
 		struct if_nameindex * ifs;
 		struct if_nameindex * ifp;
@@ -157,14 +157,14 @@ struct if_nameindex * opcap::if_nameindex(void)
 		{
 			count++;
 		}
-		ifp = ifs = (struct if_nameindex *) (malloc(count * sizeof(struct if_nameindex)));
-		if (ifs) for(device = devices; device; device = device->next)
+		ifp = ifs = (struct if_nameindex *) (malloc (count * sizeof (struct if_nameindex)));
+		if (ifs) for (device = devices; device; device = device->next)
 		{
 			ifp->if_index = device->index;
-			ifp->if_name = strdup(device->name);
+			ifp->if_name = strdup (device->name);
 			ifp++;
 		}
-		memset (ifp, 0, sizeof(* ifp));
+		memset (ifp, 0, sizeof (* ifp));
 		pcap_freealldevs (devices);
 		return (ifs);
 	}
@@ -189,7 +189,7 @@ struct if_nameindex * opcap::if_nameindex(void)
  *
  *--------------------------------------------------------------------*/
 
-void opcap::if_freenameindex(struct if_nameindex * if_nameindex)
+void opcap::if_freenameindex (struct if_nameindex * if_nameindex)
 
 {
 
@@ -213,7 +213,7 @@ void opcap::if_freenameindex(struct if_nameindex * if_nameindex)
  *
  *--------------------------------------------------------------------*/
 
-opcap::opcap()
+opcap::opcap ()
 
 {
 	return;
@@ -225,7 +225,7 @@ opcap::opcap()
  *
  *--------------------------------------------------------------------*/
 
-opcap::~ opcap()
+opcap::~ opcap ()
 
 {
 	return;

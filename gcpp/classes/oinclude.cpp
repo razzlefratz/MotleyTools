@@ -32,7 +32,7 @@
  *   
  *--------------------------------------------------------------------*/
 
-signed oinclude::state(void) const
+signed oinclude::state (void) const
 
 {
 	return (this->mstate);
@@ -46,12 +46,12 @@ signed oinclude::state(void) const
  *   
  *--------------------------------------------------------------------*/
 
-oinclude & oinclude::state(signed state)
+oinclude & oinclude::state (signed state)
 
 {
 	if (state > 0)
 	{
-		state = + 1;
+		state = +  1;
 	}
 	if (state < 0)
 	{
@@ -70,10 +70,10 @@ oinclude & oinclude::state(signed state)
  *   
  *--------------------------------------------------------------------*/
 
-oinclude & oinclude::filename(char const * string)
+oinclude & oinclude::filename (char const * string)
 
 {
-	char buffer[FILENAME_MAX];
+	char buffer [FILENAME_MAX];
 	char * sp = buffer;
 	char const * cp;
 	for (cp = string; * string; string++)
@@ -85,10 +85,10 @@ oinclude & oinclude::filename(char const * string)
 	}
 	while ((* cp) && (* cp != '.'))
 	{
-		* sp++ = std::toupper(* cp++);
+		* sp++ = std::toupper (* cp++);
 	}
-	* sp = (char)(0);
-	this->title(buffer);
+	* sp = (char) (0);
+	this->title (buffer);
 	return (* this);
 }
 
@@ -100,7 +100,7 @@ oinclude & oinclude::filename(char const * string)
  *
  *--------------------------------------------------------------------*/
 
-char const * oinclude::title(void) const
+char const * oinclude::title (void) const
 
 {
 	return (this->mtitle);
@@ -114,10 +114,10 @@ char const * oinclude::title(void) const
  *
  *--------------------------------------------------------------------*/
 
-oinclude & oinclude::title(char const * title)
+oinclude & oinclude::title (char const * title)
 
 {
-	this->mtitle = otext::replace(this->mtitle, title);
+	this->mtitle = otext::replace (this->mtitle, title);
 	return (* this);
 }
 
@@ -129,7 +129,7 @@ oinclude & oinclude::title(char const * title)
  *
  *--------------------------------------------------------------------*/
 
-char const * oinclude::label(void) const
+char const * oinclude::label (void) const
 
 {
 	return (this->mclass);
@@ -143,10 +143,10 @@ char const * oinclude::label(void) const
  *
  *--------------------------------------------------------------------*/
 
-oinclude & oinclude::label(char const * label)
+oinclude & oinclude::label (char const * label)
 
 {
-	this->mclass = otext::replace(this->mclass, label);
+	this->mclass = otext::replace (this->mclass, label);
 	return (* this);
 }
 
@@ -159,7 +159,7 @@ oinclude & oinclude::label(char const * label)
  *  
  *--------------------------------------------------------------------*/
 
-oinclude & oinclude::header(void)
+oinclude & oinclude::header (void)
 
 {
 	if (this->mstate > 0)
@@ -181,7 +181,7 @@ oinclude & oinclude::header(void)
  *
  *--------------------------------------------------------------------*/
 
-oinclude & oinclude::footer(void)
+oinclude & oinclude::footer (void)
 
 {
 	if (this->mstate < 0)
@@ -199,11 +199,11 @@ oinclude & oinclude::footer(void)
  *
  *--------------------------------------------------------------------*/
 
-oinclude::oinclude(char const * title, char const * label)
+oinclude::oinclude (char const * title, char const * label)
 
 {
-	this->mtitle = oinclude::save(title);
-	this->mclass = oinclude::save(label);
+	this->mtitle = oinclude::save (title);
+	this->mclass = oinclude::save (label);
 	this->mstate = 0;
 	return;
 }
@@ -214,11 +214,11 @@ oinclude::oinclude(char const * title, char const * label)
  *
  *--------------------------------------------------------------------*/
 
-oinclude::oinclude()
+oinclude::oinclude ()
 
 {
-	this->mtitle = oinclude::save("MODULE");
-	this->mclass = oinclude::save("SOURCE");
+	this->mtitle = oinclude::save ("MODULE");
+	this->mclass = oinclude::save ("SOURCE");
 	this->mstate = 0;
 	return;
 }
@@ -229,7 +229,7 @@ oinclude::oinclude()
  *
  *--------------------------------------------------------------------*/
 
-oinclude::~ oinclude(void)
+oinclude::~ oinclude (void)
 
 {
 	delete [] this->mtitle;

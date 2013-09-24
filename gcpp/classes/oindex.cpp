@@ -26,7 +26,7 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned oindex::qmod(signed domain, signed range)
+unsigned oindex::qmod (signed domain, signed range)
 
 {
 	domain %= range;
@@ -50,7 +50,7 @@ unsigned oindex::qmod(signed domain, signed range)
  *
  *--------------------------------------------------------------------*/
 
-unsigned oindex::pmod(signed domain, signed range)
+unsigned oindex::pmod (signed domain, signed range)
 
 {
 	domain %= range;
@@ -73,7 +73,7 @@ unsigned oindex::pmod(signed domain, signed range)
  *
  *--------------------------------------------------------------------*/
 
-oindex::oindex()
+oindex::oindex ()
 
 {
 	return;
@@ -87,7 +87,7 @@ oindex::oindex()
  *
  *--------------------------------------------------------------------*/
 
-oindex::~ oindex()
+oindex::~ oindex ()
 
 {
 	return;

@@ -23,14 +23,14 @@
  *   interface declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oprogram: public osource, public oindent
+class __declspec (dllexport) oprogram: public osource, public oindent
 
 {
 public: 
 	oprogram ();
-	virtual ~ oprogram();
-	signed css2(signed c);
-	signed java(signed c);
+	virtual ~ oprogram ();
+	signed css2 (signed c);
+	signed java (signed c);
 };
 
 /*====================================================================*

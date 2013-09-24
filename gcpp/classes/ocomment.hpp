@@ -73,42 +73,42 @@
  *   interface declaration
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) ocomment: private otext, public oflagword
+class __declspec (dllexport) ocomment: private otext, public oflagword
 
 {
 public: 
 	ocomment (size_t length);
 	ocomment (void);
-	virtual ~ ocomment(void);
-	signed comment(signed c);
-	signed cplus(signed c);
-	signed clang(signed c);
-	signed preamble(signed c);
-	ocomment & preamble(void);
+	virtual ~ ocomment (void);
+	signed comment (signed c);
+	signed cplus (signed c);
+	signed clang (signed c);
+	signed preamble (signed c);
+	ocomment & preamble (void);
 
 #if oCOMMENT_EXTENDBAR
 
-	unsigned char cupper(void) const;
-	unsigned char clower(void) const;
-	size_t width(void) const;
-	ocomment & cupper(unsigned char c);
-	ocomment & clower(unsigned char c);
-	ocomment & width(size_t width);
+	unsigned char cupper (void) const;
+	unsigned char clower (void) const;
+	size_t width (void) const;
+	ocomment & cupper (unsigned char c);
+	ocomment & clower (unsigned char c);
+	ocomment & width (size_t width);
 
 #endif
 
 #if oCOMMENT_CUSTOMIZE
 
-	char const * preface(void) const;
-	char const * package(void) const;
-	char const * release(void) const;
-	char const * license(void) const;
-	char const * special(void) const;
-	ocomment & preface(char const * preface);
-	ocomment & package(char const * package);
-	ocomment & release(char const * release);
-	ocomment & license(char const * license);
-	ocomment & special(char const * special);
+	char const * preface (void) const;
+	char const * package (void) const;
+	char const * release (void) const;
+	char const * license (void) const;
+	char const * special (void) const;
+	ocomment & preface (char const * preface);
+	ocomment & package (char const * package);
+	ocomment & release (char const * release);
+	ocomment & license (char const * license);
+	ocomment & special (char const * special);
 
 #endif
 
@@ -116,7 +116,7 @@ private:
 
 #if oCOMMENT_CUSTOMIZE
 
-	signed message(signed c, char const * string);
+	signed message (signed c, char const * string);
 	char * mpreface;
 	char * mpackage;
 	char * mrelease;

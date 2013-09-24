@@ -44,7 +44,7 @@ std::ofstream ofileopen::target;
  *
  *--------------------------------------------------------------------*/
 
-unsigned ofileopen::versions(void) const
+unsigned ofileopen::versions (void) const
 
 {
 	return (this->mlimit);
@@ -59,25 +59,25 @@ unsigned ofileopen::versions(void) const
  *
  *--------------------------------------------------------------------*/
 
-bool ofileopen::opensave(char const * filespec, char const * extender)
+bool ofileopen::opensave (char const * filespec, char const * extender)
 
 {
-	ofilespec loadspec(filespec);
-	ofilespec savespec(filespec);
-	if (! ofileopen::permit(filespec))
+	ofilespec loadspec (filespec);
+	ofilespec savespec (filespec);
+	if (! ofileopen::permit (filespec))
 	{
 		return (false);
 	}
-	savespec.extender(extender);
-	if (! stat(savespec.fullname(), & this->statinfo))
+	savespec.extender (extender);
+	if (! stat (savespec.fullname (), & this->statinfo))
 	{
-		if (! std::remove(savespec.fullname()))
+		if (! std::remove (savespec.fullname ()))
 		{
-			ofileopen::merror.error("Can't remove %s", savespec.fullname());
+			ofileopen::merror.error ("Can't remove %s", savespec.fullname ());
 			return (false);
 		}
 	}
-	return (this->filter(loadspec.fullname(), savespec.fullname()));
+	return (this->filter (loadspec.fullname (), savespec.fullname ()));
 }
 
 /*====================================================================*
@@ -89,24 +89,24 @@ bool ofileopen::opensave(char const * filespec, char const * extender)
  *
  *--------------------------------------------------------------------*/
 
-bool ofileopen::openedit(char const * filespec)
+bool ofileopen::openedit (char const * filespec)
 
 {
-	ofilespec loadspec(filespec);
-	ofilespec savespec(filespec);
-	if (! ofileopen::permit(filespec))
+	ofilespec loadspec (filespec);
+	ofilespec savespec (filespec);
+	if (! ofileopen::permit (filespec))
 	{
 		return (false);
 	}
 	for (this->mcount = 1; this->mcount < this->mlimit; this->mcount++)
 	{
-		savespec.savename(this->mcount, this->mdigit);
-		if (stat(savespec.fullname(), & this->statinfo))
+		savespec.savename (this->mcount, this->mdigit);
+		if (stat (savespec.fullname (), & this->statinfo))
 		{
-			return (this->filter(loadspec.fullname(), savespec.fullname()));
+			return (this->filter (loadspec.fullname (), savespec.fullname ()));
 		}
 	}
-	ofileopen::merror.print("can't open %s: too many file versions", loadspec.fullname());
+	ofileopen::merror.print ("can't open %s: too many file versions", loadspec.fullname ());
 	return (false);
 }
 
@@ -119,45 +119,45 @@ bool ofileopen::openedit(char const * filespec)
  *
  *--------------------------------------------------------------------*/
 
-bool ofileopen::permit(char const * filespec) const
+bool ofileopen::permit (char const * filespec) const
 
 {
-	if (lstat(filespec, & this->statinfo))
+	if (lstat (filespec, & this->statinfo))
 	{
-		ofileopen::merror.error(filespec);
+		ofileopen::merror.error (filespec);
 		return (false);
 	}
-	if (S_ISDIR(this->statinfo.st_mode))
+	if (S_ISDIR (this->statinfo.st_mode))
 	{
-		ofileopen::merror.print("Won't open %s: file is a folder", filespec);
+		ofileopen::merror.print ("Won't open %s: file is a folder", filespec);
 		return (false);
 	}
-	if (S_ISLNK(this->statinfo.st_mode))
+	if (S_ISLNK (this->statinfo.st_mode))
 	{
-		ofileopen::merror.print("Won't open %s: file is a symlink", filespec);
+		ofileopen::merror.print ("Won't open %s: file is a symlink", filespec);
 		return (false);
 	}
-	if (S_ISBLK(this->statinfo.st_mode))
+	if (S_ISBLK (this->statinfo.st_mode))
 	{
-		ofileopen::merror.print("Won't open %s: file is a device", filespec);
+		ofileopen::merror.print ("Won't open %s: file is a device", filespec);
 		return (false);
 	}
-	if (S_ISCHR(this->statinfo.st_mode))
+	if (S_ISCHR (this->statinfo.st_mode))
 	{
-		ofileopen::merror.print("Won't open %s: file is a device", filespec);
+		ofileopen::merror.print ("Won't open %s: file is a device", filespec);
 		return (false);
 	}
-	if (S_ISFIFO(this->statinfo.st_mode))
+	if (S_ISFIFO (this->statinfo.st_mode))
 	{
-		ofileopen::merror.print("Won't open %s: file is a fifo", filespec);
+		ofileopen::merror.print ("Won't open %s: file is a fifo", filespec);
 		return (false);
 	}
-	if (S_ISSOCK(this->statinfo.st_mode))
+	if (S_ISSOCK (this->statinfo.st_mode))
 	{
-		ofileopen::merror.print("Won't open %s: file is a socket", filespec);
+		ofileopen::merror.print ("Won't open %s: file is a socket", filespec);
 		return (false);
 	}
-	if (S_ISREG(this->statinfo.st_mode))
+	if (S_ISREG (this->statinfo.st_mode))
 	{
 		return (true);
 	}
@@ -172,37 +172,37 @@ bool ofileopen::permit(char const * filespec) const
  *
  *--------------------------------------------------------------------*/
 
-bool ofileopen::filter(char const * filespec, char const * savespec)
+bool ofileopen::filter (char const * filespec, char const * savespec)
 
 {
-	ofileopen::close();
-	ofileopen::source.open(filespec, std::ios::binary | std::ios::in);
-	if (! ofileopen::source.is_open())
+	ofileopen::close ();
+	ofileopen::source.open (filespec, std::ios::binary | std::ios::in);
+	if (! ofileopen::source.is_open ())
 	{
-		ofileopen::merror.error("Can't open %s for input", filespec);
+		ofileopen::merror.error ("Can't open %s for input", filespec);
 		return (false);
 	}
-	std::cin.rdbuf(ofileopen::source.rdbuf());
-	if (std::rename(filespec, savespec))
+	std::cin.rdbuf (ofileopen::source.rdbuf ());
+	if (std::rename (filespec, savespec))
 	{
-		ofileopen::merror.error("Can't rename %s as %s", filespec, savespec);
+		ofileopen::merror.error ("Can't rename %s as %s", filespec, savespec);
 		return (false);
 	}
-	ofileopen::target.open(filespec, std::ios::binary | std::ios::out);
-	if (! ofileopen::target.is_open())
+	ofileopen::target.open (filespec, std::ios::binary | std::ios::out);
+	if (! ofileopen::target.is_open ())
 	{
-		ofileopen::merror.error("Can't open %s for output", filespec);
+		ofileopen::merror.error ("Can't open %s for output", filespec);
 		return (false);
 	}
-	std::cout.rdbuf(ofileopen::target.rdbuf());
-	if (chmod(filespec, this->statinfo.st_mode))
+	std::cout.rdbuf (ofileopen::target.rdbuf ());
+	if (chmod (filespec, this->statinfo.st_mode))
 	{
-		ofileopen::merror.error("Can't preserve %s permissions", filespec);
+		ofileopen::merror.error ("Can't preserve %s permissions", filespec);
 		return (false);
 	}
-	if (chown(filespec, this->statinfo.st_uid, this->statinfo.st_gid))
+	if (chown (filespec, this->statinfo.st_uid, this->statinfo.st_gid))
 	{
-		ofileopen::merror.error("Can't preserve %s ownership", filespec);
+		ofileopen::merror.error ("Can't preserve %s ownership", filespec);
 		return (false);
 	}
 	return (true);
@@ -216,16 +216,16 @@ bool ofileopen::filter(char const * filespec, char const * savespec)
  *
  *--------------------------------------------------------------------*/
 
-ofileopen & ofileopen::close(void)
+ofileopen & ofileopen::close (void)
 
 {
-	if (ofileopen::source.is_open())
+	if (ofileopen::source.is_open ())
 	{
-		ofileopen::source.close();
+		ofileopen::source.close ();
 	}
-	if (ofileopen::target.is_open())
+	if (ofileopen::target.is_open ())
 	{
-		ofileopen::target.close();
+		ofileopen::target.close ();
 	}
 	return (* this);
 }
@@ -238,7 +238,7 @@ ofileopen & ofileopen::close(void)
  *
  *--------------------------------------------------------------------*/
 
-ofileopen::ofileopen(unsigned limit)
+ofileopen::ofileopen (unsigned limit)
 
 {
 	this->mcount = 0;
@@ -260,7 +260,7 @@ ofileopen::ofileopen(unsigned limit)
  *
  *--------------------------------------------------------------------*/
 
-ofileopen::ofileopen(void)
+ofileopen::ofileopen (void)
 
 {
 	this->mcount = 0;
@@ -277,7 +277,7 @@ ofileopen::ofileopen(void)
  *
  *--------------------------------------------------------------------*/
 
-ofileopen::~ ofileopen(void)
+ofileopen::~ ofileopen (void)
 
 {
 	return;

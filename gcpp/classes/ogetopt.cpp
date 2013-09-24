@@ -103,7 +103,7 @@ char const * program_name = PACKAGE;
  *
  *--------------------------------------------------------------------*/
 
-signed ogetopt::opterr() const
+signed ogetopt::opterr () const
 
 {
 	return (this->mopterr);
@@ -118,7 +118,7 @@ signed ogetopt::opterr() const
  *
  *--------------------------------------------------------------------*/
 
-ogetopt & ogetopt::opterr(signed opterr)
+ogetopt & ogetopt::opterr (signed opterr)
 
 {
 	this->mopterr = opterr;
@@ -134,7 +134,7 @@ ogetopt & ogetopt::opterr(signed opterr)
  *
  *--------------------------------------------------------------------*/
 
-signed ogetopt::optind() const
+signed ogetopt::optind () const
 
 {
 	return (this->moptind);
@@ -148,7 +148,7 @@ signed ogetopt::optind() const
  *
  *--------------------------------------------------------------------*/
 
-ogetopt & ogetopt::optind(signed optind)
+ogetopt & ogetopt::optind (signed optind)
 
 {
 	this->moptind = optind;
@@ -163,7 +163,7 @@ ogetopt & ogetopt::optind(signed optind)
  *
  *--------------------------------------------------------------------*/
 
-signed ogetopt::optopt() const
+signed ogetopt::optopt () const
 
 {
 	return (this->moptopt);
@@ -177,7 +177,7 @@ signed ogetopt::optopt() const
  *
  *--------------------------------------------------------------------*/
 
-char const * ogetopt::optarg() const
+char const * ogetopt::optarg () const
 
 {
 	return (this->moptarg);
@@ -193,7 +193,7 @@ char const * ogetopt::optarg() const
  *
  *--------------------------------------------------------------------*/
 
-signed ogetopt::argc() const
+signed ogetopt::argc () const
 
 {
 	return (this->margc - this->moptind);
@@ -207,7 +207,7 @@ signed ogetopt::argc() const
  *
  *--------------------------------------------------------------------*/
 
-char const ** ogetopt::argv() const
+char const ** ogetopt::argv () const
 
 {
 	return (this->margv +  this->moptind);
@@ -221,12 +221,12 @@ char const ** ogetopt::argv() const
  *
  *--------------------------------------------------------------------*/
 
-char * ogetopt::args()
+char * ogetopt::args ()
 
 {
 	delete [] this->margs;
-	this->margs = new char[strlen(this->moptarg) + 1];
-	std::strcpy(this->margs, this->moptarg);
+	this->margs = new char [strlen (this->moptarg) +  1];
+	std::strcpy (this->margs, this->moptarg);
 	return (this->margs);
 }
 
@@ -252,7 +252,7 @@ signed ogetopt::operator++ (signed)
  *
  *--------------------------------------------------------------------*/
 
-signed ogetopt::getopt(int argc, char const * argv[], char const * options)
+signed ogetopt::getopt (int argc, char const * argv [], char const * options)
 
 {
 	extern char const * program_name;
@@ -267,7 +267,7 @@ signed ogetopt::getopt(int argc, char const * argv[], char const * options)
 				program_name = this->mstring +  1;
 			}
 		}
-		this->mstring = (char *)(0);
+		this->mstring = (char *) (0);
 		this->mcount = this->moptind = 1;
 	}
 	while ((this->mcount < this->margc) || (this->mstring))
@@ -277,8 +277,8 @@ signed ogetopt::getopt(int argc, char const * argv[], char const * options)
 			if (* this->mstring)
 			{
 				this->moptopt = * this->mstring++;
-				this->moptarg = (char *)(0);
-				for (char const * option = options; * option != (char)(0); option++)
+				this->moptarg = (char *) (0);
+				for (char const * option = options; * option != (char) (0); option++)
 				{
 					if (this->moptopt == oGETOPT_C_OPERAND)
 					{
@@ -297,22 +297,22 @@ signed ogetopt::getopt(int argc, char const * argv[], char const * options)
 						if (* this->mstring)
 						{
 							this->moptarg = this->mstring;
-							this->mstring = (char *)(0);
+							this->mstring = (char *) (0);
 							return (this->moptopt);
 						}
 						if (this->mcount < this->margc)
 						{
-							this->moptarg = this->margv[this->mcount];
+							this->moptarg = this->margv [this->mcount];
 							for (this->mindex = this->mcount++; this->mindex > this->moptind; -- this->mindex)
 							{
-								this->margv[this->mindex] = this->margv[this->mindex - 1];
+								this->margv [this->mindex] = this->margv [this->mindex - 1];
 							}
-							this->margv[this->moptind++] = this->moptarg;
+							this->margv [this->moptind++] = this->moptarg;
 							return (this->moptopt);
 						}
 						if (this->mopterr)
 						{
-							std::cerr << program_name << ": option '" << (char)(this->moptopt) << "' has no operand." << std::endl;
+							std::cerr << program_name << ": option '" << (char) (this->moptopt) << "' has no operand." << std::endl;
 						}
 						if (* options == oGETOPT_C_OPERAND)
 						{
@@ -323,25 +323,25 @@ signed ogetopt::getopt(int argc, char const * argv[], char const * options)
 				}
 				if (this->mopterr)
 				{
-					std::cerr << program_name << ": option '" << (char)(this->moptopt) << "' has no meaning." << std::endl;
+					std::cerr << program_name << ": option '" << (char) (this->moptopt) << "' has no meaning." << std::endl;
 				}
 				return (oGETOPT_C_ILLEGAL);
 			}
-			this->mstring = (char *)(0);
+			this->mstring = (char *) (0);
 		}
 		if (this->mcount < this->margc)
 		{
-			this->mstring = this->margv[this->mcount];
+			this->mstring = this->margv [this->mcount];
 			if (* this->mstring == oGETOPT_C_OPTIONS)
 			{
 				for (this->mindex = this->mcount; this->mindex > this->moptind; -- this->mindex)
 				{
-					this->margv[this->mindex] = this->margv[this->mindex - 1];
+					this->margv [this->mindex] = this->margv [this->mindex - 1];
 				}
-				this->margv[this->moptind++] = this->mstring++;
+				this->margv [this->moptind++] = this->mstring++;
 				if (* this->mstring == oGETOPT_C_OPTIONS)
 				{
-					if (* ++ this->mstring == (char)(0))
+					if (* ++ this->mstring == (char) (0))
 					{
 						break;
 					}
@@ -349,13 +349,13 @@ signed ogetopt::getopt(int argc, char const * argv[], char const * options)
 			}
 			else 
 			{
-				this->mstring = (char *)(0);
+				this->mstring = (char *) (0);
 			}
 			this->mcount++;
 		}
 	}
-	this->moptarg = (char *)(0);
-	this->moptopt = (char)(0);
+	this->moptarg = (char *) (0);
+	this->moptopt = (char) (0);
 	return (- 1);
 }
 
@@ -363,36 +363,36 @@ signed ogetopt::getopt(int argc, char const * argv[], char const * options)
  *   initialization and termination;
  *--------------------------------------------------------------------*/
 
-ogetopt::ogetopt(const signed opterr)
+ogetopt::ogetopt (const signed opterr)
 
 {
-	this->margs = new char[1];
-	this->margs[0] = (char)(0);
-	this->moptarg = (char *)(0);
-	this->moptopt = (char)(0);
+	this->margs = new char [1];
+	this->margs [0] = (char) (0);
+	this->moptarg = (char *) (0);
+	this->moptopt = (char) (0);
 	this->mopterr = opterr;
 	this->moptind = 0;
 	return;
 }
 
-ogetopt::ogetopt()
+ogetopt::ogetopt ()
 
 {
-	this->margs = new char[1];
-	this->margs[0] = (char)(0);
-	this->moptarg = (char *)(0);
-	this->moptopt = (char)(0);
+	this->margs = new char [1];
+	this->margs [0] = (char) (0);
+	this->moptarg = (char *) (0);
+	this->moptopt = (char) (0);
 	this->mopterr = 1;
 	this->moptind = 1;
 	return;
 }
 
-ogetopt::~ ogetopt()
+ogetopt::~ ogetopt ()
 
 {
 	delete [] this->margs;
-	this->moptarg = (char *)(0);
-	this->moptopt = (char)(0);
+	this->moptarg = (char *) (0);
+	this->moptopt = (char) (0);
 	return;
 }
 

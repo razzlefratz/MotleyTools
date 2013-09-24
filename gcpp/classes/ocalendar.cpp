@@ -35,7 +35,7 @@
  *   class variables;
  *--------------------------------------------------------------------*/
 
-char const * ocalendar::mdays[DAYS_IN_WEEK] = 
+char const * ocalendar::mdays [DAYS_IN_WEEK] = 
 
 {
 	" S",
@@ -47,7 +47,7 @@ char const * ocalendar::mdays[DAYS_IN_WEEK] =
 	" S"
 };
 
-char const * ocalendar::mdate1[DATES_IN_MONTH + 1] = 
+char const * ocalendar::mdate1 [DATES_IN_MONTH +  1] = 
 
 {
 	"&nbsp",
@@ -84,7 +84,7 @@ char const * ocalendar::mdate1[DATES_IN_MONTH + 1] =
 	"31"
 };
 
-char const * ocalendar::mdate2[DATES_IN_MONTH + 1] = 
+char const * ocalendar::mdate2 [DATES_IN_MONTH +  1] = 
 
 {
 	"&nbsp;",
@@ -130,19 +130,19 @@ char const * ocalendar::mdate2[DATES_IN_MONTH + 1] =
  *
  *--------------------------------------------------------------------*/
 
-ocalendar & ocalendar::stylesheet(unsigned level, unsigned space)
+ocalendar & ocalendar::stylesheet (unsigned level, unsigned space)
 
 {
-	mindent.print(level++, space, "<style type='text/css'>");
-	mindent.print(level, space, "table.annum { background:transparent; border:none; table-layout:fixed; cell-spacing:2px; border-collapse:separate; border-spacing:2px; width: 100%; }");
-	mindent.print(level, space, "td.annum { padding:0px; }");
-	mindent.print(level, space, "table.month { background:inherit; table-layout:fixed; border-collapse:separate; border:solid 1pt #000000; border-spacing:2px; }");
-	mindent.print(level, space, "th.month { background: inherit; border: solid 1px #000000; padding: 2px 2px; font: normal 9pt comic sans ms; text-align:center;  }");
-	mindent.print(level, space, "th.week  { background: inherit; border: solid 1px #000000; padding: 2px 2px; font: normal 9pt comic sans ms; text-align:center; }");
-	mindent.print(level, space, "td.date  { background: inherit; border: solid 1px #C0C0C0; height: 25px; padding: 2px 2px; font: normal 9pt comic sans ms; vertical-align: top; text-align: right; width: 100px; }");
-	mindent.print(level, space, "td.note  { background: #C0C0C0; border: solid 1px #C0C0C0; height: 25px; padding: 2px 2px; font: normal 9pt comic sans ms; vertical-align: top; text-align: right; }");
-	mindent.print(level, space, "td.due   { background: #FFFF00; border: solid 1px #C0C0C0; height: 25px; padding: 2px 2px; font: normal 9pt comic sans ms; vertical-align: middle; text-align: center; }");
-	mindent.print(level--, space, "</style>");
+	mindent.print (level++, space, "<style type='text/css'>");
+	mindent.print (level, space, "table.annum { background:transparent; border:none; table-layout:fixed; cell-spacing:2px; border-collapse:separate; border-spacing:2px; width: 100%; }");
+	mindent.print (level, space, "td.annum { padding:0px; }");
+	mindent.print (level, space, "table.month { background:inherit; table-layout:fixed; border-collapse:separate; border:solid 1pt #000000; border-spacing:2px; }");
+	mindent.print (level, space, "th.month { background: inherit; border: solid 1px #000000; padding: 2px 2px; font: normal 9pt comic sans ms; text-align:center;  }");
+	mindent.print (level, space, "th.week  { background: inherit; border: solid 1px #000000; padding: 2px 2px; font: normal 9pt comic sans ms; text-align:center; }");
+	mindent.print (level, space, "td.date  { background: inherit; border: solid 1px #C0C0C0; height: 25px; padding: 2px 2px; font: normal 9pt comic sans ms; vertical-align: top; text-align: right; width: 100px; }");
+	mindent.print (level, space, "td.note  { background: #C0C0C0; border: solid 1px #C0C0C0; height: 25px; padding: 2px 2px; font: normal 9pt comic sans ms; vertical-align: top; text-align: right; }");
+	mindent.print (level, space, "td.due   { background: #FFFF00; border: solid 1px #C0C0C0; height: 25px; padding: 2px 2px; font: normal 9pt comic sans ms; vertical-align: middle; text-align: center; }");
+	mindent.print (level--, space, "</style>");
 	return (* this);
 }
 
@@ -154,23 +154,23 @@ ocalendar & ocalendar::stylesheet(unsigned level, unsigned space)
  *
  *--------------------------------------------------------------------*/
 
-ocalendar & ocalendar::annum()
+ocalendar & ocalendar::annum ()
 
 {
 	unsigned level = 0;
 	unsigned space = 1;
-	mindent.print(level, space, "<?xml version='1.0' encoding='iso-8859-1'?>");
-	mindent.print(level, space, "<!DOCTYPE HTML PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'>");
-	mindent.print(level++, space, "<html xmlns='http://www.w3.org/1999/xhtml' lang='en-us'>");
-	mindent.print(level++, space, "<head>");
-	mindent.print(level++, space, "<title>");
-	mindent.print(level--, space, "</title>");
-	mindent.print(level, space, "<link href='calendar.css' rel='stylesheet' type='text/css'>");
-	mindent.print(level--, space, "</head>");
-	mindent.print(level++, space, "<body>");
-	this->stylesheet(level, space).annum(level, space);
-	mindent.print(level--, space, "</body>");
-	mindent.print(level--, space, "</html>");
+	mindent.print (level, space, "<?xml version='1.0' encoding='iso-8859-1'?>");
+	mindent.print (level, space, "<!DOCTYPE HTML PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'>");
+	mindent.print (level++, space, "<html xmlns='http://www.w3.org/1999/xhtml' lang='en-us'>");
+	mindent.print (level++, space, "<head>");
+	mindent.print (level++, space, "<title>");
+	mindent.print (level--, space, "</title>");
+	mindent.print (level, space, "<link href='calendar.css' rel='stylesheet' type='text/css'>");
+	mindent.print (level--, space, "</head>");
+	mindent.print (level++, space, "<body>");
+	this->stylesheet (level, space).annum (level, space);
+	mindent.print (level--, space, "</body>");
+	mindent.print (level--, space, "</html>");
 	return (* this);
 }
 
@@ -184,22 +184,22 @@ ocalendar & ocalendar::annum()
  *
  *--------------------------------------------------------------------*/
 
-ocalendar & ocalendar::annum(unsigned level, unsigned space)
+ocalendar & ocalendar::annum (unsigned level, unsigned space)
 
 {
-	mindent.print(level++, 1, "<table class='annum'>");
+	mindent.print (level++, 1, "<table class='annum'>");
 	for (unsigned row = 0; row < QUARTERS_IN_YEAR; row++)
 	{
-		mindent.print(level++, 1, "<tr>");
+		mindent.print (level++, 1, "<tr>");
 		for (unsigned col = 0; col < MONTHS_IN_QUARTER; col++)
 		{
-			mindent.print(level++, 1, "<td class='annum'>");
-			ocalendar::month(level, space, row * MONTHS_IN_QUARTER +  col);
-			mindent.print(level--, 1, "</td>");
+			mindent.print (level++, 1, "<td class='annum'>");
+			ocalendar::month (level, space, row * MONTHS_IN_QUARTER +  col);
+			mindent.print (level--, 1, "</td>");
 		}
-		mindent.print(level--, 1, "</tr>");
+		mindent.print (level--, 1, "</tr>");
 	}
-	mindent.print(level--, 1, "</table>");
+	mindent.print (level--, 1, "</table>");
 	return (* this);
 }
 
@@ -211,23 +211,23 @@ ocalendar & ocalendar::annum(unsigned level, unsigned space)
  *
  *--------------------------------------------------------------------*/
 
-ocalendar & ocalendar::month(unsigned index)
+ocalendar & ocalendar::month (unsigned index)
 
 {
 	unsigned level = 0;
 	unsigned space = 1;
-	mindent.print(level, space, "<?xml version='1.0' encoding='iso-8859-1'?>");
-	mindent.print(level, space, "<!DOCTYPE HTML PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'>");
-	mindent.print(level++, space, "<html xmlns='http://www.w3.org/1999/xhtml' lang='en-us'>");
-	mindent.print(level++, space, "<head>");
-	mindent.print(level++, space, "<title>");
-	mindent.print(level--, space, "</title>");
-	mindent.print(level, space, "<link href='calendar.css' rel='stylesheet' type='text/css'>");
-	mindent.print(level--, space, "</head>");
-	mindent.print(level++, space, "<body>");
-	this->stylesheet(level, space).month(level, space, index);
-	mindent.print(level--, space, "</body>");
-	mindent.print(level--, space, "</html>");
+	mindent.print (level, space, "<?xml version='1.0' encoding='iso-8859-1'?>");
+	mindent.print (level, space, "<!DOCTYPE HTML PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'>");
+	mindent.print (level++, space, "<html xmlns='http://www.w3.org/1999/xhtml' lang='en-us'>");
+	mindent.print (level++, space, "<head>");
+	mindent.print (level++, space, "<title>");
+	mindent.print (level--, space, "</title>");
+	mindent.print (level, space, "<link href='calendar.css' rel='stylesheet' type='text/css'>");
+	mindent.print (level--, space, "</head>");
+	mindent.print (level++, space, "<body>");
+	this->stylesheet (level, space).month (level, space, index);
+	mindent.print (level--, space, "</body>");
+	mindent.print (level--, space, "</html>");
 	return (* this);
 }
 
@@ -239,38 +239,38 @@ ocalendar & ocalendar::month(unsigned index)
  *
  *--------------------------------------------------------------------*/
 
-ocalendar & ocalendar::month(unsigned level, unsigned space, unsigned index)
+ocalendar & ocalendar::month (unsigned level, unsigned space, unsigned index)
 
 {
-	omonth * month = this->mmonth[index];
-	month->encode(this->mtitle, HEADERSIZE);
-	mindent.print(level++, space, "<table class='month'>");
-	mindent.print(level++, space, "<tr>");
-	mindent.print(level++, space, "<th class='month' colspan='7'>");
-	mindent.print(level, space, this->mtitle);
-	mindent.print(level--, space, "</th>");
-	mindent.print(level--, space, "</tr>");
-	mindent.print(level++, space, "<tr>");
+	omonth * month = this->mmonth [index];
+	month->encode (this->mtitle, HEADERSIZE);
+	mindent.print (level++, space, "<table class='month'>");
+	mindent.print (level++, space, "<tr>");
+	mindent.print (level++, space, "<th class='month' colspan='7'>");
+	mindent.print (level, space, this->mtitle);
+	mindent.print (level--, space, "</th>");
+	mindent.print (level--, space, "</tr>");
+	mindent.print (level++, space, "<tr>");
 	for (unsigned weekday = 0; weekday < DAYS_IN_WEEK; weekday++)
 	{
-		mindent.print(level++, space, "<th class='week'>");
-		mindent.print(level, space, ocalendar::mdays[weekday]);
-		mindent.print(level--, space, "</th>");
+		mindent.print (level++, space, "<th class='week'>");
+		mindent.print (level, space, ocalendar::mdays [weekday]);
+		mindent.print (level--, space, "</th>");
 	}
-	mindent.print(level--, space, "</tr>");
+	mindent.print (level--, space, "</tr>");
 	for (unsigned week = 0; week < WEEKS_IN_MONTH; week++)
 	{
-		mindent.print(level++, space, "<tr>");
+		mindent.print (level++, space, "<tr>");
 		for (unsigned weekday = 0; weekday < DAYS_IN_WEEK; weekday++)
 		{
-			unsigned date = month->date(week, weekday);
-			mindent.print(level++, space, "<td class='date'>");
-			mindent.print(level, space, ocalendar::mdate2[date]);
-			mindent.print(level--, space, "</td>");
+			unsigned date = month->date (week, weekday);
+			mindent.print (level++, space, "<td class='date'>");
+			mindent.print (level, space, ocalendar::mdate2 [date]);
+			mindent.print (level--, space, "</td>");
 		}
-		mindent.print(level--, space, "</tr>");
+		mindent.print (level--, space, "</tr>");
 	}
-	mindent.print(level--, space, "</table>");
+	mindent.print (level--, space, "</table>");
 	return (* this);
 }
 
@@ -281,19 +281,19 @@ ocalendar & ocalendar::month(unsigned level, unsigned space, unsigned index)
  *
  *--------------------------------------------------------------------*/
 
-ocalendar & ocalendar::print(unsigned index)
+ocalendar & ocalendar::print (unsigned index)
 
 {
-	omonth * month = this->mmonth[index];
-	month->encode(this->mtitle, HEADERSIZE);
+	omonth * month = this->mmonth [index];
+	month->encode (this->mtitle, HEADERSIZE);
 	std::cout << " " << this->mtitle << std::endl;
 	std::cout << "  S  M  T  W  T  F  S" << std::endl;
 	for (unsigned week = 0; week < WEEKS_IN_MONTH; week++)
 	{
 		for (unsigned weekday = 0; weekday < DAYS_IN_WEEK; weekday++)
 		{
-			unsigned date = month->date(week, weekday);
-			std::cout << " " << ocalendar::mdate1[date];
+			unsigned date = month->date (week, weekday);
+			std::cout << " " << ocalendar::mdate1 [date];
 		}
 		std::cout << std::endl;
 	}
@@ -310,14 +310,14 @@ ocalendar & ocalendar::print(unsigned index)
  *
  *--------------------------------------------------------------------*/
 
-ocalendar::ocalendar()
+ocalendar::ocalendar ()
 
 {
-	this->mtitle = new char[HEADERSIZE];
+	this->mtitle = new char [HEADERSIZE];
 	this->mmonth = new omonth * [MONTHS_IN_YEAR];
 	for (signed month = 0; month < MONTHS_IN_YEAR; month++)
 	{
-		this->mmonth[month] = new omonth(month);
+		this->mmonth [month] = new omonth (month);
 	}
 	return;
 }
@@ -331,14 +331,14 @@ ocalendar::ocalendar()
  *
  *--------------------------------------------------------------------*/
 
-ocalendar::ocalendar(unsigned year)
+ocalendar::ocalendar (unsigned year)
 
 {
-	this->mtitle = new char[HEADERSIZE];
+	this->mtitle = new char [HEADERSIZE];
 	this->mmonth = new omonth * [MONTHS_IN_YEAR];
 	for (signed month = 0; month < MONTHS_IN_YEAR; month++)
 	{
-		this->mmonth[month] = new omonth(year, month);
+		this->mmonth [month] = new omonth (year, month);
 	}
 	return;
 }
@@ -351,7 +351,7 @@ ocalendar::ocalendar(unsigned year)
  *
  *--------------------------------------------------------------------*/
 
-ocalendar::~ ocalendar()
+ocalendar::~ ocalendar ()
 
 {
 	delete [] this->mmonth;

@@ -41,25 +41,25 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) omakefile: private otext, private osection, public oflagword
+class __declspec (dllexport) omakefile: private otext, private osection, public oflagword
 
 {
 public: 
 	omakefile ();
-	virtual ~ omakefile();
-	char const * compiler() const;
-	char const * project() const;
-	char const * sourcedir() const;
-	char const * targetdir() const;
-	omakefile & compiler(char const * string);
-	omakefile & linebreak();
-	omakefile & project(char const * string);
-	omakefile & sourcedir(char const * string);
-	omakefile & targetdir(char const * string);
-	omakefile & publish();
-	omakefile & section(char const * filename);
-	omakefile & projectfile(char const * filename);
-	omakefile & includefile(char const * filename);
+	virtual ~ omakefile ();
+	char const * compiler () const;
+	char const * project () const;
+	char const * sourcedir () const;
+	char const * targetdir () const;
+	omakefile & compiler (char const * string);
+	omakefile & linebreak ();
+	omakefile & project (char const * string);
+	omakefile & sourcedir (char const * string);
+	omakefile & targetdir (char const * string);
+	omakefile & publish ();
+	omakefile & section (char const * filename);
+	omakefile & projectfile (char const * filename);
+	omakefile & includefile (char const * filename);
 private: 
 	oscantext scantext;
 	ofilespec filespec;

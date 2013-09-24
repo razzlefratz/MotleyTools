@@ -28,14 +28,14 @@ TOPIC;
  *7
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) ocmassocindex: private otext; 
+class __declspec (dllexport) ocmassocindex: private otext; 
 
 {
 public: 
 	ocmassocindex ();
-	virtual ~ ocmassocindex();
-	ocmassocindex & index1(struct _topic_ topics[], unsigned count);
-	ocmassocindex & index2(struct _topic_ topics[], unsigned count);
+	virtual ~ ocmassocindex ();
+	ocmassocindex & index1 (struct _topic_ topics [], unsigned count);
+	ocmassocindex & index2 (struct _topic_ topics [], unsigned count);
 private: 
 	ofilespec * mfilespec;
 	owebpage * mwebpage;

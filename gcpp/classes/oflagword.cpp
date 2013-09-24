@@ -28,7 +28,7 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned oflagword::state() const
+unsigned oflagword::state () const
 
 {
 	return (this->mbits);
@@ -42,7 +42,7 @@ unsigned oflagword::state() const
  *
  *--------------------------------------------------------------------*/
 
-oflagword & oflagword::state(unsigned bits)
+oflagword & oflagword::state (unsigned bits)
 
 {
 	this->mbits = bits;
@@ -57,7 +57,7 @@ oflagword & oflagword::state(unsigned bits)
  *
  *--------------------------------------------------------------------*/
 
-unsigned oflagword::getword() const
+unsigned oflagword::getword () const
 
 {
 	return (this->mbits);
@@ -71,7 +71,7 @@ unsigned oflagword::getword() const
  *
  *--------------------------------------------------------------------*/
 
-oflagword & oflagword::setword(unsigned word)
+oflagword & oflagword::setword (unsigned word)
 
 {
 	this->mbits = word;
@@ -86,7 +86,7 @@ oflagword & oflagword::setword(unsigned word)
  *
  *--------------------------------------------------------------------*/
 
-unsigned oflagword::getbits(unsigned mask) const
+unsigned oflagword::getbits (unsigned mask) const
 
 {
 	return (this->mbits & mask);
@@ -100,7 +100,7 @@ unsigned oflagword::getbits(unsigned mask) const
  *
  *--------------------------------------------------------------------*/
 
-oflagword & oflagword::setbits(unsigned mask)
+oflagword & oflagword::setbits (unsigned mask)
 
 {
 	this->mbits |= mask;
@@ -115,7 +115,7 @@ oflagword & oflagword::setbits(unsigned mask)
  *
  *--------------------------------------------------------------------*/
 
-oflagword & oflagword::clearbits(unsigned mask)
+oflagword & oflagword::clearbits (unsigned mask)
 
 {
 	this->mbits &= ~ mask;
@@ -128,7 +128,7 @@ oflagword & oflagword::clearbits(unsigned mask)
  * 
  *--------------------------------------------------------------------*/
 
-bool oflagword::anyset(unsigned mask) const
+bool oflagword::anyset (unsigned mask) const
 
 {
 	return ((this->mbits & mask) != 0);
@@ -140,7 +140,7 @@ bool oflagword::anyset(unsigned mask) const
  * 
  *--------------------------------------------------------------------*/
 
-bool oflagword::allset(unsigned mask) const
+bool oflagword::allset (unsigned mask) const
 
 {
 	return ((this->mbits & mask) == mask);
@@ -152,7 +152,7 @@ bool oflagword::allset(unsigned mask) const
  * 
  *--------------------------------------------------------------------*/
 
-bool oflagword::anyclear(unsigned mask) const
+bool oflagword::anyclear (unsigned mask) const
 
 {
 	return ((this->mbits & mask) != mask);
@@ -164,7 +164,7 @@ bool oflagword::anyclear(unsigned mask) const
  * 
  *--------------------------------------------------------------------*/
 
-bool oflagword::allclear(unsigned mask) const
+bool oflagword::allclear (unsigned mask) const
 
 {
 	return ((this->mbits & mask) == 0);
@@ -176,7 +176,7 @@ bool oflagword::allclear(unsigned mask) const
  *
  *--------------------------------------------------------------------*/
 
-oflagword::oflagword(unsigned word)
+oflagword::oflagword (unsigned word)
 
 {
 	this->mbits = word;
@@ -189,7 +189,7 @@ oflagword::oflagword(unsigned word)
  *
  *--------------------------------------------------------------------*/
 
-oflagword::oflagword()
+oflagword::oflagword ()
 
 {
 	this->mbits = 0;
@@ -202,7 +202,7 @@ oflagword::oflagword()
  *
  *--------------------------------------------------------------------*/
 
-oflagword::~ oflagword()
+oflagword::~ oflagword ()
 
 {
 	return;

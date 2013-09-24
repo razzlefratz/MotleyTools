@@ -28,20 +28,20 @@
  *   interface declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oagenda
+class __declspec (dllexport) oagenda
 
 {
 public: 
 	oagenda ();
-	oagenda (signed comp(char const *, char const *));
-	virtual ~ oagenda();
-	unsigned count() const;
-	char const * event() const;
-	char const * title() const;
-	oagenda & insert(char const * event);
-	oagenda & insert(char const * event, char const * title);
-	oagenda & remove();
-	oagenda & clear();
+	oagenda (signed comp (char const *, char const *));
+	virtual ~ oagenda ();
+	unsigned count () const;
+	char const * event () const;
+	char const * title () const;
+	oagenda & insert (char const * event);
+	oagenda & insert (char const * event, char const * title);
+	oagenda & remove ();
+	oagenda & clear ();
 private: 
 	oheap * mheap;
 };

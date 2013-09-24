@@ -43,7 +43,7 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-const unsigned short octype::mtable[UCHAR_MAX + 1] = 
+const unsigned short octype::mtable [UCHAR_MAX +  1] = 
 
 {
 
@@ -1079,7 +1079,7 @@ const unsigned short octype::mtable[UCHAR_MAX + 1] =
  *
  *--------------------------------------------------------------------*/
 
-bool octype::isascii(signed c)
+bool octype::isascii (signed c)
 
 {
 	return (c < 0x80);
@@ -1092,10 +1092,10 @@ bool octype::isascii(signed c)
  *
  *--------------------------------------------------------------------*/
 
-bool octype::iscntrl(signed c)
+bool octype::iscntrl (signed c)
 
 {
-	return (octype::isctype(c, (CTYPE_B_CNTRL)));
+	return (octype::isctype (c, (CTYPE_B_CNTRL)));
 }
 
 /*====================================================================*
@@ -1105,10 +1105,10 @@ bool octype::iscntrl(signed c)
  *
  *--------------------------------------------------------------------*/
 
-bool octype::isupper(signed c)
+bool octype::isupper (signed c)
 
 {
-	return (octype::isctype(c, (CTYPE_B_UPPER)));
+	return (octype::isctype (c, (CTYPE_B_UPPER)));
 }
 
 /*====================================================================*
@@ -1117,10 +1117,10 @@ bool octype::isupper(signed c)
  *
  *--------------------------------------------------------------------*/
 
-bool octype::islower(signed c)
+bool octype::islower (signed c)
 
 {
-	return (octype::isctype(c, (CTYPE_B_LOWER)));
+	return (octype::isctype (c, (CTYPE_B_LOWER)));
 }
 
 /*====================================================================*
@@ -1129,10 +1129,10 @@ bool octype::islower(signed c)
  *
  *--------------------------------------------------------------------*/
 
-bool octype::isalpha(signed c)
+bool octype::isalpha (signed c)
 
 {
-	return (octype::isctype(c, (CTYPE_B_LOWER | CTYPE_B_UPPER)));
+	return (octype::isctype (c, (CTYPE_B_LOWER | CTYPE_B_UPPER)));
 }
 
 /*====================================================================*
@@ -1141,10 +1141,10 @@ bool octype::isalpha(signed c)
  *
  *--------------------------------------------------------------------*/
 
-bool octype::isdigit(signed c)
+bool octype::isdigit (signed c)
 
 {
-	return (octype::isctype(c, (CTYPE_B_DIGIT)));
+	return (octype::isctype (c, (CTYPE_B_DIGIT)));
 }
 
 /*====================================================================*
@@ -1153,10 +1153,10 @@ bool octype::isdigit(signed c)
  *
  *--------------------------------------------------------------------*/
 
-bool octype::isxdigit(signed c)
+bool octype::isxdigit (signed c)
 
 {
-	return (octype::isctype(c, (CTYPE_B_HEX)));
+	return (octype::isctype (c, (CTYPE_B_HEX)));
 }
 
 /*====================================================================*
@@ -1165,10 +1165,10 @@ bool octype::isxdigit(signed c)
  *
  *--------------------------------------------------------------------*/
 
-bool octype::isalnum(signed c)
+bool octype::isalnum (signed c)
 
 {
-	return (octype::isctype(c, (CTYPE_B_UPPER | CTYPE_B_LOWER | CTYPE_B_DIGIT)));
+	return (octype::isctype (c, (CTYPE_B_UPPER | CTYPE_B_LOWER | CTYPE_B_DIGIT)));
 }
 
 /*====================================================================*
@@ -1177,10 +1177,10 @@ bool octype::isalnum(signed c)
  *
  *--------------------------------------------------------------------*/
 
-bool octype::isspace(signed c)
+bool octype::isspace (signed c)
 
 {
-	return (octype::isctype(c, (CTYPE_B_SPACE)));
+	return (octype::isctype (c, (CTYPE_B_SPACE)));
 }
 
 /*====================================================================*
@@ -1189,10 +1189,10 @@ bool octype::isspace(signed c)
  *
  *--------------------------------------------------------------------*/
 
-bool octype::ispunct(signed c)
+bool octype::ispunct (signed c)
 
 {
-	return (octype::isctype(c, (CTYPE_B_PUNCT)));
+	return (octype::isctype (c, (CTYPE_B_PUNCT)));
 }
 
 /*====================================================================*
@@ -1201,10 +1201,10 @@ bool octype::ispunct(signed c)
  *
  *--------------------------------------------------------------------*/
 
-bool octype::isgraph(signed c)
+bool octype::isgraph (signed c)
 
 {
-	return (octype::isctype(c, (CTYPE_B_UPPER | CTYPE_B_LOWER | CTYPE_B_DIGIT | CTYPE_B_PUNCT)));
+	return (octype::isctype (c, (CTYPE_B_UPPER | CTYPE_B_LOWER | CTYPE_B_DIGIT | CTYPE_B_PUNCT)));
 }
 
 /*====================================================================*
@@ -1213,10 +1213,10 @@ bool octype::isgraph(signed c)
  *
  *--------------------------------------------------------------------*/
 
-bool octype::isprint(signed c)
+bool octype::isprint (signed c)
 
 {
-	return (! octype::isctype(c, (CTYPE_B_CNTRL)));
+	return (! octype::isctype (c, (CTYPE_B_CNTRL)));
 }
 
 /*====================================================================*
@@ -1225,10 +1225,10 @@ bool octype::isprint(signed c)
  *
  *--------------------------------------------------------------------*/
 
-signed octype::toupper(signed c)
+signed octype::toupper (signed c)
 
 {
-	if (octype::islower(c))
+	if (octype::islower (c))
 	{
 		return (c - ('a' - 'A'));
 	}
@@ -1241,12 +1241,12 @@ signed octype::toupper(signed c)
  *
  *--------------------------------------------------------------------*/
 
-signed octype::tolower(signed c)
+signed octype::tolower (signed c)
 
 {
-	if (octype::isupper(c))
+	if (octype::isupper (c))
 	{
-		return (c + ('a' - 'A'));
+		return (c +  ('a' - 'A'));
 	}
 	return (c);
 }
@@ -1257,7 +1257,7 @@ signed octype::tolower(signed c)
  *
  *--------------------------------------------------------------------*/
 
-signed octype::toascii(signed c)
+signed octype::toascii (signed c)
 
 {
 	return (c & 0x007F);
@@ -1269,7 +1269,7 @@ signed octype::toascii(signed c)
  *
  *--------------------------------------------------------------------*/
 
-signed octype::tocntrl(signed c)
+signed octype::tocntrl (signed c)
 
 {
 	return (c & 0x001F);
@@ -1282,10 +1282,10 @@ signed octype::tocntrl(signed c)
  *
  *--------------------------------------------------------------------*/
 
-bool octype::isctype(signed c, unsigned mask)
+bool octype::isctype (signed c, unsigned mask)
 
 {
-	return ((octype::mtable[c & 0x007F] & (mask)));
+	return ((octype::mtable [c & 0x007F] & (mask)));
 }
 
 /*====================================================================*
@@ -1294,7 +1294,7 @@ bool octype::isctype(signed c, unsigned mask)
  *
  *--------------------------------------------------------------------*/
 
-octype::octype()
+octype::octype ()
 
 {
 	return;
@@ -1306,7 +1306,7 @@ octype::octype()
  *
  *--------------------------------------------------------------------*/
 
-octype::~ octype()
+octype::~ octype ()
 
 {
 	return;

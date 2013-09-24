@@ -35,29 +35,29 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oversion: private otext
+class __declspec (dllexport) oversion: private otext
 
 {
 public: 
 	oversion ();
-	virtual ~ oversion();
-	char const * program() const;
-	char const * company() const;
-	char const * project() const;
-	char const * package() const;
-	char const * version() const;
-	char const * release() const;
-	char const * license() const;
-	char const * contact() const;
-	oversion & program(char const *);
-	oversion & company(char const *);
-	oversion & project(char const *);
-	oversion & package(char const *);
-	oversion & version(char const *);
-	oversion & release(char const *);
-	oversion & license(char const *);
-	oversion & contact(char const *);
-	oversion & print();
+	virtual ~ oversion ();
+	char const * program () const;
+	char const * company () const;
+	char const * project () const;
+	char const * package () const;
+	char const * version () const;
+	char const * release () const;
+	char const * license () const;
+	char const * contact () const;
+	oversion & program (char const *);
+	oversion & company (char const *);
+	oversion & project (char const *);
+	oversion & package (char const *);
+	oversion & version (char const *);
+	oversion & release (char const *);
+	oversion & license (char const *);
+	oversion & contact (char const *);
+	oversion & print ();
 private: 
 	char * mprogram;
 	char * mcompany;

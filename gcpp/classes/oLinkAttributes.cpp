@@ -23,17 +23,17 @@
  *
  *--------------------------------------------------------------------*/
 
-oLinkAttributes & oLinkAttributes::write()
+oLinkAttributes & oLinkAttributes::write ()
 
 {
-	this->ReferenceAttribute->write();
-	this->ReferenceLanguageAttribute->write();
-	this->ForwardLinkTypeAttribute->write();
-	this->ReverseLinkTypeAttribute->write();
-	this->TargetFrameAttribute->write();
-	this->AccessKeyAttribute->write();
-	this->NavigationIndexAttribute->write();
-	this->BaseURLAttribute->write();
+	this->ReferenceAttribute->write ();
+	this->ReferenceLanguageAttribute->write ();
+	this->ForwardLinkTypeAttribute->write ();
+	this->ReverseLinkTypeAttribute->write ();
+	this->TargetFrameAttribute->write ();
+	this->AccessKeyAttribute->write ();
+	this->NavigationIndexAttribute->write ();
+	this->BaseURLAttribute->write ();
 	return (* this);
 }
 
@@ -43,17 +43,17 @@ oLinkAttributes & oLinkAttributes::write()
  *   
  *--------------------------------------------------------------------*/
 
-oLinkAttributes::oLinkAttributes()
+oLinkAttributes::oLinkAttributes ()
 
 {
-	this->ReferenceAttribute = new oAttribute("href");
-	this->ReferenceLanguageAttribute = new oAttribute("hreflang");
-	this->ForwardLinkTypeAttribute = new oAttribute("rel");
-	this->ReverseLinkTypeAttribute = new oAttribute("rev");
-	this->TargetFrameAttribute = new oAttribute("target");
-	this->AccessKeyAttribute = new oAttribute("accesskey");
-	this->NavigationIndexAttribute = new oAttribute("navindex");
-	this->BaseURLAttribute = new oAttribute("base");
+	this->ReferenceAttribute = new oAttribute ("href");
+	this->ReferenceLanguageAttribute = new oAttribute ("hreflang");
+	this->ForwardLinkTypeAttribute = new oAttribute ("rel");
+	this->ReverseLinkTypeAttribute = new oAttribute ("rev");
+	this->TargetFrameAttribute = new oAttribute ("target");
+	this->AccessKeyAttribute = new oAttribute ("accesskey");
+	this->NavigationIndexAttribute = new oAttribute ("navindex");
+	this->BaseURLAttribute = new oAttribute ("base");
 	return;
 }
 
@@ -63,7 +63,7 @@ oLinkAttributes::oLinkAttributes()
  *   
  *--------------------------------------------------------------------*/
 
-oLinkAttributes::~ oLinkAttributes()
+oLinkAttributes::~ oLinkAttributes ()
 
 {
 	return;

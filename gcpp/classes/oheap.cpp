@@ -32,7 +32,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const * oheap::title() const
+char const * oheap::title () const
 
 {
 	return (this->mtitle);
@@ -46,13 +46,13 @@ char const * oheap::title() const
  *
  *--------------------------------------------------------------------*/
 
-oheap & oheap::title(char const * string)
+oheap & oheap::title (char const * string)
 
 {
-	if (std::strcmp(string, this->mtitle))
+	if (std::strcmp (string, this->mtitle))
 	{
 		delete [] this->mtitle;
-		this->mtitle = new char[strlen(string) +  1];
+		this->mtitle = new char [strlen (string) +  1];
 		strcpy (this->mtitle, string);
 	}
 	return (* this);
@@ -65,7 +65,7 @@ oheap & oheap::title(char const * string)
  *
  *--------------------------------------------------------------------*/
 
-size_t oheap::count() const
+size_t oheap::count () const
 
 {
 	return (this->mcount);
@@ -78,10 +78,10 @@ size_t oheap::count() const
  *
  *--------------------------------------------------------------------*/
 
-oitem * oheap::item() const
+oitem * oheap::item () const
 
 {
-	return (this->mcount > 0? this->mtable[this->mstart]: (oitem *)(0));
+	return (this->mcount > 0? this->mtable [this->mstart]: (oitem *) (0));
 }
 
 /*====================================================================*
@@ -91,16 +91,16 @@ oitem * oheap::item() const
  *
  *--------------------------------------------------------------------*/
 
-oitem * oheap::item()
+oitem * oheap::item ()
 
 {
 	if (this->mcount < this->mstart)
 	{
-		return ((oitem *)(0));
+		return ((oitem *) (0));
 	}
 	if (this->mcount > this->mlimit)
 	{
-		return ((oitem *)(0));
+		return ((oitem *) (0));
 	}
 
 /*
@@ -114,23 +114,23 @@ oitem * oheap::item()
  * this against the book if in doubt.
  */
 
-	oitem * item = this->mtable[this->mstart];
+	oitem * item = this->mtable [this->mstart];
 	this->mlower = this->mstart;
 	while ((this->mupper = (this->mlower << 1)) < this->mcount)
 	{
-		if ((* this->morder)(this->mtable[this->mupper] ->name(), this->mtable[this->mupper +  1] ->name()) > 0)
+		if ((* this->morder) (this->mtable [this->mupper] ->name (), this->mtable [this->mupper +  1] ->name ()) > 0)
 		{
 			this->mupper++;
 		}
-		if ((* this->morder)(this->mtable[this->mcount] ->name(), this->mtable[this->mupper +  0] ->name()) <= 0)
+		if ((* this->morder) (this->mtable [this->mcount] ->name (), this->mtable [this->mupper +  0] ->name ()) <= 0)
 		{
 			break;
 		}
-		this->mtable[this->mlower] = this->mtable[this->mupper];
+		this->mtable [this->mlower] = this->mtable [this->mupper];
 		this->mlower = this->mupper;
 	}
-	this->mtable[this->mlower] = this->mtable[this->mcount];
-	this->mtable[this->mcount--] = (oitem *)(0);
+	this->mtable [this->mlower] = this->mtable [this->mcount];
+	this->mtable [this->mcount--] = (oitem *) (0);
 	return (item);
 }
 
@@ -141,7 +141,7 @@ oitem * oheap::item()
  *
  *--------------------------------------------------------------------*/
 
-oheap & oheap::insertitem(oitem * item)
+oheap & oheap::insertitem (oitem * item)
 
 {
 	if (++ mcount > mlimit)
@@ -152,7 +152,7 @@ oheap & oheap::insertitem(oitem * item)
 		this->mtable = new oitem * [this->mlimit];
 		for (size_t index = 0; index < this->mlimit; ++ index)
 		{
-			this->mtable[index] = table[index];
+			this->mtable [index] = table [index];
 		}
 		delete [] table;
 	}
@@ -160,14 +160,14 @@ oheap & oheap::insertitem(oitem * item)
 	while (this->mupper > this->mstart)
 	{
 		this->mlower = this->mupper >> 1;
-		if ((* this->morder)(item->name(), this->mtable[this->mlower] ->name()) >= 0)
+		if ((* this->morder) (item->name (), this->mtable [this->mlower] ->name ()) >= 0)
 		{
 			break;
 		}
-		this->mtable[this->mupper] = this->mtable[this->mlower];
+		this->mtable [this->mupper] = this->mtable [this->mlower];
 		this->mupper = this->mlower;
 	}
-	this->mtable[this->mupper] = item;
+	this->mtable [this->mupper] = item;
 	return (* this);
 }
 
@@ -178,12 +178,12 @@ oheap & oheap::insertitem(oitem * item)
  *
  *--------------------------------------------------------------------*/
 
-oheap & oheap::clear()
+oheap & oheap::clear ()
 
 {
 	while (mcount > 0)
 	{
-		delete this->mtable[this->mcount--];
+		delete this->mtable [this->mcount--];
 	}
 	return (* this);
 }
@@ -192,11 +192,11 @@ oheap & oheap::clear()
  *
  *--------------------------------------------------------------------*/
 
-oheap::oheap()
+oheap::oheap ()
 
 {
-	this->mtitle = new char[1];
-	this->mtitle[0] = (char)(0);
+	this->mtitle = new char [1];
+	this->mtitle [0] = (char) (0);
 	this->mtable = new oitem * [_LISTSIZE];
 	this->mlimit = _LISTSIZE;
 	this->mblock = _LISTSIZE;
@@ -206,11 +206,11 @@ oheap::oheap()
 	return;
 }
 
-oheap::oheap(int order(char const *, char const *))
+oheap::oheap (int order (char const *, char const *))
 
 {
-	this->mtitle = new char[1];
-	this->mtitle[0] = (char)(0);
+	this->mtitle = new char [1];
+	this->mtitle [0] = (char) (0);
 	this->mtable = new oitem * [_LISTSIZE];
 	this->mlimit = _LISTSIZE;
 	this->mblock = _LISTSIZE;
@@ -220,7 +220,7 @@ oheap::oheap(int order(char const *, char const *))
 	return;
 }
 
-oheap::~ oheap()
+oheap::~ oheap ()
 
 {
 	delete [] this->mtitle;

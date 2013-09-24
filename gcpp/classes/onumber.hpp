@@ -67,20 +67,20 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) onumber
+class __declspec (dllexport) onumber
 
 {
 public: 
 	onumber ();
-	virtual ~ onumber();
-	static huge_t basespec(char const * string, unsigned base, unsigned size);
-	static huge_t uintspec(char const * string, huge_t minimum, huge_t maximum);
-	static size_t ipv4spec(char const * string, void * memory);
-	static size_t ipv6spec(char const * string, void * memory);
-	static void * ipv4encode(char const * string, void * memory);
-	static void * ipv6encode(char const * string, void * memory);
+	virtual ~ onumber ();
+	static huge_t basespec (char const * string, unsigned base, unsigned size);
+	static huge_t uintspec (char const * string, huge_t minimum, huge_t maximum);
+	static size_t ipv4spec (char const * string, void * memory);
+	static size_t ipv6spec (char const * string, void * memory);
+	static void * ipv4encode (char const * string, void * memory);
+	static void * ipv6encode (char const * string, void * memory);
 private: 
-	static signed todigit(signed c);
+	static signed todigit (signed c);
 };
 
 /*====================================================================*

@@ -23,7 +23,7 @@
  *
  *--------------------------------------------------------------------*/
 
-oconsole::oconsole()
+oconsole::oconsole ()
 
 {
 	return;
@@ -35,7 +35,7 @@ oconsole::oconsole()
  *
  *--------------------------------------------------------------------*/
 
-oconsole::~ oconsole()
+oconsole::~ oconsole ()
 
 {
 	return;

@@ -22,12 +22,12 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) oclibwords: public okeywords
+class __declspec (dllexport) oclibwords: public okeywords
 
 {
 public: 
 	oclibwords ();
-	~ oclibwords();
+	~ oclibwords ();
 };
 
 /*====================================================================*

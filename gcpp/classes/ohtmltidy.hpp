@@ -35,31 +35,31 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) ohtmltidy: private otext, private osource, public oindent, public oflagword
+class __declspec (dllexport) ohtmltidy: private otext, private osource, public oindent, public oflagword
 
 {
 public: 
 	ohtmltidy ();
-	virtual ~ ohtmltidy();
-	char quote() const;
-	ohtmltidy & quote(signed c);
-	char const * string() const;
-	char const * element() const;
-	char const * attribute() const;
-	char const * value() const;
-	signed page(signed c);
-	signed sgml(signed c);
-	signed xhtml(signed c);
-	signed xml(signed c) const;
-	signed php(signed c) const;
-	signed asp(signed c) const;
-	signed cdata(signed c) const;
-	signed comment(signed c) const;
-	signed enquote(signed c, signed e);
-	signed dequote(signed c, signed e);
-	signed nmtoken(signed c);
-	signed unknown(signed c);
-	ohtmltidy & print();
+	virtual ~ ohtmltidy ();
+	char quote () const;
+	ohtmltidy & quote (signed c);
+	char const * string () const;
+	char const * element () const;
+	char const * attribute () const;
+	char const * value () const;
+	signed page (signed c);
+	signed sgml (signed c);
+	signed xhtml (signed c);
+	signed xml (signed c) const;
+	signed php (signed c) const;
+	signed asp (signed c) const;
+	signed cdata (signed c) const;
+	signed comment (signed c) const;
+	signed enquote (signed c, signed e);
+	signed dequote (signed c, signed e);
+	signed nmtoken (signed c);
+	signed unknown (signed c);
+	ohtmltidy & print ();
 protected: 
 	static oHTMLEmptyElements htmlempty;
 	char * mstring;

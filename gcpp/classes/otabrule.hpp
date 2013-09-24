@@ -21,19 +21,19 @@
  *
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) tabrule
+class __declspec (dllexport) tabrule
 
 {
 public: 
 	tabrule ();
 	tabrule (unsigned margin, signed indent);
-	virtual ~ tabrule();
-	unsigned margin() const;
-	unsigned indent() const;
-	tabrule & clear();
-	tabrule & reset();
-	bool tabcol(unsigned column);
-	tabrule & tabset(unsigned column, signed indent);
+	virtual ~ tabrule ();
+	unsigned margin () const;
+	unsigned indent () const;
+	tabrule & clear ();
+	tabrule & reset ();
+	bool tabcol (unsigned column);
+	tabrule & tabset (unsigned column, signed indent);
 private: 
 	unsigned mmargin;
 	unsigned mindent;

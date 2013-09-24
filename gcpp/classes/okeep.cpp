@@ -32,30 +32,30 @@
  *
  *--------------------------------------------------------------------*/
 
-void * okeep::store(char const * string, void * object)
+void * okeep::store (char const * string, void * object)
 
 {
-	if (this->mstring == (char *)(0))
+	if (this->mstring == (char *) (0))
 	{
-		this->mstring = new char[strlen(string) +  1];
-		std::strcpy(this->mstring, string);
+		this->mstring = new char [strlen (string) +  1];
+		std::strcpy (this->mstring, string);
 	}
-	int order = std::strcmp(string, mstring);
+	int order = std::strcmp (string, mstring);
 	if (order < 0)
 	{
-		if (this->mprior == (okeep *)(0))
+		if (this->mprior == (okeep *) (0))
 		{
-			this->mprior = new okeep();
+			this->mprior = new okeep ();
 		}
-		return (this->mprior->store(string, object));
+		return (this->mprior->store (string, object));
 	}
 	if (order > 0)
 	{
-		if (this->mafter == (okeep *)(0))
+		if (this->mafter == (okeep *) (0))
 		{
-			this->mafter = new okeep();
+			this->mafter = new okeep ();
 		}
-		return (this->mafter->store(string, object));
+		return (this->mafter->store (string, object));
 	}
 	void * pobject = this->mobject;
 	this->mobject = object;
@@ -69,13 +69,13 @@ void * okeep::store(char const * string, void * object)
  *
  *--------------------------------------------------------------------*/
 
-void * okeep::fetch(char const * string) const
+void * okeep::fetch (char const * string) const
 
 {
 	const okeep * node = this;
-	while (node != (okeep *)(0))
+	while (node != (okeep *) (0))
 	{
-		int order = std::strcmp(string, node->mstring);
+		int order = std::strcmp (string, node->mstring);
 		if (order < 0)
 		{
 			node = node->mprior;
@@ -86,9 +86,9 @@ void * okeep::fetch(char const * string) const
 			node = node->mafter;
 			continue;
 		}
-		return ((void *)(node->mobject));
+		return ((void *) (node->mobject));
 	}
-	return ((void *)(0));
+	return ((void *) (0));
 }
 
 /*====================================================================*
@@ -97,13 +97,13 @@ void * okeep::fetch(char const * string) const
  *
  *--------------------------------------------------------------------*/
 
-okeep::okeep()
+okeep::okeep ()
 
 {
-	mstring = (char *)(0);
-	mobject = (void *)(0);
-	mprior = (okeep *)(0);
-	mafter = (okeep *)(0);
+	mstring = (char *) (0);
+	mobject = (void *) (0);
+	mprior = (okeep *) (0);
+	mafter = (okeep *) (0);
 	return;
 };
 
@@ -113,14 +113,14 @@ okeep::okeep()
  *
  *--------------------------------------------------------------------*/
 
-okeep::~ okeep()
+okeep::~ okeep ()
 
 {
 	delete [] mstring;
-	this->mstring = (char *)(0);
-	this->mobject = (void *)(0);
-	this->mprior = (okeep *)(0);
-	this->mafter = (okeep *)(0);
+	this->mstring = (char *) (0);
+	this->mobject = (void *) (0);
+	this->mprior = (okeep *) (0);
+	this->mafter = (okeep *) (0);
 	return;
 }
 

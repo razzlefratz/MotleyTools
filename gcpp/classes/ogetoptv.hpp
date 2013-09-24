@@ -35,25 +35,25 @@
  *   object declaration; 
  *--------------------------------------------------------------------*/
 
-class __declspec(dllexport) ogetoptv: private oputoptv, private oversion
+class __declspec (dllexport) ogetoptv: private oputoptv, private oversion
 
 {
 public: 
 	ogetoptv ();
-	virtual ~ ogetoptv();
-	int argc() const;
-	char const ** argv() const;
-	char const * args();
-	signed optind() const;
-	signed opterr() const;
-	signed optmin() const;
-	signed optopt() const;
-	char const * optarg() const;
+	virtual ~ ogetoptv ();
+	int argc () const;
+	char const ** argv () const;
+	char const * args ();
+	signed optind () const;
+	signed opterr () const;
+	signed optmin () const;
+	signed optopt () const;
+	char const * optarg () const;
 	signed operator++ (signed);
-	int getoptv(int argc, char const * argv[], char const * optv[]);
-	ogetoptv & optind(const signed);
-	ogetoptv & opterr(const signed);
-	ogetoptv & optmin(const signed);
+	int getoptv (int argc, char const * argv [], char const * optv []);
+	ogetoptv & optind (const signed);
+	ogetoptv & opterr (const signed);
+	ogetoptv & optmin (const signed);
 private: 
 	char const * moption;
 	char const * mstring;
