@@ -168,6 +168,7 @@ signed octidy::atheros (signed c)
 				oindent::endline (2);
 				oindent::newline ();
 			}
+			std::cout.put (' ');
 			c = osource::keep (c);
 			oindent::increment ();
 			oindent::space (1);
