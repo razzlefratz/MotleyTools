@@ -68,6 +68,12 @@
  *
  *--------------------------------------------------------------------*/
 
+static signed join (signed c)
+{
+	span (c, '\\', '\n');
+	return (c); 
+}
+
 static signed noop (signed c) 
 
 { 
@@ -166,7 +172,7 @@ int main (int argc, char const * argv [])
 			comment = * optarg; 
 			break; 
 		case 'm': 
-			escape = span; 
+			escape = join; 
 			break; 
 		default: 
 			break; 
