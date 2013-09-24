@@ -610,7 +610,7 @@ signed osource::operate (signed c)
 		}
 		c = osource::find (c);
 
-#if 1
+#if 0
 
 /*
  *	treat "-1" as one token;
@@ -724,23 +724,17 @@ signed osource::operate (signed c)
 			c = osource::find (c);
 			return (c);
 		}
+		else if (c == '1')
+		{
+			return (c);
+		}
 		else 
 		{
 			c = osource::find (c);
-
-#if 1
-
-/*
- *	convert "- 1" to "-1";
- */
-
 			if (c == '1')
 			{
 				return (c);
 			}
-
-#endif
-
 		}
 		std::cout.put (' ');
 	}
