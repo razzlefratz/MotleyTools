@@ -236,10 +236,10 @@ static signed element (signed c)
 		{
 			c = keep (c);
 		}
-		while (isalnum (c) || ((char)(c) == '-'));
+		while (isalnum (c) || ((char) (c) == '-'));
 		c = nocontext (c, '>');
 	}
-	else if (isalpha (c) || ((char)(c) == '/'))
+	else if (isalpha (c) || ((char) (c) == '/'))
 	{
 		do 
 		{

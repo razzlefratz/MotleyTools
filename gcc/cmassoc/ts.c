@@ -36,7 +36,7 @@ int main (int argc, char const * argv [])
 
 {
 	char string [14];
-	time_t timer = time ((time_t *)(0));
+	time_t timer = time ((time_t *) (0));
 	write (STDOUT_FILENO, string, strftime (string, sizeof (string), "%y%m%d-%H%M%S", localtime (& timer)));
 	return (0);
 }

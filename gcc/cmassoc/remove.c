@@ -206,13 +206,13 @@ int main (int argc, char const * argv [])
 			_clrbits (flags, REMOVE_B_RECORD);
 			break;
 		case 'l':
-			strcpy (buffer, struesc ((char *)(optarg)));
+			strcpy (buffer, struesc ((char *) (optarg)));
 			remove [size++] = regexmake (buffer);
 			remove [size] = (regexp *) (0);
 			break;
 		case 'e':
 			strcpy (buffer, REGEX_S_SPAN);
-			strcat (buffer, struesc ((char *)(optarg)));
+			strcat (buffer, struesc ((char *) (optarg)));
 			strcat (buffer, REGEX_S_SPAN);
 			remove [size++] = regexmake (buffer);
 			remove [size] = (regexp *) (0);

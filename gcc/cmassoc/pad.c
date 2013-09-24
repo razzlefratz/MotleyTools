@@ -100,7 +100,7 @@ int main (int argc, char const * argv [])
 		"copy one or more files to stdout",
 		"b n\tblock size is (n) bytes [" LITERAL (BLOCKSIZE) "]",
 		"u\tunbuffered copy",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	signed blocksize = BLOCKSIZE;
 	signed c;

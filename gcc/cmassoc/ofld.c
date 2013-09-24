@@ -102,7 +102,7 @@ int main (int argc, char const * argv [])
 		"generic field enumerator",
 		"b n\tbuffer size is (n) [" LITERAL (OFLD_BUFFER) "]",
 		"f n\tfield count is (n) [" LITERAL (OFLD_FIELDS) "]",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	signed fields = OFLD_FIELDS;
 	size_t length = OFLD_BUFFER;

@@ -122,7 +122,7 @@ static char * noversion (char package [])
 		}
 		if (isupper (* package))
 		{
-			* package = * package + ('a' - 'A');
+			* package = * package +  ('a' - 'A');
 			continue;
 		}
 	}
@@ -246,7 +246,7 @@ static void findfile (FIND * find, flag_t flags)
 		testfile (find, flags);
 		return;
 	}
-	while (* filename != (char)(0))
+	while (* filename != (char) (0))
 	{
 		filename++;
 	}

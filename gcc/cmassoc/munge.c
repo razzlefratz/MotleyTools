@@ -112,7 +112,7 @@ static void function (char const * pathname, char const * prefix, char const * d
 	}
 	if (sp > filename)
 	{
-		* sp = (char)(0);
+		* sp = (char) (0);
 	}
 	if (strcmp (pathname, filename))
 	{

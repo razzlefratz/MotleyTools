@@ -106,7 +106,7 @@ static void function (char const * file, unsigned width, flag_t flags)
 		{
 			unsigned digit = width;
 			unsigned delta = value - prior;
-			number [digit] = (char)(0);
+			number [digit] = (char) (0);
 			while (digit)
 			{
 				number [-- digit] = DIGITS_DEC [delta % 10];
@@ -144,17 +144,17 @@ int main (int argc, char const * argv [])
 		PUTOPTV_S_FUNNEL,
 		"print difference between consecutive unsigned decimal integers",
 		"w n\twidth in digits is (n) [" LITERAL (DIGITS) "]",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	unsigned width = DIGITS;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'w':
-			width = (unsigned)(uintspec (optarg, 1, 16));
+			width = (unsigned) (uintspec (optarg, 1, 16));
 		default: 
 			break;
 		}

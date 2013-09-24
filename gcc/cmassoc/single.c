@@ -68,7 +68,7 @@ static void put (size_t count, char * string, flag_t flags, FILE * fp)
 {
 	if (_anyset (flags, UNIQ_B_NUMBER))
 	{
-		fprintf (fp, "%4lu ", (unsigned long)(count));
+		fprintf (fp, "%4lu ", (unsigned long) (count));
 	}
 	fputs (string, stdout);
 	return;
@@ -103,8 +103,8 @@ static void function (size_t length, flag_t flags)
 	struct line * old = two.next = (struct line *) (& one);
 	struct line * new = one.next = (struct line *) (& two);
 	size_t count = 1;
-	one.text = (char *)(malloc (length));
-	two.text = (char *)(malloc (length));
+	one.text = (char *) (malloc (length));
+	two.text = (char *) (malloc (length));
 	one.text [0] = (char) (0);
 	two.text [0] = (char) (0);
 	while (fgets (new->text, length, stdin))

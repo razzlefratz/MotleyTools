@@ -184,9 +184,9 @@ int main (int argc, char const * argv [])
 		"c c\tcomment character is (c) [" LITERAL (COMMENT_CHR) "]",
 		"u\tconvert opcodes to upper case",
 		"t n.m\ttabspec is (n.m) ",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	unsigned column = COMMENT_COL;
 	unsigned character = COMMENT_CHR;
 	signed c;

@@ -115,17 +115,17 @@ int main (int argc, char const * argv [])
 	};
 	size_t offset = 0;
 	size_t length = 0;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'l':
-			length = (size_t)(basespec (optarg, 10, sizeof (size_t)));
+			length = (size_t) (basespec (optarg, 10, sizeof (size_t)));
 			break;
 		case 'o':
-			offset = (size_t)(basespec (optarg, 16, sizeof (size_t)));
+			offset = (size_t) (basespec (optarg, 16, sizeof (size_t)));
 			break;
 		case 'n':
 			_setbits (flags, GRAB_NEWLINE);

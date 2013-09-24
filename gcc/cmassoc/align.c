@@ -150,7 +150,7 @@ int main (int argc, char const * argv [])
 		"b n\tbefore column (n)",
 		"c c\talignment character (c)",
 		"t n\talignment column (n)",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	unsigned minimum = 0;
 	unsigned maximum = - 1;

@@ -191,7 +191,7 @@ static void organize (NODE * node, flag_t flags)
 	}
 	margin--;
 	nodes.node = node->node;
-	node->node = (NODE *)(0);
+	node->node = (NODE *) (0);
 	return;
 }
 
@@ -253,7 +253,7 @@ int main (int argc, char const * argv [])
 		"x\texchange order",
 		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

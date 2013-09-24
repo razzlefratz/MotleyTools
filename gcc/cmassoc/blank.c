@@ -152,9 +152,9 @@ int main (int argc, char const * argv [])
 		PUTOPTV_S_FILTER,
 		"minimize blank lines and eliminate trailing spaces",
 		"n n\treduce consecutive blank lines to (n) lines [" LITERAL (BLANK_COUNT) "]",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	size_t count = BLANK_COUNT;
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))

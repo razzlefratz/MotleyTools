@@ -85,8 +85,8 @@ static unsigned lineno = 0;
 static unsigned origin = 0;
 static unsigned offset = 0;
 static unsigned length = 0;
-static char * symbol = (char *)(0);
-static char * string = (char *)(0);
+static char * symbol = (char *) (0);
+static char * string = (char *) (0);
 static signed c;
 
 /*====================================================================*
@@ -160,7 +160,7 @@ static unsigned object ()
 	{
 		do 
 		{
-			* sp++ = (char)(c);
+			* sp++ = (char) (c);
 			c = getc (stdin);
 		}
 		while (isalnum (c) || (c == '_') || (c == '-') || (c == '.') || (c == ':'));
@@ -171,7 +171,7 @@ static unsigned object ()
 	}
 	if (c == '[')
 	{
-		* sp++ = (char)(c);
+		* sp++ = (char) (c);
 		c = getc (stdin);
 		while (isblank (c))
 		{
@@ -179,22 +179,22 @@ static unsigned object ()
 		}
 		while (isdigit (c))
 		{
-			* sp++ = (char)(c);
+			* sp++ = (char) (c);
 			c = getc (stdin);
 		}
 		while (isblank (c))
 		{
 			c = getc (stdin);
 		}
-		* sp = (char)(0);
+		* sp = (char) (0);
 		if (c != ']')
 		{
 			error (1, EINVAL, "Have '%s' but need ']' on line %d", symbol, lineno);
 		}
-		* sp++ = (char)(c);
+		* sp++ = (char) (c);
 		c = getc (stdin);
 	}
-	* sp = (char)(0);
+	* sp = (char) (0);
 	while (isblank (c))
 	{
 		c = getc (stdin);
@@ -202,14 +202,14 @@ static unsigned object ()
 	sp = cp = string;
 	while (nobreak (c))
 	{
-		* cp++ = (char)(c);
+		* cp++ = (char) (c);
 		if (! isspace (c))
 		{
 			sp = cp;
 		}
 		c = getc (stdin);
 	}
-	* sp = (char)(0);
+	* sp = (char) (0);
 	return (count);
 }
 
@@ -845,7 +845,7 @@ int main (int argc, char const * argv [])
 		"t\tprint text with TAB seperated columns",
 		"x\thide unmarked objects",
 		"z\tremove leading zeros",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	char const * colors [] = 
 	{
@@ -855,7 +855,7 @@ int main (int argc, char const * argv [])
 		"#00FF00",
 		"#FF00FF"
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

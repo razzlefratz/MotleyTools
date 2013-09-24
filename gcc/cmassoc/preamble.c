@@ -115,7 +115,7 @@ int main (int argc, char const * argv [])
 		"v\tverbose mode",
 		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed length = 1024;
 	signed prefix = - 1;
 	signed suffix = - 1;

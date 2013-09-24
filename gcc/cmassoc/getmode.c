@@ -211,7 +211,7 @@ int main (int argc, char const * argv [])
 		PUTOPTV_S_FUNNEL,
 		"print file name, type, mode, owner and group on stdout",
 		"r\trecursive search",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	FIND find;
 	flag_t flags = (flag_t) (0);

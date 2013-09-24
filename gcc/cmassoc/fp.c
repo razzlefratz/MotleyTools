@@ -83,7 +83,7 @@ int main (int argc, char const * argv [])
 	};
 	byte buffer [BUFFERSIZE];
 	byte digest [DIGESTSIZE];
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

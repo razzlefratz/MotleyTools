@@ -75,7 +75,7 @@ int main (int argc, char const * argv [])
 		"file [file] [...]",
 		"digital dactyloscope",
 		"f f\tfingerprint registry [" REGISTRY "]",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	byte buffer [BUFFERSIZE];
 	byte digest [DIGESTSIZE];

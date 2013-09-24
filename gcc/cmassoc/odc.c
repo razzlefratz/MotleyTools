@@ -183,7 +183,7 @@ void function (char const * filename [], flag_t flags)
 		{
 			do 
 			{
-				* sp++ = (char)(c);
+				* sp++ = (char) (c);
 				c = getc (stdin);
 			}
 			while (isident (c));
@@ -194,7 +194,7 @@ void function (char const * filename [], flag_t flags)
 		}
 		if (c == '[')
 		{
-			* sp++ = (char)(c);
+			* sp++ = (char) (c);
 			c = getc (stdin);
 			while (isblank (c))
 			{
@@ -202,22 +202,22 @@ void function (char const * filename [], flag_t flags)
 			}
 			while (isdigit (c))
 			{
-				* sp++ = (char)(c);
+				* sp++ = (char) (c);
 				c = getc (stdin);
 			}
 			while (isblank (c))
 			{
 				c = getc (stdin);
 			}
-			* sp = (char)(0);
+			* sp = (char) (0);
 			if (c != ']')
 			{
 				error (1, EINVAL, "Have '%s' but need ']' on line %d", symbol, lineno);
 			}
-			* sp++ = (char)(c);
+			* sp++ = (char) (c);
 			c = getc (stdin);
 		}
-		* sp = (char)(0);
+		* sp = (char) (0);
 		while (isblank (c))
 		{
 			c = getc (stdin);
@@ -225,18 +225,18 @@ void function (char const * filename [], flag_t flags)
 		sp = string;
 		while (nobreak (c))
 		{
-			* sp++ = (char)(c);
+			* sp++ = (char) (c);
 			c = getc (stdin);
 		}
-		* sp = (char)(0);
+		* sp = (char) (0);
 		if (length)
 		{
 
 #if defined (WIN32)
 
 			char * buffer [2];
-			buffer [0] = (char *)(emalloc (length));
-			buffer [1] = (char *)(emalloc (length));
+			buffer [0] = (char *) (emalloc (length));
+			buffer [1] = (char *) (emalloc (length));
 
 #else
 
@@ -322,9 +322,9 @@ int main (int argc, char const * argv [])
 		"f f\tobject definition file",
 		"q\tquiet mode",
 		"v\tverbose mode",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

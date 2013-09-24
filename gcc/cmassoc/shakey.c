@@ -82,7 +82,7 @@ int main (int argc, char const * argv [])
 	byte digest [SHA256_DIGEST_LENGTH];
 	char const * phrase;
 	char const * sp;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
@@ -121,7 +121,7 @@ int main (int argc, char const * argv [])
 		SHA256Fetch (& sha256, digest);
 		if (_allclr (flags, KEY_VERBOSE))
 		{
-			phrase = (char const *)(0);
+			phrase = (char const *) (0);
 		}
 		SHA256Print (digest, phrase);
 		argc--;

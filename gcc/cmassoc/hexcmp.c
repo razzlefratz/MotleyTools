@@ -78,7 +78,7 @@ int main (int argc, char const * argv [])
 	signed fd2;
 	uint8_t byte1;
 	uint8_t byte2;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

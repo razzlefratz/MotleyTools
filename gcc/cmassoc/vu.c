@@ -149,9 +149,9 @@ int main (int argc, char const * argv [])
 		"x\tshow IETF hexidecimal octets",
 		"o\tshow UNIX octal codes",
 		"b\tshow in bold",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

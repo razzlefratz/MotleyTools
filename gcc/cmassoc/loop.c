@@ -86,10 +86,10 @@ int main (int argc, char const * argv [])
 		switch (c)
 		{
 		case 'l':
-			count = (unsigned)(uintspec (optarg, 1, USHRT_MAX));
+			count = (unsigned) (uintspec (optarg, 1, USHRT_MAX));
 			break;
 		case 'w':
-			pause = (unsigned)(uintspec (optarg, 1, USHRT_MAX));
+			pause = (unsigned) (uintspec (optarg, 1, USHRT_MAX));
 			break;
 		case 'e':
 			dup2 (STDOUT_FILENO, STDERR_FILENO);

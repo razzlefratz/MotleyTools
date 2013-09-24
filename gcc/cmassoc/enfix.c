@@ -98,9 +98,9 @@ int main (int argc, char const * argv [])
 		"prepend/append text to each line of a text file",
 		"p s\tprefix is s",
 		"s s\tsuffix is s",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	char * prefix = "";
 	char * suffix = "";
 	signed c;

@@ -66,7 +66,7 @@ int main (int argc, char const * argv [])
 		"convert one or more numbers from one radix (number base) to another",
 		"f n\tfrom base n in range 2 to 36 ",
 		"t n\tto base n in range 2 to 36 ",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	char number [DIGITS_MAX +  1];
 	unsigned base1 = 10;
@@ -105,7 +105,7 @@ int main (int argc, char const * argv [])
 			}
 			error (1, EINVAL, "%s", * argv);
 		}
-		number [-- index] = (char)(0);
+		number [-- index] = (char) (0);
 		do 
 		{
 			number [-- index] = DIGITS_B36 [value % base2];

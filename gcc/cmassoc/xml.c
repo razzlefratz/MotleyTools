@@ -111,7 +111,7 @@ int main (int argc, char const * argv [])
 		"d\tprint document as text",
 		"s\tprint document as stream",
 		"t\tprint document as tree",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	struct node node;
 	void (* xmldump) (struct node const *) = xmlindent;

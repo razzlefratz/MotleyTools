@@ -229,7 +229,7 @@ int main (int argc, char const * argv [])
 		"/usr/lib/gcc-lib/i386-linux/3.0.4/include",
 		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	char filename [FILENAME_MAX +  1];
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))

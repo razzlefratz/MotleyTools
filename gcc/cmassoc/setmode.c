@@ -121,7 +121,7 @@ int main (int argc, char const * argv [])
 		"",
 		PUTOPTV_S_FUNNEL,
 		"set file modes from snapshot file",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	FILE * fp;
 	char buffer [255];

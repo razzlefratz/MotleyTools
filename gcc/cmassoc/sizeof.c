@@ -43,8 +43,8 @@ int main (int argc, char const * argv [])
 	}
 	printf ("order         %8x\n", endian.number);
 	printf ("\n");
-	printf ("true          %d\n", (int)(1 > 0));
-	printf ("false         %d\n", (int)(1 < 0));
+	printf ("true          %d\n", (int) (1 > 0));
+	printf ("false         %d\n", (int) (1 < 0));
 	printf ("\n");
 	printf ("double        " SIZE_T_SPEC " bytes\n", sizeof (double));
 	printf ("long long     " SIZE_T_SPEC " bytes\n", sizeof (long long));

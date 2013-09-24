@@ -118,10 +118,10 @@ static void function (unsigned step, unsigned dir, unsigned width, flag_t flags)
 			{
 				prior--;
 			}
-			* label++ = (char)(c);
+			* label++ = (char) (c);
 			c = getc (stdin);
 		}
-		* label = (char)(0);
+		* label = (char) (0);
 		extra = prior % 2;
 		after = prior / 2;
 		prior = after;
@@ -214,9 +214,9 @@ int main (int argc, char const * argv [])
 		"r\tstart direction is right",
 		"n n\tfirst step is (n) [" LITERAL (IFD_START) "]",
 		"w n\twidth in characters [" LITERAL (IFD_WIDTH) "]",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	size_t width = IFD_WIDTH;
 	unsigned start = IFD_START;
 	unsigned dir = IFD_RIGHT;
@@ -238,7 +238,7 @@ int main (int argc, char const * argv [])
 			dir = 0;
 			break;
 		case 'w':
-			width = (size_t)(uintspec (optarg, 0, 1024));
+			width = (size_t) (uintspec (optarg, 0, 1024));
 			break;
 		default: 
 			break;

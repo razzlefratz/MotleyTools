@@ -101,7 +101,7 @@ static signed join (signed c)
 	return (span (getc (stdin), '\\', '\n'));
 }
 
-static signed pack (signed c, signed o, signed (* edit)(signed))
+static signed pack (signed c, signed o, signed (* edit) (signed))
 
 {
 	do 

@@ -98,7 +98,7 @@ static void function (int argc, const char * argv [], size_t decode (void const 
 	{
 		error (1, ECANCELED, "Need an offset");
 	}
-	offset = (uint32_t)(basespec (* argv, 16, sizeof (uint32_t)));
+	offset = (uint32_t) (basespec (* argv, 16, sizeof (uint32_t)));
 	if (offset > extent)
 	{
 		error (1, ECANCELED, "PIB offset %X exceeds PIB extent %d", offset, extent);
@@ -153,8 +153,8 @@ int main (int argc, char const * argv [])
 		"v\tverbose mode",
 		(char const *) (0)
 	};
-	size_t (* decode)(void const *, size_t, char const *, char const *) = memdecode;
-	flag_t flags = (flag_t)(0);
+	size_t (* decode) (void const *, size_t, char const *, char const *) = memdecode;
+	flag_t flags = (flag_t) (0);
 	signed c;
 	opterr = 1;
 	while (~ (c = getoptv (argc, argv, optv)))

@@ -88,14 +88,14 @@ int main (int argc, char const * argv [])
 		"o\tprint schema",
 		"q\tquiet mode",
 		"v\tverbose mode",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	struct node * markup;
 	char const * filename;
 	byte * buffer;
 	signed length;
 	signed fd;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

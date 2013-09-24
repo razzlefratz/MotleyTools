@@ -185,7 +185,7 @@ int main (int argc, char const * argv [])
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
-		switch ((char)(c))
+		switch ((char) (c))
 		{
 		default: 
 			break;

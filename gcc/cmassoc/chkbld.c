@@ -167,7 +167,7 @@ int main (int argc, char const * argv [])
 		"m\tlist files that are missing",
 		"p\tlist files that are present",
 		"d s\tsource folder is s [" PKG_S_SOURCEDIR "]",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	char pathname [FILENAME_MAX] = PKG_S_SOURCEDIR;
 	char * extender [100] = 

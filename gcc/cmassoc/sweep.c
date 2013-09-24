@@ -145,7 +145,7 @@ static void findfile (char * thispath, char * thatpath, char const * command, fl
 				{
 					filename++;
 				}
-				if (* filename == (char)(0))
+				if (* filename == (char) (0))
 				{
 					continue;
 				}
@@ -213,7 +213,7 @@ int main (int argc, char const * argv [])
 		"r\trecursive comparison",
 		"x\tremove files",
 		"v\tverbose messages",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	char thispath [FILENAME_MAX +  1];
 	char thatpath [FILENAME_MAX +  1];

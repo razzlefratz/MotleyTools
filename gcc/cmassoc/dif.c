@@ -81,7 +81,7 @@ void * next (size_t line, LINK * ip, FILE * fp)
 	char * cp = string;
 	for (c = getc (fp); (c != EOF) && (c != '\n'); c = getc (fp))
 	{
-		if ((size_t)(cp - string) < (sizeof (string) - 1))
+		if ((size_t) (cp - string) < (sizeof (string) - 1))
 		{
 			* cp++ = (char) (c);
 		}
@@ -233,11 +233,11 @@ void function (size_t width, flag_t flag, FILE * ofp, FILE * nfp)
 	np = makeitem ((LINK *) (0), (LINK *) (0));
 	for (match = count = 1; next (count, op, ofp) != next (count, np, nfp); count++)
 	{
-		if (* (char *)(op->name) == (char)(0))
+		if (* (char *) (op->name) == (char) (0))
 		{
 			continue;
 		}
-		if (* (char *)(np->name) == (char)(0))
+		if (* (char *) (np->name) == (char) (0))
 		{
 			continue;
 		}
@@ -295,7 +295,7 @@ int main (int argc, char const * argv [])
 		"a\tshow all lines",
 		"b\tshow line breaks",
 		"w n\tscreen width is n characters",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	FILE * ofp,
 	* nfp;

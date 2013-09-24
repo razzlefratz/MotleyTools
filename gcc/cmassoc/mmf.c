@@ -132,7 +132,7 @@ static char const * headerfiles [] =
 {
 	"*.h",
 	"*.hpp",
-	(char const *)(0)
+	(char const *) (0)
 };
 
 static char const * sourcefiles [] = 
@@ -140,7 +140,7 @@ static char const * sourcefiles [] =
 {
 	"*.c",
 	"*.cpp",
-	(char const *)(0)
+	(char const *) (0)
 };
 
 static char const * mask = "?*";
@@ -211,7 +211,7 @@ static void compile (char * target, char const * source)
 	char const * paths [] = 
 	{
 		"",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	listcreate (& list, _LISTSIZE);
 	listappend (& list, source);
@@ -253,7 +253,7 @@ static void include (char * target, char const * source)
 	char const * paths [] = 
 	{
 		"",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	listcreate (& list, _LISTSIZE);
 	listappend (& list, source);
@@ -294,7 +294,7 @@ void program_binary (char * target, char const * source, char const * ignore [],
 	char const * paths [] = 
 	{
 		"",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	listcreate (& list, _LISTSIZE);
 	listappend (& list, source);
@@ -343,7 +343,7 @@ void program_object (char * target, char const * source, char const * ignore [],
 	char const * paths [] = 
 	{
 		"",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	listcreate (& list, _LISTSIZE);
 	listappend (& list, source);
@@ -389,7 +389,7 @@ void content (char * target, char const * source)
 	char const * paths [] = 
 	{
 		"",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	listcreate (& list, _LISTSIZE);
 	listappend (& list, source);
@@ -426,10 +426,10 @@ int main (int argc, char const * argv [])
 		"m\toutput a makefile",
 		"o\ttargets are general object files",
 		"p\ttargets are program object files",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	flag_t flags = (flag_t) (0);
-	time_t now = time ((time_t *)(0));
+	time_t now = time ((time_t *) (0));
 	char string [TEXTLINE_MAX << 1];
 	char target [FILENAME_MAX] = "";
 	char topbar [BARWIDTH_MAX +  1] = 

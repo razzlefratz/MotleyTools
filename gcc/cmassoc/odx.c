@@ -117,12 +117,12 @@ static void function (file const * file, char const * schema, off_t extent, flag
 		{
 			do 
 			{
-				* sp++ = (char)(c);
+				* sp++ = (char) (c);
 				c = getc (stdin);
 			}
 			while (isident (c));
 		}
-		* sp = (char)(0);
+		* sp = (char) (0);
 		while (isblank (c))
 		{
 			c = getc (stdin);
@@ -155,14 +155,14 @@ static void function (file const * file, char const * schema, off_t extent, flag
 		sp = string;
 		while (nobreak (c))
 		{
-			* sp++ = (char)(c);
+			* sp++ = (char) (c);
 			c = getc (stdin);
 		}
-		* sp = (char)(0);
+		* sp = (char) (0);
 		if (length)
 		{
 			byte buffer [length];
-			if (read (file->file, buffer, length) == (signed)(length))
+			if (read (file->file, buffer, length) == (signed) (length))
 			{
 				indent (margin++, "<%s name='%s'>", DATA_MEMBER, symbol);
 				if (* string)
@@ -178,11 +178,11 @@ static void function (file const * file, char const * schema, off_t extent, flag
 				indent (margin, "%u", length);
 				indent (margin--, "</%s>", DATA_LENGTH);
 				indent (margin++, "<%s>", DATA_MEMORY);
-				for (c = 0; c < (signed)(margin); c++)
+				for (c = 0; c < (signed) (margin); c++)
 				{
 					printf ("\t");
 				}
-				for (c = 0; c < (signed)(length); c++)
+				for (c = 0; c < (signed) (length); c++)
 				{
 					printf ("%02X", buffer [c]);
 				}
@@ -197,7 +197,7 @@ static void function (file const * file, char const * schema, off_t extent, flag
 	indent (margin--, "</%s>", DATA_OBJECT);
 	if (_allclr (flags, ODX_SILENCE))
 	{
-		if (offset != (unsigned)(extent))
+		if (offset != (unsigned) (extent))
 		{
 			error (0, 0, "%s has %u bytes, not " OFF_T_SPEC " bytes.", file->name, offset, extent);
 		}
@@ -226,7 +226,7 @@ int main (int argc, char const * argv [])
 		"object driven XML dump utility",
 		"f f\tobject definition file",
 		"x\tprint an XML schema on stdout",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	char const * schema = DATA_SCHEMA;
 	file file = 
@@ -234,7 +234,7 @@ int main (int argc, char const * argv [])
 		STDIN_FILENO,
 		"stdin"
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

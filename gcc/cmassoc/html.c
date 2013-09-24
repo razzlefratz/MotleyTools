@@ -192,7 +192,7 @@ int main (int argc, char const * argv [])
 		"o\tprint default profile on stdout",
 		"p f\tuse profile (s) [" HTML_PROFILE "]",
 		"s s\tuse profile section (s) [" HTML_SECTION "]",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	char const * profile = HTML_PROFILE;
 	char const * section = HTML_SECTION;

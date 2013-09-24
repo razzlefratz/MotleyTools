@@ -66,7 +66,7 @@ void function (flag_t flags)
 	signed c;
 	while ((c = getc (stdin)) != EOF)
 	{
-		strfglyph (buffer, sizeof (buffer), (unsigned)(c));
+		strfglyph (buffer, sizeof (buffer), (unsigned) (c));
 		fputs (buffer, stdout);
 	}
 	return;
@@ -84,7 +84,7 @@ int main (int argc, char const * argv [])
 		"",
 		PUTOPTV_S_FUNNEL,
 		"convert special characters to ISO glyph codes",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	flag_t flags = (flag_t) (0);
 	signed c;

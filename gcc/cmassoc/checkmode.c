@@ -129,7 +129,7 @@ int main (int argc, char const * argv [])
 		"",
 		PUTOPTV_S_FUNNEL,
 		"audit file states against snapshot file;",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	FILE * fp;
 	char buffer [255];

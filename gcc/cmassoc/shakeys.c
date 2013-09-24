@@ -101,13 +101,13 @@ void function (flag_t flags)
 		sp = phrase;
 		while (isprint (c))
 		{
-			if ((size_t)(sp - phrase) < (sizeof (phrase) - 1))
+			if ((size_t) (sp - phrase) < (sizeof (phrase) - 1))
 			{
-				* sp++ = (char)(c);
+				* sp++ = (char) (c);
 			}
 			c = getc (stdin);
 		}
-		* sp = (char)(0);
+		* sp = (char) (0);
 		if ((c != '\r') && (c != '\n') && (c != EOF))
 		{
 			error (0, ENOTSUP, "illegal characters on line %d", line);
@@ -128,7 +128,7 @@ void function (flag_t flags)
 		SHA256Fetch (& sha256, digest);
 		if (_allclr (flags, KEY_VERBOSE))
 		{
-			SHA256Print (digest, (char const *)(0));
+			SHA256Print (digest, (char const *) (0));
 			continue;
 		}
 		SHA256Print (digest, phrase);
@@ -159,7 +159,7 @@ int main (int argc, char const * argv [])
 		"v\tverbose mode",
 		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

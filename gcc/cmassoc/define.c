@@ -101,12 +101,12 @@ int main (int argc, char const * argv [])
 		"s\tprint switch statement",
 		"v\tprint variable declaration",
 		"x\tuse numbers instead of names",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	char const * name = LISTNAME;
 	struct _type_ list [LISTSIZE];
 	size_t size = 0;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

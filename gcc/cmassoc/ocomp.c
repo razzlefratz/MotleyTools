@@ -128,7 +128,7 @@ void function (char const * filename [], flag_t flags)
 		{
 			do 
 			{
-				* sp++ = (char)(c);
+				* sp++ = (char) (c);
 				c = getc (stdin);
 			}
 			while (isident (c));
@@ -139,7 +139,7 @@ void function (char const * filename [], flag_t flags)
 		}
 		if (c == '[')
 		{
-			* sp++ = (char)(c);
+			* sp++ = (char) (c);
 			c = getc (stdin);
 			while (isblank (c))
 			{
@@ -147,22 +147,22 @@ void function (char const * filename [], flag_t flags)
 			}
 			while (isdigit (c))
 			{
-				* sp++ = (char)(c);
+				* sp++ = (char) (c);
 				c = getc (stdin);
 			}
 			while (isblank (c))
 			{
 				c = getc (stdin);
 			}
-			* sp = (char)(0);
+			* sp = (char) (0);
 			if (c != ']')
 			{
 				error (1, EINVAL, "Have '%s' but need ']' on line %d", symbol, lineno);
 			}
-			* sp++ = (char)(c);
+			* sp++ = (char) (c);
 			c = getc (stdin);
 		}
-		* sp = (char)(0);
+		* sp = (char) (0);
 		while (isblank (c))
 		{
 			c = getc (stdin);
@@ -170,18 +170,18 @@ void function (char const * filename [], flag_t flags)
 		sp = string;
 		while (nobreak (c))
 		{
-			* sp++ = (char)(c);
+			* sp++ = (char) (c);
 			c = getc (stdin);
 		}
-		* sp = (char)(0);
+		* sp = (char) (0);
 		if (length)
 		{
 
 #if defined (WIN32)
 
 			char * buffer [2];
-			buffer [0] = (char *)(emalloc (length));
-			buffer [1] = (char *)(emalloc (length));
+			buffer [0] = (char *) (emalloc (length));
+			buffer [1] = (char *) (emalloc (length));
 
 #else
 
@@ -238,26 +238,26 @@ void function (char const * filename [], flag_t flags)
 		unsigned extent [2];
 		for (c = 0; c < 2; c++)
 		{
-			if ((signed)(extent [c] = lseek (file [c], 0, SEEK_END)) == - 1)
+			if ((signed) (extent [c] = lseek (file [c], 0, SEEK_END)) == - 1)
 			{
 				error (1, errno, FILE_CANTSIZE, filename [c]);
 			}
 			if (offset < extent [c])
 			{
-				error (0, 0, "%s exceeds definition by " SIZE_T_SPEC " bytes", filename [c], (size_t)(extent [c] - offset));
+				error (0, 0, "%s exceeds definition by " SIZE_T_SPEC " bytes", filename [c], (size_t) (extent [c] - offset));
 			}
 			if (offset > extent [c])
 			{
-				error (0, 0, "definition exceeds %s by " SIZE_T_SPEC " bytes", filename [c], (size_t)(offset - extent [c]));
+				error (0, 0, "definition exceeds %s by " SIZE_T_SPEC " bytes", filename [c], (size_t) (offset - extent [c]));
 			}
 		}
 		if (extent [0] > extent [1])
 		{
-			error (0, 0, "%s exceeds %s by " SIZE_T_SPEC " bytes", filename [0], filename [1], (size_t)(extent [0] - extent [1]));
+			error (0, 0, "%s exceeds %s by " SIZE_T_SPEC " bytes", filename [0], filename [1], (size_t) (extent [0] - extent [1]));
 		}
 		if (extent [1] > extent [0])
 		{
-			error (0, 0, "%s exceeds %s by " SIZE_T_SPEC " bytes", filename [1], filename [0], (size_t)(extent [1] - extent [0]));
+			error (0, 0, "%s exceeds %s by " SIZE_T_SPEC " bytes", filename [1], filename [0], (size_t) (extent [1] - extent [0]));
 		}
 	}
 	close (file [0]);
@@ -287,9 +287,9 @@ int main (int argc, char const * argv [])
 		"f f\tobject definition file",
 		"q\tquiet mode",
 		"v\tverbose mode",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

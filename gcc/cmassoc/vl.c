@@ -166,10 +166,10 @@ int main (int argc, char const * argv [])
 		"l n\tmaximum line length is (n)",
 		"p\tpad short lines with spaces",
 		"w\twrap long lines",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	size_t length = TEXTLINE_MAX;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

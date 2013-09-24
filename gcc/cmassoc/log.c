@@ -47,7 +47,7 @@ int main (int argc, char const * argv [])
 		"[file] [file] [> stdout]",
 		"write stdin to stdout plus named files",
 		"a\tappend output to files",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	char buffer [TEXTLINE_MAX];
 	char * openmode = "wb";

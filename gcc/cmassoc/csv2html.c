@@ -177,7 +177,7 @@ static void function (char const * string, size_t column, flag_t flags)
 					c = getc (stdin);
 					if (c != EOF)
 					{
-						* cp++ = (char)(c);
+						* cp++ = (char) (c);
 						c = getc (stdin);
 						sp = cp;
 					}
@@ -200,7 +200,7 @@ static void function (char const * string, size_t column, flag_t flags)
 					* cp++ = '>';
 					c = getc (stdin);
 				}
-				* cp++ = (char)(c);
+				* cp++ = (char) (c);
 				if (c != ' ')
 				{
 					sp = cp;
@@ -277,13 +277,13 @@ int main (int argc, char const * argv [])
 		"p\tprint HTML page with header",
 		"s s\tpage title string",
 		"t\tprint HTML table only",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	char const * string = (char *)(0);
-	char * field = (char *)(0);
+	char const * string = (char *) (0);
+	char * field = (char *) (0);
 	unsigned length = 1024;
 	unsigned column = 0;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

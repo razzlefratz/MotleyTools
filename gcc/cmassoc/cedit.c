@@ -90,11 +90,11 @@ unsigned function (char const * oldname, char const * newname)
 			char * sp = string;
 			do 
 			{
-				* sp++ = (char)(c);
+				* sp++ = (char) (c);
 				c = getc (stdin);
 			}
 			while (isalnum (c) || (c == '_'));
-			* sp = (char)(0);
+			* sp = (char) (0);
 			if (! strcmp (string, oldname))
 			{
 				count++;
@@ -145,7 +145,7 @@ unsigned function (char const * oldname, char const * newname)
 			o = getc (stdin);
 			while (nomatch (o, c))
 			{
-				if ((char)(o) == '\\')
+				if ((char) (o) == '\\')
 				{
 					putc (o, stdout);
 					o = getc (stdin);
@@ -222,7 +222,7 @@ int main (int argc, char const * argv [])
 		"n s\tnew token is s",
 		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	char const * oldname = "";
 	char const * newname = "";
 	char const * sp;

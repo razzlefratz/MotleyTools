@@ -118,7 +118,7 @@ int main (int argc, const char * argv [])
 	{
 		if ((nchars = read (STDIN_FILENO, message, sizeof (message) - 1)) != - 1)
 		{
-			message [nchars] = (char)(0);
+			message [nchars] = (char) (0);
 		}
 	}
 	while ((argc) && (* argv))
@@ -140,7 +140,7 @@ int main (int argc, const char * argv [])
 			nlines++;
 		}
 	}
-	message [nchars] = (char)(0);
+	message [nchars] = (char) (0);
 	syslog (LOG_SYSLOG | LOG_INFO, "user %s broadcast %d line(s) total %d char(s)", getlogin (), nlines, nchars);
 	unsetenv ("TZ");
 	broadcast (message, flags);

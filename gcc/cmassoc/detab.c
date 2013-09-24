@@ -127,9 +127,9 @@ int main (int argc, char const * argv [])
 		PUTOPTV_S_FILTER,
 		"replace horizontal tabs with equivalent number of spaces",
 		"t n.m\tset tabs in column (n) and intervals (m) ",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

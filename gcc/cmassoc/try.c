@@ -63,7 +63,7 @@ int main (int argc, char const * argv [])
 		(char const *) (0)
 	};
 	FILE * fp;
-	char const * comment = (char const *)(0);
+	char const * comment = (char const *) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

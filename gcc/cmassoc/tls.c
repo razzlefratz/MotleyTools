@@ -152,7 +152,7 @@ int main (int argc, char const * argv [])
 		switch (c)
 		{
 		case 'n':
-			depth = (unsigned)(uintspec (optarg, 1, FILE_DIR_MAX));
+			depth = (unsigned) (uintspec (optarg, 1, FILE_DIR_MAX));
 			break;
 		default: 
 			break;

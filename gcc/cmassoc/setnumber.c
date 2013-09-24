@@ -38,7 +38,7 @@ static byte void xmlnumber (char const * string, volatile byte buffer [], size_t
 	{
 		error (bailout, EINVAL, "%s %s is not decimal", DATA_MEMBER, member);
 	}
-	memcpy ((void *)(buffer +  offset), & number, length);
+	memcpy ((void *) (buffer +  offset), & number, length);
 	return (buffer +  offset);
 }
 

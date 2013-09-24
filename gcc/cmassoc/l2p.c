@@ -86,7 +86,7 @@ static void function (flag_t flags)
 			}
 			while (isident (c) || (c == '-') || (c == '.'));
 		}
-		* sp = (char)(0);
+		* sp = (char) (0);
 		while (isblank (c))
 		{
 			c = getc (stdin);
@@ -110,7 +110,7 @@ static void function (flag_t flags)
 					}
 					while (isident (c) || (c == '-') || (c == '.'));
 				}
-				* sp = (char)(0);
+				* sp = (char) (0);
 				while (isblank (c))
 				{
 					c = getc (stdin);
@@ -158,9 +158,9 @@ int main (int argc, char const * argv [])
 		"q\tquiet mode",
 		"v\tverbose mode",
 		"x\texchange order",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

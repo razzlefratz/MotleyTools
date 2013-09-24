@@ -199,14 +199,14 @@ int main (int argc, char const * argv [])
 		"p s\tpackage name is (s) [" LITERAL (OWRT_NAME_PACKAGE) "]",
 		"q\tsuppress routine messages",
 		"v\tenable verbose messages",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	char const * handler = OWRT_NAME_HANDLER;
 	char const * package = OWRT_NAME_PACKAGE;
 	signed vectorsize = OWRT_SIZE_VECTOR;
 	signed buffersize = OWRT_SIZE_BUFFER;
 	void (* function) () = invoke_handler;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

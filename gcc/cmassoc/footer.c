@@ -128,7 +128,7 @@ int main (int argc, char const * argv [])
 		"copy one or more file footers to stdout",
 		"l n\tdisplay line count is (n) [" LITERAL (VT_LINES) "]",
 		"w n\tdisplay line width is (n) [" LITERAL (VT_LIMIT) "]",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	unsigned lines = VT_LINES;
 	unsigned width = VT_LIMIT;

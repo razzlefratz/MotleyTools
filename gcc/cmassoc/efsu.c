@@ -95,9 +95,9 @@
 static void function (struct channel * channel, void * memory, ssize_t extent)
 
 {
-	struct ether_header * frame = (struct ether_header *)(memory);
+	struct ether_header * frame = (struct ether_header *) (memory);
 	unsigned length;
-	while ((length = (unsigned)(hexload (memory, extent, stdin))) > 0)
+	while ((length = (unsigned) (hexload (memory, extent, stdin))) > 0)
 	{
 		if (length < (ETHER_MIN_LEN - ETHER_CRC_LEN))
 		{
@@ -216,22 +216,22 @@ int main (int argc, char const * argv [])
 			channel.ifname = optarg;
 			break;
 		case 'l':
-			count = (unsigned)(uintspec (optarg, 0, UINT_MAX));
+			count = (unsigned) (uintspec (optarg, 0, UINT_MAX));
 			break;
 		case 'p':
-			pause = (unsigned)(uintspec (optarg, 0, 1200));
+			pause = (unsigned) (uintspec (optarg, 0, 1200));
 			break;
 		case 'q':
 			_setbits (channel.flags, CHANNEL_SILENCE);
 			break;
 		case 't':
-			channel.timer = (unsigned)(uintspec (optarg, 0, UINT_MAX));
+			channel.timer = (unsigned) (uintspec (optarg, 0, UINT_MAX));
 			break;
 		case 'v':
 			_setbits (channel.flags, CHANNEL_VERBOSE);
 			break;
 		case 'w':
-			delay = (unsigned)(uintspec (optarg, 0, 1200));
+			delay = (unsigned) (uintspec (optarg, 0, 1200));
 			break;
 		default: 
 			break;

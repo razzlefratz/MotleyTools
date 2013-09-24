@@ -238,7 +238,7 @@ int main (int argc, char const * argv [])
 		"r\tremove illegal base64 input characters",
 		"w n\twrap base64 output after n columns",
 		"v\tverbose mode",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	flag_t flags = (flag_t) (0);
 	size_t width = 0;
@@ -263,7 +263,7 @@ int main (int argc, char const * argv [])
 			_setbits (flags, B64_VERBOSE);
 			break;
 		case 'w':
-			width = (signed)(uintspec (optarg, 0, 1024));
+			width = (signed) (uintspec (optarg, 0, 1024));
 			break;
 		default: 
 			break;

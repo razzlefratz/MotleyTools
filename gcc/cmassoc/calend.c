@@ -70,7 +70,7 @@ int main (int argc, char const * argv [])
 		"print three-month calendar on stdout",
 		"y n\tyear is (n) or +(n) or -(n)",
 		"m n\tmonth is (n) or +(n) or -(n)",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	time_t timer;
 	struct tm * tm;

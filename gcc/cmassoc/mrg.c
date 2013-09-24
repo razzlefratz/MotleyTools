@@ -159,7 +159,7 @@ static LINE * freeitem (LINE * line)
 	line->name = (char *) (0);
 	line->text = (char *) (0);
 	free (line);
-	return ((LINE *)(0));
+	return ((LINE *) (0));
 }
 
 /*====================================================================*
@@ -187,7 +187,7 @@ static void function (LINE * heap [], size_t heapsize, size_t linesize, int comp
 		else 
 		{
 			* heap = freeitem (* heap);
-			swap ((void *)(heap), 0, -- heapsize);
+			swap ((void *) (heap), 0, -- heapsize);
 		}
 		if (heapsize)
 		{
@@ -223,7 +223,7 @@ int main (int argc, char const * argv [])
 		"merge sorted files into one",
 		"d\tinput files are in descending order",
 		"l n\tmaximum line length is (n) bytes [0x0400]",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	FILE * stream;
 	LINE * heap [FOPEN_MAX];
@@ -270,7 +270,7 @@ int main (int argc, char const * argv [])
 		argc--;
 		argv++;
 	}
-	function (heap, heapitem, linesize, (void *)(comp), (void *)(swap));
+	function (heap, heapitem, linesize, (void *) (comp), (void *) (swap));
 	exit (0);
 }
 

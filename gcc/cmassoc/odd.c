@@ -221,7 +221,7 @@ static void function (char const * filename, void output (int, char const *, off
 		{
 			do 
 			{
-				* sp++ = (char)(c);
+				* sp++ = (char) (c);
 				c = getc (stdin);
 			}
 			while (isident (c));
@@ -232,7 +232,7 @@ static void function (char const * filename, void output (int, char const *, off
 		}
 		if (c == '[')
 		{
-			* sp++ = (char)(c);
+			* sp++ = (char) (c);
 			c = getc (stdin);
 			while (isblank (c))
 			{
@@ -240,22 +240,22 @@ static void function (char const * filename, void output (int, char const *, off
 			}
 			while (isdigit (c))
 			{
-				* sp++ = (char)(c);
+				* sp++ = (char) (c);
 				c = getc (stdin);
 			}
 			while (isblank (c))
 			{
 				c = getc (stdin);
 			}
-			* sp = (char)(0);
+			* sp = (char) (0);
 			if (c != ']')
 			{
 				error (1, EINVAL, "Have '%s' without ']' on line %d", symbol, lineno);
 			}
-			* sp++ = (char)(c);
+			* sp++ = (char) (c);
 			c = getc (stdin);
 		}
-		* sp = (char)(0);
+		* sp = (char) (0);
 		while (isblank (c))
 		{
 			c = getc (stdin);
@@ -307,10 +307,10 @@ int main (int argc, char const * argv [])
 		"f f\tobject definition file",
 		"q\tquiet mode",
 		"v\tverbose mode",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	void (* output) (int, char const *, off_t, byte const *, signed) = dump;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

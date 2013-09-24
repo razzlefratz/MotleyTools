@@ -111,7 +111,7 @@ static void function (char const string [], char const * extenders [], flag_t fl
 					break;
 				}
 			}
-			if (* string == (char)(0))
+			if (* string == (char) (0))
 			{
 				break;
 			}

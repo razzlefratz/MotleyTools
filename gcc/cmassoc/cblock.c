@@ -243,7 +243,7 @@ static signed program (signed c, signed e)
 				c = keep (c);
 			}
 			while (isalnum (c) || (c == '_') || (c == '.'));
-			* sp = (char)(0);
+			* sp = (char) (0);
 			if (! strcmp (string, "while"))
 			{
 				c = condition (c);

@@ -126,7 +126,7 @@ int main (int argc, char const * argv [])
 		"",
 		PUTOPTV_S_FUNNEL,
 		"hexadecimal stream dump utility",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))

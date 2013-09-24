@@ -171,11 +171,11 @@ static void function (flag_t flags)
 			char * sp = string;
 			do 
 			{
-				* sp++ = (char)(c);
+				* sp++ = (char) (c);
 				c = getc (stdin);
 			}
 			while (isalnum (c) || (c == '_'));
-			* sp = (char)(0);
+			* sp = (char) (0);
 
 #if 0
 

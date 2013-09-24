@@ -456,9 +456,9 @@ int main (int argc, char const * argv [])
 		temp = page->next;
 		page->next = temp->next;
 		temp->next->prev = page;
-		temp->prev = (struct page *)(0);
-		temp->next = (struct page *)(0);
-		free ((char *)(temp->path));
+		temp->prev = (struct page *) (0);
+		temp->next = (struct page *) (0);
+		free ((char *) (temp->path));
 		free (temp);
 	}
 	free (page);

@@ -185,7 +185,7 @@ static void headers (struct column * column)
 		column->style = style_empty;
 		for (cols = 0; ~ gettoken (string) && (* string != ';'); cols++)
 		{
-			column->next = (struct column *)(malloc (sizeof (struct column)));
+			column->next = (struct column *) (malloc (sizeof (struct column)));
 			column = column->next;
 			column->next = (struct column *) (0);
 			column->name = strdup (string);
@@ -263,7 +263,7 @@ static void finish (struct column * column)
 	{
 		struct column * object = column->next;
 		column->next = object->next;
-		object->next = (struct column *)(0);
+		object->next = (struct column *) (0);
 		object->style = 0;
 		object->label = 0;
 		free (object->name);
@@ -471,7 +471,7 @@ int main (int argc, char const * argv [])
 		"m s\tmatch label is (s) [" LITERAL (MATCH) "]",
 		"s\tprint CSS2 stylesheet on stdout",
 		"t s\ttitle is (s) [" LITERAL (TITLE) "]",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	unsigned (* table) (unsigned, char const *, struct column *) = table1;
 	unsigned margin = LEVEL;
@@ -479,9 +479,9 @@ int main (int argc, char const * argv [])
 	struct column column = 
 	{
 		(struct column *) (0),
-		(char const *)(0),
-		(char const *)(0),
-		(char *)(0)
+		(char const *) (0),
+		(char const *) (0),
+		(char *) (0)
 	};
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
@@ -498,7 +498,7 @@ int main (int argc, char const * argv [])
 			table = table1;
 			break;
 		case 'l':
-			margin = (unsigned)(uintspec (optarg, 0, 16));
+			margin = (unsigned) (uintspec (optarg, 0, 16));
 			break;
 		case 'm':
 			label_match = optarg;

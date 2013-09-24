@@ -163,7 +163,7 @@ void decode (flag_t flags)
 		}
 		else 
 		{
-			c = (o1 << 6) + (o2 << 3) + (o3 << 0);
+			c = (o1 << 6) +  (o2 << 3) +  (o3 << 0);
 			putc (c, stdout);
 		}
 	}

@@ -306,7 +306,7 @@ int main (int argc, char const * argv [])
 		"s n\tscale data",
 		"t s\tgraph title",
 		"x\texchange x and y values",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	struct graph graph = 
 	{
@@ -326,13 +326,13 @@ int main (int argc, char const * argv [])
 		switch (c)
 		{
 		case 'c':
-			count = (signed)(uintspec (optarg, 1, INT_MAX));
+			count = (signed) (uintspec (optarg, 1, INT_MAX));
 			break;
 		case 'o':
-			graph.shift = (signed)(sintspec (optarg, graph.shift));
+			graph.shift = (signed) (sintspec (optarg, graph.shift));
 			break;
 		case 's':
-			graph.scale = (signed)(uintspec (optarg, 1, INT_MAX));
+			graph.scale = (signed) (uintspec (optarg, 1, INT_MAX));
 			break;
 		case 't':
 			graph.title = optarg;

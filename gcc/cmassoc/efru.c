@@ -114,7 +114,7 @@ int main (int argc, char const * argv [])
 		switch (c)
 		{
 		case 'e':
-			channel.type = (uint16_t)(basespec (optarg, 16, sizeof (channel.type)));
+			channel.type = (uint16_t) (basespec (optarg, 16, sizeof (channel.type)));
 			break;
 		case 'i':
 			channel.ifname = optarg;
@@ -123,7 +123,7 @@ int main (int argc, char const * argv [])
 			_setbits (channel.flags, CHANNEL_SILENCE);
 			break;
 		case 't':
-			channel.timer = (unsigned)(uintspec (optarg, 0, UINT_MAX));
+			channel.timer = (unsigned) (uintspec (optarg, 0, UINT_MAX));
 			break;
 		case 'v':
 			_setbits (channel.flags, CHANNEL_VERBOSE);

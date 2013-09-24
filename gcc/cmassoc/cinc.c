@@ -94,7 +94,7 @@ void function (char * fullpath, char const * vector [])
 				sp = cp;
 			}
 		}
-		* sp = (char)(0);
+		* sp = (char) (0);
 		c = getc (fp);
 		while (c != EOF)
 		{
@@ -131,11 +131,11 @@ void function (char * fullpath, char const * vector [])
 			}
 			if (c == '#')
 			{
-				* sp++ = (char)(c);
+				* sp++ = (char) (c);
 				c = getc (fp);
 				while (isblank (c))
 				{
-					* sp++ = (char)(c);
+					* sp++ = (char) (c);
 					c = getc (fp);
 				}
 				cp = sp;
@@ -144,7 +144,7 @@ void function (char * fullpath, char const * vector [])
 					* sp++ = (char) (c);
 					c = getc (fp);
 				}
-				* sp = (char)(0);
+				* sp = (char) (0);
 				if (strcmp ("include", cp))
 				{
 					while (nobreak (c))
@@ -152,7 +152,7 @@ void function (char * fullpath, char const * vector [])
 						* sp++ = (char) (c);
 						c = getc (fp);
 					}
-					* sp++ = (char)(c);
+					* sp++ = (char) (c);
 					for (cp = buffer; cp < sp; putc (* cp++, stdout));
 					c = getc (fp);
 					continue;
@@ -175,17 +175,17 @@ void function (char * fullpath, char const * vector [])
 					}
 					* cp = (char) (0);
 					makepath (fullpath, pathname, filename);
-					for (index = 0; vector [index] != (char *)(0); index++)
+					for (index = 0; vector [index] != (char *) (0); index++)
 					{
 						if (! strcmp (fullpath, vector [index]))
 						{
 							break;
 						}
 					}
-					if (vector [index] == (char *)(0))
+					if (vector [index] == (char *) (0))
 					{
 						vector [index++] = strdup (fullpath);
-						vector [index] = (char *)(0);
+						vector [index] = (char *) (0);
 						function (fullpath, vector);
 					}
 					while (nobreak (c))
@@ -307,7 +307,7 @@ int main (int argc, char const * argv [])
 		char const * vector [200];
 		makepath (pathname, getenv ("PWD"), * argv);
 		vector [0] = strdup (pathname);
-		vector [1] = (char *)(0);
+		vector [1] = (char *) (0);
 		function (pathname, vector);
 		for (argc = 0; vector [argc]; argc++)
 		{

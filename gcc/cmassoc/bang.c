@@ -126,13 +126,13 @@ int main (int argc, char const * argv [])
 		switch (c)
 		{
 		case 'e':
-			if ((pathname = getenv (optarg)) == (char *)(0))
+			if ((pathname = getenv (optarg)) == (char *) (0))
 			{
 				error (1, errno, "symbol %s not defined", optarg);
 			}
 			break;
 		case 't':
-			if ((pathname = getenv ("CMTOOLS")) == (char *)(0))
+			if ((pathname = getenv ("CMTOOLS")) == (char *) (0))
 			{
 				error (1, errno, "symbol CMTOOLS is undefined");
 			}

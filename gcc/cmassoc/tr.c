@@ -102,7 +102,7 @@ int main (int argc, char const * argv [])
 	char ctable [UCHAR_MAX +  1];
 	char control [UCHAR_MAX +  1] = "";
 	char replace [UCHAR_MAX +  1] = "";
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{

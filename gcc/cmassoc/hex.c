@@ -198,7 +198,7 @@ int main (int argc, char const * argv [])
 		"encode or decode text files in IETF hexidecimal octet format",
 		"d\tdecode files ",
 		"e\tencode files ",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	flag_t flags = (flag_t) (0);
 	signed c;

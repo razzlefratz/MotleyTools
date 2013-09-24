@@ -156,9 +156,9 @@ int main (int argc, char const * argv [])
 		"p\tpad short records ",
 		"w\twrap long records ",
 		"c\tcount truncated records ",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	size_t length = TEXTLINE_MAX;
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))

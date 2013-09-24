@@ -67,9 +67,9 @@ int main (int argc, char const * argv [])
 		"",
 		PUTOPTV_S_FUNNEL,
 		"example command line program",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	TREE * node = (TREE *)(0);
+	TREE * node = (TREE *) (0);
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)

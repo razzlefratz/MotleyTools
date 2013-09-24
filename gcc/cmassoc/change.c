@@ -123,7 +123,7 @@ void function (char const * filename, const regexp * remove, char const * insert
 	{
 		return;
 	}
-	while ((signed)(actual = fgetline (buffer, length, stdin)) != - 1)
+	while ((signed) (actual = fgetline (buffer, length, stdin)) != - 1)
 	{
 		char const * sp;
 		for (sp = buffer; * sp; ++ sp)
@@ -188,7 +188,7 @@ int main (int argc, char const * argv [])
 		"H\tshow expression expansion",
 		"R\tregular expression rules",
 		"T\tescape sequence rules",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	regexp * remove = (regexp *) (0);
 	char const * insert = (char const *) (0);
@@ -213,17 +213,17 @@ int main (int argc, char const * argv [])
 			_clrbits (flags, CHANGE_B_RECORD);
 			break;
 		case 'e':
-			strcpy (buffer, struesc ((char *)(optarg)));
+			strcpy (buffer, struesc ((char *) (optarg)));
 			remove = regexmake (buffer);
 			break;
 		case 'l':
 			strcpy (buffer, REGEX_S_SPAN);
-			strcat (buffer, struesc ((char *)(optarg)));
+			strcat (buffer, struesc ((char *) (optarg)));
 			strcat (buffer, REGEX_S_SPAN);
 			remove = regexmake (buffer);
 			break;
 		case 't':
-			insert = strdup (struesc ((char *)(optarg)));
+			insert = strdup (struesc ((char *) (optarg)));
 			break;
 		case 'H':
 			_setbits (flags, CHANGE_B_REVIEW);

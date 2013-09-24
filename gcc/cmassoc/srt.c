@@ -99,7 +99,7 @@ size_t loadheap (char * heap [], size_t heapsize, size_t linesize, FILE * ifp)
 	char buffer [linesize];
 	while ((heapitem < heapsize) && fgets (buffer, linesize, ifp))
 	{
-		heap [heapitem] = (char *)(emalloc (strlen (buffer) +  1));
+		heap [heapitem] = (char *) (emalloc (strlen (buffer) +  1));
 		memcpy (heap [heapitem], buffer, strlen (buffer) +  1);
 		adheap ((void *) (heap), ++ heapitem, (int (*) (void const *, void const *)) (comp), swap);
 	}
@@ -124,7 +124,7 @@ size_t saveheap (char * heap [], size_t heapsize, FILE * ofp)
 	while ((heapsize > 0) && (fputs (heap [0], ofp) != EOF))
 	{
 		swap ((void *) (heap), 0, -- heapsize);
-		reheap ((void *) (heap), heapsize, (int (*)(void const *, void const *)) (comp), swap);
+		reheap ((void *) (heap), heapsize, (int (*) (void const *, void const *)) (comp), swap);
 		free (heap [heapsize]);
 	}
 	return (heapsize);

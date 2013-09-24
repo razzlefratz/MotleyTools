@@ -131,7 +131,7 @@ static void template ()
 		"AUTHOR",
 		"CREDITS",
 		"SEE ALSO",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	char const ** subject = subjects;
 	printf (".TH program 7 package");
@@ -333,7 +333,7 @@ int main (int argc, char const * argv [])
 		(char const *) (0)
 	};
 	char buffer [16];
-	time_t now = time ((time_t *)(0));;
+	time_t now = time ((time_t *) (0));;
 	char const * profile = MP_PROFILE;
 	char const * section = MP_SECTION;
 	char const * program = MP_PROGRAM;
@@ -378,7 +378,7 @@ int main (int argc, char const * argv [])
 		if (vfopen (* argv))
 		{
 			program = * argv;
-			for (sp = (char *)(* argv); * sp; ++ sp)
+			for (sp = (char *) (* argv); * sp; ++ sp)
 			{
 				if (* sp == PATH_C_EXTENDER)
 				{

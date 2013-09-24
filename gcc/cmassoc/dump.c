@@ -213,7 +213,7 @@ int main (int argc, char const * argv [])
 		"o\tdisplay in octal",
 		"d\tdisplay in decimal ",
 		"x\tdisplay in hexidecmal",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	flag_t flag = BYTE;
 	int base = HEX;

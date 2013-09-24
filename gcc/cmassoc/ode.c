@@ -80,7 +80,7 @@ int main (int argc, char const * argv [])
 	unsigned offset = 0;
 	unsigned origin = 0;
 	unsigned window = 32;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	opterr = 1;
 	while (~ (c = getoptv (argc, argv, optv)))
@@ -98,7 +98,7 @@ int main (int argc, char const * argv [])
 			_setbits (flags, ODE_VERBOSE);
 			break;
 		case 'w':
-			window = (unsigned)(uintspec (optarg, 0, UINT_MAX));
+			window = (unsigned) (uintspec (optarg, 0, UINT_MAX));
 			_setbits (flags, ODE_VERBOSE);
 			break;
 		default: 
@@ -116,7 +116,7 @@ int main (int argc, char const * argv [])
 	{
 		error (1, errno, "%s", file.name);
 	}
-	if ((signed)(extent = lseek (file.file, 0, SEEK_END)) == - 1)
+	if ((signed) (extent = lseek (file.file, 0, SEEK_END)) == - 1)
 	{
 		error (1, errno, "%s", file.name);
 	}
@@ -128,7 +128,7 @@ int main (int argc, char const * argv [])
 	{
 		error (1, errno, "%s", file.name);
 	}
-	if (read (file.file, memory, extent) != (signed)(extent))
+	if (read (file.file, memory, extent) != (signed) (extent))
 	{
 		error (1, errno, "%s", file.name);
 	}
@@ -139,7 +139,7 @@ int main (int argc, char const * argv [])
 	{
 		error (1, ECANCELED, "No offset");
 	}
-	origin = offset = (unsigned)(basespec (* argv, 16, sizeof (offset)));
+	origin = offset = (unsigned) (basespec (* argv, 16, sizeof (offset)));
 	if (offset > extent)
 	{
 		error (1, ECANCELED, "Offset %X exceeds extent %X", offset, extent);
@@ -164,7 +164,7 @@ int main (int argc, char const * argv [])
 	{
 		error (1, errno, "%s", file.name);
 	}
-	if (write (file.file, memory, extent) < (signed)(extent))
+	if (write (file.file, memory, extent) < (signed) (extent))
 	{
 		error (1, errno, "%s", file.name);
 	}

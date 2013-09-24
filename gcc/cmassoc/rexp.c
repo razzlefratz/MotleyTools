@@ -70,9 +70,9 @@ int main (int argc, char const * argv [])
 		"literal [literal] [...]",
 		"compare example strings to a regular expression and report each outcome",
 		"e\tthe regular expression",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	regexp * pattern = (regexp *)(0);
+	regexp * pattern = (regexp *) (0);
 	char prefix [TEXTLINE_MAX];
 	char const * sp;
 	char const * cp;
@@ -107,7 +107,7 @@ int main (int argc, char const * argv [])
 			{
 				prefix [cp - * argv] = * cp;
 			}
-			prefix [cp - * argv] = (char)(0);
+			prefix [cp - * argv] = (char) (0);
 			printf ("[%s] [%s]\n", prefix, sp);
 		}
 		argc--;

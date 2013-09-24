@@ -360,14 +360,14 @@ double read_timer (char * str, int len)
 /* Get real time */
 
 	tvsub (& td, & timedol, & time0);
-	realt = td.tv_sec + ((double) td.tv_usec) / 1000000;
+	realt = td.tv_sec +  ((double) td.tv_usec) / 1000000;
 
 /* Get CPU time (user+sys) */
 
 	tvadd (& tend, & ru1.ru_utime, & ru1.ru_stime);
 	tvadd (& tstart, & ru0.ru_utime, & ru0.ru_stime);
 	tvsub (& td, & tend, & tstart);
-	cput = td.tv_sec + ((double) td.tv_usec) / 1000000;
+	cput = td.tv_sec +  ((double) td.tv_usec) / 1000000;
 	if (cput < 0.00001) cput = 0.00001;
 	return (cput);
 }
@@ -384,8 +384,8 @@ char * outp;
 	register char * cp;
 	register int i;
 	int ms;
-	t = (r1->ru_utime.tv_sec - r0->ru_utime.tv_sec) * 100 + (r1->ru_utime.tv_usec - r0->ru_utime.tv_usec) / 10000 + (r1->ru_stime.tv_sec - r0->ru_stime.tv_sec) * 100 + (r1->ru_stime.tv_usec - r0->ru_stime.tv_usec) / 10000;
-	ms = (e->tv_sec - b->tv_sec) * 100 + (e->tv_usec - b->tv_usec) / 10000;
+	t = (r1->ru_utime.tv_sec - r0->ru_utime.tv_sec) * 100 +  (r1->ru_utime.tv_usec - r0->ru_utime.tv_usec) / 10000 +  (r1->ru_stime.tv_sec - r0->ru_stime.tv_sec) * 100 +  (r1->ru_stime.tv_usec - r0->ru_stime.tv_usec) / 10000;
+	ms = (e->tv_sec - b->tv_sec) * 100 +  (e->tv_usec - b->tv_usec) / 10000;
 
 #define END(x)	{while(*x) x++;}
 #if defined(SYSV)

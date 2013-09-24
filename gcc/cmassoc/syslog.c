@@ -203,7 +203,7 @@ int main (int argc, char const * argv [])
 	char message [TEXTLINE_MAX];
 	char * bp = message;
 	char const * socketname = (char *) (0);
-	char const * identity = (char *)(0);
+	char const * identity = (char *) (0);
 	int priority = SYSLOG_USER | SYSLOG_INFO;
 	code_t sockettype = SOCK_STREAM;
 	flag_t options = (flag_t) (0);

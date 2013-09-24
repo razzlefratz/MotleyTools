@@ -164,7 +164,7 @@ int main (int argc, char const * argv [])
 		"f m\tfile permission is m [0664]",
 		"r\trecursive search",
 		"v\tverbose messages",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	mode_t dirmode = S_ISGID | S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH;
 	mode_t regmode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;

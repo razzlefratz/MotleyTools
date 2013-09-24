@@ -59,7 +59,7 @@ int main (int argc, char const * argv [])
 		"s\tseparate with spaces",
 		"t\tseparate with tabs",
 		"v\tprint as CSV file",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	typedef struct link
 	{
@@ -67,10 +67,10 @@ int main (int argc, char const * argv [])
 		FILE * file;
 	}
 	LINK;
-	struct link * item = (LINK *)(0);
-	struct link * list = (LINK *)(0);
-	unsigned quote = (char)(0);
-	unsigned space = (char)(0);
+	struct link * item = (LINK *) (0);
+	struct link * list = (LINK *) (0);
+	unsigned quote = (char) (0);
+	unsigned space = (char) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
@@ -137,7 +137,7 @@ int main (int argc, char const * argv [])
 			if (c == EOF)
 			{
 				fclose (item->file);
-				item->file = (FILE *)(0);
+				item->file = (FILE *) (0);
 				argc--;
 			}
 		}

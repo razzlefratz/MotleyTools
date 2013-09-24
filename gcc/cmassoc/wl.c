@@ -138,7 +138,7 @@ int main (int argc, char const * argv [])
 	};
 	char words [UCHAR_MAX +  1];
 	char table [UCHAR_MAX +  1];
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	memset (table, 0, sizeof (table));
 	charset (CHRLIB_WORDSET, (char) (0), words, sizeof (words));

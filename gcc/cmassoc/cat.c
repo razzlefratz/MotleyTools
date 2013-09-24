@@ -87,7 +87,7 @@ int main (int argc, char const * argv [])
 		"copy one or more files to stdout",
 		"b n\tbuffer size is (n) bytes [" LITERAL (BUFFERSIZE) "]",
 		"u\tunbuffered copy",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	signed length = BUFFERSIZE;
 	signed c;

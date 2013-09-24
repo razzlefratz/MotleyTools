@@ -104,7 +104,7 @@ static void example ()
 		"AUTHORS",
 		"CREDITS",
 		"SEE ALSO",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	char const ** subject = subjects;
 	printf (".TH program 1 package");
@@ -310,7 +310,7 @@ int main (int argc, char const * argv [])
 		(char const *) (0)
 	};
 	char buffer [16];
-	time_t now = time ((time_t *)(0));;
+	time_t now = time ((time_t *) (0));;
 	char const * profile = MP_PROFILE;
 	char const * section = MP_SECTION;
 	char const * program = MP_PROGRAM;
@@ -318,7 +318,7 @@ int main (int argc, char const * argv [])
 	char const * package = MP_PACKAGE;
 	char const * release = buffer;
 	char * sp;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	strftime (buffer, sizeof (buffer), MP_PUBLISH, localtime (& now));
 	while (~ (c = getoptv (argc, argv, optv)))
@@ -355,7 +355,7 @@ int main (int argc, char const * argv [])
 		if (vfopen (* argv))
 		{
 			program = * argv;
-			for (sp = (char *)(* argv); * sp; ++ sp)
+			for (sp = (char *) (* argv); * sp; ++ sp)
 			{
 				if (* sp == PATH_C_EXTENDER)
 				{
