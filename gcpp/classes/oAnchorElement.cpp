@@ -37,7 +37,7 @@ char const * oAnchorElement::mtitle = "a";
  *
  *--------------------------------------------------------------------*/
 
-char const * oAnchorElement::ElementName () const 
+char const * oAnchorElement::ElementName() const
 
 {
 	return (oAnchorElement::mtitle);
@@ -51,20 +51,20 @@ char const * oAnchorElement::ElementName () const
  *
  *--------------------------------------------------------------------*/
 
-oAnchorElement & oAnchorElement::StartTag () 
+oAnchorElement & oAnchorElement::StartTag()
 
 {
-	std::cout.put ('<');
-	if (* this->mscope) 
+	std::cout.put('<');
+	if (* this->mscope)
 	{
 		std::cout << this->mscope;
-		std::cout.put (':');
+		std::cout.put(':');
 	}
 	std::cout << this->mtitle;
-	oAnchorElement::i18nAttributes.write ();
-	oAnchorElement::CoreAttributes.write ();
-	oAnchorElement::LinkAttributes.write ();
-	std::cout.put ('>');
+	oAnchorElement::i18nAttributes.write();
+	oAnchorElement::CoreAttributes.write();
+	oAnchorElement::LinkAttributes.write();
+	std::cout.put('>');
 	return (* this);
 }
 
@@ -76,21 +76,21 @@ oAnchorElement & oAnchorElement::StartTag ()
  *
  *--------------------------------------------------------------------*/
 
-oAnchorElement & oAnchorElement::EmptyTag () 
+oAnchorElement & oAnchorElement::EmptyTag()
 
 {
-	std::cout.put ('<');
-	if (* this->mscope) 
+	std::cout.put('<');
+	if (* this->mscope)
 	{
 		std::cout << this->mscope;
-		std::cout.put (':');
+		std::cout.put(':');
 	}
 	std::cout << this->mtitle;
-	oAnchorElement::i18nAttributes.write ();
-	oAnchorElement::CoreAttributes.write ();
-	oAnchorElement::LinkAttributes.write ();
-	std::cout.put ('/');
-	std::cout.put ('>');
+	oAnchorElement::i18nAttributes.write();
+	oAnchorElement::CoreAttributes.write();
+	oAnchorElement::LinkAttributes.write();
+	std::cout.put('/');
+	std::cout.put('>');
 	return (* this);
 }
 
@@ -102,18 +102,18 @@ oAnchorElement & oAnchorElement::EmptyTag ()
  *
  *--------------------------------------------------------------------*/
 
-oAnchorElement & oAnchorElement::EndTag () 
+oAnchorElement & oAnchorElement::EndTag()
 
 {
-	std::cout.put ('<');
-	std::cout.put ('/');
-	if (* this->mscope) 
+	std::cout.put('<');
+	std::cout.put('/');
+	if (* this->mscope)
 	{
 		std::cout << this->mscope;
-		std::cout.put (':');
+		std::cout.put(':');
 	}
 	std::cout << this->mtitle;
-	std::cout.put ('>');
+	std::cout.put('>');
 	return (* this);
 }
 
@@ -124,7 +124,7 @@ oAnchorElement & oAnchorElement::EndTag ()
  *   
  *--------------------------------------------------------------------*/
 
-oAnchorElement::oAnchorElement () 
+oAnchorElement::oAnchorElement()
 
 {
 	return;
@@ -137,7 +137,7 @@ oAnchorElement::oAnchorElement ()
  *   
  *--------------------------------------------------------------------*/
 
-oAnchorElement::~oAnchorElement () 
+oAnchorElement::~ oAnchorElement()
 
 {
 	return;
@@ -148,4 +148,6 @@ oAnchorElement::~oAnchorElement ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

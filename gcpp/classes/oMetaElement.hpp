@@ -22,20 +22,20 @@
  *   interface declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oMetaElement 
+class __declspec(dllexport) oMetaElement
 
 {
-public:
+public: 
 	oMetaElement ();
-	virtual ~ oMetaElement ();
-	char const * ElementName () const;
+	virtual ~ oMetaElement();
+	char const * ElementName() const;
 	oAttribute * NameAttribute;
 	oAttribute * ContentTypeAttribute;
 	oAttribute * SchemeAttribute;
 	oAttribute * ResponseAttribute;
-	oMetaElement & Contents (char const * name, char const * type);
-	oMetaElement & EmptyTag (unsigned level, unsigned space);
-private:
+	oMetaElement & Contents(char const * name, char const * type);
+	oMetaElement & EmptyTag(unsigned level, unsigned space);
+private: 
 	static char const * mscope;
 	static char const * mtitle;
 };
@@ -45,4 +45,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

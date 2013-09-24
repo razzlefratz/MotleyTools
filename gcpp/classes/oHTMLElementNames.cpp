@@ -29,10 +29,10 @@
  *   
  *--------------------------------------------------------------------*/
 
-oHTMLElementNames::oHTMLElementNames () 
+oHTMLElementNames::oHTMLElementNames()
 
 {
-	static char const * table [] = 
+	static char const * table[] = 
 	{
 		"a",
 		"abbr",
@@ -132,12 +132,12 @@ oHTMLElementNames::oHTMLElementNames ()
 		"wbr",
 		"xml",
 		"xmp",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	okeywords::mtitle = "HTMLElement";
-	okeywords::mcount = SIZEOF (table) - 1;
+	okeywords::mcount = SIZEOF(table) - 1;
 	okeywords::mtable = table;
-	okeywords::mcheck ();
+	okeywords::mcheck();
 	return;
 }
 
@@ -147,7 +147,7 @@ oHTMLElementNames::oHTMLElementNames ()
  *   
  *--------------------------------------------------------------------*/
 
-oHTMLElementNames::~oHTMLElementNames () 
+oHTMLElementNames::~ oHTMLElementNames()
 
 {
 	return;
@@ -158,4 +158,6 @@ oHTMLElementNames::~oHTMLElementNames ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

@@ -24,15 +24,15 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oISOGlyph 
+class __declspec(dllexport) oISOGlyph
 
 {
-public:
+public: 
 	oISOGlyph (void);
-	virtual ~ oISOGlyph (void);
-	char const * string (signed c);
-private:
-	static char const * mtable [];
+	virtual ~ oISOGlyph(void);
+	char const * string(signed c);
+private: 
+	static char const * mtable[];
 	char * mstring;
 };
 
@@ -41,4 +41,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

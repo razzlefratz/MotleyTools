@@ -33,7 +33,7 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-char const omemory::digits [] = "0123456789ABCDEF";
+char const omemory::digits[] = "0123456789ABCDEF";
 char omemory::bin_extender = '-';
 char omemory::dec_extender = '.';
 char omemory::hex_extender = ':';
@@ -52,15 +52,15 @@ char omemory::chr_nonprint = '.';
  *
  *--------------------------------------------------------------------*/
 
-void omemory::endian (void * memory, size_t extent) 
+void omemory::endian(void * memory, size_t extent)
 
 {
-	register byte * byte1 = (byte *)(memory);
-	register byte * byte2 = (byte *)(memory) + extent;
-	while (byte1 < byte2) 
+	register byte * byte1 = (byte *) (memory);
+	register byte * byte2 = (byte *) (memory) +  extent;
+	while (byte1 < byte2)
 	{
 		register byte byte = * byte1;
-		* byte1++ = *--byte2;
+		* byte1++ = * -- byte2;
 		* byte2 = byte;
 	}
 	return;
@@ -79,12 +79,12 @@ void omemory::endian (void * memory, size_t extent)
  *
  *--------------------------------------------------------------------*/
 
-void omemory::swap (void * memory1, void * memory2, size_t extent) 
+void omemory::swap(void * memory1, void * memory2, size_t extent)
 
 {
-	register byte * byte1 = (byte *)(memory1);
-	register byte * byte2 = (byte *)(memory2);
-	if (memory1 != memory2) while (extent--) 
+	register byte * byte1 = (byte *) (memory1);
+	register byte * byte2 = (byte *) (memory2);
+	if (memory1 != memory2) while(extent--)
 	{
 		byte byte = * byte1;
 		* byte1++ = * byte2;
@@ -108,19 +108,19 @@ void omemory::swap (void * memory1, void * memory2, size_t extent)
  *
  *--------------------------------------------------------------------*/
 
-void omemory::memtext (char const * string, char buffer [], size_t length) 
+void omemory::memtext(char const * string, char buffer[], size_t length)
 
 {
-	if (length--) 
+	if (length--)
 	{
-		while (length--) 
+		while (length--)
 		{
-			if ((* buffer++ = * string) != 0) 
+			if ((* buffer++ = * string) != 0)
 			{
 				* string++;
 			}
 		}
-		* buffer = (char)(0);
+		* buffer = (char) (0);
 	}
 	return;
 }
@@ -141,11 +141,11 @@ void omemory::memtext (char const * string, char buffer [], size_t length)
  *
  *--------------------------------------------------------------------*/
 
-void * omemory::encode (void * memory, void const * source, size_t extent) 
+void * omemory::encode(void * memory, void const * source, size_t extent)
 
 {
-	std::memcpy (memory, source, extent);
-	return ((byte *)(memory) + extent);
+	std::memcpy(memory, source, extent);
+	return ((byte *) (memory) +  extent);
 }
 
 /*====================================================================*
@@ -164,11 +164,11 @@ void * omemory::encode (void * memory, void const * source, size_t extent)
  *
  *--------------------------------------------------------------------*/
 
-void const * omemory::decode (void const * memory, void * target, size_t extent) 
+void const * omemory::decode(void const * memory, void * target, size_t extent)
 
 {
-	std::memcpy (target, memory, extent);
-	return ((byte *)(memory) + extent);
+	std::memcpy(target, memory, extent);
+	return ((byte *) (memory) +  extent);
 }
 
 /*====================================================================*
@@ -189,17 +189,17 @@ void const * omemory::decode (void const * memory, void * target, size_t extent)
  *
  *--------------------------------------------------------------------*/
 
-uint16_t omemory::checksum16 (void const * memory, register size_t extent, register uint16_t checksum) 
+uint16_t omemory::checksum16(void const * memory, register size_t extent, register uint16_t checksum)
 
 {
-	register byte * offset = (byte *)(memory);
-	while (extent >= sizeof (checksum)) 
+	register byte * offset = (byte *) (memory);
+	while (extent >= sizeof(checksum))
 	{
-		checksum^= *(uint16_t *)(offset);
-		offset += sizeof (checksum);
-		extent -= sizeof (checksum);
+		checksum ^= * (uint16_t *) (offset);
+		offset += sizeof(checksum);
+		extent -= sizeof(checksum);
 	}
-	return (~checksum);
+	return (~ checksum);
 }
 
 /*====================================================================*
@@ -220,17 +220,17 @@ uint16_t omemory::checksum16 (void const * memory, register size_t extent, regis
  *
  *--------------------------------------------------------------------*/
 
-uint32_t omemory::checksum32 (void const * memory, register size_t extent, register uint32_t checksum) 
+uint32_t omemory::checksum32(void const * memory, register size_t extent, register uint32_t checksum)
 
 {
-	register byte * offset = (byte *)(memory);
-	while (extent >= sizeof (checksum)) 
+	register byte * offset = (byte *) (memory);
+	while (extent >= sizeof(checksum))
 	{
-		checksum^= *(uint32_t *)(offset);
-		offset += sizeof (checksum);
-		extent -= sizeof (checksum);
+		checksum ^= * (uint32_t *) (offset);
+		offset += sizeof(checksum);
+		extent -= sizeof(checksum);
 	}
-	return (~checksum);
+	return (~ checksum);
 }
 
 /*====================================================================*
@@ -251,18 +251,18 @@ uint32_t omemory::checksum32 (void const * memory, register size_t extent, regis
  *
  *--------------------------------------------------------------------*/
 
-signed omemory::memincr (void * memory, register size_t extent) 
+signed omemory::memincr(void * memory, register size_t extent)
 
 {
-	register byte * offset = (byte *)(memory);
-	while (extent--) 
+	register byte * offset = (byte *) (memory);
+	while (extent--)
 	{
-		if (++ offset [extent] != 0x00) 
+		if (++ offset[extent] != 0x00)
 		{
 			return (0);
 		}
 	}
-	return (-1);
+	return (- 1);
 }
 
 /*====================================================================*
@@ -278,19 +278,19 @@ signed omemory::memincr (void * memory, register size_t extent)
  *
  *--------------------------------------------------------------------*/
 
-signed omemory::strincr (void * memory, register size_t extent, register byte minimum, register byte maximum) 
+signed omemory::strincr(void * memory, register size_t extent, register byte minimum, register byte maximum)
 
 {
-	register byte * offset = (byte *)(memory);
-	while (extent--) 
+	register byte * offset = (byte *) (memory);
+	while (extent--)
 	{
-		if (++ offset [extent] <= maximum) 
+		if (++ offset[extent] <= maximum)
 		{
 			return (0);
 		}
 		offset [extent] = minimum;
 	}
-	return (-1);
+	return (- 1);
 }
 
 /*====================================================================*
@@ -311,18 +311,18 @@ signed omemory::strincr (void * memory, register size_t extent, register byte mi
  *
  *--------------------------------------------------------------------*/
 
-signed omemory::memdecr (void * memory, register size_t extent) 
+signed omemory::memdecr(void * memory, register size_t extent)
 
 {
-	register byte * offset = (byte *)(memory);
-	while (extent--) 
+	register byte * offset = (byte *) (memory);
+	while (extent--)
 	{
-		if (-- offset [extent] != 0xFF) 
+		if (-- offset[extent] != 0xFF)
 		{
 			return (0);
 		}
 	}
-	return (-1);
+	return (- 1);
 }
 
 /*====================================================================*
@@ -338,19 +338,19 @@ signed omemory::memdecr (void * memory, register size_t extent)
  *
  *--------------------------------------------------------------------*/
 
-signed omemory::strdecr (void * memory, register size_t extent, register byte minimum, register byte maximum) 
+signed omemory::strdecr(void * memory, register size_t extent, register byte minimum, register byte maximum)
 
 {
-	register byte * offset = (byte *)(memory);
-	while (extent--) 
+	register byte * offset = (byte *) (memory);
+	while (extent--)
 	{
-		if (-- offset [extent] >= minimum) 
+		if (-- offset[extent] >= minimum)
 		{
 			return (0);
 		}
 		offset [extent] = maximum;
 	}
-	return (-1);
+	return (- 1);
 }
 
 /*====================================================================*
@@ -371,24 +371,24 @@ signed omemory::strdecr (void * memory, register size_t extent, register byte mi
  *
  *--------------------------------------------------------------------*/
 
-size_t omemory::binencode (void * memory, register size_t extent, register char const * string) 
+size_t omemory::binencode(void * memory, register size_t extent, register char const * string)
 
 {
-	register byte * origin = (byte *)(memory);
-	register byte * offset = (byte *)(memory);
-	while ((extent) && (* string)) 
+	register byte * origin = (byte *) (memory);
+	register byte * offset = (byte *) (memory);
+	while ((extent) && (* string))
 	{
 		register unsigned radix = 2;
 		register unsigned field = 8;
 		register unsigned value = 0;
 		register unsigned digit = 0;
-		if ((offset > origin) && (* string == omemory::bin_extender)) 
+		if ((offset > origin) && (* string == omemory::bin_extender))
 		{
 			string++;
 		}
-		while (field--) 
+		while (field--)
 		{
-			if ((digit = oascii::todigit (* string)) >= radix) 
+			if ((digit = oascii::todigit(* string)) >= radix)
 			{
 				errno = EINVAL;
 				return (0);
@@ -397,21 +397,21 @@ size_t omemory::binencode (void * memory, register size_t extent, register char 
 			value += digit;
 			string++;
 		}
-		* offset = (byte)(value);
+		* offset = (byte) (value);
 		offset++;
 		extent--;
 	}
 
 #if defined (WIN32)
 
-	while (isspace (* string)) 
+	while (isspace(* string))
 	{
 		string++;
 	}
 
 #endif
 
-	if ((extent) || (* string)) 
+	if ((extent) || (* string))
 	{
 		errno = EINVAL;
 		return (0);
@@ -433,52 +433,52 @@ size_t omemory::binencode (void * memory, register size_t extent, register char 
  *
  *--------------------------------------------------------------------*/
 
-size_t omemory::decencode (void * memory, size_t extent, char const * string) 
+size_t omemory::decencode(void * memory, size_t extent, char const * string)
 
 {
-	register byte * origin = (byte *)(memory);
-	register byte * offset = (byte *)(memory);
-	while ((extent) && (* string)) 
+	register byte * origin = (byte *) (memory);
+	register byte * offset = (byte *) (memory);
+	while ((extent) && (* string))
 	{
 		unsigned radix = 10;
 		unsigned field = 3;
 		unsigned value = 0;
 		unsigned digit = 0;
-		if ((offset > origin) && (* string == omemory::dec_extender)) 
+		if ((offset > origin) && (* string == omemory::dec_extender))
 		{
 			string++;
 		}
-		while (field--) 
+		while (field--)
 		{
-			if ((digit = oascii::todigit (* string)) >= radix) 
+			if ((digit = oascii::todigit(* string)) >= radix)
 			{
 				errno = EINVAL;
 				return (0);
 			}
 			value *= radix;
 			value += digit;
-			if (value >> 8) 
+			if (value >> 8)
 			{
 				errno = ERANGE;
 				return (0);
 			}
 			string++;
 		}
-		* offset = (byte)(value);
+		* offset = (byte) (value);
 		offset++;
 		extent--;
 	}
 
 #if defined (WIN32)
 
-	while (isspace (* string)) 
+	while (isspace(* string))
 	{
 		string++;
 	}
 
 #endif
 
-	if ((extent) || (* string)) 
+	if ((extent) || (* string))
 	{
 		errno = EINVAL;
 		return (0);
@@ -502,24 +502,24 @@ size_t omemory::decencode (void * memory, size_t extent, char const * string)
  *
  *--------------------------------------------------------------------*/
 
-size_t omemory::hexencode (void * memory, register size_t extent, register char const * string) 
+size_t omemory::hexencode(void * memory, register size_t extent, register char const * string)
 
 {
-	register byte * origin = (byte *)(memory);
-	register byte * offset = (byte *)(memory);
-	while ((extent) && (* string)) 
+	register byte * origin = (byte *) (memory);
+	register byte * offset = (byte *) (memory);
+	while ((extent) && (* string))
 	{
 		unsigned radix = 16;
 		unsigned field = 2;
 		unsigned value = 0;
 		unsigned digit = 0;
-		if ((offset > origin) && (* string == omemory::hex_extender)) 
+		if ((offset > origin) && (* string == omemory::hex_extender))
 		{
 			string++;
 		}
-		while (field--) 
+		while (field--)
 		{
-			if ((digit = oascii::todigit (* string)) >= radix) 
+			if ((digit = oascii::todigit(* string)) >= radix)
 			{
 				errno = EINVAL;
 				return (0);
@@ -528,21 +528,21 @@ size_t omemory::hexencode (void * memory, register size_t extent, register char 
 			value += digit;
 			string++;
 		}
-		* offset = (byte)(value);
+		* offset = (byte) (value);
 		offset++;
 		extent--;
 	}
 
 #if defined (WIN32)
 
-	while (isspace (* string)) 
+	while (isspace(* string))
 	{
 		string++;
 	}
 
 #endif
 
-	if ((extent) || (* string)) 
+	if ((extent) || (* string))
 	{
 		errno = EINVAL;
 		return (0);
@@ -564,22 +564,22 @@ size_t omemory::hexencode (void * memory, register size_t extent, register char 
  *
  *--------------------------------------------------------------------*/
 
-size_t omemory::bindecode (void const * memory, register size_t extent, char buffer [], register size_t length) 
+size_t omemory::bindecode(void const * memory, register size_t extent, char buffer[], register size_t length)
 
 {
-	register char * string = (char *)(buffer);
-	register byte * offset = (byte *)(memory);
-	if ((length /= 9)) 
+	register char * string = (char *) (buffer);
+	register byte * offset = (byte *) (memory);
+	if ((length /= 9))
 	{
-		while ((length-- > 0) && (extent-- > 0)) 
+		while ((length-- > 0) && (extent-- > 0))
 		{
-			string = omemory::serial (string, 8, * offset++, 2);
-			if ((length) && (extent)) 
+			string = omemory::serial(string, 8, * offset++, 2);
+			if ((length) && (extent))
 			{
 				* string++ = omemory::bin_extender;
 			}
 		}
-		* string = (char) (0);
+		* string = (char)(0);
 	}
 	return (string - buffer);
 }
@@ -604,22 +604,22 @@ size_t omemory::bindecode (void const * memory, register size_t extent, char buf
  *
  *--------------------------------------------------------------------*/
 
-size_t omemory::decdecode (void const * memory, register size_t extent, char buffer [], register size_t length) 
+size_t omemory::decdecode(void const * memory, register size_t extent, char buffer[], register size_t length)
 
 {
-	register char * string = (char *)(buffer);
-	register byte * offset = (byte *)(memory);
-	if ((length /= 4)) 
+	register char * string = (char *) (buffer);
+	register byte * offset = (byte *) (memory);
+	if ((length /= 4))
 	{
-		while ((length--) && (extent--)) 
+		while ((length--) && (extent--))
 		{
-			string = omemory::serial (string, 3, * offset++, 10);
-			if ((length) && (extent)) 
+			string = omemory::serial(string, 3, * offset++, 10);
+			if ((length) && (extent))
 			{
 				* string++ = omemory::dec_extender;
 			}
 		}
-		* string = (char) (0);
+		* string = (char)(0);
 	}
 	return (string - buffer);
 }
@@ -642,24 +642,24 @@ size_t omemory::decdecode (void const * memory, register size_t extent, char buf
  *
  *--------------------------------------------------------------------*/
 
-size_t omemory::hexdecode (void const * memory, register size_t extent, char buffer [], register size_t length) 
+size_t omemory::hexdecode(void const * memory, register size_t extent, char buffer[], register size_t length)
 
 {
-	register char * string = (char *)(buffer);
-	register byte * offset = (byte *)(memory);
-	if ((length /= 3)) 
+	register char * string = (char *) (buffer);
+	register byte * offset = (byte *) (memory);
+	if ((length /= 3))
 	{
-		while ((length--) && (extent--)) 
+		while ((length--) && (extent--))
 		{
-			* string++ = omemory::digits [(* offset >> 4) & 0x0F];
-			* string++ = omemory::digits [(* offset >> 0) & 0x0F];
-			if ((length) && (extent)) 
+			* string++ = omemory::digits[(* offset >> 4) & 0x0F];
+			* string++ = omemory::digits[(* offset >> 0) & 0x0F];
+			if ((length) && (extent))
 			{
 				* string++ = omemory::hex_extender;
 			}
 			offset++;
 		}
-		* string = (char) (0);
+		* string = (char)(0);
 	}
 	return (string - buffer);
 }
@@ -677,58 +677,58 @@ size_t omemory::hexdecode (void const * memory, register size_t extent, char buf
  *
  *--------------------------------------------------------------------*/
 
-void omemory::hexdump (void const * memory, size_t offset, size_t extent, std::ostream * stream) 
+void omemory::hexdump(void const * memory, size_t offset, size_t extent, std::ostream * stream)
 
 {
-	register byte * origin = (byte *)(memory);
-	unsigned field = sizeof (extent) + sizeof (extent);
+	register byte * origin = (byte *) (memory);
+	unsigned field = sizeof(extent) +  sizeof(extent);
 	unsigned block = 0x10;
 	size_t lower = block * (offset / block);
-	size_t upper = block + lower;
+	size_t upper = block +  lower;
 	size_t index = 0;
-	char buffer [sizeof (extent) + sizeof (extent) + 0x48];
+	char buffer[sizeof(extent) +  sizeof(extent) +  0x48];
 	char * output;
-	while (lower < extent) 
+	while (lower < extent)
 	{
-		output = omemory::serial (buffer, (size_t)(field), (unsigned)(index), 0x10);
+		output = omemory::serial(buffer, (size_t) (field), (unsigned) (index), 0x10);
 		* output++ = ' ';
-		for (index = lower; index < upper; index++) 
+		for (index = lower; index < upper; index++)
 		{
-			if (index < offset) 
+			if (index < offset)
 			{
 				* output++ = ' ';
 				* output++ = ' ';
 			}
-			else if (index < extent) 
+			else if(index < extent)
 			{
-				* output++ = omemory::digits [(origin [index] >> 4) & 0x0F];
-				* output++ = omemory::digits [(origin [index] >> 0) & 0x0F];
+				* output++ = omemory::digits[(origin[index] >> 4) & 0x0F];
+				* output++ = omemory::digits[(origin[index] >> 0) & 0x0F];
 			}
-			else
+			else 
 			{
 				* output++ = ' ';
 				* output++ = ' ';
 			}
 			* output++ = ' ';
 		}
-		for (index = lower; index < upper; index++) 
+		for (index = lower; index < upper; index++)
 		{
-			if (index < offset) 
+			if (index < offset)
 			{
 				* output++ = ' ';
 			}
-			else if (index < extent) 
+			else if(index < extent)
 			{
-				unsigned c = origin [index];
-				* output++ = oascii::isprint (c)? (char)(c): omemory::chr_nonprint;
+				unsigned c = origin[index];
+				* output++ = oascii::isprint(c)? (char) (c): omemory::chr_nonprint;
 			}
-			else
+			else 
 			{
 				* output++ = ' ';
 			}
 		}
 		* output++ = '\n';
-		stream->write (buffer, (signed)(output - buffer));
+		stream->write(buffer, (signed) (output - buffer));
 		lower += block;
 		upper += block;
 	}
@@ -748,58 +748,58 @@ void omemory::hexdump (void const * memory, size_t offset, size_t extent, std::o
  *
  *--------------------------------------------------------------------*/
 
-void omemory::hexview (void const * memory, size_t offset, size_t extent, std::ostream * stream) 
+void omemory::hexview(void const * memory, size_t offset, size_t extent, std::ostream * stream)
 
 {
-	register byte * origin = (byte *)(memory);
-	unsigned field = sizeof (extent) + sizeof (extent);
+	register byte * origin = (byte *) (memory);
+	unsigned field = sizeof(extent) +  sizeof(extent);
 	unsigned block = 0x10;
 	size_t lower = block * (offset / block);
-	size_t upper = block + lower;
+	size_t upper = block +  lower;
 	size_t index = 0;
-	char buffer [sizeof (extent) + sizeof (extent) + 0x48];
+	char buffer[sizeof(extent) +  sizeof(extent) +  0x48];
 	char * output;
-	while (lower < offset + extent) 
+	while (lower < offset +  extent)
 	{
-		output = omemory::serial (buffer, (size_t)(field), (unsigned)(index), 0x10);
+		output = omemory::serial(buffer, (size_t) (field), (unsigned) (index), 0x10);
 		* output++ = ' ';
-		for (index = lower; index < upper; index++) 
+		for (index = lower; index < upper; index++)
 		{
-			if (index < offset) 
+			if (index < offset)
 			{
 				* output++ = ' ';
 				* output++ = ' ';
 			}
-			else if (index < offset + extent) 
+			else if(index < offset +  extent)
 			{
-				* output++ = omemory::digits [(origin [index-offset] >> 4) & 0x0F];
-				* output++ = omemory::digits [(origin [index-offset] >> 0) & 0x0F];
+				* output++ = omemory::digits[(origin[index - offset] >> 4) & 0x0F];
+				* output++ = omemory::digits[(origin[index - offset] >> 0) & 0x0F];
 			}
-			else
+			else 
 			{
 				* output++ = ' ';
 				* output++ = ' ';
 			}
 			* output++ = ' ';
 		}
-		for (index = lower; index < upper; index++) 
+		for (index = lower; index < upper; index++)
 		{
-			if (index < offset) 
+			if (index < offset)
 			{
 				* output++ = ' ';
 			}
-			else if (index < offset + extent) 
+			else if(index < offset +  extent)
 			{
-				unsigned c = origin [index-offset];
-				* output++ = oascii::isprint (c)? (char)(c): omemory::chr_nonprint;
+				unsigned c = origin[index - offset];
+				* output++ = oascii::isprint(c)? (char) (c): omemory::chr_nonprint;
 			}
-			else
+			else 
 			{
 				* output++ = ' ';
 			}
 		}
 		* output++ = '\n';
-		stream->write (buffer, (signed)(output - buffer));
+		stream->write(buffer, (signed) (output - buffer));
 		lower += block;
 		upper += block;
 	}
@@ -823,10 +823,10 @@ void omemory::hexview (void const * memory, size_t offset, size_t extent, std::o
  *
  *--------------------------------------------------------------------*/
 
-char * omemory::binstring (char buffer [], size_t length, void const * memory, size_t extent) 
+char * omemory::binstring(char buffer[], size_t length, void const * memory, size_t extent)
 
 {
-	omemory::bindecode (memory, extent, buffer, length);
+	omemory::bindecode(memory, extent, buffer, length);
 	return (buffer);
 }
 
@@ -847,10 +847,10 @@ char * omemory::binstring (char buffer [], size_t length, void const * memory, s
  *
  *--------------------------------------------------------------------*/
 
-char * omemory::decstring (char buffer [], size_t length, void const * memory, size_t extent) 
+char * omemory::decstring(char buffer[], size_t length, void const * memory, size_t extent)
 
 {
-	omemory::decdecode (memory, extent, buffer, length);
+	omemory::decdecode(memory, extent, buffer, length);
 	return (buffer);
 }
 
@@ -871,10 +871,10 @@ char * omemory::decstring (char buffer [], size_t length, void const * memory, s
  *
  *--------------------------------------------------------------------*/
 
-char * omemory::hexstring (char buffer [], size_t length, void const * memory, size_t extent) 
+char * omemory::hexstring(char buffer[], size_t length, void const * memory, size_t extent)
 
 {
-	omemory::hexdecode (memory, extent, buffer, length);
+	omemory::hexdecode(memory, extent, buffer, length);
 	return (buffer);
 }
 
@@ -895,20 +895,20 @@ char * omemory::hexstring (char buffer [], size_t length, void const * memory, s
  *
  *--------------------------------------------------------------------*/
 
-void omemory::binout (void const * memory, size_t extent, signed c, std::ostream * stream) 
+void omemory::binout(void const * memory, size_t extent, signed c, std::ostream * stream)
 
 {
-	byte * offset = (byte *)(memory);
-	while (extent--) 
+	byte * offset = (byte *) (memory);
+	while (extent--)
 	{
 		unsigned bits = 8;
-		while (bits--) 
+		while (bits--)
 		{
-			stream->put (omemory::digits [(* offset >> bits) & 1]);
+			stream->put(omemory::digits[(* offset >> bits) & 1]);
 		}
-		if ((extent) && oascii::isprint (c)) 
+		if ((extent) && oascii::isprint(c))
 		{
-			stream->put ((char)(c));
+			stream->put((char) (c));
 		}
 		offset++;
 	}
@@ -933,21 +933,21 @@ void omemory::binout (void const * memory, size_t extent, signed c, std::ostream
  *
  *--------------------------------------------------------------------*/
 
-void omemory::decout (void const * memory, size_t extent, signed c, std::ostream * stream) 
+void omemory::decout(void const * memory, size_t extent, signed c, std::ostream * stream)
 
 {
-	byte * offset = (byte *)(memory);
-	while (extent--) 
+	byte * offset = (byte *) (memory);
+	while (extent--)
 	{
 		unsigned order = 100;
-		while (order) 
+		while (order)
 		{
-			stream->put (omemory::digits [(* offset / order) % 10]);
+			stream->put(omemory::digits[(* offset / order) % 10]);
 			order /= 10;
 		}
-		if ((extent) && oascii::isprint (c)) 
+		if ((extent) && oascii::isprint(c))
 		{
-			stream->put ((char)(c));
+			stream->put((char) (c));
 		}
 		offset++;
 	}
@@ -971,17 +971,17 @@ void omemory::decout (void const * memory, size_t extent, signed c, std::ostream
  *
  *--------------------------------------------------------------------*/
 
-void omemory::hexout (void const * memory, size_t extent, signed c, std::ostream * stream) 
+void omemory::hexout(void const * memory, size_t extent, signed c, std::ostream * stream)
 
 {
-	byte * offset = (byte *)(memory);
-	while (extent--) 
+	byte * offset = (byte *) (memory);
+	while (extent--)
 	{
-		stream->put (omemory::digits [(* offset >> 4) & 0x0F]);
-		stream->put (omemory::digits [(* offset >> 0) & 0x0F]);
-		if ((extent) && oascii::isprint (c)) 
+		stream->put(omemory::digits[(* offset >> 4) & 0x0F]);
+		stream->put(omemory::digits[(* offset >> 0) & 0x0F]);
+		if ((extent) && oascii::isprint(c))
 		{
-			stream->put ((char)(c));
+			stream->put((char) (c));
 		}
 		offset++;
 	}
@@ -1007,73 +1007,73 @@ void omemory::hexout (void const * memory, size_t extent, signed c, std::ostream
  *
  *--------------------------------------------------------------------*/
 
-size_t omemory::hexin (void * memory, size_t extent, std::istream * stream) 
+size_t omemory::hexin(void * memory, size_t extent, std::istream * stream)
 
 {
-	byte * origin = (byte *)(memory);
-	byte * offset = (byte *)(memory);
+	byte * origin = (byte *) (memory);
+	byte * offset = (byte *) (memory);
 	unsigned digits = 0;
 	signed c;
-	while (((c = stream->get ()) != EOF) && (c != ';') && (extent)) 
+	while (((c = stream->get()) != EOF) && (c != ';') && (extent))
 	{
-		if (c == '#') 
+		if (c == '#')
 		{
-			do
+			do 
 			{
-				c = stream->get ();
+				c = stream->get();
 			}
 			while ((c != '\n') && (c != EOF));
 		}
-		else if (c == '/') 
+		else if(c == '/')
 		{
-			c = stream->get ();
-			if (c == '/') 
+			c = stream->get();
+			if (c == '/')
 			{
-				do
+				do 
 				{
-					c = stream->get ();
+					c = stream->get();
 				}
 				while ((c != '\n') && (c != EOF));
 			}
-			else if (c == '*') 
+			else if(c == '*')
 			{
-				while ((c != '/') && (c != EOF)) 
+				while ((c != '/') && (c != EOF))
 				{
-					while ((c != '*') && (c != EOF)) 
+					while ((c != '*') && (c != EOF))
 					{
-						c = stream->get ();
+						c = stream->get();
 					}
-					c = stream->get ();
+					c = stream->get();
 				}
 			}
 		}
-		else if ((c >= '0') && (c <= '9')) 
+		else if((c >= '0') && (c <= '9'))
 		{
 			* offset *= 16;
-			* offset += (byte)(c) - '0';
-			if (digits++ & 1) 
+			* offset += (byte) (c) - '0';
+			if (digits++ & 1)
 			{
 				offset++;
 				extent--;
 			}
 		}
-		else if ((c >= 'A') && (c <= 'F')) 
+		else if((c >= 'A') && (c <= 'F'))
 		{
 			* offset *= 16;
 			* offset += 10;
-			* offset += (byte)(c) - 'A';
-			if (digits++ & 1) 
+			* offset += (byte) (c) - 'A';
+			if (digits++ & 1)
 			{
 				offset++;
 				extent--;
 			}
 		}
-		else if ((c >= 'a') && (c <= 'f')) 
+		else if((c >= 'a') && (c <= 'f'))
 		{
 			* offset *= 16;
 			* offset += 10;
-			* offset += (byte)(c) - 'a';
-			if (digits++ & 1) 
+			* offset += (byte) (c) - 'a';
+			if (digits++ & 1)
 			{
 				offset++;
 				extent--;
@@ -1082,22 +1082,22 @@ size_t omemory::hexin (void * memory, size_t extent, std::istream * stream)
 
 #ifdef oERROR_HEADER
 
-		oerror::error (0, EILSEQ, "Illegal character '%c' (0x%0X) in source", c, c);
+		oerror::error(0, EILSEQ, "Illegal character '%c' (0x%0X) in source", c, c);
 
 #endif
 
-		return ((size_t)(-1));
+		return ((size_t) (- 1));
 	}
-	if (digits & 1) 
+	if (digits & 1)
 	{
 
 #ifdef oERROR_HEADER
 
-		oerror::error (0, EILSEQ, "Odd number of hex digits in source");
+		oerror::error(0, EILSEQ, "Odd number of hex digits in source");
 
 #endif
 
-		return ((size_t)(-1));
+		return ((size_t) (- 1));
 	}
 	return (offset - origin);
 }
@@ -1115,16 +1115,16 @@ size_t omemory::hexin (void * memory, size_t extent, std::istream * stream)
  *
  *--------------------------------------------------------------------*/
 
-char * omemory::serial (register char buffer [], register size_t length, register unsigned value, register unsigned radix) 
+char * omemory::serial(register char buffer[], register size_t length, register unsigned value, register unsigned radix)
 
 {
 	size_t offset = length;
-	while (offset--) 
+	while (offset--)
 	{
-		buffer [offset] = omemory::digits [value % radix];
+		buffer [offset] = omemory::digits[value % radix];
 		value /= radix;
 	}
-	return (buffer + length);
+	return (buffer +  length);
 }
 
 /*====================================================================*
@@ -1141,16 +1141,16 @@ char * omemory::serial (register char buffer [], register size_t length, registe
  *
  *--------------------------------------------------------------------*/
 
-char * omemory::serial (register char buffer [], register size_t length, register unsigned value, register unsigned radix, unsigned c) 
+char * omemory::serial(register char buffer[], register size_t length, register unsigned value, register unsigned radix, unsigned c)
 
 {
-	if (length) 
+	if (length)
 	{
-		buffer [length] = (char)(c);
+		buffer [length] = (char) (c);
 	}
-	while (length--) 
+	while (length--)
 	{
-		buffer [length] = omemory::digits [value % radix];
+		buffer [length] = omemory::digits[value % radix];
 		value /= radix;
 	}
 	return (buffer);
@@ -1167,7 +1167,7 @@ char * omemory::serial (register char buffer [], register size_t length, registe
  *
  *--------------------------------------------------------------------*/
 
-omemory::omemory () 
+omemory::omemory()
 
 {
 	return;
@@ -1184,7 +1184,7 @@ omemory::omemory ()
  *
  *--------------------------------------------------------------------*/
 
-omemory::~omemory () 
+omemory::~ omemory()
 
 {
 	return;
@@ -1195,4 +1195,6 @@ omemory::~omemory ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

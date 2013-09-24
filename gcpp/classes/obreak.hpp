@@ -21,14 +21,14 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) obreak 
+class __declspec(dllexport) obreak
 
 {
-public:
+public: 
 	obreak (size_t length);
-	virtual ~ obreak ();
-	obreak & print (char const * string);
-private:
+	virtual ~ obreak();
+	obreak & print(char const * string);
+private: 
 	char * mupper;
 	char * mlower;
 };
@@ -38,4 +38,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

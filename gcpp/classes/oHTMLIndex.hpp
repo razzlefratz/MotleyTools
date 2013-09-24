@@ -33,17 +33,17 @@
  *   begin declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oHTMLIndex: public owebpage 
+class __declspec(dllexport) oHTMLIndex: public owebpage
 
 {
-public:
+public: 
 	oHTMLIndex (void);
-	virtual ~ oHTMLIndex (void);
-	oHTMLIndex & css2 (void);
-	oHTMLIndex & include (char const * filename);
-	oHTMLIndex & collect (char const * pathname, char const * wildcard);
-	oHTMLIndex & publish (unsigned count);
-private:
+	virtual ~ oHTMLIndex(void);
+	oHTMLIndex & css2(void);
+	oHTMLIndex & include(char const * filename);
+	oHTMLIndex & collect(char const * pathname, char const * wildcard);
+	oHTMLIndex & publish(unsigned count);
+private: 
 	oAnchorElement manchor;
 	owildcard mwildcard;
 	olist mlist;
@@ -57,4 +57,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

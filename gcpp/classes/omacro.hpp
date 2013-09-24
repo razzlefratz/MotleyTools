@@ -40,21 +40,21 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) omacro: public oflagword 
+class __declspec(dllexport) omacro: public oflagword
 
 {
-public:
+public: 
 	omacro ();
-	virtual ~ omacro ();
-	bool defined (char const * symbol) const;
-	char const * expand (char const * string);
-	omacro & define (char const * string);
-	omacro & revert (char const * symbol);
-	omacro & enumerate (char const * string);
-	omacro & clear ();
-private:
-	char const * argument (unsigned number) const;
-	omacro & append (char const * string);
+	virtual ~ omacro();
+	bool defined(char const * symbol) const;
+	char const * expand(char const * string);
+	omacro & define(char const * string);
+	omacro & revert(char const * symbol);
+	omacro & enumerate(char const * string);
+	omacro & clear();
+private: 
+	char const * argument(unsigned number) const;
+	omacro & append(char const * string);
 	osymbol * mfunction;
 	osymbol * margument;
 	unsigned mlength;
@@ -70,4 +70,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

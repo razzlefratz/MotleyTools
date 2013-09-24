@@ -30,10 +30,10 @@
  *
  *--------------------------------------------------------------------*/
 
-oclibwords::oclibwords () 
+oclibwords::oclibwords()
 
 {
-	static char const * table [] = 
+	static char const * table[] = 
 	{
 		"CHAR_BIT",
 		"CHAR_MAX",
@@ -205,12 +205,12 @@ oclibwords::oclibwords ()
 		"vfprintf",
 		"vprintf",
 		"vsprintf",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	okeywords::mtitle = "clibwords";
-	okeywords::mcount = SIZEOF (table) - 1;
+	okeywords::mcount = SIZEOF(table) - 1;
 	okeywords::mtable = table;
-	okeywords::mcheck ();
+	okeywords::mcheck();
 	return;
 }
 
@@ -224,7 +224,7 @@ oclibwords::oclibwords ()
  *
  *--------------------------------------------------------------------*/
 
-oclibwords::~oclibwords () 
+oclibwords::~ oclibwords()
 
 {
 	return;
@@ -235,4 +235,6 @@ oclibwords::~oclibwords ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

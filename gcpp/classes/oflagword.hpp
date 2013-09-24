@@ -24,25 +24,25 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oflagword 
+class __declspec(dllexport) oflagword
 
 {
-public:
+public: 
 	oflagword ();
 	oflagword (unsigned);
-	virtual ~ oflagword ();
-	unsigned state () const;
-	unsigned getword () const;
-	unsigned getbits (unsigned mask) const;
-	oflagword & state (unsigned word);
-	oflagword & setword (unsigned mask);
-	oflagword & setbits (unsigned mask);
-	oflagword & clearbits (unsigned mask);
-	bool anyset (unsigned mask) const;
-	bool allset (unsigned mask) const;
-	bool anyclear (unsigned mask) const;
-	bool allclear (unsigned mask) const;
-private:
+	virtual ~ oflagword();
+	unsigned state() const;
+	unsigned getword() const;
+	unsigned getbits(unsigned mask) const;
+	oflagword & state(unsigned word);
+	oflagword & setword(unsigned mask);
+	oflagword & setbits(unsigned mask);
+	oflagword & clearbits(unsigned mask);
+	bool anyset(unsigned mask) const;
+	bool allset(unsigned mask) const;
+	bool anyclear(unsigned mask) const;
+	bool allclear(unsigned mask) const;
+private: 
 	unsigned mbits;
 };
 
@@ -51,4 +51,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

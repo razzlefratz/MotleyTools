@@ -30,7 +30,7 @@
  *
  *--------------------------------------------------------------------*/
 
-onode * oedge::source () const 
+onode * oedge::source() const
 
 {
 	return (this->msource);
@@ -43,7 +43,7 @@ onode * oedge::source () const
  *
  *--------------------------------------------------------------------*/
 
-onode * oedge::target () const 
+onode * oedge::target() const
 
 {
 	return (this->mtarget);
@@ -56,7 +56,7 @@ onode * oedge::target () const
  *
  *--------------------------------------------------------------------*/
 
-signed oedge::value () const 
+signed oedge::value() const
 
 {
 	return (this->mvalue);
@@ -69,7 +69,7 @@ signed oedge::value () const
  *
  *--------------------------------------------------------------------*/
 
-oedge & oedge::value (signed value) 
+oedge & oedge::value(signed value)
 
 {
 	this->mvalue = value;
@@ -80,7 +80,7 @@ oedge & oedge::value (signed value)
  *
  *--------------------------------------------------------------------*/
 
-oedge::oedge (onode * sourcenode, onode * targetnode) 
+oedge::oedge(onode * sourcenode, onode * targetnode)
 
 {
 	this->msource = sourcenode;
@@ -89,7 +89,7 @@ oedge::oedge (onode * sourcenode, onode * targetnode)
 	return;
 }
 
-oedge::~oedge () 
+oedge::~ oedge()
 
 {
 	delete this->msource;
@@ -103,4 +103,6 @@ oedge::~oedge ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

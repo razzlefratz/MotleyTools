@@ -22,17 +22,17 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oelement: private otext 
+class __declspec(dllexport) oelement: private otext
 
 {
-public:
+public: 
 	oelement (char const * scope, char const * title);
 	oelement (char const * title);
-	virtual ~ oelement ();
-	char const * scope () const;
-	char const * title () const;
-	oelement & print ();
-private:
+	virtual ~ oelement();
+	char const * scope() const;
+	char const * title() const;
+	oelement & print();
+private: 
 	char * mscope;
 	char * mtitle;
 };
@@ -42,4 +42,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

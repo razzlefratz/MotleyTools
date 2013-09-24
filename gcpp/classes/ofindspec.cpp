@@ -42,15 +42,15 @@
  *
  *--------------------------------------------------------------------*/
 
-char const * ofindspec::fullname () 
+char const * ofindspec::fullname()
 
 {
-	std::strncpy (this->mtempname, this->mpathname, FILENAME_MAX);
-	if ((* this->mpathname != (char) (0)) && (* this->mfilename != (char) (0))) 
+	std::strncpy(this->mtempname, this->mpathname, FILENAME_MAX);
+	if ((* this->mpathname != (char)(0)) && (* this->mfilename != (char)(0)))
 	{
-		std::strncat (this->mtempname, PATH_S_EXTENDER, FILENAME_MAX);
+		std::strncat(this->mtempname, PATH_S_EXTENDER, FILENAME_MAX);
 	}
-	std::strncat (this->mtempname, this->mfilename, FILENAME_MAX);
+	std::strncat(this->mtempname, this->mfilename, FILENAME_MAX);
 	return (this->mtempname);
 }
 
@@ -67,36 +67,36 @@ char const * ofindspec::fullname ()
  *
  *--------------------------------------------------------------------*/
 
-ofindspec & ofindspec::fullname (char const * filespec) 
+ofindspec & ofindspec::fullname(char const * filespec)
 
 {
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (filespec == (char const *) (0)) 
+	if (filespec == (char const *)(0))
 	{
 		return (* this);
 	}
 
 #endif
 
-	ofindspec::pathspec.makepath (this->mtempname, std::getenv ("PWD"), filespec);
-	ofindspec::pathspec.partpath (this->mtempname, this->mpathname, this->mfilename);
-	ofindspec::pathspec.partfile (this->mfilename, this->mbasename, this->mextender);
-	if (* this->mpathname == (char) (0)) 
+	ofindspec::pathspec.makepath(this->mtempname, std::getenv("PWD"), filespec);
+	ofindspec::pathspec.partpath(this->mtempname, this->mpathname, this->mfilename);
+	ofindspec::pathspec.partfile(this->mfilename, this->mbasename, this->mextender);
+	if (* this->mpathname == (char)(0))
 	{
-		this->mpathname [0] = FILE_C_EXTENDER;
-		this->mpathname [1] = (char) (0);
+		this->mpathname[0] = FILE_C_EXTENDER;
+		this->mpathname[1] = (char)(0);
 	}
-	if (* this->mfilename == (char) (0)) 
+	if (* this->mfilename == (char)(0))
 	{
-		this->mfilename [0] = FILE_C_EXTENDER;
-		this->mfilename [1] = (char) (0);
+		this->mfilename[0] = FILE_C_EXTENDER;
+		this->mfilename[1] = (char)(0);
 	}
 	strcpy (this->mtempname, this->mpathname);
 	strcat (this->mtempname, PATH_S_EXTENDER);
 	strcat (this->mtempname, this->mfilename);
-	switch (this->mfindmode) 
+	switch (this->mfindmode)
 	{
 	case FIND_M_NORMAL:
 		strcpy (this->mwildcard, this->mfilename);
@@ -105,13 +105,13 @@ ofindspec & ofindspec::fullname (char const * filespec)
 		strcpy (this->mtempname, this->mpathname);
 		strcpy (this->mwildcard, this->mfilename);
 		break;
-	default:
-		oerror::error (1, EINVAL, "makefind (..., code_t mode)");
+	default: 
+		oerror::error(1, EINVAL, "makefind (..., code_t mode)");
 	}
-	if (* this->mwildcard == FILE_C_EXTENDER) 
+	if (* this->mwildcard == FILE_C_EXTENDER)
 	{
-		this->mwildcard [0] = FILE_C_WILDCARD;
-		this->mwildcard [1] = (char) (0);
+		this->mwildcard[0] = FILE_C_WILDCARD;
+		this->mwildcard[1] = (char)(0);
 	}
 	return (* this);
 }
@@ -132,7 +132,7 @@ ofindspec & ofindspec::fullname (char const * filespec)
  *
  *--------------------------------------------------------------------*/
 
-char const * ofindspec::pathname () const 
+char const * ofindspec::pathname() const
 
 {
 	return (this->mpathname);
@@ -151,10 +151,10 @@ char const * ofindspec::pathname () const
  *
  *--------------------------------------------------------------------*/
 
-ofindspec & ofindspec::pathname (char const * string) 
+ofindspec & ofindspec::pathname(char const * string)
 
 {
-	std::strncpy (this->mpathname, string, FILENAME_MAX);
+	std::strncpy(this->mpathname, string, FILENAME_MAX);
 	return (* this);
 }
 
@@ -171,7 +171,7 @@ ofindspec & ofindspec::pathname (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-char const * ofindspec::filename () const 
+char const * ofindspec::filename() const
 
 {
 	return (this->mfilename);
@@ -190,10 +190,10 @@ char const * ofindspec::filename () const
  *
  *--------------------------------------------------------------------*/
 
-ofindspec & ofindspec::filename (char const * string) 
+ofindspec & ofindspec::filename(char const * string)
 
 {
-	std::strncpy (this->mfilename, string, FILENAME_MAX);
+	std::strncpy(this->mfilename, string, FILENAME_MAX);
 	return (* this);
 }
 
@@ -210,7 +210,7 @@ ofindspec & ofindspec::filename (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-char const * ofindspec::basename () const 
+char const * ofindspec::basename() const
 
 {
 	return (this->mbasename);
@@ -229,10 +229,10 @@ char const * ofindspec::basename () const
  *
  *--------------------------------------------------------------------*/
 
-ofindspec & ofindspec::basename (char const * string) 
+ofindspec & ofindspec::basename(char const * string)
 
 {
-	std::strncpy (this->mbasename, string, FILENAME_MAX);
+	std::strncpy(this->mbasename, string, FILENAME_MAX);
 	return (* this);
 }
 
@@ -249,7 +249,7 @@ ofindspec & ofindspec::basename (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-char const * ofindspec::extender () const 
+char const * ofindspec::extender() const
 
 {
 	return (this->mextender);
@@ -268,10 +268,10 @@ char const * ofindspec::extender () const
  *
  *--------------------------------------------------------------------*/
 
-ofindspec & ofindspec::extender (char const * string) 
+ofindspec & ofindspec::extender(char const * string)
 
 {
-	std::strncpy (this->mextender, string, FILENAME_MAX);
+	std::strncpy(this->mextender, string, FILENAME_MAX);
 	return (* this);
 }
 
@@ -291,15 +291,15 @@ ofindspec & ofindspec::extender (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-char const * ofindspec::longname () const 
+char const * ofindspec::longname() const
 
 {
-	std::strncpy (this->mtempname, this->mpathname, FILENAME_MAX);
-	if ((* this->mpathname != (char) (0)) && (* this->mbasename != (char) (0))) 
+	std::strncpy(this->mtempname, this->mpathname, FILENAME_MAX);
+	if ((* this->mpathname != (char)(0)) && (* this->mbasename != (char)(0)))
 	{
-		std::strncat (this->mtempname, PATH_S_EXTENDER, FILENAME_MAX);
+		std::strncat(this->mtempname, PATH_S_EXTENDER, FILENAME_MAX);
 	}
-	std::strncat (this->mtempname, this->mbasename, FILENAME_MAX);
+	std::strncat(this->mtempname, this->mbasename, FILENAME_MAX);
 	return (this->mtempname);
 }
 
@@ -324,14 +324,14 @@ char const * ofindspec::longname () const
  *
  *--------------------------------------------------------------------*/
 
-char const * ofindspec::altfilename (char const * filename) 
+char const * ofindspec::altfilename(char const * filename)
 
 {
-	std::strncpy (this->mtempname, this->mpathname, FILENAME_MAX);
-	if (filename != (char *) (0)) 
+	std::strncpy(this->mtempname, this->mpathname, FILENAME_MAX);
+	if (filename != (char *)(0))
 	{
-		std::strncat (this->mtempname, PATH_S_EXTENDER, FILENAME_MAX);
-		std::strncat (this->mtempname, filename, FILENAME_MAX);
+		std::strncat(this->mtempname, PATH_S_EXTENDER, FILENAME_MAX);
+		std::strncat(this->mtempname, filename, FILENAME_MAX);
 	}
 	return (this->mtempname);
 }
@@ -351,14 +351,14 @@ char const * ofindspec::altfilename (char const * filename)
  *
  *--------------------------------------------------------------------*/
 
-char const * ofindspec::altextender (char const * extender) 
+char const * ofindspec::altextender(char const * extender)
 
 {
-	this->longname ();
-	if (extender != (char *) (0)) 
+	this->longname();
+	if (extender != (char *)(0))
 	{
-		std::strncat (this->mtempname, FILE_S_EXTENDER, FILENAME_MAX);
-		std::strncat (this->mtempname, extender, FILENAME_MAX);
+		std::strncat(this->mtempname, FILE_S_EXTENDER, FILENAME_MAX);
+		std::strncat(this->mtempname, extender, FILENAME_MAX);
 	}
 	return (this->mtempname);
 }
@@ -376,14 +376,14 @@ char const * ofindspec::altextender (char const * extender)
  *
  *--------------------------------------------------------------------*/
 
-char const * ofindspec::addextender (char const * extender) 
+char const * ofindspec::addextender(char const * extender)
 
 {
-	this->fullname ();
-	if (extender != (char *) (0)) 
+	this->fullname();
+	if (extender != (char *)(0))
 	{
-		std::strncat (this->mtempname, FILE_S_EXTENDER, FILENAME_MAX);
-		std::strncat (this->mtempname, extender, FILENAME_MAX);
+		std::strncat(this->mtempname, FILE_S_EXTENDER, FILENAME_MAX);
+		std::strncat(this->mtempname, extender, FILENAME_MAX);
 	}
 	return (this->mtempname);
 }
@@ -397,17 +397,17 @@ char const * ofindspec::addextender (char const * extender)
  *
  *--------------------------------------------------------------------*/
 
-char const * ofindspec::serial (unsigned number, unsigned length) 
+char const * ofindspec::serial(unsigned number, unsigned length)
 
 {
-	char digits [length + 1];
-	for (digits [length] = (char) (0); length > 0; number /= 10) 
+	char digits[length +  1];
+	for (digits[length] = (char)(0); length > 0; number /= 10)
 	{
-		digits [--length] = (char) ('0' + (number % 10));
+		digits [-- length] = (char)('0' + (number % 10));
 	}
-	this->fullname ();
-	std::strncat (this->mtempname, FILE_S_EXTENDER, FILENAME_MAX);
-	std::strncat (this->mtempname, digits, FILENAME_MAX);
+	this->fullname();
+	std::strncat(this->mtempname, FILE_S_EXTENDER, FILENAME_MAX);
+	std::strncat(this->mtempname, digits, FILENAME_MAX);
 	return (this->mtempname);
 }
 
@@ -422,18 +422,18 @@ char const * ofindspec::serial (unsigned number, unsigned length)
  *
  *--------------------------------------------------------------------*/
 
-ofindspec & ofindspec::peek () 
+ofindspec & ofindspec::peek()
 
 {
-	std::cout << "fullname=[" << this->fullname () << "]" << std::endl;
-	std::cout << "pathname=[" << this->pathname () << "]" << std::endl;
-	std::cout << "filename=[" << this->filename () << "]" << std::endl;
-	std::cout << "basename=[" << this->basename () << "]" << std::endl;
-	std::cout << "extender=[" << this->extender () << "]" << std::endl;
-	std::cout << "longname=[" << this->longname () << "]" << std::endl;
-	std::cout << "altextender=[" << this->altextender ("tmp") << "]" << std::endl;
-	std::cout << "addextender=[" << this->addextender ("tmp") << "]" << std::endl;
-	std::cout << "serial=[" << this->serial (0, 3) << "]" << std::endl;
+	std::cout << "fullname=[" << this->fullname() << "]" << std::endl;
+	std::cout << "pathname=[" << this->pathname() << "]" << std::endl;
+	std::cout << "filename=[" << this->filename() << "]" << std::endl;
+	std::cout << "basename=[" << this->basename() << "]" << std::endl;
+	std::cout << "extender=[" << this->extender() << "]" << std::endl;
+	std::cout << "longname=[" << this->longname() << "]" << std::endl;
+	std::cout << "altextender=[" << this->altextender("tmp") << "]" << std::endl;
+	std::cout << "addextender=[" << this->addextender("tmp") << "]" << std::endl;
+	std::cout << "serial=[" << this->serial(0, 3) << "]" << std::endl;
 	std::cout << std::endl;
 	return (* this);
 }
@@ -449,23 +449,23 @@ ofindspec & ofindspec::peek ()
  *
  *--------------------------------------------------------------------*/
 
-ofindspec::ofindspec (char const * filespec) 
+ofindspec::ofindspec(char const * filespec)
 
 {
 	this->mfindmode = 0;
-	this->mtempname = new char [FILENAME_MAX + 1];
-	this->mtempname [0] = (char) (0);
-	this->mpathname = new char [FILENAME_MAX + 1];
-	this->mpathname [0] = (char) (0);
-	this->mfilename = new char [FILENAME_MAX + 1];
-	this->mfilename [0] = (char) (0);
-	this->mwildcard = new char [FILENAME_MAX + 1];
-	this->mwildcard [0] = (char) (0);
-	this->mbasename = new char [FILENAME_MAX + 1];
-	this->mbasename [0] = (char) (0);
-	this->mextender = new char [FILENAME_MAX + 1];
-	this->mextender [0] = (char) (0);
-	this->fullname (filespec);
+	this->mtempname = new char[FILENAME_MAX +  1];
+	this->mtempname[0] = (char)(0);
+	this->mpathname = new char[FILENAME_MAX +  1];
+	this->mpathname[0] = (char)(0);
+	this->mfilename = new char[FILENAME_MAX +  1];
+	this->mfilename[0] = (char)(0);
+	this->mwildcard = new char[FILENAME_MAX +  1];
+	this->mwildcard[0] = (char)(0);
+	this->mbasename = new char[FILENAME_MAX +  1];
+	this->mbasename[0] = (char)(0);
+	this->mextender = new char[FILENAME_MAX +  1];
+	this->mextender[0] = (char)(0);
+	this->fullname(filespec);
 	return;
 }
 
@@ -479,22 +479,22 @@ ofindspec::ofindspec (char const * filespec)
  *
  *--------------------------------------------------------------------*/
 
-ofindspec::ofindspec () 
+ofindspec::ofindspec()
 
 {
 	this->mfindmode = 0;
-	this->mtempname = new char [FILENAME_MAX + 1];
-	this->mtempname [0] = (char) (0);
-	this->mpathname = new char [FILENAME_MAX + 1];
-	this->mpathname [0] = (char) (0);
-	this->mfilename = new char [FILENAME_MAX + 1];
-	this->mfilename [0] = (char) (0);
-	this->mwildcard = new char [FILENAME_MAX + 1];
-	this->mwildcard [0] = (char) (0);
-	this->mbasename = new char [FILENAME_MAX + 1];
-	this->mbasename [0] = (char) (0);
-	this->mextender = new char [FILENAME_MAX + 1];
-	this->mextender [0] = (char) (0);
+	this->mtempname = new char[FILENAME_MAX +  1];
+	this->mtempname[0] = (char)(0);
+	this->mpathname = new char[FILENAME_MAX +  1];
+	this->mpathname[0] = (char)(0);
+	this->mfilename = new char[FILENAME_MAX +  1];
+	this->mfilename[0] = (char)(0);
+	this->mwildcard = new char[FILENAME_MAX +  1];
+	this->mwildcard[0] = (char)(0);
+	this->mbasename = new char[FILENAME_MAX +  1];
+	this->mbasename[0] = (char)(0);
+	this->mextender = new char[FILENAME_MAX +  1];
+	this->mextender[0] = (char)(0);
 	return;
 }
 
@@ -508,7 +508,7 @@ ofindspec::ofindspec ()
  *
  *--------------------------------------------------------------------*/
 
-ofindspec::~ofindspec () 
+ofindspec::~ ofindspec()
 
 {
 	delete [] this->mtempname;
@@ -525,4 +525,6 @@ ofindspec::~ofindspec ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

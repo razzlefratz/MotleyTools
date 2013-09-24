@@ -45,20 +45,20 @@
  *7
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oregex 
+class __declspec(dllexport) oregex
 
 {
-public:
+public: 
 	oregex (char const * expression);
-	virtual ~ oregex ();
-	size_t length (char const * string) const;
-	char const * select (char const * string) const;
-	char const * span (char const * string) const;
-	oregex & show ();
-private:
-	static char const * charset (char const * string, char const c, char buffer [], size_t length);
-	static bool compare (char const * charset, char const c, bool exclude);
-	static char * fill (unsigned clower, unsigned cupper, char buffer [], size_t * length);
+	virtual ~ oregex();
+	size_t length(char const * string) const;
+	char const * select(char const * string) const;
+	char const * span(char const * string) const;
+	oregex & show();
+private: 
+	static char const * charset(char const * string, char const c, char buffer[], size_t length);
+	static bool compare(char const * charset, char const c, bool exclude);
+	static char * fill(unsigned clower, unsigned cupper, char buffer[], size_t * length);
 	oregex * mpattern;
 	char * mcharset;
 	bool mexclude;
@@ -71,4 +71,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

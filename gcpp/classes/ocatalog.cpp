@@ -31,10 +31,10 @@
  *
  *--------------------------------------------------------------------*/
 
-char const * ocatalog::title () const 
+char const * ocatalog::title() const
 
 {
-	return (this->mlist->title ());
+	return (this->mlist->title());
 }
 
 /*====================================================================*
@@ -45,10 +45,10 @@ char const * ocatalog::title () const
  *
  *--------------------------------------------------------------------*/
 
-ocatalog & ocatalog::title (char const * title) 
+ocatalog & ocatalog::title(char const * title)
 
 {
-	this->mlist->title (title);
+	this->mlist->title(title);
 	return (* this);
 }
 
@@ -59,11 +59,11 @@ ocatalog & ocatalog::title (char const * title)
  *
  *--------------------------------------------------------------------*/
 
-char const * ocatalog::symbol () 
+char const * ocatalog::symbol()
 
 {
-	oitem * item = this->mlist->item ();
-	return (item != (oitem *) (0)? item->name (): (char *) (0));
+	oitem * item = this->mlist->item();
+	return (item != (oitem *)(0)? item->name(): (char *)(0));
 }
 
 /*====================================================================*
@@ -73,11 +73,11 @@ char const * ocatalog::symbol ()
  *
  *--------------------------------------------------------------------*/
 
-char const * ocatalog::string () 
+char const * ocatalog::string()
 
 {
-	oitem * item = this->mlist->item ();
-	return (item != (oitem *) (0)? item->text (): (char *) (0));
+	oitem * item = this->mlist->item();
+	return (item != (oitem *)(0)? item->text(): (char *)(0));
 }
 
 /*====================================================================*
@@ -87,11 +87,11 @@ char const * ocatalog::string ()
  *
  *--------------------------------------------------------------------*/
 
-char const * ocatalog::symbols (unsigned index) 
+char const * ocatalog::symbols(unsigned index)
 
 {
-	oitem * item = this->mlist->items (index);
-	return (item != (oitem *) (0)? item->name (): (char *) (0));
+	oitem * item = this->mlist->items(index);
+	return (item != (oitem *)(0)? item->name(): (char *)(0));
 }
 
 /*====================================================================*
@@ -101,11 +101,11 @@ char const * ocatalog::symbols (unsigned index)
  *
  *--------------------------------------------------------------------*/
 
-char const * ocatalog::strings (unsigned index) 
+char const * ocatalog::strings(unsigned index)
 
 {
-	oitem * item = this->mlist->items (index);
-	return (item != (oitem *)(0)? item->text (): (char *) (0));
+	oitem * item = this->mlist->items(index);
+	return (item != (oitem *) (0)? item->text(): (char *)(0));
 }
 
 /*====================================================================*
@@ -115,10 +115,10 @@ char const * ocatalog::strings (unsigned index)
  *
  *--------------------------------------------------------------------*/
 
-bool ocatalog::related (char const * symbol, char const * string) 
+bool ocatalog::related(char const * symbol, char const * string)
 
 {
-	return (this->mlist->defined (symbol, string));
+	return (this->mlist->defined(symbol, string));
 }
 
 /*====================================================================*
@@ -128,10 +128,10 @@ bool ocatalog::related (char const * symbol, char const * string)
  *
  *--------------------------------------------------------------------*/
 
-unsigned ocatalog::indexof (char const * symbol, char const * string) 
+unsigned ocatalog::indexof(char const * symbol, char const * string)
 
 {
-	return (this->mlist->indexof (symbol, string));
+	return (this->mlist->indexof(symbol, string));
 }
 
 /*====================================================================*
@@ -141,14 +141,14 @@ unsigned ocatalog::indexof (char const * symbol, char const * string)
  *
  *--------------------------------------------------------------------*/
 
-bool ocatalog::relate (char const * major, char const * minor) 
+bool ocatalog::relate(char const * major, char const * minor)
 
 {
-	oitem * item = this->mlist->item (major, minor);
-	if (item == (oitem *) (0)) 
+	oitem * item = this->mlist->item(major, minor);
+	if (item == (oitem *)(0))
 	{
-		item = new oitem (major, minor);
-		this->mlist->insertitem (item);
+		item = new oitem(major, minor);
+		this->mlist->insertitem(item);
 		return (true);
 	}
 	return (false);
@@ -161,10 +161,10 @@ bool ocatalog::relate (char const * major, char const * minor)
  *
  *--------------------------------------------------------------------*/
 
-ocatalog & ocatalog::clear () 
+ocatalog & ocatalog::clear()
 
 {
-	this->mlist->clear ();
+	this->mlist->clear();
 	return (* this);
 }
 
@@ -175,10 +175,10 @@ ocatalog & ocatalog::clear ()
  *   
  *--------------------------------------------------------------------*/
 
-ocatalog::ocatalog (signed order (char const *, char const *)) 
+ocatalog::ocatalog(signed order(char const *, char const *))
 
 {
-	this->mlist = new olist (order);
+	this->mlist = new olist(order);
 	return;
 }
 
@@ -189,7 +189,7 @@ ocatalog::ocatalog (signed order (char const *, char const *))
  *   
  *--------------------------------------------------------------------*/
 
-ocatalog::ocatalog () 
+ocatalog::ocatalog()
 
 {
 	this->mlist = new olist;
@@ -203,7 +203,7 @@ ocatalog::ocatalog ()
  *   
  *--------------------------------------------------------------------*/
 
-ocatalog::~ocatalog () 
+ocatalog::~ ocatalog()
 
 {
 	delete this->mlist;
@@ -215,4 +215,6 @@ ocatalog::~ocatalog ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

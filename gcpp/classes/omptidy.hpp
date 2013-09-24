@@ -34,24 +34,24 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) omptidy: private otext, private oascii, private osource 
+class __declspec(dllexport) omptidy: private otext, private oascii, private osource
 
 {
-public:
+public: 
 	omptidy (void);
-	virtual ~ omptidy (void);
-	char const * project (void) const;
-	char const * program (void) const;
-	char const * package (void) const;
-	char const * release (void) const;
-	omptidy & project (char const *);
-	omptidy & program (char const *);
-	omptidy & package (char const *);
-	omptidy & release (char const *);
-	omptidy & filename (char const *);
-	omptidy & example (void);
-	signed tidy (signed c);
-private:
+	virtual ~ omptidy(void);
+	char const * project(void) const;
+	char const * program(void) const;
+	char const * package(void) const;
+	char const * release(void) const;
+	omptidy & project(char const *);
+	omptidy & program(char const *);
+	omptidy & package(char const *);
+	omptidy & release(char const *);
+	omptidy & filename(char const *);
+	omptidy & example(void);
+	signed tidy(signed c);
+private: 
 	char * mproject;
 	char * mprogram;
 	char * mpackage;
@@ -64,4 +64,6 @@ private:
 /*====================================================================*
  *   end declaration;
  *--------------------------------------------------------------------*/
+
+
 

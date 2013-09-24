@@ -46,7 +46,7 @@
  *
  *--------------------------------------------------------------------*/
 
-const unsigned char ochrlwr::table [UCHAR_MAX+1] = 
+const unsigned char ochrlwr::table[UCHAR_MAX + 1] = 
 
 {
 	0,
@@ -319,7 +319,7 @@ const unsigned char ochrlwr::table [UCHAR_MAX+1] =
  *
  *--------------------------------------------------------------------*/
 
-ochrlwr::ochrlwr () 
+ochrlwr::ochrlwr()
 
 {
 	ochrtbl::mtable = ochrlwr::table;
@@ -338,7 +338,7 @@ ochrlwr::ochrlwr ()
  *
  *--------------------------------------------------------------------*/
 
-ochrlwr::~ochrlwr () 
+ochrlwr::~ ochrlwr()
 
 {
 	return;
@@ -349,4 +349,6 @@ ochrlwr::~ochrlwr ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

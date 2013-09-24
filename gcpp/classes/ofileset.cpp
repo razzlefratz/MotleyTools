@@ -34,7 +34,7 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned int ofileset::index () const 
+unsigned int ofileset::index() const
 
 {
 	return (this->mindex);
@@ -48,7 +48,7 @@ unsigned int ofileset::index () const
  *
  *--------------------------------------------------------------------*/
 
-ofileset & ofileset::index (unsigned index) 
+ofileset & ofileset::index(unsigned index)
 
 {
 	this->mindex = index;
@@ -64,7 +64,7 @@ ofileset & ofileset::index (unsigned index)
  *
  *--------------------------------------------------------------------*/
 
-unsigned int ofileset::field () const 
+unsigned int ofileset::field() const
 
 {
 	return (this->mfield);
@@ -78,7 +78,7 @@ unsigned int ofileset::field () const
  *
  *--------------------------------------------------------------------*/
 
-ofileset & ofileset::field (unsigned field) 
+ofileset & ofileset::field(unsigned field)
 
 {
 	this->mfield = field;
@@ -94,27 +94,27 @@ ofileset & ofileset::field (unsigned field)
  *
  *--------------------------------------------------------------------*/
 
-ofileset & ofileset::makepath () 
+ofileset & ofileset::makepath()
 
 {
-	std::strcpy (this->mfullname, this->mpathname);
-	std::strcat (this->mfullname, PATH_S_EXTENDER);
-	std::strcat (this->mfullname, this->mbasename);
+	std::strcpy(this->mfullname, this->mpathname);
+	std::strcat(this->mfullname, PATH_S_EXTENDER);
+	std::strcat(this->mfullname, this->mbasename);
 	char * string = this->mfullname;
-	while (* string) 
+	while (* string)
 	{
 		string++;
 	}
 	unsigned int index = this->mindex;
 	unsigned int field = this->mfield;
-	string [field] = (char) (0);
-	while (field > 0) 
+	string [field] = (char)(0);
+	while (field > 0)
 	{
-		string [--field] = '0' + index % 10;
+		string [-- field] = '0' +  index % 10;
 		index /= 10;
 	}
-	std::strcat (this->mfullname, FILE_S_EXTENDER);
-	std::strcat (this->mfullname, this->mextender);
+	std::strcat(this->mfullname, FILE_S_EXTENDER);
+	std::strcat(this->mfullname, this->mextender);
 	return (* this);
 }
 
@@ -126,14 +126,14 @@ ofileset & ofileset::makepath ()
  *
  *--------------------------------------------------------------------*/
 
-char const * ofileset::fullpath (bool increment) 
+char const * ofileset::fullpath(bool increment)
 
 {
-	if (increment) 
+	if (increment)
 	{
 		this->mindex++;
 	}
-	return (this->makepath ().fullname ());
+	return (this->makepath().fullname());
 }
 
 /*====================================================================*
@@ -144,16 +144,16 @@ char const * ofileset::fullpath (bool increment)
  *
  *--------------------------------------------------------------------*/
 
-ofileset & ofileset::filespec (char const * filespec) 
+ofileset & ofileset::filespec(char const * filespec)
 
 {
-	std::strcpy (this->mfullname, filespec);
-	this->mcontext->split (this->mfullname, PATH_C_EXTENDER, false, false);
-	this->mpathname = otext::replace (this->mpathname, this->mcontext->prefix ());
-	this->mfilename = otext::replace (this->mfilename, this->mcontext->suffix ());
-	this->mcontext->split (this->mbasename, FILE_C_EXTENDER, false, true);
-	this->mbasename = otext::replace (this->mbasename, mcontext->prefix ());
-	this->mextender = otext::replace (this->mextender, mcontext->suffix ());
+	std::strcpy(this->mfullname, filespec);
+	this->mcontext->split(this->mfullname, PATH_C_EXTENDER, false, false);
+	this->mpathname = otext::replace(this->mpathname, this->mcontext->prefix());
+	this->mfilename = otext::replace(this->mfilename, this->mcontext->suffix());
+	this->mcontext->split(this->mbasename, FILE_C_EXTENDER, false, true);
+	this->mbasename = otext::replace(this->mbasename, mcontext->prefix());
+	this->mextender = otext::replace(this->mextender, mcontext->suffix());
 	return (* this);
 }
 
@@ -165,7 +165,7 @@ ofileset & ofileset::filespec (char const * filespec)
  *
  *--------------------------------------------------------------------*/
 
-char const * ofileset::pathname () const 
+char const * ofileset::pathname() const
 
 {
 	return (this->mpathname);
@@ -180,11 +180,11 @@ char const * ofileset::pathname () const
  *
  *--------------------------------------------------------------------*/
 
-ofileset & ofileset::pathname (char const * filespec) 
+ofileset & ofileset::pathname(char const * filespec)
 
 {
-	ofileset example (filespec);
-	this->mpathname = otext::replace (this->mpathname, example.pathname ());
+	ofileset example(filespec);
+	this->mpathname = otext::replace(this->mpathname, example.pathname());
 	return (* this);
 }
 
@@ -196,7 +196,7 @@ ofileset & ofileset::pathname (char const * filespec)
  *
  *--------------------------------------------------------------------*/
 
-char const * ofileset::filename () const 
+char const * ofileset::filename() const
 
 {
 	return (this->mfilename);
@@ -211,11 +211,11 @@ char const * ofileset::filename () const
  *
  *--------------------------------------------------------------------*/
 
-ofileset & ofileset::filename (char const * filespec) 
+ofileset & ofileset::filename(char const * filespec)
 
 {
-	ofileset example (filespec);
-	this->mfilename = otext::replace (this->mfilename, example.filename ());
+	ofileset example(filespec);
+	this->mfilename = otext::replace(this->mfilename, example.filename());
 	return (* this);
 }
 
@@ -227,7 +227,7 @@ ofileset & ofileset::filename (char const * filespec)
  *
  *--------------------------------------------------------------------*/
 
-char const * ofileset::basename () const 
+char const * ofileset::basename() const
 
 {
 	return (this->mbasename);
@@ -242,11 +242,11 @@ char const * ofileset::basename () const
  *
  *--------------------------------------------------------------------*/
 
-ofileset & ofileset::basename (char const * filespec) 
+ofileset & ofileset::basename(char const * filespec)
 
 {
-	ofileset example (filespec);
-	this->mbasename = otext::replace (this->mbasename, example.basename ());
+	ofileset example(filespec);
+	this->mbasename = otext::replace(this->mbasename, example.basename());
 	return (* this);
 }
 
@@ -258,7 +258,7 @@ ofileset & ofileset::basename (char const * filespec)
  *
  *--------------------------------------------------------------------*/
 
-char const * ofileset::extender () const 
+char const * ofileset::extender() const
 
 {
 	return (this->mextender);
@@ -273,11 +273,11 @@ char const * ofileset::extender () const
  *
  *--------------------------------------------------------------------*/
 
-ofileset & ofileset::extender (char const * filespec) 
+ofileset & ofileset::extender(char const * filespec)
 
 {
-	ofileset example (filespec);
-	this->mextender = otext::replace (this->mextender, example.extender ());
+	ofileset example(filespec);
+	this->mextender = otext::replace(this->mextender, example.extender());
 	return (* this);
 }
 
@@ -289,17 +289,17 @@ ofileset & ofileset::extender (char const * filespec)
  *
  *--------------------------------------------------------------------*/
 
-ofileset::ofileset (char const * filespec) 
+ofileset::ofileset(char const * filespec)
 
 {
-	this->mfullname = new char [FILENAME_MAX+1];
-	std::strcpy (this->mfullname, filespec);
-	this->mcontext->split (this->mfullname, PATH_C_EXTENDER, false, false);
-	this->mpathname = otext::replace (this->mpathname, this->mcontext->prefix ());
-	this->mfilename = otext::replace (this->mfilename, this->mcontext->suffix ());
-	this->mcontext->split (this->mfilename, FILE_C_EXTENDER, false, true);
-	this->mbasename = otext::replace (this->mbasename, mcontext->prefix ());
-	this->mextender = otext::replace (this->mextender, mcontext->suffix ());
+	this->mfullname = new char[FILENAME_MAX + 1];
+	std::strcpy(this->mfullname, filespec);
+	this->mcontext->split(this->mfullname, PATH_C_EXTENDER, false, false);
+	this->mpathname = otext::replace(this->mpathname, this->mcontext->prefix());
+	this->mfilename = otext::replace(this->mfilename, this->mcontext->suffix());
+	this->mcontext->split(this->mfilename, FILE_C_EXTENDER, false, true);
+	this->mbasename = otext::replace(this->mbasename, mcontext->prefix());
+	this->mextender = otext::replace(this->mextender, mcontext->suffix());
 	this->mindex = 0;
 	this->mfield = 3;
 	return;
@@ -313,18 +313,18 @@ ofileset::ofileset (char const * filespec)
  *
  *--------------------------------------------------------------------*/
 
-ofileset::ofileset () 
+ofileset::ofileset()
 
 {
 	this->mcontext = new ocontext;
-	this->mfullname = new char [FILENAME_MAX+1];
-	std::strcpy (this->mfullname, "temp.txt");
-	this->mcontext->split (this->mfullname, PATH_C_EXTENDER, false, true);
-	this->mpathname = otext::replace (this->mpathname, this->mcontext->prefix ());
-	this->mfilename = otext::replace (this->mfilename, this->mcontext->suffix ());
-	this->mcontext->split (this->mfilename, FILE_C_EXTENDER, false, false);
-	this->mbasename = otext::replace (this->mbasename, mcontext->prefix ());
-	this->mextender = otext::replace (this->mbasename, mcontext->suffix ());
+	this->mfullname = new char[FILENAME_MAX + 1];
+	std::strcpy(this->mfullname, "temp.txt");
+	this->mcontext->split(this->mfullname, PATH_C_EXTENDER, false, true);
+	this->mpathname = otext::replace(this->mpathname, this->mcontext->prefix());
+	this->mfilename = otext::replace(this->mfilename, this->mcontext->suffix());
+	this->mcontext->split(this->mfilename, FILE_C_EXTENDER, false, false);
+	this->mbasename = otext::replace(this->mbasename, mcontext->prefix());
+	this->mextender = otext::replace(this->mbasename, mcontext->suffix());
 	this->mindex = 0;
 	this->mfield = 3;
 	return;
@@ -338,7 +338,7 @@ ofileset::ofileset ()
  *
  *--------------------------------------------------------------------*/
 
-ofileset::~ofileset () 
+ofileset::~ ofileset()
 
 {
 	delete this->mcontext;
@@ -355,4 +355,6 @@ ofileset::~ofileset ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

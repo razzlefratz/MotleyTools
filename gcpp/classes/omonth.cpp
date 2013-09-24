@@ -33,7 +33,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const * omonth::title () const 
+char const * omonth::title() const
 
 {
 	return (this->mtitle);
@@ -47,7 +47,7 @@ char const * omonth::title () const
  *
  *--------------------------------------------------------------------*/
 
-unsigned omonth::year () const 
+unsigned omonth::year() const
 
 {
 	return (this->mannum);
@@ -61,7 +61,7 @@ unsigned omonth::year () const
  *
  *--------------------------------------------------------------------*/
 
-unsigned omonth::month () const 
+unsigned omonth::month() const
 
 {
 	return (this->mmonth);
@@ -75,7 +75,7 @@ unsigned omonth::month () const
  *
  *--------------------------------------------------------------------*/
 
-unsigned omonth::weekday () const 
+unsigned omonth::weekday() const
 
 {
 	return (this->mstart);
@@ -89,7 +89,7 @@ unsigned omonth::weekday () const
  *
  *--------------------------------------------------------------------*/
 
-unsigned omonth::lastday () const 
+unsigned omonth::lastday() const
 
 {
 	return (this->mlimit);
@@ -104,10 +104,10 @@ unsigned omonth::lastday () const
  *
  *--------------------------------------------------------------------*/
 
-unsigned omonth::date (unsigned week, unsigned weekday) const 
+unsigned omonth::date(unsigned week, unsigned weekday) const
 
 {
-	return (this->date (week * DAYS_IN_WEEK + weekday));
+	return (this->date(week * DAYS_IN_WEEK +  weekday));
 }
 
 /*====================================================================*
@@ -118,15 +118,15 @@ unsigned omonth::date (unsigned week, unsigned weekday) const
  *
  *--------------------------------------------------------------------*/
 
-unsigned omonth::date (unsigned block) const 
+unsigned omonth::date(unsigned block) const
 
 {
-	if (block < this->mstart) 
+	if (block < this->mstart)
 	{
 		return (0);
 	}
 	block -= this->mstart - 1;
-	if (block > this->mlimit) 
+	if (block > this->mlimit)
 	{
 		return (0);
 	}
@@ -140,22 +140,22 @@ unsigned omonth::date (unsigned block) const
  *
  *--------------------------------------------------------------------*/
 
-void omonth::encode (char buffer [], size_t length) 
+void omonth::encode(char buffer[], size_t length)
 
 {
-	buffer [--length] = (char)(0);
-	for (unsigned number = this->mannum; length > 0; number /= 10) 
+	buffer [-- length] = (char) (0);
+	for (unsigned number = this->mannum; length > 0; number /= 10)
 	{
-		if (number > 0) 
+		if (number > 0)
 		{
-			buffer [--length]= '0' + number % 10;
+			buffer [-- length] = '0' +  number % 10;
 		}
-		else
+		else 
 		{
-			buffer [--length] = ' ';
+			buffer [-- length] = ' ';
 		}
 	}
-	for (char const * title = this->mtitle; * title != (char)(0); title++) 
+	for (char const * title = this->mtitle; * title != (char) (0); title++)
 	{
 		buffer [length++] = * title;
 	}
@@ -171,16 +171,16 @@ void omonth::encode (char buffer [], size_t length)
  *
  *--------------------------------------------------------------------*/
 
-omonth::omonth (unsigned year, signed month) 
+omonth::omonth(unsigned year, signed month)
 
 {
 	odate date;
-	this->mmonth = year * MONTHS_IN_YEAR + month;
+	this->mmonth = year * MONTHS_IN_YEAR +  month;
 	this->mannum = this->mmonth / MONTHS_IN_YEAR;
 	this->mmonth = this->mmonth % MONTHS_IN_YEAR;
-	this->mtitle = date.monthname (this->mmonth);
-	this->mstart = date.dayofweek (this->mannum, this->mmonth, 0);
-	this->mlimit = date.endofmonth (this->mannum, this->mmonth);
+	this->mtitle = date.monthname(this->mmonth);
+	this->mstart = date.dayofweek(this->mannum, this->mmonth, 0);
+	this->mlimit = date.endofmonth(this->mannum, this->mmonth);
 	return;
 }
 
@@ -193,18 +193,18 @@ omonth::omonth (unsigned year, signed month)
  *
  *--------------------------------------------------------------------*/
 
-omonth::omonth (signed month) 
+omonth::omonth(signed month)
 
 {
 	odate date;
-	time_t now = time ((time_t *)(0));
-	struct tm * tm = localtime (& now);
-	this->mmonth = 22800 + tm->tm_year * MONTHS_IN_YEAR + month;
+	time_t now = time((time_t *) (0));
+	struct tm * tm = localtime(& now);
+	this->mmonth = 22800 +  tm->tm_year * MONTHS_IN_YEAR +  month;
 	this->mannum = month / MONTHS_IN_YEAR;
 	this->mmonth = month % MONTHS_IN_YEAR;
-	this->mtitle = date.monthname (this->mmonth);
-	this->mstart = date.dayofweek (this->mannum, this->mmonth, 0);
-	this->mlimit = date.endofmonth (this->mannum, this->mmonth);
+	this->mtitle = date.monthname(this->mmonth);
+	this->mstart = date.dayofweek(this->mannum, this->mmonth, 0);
+	this->mlimit = date.endofmonth(this->mannum, this->mmonth);
 	return;
 }
 
@@ -216,18 +216,18 @@ omonth::omonth (signed month)
  *
  *--------------------------------------------------------------------*/
 
-omonth::omonth () 
+omonth::omonth()
 
 {
 	odate date;
-	time_t now = time ((time_t *)(0));
-	struct tm * tm = localtime (& now);
-	this->mmonth = 22800 + tm->tm_year * MONTHS_IN_YEAR + tm->tm_mon;
+	time_t now = time((time_t *) (0));
+	struct tm * tm = localtime(& now);
+	this->mmonth = 22800 +  tm->tm_year * MONTHS_IN_YEAR +  tm->tm_mon;
 	this->mannum = this->mmonth / MONTHS_IN_YEAR;
 	this->mmonth = this->mmonth % MONTHS_IN_YEAR;
-	this->mtitle = date.monthname (this->mmonth);
-	this->mstart = date.dayofweek (this->mannum, this->mmonth, 0);
-	this->mlimit = date.endofmonth (this->mannum, this->mmonth);
+	this->mtitle = date.monthname(this->mmonth);
+	this->mstart = date.dayofweek(this->mannum, this->mmonth, 0);
+	this->mlimit = date.endofmonth(this->mannum, this->mmonth);
 	return;
 }
 
@@ -239,7 +239,7 @@ omonth::omonth ()
  *
  *--------------------------------------------------------------------*/
 
-omonth::~omonth () 
+omonth::~ omonth()
 
 {
 	return;
@@ -250,4 +250,6 @@ omonth::~omonth ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

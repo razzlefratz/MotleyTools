@@ -27,10 +27,10 @@
  *
  *--------------------------------------------------------------------*/
 
-oHTMLAttributeNames::oHTMLAttributeNames () 
+oHTMLAttributeNames::oHTMLAttributeNames()
 
 {
-	static char const * table [] = 
+	static char const * table[] = 
 	{
 		"abbr",
 		"accept",
@@ -152,12 +152,12 @@ oHTMLAttributeNames::oHTMLAttributeNames ()
 		"vlink",
 		"vspace",
 		"width",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	okeywords::mtitle = "HTMLAttribute";
-	okeywords::mcount = SIZEOF (table) - 1;
+	okeywords::mcount = SIZEOF(table) - 1;
 	okeywords::mtable = table;
-	okeywords::mcheck ();
+	okeywords::mcheck();
 	return;
 }
 
@@ -167,7 +167,7 @@ oHTMLAttributeNames::oHTMLAttributeNames ()
  *
  *--------------------------------------------------------------------*/
 
-oHTMLAttributeNames::~oHTMLAttributeNames () 
+oHTMLAttributeNames::~ oHTMLAttributeNames()
 
 {
 	return;
@@ -178,4 +178,6 @@ oHTMLAttributeNames::~oHTMLAttributeNames ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

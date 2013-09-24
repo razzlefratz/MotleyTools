@@ -43,42 +43,42 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"m:y:", 
-		oPUTOPTV_S_FILTER, 
-		"print html calendar on stdout", 
-		"m n\tmonth is (n)", 
-		"y n\tyear is (n)", 
-		(char const *) (0)
-	}; 
-	ogetoptv getopt; 
-	ocalendar * calendar; 
-	time_t now = time ((time_t *) (0)); 
-	struct tm * tm = localtime (& now); 
-	unsigned year = 1900 +  tm->tm_year; 
-	signed month = tm->tm_mon; 
-	signed c; 
-	while (~ (c = getopt.getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'y': 
-			year = std::atoi (getopt.optarg ()); 
-			break; 
-		case 'm': 
-			month = std::atoi (getopt.optarg ()); 
-			month--; 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"m:y:",
+		oPUTOPTV_S_FILTER,
+		"print html calendar on stdout",
+		"m n\tmonth is (n)",
+		"y n\tyear is (n)",
+		(char const *)(0)
+	};
+	ogetoptv getopt;
+	ocalendar * calendar;
+	time_t now = time((time_t *)(0));
+	struct tm * tm = localtime(& now);
+	unsigned year = 1900 +  tm->tm_year;
+	signed month = tm->tm_mon;
+	signed c;
+	while (~ (c = getopt.getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'y':
+			year = std::atoi(getopt.optarg());
+			break;
+		case 'm':
+			month = std::atoi(getopt.optarg());
+			month--;
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	calendar = new ocalendar (year); 
-	calendar->annum (); 
-	std::exit (0); 
-} 
+			break;
+		}
+	}
+	calendar = new ocalendar(year);
+	calendar->annum();
+	std::exit(0);
+}
 

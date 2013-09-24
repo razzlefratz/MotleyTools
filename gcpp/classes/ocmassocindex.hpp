@@ -15,7 +15,7 @@
 #include "../classes/ofilespec.hpp"
 #include "../classes/otext.hpp"
 
-typedef struct _topic_ 
+typedef struct _topic_
 
 {
 	char * title;
@@ -28,15 +28,15 @@ TOPIC;
  *7
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ocmassocindex: private otext; 
+class __declspec(dllexport) ocmassocindex: private otext; 
 
 {
-public:
+public: 
 	ocmassocindex ();
-	virtual ~ ocmassocindex ();
-	ocmassocindex & index1 (struct _topic_ topics [], unsigned count);
-	ocmassocindex & index2 (struct _topic_ topics [], unsigned count);
-private:
+	virtual ~ ocmassocindex();
+	ocmassocindex & index1(struct _topic_ topics[], unsigned count);
+	ocmassocindex & index2(struct _topic_ topics[], unsigned count);
+private: 
 	ofilespec * mfilespec;
 	owebpage * mwebpage;
 	char * mstyle;
@@ -48,4 +48,6 @@ private:
 };
 
 #endif
+
+
 

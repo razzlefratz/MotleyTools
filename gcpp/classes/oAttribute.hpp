@@ -32,20 +32,20 @@
  *   interface declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oAttribute: private otext 
+class __declspec(dllexport) oAttribute: private otext
 
 {
-public:
+public: 
 	oAttribute (char const * label);
 	oAttribute (char const * label, char const * value);
-	virtual ~ oAttribute ();
-	char const * label () const;
-	char const * value () const;
-	oAttribute & value (char const * string);
-	oAttribute & value (unsigned number);
-	oAttribute & value (unsigned number, unsigned digits);
-	oAttribute & write ();
-private:
+	virtual ~ oAttribute();
+	char const * label() const;
+	char const * value() const;
+	oAttribute & value(char const * string);
+	oAttribute & value(unsigned number);
+	oAttribute & value(unsigned number, unsigned digits);
+	oAttribute & write();
+private: 
 	static char const * mspace;
 	static char const * mequal;
 	static char const * mquote;
@@ -59,4 +59,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

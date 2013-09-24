@@ -27,14 +27,14 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oxyz 
+class __declspec(dllexport) oxyz
 
 {
-public:
+public: 
 	oxyz ();
-	virtual ~ oxyz ();
-protected:
-	private:
+	virtual ~ oxyz();
+protected: 
+private: 
 };
 
 /*====================================================================*
@@ -42,4 +42,6 @@ protected:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

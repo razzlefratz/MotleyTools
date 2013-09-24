@@ -22,15 +22,16 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) otruth: public ocode 
+class __declspec(dllexport) otruth: public ocode
 
 {
-public:
+public: 
 	otruth ();
-	virtual ~ otruth ();
-protected:
-	private: static const size_t count;
-	static const struct _code_ table [];
+	virtual ~ otruth();
+protected: 
+private: 
+	static const size_t count;
+	static const struct _code_ table[];
 };
 
 /*====================================================================*
@@ -38,4 +39,6 @@ protected:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

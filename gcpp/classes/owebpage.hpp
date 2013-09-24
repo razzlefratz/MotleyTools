@@ -51,30 +51,30 @@
  * 
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) owebpage: public oindent, private otext 
+class __declspec(dllexport) owebpage: public oindent, private otext
 
 {
-public:
+public: 
 	owebpage (void);
-	virtual ~ owebpage (void);
-	char const * title (void) const;
-	char const * stylesheet (void) const;
-	owebpage & title (char const *);
-	owebpage & stylesheet (char const *);
+	virtual ~ owebpage(void);
+	char const * title(void) const;
+	char const * stylesheet(void) const;
+	owebpage & title(char const *);
+	owebpage & stylesheet(char const *);
 	oMetaElement MetaElement;
 	oPageLinkElement PrevPageLink;
 	oPageLinkElement HomePageLink;
 	oPageLinkElement NextPageLink;
-	owebpage & PageHeader (void);
-	owebpage & BodyHeader (void);
-	owebpage & LinkHeader (void);
-	owebpage & MarkStart (void);
-	owebpage & MarkEnd (void);
-	owebpage & LinkFooter (void);
-	owebpage & BodyFooter (void);
-	owebpage & PageFooter (void);
-	owebpage & css2 (void);
-private:
+	owebpage & PageHeader(void);
+	owebpage & BodyHeader(void);
+	owebpage & LinkHeader(void);
+	owebpage & MarkStart(void);
+	owebpage & MarkEnd(void);
+	owebpage & LinkFooter(void);
+	owebpage & BodyFooter(void);
+	owebpage & PageFooter(void);
+	owebpage & css2(void);
+private: 
 	osession session;
 	char * mtitle;
 	char * mowner;
@@ -86,4 +86,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

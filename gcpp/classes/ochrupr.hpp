@@ -22,14 +22,15 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ochrupr: public ochrtbl 
+class __declspec(dllexport) ochrupr: public ochrtbl
 
 {
-public:
+public: 
 	ochrupr ();
-	virtual ~ ochrupr ();
-protected:
-	private: static const unsigned char table [];
+	virtual ~ ochrupr();
+protected: 
+private: 
+	static const unsigned char table[];
 };
 
 /*====================================================================*
@@ -37,4 +38,6 @@ protected:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

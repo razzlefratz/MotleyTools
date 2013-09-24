@@ -49,64 +49,64 @@ ofunctions oscancode::function;
  *
  *--------------------------------------------------------------------*/
 
-oscancode & oscancode::scantoken () 
+oscancode & oscancode::scantoken()
 
 {
-	if (this->isempty ()) 
+	if (this->isempty())
 	{
-		this->flush ();
+		this->flush();
 	}
-	else if (this->isspace ()) 
+	else if(this->isspace())
 	{
-		this->tokentype (CL_T_NOTHING);
-		this->scanspace ();
+		this->tokentype(CL_T_NOTHING);
+		this->scanspace();
 	}
-	else if (this->isdigit ()) 
+	else if(this->isdigit())
 	{
-		this->tokentype (CL_T_CONSTANT);
-		this->scandigit ();
-		if (this->istoken ("0")) 
+		this->tokentype(CL_T_CONSTANT);
+		this->scandigit();
+		if (this->istoken("0"))
 		{
-			if (this->havebreak (".")) 
+			if (this->havebreak("."))
 			{
-				this->scandigit ();
+				this->scandigit();
 			}
-			else if (this->havebreak ("xX")) 
+			else if(this->havebreak("xX"))
 			{
-				this->scanwhile ("0123456789ABCDEFabcdef");
+				this->scanwhile("0123456789ABCDEFabcdef");
 			}
 		}
-		else if (this->havebreak (".")) 
+		else if(this->havebreak("."))
 		{
-			this->scandigit ();
+			this->scandigit();
 		}
 	}
-	else if (this->isident ()) 
+	else if(this->isident())
 	{
-		this->scanident ();
-		if (oscancode::cprocword.defined (this->tokentext ())) 
+		this->scanident();
+		if (oscancode::cprocword.defined(this->tokentext()))
 		{
-			this->tokentype (CL_T_COMPILER);
+			this->tokentype(CL_T_COMPILER);
 		}
-		else if (oscancode::clangword.defined (this->tokentext ())) 
+		else if(oscancode::clangword.defined(this->tokentext()))
 		{
-			this->tokentype (CL_T_LANGUAGE);
+			this->tokentype(CL_T_LANGUAGE);
 		}
-		else if (oscancode::cplusword.defined (this->tokentext ())) 
+		else if(oscancode::cplusword.defined(this->tokentext()))
 		{
-			this->tokentype (CL_T_LANGUAGE);
+			this->tokentype(CL_T_LANGUAGE);
 		}
-		else if (oscancode::constant.defined (this->tokentext ())) 
+		else if(oscancode::constant.defined(this->tokentext()))
 		{
-			this->tokentype (CL_T_CONSTANT);
+			this->tokentype(CL_T_CONSTANT);
 		}
-		else if (oscancode::function.defined (this->tokentext ())) 
+		else if(oscancode::function.defined(this->tokentext()))
 		{
-			this->tokentype (CL_T_FUNCTION);
+			this->tokentype(CL_T_FUNCTION);
 		}
-		else
+		else 
 		{
-			this->tokentype (CL_T_VARIABLE);
+			this->tokentype(CL_T_VARIABLE);
 		}
 	}
 
@@ -117,95 +117,95 @@ oscancode & oscancode::scantoken ()
  * application handle them;
  */
 
-	else if (this->havebreak ("#")) 
+	else if(this->havebreak("#"))
 	{
-		this->tokentype (CL_T_COMMAND);
-		this->scanbreak ("#");
-		this->scanquote ("\r\n");
-		this->scanwhile ("\r\n");
+		this->tokentype(CL_T_COMMAND);
+		this->scanbreak("#");
+		this->scanquote("\r\n");
+		this->scanwhile("\r\n");
 	}
 
 #endif
 
-	else if (this->havebreak ('\"')) 
+	else if(this->havebreak('\"'))
 	{
-		this->tokentype (CL_T_CONSTANT);
-		this->scanquote ();
-		this->scanmatch ();
+		this->tokentype(CL_T_CONSTANT);
+		this->scanquote();
+		this->scanmatch();
 	}
-	else if (this->havebreak ('\'')) 
+	else if(this->havebreak('\''))
 	{
-		this->tokentype (CL_T_CONSTANT);
-		this->scanquote ();
-		this->scanmatch ();
+		this->tokentype(CL_T_CONSTANT);
+		this->scanquote();
+		this->scanmatch();
 	}
-	else if (this->havebreak ('+')) 
+	else if(this->havebreak('+'))
 	{
-		this->tokentype (CL_T_OPERATOR);
-		if (this->havebreak ('+'));
-		else if (this->havebreak ('='));
-		else
+		this->tokentype(CL_T_OPERATOR);
+		if (this->havebreak('+'));
+		else if(this->havebreak('='));
+		else 
 		{
 		}
 	}
-	else if (this->havebreak ('-')) 
+	else if(this->havebreak('-'))
 	{
-		this->tokentype (CL_T_OPERATOR);
-		if (this->havebreak ('-'));
-		else if (this->havebreak ('='));
-		else if (this->havebreak ('>'));
-		else
+		this->tokentype(CL_T_OPERATOR);
+		if (this->havebreak('-'));
+		else if(this->havebreak('='));
+		else if(this->havebreak('>'));
+		else 
 		{
 		}
 	}
-	else if (this->havebreak ('*')) 
+	else if(this->havebreak('*'))
 	{
-		this->tokentype (CL_T_OPERATOR);
-		this->scanbreak ('=');
+		this->tokentype(CL_T_OPERATOR);
+		this->scanbreak('=');
 	}
-	else if (this->havebreak ("=?:")) 
+	else if(this->havebreak("=?:"))
 	{
-		this->tokentype (CL_T_OPERATOR);
-		this->scanmatch ();
+		this->tokentype(CL_T_OPERATOR);
+		this->scanmatch();
 	}
-	else if (this->havebreak ("!~^%")) 
+	else if(this->havebreak("!~^%"))
 	{
-		this->tokentype (CL_T_OPERATOR);
-		this->scanbreak ('=');
+		this->tokentype(CL_T_OPERATOR);
+		this->scanbreak('=');
 	}
-	else if (this->havebreak ("|&<>")) 
+	else if(this->havebreak("|&<>"))
 	{
-		this->tokentype (CL_T_OPERATOR);
-		this->scanmatch ();
-		this->scanbreak ('=');
+		this->tokentype(CL_T_OPERATOR);
+		this->scanmatch();
+		this->scanbreak('=');
 	}
-	else if (this->havebreak ('/')) 
+	else if(this->havebreak('/'))
 	{
-		if (this->havebreak ('*')) 
+		if (this->havebreak('*'))
 		{
-			this->tokentype (CL_T_COMMENTS);
-			this->scanblock ();
-			this->scanmatch ();
+			this->tokentype(CL_T_COMMENTS);
+			this->scanblock();
+			this->scanmatch();
 		}
-		else if (this->havebreak ('/')) 
+		else if(this->havebreak('/'))
 		{
-			this->tokentype (CL_T_COMMENTS);
-			this->scanuntil ("\n");
-			this->scanbreak ("\n");
+			this->tokentype(CL_T_COMMENTS);
+			this->scanuntil("\n");
+			this->scanbreak("\n");
 		}
-		else if (this->havebreak ('=')) 
+		else if(this->havebreak('='))
 		{
-			this->tokentype (CL_T_OPERATOR);
+			this->tokentype(CL_T_OPERATOR);
 		}
-		else
+		else 
 		{
-			this->tokentype (CL_T_OPERATOR);
+			this->tokentype(CL_T_OPERATOR);
 		}
 	}
-	else
+	else 
 	{
-		this->tokentype (CL_T_SEPERATE);
-		this->scanbreak ();
+		this->tokentype(CL_T_SEPERATE);
+		this->scanbreak();
 	}
 	return (* this);
 }
@@ -222,45 +222,45 @@ oscancode & oscancode::scantoken ()
  *
  *--------------------------------------------------------------------*/
 
-oscancode & oscancode::elaborate () 
+oscancode & oscancode::elaborate()
 
 {
-	while (!this->isempty ()) 
+	while (! this->isempty())
 	{
-		switch (this->nexttoken ().tokentype ()) 
+		switch (this->nexttoken().tokentype())
 		{
 		case CL_T_NOTHING:
-			std::cout << "[NOTHING[" << this->tokentext () << "]]" << std::endl;
+			std::cout << "[NOTHING[" << this->tokentext() << "]]" << std::endl;
 			break;
 		case CL_T_COMMENTS:
-			std::cout << "[COMMENT[" << this->tokentext () << "]]" << std::endl;
+			std::cout << "[COMMENT[" << this->tokentext() << "]]" << std::endl;
 			break;
 		case CL_T_COMPILER:
-			std::cout << "[COMPILER[" << this->tokentext () << "]]" << std::endl;
+			std::cout << "[COMPILER[" << this->tokentext() << "]]" << std::endl;
 			break;
 		case CL_T_LANGUAGE:
-			std::cout << "[LANGUAGE[" << this->tokentext () << "]]" << std::endl;
+			std::cout << "[LANGUAGE[" << this->tokentext() << "]]" << std::endl;
 			break;
 		case CL_T_CONSTANT:
-			std::cout << "[CONSTANT[" << this->tokentext () << "]]" << std::endl;
+			std::cout << "[CONSTANT[" << this->tokentext() << "]]" << std::endl;
 			break;
 		case CL_T_VARIABLE:
-			std::cout << "[VARIABLE[" << this->tokentext () << "]]" << std::endl;
+			std::cout << "[VARIABLE[" << this->tokentext() << "]]" << std::endl;
 			break;
 		case CL_T_OPERATOR:
-			std::cout << "[OPERATOR[" << this->tokentext () << "]]" << std::endl;
+			std::cout << "[OPERATOR[" << this->tokentext() << "]]" << std::endl;
 			break;
 		case CL_T_FUNCTION:
-			std::cout << "[FUNCTION[" << this->tokentext () << "]]" << std::endl;
+			std::cout << "[FUNCTION[" << this->tokentext() << "]]" << std::endl;
 			break;
 		case CL_T_RESERVED:
-			std::cout << "[RESERVED[" << this->tokentext () << "]]" << std::endl;
+			std::cout << "[RESERVED[" << this->tokentext() << "]]" << std::endl;
 			break;
 		case CL_T_STANDARD:
-			std::cout << "[STANDARD[" << this->tokentext () << "]]" << std::endl;
+			std::cout << "[STANDARD[" << this->tokentext() << "]]" << std::endl;
 			break;
-		default:
-			std::cout << "[SEPARATE[" << this->tokentext () << "]]" << std::endl;
+		default: 
+			std::cout << "[SEPARATE[" << this->tokentext() << "]]" << std::endl;
 			break;
 		}
 	}
@@ -273,7 +273,7 @@ oscancode & oscancode::elaborate ()
  *
  *--------------------------------------------------------------------*/
 
-oscancode::oscancode () 
+oscancode::oscancode()
 
 {
 	return;
@@ -285,7 +285,7 @@ oscancode::oscancode ()
  *
  *--------------------------------------------------------------------*/
 
-oscancode::~oscancode () 
+oscancode::~ oscancode()
 
 {
 	return;
@@ -296,4 +296,6 @@ oscancode::~oscancode ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

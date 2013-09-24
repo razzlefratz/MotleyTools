@@ -40,50 +40,50 @@
  *
  *--------------------------------------------------------------------*/
 
-signed oprogram::css2 (signed c) 
+signed oprogram::css2(signed c)
 
 {
-	oprogram::level (0);
-	oprogram::space (0);
-	while (c != EOF) 
+	oprogram::level(0);
+	oprogram::space(0);
+	while (c != EOF)
 	{
-		if (oascii::isspace (c)) 
+		if (oascii::isspace(c))
 		{
-			c = oprogram::find (c);
+			c = oprogram::find(c);
 			continue;
 		}
-		if ((c == ',') || (c == ';')) 
+		if ((c == ',') || (c == ';'))
 		{
-			c = oprogram::keep (c);
-			c = oprogram::find (c);
+			c = oprogram::keep(c);
+			c = oprogram::find(c);
 			continue;
 		}
-		if (c == '{') 
+		if (c == '{')
 		{
-			oprogram::endline (2);
-			oprogram::newline ();
-			c = oprogram::keep (c);
-			c = oprogram::find (c);
-			oprogram::increment ();
-			oprogram::space (1);
+			oprogram::endline(2);
+			oprogram::newline();
+			c = oprogram::keep(c);
+			c = oprogram::find(c);
+			oprogram::increment();
+			oprogram::space(1);
 			continue;
 		}
-		if (c == '}') 
+		if (c == '}')
 		{
-			oprogram::decrement ();
-			oprogram::endline (1);
-			oprogram::newline ();
-			c = oprogram::keep (c);
-			c = oprogram::find (c);
-			oprogram::space (1);
+			oprogram::decrement();
+			oprogram::endline(1);
+			oprogram::newline();
+			c = oprogram::keep(c);
+			c = oprogram::find(c);
+			oprogram::space(1);
 			continue;
 		}
-		oprogram::endline ();
-		oprogram::newline ();
-		c = oprogram::context (c, "{;}</>");
-		oprogram::space (1);
+		oprogram::endline();
+		oprogram::newline();
+		c = oprogram::context(c, "{;}</>");
+		oprogram::space(1);
 	}
-	oprogram::endline (1);
+	oprogram::endline(1);
 	return (c);
 }
 
@@ -97,50 +97,50 @@ signed oprogram::css2 (signed c)
  *
  *--------------------------------------------------------------------*/
 
-signed oprogram::java (signed c) 
+signed oprogram::java(signed c)
 
 {
-	oprogram::space (0);
-	oprogram::level (0);
-	while (c != EOF) 
+	oprogram::space(0);
+	oprogram::level(0);
+	while (c != EOF)
 	{
-		if (oascii::isspace (c)) 
+		if (oascii::isspace(c))
 		{
-			c = oprogram::find (c);
+			c = oprogram::find(c);
 			continue;
 		}
-		if ((c == ',') || (c == ';')) 
+		if ((c == ',') || (c == ';'))
 		{
-			c = oprogram::keep (c);
-			c = oprogram::find (c);
+			c = oprogram::keep(c);
+			c = oprogram::find(c);
 			continue;
 		}
-		if (c == '{') 
+		if (c == '{')
 		{
-			oprogram::endline (1);
-			oprogram::newline ();
-			c = oprogram::keep (c);
-			c = oprogram::find (c);
-			oprogram::increment ();
-			oprogram::space (1);
+			oprogram::endline(1);
+			oprogram::newline();
+			c = oprogram::keep(c);
+			c = oprogram::find(c);
+			oprogram::increment();
+			oprogram::space(1);
 			continue;
 		}
-		if (c == '}') 
+		if (c == '}')
 		{
-			oprogram::decrement ();
-			oprogram::endline (1);
-			oprogram::newline ();
-			c = oprogram::keep (c);
-			c = oprogram::find (c);
-			oprogram::space (1);
+			oprogram::decrement();
+			oprogram::endline(1);
+			oprogram::newline();
+			c = oprogram::keep(c);
+			c = oprogram::find(c);
+			oprogram::space(1);
 			continue;
 		}
-		oprogram::endline ();
-		oprogram::newline ();
-		c = oprogram::context (c, "{;}</>");
-		oprogram::space (1);
+		oprogram::endline();
+		oprogram::newline();
+		c = oprogram::context(c, "{;}</>");
+		oprogram::space(1);
 	}
-	oprogram::endline (1);
+	oprogram::endline(1);
 	return (c);
 }
 
@@ -150,7 +150,7 @@ signed oprogram::java (signed c)
  *
  *--------------------------------------------------------------------*/
 
-oprogram::oprogram () 
+oprogram::oprogram()
 
 {
 	return;
@@ -162,7 +162,7 @@ oprogram::oprogram ()
  *
  *--------------------------------------------------------------------*/
 
-oprogram::~oprogram () 
+oprogram::~ oprogram()
 
 {
 	return;
@@ -173,4 +173,6 @@ oprogram::~oprogram ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

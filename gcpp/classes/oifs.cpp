@@ -74,7 +74,7 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned oifs::Count (void) const 
+unsigned oifs::Count(void) const
 
 {
 	return (this->mcount);
@@ -88,7 +88,7 @@ unsigned oifs::Count (void) const
  *
  *--------------------------------------------------------------------*/
 
-unsigned oifs::Index (void) const 
+unsigned oifs::Index(void) const
 
 {
 	return (this->mindex);
@@ -102,7 +102,7 @@ unsigned oifs::Index (void) const
  *
  *--------------------------------------------------------------------*/
 
-oifs & oifs::SelectFirst (void) 
+oifs & oifs::SelectFirst(void)
 
 {
 	this->mindex = 0;
@@ -117,7 +117,7 @@ oifs & oifs::SelectFirst (void)
  *
  *--------------------------------------------------------------------*/
 
-oifs & oifs::SelectFinal (void) 
+oifs & oifs::SelectFinal(void)
 
 {
 	this->mindex = this->mcount - 1;
@@ -133,10 +133,10 @@ oifs & oifs::SelectFinal (void)
  *
  *--------------------------------------------------------------------*/
 
-oifs & oifs::SelectPrev (void) 
+oifs & oifs::SelectPrev(void)
 
 {
-	if (this->mindex > 0) 
+	if (this->mindex > 0)
 	{
 		this->mindex--;
 	}
@@ -152,10 +152,10 @@ oifs & oifs::SelectPrev (void)
  *
  *--------------------------------------------------------------------*/
 
-oifs & oifs::SelectNext (void) 
+oifs & oifs::SelectNext(void)
 
 {
-	if (this->mindex < this->mcount) 
+	if (this->mindex < this->mcount)
 	{
 		this->mindex++;
 	}
@@ -170,11 +170,11 @@ oifs & oifs::SelectNext (void)
  *
  *--------------------------------------------------------------------*/
 
-oifs & oifs::Select (unsigned index) 
+oifs & oifs::Select(unsigned index)
 
 {
 	this->mindex = index;
-	if (this->mindex > this->mcount) 
+	if (this->mindex > this->mcount)
 	{
 		this->mindex = this->mcount;
 	}
@@ -189,10 +189,10 @@ oifs & oifs::Select (unsigned index)
  *
  *--------------------------------------------------------------------*/
 
-oif & oifs::Selected () const 
+oif & oifs::Selected() const
 
 {
-	return (this->mtable [this->mindex]);
+	return (this->mtable[this->mindex]);
 }
 
 /*====================================================================*
@@ -204,13 +204,13 @@ oif & oifs::Selected () const
  *
  *--------------------------------------------------------------------*/
 
-oifs & oifs::Enumerate (void) 
+oifs & oifs::Enumerate(void)
 
 {
 	unsigned index;
-	for (index = 0; index < this->mcount; index++) 
+	for (index = 0; index < this->mcount; index++)
 	{
-		this->mtable [index].Print ();
+		this->mtable[index].Print();
 	}
 	return (* this);
 }
@@ -223,10 +223,10 @@ oifs & oifs::Enumerate (void)
  *
  *--------------------------------------------------------------------*/
 
-oif & oifs::operator [] (unsigned index) 
+oif & oifs::operator[](unsigned index)
 
 {
-	return (this->Select (index).Selected ());
+	return (this->Select(index).Selected());
 }
 
 /*====================================================================*
@@ -238,10 +238,10 @@ oif & oifs::operator [] (unsigned index)
  *
  *--------------------------------------------------------------------*/
 
-oifs & oifs::operator ++ (signed) 
+oifs & oifs::operator ++ (signed)
 
 {
-	return (this->SelectNext ());
+	return (this->SelectNext());
 }
 
 /*====================================================================*
@@ -253,10 +253,10 @@ oifs & oifs::operator ++ (signed)
  *
  *--------------------------------------------------------------------*/
 
-oifs & oifs::operator -- (signed) 
+oifs & oifs::operator -- (signed)
 
 {
-	return (this->SelectPrev ());
+	return (this->SelectPrev());
 }
 
 /*====================================================================*
@@ -268,7 +268,7 @@ oifs & oifs::operator -- (signed)
  *
  *--------------------------------------------------------------------*/
 
-oifs::oifs () 
+oifs::oifs()
 
 {
 
@@ -276,54 +276,54 @@ oifs::oifs ()
 
 	struct ifconf ifc;
 	struct ifreq * ifr;
-	char buffer [1024];
+	char buffer[1024];
 	signed fd;
-	if ((fd = socket (AF_INET, SOCK_DGRAM, 0)) < 0) 
+	if ((fd = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
 	{
-		oerror::error (1, errno, "can't open socket");
+		oerror::error(1, errno, "can't open socket");
 	}
-	ifc.ifc_len = sizeof (buffer);
+	ifc.ifc_len = sizeof(buffer);
 	ifc.ifc_buf = buffer;
-	if (ioctl (fd, SIOCGIFCONF, & ifc) < 0) 
+	if (ioctl(fd, SIOCGIFCONF, & ifc) < 0)
 	{
-		oerror::error (1, errno, "Can't enumerate interfaces");
+		oerror::error(1, errno, "Can't enumerate interfaces");
 	}
 	ifr = ifc.ifc_req;
 	this->mindex = 0;
-	this->mcount = ifc.ifc_len / sizeof (struct ifreq);
-	this->mtable = new oif [this->mcount];
-	while (this->mindex < this->mcount) 
+	this->mcount = ifc.ifc_len / sizeof(struct ifreq);
+	this->mtable = new oif[this->mcount];
+	while (this->mindex < this->mcount)
 	{
 		oif ifp;
-		ifp.SetName (ifr->ifr_ifrn.ifrn_name);
-		ifp.SetText (ifr->ifr_ifrn.ifrn_name);
-		this->mtable [this->mindex++] = ifp;
+		ifp.SetName(ifr->ifr_ifrn.ifrn_name);
+		ifp.SetText(ifr->ifr_ifrn.ifrn_name);
+		this->mtable[this->mindex++] = ifp;
 		ifr++;
 	}
 	close (fd);
 
 #elif defined (WINPCAP) 
 
-	char buffer [PCAP_ERRBUF_SIZE];
-	pcap_if_t * devices = (pcap_if_t *)(0);
+	char buffer[PCAP_ERRBUF_SIZE];
+	pcap_if_t * devices = (pcap_if_t *) (0);
 	pcap_if_t * device;
-	if (pcap_findalldevs (& devices, buffer) == -1) 
+	if (pcap_findalldevs(& devices, buffer) == - 1)
 	{
-		oerror::error (1, errno, "Can't enumerate interfaces");
+		oerror::error(1, errno, "Can't enumerate interfaces");
 	}
 	this->mindex = 0;
 	this->mcount = 0;
-	for (device = devices; device; device = device->next) 
+	for (device = devices; device; device = device->next)
 	{
 		this->mcount++;
 	}
-	this->mtable = new oif [this->mcount];
-	for (device = devices; device; device = device->next) 
+	this->mtable = new oif[this->mcount];
+	for (device = devices; device; device = device->next)
 	{
 		oif ifp;
-		ifp.SetName (device->name);
-		ifp.SetText (device->description);
-		this->mtable [this->mindex++] = ifp;
+		ifp.SetName(device->name);
+		ifp.SetText(device->description);
+		this->mtable[this->mindex++] = ifp;
 	}
 	pcap_freealldevs (devices);
 
@@ -338,7 +338,7 @@ oifs::oifs ()
  *
  *--------------------------------------------------------------------*/
 
-oifs::~oifs () 
+oifs::~ oifs()
 
 {
 	return;
@@ -349,4 +349,6 @@ oifs::~oifs ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

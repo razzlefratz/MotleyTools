@@ -40,7 +40,7 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned oformat::column () const 
+unsigned oformat::column() const
 
 {
 	return (this->mcolumn);
@@ -55,13 +55,13 @@ unsigned oformat::column () const
  *
  *--------------------------------------------------------------------*/
 
-unsigned oformat::margin () const 
+unsigned oformat::margin() const
 
 {
 	return (this->mmargin);
 }
 
-oformat & oformat::margin (unsigned margin) 
+oformat & oformat::margin(unsigned margin)
 
 {
 	this->mmargin = margin;
@@ -76,21 +76,21 @@ oformat & oformat::margin (unsigned margin)
  *
  *--------------------------------------------------------------------*/
 
-unsigned oformat::length () const 
+unsigned oformat::length() const
 
 {
 	return (this->mlength);
 }
 
-oformat & oformat::length (unsigned column) 
+oformat & oformat::length(unsigned column)
 
 {
 	this->mlength = column;
-	if (this->mlength > this->mrecord) 
+	if (this->mlength > this->mrecord)
 	{
 		this->mlength = this->mrecord;
 	}
-	if (this->mlength < this->mindent) 
+	if (this->mlength < this->mindent)
 	{
 		this->mindent = this->mlength;
 	}
@@ -105,17 +105,17 @@ oformat & oformat::length (unsigned column)
  *
  *--------------------------------------------------------------------*/
 
-unsigned oformat::indent () const 
+unsigned oformat::indent() const
 
 {
 	return (this->mindent);
 }
 
-oformat & oformat::indent (unsigned column) 
+oformat & oformat::indent(unsigned column)
 
 {
 	this->mindent = column;
-	if (this->mindent > this->mlength) 
+	if (this->mindent > this->mlength)
 	{
 		this->mindent = this->mlength;
 	}
@@ -131,17 +131,17 @@ oformat & oformat::indent (unsigned column)
  *
  *--------------------------------------------------------------------*/
 
-unsigned oformat::offset () const 
+unsigned oformat::offset() const
 
 {
 	return (this->moffset);
 }
 
-oformat & oformat::offset (unsigned column) 
+oformat & oformat::offset(unsigned column)
 
 {
 	this->moffset = column;
-	if (this->moffset > this->mlength) 
+	if (this->moffset > this->mlength)
 	{
 		this->moffset = this->mlength;
 	}
@@ -157,18 +157,18 @@ oformat & oformat::offset (unsigned column)
  *
  *--------------------------------------------------------------------*/
 
-oformat & oformat::table (unsigned count) 
+oformat & oformat::table(unsigned count)
 
 {
 	for (this->moffset++; this->moffset % count; this->moffset++);
 	return (* this);
 }
 
-oformat & oformat::shift (unsigned count) 
+oformat & oformat::shift(unsigned count)
 
 {
-	this->moffset = this->moffset + count;
-	if (this->moffset > this->mlength) 
+	this->moffset = this->moffset +  count;
+	if (this->moffset > this->mlength)
 	{
 		this->moffset = this->mlength;
 	}
@@ -183,18 +183,18 @@ oformat & oformat::shift (unsigned count)
  *
  *--------------------------------------------------------------------*/
 
-oformat & oformat::space (unsigned count) 
+oformat & oformat::space(unsigned count)
 
 {
-	while ((this->mcolumn > this->moffset) && (this->mbuffer [this->mcolumn - 1] == SP)) 
+	while ((this->mcolumn > this->moffset) && (this->mbuffer[this->mcolumn - 1] == SP))
 	{
 		this->mcolumn--;
 	}
-	if (this->mcolumn > this->moffset) 
+	if (this->mcolumn > this->moffset)
 	{
-		while ((count-- > 0) & (this->mcolumn < this->mlength)) 
+		while ((count-- > 0) & (this->mcolumn < this->mlength))
 		{
-			this->mbuffer [this->mcolumn++] = SP;
+			this->mbuffer[this->mcolumn++] = SP;
 		}
 	}
 	return (* this);
@@ -208,34 +208,34 @@ oformat & oformat::space (unsigned count)
  *
  *--------------------------------------------------------------------*/
 
-oformat & oformat::print (char const * string) 
+oformat & oformat::print(char const * string)
 
 {
-	this->align ();
-	if (this->mcolumn + std::strlen (string) >= this->mlength) 
+	this->align();
+	if (this->mcolumn +  std::strlen(string) >= this->mlength)
 	{
-		this->space (0);
-		this->flush (0);
-		this->align ();
+		this->space(0);
+		this->flush(0);
+		this->align();
 	}
-	while (* string) 
+	while (* string)
 	{
-		if (* string == '\n') 
+		if (* string == '\n')
 		{
-			this->space (0);
-			this->flush (0);
-			this->align ();
+			this->space(0);
+			this->flush(0);
+			this->align();
 			string++;
 		}
-		else if (this->mcolumn < this->mlength) 
+		else if(this->mcolumn < this->mlength)
 		{
-			this->mbuffer [this->mcolumn++] = * string++;
+			this->mbuffer[this->mcolumn++] = * string++;
 		}
-		else
+		else 
 		{
-			this->space (0);
-			this->flush (0);
-			this->align ();
+			this->space(0);
+			this->flush(0);
+			this->align();
 		}
 	}
 	return (* this);
@@ -251,14 +251,14 @@ oformat & oformat::print (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-oformat & oformat::flush (unsigned space) 
+oformat & oformat::flush(unsigned space)
 
 {
-	if (this->mcolumn > 0) 
+	if (this->mcolumn > 0)
 	{
-		this->mbuffer [this->mcolumn++] = '\n';
-		this->mbuffer [this->mcolumn++] = '\0';
-		for (this->mcolumn = this->mmargin; this->mcolumn > 0; this->mcolumn--) 
+		this->mbuffer[this->mcolumn++] = '\n';
+		this->mbuffer[this->mcolumn++] = '\0';
+		for (this->mcolumn = this->mmargin; this->mcolumn > 0; this->mcolumn--)
 		{
 			fputc (' ', stdout);
 		}
@@ -266,7 +266,7 @@ oformat & oformat::flush (unsigned space)
 		this->moffset = this->mindent;
 		this->mcolumn = 0;
 	}
-	while (space-- > 0) 
+	while (space-- > 0)
 	{
 		fputc ('\n', stdout);
 	}
@@ -277,12 +277,12 @@ oformat & oformat::flush (unsigned space)
  *
  *--------------------------------------------------------------------*/
 
-oformat & oformat::align () 
+oformat & oformat::align()
 
 {
-	while (this->mcolumn < this->moffset) 
+	while (this->mcolumn < this->moffset)
 	{
-		this->mbuffer [this->mcolumn++] = SP;
+		this->mbuffer[this->mcolumn++] = SP;
 	}
 	return (* this);
 }
@@ -291,7 +291,7 @@ oformat & oformat::align ()
  *
  *--------------------------------------------------------------------*/
 
-oformat & oformat::status () 
+oformat & oformat::status()
 
 {
 	std::cout << "margin=(" << this->mmargin << ")" << std::endl;
@@ -307,10 +307,10 @@ oformat & oformat::status ()
  *
  *--------------------------------------------------------------------*/
 
-oformat::oformat () 
+oformat::oformat()
 
 {
-	this->mbuffer = new char [BUFFER_MAX];
+	this->mbuffer = new char[BUFFER_MAX];
 	this->mmargin = 0;
 	this->mindent = 0;
 	this->moffset = 0;
@@ -320,10 +320,10 @@ oformat::oformat ()
 	return;
 }
 
-oformat::~oformat () 
+oformat::~ oformat()
 
 {
-	this->flush (0);
+	this->flush(0);
 	delete [] this->mbuffer;
 	return;
 }
@@ -333,4 +333,6 @@ oformat::~oformat ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

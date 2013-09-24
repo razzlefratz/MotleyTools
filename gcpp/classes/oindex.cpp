@@ -26,17 +26,17 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned oindex::qmod (signed domain, signed range) 
+unsigned oindex::qmod(signed domain, signed range)
 
 {
 	domain %= range;
-	if (range < 0) 
+	if (range < 0)
 	{
 		return ((domain < 0)? (domain - range): (domain));
 	}
-	if (range > 0) 
+	if (range > 0)
 	{
-		return ((domain < 0)? (domain + range): (domain));
+		return ((domain < 0)? (domain +  range): (domain));
 	}
 	return (0);
 }
@@ -50,17 +50,17 @@ unsigned oindex::qmod (signed domain, signed range)
  *
  *--------------------------------------------------------------------*/
 
-unsigned oindex::pmod (signed domain, signed range) 
+unsigned oindex::pmod(signed domain, signed range)
 
 {
 	domain %= range;
-	if (range < 0) 
+	if (range < 0)
 	{
 		return ((domain > 0)? (domain): (domain - range));
 	}
-	if (range > 0) 
+	if (range > 0)
 	{
-		return ((domain > 0)? (domain): (domain + range));
+		return ((domain > 0)? (domain): (domain +  range));
 	}
 	return (0);
 }
@@ -73,7 +73,7 @@ unsigned oindex::pmod (signed domain, signed range)
  *
  *--------------------------------------------------------------------*/
 
-oindex::oindex () 
+oindex::oindex()
 
 {
 	return;
@@ -87,7 +87,7 @@ oindex::oindex ()
  *
  *--------------------------------------------------------------------*/
 
-oindex::~oindex () 
+oindex::~ oindex()
 
 {
 	return;
@@ -98,4 +98,6 @@ oindex::~oindex ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

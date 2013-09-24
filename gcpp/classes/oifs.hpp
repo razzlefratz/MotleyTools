@@ -31,25 +31,25 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oifs 
+class __declspec(dllexport) oifs
 
 {
-public:
+public: 
 	oifs ();
-	virtual ~ oifs ();
-	unsigned Count (void) const;
-	unsigned Index (void) const;
-	oifs & Select (unsigned);
-	oifs & SelectPrev ();
-	oifs & SelectNext ();
-	oifs & SelectFirst ();
-	oifs & SelectFinal ();
-	oifs & Enumerate (void);
-	oif & Selected () const;
-	oif & operator [] (unsigned);
+	virtual ~ oifs();
+	unsigned Count(void) const;
+	unsigned Index(void) const;
+	oifs & Select(unsigned);
+	oifs & SelectPrev();
+	oifs & SelectNext();
+	oifs & SelectFirst();
+	oifs & SelectFinal();
+	oifs & Enumerate(void);
+	oif & Selected() const;
+	oif & operator[](unsigned);
 	oifs & operator -- (signed);
 	oifs & operator ++ (signed);
-private:
+private: 
 	oif * mtable;
 	unsigned mcount;
 	unsigned mindex;
@@ -60,4 +60,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

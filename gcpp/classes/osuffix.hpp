@@ -21,15 +21,15 @@
  *7
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) osuffix 
+class __declspec(dllexport) osuffix
 
 {
-public:
+public: 
 	osuffix ();
-	virtual ~ osuffix ();
-	void define (char const * symbol, char const * string);
-	char const * lookup (char const * symbol);
-private:
+	virtual ~ osuffix();
+	void define(char const * symbol, char const * string);
+	char const * lookup(char const * symbol);
+private: 
 	char m_char;
 	char * m_text;
 	osuffix * m_prior;
@@ -42,4 +42,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

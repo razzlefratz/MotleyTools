@@ -38,7 +38,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const * obuffer::offset () const 
+char const * obuffer::offset() const
 
 {
 	return (this->moffset);
@@ -58,12 +58,12 @@ char const * obuffer::offset () const
  *
  *--------------------------------------------------------------------*/
 
-obuffer & obuffer::offset (char const * offset) 
+obuffer & obuffer::offset(char const * offset)
 
 {
 	delete [] this->moffset;
-	this->moffset = new char [std::strlen (offset) + 1];
-	std::strcpy (this->moffset, offset);
+	this->moffset = new char[std::strlen(offset) +  1];
+	std::strcpy(this->moffset, offset);
 	return (* this);
 }
 
@@ -79,7 +79,7 @@ obuffer & obuffer::offset (char const * offset)
  *
  *--------------------------------------------------------------------*/
 
-char const * obuffer::record () const 
+char const * obuffer::record() const
 
 {
 	return (this->moffset);
@@ -99,12 +99,12 @@ char const * obuffer::record () const
  *
  *--------------------------------------------------------------------*/
 
-obuffer & obuffer::record (char const * record) 
+obuffer & obuffer::record(char const * record)
 
 {
 	delete [] this->mfinish;
-	this->mfinish = new char [std::strlen (record) + 1];
-	std::strcpy (this->mfinish, record);
+	this->mfinish = new char[std::strlen(record) +  1];
+	std::strcpy(this->mfinish, record);
 	return (* this);
 }
 
@@ -123,24 +123,24 @@ obuffer & obuffer::record (char const * record)
  *
  *--------------------------------------------------------------------*/
 
-obuffer & obuffer::append (signed c) 
+obuffer & obuffer::append(signed c)
 
 {
-	if (c != EOF) 
+	if (c != EOF)
 	{
-		if (this->mlength >= this->mtotal) 
+		if (this->mlength >= this->mtotal)
 		{
 			char * buffer = this->mbuffer;
-			while (this->mlength >= this->mtotal) 
+			while (this->mlength >= this->mtotal)
 			{
-				this->mtotal = this->mtotal + this->mblock;
+				this->mtotal = this->mtotal +  this->mblock;
 				this->mblock = this->mtotal - this->mblock;
 			}
-			this->mbuffer = new char [this->mtotal];
-			std::memcpy (this->mbuffer, buffer, this->mlength);
+			this->mbuffer = new char[this->mtotal];
+			std::memcpy(this->mbuffer, buffer, this->mlength);
 			delete [] buffer;
 		}
-		this->mbuffer [this->mlength++] = (char) (c);
+		this->mbuffer[this->mlength++] = (char)(c);
 	}
 	return (* this);
 }
@@ -158,12 +158,12 @@ obuffer & obuffer::append (signed c)
  *   
  *--------------------------------------------------------------------*/
 
-obuffer & obuffer::append (char const * string) 
+obuffer & obuffer::append(char const * string)
 
 {
-	if (string) for (char const * sp = string; * sp; ++sp) 
+	if (string) for(char const * sp = string; * sp; ++ sp)
 	{
-		this->append (* sp);
+		this->append(* sp);
 	}
 	return (* this);
 }
@@ -181,14 +181,14 @@ obuffer & obuffer::append (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-obuffer & obuffer::level (signed level) 
+obuffer & obuffer::level(signed level)
 
 {
-	while (level-- > 0) 
+	while (level-- > 0)
 	{
-		std::cout.write (this->moffset, std::strlen (this->moffset));
+		std::cout.write(this->moffset, std::strlen(this->moffset));
 	}
-	this->flush ();
+	this->flush();
 	return (* this);
 }
 
@@ -205,13 +205,13 @@ obuffer & obuffer::level (signed level)
  *
  *--------------------------------------------------------------------*/
 
-obuffer & obuffer::space (signed space) 
+obuffer & obuffer::space(signed space)
 
 {
-	this->flush ();
-	while (space-- > 0) 
+	this->flush();
+	while (space-- > 0)
 	{
-		std::cout.write (this->mfinish, std::strlen (this->mfinish));
+		std::cout.write(this->mfinish, std::strlen(this->mfinish));
 	}
 	return (* this);
 }
@@ -228,10 +228,10 @@ obuffer & obuffer::space (signed space)
  *
  *--------------------------------------------------------------------*/
 
-obuffer & obuffer::flush () 
+obuffer & obuffer::flush()
 
 {
-	std::cout.write (this->mbuffer, this->mlength);
+	std::cout.write(this->mbuffer, this->mlength);
 	this->mlength = 0;
 	return (* this);
 }
@@ -247,7 +247,7 @@ obuffer & obuffer::flush ()
  *
  *--------------------------------------------------------------------*/
 
-obuffer & obuffer::clear () 
+obuffer & obuffer::clear()
 
 {
 	this->mlength = 0;
@@ -265,16 +265,16 @@ obuffer & obuffer::clear ()
  *
  *--------------------------------------------------------------------*/
 
-obuffer::obuffer (size_t length) 
+obuffer::obuffer(size_t length)
 
 {
-	this->moffset = new char [2];
-	this->moffset [0] = '\t';
-	this->moffset [1] = '\0';
-	this->mfinish = new char [2];
-	this->mfinish [0] = '\n';
-	this->mfinish [1] = '\0';
-	this->mbuffer = new char [length];
+	this->moffset = new char[2];
+	this->moffset[0] = '\t';
+	this->moffset[1] = '\0';
+	this->mfinish = new char[2];
+	this->mfinish[0] = '\n';
+	this->mfinish[1] = '\0';
+	this->mbuffer = new char[length];
 	this->mlength = 0;
 	this->mtotal = length;
 	this->mblock = length;
@@ -292,16 +292,16 @@ obuffer::obuffer (size_t length)
  *
  *--------------------------------------------------------------------*/
 
-obuffer::obuffer () 
+obuffer::obuffer()
 
 {
-	this->moffset = new char [2];
-	this->moffset [0] = '\t';
-	this->moffset [1] = '\0';
-	this->mfinish = new char [2];
-	this->mfinish [0] = '\n';
-	this->mfinish [1] = '\0';
-	this->mbuffer = new char [512];
+	this->moffset = new char[2];
+	this->moffset[0] = '\t';
+	this->moffset[1] = '\0';
+	this->mfinish = new char[2];
+	this->mfinish[0] = '\n';
+	this->mfinish[1] = '\0';
+	this->mbuffer = new char[512];
 	this->mlength = 0;
 	this->mtotal = 512;
 	this->mblock = 512;
@@ -319,7 +319,7 @@ obuffer::obuffer ()
  *
  *--------------------------------------------------------------------*/
 
-obuffer::~obuffer () 
+obuffer::~ obuffer()
 
 {
 	delete [] this->moffset;
@@ -333,4 +333,6 @@ obuffer::~obuffer ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

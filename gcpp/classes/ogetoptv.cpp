@@ -104,7 +104,7 @@ char const * program_name = PACKAGE;
  *
  *--------------------------------------------------------------------*/
 
-signed ogetoptv::opterr () const 
+signed ogetoptv::opterr() const
 
 {
 	return (this->mopterr);
@@ -118,7 +118,7 @@ signed ogetoptv::opterr () const
  *
  *--------------------------------------------------------------------*/
 
-ogetoptv & ogetoptv::opterr (signed opterr) 
+ogetoptv & ogetoptv::opterr(signed opterr)
 
 {
 	this->mopterr = opterr;
@@ -133,7 +133,7 @@ ogetoptv & ogetoptv::opterr (signed opterr)
  *
  *--------------------------------------------------------------------*/
 
-signed ogetoptv::optmin () const 
+signed ogetoptv::optmin() const
 
 {
 	return (this->moptmin);
@@ -147,7 +147,7 @@ signed ogetoptv::optmin () const
  *
  *--------------------------------------------------------------------*/
 
-ogetoptv & ogetoptv::optmin (signed optmin) 
+ogetoptv & ogetoptv::optmin(signed optmin)
 
 {
 	this->moptmin = optmin;
@@ -163,7 +163,7 @@ ogetoptv & ogetoptv::optmin (signed optmin)
  *
  *--------------------------------------------------------------------*/
 
-signed ogetoptv::optind () const 
+signed ogetoptv::optind() const
 
 {
 	return (this->moptind);
@@ -177,7 +177,7 @@ signed ogetoptv::optind () const
  *
  *--------------------------------------------------------------------*/
 
-ogetoptv & ogetoptv::optind (signed optind) 
+ogetoptv & ogetoptv::optind(signed optind)
 
 {
 	this->moptind = optind;
@@ -192,7 +192,7 @@ ogetoptv & ogetoptv::optind (signed optind)
  *
  *--------------------------------------------------------------------*/
 
-signed ogetoptv::optopt () const 
+signed ogetoptv::optopt() const
 
 {
 	return (this->moptopt);
@@ -206,7 +206,7 @@ signed ogetoptv::optopt () const
  *
  *--------------------------------------------------------------------*/
 
-char const * ogetoptv::optarg () const 
+char const * ogetoptv::optarg() const
 
 {
 	return (this->moptarg);
@@ -222,7 +222,7 @@ char const * ogetoptv::optarg () const
  *
  *--------------------------------------------------------------------*/
 
-signed ogetoptv::argc () const 
+signed ogetoptv::argc() const
 
 {
 	return (this->margc - this->moptind);
@@ -236,10 +236,10 @@ signed ogetoptv::argc () const
  *
  *--------------------------------------------------------------------*/
 
-char const ** ogetoptv::argv () const 
+char const ** ogetoptv::argv() const
 
 {
-	return (this->margv + this->moptind);
+	return (this->margv +  this->moptind);
 }
 
 /*====================================================================*
@@ -250,7 +250,7 @@ char const ** ogetoptv::argv () const
  *
  *--------------------------------------------------------------------*/
 
-char const * ogetoptv::args () 
+char const * ogetoptv::args()
 
 {
 	return (this->moptarg);
@@ -265,7 +265,7 @@ char const * ogetoptv::args ()
  *
  *--------------------------------------------------------------------*/
 
-signed ogetoptv::operator++ (signed) 
+signed ogetoptv::operator++ (signed)
 
 {
 	return (this->moptind < this->margc? this->moptind++: this->moptind);
@@ -278,143 +278,143 @@ signed ogetoptv::operator++ (signed)
  *
  *--------------------------------------------------------------------*/
 
-signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv []) 
+signed ogetoptv::getoptv(int argc, char const * argv[], char const * optv[])
 
 {
 	extern char const * program_name;
-	if ((this->moptind == 0) || (this->moptind == 1)) 
+	if ((this->moptind == 0) || (this->moptind == 1))
 	{
 		this->margc = argc;
 		this->margv = argv;
-		for (program_name = this->mstring = * this->margv; * this->mstring; this->mstring++) 
+		for (program_name = this->mstring = * this->margv; * this->mstring; this->mstring++)
 		{
-			if ((* this->mstring == '/') || (* this->mstring == '\\')) 
+			if ((* this->mstring == '/') || (* this->mstring == '\\'))
 			{
-				program_name = this->mstring + 1;
+				program_name = this->mstring +  1;
 			}
 		}
-		this->mstring = (char *) (0);
-		oversion::program (program_name);
-		if (this->margc == this->moptmin) 
+		this->mstring = (char *)(0);
+		oversion::program(program_name);
+		if (this->margc == this->moptmin)
 		{
-			oputoptv::putoptv (optv);
-			std::exit (0);
+			oputoptv::putoptv(optv);
+			std::exit(0);
 		}
 		this->mcount = this->moptind = 1;
 	}
-	while ((this->mcount < this->margc) || (this->mstring)) 
+	while ((this->mcount < this->margc) || (this->mstring))
 	{
-		if (this->mstring) 
+		if (this->mstring)
 		{
-			if (* this->mstring) 
+			if (* this->mstring)
 			{
 				this->moptopt = * this->mstring++;
-				this->moptarg = (char *)(0);
-				for (char const * option = optv [oPUTOPTV_I_OPTIONS]; * option; option++) 
+				this->moptarg = (char *) (0);
+				for (char const * option = optv[oPUTOPTV_I_OPTIONS]; * option; option++)
 				{
-					if (this->moptopt == oGETOPTV_C_OPERAND) 
+					if (this->moptopt == oGETOPTV_C_OPERAND)
 					{
 						continue;
 					}
-					if (* option == oGETOPTV_C_OPERAND) 
+					if (* option == oGETOPTV_C_OPERAND)
 					{
 						continue;
 					}
-					if (* option == this->moptopt) 
+					if (* option == this->moptopt)
 					{
-						if (*++option != oGETOPTV_C_OPERAND) 
+						if (* ++ option != oGETOPTV_C_OPERAND)
 						{
 							return (this->moptopt);
 						}
-						if (* this->mstring) 
+						if (* this->mstring)
 						{
 							this->moptarg = this->mstring;
-							this->mstring = (char *) (0);
+							this->mstring = (char *)(0);
 							return (this->moptopt);
 						}
-						if (this->mcount < this->margc) 
+						if (this->mcount < this->margc)
 						{
-							this->moptarg = argv [this->mcount];
-							for (this->mindex = this->mcount++; this->mindex > this->moptind; --this->mindex) 
+							this->moptarg = argv[this->mcount];
+							for (this->mindex = this->mcount++; this->mindex > this->moptind; -- this->mindex)
 							{
-								argv [this->mindex] = argv [this->mindex - 1];
+								argv [this->mindex] = argv[this->mindex - 1];
 							}
 							argv [this->moptind++] = this->moptarg;
 							return (this->moptopt);
 						}
-						if (this->mopterr) 
+						if (this->mopterr)
 						{
-							std::cerr << program_name << ": option '" << (char) (this->moptopt) << "' has no operand" << std::endl;
-							std::exit (this->mopterr);
+							std::cerr << program_name << ": option '" << (char)(this->moptopt) << "' has no operand" << std::endl;
+							std::exit(this->mopterr);
 						}
-						if (* optv [oPUTOPTV_I_OPTIONS] == oGETOPTV_C_OPERAND) 
+						if (* optv[oPUTOPTV_I_OPTIONS] == oGETOPTV_C_OPERAND)
 						{
 							return (oGETOPTV_C_OPERAND);
 						}
 						return (oGETOPTV_C_ILLEGAL);
 					}
 				}
-				if (this->mopterr) 
+				if (this->mopterr)
 				{
-					std::cerr << program_name << ": option '" << (char) (this->moptopt) << "' has no meaning" << std::endl;
-					std::exit (this->mopterr);
+					std::cerr << program_name << ": option '" << (char)(this->moptopt) << "' has no meaning" << std::endl;
+					std::exit(this->mopterr);
 				}
 				return (oGETOPTV_C_ILLEGAL);
 			}
-			this->mstring = (char *) (0);
+			this->mstring = (char *)(0);
 		}
-		if (this->mcount < this->margc) 
+		if (this->mcount < this->margc)
 		{
-			this->mstring = this->margv [this->mcount];
-			if (* this->mstring == oGETOPTV_C_OPTIONS) 
+			this->mstring = this->margv[this->mcount];
+			if (* this->mstring == oGETOPTV_C_OPTIONS)
 			{
-				for (this->mindex = this->mcount; this->mindex > this->moptind; --this->mindex) 
+				for (this->mindex = this->mcount; this->mindex > this->moptind; -- this->mindex)
 				{
-					this->margv [this->mindex] = this->margv [this->mindex - 1];
+					this->margv[this->mindex] = this->margv[this->mindex - 1];
 				}
-				this->margv [this->moptind++] = this->mstring++;
-				if (* this->mstring == oGETOPTV_C_OPTIONS) 
+				this->margv[this->moptind++] = this->mstring++;
+				if (* this->mstring == oGETOPTV_C_OPTIONS)
 				{
-					if (!*++this->mstring) 
+					if (! * ++ this->mstring)
 					{
-						this->moptarg = (char *) (0);
-						this->moptopt = (char) (0);
-						return (-1);
+						this->moptarg = (char *)(0);
+						this->moptopt = (char)(0);
+						return (- 1);
 					}
-					if (!std::strcmp (this->mstring, "version")) 
+					if (! std::strcmp(this->mstring, "version"))
 					{
-						oversion::print ();
-						std::exit (0);
+						oversion::print();
+						std::exit(0);
 					}
-					if (!std::strcmp (this->mstring, "help")) 
+					if (! std::strcmp(this->mstring, "help"))
 					{
-						oputoptv::putoptv (optv);
-						std::exit (0);
+						oputoptv::putoptv(optv);
+						std::exit(0);
 					}
-					this->mstring = (char *) (0);
+					this->mstring = (char *)(0);
 					continue;
 				}
-				if (* this->mstring == oGETOPTV_C_VERSION) 
+				if (* this->mstring == oGETOPTV_C_VERSION)
 				{
-					oversion::print ();
-					std::exit (0);
+					oversion::print();
+					std::exit(0);
 				}
-				if (* this->mstring == oGETOPTV_C_SUMMARY) 
+				if (* this->mstring == oGETOPTV_C_SUMMARY)
 				{
-					oputoptv::putoptv (optv);
-					std::exit (0);
+					oputoptv::putoptv(optv);
+					std::exit(0);
 				}
 			}
-			else
+			else 
 			{
-				this->mstring = (char *) (0);
+				this->mstring = (char *)(0);
 			}
 			this->mcount++;
 		}
 	}
-	this->moptarg = (char *) (0);
-	this->moptopt = (char) (0);
-	return (-1);
+	this->moptarg = (char *)(0);
+	this->moptopt = (char)(0);
+	return (- 1);
 }
 
 /*====================================================================*
@@ -423,13 +423,13 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
  *
  *--------------------------------------------------------------------*/
 
-ogetoptv::ogetoptv () 
+ogetoptv::ogetoptv()
 
 {
-	this->margs = new char [1];
-	this->margs [0] = (char) (0);
-	this->moptarg = (char *) (0);
-	this->moptopt = (char) (0);
+	this->margs = new char[1];
+	this->margs[0] = (char)(0);
+	this->moptarg = (char *)(0);
+	this->moptopt = (char)(0);
 	this->mopterr = 1;
 	this->moptind = 1;
 	this->moptmin = 0;
@@ -442,12 +442,12 @@ ogetoptv::ogetoptv ()
  *
  *--------------------------------------------------------------------*/
 
-ogetoptv::~ogetoptv () 
+ogetoptv::~ ogetoptv()
 
 {
 	delete [] this->margs;
-	this->moptarg = (char *) (0);
-	this->moptopt = (char) (0);
+	this->moptarg = (char *)(0);
+	this->moptopt = (char)(0);
 	return;
 }
 
@@ -456,4 +456,6 @@ ogetoptv::~ogetoptv ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

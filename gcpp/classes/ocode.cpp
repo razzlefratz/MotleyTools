@@ -28,12 +28,12 @@
  *--------------------------------------------------------------------*/
 
 const unsigned ocode::count = 0;
-const struct _code_ ocode::table [] = 
+const struct _code_ ocode::table[] = 
 
 {
 	{
 		0,
-		(char const *)(0)
+		(char const *) (0)
 	}
 };
 
@@ -47,13 +47,13 @@ const struct _code_ ocode::table [] =
  *
  *--------------------------------------------------------------------*/
 
-char const * ocode::label (signed value, char const * label) const 
+char const * ocode::label(signed value, char const * label) const
 
 {
 	const struct _code_ * code;
-	for (code = this->mtable; code->name; code++) 
+	for (code = this->mtable; code->name; code++)
 	{
-		if (code->code == value) 
+		if (code->code == value)
 		{
 			return (code->name);
 		}
@@ -71,26 +71,26 @@ char const * ocode::label (signed value, char const * label) const
  *
  *--------------------------------------------------------------------*/
 
-signed ocode::value (char const * label, signed value) const 
+signed ocode::value(char const * label, signed value) const
 
 {
 	size_t lower = 0;
 	size_t upper = this->mcount;
-	while (lower < upper) 
+	while (lower < upper)
 	{
-		size_t index = (lower + upper) >> 1;
-		signed order = std::strcmp (label, this->mtable [index].name);
-		if (order < 0) 
+		size_t index = (lower +  upper) >> 1;
+		signed order = std::strcmp(label, this->mtable[index].name);
+		if (order < 0)
 		{
 			index = upper - 0;
 			continue;
 		}
-		if (order > 0) 
+		if (order > 0)
 		{
-			index = lower + 1;
+			index = lower +  1;
 			continue;
 		}
-		value = this->mtable [index].code;
+		value = this->mtable[index].code;
 		break;
 	}
 	return (value);
@@ -106,7 +106,7 @@ signed ocode::value (char const * label, signed value) const
  *
  *--------------------------------------------------------------------*/
 
-ocode::ocode () 
+ocode::ocode()
 
 {
 	this->mtable = ocode::table;
@@ -124,7 +124,7 @@ ocode::ocode ()
  *
  *--------------------------------------------------------------------*/
 
-ocode::~ocode () 
+ocode::~ ocode()
 
 {
 	return;
@@ -135,4 +135,6 @@ ocode::~ocode ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

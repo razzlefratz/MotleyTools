@@ -22,35 +22,35 @@
  *7
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) othread: private otext 
+class __declspec(dllexport) othread: private otext
 
 {
-public:
+public: 
 	othread ();
 	othread (char const * label, char const * title, char const * file);
-	virtual ~ othread ();
-	unsigned count () const;
-	bool isempty () const;
-	char const * name () const;
-	char const * text () const;
-	char const * page () const;
-	othread & name (char const * string);
-	othread & text (char const * string);
-	othread & page (char const * string);
-	othread * above () const;
-	othread * after () const;
-	othread * prior () const;
-	othread * below () const;
-	othread * other () const;
-	othread & clear ();
-	othread & insert (othread * object);
-	othread & append (othread * object);
-	othread & remove ();
-	othread & unwind ();
-	othread & attach (othread * object);
-	othread & detach ();
-private:
-	char * copy (char const * string);
+	virtual ~ othread();
+	unsigned count() const;
+	bool isempty() const;
+	char const * name() const;
+	char const * text() const;
+	char const * page() const;
+	othread & name(char const * string);
+	othread & text(char const * string);
+	othread & page(char const * string);
+	othread * above() const;
+	othread * after() const;
+	othread * prior() const;
+	othread * below() const;
+	othread * other() const;
+	othread & clear();
+	othread & insert(othread * object);
+	othread & append(othread * object);
+	othread & remove();
+	othread & unwind();
+	othread & attach(othread * object);
+	othread & detach();
+private: 
+	char * copy(char const * string);
 	othread * mabove;
 	othread * mafter;
 	othread * mprior;
@@ -62,4 +62,6 @@ private:
 };
 
 #endif
+
+
 

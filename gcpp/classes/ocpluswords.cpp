@@ -28,10 +28,10 @@
  *
  *--------------------------------------------------------------------*/
 
-ocpluswords::ocpluswords () 
+ocpluswords::ocpluswords()
 
 {
-	static char const * table [] = 
+	static char const * table[] = 
 	{
 		"__based",
 		"__cdecl",
@@ -114,12 +114,12 @@ ocpluswords::ocpluswords ()
 		"volatile",
 		"while",
 		"wmain",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	okeywords::mtitle = "cpluswords";
-	okeywords::mcount = SIZEOF (table) - 1;
+	okeywords::mcount = SIZEOF(table) - 1;
 	okeywords::mtable = table;
-	okeywords::mcheck ();
+	okeywords::mcheck();
 	return;
 }
 
@@ -133,7 +133,7 @@ ocpluswords::ocpluswords ()
  *
  *--------------------------------------------------------------------*/
 
-ocpluswords::~ocpluswords () 
+ocpluswords::~ ocpluswords()
 
 {
 	return;
@@ -144,4 +144,6 @@ ocpluswords::~ocpluswords ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

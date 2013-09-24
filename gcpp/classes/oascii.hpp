@@ -74,71 +74,70 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oascii 
+class __declspec(dllexport) oascii
 
 {
-public:
+public: 
 	oascii ();
-	virtual ~ oascii ();
+	virtual ~ oascii();
 
 #ifndef WIN32
 
-	static bool isascii (signed c);
+	static bool isascii(signed c);
 
 #endif
 
-	static bool isalpha (signed c);
-	static bool isupper (signed c);
-	static bool islower (signed c);
-	static bool isdigit (signed c);
-	static bool isxdigit (signed c);
-	static bool isalnum (signed c);
-	static bool ispunct (signed c);
-	static bool isspace (signed c);
-	static bool isprint (signed c);
-	static bool isgraph (signed c);
-	static bool iscntrl (signed c);
-	static bool isident (signed c);
-	static bool isunary (signed c);
-	static bool isquote (signed c);
-	static bool isarith (signed c);
-	static bool islogic (signed c);
-	static bool isequal (signed c);
-	static bool isgroup (signed c);
-	static bool isbegin (signed c);
-	static bool isclose (signed c);
-	static bool ismoney (signed c);
-	static bool isfract (signed c);
-	static bool ispower (signed c);
-	static bool iscomma (signed c);
-	static bool isblock (signed c);
-	static bool isblank (signed c);
-	static bool ismatch (signed c, signed o);
-	static bool isbreak (signed c);
-	static bool isbreak (signed c, signed o);
-	static bool nobreak (signed c);
-	static bool nobreak (signed c, signed o);
-	static bool nmtoken (signed c);
-	static signed toupper (signed c);
-	static signed tolower (signed c);
-	static signed tocntrl (signed c);
-	static signed todigit (signed c);
+	static bool isalpha(signed c);
+	static bool isupper(signed c);
+	static bool islower(signed c);
+	static bool isdigit(signed c);
+	static bool isxdigit(signed c);
+	static bool isalnum(signed c);
+	static bool ispunct(signed c);
+	static bool isspace(signed c);
+	static bool isprint(signed c);
+	static bool isgraph(signed c);
+	static bool iscntrl(signed c);
+	static bool isident(signed c);
+	static bool isunary(signed c);
+	static bool isquote(signed c);
+	static bool isarith(signed c);
+	static bool islogic(signed c);
+	static bool isequal(signed c);
+	static bool isgroup(signed c);
+	static bool isbegin(signed c);
+	static bool isclose(signed c);
+	static bool ismoney(signed c);
+	static bool isfract(signed c);
+	static bool ispower(signed c);
+	static bool iscomma(signed c);
+	static bool isblock(signed c);
+	static bool isblank(signed c);
+	static bool ismatch(signed c, signed o);
+	static bool isbreak(signed c);
+	static bool isbreak(signed c, signed o);
+	static bool nobreak(signed c);
+	static bool nobreak(signed c, signed o);
+	static bool nmtoken(signed c);
+	static signed toupper(signed c);
+	static signed tolower(signed c);
+	static signed tocntrl(signed c);
+	static signed todigit(signed c);
 
 #ifndef WIN32
 
-	static signed toascii (signed c);
+	static signed toascii(signed c);
 
 #endif
 
-	void enumerate () const;
-	void matrix () const;
-
-private:
-	unsigned ctypemask (char const * ctypename) const;
-	static bool isctype (signed c, unsigned mask);
-	static char const * cbits [];
-	static unsigned const ctype [];
-	static char const * cname [];
+	void enumerate() const;
+	void matrix() const;
+private: 
+	unsigned ctypemask(char const * ctypename) const;
+	static bool isctype(signed c, unsigned mask);
+	static char const * cbits[];
+	static unsigned const ctype[];
+	static char const * cname[];
 };
 
 /*====================================================================*
@@ -146,4 +145,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

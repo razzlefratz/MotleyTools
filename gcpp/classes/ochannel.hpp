@@ -86,24 +86,24 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ochannel: public oflagword, public ointerface, public oethernet 
+class __declspec(dllexport) ochannel: public oflagword, public ointerface, public oethernet
 
 {
-public:
+public: 
 	ochannel ();
 	ochannel (char const * name);
-	virtual ~ ochannel ();
-	signed Descriptor () const;
-	unsigned Timer () const;
-	ochannel & SetTimer (unsigned);
-	ochannel & Open ();
-	ochannel & Open (unsigned);
-	ochannel & Open (char const *);
-	signed SendPacket (void const * memory, signed extent);
-	signed ReadPacket (void * memory, signed extent);
-	ochannel & Close ();
-	ochannel & Print ();
-private:
+	virtual ~ ochannel();
+	signed Descriptor() const;
+	unsigned Timer() const;
+	ochannel & SetTimer(unsigned);
+	ochannel & Open();
+	ochannel & Open(unsigned);
+	ochannel & Open(char const *);
+	signed SendPacket(void const * memory, signed extent);
+	signed ReadPacket(void * memory, signed extent);
+	ochannel & Close();
+	ochannel & Print();
+private: 
 	signed mfd;
 	unsigned mtimer;
 
@@ -114,8 +114,8 @@ private:
 #elif defined (WINPCAP)
 
 	pcap_t * msocket;
-	char merrbuf [PCAP_ERRBUF_SIZE];
-	char mfilter [255];
+	char merrbuf[PCAP_ERRBUF_SIZE];
+	char mfilter[255];
 
 #endif
 
@@ -126,4 +126,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

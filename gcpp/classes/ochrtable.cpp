@@ -34,11 +34,11 @@
  *
  *--------------------------------------------------------------------*/
 
-ochrtable & ochrtable::toupper () 
+ochrtable & ochrtable::toupper()
 
 {
-	for (c = 'A'; c <= 'Z'; ochrtable::mtable [c++] = (char) (c));
-	for (c = 'a'; c <= 'z'; ochrtable::mtable [c++] = (char) (c - ('a' - 'A')));
+	for (c = 'A'; c <= 'Z'; ochrtable::mtable[c++] = (char)(c));
+	for (c = 'a'; c <= 'z'; ochrtable::mtable[c++] = (char)(c - ('a' - 'A')));
 	return (* this);
 }
 
@@ -51,11 +51,11 @@ ochrtable & ochrtable::toupper ()
  *
  *--------------------------------------------------------------------*/
 
-ochrtable & ochrtable::tolower () 
+ochrtable & ochrtable::tolower()
 
 {
-	for (c = 'A'; c <= 'Z'; ochrtable::mtable [c++] = (char) (c + ('a' - 'A')));
-	for (c = 'a'; c <= 'z'; ochrtable::mtable [c++] = (char) (c));
+	for (c = 'A'; c <= 'Z'; ochrtable::mtable[c++] = (char)(c + ('a' - 'A')));
+	for (c = 'a'; c <= 'z'; ochrtable::mtable[c++] = (char)(c));
 	return (* this);
 }
 
@@ -69,15 +69,15 @@ ochrtable & ochrtable::tolower ()
  *
  *--------------------------------------------------------------------*/
 
-ochrtable & ochrtable::charset (char const * charset1, char const * charset2) 
+ochrtable & ochrtable::charset(char const * charset1, char const * charset2)
 
 {
-	if ((charset1) && (charset2)) 
+	if ((charset1) && (charset2))
 	{
-		while (* charset1) 
+		while (* charset1)
 		{
-			ochrtable::mtable [(unsigned)(* charset1++)] = * charset2;
-			if (* charset2) 
+			ochrtable::mtable[(unsigned) (* charset1++)] = * charset2;
+			if (* charset2)
 			{
 				charset2++;
 			}
@@ -93,13 +93,13 @@ ochrtable & ochrtable::charset (char const * charset1, char const * charset2)
  *
  *--------------------------------------------------------------------*/
 
-ochrtable & ochrtable::mreset () 
+ochrtable & ochrtable::mreset()
 
 {
 	unsigned value = 0;
-	while (value < (UCHAR_MAX+1)) 
+	while (value < (UCHAR_MAX + 1))
 	{
-		ochrtable::mtable [value] = (unsigned char)(value);
+		ochrtable::mtable[value] = (unsigned char) (value);
 		value++;
 	}
 	return (* this);
@@ -111,11 +111,11 @@ ochrtable & ochrtable::mreset ()
  *
  *--------------------------------------------------------------------*/
 
-ochrtable::ochrtable () 
+ochrtable::ochrtable()
 
 {
-	ochrtable::mtable = new unsigned char [UCHAR_MAX + 1];
-	ochrtable::mreset ();
+	ochrtable::mtable = new unsigned char[UCHAR_MAX +  1];
+	ochrtable::mreset();
 	ochrtbl::mtable = ochrtable::mtable;
 	return;
 }
@@ -126,7 +126,7 @@ ochrtable::ochrtable ()
  *
  *--------------------------------------------------------------------*/
 
-ochrtable::~ochrtable () 
+ochrtable::~ ochrtable()
 
 {
 	delete [] this->mtable;
@@ -138,4 +138,6 @@ ochrtable::~ochrtable ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

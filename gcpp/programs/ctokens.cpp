@@ -55,44 +55,44 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"e", 
-		oPUTOPTV_S_FUNNEL, 
-		"print C/C++ language tokens on stdout", 
-		"e\telaborate on tokens with typenames", 
-		(char const *) (0)
-	}; 
-	oflagword flags; 
-	oscancode source; 
-	ogetoptv getopt; 
-	signed c; 
-	while (~ (c = getopt.getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'e': 
-			flags.setbits (CTOKEN_B_ELABORATE); 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"e",
+		oPUTOPTV_S_FUNNEL,
+		"print C/C++ language tokens on stdout",
+		"e\telaborate on tokens with typenames",
+		(char const *)(0)
+	};
+	oflagword flags;
+	oscancode source;
+	ogetoptv getopt;
+	signed c;
+	while (~ (c = getopt.getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'e':
+			flags.setbits(CTOKEN_B_ELABORATE);
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	while ((getopt.argc ()) && (* getopt.argv ())) 
-	{ 
-		if (flags.anyset (CTOKEN_B_ELABORATE)) 
-		{ 
-			source.read (* getopt.argv ()).elaborate (); 
-		} 
+			break;
+		}
+	}
+	while ((getopt.argc()) && (* getopt.argv()))
+	{
+		if (flags.anyset(CTOKEN_B_ELABORATE))
+		{
+			source.read(* getopt.argv()).elaborate();
+		}
 		else 
-		{ 
-			source.read (* getopt.argv ()).enumerate (); 
-		} 
-		getopt++; 
-	} 
-	std::exit (0); 
-} 
+		{
+			source.read(* getopt.argv()).enumerate();
+		}
+		getopt++;
+	}
+	std::exit(0);
+}
 

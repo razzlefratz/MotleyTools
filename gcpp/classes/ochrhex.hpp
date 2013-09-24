@@ -21,20 +21,19 @@
  *
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ochrhex 
+class __declspec(dllexport) ochrhex
 
 {
-public:
+public: 
 	ochrhex ();
-	virtual ~ ochrhex ();
+	virtual ~ ochrhex();
 	static char const * digits;
-	static char * tohex (char * string, unsigned c);
-	static char * toiso (char * string, unsigned c);
-	static char * tohtml (char * string, unsigned c);
-	static char * toietf (char * string, unsigned c);
-	static char * toconst (char * string, unsigned c);
-private:
-	
+	static char * tohex(char * string, unsigned c);
+	static char * toiso(char * string, unsigned c);
+	static char * tohtml(char * string, unsigned c);
+	static char * toietf(char * string, unsigned c);
+	static char * toconst(char * string, unsigned c);
+private: 
 };
 
 /*====================================================================*
@@ -42,4 +41,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

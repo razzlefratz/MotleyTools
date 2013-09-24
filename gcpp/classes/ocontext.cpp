@@ -31,7 +31,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const * ocontext::prefix () const 
+char const * ocontext::prefix() const
 
 {
 	return (this->mprefix);
@@ -45,10 +45,10 @@ char const * ocontext::prefix () const
  *
  *--------------------------------------------------------------------*/
 
-ocontext & ocontext::prefix (char buffer [], size_t length) 
+ocontext & ocontext::prefix(char buffer[], size_t length)
 
 {
-	return (ocontext::copy (this->mprefix, buffer, length));
+	return (ocontext::copy(this->mprefix, buffer, length));
 	return (* this);
 }
 
@@ -60,7 +60,7 @@ ocontext & ocontext::prefix (char buffer [], size_t length)
  *
  *--------------------------------------------------------------------*/
 
-char const * ocontext::suffix () const 
+char const * ocontext::suffix() const
 
 {
 	return (this->msuffix);
@@ -74,10 +74,10 @@ char const * ocontext::suffix () const
  *
  *--------------------------------------------------------------------*/
 
-ocontext & ocontext::suffix (char buffer [], size_t length) 
+ocontext & ocontext::suffix(char buffer[], size_t length)
 
 {
-	return (ocontext::copy (this->msuffix, buffer, length));
+	return (ocontext::copy(this->msuffix, buffer, length));
 }
 
 /*====================================================================*
@@ -92,29 +92,29 @@ ocontext & ocontext::suffix (char buffer [], size_t length)
  *
  *--------------------------------------------------------------------*/
 
-ocontext & ocontext::split (char const * string, char c, bool initial, bool optional) 
+ocontext & ocontext::split(char const * string, char c, bool initial, bool optional)
 
 {
 	delete [] this->mstring;
-	this->mstring = new char [std::strlen (string) + 1];
-	std::strcpy (this->mstring, string);
-	for (this->mprefix = this->msuffix = this->mstring; * this->mprefix != (char) (0); this->mprefix++) 
+	this->mstring = new char[std::strlen(string) +  1];
+	std::strcpy(this->mstring, string);
+	for (this->mprefix = this->msuffix = this->mstring; * this->mprefix != (char)(0); this->mprefix++)
 	{
-		if (* this->mprefix == (char) (c)) 
+		if (* this->mprefix == (char)(c))
 		{
 			this->msuffix = this->mprefix;
-			if (initial) 
+			if (initial)
 			{
 				break;
 			}
 		}
 	}
-	if (* this->msuffix == (char) (c)) 
+	if (* this->msuffix == (char)(c))
 	{
-		* this->msuffix++ = (char) (0);
+		* this->msuffix++ = (char)(0);
 		this->mprefix = this->mstring;
 	}
-	else if (optional) 
+	else if(optional)
 	{
 		this->msuffix = this->mprefix;
 		this->mprefix = this->mstring;
@@ -130,31 +130,31 @@ ocontext & ocontext::split (char const * string, char c, bool initial, bool opti
  *
  *--------------------------------------------------------------------*/
 
-ocontext & ocontext::copy (char const * string, char buffer [], size_t length) 
+ocontext & ocontext::copy(char const * string, char buffer[], size_t length)
 
 {
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (buffer == (char *) (0)) 
+	if (buffer == (char *)(0))
 	{
 		return (* this);
 	}
 
 #endif
 
-	if (length > 0) 
+	if (length > 0)
 	{
-		while (* string != (char) (0)) 
+		while (* string != (char)(0))
 		{
-			if (length > 1) 
+			if (length > 1)
 			{
 				* buffer++ = * string;
 				length--;
 			}
 			string++;
 		}
-		* buffer = (char) (0);
+		* buffer = (char)(0);
 	}
 	return (* this);
 }
@@ -166,11 +166,11 @@ ocontext & ocontext::copy (char const * string, char buffer [], size_t length)
  *
  *--------------------------------------------------------------------*/
 
-ocontext::ocontext () 
+ocontext::ocontext()
 
 {
-	this->mstring = new char [1];
-	this->mstring [0] = (char) (0);
+	this->mstring = new char[1];
+	this->mstring[0] = (char)(0);
 	this->mprefix = this->mstring;
 	this->msuffix = this->mstring;
 	return;
@@ -183,12 +183,12 @@ ocontext::ocontext ()
  *
  *--------------------------------------------------------------------*/
 
-ocontext::~ocontext () 
+ocontext::~ ocontext()
 
 {
 	delete [] this->mstring;
-	this->mprefix = (char *) (0);
-	this->msuffix = (char *) (0);
+	this->mprefix = (char *)(0);
+	this->msuffix = (char *)(0);
 	return;
 }
 
@@ -197,4 +197,6 @@ ocontext::~ocontext ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

@@ -36,7 +36,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const * olist::title () const 
+char const * olist::title() const
 
 {
 	return (this->mtitle);
@@ -50,13 +50,13 @@ char const * olist::title () const
  *
  *--------------------------------------------------------------------*/
 
-olist & olist::title (char const * title) 
+olist & olist::title(char const * title)
 
 {
-	if (std::strcmp (title, this->mtitle)) 
+	if (std::strcmp(title, this->mtitle))
 	{
 		delete [] this->mtitle;
-		this->mtitle = new char [strlen (title) + 1];
+		this->mtitle = new char[strlen(title) +  1];
 		strcpy (this->mtitle, title);
 	}
 	return (* this);
@@ -70,7 +70,7 @@ olist & olist::title (char const * title)
  *
  *--------------------------------------------------------------------*/
 
-unsigned olist::count () const 
+unsigned olist::count() const
 
 {
 	return (this->mcount);
@@ -87,19 +87,19 @@ unsigned olist::count () const
  *
  *--------------------------------------------------------------------*/
 
-unsigned olist::index () const 
+unsigned olist::index() const
 
 {
 	return (this->mindex);
 }
 
-unsigned olist::lower () const 
+unsigned olist::lower() const
 
 {
 	return (this->mlower);
 }
 
-unsigned olist::upper () const 
+unsigned olist::upper() const
 
 {
 	return (this->mupper);
@@ -114,10 +114,10 @@ unsigned olist::upper () const
  *
  *--------------------------------------------------------------------*/
 
-oitem * olist::item () const 
+oitem * olist::item() const
 
 {
-	return (this->mindex < this->mcount? this->mtable [this->mindex]: (oitem *) (0));
+	return (this->mindex < this->mcount? this->mtable[this->mindex]: (oitem *)(0));
 }
 
 /*====================================================================*
@@ -129,10 +129,10 @@ oitem * olist::item () const
  *
  *--------------------------------------------------------------------*/
 
-oitem * olist::items (unsigned index) const 
+oitem * olist::items(unsigned index) const
 
 {
-	return (index < this->mcount? this->mtable [index]: (oitem *) (0));
+	return (index < this->mcount? this->mtable[index]: (oitem *)(0));
 }
 
 /*====================================================================*
@@ -144,17 +144,17 @@ oitem * olist::items (unsigned index) const
  *
  *--------------------------------------------------------------------*/
 
-oitem * olist::cycle (signed index) const 
+oitem * olist::cycle(signed index) const
 
 {
-	if (this->mcount > 0) 
+	if (this->mcount > 0)
 	{
-		index %= (signed) (this->mcount);
+		index %= (signed)(this->mcount);
 		index += this->mcount;
 		index %= this->mcount;
-		return (this->mtable [index]);
+		return (this->mtable[index]);
 	}
-	return ((oitem *) (0));
+	return ((oitem *)(0));
 }
 
 /*====================================================================*
@@ -166,17 +166,17 @@ oitem * olist::cycle (signed index) const
  *
  *--------------------------------------------------------------------*/
 
-oitem * olist::operator [] (signed index) const 
+oitem * olist::operator[](signed index) const
 
 {
-	if (this->mcount > 0) 
+	if (this->mcount > 0)
 	{
-		index %= (signed) (this->mcount);
+		index %= (signed)(this->mcount);
 		index += this->mcount;
 		index %= this->mcount;
-		return (this->mtable [index]);
+		return (this->mtable[index]);
 	}
-	return ((oitem *) (0));
+	return ((oitem *)(0));
 }
 
 /*====================================================================*
@@ -188,10 +188,10 @@ oitem * olist::operator [] (signed index) const
  *
  *--------------------------------------------------------------------*/
 
-bool olist::defined (char const * symbol) 
+bool olist::defined(char const * symbol)
 
 {
-	return (this->indexof (symbol) < this->mcount);
+	return (this->indexof(symbol) < this->mcount);
 }
 
 /*====================================================================*
@@ -203,10 +203,10 @@ bool olist::defined (char const * symbol)
  *
  *--------------------------------------------------------------------*/
 
-bool olist::defined (char const * symbol, char const * string) 
+bool olist::defined(char const * symbol, char const * string)
 
 {
-	return (this->indexof (symbol, string) < this->mcount);
+	return (this->indexof(symbol, string) < this->mcount);
 }
 
 /*====================================================================*
@@ -219,10 +219,10 @@ bool olist::defined (char const * symbol, char const * string)
  *
  *--------------------------------------------------------------------*/
 
-unsigned olist::indexof (char const * symbol) 
+unsigned olist::indexof(char const * symbol)
 
 {
-	return (this->select (symbol).index ());
+	return (this->select(symbol).index());
 }
 
 /*====================================================================*
@@ -235,10 +235,10 @@ unsigned olist::indexof (char const * symbol)
  *
  *--------------------------------------------------------------------*/
 
-unsigned olist::indexof (char const * symbol, char const * string) 
+unsigned olist::indexof(char const * symbol, char const * string)
 
 {
-	return (this->select (symbol, string).index ());
+	return (this->select(symbol, string).index());
 }
 
 /*====================================================================*
@@ -248,10 +248,10 @@ unsigned olist::indexof (char const * symbol, char const * string)
  *
  *--------------------------------------------------------------------*/
 
-oitem * olist::item (char const * symbol) 
+oitem * olist::item(char const * symbol)
 
 {
-	return (this->select (symbol).item ());
+	return (this->select(symbol).item());
 }
 
 /*====================================================================*
@@ -261,10 +261,10 @@ oitem * olist::item (char const * symbol)
  *
  *--------------------------------------------------------------------*/
 
-oitem * olist::item (char const * symbol, char const * string) 
+oitem * olist::item(char const * symbol, char const * string)
 
 {
-	return (this->select (symbol, string).item ());
+	return (this->select(symbol, string).item());
 }
 
 /*====================================================================*
@@ -277,23 +277,23 @@ oitem * olist::item (char const * symbol, char const * string)
  *
  *--------------------------------------------------------------------*/
 
-olist & olist::select (char const * symbol) 
+olist & olist::select(char const * symbol)
 
 {
 	this->mlower = this->mstart;
 	this->mupper = this->mcount;
-	while (this->mlower < this->mupper) 
+	while (this->mlower < this->mupper)
 	{
-		this->mindex = (this->mlower + this->mupper) >> 1;
-		signed order = (this->morder) (symbol, this->mtable [this->mindex] ->name ());
-		if (order < 0) 
+		this->mindex = (this->mlower +  this->mupper) >> 1;
+		signed order = (this->morder)(symbol, this->mtable[this->mindex] ->name());
+		if (order < 0)
 		{
 			this->mupper = this->mindex - 0;
 			continue;
 		}
-		if (order > 0) 
+		if (order > 0)
 		{
-			this->mlower = this->mindex + 1;
+			this->mlower = this->mindex +  1;
 			continue;
 		}
 		return (* this);
@@ -312,35 +312,35 @@ olist & olist::select (char const * symbol)
  *
  *--------------------------------------------------------------------*/
 
-olist & olist::select (char const * symbol, char const * string) 
+olist & olist::select(char const * symbol, char const * string)
 
 {
 	signed order;
 	this->mlower = this->mstart;
 	this->mupper = this->mcount;
-	while (this->mlower < this->mupper) 
+	while (this->mlower < this->mupper)
 	{
-		this->mindex = (this->mlower + this->mupper) >> 1;
-		order = (this->morder) (symbol, this->mtable [this->mindex]->name ());
-		if (order < 0) 
+		this->mindex = (this->mlower +  this->mupper) >> 1;
+		order = (this->morder)(symbol, this->mtable[this->mindex]->name());
+		if (order < 0)
 		{
 			this->mupper = this->mindex - 0;
 			continue;
 		}
-		if (order > 0) 
+		if (order > 0)
 		{
-			this->mlower = this->mindex + 1;
+			this->mlower = this->mindex +  1;
 			continue;
 		}
-		order = (this->morder) (string, this->mtable [this->mindex] ->text ());
-		if (order < 0) 
+		order = (this->morder)(string, this->mtable[this->mindex] ->text());
+		if (order < 0)
 		{
 			this->mupper = this->mindex - 0;
 			continue;
 		}
-		if (order > 0) 
+		if (order > 0)
 		{
-			this->mlower = this->mindex + 1;
+			this->mlower = this->mindex +  1;
 			continue;
 		}
 		return (* this);
@@ -364,28 +364,28 @@ olist & olist::select (char const * symbol, char const * string)
  *
  *--------------------------------------------------------------------*/
 
-olist & olist::insertitem (oitem * item) 
+olist & olist::insertitem(oitem * item)
 
 {
-	if (this->mlower >= this->mupper) 
+	if (this->mlower >= this->mupper)
 	{
-		if (this->mcount >= this->mlimit) 
+		if (this->mcount >= this->mlimit)
 		{
 			oitem ** table = this->mtable;
-			this->mlimit = this->mlimit + this->mblock;
+			this->mlimit = this->mlimit +  this->mblock;
 			this->mblock = this->mlimit - this->mblock;
-			this->mtable = new oitem *[this->mlimit];
-			for (this->mindex = this->mstart; this->mindex < this->mlimit; this->mindex++) 
+			this->mtable = new oitem * [this->mlimit];
+			for (this->mindex = this->mstart; this->mindex < this->mlimit; this->mindex++)
 			{
-				this->mtable [this->mindex] = table [this->mindex];
+				this->mtable[this->mindex] = table[this->mindex];
 			}
 			delete [] table;
 		}
-		for (this->mindex = this->mcount++; this->mindex > this->mlower; this->mindex--) 
+		for (this->mindex = this->mcount++; this->mindex > this->mlower; this->mindex--)
 		{
-			this->mtable [this->mindex] = this->mtable [this->mindex - 1];
+			this->mtable[this->mindex] = this->mtable[this->mindex - 1];
 		}
-		this->mtable [this->mindex] = item;
+		this->mtable[this->mindex] = item;
 		this->mlower = this->mstart;
 		this->mupper = this->mcount;
 	}
@@ -401,15 +401,15 @@ olist & olist::insertitem (oitem * item)
  *
  *--------------------------------------------------------------------*/
 
-olist & olist::removeitem () 
+olist & olist::removeitem()
 
 {
-	oitem * item = this->mtable [this->mindex];
-	for (this->mcount--; this->mindex < this->mcount; this->mindex++) 
+	oitem * item = this->mtable[this->mindex];
+	for (this->mcount--; this->mindex < this->mcount; this->mindex++)
 	{
-		this->mtable [this->mindex] = this->mtable [this->mindex + 1];
+		this->mtable[this->mindex] = this->mtable[this->mindex +  1];
 	}
-	this->mtable [this->mindex] = (oitem *) (0);
+	this->mtable[this->mindex] = (oitem *)(0);
 	delete item;
 	return (* this);
 }
@@ -421,17 +421,17 @@ olist & olist::removeitem ()
  *
  *--------------------------------------------------------------------*/
 
-olist & olist::bound (char const * symbol) 
+olist & olist::bound(char const * symbol)
 
 {
-	if (this->defined (symbol)) 
+	if (this->defined(symbol))
 	{
 		this->mlower = this->mupper = this->mindex;
-		while ((this->mlower > this->mstart) && ((this->morder) (this->mtable [this->mindex] ->name (), this->mtable [this->mlower - 1] ->name ()) == 0)) 
+		while ((this->mlower > this->mstart) && ((this->morder)(this->mtable[this->mindex] ->name(), this->mtable[this->mlower - 1] ->name()) == 0))
 		{
 			this->mlower--;
 		}
-		while ((this->mupper < this->mcount) && ((this->morder) (this->mtable [this->mindex] ->name (), this->mtable [this->mupper + 0] ->name ()) == 0)) 
+		while ((this->mupper < this->mcount) && ((this->morder)(this->mtable[this->mindex] ->name(), this->mtable[this->mupper +  0] ->name()) == 0))
 		{
 			this->mlower++;
 		}
@@ -448,11 +448,11 @@ olist & olist::bound (char const * symbol)
  *
  *--------------------------------------------------------------------*/
 
-olist & olist::clear () 
+olist & olist::clear()
 
 {
 	delete [] this->mtable;
-	this->mtable = new oitem *[this->mlimit];
+	this->mtable = new oitem * [this->mlimit];
 	this->mstart = 0;
 	this->mcount = 0;
 	this->mindex = 0;
@@ -468,13 +468,13 @@ olist & olist::clear ()
  *
  *--------------------------------------------------------------------*/
 
-olist::olist (signed order (char const *, char const *)) 
+olist::olist(signed order(char const *, char const *))
 
 {
 	this->morder = order;
-	this->mtitle = new char [1];
-	this->mtitle [0] = (char) (0);
-	this->mtable = new oitem *[_LISTSIZE];
+	this->mtitle = new char[1];
+	this->mtitle[0] = (char)(0);
+	this->mtable = new oitem * [_LISTSIZE];
 	this->mblock = _LISTSIZE;
 	this->mlimit = _LISTSIZE;
 	this->mstart = 0;
@@ -491,13 +491,13 @@ olist::olist (signed order (char const *, char const *))
  *   
  *--------------------------------------------------------------------*/
 
-olist::olist () 
+olist::olist()
 
 {
 	this->morder = std::strcmp;
-	this->mtitle = new char [1];
-	this->mtitle [0] = (char) (0);
-	this->mtable = new oitem *[_LISTSIZE];
+	this->mtitle = new char[1];
+	this->mtitle[0] = (char)(0);
+	this->mtable = new oitem * [_LISTSIZE];
 	this->mblock = _LISTSIZE;
 	this->mlimit = _LISTSIZE;
 	this->mstart = 0;
@@ -514,7 +514,7 @@ olist::olist ()
  *   
  *--------------------------------------------------------------------*/
 
-olist::~olist () 
+olist::~ olist()
 
 {
 	delete [] this->mtitle;
@@ -527,4 +527,6 @@ olist::~olist ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

@@ -31,7 +31,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const * oitem::name () const 
+char const * oitem::name() const
 
 {
 	return (this->mname);
@@ -46,10 +46,10 @@ char const * oitem::name () const
  *
  *--------------------------------------------------------------------*/
 
-oitem & oitem::name (char const * name) 
+oitem & oitem::name(char const * name)
 
 {
-	this->mname = otext::replace (this->mname, name);
+	this->mname = otext::replace(this->mname, name);
 	return (* this);
 }
 
@@ -61,7 +61,7 @@ oitem & oitem::name (char const * name)
  *
  *--------------------------------------------------------------------*/
 
-char const * oitem::text () const 
+char const * oitem::text() const
 
 {
 	return (this->mtext);
@@ -76,10 +76,10 @@ char const * oitem::text () const
  *
  *--------------------------------------------------------------------*/
 
-oitem & oitem::text (char const * text) 
+oitem & oitem::text(char const * text)
 
 {
-	this->mtext = otext::replace (this->mtext, text);
+	this->mtext = otext::replace(this->mtext, text);
 	return (* this);
 }
 
@@ -91,7 +91,7 @@ oitem & oitem::text (char const * text)
  *
  *--------------------------------------------------------------------*/
 
-void * oitem::data () const 
+void * oitem::data() const
 
 {
 	return (this->mdata);
@@ -105,10 +105,10 @@ void * oitem::data () const
  *
  *--------------------------------------------------------------------*/
 
-oitem & oitem::data (void * data) 
+oitem & oitem::data(void * data)
 
 {
-	this->mdata = (void *) (data);
+	this->mdata = (void *)(data);
 	return (* this);
 }
 
@@ -119,7 +119,7 @@ oitem & oitem::data (void * data)
  *
  *--------------------------------------------------------------------*/
 
-oitem * oitem::next () const 
+oitem * oitem::next() const
 
 {
 	return (this->mitem);
@@ -132,7 +132,7 @@ oitem * oitem::next () const
  *
  *--------------------------------------------------------------------*/
 
-oitem & oitem::next (oitem * item) 
+oitem & oitem::next(oitem * item)
 
 {
 	this->mitem = item;
@@ -146,12 +146,12 @@ oitem & oitem::next (oitem * item)
  *
  *--------------------------------------------------------------------*/
 
-oitem & oitem::clear () 
+oitem & oitem::clear()
 
 {
-	this->mname = otext::replace (this->mname, "");
-	this->mtext = otext::replace (this->mtext, "");
-	this->mdata = (void *) (0);
+	this->mname = otext::replace(this->mname, "");
+	this->mtext = otext::replace(this->mtext, "");
+	this->mdata = (void *)(0);
 	return (* this);
 }
 
@@ -162,13 +162,13 @@ oitem & oitem::clear ()
  *   
  *--------------------------------------------------------------------*/
 
-oitem::oitem (char const * name, char const * text, void const * data) 
+oitem::oitem(char const * name, char const * text, void const * data)
 
 {
-	this->mname = otext::save (name);
-	this->mtext = otext::save (text);
-	this->mdata = (void *) (data);
-	this->mitem = (oitem *) (0);
+	this->mname = otext::save(name);
+	this->mtext = otext::save(text);
+	this->mdata = (void *)(data);
+	this->mitem = (oitem *)(0);
 	return;
 }
 
@@ -179,13 +179,13 @@ oitem::oitem (char const * name, char const * text, void const * data)
  *   
  *--------------------------------------------------------------------*/
 
-oitem::oitem (char const * name, char const * text) 
+oitem::oitem(char const * name, char const * text)
 
 {
-	this->mname = otext::save (name);
-	this->mtext = otext::save (text);
-	this->mdata = (void *) (0);
-	this->mitem = (oitem *) (0);
+	this->mname = otext::save(name);
+	this->mtext = otext::save(text);
+	this->mdata = (void *)(0);
+	this->mitem = (oitem *)(0);
 	return;
 }
 
@@ -196,13 +196,13 @@ oitem::oitem (char const * name, char const * text)
  *   
  *--------------------------------------------------------------------*/
 
-oitem::oitem (char const * name, void const * data) 
+oitem::oitem(char const * name, void const * data)
 
 {
-	this->mname = otext::save (name);
-	this->mtext = otext::save ("");
-	this->mdata = (void *) (data);
-	this->mitem = (oitem *) (0);
+	this->mname = otext::save(name);
+	this->mtext = otext::save("");
+	this->mdata = (void *)(data);
+	this->mitem = (oitem *)(0);
 	return;
 }
 
@@ -213,13 +213,13 @@ oitem::oitem (char const * name, void const * data)
  *   
  *--------------------------------------------------------------------*/
 
-oitem::oitem (char const * name) 
+oitem::oitem(char const * name)
 
 {
-	this->mname = otext::save (name);
-	this->mtext = otext::save ("");
-	this->mdata = (void *) (0);
-	this->mitem = (oitem *) (0);
+	this->mname = otext::save(name);
+	this->mtext = otext::save("");
+	this->mdata = (void *)(0);
+	this->mitem = (oitem *)(0);
 	return;
 }
 
@@ -230,13 +230,13 @@ oitem::oitem (char const * name)
  *   
  *--------------------------------------------------------------------*/
 
-oitem::oitem () 
+oitem::oitem()
 
 {
-	this->mname = otext::save ("");
-	this->mtext = otext::save ("");
-	this->mdata = (void *) (0);
-	this->mitem = (oitem *) (0);
+	this->mname = otext::save("");
+	this->mtext = otext::save("");
+	this->mdata = (void *)(0);
+	this->mitem = (oitem *)(0);
 	return;
 }
 
@@ -247,13 +247,13 @@ oitem::oitem ()
  *   
  *--------------------------------------------------------------------*/
 
-oitem::~oitem () 
+oitem::~ oitem()
 
 {
-	this->mdata = (void *) (0);
+	this->mdata = (void *)(0);
 	delete [] this->mname;
 	delete [] this->mtext;
-	if (this->mitem != (oitem *) (0)) 
+	if (this->mitem != (oitem *)(0))
 	{
 		delete this->mitem;
 	}
@@ -265,4 +265,6 @@ oitem::~oitem ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

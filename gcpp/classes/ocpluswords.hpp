@@ -108,12 +108,12 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ocpluswords: public okeywords 
+class __declspec(dllexport) ocpluswords: public okeywords
 
 {
-public:
+public: 
 	ocpluswords ();
-	virtual ~ ocpluswords ();
+	virtual ~ ocpluswords();
 };
 
 /*====================================================================*
@@ -121,4 +121,6 @@ public:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

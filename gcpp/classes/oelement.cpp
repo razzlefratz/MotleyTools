@@ -31,7 +31,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const * oelement::scope () const 
+char const * oelement::scope() const
 
 {
 	return (oelement::mscope);
@@ -45,7 +45,7 @@ char const * oelement::scope () const
  *
  *--------------------------------------------------------------------*/
 
-char const * oelement::title () const 
+char const * oelement::title() const
 
 {
 	return (oelement::mtitle);
@@ -59,13 +59,13 @@ char const * oelement::title () const
  *
  *--------------------------------------------------------------------*/
 
-oelement & oelement::print () 
+oelement & oelement::print()
 
 {
-	if (* this->mscope) 
+	if (* this->mscope)
 	{
 		std::cout << this->mscope;
-		std::cout.put (':');
+		std::cout.put(':');
 	}
 	std::cout << this->mtitle;
 	return (* this);
@@ -77,11 +77,11 @@ oelement & oelement::print ()
  *
  *--------------------------------------------------------------------*/
 
-oelement::oelement (char const * scope, char const * title) 
+oelement::oelement(char const * scope, char const * title)
 
 {
-	this->mscope = otext::save (scope);
-	this->mscope = otext::save (title);
+	this->mscope = otext::save(scope);
+	this->mscope = otext::save(title);
 	return;
 }
 
@@ -91,11 +91,11 @@ oelement::oelement (char const * scope, char const * title)
  *
  *--------------------------------------------------------------------*/
 
-oelement::oelement (char const * title) 
+oelement::oelement(char const * title)
 
 {
-	this->mscope = otext::save ("");
-	this->mscope = otext::save (title);
+	this->mscope = otext::save("");
+	this->mscope = otext::save(title);
 	return;
 }
 
@@ -105,7 +105,7 @@ oelement::oelement (char const * title)
  *
  *--------------------------------------------------------------------*/
 
-oelement::~oelement () 
+oelement::~ oelement()
 
 {
 	return;
@@ -116,4 +116,6 @@ oelement::~oelement ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

@@ -46,7 +46,7 @@
  *
  *--------------------------------------------------------------------*/
 
-const unsigned char ochrupr::table [UCHAR_MAX + 1] = 
+const unsigned char ochrupr::table[UCHAR_MAX +  1] = 
 
 {
 	0,
@@ -319,7 +319,7 @@ const unsigned char ochrupr::table [UCHAR_MAX + 1] =
  *
  *--------------------------------------------------------------------*/
 
-ochrupr::ochrupr () 
+ochrupr::ochrupr()
 
 {
 	ochrtbl::mtable = ochrupr::table;
@@ -338,7 +338,7 @@ ochrupr::ochrupr ()
  *
  *--------------------------------------------------------------------*/
 
-ochrupr::~ochrupr () 
+ochrupr::~ ochrupr()
 
 {
 	return;
@@ -349,4 +349,6 @@ ochrupr::~ochrupr ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

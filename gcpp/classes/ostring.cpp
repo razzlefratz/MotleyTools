@@ -45,7 +45,7 @@ ochrupr ostring::chrupr;
  *
  *--------------------------------------------------------------------*/
 
-const size_t ostring::length () const 
+const size_t ostring::length() const
 
 {
 	return (this->mlength);
@@ -63,10 +63,10 @@ const size_t ostring::length () const
  *
  *--------------------------------------------------------------------*/
 
-char const * ostring::string () const 
+char const * ostring::string() const
 
 {
-	return ((char const *) (this->mstring));
+	return ((char const *)(this->mstring));
 }
 
 /*====================================================================*
@@ -81,15 +81,15 @@ char const * ostring::string () const
  *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::string (char const * string) 
+ostring & ostring::string(char const * string)
 
 {
-	if (std::strcmp (string, this->mstring)) 
+	if (std::strcmp(string, this->mstring))
 	{
 		delete [] this->mstring;
-		this->mlength = std::strlen (string);
-		this->mstring = new char [this->mlength + 1];
-		std::strcpy (this->mstring, string);
+		this->mlength = std::strlen(string);
+		this->mstring = new char[this->mlength +  1];
+		std::strcpy(this->mstring, string);
 	}
 	return (* this);
 }
@@ -107,17 +107,17 @@ ostring & ostring::string (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-char const * ostring::first (size_t count) 
+char const * ostring::first(size_t count)
 
 {
 	delete [] this->mbuffer;
-	if (count > this->mlength) 
+	if (count > this->mlength)
 	{
 		count = this->mlength;
 	}
-	this->mbuffer = new char [count + 1];
-	std::strncpy (this->mbuffer, this->mstring, count);
-	this->mbuffer [count] = (char) (0);
+	this->mbuffer = new char[count +  1];
+	std::strncpy(this->mbuffer, this->mstring, count);
+	this->mbuffer[count] = (char)(0);
 	return (this->mbuffer);
 }
 
@@ -133,17 +133,17 @@ char const * ostring::first (size_t count)
  *
  *--------------------------------------------------------------------*/
 
-char const * ostring::final (size_t count) 
+char const * ostring::final(size_t count)
 
 {
 	delete [] this->mbuffer;
-	if (count > this->mlength) 
+	if (count > this->mlength)
 	{
 		count = this->mlength;
 	}
-	this->mbuffer = new char [this->mlength - count + 1];
-	std::strncpy (this->mbuffer, this->mstring + this->mlength - count, count);
-	this->mbuffer [count] = (char) (0);
+	this->mbuffer = new char[this->mlength - count +  1];
+	std::strncpy(this->mbuffer, this->mstring +  this->mlength - count, count);
+	this->mbuffer[count] = (char)(0);
 	return (this->mbuffer);
 }
 
@@ -159,17 +159,17 @@ char const * ostring::final (size_t count)
  *
  *--------------------------------------------------------------------*/
 
-char const * ostring::operator << (size_t count) 
+char const * ostring::operator << (size_t count)
 
 {
-	if (count > this->mlength) 
+	if (count > this->mlength)
 	{
 		count = this->mlength;
 	}
 	delete [] this->mbuffer;
-	this->mbuffer = new char [this->mlength - count + 1];
-	std::strncpy (this->mbuffer, this->mstring + count, this->mlength - count);
-	this->mbuffer [this->mlength - count] = (char) (0);
+	this->mbuffer = new char[this->mlength - count +  1];
+	std::strncpy(this->mbuffer, this->mstring +  count, this->mlength - count);
+	this->mbuffer[this->mlength - count] = (char)(0);
 	return (this->mbuffer);
 }
 
@@ -185,17 +185,17 @@ char const * ostring::operator << (size_t count)
  *
  *--------------------------------------------------------------------*/
 
-char const * ostring::operator >> (size_t count) 
+char const * ostring::operator >> (size_t count)
 
 {
-	if (count > this->mlength) 
+	if (count > this->mlength)
 	{
 		count = this->mlength;
 	}
 	delete [] this->mbuffer;
-	this->mbuffer = new char [this->mlength - count + 1];
-	std::strncpy (this->mbuffer, this->mstring, this->mlength - count);
-	this->mbuffer [this->mlength - count] = (char) (0);
+	this->mbuffer = new char[this->mlength - count +  1];
+	std::strncpy(this->mbuffer, this->mstring, this->mlength - count);
+	this->mbuffer[this->mlength - count] = (char)(0);
 	return (this->mbuffer);
 }
 
@@ -211,10 +211,10 @@ char const * ostring::operator >> (size_t count)
  *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::operator = (char const * string) 
+ostring & ostring::operator = (char const * string)
 
 {
-	return (this->string (string));
+	return (this->string(string));
 }
 
 /*====================================================================*
@@ -229,10 +229,10 @@ ostring & ostring::operator = (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-bool ostring::operator == (char const * string) const 
+bool ostring::operator == (char const * string) const
 
 {
-	return (std::strcmp (this->mstring, string) == 0);
+	return (std::strcmp(this->mstring, string) == 0);
 }
 
 /*====================================================================*
@@ -247,10 +247,10 @@ bool ostring::operator == (char const * string) const
  *
  *--------------------------------------------------------------------*/
 
-bool ostring::operator != (char const * string) const 
+bool ostring::operator != (char const * string) const
 
 {
-	return (std::strcmp (this->mstring, string) != 0);
+	return (std::strcmp(this->mstring, string) != 0);
 }
 
 /*====================================================================*
@@ -265,10 +265,10 @@ bool ostring::operator != (char const * string) const
  *
  *--------------------------------------------------------------------*/
 
-bool ostring::operator <= (char const * string) const 
+bool ostring::operator <= (char const * string) const
 
 {
-	return (std::strcmp (this->mstring, string) <= 0);
+	return (std::strcmp(this->mstring, string) <= 0);
 }
 
 /*====================================================================*
@@ -283,10 +283,10 @@ bool ostring::operator <= (char const * string) const
  *
  *--------------------------------------------------------------------*/
 
-bool ostring::operator >= (char const * string) const 
+bool ostring::operator >= (char const * string) const
 
 {
-	return (std::strcmp (this->mstring, string) >= 0);
+	return (std::strcmp(this->mstring, string) >= 0);
 }
 
 /*====================================================================*
@@ -301,10 +301,10 @@ bool ostring::operator >= (char const * string) const
  *
  *--------------------------------------------------------------------*/
 
-bool ostring::operator < (char const * string) const 
+bool ostring::operator < (char const * string) const
 
 {
-	return (std::strcmp (this->mstring, string) < 0);
+	return (std::strcmp(this->mstring, string) < 0);
 }
 
 /*====================================================================*
@@ -319,10 +319,10 @@ bool ostring::operator < (char const * string) const
  *
  *--------------------------------------------------------------------*/
 
-bool ostring::operator > (char const * string) const 
+bool ostring::operator > (char const * string) const
 
 {
-	return (std::strcmp (this->mstring, string) > 0);
+	return (std::strcmp(this->mstring, string) > 0);
 }
 
 /*====================================================================*
@@ -337,10 +337,10 @@ bool ostring::operator > (char const * string) const
  *
  *--------------------------------------------------------------------*/
 
-bool ostring::operator * (char const * charset) const 
+bool ostring::operator * (char const * charset) const
 
 {
-	return (this->ischarset (charset));
+	return (this->ischarset(charset));
 }
 
 /*====================================================================*
@@ -355,12 +355,12 @@ bool ostring::operator * (char const * charset) const
  *
  *--------------------------------------------------------------------*/
 
-bool ostring::ischarset (char const * charset) const 
+bool ostring::ischarset(char const * charset) const
 
 {
-	for (unsigned mindex = 0; mindex < this->mlength; ++mindex) 
+	for (unsigned mindex = 0; mindex < this->mlength; ++ mindex)
 	{
-		if (!std::strchr (charset, this->mstring [mindex])) 
+		if (! std::strchr(charset, this->mstring[mindex]))
 		{
 			return (false);
 		}
@@ -380,12 +380,12 @@ bool ostring::ischarset (char const * charset) const
  *
  *--------------------------------------------------------------------*/
 
-bool ostring::incharset (char const * charset) const 
+bool ostring::incharset(char const * charset) const
 
 {
-	for (unsigned mindex = 0; mindex < this->mlength; ++mindex) 
+	for (unsigned mindex = 0; mindex < this->mlength; ++ mindex)
 	{
-		if (std::strchr (charset, this->mstring [mindex])) 
+		if (std::strchr(charset, this->mstring[mindex]))
 		{
 			return (true);
 		}
@@ -405,18 +405,18 @@ bool ostring::incharset (char const * charset) const
  *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::read (char const * filename) 
+ostring & ostring::read(char const * filename)
 
 {
-	if ((filename) && (* filename)) 
+	if ((filename) && (* filename))
 	{
 		std::ifstream stream;
-		stream.open (filename, std::ios::binary);
-		if (stream.good ()) 
+		stream.open(filename, std::ios::binary);
+		if (stream.good())
 		{
-			this->read (& stream);
+			this->read(& stream);
 		}
-		stream.close ();
+		stream.close();
 	}
 	return (* this);
 }
@@ -433,16 +433,16 @@ ostring & ostring::read (char const * filename)
  *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::read () 
+ostring & ostring::read()
 
 {
-	std::cin.seekg (0, std::ios::end);
-	off_t length = std::cin.tellg ();
-	std::cin.seekg (0, std::ios::beg);
+	std::cin.seekg(0, std::ios::end);
+	off_t length = std::cin.tellg();
+	std::cin.seekg(0, std::ios::beg);
 	delete [] this->mstring;
-	this->mstring = new char [length+1];
-	std::cin.read (this->mstring, length);
-	this->mstring [length] = (char)(0);
+	this->mstring = new char[length + 1];
+	std::cin.read(this->mstring, length);
+	this->mstring[length] = (char) (0);
 	this->mlength = length;
 	return (* this);
 }
@@ -459,16 +459,16 @@ ostring & ostring::read ()
  *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::read (std::ifstream * stream) 
+ostring & ostring::read(std::ifstream * stream)
 
 {
-	stream->seekg (0, std::ios::end);
-	off_t length = stream->tellg ();
-	stream->seekg (0, std::ios::beg);
+	stream->seekg(0, std::ios::end);
+	off_t length = stream->tellg();
+	stream->seekg(0, std::ios::beg);
 	delete [] this->mstring;
-	this->mstring = new char [length+1];
-	stream->read (this->mstring, length);
-	this->mstring [length] = (char)(0);
+	this->mstring = new char[length + 1];
+	stream->read(this->mstring, length);
+	this->mstring[length] = (char) (0);
 	this->mlength = length;
 	return (* this);
 }
@@ -486,21 +486,21 @@ ostring & ostring::read (std::ifstream * stream)
  *
  *--------------------------------------------------------------------*/
 
-char const * ostring::field (size_t start, size_t count) 
+char const * ostring::field(size_t start, size_t count)
 
 {
-	if (start > this->mlength) 
+	if (start > this->mlength)
 	{
 		start = this->mlength;
 	}
-	if (count > this->mlength - start) 
+	if (count > this->mlength - start)
 	{
 		count = this->mlength - start;
 	}
 	delete [] this->mbuffer;
-	this->mbuffer = new char [count + 1];
-	std::strncpy (this->mbuffer, this->mstring + start, count);
-	this->mbuffer [count] = (char) (0);
+	this->mbuffer = new char[count +  1];
+	std::strncpy(this->mbuffer, this->mstring +  start, count);
+	this->mbuffer[count] = (char)(0);
 	return (this->mbuffer);
 }
 
@@ -516,26 +516,26 @@ char const * ostring::field (size_t start, size_t count)
  *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::trim (char const * charset) 
+ostring & ostring::trim(char const * charset)
 
 {
 	char * first = this->mstring;
-	char * final = this->mstring + this->mlength - 1;
-	while ((first < final) && (std::strchr (charset, * first))) 
+	char * final = this->mstring +  this->mlength - 1;
+	while ((first < final) && (std::strchr(charset, * first)))
 	{
 		first++;
 	}
-	while ((first < final) && (std::strchr (charset, * final))) 
+	while ((first < final) && (std::strchr(charset, * final)))
 	{
 		final--;
 	}
 	char * field = this->mstring;
-	while (first <= final) 
+	while (first <= final)
 	{
 		* field++ = * first++;
 	}
-	* first = (char) (0);
-	this->mlength = (size_t) (first - this->mstring);
+	* first = (char)(0);
+	this->mlength = (size_t)(first - this->mstring);
 	return (* this);
 }
 
@@ -556,18 +556,18 @@ ostring & ostring::trim (char const * charset)
  *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::enclose (char const * example) 
+ostring & ostring::enclose(char const * example)
 
 {
-	if ((example) && (* example)) 
+	if ((example) && (* example))
 	{
-		size_t length = std::strlen (example);
+		size_t length = std::strlen(example);
 		char * buffer = this->mstring;
-		this->mstring = new char [this->mlength + 3];
-		this->mstring [0] = example [0];
-		std::strcpy (& this->mstring [1], buffer);
-		this->mstring [++this->mlength] = example [length - 1];
-		this->mstring [++this->mlength] = (char) (0);
+		this->mstring = new char[this->mlength +  3];
+		this->mstring[0] = example[0];
+		std::strcpy(& this->mstring[1], buffer);
+		this->mstring[++ this->mlength] = example[length - 1];
+		this->mstring[++ this->mlength] = (char)(0);
 		delete [] buffer;
 	}
 	return (* this);
@@ -585,14 +585,14 @@ ostring & ostring::enclose (char const * example)
  *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::prefix (char const * string) 
+ostring & ostring::prefix(char const * string)
 
 {
 	char * buffer = this->mstring;
-	this->mlength += std::strlen (string);
-	this->mstring = new char [this->mlength + 1];
-	std::strcpy (this->mstring, string);
-	std::strcat (this->mstring, buffer);
+	this->mlength += std::strlen(string);
+	this->mstring = new char[this->mlength +  1];
+	std::strcpy(this->mstring, string);
+	std::strcat(this->mstring, buffer);
 	delete [] buffer;
 	return (* this);
 }
@@ -609,14 +609,14 @@ ostring & ostring::prefix (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::suffix (char const * string) 
+ostring & ostring::suffix(char const * string)
 
 {
 	char * buffer = this->mstring;
-	this->mlength += std::strlen (string);
-	this->mstring = new char [this->mlength + 1];
-	std::strcpy (this->mstring, buffer);
-	std::strcat (this->mstring, string);
+	this->mlength += std::strlen(string);
+	this->mstring = new char[this->mlength +  1];
+	std::strcpy(this->mstring, buffer);
+	std::strcat(this->mstring, string);
 	delete [] buffer;
 	return (* this);
 }
@@ -634,15 +634,15 @@ ostring & ostring::suffix (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::reduce (char const * charset) 
+ostring & ostring::reduce(char const * charset)
 
 {
-	if ((charset) && (* charset)) 
+	if ((charset) && (* charset))
 	{
 		char * sp = this->mstring;
-		while (* sp) 
+		while (* sp)
 		{
-			if (std::strchr (charset, * sp)) 
+			if (std::strchr(charset, * sp))
 			{
 				* sp = * charset;
 			}
@@ -665,21 +665,21 @@ ostring & ostring::reduce (char const * charset)
  *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::select (char const * charset) 
+ostring & ostring::select(char const * charset)
 
 {
-	if ((charset) && (* charset)) 
+	if ((charset) && (* charset))
 	{
 		char * cp = this->mstring;
 		char * sp = this->mstring;
-		while ((* cp = * sp++)) 
+		while ((* cp = * sp++))
 		{
-			if (std::strchr (charset, * cp)) 
+			if (std::strchr(charset, * cp))
 			{
 				cp++;
 			}
 		}
-		this->mlength = (size_t) (cp - this->mstring);
+		this->mlength = (size_t)(cp - this->mstring);
 	}
 	return (* this);
 }
@@ -697,21 +697,21 @@ ostring & ostring::select (char const * charset)
  *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::remove (char const * charset) 
+ostring & ostring::remove(char const * charset)
 
 {
-	if ((charset) && (* charset)) 
+	if ((charset) && (* charset))
 	{
 		char * cp = this->mstring;
 		char * sp = this->mstring;
-		while ((* cp = * sp++)) 
+		while ((* cp = * sp++))
 		{
-			if (!std::strchr (charset, * cp)) 
+			if (! std::strchr(charset, * cp))
 			{
 				cp++;
 			}
 		}
-		this->mlength = (size_t) (cp - this->mstring);
+		this->mlength = (size_t)(cp - this->mstring);
 	}
 	return (* this);
 }
@@ -728,10 +728,10 @@ ostring & ostring::remove (char const * charset)
  *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::tolower () 
+ostring & ostring::tolower()
 
 {
-	ostring::chrlwr.convert (this->mstring);
+	ostring::chrlwr.convert(this->mstring);
 	return (* this);
 }
 
@@ -747,10 +747,10 @@ ostring & ostring::tolower ()
  *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::toupper () 
+ostring & ostring::toupper()
 
 {
-	ostring::chrupr.convert (this->mstring);
+	ostring::chrupr.convert(this->mstring);
 	return (* this);
 }
 
@@ -766,12 +766,12 @@ ostring & ostring::toupper ()
  *
  *--------------------------------------------------------------------*/
 
-ostring & ostring::clear () 
+ostring & ostring::clear()
 
 {
 	delete [] this->mstring;
-	this->mstring = new char [1];
-	this->mstring [0] = (char) (0);
+	this->mstring = new char[1];
+	this->mstring[0] = (char)(0);
 	this->mlength = 0;
 	return (* this);
 }
@@ -796,31 +796,31 @@ ostring & ostring::clear ()
  *
  *--------------------------------------------------------------------*/
 
-signed ostring::compare (register char const * string1, register char const * string2, register const unsigned char ct []) 
+signed ostring::compare(register char const * string1, register char const * string2, register const unsigned char ct[])
 
 {
-	if (string1 == string2) 
+	if (string1 == string2)
 	{
 		return (0);
 	}
-	if (!string1) 
+	if (! string1)
 	{
-		return (-1);
+		return (- 1);
 	}
-	if (!string2) 
+	if (! string2)
 	{
-		return (+1);
+		return (+ 1);
 	}
-	while (ct [(unsigned) (* string1)] == ct [(unsigned) (* string2)]) 
+	while (ct[(unsigned)(* string1)] == ct[(unsigned)(* string2)])
 	{
-		if (ct [(unsigned) (* string1)] == (char) (0)) 
+		if (ct[(unsigned)(* string1)] == (char)(0))
 		{
 			return (0);
 		}
 		string1++;
 		string2++;
 	}
-	return (ct [(unsigned) (* string1)] < ct [(unsigned) (* string2)]? -1: +1);
+	return (ct[(unsigned)(* string1)] < ct[(unsigned)(* string2)]? - 1: + 1);
 }
 
 /*====================================================================*
@@ -835,22 +835,22 @@ signed ostring::compare (register char const * string1, register char const * st
  *
  *--------------------------------------------------------------------*/
 
-ostring::ostring (char const * string, size_t start, size_t count) 
+ostring::ostring(char const * string, size_t start, size_t count)
 
 {
-	unsigned limit = std::strlen (string);
-	if (start > limit) 
+	unsigned limit = std::strlen(string);
+	if (start > limit)
 	{
 		start = limit;
 	}
-	if (count > limit - start) 
+	if (count > limit - start)
 	{
 		count = limit - start;
 	}
 	this->mlength = count;
-	this->mstring = new char [this->mlength + 1];
-	std::strncpy (this->mstring, string + start, count);
-	this->mstring [this->mlength] = (char) (0);
+	this->mstring = new char[this->mlength +  1];
+	std::strncpy(this->mstring, string +  start, count);
+	this->mstring[this->mlength] = (char)(0);
 }
 
 /*====================================================================*
@@ -865,14 +865,14 @@ ostring::ostring (char const * string, size_t start, size_t count)
  *
  *--------------------------------------------------------------------*/
 
-ostring::ostring (char const * string) 
+ostring::ostring(char const * string)
 
 {
-	this->mbuffer = new char [1];
-	this->mbuffer [0] = (char) (0);
-	this->mlength = std::strlen (string);
-	this->mstring = new char [this->mlength + 1];
-	std::strcpy (this->mstring, string);
+	this->mbuffer = new char[1];
+	this->mbuffer[0] = (char)(0);
+	this->mlength = std::strlen(string);
+	this->mstring = new char[this->mlength +  1];
+	std::strcpy(this->mstring, string);
 }
 
 /*====================================================================*
@@ -887,13 +887,13 @@ ostring::ostring (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-ostring::ostring () 
+ostring::ostring()
 
 {
-	this->mbuffer = new char [1];
-	this->mbuffer [0] = (char) (0);
-	this->mstring = new char [1];
-	this->mstring [0] = (char) (0);
+	this->mbuffer = new char[1];
+	this->mbuffer[0] = (char)(0);
+	this->mstring = new char[1];
+	this->mstring[0] = (char)(0);
 	this->mlength = 0;
 }
 
@@ -909,7 +909,7 @@ ostring::ostring ()
  *
  *--------------------------------------------------------------------*/
 
-ostring::~ostring () 
+ostring::~ ostring()
 
 {
 	delete [] this->mbuffer;
@@ -921,4 +921,6 @@ ostring::~ostring ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

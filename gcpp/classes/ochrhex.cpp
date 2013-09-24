@@ -36,12 +36,12 @@ char const * ochrhex::digits = "0123456789ABCDEF";
  *
  *--------------------------------------------------------------------*/
 
-char * ochrhex::tohex (char * string, unsigned c) 
+char * ochrhex::tohex(char * string, unsigned c)
 
 {
-	* string++ = ochrhex::digits [(c >> 4) & 0x000F];
-	* string++ = ochrhex::digits [(c >> 0) & 0x000F];
-	* string = (char) (0);
+	* string++ = ochrhex::digits[(c >> 4) & 0x000F];
+	* string++ = ochrhex::digits[(c >> 0) & 0x000F];
+	* string = (char)(0);
 	return (string);
 }
 
@@ -55,11 +55,11 @@ char * ochrhex::tohex (char * string, unsigned c)
  *
  *--------------------------------------------------------------------*/
 
-char * ochrhex::toietf (char * string, unsigned c) 
+char * ochrhex::toietf(char * string, unsigned c)
 
 {
 	* string++ = '%';
-	string = ochrhex::tohex (string, c);
+	string = ochrhex::tohex(string, c);
 	return (string);
 }
 
@@ -73,12 +73,12 @@ char * ochrhex::toietf (char * string, unsigned c)
  *
  *--------------------------------------------------------------------*/
 
-char * ochrhex::toiso (char * string, unsigned c) 
+char * ochrhex::toiso(char * string, unsigned c)
 
 {
 	* string++ = '#';
 	* string++ = 'x';
-	string =ochrhex::tohex (string, c);
+	string = ochrhex::tohex(string, c);
 	return (string);
 }
 
@@ -92,13 +92,13 @@ char * ochrhex::toiso (char * string, unsigned c)
  *
  *--------------------------------------------------------------------*/
 
-char * ochrhex::tohtml (char * string, unsigned c) 
+char * ochrhex::tohtml(char * string, unsigned c)
 
 {
 	* string++ = '&';
-	string = ochrhex::toiso (string, c);
+	string = ochrhex::toiso(string, c);
 	* string++ = ';';
-	* string = (char) (0);
+	* string = (char)(0);
 	return (string);
 }
 
@@ -112,12 +112,12 @@ char * ochrhex::tohtml (char * string, unsigned c)
  *
  *--------------------------------------------------------------------*/
 
-char * ochrhex::toconst (char * string, unsigned c) 
+char * ochrhex::toconst(char * string, unsigned c)
 
 {
 	* string++ = '0';
 	* string++ = 'x';
-	string = ochrhex::tohex (string, c);
+	string = ochrhex::tohex(string, c);
 	return (string);
 }
 
@@ -131,7 +131,7 @@ char * ochrhex::toconst (char * string, unsigned c)
  *
  *--------------------------------------------------------------------*/
 
-ochrhex::ochrhex () 
+ochrhex::ochrhex()
 
 {
 	return;
@@ -147,7 +147,7 @@ ochrhex::ochrhex ()
  *
  *--------------------------------------------------------------------*/
 
-ochrhex::~ochrhex () 
+ochrhex::~ ochrhex()
 
 {
 	return;
@@ -158,4 +158,6 @@ ochrhex::~ochrhex ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

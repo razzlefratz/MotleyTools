@@ -22,19 +22,18 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oenclose: private osource 
+class __declspec(dllexport) oenclose: private osource
 
 {
-public:
+public: 
 	oenclose ();
-	virtual ~ oenclose ();
-	signed program (signed c, signed e) const;
-	signed inner_program (signed c, signed e) const;
-	signed condition (signed c) const;
-	signed statement (signed c) const;
-	signed expression (signed c) const;
-private:
-	
+	virtual ~ oenclose();
+	signed program(signed c, signed e) const;
+	signed inner_program(signed c, signed e) const;
+	signed condition(signed c) const;
+	signed statement(signed c) const;
+	signed expression(signed c) const;
+private: 
 };
 
 /*====================================================================*
@@ -42,4 +41,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

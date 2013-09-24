@@ -21,7 +21,7 @@
  *   constant definitisions and declarations;
  *--------------------------------------------------------------------*/
 
-char const ohexencode::mdigit [] = "0123456789ABCDEF";
+char const ohexencode::mdigit[] = "0123456789ABCDEF";
 
 /*====================================================================*
  *
@@ -32,12 +32,12 @@ char const ohexencode::mdigit [] = "0123456789ABCDEF";
  *
  *--------------------------------------------------------------------*/
 
-char * ohexencode::octet (char * string, char const c) 
+char * ohexencode::octet(char * string, char const c)
 
 {
-	* string++ = ohexencode::mdigit [(c >> 4) & 0x0F];
-	* string++ = ohexencode::mdigit [(c >> 0) & 0x0F];
-	* string = (char) (0);
+	* string++ = ohexencode::mdigit[(c >> 4) & 0x0F];
+	* string++ = ohexencode::mdigit[(c >> 0) & 0x0F];
+	* string = (char)(0);
 	return (string);
 }
 
@@ -48,12 +48,12 @@ char * ohexencode::octet (char * string, char const c)
  *
  *--------------------------------------------------------------------*/
 
-char * ohexencode::literal (char * string, char const c) 
+char * ohexencode::literal(char * string, char const c)
 
 {
 	* string++ = '\\';
 	* string++ = 'x';
-	string = ohexencode::octet (string, c);
+	string = ohexencode::octet(string, c);
 	return (string);
 }
 
@@ -64,12 +64,12 @@ char * ohexencode::literal (char * string, char const c)
  *
  *--------------------------------------------------------------------*/
 
-char * ohexencode::iso (char * string, char const c) 
+char * ohexencode::iso(char * string, char const c)
 
 {
 	* string++ = '#';
 	* string++ = 'x';
-	string = ohexencode::octet (string, c);
+	string = ohexencode::octet(string, c);
 	return (string);
 }
 
@@ -83,13 +83,13 @@ char * ohexencode::iso (char * string, char const c)
  *
  *--------------------------------------------------------------------*/
 
-char * ohexencode::html (char * string, char const c) 
+char * ohexencode::html(char * string, char const c)
 
 {
 	* string++ = '&';
-	string = ohexencode::iso (string, c);
+	string = ohexencode::iso(string, c);
 	* string++ = ';';
-	* string = (char) (0);
+	* string = (char)(0);
 	return (string);
 }
 
@@ -100,12 +100,12 @@ char * ohexencode::html (char * string, char const c)
  *
  *--------------------------------------------------------------------*/
 
-char * ohexencode::clang (char * string, char const c) 
+char * ohexencode::clang(char * string, char const c)
 
 {
 	* string++ = '0';
 	* string++ = 'x';
-	string = ohexencode::octet (string, c);
+	string = ohexencode::octet(string, c);
 	return (string);
 }
 
@@ -116,11 +116,11 @@ char * ohexencode::clang (char * string, char const c)
  *
  *--------------------------------------------------------------------*/
 
-char * ohexencode::ietf (char * string, char const c) 
+char * ohexencode::ietf(char * string, char const c)
 
 {
 	* string++ = '%';
-	string = ohexencode::octet (string, c);
+	string = ohexencode::octet(string, c);
 	return (string);
 }
 
@@ -128,7 +128,7 @@ char * ohexencode::ietf (char * string, char const c)
  *
  *--------------------------------------------------------------------*/
 
-ohexencode::ohexencode () 
+ohexencode::ohexencode()
 
 {
 	return;
@@ -138,7 +138,7 @@ ohexencode::ohexencode ()
  *
  *--------------------------------------------------------------------*/
 
-ohexencode::~ohexencode () 
+ohexencode::~ ohexencode()
 
 {
 	return;
@@ -149,4 +149,6 @@ ohexencode::~ohexencode ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

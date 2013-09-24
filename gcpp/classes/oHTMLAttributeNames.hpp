@@ -151,12 +151,12 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oHTMLAttributeNames: public okeywords 
+class __declspec(dllexport) oHTMLAttributeNames: public okeywords
 
 {
-public:
+public: 
 	oHTMLAttributeNames ();
-	virtual ~ oHTMLAttributeNames ();
+	virtual ~ oHTMLAttributeNames();
 };
 
 /*====================================================================*
@@ -164,4 +164,6 @@ public:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

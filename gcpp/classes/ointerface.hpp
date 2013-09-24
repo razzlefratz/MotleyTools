@@ -72,39 +72,40 @@ typedef unsigned char byte;
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ointerface 
+class __declspec(dllexport) ointerface
 
 {
 	friend class ointerfaces;
-public:
-	explicit ointerface (unsigned ifindex);
-	explicit ointerface (char const * ifname);
-	virtual ~ ointerface ();
-	unsigned Index (void) const;
-	char const * Name (void) const;
-	char const * Description (void) const;
-	byte const * HardwareAddress (void) const;
-	byte const * InternetAddress (void) const;
-	char const * HardwareAddressString (void) const;
-	char const * InternetAddressString (void) const;
-	ointerface & Description (char const *);
-	ointerface & ExportHardwareAddress (void *);
-	ointerface & ExportInternetAddress (void *);
-	ointerface & Print ();
-	bool Disabled () const;
-protected:
-	private: ointerface & lookup ();
-	unsigned pcap_nametoindex (char const * ifname) const;
-	char * pcap_indextoname (unsigned ifindex, char * ifname) const;
-	void pcap_gethwaddr ();
-	void pcap_getipaddr ();
+public: 
+	explicit ointerface(unsigned ifindex);
+	explicit ointerface(char const * ifname);
+	virtual ~ ointerface();
+	unsigned Index(void) const;
+	char const * Name(void) const;
+	char const * Description(void) const;
+	byte const * HardwareAddress(void) const;
+	byte const * InternetAddress(void) const;
+	char const * HardwareAddressString(void) const;
+	char const * InternetAddressString(void) const;
+	ointerface & Description(char const *);
+	ointerface & ExportHardwareAddress(void *);
+	ointerface & ExportInternetAddress(void *);
+	ointerface & Print();
+	bool Disabled() const;
+protected: 
+private: 
+	ointerface & lookup();
+	unsigned pcap_nametoindex(char const * ifname) const;
+	char * pcap_indextoname(unsigned ifindex, char * ifname) const;
+	void pcap_gethwaddr();
+	void pcap_getipaddr();
 	unsigned mifindex;
-	byte mhwaddr [ETHER_ADDR_LEN];
-	byte mipaddr [sizeof (uint32_t)];
-	char mhwstring [ETHER_ADDR_LEN * 3];
-	char mipstring [sizeof (uint32_t) * 4];
-	char mifname [IF_NAMESIZE];
-	char miftext [255];
+	byte mhwaddr[ETHER_ADDR_LEN];
+	byte mipaddr[sizeof(uint32_t)];
+	char mhwstring[ETHER_ADDR_LEN * 3];
+	char mipstring[sizeof(uint32_t) * 4];
+	char mifname[IF_NAMESIZE];
+	char miftext[255];
 };
 
 /*====================================================================*
@@ -112,4 +113,6 @@ protected:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

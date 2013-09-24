@@ -26,26 +26,26 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oitem: private otext 
+class __declspec(dllexport) oitem: private otext
 
 {
-public:
+public: 
 	oitem ();
 	oitem (char const * name);
 	oitem (char const * name, void const * data);
 	oitem (char const * name, char const * text);
 	oitem (char const * name, char const * text, void const * data);
-	virtual ~ oitem ();
-	char const * name () const;
-	char const * text () const;
-	void * data () const;
-	oitem & name (char const * string);
-	oitem & text (char const * string);
-	oitem & data (void * object);
-	oitem * next () const;
-	oitem & next (oitem * item);
-	oitem & clear ();
-private:
+	virtual ~ oitem();
+	char const * name() const;
+	char const * text() const;
+	void * data() const;
+	oitem & name(char const * string);
+	oitem & text(char const * string);
+	oitem & data(void * object);
+	oitem * next() const;
+	oitem & next(oitem * item);
+	oitem & clear();
+private: 
 	oitem * mitem;
 	char * mname;
 	char * mtext;
@@ -57,4 +57,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

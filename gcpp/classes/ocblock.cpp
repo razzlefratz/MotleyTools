@@ -37,27 +37,27 @@
  *
  *--------------------------------------------------------------------*/
 
-signed ocblock::statement (signed c) 
+signed ocblock::statement(signed c)
 
 {
-	while (oascii::isspace (c)) 
+	while (oascii::isspace(c))
 	{
-		c = ocblock::keep (c);
+		c = ocblock::keep(c);
 	}
-	if (c == '{') 
+	if (c == '{')
 	{
-		c = ocblock::keep (c);
-		c = ocblock::program (c, '}');
-		c = ocblock::keep (c);
+		c = ocblock::keep(c);
+		c = ocblock::program(c, '}');
+		c = ocblock::keep(c);
 	}
-	else if (c != ';') 
+	else if(c != ';')
 	{
-		std::cout.put ('{');
-		std::cout.put (' ');
-		c = ocblock::program (c, ';');
-		c = ocblock::keep (c);
-		std::cout.put (' ');
-		std::cout.put ('}');
+		std::cout.put('{');
+		std::cout.put(' ');
+		c = ocblock::program(c, ';');
+		c = ocblock::keep(c);
+		std::cout.put(' ');
+		std::cout.put('}');
 	}
 	return (c);
 }
@@ -72,22 +72,22 @@ signed ocblock::statement (signed c)
  *
  *--------------------------------------------------------------------*/
 
-signed ocblock::condition (signed c) 
+signed ocblock::condition(signed c)
 
 {
-	while (oascii::isspace (c)) 
+	while (oascii::isspace(c))
 	{
-		c = ocblock::keep (c);
+		c = ocblock::keep(c);
 	}
-	if (c == '(') 
+	if (c == '(')
 	{
-		c = ocblock::context ('(', ')');
+		c = ocblock::context('(', ')');
 	}
-	else if (c != ';') 
+	else if(c != ';')
 	{
-		std::cout.put ('(');
-		c = ocblock::context (c, ';');
-		std::cout.put (')');
+		std::cout.put('(');
+		c = ocblock::context(c, ';');
+		std::cout.put(')');
 	}
 	return (c);
 }
@@ -102,99 +102,99 @@ signed ocblock::condition (signed c)
  *
  *--------------------------------------------------------------------*/
 
-signed ocblock::program (signed c, signed e) 
+signed ocblock::program(signed c, signed e)
 
 {
-	while ((c != e) && (c != EOF)) 
+	while ((c != e) && (c != EOF))
 	{
-		if (c == '/') 
+		if (c == '/')
 		{
-			c = ocblock::comment (c);
+			c = ocblock::comment(c);
 			continue;
 		}
-		if (c == '#') 
+		if (c == '#')
 		{
-			c = ocblock::command ('#', '\n');
+			c = ocblock::command('#', '\n');
 			continue;
 		}
-		if (c == '(') 
+		if (c == '(')
 		{
-			c = ocblock::context ('(', ')');
+			c = ocblock::context('(', ')');
 			continue;
 		}
-		if (c == '[') 
+		if (c == '[')
 		{
-			c = ocblock::context ('[', ']');
+			c = ocblock::context('[', ']');
 			continue;
 		}
-		if (c == '{') 
+		if (c == '{')
 		{
-			c = ocblock::keep (c);
-			c = ocblock::program (c, '}');
-			c = ocblock::keep (c);
+			c = ocblock::keep(c);
+			c = ocblock::program(c, '}');
+			c = ocblock::keep(c);
 			continue;
 		}
-		if (oascii::isquote (c)) 
+		if (oascii::isquote(c))
 		{
-			c = ocblock::literal (c);
+			c = ocblock::literal(c);
 			continue;
 		}
-		if (oascii::isalpha (c) || (c == '_')) 
+		if (oascii::isalpha(c) || (c == '_'))
 		{
-			char string [100];
+			char string[100];
 			char * sp = string;
-			do
+			do 
 			{
 				* sp++ = c;
-				c = ocblock::keep (c);
+				c = ocblock::keep(c);
 			}
-			while (oascii::isalnum (c) || (c == '_'));
-			* sp = (char)(0);
-			if ((c == '(') || (c == '[') || (c == '{')) 
+			while (oascii::isalnum(c) || (c == '_'));
+			* sp = (char) (0);
+			if ((c == '(') || (c == '[') || (c == '{'))
 			{
-				std::cout.put (' ');
+				std::cout.put(' ');
 			}
-			if (!std::strcmp (string, "if")) 
+			if (! std::strcmp(string, "if"))
 			{
-				c = ocblock::condition (c);
-				c = ocblock::statement (c);
+				c = ocblock::condition(c);
+				c = ocblock::statement(c);
 				continue;
 			}
-			if (!std::strcmp (string, "else")) 
+			if (! std::strcmp(string, "else"))
 			{
-				c = ocblock::statement (c);
+				c = ocblock::statement(c);
 				continue;
 			}
-			if (!std::strcmp (string, "while")) 
+			if (! std::strcmp(string, "while"))
 			{
-				c = ocblock::condition (c);
-				c = ocblock::statement (c);
+				c = ocblock::condition(c);
+				c = ocblock::statement(c);
 				continue;
 			}
-			if (!std::strcmp (string, "for")) 
+			if (! std::strcmp(string, "for"))
 			{
-				c = ocblock::condition (c);
-				c = ocblock::statement (c);
+				c = ocblock::condition(c);
+				c = ocblock::statement(c);
 				continue;
 			}
-			if (!std::strcmp (string, "do")) 
+			if (! std::strcmp(string, "do"))
 			{
-				c = ocblock::statement (c);
+				c = ocblock::statement(c);
 				continue;
 			}
-			if (!std::strcmp (string, "return")) 
+			if (! std::strcmp(string, "return"))
 			{
-				c = ocblock::condition (c);
+				c = ocblock::condition(c);
 				continue;
 			}
-			if (!std::strcmp (string, "exit")) 
+			if (! std::strcmp(string, "exit"))
 			{
-				c = ocblock::condition (c);
+				c = ocblock::condition(c);
 				continue;
 			}
 			continue;
 		}
-		c = ocblock::keep (c);
+		c = ocblock::keep(c);
 	}
 	return (c);
 }
@@ -209,7 +209,7 @@ signed ocblock::program (signed c, signed e)
  *
  *--------------------------------------------------------------------*/
 
-ocblock::ocblock () 
+ocblock::ocblock()
 
 {
 	return;
@@ -225,7 +225,7 @@ ocblock::ocblock ()
  *
  *--------------------------------------------------------------------*/
 
-ocblock::~ocblock () 
+ocblock::~ ocblock()
 
 {
 	return;
@@ -236,4 +236,6 @@ ocblock::~ocblock ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

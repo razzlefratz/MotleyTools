@@ -22,16 +22,16 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ocblock: private osource 
+class __declspec(dllexport) ocblock: private osource
 
 {
-public:
+public: 
 	ocblock ();
-	virtual ~ ocblock ();
-	signed program (signed c);
-private:
-	signed statement (signed c);
-	signed condition (signed c);
+	virtual ~ ocblock();
+	signed program(signed c);
+private: 
+	signed statement(signed c);
+	signed condition(signed c);
 };
 
 /*====================================================================*
@@ -39,4 +39,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

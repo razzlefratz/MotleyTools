@@ -22,12 +22,12 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oconstants: public okeywords 
+class __declspec(dllexport) oconstants: public okeywords
 
 {
-public:
+public: 
 	oconstants ();
-	~ oconstants ();
+	~ oconstants();
 };
 
 /*====================================================================*
@@ -35,4 +35,6 @@ public:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

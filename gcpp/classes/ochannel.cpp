@@ -85,7 +85,7 @@
  *
  *--------------------------------------------------------------------*/
 
-signed ochannel::Descriptor () const 
+signed ochannel::Descriptor() const
 
 {
 	return (this->mfd);
@@ -99,7 +99,7 @@ signed ochannel::Descriptor () const
  *
  *--------------------------------------------------------------------*/
 
-unsigned ochannel::Timer () const 
+unsigned ochannel::Timer() const
 
 {
 	return (this->mtimer);
@@ -113,7 +113,7 @@ unsigned ochannel::Timer () const
  *
  *--------------------------------------------------------------------*/
 
-ochannel & ochannel::SetTimer (unsigned timer) 
+ochannel & ochannel::SetTimer(unsigned timer)
 
 {
 	this->mtimer = timer;
@@ -126,18 +126,18 @@ ochannel & ochannel::SetTimer (unsigned timer)
  *
  *--------------------------------------------------------------------*/
 
-ochannel & ochannel::Open (unsigned index) 
+ochannel & ochannel::Open(unsigned index)
 
 {
-	ointerface::SetIndex (index);
-	return (ochannel::Open ());
+	ointerface::SetIndex(index);
+	return (ochannel::Open());
 }
 
-ochannel & ochannel::Open (char const * device) 
+ochannel & ochannel::Open(char const * device)
 
 {
-	ointerface::SetName (device);
-	return (ochannel::Open ());
+	ointerface::SetName(device);
+	return (ochannel::Open());
 }
 
 /*====================================================================*
@@ -146,7 +146,7 @@ ochannel & ochannel::Open (char const * device)
  *
  *--------------------------------------------------------------------*/
 
-ochannel & ochannel::Open () 
+ochannel & ochannel::Open()
 
 {
 
@@ -172,28 +172,28 @@ ochannel & ochannel::Open ()
 			0x00
 		}
 	};
-	std::memset (& ifreq, 0, sizeof (ifreq));
-	std::memcpy (ifreq.ifr_name, ointerface::Name (), sizeof (ifreq.ifr_name));
-	if ((this->mfd = socket (sockaddr_ll.sll_family, SOCK_RAW, oethernet::Protocol ())) == -1) 
+	std::memset(& ifreq, 0, sizeof(ifreq));
+	std::memcpy(ifreq.ifr_name, ointerface::Name(), sizeof(ifreq.ifr_name));
+	if ((this->mfd = socket(sockaddr_ll.sll_family, SOCK_RAW, oethernet::Protocol())) == - 1)
 	{
-		oerror::error (1, errno, "%s", ointerface::Name ());
+		oerror::error(1, errno, "%s", ointerface::Name());
 	}
-	if (bind (this->mfd, (struct sockaddr *) (& sockaddr_ll), sizeof (sockaddr_ll)) == -1) 
+	if (bind(this->mfd, (struct sockaddr *)(& sockaddr_ll), sizeof(sockaddr_ll)) == - 1)
 	{
-		oerror::error (1, errno, "Can't bind socket to %s", ifreq.ifr_name);
+		oerror::error(1, errno, "Can't bind socket to %s", ifreq.ifr_name);
 	}
 
 #if 1
 
-	if (ioctl (this->mfd, SIOCGIFFLAGS, & ifreq) == -1) 
+	if (ioctl(this->mfd, SIOCGIFFLAGS, & ifreq) == - 1)
 	{
-		oerror::error (1, errno, "%s", ifreq.ifr_name);
+		oerror::error(1, errno, "%s", ifreq.ifr_name);
 	}
 	ifreq.ifr_flags |= (IFF_UP | IFF_BROADCAST | IFF_MULTICAST);
-	ifreq.ifr_flags &= ~IFF_ALLMULTI;
-	if (ioctl (this->mfd, SIOCSIFFLAGS, & ifreq) == -1) 
+	ifreq.ifr_flags &= ~ IFF_ALLMULTI;
+	if (ioctl(this->mfd, SIOCSIFFLAGS, & ifreq) == - 1)
 	{
-		oerror::error (1, errno, "%s", ifreq.ifr_name);
+		oerror::error(1, errno, "%s", ifreq.ifr_name);
 	}
 
 #endif
@@ -206,231 +206,231 @@ ochannel & ochannel::Open ()
 		0,
 		0
 	};
-	static struct bpf_insn bpf_insn [] = 
+	static struct bpf_insn bpf_insn[] = 
 	{
 		{
-			BPF_LD+ BPF_H + BPF_ABS,
+			BPF_LD +  BPF_H +  BPF_ABS,
 			0,
 			0,
 			12
 		},
 		{
-			BPF_JMP+ BPF_JEQ + BPF_K,
+			BPF_JMP +  BPF_JEQ +  BPF_K,
 			0,
 			13,
 			ntohs (oCHANNEL_ETHERTYPE)
 		},
 		{
-			BPF_LD+ BPF_B+BPF_ABS,
+			BPF_LD +  BPF_B + BPF_ABS,
 			0,
 			0,
 			0
 		},
 		{
-			BPF_JMP+ BPF_JEQ+BPF_K,
+			BPF_JMP +  BPF_JEQ + BPF_K,
 			0,
 			11,
 			0
 		},
 		{
-			BPF_LD+ BPF_B+BPF_ABS,
+			BPF_LD +  BPF_B + BPF_ABS,
 			0,
 			0,
 			1
 		},
 		{
-			BPF_JMP+ BPF_JEQ+BPF_K,
+			BPF_JMP +  BPF_JEQ + BPF_K,
 			0,
 			9,
 			0
 		},
 		{
-			BPF_LD+ BPF_B+BPF_ABS,
+			BPF_LD +  BPF_B + BPF_ABS,
 			0,
 			0,
 			2
 		},
 		{
-			BPF_JMP+ BPF_JEQ+BPF_K,
+			BPF_JMP +  BPF_JEQ + BPF_K,
 			0,
 			7,
 			0
 		},
 		{
-			BPF_LD+ BPF_B+BPF_ABS,
+			BPF_LD +  BPF_B + BPF_ABS,
 			0,
 			0,
 			3
 		},
 		{
-			BPF_JMP+ BPF_JEQ+BPF_K,
+			BPF_JMP +  BPF_JEQ + BPF_K,
 			0,
 			5,
 			0
 		},
 		{
-			BPF_LD+ BPF_B+BPF_ABS,
+			BPF_LD +  BPF_B + BPF_ABS,
 			0,
 			0,
 			4
 		},
 		{
-			BPF_JMP+ BPF_JEQ+BPF_K,
+			BPF_JMP +  BPF_JEQ + BPF_K,
 			0,
 			3,
 			0
 		},
 		{
-			BPF_LD+ BPF_B+BPF_ABS,
+			BPF_LD +  BPF_B + BPF_ABS,
 			0,
 			0,
 			5
 		},
 		{
-			BPF_JMP+ BPF_JEQ+BPF_K,
+			BPF_JMP +  BPF_JEQ + BPF_K,
 			0,
 			1,
 			0
 		},
 		{
-			BPF_RET+ BPF_K,
+			BPF_RET +  BPF_K,
 			0,
 			0,
 			4096
 		},
 		{
-			BPF_RET+ BPF_K,
+			BPF_RET +  BPF_K,
 			0,
 			0,
 			0
 		}
 	};
 	struct bpf_program bpf_program;
-	char filename [sizeof (oCHANNEL_BPFDEVICE)];
-	const uint8_t * hostaddr = ointerface::HostAddress ();
+	char filename[sizeof(oCHANNEL_BPFDEVICE)];
+	const uint8_t * hostaddr = ointerface::HostAddress();
 	unsigned count;
 	unsigned state;
-	for (count = 0; count < 100; count++) 
+	for (count = 0; count < 100; count++)
 	{
-		std::snprintf (filename, sizeof (filename), oCHANNEL_BPFDEVICE, count);
-		if ((this->mfd =::open (filename, O_RDWR)) != -1) 
+		std::snprintf(filename, sizeof(filename), oCHANNEL_BPFDEVICE, count);
+		if ((this->mfd = ::open(filename, O_RDWR)) != - 1)
 		{
 			break;
 		}
 	}
-	if (this->mfd == -1) 
+	if (this->mfd == - 1)
 	{
-		oerror::error (1, ECANCELED, "No bpf counts available");
+		oerror::error(1, ECANCELED, "No bpf counts available");
 	}
-	std::memcpy (ifreq.ifr_name, this->mname, sizeof (ifreq.ifr_name));
-	if (ioctl (this->mfd, BIOCSETIF, & ifreq) == -1) 
+	std::memcpy(ifreq.ifr_name, this->mname, sizeof(ifreq.ifr_name));
+	if (ioctl(this->mfd, BIOCSETIF, & ifreq) == - 1)
 	{
-		oerror::error (1, errno, "%s", ifreq.ifr_name);
+		oerror::error(1, errno, "%s", ifreq.ifr_name);
 	}
-	if (ioctl (this->mfd, BIOCGBLEN, & this->bpf_length) == -1) 
+	if (ioctl(this->mfd, BIOCGBLEN, & this->bpf_length) == - 1)
 	{
-		oerror::error (1, errno, "Can't determine buffer length");
+		oerror::error(1, errno, "Can't determine buffer length");
 	}
 	state = true;
-	if (ioctl (this->mfd, BIOCIMMEDIATE, & state) == -1) 
+	if (ioctl(this->mfd, BIOCIMMEDIATE, & state) == - 1)
 	{
-		oerror::error (1, errno, "Can't activate immediate mode");
+		oerror::error(1, errno, "Can't activate immediate mode");
 	}
 	state = false;
-	if (ioctl (this->mfd, BIOCSSEESENT, & state) == -1) 
+	if (ioctl(this->mfd, BIOCSSEESENT, & state) == - 1)
 	{
-		oerror::error (1, errno, "Can't hide outgoing frames");
+		oerror::error(1, errno, "Can't hide outgoing frames");
 	}
 	timer.tv_usec = this->mtimer * 1000;
-	if (ioctl (this->mfd, BIOCSRTIMEOUT, & timer) == -1) 
+	if (ioctl(this->mfd, BIOCSRTIMEOUT, & timer) == - 1)
 	{
-		oerror::error (1, errno, "Can't set timeout");
+		oerror::error(1, errno, "Can't set timeout");
 	}
-	bpf_insn [3].k = hostaddr [0];
-	bpf_insn [5].k = hostaddr [1];
-	bpf_insn [7].k = hostaddr [2];
-	bpf_insn [9].k = hostaddr [3];
-	bpf_insn [11].k = hostaddr [4];
-	bpf_insn [13].k = hostaddr [5];
-	bpf_program.bf_len = sizeof (bpf_program)/sizeof (struct bpf_insn);
+	bpf_insn [3].k = hostaddr[0];
+	bpf_insn [5].k = hostaddr[1];
+	bpf_insn [7].k = hostaddr[2];
+	bpf_insn [9].k = hostaddr[3];
+	bpf_insn [11].k = hostaddr[4];
+	bpf_insn [13].k = hostaddr[5];
+	bpf_program.bf_len = sizeof(bpf_program) / sizeof(struct bpf_insn);
 	bpf_program.bf_insns = bpf_insn;
-	if (ioctl (this->mfd, BIOCSETF, & bpf_program) == -1) 
+	if (ioctl(this->mfd, BIOCSETF, & bpf_program) == - 1)
 	{
-		oerror::error (1, errno, "Can't use filter program");
+		oerror::error(1, errno, "Can't use filter program");
 	}
 
 #elif defined (__OpenBSD__)
 
 	struct ifreq ifreq;
-	std::memset (& ifreq, 0, sizeof (ifreq));
-	if ((this->mfd = std::socket (sockaddr->sdl_family, SOCK_RAW, oethernet::Protocol ())) == -1) 
+	std::memset(& ifreq, 0, sizeof(ifreq));
+	if ((this->mfd = std::socket(sockaddr->sdl_family, SOCK_RAW, oethernet::Protocol())) == - 1)
 	{
-		oerror::error (1, errno, "%s", ointerface::Name ());
+		oerror::error(1, errno, "%s", ointerface::Name());
 	}
-	std::memcpy (ifreq.ifr_name, interface, sizeof (ifreq.ifr_name));
+	std::memcpy(ifreq.ifr_name, interface, sizeof(ifreq.ifr_name));
 
 #if 0
 
-	if (ioctl (this->mfd, SIOCGIFINDEX, & ifreq) == -1) 
+	if (ioctl(this->mfd, SIOCGIFINDEX, & ifreq) == - 1)
 	{
-		oerror::error (1, errno, "%s", ifreq.ifr_name);
+		oerror::error(1, errno, "%s", ifreq.ifr_name);
 	}
 	sockaddr->sdl_ifindex = ifreq.ifr_ifindex;
-	if (ioctl (this->mfd, OSIOCGIFADDR, & ifreq) == -1) 
+	if (ioctl(this->mfd, OSIOCGIFADDR, & ifreq) == - 1)
 	{
-		oerror::error (1, errno, "%s", ifreq.ifr_name);
+		oerror::error(1, errno, "%s", ifreq.ifr_name);
 	}
-	std::memcpy (sockaddr->sdl_data, ifreq.ifr_ifru.ifru_addr.sa_data, sizeof (sockaddr->sdl_data));
-	if (std::bind (this->mfd, (struct sockaddr *) (sockaddr), sizeof (struct sockaddr_dl)) == -1) 
+	std::memcpy(sockaddr->sdl_data, ifreq.ifr_ifru.ifru_addr.sa_data, sizeof(sockaddr->sdl_data));
+	if (std::bind(this->mfd, (struct sockaddr *)(sockaddr), sizeof(struct sockaddr_dl)) == - 1)
 	{
-		oerror::error (1, errno, "Can't bind socket to %s", interface);
+		oerror::error(1, errno, "Can't bind socket to %s", interface);
 	}
 
 #endif
 
-	if (ioctl (this->mfd, SIOCGIFFLAGS, & ifreq) == -1) 
+	if (ioctl(this->mfd, SIOCGIFFLAGS, & ifreq) == - 1)
 	{
-		oerror::error (1, errno, "Can't read state of %s", ifreq.ifr_name);
+		oerror::error(1, errno, "Can't read state of %s", ifreq.ifr_name);
 	}
-	if (!(ifreq.ifr_flags & IFF_UP)) 
+	if (! (ifreq.ifr_flags & IFF_UP))
 	{
 		ifreq.ifr_flags |= IFF_UP;
 		ifreq.ifr_flags |= IFF_BROADCAST;
 		ifreq.ifr_flags |= IFF_MULTICAST;
-		ifreq.ifr_flags &= ~IFF_ALLMULTI;
-		if (ioctl (this->mfd, SIOCSIFFLAGS, & ifreq) == -1) 
+		ifreq.ifr_flags &= ~ IFF_ALLMULTI;
+		if (ioctl(this->mfd, SIOCSIFFLAGS, & ifreq) == - 1)
 		{
-			oerror::error (1, errno, "Can't save state of %s", ifreq.ifr_name);
+			oerror::error(1, errno, "Can't save state of %s", ifreq.ifr_name);
 		}
 	}
 
 #elif defined (WINPCAP)
 
 	struct bpf_program bpf_program;
-	this->msocket = pcap_open_live (ointerface::Name (), 65536, 0, this->mtimer, this->merrbuf);
-	if (!this->msocket) 
+	this->msocket = pcap_open_live(ointerface::Name(), 65536, 0, this->mtimer, this->merrbuf);
+	if (! this->msocket)
 	{
-		oerror::error (1, errno, "can't open adaptor: %s", ointerface::Name ());
+		oerror::error(1, errno, "can't open adaptor: %s", ointerface::Name());
 	}
-	_snprintf (this->mfilter, sizeof (this->mfilter), "ether proto 0x%04x and not ether src %s", oethernet::Protocol (), ointerface::HardwareAddressString ());
-	if (pcap_compile (this->msocket, & bpf_program, this->mfilter, 1, 0xffffff) < 0) 
+	_snprintf (this->mfilter, sizeof(this->mfilter), "ether proto 0x%04x and not ether src %s", oethernet::Protocol(), ointerface::HardwareAddressString());
+	if (pcap_compile(this->msocket, & bpf_program, this->mfilter, 1, 0xffffff) < 0)
 	{
-		oerror::error (1, errno, "Can't compile pcap filter: %s", ointerface::Name);
+		oerror::error(1, errno, "Can't compile pcap filter: %s", ointerface::Name);
 	}
-	if (pcap_setfilter (this->msocket, & bpf_program) < 0) 
+	if (pcap_setfilter(this->msocket, & bpf_program) < 0)
 	{
-		oerror::error (1, errno, "Can't install pcap filter: %s", ointerface::Name ());
+		oerror::error(1, errno, "Can't install pcap filter: %s", ointerface::Name());
 	}
-	if (pcap_setmintocopy (this->msocket, ETHER_MAX_LEN)) 
+	if (pcap_setmintocopy(this->msocket, ETHER_MAX_LEN))
 	{
-		oerror::error (1, errno, "Can't set minimum data: %s", ointerface::Name ());
+		oerror::error(1, errno, "Can't set minimum data: %s", ointerface::Name());
 	}
 
 #if 0
 
-	if (pcap_setdirection (this->msocket, PCAP_D_IN)) 
+	if (pcap_setdirection(this->msocket, PCAP_D_IN))
 	{
-		oerror::error (1, errno, "Can't set packet direction: %s", ointerface::Name ());
+		oerror::error(1, errno, "Can't set packet direction: %s", ointerface::Name());
 	}
 
 #endif
@@ -448,31 +448,31 @@ ochannel & ochannel::Open ()
  *
  *--------------------------------------------------------------------*/
 
-signed ochannel::SendPacket (void const * memory, signed extent) 
+signed ochannel::SendPacket(void const * memory, signed extent)
 
 {
-	if (this->anyset (oCHANNEL_FLAG_VERBOSE)) 
+	if (this->anyset(oCHANNEL_FLAG_VERBOSE))
 	{
-		omemory::hexdump (memory, 0, extent, & std::cout);
+		omemory::hexdump(memory, 0, extent, & std::cout);
 	}
 
 #if defined (__linux__)
 
-	extent =::sendto (this->mfd, memory, extent, 0, (struct sockaddr *) (0), (socklen_t) (0));
+	extent = ::sendto(this->mfd, memory, extent, 0, (struct sockaddr *)(0), (socklen_t)(0));
 
 #elif defined (__APPLE__)
 
-	extent =::write (this->mfd, memory, extent);
+	extent = ::write(this->mfd, memory, extent);
 
 #elif defined (__OpenBSD__)
 
-	extent =::sendto (this->mfd, memory, extent, 0, (struct sockaddr *) (0), (socklen_t) (0));
+	extent = ::sendto(this->mfd, memory, extent, 0, (struct sockaddr *)(0), (socklen_t)(0));
 
 #elif defined (WINPCAP) 
 
-	if (pcap_sendpacket (this->msocket, (const u_char *)(memory), extent)) 
+	if (pcap_sendpacket(this->msocket, (const u_char *) (memory), extent))
 	{
-		extent = -1;
+		extent = - 1;
 	}
 
 #else
@@ -498,7 +498,7 @@ signed ochannel::SendPacket (void const * memory, signed extent)
  *
  *--------------------------------------------------------------------*/
 
-signed ochannel::ReadPacket (void * memory, signed extent) 
+signed ochannel::ReadPacket(void * memory, signed extent)
 
 {
 
@@ -510,47 +510,47 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 		POLLIN,
 		0
 	};
-	int status =::poll (& pollfd, 1, this->mtimer);
-	std::memset (memory, 0, extent);
-	if (status < 0) 
+	int status = ::poll(& pollfd, 1, this->mtimer);
+	std::memset(memory, 0, extent);
+	if (status < 0)
 	{
-		oerror::error (0, errno, "poll");
-		return (-1);
+		oerror::error(0, errno, "poll");
+		return (- 1);
 	}
-	if (status > 0) 
+	if (status > 0)
 	{
-		extent =::recvfrom (this->mfd, memory, extent, 0, (struct sockaddr *) (0), (socklen_t *)(0));
-		if (extent == -1) 
+		extent = ::recvfrom(this->mfd, memory, extent, 0, (struct sockaddr *)(0), (socklen_t *) (0));
+		if (extent == - 1)
 		{
-			oerror::error (0, errno, "recvfrom");
-			return (-1);
+			oerror::error(0, errno, "recvfrom");
+			return (- 1);
 		}
-		if (this->anyset (oCHANNEL_FLAG_VERBOSE)) 
+		if (this->anyset(oCHANNEL_FLAG_VERBOSE))
 		{
-			omemory::hexdump (memory, 0, extent, & std::cout);
+			omemory::hexdump(memory, 0, extent, & std::cout);
 		}
 		return (extent);
 	}
 
 #elif defined (__APPLE__) 
 
-	uint8_t buffer [this->bpf_length];
-	struct bpf_hdr * bpf_packet = (struct bpf_hdr *)(buffer);
-	std::memset (memory, 0, extent);
-	std::memset (buffer, 0, sizeof (buffer));
-	extent = read (this->mfd, buffer, sizeof (buffer));
-	if (extent < 0) 
+	uint8_t buffer[this->bpf_length];
+	struct bpf_hdr * bpf_packet = (struct bpf_hdr *) (buffer);
+	std::memset(memory, 0, extent);
+	std::memset(buffer, 0, sizeof(buffer));
+	extent = read(this->mfd, buffer, sizeof(buffer));
+	if (extent < 0)
 	{
-		oerror::error (0, errno, "bpf");
-		return (-1);
+		oerror::error(0, errno, "bpf");
+		return (- 1);
 	}
-	if (extent > 0) 
+	if (extent > 0)
 	{
 		extent = bpf_packet->bh_caplen;
-		std::memcpy (memory, buffer + bpf_packet->bh_hdrlen, bpf_packet->bh_caplen);
-		if (this->anyset (oCHANNEL_FLAG_VERBOSE)) 
+		std::memcpy(memory, buffer +  bpf_packet->bh_hdrlen, bpf_packet->bh_caplen);
+		if (this->anyset(oCHANNEL_FLAG_VERBOSE))
 		{
-			omemory::hexdump (memory, 0, extent, & std::cout);
+			omemory::hexdump(memory, 0, extent, & std::cout);
 		}
 		return (extent);
 	}
@@ -563,24 +563,24 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 		POLLIN,
 		0
 	};
-	int status =::poll (& pollfd, 1, this->timer);
-	std::memset (memory, 0, extent);
-	if (status < 0) 
+	int status = ::poll(& pollfd, 1, this->timer);
+	std::memset(memory, 0, extent);
+	if (status < 0)
 	{
-		oerror::error (0, errno, "poll");
-		return (-1);
+		oerror::error(0, errno, "poll");
+		return (- 1);
 	}
-	if (status > 0) 
+	if (status > 0)
 	{
-		extent =::recvfrom (this->mfd, memory, extent, 0, (struct sockaddr *) (0), (socklen_t *)(0));
-		if (extent == -1) 
+		extent = ::recvfrom(this->mfd, memory, extent, 0, (struct sockaddr *)(0), (socklen_t *) (0));
+		if (extent == - 1)
 		{
-			oerror::error (0, errno, "recvfrom");
-			return (-1);
+			oerror::error(0, errno, "recvfrom");
+			return (- 1);
 		}
-		if (this->anyset (oCHANNEL_FLAG_VERBOSE)) 
+		if (this->anyset(oCHANNEL_FLAG_VERBOSE))
 		{
-			omemory::hexdump (memory, 0, extent, & std::cout);
+			omemory::hexdump(memory, 0, extent, & std::cout);
 		}
 		return (extent);
 	}
@@ -590,22 +590,22 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 	struct pcap_pkthdr * header;
 	const uint8_t * data;
 	unsigned elapsed = 0;
-	do
+	do 
 	{
-		signed status = pcap_next_ex (this->msocket, & header, & data);
-		std::memset (memory, 0, extent);
-		if (status < 0) 
+		signed status = pcap_next_ex(this->msocket, & header, & data);
+		std::memset(memory, 0, extent);
+		if (status < 0)
 		{
-			oerror::error (0, errno, "pcap_next_ex");
-			return (-1);
+			oerror::error(0, errno, "pcap_next_ex");
+			return (- 1);
 		}
-		if (status > 0) 
+		if (status > 0)
 		{
-			std::memcpy (memory, data, header->caplen);
+			std::memcpy(memory, data, header->caplen);
 			extent = header->caplen;
-			if (this->anyset (oCHANNEL_FLAG_VERBOSE)) 
+			if (this->anyset(oCHANNEL_FLAG_VERBOSE))
 			{
-				omemory::hexdump (memory, 0, extent, & std::cout);
+				omemory::hexdump(memory, 0, extent, & std::cout);
 			}
 			return (extent);
 		}
@@ -623,26 +623,26 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 		POLLIN,
 		0
 	};
-	signed status = poll (& pollfd, 1, this->timer);
-	std::memset (memory, 0, extent);
-	if (status < 0) 
+	signed status = poll(& pollfd, 1, this->timer);
+	std::memset(memory, 0, extent);
+	if (status < 0)
 	{
-		oerror::error (0, errno, "poll");
-		return (-1);
+		oerror::error(0, errno, "poll");
+		return (- 1);
 	}
-	if (status > 0) 
+	if (status > 0)
 	{
-		status = pcap_next_ex (this->msocket, & header, & data);
-		if (status != 1) 
+		status = pcap_next_ex(this->msocket, & header, & data);
+		if (status != 1)
 		{
-			oerror::error (0, errno, "pcap_next_ext");
-			return (-1);
+			oerror::error(0, errno, "pcap_next_ext");
+			return (- 1);
 		}
-		std::memcpy (memory, data, header->caplen);
+		std::memcpy(memory, data, header->caplen);
 		extent = header->caplen;
-		if (this->anyset (oCHANNEL_FLAG_VERBOSE)) 
+		if (this->anyset(oCHANNEL_FLAG_VERBOSE))
 		{
-			omemory::hexdump (memory, 0, extent, & std::cout);
+			omemory::hexdump(memory, 0, extent, & std::cout);
 		}
 		return (extent);
 	}
@@ -660,7 +660,7 @@ signed ochannel::ReadPacket (void * memory, signed extent)
  *
  *--------------------------------------------------------------------*/
 
-ochannel & ochannel::Close () 
+ochannel & ochannel::Close()
 
 {
 
@@ -683,11 +683,11 @@ ochannel & ochannel::Close ()
  *
  *--------------------------------------------------------------------*/
 
-ochannel & ochannel::Print () 
+ochannel & ochannel::Print()
 
 {
-	ointerface::Print ();
-	oethernet::Print ();
+	ointerface::Print();
+	oethernet::Print();
 	return (* this);
 }
 
@@ -697,13 +697,13 @@ ochannel & ochannel::Print ()
  *
  *--------------------------------------------------------------------*/
 
-ochannel::ochannel () 
+ochannel::ochannel()
 
 {
 	ointellon intellon;
-	oethernet::SetPeerAddress (intellon.PeerAddress ());
-	oethernet::SetHostAddress (intellon.HostAddress ());
-	oethernet::SetProtocol (intellon.Protocol ());
+	oethernet::SetPeerAddress(intellon.PeerAddress());
+	oethernet::SetHostAddress(intellon.HostAddress());
+	oethernet::SetProtocol(intellon.Protocol());
 	this->mtimer = oCHANNEL_TIMEOUT;
 	return;
 }
@@ -714,10 +714,10 @@ ochannel::ochannel ()
  *
  *--------------------------------------------------------------------*/
 
-ochannel::~ochannel () 
+ochannel::~ ochannel()
 
 {
-	ochannel::Close ();
+	ochannel::Close();
 	return;
 }
 
@@ -726,4 +726,6 @@ ochannel::~ochannel ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

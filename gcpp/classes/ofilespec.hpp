@@ -28,34 +28,35 @@
  *7
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ofilespec: private ocontext 
+class __declspec(dllexport) ofilespec: private ocontext
 
 {
-public:
+public: 
 	ofilespec ();
 	ofilespec (char const * fullname);
-	virtual ~ ofilespec ();
-	char const * fullpath ();
-	char const * fullname () const;
-	char const * pathname () const;
-	char const * filename () const;
-	char const * basename () const;
-	char const * extender () const;
-	char const * longname () const;
-	char const * tempname (char const * filename);
-	char const * likename (char const * extender);
-	char const * savename (char const * extender);
-	char const * savename (unsigned number, unsigned length);
-	ofilespec & makepath ();
+	virtual ~ ofilespec();
+	char const * fullpath();
+	char const * fullname() const;
+	char const * pathname() const;
+	char const * filename() const;
+	char const * basename() const;
+	char const * extender() const;
+	char const * longname() const;
+	char const * tempname(char const * filename);
+	char const * likename(char const * extender);
+	char const * savename(char const * extender);
+	char const * savename(unsigned number, unsigned length);
+	ofilespec & makepath();
 	ofilespec & operator = (char const * filespec);
-	ofilespec & filespec (char const * filespec);
-	ofilespec & pathname (char const * filespec);
-	ofilespec & filename (char const * filespec);
-	ofilespec & basename (char const * filespec);
-	ofilespec & extender (char const * filespec);
-	ofilespec & peek ();
-protected:
-	private: static ofilespec scratch;
+	ofilespec & filespec(char const * filespec);
+	ofilespec & pathname(char const * filespec);
+	ofilespec & filename(char const * filespec);
+	ofilespec & basename(char const * filespec);
+	ofilespec & extender(char const * filespec);
+	ofilespec & peek();
+protected: 
+private: 
+	static ofilespec scratch;
 	char * mfullname;
 	char * mpathname;
 	char * mfilename;
@@ -68,4 +69,6 @@ protected:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

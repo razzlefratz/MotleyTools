@@ -34,7 +34,7 @@
  *   
  *--------------------------------------------------------------------*/
 
-char const * opage::title () const 
+char const * opage::title() const
 
 {
 	return (this->mtitle);
@@ -47,14 +47,14 @@ char const * opage::title () const
  *   
  *--------------------------------------------------------------------*/
 
-opage & opage::title (char const * title) 
+opage & opage::title(char const * title)
 
 {
-	if (std::strcmp (title, this->mtitle)) 
+	if (std::strcmp(title, this->mtitle))
 	{
 		delete [] this->mtitle;
-		this->mtitle = new char [strlen (title)+1];
-		std::strcpy (this->mtitle, title);
+		this->mtitle = new char[strlen(title) + 1];
+		std::strcpy(this->mtitle, title);
 	}
 	return (* this);
 }
@@ -66,7 +66,7 @@ opage & opage::title (char const * title)
  *   
  *--------------------------------------------------------------------*/
 
-unsigned opage::rows () const 
+unsigned opage::rows() const
 
 {
 	return (this->mrows);
@@ -79,7 +79,7 @@ unsigned opage::rows () const
  *   
  *--------------------------------------------------------------------*/
 
-opage & opage::rows (unsigned rows) 
+opage & opage::rows(unsigned rows)
 
 {
 	this->mrows = rows;
@@ -93,7 +93,7 @@ opage & opage::rows (unsigned rows)
  *   
  *--------------------------------------------------------------------*/
 
-unsigned opage::cols () const 
+unsigned opage::cols() const
 
 {
 	return (this->mcols);
@@ -106,7 +106,7 @@ unsigned opage::cols () const
  *   
  *--------------------------------------------------------------------*/
 
-opage & opage::cols (unsigned cols) 
+opage & opage::cols(unsigned cols)
 
 {
 	this->mcols = cols;
@@ -120,7 +120,7 @@ opage & opage::cols (unsigned cols)
  *   
  *--------------------------------------------------------------------*/
 
-unsigned opage::tabs () const 
+unsigned opage::tabs() const
 
 {
 	return (this->mtabs);
@@ -133,7 +133,7 @@ unsigned opage::tabs () const
  *   
  *--------------------------------------------------------------------*/
 
-opage & opage::tabs (unsigned tabs) 
+opage & opage::tabs(unsigned tabs)
 
 {
 	this->mtabs = tabs;
@@ -150,85 +150,84 @@ opage & opage::tabs (unsigned tabs)
  *
  *--------------------------------------------------------------------*/
 
-int opage::put (int c) 
+int opage::put(int c)
 
 {
-	char header [1024] = 
+	char header[1024] = 
 	{
 		0
 	};
 	signed length = 0;
-	time_t stamp = time ((time_t *)(0));
-	switch (c) 
+	time_t stamp = time((time_t *) (0));
+	switch (c)
 	{
 	case '\t':
-		do
+		do 
 		{
 			this->mtab++;
 		}
 		while (this->mtab % this->mtabs);
 		break;
 	case '\f':
-		if (this->mcol > 0) 
+		if (this->mcol > 0)
 		{
-			this->put ('\n');
+			this->put('\n');
 		}
-		while (this->mrow < this->mrows) 
+		while (this->mrow < this->mrows)
 		{
-			std::cout.put ('\n');
+			std::cout.put('\n');
 			this->mrow++;
 		}
 		this->mpage++;
 		this->mrow = 0;
 		this->mcol = 0;
 		this->mtab = 0;
-		length += std::snprintf (header + length, sizeof (header) - length, "Page %03d", this->mpage);
-		length += std::snprintf (header + length, sizeof (header) - length, "   %-*.*s   ", this->mhdr, this->mhdr, this->mtitle);
-		length += std::strftime (header + length, sizeof (header) - length, DAYTIME, localtime (& stamp));
-		length += std::snprintf (header + length, sizeof (header) - length, "\n\n");
-		this->put (header);
+		length += std::snprintf(header +  length, sizeof(header) - length, "Page %03d", this->mpage);
+		length += std::snprintf(header +  length, sizeof(header) - length, "   %-*.*s   ", this->mhdr, this->mhdr, this->mtitle);
+		length += std::strftime(header +  length, sizeof(header) - length, DAYTIME, localtime(& stamp));
+		length += std::snprintf(header +  length, sizeof(header) - length, "\n\n");
+		this->put(header);
 		break;
 	case '\r':
-		std::cout.put (c);
+		std::cout.put(c);
 		this->mcol = 0;
 		this->mtab = 0;
 		break;
 	case '\n':
-		std::cout.put (c);
+		std::cout.put(c);
 		this->mrow++;
 		this->mcol = 0;
 		this->mtab = 0;
-		if (this->mrow >= this->mrows) 
+		if (this->mrow >= this->mrows)
 		{
-			this->put ('\f');
+			this->put('\f');
 		}
 		break;
-	default:
-		
+	default: 
 
 #if 0
 
-		if (!this->mpage && !this->mrow && !this->mcol) 
+		if (! this->mpage && ! this->mrow && ! this->mcol)
 		{
-			this->put ('\f');
+			this->put('\f');
 		}
 
 #endif
 
-		while (this->mcol < this->mtab) 
+		while (this->mcol < this->mtab)
 		{
-			std::cout.put (' ');
+			std::cout.put(' ');
 			this->mcol++;
 		}
-		if (iscntrl (c)) 
+		if (iscntrl(c))
 		{
 			c = ' ';
 		}
-		std::cout.put (c);
+		std::cout.put(c);
 		this->mcol++;
-		if (this->mcol >= this->mcols) 
+		if (this->mcol >= this->mcols)
 		{
-			this->put ('\n');
+			this->put('\n');
 		}
 		break;
 	}
@@ -245,15 +244,15 @@ int opage::put (int c)
  *
  *--------------------------------------------------------------------*/
 
-char const * opage::put (char const * string) 
+char const * opage::put(char const * string)
 
 {
-	if (string != (char const *)(0)) 
+	if (string != (char const *) (0))
 	{
 		char const * sp = string;
-		while (* sp != (char)(0)) 
+		while (* sp != (char) (0))
 		{
-			this->put (* sp++);
+			this->put(* sp++);
 		}
 	}
 	return (string);
@@ -270,12 +269,12 @@ char const * opage::put (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-opage & opage::eject () 
+opage & opage::eject()
 
 {
-	while (this->mrow < this->mrows) 
+	while (this->mrow < this->mrows)
 	{
-		std::cout.put ('\n');
+		std::cout.put('\n');
 		this->mrow++;
 	}
 	this->mrow = 0;
@@ -294,12 +293,12 @@ opage & opage::eject ()
  *
  *--------------------------------------------------------------------*/
 
-opage::opage () 
+opage::opage()
 
 {
 	this->mflags = 0;
-	this->mtitle = new char [1];
-	this->mtitle [0] = (char)(0);
+	this->mtitle = new char[1];
+	this->mtitle[0] = (char) (0);
 	this->mhdr = oPAGE_COLS - 48;
 	this->mrows = oPAGE_ROWS;
 	this->mcols = oPAGE_COLS;
@@ -322,7 +321,7 @@ opage::opage ()
  *
  *--------------------------------------------------------------------*/
 
-opage::~opage () 
+opage::~ opage()
 
 {
 	return;
@@ -333,4 +332,6 @@ opage::~opage ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

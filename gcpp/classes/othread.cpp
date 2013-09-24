@@ -30,12 +30,12 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned othread::count () const 
+unsigned othread::count() const
 
 {
 	unsigned counter = 0;
 	othread * page = this->mafter;
-	while (page != this) 
+	while (page != this)
 	{
 		page = page->mafter;
 		counter++;
@@ -50,7 +50,7 @@ unsigned othread::count () const
  *   
  *--------------------------------------------------------------------*/
 
-bool othread::isempty () const 
+bool othread::isempty() const
 
 {
 	return (this == this->mafter);
@@ -63,7 +63,7 @@ bool othread::isempty () const
  *   
  *--------------------------------------------------------------------*/
 
-char const * othread::name () const 
+char const * othread::name() const
 
 {
 	return (this->mname);
@@ -76,7 +76,7 @@ char const * othread::name () const
  *   
  *--------------------------------------------------------------------*/
 
-char const * othread::text () const 
+char const * othread::text() const
 
 {
 	return (this->mtext);
@@ -89,7 +89,7 @@ char const * othread::text () const
  *   
  *--------------------------------------------------------------------*/
 
-char const * othread::page () const 
+char const * othread::page() const
 
 {
 	return (this->mpage);
@@ -102,10 +102,10 @@ char const * othread::page () const
  *   
  *--------------------------------------------------------------------*/
 
-othread & othread::name (char const * string) 
+othread & othread::name(char const * string)
 
 {
-	this->mname = otext::replace (this->mname, string);
+	this->mname = otext::replace(this->mname, string);
 	return (* this);
 }
 
@@ -116,10 +116,10 @@ othread & othread::name (char const * string)
  *   
  *--------------------------------------------------------------------*/
 
-othread & othread::text (char const * string) 
+othread & othread::text(char const * string)
 
 {
-	this->mtext = otext::replace (this->mtext, string);
+	this->mtext = otext::replace(this->mtext, string);
 	return (* this);
 }
 
@@ -130,10 +130,10 @@ othread & othread::text (char const * string)
  *   
  *--------------------------------------------------------------------*/
 
-othread & othread::page (char const * string) 
+othread & othread::page(char const * string)
 
 {
-	this->mpage = otext::replace (this->mpage, string);
+	this->mpage = otext::replace(this->mpage, string);
 	return (* this);
 }
 
@@ -144,7 +144,7 @@ othread & othread::page (char const * string)
  *   
  *--------------------------------------------------------------------*/
 
-othread * othread::above () const 
+othread * othread::above() const
 
 {
 	return (this->mabove);
@@ -157,7 +157,7 @@ othread * othread::above () const
  *   
  *--------------------------------------------------------------------*/
 
-othread * othread::prior () const 
+othread * othread::prior() const
 
 {
 	return (this->mprior);
@@ -170,7 +170,7 @@ othread * othread::prior () const
  *   
  *--------------------------------------------------------------------*/
 
-othread * othread::after () const 
+othread * othread::after() const
 
 {
 	return (this->mafter);
@@ -183,7 +183,7 @@ othread * othread::after () const
  *   
  *--------------------------------------------------------------------*/
 
-othread * othread::below () const 
+othread * othread::below() const
 
 {
 	return (this->mbelow);
@@ -197,7 +197,7 @@ othread * othread::below () const
  *   
  *--------------------------------------------------------------------*/
 
-othread * othread::other () const 
+othread * othread::other() const
 
 {
 	return (this->mother);
@@ -210,7 +210,7 @@ othread * othread::other () const
  *   
  *--------------------------------------------------------------------*/
 
-othread & othread::insert (othread * thread) 
+othread & othread::insert(othread * thread)
 
 {
 	thread->mprior = this;
@@ -227,7 +227,7 @@ othread & othread::insert (othread * thread)
  *   
  *--------------------------------------------------------------------*/
 
-othread & othread::append (othread * thread) 
+othread & othread::append(othread * thread)
 
 {
 	thread->mafter = this;
@@ -244,10 +244,10 @@ othread & othread::append (othread * thread)
  *   
  *--------------------------------------------------------------------*/
 
-othread & othread::remove () 
+othread & othread::remove()
 
 {
-	if (this != this->mafter) 
+	if (this != this->mafter)
 	{
 		delete this->mafter;
 	}
@@ -261,10 +261,10 @@ othread & othread::remove ()
  *   
  *--------------------------------------------------------------------*/
 
-othread & othread::unwind () 
+othread & othread::unwind()
 
 {
-	if (this != this->mprior) 
+	if (this != this->mprior)
 	{
 		delete this->mprior;
 	}
@@ -278,7 +278,7 @@ othread & othread::unwind ()
  *   
  *--------------------------------------------------------------------*/
 
-othread & othread::attach (othread * other) 
+othread & othread::attach(othread * other)
 
 {
 	othread * thread = other->mafter;
@@ -297,7 +297,7 @@ othread & othread::attach (othread * other)
  *   
  *--------------------------------------------------------------------*/
 
-othread & othread::detach () 
+othread & othread::detach()
 
 {
 	this->mafter->mprior = this->mprior;
@@ -314,10 +314,10 @@ othread & othread::detach ()
  *   
  *--------------------------------------------------------------------*/
 
-othread & othread::clear () 
+othread & othread::clear()
 
 {
-	while (this != this->mafter) 
+	while (this != this->mafter)
 	{
 		delete this->mafter;
 	}
@@ -331,10 +331,10 @@ othread & othread::clear ()
  *   
  *--------------------------------------------------------------------*/
 
-char * othread::copy (char const * string) 
+char * othread::copy(char const * string)
 
 {
-	char * buffer = new char [strlen (string) + 1];
+	char * buffer = new char[strlen(string) +  1];
 	strcpy (buffer, string);
 	return (buffer);
 }
@@ -346,14 +346,14 @@ char * othread::copy (char const * string)
  *   
  *--------------------------------------------------------------------*/
 
-othread::othread (char const * name, char const * text, char const * page) 
+othread::othread(char const * name, char const * text, char const * page)
 
 {
-	this->mname = otext::save (name);
-	this->mtext = otext::save (text);
-	this->mpage = otext::save (page);
-	this->mabove = (othread *) (0);
-	this->mbelow = (othread *) (0);
+	this->mname = otext::save(name);
+	this->mtext = otext::save(text);
+	this->mpage = otext::save(page);
+	this->mabove = (othread *)(0);
+	this->mbelow = (othread *)(0);
 	this->mprior = this;
 	this->mafter = this;
 }
@@ -365,14 +365,14 @@ othread::othread (char const * name, char const * text, char const * page)
  *   
  *--------------------------------------------------------------------*/
 
-othread::othread () 
+othread::othread()
 
 {
-	this->mname = otext::save ("index.html");
-	this->mtext = otext::save ("index.html");
-	this->mpage = otext::save ("index.html");
-	this->mabove = (othread *) (0);
-	this->mbelow = (othread *) (0);
+	this->mname = otext::save("index.html");
+	this->mtext = otext::save("index.html");
+	this->mpage = otext::save("index.html");
+	this->mabove = (othread *)(0);
+	this->mbelow = (othread *)(0);
 	this->mprior = this;
 	this->mafter = this;
 }
@@ -384,23 +384,23 @@ othread::othread ()
  *   
  *--------------------------------------------------------------------*/
 
-othread::~othread () 
+othread::~ othread()
 
 {
-	if (this->mabove) 
+	if (this->mabove)
 	{
 		this->mabove->mbelow = this->mbelow;
 	}
-	if (this->mbelow) 
+	if (this->mbelow)
 	{
 		this->mbelow->mabove = this->mabove;
 	}
 	this->mafter->mprior = this->mprior;
 	this->mprior->mafter = this->mafter;
-	this->mprior = (othread *) (0);
-	this->mafter = (othread *) (0);
-	this->mabove = (othread *) (0);
-	this->mbelow = (othread *) (0);
+	this->mprior = (othread *)(0);
+	this->mafter = (othread *)(0);
+	this->mabove = (othread *)(0);
+	this->mbelow = (othread *)(0);
 	delete this->mname;
 	delete this->mtext;
 	delete this->mpage;
@@ -411,4 +411,6 @@ othread::~othread ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

@@ -31,7 +31,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const * ocontext::string () const 
+char const * ocontext::string() const
 
 {
 	return (this->mstring);
@@ -45,7 +45,7 @@ char const * ocontext::string () const
  *
  *--------------------------------------------------------------------*/
 
-char const * ocontext::prefix () const 
+char const * ocontext::prefix() const
 
 {
 	return (this->mprefix);
@@ -59,7 +59,7 @@ char const * ocontext::prefix () const
  *
  *--------------------------------------------------------------------*/
 
-char const * ocontext::suffix () const 
+char const * ocontext::suffix() const
 
 {
 	return (this->msuffix);
@@ -73,30 +73,30 @@ char const * ocontext::suffix () const
  *
  *--------------------------------------------------------------------*/
 
-ocontext & ocontext::string (char buffer [], size_t length) 
+ocontext & ocontext::string(char buffer[], size_t length)
 
 {
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (buffer == (char *) (0)) 
+	if (buffer == (char *)(0))
 	{
 		return (* this);
 	}
 
 #endif
 
-	if (length > 0) 
+	if (length > 0)
 	{
-		for (char const * string = this->mstring; * string != (char) (0); ++string) 
+		for (char const * string = this->mstring; * string != (char)(0); ++ string)
 		{
-			if (length > 1) 
+			if (length > 1)
 			{
 				* buffer++ = * string;
 				length--;
 			}
 		}
-		* buffer = (char) (0);
+		* buffer = (char)(0);
 	}
 	return (* this);
 }
@@ -109,30 +109,30 @@ ocontext & ocontext::string (char buffer [], size_t length)
  *
  *--------------------------------------------------------------------*/
 
-ocontext & ocontext::prefix (char buffer [], size_t length) 
+ocontext & ocontext::prefix(char buffer[], size_t length)
 
 {
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (buffer == (char *) (0)) 
+	if (buffer == (char *)(0))
 	{
 		return (* this);
 	}
 
 #endif
 
-	if (length > 0) 
+	if (length > 0)
 	{
-		for (char const * string = this->mprefix; * string != (char) (0); ++string) 
+		for (char const * string = this->mprefix; * string != (char)(0); ++ string)
 		{
-			if (length > 1) 
+			if (length > 1)
 			{
 				* buffer++ = * string;
 				length--;
 			}
 		}
-		* buffer = (char) (0);
+		* buffer = (char)(0);
 	}
 	return (* this);
 }
@@ -145,30 +145,30 @@ ocontext & ocontext::prefix (char buffer [], size_t length)
  *
  *--------------------------------------------------------------------*/
 
-ocontext & ocontext::suffix (char buffer [], size_t length) 
+ocontext & ocontext::suffix(char buffer[], size_t length)
 
 {
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (buffer == (char *) (0)) 
+	if (buffer == (char *)(0))
 	{
 		return (* this);
 	}
 
 #endif
 
-	if (length > 0) 
+	if (length > 0)
 	{
-		for (char const * string = this->msuffix; * string != (char) (0); ++string) 
+		for (char const * string = this->msuffix; * string != (char)(0); ++ string)
 		{
-			if (length > 1) 
+			if (length > 1)
 			{
 				* buffer++ = * string;
 				length--;
 			}
 		}
-		* buffer = (char) (0);
+		* buffer = (char)(0);
 	}
 	return (* this);
 }
@@ -185,86 +185,86 @@ ocontext & ocontext::suffix (char buffer [], size_t length)
  *
  *--------------------------------------------------------------------*/
 
-ocontext & ocontext::split (char const * string, char const * charset, bool first, bool required) 
+ocontext & ocontext::split(char const * string, char const * charset, bool first, bool required)
 
 {
 	delete [] this->mstring;
-	this->mstring = new char [strlen (string) + 1];
+	this->mstring = new char[strlen(string) +  1];
 	strcpy (this->mstring, string);
 	this->mprefix = this->mstring;
-	this->msuffix = (char *) (0);
-	while (* this->mprefix != (char) (0)) 
+	this->msuffix = (char *)(0);
+	while (* this->mprefix != (char)(0))
 	{
-		if (ocontext::member (charset, * this->mprefix)) 
+		if (ocontext::member(charset, * this->mprefix))
 		{
 			this->msuffix = this->mprefix;
-			if (first) 
+			if (first)
 			{
 				break;
 			}
 		}
 		this->mprefix++;
 	}
-	if (this->msuffix != (char *) (0)) 
+	if (this->msuffix != (char *)(0))
 	{
-		* this->msuffix++ = (char) (0);
+		* this->msuffix++ = (char)(0);
 		this->mprefix = this->mstring;
 	}
-	else if (!required) 
+	else if(! required)
 	{
 		this->msuffix = this->mprefix;
 		this->mprefix = this->mstring;
 	}
-	else
+	else 
 	{
 		this->msuffix = this->mstring;
 	}
 	return (* this);
 }
 
-ocontext & ocontext::merge (char const * prefix, char const * middle, char const * suffix) 
+ocontext & ocontext::merge(char const * prefix, char const * middle, char const * suffix)
 
 {
 	size_t length = 0;
-	length += std::strlen (prefix);
-	length += std::strlen (middle);
-	length += std::strlen (suffix);
+	length += std::strlen(prefix);
+	length += std::strlen(middle);
+	length += std::strlen(suffix);
 	delete [] this->mstring;
-	this->mprefix = this->msuffix = this->mstring = new char [length + 1];;
-	if ((prefix == (char const *) (0)) || (* prefix == (char) (0))) 
+	this->mprefix = this->msuffix = this->mstring = new char[length +  1];;
+	if ((prefix == (char const *)(0)) || (* prefix == (char)(0)))
 	{
-		while (* suffix != (char) (0)) 
+		while (* suffix != (char)(0))
 		{
 			* this->mprefix++ = * suffix++;
 		}
-		* this->mprefix = (char) (0);
+		* this->mprefix = (char)(0);
 		this->mprefix = this->msuffix;
 		return (* this);
 	}
-	if ((suffix == (char const *) (0)) || (* suffix == (char) (0))) 
+	if ((suffix == (char const *)(0)) || (* suffix == (char)(0)))
 	{
-		this->mprefix = this->msuffix = this->mstring = new char [strlen (prefix) + 1];;
-		while (* prefix != (char) (0)) 
+		this->mprefix = this->msuffix = this->mstring = new char[strlen(prefix) +  1];;
+		while (* prefix != (char)(0))
 		{
 			* this->msuffix++ = * prefix++;
 		}
-		* this->msuffix = (char) (0);
+		* this->msuffix = (char)(0);
 		this->msuffix = this->mprefix;
 		return (* this);
 	}
-	while (* prefix != (char) (0)) 
+	while (* prefix != (char)(0))
 	{
 		* this->mprefix++ = * prefix++;
 	}
-	while (* middle != (char) (0)) 
+	while (* middle != (char)(0))
 	{
 		* this->mprefix++ = * middle++;
 	}
-	while (* suffix != (char) (0)) 
+	while (* suffix != (char)(0))
 	{
 		* this->mprefix++ = * suffix++;
 	}
-	* this->mprefix = (char) (0);
+	* this->mprefix = (char)(0);
 	this->msuffix = this->mprefix;
 	return (* this);
 }
@@ -277,12 +277,12 @@ ocontext & ocontext::merge (char const * prefix, char const * middle, char const
  *
  *--------------------------------------------------------------------*/
 
-bool ocontext::member (char const * string, char c) 
+bool ocontext::member(char const * string, char c)
 
 {
-	while (* string != (char) (0)) 
+	while (* string != (char)(0))
 	{
-		if (* string++ == c) 
+		if (* string++ == c)
 		{
 			return (true);
 		}
@@ -297,11 +297,11 @@ bool ocontext::member (char const * string, char c)
  *
  *--------------------------------------------------------------------*/
 
-ocontext::ocontext () 
+ocontext::ocontext()
 
 {
-	this->mstring = new char [1];
-	this->mstring [0] = (char) (0);
+	this->mstring = new char[1];
+	this->mstring[0] = (char)(0);
 	this->mprefix = this->mstring;
 	this->msuffix = this->mstring;
 	return;
@@ -314,12 +314,12 @@ ocontext::ocontext ()
  *
  *--------------------------------------------------------------------*/
 
-ocontext::~ocontext () 
+ocontext::~ ocontext()
 
 {
 	delete [] this->mstring;
-	this->mprefix = (char *) (0);
-	this->msuffix = (char *) (0);
+	this->mprefix = (char *)(0);
+	this->msuffix = (char *)(0);
 	return;
 }
 
@@ -328,4 +328,6 @@ ocontext::~ocontext ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

@@ -31,26 +31,26 @@
  *   object declaration; 
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ogetopt 
+class __declspec(dllexport) ogetopt
 
 {
-public:
+public: 
 	ogetopt ();
 	ogetopt (const signed opterr);
-	virtual ~ ogetopt ();
-	signed argc () const;
-	char const ** argv () const;
-	char * args ();
-	signed opterr () const;
-	signed optind () const;
-	signed optopt () const;
-	char const * optarg () const;
+	virtual ~ ogetopt();
+	signed argc() const;
+	char const ** argv() const;
+	char * args();
+	signed opterr() const;
+	signed optind() const;
+	signed optopt() const;
+	char const * optarg() const;
 	signed operator++ (signed);
-	int getopt (int argc, char const * argv [], char const * options);
-	ogetopt & putopt (char const * argv []);
-	ogetopt & optind (const signed optind);
-	ogetopt & opterr (const signed opterr);
-private:
+	int getopt(int argc, char const * argv[], char const * options);
+	ogetopt & putopt(char const * argv[]);
+	ogetopt & optind(const signed optind);
+	ogetopt & opterr(const signed opterr);
+private: 
 	int margc;
 	char const ** margv;
 	char * margs;
@@ -65,4 +65,6 @@ private:
 };
 
 #endif
+
+
 

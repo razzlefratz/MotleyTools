@@ -38,12 +38,12 @@
  *   
  *--------------------------------------------------------------------*/
 
-signed odiscard::context (signed c, char const * charset) const 
+signed odiscard::context(signed c, char const * charset) const
 
 {
-	while ((c) && !std::strchr (charset, c) && (c != EOF)) 
+	while ((c) && ! std::strchr(charset, c) && (c != EOF))
 	{
-		c = odiscard::context (c);
+		c = odiscard::context(c);
 	}
 	return (c);
 }
@@ -63,22 +63,22 @@ signed odiscard::context (signed c, char const * charset) const
  *
  *--------------------------------------------------------------------*/
 
-signed odiscard::context (signed c, signed o, signed e) const 
+signed odiscard::context(signed c, signed o, signed e) const
 
 {
-	c = odiscard::feed (c);
-	c = odiscard::_context (c, o, e);
-	c = odiscard::feed (c);
+	c = odiscard::feed(c);
+	c = odiscard::_context(c, o, e);
+	c = odiscard::feed(c);
 	return (c);
 }
 
-signed odiscard::_context (signed c, signed o, signed e) const 
+signed odiscard::_context(signed c, signed o, signed e) const
 
 {
-	while ((c != e) && (c != EOF)) 
+	while ((c != e) && (c != EOF))
 	{
-		c = odiscard::_context (c, o);
-		c = odiscard::feed (c);
+		c = odiscard::_context(c, o);
+		c = odiscard::feed(c);
 	}
 	return (c);
 }
@@ -98,21 +98,21 @@ signed odiscard::_context (signed c, signed o, signed e) const
  *
  *--------------------------------------------------------------------*/
 
-signed odiscard::context (signed c, signed e) const 
+signed odiscard::context(signed c, signed e) const
 
 {
-	c = odiscard::feed (c);
-	c = odiscard::_context (c, e);
-	c = odiscard::feed (c);
+	c = odiscard::feed(c);
+	c = odiscard::_context(c, e);
+	c = odiscard::feed(c);
 	return (c);
 }
 
-signed odiscard::_context (signed c, signed e) const 
+signed odiscard::_context(signed c, signed e) const
 
 {
-	while ((c != e) && (c != EOF)) 
+	while ((c != e) && (c != EOF))
 	{
-		c = odiscard::context (c);
+		c = odiscard::context(c);
 	}
 	return (c);
 }
@@ -131,36 +131,36 @@ signed odiscard::_context (signed c, signed e) const
  *   
  *--------------------------------------------------------------------*/
 
-signed odiscard::context (signed c) const 
+signed odiscard::context(signed c) const
 
 {
-	if (c == '/') 
+	if (c == '/')
 	{
-		c = odiscard::comment (c);
+		c = odiscard::comment(c);
 	}
-	else if (oascii::isquote (c)) 
+	else if(oascii::isquote(c))
 	{
-		c = odiscard::literal (c);
+		c = odiscard::literal(c);
 	}
-	else if (c == '#') 
+	else if(c == '#')
 	{
-		c = odiscard::command (c, '\n');
+		c = odiscard::command(c, '\n');
 	}
-	else if (c == '(') 
+	else if(c == '(')
 	{
-		c = odiscard::context (c, ')');
+		c = odiscard::context(c, ')');
 	}
-	else if (c == '[') 
+	else if(c == '[')
 	{
-		c = odiscard::context (c, ']');
+		c = odiscard::context(c, ']');
 	}
-	else if (c == '{') 
+	else if(c == '{')
 	{
-		c = odiscard::context (c, '}');
+		c = odiscard::context(c, '}');
 	}
-	else
+	else 
 	{
-		c = odiscard::feed (c);
+		c = odiscard::feed(c);
 	}
 	return (c);
 }
@@ -175,18 +175,18 @@ signed odiscard::context (signed c) const
  *
  *--------------------------------------------------------------------*/
 
-signed odiscard::comment (signed c) const 
+signed odiscard::comment(signed c) const
 
 {
-	c = std::cin.get ();
-	if (c == '/') 
+	c = std::cin.get();
+	if (c == '/')
 	{
-		c = odiscard::content (c, '\n');
+		c = odiscard::content(c, '\n');
 		return (c);
 	}
-	if (c == '*') 
+	if (c == '*')
 	{
-		c = odiscard::content (c, '*', '/');
+		c = odiscard::content(c, '*', '/');
 		return (c);
 	}
 	return (c);
@@ -206,22 +206,22 @@ signed odiscard::comment (signed c) const
  *
  *--------------------------------------------------------------------*/
 
-signed odiscard::content (signed c, signed o, signed e) const 
+signed odiscard::content(signed c, signed o, signed e) const
 
 {
-	c = odiscard::feed (c);
-	c = odiscard::_content (c, o, e);
-	c = odiscard::feed (c);
+	c = odiscard::feed(c);
+	c = odiscard::_content(c, o, e);
+	c = odiscard::feed(c);
 	return (c);
 }
 
-signed odiscard::_content (signed c, signed o, signed e) const 
+signed odiscard::_content(signed c, signed o, signed e) const
 
 {
-	while ((c != e) && (c != EOF)) 
+	while ((c != e) && (c != EOF))
 	{
-		c = odiscard::_content (c, o);
-		c = odiscard::feed (c);
+		c = odiscard::_content(c, o);
+		c = odiscard::feed(c);
 	}
 	return (c);
 }
@@ -240,21 +240,21 @@ signed odiscard::_content (signed c, signed o, signed e) const
  *
  *--------------------------------------------------------------------*/
 
-signed odiscard::content (signed c, signed e) const 
+signed odiscard::content(signed c, signed e) const
 
 {
-	c = odiscard::feed (c);
-	c = odiscard::_content (c, e);
-	c = odiscard::feed (c);
+	c = odiscard::feed(c);
+	c = odiscard::_content(c, e);
+	c = odiscard::feed(c);
 	return (c);
 }
 
-signed odiscard::_content (signed c, signed e) const 
+signed odiscard::_content(signed c, signed e) const
 
 {
-	while ((c != e) && (c != EOF)) 
+	while ((c != e) && (c != EOF))
 	{
-		c = odiscard::feed (c);
+		c = odiscard::feed(c);
 	}
 	return (c);
 }
@@ -273,40 +273,40 @@ signed odiscard::_content (signed c, signed e) const
  *
  *--------------------------------------------------------------------*/
 
-signed odiscard::command (signed c) const 
+signed odiscard::command(signed c) const
 
 {
-	c = odiscard::feed (c);
-	c = odiscard::_command (c, '\n');
-	c = odiscard::feed (c);
+	c = odiscard::feed(c);
+	c = odiscard::_command(c, '\n');
+	c = odiscard::feed(c);
 	return (c);
 }
 
-signed odiscard::command (signed c, signed e) const 
+signed odiscard::command(signed c, signed e) const
 
 {
-	c = odiscard::feed (c);
-	c = odiscard::_command (c, e);
-	c = odiscard::feed (c);
+	c = odiscard::feed(c);
+	c = odiscard::_command(c, e);
+	c = odiscard::feed(c);
 	return (c);
 }
 
-signed odiscard::_command (signed c, signed e) const 
+signed odiscard::_command(signed c, signed e) const
 
 {
-	while ((c != e) && (c != EOF)) 
+	while ((c != e) && (c != EOF))
 	{
-		if (oascii::isquote (c)) 
+		if (oascii::isquote(c))
 		{
-			c = odiscard::literal (c);
+			c = odiscard::literal(c);
 			continue;
 		}
-		if (c == '/') 
+		if (c == '/')
 		{
-			c = odiscard::comment (c);
+			c = odiscard::comment(c);
 			continue;
 		}
-		c = odiscard::escaped (c);
+		c = odiscard::escaped(c);
 	}
 	return (c);
 }
@@ -327,28 +327,28 @@ signed odiscard::_command (signed c, signed e) const
  *
  *--------------------------------------------------------------------*/
 
-signed odiscard::literal (signed c) const 
+signed odiscard::literal(signed c) const
 
 {
-	c = odiscard::literal (c, c);
+	c = odiscard::literal(c, c);
 	return (c);
 }
 
-signed odiscard::literal (signed c, signed e) const 
+signed odiscard::literal(signed c, signed e) const
 
 {
-	c = odiscard::feed (c);
-	c = odiscard::_literal (c, e);
-	c = odiscard::feed (c);
+	c = odiscard::feed(c);
+	c = odiscard::_literal(c, e);
+	c = odiscard::feed(c);
 	return (c);
 }
 
-signed odiscard::_literal (signed c, signed e) const 
+signed odiscard::_literal(signed c, signed e) const
 
 {
-	while ((c != e) && (c != EOF)) 
+	while ((c != e) && (c != EOF))
 	{
-		c = odiscard::escaped (c);
+		c = odiscard::escaped(c);
 	}
 	return (c);
 }
@@ -369,14 +369,14 @@ signed odiscard::_literal (signed c, signed e) const
  *
  *--------------------------------------------------------------------*/
 
-signed odiscard::escaped (signed c) const 
+signed odiscard::escaped(signed c) const
 
 {
-	if (c == '\\') 
+	if (c == '\\')
 	{
-		c = odiscard::feed (c);
+		c = odiscard::feed(c);
 	}
-	c = odiscard::feed (c);
+	c = odiscard::feed(c);
 	return (c);
 }
 
@@ -392,12 +392,12 @@ signed odiscard::escaped (signed c) const
  *
  *--------------------------------------------------------------------*/
 
-signed odiscard::find (signed c) const 
+signed odiscard::find(signed c) const
 
 {
-	while (oascii::isspace (c)) 
+	while (oascii::isspace(c))
 	{
-		c = odiscard::feed (c);
+		c = odiscard::feed(c);
 	}
 	return (c);
 }
@@ -414,10 +414,10 @@ signed odiscard::find (signed c) const
  *
  *--------------------------------------------------------------------*/
 
-signed odiscard::feed (signed c) const 
+signed odiscard::feed(signed c) const
 
 {
-	c = std::cin.get ();
+	c = std::cin.get();
 	return (c);
 }
 
@@ -431,7 +431,7 @@ signed odiscard::feed (signed c) const
  *
  *--------------------------------------------------------------------*/
 
-odiscard::odiscard (void) 
+odiscard::odiscard(void)
 
 {
 	return;
@@ -447,7 +447,7 @@ odiscard::odiscard (void)
  *
  *--------------------------------------------------------------------*/
 
-odiscard::~odiscard (void) 
+odiscard::~ odiscard(void)
 
 {
 	return;
@@ -458,4 +458,6 @@ odiscard::~odiscard (void)
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

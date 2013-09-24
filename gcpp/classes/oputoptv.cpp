@@ -32,49 +32,49 @@
  *
  *--------------------------------------------------------------------*/
 
-oputoptv & oputoptv::chkoptv (char const * optv []) 
+oputoptv & oputoptv::chkoptv(char const * optv[])
 
 {
 	extern char const * program_name;
 	char const * option;
 	signed index;
-	for (option = * optv; * option; option++) 
+	for (option = * optv; * option; option++)
 	{
-		if (* option == ':') 
+		if (* option == ':')
 		{
 			continue;
 		}
-		for (index = oPUTOPTV_I_DETAILS; optv [index]; index++) 
+		for (index = oPUTOPTV_I_DETAILS; optv[index]; index++)
 		{
-			if (* option == * optv [index]) 
+			if (* option == * optv[index])
 			{
 				break;
 			}
 		}
-		if (optv [index]) 
+		if (optv[index])
 		{
 			continue;
 		}
 		std::cerr << program_name << ": option '" << * option << "' has no string" << std::endl;
 	}
-	for (index = oPUTOPTV_I_DETAILS; optv [index]; index++) 
+	for (index = oPUTOPTV_I_DETAILS; optv[index]; index++)
 	{
-		for (option = optv [oPUTOPTV_I_OPTIONS]; * option; option++) 
+		for (option = optv[oPUTOPTV_I_OPTIONS]; * option; option++)
 		{
-			if (* option == ':') 
+			if (* option == ':')
 			{
 				continue;
 			}
-			if (* option == * optv [index]) 
+			if (* option == * optv[index])
 			{
 				break;
 			}
 		}
-		if (* option) 
+		if (* option)
 		{
 			continue;
 		}
-		std::cerr << program_name << ": string \"" << optv [index] << "\" has not option" << std::endl;
+		std::cerr << program_name << ": string \"" << optv[index] << "\" has not option" << std::endl;
 	}
 	return (* this);
 }
@@ -92,17 +92,17 @@ oputoptv & oputoptv::chkoptv (char const * optv [])
  *
  *--------------------------------------------------------------------*/
 
-oputoptv & oputoptv::putoptv (char const * optv []) 
+oputoptv & oputoptv::putoptv(char const * optv[])
 
 {
 	extern char const * program_name;
 	std::cout << std::endl;
-	std::cout << " program: " << optv [oPUTOPTV_I_PROGRAM] << std::endl << std::endl;
-	std::cout << " command: " << program_name << " [options] " << optv [oPUTOPTV_I_COMMAND] << std::endl << std::endl;
-	std::cout << " options: [" << optv [oPUTOPTV_I_OPTIONS] << oGETOPTV_C_VERSION << oGETOPTV_C_SUMMARY << "]" << std::endl << std::endl;
-	for (int index = oPUTOPTV_I_DETAILS; optv [index]; index++) 
+	std::cout << " program: " << optv[oPUTOPTV_I_PROGRAM] << std::endl << std::endl;
+	std::cout << " command: " << program_name << " [options] " << optv[oPUTOPTV_I_COMMAND] << std::endl << std::endl;
+	std::cout << " options: [" << optv[oPUTOPTV_I_OPTIONS] << oGETOPTV_C_VERSION << oGETOPTV_C_SUMMARY << "]" << std::endl << std::endl;
+	for (int index = oPUTOPTV_I_DETAILS; optv[index]; index++)
 	{
-		std::cout << " " << oGETOPTV_C_OPTIONS << optv [index] << std::endl;
+		std::cout << " " << oGETOPTV_C_OPTIONS << optv[index] << std::endl;
 	}
 	std::cout << " " << oGETOPTV_C_OPTIONS << oGETOPTV_C_VERSION << "\tversion information" << std::endl;
 	std::cout << " " << oGETOPTV_C_OPTIONS << oGETOPTV_C_SUMMARY << "\thelp summary" << std::endl;
@@ -121,11 +121,11 @@ oputoptv & oputoptv::putoptv (char const * optv [])
  *
  *--------------------------------------------------------------------*/
 
-oputoptv & oputoptv::putoptv (char const * optv [], signed exitcode) 
+oputoptv & oputoptv::putoptv(char const * optv[], signed exitcode)
 
 {
-	oputoptv::putoptv (optv);
-	std::exit (exitcode);
+	oputoptv::putoptv(optv);
+	std::exit(exitcode);
 }
 
 /*====================================================================*
@@ -134,7 +134,7 @@ oputoptv & oputoptv::putoptv (char const * optv [], signed exitcode)
  *
  *--------------------------------------------------------------------*/
 
-oputoptv::oputoptv () 
+oputoptv::oputoptv()
 
 {
 	return;
@@ -146,7 +146,7 @@ oputoptv::oputoptv ()
  *
  *--------------------------------------------------------------------*/
 
-oputoptv::~oputoptv () 
+oputoptv::~ oputoptv()
 
 {
 	return;
@@ -157,4 +157,6 @@ oputoptv::~oputoptv ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

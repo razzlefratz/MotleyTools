@@ -2,7 +2,7 @@
 #include <iostream>
 #include "../classes/osuffix.hpp"
 
-void osuffixtext () 
+void osuffixtext()
 
 {
 	osuffix suffix;

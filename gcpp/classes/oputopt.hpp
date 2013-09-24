@@ -39,18 +39,20 @@
  *
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oputopt 
+class __declspec(dllexport) oputopt
 
 {
-public:
+public: 
 	oputopt ();
-	virtual ~ oputopt ();
-	oputopt & chkopt (char const * optv [], char const * options);
-	oputopt & putopt (char const * optv []);
-	oputopt & putopt (char const * optv [], signed exitcode);
-protected:
-	private:
+	virtual ~ oputopt();
+	oputopt & chkopt(char const * optv[], char const * options);
+	oputopt & putopt(char const * optv[]);
+	oputopt & putopt(char const * optv[], signed exitcode);
+protected: 
+private: 
 };
 
 #endif
+
+
 

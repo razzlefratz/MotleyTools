@@ -40,26 +40,26 @@
  *   interface defintions;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) opage: private otext 
+class __declspec(dllexport) opage: private otext
 
 {
-public:
+public: 
 	opage ();
 	opage (char const * title);
-	virtual ~ opage ();
-	char const * title () const;
-	unsigned rows () const;
-	unsigned cols () const;
-	unsigned tabs () const;
-	opage & title (char const * title);
-	opage & rows (unsigned rows);
-	opage & cols (unsigned cols);
-	opage & tabs (unsigned tabs);
-	opage & put (char const * string);
-	signed put (signed c);
-private:
-	opage & header ();
-	opage & footer ();
+	virtual ~ opage();
+	char const * title() const;
+	unsigned rows() const;
+	unsigned cols() const;
+	unsigned tabs() const;
+	opage & title(char const * title);
+	opage & rows(unsigned rows);
+	opage & cols(unsigned cols);
+	opage & tabs(unsigned tabs);
+	opage & put(char const * string);
+	signed put(signed c);
+private: 
+	opage & header();
+	opage & footer();
 	char * mtitle;
 	unsigned mrows;
 	unsigned mcols;
@@ -75,4 +75,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

@@ -61,44 +61,44 @@
  *
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"p", 
-		oPUTOPTV_S_FILTER, 
-		"C/C++ source code blocker", 
-		(char const *) (0)
-	}; 
-	ogetoptv getopt; 
-	oescape escape; 
-	opathspec pathspec; 
-	ofileopen fileopen; 
-	ocblock object; 
-	signed (ocblock::* method) (signed) = & ocblock::program; 
-	signed c; 
-	while (~ (c = getopt.getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
+{
+	static char const * optv[] = 
+	{
+		"p",
+		oPUTOPTV_S_FILTER,
+		"C/C++ source code blocker",
+		(char const *)(0)
+	};
+	ogetoptv getopt;
+	oescape escape;
+	opathspec pathspec;
+	ofileopen fileopen;
+	ocblock object;
+	signed (ocblock::* method)(signed) = & ocblock::program;
+	signed c;
+	while (~ (c = getopt.getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
 		default: 
-			break; 
-		} 
-	} 
-	if (! getopt.argc ()) 
-	{ 
-		(object.* method) (std::cin.get ()); 
-	} 
-	while (getopt.argc () && * getopt.argv ()) 
-	{ 
-		if (fileopen.openedit (* getopt.argv ())) 
-		{ 
-			(object.* method) (std::cin.get ()); 
-			fileopen.close (); 
-		} 
-		getopt++; 
-	} 
-	std::exit (0); 
-} 
+			break;
+		}
+	}
+	if (! getopt.argc())
+	{
+		(object.* method)(std::cin.get());
+	}
+	while (getopt.argc() && * getopt.argv())
+	{
+		if (fileopen.openedit(* getopt.argv()))
+		{
+			(object.* method)(std::cin.get());
+			fileopen.close();
+		}
+		getopt++;
+	}
+	std::exit(0);
+}
 

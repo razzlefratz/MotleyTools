@@ -35,39 +35,39 @@
  *
  *--------------------------------------------------------------------*/
 
-bool owildcard::match (char const * literal, char const * pattern) 
+bool owildcard::match(char const * literal, char const * pattern)
 
 {
 
 #ifdef oWILDCARD_RECURSIVE
 
-	while (* literal) 
+	while (* literal)
 	{
 
 // cerr << "[" << *literal << "] [" << *pattern << "]" << std::endl;
 
-		if (* pattern == (char) (0)) 
+		if (* pattern == (char)(0))
 		{
 			return (false);
 		}
-		if (* pattern == this->allchar) 
+		if (* pattern == this->allchar)
 		{
-			for (++pattern; * literal != (char) (0); ++literal) 
+			for (++ pattern; * literal != (char)(0); ++ literal)
 			{
-				if (this->match (literal, pattern)) 
+				if (this->match(literal, pattern))
 				{
 					return (true);
 				}
 			}
 			break;
 		}
-		if (* pattern == this->anychar) 
+		if (* pattern == this->anychar)
 		{
 			pattern++;
 			literal++;
 			continue;
 		}
-		if (* pattern == * literal) 
+		if (* pattern == * literal)
 		{
 			pattern++;
 			literal++;
@@ -75,24 +75,24 @@ bool owildcard::match (char const * literal, char const * pattern)
 		}
 		break;
 	}
-	return (* pattern == (char) (0));
+	return (* pattern == (char)(0));
 
 #else
 
 	const register char * cliteral = literal;
 	const register char * cpattern = pattern;
-	while (true) 
+	while (true)
 	{
-		if (* cpattern == this->allchar) 
+		if (* cpattern == this->allchar)
 		{
 			literal = cliteral;
 			pattern = cpattern;
 			cpattern++;
 			continue;
 		}
-		if (* cliteral == * cpattern) 
+		if (* cliteral == * cpattern)
 		{
-			if (* cpattern == (char) (0)) 
+			if (* cpattern == (char)(0))
 			{
 				return (true);
 			}
@@ -100,20 +100,20 @@ bool owildcard::match (char const * literal, char const * pattern)
 			cpattern++;
 			continue;
 		}
-		if (* cliteral == (char) (0)) 
+		if (* cliteral == (char)(0))
 		{
 			break;
 		}
-		if (* cpattern == this->anychar) 
+		if (* cpattern == this->anychar)
 		{
 			cliteral++;
 			cpattern++;
 			continue;
 		}
-		if (* pattern == this->allchar) 
+		if (* pattern == this->allchar)
 		{
-			cliteral = ++literal;
-			cpattern = pattern + 1;
+			cliteral = ++ literal;
+			cpattern = pattern +  1;
 			continue;
 		}
 		break;
@@ -132,7 +132,7 @@ bool owildcard::match (char const * literal, char const * pattern)
  *   
  *--------------------------------------------------------------------*/
 
-owildcard::owildcard () 
+owildcard::owildcard()
 
 {
 	this->anychar = '?';
@@ -149,11 +149,11 @@ owildcard::owildcard ()
  *
  *--------------------------------------------------------------------*/
 
-owildcard::owildcard (unsigned char anychar, unsigned char allchar) 
+owildcard::owildcard(unsigned char anychar, unsigned char allchar)
 
 {
-	this->anychar = (char) (anychar);
-	this->allchar = (char) (allchar);
+	this->anychar = (char)(anychar);
+	this->allchar = (char)(allchar);
 	return;
 }
 
@@ -163,7 +163,7 @@ owildcard::owildcard (unsigned char anychar, unsigned char allchar)
  *
  *--------------------------------------------------------------------*/
 
-owildcard::~owildcard () 
+owildcard::~ owildcard()
 
 {
 	return;
@@ -174,4 +174,6 @@ owildcard::~owildcard ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

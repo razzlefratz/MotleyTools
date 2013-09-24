@@ -27,15 +27,15 @@
  *   class interface;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) osection 
+class __declspec(dllexport) osection
 
 {
-public:
+public: 
 	osection ();
-	virtual ~ osection ();
-	osection & width (size_t width);
-	osection & title (char const * title);
-private:
+	virtual ~ osection();
+	osection & width(size_t width);
+	osection & title(char const * title);
+private: 
 	char * mstart;
 	char * mupper;
 	char * mlower;
@@ -46,4 +46,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

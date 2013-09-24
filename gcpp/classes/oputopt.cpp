@@ -32,49 +32,49 @@
  *
  *--------------------------------------------------------------------*/
 
-oputopt & oputopt::chkopt (char const * optv [], char const * options) 
+oputopt & oputopt::chkopt(char const * optv[], char const * options)
 
 {
 	extern char const * program_name;
 	char const * option;
 	signed index;
-	for (option = options; * option; option++) 
+	for (option = options; * option; option++)
 	{
-		if (* option == ':') 
+		if (* option == ':')
 		{
 			continue;
 		}
-		for (index = oPUTOPT_I_DETAILS; optv [index]; index++) 
+		for (index = oPUTOPT_I_DETAILS; optv[index]; index++)
 		{
-			if (* option == * optv [index]) 
+			if (* option == * optv[index])
 			{
 				break;
 			}
 		}
-		if (optv [index]) 
+		if (optv[index])
 		{
 			continue;
 		}
 		std::cerr << program_name << ": option '" << * option << "' has no string" << std::endl;
 	}
-	for (index = oPUTOPT_I_DETAILS; optv [index]; index++) 
+	for (index = oPUTOPT_I_DETAILS; optv[index]; index++)
 	{
-		for (option = options; * option; option++) 
+		for (option = options; * option; option++)
 		{
-			if (* option == ':') 
+			if (* option == ':')
 			{
 				continue;
 			}
-			if (* option == * optv [index]) 
+			if (* option == * optv[index])
 			{
 				break;
 			}
 		}
-		if (* option) 
+		if (* option)
 		{
 			continue;
 		}
-		std::cerr << program_name << ": string \"" << optv [index] << "\" has not option" << std::endl;
+		std::cerr << program_name << ": string \"" << optv[index] << "\" has not option" << std::endl;
 	}
 	return (* this);
 }
@@ -90,11 +90,11 @@ oputopt & oputopt::chkopt (char const * optv [], char const * options)
  *
  *--------------------------------------------------------------------*/
 
-oputopt & oputopt::putopt (char const * usage [], signed exitcode) 
+oputopt & oputopt::putopt(char const * usage[], signed exitcode)
 
 {
-	this->putopt (usage);
-	std::exit (exitcode);
+	this->putopt(usage);
+	std::exit(exitcode);
 }
 
 /*====================================================================*
@@ -108,17 +108,17 @@ oputopt & oputopt::putopt (char const * usage [], signed exitcode)
  *
  *--------------------------------------------------------------------*/
 
-oputopt & oputopt::putopt (char const * usage []) 
+oputopt & oputopt::putopt(char const * usage[])
 
 {
 	extern char const * program_name;
 	std::cout << std::endl;
-	std::cout << " purpose: " << usage [oPUTOPT_I_PURPOSE] << std::endl << std::endl;
-	std::cout << " command: " << program_name << " [options] " << usage [oPUTOPT_I_COMMAND] << std::endl << std::endl;
-	std::cout << " options: [" << usage [oPUTOPT_I_OPTIONS] << oGETOPT_C_VERSION << oGETOPT_C_SUMMARY << "]" << std::endl << std::endl;
-	for (int index = oPUTOPT_I_DETAILS; usage [index]; index++) 
+	std::cout << " purpose: " << usage[oPUTOPT_I_PURPOSE] << std::endl << std::endl;
+	std::cout << " command: " << program_name << " [options] " << usage[oPUTOPT_I_COMMAND] << std::endl << std::endl;
+	std::cout << " options: [" << usage[oPUTOPT_I_OPTIONS] << oGETOPT_C_VERSION << oGETOPT_C_SUMMARY << "]" << std::endl << std::endl;
+	for (int index = oPUTOPT_I_DETAILS; usage[index]; index++)
 	{
-		std::cout << " " << oGETOPT_C_OPTIONS << usage [index] << std::endl;
+		std::cout << " " << oGETOPT_C_OPTIONS << usage[index] << std::endl;
 	}
 	std::cout << " " << oGETOPT_C_OPTIONS << oGETOPT_C_VERSION << "\tversion information" << std::endl;
 	std::cout << " " << oGETOPT_C_OPTIONS << oGETOPT_C_SUMMARY << "\thelp summary" << std::endl;
@@ -132,7 +132,7 @@ oputopt & oputopt::putopt (char const * usage [])
  *
  *--------------------------------------------------------------------*/
 
-oputopt::oputopt () 
+oputopt::oputopt()
 
 {
 	return;
@@ -144,7 +144,7 @@ oputopt::oputopt ()
  *
  *--------------------------------------------------------------------*/
 
-oputopt::~oputopt () 
+oputopt::~ oputopt()
 
 {
 	return;
@@ -155,4 +155,6 @@ oputopt::~oputopt ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

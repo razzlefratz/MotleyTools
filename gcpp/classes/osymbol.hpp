@@ -23,23 +23,23 @@
  *
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) osymbol: private otext 
+class __declspec(dllexport) osymbol: private otext
 
 {
-public:
+public: 
 	osymbol (char const * symbol);
 	osymbol (char const * symbol, char const * string);
-	virtual ~ osymbol ();
-	bool defined (char const * symbol) const;
-	char const * expand (char const * symbol) const;
-	char const * lookup (char const * symbol) const;
-	osymbol & define (char const * symbol, char const * string);
-	osymbol & revert (char const * symbol);
-	osymbol & enumerate ();
-	osymbol & print ();
-	osymbol & clear ();
-private:
-	const osymbol * node (char const * symbol) const;
+	virtual ~ osymbol();
+	bool defined(char const * symbol) const;
+	char const * expand(char const * symbol) const;
+	char const * lookup(char const * symbol) const;
+	osymbol & define(char const * symbol, char const * string);
+	osymbol & revert(char const * symbol);
+	osymbol & enumerate();
+	osymbol & print();
+	osymbol & clear();
+private: 
+	const osymbol * node(char const * symbol) const;
 	osymbol * mprior;
 	osymbol * mafter;
 	oqueue * mqueue;
@@ -50,4 +50,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

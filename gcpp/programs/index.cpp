@@ -63,53 +63,53 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"c:s:St:", 
-		oPUTOPTV_S_FUNNEL, 
-		"produce html file index", 
-		"c n\tdisplay (n) columns [" LITERAL (INDEX_COLUMNS) "]", 
-		"s s\tuse CSS2 stylesheet (s)", 
-		"S\tprint CSS2 stylesheet on stdout", 
-		"t s\ttitle string is (s)", 
-		(char const *) (0)
-	}; 
-	ogetoptv getopt; 
-	oerror message; 
-	ofindspec findspec; 
-	oHTMLIndex page; 
-	unsigned columns = INDEX_COLUMNS; 
-	signed c; 
-	while (~ (c = getopt.getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'c': 
-			columns = atoi (getopt.optarg ()); 
-			break; 
-		case 's': 
-			page.stylesheet (getopt.optarg ()); 
-			break; 
-		case 'S': 
-			page.css2 (); 
-			return (0); 
-		case 't': 
-			page.title (getopt.optarg ()); 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"c:s:St:",
+		oPUTOPTV_S_FUNNEL,
+		"produce html file index",
+		"c n\tdisplay (n) columns [" LITERAL(INDEX_COLUMNS) "]",
+		"s s\tuse CSS2 stylesheet (s)",
+		"S\tprint CSS2 stylesheet on stdout",
+		"t s\ttitle string is (s)",
+		(char const *)(0)
+	};
+	ogetoptv getopt;
+	oerror message;
+	ofindspec findspec;
+	oHTMLIndex page;
+	unsigned columns = INDEX_COLUMNS;
+	signed c;
+	while (~ (c = getopt.getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'c':
+			columns = atoi(getopt.optarg());
+			break;
+		case 's':
+			page.stylesheet(getopt.optarg());
+			break;
+		case 'S':
+			page.css2();
+			return (0);
+		case 't':
+			page.title(getopt.optarg());
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	while (getopt.argc () && * getopt.argv ()) 
-	{ 
-		findspec.fullname (* getopt.argv ()); 
-		page.collect (findspec.pathname (), findspec.filename ()); 
-		getopt++; 
-	} 
-	page.publish (columns); 
-	std::exit (0); 
-} 
+			break;
+		}
+	}
+	while (getopt.argc() && * getopt.argv())
+	{
+		findspec.fullname(* getopt.argv());
+		page.collect(findspec.pathname(), findspec.filename());
+		getopt++;
+	}
+	page.publish(columns);
+	std::exit(0);
+}
 

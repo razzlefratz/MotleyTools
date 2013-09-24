@@ -28,14 +28,14 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) otypes 
+class __declspec(dllexport) otypes
 
 {
-public:
+public: 
 	otypes ();
-	virtual ~ otypes ();
-protected:
-	private:
+	virtual ~ otypes();
+protected: 
+private: 
 };
 
 /*====================================================================*
@@ -43,4 +43,6 @@ protected:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

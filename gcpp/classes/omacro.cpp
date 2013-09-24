@@ -46,10 +46,10 @@ char const omacro::msuffix = ')';
  *
  *--------------------------------------------------------------------*/
 
-bool omacro::defined (char const * symbol) const 
+bool omacro::defined(char const * symbol) const
 
 {
-	return (this->mfunction->defined (symbol));
+	return (this->mfunction->defined(symbol));
 }
 
 /*====================================================================*
@@ -64,10 +64,10 @@ bool omacro::defined (char const * symbol) const
  *
  *--------------------------------------------------------------------*/
 
-omacro & omacro::revert (char const * symbol) 
+omacro & omacro::revert(char const * symbol)
 
 {
-	this->mfunction->revert (symbol);
+	this->mfunction->revert(symbol);
 	return (* this);
 }
 
@@ -97,65 +97,65 @@ omacro & omacro::revert (char const * symbol)
  *
  *--------------------------------------------------------------------*/
 
-omacro & omacro::define (char const * string) 
+omacro & omacro::define(char const * string)
 
 {
 	unsigned count = 0;
-	oscantext source (string);
-	source.scanblank ();
-	source.flush ();
-	source.scanident ();
-	this->margument->define (this->argument (count), source.tokentext ());
-	this->margument->define (source.tokentext (), this->argument (count++));
-	if (source.havebreak ('(')) 
+	oscantext source(string);
+	source.scanblank();
+	source.flush();
+	source.scanident();
+	this->margument->define(this->argument(count), source.tokentext());
+	this->margument->define(source.tokentext(), this->argument(count++));
+	if (source.havebreak('('))
 	{
-		do
+		do 
 		{
-			source.scanspace ();
-			source.flush ();
-			source.scangroup (",)");
-			source.trimtoken ();
-			this->margument->define (source.tokentext (), this->argument (count++));
-			source.scanspace ();
-			source.scanbreak (',');
+			source.scanspace();
+			source.flush();
+			source.scangroup(",)");
+			source.trimtoken();
+			this->margument->define(source.tokentext(), this->argument(count++));
+			source.scanspace();
+			source.scanbreak(',');
 		}
-		while (!source.havebreak (')'));
+		while (! source.havebreak(')'));
 	}
-	source.scanblank ();
-	while (!source.isempty ()) 
+	source.scanblank();
+	while (! source.isempty())
 	{
-		source.flush ();
-		source.scantoken ();
-		if (source.isclass ("_A")) 
+		source.flush();
+		source.scantoken();
+		if (source.isclass("_A"))
 		{
-			source.scanident ();
-			this->append (this->margument->expand (source.tokentext ()));
+			source.scanident();
+			this->append(this->margument->expand(source.tokentext()));
 			continue;
 		}
-		if (source.isclass ('/')) 
+		if (source.isclass('/'))
 		{
-			if (source.havebreak ('/')) 
+			if (source.havebreak('/'))
 			{
-				source.scanquote ('\n');
-				source.scanbreak ('\n');
+				source.scanquote('\n');
+				source.scanbreak('\n');
 				continue;
 			}
-			if (source.havebreak ('*')) 
+			if (source.havebreak('*'))
 			{
-				source.scanblock ();
-				source.scanmatch ();
+				source.scanblock();
+				source.scanmatch();
 				continue;
 			}
 		}
-		this->append (source.tokentext ());
+		this->append(source.tokentext());
 	}
-	if (omacro::anyset (oMACRO_B_DEFINE)) 
+	if (omacro::anyset(oMACRO_B_DEFINE))
 	{
 		std::cerr << "[DEFINE[" << string << "]]" << std::endl;
 		std::cerr << "[STRING[" << this->mbuffer << "]]" << std::endl;
 	}
-	this->mfunction->define (this->margument->lookup (this->argument (0)), this->mbuffer);
-	this->margument->clear ();
+	this->mfunction->define(this->margument->lookup(this->argument(0)), this->mbuffer);
+	this->margument->clear();
 	this->mextent = 0;
 	return (* this);
 }
@@ -170,69 +170,69 @@ omacro & omacro::define (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-char const * omacro::expand (char const * string) 
+char const * omacro::expand(char const * string)
 
 {
 	unsigned count = 0;
-	oscantext source (string);
-	source.scanspace ();
-	source.flush ();
-	source.scanident ();
-	this->margument->define (this->argument (count++), source.tokentext ());
-	source.scanspace ();
-	if (source.havebreak ('(')) 
+	oscantext source(string);
+	source.scanspace();
+	source.flush();
+	source.scanident();
+	this->margument->define(this->argument(count++), source.tokentext());
+	source.scanspace();
+	if (source.havebreak('('))
 	{
-		do
+		do 
 		{
-			source.scanspace ().flush ();
-			source.scangroup (",)");
-			source.trimtoken ();
-			this->margument->define (this->argument (count++), source.tokentext ());
-			source.scanspace ();
-			source.scanbreak (',');
+			source.scanspace().flush();
+			source.scangroup(",)");
+			source.trimtoken();
+			this->margument->define(this->argument(count++), source.tokentext());
+			source.scanspace();
+			source.scanbreak(',');
 		}
-		while (!source.havebreak (')'));
+		while (! source.havebreak(')'));
 	}
-	source.copy (this->mfunction->lookup (this->margument->lookup (this->argument (0))));
-	while (!source.isempty ()) 
+	source.copy(this->mfunction->lookup(this->margument->lookup(this->argument(0))));
+	while (! source.isempty())
 	{
-		source.flush ().scantoken ();
-		if (source.isclass (omacro::msymbol)) 
+		source.flush().scantoken();
+		if (source.isclass(omacro::msymbol))
 		{
-			source.scanbreak (omacro::mprefix);
-			source.scandigit ();
-			source.scanbreak (omacro::msuffix);
-			this->append (this->margument->expand (source.tokentext ()));
+			source.scanbreak(omacro::mprefix);
+			source.scandigit();
+			source.scanbreak(omacro::msuffix);
+			this->append(this->margument->expand(source.tokentext()));
 			continue;
 		}
-		if (source.isclass ("_A")) 
+		if (source.isclass("_A"))
 		{
-			this->append (source.scanident ().tokentext ());
+			this->append(source.scanident().tokentext());
 			continue;
 		}
-		if (source.isclass ('/')) 
+		if (source.isclass('/'))
 		{
-			if (source.havebreak ('/')) 
+			if (source.havebreak('/'))
 			{
-				source.scanuntil ('\n');
-				source.scanbreak ('\n');
+				source.scanuntil('\n');
+				source.scanbreak('\n');
 				continue;
 			}
-			if (source.havebreak ('*')) 
+			if (source.havebreak('*'))
 			{
-				source.scanblock ();
-				source.scanmatch ();
+				source.scanblock();
+				source.scanmatch();
 				continue;
 			}
 		}
-		this->append (source.tokentext ());
+		this->append(source.tokentext());
 	}
-	if (omacro::anyset (oMACRO_B_EXPAND)) 
+	if (omacro::anyset(oMACRO_B_EXPAND))
 	{
 		std::cerr << "[EXPAND[" << string << "]]" << std::endl;
 		std::cerr << "[STRING[" << this->mbuffer << "]]" << std::endl;
 	}
-	this->margument->clear ();
+	this->margument->clear();
 	this->mextent = 0;
 	return (this->mbuffer);
 }
@@ -250,22 +250,22 @@ char const * omacro::expand (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-omacro & omacro::append (char const * string) 
+omacro & omacro::append(char const * string)
 
 {
-	if (this->mextent + std::strlen (string) > this->mlength) 
+	if (this->mextent +  std::strlen(string) > this->mlength)
 	{
 		char * scratch = this->mbuffer;
-		this->mlength = this->mextent + std::strlen (string);
-		this->mbuffer = new char [this->mlength+1];
-		std::strcpy (this->mbuffer, scratch);
+		this->mlength = this->mextent +  std::strlen(string);
+		this->mbuffer = new char[this->mlength + 1];
+		std::strcpy(this->mbuffer, scratch);
 		delete [] scratch;
 	}
-	while (* string) 
+	while (* string)
 	{
-		this->mbuffer [this->mextent++] = * string++;
+		this->mbuffer[this->mextent++] = * string++;
 	}
-	this->mbuffer [this->mextent] = (char) (0);
+	this->mbuffer[this->mextent] = (char)(0);
 	return (* this);
 }
 
@@ -283,21 +283,21 @@ omacro & omacro::append (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-char const * omacro::argument (unsigned number) const 
+char const * omacro::argument(unsigned number) const
 
 {
-	static char buffer [oMACRO_SYMBOL_LENGTH];
-	char * string = buffer + sizeof (buffer);
-	*--string = (char) (0);
-	*--string = omacro::msuffix;
-	do
+	static char buffer[oMACRO_SYMBOL_LENGTH];
+	char * string = buffer +  sizeof(buffer);
+	* -- string = (char)(0);
+	* -- string = omacro::msuffix;
+	do 
 	{
-		*--string = '0' + (char) (number % 10);
+		* -- string = '0' + (char)(number % 10);
 	}
 	while (number /= 10);
-	*--string = omacro::mprefix;
-	*--string = omacro::msymbol;
-	return ((char const *) (string));
+	* -- string = omacro::mprefix;
+	* -- string = omacro::msymbol;
+	return ((char const *)(string));
 }
 
 /*====================================================================*
@@ -313,11 +313,11 @@ char const * omacro::argument (unsigned number) const
  *
  *--------------------------------------------------------------------*/
 
-omacro & omacro::enumerate (char const * title) 
+omacro & omacro::enumerate(char const * title)
 
 {
 	std::cerr << "--- " << title << " ---" << std::endl;
-	this->mfunction->enumerate ();
+	this->mfunction->enumerate();
 	return (* this);
 }
 
@@ -333,12 +333,12 @@ omacro & omacro::enumerate (char const * title)
  *
  *--------------------------------------------------------------------*/
 
-omacro & omacro::clear () 
+omacro & omacro::clear()
 
 {
-	this->mfunction->clear ();
-	this->margument->clear ();
-	this->mbuffer [0] = (char) (0);
+	this->mfunction->clear();
+	this->margument->clear();
+	this->mbuffer[0] = (char)(0);
 	this->mextent = 0;
 	return (* this);
 }
@@ -353,15 +353,15 @@ omacro & omacro::clear ()
  *
  *--------------------------------------------------------------------*/
 
-omacro::omacro () 
+omacro::omacro()
 
 {
-	this->mfunction = new osymbol ("");
-	this->margument = new osymbol ("");
+	this->mfunction = new osymbol("");
+	this->margument = new osymbol("");
 	this->mlength = oMACRO_STRING_LENGTH;
 	this->mextent = 0;
-	this->mbuffer = new char [this->mlength+1];
-	this->mbuffer [0] = (char) (0);
+	this->mbuffer = new char[this->mlength + 1];
+	this->mbuffer[0] = (char)(0);
 	return;
 }
 
@@ -375,7 +375,7 @@ omacro::omacro ()
  *
  *--------------------------------------------------------------------*/
 
-omacro::~omacro () 
+omacro::~ omacro()
 
 {
 	delete [] this->mbuffer;
@@ -389,4 +389,6 @@ omacro::~omacro ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

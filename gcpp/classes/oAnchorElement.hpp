@@ -24,20 +24,20 @@
  *   interface declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oAnchorElement 
+class __declspec(dllexport) oAnchorElement
 
 {
-public:
+public: 
 	oAnchorElement ();
-	virtual ~ oAnchorElement ();
-	char const * ElementName () const;
+	virtual ~ oAnchorElement();
+	char const * ElementName() const;
 	oi18nAttributes i18nAttributes;
 	oCoreAttributes CoreAttributes;
 	oLinkAttributes LinkAttributes;
-	oAnchorElement & StartTag ();
-	oAnchorElement & EmptyTag ();
-	oAnchorElement & EndTag ();
-private:
+	oAnchorElement & StartTag();
+	oAnchorElement & EmptyTag();
+	oAnchorElement & EndTag();
+private: 
 	static char const * mscope;
 	static char const * mtitle;
 };
@@ -47,4 +47,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

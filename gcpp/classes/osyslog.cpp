@@ -64,14 +64,14 @@
  *
  *--------------------------------------------------------------------*/
 
-osyslog & osyslog::identity (char const * identity) 
+osyslog & osyslog::identity(char const * identity)
 
 {
-	if (std::strcmp (this->midentity, identity)) 
+	if (std::strcmp(this->midentity, identity))
 	{
 		delete [] this->midentity;
-		this->midentity = new char [std::strlen (identity)+1];
-		std::strcpy (this->midentity, identity);
+		this->midentity = new char[std::strlen(identity) + 1];
+		std::strcpy(this->midentity, identity);
 	}
 	return (* this);
 }
@@ -89,7 +89,7 @@ osyslog & osyslog::identity (char const * identity)
  *
  *--------------------------------------------------------------------*/
 
-char const * osyslog::identity () const 
+char const * osyslog::identity() const
 
 {
 	return (this->midentity);
@@ -110,7 +110,7 @@ char const * osyslog::identity () const
  *
  *--------------------------------------------------------------------*/
 
-osyslog & osyslog::facility (facility_t facility) 
+osyslog & osyslog::facility(facility_t facility)
 
 {
 	this->mfacility = facility & SYSLOG_FACILITY_MASK;
@@ -129,7 +129,7 @@ osyslog & osyslog::facility (facility_t facility)
  *
  *--------------------------------------------------------------------*/
 
-facility_t osyslog::facility () const 
+facility_t osyslog::facility() const
 
 {
 	return (this->mfacility);
@@ -148,7 +148,7 @@ facility_t osyslog::facility () const
  *
  *--------------------------------------------------------------------*/
 
-osyslog & osyslog::options (flag_t options) 
+osyslog & osyslog::options(flag_t options)
 
 {
 	this->moptions = options;
@@ -167,7 +167,7 @@ osyslog & osyslog::options (flag_t options)
  *
  *--------------------------------------------------------------------*/
 
-flag_t osyslog::options () const 
+flag_t osyslog::options() const
 
 {
 	return (this->moptions);
@@ -186,20 +186,20 @@ flag_t osyslog::options () const
  *
  *--------------------------------------------------------------------*/
 
-void osyslog::syslogerr (priority_t priority, errno_t errnum, char const * format, ...) 
+void osyslog::syslogerr(priority_t priority, errno_t errnum, char const * format, ...)
 
 {
 	va_list arglist;
 	va_start (arglist, format);
-	if (errnum != (errno_t)(0)) 
+	if (errnum != (errno_t) (0))
 	{
-		char buffer [strlen (format) + SYSLOG_STRERROR_MAX];
-		std::snprintf (buffer, sizeof (buffer), "%s: %s", format, std::strerror (errnum));
-		osyslog::vsyslog (priority, buffer, arglist);
+		char buffer[strlen(format) +  SYSLOG_STRERROR_MAX];
+		std::snprintf(buffer, sizeof(buffer), "%s: %s", format, std::strerror(errnum));
+		osyslog::vsyslog(priority, buffer, arglist);
 	}
-	else
+	else 
 	{
-		osyslog::vsyslog (priority, format, arglist);
+		osyslog::vsyslog(priority, format, arglist);
 	}
 	va_end (arglist);
 	return;
@@ -215,20 +215,20 @@ void osyslog::syslogerr (priority_t priority, errno_t errnum, char const * forma
  *
  *--------------------------------------------------------------------*/
 
-void osyslog::syslogerr_at_line (priority_t priority, errno_t errornum, char const * filename, size_t lineno, char const * format, ...) 
+void osyslog::syslogerr_at_line(priority_t priority, errno_t errornum, char const * filename, size_t lineno, char const * format, ...)
 
 {
 	va_list arglist;
 	va_start (arglist, format);
-	if (filename != (char const *) (0)) 
+	if (filename != (char const *)(0))
 	{
-		char buffer [strlen (format) + SYSLOG_STRERROR_MAX];
-		std::snprintf (buffer, sizeof (buffer), "%s: (%zu) ", filename, lineno);
-		osyslog::vsyslog (priority, buffer, arglist);
+		char buffer[strlen(format) +  SYSLOG_STRERROR_MAX];
+		std::snprintf(buffer, sizeof(buffer), "%s: (%zu) ", filename, lineno);
+		osyslog::vsyslog(priority, buffer, arglist);
 	}
-	else
+	else 
 	{
-		osyslog::vsyslog (priority, format, arglist);
+		osyslog::vsyslog(priority, format, arglist);
 	}
 	va_end (arglist);
 	return;
@@ -246,12 +246,12 @@ void osyslog::syslogerr_at_line (priority_t priority, errno_t errornum, char con
  *
  *--------------------------------------------------------------------*/
 
-void osyslog::syslog (priority_t priority, char const * format, ...) 
+void osyslog::syslog(priority_t priority, char const * format, ...)
 
 {
 	va_list arglist;
 	va_start (arglist, format);
-	osyslog::vsyslog (priority, format, arglist);
+	osyslog::vsyslog(priority, format, arglist);
 	va_end (arglist);
 	return;
 }
@@ -272,51 +272,51 @@ void osyslog::syslog (priority_t priority, char const * format, ...)
  *
  *--------------------------------------------------------------------*/
 
-void osyslog::vsyslog (priority_t priority, char const * format, va_list arglist) 
+void osyslog::vsyslog(priority_t priority, char const * format, va_list arglist)
 
 {
-	time_t now = time (& now);
-	char buffer [SYSLOG_MESSAGE_MAX] = "";
+	time_t now = time(& now);
+	char buffer[SYSLOG_MESSAGE_MAX] = "";
 	signed prefix = 0;
 	signed length = 0;
-	if (priority & ~(SYSLOG_FACILITY_MASK | SYSLOG_SEVERITY_MASK)) 
+	if (priority & ~ (SYSLOG_FACILITY_MASK | SYSLOG_SEVERITY_MASK))
 	{
 		return;
 	}
-	if (this->mseverity & (1 << (priority & SYSLOG_SEVERITY_MASK))) 
+	if (this->mseverity & (1 << (priority & SYSLOG_SEVERITY_MASK)))
 	{
 		return;
 	}
-	if ((priority & SYSLOG_FACILITY_MASK) == 0) 
+	if ((priority & SYSLOG_FACILITY_MASK) == 0)
 	{
 		priority |= this->mfacility;
 	}
-	length = prefix = snprintf (buffer + length, sizeof (buffer) - length, "<%d>", priority);
-	if (this->midentity != (char *) (0)) 
+	length = prefix = snprintf(buffer +  length, sizeof(buffer) - length, "<%d>", priority);
+	if (this->midentity != (char *)(0))
 	{
-		length += snprintf (buffer + length, sizeof (buffer) - length, "%s: ", this->midentity);
+		length += snprintf(buffer +  length, sizeof(buffer) - length, "%s: ", this->midentity);
 	}
-	if (this->moptions & SYSLOG_PROCESS) 
+	if (this->moptions & SYSLOG_PROCESS)
 	{
-		length += snprintf (buffer + length, sizeof (buffer) - length, "[%d] ", getpid ());
+		length += snprintf(buffer +  length, sizeof(buffer) - length, "[%d] ", getpid());
 	}
-	length += vsnprintf (buffer + length, sizeof (buffer) - length, format, arglist);
-	length += snprintf (buffer + length, sizeof (buffer) - length, "\n");
-	if (this->moptions & SYSLOG_PERROR) 
+	length += vsnprintf(buffer +  length, sizeof(buffer) - length, format, arglist);
+	length += snprintf(buffer +  length, sizeof(buffer) - length, "\n");
+	if (this->moptions & SYSLOG_PERROR)
 	{
-		std::cerr.write (buffer + prefix, length - prefix);
+		std::cerr.write(buffer +  prefix, length - prefix);
 	}
-	if (write (this->mfile, buffer, length) == -1) 
+	if (write(this->mfile, buffer, length) == - 1)
 	{
-		if (this->moptions & SYSLOG_CONSOLE) 
+		if (this->moptions & SYSLOG_CONSOLE)
 		{
 			std::ofstream console;
-			console.open (_PATH_CONSOLE, std::ofstream::out);
-			if (console.good ()) 
+			console.open(_PATH_CONSOLE, std::ofstream::out);
+			if (console.good())
 			{
-				console.write (buffer + prefix, length - prefix);
+				console.write(buffer +  prefix, length - prefix);
 			}
-			console.close ();
+			console.close();
 		}
 	}
 	return;
@@ -333,23 +333,23 @@ void osyslog::vsyslog (priority_t priority, char const * format, va_list arglist
  *
  *--------------------------------------------------------------------*/
 
-osyslog::osyslog () 
+osyslog::osyslog()
 
 {
-	this->midentity = new char [L_cuserid];
-	std::strncpy (this->midentity, getlogin (), sizeof (this->midentity));
+	this->midentity = new char[L_cuserid];
+	std::strncpy(this->midentity, getlogin(), sizeof(this->midentity));
 	this->mfacility = SYSLOG_USER;
 	this->mseverity = 0;
 	this->moptions = 0;
 	this->msocket.sa_family = AF_UNIX;
-	std::strncpy (this->msocket.sa_data, _PATH_LOG, sizeof (this->msocket.sa_data));
-	if ((this->mfile = socket (AF_UNIX, SOCK_DGRAM, 0)) == -1) 
+	std::strncpy(this->msocket.sa_data, _PATH_LOG, sizeof(this->msocket.sa_data));
+	if ((this->mfile = socket(AF_UNIX, SOCK_DGRAM, 0)) == - 1)
 	{
-		oerror::error (1, errno, "can't open udp socket");
+		oerror::error(1, errno, "can't open udp socket");
 	}
-	if (connect (this->mfile, & this->msocket, sizeof (this->msocket)) == -1) 
+	if (connect(this->mfile, & this->msocket, sizeof(this->msocket)) == - 1)
 	{
-		oerror::error (1, errno, "can't connect to %s", this->msocket.sa_data);
+		oerror::error(1, errno, "can't connect to %s", this->msocket.sa_data);
 	}
 	return;
 }
@@ -365,7 +365,7 @@ osyslog::osyslog ()
  *
  *--------------------------------------------------------------------*/
 
-osyslog::~osyslog () 
+osyslog::~ osyslog()
 
 {
 	delete [] this->midentity;::
@@ -378,4 +378,6 @@ osyslog::~osyslog ()
  *--------------------------------------------------------------------*/
 
 #endif 
+
+
 

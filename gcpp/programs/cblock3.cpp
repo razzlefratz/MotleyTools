@@ -54,78 +54,78 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-static void function () 
+static void function()
 
-{ 
-	oscanfile source; 
-	while (! source.end ()) 
-	{ 
-		<< << << < HEAD if (source.scantoken ().isspace ()) == == == = source.scantoken (); 
-		if (source.isspace ()) >> >> >> > 6f95020476b52cf467ba9cc9ea46d424fb7d7b40 
-		{ 
-			source.scanspace (); 
-		} 
-		<< << << < HEAD else if (source.havetoken ("while")) 
-		{ 
-		} 
-		else if (source.havetoken ("do")) 
-		{ 
-		} 
-		else if (source.havetoken ("switch")) 
-		{ 
-		} 
-		else if (source.havetoken ("if")) 
-		{ 
-		} 
-		else if (source.havetoken ("return")) 
-		{ 
-		} 
-		source.write ().flush (); 
-		== == == = source.print ().flush (); 
+{
+	oscanfile source;
+	while (! source.end())
+	{
+		<< << << < HEAD if(source.scantoken().isspace()) == == == = source.scantoken();
+		if (source.isspace()) >> >> >> > 6f95020476b52cf467ba9cc9ea46d424fb7d7b40
+		{
+			source.scanspace();
+		}
+		<< << << < HEAD else if(source.havetoken("while"))
+		{
+		}
+		else if(source.havetoken("do"))
+		{
+		}
+		else if(source.havetoken("switch"))
+		{
+		}
+		else if(source.havetoken("if"))
+		{
+		}
+		else if(source.havetoken("return"))
+		{
+		}
+		source.write().flush();
+		== == == = source.print().flush();
 		>> >> >> > 6f95020476b52cf467ba9cc9ea46d424fb7d7b40
-	} 
-	return; 
-} 
+	}
+	return;
+}
 
 /*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"", 
-		oPUTOPTV_S_FUNNEL, 
-		"C Language Block Manger", 
-		(char const *) (0)
-	}; 
-	ofileopen fileopen; 
-	opathspec pathspec; 
-	ogetoptv getopt; 
-	signed c; 
-	while (~ (c = getopt.getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
+{
+	static char const * optv[] = 
+	{
+		"",
+		oPUTOPTV_S_FUNNEL,
+		"C Language Block Manger",
+		(char const *)(0)
+	};
+	ofileopen fileopen;
+	opathspec pathspec;
+	ogetoptv getopt;
+	signed c;
+	while (~ (c = getopt.getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
 		default: 
-			break; 
-		} 
-	} 
-	if (! getopt.argc ()) 
-	{ 
-		function (); 
-	} 
-	while (getopt.argc () && * getopt.argv ()) 
-	{ 
-		if (fileopen.openedit (* getopt.argv ())) 
-		{ 
-			function (); 
-			fileopen.close (); 
-		} 
-		getopt++; 
-	} 
-	std::exit (0); 
-} 
+			break;
+		}
+	}
+	if (! getopt.argc())
+	{
+		function ();
+	}
+	while (getopt.argc() && * getopt.argv())
+	{
+		if (fileopen.openedit(* getopt.argv()))
+		{
+			function ();
+			fileopen.close();
+		}
+		getopt++;
+	}
+	std::exit(0);
+}
 

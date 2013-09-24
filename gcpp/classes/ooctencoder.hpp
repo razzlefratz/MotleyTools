@@ -21,16 +21,16 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ooctencoder 
+class __declspec(dllexport) ooctencoder
 
 {
-public:
+public: 
 	ooctencoder ();
-	virtual ~ ooctencoder ();
-	char * encode (char const * string);
-	char * decode (char * string);
-private:
-	static char const mdigit [];
+	virtual ~ ooctencoder();
+	char * encode(char const * string);
+	char * decode(char * string);
+private: 
+	static char const mdigit[];
 	char * mbuffer;
 	size_t mlength;
 };
@@ -40,4 +40,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

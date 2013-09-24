@@ -23,34 +23,33 @@
  *   interface declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) odiscard 
+class __declspec(dllexport) odiscard
 
 {
-public:
+public: 
 	odiscard (void);
-	virtual ~ odiscard (void);
-	signed context (signed c, char const * charset) const;
-	signed context (signed c, signed o, signed e) const;
-	signed content (signed c, signed o, signed e) const;
-	signed context (signed c, signed e) const;
-	signed command (signed c, signed e) const;
-	signed literal (signed c, signed e) const;
-	signed content (signed c, signed e) const;
-	signed context (signed c) const;
-	signed command (signed c) const;
-	signed literal (signed c) const;
-	signed escaped (signed c) const;
-	signed comment (signed c) const;
-	signed _context (signed c, signed o, signed e) const;
-	signed _content (signed c, signed o, signed e) const;
-	signed _context (signed c, signed e) const;
-	signed _literal (signed c, signed e) const;
-	signed _command (signed c, signed e) const;
-	signed _content (signed c, signed e) const;
-	signed find (signed c) const;
-	signed feed (signed c) const;
-private:
-	
+	virtual ~ odiscard(void);
+	signed context(signed c, char const * charset) const;
+	signed context(signed c, signed o, signed e) const;
+	signed content(signed c, signed o, signed e) const;
+	signed context(signed c, signed e) const;
+	signed command(signed c, signed e) const;
+	signed literal(signed c, signed e) const;
+	signed content(signed c, signed e) const;
+	signed context(signed c) const;
+	signed command(signed c) const;
+	signed literal(signed c) const;
+	signed escaped(signed c) const;
+	signed comment(signed c) const;
+	signed _context(signed c, signed o, signed e) const;
+	signed _content(signed c, signed o, signed e) const;
+	signed _context(signed c, signed e) const;
+	signed _literal(signed c, signed e) const;
+	signed _command(signed c, signed e) const;
+	signed _content(signed c, signed e) const;
+	signed find(signed c) const;
+	signed feed(signed c) const;
+private: 
 };
 
 /*====================================================================*
@@ -58,4 +57,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

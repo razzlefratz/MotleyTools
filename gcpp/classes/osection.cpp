@@ -32,17 +32,17 @@
  *   
  *--------------------------------------------------------------------*/
 
-osection & osection::width (size_t width) 
+osection & osection::width(size_t width)
 
 {
-	this->mupper = new char [width + 1];
-	this->mlower = new char [width + 1];
-	this->mupper [width] = (char) (0);
-	this->mlower [width] = (char) (0);
-	while (width-- > 0) 
+	this->mupper = new char[width +  1];
+	this->mlower = new char[width +  1];
+	this->mupper[width] = (char)(0);
+	this->mlower[width] = (char)(0);
+	while (width-- > 0)
 	{
-		this->mupper [width] = '=';
-		this->mlower [width] = '-';
+		this->mupper[width] = '=';
+		this->mlower[width] = '-';
 	}
 	return (* this);
 }
@@ -55,7 +55,7 @@ osection & osection::width (size_t width)
  *
  *--------------------------------------------------------------------*/
 
-osection & osection::title (char const * title) 
+osection & osection::title(char const * title)
 
 {
 	std::cout << std::endl;
@@ -72,16 +72,16 @@ osection & osection::title (char const * title)
  *
  *--------------------------------------------------------------------*/
 
-osection::osection () 
+osection::osection()
 
 {
-	this->mstart = new char [2];
-	this->mstart [0] = '#';
-	this->mstart [1] = (char)(0);
-	this->mupper = new char [1];
-	this->mlower = new char [1];
-	this->mupper [0] = (char) (0);
-	this->mlower [0] = (char) (0);
+	this->mstart = new char[2];
+	this->mstart[0] = '#';
+	this->mstart[1] = (char) (0);
+	this->mupper = new char[1];
+	this->mlower = new char[1];
+	this->mupper[0] = (char)(0);
+	this->mlower[0] = (char)(0);
 	return;
 }
 
@@ -91,7 +91,7 @@ osection::osection ()
  *
  *--------------------------------------------------------------------*/
 
-osection::~osection () 
+osection::~ osection()
 
 {
 	delete [] this->mstart;
@@ -105,4 +105,6 @@ osection::~osection ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

@@ -27,10 +27,10 @@
  *
  *--------------------------------------------------------------------*/
 
-oconstants::oconstants () 
+oconstants::oconstants()
 
 {
-	static char const * table [] = 
+	static char const * table[] = 
 	{
 		"CHAR_BIT",
 		"CHAR_MAX",
@@ -66,12 +66,12 @@ oconstants::oconstants ()
 		"UINT_MAX",
 		"ULONG_MAX",
 		"USHRT_MAX",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	okeywords::mtitle = "constants";
-	okeywords::mcount = SIZEOF (table) - 1;
+	okeywords::mcount = SIZEOF(table) - 1;
 	okeywords::mtable = table;
-	okeywords::mcheck ();
+	okeywords::mcheck();
 	return;
 }
 
@@ -85,7 +85,7 @@ oconstants::oconstants ()
  *
  *--------------------------------------------------------------------*/
 
-oconstants::~oconstants () 
+oconstants::~ oconstants()
 
 {
 	return;
@@ -96,4 +96,6 @@ oconstants::~oconstants ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

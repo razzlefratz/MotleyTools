@@ -41,10 +41,10 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
 {
-	static char const * usage [] = 
+	static char const * usage[] = 
 	{
 		"oformat.demo",
 		"h",
@@ -53,34 +53,34 @@ int main (int argc, char const * argv [])
 		"h\thelp summary ",
 		NULL
 	};
-	ogetopt options (1);
+	ogetopt options(1);
 	oformat format;
 	signed c;
-	while ((c = options.getopt (argc, argv, usage [PUTOPT_I_OPTIONS])) != -1) 
+	while ((c = options.getopt(argc, argv, usage[PUTOPT_I_OPTIONS])) != - 1)
 	{
-		switch (c) 
+		switch (c)
 		{
 		case 'h':
-			options.putopt (usage);
-		default:
+			options.putopt(usage);
+		default: 
 			break;
 		}
 	}
-	format.indent (4).offset (0);
-	for (c = 0; c < 100; c++) 
+	format.indent(4).offset(0);
+	for (c = 0; c < 100; c++)
 	{
-		if (c %13==0) 
+		if (c % 13 == 0)
 		{
-			format.flush (1);
-			format.offset (0);
-			format.print ("xxx");
-			format.offset (4);
+			format.flush(1);
+			format.offset(0);
+			format.print("xxx");
+			format.offset(4);
 		}
-		format.print ("abcd");
-		format.space (2);
-		format.shift (16);
+		format.print("abcd");
+		format.space(2);
+		format.shift(16);
 	}
-	format.flush (0);
+	format.flush(0);
 	exit (0);
 }
 

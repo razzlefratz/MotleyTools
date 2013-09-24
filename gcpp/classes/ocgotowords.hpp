@@ -25,12 +25,12 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ocgotowords: public okeywords 
+class __declspec(dllexport) ocgotowords: public okeywords
 
 {
-public:
+public: 
 	ocgotowords ();
-	~ ocgotowords ();
+	~ ocgotowords();
 };
 
 /*====================================================================*
@@ -38,4 +38,6 @@ public:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

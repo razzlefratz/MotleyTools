@@ -21,12 +21,12 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) otext 
+class __declspec(dllexport) otext
 
 {
-public:
-	static char * replace (char * buffer, char const * string);
-	static char * save (char const * string);
+public: 
+	static char * replace(char * buffer, char const * string);
+	static char * save(char const * string);
 };
 
 /*====================================================================*
@@ -34,4 +34,6 @@ public:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

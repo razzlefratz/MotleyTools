@@ -28,7 +28,7 @@
  *--------------------------------------------------------------------*/
 
 const size_t otruth::count = 8;
-const struct _code_ otruth::table [] = 
+const struct _code_ otruth::table[] = 
 
 {
 	{
@@ -64,7 +64,7 @@ const struct _code_ otruth::table [] =
 		true
 	},
 	{
-		(char const *)(0),
+		(char const *) (0),
 		0
 	}
 };
@@ -81,7 +81,7 @@ const struct _code_ otruth::table [] =
  *
  *--------------------------------------------------------------------*/
 
-otruth::otruth () 
+otruth::otruth()
 
 {
 	otruth::mtable = otruth::table;
@@ -99,7 +99,7 @@ otruth::otruth ()
  *
  *--------------------------------------------------------------------*/
 
-otruth::~otruth () 
+otruth::~ otruth()
 
 {
 	return;
@@ -110,4 +110,6 @@ otruth::~otruth ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

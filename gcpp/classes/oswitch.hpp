@@ -21,15 +21,15 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oswitch 
+class __declspec(dllexport) oswitch
 
 {
-public:
+public: 
 	oswitch ();
-	virtual ~ oswitch ();
-	bool state (char const * string, bool state);
-private:
-	static char const * mstate [];
+	virtual ~ oswitch();
+	bool state(char const * string, bool state);
+private: 
+	static char const * mstate[];
 };
 
 /*====================================================================*
@@ -37,4 +37,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

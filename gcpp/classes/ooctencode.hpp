@@ -21,16 +21,16 @@
  *   start class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ooctencode 
+class __declspec(dllexport) ooctencode
 
 {
-public:
+public: 
 	ooctencode ();
-	virtual ~ ooctencode ();
-	static char * numeric (char * string, const unsigned c);
-	static char * literal (char * string, const unsigned c);
-private:
-	static char const mdigit [];
+	virtual ~ ooctencode();
+	static char * numeric(char * string, const unsigned c);
+	static char * literal(char * string, const unsigned c);
+private: 
+	static char const mdigit[];
 };
 
 /*====================================================================*
@@ -38,4 +38,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

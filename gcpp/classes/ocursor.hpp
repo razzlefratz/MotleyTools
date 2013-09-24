@@ -27,20 +27,20 @@
  *   
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ocursor 
+class __declspec(dllexport) ocursor
 
 {
-public:
+public: 
 	ocursor ();
-	virtual ~ ocursor ();
-	ocursor & clear ();
-	ocursor & count (char c);
-	size_t charcount () const;
-	size_t pagecount () const;
-	size_t linecount () const;
-	size_t rowcount () const;
-	size_t colcount () const;
-private:
+	virtual ~ ocursor();
+	ocursor & clear();
+	ocursor & count(char c);
+	size_t charcount() const;
+	size_t pagecount() const;
+	size_t linecount() const;
+	size_t rowcount() const;
+	size_t colcount() const;
+private: 
 	size_t mchar;
 	size_t mline;
 	size_t mpage;
@@ -53,4 +53,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

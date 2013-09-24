@@ -22,17 +22,16 @@
  *   class declarations;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oi18nAttributes 
+class __declspec(dllexport) oi18nAttributes
 
 {
-public:
+public: 
 	oi18nAttributes ();
-	virtual ~ oi18nAttributes ();
+	virtual ~ oi18nAttributes();
 	oAttribute * LanguageAttribute;
 	oAttribute * DirectionAttribute;
-	oi18nAttributes & write ();
-private:
-	
+	oi18nAttributes & write();
+private: 
 };
 
 /*====================================================================*
@@ -40,4 +39,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

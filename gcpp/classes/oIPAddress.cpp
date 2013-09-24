@@ -39,8 +39,8 @@
  *--------------------------------------------------------------------*/
 
 union oIPAddress::bits oIPAddress::bitmap;
-char oIPAddress::buffer [OCTETS * 4];
-char oIPAddress::digits [12] = "0123456789.";
+char oIPAddress::buffer[OCTETS * 4];
+char oIPAddress::digits[12] = "0123456789.";
 unsigned oIPAddress::digit;
 unsigned oIPAddress::octet;
 unsigned oIPAddress::value;
@@ -59,26 +59,26 @@ unsigned oIPAddress::width;
  *
  *--------------------------------------------------------------------*/
 
-char const * oIPAddress::string (unsigned number) 
+char const * oIPAddress::string(unsigned number)
 
 {
 	oIPAddress::bitmap.value = number;
-	oIPAddress::digit = sizeof (oIPAddress::buffer);
-	buffer [--oIPAddress::digit] = (char) (0);
-	for (oIPAddress::octet = 0; oIPAddress::octet < OCTETS; oIPAddress::octet++) 
+	oIPAddress::digit = sizeof(oIPAddress::buffer);
+	buffer [-- oIPAddress::digit] = (char)(0);
+	for (oIPAddress::octet = 0; oIPAddress::octet < OCTETS; oIPAddress::octet++)
 	{
-		if (oIPAddress::octet) 
+		if (oIPAddress::octet)
 		{
-			oIPAddress::buffer [--oIPAddress::digit] = oIPAddress::digits [10];
+			oIPAddress::buffer[-- oIPAddress::digit] = oIPAddress::digits[10];
 		}
-		oIPAddress::value = oIPAddress::bitmap.field [octet];
-		do
+		oIPAddress::value = oIPAddress::bitmap.field[octet];
+		do 
 		{
-			oIPAddress::buffer [--oIPAddress::digit] = oIPAddress::digits [0] + (char) (oIPAddress::value % 10);
+			oIPAddress::buffer[-- oIPAddress::digit] = oIPAddress::digits[0] + (char)(oIPAddress::value % 10);
 		}
 		while (oIPAddress::value /= 10);
 	}
-	return (& oIPAddress::buffer [oIPAddress::digit]);
+	return (& oIPAddress::buffer[oIPAddress::digit]);
 }
 
 /*====================================================================*
@@ -94,26 +94,26 @@ char const * oIPAddress::string (unsigned number)
  *
  *--------------------------------------------------------------------*/
 
-char const * oIPAddress::padded (unsigned number) 
+char const * oIPAddress::padded(unsigned number)
 
 {
 	oIPAddress::bitmap.value = number;
-	oIPAddress::digit = sizeof (oIPAddress::buffer);
-	buffer [--oIPAddress::digit] = (char) (0);
-	for (oIPAddress::octet = 0; oIPAddress::octet < OCTETS; oIPAddress::octet++) 
+	oIPAddress::digit = sizeof(oIPAddress::buffer);
+	buffer [-- oIPAddress::digit] = (char)(0);
+	for (oIPAddress::octet = 0; oIPAddress::octet < OCTETS; oIPAddress::octet++)
 	{
-		if (oIPAddress::octet) 
+		if (oIPAddress::octet)
 		{
-			oIPAddress::buffer [--oIPAddress::digit] = oIPAddress::digits [10];
+			oIPAddress::buffer[-- oIPAddress::digit] = oIPAddress::digits[10];
 		}
-		oIPAddress::value = oIPAddress::bitmap.field [oIPAddress::octet];
-		for (oIPAddress::width = 0; oIPAddress::width < 3; oIPAddress::width++) 
+		oIPAddress::value = oIPAddress::bitmap.field[oIPAddress::octet];
+		for (oIPAddress::width = 0; oIPAddress::width < 3; oIPAddress::width++)
 		{
-			oIPAddress::buffer [--oIPAddress::digit] = oIPAddress::digits [0] + (char) (oIPAddress::value % 10);
+			oIPAddress::buffer[-- oIPAddress::digit] = oIPAddress::digits[0] + (char)(oIPAddress::value % 10);
 			oIPAddress::value /= 10;
 		}
 	}
-	return (& oIPAddress::buffer [oIPAddress::digit]);
+	return (& oIPAddress::buffer[oIPAddress::digit]);
 }
 
 /*====================================================================*
@@ -129,28 +129,28 @@ char const * oIPAddress::padded (unsigned number)
  *
  *--------------------------------------------------------------------*/
 
-unsigned oIPAddress::number (char const * string) 
+unsigned oIPAddress::number(char const * string)
 
 {
 	oIPAddress::bitmap.value = 0;
-	if (string != (char *) (0)) 
+	if (string != (char *)(0))
 	{
 		oIPAddress::octet = OCTETS;
-		while (oIPAddress::octet-- > 0) 
+		while (oIPAddress::octet-- > 0)
 		{
 			oIPAddress::value = 0;
-			while (isdigit (* string)) 
+			while (isdigit(* string))
 			{
 				oIPAddress::value *= 10;
-				oIPAddress::value += * string++ - oIPAddress::digits [0];
+				oIPAddress::value += * string++ - oIPAddress::digits[0];
 			}
-			if (* string == oIPAddress::digits [10]) 
+			if (* string == oIPAddress::digits[10])
 			{
 				string++;
 			}
-			if (oIPAddress::value < 0x100) 
+			if (oIPAddress::value < 0x100)
 			{
-				oIPAddress::bitmap.field [oIPAddress::octet] = oIPAddress::value;
+				oIPAddress::bitmap.field[oIPAddress::octet] = oIPAddress::value;
 			}
 		}
 	}
@@ -170,27 +170,27 @@ unsigned oIPAddress::number (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-unsigned oIPAddress::inaddr (char const * string) 
+unsigned oIPAddress::inaddr(char const * string)
 
 {
 	oIPAddress::bitmap.value = 0;
-	if (string != (char *) (0)) 
+	if (string != (char *)(0))
 	{
-		for (oIPAddress::octet = 0; oIPAddress::octet < OCTETS; oIPAddress::octet++) 
+		for (oIPAddress::octet = 0; oIPAddress::octet < OCTETS; oIPAddress::octet++)
 		{
 			oIPAddress::value = 0;
-			while (isdigit (* string)) 
+			while (isdigit(* string))
 			{
 				oIPAddress::value *= 10;
-				oIPAddress::value += * string++ - oIPAddress::digits [0];
+				oIPAddress::value += * string++ - oIPAddress::digits[0];
 			}
-			if (* string == oIPAddress::digits [10]) 
+			if (* string == oIPAddress::digits[10])
 			{
 				string++;
 			}
-			if (oIPAddress::value < 0x100) 
+			if (oIPAddress::value < 0x100)
 			{
-				oIPAddress::bitmap.field [oIPAddress::octet] = oIPAddress::value;
+				oIPAddress::bitmap.field[oIPAddress::octet] = oIPAddress::value;
 			}
 		}
 	}
@@ -201,13 +201,13 @@ unsigned oIPAddress::inaddr (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-oIPAddress::oIPAddress () 
+oIPAddress::oIPAddress()
 
 {
 	return;
 };
 
-oIPAddress::~oIPAddress () 
+oIPAddress::~ oIPAddress()
 
 {
 	return;
@@ -218,4 +218,6 @@ oIPAddress::~oIPAddress ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

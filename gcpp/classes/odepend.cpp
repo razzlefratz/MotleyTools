@@ -42,52 +42,52 @@ oqueue odepend::queue;
  *
  *--------------------------------------------------------------------*/
 
-odepend & odepend::populate (char colon, char comma, bool invert) 
+odepend & odepend::populate(char colon, char comma, bool invert)
 
 {
-	char one [oDEPEND_SYMBOL_LENGTH] = "";
-	char two [oDEPEND_SYMBOL_LENGTH] = "";
+	char one[oDEPEND_SYMBOL_LENGTH] = "";
+	char two[oDEPEND_SYMBOL_LENGTH] = "";
 	char * sp;
 	signed c;
-	while ((c = std::cin.get ()) != EOF) 
+	while ((c = std::cin.get()) != EOF)
 	{
-		for (sp = one; oascii::nobreak (c); c = std::cin.get ()) 
+		for (sp = one; oascii::nobreak(c); c = std::cin.get())
 		{
-			if ((char)(c) == colon) 
+			if ((char) (c) == colon)
 			{
-				c = std::cin.get ();
+				c = std::cin.get();
 				break;
 			}
-			if ((sp - one) < (signed) (sizeof (one) - 2)) 
+			if ((sp - one) < (signed)(sizeof(one) - 2))
 			{
-				* sp++ = (char) (c);
+				* sp++ = (char)(c);
 			}
 		}
-		* sp = (char) (0);
-		for (sp = two; oascii::nobreak (c); c = std::cin.get ()) 
+		* sp = (char)(0);
+		for (sp = two; oascii::nobreak(c); c = std::cin.get())
 		{
-			if ((char)(c) == comma) 
+			if ((char) (c) == comma)
 			{
-				c = std::cin.get ();
+				c = std::cin.get();
 				break;
 			}
-			if ((sp - two) < (signed) (sizeof (two) - 2)) 
+			if ((sp - two) < (signed)(sizeof(two) - 2))
 			{
-				* sp++ = (char) (c);
+				* sp++ = (char)(c);
 			}
 		}
-		* sp = (char) (0);
-		if (oascii::nobreak (c)) 
+		* sp = (char)(0);
+		if (oascii::nobreak(c))
 		{
-			c = std::cin.get ();
+			c = std::cin.get();
 		}
-		if (invert) 
+		if (invert)
 		{
-			this->connect (two, one);
+			this->connect(two, one);
 		}
-		else
+		else 
 		{
-			this->connect (one, two);
+			this->connect(one, two);
 		}
 	}
 	return (* this);
@@ -107,17 +107,17 @@ odepend & odepend::populate (char colon, char comma, bool invert)
  *
  *--------------------------------------------------------------------*/
 
-odepend & odepend::connect (char const * one, char const * two) 
+odepend & odepend::connect(char const * one, char const * two)
 
 {
-	odepend * node = this->store (one);
-	if (!node->mbelow) 
+	odepend * node = this->store(one);
+	if (! node->mbelow)
 	{
-		node->mbelow = new odepend (two);
+		node->mbelow = new odepend(two);
 	}
-	else
+	else 
 	{
-		node->mbelow->store (two);
+		node->mbelow->store(two);
 	}
 	return (* this);
 }
@@ -135,27 +135,27 @@ odepend & odepend::connect (char const * one, char const * two)
  *
  *--------------------------------------------------------------------*/
 
-odepend * odepend::store (char const * nodename) 
+odepend * odepend::store(char const * nodename)
 
 {
 	odepend * node = this;
-	while (node) 
+	while (node)
 	{
-		signed order = std::strcmp (nodename, node->mstring);
-		if (order < 0) 
+		signed order = std::strcmp(nodename, node->mstring);
+		if (order < 0)
 		{
-			if (!node->mprior) 
+			if (! node->mprior)
 			{
-				node->mprior = new odepend (nodename);
+				node->mprior = new odepend(nodename);
 			}
 			node = node->mprior;
 			continue;
 		}
-		if (order > 0) 
+		if (order > 0)
 		{
-			if (!node->mafter) 
+			if (! node->mafter)
 			{
-				node->mafter = new odepend (nodename);
+				node->mafter = new odepend(nodename);
 			}
 			node = node->mafter;
 			continue;
@@ -178,19 +178,19 @@ odepend * odepend::store (char const * nodename)
  *
  *--------------------------------------------------------------------*/
 
-odepend * odepend::fetch (char const * nodename) 
+odepend * odepend::fetch(char const * nodename)
 
 {
 	odepend * node = this;
-	while (node) 
+	while (node)
 	{
-		signed order = std::strcmp (nodename, node->mstring);
-		if (order < 0) 
+		signed order = std::strcmp(nodename, node->mstring);
+		if (order < 0)
 		{
 			node = node->mprior;
 			continue;
 		}
-		if (order > 0) 
+		if (order > 0)
 		{
 			node = node->mafter;
 			continue;
@@ -212,17 +212,17 @@ odepend * odepend::fetch (char const * nodename)
  *
  *--------------------------------------------------------------------*/
 
-odepend & odepend::enumerate () 
+odepend & odepend::enumerate()
 
 {
-	if (this->mprior != (odepend *)(0)) 
+	if (this->mprior != (odepend *) (0))
 	{
-		this->mprior->enumerate ();
+		this->mprior->enumerate();
 	}
 	std::cout << this->mstring << std::endl;
-	if (this->mafter) 
+	if (this->mafter)
 	{
-		this->mafter->enumerate ();
+		this->mafter->enumerate();
 	}
 	return (* this);
 }
@@ -240,22 +240,22 @@ odepend & odepend::enumerate ()
  *
  *--------------------------------------------------------------------*/
 
-odepend & odepend::structure () 
+odepend & odepend::structure()
 
 {
-	if (this->mprior != (odepend *)(0)) 
+	if (this->mprior != (odepend *) (0))
 	{
-		this->mprior->structure ();
+		this->mprior->structure();
 	}
 	std::cout << this->mstring << std::endl;
-	if (this->mbelow) 
+	if (this->mbelow)
 	{
-		this->mbelow->component ();
+		this->mbelow->component();
 		std::cout << std::endl;
 	}
-	if (this->mafter) 
+	if (this->mafter)
 	{
-		this->mafter->structure ();
+		this->mafter->structure();
 	}
 	return (* this);
 }
@@ -273,17 +273,17 @@ odepend & odepend::structure ()
  *
  *--------------------------------------------------------------------*/
 
-odepend & odepend::component () 
+odepend & odepend::component()
 
 {
-	if (this->mprior != (odepend *)(0)) 
+	if (this->mprior != (odepend *) (0))
 	{
-		this->mprior->component ();
+		this->mprior->component();
 	}
 	std::cout << "\t" << this->mstring << std::endl;
-	if (this->mafter) 
+	if (this->mafter)
 	{
-		this->mafter->component ();
+		this->mafter->component();
 	}
 	return (* this);
 }
@@ -301,23 +301,23 @@ odepend & odepend::component ()
  *
  *--------------------------------------------------------------------*/
 
-odepend & odepend::targets () 
+odepend & odepend::targets()
 
 {
-	if (this->mprior != (odepend *)(0)) 
+	if (this->mprior != (odepend *) (0))
 	{
-		this->mprior->targets ();
+		this->mprior->targets();
 	}
-	std::cout << odepend::basename (this->mstring) << ":";
-	std::cout << " " << odepend::basename (this->mstring);
-	if (this->mbelow) 
+	std::cout << odepend::basename(this->mstring) << ":";
+	std::cout << " " << odepend::basename(this->mstring);
+	if (this->mbelow)
 	{
-		this->mbelow->sources ();
+		this->mbelow->sources();
 	}
 	std::cout << std::endl;
-	if (this->mafter) 
+	if (this->mafter)
 	{
-		this->mafter->targets ();
+		this->mafter->targets();
 	}
 	return (* this);
 }
@@ -334,17 +334,17 @@ odepend & odepend::targets ()
  *
  *--------------------------------------------------------------------*/
 
-odepend & odepend::sources () 
+odepend & odepend::sources()
 
 {
-	if (this->mprior != (odepend *)(0)) 
+	if (this->mprior != (odepend *) (0))
 	{
-		this->mprior->sources ();
+		this->mprior->sources();
 	}
-	std::cout << " " << odepend::basename (this->mstring);
-	if (this->mafter) 
+	std::cout << " " << odepend::basename(this->mstring);
+	if (this->mafter)
 	{
-		this->mafter->sources ();
+		this->mafter->sources();
 	}
 	return (* this);
 }
@@ -361,15 +361,15 @@ odepend & odepend::sources ()
  *
  *--------------------------------------------------------------------*/
 
-odepend::odepend (char const * string) 
+odepend::odepend(char const * string)
 
 {
-	this->mprior = (odepend *) (0);
-	this->mafter = (odepend *) (0);
-	this->mbelow = (odepend *) (0);
-	this->mstring = new char [strlen (string) +1];
-	std::strcpy (this->mstring, string);
-	odepend::queue.append ((void *) (this->mstring));
+	this->mprior = (odepend *)(0);
+	this->mafter = (odepend *)(0);
+	this->mbelow = (odepend *)(0);
+	this->mstring = new char[strlen(string) + 1];
+	std::strcpy(this->mstring, string);
+	odepend::queue.append((void *)(this->mstring));
 	return;
 }
 
@@ -385,14 +385,14 @@ odepend::odepend (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-odepend::odepend () 
+odepend::odepend()
 
 {
-	this->mprior = (odepend *) (0);
-	this->mafter = (odepend *) (0);
-	this->mbelow = (odepend *) (0);
-	this->mstring = new char [1];
-	this->mstring [0] = (char)(0);
+	this->mprior = (odepend *)(0);
+	this->mafter = (odepend *)(0);
+	this->mbelow = (odepend *)(0);
+	this->mstring = new char[1];
+	this->mstring[0] = (char) (0);
 	return;
 }
 
@@ -407,12 +407,12 @@ odepend::odepend ()
  *
  *--------------------------------------------------------------------*/
 
-odepend::~odepend () 
+odepend::~ odepend()
 
 {
-	this->mprior = (odepend *) (0);
-	this->mafter = (odepend *) (0);
-	this->mbelow = (odepend *) (0);
+	this->mprior = (odepend *)(0);
+	this->mafter = (odepend *)(0);
+	this->mbelow = (odepend *)(0);
 	delete [] this->mstring;
 	return;
 }
@@ -422,4 +422,6 @@ odepend::~odepend ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

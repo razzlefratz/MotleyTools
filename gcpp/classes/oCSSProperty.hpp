@@ -150,12 +150,12 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oCSSProperty: public okeywords 
+class __declspec(dllexport) oCSSProperty: public okeywords
 
 {
-public:
+public: 
 	oCSSProperty ();
-	~oCSSProperty ();
+	~ oCSSProperty();
 };
 
 /*====================================================================*
@@ -163,4 +163,6 @@ public:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

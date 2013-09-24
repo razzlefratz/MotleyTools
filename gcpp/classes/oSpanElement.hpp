@@ -23,19 +23,19 @@
  *   interface declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oSpanElement 
+class __declspec(dllexport) oSpanElement
 
 {
-public:
+public: 
 	oSpanElement ();
-	virtual ~ oSpanElement ();
-	char const * ElementName () const;
+	virtual ~ oSpanElement();
+	char const * ElementName() const;
 	oCoreAttributes CoreAttributes;
 	oi18nAttributes i18nAttributes;
-	oSpanElement & StartTag ();
-	oSpanElement & EmptyTag ();
-	oSpanElement & EndTag ();
-private:
+	oSpanElement & StartTag();
+	oSpanElement & EmptyTag();
+	oSpanElement & EndTag();
+private: 
 	static char const * mscope;
 	static char const * mtitle;
 };
@@ -45,4 +45,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

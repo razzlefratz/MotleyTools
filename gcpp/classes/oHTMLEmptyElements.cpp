@@ -33,10 +33,10 @@
  *
  *--------------------------------------------------------------------*/
 
-oHTMLEmptyElements::oHTMLEmptyElements () 
+oHTMLEmptyElements::oHTMLEmptyElements()
 
 {
-	static char const * table [] = 
+	static char const * table[] = 
 	{
 		"AREA",
 		"BASE",
@@ -64,12 +64,12 @@ oHTMLEmptyElements::oHTMLEmptyElements ()
 		"link",
 		"meta",
 		"param",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	okeywords::mtitle = "HTMLEmpty";
-	okeywords::mcount = SIZEOF (table) - 1;
+	okeywords::mcount = SIZEOF(table) - 1;
 	okeywords::mtable = table;
-	okeywords::mcheck ();
+	okeywords::mcheck();
 	return;
 }
 
@@ -84,7 +84,7 @@ oHTMLEmptyElements::oHTMLEmptyElements ()
  *
  *--------------------------------------------------------------------*/
 
-oHTMLEmptyElements::~oHTMLEmptyElements () 
+oHTMLEmptyElements::~ oHTMLEmptyElements()
 
 {
 	return;
@@ -95,4 +95,6 @@ oHTMLEmptyElements::~oHTMLEmptyElements ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

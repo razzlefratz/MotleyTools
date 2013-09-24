@@ -36,25 +36,25 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) odepend: private opathspec, private oascii 
+class __declspec(dllexport) odepend: private opathspec, private oascii
 
 {
-public:
+public: 
 	odepend ();
 	odepend (char const * nodename);
-	virtual ~ odepend ();
+	virtual ~ odepend();
 	static odepend nodes;
 	static oqueue queue;
-	odepend & populate (char colon, char comma, bool invert);
-	odepend & connect (char const * source, char const * target);
-	odepend * store (char const * nodename);
-	odepend * fetch (char const * nodename);
-	odepend & enumerate ();
-	odepend & structure ();
-	odepend & component ();
-	odepend & targets ();
-	odepend & sources ();
-private:
+	odepend & populate(char colon, char comma, bool invert);
+	odepend & connect(char const * source, char const * target);
+	odepend * store(char const * nodename);
+	odepend * fetch(char const * nodename);
+	odepend & enumerate();
+	odepend & structure();
+	odepend & component();
+	odepend & targets();
+	odepend & sources();
+private: 
 	odepend * mbelow;
 	odepend * mprior;
 	odepend * mafter;
@@ -66,4 +66,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

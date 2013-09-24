@@ -34,21 +34,21 @@ char const * ochroct::digits = "012345678";
  *
  *--------------------------------------------------------------------*/
 
-char * ochroct::tooctal (char * string, unsigned c) 
+char * ochroct::tooctal(char * string, unsigned c)
 
 {
-	* string++ = ochroct::digits [(c >> 6) & 0x0003];
-	* string++ = ochroct::digits [(c >> 3) & 0x0007];
-	* string++ = ochroct::digits [(c >> 0) & 0x0007];
-	* string = (char) (0);
+	* string++ = ochroct::digits[(c >> 6) & 0x0003];
+	* string++ = ochroct::digits[(c >> 3) & 0x0007];
+	* string++ = ochroct::digits[(c >> 0) & 0x0007];
+	* string = (char)(0);
 	return (string);
 }
 
-char * ochroct::tounix (char * string, unsigned c) 
+char * ochroct::tounix(char * string, unsigned c)
 
 {
 	* string++ = '\\';
-	string = ochroct::tooctal (string, c);
+	string = ochroct::tooctal(string, c);
 	return (string);
 }
 
@@ -56,13 +56,13 @@ char * ochroct::tounix (char * string, unsigned c)
  *   
  *--------------------------------------------------------------------*/
 
-ochroct::ochroct () 
+ochroct::ochroct()
 
 {
 	return;
 };
 
-ochroct::~ochroct () 
+ochroct::~ ochroct()
 
 {
 	return;
@@ -73,4 +73,6 @@ ochroct::~ochroct ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

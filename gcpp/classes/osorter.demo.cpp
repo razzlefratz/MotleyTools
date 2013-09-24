@@ -3,10 +3,10 @@
 #include <cstring>
 #include "../classes/osorter.hpp"
 
-void osortertest () 
+void osortertest()
 
 {
-	osorter list (std::strcmp);
+	osorter list(std::strcmp);
 	list += "xxx";
 	list += "yyy";
 	list += "789";
@@ -35,9 +35,9 @@ void osortertest ()
 	list += "mno";
 	list += "pqr";
 	list += "stu";
-	for (unsigned index = 0; index < list.count (); ++index) 
+	for (unsigned index = 0; index < list.count(); ++ index)
 	{
-		cout << index << " " << list [index] << std::endl;
+		cout << index << " " << list[index] << std::endl;
 	}
 }
 

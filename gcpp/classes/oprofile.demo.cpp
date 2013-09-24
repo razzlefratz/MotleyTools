@@ -31,28 +31,30 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
 {
-	static char const * optv [] = 
+	static char const * optv[] = 
 	{
 		"",
 		"filespec [filespec] ...",
 		"ofilespec object class demonstration and test utility",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	oprofile profile;
-	ogetoptv getopt (1);
+	ogetoptv getopt(1);
 	oputoptv putopt;
 	signed c;
-	while ((c = getopt.getoptv (argc, argv, optv)) != -1) 
+	while ((c = getopt.getoptv(argc, argv, optv)) != - 1)
 	{
-		switch (c) 
+		switch (c)
 		{
-		default:
+		default: 
 			break;
 		}
 	}
 
 #if 0 while ((getopt.argc () > 0) && (*getopt.argv () != (char *) (0))) {getopt++; } #else cout << profile.lookup ("profile.ini", "cbar", "release", "Published 2006 by Charles Maier Associates Limited for internal use;") << "\n"; cout << profile.lookup ("profile.ini", "cbar", "license", "Licensed under the GNU General Public License version 2 or later;") << "\n"; #endif return (0); } 
+
+	
 

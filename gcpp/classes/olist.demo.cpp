@@ -23,38 +23,38 @@
  *
  *--------------------------------------------------------------------*/
 
-int main () 
+int main()
 
 {
 	olist list;
 	cout << "list test ..." << std::endl;
-	list.insertitem (new oitem ("abc"));
-	list.insertitem (new oitem ("789"));
-	list.insertitem (new oitem ("ghi"));
-	list.insertitem (new oitem ("def"));
-	list.insertitem (new oitem ("123"));
-	list.insertitem (new oitem ("mno"));
-	list.insertitem (new oitem ("mno"));
-	list.insertitem (new oitem ("jkl"));
-	list.insertitem (new oitem ("stu"));
-	list.insertitem (new oitem ("456"));
-	list.insertitem (new oitem ("pqr"));
-	list.insertitem (new oitem ("yz0"));
-	list.insertitem (new oitem ("vwx"));
-	list.insertitem (new oitem ("jkl"));
-	list.insertitem (new oitem ("stu"));
-	list.insertitem (new oitem ("456"));
-	list.insertitem (new oitem ("pqr"));
-	list.insertitem (new oitem ("yz0"));
-	list.insertitem (new oitem ("vwx"));
-	list.insertitem (new oitem ("abc"));
-	list.insertitem (new oitem ("789"));
-	list.insertitem (new oitem ("ghi"));
-	list.insertitem (new oitem ("def"));
-	list.insertitem (new oitem ("123"));
-	for (unsigned index = 0; index < list.count (); index++) 
+	list.insertitem(new oitem("abc"));
+	list.insertitem(new oitem("789"));
+	list.insertitem(new oitem("ghi"));
+	list.insertitem(new oitem("def"));
+	list.insertitem(new oitem("123"));
+	list.insertitem(new oitem("mno"));
+	list.insertitem(new oitem("mno"));
+	list.insertitem(new oitem("jkl"));
+	list.insertitem(new oitem("stu"));
+	list.insertitem(new oitem("456"));
+	list.insertitem(new oitem("pqr"));
+	list.insertitem(new oitem("yz0"));
+	list.insertitem(new oitem("vwx"));
+	list.insertitem(new oitem("jkl"));
+	list.insertitem(new oitem("stu"));
+	list.insertitem(new oitem("456"));
+	list.insertitem(new oitem("pqr"));
+	list.insertitem(new oitem("yz0"));
+	list.insertitem(new oitem("vwx"));
+	list.insertitem(new oitem("abc"));
+	list.insertitem(new oitem("789"));
+	list.insertitem(new oitem("ghi"));
+	list.insertitem(new oitem("def"));
+	list.insertitem(new oitem("123"));
+	for (unsigned index = 0; index < list.count(); index++)
 	{
-		cout << list.items (index) ->name () << std::endl;
+		cout << list.items(index) ->name() << std::endl;
 	}
 	return;
 }

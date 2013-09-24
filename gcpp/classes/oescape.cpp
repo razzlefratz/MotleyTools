@@ -55,7 +55,7 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned char oescape::mtable [UCHAR_MAX + 1] = 
+unsigned char oescape::mtable[UCHAR_MAX +  1] = 
 
 {
 	0,
@@ -328,10 +328,10 @@ unsigned char oescape::mtable [UCHAR_MAX + 1] =
  *
  *--------------------------------------------------------------------*/
 
-unsigned oescape::define (signed c, signed e) 
+unsigned oescape::define(signed c, signed e)
 
 {
-	return (oescape::mtable [c & UCHAR_MAX] = e & UCHAR_MAX);
+	return (oescape::mtable[c & UCHAR_MAX] = e & UCHAR_MAX);
 }
 
 /*====================================================================*
@@ -347,10 +347,10 @@ unsigned oescape::define (signed c, signed e)
  *
  *--------------------------------------------------------------------*/
 
-unsigned oescape::unescape (signed c) 
+unsigned oescape::unescape(signed c)
 
 {
-	return (oescape::mtable [(unsigned) (c) & UCHAR_MAX]);
+	return (oescape::mtable[(unsigned)(c) & UCHAR_MAX]);
 }
 
 /*====================================================================*
@@ -367,43 +367,43 @@ unsigned oescape::unescape (signed c)
  *
  *--------------------------------------------------------------------*/
 
-char * oescape::unescape (register char * string) 
+char * oescape::unescape(register char * string)
 
 {
 	register char * sp = string;
 	register char * cp = string;
-	if (string) for (sp = cp = string; (* sp = * cp++); ++sp) 
+	if (string) for(sp = cp = string; (* sp = * cp++); ++ sp)
 	{
-		if (* sp == '\\') 
+		if (* sp == '\\')
 		{
-			if (isoctal (* cp)) 
+			if (isoctal(* cp))
 			{
 				unsigned digits = 3;
-				while ((digits--) && isoctal (* cp)) 
+				while ((digits--) && isoctal(* cp))
 				{
 					* sp *= 8;
 					* sp += * cp++ - '0';
 				}
 				continue;
 			}
-			if ((* cp == 'x') || (* cp == 'X')) 
+			if ((* cp == 'x') || (* cp == 'X'))
 			{
 				cp++;
 				* sp = 0;
-				if (oascii::isxdigit (* cp)) 
+				if (oascii::isxdigit(* cp))
 				{
-					* sp = (* sp << 4) + oascii::todigit (* cp++);
+					* sp = (* sp << 4) +  oascii::todigit(* cp++);
 				}
-				if (oascii::isxdigit (* cp)) 
+				if (oascii::isxdigit(* cp))
 				{
-					* sp = (* sp << 4) + oascii::todigit (* cp++);
+					* sp = (* sp << 4) +  oascii::todigit(* cp++);
 				}
 				continue;
 			}
 
 #if oESCAPE_NOTABLE
 
-			switch (* cp) 
+			switch (* cp)
 			{
 			case 'a':
 				* sp = '\a';
@@ -438,7 +438,7 @@ char * oescape::unescape (register char * string)
 			case '\\':
 				* sp = '\\';
 				break;
-			default:
+			default: 
 				* sp = * cp;
 				break;
 			}
@@ -446,7 +446,7 @@ char * oescape::unescape (register char * string)
 
 #else
 
-			* sp = oescape::unescape (* cp++);
+			* sp = oescape::unescape(* cp++);
 
 #endif
 
@@ -455,11 +455,11 @@ char * oescape::unescape (register char * string)
 
 #if oESCAPE_ISO_646_1983
 
-		if (* sp == '?') 
+		if (* sp == '?')
 		{
-			if (* cp == '?') 
+			if (* cp == '?')
 			{
-				switch (*++cp) 
+				switch (* ++ cp)
 				{
 				case '=':
 					* sp = '#';
@@ -488,9 +488,9 @@ char * oescape::unescape (register char * string)
 				case '-':
 					* sp = '~';
 					break;
-				default:
-					*++sp = '?';
-					*++sp = * cp;
+				default: 
+					* ++ sp = '?';
+					* ++ sp = * cp;
 					break;
 				}
 				cp++;
@@ -500,9 +500,9 @@ char * oescape::unescape (register char * string)
 
 #endif
 
-		if (* sp == '^') 
+		if (* sp == '^')
 		{
-			* sp = oascii::tocntrl (* cp++);
+			* sp = oascii::tocntrl(* cp++);
 			continue;
 		}
 	}
@@ -520,7 +520,7 @@ char * oescape::unescape (register char * string)
  *
  *--------------------------------------------------------------------*/
 
-oescape::oescape () 
+oescape::oescape()
 
 {
 	return;
@@ -537,7 +537,7 @@ oescape::oescape ()
  *
  *--------------------------------------------------------------------*/
 
-oescape::~oescape () 
+oescape::~ oescape()
 
 {
 	return;
@@ -548,4 +548,6 @@ oescape::~oescape ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

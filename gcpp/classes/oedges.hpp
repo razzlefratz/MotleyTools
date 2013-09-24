@@ -24,22 +24,22 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oedges 
+class __declspec(dllexport) oedges
 
 {
-public:
+public: 
 	oedges ();
-	virtual ~ oedges ();
-	size_t block () const;
-	size_t limit () const;
-	size_t count () const;
-	size_t index () const;
-	oedges & add (onode * sourcenode, onode * targetnode);
-	oedge * operator [] (size_t index) const;
-	oedge * edge (size_t index) const;
-	oedge * edge () const;
-	oedges & clear ();
-private:
+	virtual ~ oedges();
+	size_t block() const;
+	size_t limit() const;
+	size_t count() const;
+	size_t index() const;
+	oedges & add(onode * sourcenode, onode * targetnode);
+	oedge * operator[](size_t index) const;
+	oedge * edge(size_t index) const;
+	oedge * edge() const;
+	oedges & clear();
+private: 
 	onode * mnode;
 	oedge * medge;
 	oedge ** mtable;
@@ -54,4 +54,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

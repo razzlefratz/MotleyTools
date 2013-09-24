@@ -51,22 +51,22 @@ struct stat mstatinfo;
  *
  *--------------------------------------------------------------------*/
 
-bool opathspec::isdotdir (char const * filename) 
+bool opathspec::isdotdir(char const * filename)
 
 {
-	if (filename == (char *) (0)) 
+	if (filename == (char *)(0))
 	{
 		return (true);
 	}
-	if (* filename == FILE_C_EXTENDER) 
+	if (* filename == FILE_C_EXTENDER)
 	{
 		filename++;
 	}
-	if (* filename == FILE_C_EXTENDER) 
+	if (* filename == FILE_C_EXTENDER)
 	{
 		filename++;
 	}
-	return (* filename == (char) (0));
+	return (* filename == (char)(0));
 }
 
 /*====================================================================*
@@ -82,10 +82,10 @@ bool opathspec::isdotdir (char const * filename)
  *
  *--------------------------------------------------------------------*/
 
-bool opathspec::exists (char const * filename) 
+bool opathspec::exists(char const * filename)
 
 {
-	return (!stat (filename, & this->mstatinfo));
+	return (! stat(filename, & this->mstatinfo));
 }
 
 /*====================================================================*
@@ -98,33 +98,33 @@ bool opathspec::exists (char const * filename)
  *
  *--------------------------------------------------------------------*/
 
-bool opathspec::infolder (char pathname [], char const * wildcard, bool recurse) 
+bool opathspec::infolder(char pathname[], char const * wildcard, bool recurse)
 
 {
 	DIR * dir;
-	if ((dir = opendir (pathname)) != (DIR *) (0)) 
+	if ((dir = opendir(pathname)) != (DIR *)(0))
 	{
 		struct dirent * dirent;
 		char * filename;
-		for (filename = pathname; * filename != (char) (0); filename++);
+		for (filename = pathname; * filename != (char)(0); filename++);
 		* filename = PATH_C_EXTENDER;
-		while ((dirent = readdir (dir)) != (struct dirent *) (0)) 
+		while ((dirent = readdir(dir)) != (struct dirent *)(0))
 		{
-			std::strcpy (filename + 1, dirent->d_name);
-			if (lstat (pathname, & this->mstatinfo)) 
+			std::strcpy(filename +  1, dirent->d_name);
+			if (lstat(pathname, & this->mstatinfo))
 			{
-				oerror::error (0, errno, pathname);
+				oerror::error(0, errno, pathname);
 				continue;
 			}
-			if (S_ISDIR (this->mstatinfo.st_mode)) 
+			if (S_ISDIR(this->mstatinfo.st_mode))
 			{
-				if (opathspec::isdotdir (dirent->d_name)) 
+				if (opathspec::isdotdir(dirent->d_name))
 				{
 					continue;
 				}
-				if (recurse) 
+				if (recurse)
 				{
-					if (opathspec::infolder (pathname, wildcard, recurse)) 
+					if (opathspec::infolder(pathname, wildcard, recurse))
 					{
 						closedir (dir);
 						return (true);
@@ -132,9 +132,9 @@ bool opathspec::infolder (char pathname [], char const * wildcard, bool recurse)
 				}
 				continue;
 			}
-			if (S_ISREG (this->mstatinfo.st_mode)) 
+			if (S_ISREG(this->mstatinfo.st_mode))
 			{
-				if (opathspec::match (filename + 1, wildcard)) 
+				if (opathspec::match(filename +  1, wildcard))
 				{
 					closedir (dir);
 					return (true);
@@ -142,7 +142,7 @@ bool opathspec::infolder (char pathname [], char const * wildcard, bool recurse)
 				continue;
 			}
 		}
-		* filename = (char) (0);
+		* filename = (char)(0);
 		closedir (dir);
 	}
 	return (false);
@@ -162,31 +162,31 @@ bool opathspec::infolder (char pathname [], char const * wildcard, bool recurse)
  *
  *--------------------------------------------------------------------*/
 
-bool opathspec::invector (char fullname [], char const * pathname [], char const * filename) 
+bool opathspec::invector(char fullname[], char const * pathname[], char const * filename)
 
 {
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (!fullname) 
+	if (! fullname)
 	{
 		return (false);
 	}
-	if (!pathname) 
+	if (! pathname)
 	{
 		return (false);
 	}
-	if (!filename) 
+	if (! filename)
 	{
 		return (false);
 	}
 
 #endif
 
-	while (* pathname) 
+	while (* pathname)
 	{
-		opathspec::makepath (fullname, * pathname++, filename);
-		if (!stat (fullname, & this->mstatinfo)) 
+		opathspec::makepath(fullname, * pathname++, filename);
+		if (! stat(fullname, & this->mstatinfo))
 		{
 			return (true);
 		}
@@ -207,33 +207,33 @@ bool opathspec::invector (char fullname [], char const * pathname [], char const
  *
  *--------------------------------------------------------------------*/
 
-bool opathspec::invector (char fullname [], char const * pathname [], char const * filename, bool recurse) 
+bool opathspec::invector(char fullname[], char const * pathname[], char const * filename, bool recurse)
 
 {
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (!fullname) 
+	if (! fullname)
 	{
 		return (false);
 	}
-	if (!pathname) 
+	if (! pathname)
 	{
 		return (false);
 	}
-	if (!filename) 
+	if (! filename)
 	{
 		return (false);
 	}
 
 #endif
 
-	while (* pathname) 
+	while (* pathname)
 	{
-		char tempname [FILENAME_MAX];
-		opathspec::makepath (fullname, * pathname++, filename);
-		opathspec::partpath (fullname, fullname, tempname);
-		if (opathspec::infolder (fullname, tempname, recurse)) 
+		char tempname[FILENAME_MAX];
+		opathspec::makepath(fullname, * pathname++, filename);
+		opathspec::partpath(fullname, fullname, tempname);
+		if (opathspec::infolder(fullname, tempname, recurse))
 		{
 			return (true);
 		}
@@ -254,41 +254,41 @@ bool opathspec::invector (char fullname [], char const * pathname [], char const
  *
  *--------------------------------------------------------------------*/
 
-bool opathspec::instring (char fullname [], char const * pathname, char const * filename) 
+bool opathspec::instring(char fullname[], char const * pathname, char const * filename)
 
 {
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (!fullname) 
+	if (! fullname)
 	{
 		return (false);
 	}
-	if (!pathname) 
+	if (! pathname)
 	{
 		return (false);
 	}
-	if (!filename) 
+	if (! filename)
 	{
 		return (false);
 	}
 
 #endif
 
-	while (* pathname) 
+	while (* pathname)
 	{
 		char * string;
-		for (string = fullname; * pathname != (char) (0); * string++ = * pathname++) 
+		for (string = fullname; * pathname != (char)(0); * string++ = * pathname++)
 		{
-			if (* pathname == PATH_C_EXTENDER) 
+			if (* pathname == PATH_C_EXTENDER)
 			{
 				pathname++;
 				break;
 			}
 		}
-		* string = (char) (0);
-		opathspec::makepath (fullname, fullname, filename);
-		if (!stat (fullname, & this->mstatinfo)) 
+		* string = (char)(0);
+		opathspec::makepath(fullname, fullname, filename);
+		if (! stat(fullname, & this->mstatinfo))
 		{
 			return (true);
 		}
@@ -309,43 +309,43 @@ bool opathspec::instring (char fullname [], char const * pathname, char const * 
  *
  *--------------------------------------------------------------------*/
 
-bool opathspec::instring (char fullname [], char const * pathname, char const * filename, bool recurse) 
+bool opathspec::instring(char fullname[], char const * pathname, char const * filename, bool recurse)
 
 {
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (!fullname) 
+	if (! fullname)
 	{
 		return (false);
 	}
-	if (!pathname) 
+	if (! pathname)
 	{
 		return (false);
 	}
-	if (!filename) 
+	if (! filename)
 	{
 		return (false);
 	}
 
 #endif
 
-	while (* pathname) 
+	while (* pathname)
 	{
-		char tempname [FILENAME_MAX];
+		char tempname[FILENAME_MAX];
 		char * string;
-		for (string = fullname; * pathname != (char) (0); * string++ = * pathname++) 
+		for (string = fullname; * pathname != (char)(0); * string++ = * pathname++)
 		{
-			if (* pathname == PATH_C_EXTENDER) 
+			if (* pathname == PATH_C_EXTENDER)
 			{
 				pathname++;
 				break;
 			}
 		}
-		* string = (char) (0);
-		opathspec::makepath (fullname, fullname, filename);
-		opathspec::partpath (fullname, fullname, tempname);
-		if (opathspec::infolder (fullname, tempname, recurse)) 
+		* string = (char)(0);
+		opathspec::makepath(fullname, fullname, filename);
+		opathspec::partpath(fullname, fullname, tempname);
+		if (opathspec::infolder(fullname, tempname, recurse))
 		{
 			return (true);
 		}
@@ -365,23 +365,23 @@ bool opathspec::instring (char fullname [], char const * pathname, char const * 
  *
  *--------------------------------------------------------------------*/
 
-char const * opathspec::dirname (char const * filespec) 
+char const * opathspec::dirname(char const * filespec)
 
 {
-	static char buffer [FILENAME_MAX];
-	char * pathname = std::strcpy (buffer, filespec);
-	for (filespec = (char const *) (buffer); * filespec; filespec++) 
+	static char buffer[FILENAME_MAX];
+	char * pathname = std::strcpy(buffer, filespec);
+	for (filespec = (char const *)(buffer); * filespec; filespec++)
 	{
-		if (* filespec == PATH_C_EXTENDER) 
+		if (* filespec == PATH_C_EXTENDER)
 		{
-			pathname = (char *) (filespec);
+			pathname = (char *)(filespec);
 		}
 	}
-	if (* pathname != PATH_C_EXTENDER) 
+	if (* pathname != PATH_C_EXTENDER)
 	{
 		* pathname++ = FILE_C_EXTENDER;
 	}
-	* pathname = (char) (0);
+	* pathname = (char)(0);
 	return (buffer);
 }
 
@@ -397,13 +397,13 @@ char const * opathspec::dirname (char const * filespec)
  *
  *--------------------------------------------------------------------*/
 
-char const * opathspec::basename (char const * filespec) 
+char const * opathspec::basename(char const * filespec)
 
 {
 	char const * filename = filespec;
-	while (* filespec) 
+	while (* filespec)
 	{
-		if (* filespec++ == PATH_C_EXTENDER) 
+		if (* filespec++ == PATH_C_EXTENDER)
 		{
 			filename = filespec;
 		}
@@ -426,19 +426,19 @@ char const * opathspec::basename (char const * filespec)
  *
  *--------------------------------------------------------------------*/
 
-void opathspec::findpath (char const * filespec, char * pathname, char * filename) 
+void opathspec::findpath(char const * filespec, char * pathname, char * filename)
 
 {
-	this->partpath (filespec, pathname, filename);
-	if ((pathname) && (!* pathname)) 
+	this->partpath(filespec, pathname, filename);
+	if ((pathname) && (! * pathname))
 	{
 		* pathname++ = FILE_C_EXTENDER;
-		* pathname = (char) (0);
+		* pathname = (char)(0);
 	}
-	if ((filename) && (!* filename)) 
+	if ((filename) && (! * filename))
 	{
 		* filename++ = FILE_C_EXTENDER;
-		* filename = (char) (0);
+		* filename = (char)(0);
 	}
 	return;
 }
@@ -458,48 +458,48 @@ void opathspec::findpath (char const * filespec, char * pathname, char * filenam
  *
  *--------------------------------------------------------------------*/
 
-void opathspec::partpath (char const * filespec, char * pathname, char * filename) 
+void opathspec::partpath(char const * filespec, char * pathname, char * filename)
 
 {
 	char const * string;
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (!filespec) 
+	if (! filespec)
 	{
 		return (false);
 	}
-	if (!pathname) 
+	if (! pathname)
 	{
 		return (false);
 	}
-	if (!filename) 
+	if (! filename)
 	{
 		return (false);
 	}
 
 #endif
 
-	for (string = filespec; * string; string++) 
+	for (string = filespec; * string; string++)
 	{
-		if (* string == PATH_C_EXTENDER) 
+		if (* string == PATH_C_EXTENDER)
 		{
-			while (filespec < string) 
+			while (filespec < string)
 			{
 				* pathname++ = * filespec++;
 			}
 		}
 	}
-	if (* filespec == PATH_C_EXTENDER) 
+	if (* filespec == PATH_C_EXTENDER)
 	{
 		filespec++;
 	}
-	while (filespec < string) 
+	while (filespec < string)
 	{
 		* filename++ = * filespec++;
 	}
-	* pathname++ = (char) (0);
-	* filename++ = (char) (0);
+	* pathname++ = (char)(0);
+	* filename++ = (char)(0);
 	return;
 }
 
@@ -518,55 +518,55 @@ void opathspec::partpath (char const * filespec, char * pathname, char * filenam
  *
  *--------------------------------------------------------------------*/
 
-void opathspec::partfile (char const * filespec, char filename [], char extender []) 
+void opathspec::partfile(char const * filespec, char filename[], char extender[])
 
 {
 	char const * string;
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (!filespec) 
+	if (! filespec)
 	{
 		return (false);
 	}
-	if (!pathname) 
+	if (! pathname)
 	{
 		return (false);
 	}
-	if (!filename) 
+	if (! filename)
 	{
 		return (false);
 	}
 
 #endif
 
-	for (string = filespec; * string; string++) 
+	for (string = filespec; * string; string++)
 	{
-		if ((* string == PATH_C_EXTENDER) || (* string == FILE_C_EXTENDER)) 
+		if ((* string == PATH_C_EXTENDER) || (* string == FILE_C_EXTENDER))
 		{
-			while (filespec < string) 
+			while (filespec < string)
 			{
 				* filename++ = * filespec++;
 			}
 		}
 	}
-	if (* filespec == FILE_C_EXTENDER) 
+	if (* filespec == FILE_C_EXTENDER)
 	{
 		filespec++;
-		while (filespec < string) 
+		while (filespec < string)
 		{
 			* extender++ = * filespec++;
 		}
 	}
-	else
+	else 
 	{
-		while (filespec < string) 
+		while (filespec < string)
 		{
 			* filename++ = * filespec++;
 		}
 	}
-	* filename++ = (char) (0);
-	* extender++ = (char) (0);
+	* filename++ = (char)(0);
+	* extender++ = (char)(0);
 	return;
 }
 
@@ -580,10 +580,10 @@ void opathspec::partfile (char const * filespec, char filename [], char extender
  *
  *--------------------------------------------------------------------*/
 
-void opathspec::fullpath (char fullname [], char const * filespec) 
+void opathspec::fullpath(char fullname[], char const * filespec)
 
 {
-	this->makepath (fullname, getenv ("PWD"), filespec);
+	this->makepath(fullname, getenv("PWD"), filespec);
 	return;
 }
 
@@ -613,19 +613,19 @@ void opathspec::fullpath (char fullname [], char const * filespec)
  *
  *--------------------------------------------------------------------*/
 
-void opathspec::makepath (char fullname [], char const * pathname, char const * filename) 
+void opathspec::makepath(char fullname[], char const * pathname, char const * filename)
 
 {
-	char mpathname [FILENAME_MAX];
-	char mfilename [FILENAME_MAX];
+	char mpathname[FILENAME_MAX];
+	char mfilename[FILENAME_MAX];
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (fullname == (char *) (0)) 
+	if (fullname == (char *)(0))
 	{
 		return;
 	}
-	if (pathname == (char *) (0)) 
+	if (pathname == (char *)(0))
 	{
 		return;
 	}
@@ -633,15 +633,15 @@ void opathspec::makepath (char fullname [], char const * pathname, char const * 
 #endif
 
 	this->mcount = 0;
-	this->mstack [this->mcount] = (char *) (0);
-	opathspec::splitpath (std::strcpy (mpathname, pathname));
-	opathspec::splitpath (std::strcpy (mfilename, filename));
-	opathspec::mergepath ();
-	std::strcpy (fullname, this->mstack [0]);
-	for (this->mindex = 1; this->mindex < this->mlevel; this->mindex++) 
+	this->mstack[this->mcount] = (char *)(0);
+	opathspec::splitpath(std::strcpy(mpathname, pathname));
+	opathspec::splitpath(std::strcpy(mfilename, filename));
+	opathspec::mergepath();
+	std::strcpy(fullname, this->mstack[0]);
+	for (this->mindex = 1; this->mindex < this->mlevel; this->mindex++)
 	{
-		std::strcat (fullname, PATH_S_EXTENDER);
-		std::strcat (fullname, this->mstack [this->mindex]);
+		std::strcat(fullname, PATH_S_EXTENDER);
+		std::strcat(fullname, this->mstack[this->mindex]);
 	}
 	return;
 }
@@ -660,32 +660,32 @@ void opathspec::makepath (char fullname [], char const * pathname, char const * 
  *
  *--------------------------------------------------------------------*/
 
-void opathspec::splitpath (char filespec []) 
+void opathspec::splitpath(char filespec[])
 
 {
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (filespec == (char *) (0)) 
+	if (filespec == (char *)(0))
 	{
 		return;
 	}
 
 #endif
 
-	if (* filespec == PATH_C_EXTENDER) 
+	if (* filespec == PATH_C_EXTENDER)
 	{
 		this->mcount = 0;
 	}
-	for (this->mstack [this->mcount++] = filespec; * filespec != (char) (0); filespec++) 
+	for (this->mstack[this->mcount++] = filespec; * filespec != (char)(0); filespec++)
 	{
-		if (* filespec == PATH_C_EXTENDER) 
+		if (* filespec == PATH_C_EXTENDER)
 		{
-			if (this->mcount < this->mlimit) 
+			if (this->mcount < this->mlimit)
 			{
-				this->mstack [this->mcount++] = filespec + 1;
+				this->mstack[this->mcount++] = filespec +  1;
 			}
-			* filespec = (char) (0);
+			* filespec = (char)(0);
 		}
 	}
 	return;
@@ -705,32 +705,32 @@ void opathspec::splitpath (char filespec [])
  *
  *--------------------------------------------------------------------*/
 
-void opathspec::mergepath () 
+void opathspec::mergepath()
 
 {
-	for (this->mindex = this->mstart = this->mlevel = 1; this->mindex < this->mcount; this->mindex++) 
+	for (this->mindex = this->mstart = this->mlevel = 1; this->mindex < this->mcount; this->mindex++)
 	{
 		int dots = 0;
-		while (this->mstack [this->mindex] [dots] == FILE_C_EXTENDER) 
+		while (this->mstack[this->mindex][dots] == FILE_C_EXTENDER)
 		{
 			dots++;
 		}
-		if (this->mstack [this->mindex] [dots] != (char) (0)) 
+		if (this->mstack[this->mindex][dots] != (char)(0))
 		{
-			this->mstack [this->mlevel++] = this->mstack [this->mindex];
+			this->mstack[this->mlevel++] = this->mstack[this->mindex];
 		}
-		else if (dots > 2) 
+		else if(dots > 2)
 		{
-			this->mstack [this->mlevel++] = this->mstack [this->mindex];
+			this->mstack[this->mlevel++] = this->mstack[this->mindex];
 		}
-		else if (dots > 1) 
+		else if(dots > 1)
 		{
-			if (this->mlimit == this->mstart) 
+			if (this->mlimit == this->mstart)
 			{
-				this->mstack [this->mlevel++] = this->mstack [this->mindex];
+				this->mstack[this->mlevel++] = this->mstack[this->mindex];
 				this->mstart++;
 			}
-			else
+			else 
 			{
 				this->mlevel--;
 			}
@@ -749,7 +749,7 @@ void opathspec::mergepath ()
  *
  *--------------------------------------------------------------------*/
 
-opathspec::opathspec () 
+opathspec::opathspec()
 
 {
 	this->mstack = new char * [FILE_DIR_MAX];
@@ -770,7 +770,7 @@ opathspec::opathspec ()
  *
  *--------------------------------------------------------------------*/
 
-opathspec::~opathspec () 
+opathspec::~ opathspec()
 
 {
 	delete [] this->mstack;
@@ -782,4 +782,6 @@ opathspec::~opathspec ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

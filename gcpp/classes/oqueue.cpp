@@ -73,12 +73,12 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned oqueue::count () const 
+unsigned oqueue::count() const
 
 {
 	unsigned counter = 0;
 	oqueue * temp = this->mhead;
-	while (temp != this) 
+	while (temp != this)
 	{
 		temp = temp->mhead;
 		counter++;
@@ -100,7 +100,7 @@ unsigned oqueue::count () const
  *
  *--------------------------------------------------------------------*/
 
-bool oqueue::empty () const 
+bool oqueue::empty() const
 
 {
 	return (this->mhead == this);
@@ -118,7 +118,7 @@ bool oqueue::empty () const
  *
  *--------------------------------------------------------------------*/
 
-void * oqueue::data () const 
+void * oqueue::data() const
 
 {
 	return (this->mdata);
@@ -136,7 +136,7 @@ void * oqueue::data () const
  *
  *--------------------------------------------------------------------*/
 
-oqueue * oqueue::head () const 
+oqueue * oqueue::head() const
 
 {
 	return (this->mhead);
@@ -154,7 +154,7 @@ oqueue * oqueue::head () const
  *
  *--------------------------------------------------------------------*/
 
-oqueue * oqueue::tail () const 
+oqueue * oqueue::tail() const
 
 {
 	return (this->mtail);
@@ -172,10 +172,10 @@ oqueue * oqueue::tail () const
  *
  *--------------------------------------------------------------------*/
 
-oqueue & oqueue::insert (void * data) 
+oqueue & oqueue::insert(void * data)
 
 {
-	oqueue * temp = new oqueue (data);
+	oqueue * temp = new oqueue(data);
 	temp->mtail = this;
 	temp->mhead = this->mhead;
 	this->mhead->mtail = temp;
@@ -195,10 +195,10 @@ oqueue & oqueue::insert (void * data)
  *
  *--------------------------------------------------------------------*/
 
-oqueue & oqueue::append (void * data) 
+oqueue & oqueue::append(void * data)
 
 {
-	oqueue * temp = new oqueue (data);
+	oqueue * temp = new oqueue(data);
 	temp->mhead = this;
 	temp->mtail = this->mtail;
 	this->mtail->mhead = temp;
@@ -218,10 +218,10 @@ oqueue & oqueue::append (void * data)
  *
  *--------------------------------------------------------------------*/
 
-oqueue & oqueue::remove () 
+oqueue & oqueue::remove()
 
 {
-	if (this->mhead != this) 
+	if (this->mhead != this)
 	{
 		delete this->mhead;
 	}
@@ -240,10 +240,10 @@ oqueue & oqueue::remove ()
  *
  *--------------------------------------------------------------------*/
 
-oqueue & oqueue::unwind () 
+oqueue & oqueue::unwind()
 
 {
-	if (this->mtail != this) 
+	if (this->mtail != this)
 	{
 		delete this->mtail;
 	}
@@ -265,7 +265,7 @@ oqueue & oqueue::unwind ()
  *
  *--------------------------------------------------------------------*/
 
-oqueue & oqueue::attach (oqueue * queue) 
+oqueue & oqueue::attach(oqueue * queue)
 
 {
 	oqueue * temp = queue->mhead;
@@ -288,7 +288,7 @@ oqueue & oqueue::attach (oqueue * queue)
  *
  *--------------------------------------------------------------------*/
 
-oqueue & oqueue::detach () 
+oqueue & oqueue::detach()
 
 {
 	this->mhead->mtail = this->mtail;
@@ -309,10 +309,10 @@ oqueue & oqueue::detach ()
  *
  *--------------------------------------------------------------------*/
 
-oqueue & oqueue::clear () 
+oqueue & oqueue::clear()
 
 {
-	while (this->mhead != this) 
+	while (this->mhead != this)
 	{
 		delete this->mhead;
 	}
@@ -329,10 +329,10 @@ oqueue & oqueue::clear ()
  *
  *--------------------------------------------------------------------*/
 
-oqueue::oqueue () 
+oqueue::oqueue()
 
 {
-	this->mdata = (void *) (0);
+	this->mdata = (void *)(0);
 	this->mtail = this;
 	this->mhead = this;
 	return;
@@ -348,7 +348,7 @@ oqueue::oqueue ()
  *
  *--------------------------------------------------------------------*/
 
-oqueue::oqueue (void * data) 
+oqueue::oqueue(void * data)
 
 {
 	this->mdata = data;
@@ -367,14 +367,14 @@ oqueue::oqueue (void * data)
  *
  *--------------------------------------------------------------------*/
 
-oqueue::~oqueue () 
+oqueue::~ oqueue()
 
 {
-	this->mdata = (void *) (0);
+	this->mdata = (void *)(0);
 	this->mhead->mtail = this->mtail;
 	this->mtail->mhead = this->mhead;
-	this->mtail = (oqueue *) (0);
-	this->mhead = (oqueue *) (0);
+	this->mtail = (oqueue *)(0);
+	this->mhead = (oqueue *)(0);
 	return;
 }
 
@@ -383,4 +383,6 @@ oqueue::~oqueue ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

@@ -49,16 +49,18 @@
  *
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oputoptv 
+class __declspec(dllexport) oputoptv
 
 {
-public:
+public: 
 	oputoptv ();
-	virtual ~ oputoptv ();
-	oputoptv & chkoptv (char const * optv []);
-	oputoptv & putoptv (char const * optv []);
-	oputoptv & putoptv (char const * optv [], signed exitcode);
+	virtual ~ oputoptv();
+	oputoptv & chkoptv(char const * optv[]);
+	oputoptv & putoptv(char const * optv[]);
+	oputoptv & putoptv(char const * optv[], signed exitcode);
 };
 
 #endif
+
+
 

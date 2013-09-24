@@ -55,7 +55,7 @@
  *   class constants;
  *--------------------------------------------------------------------*/
 
-byte const oethernet::BroadcastAddress [ETHER_ADDR_LEN] = 
+byte const oethernet::BroadcastAddress[ETHER_ADDR_LEN] = 
 
 {
 	0xFF,
@@ -74,10 +74,10 @@ byte const oethernet::BroadcastAddress [ETHER_ADDR_LEN] =
  *
  *--------------------------------------------------------------------*/
 
-size_t oethernet::HeaderLength (void) const 
+size_t oethernet::HeaderLength(void) const
 
 {
-	return (sizeof (this->mpeeraddr) + sizeof (this->mhostaddr) + sizeof (this->mprotocol));
+	return (sizeof(this->mpeeraddr) +  sizeof(this->mhostaddr) +  sizeof(this->mprotocol));
 }
 
 /*====================================================================*
@@ -89,12 +89,12 @@ size_t oethernet::HeaderLength (void) const
  *   
  *--------------------------------------------------------------------*/
 
-void * oethernet::ExportHeader (void * memory) const 
+void * oethernet::ExportHeader(void * memory) const
 
 {
-	memory = oethernet::ExportPeerAddress (memory);
-	memory = oethernet::ExportHostAddress (memory);
-	memory = oethernet::ExportProtocol (memory);
+	memory = oethernet::ExportPeerAddress(memory);
+	memory = oethernet::ExportHostAddress(memory);
+	memory = oethernet::ExportProtocol(memory);
 	return (memory);
 }
 
@@ -107,12 +107,12 @@ void * oethernet::ExportHeader (void * memory) const
  *   
  *--------------------------------------------------------------------*/
 
-void const * oethernet::ImportHeader (void const * memory) 
+void const * oethernet::ImportHeader(void const * memory)
 
 {
-	memory = oethernet::ImportPeerAddress (memory);
-	memory = oethernet::ImportHostAddress (memory);
-	memory = oethernet::ImportProtocol (memory);
+	memory = oethernet::ImportPeerAddress(memory);
+	memory = oethernet::ImportHostAddress(memory);
+	memory = oethernet::ImportProtocol(memory);
 	return (memory);
 }
 
@@ -125,10 +125,10 @@ void const * oethernet::ImportHeader (void const * memory)
  *
  *--------------------------------------------------------------------*/
 
-void * oethernet::ExportPeerAddress (void * memory) const 
+void * oethernet::ExportPeerAddress(void * memory) const
 
 {
-	memory = omemory::encode (memory, this->mpeeraddr, sizeof (this->mpeeraddr));
+	memory = omemory::encode(memory, this->mpeeraddr, sizeof(this->mpeeraddr));
 	return (memory);
 }
 
@@ -141,10 +141,10 @@ void * oethernet::ExportPeerAddress (void * memory) const
  *
  *--------------------------------------------------------------------*/
 
-void * oethernet::ExportHostAddress (void * memory) const 
+void * oethernet::ExportHostAddress(void * memory) const
 
 {
-	memory = omemory::encode (memory, this->mhostaddr, sizeof (this->mhostaddr));
+	memory = omemory::encode(memory, this->mhostaddr, sizeof(this->mhostaddr));
 	return (memory);
 }
 
@@ -157,10 +157,10 @@ void * oethernet::ExportHostAddress (void * memory) const
  *
  *--------------------------------------------------------------------*/
 
-void * oethernet::ExportProtocol (void * memory) const 
+void * oethernet::ExportProtocol(void * memory) const
 
 {
-	memory = omemory::encode (memory, & this->mprotocol, sizeof (this->mprotocol));
+	memory = omemory::encode(memory, & this->mprotocol, sizeof(this->mprotocol));
 	return (memory);
 }
 
@@ -173,10 +173,10 @@ void * oethernet::ExportProtocol (void * memory) const
  *   
  *--------------------------------------------------------------------*/
 
-void const * oethernet::ImportPeerAddress (void const * memory) 
+void const * oethernet::ImportPeerAddress(void const * memory)
 
 {
-	memory = omemory::decode (memory, this->mpeeraddr, sizeof (this->mpeeraddr));
+	memory = omemory::decode(memory, this->mpeeraddr, sizeof(this->mpeeraddr));
 	return (memory);
 }
 
@@ -189,10 +189,10 @@ void const * oethernet::ImportPeerAddress (void const * memory)
  *   
  *--------------------------------------------------------------------*/
 
-void const * oethernet::ImportHostAddress (void const * memory) 
+void const * oethernet::ImportHostAddress(void const * memory)
 
 {
-	memory = omemory::decode (memory, this->mhostaddr, sizeof (this->mhostaddr));
+	memory = omemory::decode(memory, this->mhostaddr, sizeof(this->mhostaddr));
 	return (memory);
 }
 
@@ -205,10 +205,10 @@ void const * oethernet::ImportHostAddress (void const * memory)
  *   
  *--------------------------------------------------------------------*/
 
-void const * oethernet::ImportProtocol (void const * memory) 
+void const * oethernet::ImportProtocol(void const * memory)
 
 {
-	memory = omemory::decode (memory, & this->mprotocol, sizeof (this->mprotocol));
+	memory = omemory::decode(memory, & this->mprotocol, sizeof(this->mprotocol));
 	return (memory);
 }
 
@@ -220,7 +220,7 @@ void const * oethernet::ImportProtocol (void const * memory)
  *   
  *--------------------------------------------------------------------*/
 
-byte const * oethernet::PeerAddress (void) const 
+byte const * oethernet::PeerAddress(void) const
 
 {
 	return (this->mpeeraddr);
@@ -234,7 +234,7 @@ byte const * oethernet::PeerAddress (void) const
  *   
  *--------------------------------------------------------------------*/
 
-byte const * oethernet::HostAddress (void) const 
+byte const * oethernet::HostAddress(void) const
 
 {
 	return (this->mhostaddr);
@@ -252,10 +252,10 @@ byte const * oethernet::HostAddress (void) const
  *
  *--------------------------------------------------------------------*/
 
-uint16_t oethernet::Protocol (void) const 
+uint16_t oethernet::Protocol(void) const
 
 {
-	return (ntohs (this->mprotocol));
+	return (ntohs(this->mprotocol));
 }
 
 /*====================================================================*
@@ -271,10 +271,10 @@ uint16_t oethernet::Protocol (void) const
  *
  *--------------------------------------------------------------------*/
 
-oethernet & oethernet::SetProtocol (uint16_t protocol) 
+oethernet & oethernet::SetProtocol(uint16_t protocol)
 
 {
-	this->mprotocol = htons (protocol);
+	this->mprotocol = htons(protocol);
 	return (* this);
 }
 
@@ -286,11 +286,11 @@ oethernet & oethernet::SetProtocol (uint16_t protocol)
  *   
  *--------------------------------------------------------------------*/
 
-char const * oethernet::PeerAddressString (void) const 
+char const * oethernet::PeerAddressString(void) const
 
 {
-	static char buffer [sizeof (this->mpeeraddr) * 3];
-	omemory::hexdecode (this->mpeeraddr, sizeof (this->mpeeraddr), buffer, sizeof (buffer));
+	static char buffer[sizeof(this->mpeeraddr) * 3];
+	omemory::hexdecode(this->mpeeraddr, sizeof(this->mpeeraddr), buffer, sizeof(buffer));
 	return (buffer);
 }
 
@@ -302,11 +302,11 @@ char const * oethernet::PeerAddressString (void) const
  *   
  *--------------------------------------------------------------------*/
 
-char const * oethernet::HostAddressString (void) const 
+char const * oethernet::HostAddressString(void) const
 
 {
-	static char buffer [sizeof (this->mhostaddr) * 3];
-	omemory::hexdecode (this->mhostaddr, sizeof (this->mhostaddr), buffer, sizeof (buffer));
+	static char buffer[sizeof(this->mhostaddr) * 3];
+	omemory::hexdecode(this->mhostaddr, sizeof(this->mhostaddr), buffer, sizeof(buffer));
 	return (buffer);
 }
 
@@ -318,11 +318,11 @@ char const * oethernet::HostAddressString (void) const
  *   
  *--------------------------------------------------------------------*/
 
-char const * oethernet::ProtocolString (void) const 
+char const * oethernet::ProtocolString(void) const
 
 {
-	static char buffer [sizeof (this->mprotocol) * 3];
-	omemory::hexdecode (& this->mprotocol, sizeof (this->mprotocol), buffer, sizeof (buffer));
+	static char buffer[sizeof(this->mprotocol) * 3];
+	omemory::hexdecode(& this->mprotocol, sizeof(this->mprotocol), buffer, sizeof(buffer));
 	return (buffer);
 }
 
@@ -335,12 +335,12 @@ char const * oethernet::ProtocolString (void) const
  *
  *--------------------------------------------------------------------*/
 
-oethernet & oethernet::Print () 
+oethernet & oethernet::Print()
 
 {
-	std::cerr << oethernet::PeerAddressString () << " ";
-	std::cerr << oethernet::HostAddressString () << " ";
-	std::cerr << oethernet::ProtocolString () << std::endl;
+	std::cerr << oethernet::PeerAddressString() << " ";
+	std::cerr << oethernet::HostAddressString() << " ";
+	std::cerr << oethernet::ProtocolString() << std::endl;
 	return (* this);
 }
 
@@ -353,12 +353,12 @@ oethernet & oethernet::Print ()
  *
  *--------------------------------------------------------------------*/
 
-oethernet::oethernet (uint16_t protocol) 
+oethernet::oethernet(uint16_t protocol)
 
 {
-	std::memset (this->mpeeraddr, 0, sizeof (this->mpeeraddr));
-	std::memset (this->mhostaddr, 0, sizeof (this->mhostaddr));
-	this->mprotocol = htons (protocol);
+	std::memset(this->mpeeraddr, 0, sizeof(this->mpeeraddr));
+	std::memset(this->mhostaddr, 0, sizeof(this->mhostaddr));
+	this->mprotocol = htons(protocol);
 	return;
 }
 
@@ -371,11 +371,11 @@ oethernet::oethernet (uint16_t protocol)
  *
  *--------------------------------------------------------------------*/
 
-oethernet::oethernet (void) 
+oethernet::oethernet(void)
 
 {
-	std::memset (this->mpeeraddr, 0, sizeof (this->mpeeraddr));
-	std::memset (this->mhostaddr, 0, sizeof (this->mhostaddr));
+	std::memset(this->mpeeraddr, 0, sizeof(this->mpeeraddr));
+	std::memset(this->mhostaddr, 0, sizeof(this->mhostaddr));
 	this->mprotocol = 0;
 	return;
 }
@@ -386,7 +386,7 @@ oethernet::oethernet (void)
  *
  *--------------------------------------------------------------------*/
 
-oethernet::~oethernet (void) 
+oethernet::~ oethernet(void)
 
 {
 	return;
@@ -397,4 +397,6 @@ oethernet::~oethernet (void)
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

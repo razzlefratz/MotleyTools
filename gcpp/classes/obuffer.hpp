@@ -27,24 +27,24 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) obuffer 
+class __declspec(dllexport) obuffer
 
 {
-public:
+public: 
 	obuffer (size_t length);
 	obuffer ();
-	virtual ~ obuffer ();
-	char const * offset () const;
-	char const * record () const;
-	obuffer & offset (char const * offset);
-	obuffer & record (char const * record);
-	obuffer & append (signed c);
-	obuffer & append (char const * string);
-	obuffer & space (signed space);
-	obuffer & level (signed level);
-	obuffer & flush ();
-	obuffer & clear ();
-private:
+	virtual ~ obuffer();
+	char const * offset() const;
+	char const * record() const;
+	obuffer & offset(char const * offset);
+	obuffer & record(char const * record);
+	obuffer & append(signed c);
+	obuffer & append(char const * string);
+	obuffer & space(signed space);
+	obuffer & level(signed level);
+	obuffer & flush();
+	obuffer & clear();
+private: 
 	char * moffset;
 	char * mfinish;
 	char * mbuffer;
@@ -58,4 +58,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

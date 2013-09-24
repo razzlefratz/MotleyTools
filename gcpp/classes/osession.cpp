@@ -40,7 +40,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const * osession::hostname () const 
+char const * osession::hostname() const
 
 {
 	return (this->mhostname);
@@ -56,7 +56,7 @@ char const * osession::hostname () const
  *
  *--------------------------------------------------------------------*/
 
-char const * osession::username () const 
+char const * osession::username() const
 
 {
 	return (this->musername);
@@ -75,24 +75,24 @@ char const * osession::username () const
  *
  *--------------------------------------------------------------------*/
 
-size_t osession::strfwhat (char buffer [], size_t length, char const * event) 
+size_t osession::strfwhat(char buffer[], size_t length, char const * event)
 
 {
-	time_t timer = std::time ((time_t *) (0));
+	time_t timer = std::time((time_t *)(0));
 	char * string = buffer;
 
 #if defined (__linux__)
 
-	string += std::snprintf (string, string - buffer + length, "%s", event);
+	string += std::snprintf(string, string - buffer +  length, "%s", event);
 
 #else
 
-	string += snprintf (string, string - buffer + length, "%s", event);
+	string += snprintf(string, string - buffer +  length, "%s", event);
 
 #endif
 
-	string += osession::strfwhom (string, string - buffer + length);
-	string += osession::strfwhen (string, string - buffer + length, timer);
+	string += osession::strfwhom(string, string - buffer +  length);
+	string += osession::strfwhen(string, string - buffer +  length, timer);
 	return (string - buffer);
 }
 
@@ -106,11 +106,11 @@ size_t osession::strfwhat (char buffer [], size_t length, char const * event)
  *
  *--------------------------------------------------------------------*/
 
-size_t osession::strfdate (char buffer [], size_t length, time_t event) 
+size_t osession::strfdate(char buffer[], size_t length, time_t event)
 
 {
 	char * string = buffer;
-	string += std::strftime (string, string - buffer + length, DAYTIME, std::localtime (& event));
+	string += std::strftime(string, string - buffer +  length, DAYTIME, std::localtime(& event));
 	return (string - buffer);
 }
 
@@ -126,24 +126,24 @@ size_t osession::strfdate (char buffer [], size_t length, time_t event)
  *
  *--------------------------------------------------------------------*/
 
-size_t osession::strfwhen (char buffer [], size_t length, time_t event) 
+size_t osession::strfwhen(char buffer[], size_t length, time_t event)
 
 {
 	char * string = buffer;
 
 #if defined (__linux__)
 
-	string += std::snprintf (string, string - buffer + length, " at ");
-	string += std::strftime (string, string - buffer + length, "%T %Z", std::localtime (& event));
-	string += std::snprintf (string, string - buffer + length, " on ");
-	string += std::strftime (string, string - buffer + length, "%A %d %B %Y", std::localtime (& event));
+	string += std::snprintf(string, string - buffer +  length, " at ");
+	string += std::strftime(string, string - buffer +  length, "%T %Z", std::localtime(& event));
+	string += std::snprintf(string, string - buffer +  length, " on ");
+	string += std::strftime(string, string - buffer +  length, "%A %d %B %Y", std::localtime(& event));
 
 #else
 
-	string += snprintf (string, string - buffer + length, " at ");
-	string += strftime (string, string - buffer + length, "%T %Z", localtime (& event));
-	string += snprintf (string, string - buffer + length, " on ");
-	string += strftime (string, string - buffer + length, "%A %d %B %Y", localtime (& event));
+	string += snprintf(string, string - buffer +  length, " at ");
+	string += strftime(string, string - buffer +  length, "%T %Z", localtime(& event));
+	string += snprintf(string, string - buffer +  length, " on ");
+	string += strftime(string, string - buffer +  length, "%A %d %B %Y", localtime(& event));
 
 #endif
 
@@ -162,24 +162,24 @@ size_t osession::strfwhen (char buffer [], size_t length, time_t event)
  *
  *--------------------------------------------------------------------*/
 
-size_t osession::strfwhom (char buffer [], size_t length) 
+size_t osession::strfwhom(char buffer[], size_t length)
 
 {
 	char * string = buffer;
 
 #if defined (__linux__)
 
-	string += std::snprintf (string, string - buffer + length, " by");
-	string += std::snprintf (string, string - buffer + length, " %s", this->musername);
-	string += std::snprintf (string, string - buffer + length, " on");
-	string += std::snprintf (string, string - buffer + length, " %s", this->mhostname);
+	string += std::snprintf(string, string - buffer +  length, " by");
+	string += std::snprintf(string, string - buffer +  length, " %s", this->musername);
+	string += std::snprintf(string, string - buffer +  length, " on");
+	string += std::snprintf(string, string - buffer +  length, " %s", this->mhostname);
 
 #else
 
-	string += snprintf (string, string - buffer + length, " by");
-	string += snprintf (string, string - buffer + length, " %s", this->musername);
-	string += snprintf (string, string - buffer + length, " on");
-	string += snprintf (string, string - buffer + length, " %s", this->mhostname);
+	string += snprintf(string, string - buffer +  length, " by");
+	string += snprintf(string, string - buffer +  length, " %s", this->musername);
+	string += snprintf(string, string - buffer +  length, " on");
+	string += snprintf(string, string - buffer +  length, " %s", this->mhostname);
 
 #endif
 
@@ -196,17 +196,17 @@ size_t osession::strfwhom (char buffer [], size_t length)
  *
  *--------------------------------------------------------------------*/
 
-osession::osession () 
+osession::osession()
 
 {
-	this->mhostname = new char [HOSTNAME_MAX];
-	this->musername = new char [USERNAME_MAX];
-	this->mdatetime = new char [DATETIME_MAX];
-	if (gethostname (this->mhostname, HOSTNAME_MAX)) 
+	this->mhostname = new char[HOSTNAME_MAX];
+	this->musername = new char[USERNAME_MAX];
+	this->mdatetime = new char[DATETIME_MAX];
+	if (gethostname(this->mhostname, HOSTNAME_MAX))
 	{
 		strcpy (this->mhostname, "localhost");
 	}
-	if (getusername (this->musername, USERNAME_MAX, getuid ())) 
+	if (getusername(this->musername, USERNAME_MAX, getuid()))
 	{
 		strcpy (this->musername, "localuser");
 	}
@@ -223,7 +223,7 @@ osession::osession ()
  *
  *--------------------------------------------------------------------*/
 
-osession::~osession () 
+osession::~ osession()
 
 {
 	delete [] this->mhostname;
@@ -237,4 +237,6 @@ osession::~osession ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

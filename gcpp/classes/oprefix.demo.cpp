@@ -2,7 +2,7 @@
 #include <iostream>
 #include "../classes/oprefix.hpp"
 
-void oprefixtest () 
+void oprefixtest()
 
 {
 	oprefix prefix;
@@ -12,12 +12,12 @@ void oprefixtest ()
  */
 
 	cout << "prefix test ..." << std::endl;
-	prefix.define ("ab", "%2%");
-	prefix.define ("abc", "%1%");
-	prefix.define ("abcde", "%3%");
-	prefix.define ("abcd", "5");
-	prefix.define ("a", "4");
-	cout << "prefix=[" << prefix.prefix ("abcdefg") << "]" << std::endl;
+	prefix.define("ab", "%2%");
+	prefix.define("abc", "%1%");
+	prefix.define("abcde", "%3%");
+	prefix.define("abcd", "5");
+	prefix.define("a", "4");
+	cout << "prefix=[" << prefix.prefix("abcdefg") << "]" << std::endl;
 
 /*
  * prefix.report(buffer, 12, stdout);

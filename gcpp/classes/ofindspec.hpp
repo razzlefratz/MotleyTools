@@ -23,30 +23,30 @@
  *7
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ofindspec: private oerror 
+class __declspec(dllexport) ofindspec: private oerror
 
 {
-public:
+public: 
 	ofindspec ();
 	ofindspec (char const * fullname);
-	virtual ~ ofindspec ();
-	char const * fullname ();
-	char const * pathname () const;
-	char const * filename () const;
-	char const * longname () const;
-	char const * basename () const;
-	char const * extender () const;
-	ofindspec & fullname (char const * filespec);
-	ofindspec & pathname (char const * filespec);
-	ofindspec & filename (char const * filespec);
-	ofindspec & basename (char const * filespec);
-	ofindspec & extender (char const * filespec);
-	char const * altfilename (char const * extender);
-	char const * altextender (char const * extender);
-	char const * addextender (char const * extender);
-	char const * serial (unsigned number, unsigned length);
-	ofindspec & peek ();
-private:
+	virtual ~ ofindspec();
+	char const * fullname();
+	char const * pathname() const;
+	char const * filename() const;
+	char const * longname() const;
+	char const * basename() const;
+	char const * extender() const;
+	ofindspec & fullname(char const * filespec);
+	ofindspec & pathname(char const * filespec);
+	ofindspec & filename(char const * filespec);
+	ofindspec & basename(char const * filespec);
+	ofindspec & extender(char const * filespec);
+	char const * altfilename(char const * extender);
+	char const * altextender(char const * extender);
+	char const * addextender(char const * extender);
+	char const * serial(unsigned number, unsigned length);
+	ofindspec & peek();
+private: 
 	opathspec pathspec;
 	unsigned mfindmode;
 	char * mtempname;
@@ -62,4 +62,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

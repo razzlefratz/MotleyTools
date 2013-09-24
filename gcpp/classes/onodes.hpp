@@ -28,25 +28,25 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) onodes 
+class __declspec(dllexport) onodes
 
 {
-public:
+public: 
 	onodes ();
-	virtual ~ onodes ();
-	size_t block () const;
-	size_t limit () const;
-	size_t count () const;
-	size_t index () const;
+	virtual ~ onodes();
+	size_t block() const;
+	size_t limit() const;
+	size_t count() const;
+	size_t index() const;
 	onodes & operator++ ();
-	onodes & index (size_t index);
-	onodes & add (char const * nodename);
-	onode * operator [] (size_t index) const;
-	onode * node (size_t index) const;
-	onode * node () const;
-	onodes & organize (onode * node);
-	onodes & clear ();
-private:
+	onodes & index(size_t index);
+	onodes & add(char const * nodename);
+	onode * operator[](size_t index) const;
+	onode * node(size_t index) const;
+	onode * node() const;
+	onodes & organize(onode * node);
+	onodes & clear();
+private: 
 	onode ** mtable;
 	onode * mentry;
 	size_t mblock;
@@ -60,4 +60,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

@@ -21,22 +21,22 @@
  *
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ocontext 
+class __declspec(dllexport) ocontext
 
 {
-public:
+public: 
 	ocontext ();
-	virtual ~ ocontext ();
-	char const * string () const;
-	char const * prefix () const;
-	char const * suffix () const;
-	ocontext & string (char buffer [], size_t length);
-	ocontext & prefix (char buffer [], size_t length);
-	ocontext & suffix (char buffer [], size_t length);
-	ocontext & split (char const * string, char const * charset, bool first, bool required);
-	ocontext & merge (char const * prefix, char const * middle, char const * suffix);
-private:
-	bool member (char const * charset, char c);
+	virtual ~ ocontext();
+	char const * string() const;
+	char const * prefix() const;
+	char const * suffix() const;
+	ocontext & string(char buffer[], size_t length);
+	ocontext & prefix(char buffer[], size_t length);
+	ocontext & suffix(char buffer[], size_t length);
+	ocontext & split(char const * string, char const * charset, bool first, bool required);
+	ocontext & merge(char const * prefix, char const * middle, char const * suffix);
+private: 
+	bool member(char const * charset, char c);
 	char * mstring;
 	char * mprefix;
 	char * msuffix;
@@ -47,4 +47,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

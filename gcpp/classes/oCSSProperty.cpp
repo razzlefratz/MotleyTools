@@ -26,10 +26,10 @@
  *
  *--------------------------------------------------------------------*/
 
-oCSSProperty::oCSSProperty () 
+oCSSProperty::oCSSProperty()
 
 {
-	static char const * table [] = 
+	static char const * table[] = 
 	{
 		"azimuth",
 		"background",
@@ -153,12 +153,12 @@ oCSSProperty::oCSSProperty ()
 		"width",
 		"word-spacing",
 		"z-index",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	okeywords::mtitle = "CSSProperty";
-	okeywords::mcount = sizeof (table) / sizeof (char const *) - 1;
+	okeywords::mcount = sizeof(table) / sizeof(char const *) - 1;
 	okeywords::mtable = table;
-	okeywords::mcheck ();
+	okeywords::mcheck();
 	return;
 }
 
@@ -172,7 +172,7 @@ oCSSProperty::oCSSProperty ()
  *
  *--------------------------------------------------------------------*/
 
-oCSSProperty::~oCSSProperty () 
+oCSSProperty::~ oCSSProperty()
 
 {
 	return;
@@ -183,4 +183,6 @@ oCSSProperty::~oCSSProperty ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

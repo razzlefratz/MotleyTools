@@ -33,7 +33,7 @@
  *
  *--------------------------------------------------------------------*/
 
-obreak & obreak::print (char const * string) 
+obreak & obreak::print(char const * string)
 
 {
 	std::cout << "# " << this->mupper << std::endl;
@@ -53,18 +53,18 @@ obreak & obreak::print (char const * string)
  *
  *--------------------------------------------------------------------*/
 
-obreak::obreak (size_t length) 
+obreak::obreak(size_t length)
 
 {
-	this->mupper = new char [length + 1];
-	this->mlower = new char [length + 1];
-	for (size_t column = 0; column < length; column++) 
+	this->mupper = new char[length +  1];
+	this->mlower = new char[length +  1];
+	for (size_t column = 0; column < length; column++)
 	{
-		this->mupper [column] = '=';
-		this->mlower [column] = '-';
+		this->mupper[column] = '=';
+		this->mlower[column] = '-';
 	}
-	this->mupper [length] = (char) (0);
-	this->mlower [length] = (char) (0);
+	this->mupper[length] = (char)(0);
+	this->mlower[length] = (char)(0);
 	return;
 }
 
@@ -78,7 +78,7 @@ obreak::obreak (size_t length)
  *
  *--------------------------------------------------------------------*/
 
-obreak::~obreak () 
+obreak::~ obreak()
 
 {
 	delete [] this->mupper;
@@ -91,4 +91,6 @@ obreak::~obreak ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

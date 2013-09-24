@@ -44,24 +44,24 @@
  *   
  *--------------------------------------------------------------------*/
 
-FILE * ofindfile::fopen1 (char const * file, char const * mode) 
+FILE * ofindfile::fopen1(char const * file, char const * mode)
 
 {
 	FILE * fp;
-	char pathname [FILENAME_MAX];
+	char pathname[FILENAME_MAX];
 	int node = 0;
-	pathname [0] = (char) (0);
-	this->mstack [0] = pathname;
-	for (char * cp = pathname; (node < FILE_DIR_MAX) && (* cp = * file); cp++, file++) 
+	pathname [0] = (char)(0);
+	this->mstack[0] = pathname;
+	for (char * cp = pathname; (node < FILE_DIR_MAX) && (* cp = * file); cp++, file++)
 	{
-		if (* cp == PATH_C_EXTENDER) 
+		if (* cp == PATH_C_EXTENDER)
 		{
-			this->mstack [node++] = cp;
+			this->mstack[node++] = cp;
 		}
 	}
-	while (((fp = fopen (pathname, mode)) == (FILE *) (0)) && (node-- > 1)) 
+	while (((fp = fopen(pathname, mode)) == (FILE *)(0)) && (node-- > 1))
 	{
-		strcpy (this->mstack [node - 1], this->mstack [node]);
+		strcpy (this->mstack[node - 1], this->mstack[node]);
 	}
 	return (fp);
 }
@@ -78,44 +78,44 @@ FILE * ofindfile::fopen1 (char const * file, char const * mode)
  *
  *--------------------------------------------------------------------*/
 
-FILE * ofindfile::fopen2 (char const * file, char const * mode, char const * pathstring) 
+FILE * ofindfile::fopen2(char const * file, char const * mode, char const * pathstring)
 
 {
-	FILE * fp = (FILE *) (0);
-	char temp [FILENAME_MAX] = 
+	FILE * fp = (FILE *)(0);
+	char temp[FILENAME_MAX] = 
 	{
-		(char) (0)
+		(char)(0)
 	};
-	if (file != (char const *) (0)) 
+	if (file != (char const *)(0))
 	{
-		if (mode != (char const *) (0)) 
+		if (mode != (char const *)(0))
 		{
-			if (pathstring != (char const *) (0)) 
+			if (pathstring != (char const *)(0))
 			{
-				char * sp = (char *) (file);
-				while (* file != (char) (0)) 
+				char * sp = (char *)(file);
+				while (* file != (char)(0))
 				{
 					file++;
 				}
-				while ((file > sp) && (* file != PATH_C_EXTENDER)) 
+				while ((file > sp) && (* file != PATH_C_EXTENDER))
 				{
 					file--;
 				}
-				std::strcpy (temp, sp);
-				while (((fp = this->fopen1 (temp, mode)) == (FILE *) (0)) && (* pathstring)) 
+				std::strcpy(temp, sp);
+				while (((fp = this->fopen1(temp, mode)) == (FILE *)(0)) && (* pathstring))
 				{
 					sp = temp;
-					while ((* sp = * pathstring) && (* sp != PATH_C_SEPARATOR)) 
+					while ((* sp = * pathstring) && (* sp != PATH_C_SEPARATOR))
 					{
 						sp++,
 						pathstring++;
 					}
-					if (* pathstring) 
+					if (* pathstring)
 					{
 						pathstring++;
 					}
 					* sp++ = PATH_C_EXTENDER;
-					std::strcpy (sp, file);
+					std::strcpy(sp, file);
 				}
 			}
 		}
@@ -134,7 +134,7 @@ FILE * ofindfile::fopen2 (char const * file, char const * mode, char const * pat
  *
  *--------------------------------------------------------------------*/
 
-ofindfile::ofindfile () 
+ofindfile::ofindfile()
 
 {
 	this->mstack = new char * [FILE_DIR_MAX];
@@ -156,7 +156,7 @@ ofindfile::ofindfile ()
  *
  *--------------------------------------------------------------------*/
 
-ofindfile::~ofindfile () 
+ofindfile::~ ofindfile()
 
 {
 	delete [] this->mstack;
@@ -168,4 +168,6 @@ ofindfile::~ofindfile ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

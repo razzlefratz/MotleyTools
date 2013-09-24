@@ -65,67 +65,67 @@
  *   
  *--------------------------------------------------------------------*/
 
-int main (int argc, char const * argv []) 
+int main(int argc, char const * argv[])
 
-{ 
-	static char const * optv [] = 
-	{ 
-		"loxst", 
-		oPUTOPTV_S_FUNNEL, 
-		"topological sort program", 
-		"l\tprint level", 
-		"o\tprint order", 
-		"s\tprint symbol", 
-		"t\tprint structure", 
-		"x\tinvert order", 
-		(char const *) (0)
-	}; 
-	std::ifstream stream; 
-	ogetoptv getopt; 
-	oputoptv putopt; 
-	ograph graph; 
-	signed c; 
-	while (~ (c = getopt.getoptv (argc, argv, optv))) 
-	{ 
-		switch (c) 
-		{ 
-		case 'l': 
-			graph.setbits (oGRAPH_SHOW_LEVEL); 
-			break; 
-		case 'o': 
-			graph.setbits (oGRAPH_SHOW_ORDER); 
-			break; 
-		case 's': 
-			graph.setbits (oGRAPH_SHOW_SYMBOL); 
-			graph.clearbits (oGRAPH_SHOW_SYMBOL); 
-			break; 
-		case 't': 
-			graph.setbits (oGRAPH_SHOW_STRUCT); 
-			graph.clearbits (oGRAPH_SHOW_STRUCT); 
-			break; 
-		case 'x': 
-			graph.setbits (oGRAPH_MODE_INVERT); 
-			break; 
+{
+	static char const * optv[] = 
+	{
+		"loxst",
+		oPUTOPTV_S_FUNNEL,
+		"topological sort program",
+		"l\tprint level",
+		"o\tprint order",
+		"s\tprint symbol",
+		"t\tprint structure",
+		"x\tinvert order",
+		(char const *)(0)
+	};
+	std::ifstream stream;
+	ogetoptv getopt;
+	oputoptv putopt;
+	ograph graph;
+	signed c;
+	while (~ (c = getopt.getoptv(argc, argv, optv)))
+	{
+		switch (c)
+		{
+		case 'l':
+			graph.setbits(oGRAPH_SHOW_LEVEL);
+			break;
+		case 'o':
+			graph.setbits(oGRAPH_SHOW_ORDER);
+			break;
+		case 's':
+			graph.setbits(oGRAPH_SHOW_SYMBOL);
+			graph.clearbits(oGRAPH_SHOW_SYMBOL);
+			break;
+		case 't':
+			graph.setbits(oGRAPH_SHOW_STRUCT);
+			graph.clearbits(oGRAPH_SHOW_STRUCT);
+			break;
+		case 'x':
+			graph.setbits(oGRAPH_MODE_INVERT);
+			break;
 		default: 
-			break; 
-		} 
-	} 
-	if (! getopt.argc ()) 
-	{ 
-		graph.populate (ORDER_C_SEPARATOR, ORDER_C_TERMINATOR); 
-	} 
-	while (getopt.argc () && * getopt.argv ()) 
-	{ 
-		stream.open (* getopt.argv (), std::ifstream::in); 
-		if (stream.good ()) 
-		{ 
-			std::cin.rdbuf (stream.rdbuf ()); 
-			graph.populate (ORDER_C_SEPARATOR, ORDER_C_TERMINATOR); 
-			stream.close (); 
-		} 
-		getopt++; 
-	} 
-	graph.discover (); 
-	std::exit (0); 
-} 
+			break;
+		}
+	}
+	if (! getopt.argc())
+	{
+		graph.populate(ORDER_C_SEPARATOR, ORDER_C_TERMINATOR);
+	}
+	while (getopt.argc() && * getopt.argv())
+	{
+		stream.open(* getopt.argv(), std::ifstream::in);
+		if (stream.good())
+		{
+			std::cin.rdbuf(stream.rdbuf());
+			graph.populate(ORDER_C_SEPARATOR, ORDER_C_TERMINATOR);
+			stream.close();
+		}
+		getopt++;
+	}
+	graph.discover();
+	std::exit(0);
+}
 

@@ -28,26 +28,26 @@
  *
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ocatalog 
+class __declspec(dllexport) ocatalog
 
 {
-public:
+public: 
 	ocatalog ();
-	ocatalog (signed order (char const *, char const *));
-	virtual ~ ocatalog ();
-	char const * title () const;
-	ocatalog & title (char const * title);
-	unsigned index () const;
-	unsigned count () const;
-	char const * symbol ();
-	char const * string ();
-	char const * symbols (unsigned index);
-	char const * strings (unsigned index);
-	bool related (char const * symbol, char const * string);
-	unsigned indexof (char const * symbol, char const * string);
-	bool relate (char const * symbol, char const * string);
-	ocatalog & clear ();
-private:
+	ocatalog (signed order(char const *, char const *));
+	virtual ~ ocatalog();
+	char const * title() const;
+	ocatalog & title(char const * title);
+	unsigned index() const;
+	unsigned count() const;
+	char const * symbol();
+	char const * string();
+	char const * symbols(unsigned index);
+	char const * strings(unsigned index);
+	bool related(char const * symbol, char const * string);
+	unsigned indexof(char const * symbol, char const * string);
+	bool relate(char const * symbol, char const * string);
+	ocatalog & clear();
+private: 
 	olist * mlist;
 };
 
@@ -56,4 +56,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

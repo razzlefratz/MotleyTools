@@ -22,20 +22,20 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ochrtable: public ochrtbl 
+class __declspec(dllexport) ochrtable: public ochrtbl
 
 {
-public:
+public: 
 	ochrtable ();
-	virtual ~ ochrtable ();
-	ochrtable & tolower ();
-	ochrtable & toupper ();
-	ochrtable & toindex ();
-	ochrtable & charset (char const * charset1, char const * charset2);
-protected:
-	ochrtable & mreset ();
+	virtual ~ ochrtable();
+	ochrtable & tolower();
+	ochrtable & toupper();
+	ochrtable & toindex();
+	ochrtable & charset(char const * charset1, char const * charset2);
+protected: 
+	ochrtable & mreset();
 	unsigned char * mtable;
-private:
+private: 
 	unsigned c;
 };
 
@@ -44,4 +44,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

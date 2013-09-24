@@ -30,7 +30,7 @@
  *
  *--------------------------------------------------------------------*/
 
-size_t oedges::block () const 
+size_t oedges::block() const
 
 {
 	return (this->mblock);
@@ -43,7 +43,7 @@ size_t oedges::block () const
  *
  *--------------------------------------------------------------------*/
 
-size_t oedges::limit () const 
+size_t oedges::limit() const
 
 {
 	return (this->mlimit);
@@ -56,7 +56,7 @@ size_t oedges::limit () const
  *
  *--------------------------------------------------------------------*/
 
-size_t oedges::count () const 
+size_t oedges::count() const
 
 {
 	return (this->mcount);
@@ -69,7 +69,7 @@ size_t oedges::count () const
  *
  *--------------------------------------------------------------------*/
 
-size_t oedges::index () const 
+size_t oedges::index() const
 
 {
 	return (this->mindex);
@@ -84,10 +84,10 @@ size_t oedges::index () const
  *
  *--------------------------------------------------------------------*/
 
-oedge * oedges::operator [] (size_t index) const 
+oedge * oedges::operator[](size_t index) const
 
 {
-	return (index < this->mcount? this->mtable [index]: (oedge *) (0));
+	return (index < this->mcount? this->mtable[index]: (oedge *)(0));
 }
 
 /*====================================================================*
@@ -99,10 +99,10 @@ oedge * oedges::operator [] (size_t index) const
  *
  *--------------------------------------------------------------------*/
 
-oedge * oedges::edge (size_t index) const 
+oedge * oedges::edge(size_t index) const
 
 {
-	return (index < this->mcount? this->mtable [index]: (oedge *) (0));
+	return (index < this->mcount? this->mtable[index]: (oedge *)(0));
 }
 
 /*====================================================================*
@@ -114,10 +114,10 @@ oedge * oedges::edge (size_t index) const
  *
  *--------------------------------------------------------------------*/
 
-oedge * oedges::edge () const 
+oedge * oedges::edge() const
 
 {
-	return (this->mindex < this->mcount? this->mtable [this->mindex]: (oedge *) (0));
+	return (this->mindex < this->mcount? this->mtable[this->mindex]: (oedge *)(0));
 }
 
 /*====================================================================*
@@ -128,32 +128,32 @@ oedge * oedges::edge () const
  *
  *--------------------------------------------------------------------*/
 
-oedges & oedges::add (onode * sourcenode, onode * targetnode) 
+oedges & oedges::add(onode * sourcenode, onode * targetnode)
 
 {
-	for (this->mindex = 0; this->mindex < this->mcount; this->mindex++) 
+	for (this->mindex = 0; this->mindex < this->mcount; this->mindex++)
 	{
-		if (this->mtable [this->mindex] ->source () == sourcenode) 
+		if (this->mtable[this->mindex] ->source() == sourcenode)
 		{
-			if (this->mtable [this->mindex] ->target () == targetnode) 
+			if (this->mtable[this->mindex] ->target() == targetnode)
 			{
 				return (* this);
 			}
 		}
 	}
-	if (this->mcount > this->mlimit) 
+	if (this->mcount > this->mlimit)
 	{
 		oedge ** ntable = this->mtable;
-		this->mlimit = this->mlimit + this->mblock;
+		this->mlimit = this->mlimit +  this->mblock;
 		this->mblock = this->mlimit - this->mblock;
 		this->mtable = new oedge * [this->mlimit];
-		for (this->mindex = 0; this->mindex < this->mcount; this->mindex++) 
+		for (this->mindex = 0; this->mindex < this->mcount; this->mindex++)
 		{
-			this->mtable [this->mindex] = ntable [this->mindex];
+			this->mtable[this->mindex] = ntable[this->mindex];
 		}
 		delete [] ntable;
 	}
-	this->mtable [this->mcount++] = new oedge (sourcenode, targetnode);
+	this->mtable[this->mcount++] = new oedge(sourcenode, targetnode);
 	return (* this);
 }
 
@@ -165,13 +165,13 @@ oedges & oedges::add (onode * sourcenode, onode * targetnode)
  *
  *--------------------------------------------------------------------*/
 
-oedges & oedges::clear () 
+oedges & oedges::clear()
 
 {
-	for (this->mindex = 0; this->mindex < this->mcount; this->mindex++) 
+	for (this->mindex = 0; this->mindex < this->mcount; this->mindex++)
 	{
-		this->medge = this->mtable [this->mindex];
-		this->mtable [this->mindex] = (oedge *) (0);
+		this->medge = this->mtable[this->mindex];
+		this->mtable[this->mindex] = (oedge *)(0);
 		delete this->medge;
 	}
 	this->mcount = this->mindex = 0;
@@ -186,7 +186,7 @@ oedges & oedges::clear ()
  *
  *--------------------------------------------------------------------*/
 
-oedges::oedges () 
+oedges::oedges()
 
 {
 	this->mtable = new oedge * [EDGE_MAX];
@@ -203,10 +203,10 @@ oedges::oedges ()
  *
  *--------------------------------------------------------------------*/
 
-oedges::~ oedges () 
+oedges::~ oedges()
 
 {
-	this->medge = (oedge *) (0);
+	this->medge = (oedge *)(0);
 	delete [] this->mtable;
 	return;
 }
@@ -216,4 +216,6 @@ oedges::~ oedges ()
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

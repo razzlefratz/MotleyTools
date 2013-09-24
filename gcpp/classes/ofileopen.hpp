@@ -30,22 +30,23 @@
  *   begin definition;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ofileopen 
+class __declspec(dllexport) ofileopen
 
 {
-public:
+public: 
 	ofileopen (void);
 	ofileopen (unsigned limit);
-	virtual ~ ofileopen (void);
-	unsigned count (void) const;
-	unsigned versions (void) const;
-	bool permit (char const * filespec) const;
-	bool filter (char const * filespec, char const * savespec);
-	bool opensave (char const * filespec, char const * extender);
-	bool openedit (char const * filespec);
-	ofileopen & close (void);
-protected:
-	private: static struct stat statinfo;
+	virtual ~ ofileopen(void);
+	unsigned count(void) const;
+	unsigned versions(void) const;
+	bool permit(char const * filespec) const;
+	bool filter(char const * filespec, char const * savespec);
+	bool opensave(char const * filespec, char const * extender);
+	bool openedit(char const * filespec);
+	ofileopen & close(void);
+protected: 
+private: 
+	static struct stat statinfo;
 	static std::ifstream source;
 	static std::ofstream target;
 	oerror merror;
@@ -59,4 +60,6 @@ protected:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

@@ -30,16 +30,16 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) opcap 
+class __declspec(dllexport) opcap
 
 {
-public:
+public: 
 	opcap ();
-	virtual ~ opcap ();
-	static unsigned if_nametoindex (char const * ifname);
-	static char * if_indextoname (unsigned ifindex, char * ifname);
-	static struct if_nameindex * if_nameindex (void);
-	static void if_freenameindex (struct if_nameindex * if_nameindex);
+	virtual ~ opcap();
+	static unsigned if_nametoindex(char const * ifname);
+	static char * if_indextoname(unsigned ifindex, char * ifname);
+	static struct if_nameindex * if_nameindex(void);
+	static void if_freenameindex(struct if_nameindex * if_nameindex);
 };
 
 /*====================================================================*
@@ -47,4 +47,6 @@ public:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

@@ -22,23 +22,24 @@
  *   interface definition;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) odate 
+class __declspec(dllexport) odate
 
 {
-public:
+public: 
 	odate ();
-	virtual ~ odate ();
-	static char const * months [];
-	static char const * weekdays [];
-	static char const * monthname (signed month);
-	static char const * weekdayname (signed weekday);
-	static bool isleap (unsigned year);
-	static unsigned dayofweek (unsigned year, signed month, signed day);
-	static unsigned dayofyear (unsigned year, signed month, signed day);
-	static unsigned endofmonth (unsigned year, signed month);
-	static void normalize (unsigned * year, signed * month);
-protected:
-	private: static oindex mindex;
+	virtual ~ odate();
+	static char const * months[];
+	static char const * weekdays[];
+	static char const * monthname(signed month);
+	static char const * weekdayname(signed weekday);
+	static bool isleap(unsigned year);
+	static unsigned dayofweek(unsigned year, signed month, signed day);
+	static unsigned dayofyear(unsigned year, signed month, signed day);
+	static unsigned endofmonth(unsigned year, signed month);
+	static void normalize(unsigned * year, signed * month);
+protected: 
+private: 
+	static oindex mindex;
 };
 
 /*====================================================================*
@@ -46,4 +47,6 @@ protected:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

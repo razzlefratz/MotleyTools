@@ -37,24 +37,24 @@
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ograph: private otext, private oascii, public oflagword 
+class __declspec(dllexport) ograph: private otext, private oascii, public oflagword
 
 {
-public:
+public: 
 	ograph (void);
-	virtual ~ ograph (void);
-	char const * name (void);
-	onode * node (void) const;
-	ograph & name (char const * name);
-	ograph & addnode (char const * nodename);
-	ograph & addedge (char const * rootname, char const * nodename);
-	ograph & populate (char colon, char comma);
-	ograph & discover (void);
-	ograph & trace (onode * node, onode * stop);
-	ograph & print (signed indent);
-	ograph & clear (void);
-private:
-	ograph & traverse (onode * node);
+	virtual ~ ograph(void);
+	char const * name(void);
+	onode * node(void) const;
+	ograph & name(char const * name);
+	ograph & addnode(char const * nodename);
+	ograph & addedge(char const * rootname, char const * nodename);
+	ograph & populate(char colon, char comma);
+	ograph & discover(void);
+	ograph & trace(onode * node, onode * stop);
+	ograph & print(signed indent);
+	ograph & clear(void);
+private: 
+	ograph & traverse(onode * node);
 	char * mname;
 	onodes * mnodes;
 	oedges * medges;
@@ -69,4 +69,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 
