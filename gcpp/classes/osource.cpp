@@ -700,6 +700,10 @@ signed osource::operate (signed c)
 		else 
 		{
 			c = osource::find (c);
+			if (c == '1')
+			{
+				return (c);
+			}
 		}
 		std::cout.put (' ');
 	}
