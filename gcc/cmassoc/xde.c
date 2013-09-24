@@ -77,10 +77,10 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"qvsx",
 		"datafile xmlfile [xmlfile] [...]",
@@ -88,16 +88,16 @@ int main(int argc, char const * argv[])
 		"o\tprint schema",
 		"q\tquiet mode",
 		"v\tverbose mode",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	struct node * markup;
 	char const * filename;
 	byte * buffer;
 	signed length;
 	signed fd;
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -124,23 +124,23 @@ int main(int argc, char const * argv[])
 		error (1, ECANCELED, "No data file given");
 	}
 	filename = * argv;
-	if ((fd = open(filename, O_BINARY | O_RDONLY)) == - 1)
+	if ((fd = open (filename, O_BINARY | O_RDONLY)) == - 1)
 	{
 		error (1, errno, FILE_CANTOPEN, filename);
 	}
-	if ((length = lseek(fd, 0, SEEK_END)) == - 1)
+	if ((length = lseek (fd, 0, SEEK_END)) == - 1)
 	{
 		error (1, errno, FILE_CANTSIZE, filename);
 	}
-	if (lseek(fd, 0, SEEK_SET))
+	if (lseek (fd, 0, SEEK_SET))
 	{
 		error (1, errno, FILE_CANTHOME, filename);
 	}
-	if (! (buffer = malloc(length +  1)))
+	if (! (buffer = malloc (length +  1)))
 	{
 		error (1, errno, "Need %d bytes", length);
 	}
-	if (read(fd, buffer, length) < length)
+	if (read (fd, buffer, length) < length)
 	{
 		error (1, errno, FILE_CANTREAD, filename);
 	}
@@ -149,21 +149,21 @@ int main(int argc, char const * argv[])
 	argv++;
 	while ((argc) && (* argv))
 	{
-		markup = xmlopen(* argv);
+		markup = xmlopen (* argv);
 		xmledit (markup, buffer, length);
 		xmlfree (markup);
 		argc--;
 		argv++;
 	}
-	if (_anyset(flags, XDE_VERBOSE))
+	if (_anyset (flags, XDE_VERBOSE))
 	{
 		hexdump (buffer, 0, length, stdout);
 	}
-	if ((fd = open(filename, O_BINARY | O_WRONLY)) == - 1)
+	if ((fd = open (filename, O_BINARY | O_WRONLY)) == - 1)
 	{
 		error (1, errno, FILE_CANTOPEN, filename);
 	}
-	if (write(fd, buffer, length) < length)
+	if (write (fd, buffer, length) < length)
 	{
 		error (1, errno, FILE_CANTSAVE, filename);
 	}

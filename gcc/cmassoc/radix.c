@@ -56,31 +56,31 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"f:t:h",
 		"[options] number [number] [...]",
 		"convert one or more numbers from one radix (number base) to another",
 		"f n\tfrom base n in range 2 to 36 ",
 		"t n\tto base n in range 2 to 36 ",
-		(char const *) (0)
+		(char const *)(0)
 	};
-	char number[DIGITS_MAX +  1];
+	char number [DIGITS_MAX +  1];
 	unsigned base1 = 10;
 	unsigned base2 = 10;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'f':
-			base1 = uintspec(optarg, RADIX_MIN, RADIX_MAX);
+			base1 = uintspec (optarg, RADIX_MIN, RADIX_MAX);
 			break;
 		case 't':
-			base2 = uintspec(optarg, RADIX_MIN, RADIX_MAX);
+			base2 = uintspec (optarg, RADIX_MIN, RADIX_MAX);
 			break;
 		default: 
 			break;
@@ -91,12 +91,12 @@ int main(int argc, char const * argv[])
 	while ((argc) && (* argv))
 	{
 		char const * string = * argv;
-		unsigned index = sizeof(number);
+		unsigned index = sizeof (number);
 		unsigned digit;
 		uint64_t value = 0;
 		while (* string)
 		{
-			if ((digit = todigit(* string)) < base1)
+			if ((digit = todigit (* string)) < base1)
 			{
 				value *= base1;
 				value += digit;
@@ -105,14 +105,14 @@ int main(int argc, char const * argv[])
 			}
 			error (1, EINVAL, "%s", * argv);
 		}
-		number [-- index] = (char) (0);
+		number [-- index] = (char)(0);
 		do 
 		{
-			number [-- index] = DIGITS_B36[value % base2];
+			number [-- index] = DIGITS_B36 [value % base2];
 			value /= base2;
 		}
 		while ((index) && (value));
-		printf ("%s %s\n", * argv, & number[index]);
+		printf ("%s %s\n", * argv, & number [index]);
 		argc--;
 		argv++;
 	}

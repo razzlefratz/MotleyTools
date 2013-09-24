@@ -61,12 +61,12 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function(FIND * find, flag_t flags)
+static void function (FIND * find, flag_t flags)
 
 {
-	if (match(find->filename, find->wildcard))
+	if (match (find->filename, find->wildcard))
 	{
-		fputc (ftypecode(find->statinfo.st_mode), stdout);
+		fputc (ftypecode (find->statinfo.st_mode), stdout);
 		fputc (ITEM_C_EXTENDER, stdout);
 		fputn ((find->statinfo.st_mode >> FILE_MODE_BITS) & FILE_TYPE_MASK, 16, 4, stdout);
 		fputc (ITEM_C_EXTENDER, stdout);
@@ -96,26 +96,26 @@ static void function(FIND * find, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void findfile(FIND * find, flag_t flags)
+static void findfile (FIND * find, flag_t flags)
 
 {
 	DIR * dir;
-	if ((dir = opendir(find->fullname)) != (DIR *)(0))
+	if ((dir = opendir (find->fullname)) != (DIR *) (0))
 	{
 		struct dirent * dirent;
 		char * filename;
 		strcpy (find->pathname, find->fullname);
-		for (filename = find->fullname; * filename != (char)(0); filename++);
+		for (filename = find->fullname; * filename != (char) (0); filename++);
 		* filename = PATH_C_EXTENDER;
-		while ((dirent = readdir(dir)) != (struct dirent *)(0))
+		while ((dirent = readdir (dir)) != (struct dirent *) (0))
 		{
 			strcpy (filename +  1, dirent->d_name);
 			strcpy (find->filename, dirent->d_name);
-			if (lstat(find->fullname, & find->statinfo))
+			if (lstat (find->fullname, & find->statinfo))
 			{
 				error (0, errno, "can't stat %s", find->fullname);
 			}
-			else if(S_ISDIR(find->statinfo.st_mode))
+			else if (S_ISDIR (find->statinfo.st_mode))
 			{
 				char * sp = dirent->d_name;
 				if (* sp == '.')
@@ -126,7 +126,7 @@ static void findfile(FIND * find, flag_t flags)
 				{
 					sp++;
 				}
-				if (* sp == (char)(0))
+				if (* sp == (char) (0))
 				{
 					continue;
 				}
@@ -139,14 +139,14 @@ static void findfile(FIND * find, flag_t flags)
 					findfile (find, flags);
 				}
 			}
-			else if(S_ISREG(find->statinfo.st_mode))
+			else if (S_ISREG (find->statinfo.st_mode))
 			{
 				if (flags & (FIND_B_REG))
 				{
 					function (find, flags);
 				}
 			}
-			else if(S_ISLNK(find->statinfo.st_mode))
+			else if (S_ISLNK (find->statinfo.st_mode))
 			{
 				if (flags & (FIND_B_LNK))
 				{
@@ -156,28 +156,28 @@ static void findfile(FIND * find, flag_t flags)
 
 #ifdef NEEDED
 
-			else if(S_ISBLK(find->statinfo.st_mode))
+			else if (S_ISBLK (find->statinfo.st_mode))
 			{
 				if (flags & (FIND_B_BLK))
 				{
 					function (find, flags);
 				}
 			}
-			else if(S_ISCHR(find->statinfo.st_mode))
+			else if (S_ISCHR (find->statinfo.st_mode))
 			{
 				if (flags & (FIND_B_CHR))
 				{
 					function (find, flags);
 				}
 			}
-			else if(S_ISFIFO(find->statinfo.st_mode))
+			else if (S_ISFIFO (find->statinfo.st_mode))
 			{
 				if (flags & (FIND_B_FIFO))
 				{
 					function (find, flags);
 				}
 			}
-			else if(S_ISSOCK(find->statinfo.st_mode))
+			else if (S_ISSOCK (find->statinfo.st_mode))
 			{
 				if (flags & (FIND_B_SOCK))
 				{
@@ -188,7 +188,7 @@ static void findfile(FIND * find, flag_t flags)
 #endif
 
 		}
-		* filename = (char)(0);
+		* filename = (char) (0);
 		closedir (dir);
 	}
 	else 
@@ -202,21 +202,21 @@ static void findfile(FIND * find, flag_t flags)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"rBCDFLRS",
 		PUTOPTV_S_FUNNEL,
 		"print file name, type, mode, owner and group on stdout",
 		"r\trecursive search",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	FIND find;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -250,7 +250,7 @@ int main(int argc, char const * argv[])
 	}
 	argc -= optind;
 	argv += optind;
-	if (_allclr(flags, FIND_B_ALL))
+	if (_allclr (flags, FIND_B_ALL))
 	{
 		_setbits (flags, FIND_B_ALL);
 	}

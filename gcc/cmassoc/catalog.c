@@ -90,7 +90,7 @@ page;
  *
  *--------------------------------------------------------------------*/
 
-void pagelink(unsigned level, struct page * page, char const * link)
+void pagelink (unsigned level, struct page * page, char const * link)
 
 {
 	indent (level, "[<a href='%s' title=' %s '>%s</a>]", page->path, page->name, link);
@@ -108,7 +108,7 @@ void pagelink(unsigned level, struct page * page, char const * link)
  *
  *--------------------------------------------------------------------*/
 
-static signed header(signed margin, struct page * page, char const * stylesheet)
+static signed header (signed margin, struct page * page, char const * stylesheet)
 
 {
 	indent (margin, "<?xml version='%s' encoding='%s'?>", XML_VERSION, XML_CHARSET);
@@ -144,7 +144,7 @@ static signed header(signed margin, struct page * page, char const * stylesheet)
  *
  *--------------------------------------------------------------------*/
 
-static signed footer(signed margin, struct page * page)
+static signed footer (signed margin, struct page * page)
 
 {
 	indent (margin++, "<div class='%s'>", STYLE_BOTLINK);
@@ -169,7 +169,7 @@ static signed footer(signed margin, struct page * page)
  *
  *--------------------------------------------------------------------*/
 
-void htmlindex(struct page * page, char const * stylesheet, unsigned group, flag_t flags)
+void htmlindex (struct page * page, char const * stylesheet, unsigned group, flag_t flags)
 
 {
 	unsigned margin = 0;
@@ -179,9 +179,9 @@ void htmlindex(struct page * page, char const * stylesheet, unsigned group, flag
 	{
 		return;
 	}
-	if (_anyset(flags, CATALOG_INDEX))
+	if (_anyset (flags, CATALOG_INDEX))
 	{
-		margin = header(margin, page, stylesheet);
+		margin = header (margin, page, stylesheet);
 		indent (margin++, "<h1>");
 		indent (margin, "%s", page->name);
 		indent (margin--, "</h1>");
@@ -213,9 +213,9 @@ void htmlindex(struct page * page, char const * stylesheet, unsigned group, flag
 	indent (margin--, "</td>");
 	indent (margin--, "</tr>");
 	indent (margin--, "</table>");
-	if (_anyset(flags, CATALOG_INDEX))
+	if (_anyset (flags, CATALOG_INDEX))
 	{
-		margin = footer(margin, page);
+		margin = footer (margin, page);
 	}
 	return;
 }
@@ -234,12 +234,12 @@ void htmlindex(struct page * page, char const * stylesheet, unsigned group, flag
  *
  *--------------------------------------------------------------------*/
 
-void htmltopic(struct page * page, char const * stylesheet, flag_t flags)
+void htmltopic (struct page * page, char const * stylesheet, flag_t flags)
 
 {
 	unsigned margin = 0;
-	signed c = getc(stdin);
-	margin = header(margin, page, stylesheet);
+	signed c = getc (stdin);
+	margin = header (margin, page, stylesheet);
 	indent (0, "<pre>");
 	while (c != EOF)
 	{
@@ -247,36 +247,36 @@ void htmltopic(struct page * page, char const * stylesheet, flag_t flags)
 		{
 			while ((c == '\n') || (c == '\r'))
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
 			putc ('\n', stdout);
 		}
 		while ((c != '\n') && (c != '\r') && (c != EOF))
 		{
-			if (_anyset(flags, CATALOG_GLYPH))
+			if (_anyset (flags, CATALOG_GLYPH))
 			{
 				if (c == '&')
 				{
 					fputs ("&amp;", stdout);
-					c = getc(stdin);
+					c = getc (stdin);
 					continue;
 				}
 				if (c == '<')
 				{
 					fputs ("&lt;", stdout);
-					c = getc(stdin);
+					c = getc (stdin);
 					continue;
 				}
 				if (c == '>')
 				{
 					fputs ("&gt;", stdout);
-					c = getc(stdin);
+					c = getc (stdin);
 					continue;
 				}
 				if (c == '\"')
 				{
 					fputs ("&quot;", stdout);
-					c = getc(stdin);
+					c = getc (stdin);
 					continue;
 				}
 
@@ -289,7 +289,7 @@ void htmltopic(struct page * page, char const * stylesheet, flag_t flags)
 				if (c == '\'')
 				{
 					fputs ("&apos;", stdout);
-					c = getc(stdin);
+					c = getc (stdin);
 					continue;
 				}
 
@@ -297,21 +297,21 @@ void htmltopic(struct page * page, char const * stylesheet, flag_t flags)
 
 			}
 			putc (c, stdout);
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		if (c == '\r')
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 			if (c != '\n')
 			{
 				ungetc (c, stdin);
 			}
 		}
 		putc ('\n', stdout);
-		c = getc(stdin);
+		c = getc (stdin);
 	}
 	indent (0, "</pre>");
-	margin = footer(margin, page);
+	margin = footer (margin, page);
 	return;
 }
 
@@ -328,26 +328,26 @@ void htmltopic(struct page * page, char const * stylesheet, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-void function(struct page * page, char const * stylesheet, unsigned group, flag_t flags)
+void function (struct page * page, char const * stylesheet, unsigned group, flag_t flags)
 
 {
 	htmlindex (page, stylesheet, group, flags);
 	for (page = page->next; page != page->home; page = page->next)
 	{
-		if (! freopen(page->file, "rb", stdin))
+		if (! freopen (page->file, "rb", stdin))
 		{
 			error (0, errno, "Can't open %s for input", page->file);
 			continue;
 		}
-		if (! freopen(page->path, "wb", stdout))
+		if (! freopen (page->path, "wb", stdout))
 		{
 			error (0, errno, "Can't open %s for output", page->path);
 			continue;
 		}
 		htmltopic (page, stylesheet, flags);
-		if (_anyset(flags, CATALOG_DELETE))
+		if (_anyset (flags, CATALOG_DELETE))
 		{
-			if (remove(page->file))
+			if (remove (page->file))
 			{
 				error (0, errno, "Can't delete %s", page->file);
 			}
@@ -367,29 +367,29 @@ void function(struct page * page, char const * stylesheet, unsigned group, flag_
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"c:dgin:p:s:",
 		PUTOPTV_S_FILTER,
 		"produce a set of linked html pages with index page",
-		"c n\tindex column count is n [" LITERAL(CATALOG_COLUMN) "]",
+		"c n\tindex column count is n [" LITERAL (CATALOG_COLUMN) "]",
 		"d\tdelete source files after conversion",
 		"g\treplace selected punctuation with IETF/HTML/ISO glyphs",
 		"i\tproduce an index page",
 		"n s\tindex page name is s [" HTML_NAME "]",
 		"p f\tindex page path is f [" HTML_PATH "]",
 		"s f\tstylesheet path is f [" CATALOG_STYLESHEET "]",
-		(char *)(0)
+		(char *) (0)
 	};
 	unsigned column = CATALOG_COLUMN;
-	char filename[FILENAME_MAX];
+	char filename [FILENAME_MAX];
 	char const * stylesheet = CATALOG_STYLESHEET;
-	struct page * page = NEW(struct page);
+	struct page * page = NEW (struct page);
 	struct page * temp;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	page->prev = page;
 	page->home = page;
@@ -397,12 +397,12 @@ int main(int argc, char const * argv[])
 	page->file = HTML_PATH;
 	page->path = HTML_PATH;
 	page->name = HTML_NAME;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'c':
-			column = uintspec(optarg, 1, 12);
+			column = uintspec (optarg, 1, 12);
 			break;
 		case 'd':
 			_setbits (flags, CATALOG_DELETE);
@@ -436,17 +436,17 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		temp = NEW(struct page);
+		temp = NEW (struct page);
 		temp->prev = page->prev;
 		temp->prev->next = temp;
 		temp->next = page;
 		temp->home = page;
 		page->prev = temp;
-		temp->name = filepart(* argv);
-		temp->file = filepart(* argv);
+		temp->name = filepart (* argv);
+		temp->file = filepart (* argv);
 		strcpy (filename, temp->file);
 		strcat (filename, ".html");
-		temp->path = strdup(filename);
+		temp->path = strdup (filename);
 		argc--;
 		argv++;
 	}
@@ -456,9 +456,9 @@ int main(int argc, char const * argv[])
 		temp = page->next;
 		page->next = temp->next;
 		temp->next->prev = page;
-		temp->prev = (struct page *) (0);
-		temp->next = (struct page *) (0);
-		free ((char *) (temp->path));
+		temp->prev = (struct page *)(0);
+		temp->next = (struct page *)(0);
+		free ((char *)(temp->path));
 		free (temp);
 	}
 	free (page);

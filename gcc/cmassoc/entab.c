@@ -65,15 +65,15 @@
  *
  *--------------------------------------------------------------------*/
 
-void function(flag_t flags)
+void function (flag_t flags)
 
 {
 	int next = 0;
 	int prev = 0;
 	int c;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
-		if (isgraph(c))
+		if (isgraph (c))
 		{
 			while (prev++ < next)
 			{
@@ -85,7 +85,7 @@ void function(flag_t flags)
 		}
 		if (c == ' ')
 		{
-			if (tabcol(++ next) == true)
+			if (tabcol (++ next) == true)
 			{
 				putc ('\t', stdout);
 				prev = next;
@@ -103,7 +103,7 @@ void function(flag_t flags)
 		}
 		if (c == '\t')
 		{
-			while (tabcol(++ next) == false);
+			while (tabcol (++ next) == false);
 			putc (c, stdout);
 			prev = next;
 			continue;
@@ -127,20 +127,20 @@ void function(flag_t flags)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"t:",
 		PUTOPTV_S_FILTER,
 		"replace spaces with horizontal tabs ",
 		"t n.m\tset tabs in column (n) and interval (m) ",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -159,7 +159,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
 			function (flags);
 		}

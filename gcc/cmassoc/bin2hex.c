@@ -58,21 +58,21 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function(size_t column)
+static void function (size_t column)
 
 {
 	byte byte;
 	size_t offset;
-	for (offset = 0; read(STDIN_FILENO, & byte, sizeof(byte)) > 0; offset++)
+	for (offset = 0; read (STDIN_FILENO, & byte, sizeof (byte)) > 0; offset++)
 	{
-		write (STDOUT_FILENO, & DIGITS_HEX[(byte >> 4) & 0x0F], sizeof(char));
-		write (STDOUT_FILENO, & DIGITS_HEX[(byte >> 0) & 0x0F], sizeof(char));
+		write (STDOUT_FILENO, & DIGITS_HEX [(byte >> 4) & 0x0F], sizeof (char));
+		write (STDOUT_FILENO, & DIGITS_HEX [(byte >> 0) & 0x0F], sizeof (char));
 		if (offset && column)
 		{
-			write (STDOUT_FILENO, offset % column? " ": "\n", sizeof(char));
+			write (STDOUT_FILENO, offset % column? " ": "\n", sizeof (char));
 		}
 	}
-	write (STDOUT_FILENO, "\n", sizeof(char));
+	write (STDOUT_FILENO, "\n", sizeof (char));
 	return;
 }
 
@@ -87,25 +87,25 @@ static void function(size_t column)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"w:",
 		PUTOPTV_S_FUNNEL,
 		"binary to hexadecimal file concatenate",
-		"w n\tcolumn wrap is (n) octets [" LITERAL(BIN2HEX_COLUMN) "]",
-		(char const *) (0)
+		"w n\tcolumn wrap is (n) octets [" LITERAL (BIN2HEX_COLUMN) "]",
+		(char const *)(0)
 	};
 	size_t column = BIN2HEX_COLUMN;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'w':
-			column = uintspec(optarg, 0, UCHAR_MAX);
+			column = uintspec (optarg, 0, UCHAR_MAX);
 			break;
 		default: 
 			break;
@@ -119,7 +119,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			function (column);
 		}

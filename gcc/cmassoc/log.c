@@ -38,23 +38,23 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"a",
 		"[file] [file] [> stdout]",
 		"write stdin to stdout plus named files",
 		"a\tappend output to files",
-		(char const *) (0)
+		(char const *)(0)
 	};
-	char buffer[TEXTLINE_MAX];
+	char buffer [TEXTLINE_MAX];
 	char * openmode = "wb";
-	FILE * files[argc];
+	FILE * files [argc];
 	size_t file = 0;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -73,8 +73,8 @@ int main(int argc, char const * argv[])
 	files [file++] = stdout;
 	while ((argc) && (* argv))
 	{
-		files [file] = fopen(* argv, openmode);
-		if (! files[file++])
+		files [file] = fopen (* argv, openmode);
+		if (! files [file++])
 		{
 			error (0, errno, FILE_CANTOPEN, * argv);
 			file--;
@@ -82,12 +82,12 @@ int main(int argc, char const * argv[])
 		argc--;
 		argv++;
 	}
-	files [file] = (FILE *)(0);
-	while (fgets(buffer, sizeof(buffer), stdin))
+	files [file] = (FILE *) (0);
+	while (fgets (buffer, sizeof (buffer), stdin))
 	{
-		for (file = 0; files[file]; file++)
+		for (file = 0; files [file]; file++)
 		{
-			fputs (buffer, files[file]);
+			fputs (buffer, files [file]);
 		}
 	}
 	exit (0);

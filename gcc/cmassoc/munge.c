@@ -66,11 +66,11 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function(char const * pathname, char const * prefix, char const * discard, char const * replace, flag_t flags)
+static void function (char const * pathname, char const * prefix, char const * discard, char const * replace, flag_t flags)
 
 {
-	char filename[FILENAME_MAX];
-	char * sp = strcpy(filename, pathname);
+	char filename [FILENAME_MAX];
+	char * sp = strcpy (filename, pathname);
 	char * cp = sp;
 	while (* cp)
 	{
@@ -86,25 +86,25 @@ static void function(char const * pathname, char const * prefix, char const * di
 	}
 	while (* cp)
 	{
-		if (strchr(discard, * cp))
+		if (strchr (discard, * cp))
 		{
 			cp++;
 			continue;
 		}
-		if (strchr(replace, * cp))
+		if (strchr (replace, * cp))
 		{
 			* sp++ = * cp++ = * replace;
 			continue;
 		}
-		if (_anyset(flags, MUNGE_B_LOWER))
+		if (_anyset (flags, MUNGE_B_LOWER))
 		{
-			* cp = tolower(* cp);
+			* cp = tolower (* cp);
 			* sp++ = * cp++;
 			continue;
 		}
-		if (_anyset(flags, MUNGE_B_UPPER))
+		if (_anyset (flags, MUNGE_B_UPPER))
 		{
-			* cp = toupper(* cp);
+			* cp = toupper (* cp);
 			* sp++ = * cp++;
 			continue;
 		}
@@ -112,15 +112,15 @@ static void function(char const * pathname, char const * prefix, char const * di
 	}
 	if (sp > filename)
 	{
-		* sp = (char) (0);
+		* sp = (char)(0);
 	}
-	if (strcmp(pathname, filename))
+	if (strcmp (pathname, filename))
 	{
-		if (rename(pathname, filename))
+		if (rename (pathname, filename))
 		{
 			error (1, errno, "%s", pathname);
 		}
-		if (_anyset(flags, MUNGE_B_EVENT))
+		if (_anyset (flags, MUNGE_B_EVENT))
 		{
 			error (0, 0, "%s <-- %s", filename, pathname);
 		}
@@ -139,28 +139,28 @@ static void function(char const * pathname, char const * prefix, char const * di
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	char const * optv[] = 
+	char const * optv [] = 
 	{
 		"d:lp:uvx:",
 		PUTOPTV_S_FILTER,
 		"mangle filenames to satisfy your perverse wishes",
-		"d s\tdiscard characters in (s) [" LITERAL(MUNGE_S_DISCARD) "]",
+		"d s\tdiscard characters in (s) [" LITERAL (MUNGE_S_DISCARD) "]",
 		"l\tconvert letters to lower case ",
-		"p s\tdiscard prefix (s) [" LITERAL(MUNGE_S_PREFIX) "]",
+		"p s\tdiscard prefix (s) [" LITERAL (MUNGE_S_PREFIX) "]",
 		"u\tconvert letters to upper case ",
 		"v\tverbose mode",
-		"x s\texchange characters in (s) [" LITERAL(MUNGE_S_EXCHANGE) "]",
+		"x s\texchange characters in (s) [" LITERAL (MUNGE_S_EXCHANGE) "]",
 		NULL
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	char const * prefix = MUNGE_S_PREFIX;
 	char const * discard = MUNGE_S_DISCARD;
 	char const * replace = MUNGE_S_EXCHANGE;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{

@@ -62,8 +62,8 @@
  *   program functions; 
  *--------------------------------------------------------------------*/
 
-static void testfile(FIND * find, flag_t flags);
-static void findfile(FIND * find, flag_t flags);
+static void testfile (FIND * find, flag_t flags);
+static void findfile (FIND * find, flag_t flags);
 
 /*====================================================================*
  *
@@ -75,24 +75,24 @@ static void findfile(FIND * find, flag_t flags);
  *
  *--------------------------------------------------------------------*/
 
-static void function(FIND * find, FIND * link, flag_t flags)
+static void function (FIND * find, FIND * link, flag_t flags)
 
 {
-	if (match(find->filename, find->wildcard))
+	if (match (find->filename, find->wildcard))
 	{
 		if (flags & LINK_B_REPORT)
 		{
 			printf ("ln -fs %s %s\n", link->fullname, find->fullname);
 		}
-		else if((flags & LINK_B_REMOVE) == 0)
+		else if ((flags & LINK_B_REMOVE) == 0)
 		{
 			printf ("%s --> %s\n", find->fullname, link->fullname);
 		}
-		else if(unlink(find->fullname) != 0)
+		else if (unlink (find->fullname) != 0)
 		{
 			error (0, errno, "%s --> %s", find->fullname, link->fullname);
 		}
-		else if(flags & FIND_B_VERBOSE)
+		else if (flags & FIND_B_VERBOSE)
 		{
 			printf ("%s --> %s\n", find->fullname, link->fullname);
 		}
@@ -110,30 +110,30 @@ static void function(FIND * find, FIND * link, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void findfile(FIND * find, flag_t flags)
+static void findfile (FIND * find, flag_t flags)
 
 {
 	struct dirent * dirent;
 	char * filename = find->fullname;
 	DIR * dir;
-	if (! (dir = opendir(filename)))
+	if (! (dir = opendir (filename)))
 	{
 		testfile (find, flags);
 		return;
 	}
-	while (* filename != (char)(0))
+	while (* filename != (char) (0))
 	{
 		filename++;
 	}
 	* filename = PATH_C_EXTENDER;
-	while ((dirent = readdir(dir)))
+	while ((dirent = readdir (dir)))
 	{
 		strcpy (filename +  1, dirent->d_name);
 		partpath (find->fullname, find->pathname, find->filename);
 		partfile (find->filename, find->basename, find->extender);
 		testfile (find, flags);
 	}
-	* filename = (char)(0);
+	* filename = (char) (0);
 	closedir (dir);
 	return;
 }
@@ -148,15 +148,15 @@ static void findfile(FIND * find, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void testfile(FIND * find, flag_t flags)
+static void testfile (FIND * find, flag_t flags)
 
 {
-	if (lstat(find->fullname, & find->statinfo))
+	if (lstat (find->fullname, & find->statinfo))
 	{
 		error (0, errno, "%s", find->fullname);
 		return;
 	}
-	if (S_ISDIR(find->statinfo.st_mode))
+	if (S_ISDIR (find->statinfo.st_mode))
 	{
 		char const * filename = find->filename;
 		if (* filename == '.')
@@ -167,34 +167,34 @@ static void testfile(FIND * find, flag_t flags)
 		{
 			filename++;
 		}
-		if (* filename == (char)(0))
+		if (* filename == (char) (0))
 		{
 			return;
 		}
-		if (_anyset(find->flagword, FIND_B_RECURSE))
+		if (_anyset (find->flagword, FIND_B_RECURSE))
 		{
 			findfile (find, flags);
 		}
 		return;
 	}
-	if (S_ISLNK(find->statinfo.st_mode))
+	if (S_ISLNK (find->statinfo.st_mode))
 	{
 		FIND link;
-		memcpy (& link, find, sizeof(link));
-		memset (link.filename, 0, sizeof(link.filename));
-		readlink (link.fullname, link.filename, sizeof(link.filename));
+		memcpy (& link, find, sizeof (link));
+		memset (link.filename, 0, sizeof (link.filename));
+		readlink (link.fullname, link.filename, sizeof (link.filename));
 		makepath (link.fullname, link.pathname, link.filename);
-		if (_anyset(flags, LINK_B_ACTIVE))
+		if (_anyset (flags, LINK_B_ACTIVE))
 		{
-			if (! lstat(link.fullname, & link.statinfo))
+			if (! lstat (link.fullname, & link.statinfo))
 			{
 				function (find, & link, flags);
 			}
 			return;
 		}
-		if (_anyset(flags, LINK_B_BROKEN))
+		if (_anyset (flags, LINK_B_BROKEN))
 		{
-			if (lstat(link.fullname, & link.statinfo))
+			if (lstat (link.fullname, & link.statinfo))
 			{
 				function (find, & link, flags);
 			}
@@ -210,11 +210,11 @@ static void testfile(FIND * find, flag_t flags)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
 	extern FIND find;
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"abcxrv",
 		PUTOPTV_S_SEARCH,
@@ -225,11 +225,11 @@ int main(int argc, char const * argv[])
 		"x\tremove selected links",
 		"r\trecursive search",
 		"v\tverbose messages",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{

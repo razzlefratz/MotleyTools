@@ -50,16 +50,16 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function(char const * filename)
+static void function (char const * filename)
 
 {
 	byte byte;
 	unsigned line = 1;
 	unsigned digit = 0;
 	unsigned value = 0;
-	while (read(STDIN_FILENO, & byte, sizeof(byte)) > 0)
+	while (read (STDIN_FILENO, & byte, sizeof (byte)) > 0)
 	{
-		if (isspace(byte))
+		if (isspace (byte))
 		{
 			if (byte == '\n')
 			{
@@ -73,7 +73,7 @@ static void function(char const * filename)
 			value += byte - '0';
 			if (digit++ & 1)
 			{
-				write (STDOUT_FILENO, & value, sizeof(char));
+				write (STDOUT_FILENO, & value, sizeof (char));
 				value = 0;
 			}
 			continue;
@@ -85,7 +85,7 @@ static void function(char const * filename)
 			value += byte - 'A';
 			if (digit++ & 1)
 			{
-				write (STDOUT_FILENO, & value, sizeof(char));
+				write (STDOUT_FILENO, & value, sizeof (char));
 				value = 0;
 			}
 			continue;
@@ -97,7 +97,7 @@ static void function(char const * filename)
 			value += byte - 'a';
 			if (digit++ & 1)
 			{
-				write (STDOUT_FILENO, & value, sizeof(char));
+				write (STDOUT_FILENO, & value, sizeof (char));
 				value = 0;
 			}
 			continue;
@@ -122,18 +122,18 @@ static void function(char const * filename)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"",
 		PUTOPTV_S_FUNNEL,
 		"hexadecimal to binary file concatenate",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -149,7 +149,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (! freopen(* argv, "rb", stdin))
+		if (! freopen (* argv, "rb", stdin))
 		{
 			error (1, errno, "%s", * argv);
 		}

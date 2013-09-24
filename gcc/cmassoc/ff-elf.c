@@ -92,8 +92,8 @@
  *   program functions;
  *--------------------------------------------------------------------*/
 
-static void findfile(FIND * find, flag_t flags);
-static void testfile(FIND * find, flag_t flags);
+static void findfile (FIND * find, flag_t flags);
+static void testfile (FIND * find, flag_t flags);
 
 /*====================================================================*
  *
@@ -109,17 +109,17 @@ static void testfile(FIND * find, flag_t flags);
  *
  *--------------------------------------------------------------------*/
 
-static void showfile(FIND * find, flag_t flags)
+static void showfile (FIND * find, flag_t flags)
 
 {
-	if (! match(find->filename, find->wildcard))
+	if (! match (find->filename, find->wildcard))
 	{
 		return;
 	}
 	if (find->flagword & (FIND_B_DATETIME))
 	{
-		char datetime[LOGTIME_LEN];
-		strftime (datetime, sizeof(datetime), LOGTIME, localtime(& find->statinfo.st_mtime));
+		char datetime [LOGTIME_LEN];
+		strftime (datetime, sizeof (datetime), LOGTIME, localtime (& find->statinfo.st_mtime));
 		printf ("%s ", datetime);
 	}
 	switch (find->flagword & (FIND_B_PATHNAME | FIND_B_FILENAME))
@@ -151,20 +151,20 @@ static void showfile(FIND * find, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void function(FIND * find, flag_t flags)
+static void function (FIND * find, flag_t flags)
 
 {
-	char signature[255];
+	char signature [255];
 	signed length;
 	file_t fd;
-	if ((fd = open(find->fullname, O_RDONLY)) > 0)
+	if ((fd = open (find->fullname, O_RDONLY)) > 0)
 	{
-		if ((length = read(fd, signature, sizeof(signature))) > 0)
+		if ((length = read (fd, signature, sizeof (signature))) > 0)
 		{
-			if (! memcmp(signature, ELF, sizeof(ELF) - 1))
+			if (! memcmp (signature, ELF, sizeof (ELF) - 1))
 			{
-				signature [sizeof(ELF) - 1] = (char)(0);
-				if (_anyset(flags, FF_B_ELF))
+				signature [sizeof (ELF) - 1] = (char) (0);
+				if (_anyset (flags, FF_B_ELF))
 				{
 
 #ifdef FF_DETAIL
@@ -177,10 +177,10 @@ static void function(FIND * find, flag_t flags)
 					showfile (find, flags);
 				}
 			}
-			else if(! memcmp(signature, ARCH, sizeof(ARCH) - 1))
+			else if (! memcmp (signature, ARCH, sizeof (ARCH) - 1))
 			{
-				signature [sizeof(ARCH) - 1] = (char)(0);
-				if (_anyset(flags, FF_B_ARCH))
+				signature [sizeof (ARCH) - 1] = (char) (0);
+				if (_anyset (flags, FF_B_ARCH))
 				{
 
 #ifdef FF_DETAIL
@@ -193,10 +193,10 @@ static void function(FIND * find, flag_t flags)
 					showfile (find, flags);
 				}
 			}
-			else if(! memcmp(signature, SCRIPT, sizeof(SCRIPT) - 1))
+			else if (! memcmp (signature, SCRIPT, sizeof (SCRIPT) - 1))
 			{
-				signature [sizeof(SCRIPT) - 1] = (char)(0);
-				if (_anyset(flags, FF_B_SH))
+				signature [sizeof (SCRIPT) - 1] = (char) (0);
+				if (_anyset (flags, FF_B_SH))
 				{
 
 #ifdef FF_DETAIL
@@ -225,15 +225,15 @@ static void function(FIND * find, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void testfile(FIND * find, flag_t flags)
+static void testfile (FIND * find, flag_t flags)
 
 {
-	if (lstat(find->fullname, & find->statinfo))
+	if (lstat (find->fullname, & find->statinfo))
 	{
 		error (0, errno, "%s", find->fullname);
 		return;
 	}
-	if (S_ISDIR(find->statinfo.st_mode))
+	if (S_ISDIR (find->statinfo.st_mode))
 	{
 		char const * filename = find->filename;
 		if (* filename == '.')
@@ -244,37 +244,37 @@ static void testfile(FIND * find, flag_t flags)
 		{
 			filename++;
 		}
-		if (* filename == (char)(0))
+		if (* filename == (char) (0))
 		{
 			return;
 		}
 
 #if 0
 
-		if (_anyset(find->flagword, FIND_B_DIR))
+		if (_anyset (find->flagword, FIND_B_DIR))
 		{
 			function (find, flags);
 		}
 
 #endif
 
-		if (_anyset(find->flagword, FIND_B_RECURSE))
+		if (_anyset (find->flagword, FIND_B_RECURSE))
 		{
 			findfile (find, flags);
 		}
 		return;
 	}
-	if (S_ISLNK(find->statinfo.st_mode))
+	if (S_ISLNK (find->statinfo.st_mode))
 	{
-		if (_anyset(find->flagword, FIND_B_LNK))
+		if (_anyset (find->flagword, FIND_B_LNK))
 		{
 			function (find, flags);
 		}
 		return;
 	}
-	if (S_ISREG(find->statinfo.st_mode))
+	if (S_ISREG (find->statinfo.st_mode))
 	{
-		if (_anyset(find->flagword, FIND_B_REG))
+		if (_anyset (find->flagword, FIND_B_REG))
 		{
 			function (find, flags);
 		}
@@ -293,30 +293,30 @@ static void testfile(FIND * find, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void findfile(FIND * find, flag_t flags)
+static void findfile (FIND * find, flag_t flags)
 
 {
 	struct dirent * dirent;
 	char * filename = find->fullname;
-	DIR * dir = opendir(filename);
-	if (dir == (DIR *)(0))
+	DIR * dir = opendir (filename);
+	if (dir == (DIR *) (0))
 	{
 		testfile (find, flags);
 		return;
 	}
-	while (* filename != (char)(0))
+	while (* filename != (char) (0))
 	{
 		filename++;
 	}
 	* filename = PATH_C_EXTENDER;
-	while ((dirent = readdir(dir)) != (struct dirent *)(0))
+	while ((dirent = readdir (dir)) != (struct dirent *) (0))
 	{
 		strcpy (filename +  1, dirent->d_name);
 		partpath (find->fullname, find->pathname, find->filename);
 		partfile (find->filename, find->basename, find->extender);
 		testfile (find, flags);
 	}
-	* filename = (char)(0);
+	* filename = (char) (0);
 	closedir (dir);
 	return;
 }
@@ -325,11 +325,11 @@ static void findfile(FIND * find, flag_t flags)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
 	extern FIND find;
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"aefprstE:PSBLIK",
 		PUTOPTV_S_SEARCH,
@@ -346,14 +346,14 @@ int main(int argc, char const * argv[])
 		"S\tsearch system folders",
 		"B\tsearch binary folders",
 		"L\tsearch library folders",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	char * string = (char *)(0);
-	char const ** folders = (char const **)(0);
-	char const ** folder = (char const **)(0);
-	flag_t flags = (flag_t)(0);
+	char * string = (char *) (0);
+	char const ** folders = (char const **) (0);
+	char const ** folder = (char const **) (0);
+	flag_t flags = (flag_t) (0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -381,22 +381,22 @@ int main(int argc, char const * argv[])
 			_setbits (find.flagword, FIND_B_DATETIME);
 			break;
 		case 'E':
-			if ((string = getenv(optarg)) == (char *)(0))
+			if ((string = getenv (optarg)) == (char *) (0))
 			{
 				error (0, EINVAL, "symbol ${%s} is not defined", optarg);
 			}
 			break;
 		case 'P':
-			string = getenv("PATH");
+			string = getenv ("PATH");
 			break;
 		case 'S':
-			string = strdup(PATH_SYSDIRS);
+			string = strdup (PATH_SYSDIRS);
 			break;
 		case 'B':
-			string = strdup(PATH_BINDIRS);
+			string = strdup (PATH_BINDIRS);
 			break;
 		case 'L':
-			string = strdup(PATH_LIBDIRS);
+			string = strdup (PATH_LIBDIRS);
 			break;
 		default: 
 			break;
@@ -404,25 +404,25 @@ int main(int argc, char const * argv[])
 	}
 	argc -= optind;
 	argv += optind;
-	if (_allclr(flags, (FF_B_ELF | FF_B_ARCH | FF_B_SH)))
+	if (_allclr (flags, (FF_B_ELF | FF_B_ARCH | FF_B_SH)))
 	{
 		_setbits (flags, (FF_B_ELF | FF_B_ARCH | FF_B_SH));
 	}
-	if (_allclr(find.flagword, (FIND_B_DIR | FIND_B_LNK | FIND_B_REG)))
+	if (_allclr (find.flagword, (FIND_B_DIR | FIND_B_LNK | FIND_B_REG)))
 	{
 		_setbits (find.flagword, (FIND_B_DIR | FIND_B_LNK | FIND_B_REG));
 	}
-	if (string != (char *)(0))
+	if (string != (char *) (0))
 	{
-		size_t count = chrcount(string, PATH_C_SEPARATOR) +  2;
-		folders = (char const **)(emalloc(count * sizeof(char const **)));
+		size_t count = chrcount (string, PATH_C_SEPARATOR) +  2;
+		folders = (char const **) (emalloc (count * sizeof (char const **)));
 		strsplit (folders, count, string, PATH_C_SEPARATOR);
 	}
 	while ((argc) && (* argv))
 	{
-		if (folders != (char const **)(0))
+		if (folders != (char const **) (0))
 		{
-			for (folder = folders; * folder != (char *)(0); folder++)
+			for (folder = folders; * folder != (char *) (0); folder++)
 			{
 				makefind (& find, * argv);
 				strcpy (find.pathname, * folder);

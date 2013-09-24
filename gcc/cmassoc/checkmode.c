@@ -68,7 +68,7 @@
  *
  *--------------------------------------------------------------------*/
 
-int faudit(char * filestate[])
+int faudit (char * filestate [])
 
 {
 	struct stat statinfo;
@@ -77,41 +77,41 @@ int faudit(char * filestate[])
 	mode_t type;
 	mode_t mode;
 	int errors = 0;
-	if (stat(filestate[NAME], & statinfo))
+	if (stat (filestate [NAME], & statinfo))
 	{
-		error (0, errno, "%s", filestate[NAME]);
+		error (0, errno, "%s", filestate [NAME]);
 		return (1);
 	}
 	type = (statinfo.st_mode >> FILE_MODE_BITS) & FILE_TYPE_MASK;
-	if (type != atoin(filestate[TYPE], "01234567"))
+	if (type != atoin (filestate [TYPE], "01234567"))
 	{
-		error (0, 0, "%s: type was %s now %04o", filestate[NAME], filestate[TYPE], type);
+		error (0, 0, "%s: type was %s now %04o", filestate [NAME], filestate [TYPE], type);
 		errors++;
 	}
 	mode = (statinfo.st_mode >> 0) & FILE_MODE_MASK;
-	if (mode != atoin(filestate[MODE], "01234567"))
+	if (mode != atoin (filestate [MODE], "01234567"))
 	{
-		error (0, 0, "%s: mode was %s now %04o", filestate[NAME], filestate[MODE], mode);
+		error (0, 0, "%s: mode was %s now %04o", filestate [NAME], filestate [MODE], mode);
 		errors++;
 	}
-	if ((passwd = getpwuid(statinfo.st_uid)) == (struct passwd *)(0))
+	if ((passwd = getpwuid (statinfo.st_uid)) == (struct passwd *) (0))
 	{
-		error (0, errno, "%s: unknown owner", filestate[NAME]);
+		error (0, errno, "%s: unknown owner", filestate [NAME]);
 		errors++;
 	}
-	else if(strcmp(passwd->pw_name, filestate[OWNER]))
+	else if (strcmp (passwd->pw_name, filestate [OWNER]))
 	{
-		error (0, 0, "%s: owner was %s now %s", filestate[NAME], filestate[OWNER], passwd->pw_name);
+		error (0, 0, "%s: owner was %s now %s", filestate [NAME], filestate [OWNER], passwd->pw_name);
 		errors++;
 	}
-	if ((group = getgrgid(statinfo.st_gid)) == (struct group *)(0))
+	if ((group = getgrgid (statinfo.st_gid)) == (struct group *) (0))
 	{
-		error (0, errno, "%s: unknown group", filestate[NAME]);
+		error (0, errno, "%s: unknown group", filestate [NAME]);
 		errors++;
 	}
-	else if(strcmp(group->gr_name, filestate[GROUP]))
+	else if (strcmp (group->gr_name, filestate [GROUP]))
 	{
-		error (0, 0, "%s: group was %s now %s", filestate[NAME], filestate[GROUP], group->gr_name);
+		error (0, 0, "%s: group was %s now %s", filestate [NAME], filestate [GROUP], group->gr_name);
 		errors++;
 	}
 	return (errors);
@@ -121,25 +121,25 @@ int faudit(char * filestate[])
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"",
 		PUTOPTV_S_FUNNEL,
 		"audit file states against snapshot file;",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	FILE * fp;
-	char buffer[255];
-	char * attributes[16];
+	char buffer [255];
+	char * attributes [16];
 	char ** attribute;
 	char * string;
 	signed errors = 0;
 	signed index = 0;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -154,24 +154,24 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if ((fp = efopen(* argv, "rb")))
+		if ((fp = efopen (* argv, "rb")))
 		{
 			* attribute++ = string = buffer;
-			while ((c = fgetc(fp)) != EOF)
+			while ((c = fgetc (fp)) != EOF)
 			{
 				switch (c)
 				{
 				case LIST_C_EXTENDER:
-					* attribute = (char *)(0);
-					* string = (char)(0);
-					errors += faudit(attributes);
+					* attribute = (char *) (0);
+					* string = (char) (0);
+					errors += faudit (attributes);
 					index++;
 					attribute = attributes;
 					* attribute++ = string = buffer;
 					break;
 				case ITEM_C_EXTENDER:
 					* attribute++ = string +  1;
-					* string++ = (char)(0);
+					* string++ = (char) (0);
 					break;
 				case ' ':
 				case '\t':
@@ -191,6 +191,6 @@ int main(int argc, char const * argv[])
 	{
 		error (0, 0, "found %d changes to %d index", errors, index);
 	}
-	exit ((bool)(errors));
+	exit ((bool) (errors));
 }
 

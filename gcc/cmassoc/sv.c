@@ -75,7 +75,7 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-static char * sv_prolog[] = 
+static char * sv_prolog [] = 
 
 {
 	"/*================* ",
@@ -88,12 +88,12 @@ static char * sv_prolog[] =
 	" *   ",
 	" *----------------*/ ",
 	" ",
-	(char *)(0)
+	(char *) (0)
 };
 
-static char buffer[TEXTLINE_MAX +  1];
+static char buffer [TEXTLINE_MAX +  1];
 static signed length;
-static char * title[2] = 
+static char * title [2] = 
 
 {
 	"symbol",
@@ -115,24 +115,24 @@ static signed count = 0;
  *
  *--------------------------------------------------------------------*/
 
-void function1(flag_t flags)
+void function1 (flag_t flags)
 
 {
 	signed margin = 0;
 	indent (margin, "/*===*");
 	indent (margin, " *   program constants;");
 	indent (margin, " *---*/");
-	indent (margin, "#ifndef %s", title[1]);
-	for (count = 0; fgetline(buffer, sizeof(buffer), stdin) != - 1; count++)
+	indent (margin, "#ifndef %s", title [1]);
+	for (count = 0; fgetline (buffer, sizeof (buffer), stdin) != - 1; count++)
 	{
-		strselect (strupr(buffer), SV_S_RESTRICT);
-		if (* buffer == (char)(0))
+		strselect (strupr (buffer), SV_S_RESTRICT);
+		if (* buffer == (char) (0))
 		{
-			serial (buffer, DIGITS_MAX +  1, (char)(0), count);
+			serial (buffer, DIGITS_MAX +  1, (char) (0), count);
 		}
-		indent (margin, "#define %s_O_%-*s %3d", title[1], field, buffer, count);
+		indent (margin, "#define %s_O_%-*s %3d", title [1], field, buffer, count);
 	}
-	indent (margin, "#define %sS  %-*s %3d", title[1], field, "", count);
+	indent (margin, "#define %sS  %-*s %3d", title [1], field, "", count);
 	indent (margin, "#endif");
 	rewind (stdin);
 	return;
@@ -149,7 +149,7 @@ void function1(flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-void function2(flag_t flags)
+void function2 (flag_t flags)
 
 {
 	signed margin = 0;
@@ -157,14 +157,14 @@ void function2(flag_t flags)
 	indent (margin, " *   program variables;");
 	indent (margin, " *---*/");
 	indent (margin, "#ifdef __cplusplus");
-	indent (margin, "char const * %s::table [] =", title[0]);
-	indent (margin, "const size_t %s::count = (sizeof (%s::table) / sizeof (char const *)) - 1;", title[0], title[0]);
+	indent (margin, "char const * %s::table [] =", title [0]);
+	indent (margin, "const size_t %s::count = (sizeof (%s::table) / sizeof (char const *)) - 1;", title [0], title [0]);
 	indent (margin, "#else");
-	indent (margin, "#define %sS ((sizeof (sv_%s) / sizeof (char const *)) - 1)", title[1], title[0]);
-	indent (margin, "char const * sv_%s [] =", title[0]);
+	indent (margin, "#define %sS ((sizeof (sv_%s) / sizeof (char const *)) - 1)", title [1], title [0]);
+	indent (margin, "char const * sv_%s [] =", title [0]);
 	indent (margin, "#endif");
 	indent (margin++, "{");
-	for (count = 0; (length = fgetline(buffer, sizeof(buffer), stdin)) != - 1; ++ count)
+	for (count = 0; (length = fgetline (buffer, sizeof (buffer), stdin)) != - 1; ++ count)
 	{
 		indent (margin, "\"%s\",", buffer);
 	}
@@ -185,20 +185,20 @@ void function2(flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-void function3(flag_t flags)
+void function3 (flag_t flags)
 
 {
 	signed margin = 0;
 	indent (margin, "/*=*");
 	indent (margin, " *   switch statement;");
 	indent (margin, " *-*/");
-	indent (margin++, "#ifdef %s", title[1]);
+	indent (margin++, "#ifdef %s", title [1]);
 	indent (margin, "switch(count)");
 	indent (margin++, "{");
-	for (count = 0; fgetline(buffer, sizeof(buffer), stdin) != - 1; ++ count)
+	for (count = 0; fgetline (buffer, sizeof (buffer), stdin) != - 1; ++ count)
 	{
-		strselect (strupr(buffer), SV_S_RESTRICT);
-		indent (margin++, "case %s_O_%s:", title[1], buffer);
+		strselect (strupr (buffer), SV_S_RESTRICT);
+		indent (margin++, "case %s_O_%s:", title [1], buffer);
 		indent (margin--, "break;");
 	}
 	indent (margin++, "default:");
@@ -220,23 +220,23 @@ void function3(flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-void function(flag_t flags)
+void function (flag_t flags)
 
 {
-	for (count = 0; sv_prolog[count]; count++)
+	for (count = 0; sv_prolog [count]; count++)
 	{
-		printf (sv_prolog[count], title[0]);
+		printf (sv_prolog [count], title [0]);
 		printf ("\n");
 	}
-	if (_anyset(flags, SV_B_DEFINE))
+	if (_anyset (flags, SV_B_DEFINE))
 	{
 		function1 (flags);
 	}
-	if (_anyset(flags, SV_B_VECTOR))
+	if (_anyset (flags, SV_B_VECTOR))
 	{
 		function2 (flags);
 	}
-	if (_anyset(flags, SV_B_SWITCH))
+	if (_anyset (flags, SV_B_SWITCH))
 	{
 		function3 (flags);
 	}
@@ -247,10 +247,10 @@ void function(flag_t flags)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"t:dvs",
 		PUTOPTV_S_FILTER,
@@ -259,20 +259,20 @@ int main(int argc, char const * argv[])
 		"d\tgenerate define block",
 		"v\tgenerate vector table",
 		"s\tgenerate switch block",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'i':
-			width = uintspec(optarg, 0, SHRT_MAX);
+			width = uintspec (optarg, 0, SHRT_MAX);
 			break;
 		case 't':
-			title [0] = strlwr(strdup(optarg));
-			title [1] = strupr(strdup(optarg));
+			title [0] = strlwr (strdup (optarg));
+			title [1] = strupr (strdup (optarg));
 			break;
 		case 'd':
 			_setbits (flags, SV_B_DEFINE);
@@ -289,12 +289,12 @@ int main(int argc, char const * argv[])
 	}
 	argc -= optind;
 	argv += optind;
-	if (_allclr(flags, (SV_B_DEFINE | SV_B_VECTOR | SV_B_SWITCH)))
+	if (_allclr (flags, (SV_B_DEFINE | SV_B_VECTOR | SV_B_SWITCH)))
 	{
 		_setbits (flags, (SV_B_DEFINE | SV_B_VECTOR | SV_B_SWITCH));
 	}
 	width &= STRING_MAX;
-	field = width - strlen(title[0]) - DIGITS_MAX - 1;
+	field = width - strlen (title [0]) - DIGITS_MAX - 1;
 	if (field > width)
 	{
 		field = width;
@@ -309,7 +309,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			function (flags);
 		}

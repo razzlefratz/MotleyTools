@@ -93,17 +93,17 @@ LINE;
  *
  *--------------------------------------------------------------------*/
 
-static signed compare(char const * one, char const * two)
+static signed compare (char const * one, char const * two)
 
 {
 	extern signed order;
-	return (order * strcmp(one, two));
+	return (order * strcmp (one, two));
 }
 
-static signed comp(const LINE * one, const LINE * two)
+static signed comp (const LINE * one, const LINE * two)
 
 {
-	return (compare(one->text, two->text));
+	return (compare (one->text, two->text));
 }
 
 /*====================================================================*
@@ -120,21 +120,21 @@ static signed comp(const LINE * one, const LINE * two)
  *
  *--------------------------------------------------------------------*/
 
-static LINE * makeitem(FILE * stream, char const * name, size_t linesize)
+static LINE * makeitem (FILE * stream, char const * name, size_t linesize)
 
 {
-	char * text = emalloc(linesize);
-	if (fgets(text, linesize, stream))
+	char * text = emalloc (linesize);
+	if (fgets (text, linesize, stream))
 	{
-		LINE * line = NEW(LINE);
+		LINE * line = NEW (LINE);
 		line->file = stream;
-		line->name = strdup(name);
+		line->name = strdup (name);
 		line->text = text;
 		line->line = 1;
 		return (line);
 	}
 	free (text);
-	return ((LINE *)(0));
+	return ((LINE *) (0));
 }
 
 /*====================================================================*
@@ -149,17 +149,17 @@ static LINE * makeitem(FILE * stream, char const * name, size_t linesize)
  *
  *--------------------------------------------------------------------*/
 
-static LINE * freeitem(LINE * line)
+static LINE * freeitem (LINE * line)
 
 {
 	fclose (line->file);
 	free (line->name);
 	free (line->text);
-	line->file = (FILE *)(0);
-	line->name = (char *)(0);
-	line->text = (char *)(0);
+	line->file = (FILE *) (0);
+	line->name = (char *) (0);
+	line->text = (char *) (0);
 	free (line);
-	return ((LINE *) (0));
+	return ((LINE *)(0));
 }
 
 /*====================================================================*
@@ -172,27 +172,27 @@ static LINE * freeitem(LINE * line)
  *
  *--------------------------------------------------------------------*/
 
-static void function(LINE * heap[], size_t heapsize, size_t linesize, int comp(void const *, void const *), void swap(void const * [], size_t, size_t))
+static void function (LINE * heap [], size_t heapsize, size_t linesize, int comp (void const *, void const *), void swap (void const * [], size_t, size_t))
 
 {
-	enheap ((void *)(heap), heapsize, (void *)(comp), (void *)(swap));
+	enheap ((void *) (heap), heapsize, (void *) (comp), (void *) (swap));
 	while (heapsize)
 	{
-		char text[linesize];
-		memcpy (text, (* heap)->text, sizeof(text));
-		if (fgets((* heap)->text, linesize, (* heap)->file))
+		char text [linesize];
+		memcpy (text, (* heap)->text, sizeof (text));
+		if (fgets ((* heap)->text, linesize, (* heap)->file))
 		{
 			(* heap)->line++;
 		}
 		else 
 		{
-			* heap = freeitem(* heap);
-			swap ((void *) (heap), 0, -- heapsize);
+			* heap = freeitem (* heap);
+			swap ((void *)(heap), 0, -- heapsize);
 		}
 		if (heapsize)
 		{
-			reheap ((void *)(heap), heapsize, (void *)(comp), (void *)(swap));
-			if (compare((* heap)->text, text) < 0)
+			reheap ((void *) (heap), heapsize, (void *) (comp), (void *) (swap));
+			if (compare ((* heap)->text, text) < 0)
 			{
 				error (1, 0, "%s (%d): input out of order", (* heap)->name, (* heap)->line);
 			}
@@ -212,26 +212,26 @@ static void function(LINE * heap[], size_t heapsize, size_t linesize, int comp(v
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
 	extern signed order;
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"dl:",
 		PUTOPTV_S_FUNNEL,
 		"merge sorted files into one",
 		"d\tinput files are in descending order",
 		"l n\tmaximum line length is (n) bytes [0x0400]",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	FILE * stream;
-	LINE * heap[FOPEN_MAX];
+	LINE * heap [FOPEN_MAX];
 	size_t heapsize = FOPEN_MAX;
 	size_t heapitem = 0;
 	size_t linesize = _LINESIZE;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -239,7 +239,7 @@ int main(int argc, char const * argv[])
 			order = - 1;
 			break;
 		case 'l':
-			linesize = uintspec(optarg, 1, SHRT_MAX);
+			linesize = uintspec (optarg, 1, SHRT_MAX);
 			break;
 		default: 
 			break;
@@ -249,20 +249,20 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	if (! argc)
 	{
-		if ((heap[heapitem] = makeitem(stdin, "stdin", linesize)))
+		if ((heap [heapitem] = makeitem (stdin, "stdin", linesize)))
 		{
 			heapitem++;
 		}
 	}
 	while ((argc) && (* argv))
 	{
-		if ((stream = efopen(* argv, "rb")))
+		if ((stream = efopen (* argv, "rb")))
 		{
 			if (heapitem >= heapsize)
 			{
 				error (1, EMFILE, "Bailing Out!");
 			}
-			if ((heap[heapitem] = makeitem(stream, * argv, linesize)))
+			if ((heap [heapitem] = makeitem (stream, * argv, linesize)))
 			{
 				heapitem++;
 			}
@@ -270,7 +270,7 @@ int main(int argc, char const * argv[])
 		argc--;
 		argv++;
 	}
-	function (heap, heapitem, linesize, (void *) (comp), (void *) (swap));
+	function (heap, heapitem, linesize, (void *)(comp), (void *)(swap));
 	exit (0);
 }
 

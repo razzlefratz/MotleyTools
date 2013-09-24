@@ -59,14 +59,14 @@
  *
  *--------------------------------------------------------------------*/
 
-void function(flag_t flags)
+void function (flag_t flags)
 
 {
-	char buffer[GLYPH_MAX];
+	char buffer [GLYPH_MAX];
 	signed c;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
-		strfglyph (buffer, sizeof(buffer), (unsigned) (c));
+		strfglyph (buffer, sizeof (buffer), (unsigned)(c));
 		fputs (buffer, stdout);
 	}
 	return;
@@ -76,19 +76,19 @@ void function(flag_t flags)
  *   main function
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"",
 		PUTOPTV_S_FUNNEL,
 		"convert special characters to ISO glyph codes",
-		(char const *) (0)
+		(char const *)(0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -104,7 +104,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			function (flags);
 		}

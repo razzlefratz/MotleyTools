@@ -67,8 +67,8 @@
  *   program functions;         
  *--------------------------------------------------------------------*/
 
-static void findfile(FIND * find, FIND * home, flag_t flags);
-static void testfile(FIND * find, FIND * home, flag_t flags);
+static void findfile (FIND * find, FIND * home, flag_t flags);
+static void testfile (FIND * find, FIND * home, flag_t flags);
 
 /*====================================================================*
  *
@@ -83,35 +83,35 @@ static void testfile(FIND * find, FIND * home, flag_t flags);
  *
  *--------------------------------------------------------------------*/
 
-static void function(struct _find_ * find, struct _find_ * home, flag_t flags)
+static void function (struct _find_ * find, struct _find_ * home, flag_t flags)
 
 {
-	char buffer[BUFSIZ];
+	char buffer [BUFSIZ];
 	signed length;
-	if (! match(find->filename, find->wildcard))
+	if (! match (find->filename, find->wildcard))
 	{
 		return;
 	}
 	strcpy (home->filename, find->filename);
 	makepath (home->fullname, home->pathname, home->filename);
-	if ((find->fd = open(find->fullname, O_RDONLY)) == - 1)
+	if ((find->fd = open (find->fullname, O_RDONLY)) == - 1)
 	{
 		error (0, errno, FILE_CANTOPEN, find->fullname);
 		return;
 	}
-	if ((home->fd = open(home->fullname, O_CREAT | O_WRONLY, find->statinfo.st_mode)) == - 1)
+	if ((home->fd = open (home->fullname, O_CREAT | O_WRONLY, find->statinfo.st_mode)) == - 1)
 	{
 		error (0, errno, FILE_CANTOPEN, home->fullname);
 		close (find->fd);
 		return;
 	}
-	if (_anyset(flags, IMPORT_VERBOSE))
+	if (_anyset (flags, IMPORT_VERBOSE))
 	{
 		printf ("%s\n", find->fullname);
 	}
-	while ((length = read(find->fd, buffer, sizeof(buffer))) > 0)
+	while ((length = read (find->fd, buffer, sizeof (buffer))) > 0)
 	{
-		if (write(home->fd, buffer, length) < length)
+		if (write (home->fd, buffer, length) < length)
 		{
 			error (0, errno, FILE_CANTSAVE, home->fullname);
 			break;
@@ -132,15 +132,15 @@ static void function(struct _find_ * find, struct _find_ * home, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void testfile(FIND * find, FIND * home, flag_t flags)
+static void testfile (FIND * find, FIND * home, flag_t flags)
 
 {
-	if (lstat(find->fullname, & find->statinfo))
+	if (lstat (find->fullname, & find->statinfo))
 	{
 		error (0, errno, FILE_CANTSTAT, find->fullname);
 		return;
 	}
-	if (S_ISDIR(find->statinfo.st_mode))
+	if (S_ISDIR (find->statinfo.st_mode))
 	{
 		char const * filename = find->filename;
 		if (* filename == '.')
@@ -151,31 +151,31 @@ static void testfile(FIND * find, FIND * home, flag_t flags)
 		{
 			filename++;
 		}
-		if (* filename == (char)(0))
+		if (* filename == (char) (0))
 		{
 			return;
 		}
-		if (_anyset(find->flagword, FIND_B_RECURSE))
+		if (_anyset (find->flagword, FIND_B_RECURSE))
 		{
 			findfile (find, home, flags);
 		}
-		if (_anyset(find->flagword, FIND_B_DIR))
+		if (_anyset (find->flagword, FIND_B_DIR))
 		{
 			function (find, home, flags);
 		}
 		return;
 	}
-	if (S_ISLNK(find->statinfo.st_mode))
+	if (S_ISLNK (find->statinfo.st_mode))
 	{
-		if (_anyset(find->flagword, FIND_B_LNK))
+		if (_anyset (find->flagword, FIND_B_LNK))
 		{
 			function (find, home, flags);
 		}
 		return;
 	}
-	if (S_ISREG(find->statinfo.st_mode))
+	if (S_ISREG (find->statinfo.st_mode))
 	{
-		if (_anyset(find->flagword, FIND_B_REG))
+		if (_anyset (find->flagword, FIND_B_REG))
 		{
 			function (find, home, flags);
 		}
@@ -194,12 +194,12 @@ static void testfile(FIND * find, FIND * home, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void findfile(FIND * find, FIND * home, flag_t flags)
+static void findfile (FIND * find, FIND * home, flag_t flags)
 
 {
 	DIR * dir;
 	char * filename = find->fullname;
-	if ((dir = opendir(filename)))
+	if ((dir = opendir (filename)))
 	{
 		struct dirent * dirent;
 		while (* filename)
@@ -207,14 +207,14 @@ static void findfile(FIND * find, FIND * home, flag_t flags)
 			filename++;
 		}
 		* filename = PATH_C_EXTENDER;
-		while ((dirent = readdir(dir)) != (struct dirent *)(0))
+		while ((dirent = readdir (dir)) != (struct dirent *) (0))
 		{
 			strcpy (filename +  1, dirent->d_name);
 			partpath (find->fullname, find->pathname, find->filename);
 			partfile (find->filename, find->basename, find->extender);
 			testfile (find, home, flags);
 		}
-		* filename = (char)(0);
+		* filename = (char) (0);
 		closedir (dir);
 		return;
 	}
@@ -226,11 +226,11 @@ static void findfile(FIND * find, FIND * home, flag_t flags)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
 	extern FIND find;
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"o:qrv",
 		"folder findspec [findspec] [...]",
@@ -238,12 +238,12 @@ int main(int argc, char const * argv[])
 		"q\tquiet (don't report failures)",
 		"r\trecursive search",
 		"v\tverbose (report successes)",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	FIND home;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -262,18 +262,18 @@ int main(int argc, char const * argv[])
 	}
 	argc -= optind;
 	argv += optind;
-	if (_allclr(find.flagword, (FIND_B_LNK | FIND_B_REG)))
+	if (_allclr (find.flagword, (FIND_B_LNK | FIND_B_REG)))
 	{
 		_setbits (find.flagword, (FIND_B_LNK | FIND_B_REG));
 	}
 	if (argc)
 	{
 		strcpy (home.pathname, * argv);
-		if (lstat(home.pathname, & home.statinfo))
+		if (lstat (home.pathname, & home.statinfo))
 		{
 			error (1, errno, FILE_CANTSTAT, * argv);
 		}
-		if (! S_ISDIR(home.statinfo.st_mode))
+		if (! S_ISDIR (home.statinfo.st_mode))
 		{
 			error (1, EINVAL, "%s is not a folder", * argv);
 		}

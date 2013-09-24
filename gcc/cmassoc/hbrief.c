@@ -73,8 +73,8 @@ unsigned lineno = 0;
  *   program functions;
  *--------------------------------------------------------------------*/
 
-static signed markup(signed c);
-static signed pcdata(signed c);
+static signed markup (signed c);
+static signed pcdata (signed c);
 
 /*====================================================================*
  *
@@ -86,25 +86,25 @@ static signed pcdata(signed c);
  *
  *--------------------------------------------------------------------*/
 
-static signed _nocomment(signed c)
+static signed _nocomment (signed c)
 
 {
-	c = getc(stdin);
+	c = getc (stdin);
 	if (c == '-')
 	{
 		do 
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		while (c == '-');
 		do 
 		{
-			c = nocontent(c, '-');
+			c = nocontent (c, '-');
 		}
 		while ((c != '-') && (c != EOF));
 		do 
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		while (c == '-');
 	}
@@ -121,64 +121,64 @@ static signed _nocomment(signed c)
  *
  *--------------------------------------------------------------------*/
 
-static signed markup(signed c)
+static signed markup (signed c)
 
 {
-	c = getc(stdin);
+	c = getc (stdin);
 	if (c == '!')
 	{
-		c = getc(stdin);
+		c = getc (stdin);
 		if (c == '-')
 		{
-			c = _nocomment(c);
+			c = _nocomment (c);
 		}
-		c = nocontext(c, '>');
+		c = nocontext (c, '>');
 		return (c);
 	}
-	else if((c == '?') || (c == '%'))
+	else if ((c == '?') || (c == '%'))
 	{
 		do 
 		{
-			c = nocontext(c, c);
+			c = nocontext (c, c);
 		}
 		while ((c != '>') && (c != EOF));
-		c = getc(stdin);
+		c = getc (stdin);
 		return (c);
 	}
 	while ((c != '/') && (c != '>') && (c != EOF))
 	{
-		if (isspace(c))
+		if (isspace (c))
 		{
 			do 
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (isspace(c));
+			while (isspace (c));
 			continue;
 		}
-		if (nmtoken(c))
+		if (nmtoken (c))
 		{
 			do 
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (nmtoken(c));
+			while (nmtoken (c));
 			continue;
 		}
-		if (isquote(c))
+		if (isquote (c))
 		{
-			c = noliteral(c);
+			c = noliteral (c);
 			continue;
 		}
-		c = getc(stdin);
+		c = getc (stdin);
 	}
 	if (c == '>')
 	{
-		c = getc(stdin);
-		c = pcdata(c);
-		c = getc(stdin);
+		c = getc (stdin);
+		c = pcdata (c);
+		c = getc (stdin);
 	}
-	c = nocontext(c, '>');
+	c = nocontext (c, '>');
 	return (c);
 }
 
@@ -192,16 +192,16 @@ static signed markup(signed c)
  *
  *--------------------------------------------------------------------*/
 
-static signed pcdata(signed c)
+static signed pcdata (signed c)
 
 {
 	while ((c != '/') && (c != EOF))
 	{
 		while ((c != '<') && (c != EOF))
 		{
-			c = keep(c);
+			c = keep (c);
 		}
-		c = markup(c);
+		c = markup (c);
 	}
 	return (c);
 }
@@ -218,35 +218,35 @@ static signed pcdata(signed c)
  *
  *--------------------------------------------------------------------*/
 
-static signed element(signed c)
+static signed element (signed c)
 
 {
-	c = getc(stdin);
+	c = getc (stdin);
 	if (c == '%')
 	{
 		do 
 		{
-			c = nocontext(c, c);
+			c = nocontext (c, c);
 		}
 		while ((c != '>') && (c != EOF));
 	}
-	else if((c == '!') || (c == '?'))
+	else if ((c == '!') || (c == '?'))
 	{
 		do 
 		{
-			c = keep(c);
+			c = keep (c);
 		}
-		while (isalnum(c) || ((char) (c) == '-'));
-		c = nocontext(c, '>');
+		while (isalnum (c) || ((char)(c) == '-'));
+		c = nocontext (c, '>');
 	}
-	else if(isalpha(c) || ((char) (c) == '/'))
+	else if (isalpha (c) || ((char)(c) == '/'))
 	{
 		do 
 		{
-			c = keep(c);
+			c = keep (c);
 		}
-		while (isident(c));
-		c = nocontext(c, '>');
+		while (isident (c));
+		c = nocontext (c, '>');
 	}
 	return (c);
 }
@@ -261,7 +261,7 @@ static signed element(signed c)
  *
  *--------------------------------------------------------------------*/
 
-static signed document(signed c)
+static signed document (signed c)
 
 {
 	while (c != EOF)
@@ -269,11 +269,11 @@ static signed document(signed c)
 		if (c == '<')
 		{
 			putc ('<', stdout);
-			c = element(c);
+			c = element (c);
 			putc ('>', stdout);
 			continue;
 		}
-		c = keep(c);
+		c = keep (c);
 	}
 	return (c);
 }
@@ -282,21 +282,21 @@ static signed document(signed c)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"am",
 		PUTOPTV_S_FILTER,
 		"remove markup from document",
 		"a\tremove attributes from markup",
 		"m\tremove markup from document",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	signed (* function)(signed) = pcdata;
+	signed (* function) (signed) = pcdata;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -314,13 +314,13 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	if (! argc)
 	{
-		function (getc(stdin));
+		function (getc (stdin));
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
-			function (getc(stdin));
+			function (getc (stdin));
 		}
 		argc--;
 		argv++;

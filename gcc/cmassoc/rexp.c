@@ -61,28 +61,28 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"e:",
 		"literal [literal] [...]",
 		"compare example strings to a regular expression and report each outcome",
 		"e\tthe regular expression",
-		(char const *) (0)
+		(char const *)(0)
 	};
-	regexp * pattern = (regexp *) (0);
-	char prefix[TEXTLINE_MAX];
+	regexp * pattern = (regexp *)(0);
+	char prefix [TEXTLINE_MAX];
 	char const * sp;
 	char const * cp;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'e':
-			pattern = regexmake(optarg);
+			pattern = regexmake (optarg);
 			break;
 		default: 
 			break;
@@ -92,12 +92,12 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	while ((argc) && (* argv))
 	{
-		sp = regexspan(pattern, * argv);
+		sp = regexspan (pattern, * argv);
 		if (! sp)
 		{
 			printf ("[] [%s]\n", * argv);
 		}
-		else if(! * sp)
+		else if (! * sp)
 		{
 			printf ("[%s] []\n", * argv);
 		}
@@ -107,7 +107,7 @@ int main(int argc, char const * argv[])
 			{
 				prefix [cp - * argv] = * cp;
 			}
-			prefix [cp - * argv] = (char) (0);
+			prefix [cp - * argv] = (char)(0);
 			printf ("[%s] [%s]\n", prefix, sp);
 		}
 		argc--;

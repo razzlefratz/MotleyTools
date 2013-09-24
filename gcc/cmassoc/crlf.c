@@ -67,23 +67,23 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function(flag_t flags)
+static void function (flag_t flags)
 
 {
 	int c;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
 		if (c == '\r')
 		{
-			if ((c = getc(stdin)) != '\n')
+			if ((c = getc (stdin)) != '\n')
 			{
 				ungetc (c, stdin);
 			}
-			if (_anyset(flags, CRLF_B_CR))
+			if (_anyset (flags, CRLF_B_CR))
 			{
 				putc ('\r', stdout);
 			}
-			if (_anyset(flags, CRLF_B_LF))
+			if (_anyset (flags, CRLF_B_LF))
 			{
 				putc ('\n', stdout);
 			}
@@ -91,15 +91,15 @@ static void function(flag_t flags)
 		}
 		if (c == '\n')
 		{
-			if ((c = getc(stdin)) != '\r')
+			if ((c = getc (stdin)) != '\r')
 			{
 				ungetc (c, stdin);
 			}
-			if (_anyset(flags, CRLF_B_CR))
+			if (_anyset (flags, CRLF_B_CR))
 			{
 				putc ('\r', stdout);
 			}
-			if (_anyset(flags, CRLF_B_LF))
+			if (_anyset (flags, CRLF_B_LF))
 			{
 				putc ('\n', stdout);
 			}
@@ -121,10 +121,10 @@ static void function(flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"asuw",
 		PUTOPTV_S_FILTER,
@@ -133,11 +133,11 @@ int main(int argc, char const * argv[])
 		"s\tto stream format (no line breaks)",
 		"u\tto standard Unix format [" "'\\n'" "]",
 		"w\tto Microsoft Windows format [" "\"\\r\\n\"" "]",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	flag_t flags = CRLF_B_LF;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -169,7 +169,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
 			function (flags);
 		}

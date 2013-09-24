@@ -65,14 +65,14 @@
  *
  *--------------------------------------------------------------------*/
 
-void function(flag_t flags)
+void function (flag_t flags)
 
 {
 	int col = 0;
 	int c;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
-		if (isprint(c))
+		if (isprint (c))
 		{
 			putc (c, stdout);
 			col++;
@@ -89,7 +89,7 @@ void function(flag_t flags)
 		}
 		if (c == '\t')
 		{
-			while (tabcol(++ col) == false)
+			while (tabcol (++ col) == false)
 			{
 				putc (' ', stdout);
 			}
@@ -118,20 +118,20 @@ void function(flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"t:",
 		PUTOPTV_S_FILTER,
 		"replace horizontal tabs with equivalent number of spaces",
 		"t n.m\tset tabs in column (n) and intervals (m) ",
-		(char const *) (0)
+		(char const *)(0)
 	};
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -150,7 +150,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
 			function (flags);
 		}

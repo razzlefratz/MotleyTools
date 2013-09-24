@@ -63,33 +63,33 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"el:w:",
 		"command [command] [...]",
 		"command sequence repeater",
 		"e\tdirect stderr to stdout",
-		"l n\tloop (n) times [" LITERAL(COUNT) "]",
-		"w n\twait (n) seconds [" LITERAL(PAUSE) "]",
-		(char const *)(0)
+		"l n\tloop (n) times [" LITERAL (COUNT) "]",
+		"w n\twait (n) seconds [" LITERAL (PAUSE) "]",
+		(char const *) (0)
 	};
 	FILE * fp;
 	signed index = 0;
 	signed count = COUNT;
 	signed pause = PAUSE;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'l':
-			count = (unsigned) (uintspec(optarg, 1, USHRT_MAX));
+			count = (unsigned)(uintspec (optarg, 1, USHRT_MAX));
 			break;
 		case 'w':
-			pause = (unsigned) (uintspec(optarg, 1, USHRT_MAX));
+			pause = (unsigned)(uintspec (optarg, 1, USHRT_MAX));
 			break;
 		case 'e':
 			dup2 (STDOUT_FILENO, STDERR_FILENO);
@@ -104,9 +104,9 @@ int main(int argc, char const * argv[])
 	{
 		for (index = 0; index < argc; index++)
 		{
-			if ((fp = popen(argv[index], "r")))
+			if ((fp = popen (argv [index], "r")))
 			{
-				while ((c = getc(fp)) != EOF)
+				while ((c = getc (fp)) != EOF)
 				{
 					putc (c, stdout);
 				}

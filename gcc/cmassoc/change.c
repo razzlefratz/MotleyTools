@@ -106,7 +106,7 @@
  *
  *--------------------------------------------------------------------*/
 
-void function(char const * filename, const regexp * remove, char const * insert, char buffer[], size_t length, flag_t flags)
+void function (char const * filename, const regexp * remove, char const * insert, char buffer [], size_t length, flag_t flags)
 
 {
 	unsigned changes = 0;
@@ -123,13 +123,13 @@ void function(char const * filename, const regexp * remove, char const * insert,
 	{
 		return;
 	}
-	while ((signed) (actual = fgetline(buffer, length, stdin)) != - 1)
+	while ((signed)(actual = fgetline (buffer, length, stdin)) != - 1)
 	{
 		char const * sp;
 		for (sp = buffer; * sp; ++ sp)
 		{
 			char const * cp;
-			if ((cp = regexspan(remove, sp)))
+			if ((cp = regexspan (remove, sp)))
 			{
 				fputs (insert, stdout);
 				sp = cp - 1;
@@ -171,11 +171,11 @@ void function(char const * filename, const regexp * remove, char const * insert,
  *   
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	extern const unsigned char ct_unescape[];
-	static char const * optv[] = 
+	extern const unsigned char ct_unescape [];
+	static char const * optv [] = 
 	{
 		"e:l:t:fcHRT",
 		PUTOPTV_S_FILTER,
@@ -188,17 +188,17 @@ int main(int argc, char const * argv[])
 		"H\tshow expression expansion",
 		"R\tregular expression rules",
 		"T\tescape sequence rules",
-		(char const *) (0)
+		(char const *)(0)
 	};
-	regexp * remove = (regexp *)(0);
-	char const * insert = (char const *)(0);
-	char buffer[TEXTLINE_MAX] = 
+	regexp * remove = (regexp *) (0);
+	char const * insert = (char const *) (0);
+	char buffer [TEXTLINE_MAX] = 
 	{
-		(char)(0)
+		(char) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	int c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -213,17 +213,17 @@ int main(int argc, char const * argv[])
 			_clrbits (flags, CHANGE_B_RECORD);
 			break;
 		case 'e':
-			strcpy (buffer, struesc((char *) (optarg)));
-			remove = regexmake(buffer);
+			strcpy (buffer, struesc ((char *)(optarg)));
+			remove = regexmake (buffer);
 			break;
 		case 'l':
 			strcpy (buffer, REGEX_S_SPAN);
-			strcat (buffer, struesc((char *) (optarg)));
+			strcat (buffer, struesc ((char *)(optarg)));
 			strcat (buffer, REGEX_S_SPAN);
-			remove = regexmake(buffer);
+			remove = regexmake (buffer);
 			break;
 		case 't':
-			insert = strdup(struesc((char *) (optarg)));
+			insert = strdup (struesc ((char *)(optarg)));
 			break;
 		case 'H':
 			_setbits (flags, CHANGE_B_REVIEW);
@@ -265,13 +265,13 @@ int main(int argc, char const * argv[])
 	}
 	if (! argc)
 	{
-		function ("stdin", remove, insert, buffer, sizeof(buffer), flags);
+		function ("stdin", remove, insert, buffer, sizeof (buffer), flags);
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
-			function (* argv, remove, insert, buffer, sizeof(buffer), flags);
+			function (* argv, remove, insert, buffer, sizeof (buffer), flags);
 		}
 		argc--;
 		argv++;

@@ -75,10 +75,10 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function(unsigned step, unsigned dir, unsigned width, flag_t flags)
+static void function (unsigned step, unsigned dir, unsigned width, flag_t flags)
 
 {
-	char name[_NAMESIZE];
+	char name [_NAMESIZE];
 	char * label;
 	unsigned space;
 	unsigned prior;
@@ -86,18 +86,18 @@ static void function(unsigned step, unsigned dir, unsigned width, flag_t flags)
 	unsigned after;
 	signed c;
 	putc ('\n', stdout);
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
 		space = 0;
 		label = name;
 		prior = width;
-		while (isspace(c))
+		while (isspace (c))
 		{
 			if (c == '\n')
 			{
 				space++;
 			}
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		if (space)
 		{
@@ -118,10 +118,10 @@ static void function(unsigned step, unsigned dir, unsigned width, flag_t flags)
 			{
 				prior--;
 			}
-			* label++ = (char) (c);
-			c = getc(stdin);
+			* label++ = (char)(c);
+			c = getc (stdin);
 		}
-		* label = (char) (0);
+		* label = (char)(0);
 		extra = prior % 2;
 		after = prior / 2;
 		prior = after;
@@ -141,7 +141,7 @@ static void function(unsigned step, unsigned dir, unsigned width, flag_t flags)
 			{
 				putc ('-', stdout);
 			}
-			if (_anyset(flags, IFD_ALTERNATE))
+			if (_anyset (flags, IFD_ALTERNATE))
 			{
 				printf (IFD_RIGHT2);
 			}
@@ -152,7 +152,7 @@ static void function(unsigned step, unsigned dir, unsigned width, flag_t flags)
 		}
 		else 
 		{
-			if (_anyset(flags, IFD_ALTERNATE))
+			if (_anyset (flags, IFD_ALTERNATE))
 			{
 				printf (IFD_LEFT1);
 			}
@@ -173,7 +173,7 @@ static void function(unsigned step, unsigned dir, unsigned width, flag_t flags)
 			{
 				putc ('-', stdout);
 			}
-			if (_anyset(flags, IFD_ALTERNATE))
+			if (_anyset (flags, IFD_ALTERNATE))
 			{
 				printf (IFD_LEFT3, step++);
 			}
@@ -201,10 +201,10 @@ static void function(unsigned step, unsigned dir, unsigned width, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"aln:rw:",
 		PUTOPTV_S_FUNNEL,
@@ -212,16 +212,16 @@ int main(int argc, char const * argv[])
 		"a\talternate steps left/right",
 		"l\tstart direction is left",
 		"r\tstart direction is right",
-		"n n\tfirst step is (n) [" LITERAL(IFD_START) "]",
-		"w n\twidth in characters [" LITERAL(IFD_WIDTH) "]",
-		(char const *) (0)
+		"n n\tfirst step is (n) [" LITERAL (IFD_START) "]",
+		"w n\twidth in characters [" LITERAL (IFD_WIDTH) "]",
+		(char const *)(0)
 	};
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	size_t width = IFD_WIDTH;
 	unsigned start = IFD_START;
 	unsigned dir = IFD_RIGHT;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -232,13 +232,13 @@ int main(int argc, char const * argv[])
 			dir = 1;
 			break;
 		case 'n':
-			start = uintspec(optarg, 1, 512);
+			start = uintspec (optarg, 1, 512);
 			break;
 		case 'r':
 			dir = 0;
 			break;
 		case 'w':
-			width = (size_t) (uintspec(optarg, 0, 1024));
+			width = (size_t)(uintspec (optarg, 0, 1024));
 			break;
 		default: 
 			break;
@@ -252,7 +252,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (! freopen(* argv, "rb+", stdin))
+		if (! freopen (* argv, "rb+", stdin))
 		{
 			error (1, errno, "%s", * argv);
 		}

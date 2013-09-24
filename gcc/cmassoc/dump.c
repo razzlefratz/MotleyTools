@@ -61,7 +61,7 @@
  *
  *--------------------------------------------------------------------*/
 
-static void fputx(unsigned value, unsigned radix, int width, char c, FILE * ofp)
+static void fputx (unsigned value, unsigned radix, int width, char c, FILE * ofp)
 
 {
 	if (width-- > 0)
@@ -71,15 +71,15 @@ static void fputx(unsigned value, unsigned radix, int width, char c, FILE * ofp)
 			fputx (0, 0, width, c, ofp);
 			fputc (c, ofp);
 		}
-		else if(value < radix)
+		else if (value < radix)
 		{
 			fputx (0, 0, width, c, ofp);
-			fputc (DIGITS_HEX[value], ofp);
+			fputc (DIGITS_HEX [value], ofp);
 		}
 		else 
 		{
 			fputx (value / radix, radix, width, c, ofp);
-			fputc (DIGITS_HEX[value % radix], ofp);
+			fputc (DIGITS_HEX [value % radix], ofp);
 		}
 	}
 	return;
@@ -98,7 +98,7 @@ static void fputx(unsigned value, unsigned radix, int width, char c, FILE * ofp)
  *
  *--------------------------------------------------------------------*/
 
-void func(int radix, flag_t flag, FILE * ifp, FILE * ofp)
+void func (int radix, flag_t flag, FILE * ifp, FILE * ofp)
 
 {
 	char pad,
@@ -137,7 +137,7 @@ void func(int radix, flag_t flag, FILE * ifp, FILE * ofp)
 		return;
 	}
 	width <<= (flag & (SIZE));
-	for (rec = 0; (count = read(fileno(ifp), block, BUFSIZ)) > 0; rec++)
+	for (rec = 0; (count = read (fileno (ifp), block, BUFSIZ)) > 0; rec++)
 	{
 		fputs ("\nrecord = ", ofp);
 		fputx (rec, 10, 4, ' ', ofp);
@@ -157,9 +157,9 @@ void func(int radix, flag_t flag, FILE * ifp, FILE * ofp)
 				switch (flag & (SIZE))
 				{
 				case WORD:
-					value = ((value << 8) | (block[index] & UCHAR_MAX));
+					value = ((value << 8) | (block [index] & UCHAR_MAX));
 				case BYTE:
-					value = ((value << 8) | (block[index] & UCHAR_MAX));
+					value = ((value << 8) | (block [index] & UCHAR_MAX));
 					break;
 				default: 
 					value = 0;
@@ -178,17 +178,17 @@ void func(int radix, flag_t flag, FILE * ifp, FILE * ofp)
 			fputc (' ', ofp);
 			for (index = lower; index < upper; index++)
 			{
-				if ((unsigned)(block[index]) < 0x20)
+				if ((unsigned) (block [index]) < 0x20)
 				{
 					fputc ('.', ofp);
 					continue;
 				}
-				if ((unsigned)(block[index]) > SCHAR_MAX)
+				if ((unsigned) (block [index]) > SCHAR_MAX)
 				{
 					fputc ('.', ofp);
 					continue;
 				}
-				fputc (block[index], ofp);
+				fputc (block [index], ofp);
 			}
 		}
 		fputc ('\n', ofp);
@@ -200,10 +200,10 @@ void func(int radix, flag_t flag, FILE * ifp, FILE * ofp)
  *   main program
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"wbodx",
 		PUTOPTV_S_FUNNEL,
@@ -213,12 +213,12 @@ int main(int argc, char const * argv[])
 		"o\tdisplay in octal",
 		"d\tdisplay in decimal ",
 		"x\tdisplay in hexidecmal",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	flag_t flag = BYTE;
 	int base = HEX;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -250,7 +250,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (freopen(* argv, "rb", stdin))
+		if (freopen (* argv, "rb", stdin))
 		{
 			func (base, flag, stdin, stdout);
 		}

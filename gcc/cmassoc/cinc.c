@@ -76,193 +76,193 @@
  *
  *--------------------------------------------------------------------*/
 
-void function(char * fullpath, char const * vector[])
+void function (char * fullpath, char const * vector [])
 
 {
 	FILE * fp;
-	char buffer[CSOURCE];
+	char buffer [CSOURCE];
 	char * sp;
 	char * cp;
 	signed c;
-	if ((fp = efopen(fullpath, "rb")))
+	if ((fp = efopen (fullpath, "rb")))
 	{
-		char pathname[FILENAME_MAX];
-		for (sp = cp = strcpy(pathname, fullpath); * cp; ++ cp)
+		char pathname [FILENAME_MAX];
+		for (sp = cp = strcpy (pathname, fullpath); * cp; ++ cp)
 		{
 			if (* cp == '/')
 			{
 				sp = cp;
 			}
 		}
-		* sp = (char) (0);
-		c = getc(fp);
+		* sp = (char)(0);
+		c = getc (fp);
 		while (c != EOF)
 		{
 			sp = buffer;
-			if (isspace(c))
+			if (isspace (c))
 			{
 				do 
 				{
 					putc (c, stdout);
-					c = getc(fp);
+					c = getc (fp);
 				}
-				while (isspace(c));
+				while (isspace (c));
 				continue;
 			}
-			if (isalpha(c))
+			if (isalpha (c))
 			{
 				do 
 				{
 					putc (c, stdout);
-					c = getc(fp);
+					c = getc (fp);
 				}
-				while (isalnum(c));
+				while (isalnum (c));
 				continue;
 			}
-			if (isdigit(c))
+			if (isdigit (c))
 			{
 				do 
 				{
 					putc (c, stdout);
-					c = getc(fp);
+					c = getc (fp);
 				}
-				while (isdigit(c));
+				while (isdigit (c));
 				continue;
 			}
 			if (c == '#')
 			{
-				* sp++ = (char) (c);
-				c = getc(fp);
-				while (isblank(c))
+				* sp++ = (char)(c);
+				c = getc (fp);
+				while (isblank (c))
 				{
-					* sp++ = (char) (c);
-					c = getc(fp);
+					* sp++ = (char)(c);
+					c = getc (fp);
 				}
 				cp = sp;
-				while (isalpha(c))
+				while (isalpha (c))
 				{
-					* sp++ = (char)(c);
-					c = getc(fp);
-				}
-				* sp = (char) (0);
-				if (strcmp("include", cp))
-				{
-					while (nobreak(c))
-					{
-						* sp++ = (char)(c);
-						c = getc(fp);
-					}
 					* sp++ = (char) (c);
-					for (cp = buffer; cp < sp; putc(* cp++, stdout));
-					c = getc(fp);
+					c = getc (fp);
+				}
+				* sp = (char)(0);
+				if (strcmp ("include", cp))
+				{
+					while (nobreak (c))
+					{
+						* sp++ = (char) (c);
+						c = getc (fp);
+					}
+					* sp++ = (char)(c);
+					for (cp = buffer; cp < sp; putc (* cp++, stdout));
+					c = getc (fp);
 					continue;
 				}
-				while (isblank(c))
+				while (isblank (c))
 				{
-					* sp++ = (char)(c);
-					c = getc(fp);
+					* sp++ = (char) (c);
+					c = getc (fp);
 				}
 				if (c == '\"')
 				{
 					size_t index;
-					char filename[FILENAME_MAX];
+					char filename [FILENAME_MAX];
 					cp = filename;
-					c = getc(fp);
+					c = getc (fp);
 					while ((c != '\"') && (c != EOF))
 					{
-						* cp++ = * sp++ = (char)(c);
-						c = getc(fp);
+						* cp++ = * sp++ = (char) (c);
+						c = getc (fp);
 					}
-					* cp = (char)(0);
+					* cp = (char) (0);
 					makepath (fullpath, pathname, filename);
-					for (index = 0; vector[index] != (char *) (0); index++)
+					for (index = 0; vector [index] != (char *)(0); index++)
 					{
-						if (! strcmp(fullpath, vector[index]))
+						if (! strcmp (fullpath, vector [index]))
 						{
 							break;
 						}
 					}
-					if (vector[index] == (char *) (0))
+					if (vector [index] == (char *)(0))
 					{
-						vector [index++] = strdup(fullpath);
-						vector [index] = (char *) (0);
+						vector [index++] = strdup (fullpath);
+						vector [index] = (char *)(0);
 						function (fullpath, vector);
 					}
-					while (nobreak(c))
+					while (nobreak (c))
 					{
-						* sp++ = (char)(c);
-						c = getc(fp);
+						* sp++ = (char) (c);
+						c = getc (fp);
 					}
-					* sp++ = (char)(c);
+					* sp++ = (char) (c);
 				}
 				else 
 				{
-					while (nobreak(c))
+					while (nobreak (c))
 					{
-						* sp++ = (char)(c);
-						c = getc(fp);
+						* sp++ = (char) (c);
+						c = getc (fp);
 					}
-					* sp++ = (char)(c);
-					for (cp = buffer; cp < sp; putc(* cp++, stdout));
+					* sp++ = (char) (c);
+					for (cp = buffer; cp < sp; putc (* cp++, stdout));
 				}
-				c = getc(fp);
+				c = getc (fp);
 				continue;
 			}
-			if (isquote(c))
+			if (isquote (c))
 			{
-				signed o = getc(fp);
+				signed o = getc (fp);
 				putc (c, stdout);
 				while ((o != c) && (c != EOF))
 				{
 					if (o == '\\')
 					{
 						putc (o, stdout);
-						o = getc(fp);
+						o = getc (fp);
 					}
 					putc (o, stdout);
-					o = getc(fp);
+					o = getc (fp);
 				}
 				putc (c, stdout);
-				c = getc(fp);
+				c = getc (fp);
 				continue;
 			}
 			if (c == '/')
 			{
 				putc (c, stdout);
-				c = getc(fp);
+				c = getc (fp);
 				if (c == '/')
 				{
-					while (nobreak(c))
+					while (nobreak (c))
 					{
 						putc (c, stdout);
-						c = getc(fp);
+						c = getc (fp);
 					}
 					putc ('\n', stdout);
-					c = getc(fp);
+					c = getc (fp);
 					continue;
 				}
 				if (c == '*')
 				{
-					while (nomatch(c, '/'))
+					while (nomatch (c, '/'))
 					{
-						while (nomatch(c, '*'))
+						while (nomatch (c, '*'))
 						{
 							putc (c, stdout);
-							c = getc(fp);
+							c = getc (fp);
 						}
 						putc (c, stdout);
-						c = getc(fp);
+						c = getc (fp);
 					}
 					putc ('/', stdout);
-					c = getc(fp);
+					c = getc (fp);
 					continue;
 				}
 				putc (c, stdout);
-				c = getc(fp);
+				c = getc (fp);
 				continue;
 			}
 			putc (c, stdout);
-			c = getc(fp);
+			c = getc (fp);
 		}
 		fclose (fp);
 	}
@@ -280,19 +280,19 @@ void function(char * fullpath, char const * vector[])
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"",
 		PUTOPTV_S_FILTER,
 		"include all C language support files",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	char pathname[FILENAME_MAX];
+	char pathname [FILENAME_MAX];
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -304,14 +304,14 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	while ((argc) && (* argv))
 	{
-		char const * vector[200];
-		makepath (pathname, getenv("PWD"), * argv);
-		vector [0] = strdup(pathname);
-		vector [1] = (char *) (0);
+		char const * vector [200];
+		makepath (pathname, getenv ("PWD"), * argv);
+		vector [0] = strdup (pathname);
+		vector [1] = (char *)(0);
 		function (pathname, vector);
-		for (argc = 0; vector[argc]; argc++)
+		for (argc = 0; vector [argc]; argc++)
 		{
-			fprintf (stderr, "%s\n", vector[argc]);
+			fprintf (stderr, "%s\n", vector [argc]);
 		}
 		argc--;
 		argv++;

@@ -71,18 +71,18 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function(const unsigned limit, flag_t flags)
+static void function (const unsigned limit, flag_t flags)
 
 {
 	size_t count = limit;
 	size_t column = 0;
 	size_t length = 0;
-	signed c = getc(stdin);
+	signed c = getc (stdin);
 	while (c != EOF)
 	{
 		if (c == ' ')
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 			length++;
 			continue;
 		}
@@ -94,7 +94,7 @@ static void function(const unsigned limit, flag_t flags)
 			length %= 8;
 			length *= 8;
 			length += 8;
-			c = getc(stdin);
+			c = getc (stdin);
 			continue;
 		}
 
@@ -107,12 +107,12 @@ static void function(const unsigned limit, flag_t flags)
 				putc (c, stdout);
 				count = 0;
 			}
-			else if(count < limit)
+			else if (count < limit)
 			{
 				putc (c, stdout);
 				count++;
 			}
-			c = getc(stdin);
+			c = getc (stdin);
 			column = 0;
 			length = 0;
 			continue;
@@ -122,7 +122,7 @@ static void function(const unsigned limit, flag_t flags)
 			putc (' ', stdout);
 		}
 		putc (c, stdout);
-		c = getc(stdin);
+		c = getc (stdin);
 		length++;
 	}
 	if (column)
@@ -143,26 +143,26 @@ static void function(const unsigned limit, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"n:",
 		PUTOPTV_S_FILTER,
 		"minimize blank lines and eliminate trailing spaces",
-		"n n\treduce consecutive blank lines to (n) lines [" LITERAL(BLANK_COUNT) "]",
-		(char const *) (0)
+		"n n\treduce consecutive blank lines to (n) lines [" LITERAL (BLANK_COUNT) "]",
+		(char const *)(0)
 	};
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	size_t count = BLANK_COUNT;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'n':
-			count = uintspec(optarg, 0, SHRT_MAX);
+			count = uintspec (optarg, 0, SHRT_MAX);
 			break;
 		default: 
 			break;
@@ -176,7 +176,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
 			function (count, flags);
 		}

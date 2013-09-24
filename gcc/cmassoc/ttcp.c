@@ -40,7 +40,7 @@
 
 #ifndef lint
 
-static char RCSid[] = "ttcp.c $Revision: 1.4 $";
+static char RCSid [] = "ttcp.c $Revision: 1.4 $";
 
 #endif
 
@@ -172,7 +172,7 @@ struct hostent * addr;
 extern int errno;
 extern int optind;
 extern char * optarg;
-char Usage[] = "\
+char Usage [] = "\
 Usage: ttcp -t [-options] host [ < in ]\n\
        ttcp -r [-options > out]\n\
 Common options:\n\
@@ -194,7 +194,7 @@ Options specific to -r:\n\
 	-B	for -s, only output full blocks as specified by -l (for TAR)\n\
 	-T	\"touch\": access each byte as it's read\n\
 ";
-char stats[128];
+char stats [128];
 double nbytes;
 
 /* bytes on net */
@@ -212,18 +212,18 @@ realt;
  *   functions;
  *--------------------------------------------------------------------*/
 
-double read_timer();
-int Nread();
-int Nwrite();
-void delay();
-int mread();
-static void sigpipe()
+double read_timer ();
+int Nread ();
+int Nwrite ();
+void delay ();
+int mread ();
+static void sigpipe ()
 
 {
 	return;
 }
 
-static void err(char * s)
+static void err (char * s)
 
 {
 	fprintf (stderr, "ttcp%s: ", trans? "-t": " - r ");
@@ -232,30 +232,30 @@ static void err(char * s)
 	exit (1);
 }
 
-static void mes(char * s)
+static void mes (char * s)
 
 {
 	fprintf (stderr, "ttcp % s:  % s\n", trans? "- t ": "- r ", s);
 	return;
 }
 
-static void pattern(register char * cp, register int cnt)
+static void pattern (register char * cp, register int cnt)
 
 {
 	register char c;
 	c = 0;
 	while (cnt-- > 0)
 	{
-		while (! isprint((c & 0x7F))) c++;
+		while (! isprint ((c & 0x7F))) c++;
 		* cp++ = (c++ & 0x7F);
 	}
 	return;
 }
 
-static char * outfmt(double b)
+static char * outfmt (double b)
 
 {
-	static char obuf[50];
+	static char obuf [50];
 	switch (fmt)
 	{
 	case 'G':
@@ -289,16 +289,16 @@ static struct rusage ru0;
 
 /* Resource utilization at the start */
 
-static void prusage();
-static void tvadd();
-static void tvsub();
-static void psecs();
+static void prusage ();
+static void tvadd ();
+static void tvsub ();
+static void psecs ();
 
 #if defined(SYSV)
 
 /*ARGSUSED*/
 
-static void getrusage(ignored, ru) int ignored;
+static void getrusage (ignored, ru) int ignored;
 register struct rusage * ru;
 
 {
@@ -316,10 +316,10 @@ register struct rusage * ru;
 
 /*ARGSUSED*/
 
-static void gettimeofday1(struct timeval * tp, struct timezone * zp)
+static void gettimeofday1 (struct timeval * tp, struct timezone * zp)
 
 {
-	tp->tv_sec = time(0);
+	tp->tv_sec = time (0);
 	tp->tv_usec = 0;
 	return;
 }
@@ -330,7 +330,7 @@ static void gettimeofday1(struct timeval * tp, struct timezone * zp)
  *			P R E P _ T I M E R
  */
 
-static void prep_timer()
+static void prep_timer ()
 
 {
 	gettimeofday1 (& time0, (struct timezone *) 0);
@@ -343,7 +343,7 @@ static void prep_timer()
  * 
  */
 
-double read_timer(char * str, int len)
+double read_timer (char * str, int len)
 
 {
 	struct timeval timedol;
@@ -351,11 +351,11 @@ double read_timer(char * str, int len)
 	struct timeval td;
 	struct timeval tend,
 	tstart;
-	char line[132];
+	char line [132];
 	getrusage (RUSAGE_SELF, & ru1);
 	gettimeofday1 (& timedol, (struct timezone *) 0);
 	prusage (& ru0, & ru1, & timedol, & time0, line);
-	(void) strncpy(str, line, len);
+	(void) strncpy (str, line, len);
 
 /* Get real time */
 
@@ -372,7 +372,7 @@ double read_timer(char * str, int len)
 	return (cput);
 }
 
-static void prusage(r0, r1, e, b, outp) register struct rusage * r0,
+static void prusage (r0, r1, e, b, outp) register struct rusage * r0,
 * r1;
 struct timeval * e,
 * b;
@@ -407,7 +407,7 @@ char * outp;
 	for (; * cp; cp++)
 	{
 		if (* cp != '%') * outp++ = * cp;
-		else if(cp[1]) switch(* ++ cp)
+		else if (cp [1]) switch (* ++ cp)
 		{
 		case 'U':
 			tvsub (& tdiff, & r1->ru_utime, & r0->ru_utime);
@@ -424,7 +424,7 @@ char * outp;
 			END (outp);
 			break;
 		case 'P':
-			sprintf (outp, "% d % % ", (int)(t * 100 / ((ms? ms: 1))));
+			sprintf (outp, "% d % % ", (int) (t * 100 / ((ms? ms: 1))));
 			END (outp);
 			break;
 
@@ -440,11 +440,11 @@ char * outp;
 			END (outp);
 			break;
 		case 'D':
-			sprintf (outp, "% d ", t == 0? 0: (r1->ru_idrss + r1->ru_isrss - (r0->ru_idrss + r0->ru_isrss)) / t);
+			sprintf (outp, "% d ", t == 0? 0: (r1->ru_idrss +  r1->ru_isrss - (r0->ru_idrss +  r0->ru_isrss)) / t);
 			END (outp);
 			break;
 		case 'K':
-			sprintf (outp, "% d ", t == 0? 0: ((r1->ru_ixrss + r1->ru_isrss + r1->ru_idrss) - (r0->ru_ixrss + r0->ru_idrss + r0->ru_isrss)) / t);
+			sprintf (outp, "% d ", t == 0? 0: ((r1->ru_ixrss +  r1->ru_isrss +  r1->ru_idrss) - (r0->ru_ixrss +  r0->ru_idrss +  r0->ru_isrss)) / t);
 			END (outp);
 			break;
 		case 'M':
@@ -479,7 +479,7 @@ char * outp;
 	* outp = '\0';
 }
 
-static void tvadd(tsum, t0, t1) struct timeval * tsum,
+static void tvadd (tsum, t0, t1) struct timeval * tsum,
 * t0,
 * t1;
 
@@ -490,7 +490,7 @@ static void tvadd(tsum, t0, t1) struct timeval * tsum,
 	tsum->tv_usec -= 1000000;
 }
 
-static void tvsub(tdiff, t1, t0) struct timeval * tdiff,
+static void tvsub (tdiff, t1, t0) struct timeval * tdiff,
 * t1,
 * t0;
 
@@ -501,7 +501,7 @@ static void tvsub(tdiff, t1, t0) struct timeval * tdiff,
 	tdiff->tv_usec += 1000000;
 }
 
-static void psecs(l, cp) long l;
+static void psecs (l, cp) long l;
 register char * cp;
 
 {
@@ -536,22 +536,22 @@ int count;
 
 {
 	struct sockaddr_in from;
-	int len = sizeof(from);
+	int len = sizeof (from);
 	register int cnt;
 	if (udp)
 	{
-		cnt = recvfrom(fd, buf, count, 0, (struct sockaddr *) & from, & len);
+		cnt = recvfrom (fd, buf, count, 0, (struct sockaddr *) & from, & len);
 		numCalls++;
 	}
 	else 
 	{
-		if (b_flag) cnt = mread(fd, buf, count);
+		if (b_flag) cnt = mread (fd, buf, count);
 
 /* fill buf */
 
 		else 
 		{
-			cnt = read(fd, buf, count);
+			cnt = read (fd, buf, count);
 			numCalls++;
 		}
 		if (touchdata && cnt > 0)
@@ -578,7 +578,7 @@ int count;
 	if (udp)
 	{
 	again: 
-		cnt = sendto(fd, buf, count, 0, (struct sockaddr *) & sinhim, sizeof(sinhim));
+		cnt = sendto (fd, buf, count, 0, (struct sockaddr *) & sinhim, sizeof (sinhim));
 		numCalls++;
 		if (cnt < 0 && errno == ENOBUFS)
 		{
@@ -589,19 +589,19 @@ int count;
 	}
 	else 
 	{
-		cnt = write(fd, buf, count);
+		cnt = write (fd, buf, count);
 		numCalls++;
 	}
 	return (cnt);
 }
 
-void delay(us)
+void delay (us)
 
 {
 	struct timeval tv;
 	tv.tv_sec = 0;
 	tv.tv_usec = us;
-	(void) select(1, (fd_set *) 0, (fd_set *) 0, (fd_set *) 0, & tv);
+	(void) select (1, (fd_set *) 0, (fd_set *) 0, (fd_set *) 0, & tv);
 }
 
 /*
@@ -614,7 +614,7 @@ void delay(us)
  * grouping as it is written with.  Written by Robert S. Miles, BRL.
  */
 
-int mread(fd, bufp, n) int fd;
+int mread (fd, bufp, n) int fd;
 register char * bufp;
 unsigned n;
 
@@ -623,14 +623,14 @@ unsigned n;
 	register int nread;
 	do 
 	{
-		nread = read(fd, bufp, n - count);
+		nread = read (fd, bufp, n - count);
 		numCalls++;
 		if (nread < 0)
 		{
 			perror ("ttcp_mread");
 			return (- 1);
 		}
-		if (nread == 0) return((int) count);
+		if (nread == 0) return ((int) count);
 		count += (unsigned) nread;
 		bufp += nread;
 	}
@@ -642,13 +642,13 @@ unsigned n;
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
 	unsigned long addr_tmp;
 	int c;
 	if (argc < 2) goto usage;
-	while ((c = getopt(argc, argv, "drstuvBDTb:f:l:n:p:A:O:")) != - 1)
+	while ((c = getopt (argc, argv, "drstuvBDTb:f:l:n:p:A:O:")) != - 1)
 	{
 		switch (c)
 		{
@@ -678,16 +678,16 @@ int main(int argc, char const * argv[])
 
 			break;
 		case 'n':
-			nbuf = atoi(optarg);
+			nbuf = atoi (optarg);
 			break;
 		case 'l':
-			buflen = atoi(optarg);
+			buflen = atoi (optarg);
 			break;
 		case 's':
 			sinkmode = ! sinkmode;
 			break;
 		case 'p':
-			port = atoi(optarg);
+			port = atoi (optarg);
 			break;
 		case 'u':
 			udp = 1;
@@ -696,16 +696,16 @@ int main(int argc, char const * argv[])
 			verbose = 1;
 			break;
 		case 'A':
-			bufalign = atoi(optarg);
+			bufalign = atoi (optarg);
 			break;
 		case 'O':
-			bufoffset = atoi(optarg);
+			bufoffset = atoi (optarg);
 			break;
 		case 'b':
 
 #if defined(SO_SNDBUF) || defined(SO_RCVBUF)
 
-			sockbufsize = atoi(optarg);
+			sockbufsize = atoi (optarg);
 
 #else
 
@@ -730,9 +730,9 @@ int main(int argc, char const * argv[])
 /* xmitr */
 
 		if (optind == argc) goto usage;
-		bzero ((char *) & sinhim, sizeof(sinhim));
-		host = argv[optind];
-		if (atoi(host) > 0)
+		bzero ((char *) & sinhim, sizeof (sinhim));
+		host = argv [optind];
+		if (atoi (host) > 0)
 		{
 
 /* Numeric */
@@ -741,19 +741,19 @@ int main(int argc, char const * argv[])
 
 #if defined(cray)
 
-			addr_tmp = inet_addr(host);
+			addr_tmp = inet_addr (host);
 			sinhim.sin_addr = addr_tmp;
 
 #else
 
-			sinhim.sin_addr.s_addr = inet_addr(host);
+			sinhim.sin_addr.s_addr = inet_addr (host);
 
 #endif
 
 		}
 		else 
 		{
-			if ((addr = gethostbyname(host)) == NULL) err("bad hostname");
+			if ((addr = gethostbyname (host)) == NULL) err ("bad hostname");
 			sinhim.sin_family = addr->h_addrtype;
 			bcopy (addr->h_addr, (char *) & addr_tmp, addr->h_length);
 
@@ -768,7 +768,7 @@ int main(int argc, char const * argv[])
 #endif /* cray */
 
 		}
-		sinhim.sin_port = htons(port);
+		sinhim.sin_port = htons (port);
 		sinme.sin_port = 0;
 
 /* free choice */
@@ -779,7 +779,7 @@ int main(int argc, char const * argv[])
 
 /* rcvr */
 
-		sinme.sin_port = htons(port);
+		sinme.sin_port = htons (port);
 	}
 	if (udp && buflen < 5)
 	{
@@ -788,24 +788,24 @@ int main(int argc, char const * argv[])
 /* send more than the sentinel size */
 
 	}
-	if ((buf = (char *) malloc(buflen +  bufalign)) == (char *) NULL) err("malloc");
+	if ((buf = (char *) malloc (buflen +  bufalign)) == (char *) NULL) err ("malloc");
 	if (bufalign != 0) buf += (bufalign - ((int) buf % bufalign) +  bufoffset) % bufalign;
 	if (trans)
 	{
 		fprintf (stdout, "ttcp-t: buflen=%d, nbuf=%d, align=%d/%d, port=%d", buflen, nbuf, bufalign, bufoffset, port);
-		if (sockbufsize) fprintf(stdout, ", sockbufsize=%d", sockbufsize);
+		if (sockbufsize) fprintf (stdout, ", sockbufsize=%d", sockbufsize);
 		fprintf (stdout, "  %s  -> %s\n", udp? "udp": " tcp ", host);
 	}
 	else 
 	{
 		fprintf (stdout, "ttcp- r:  buflen = % d, nbuf = % d, align = % d / % d, port = % d ", buflen, nbuf, bufalign, bufoffset, port);
-		if (sockbufsize) fprintf(stdout, ", sockbufsize = % d ", sockbufsize);
+		if (sockbufsize) fprintf (stdout, ", sockbufsize = % d ", sockbufsize);
 		fprintf (stdout, " % s\n", udp? "udp ": "tcp ");
 	}
-	if ((fd = socket(AF_INET, udp? SOCK_DGRAM: SOCK_STREAM, 0)) < 0) err("socket ");
+	if ((fd = socket (AF_INET, udp? SOCK_DGRAM: SOCK_STREAM, 0)) < 0) err ("socket ");
 	mes ("socket ");
-	if (setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, (char *) & one, sizeof(one)) < 0) err("setsockopt:  reuseaddr ");
-	if (bind(fd, (struct sockaddr *) & sinme, sizeof(sinme)) < 0) err("bind ");
+	if (setsockopt (fd, SOL_SOCKET, SO_REUSEADDR, (char *) & one, sizeof (one)) < 0) err ("setsockopt:  reuseaddr ");
+	if (bind (fd, (struct sockaddr *) & sinme, sizeof (sinme)) < 0) err ("bind ");
 
 #if defined(SO_SNDBUF) || defined(SO_RCVBUF)
 
@@ -813,12 +813,12 @@ int main(int argc, char const * argv[])
 	{
 		if (trans)
 		{
-			if (setsockopt(fd, SOL_SOCKET, SO_SNDBUF, (char *) & sockbufsize, sizeof sockbufsize) < 0) err("setsockopt:  sndbuf ");
+			if (setsockopt (fd, SOL_SOCKET, SO_SNDBUF, (char *) & sockbufsize, sizeof sockbufsize) < 0) err ("setsockopt:  sndbuf ");
 			mes ("sndbuf ");
 		}
 		else 
 		{
-			if (setsockopt(fd, SOL_SOCKET, SO_RCVBUF, (char *) & sockbufsize, sizeof sockbufsize) < 0) err("setsockopt:  rcvbuf ");
+			if (setsockopt (fd, SOL_SOCKET, SO_RCVBUF, (char *) & sockbufsize, sizeof sockbufsize) < 0) err ("setsockopt:  rcvbuf ");
 			mes ("rcvbuf ");
 		}
 	}
@@ -838,11 +838,11 @@ int main(int argc, char const * argv[])
 
 #if defined(BSD42)
 
-				if (setsockopt(fd, SOL_SOCKET, options, 0, 0) < 0) 
+				if (setsockopt (fd, SOL_SOCKET, options, 0, 0) < 0) 
 
 #else /* BSD43 */
 
-				if (setsockopt(fd, SOL_SOCKET, options, (char *) & one, sizeof(one)) < 0) 
+				if (setsockopt (fd, SOL_SOCKET, options, (char *) & one, sizeof (one)) < 0) 
 
 #endif
 
@@ -854,14 +854,14 @@ int main(int argc, char const * argv[])
 			if (nodelay)
 			{
 				struct protoent * p;
-				p = getprotobyname("tcp ");
-				if (p && setsockopt(fd, p->p_proto, TCP_NODELAY, (char *) & one, sizeof(one)) < 0) err("setsockopt:  nodelay ");
+				p = getprotobyname ("tcp ");
+				if (p && setsockopt (fd, p->p_proto, TCP_NODELAY, (char *) & one, sizeof (one)) < 0) err ("setsockopt:  nodelay ");
 				mes ("nodelay ");
 			}
 
 #endif
 
-			if (connect(fd, (struct sockaddr *) & sinhim, sizeof(sinhim)) < 0) err("connect ");
+			if (connect (fd, (struct sockaddr *) & sinhim, sizeof (sinhim)) < 0) err ("connect ");
 			mes ("connect ");
 		}
 		else 
@@ -890,27 +890,27 @@ int main(int argc, char const * argv[])
 
 #if defined(BSD42)
 
-				if (setsockopt(fd, SOL_SOCKET, options, 0, 0) < 0) 
+				if (setsockopt (fd, SOL_SOCKET, options, 0, 0) < 0) 
 
 #else /* BSD43 */
 
-				if (setsockopt(fd, SOL_SOCKET, options, (char *) & one, sizeof(one)) < 0) 
+				if (setsockopt (fd, SOL_SOCKET, options, (char *) & one, sizeof (one)) < 0) 
 
 #endif
 
 				err ("setsockopt ");
 			}
-			fromlen = sizeof(frominet);
+			fromlen = sizeof (frominet);
 			domain = AF_INET;
-			if ((fd = accept(fd, (struct sockaddr *) & frominet, & fromlen)) < 0) err("accept ");
+			if ((fd = accept (fd, (struct sockaddr *) & frominet, & fromlen)) < 0) err ("accept ");
 			{
 				struct sockaddr_in peer;
-				int peerlen = sizeof(peer);
-				if (getpeername(fd, (struct sockaddr *) & peer, & peerlen) < 0)
+				int peerlen = sizeof (peer);
+				if (getpeername (fd, (struct sockaddr *) & peer, & peerlen) < 0)
 				{
 					err ("getpeername ");
 				}
-				fprintf (stderr, "ttcp- r:  accept from % s\n", inet_ntoa(peer.sin_addr));
+				fprintf (stderr, "ttcp- r:  accept from % s\n", inet_ntoa (peer.sin_addr));
 			}
 		}
 	}
@@ -922,12 +922,12 @@ int main(int argc, char const * argv[])
 		if (trans)
 		{
 			pattern (buf, buflen);
-			if (udp)(void) Nwrite(fd, buf, 4);
+			if (udp) (void) Nwrite (fd, buf, 4);
 
 /* rcvr start */
 
-			while (nbuf-- && Nwrite(fd, buf, buflen) == buflen) nbytes += buflen;
-			if (udp)(void) Nwrite(fd, buf, 4);
+			while (nbuf-- && Nwrite (fd, buf, buflen) == buflen) nbytes += buflen;
+			if (udp) (void) Nwrite (fd, buf, 4);
 
 /* rcvr end */
 
@@ -936,7 +936,7 @@ int main(int argc, char const * argv[])
 		{
 			if (udp)
 			{
-				while ((cnt = Nread(fd, buf, buflen)) > 0)
+				while ((cnt = Nread (fd, buf, buflen)) > 0)
 				{
 					static int going = 0;
 					if (cnt <= 4)
@@ -956,7 +956,7 @@ int main(int argc, char const * argv[])
 			}
 			else 
 			{
-				while ((cnt = Nread(fd, buf, buflen)) > 0)
+				while ((cnt = Nread (fd, buf, buflen)) > 0)
 				{
 					nbytes += cnt;
 				}
@@ -968,40 +968,40 @@ int main(int argc, char const * argv[])
 		register int cnt;
 		if (trans)
 		{
-			while ((cnt = read(0, buf, buflen)) > 0 && Nwrite(fd, buf, cnt) == cnt) nbytes += cnt;
+			while ((cnt = read (0, buf, buflen)) > 0 && Nwrite (fd, buf, cnt) == cnt) nbytes += cnt;
 		}
 		else 
 		{
-			while ((cnt = Nread(fd, buf, buflen)) > 0 && write(1, buf, cnt) == cnt) nbytes += cnt;
+			while ((cnt = Nread (fd, buf, buflen)) > 0 && write (1, buf, cnt) == cnt) nbytes += cnt;
 		}
 	}
-	if (errno) err("IO ");
-	(void) read_timer(stats, sizeof(stats));
+	if (errno) err ("IO ");
+	(void) read_timer (stats, sizeof (stats));
 	if (udp && trans)
 	{
-		(void) Nwrite(fd, buf, 4);
+		(void) Nwrite (fd, buf, 4);
 
 /* rcvr end */
 
-		(void) Nwrite(fd, buf, 4);
+		(void) Nwrite (fd, buf, 4);
 
 /* rcvr end */
 
-		(void) Nwrite(fd, buf, 4);
+		(void) Nwrite (fd, buf, 4);
 
 /* rcvr end */
 
-		(void) Nwrite(fd, buf, 4);
+		(void) Nwrite (fd, buf, 4);
 
 /* rcvr end */
 
 	}
 	if (cput <= 0.0) cput = 0.001;
 	if (realt <= 0.0) realt = 0.001;
-	fprintf (stdout, "ttcp % s:  % .0f bytes in % .2f real seconds = % s / sec ++ + \n", trans? "- t ": "- r ", nbytes, realt, outfmt(nbytes / realt));
+	fprintf (stdout, "ttcp % s:  % .0f bytes in % .2f real seconds = % s / sec ++ + \n", trans? "- t ": "- r ", nbytes, realt, outfmt (nbytes / realt));
 	if (verbose)
 	{
-		fprintf (stdout, "ttcp % s:  % .0f bytes in % .2f CPU seconds = % s / cpu sec\n", trans? "- t ": "- r ", nbytes, cput, outfmt(nbytes / cput));
+		fprintf (stdout, "ttcp % s:  % .0f bytes in % .2f CPU seconds = % s / cpu sec\n", trans? "- t ": "- r ", nbytes, cput, outfmt (nbytes / cput));
 	}
 	fprintf (stdout, "ttcp % s:  % d I / O calls, msec / call = % .2f, calls / sec = % .2f\n", trans? "- t ": "- r ", numCalls, 1024.0 * realt / ((double) numCalls), ((double) numCalls) / realt);
 	fprintf (stdout, "ttcp % s:  % s\n", trans? "- t ": "- r ", stats);

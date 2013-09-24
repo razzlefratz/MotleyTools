@@ -46,22 +46,22 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"c:w:",
 		PUTOPTV_S_DIVINE,
 		"print a simple sign on stdout",
 		"c c\tfill character is c [\'c\']",
 		"w n\tpage width is n [78]",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	char o = '#';
 	size_t width = 78;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -69,7 +69,7 @@ int main(int argc, char const * argv[])
 			o = * optarg;
 			break;
 		case 'w':
-			width = uintspec(optarg, 1, UCHAR_MAX);
+			width = uintspec (optarg, 1, UCHAR_MAX);
 			break;
 		default: 
 			break;

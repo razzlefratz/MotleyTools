@@ -45,10 +45,10 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	char const * optv[] = 
+	char const * optv [] = 
 	{
 		"f:nq:stv",
 		PUTOPTV_S_FUNNEL,
@@ -59,7 +59,7 @@ int main(int argc, char const * argv[])
 		"s\tseparate with spaces",
 		"t\tseparate with tabs",
 		"v\tprint as CSV file",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	typedef struct link
 	{
@@ -67,12 +67,12 @@ int main(int argc, char const * argv[])
 		FILE * file;
 	}
 	LINK;
-	struct link * item = (LINK *) (0);
-	struct link * list = (LINK *) (0);
-	unsigned quote = (char) (0);
-	unsigned space = (char) (0);
+	struct link * item = (LINK *)(0);
+	struct link * list = (LINK *)(0);
+	unsigned quote = (char)(0);
+	unsigned space = (char)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -107,8 +107,8 @@ int main(int argc, char const * argv[])
 	}
 	while (* argv)
 	{
-		item = NEW(LINK);
-		item->file = fopen(* argv, "rb");
+		item = NEW (LINK);
+		item->file = fopen (* argv, "rb");
 		if (list)
 		{
 			item->next = list->next;
@@ -130,14 +130,14 @@ int main(int argc, char const * argv[])
 		}
 		if (item->file)
 		{
-			for (c = getc(item->file); nobreak(c); c = getc(item->file))
+			for (c = getc (item->file); nobreak (c); c = getc (item->file))
 			{
 				putc (c, stdout);
 			}
 			if (c == EOF)
 			{
 				fclose (item->file);
-				item->file = (FILE *) (0);
+				item->file = (FILE *)(0);
 				argc--;
 			}
 		}

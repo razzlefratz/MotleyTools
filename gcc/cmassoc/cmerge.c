@@ -122,27 +122,27 @@ static char const * preamble = "/*==============================================
  *
  *--------------------------------------------------------------------*/
 
-void function(FIND * find, LIST * list, size_t length)
+void function (FIND * find, LIST * list, size_t length)
 
 {
 	struct _scan_ scan;
-	char buffer[length];
+	char buffer [length];
 	FILE * fp;
-	if ((fp = efopen(find->fullname, "rb")))
+	if ((fp = efopen (find->fullname, "rb")))
 	{
-		scaninput (& scan, buffer, sizeof(buffer));
-		while (fgets(buffer, sizeof(buffer), fp))
+		scaninput (& scan, buffer, sizeof (buffer));
+		while (fgets (buffer, sizeof (buffer), fp))
 		{
 			scanstart (& scan);
 			nexttoken (& scan);
-			if (havetoken(& scan, "#") && havetoken(& scan, "include") && havetoken(& scan, "\""))
+			if (havetoken (& scan, "#") && havetoken (& scan, "include") && havetoken (& scan, "\""))
 			{
 				FIND file;
 				scanuntil (& scan, "\"");
-				makepath (file.fullname, find->pathname, tokentext(& scan));
+				makepath (file.fullname, find->pathname, tokentext (& scan));
 				partpath (file.fullname, file.pathname, file.filename);
 				partfile (file.filename, file.basename, file.extender);
-				if (listappend(list, file.fullname))
+				if (listappend (list, file.fullname))
 				{
 					function (& file, list, length);
 				}
@@ -165,27 +165,27 @@ void function(FIND * find, LIST * list, size_t length)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"",
 		PUTOPTV_S_FUNNEL,
 		"include all C language support files",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	LIST list;
 	FIND find;
-	char datetime[DATETIME_MAX];
-	char hostname[HOSTNAME_MAX];
-	char username[USERNAME_MAX];
+	char datetime [DATETIME_MAX];
+	char hostname [HOSTNAME_MAX];
+	char username [USERNAME_MAX];
 	size_t length = TEXTLINE_MAX;
 	time_t now;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
-		switch ((char) (c))
+		switch ((char)(c))
 		{
 		default: 
 			break;
@@ -194,14 +194,14 @@ int main(int argc, char const * argv[])
 	argc -= optind;
 	argv += optind;
 	time (& now);
-	gethostname (hostname, sizeof(hostname));
-	getusername (username, sizeof(username), getuid());
-	strftime (datetime, sizeof(datetime), DAYTIME, localtime(& now));
+	gethostname (hostname, sizeof (hostname));
+	getusername (username, sizeof (username), getuid ());
+	strftime (datetime, sizeof (datetime), DAYTIME, localtime (& now));
 	printf (preamble, datetime, username, hostname);
 	listcreate (& list, _LISTSIZE);
 	while ((argc) && (* argv))
 	{
-		makepath (find.fullname, getenv("PWD"), * argv);
+		makepath (find.fullname, getenv ("PWD"), * argv);
 		partpath (find.fullname, find.pathname, find.filename);
 		partfile (find.filename, find.basename, find.extender);
 		listappend (& list, find.fullname);
@@ -209,7 +209,7 @@ int main(int argc, char const * argv[])
 		printf ("\n/*=*\n *\n");
 		for (list.index = list.start; list.index < list.count; list.index++)
 		{
-			printf (" *   %s\n", list.table[list.index]);
+			printf (" *   %s\n", list.table [list.index]);
 		}
 		printf (" *\n *-*/\n");
 		listrubout (& list);

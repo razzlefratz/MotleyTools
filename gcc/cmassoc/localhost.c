@@ -46,10 +46,10 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"d:h:l",
 		PUTOPTV_S_DIVINE,
@@ -57,42 +57,42 @@ int main(int argc, char const * argv[])
 		"d s\tset domainname to (s)",
 		"h s\tset hostname to (s)",
 		"l\tcreate link " HOSTNAME2 "-->" HOSTNAME1,
-		(char const *) (0)
+		(char const *)(0)
 	};
 	struct stat statinfo;
-	char machine[1024] = "";
-	char network[1024] = "";
+	char machine [1024] = "";
+	char network [1024] = "";
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'h':
-			if (sethostname(optarg, strlen(optarg)))
+			if (sethostname (optarg, strlen (optarg)))
 			{
-				error (1, errno, "%s", argv[0]);
+				error (1, errno, "%s", argv [0]);
 			}
 			break;
 		case 'd':
-			if (setdomainname(optarg, strlen(optarg)))
+			if (setdomainname (optarg, strlen (optarg)))
 			{
-				error (1, errno, "%s", argv[0]);
+				error (1, errno, "%s", argv [0]);
 			}
 			break;
 		case 'l':
-			if (stat(HOSTNAME1, & statinfo))
+			if (stat (HOSTNAME1, & statinfo))
 			{
 				error (1, errno, "Can't stat %s", HOSTNAME1);
 			}
-			if (stat(HOSTNAME2, & statinfo))
+			if (stat (HOSTNAME2, & statinfo))
 			{
 				error (1, errno, "Can't stat %s", HOSTNAME2);
 			}
-			if (remove(HOSTNAME2))
+			if (remove (HOSTNAME2))
 			{
 				error (1, errno, "Can't remove %s", HOSTNAME2);
 			}
-			if (symlink(HOSTNAME1, HOSTNAME2))
+			if (symlink (HOSTNAME1, HOSTNAME2))
 			{
 				error (1, errno, "Can't create %s", HOSTNAME2);
 			}
@@ -101,11 +101,11 @@ int main(int argc, char const * argv[])
 			break;
 		}
 	}
-	if (gethostname(machine, sizeof(machine)))
+	if (gethostname (machine, sizeof (machine)))
 	{
 		error (1, errno, "Can't read gethostname.");
 	}
-	if (getdomainname(network, sizeof(network)))
+	if (getdomainname (network, sizeof (network)))
 	{
 		error (1, errno, "Can't read domain name.");
 	}

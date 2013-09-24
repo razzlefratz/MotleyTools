@@ -31,18 +31,18 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	char digits[8];
-	unsigned digit = sizeof(digits);
-	time_t timer = time((time_t *) (0));
+	char digits [8];
+	unsigned digit = sizeof (digits);
+	time_t timer = time ((time_t *)(0));
 	while (digit--)
 	{
-		digits [digit] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[timer % 36];
+		digits [digit] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ" [timer % 36];
 		timer /= 36;
 	}
-	write (STDOUT_FILENO, digits, sizeof(digits));
+	write (STDOUT_FILENO, digits, sizeof (digits));
 	return (0);
 }
 

@@ -62,18 +62,18 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"c:d:s:",
 		"file [file] [...]",
 		"display files sizes",
-		"d n\tdisplay (n) digits [" LITERAL(DIGIT) "]",
-		"s n\tscale size by (n) [" LITERAL(SCALE) "]",
-		"c n\tdisplay (n) characters [" LITERAL(SCALE) "]",
-		(char const *)(0)
+		"d n\tdisplay (n) digits [" LITERAL (DIGIT) "]",
+		"s n\tscale size by (n) [" LITERAL (SCALE) "]",
+		"c n\tdisplay (n) characters [" LITERAL (SCALE) "]",
+		(char const *) (0)
 	};
 	struct stat statinfo;
 	signed width = WIDTH;
@@ -81,18 +81,18 @@ int main(int argc, char const * argv[])
 	signed scale = SCALE;
 	off_t value;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'c':
-			width = uintspec(optarg, 1, WIDTH_MAX);
+			width = uintspec (optarg, 1, WIDTH_MAX);
 			break;
 		case 'd':
-			digit = uintspec(optarg, 1, DIGIT_MAX);
+			digit = uintspec (optarg, 1, DIGIT_MAX);
 			break;
 		case 's':
-			scale = uintspec(optarg, 1, SCALE_MAX);
+			scale = uintspec (optarg, 1, SCALE_MAX);
 			break;
 		default: 
 			break;
@@ -102,7 +102,7 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	while ((argc) && (* argv))
 	{
-		if (lstat(* argv, & statinfo))
+		if (lstat (* argv, & statinfo))
 		{
 			error (0, errno, "Can't stat %s", * argv);
 		}

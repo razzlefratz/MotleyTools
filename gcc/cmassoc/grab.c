@@ -61,27 +61,27 @@
  *
  *--------------------------------------------------------------------*/
 
-void function(size_t offset, size_t length, flag_t flags)
+void function (size_t offset, size_t length, flag_t flags)
 
 {
 	signed c;
 	while (offset--)
 	{
-		if ((c = getc(stdin)) == EOF)
+		if ((c = getc (stdin)) == EOF)
 		{
 			error (1, errno, "Can't read file");
 		}
 	}
 	while (length--)
 	{
-		if ((c = getc(stdin)) == EOF)
+		if ((c = getc (stdin)) == EOF)
 		{
 			error (1, errno, "Can't read file");
 		}
-		putc (DIGITS_HEX[(c >> 4) & 0x0f], stdout);
-		putc (DIGITS_HEX[(c >> 0) & 0x0f], stdout);
+		putc (DIGITS_HEX [(c >> 4) & 0x0f], stdout);
+		putc (DIGITS_HEX [(c >> 0) & 0x0f], stdout);
 	}
-	if (_anyset(flags, GRAB_NEWLINE))
+	if (_anyset (flags, GRAB_NEWLINE))
 	{
 		putc ('\n', stdout);
 	}
@@ -98,10 +98,10 @@ void function(size_t offset, size_t length, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"l:no:qv",
 		PUTOPTV_S_FILTER,
@@ -111,21 +111,21 @@ int main(int argc, char const * argv[])
 		"o x\toffset to read in bytes",
 		"q\tquiet mode",
 		"v\tverbose mode",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	size_t offset = 0;
 	size_t length = 0;
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'l':
-			length = (size_t) (basespec(optarg, 10, sizeof(size_t)));
+			length = (size_t)(basespec (optarg, 10, sizeof (size_t)));
 			break;
 		case 'o':
-			offset = (size_t) (basespec(optarg, 16, sizeof(size_t)));
+			offset = (size_t)(basespec (optarg, 16, sizeof (size_t)));
 			break;
 		case 'n':
 			_setbits (flags, GRAB_NEWLINE);
@@ -148,7 +148,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			function (offset, length, flags);
 		}

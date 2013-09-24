@@ -78,33 +78,33 @@
  *
  *--------------------------------------------------------------------*/
 
-void function(signed start, signed space, size_t length, flag_t flags)
+void function (signed start, signed space, size_t length, flag_t flags)
 
 {
 	signed c;
 	size_t column;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
 		if (flags & SBAR_B_SHIFT)
 		{
-			for (column = 0; isblank(c); column++)
+			for (column = 0; isblank (c); column++)
 			{
 				if (c == '\t')
 				{
 					column -= column % 8;
 					column += 8;
 				}
-				c = getc(stdin);
+				c = getc (stdin);
 			}
 		}
 		if (c == start)
 		{
 			putc (start, stdout);
-			c = getc(stdin);
+			c = getc (stdin);
 			if ((c == space) || (c == CUPPER) || (c == CLOWER))
 			{
 				putc (space, stdout);
-				c = getc(stdin);
+				c = getc (stdin);
 				if ((c == CUPPER) || (c == CLOWER))
 				{
 					column = length;
@@ -112,24 +112,24 @@ void function(signed start, signed space, size_t length, flag_t flags)
 					{
 						putc (c, stdout);
 					}
-					while (nobreak(c))
+					while (nobreak (c))
 					{
-						c = getc(stdin);
+						c = getc (stdin);
 					}
 				}
 			}
 		}
-		else if(flags & SBAR_B_SHIFT)
+		else if (flags & SBAR_B_SHIFT)
 		{
 			while (column-- > 0)
 			{
 				putc (' ', stdout);
 			}
 		}
-		while (nobreak(c))
+		while (nobreak (c))
 		{
 			putc (c, stdout);
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		putc ('\n', stdout);
 	}
@@ -140,31 +140,31 @@ void function(signed start, signed space, size_t length, flag_t flags)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"c:mw:x",
 		PUTOPTV_S_FILTER,
 		"extend script style comment bars",
-		"c c\tcomments start with character (c) [" LITERAL(FBAR_START) "]",
+		"c c\tcomments start with character (c) [" LITERAL (FBAR_START) "]",
 		"m\tshift comments to left margin",
-		"w n\tmake bars n characters wide [" LITERAL(FBAR_WIDTH) "]",
+		"w n\tmake bars n characters wide [" LITERAL (FBAR_WIDTH) "]",
 		"x\tmake files executable",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	size_t width = SBAR_WIDTH;
 	char start = SBAR_START;
 	char space = SBAR_SPACE;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'c':
-			start = (char)(* optarg);
+			start = (char) (* optarg);
 			break;
 		case 'm':
 			_setbits (flags, SBAR_B_SHIFT);
@@ -173,7 +173,7 @@ int main(int argc, char const * argv[])
 			_setbits (flags, SBAR_B_EXECUTE);
 			break;
 		case 'w':
-			width = uintspec(optarg, 0, 255);
+			width = uintspec (optarg, 0, 255);
 			break;
 		default: 
 			break;
@@ -187,11 +187,11 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
 			if (flags & SBAR_B_EXECUTE)
 			{
-				if (chmod(* argv, 0755))
+				if (chmod (* argv, 0755))
 				{
 					error (0, errno, "can't chmod %s", * argv);
 				}

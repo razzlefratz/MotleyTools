@@ -43,10 +43,10 @@
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"o:n:v",
 		"file [file] [...]",
@@ -54,16 +54,16 @@ int main(int argc, char const * argv[])
 		"o s\told file extension is (s)",
 		"n s\tnew file extension is (s)",
 		"v\tverbose messages ",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	char const * old = "";
 	char const * new = "";
-	char file[FILENAME_MAX];
+	char file [FILENAME_MAX];
 	char * sp;
 	char * cp;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -84,7 +84,7 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	while ((argc) && (* argv))
 	{
-		for (cp = sp = strcpy(file, * argv); * sp; sp++)
+		for (cp = sp = strcpy (file, * argv); * sp; sp++)
 		{
 			if (* sp == FILE_C_EXTENDER)
 			{
@@ -93,18 +93,18 @@ int main(int argc, char const * argv[])
 		}
 		if (cp > file)
 		{
-			if (! strcmp(cp, old))
+			if (! strcmp (cp, old))
 			{
 				strcpy (cp, new);
 			}
 		}
-		if (strcmp(* argv, file))
+		if (strcmp (* argv, file))
 		{
-			if (rename(* argv, file))
+			if (rename (* argv, file))
 			{
 				error (0, errno, "can't rename %s to %s", * argv, file);
 			}
-			else if(_anyset(flags, RETYPE_EVENT))
+			else if (_anyset (flags, RETYPE_EVENT))
 			{
 				error (0, 0, "%s <-- %s", file, * argv);
 			}

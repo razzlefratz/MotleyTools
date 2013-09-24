@@ -76,7 +76,7 @@ static char const * charset = ISO_CHARSET;
  *
  *--------------------------------------------------------------------*/
 
-static unsigned links(unsigned margin, char const * style)
+static unsigned links (unsigned margin, char const * style)
 
 {
 	indent (margin++, "<div class='%s'>", style);
@@ -98,7 +98,7 @@ static unsigned links(unsigned margin, char const * style)
  *
  *--------------------------------------------------------------------*/
 
-static unsigned header(unsigned margin)
+static unsigned header (unsigned margin)
 
 {
 	extern char const * contact;
@@ -119,7 +119,7 @@ static unsigned header(unsigned margin)
 	indent (margin--, "</style>");
 	indent (margin--, "</head>");
 	indent (margin++, "<body class='%s'>", "standard");
-	margin = links(margin, STYLE_TOPLINK);
+	margin = links (margin, STYLE_TOPLINK);
 	indent (margin++, "<h1>");
 	indent (margin, "%s", subject);
 	indent (margin--, "</h1>");
@@ -137,11 +137,11 @@ static unsigned header(unsigned margin)
  *
  *--------------------------------------------------------------------*/
 
-static unsigned body(unsigned margin)
+static unsigned body (unsigned margin)
 
 {
 	signed c;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
 		putc (c, stdout);
 	}
@@ -158,11 +158,11 @@ static unsigned body(unsigned margin)
  *
  *--------------------------------------------------------------------*/
 
-static unsigned footer(unsigned margin)
+static unsigned footer (unsigned margin)
 
 {
 	indent (margin, "<!-- END CONTENT -->");
-	margin = links(margin, STYLE_BOTLINK);
+	margin = links (margin, STYLE_BOTLINK);
 	indent (margin--, "</body>");
 	indent (margin--, "</html>");
 	return (margin);
@@ -178,13 +178,13 @@ static unsigned footer(unsigned margin)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
 	extern char const * subject;
 	extern char const * contact;
 	extern char const * cssfile;
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"op:s:",
 		PUTOPTV_S_FUNNEL,
@@ -192,13 +192,13 @@ int main(int argc, char const * argv[])
 		"o\tprint default profile on stdout",
 		"p f\tuse profile (s) [" HTML_PROFILE "]",
 		"s s\tuse profile section (s) [" HTML_SECTION "]",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	char const * profile = HTML_PROFILE;
 	char const * section = HTML_SECTION;
 	unsigned margin = 0;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -221,25 +221,25 @@ int main(int argc, char const * argv[])
 	}
 	argc -= optind;
 	argv += optind;
-	subject = profilestring(profile, section, "subject", subject);
-	contact = profilestring(profile, section, "contact", contact);
-	cssfile = profilestring(profile, section, "cssfile", cssfile);
-	charset = profilestring(profile, section, "charset", charset);
-	margin = header(margin);
+	subject = profilestring (profile, section, "subject", subject);
+	contact = profilestring (profile, section, "contact", contact);
+	cssfile = profilestring (profile, section, "cssfile", cssfile);
+	charset = profilestring (profile, section, "charset", charset);
+	margin = header (margin);
 	if (! argc)
 	{
-		margin = body(margin);
+		margin = body (margin);
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
-			margin = body(margin);
+			margin = body (margin);
 		}
 		argc--;
 		argv++;
 	}
-	margin = footer(margin);
+	margin = footer (margin);
 	return (0);
 }
 

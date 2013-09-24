@@ -58,17 +58,17 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"qv",
 		"file file",
 		"compare two binary files byte by byte",
 		"q\tquiet mode",
 		"v\tverbose mode",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	unsigned offset;
 	unsigned column;
@@ -78,9 +78,9 @@ int main(int argc, char const * argv[])
 	signed fd2;
 	uint8_t byte1;
 	uint8_t byte2;
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -104,20 +104,20 @@ int main(int argc, char const * argv[])
 	{
 		error (1, ENOTSUP, "Too many files to compare");
 	}
-	if ((fd1 = open(* argv, O_BINARY | O_RDONLY)) == - 1)
+	if ((fd1 = open (* argv, O_BINARY | O_RDONLY)) == - 1)
 	{
 		error (1, errno, FILE_CANTOPEN, * argv);
 	}
 	argc--;
 	argv++;
-	if ((fd2 = open(* argv, O_BINARY | O_RDONLY)) == - 1)
+	if ((fd2 = open (* argv, O_BINARY | O_RDONLY)) == - 1)
 	{
 		error (1, errno, FILE_CANTOPEN, * argv);
 	}
 	argc--;
 	argv++;
-	length1 = read(fd1, & byte1, sizeof(byte1));
-	length2 = read(fd2, & byte2, sizeof(byte2));
+	length1 = read (fd1, & byte1, sizeof (byte1));
+	length2 = read (fd2, & byte2, sizeof (byte2));
 	for (offset = 0; (length1 > 0) || (length2 > 0); offset++)
 	{
 		if ((offset % HEXCMP_GROUP) == 0)
@@ -126,7 +126,7 @@ int main(int argc, char const * argv[])
 			{
 				printf ("\n");
 			}
-			if (_anyset(flags, HEXCMP_VERBOSE))
+			if (_anyset (flags, HEXCMP_VERBOSE))
 			{
 				if ((offset % HEXCMP_BLOCK) == 0)
 				{
@@ -148,13 +148,13 @@ int main(int argc, char const * argv[])
 		if (! length1)
 		{
 			printf (" %s", HEXCMP_EXTRA);
-			length2 = read(fd2, & byte2, sizeof(byte2));
+			length2 = read (fd2, & byte2, sizeof (byte2));
 			continue;
 		}
 		if (! length2)
 		{
 			printf (" %s", HEXCMP_SHORT);
-			length1 = read(fd1, & byte1, sizeof(byte1));
+			length1 = read (fd1, & byte1, sizeof (byte1));
 			continue;
 		}
 		if (byte1 == byte2)
@@ -165,8 +165,8 @@ int main(int argc, char const * argv[])
 		{
 			printf (" %s", HEXCMP_DELTA);
 		}
-		length1 = read(fd1, & byte1, sizeof(byte1));
-		length2 = read(fd2, & byte2, sizeof(byte2));
+		length1 = read (fd1, & byte1, sizeof (byte1));
+		length2 = read (fd2, & byte2, sizeof (byte2));
 	}
 	printf ("\n");
 	exit (0);

@@ -65,15 +65,15 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function(char const string[], char const * extenders[], flag_t flags)
+static void function (char const string [], char const * extenders [], flag_t flags)
 
 {
 	struct _package_
 	{
-		char archive[FILENAME_MAX];
-		char package[FILENAME_MAX];
-		char version[FILENAME_MAX];
-		char trailer[FILENAME_MAX];
+		char archive [FILENAME_MAX];
+		char package [FILENAME_MAX];
+		char version [FILENAME_MAX];
+		char trailer [FILENAME_MAX];
 	}
 	file = 
 	{
@@ -84,7 +84,7 @@ static void function(char const string[], char const * extenders[], flag_t flags
 	char const * package;
 	char const * version;
 	char const * trailer;
-	for (package = version = trailer = string; * string != (char)(0); string++)
+	for (package = version = trailer = string; * string != (char) (0); string++)
 	{
 		if (* string == '/')
 		{
@@ -103,15 +103,15 @@ static void function(char const string[], char const * extenders[], flag_t flags
 		{
 			char const ** extender = extenders;
 			trailer = string;
-			while (* extender != (char const *)(0))
+			while (* extender != (char const *) (0))
 			{
-				if (! strcmp(string, * extender++))
+				if (! strcmp (string, * extender++))
 				{
-					while (* ++ string != (char)(0));
+					while (* ++ string != (char) (0));
 					break;
 				}
 			}
-			if (* string == (char) (0))
+			if (* string == (char)(0))
 			{
 				break;
 			}
@@ -120,15 +120,15 @@ static void function(char const string[], char const * extenders[], flag_t flags
 	if ((package < version) && (version < trailer))
 	{
 		memcpy (file.package, package, version - package);
-		file.package[version - package] = (char)(0);
+		file.package [version - package] = (char) (0);
 		version++;
 		memcpy (file.version, version, trailer - version);
-		file.version[trailer - version] = (char)(0);
+		file.version [trailer - version] = (char) (0);
 		trailer++;
 		memcpy (file.trailer, trailer, string - trailer);
-		file.trailer[string - trailer] = (char)(0);
+		file.trailer [string - trailer] = (char) (0);
 		memcpy (file.archive, package, string - package);
-		file.archive[string - package] = (char)(0);
+		file.archive [string - package] = (char) (0);
 		switch (flags & (PKG_B_PACKAGE | PKG_B_VERSION | PKG_B_TRAILER))
 		{
 		case PKG_B_PACKAGE | PKG_B_VERSION:
@@ -155,10 +155,10 @@ static void function(char const string[], char const * extenders[], flag_t flags
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"pvex:",
 		PUTOPTV_S_DIVINE,
@@ -167,10 +167,10 @@ int main(int argc, char const * argv[])
 		"v\tprint version number",
 		"e\tprint file extension",
 		"x s\tremove extender s [.tar.bz2]",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	char const ** extender;
-	char const * extenders[100] = 
+	char const * extenders [100] = 
 	{
 		".tar",
 		".tgz",
@@ -179,18 +179,18 @@ int main(int argc, char const * argv[])
 		".md5",
 		".md5sum",
 		".asc",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
-	for (extender = extenders; * extender != (char const *)(0); extender++);
-	while (~ (c = getoptv(argc, argv, optv)))
+	for (extender = extenders; * extender != (char const *) (0); extender++);
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'x':
 			* extender++ = optarg;
-			* extender = (char const *)(0);
+			* extender = (char const *) (0);
 			break;
 		case 'p':
 			_setbits (flags, PKG_B_PACKAGE);
@@ -209,15 +209,15 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	if (! argc)
 	{
-		char pathname[TEXTLINE_MAX];
+		char pathname [TEXTLINE_MAX];
 		signed length;
-		while ((length = fgetline(pathname, sizeof(pathname), stdin)) != - 1)
+		while ((length = fgetline (pathname, sizeof (pathname), stdin)) != - 1)
 		{
-			while (isspace(pathname[-- length]))
+			while (isspace (pathname [-- length]))
 			{
-				pathname [length] = (char)(0);
+				pathname [length] = (char) (0);
 			}
-			function ((char const *)(pathname), extenders, flags);
+			function ((char const *) (pathname), extenders, flags);
 		}
 	}
 	while ((argc) && (* argv))

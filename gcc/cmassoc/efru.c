@@ -85,36 +85,36 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
 	extern struct channel channel;
 	struct ethernet_frame frame;
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"i:qt:v",
 		PUTOPTV_S_DIVINE,
 		"802.3 Ethernet Frame Data Streamer",
-		"e x\tethertype is (x) [" LITERAL(ETH_P_802_2) "]",
-		"i n\tuse host interface n [" LITERAL(CHANNEL_ETHDEVICE) "]",
+		"e x\tethertype is (x) [" LITERAL (ETH_P_802_2) "]",
+		"i n\tuse host interface n [" LITERAL (CHANNEL_ETHDEVICE) "]",
 		"q\tsuppress normal output",
-		"t n\tread timeout is (n) milliseconds [" LITERAL(CHANNEL_TIMEOUT) "]",
+		"t n\tread timeout is (n) milliseconds [" LITERAL (CHANNEL_TIMEOUT) "]",
 		"v\tverbose messages on stdout",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	signed c;
-	if (getenv(ETHDEVICE))
+	if (getenv (ETHDEVICE))
 	{
-		channel.ifname = strdup(getenv(ETHDEVICE));
+		channel.ifname = strdup (getenv (ETHDEVICE));
 	}
 	channel.type = ETH_P_802_2;
 	channel.timer = - 1;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'e':
-			channel.type = (uint16_t) (basespec(optarg, 16, sizeof(channel.type)));
+			channel.type = (uint16_t)(basespec (optarg, 16, sizeof (channel.type)));
 			break;
 		case 'i':
 			channel.ifname = optarg;
@@ -123,7 +123,7 @@ int main(int argc, char const * argv[])
 			_setbits (channel.flags, CHANNEL_SILENCE);
 			break;
 		case 't':
-			channel.timer = (unsigned) (uintspec(optarg, 0, UINT_MAX));
+			channel.timer = (unsigned)(uintspec (optarg, 0, UINT_MAX));
 			break;
 		case 'v':
 			_setbits (channel.flags, CHANNEL_VERBOSE);
@@ -134,14 +134,14 @@ int main(int argc, char const * argv[])
 	}
 	argc -= optind;
 	argv += optind;
-	if (geteuid())
+	if (geteuid ())
 	{
 		error (1, EPERM, ERROR_NOTROOT);
 	}
 	openchannel (& channel);
-	while (readpacket(& channel, & frame, sizeof(frame)) > 0)
+	while (readpacket (& channel, & frame, sizeof (frame)) > 0)
 	{
-		write (STDOUT_FILENO, frame.frame_body, ntohs(frame.frame_type));
+		write (STDOUT_FILENO, frame.frame_body, ntohs (frame.frame_type));
 	}
 	closechannel (& channel);
 	return (0);

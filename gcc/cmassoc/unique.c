@@ -64,12 +64,12 @@
  *
  *--------------------------------------------------------------------*/
 
-static void put(size_t count, char * string, flag_t flags, FILE * fp)
+static void put (size_t count, char * string, flag_t flags, FILE * fp)
 
 {
-	if (_anyset(flags, UNIQ_B_NUMBER))
+	if (_anyset (flags, UNIQ_B_NUMBER))
 	{
-		fprintf (fp, "%4lu ", (unsigned long) (count));
+		fprintf (fp, "%4lu ", (unsigned long)(count));
 	}
 	fputs (string, stdout);
 	return;
@@ -91,7 +91,7 @@ static void put(size_t count, char * string, flag_t flags, FILE * fp)
  *
  *--------------------------------------------------------------------*/
 
-static void function(size_t length, flag_t flags)
+static void function (size_t length, flag_t flags)
 
 {
 	struct line
@@ -101,14 +101,14 @@ static void function(size_t length, flag_t flags)
 	};
 	struct line one;
 	struct line two;
-	struct line * old = two.next = (struct line *)(& one);
-	struct line * new = one.next = (struct line *)(& two);
+	struct line * old = two.next = (struct line *) (& one);
+	struct line * new = one.next = (struct line *) (& two);
 	size_t count = 1;
-	one.text = (char *) (malloc(length));
-	two.text = (char *) (malloc(length));
-	one.text[0] = (char)(0);
-	two.text[0] = (char)(0);
-	while (fgets(new->text, length, stdin))
+	one.text = (char *)(malloc (length));
+	two.text = (char *)(malloc (length));
+	one.text [0] = (char) (0);
+	two.text [0] = (char) (0);
+	while (fgets (new->text, length, stdin))
 	{
 		char * np = new->text;
 		char * op = old->text;
@@ -119,14 +119,14 @@ static void function(size_t length, flag_t flags)
 		}
 		if ((* np) || (* op))
 		{
-			if (_anyset(flags, UNIQ_B_UNIQUE))
+			if (_anyset (flags, UNIQ_B_UNIQUE))
 			{
 				if (count == 1)
 				{
 					put (count, new->text, flags, stdout);
 				}
 			}
-			else if(_anyset(flags, UNIQ_B_MULT))
+			else if (_anyset (flags, UNIQ_B_MULT))
 			{
 				if (count != 1)
 				{
@@ -157,29 +157,29 @@ static void function(size_t length, flag_t flags)
  *   
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"cdr:u",
 		PUTOPTV_S_FUNNEL,
 		"output unique lines",
 		"c\tcount occurances",
 		"d\toutput only duplicate lines",
-		"r n\tmaximum line length is (n) bytes [" LITERAL(_LINESIZE) "]",
+		"r n\tmaximum line length is (n) bytes [" LITERAL (_LINESIZE) "]",
 		"u\toutput only unique lines",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	size_t length = _LINESIZE;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'r':
-			length = uintspec(optarg, 1, SHRT_MAX);
+			length = uintspec (optarg, 1, SHRT_MAX);
 			break;
 		case 'u':
 			_setbits (flags, UNIQ_B_UNIQUE);
@@ -202,7 +202,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			function (length, flags);
 		}

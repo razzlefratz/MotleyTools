@@ -83,18 +83,18 @@
  *
  *--------------------------------------------------------------------*/
 
-void function(unsigned minimum, unsigned maximum, unsigned column, char cc)
+void function (unsigned minimum, unsigned maximum, unsigned column, char cc)
 
 {
 	unsigned prev = 1;
 	unsigned next = 1;
-	signed c = getc(stdin);
+	signed c = getc (stdin);
 	while (c != EOF)
 	{
 		if (c == '\n')
 		{
 			putc (c, stdout);
-			c = getc(stdin);
+			c = getc (stdin);
 			prev = next = 1;
 			continue;
 		}
@@ -106,22 +106,22 @@ void function(unsigned minimum, unsigned maximum, unsigned column, char cc)
 				putc (' ', stdout);
 			}
 			putc (c, stdout);
-			c = getc(stdin);
+			c = getc (stdin);
 			next++;
 			continue;
 		}
-		if (! isblank(c))
+		if (! isblank (c))
 		{
 			while (prev++ < next)
 			{
 				putc (' ', stdout);
 			}
 			putc (c, stdout);
-			c = getc(stdin);
+			c = getc (stdin);
 			next++;
 			continue;
 		}
-		c = getc(stdin);
+		c = getc (stdin);
 		next++;
 	}
 	return;
@@ -138,10 +138,10 @@ void function(unsigned minimum, unsigned maximum, unsigned column, char cc)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"a:b:c:t:",
 		PUTOPTV_S_FILTER,
@@ -150,28 +150,28 @@ int main(int argc, char const * argv[])
 		"b n\tbefore column (n)",
 		"c c\talignment character (c)",
 		"t n\talignment column (n)",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	unsigned minimum = 0;
 	unsigned maximum = - 1;
 	unsigned character = 0;
 	unsigned column = 0;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'a':
-			minimum = uintspec(optarg, 0, SHRT_MAX);
+			minimum = uintspec (optarg, 0, SHRT_MAX);
 			break;
 		case 'b':
-			maximum = uintspec(optarg, 0, SHRT_MAX);
+			maximum = uintspec (optarg, 0, SHRT_MAX);
 			break;
 		case 'c':
 			character = * optarg;
 			break;
 		case 't':
-			column = uintspec(optarg, 0, SHRT_MAX);
+			column = uintspec (optarg, 0, SHRT_MAX);
 			break;
 		default: 
 			break;
@@ -185,7 +185,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
 			function (minimum, maximum, column, character);
 		}

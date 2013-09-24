@@ -86,7 +86,7 @@ GRAPH;
  *
  *--------------------------------------------------------------------*/
 
-static void display(signed x[], signed y[], signed count, struct graph * graph)
+static void display (signed x [], signed y [], signed count, struct graph * graph)
 
 {
 	printf ("%s\n", graph->title);
@@ -131,7 +131,7 @@ static void display(signed x[], signed y[], signed count, struct graph * graph)
  *
  *--------------------------------------------------------------------*/
 
-static void arrange(signed x[], signed y[], signed count)
+static void arrange (signed x [], signed y [], signed count)
 
 {
 	signed lower;
@@ -141,13 +141,13 @@ static void arrange(signed x[], signed y[], signed count)
 	{
 		for (lower = upper; lower > 0; lower--)
 		{
-			if (x[lower] < x[lower - 1])
+			if (x [lower] < x [lower - 1])
 			{
-				value = x[lower];
-				x [lower] = x[lower - 1];
+				value = x [lower];
+				x [lower] = x [lower - 1];
 				x [lower - 1] = value;
-				value = y[lower];
-				y [lower] = y[lower - 1];
+				value = y [lower];
+				y [lower] = y [lower - 1];
 				y [lower - 1] = value;
 			}
 		}
@@ -167,105 +167,105 @@ static void arrange(signed x[], signed y[], signed count)
  *
  *--------------------------------------------------------------------*/
 
-static void collect(char const * filename, signed limit, struct graph * graph, flag_t flags)
+static void collect (char const * filename, signed limit, struct graph * graph, flag_t flags)
 
 {
-	signed x[limit];
-	signed y[limit];
+	signed x [limit];
+	signed y [limit];
 	signed index = 0;
 	signed value = 0;
 	signed sign = 0;
 	signed line = 1;
-	signed c = getc(stdin);
+	signed c = getc (stdin);
 	while ((c != EOF) && (index < limit))
 	{
 		if ((c == '#') || (c == ';'))
 		{
 			do 
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (nobreak(c));
+			while (nobreak (c));
 		}
-		if (isspace(c))
+		if (isspace (c))
 		{
 			if (c == '\n')
 			{
 				line++;
 			}
-			c = getc(stdin);
+			c = getc (stdin);
 			continue;
 		}
 		if (c == '-')
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 			sign = - 1;
 		}
-		else if(c == '+')
+		else if (c == '+')
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 			sign = 1;
 		}
 		else 
 		{
 			sign = 1;
 		}
-		if (! isdigit(c))
+		if (! isdigit (c))
 		{
 			error_on_line (1, EINVAL, filename, line, "x value");
 		}
 		value = 0;
-		while (isdigit(c))
+		while (isdigit (c))
 		{
 			value *= 10;
 			value += c - '0';
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		x [index] = sign * value;
-		while (isblank(c))
+		while (isblank (c))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		if (c == '-')
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 			sign = - 1;
 		}
-		else if(c == '+')
+		else if (c == '+')
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 			sign = 1;
 		}
 		else 
 		{
 			sign = 1;
 		}
-		if (! isdigit(c))
+		if (! isdigit (c))
 		{
 			error_on_line (1, EINVAL, filename, line, "y value");
 		}
 		value = 0;
-		while (isdigit(c))
+		while (isdigit (c))
 		{
 			value *= 10;
 			value += c - '0';
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		y [index] = sign * value;
-		while (isblank(c))
+		while (isblank (c))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
-		if (nobreak(c))
+		if (nobreak (c))
 		{
 			error_on_line (1, EINVAL, filename, line, "line end");
 		}
-		if (x[index] || y[index])
+		if (x [index] || y [index])
 		{
 			index++;
 		}
 	}
-	if (_anyset(flags, GRAPH_INVERT))
+	if (_anyset (flags, GRAPH_INVERT))
 	{
 		arrange (y, x, index);
 		display (y, x, index, graph);
@@ -293,10 +293,10 @@ static void collect(char const * filename, signed limit, struct graph * graph, f
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"c:o:s:t:x",
 		PUTOPTV_S_FUNNEL,
@@ -306,7 +306,7 @@ int main(int argc, char const * argv[])
 		"s n\tscale data",
 		"t s\tgraph title",
 		"x\texchange x and y values",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	struct graph graph = 
 	{
@@ -321,18 +321,18 @@ int main(int argc, char const * argv[])
 	signed count = GRAPH_COUNT;
 	flag_t flags = 0;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'c':
-			count = (signed) (uintspec(optarg, 1, INT_MAX));
+			count = (signed)(uintspec (optarg, 1, INT_MAX));
 			break;
 		case 'o':
-			graph.shift = (signed) (sintspec(optarg, graph.shift));
+			graph.shift = (signed)(sintspec (optarg, graph.shift));
 			break;
 		case 's':
-			graph.scale = (signed) (uintspec(optarg, 1, INT_MAX));
+			graph.scale = (signed)(uintspec (optarg, 1, INT_MAX));
 			break;
 		case 't':
 			graph.title = optarg;
@@ -352,7 +352,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			collect (* argv, count, & graph, flags);
 		}

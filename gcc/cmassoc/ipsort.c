@@ -93,29 +93,29 @@ TREE;
  *
  *--------------------------------------------------------------------*/
 
-TREE * catalog(TREE * node, const unsigned value[])
+TREE * catalog (TREE * node, const unsigned value [])
 
 {
 	if (* value != END)
 	{
-		if (node == (TREE *)(0))
+		if (node == (TREE *) (0))
 		{
-			node = NEW(TREE);
-			node->one = node->two = node->sub = (TREE *)(0);
+			node = NEW (TREE);
+			node->one = node->two = node->sub = (TREE *) (0);
 			node->value = * value;
 			node->count = 0;
 		}
 		if (* value < node->value)
 		{
-			node->one = catalog(node->one, value);
+			node->one = catalog (node->one, value);
 		}
-		else if(* value > node->value)
+		else if (* value > node->value)
 		{
-			node->two = catalog(node->two, value);
+			node->two = catalog (node->two, value);
 		}
 		else 
 		{
-			node->sub = catalog(node->sub, value +  1);
+			node->sub = catalog (node->sub, value +  1);
 			node->count++;
 		}
 	}
@@ -130,23 +130,23 @@ TREE * catalog(TREE * node, const unsigned value[])
  *
  *--------------------------------------------------------------------*/
 
-void collate(TREE * node, char buffer[], size_t length, size_t offset, flag_t flags)
+void collate (TREE * node, char buffer [], size_t length, size_t offset, flag_t flags)
 
 {
 	extern char const * rootnode;
 	extern char const * leafnode;
-	if (node != (TREE *)(0))
+	if (node != (TREE *) (0))
 	{
 		size_t count = offset;
 		collate (node->one, buffer, length, offset, flags);
-		if (node->sub != (TREE *)(0))
+		if (node->sub != (TREE *) (0))
 		{
-			count += snprintf(buffer +  count, length - count, rootnode, node->value);
+			count += snprintf (buffer +  count, length - count, rootnode, node->value);
 			collate (node->sub, buffer, length - count, count, flags);
 		}
 		else 
 		{
-			count += snprintf(buffer +  count, length - count, leafnode, node->value);
+			count += snprintf (buffer +  count, length - count, leafnode, node->value);
 			if (flags & IPSORT_COUNT)
 			{
 				printf ("%6d ", node->count);
@@ -166,27 +166,27 @@ void collate(TREE * node, char buffer[], size_t length, size_t offset, flag_t fl
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
 	extern char const * rootnode;
 	extern char const * leafnode;
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"an",
 		"ipaddr [ipaddr] [...]",
 		"copy one or more files to stdout",
 		"a\talign octet fields",
 		"n\tprint occurances",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	TREE * tree = (TREE *)(0);
-	char buffer[TEXTLINE_MAX];
-	char const * strings[IP_ADDR_OCTETS +  1];
-	unsigned values[IP_ADDR_OCTETS +  1];
-	flag_t flags = (flag_t)(0);
+	TREE * tree = (TREE *) (0);
+	char buffer [TEXTLINE_MAX];
+	char const * strings [IP_ADDR_OCTETS +  1];
+	unsigned values [IP_ADDR_OCTETS +  1];
+	flag_t flags = (flag_t) (0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -205,36 +205,36 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	if (! argc)
 	{
-		while (getIPv4(buffer, sizeof(buffer), stdin))
+		while (getIPv4 (buffer, sizeof (buffer), stdin))
 		{
 			strsplit (strings, IP_ADDR_OCTETS +  1, buffer, IP_ADDR_EXTENDER);
-			for (c = 0; strings[c] != (char *)(0); c++)
+			for (c = 0; strings [c] != (char *) (0); c++)
 			{
-				values [c] = atoi(strings[c]);
+				values [c] = atoi (strings [c]);
 			}
 			values [c] = END;
-			tree = catalog(tree, values);
+			tree = catalog (tree, values);
 		}
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
-			while (getIPv4(buffer, sizeof(buffer), stdin))
+			while (getIPv4 (buffer, sizeof (buffer), stdin))
 			{
 				strsplit (strings, IP_ADDR_OCTETS +  1, buffer, IP_ADDR_EXTENDER);
-				for (c = 0; strings[c]; c++)
+				for (c = 0; strings [c]; c++)
 				{
-					values [c] = atoi(strings[c]);
+					values [c] = atoi (strings [c]);
 				}
 				values [c] = END;
-				tree = catalog(tree, values);
+				tree = catalog (tree, values);
 			}
 		}
 		argc--;
 		argv++;
 	}
-	collate (tree, buffer, sizeof(buffer), 0, flags);
+	collate (tree, buffer, sizeof (buffer), 0, flags);
 	exit (0);
 }
 

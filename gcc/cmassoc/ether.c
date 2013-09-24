@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <net/ethernet.h>
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
 	printf ("ETHER_MAX_LEN %d\n", ETHER_MAX_LEN);

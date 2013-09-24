@@ -50,27 +50,27 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function()
+static void function ()
 
 {
 	char c;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
-		if (isxdigit(c))
+		if (isxdigit (c))
 		{
-			while (isxdigit(c))
+			while (isxdigit (c))
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (isblank(c) || isxdigit(c))
+			while (isblank (c) || isxdigit (c))
 			{
 				putc (c, stdout);
-				c = getc(stdin);
+				c = getc (stdin);
 			}
 		}
-		while (nobreak(c))
+		while (nobreak (c))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		putc ('\n', stdout);
 	}
@@ -88,18 +88,18 @@ static void function()
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"",
 		PUTOPTV_S_FUNNEL,
 		"hex dump to hex file converter",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -115,7 +115,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (! freopen(* argv, "rb", stdin))
+		if (! freopen (* argv, "rb", stdin))
 		{
 			error (1, errno, "%s", * argv);
 		}

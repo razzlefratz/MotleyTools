@@ -49,10 +49,10 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"tmb",
 		PUTOPTV_S_FUNNEL,
@@ -60,11 +60,11 @@ int main(int argc, char const * argv[])
 		"t\ttop of screen",
 		"m\tmiddle of screen",
 		"b\tbottom of screen",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	unsigned line;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{

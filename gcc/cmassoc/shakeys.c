@@ -79,18 +79,18 @@
  *
  *--------------------------------------------------------------------*/
 
-void function(flag_t flags)
+void function (flag_t flags)
 
 {
 	struct sha256 sha256;
-	byte digest[SHA256_DIGEST_LENGTH];
-	char phrase[BUFSIZ];
+	byte digest [SHA256_DIGEST_LENGTH];
+	char phrase [BUFSIZ];
 	char * sp;
 	unsigned line = 0;
 	signed c;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
-		if (! isprint(c))
+		if (! isprint (c))
 		{
 			if (c == '\n')
 			{
@@ -99,15 +99,15 @@ void function(flag_t flags)
 			continue;
 		}
 		sp = phrase;
-		while (isprint(c))
+		while (isprint (c))
 		{
-			if ((size_t) (sp - phrase) < (sizeof(phrase) - 1))
+			if ((size_t)(sp - phrase) < (sizeof (phrase) - 1))
 			{
-				* sp++ = (char) (c);
+				* sp++ = (char)(c);
 			}
-			c = getc(stdin);
+			c = getc (stdin);
 		}
-		* sp = (char) (0);
+		* sp = (char)(0);
 		if ((c != '\r') && (c != '\n') && (c != EOF))
 		{
 			error (0, ENOTSUP, "illegal characters on line %d", line);
@@ -126,9 +126,9 @@ void function(flag_t flags)
 		SHA256Reset (& sha256);
 		SHA256Write (& sha256, phrase, sp - phrase);
 		SHA256Fetch (& sha256, digest);
-		if (_allclr(flags, KEY_VERBOSE))
+		if (_allclr (flags, KEY_VERBOSE))
 		{
-			SHA256Print (digest, (char const *) (0));
+			SHA256Print (digest, (char const *)(0));
 			continue;
 		}
 		SHA256Print (digest, phrase);
@@ -147,21 +147,21 @@ void function(flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"qv",
 		"password [password] [...]",
 		"SHA256 key generator",
 		"q\tquiet mode",
 		"v\tverbose mode",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -183,7 +183,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (! freopen(* argv, "rb", stdin))
+		if (! freopen (* argv, "rb", stdin))
 		{
 			error (0, errno, FILE_CANTOPEN, * argv);
 		}

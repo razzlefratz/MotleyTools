@@ -51,21 +51,21 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"c:",
 		"command [command] [...]",
 		"Log and execute command sequences",
 		"c s\tcomment text",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	FILE * fp;
-	char const * comment = (char const *) (0);
+	char const * comment = (char const *)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -86,9 +86,9 @@ int main(int argc, char const * argv[])
 	while ((argc) && (* argv))
 	{
 		printf ("# %s\n", * argv);
-		if ((fp = popen(* argv, "r")))
+		if ((fp = popen (* argv, "r")))
 		{
-			while ((c = getc(fp)) != EOF)
+			while ((c = getc (fp)) != EOF)
 			{
 				putc (c, stdout);
 			}

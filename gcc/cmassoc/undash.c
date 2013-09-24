@@ -59,12 +59,12 @@
  *
  *--------------------------------------------------------------------*/
 
-void function(flag_t flags)
+void function (flag_t flags)
 
 {
 	signed c;
 	signed o;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
 		switch (c)
 		{
@@ -72,23 +72,23 @@ void function(flag_t flags)
 			do 
 			{
 				putc (c, stdout);
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (nobreak(c));
+			while (nobreak (c));
 			putc ('\n', stdout);
 			break;
 		case '\\':
-			c = getc(stdin);
+			c = getc (stdin);
 			if (c == '\n')
 			{
 				do 
 				{
-					c = getc(stdin);
+					c = getc (stdin);
 				}
-				while (isblank(c));
+				while (isblank (c));
 				ungetc (c, stdin);
 			}
-			else if(c == EOF)
+			else if (c == EOF)
 			{
 				putc ('\\', stdout);
 				putc ('\n', stdout);
@@ -105,20 +105,20 @@ void function(flag_t flags)
 			do 
 			{
 				putc (c, stdout);
-				o = getc(stdin);
+				o = getc (stdin);
 				if (c == '\\')
 				{
 					putc (c, stdout);
-					c = getc(stdin);
+					c = getc (stdin);
 					putc (c, stdout);
-					c = getc(stdin);
+					c = getc (stdin);
 				}
 			}
 			while ((c != EOF) && (c != o));
 			putc (o, stdout);
 			break;
 		case '-':
-			c = getc(stdin);
+			c = getc (stdin);
 			if (c == '-')
 			{
 				putc ('\\', stdout);
@@ -144,19 +144,19 @@ void function(flag_t flags)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"h",
 		PUTOPTV_S_FILTER,
 		"break double-dashed arguments out onto individual lines;",
-		(char *)(0)
+		(char *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -179,7 +179,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
 			function (flags);
 		}

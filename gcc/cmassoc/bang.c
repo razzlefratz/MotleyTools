@@ -73,19 +73,19 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function(struct _find_ * find, size_t length, flag_t flags)
+static void function (struct _find_ * find, size_t length, flag_t flags)
 
 {
-	time_t now = time(& now);
-	struct tm * tm = localtime(& now);
-	char buffer[length];
+	time_t now = time (& now);
+	struct tm * tm = localtime (& now);
+	char buffer [length];
 	length = 0;
-	length += snprintf(buffer +  length, sizeof(buffer) - length, "#!/bin/bash\n");
-	length += snprintf(buffer +  length, sizeof(buffer) - length, "# file: %s\n", find->pathname);
-	length += snprintf(buffer +  length, sizeof(buffer) - length, "# Published %04d by Charles Maier Associates Limited for internal use;\n", tm->tm_year +  1900);
-	length += snprintf(buffer +  length, sizeof(buffer) - length, "\n");
+	length += snprintf (buffer +  length, sizeof (buffer) - length, "#!/bin/bash\n");
+	length += snprintf (buffer +  length, sizeof (buffer) - length, "# file: %s\n", find->pathname);
+	length += snprintf (buffer +  length, sizeof (buffer) - length, "# Published %04d by Charles Maier Associates Limited for internal use;\n", tm->tm_year +  1900);
+	length += snprintf (buffer +  length, sizeof (buffer) - length, "\n");
 	write (STDOUT_FILENO, buffer, length);
-	while ((length = read(STDIN_FILENO, buffer, sizeof(buffer))) > 0)
+	while ((length = read (STDIN_FILENO, buffer, sizeof (buffer))) > 0)
 	{
 		write (STDOUT_FILENO, buffer, length);
 	}
@@ -103,11 +103,11 @@ static void function(struct _find_ * find, size_t length, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
 	extern FIND find;
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"e:p:x",
 		PUTOPTV_S_FILTER,
@@ -115,24 +115,24 @@ int main(int argc, char const * argv[])
 		"e s\tpathname defined by environement variable s",
 		"p s\tpathname string is s",
 		"x\tmake file executable",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	char const * pathname = "";
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	size_t length = _LINESIZE;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'e':
-			if ((pathname = getenv(optarg)) == (char *) (0))
+			if ((pathname = getenv (optarg)) == (char *)(0))
 			{
 				error (1, errno, "symbol %s not defined", optarg);
 			}
 			break;
 		case 't':
-			if ((pathname = getenv("CMTOOLS")) == (char *) (0))
+			if ((pathname = getenv ("CMTOOLS")) == (char *)(0))
 			{
 				error (1, errno, "symbol CMTOOLS is undefined");
 			}
@@ -156,7 +156,7 @@ int main(int argc, char const * argv[])
 	while ((argc) && (* argv))
 	{
 		makefind (& find, * argv);
-		if (vfopen(find.fullname))
+		if (vfopen (find.fullname))
 		{
 			if ((! pathname) || (! * pathname))
 			{
@@ -165,9 +165,9 @@ int main(int argc, char const * argv[])
 			strcat (find.pathname, PATH_S_EXTENDER);
 			strcat (find.pathname, find.filename);
 			function (& find, length, flags);
-			if (_anyset(flags, SHBANG_EXECUTE))
+			if (_anyset (flags, SHBANG_EXECUTE))
 			{
-				if (chmod(find.fullname, 0755))
+				if (chmod (find.fullname, 0755))
 				{
 					error (0, errno, "can't chmod %s", find.fullname);
 				}

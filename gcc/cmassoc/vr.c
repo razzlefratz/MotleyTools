@@ -79,18 +79,18 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function(size_t length, flag_t flags)
+static void function (size_t length, flag_t flags)
 
 {
 	int last = 0;
 	int next = 0;
 	int line = 0;
 	signed c;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
 		if (c == '\n')
 		{
-			if (_anyset(flags, VR_B_FILL))
+			if (_anyset (flags, VR_B_FILL))
 			{
 				while (last++ < length)
 				{
@@ -100,7 +100,7 @@ static void function(size_t length, flag_t flags)
 			putc ('\n', stdout);
 			last = next = 0;
 		}
-		else if(next < length)
+		else if (next < length)
 		{
 			if (c != SP)
 			{
@@ -112,7 +112,7 @@ static void function(size_t length, flag_t flags)
 			}
 			next++;
 		}
-		else if(_anyset(flags, VR_B_WRAP))
+		else if (_anyset (flags, VR_B_WRAP))
 		{
 			while (last++ < length)
 			{
@@ -133,7 +133,7 @@ static void function(size_t length, flag_t flags)
 		}
 		else line++;
 	}
-	if (_anyset(flags, VR_B_COUNT) && (line > 0))
+	if (_anyset (flags, VR_B_COUNT) && (line > 0))
 	{
 		error (0, 0, "truncated %d records", line);
 	}
@@ -144,10 +144,10 @@ static void function(size_t length, flag_t flags)
  *  
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	char const * optv[] = 
+	char const * optv [] = 
 	{
 		"r:pwc",
 		PUTOPTV_S_FILTER,
@@ -156,17 +156,17 @@ int main(int argc, char const * argv[])
 		"p\tpad short records ",
 		"w\twrap long records ",
 		"c\tcount truncated records ",
-		(char const *) (0)
+		(char const *)(0)
 	};
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	size_t length = TEXTLINE_MAX;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'r':
-			length = uintspec(optarg, 0, SHRT_MAX);
+			length = uintspec (optarg, 0, SHRT_MAX);
 			break;
 		case 'p':
 			_setbits (flags, VR_B_FILL);
@@ -189,7 +189,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
 			function (length, flags);
 		}

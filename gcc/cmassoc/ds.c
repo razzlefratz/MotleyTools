@@ -66,23 +66,23 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"f:",
 		"file [file] [...]",
 		"digital dactyloscope",
 		"f f\tfingerprint registry [" REGISTRY "]",
-		(char const *) (0)
+		(char const *)(0)
 	};
-	byte buffer[BUFFERSIZE];
-	byte digest[DIGESTSIZE];
+	byte buffer [BUFFERSIZE];
+	byte digest [DIGESTSIZE];
 	char const * registry = REGISTRY;
 	signed fd;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -95,20 +95,20 @@ int main(int argc, char const * argv[])
 	}
 	argc -= optind;
 	argv += optind;
-	if ((fd = open(registry, O_BINARY | O_RDONLY)) == - 1)
+	if ((fd = open (registry, O_BINARY | O_RDONLY)) == - 1)
 	{
 		error (1, errno, FILE_CANTOPEN, registry);
 	}
 	while ((argc) && (* argv))
 	{
-		if (lseek(fd, 0, SEEK_SET))
+		if (lseek (fd, 0, SEEK_SET))
 		{
 			error (1, errno, FILE_CANTHOME, registry);
 		}
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
-			SHA256Ident (fileno(stdin), buffer, sizeof(buffer), digest);
-			printf ("%s %s\n", SHA256Match(fd, digest)? "+": "-", * argv);
+			SHA256Ident (fileno (stdin), buffer, sizeof (buffer), digest);
+			printf ("%s %s\n", SHA256Match (fd, digest)? "+": "-", * argv);
 		}
 		argc--;
 		argv++;

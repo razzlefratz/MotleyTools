@@ -73,51 +73,51 @@
  *
  *--------------------------------------------------------------------*/
 
-void function(flag_t flags)
+void function (flag_t flags)
 
 {
-	extern char const * sv_ascii[];
-	extern char const * sv_glyph[];
+	extern char const * sv_ascii [];
+	extern char const * sv_glyph [];
 	char * sp1 = "";
 	char * sp2 = "";
 	signed c;
-	if (_anyset(flags, VIS_B_BOLD))
+	if (_anyset (flags, VIS_B_BOLD))
 	{
-		if (isatty(fileno(stdout)))
+		if (isatty (fileno (stdout)))
 		{
 			sp1 = VIS_S_ENBOLD;
 			sp2 = VIS_S_NORMAL;
 		}
 	}
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
 		if (c == '\n')
 		{
 			putc (c, stdout);
 			continue;
 		}
-		if (iscntrl(c))
+		if (iscntrl (c))
 		{
 			fputs (sp1, stdout);
-			if (_anyset(flags, VIS_B_NAME))
+			if (_anyset (flags, VIS_B_NAME))
 			{
-				printf ("[%s]", sv_ascii[(unsigned)(c)]);
+				printf ("[%s]", sv_ascii [(unsigned) (c)]);
 			}
-			else if(_anyset(flags, VIS_B_HTML))
+			else if (_anyset (flags, VIS_B_HTML))
 			{
-				printf ("&%s;", sv_glyph[(unsigned)(c)]);
+				printf ("&%s;", sv_glyph [(unsigned) (c)]);
 			}
-			else if(_anyset(flags, VIS_B_CNTL))
+			else if (_anyset (flags, VIS_B_CNTL))
 			{
-				printf ("^%c", ((unsigned)(c) | (0x0040)));
+				printf ("^%c", ((unsigned) (c) | (0x0040)));
 			}
-			else if(_anyset(flags, VIS_B_UNIX))
+			else if (_anyset (flags, VIS_B_UNIX))
 			{
-				printf ("\\%03o", (unsigned)(c));
+				printf ("\\%03o", (unsigned) (c));
 			}
-			else if(_anyset(flags, VIS_B_IETF))
+			else if (_anyset (flags, VIS_B_IETF))
 			{
-				printf ("%%%02X", (unsigned)(c));
+				printf ("%%%02X", (unsigned) (c));
 			}
 			else 
 			{
@@ -135,10 +135,10 @@ void function(flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"acgoxb",
 		PUTOPTV_S_FUNNEL,
@@ -149,11 +149,11 @@ int main(int argc, char const * argv[])
 		"x\tshow IETF hexidecimal octets",
 		"o\tshow UNIX octal codes",
 		"b\tshow in bold",
-		(char const *) (0)
+		(char const *)(0)
 	};
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -192,7 +192,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			function (flags);
 		}

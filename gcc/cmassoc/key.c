@@ -84,7 +84,7 @@ static unsigned count = 1;
  *
  *--------------------------------------------------------------------*/
 
-static void stop(signo_t signal)
+static void stop (signo_t signal)
 
 {
 	count = 0;
@@ -101,36 +101,36 @@ static void stop(signo_t signal)
  *
  *--------------------------------------------------------------------*/
 
-static void function(void * secret, size_t length, flag_t flags)
+static void function (void * secret, size_t length, flag_t flags)
 
 {
 	struct sigaction sa;
 	struct sha256 sha256;
-	byte digest[SHA256_DIGEST_LENGTH];
-	memset (& sa, 0, sizeof(struct sigaction));
+	byte digest [SHA256_DIGEST_LENGTH];
+	memset (& sa, 0, sizeof (struct sigaction));
 	sa.sa_handler = stop;
-	sigaction (SIGTERM, & sa, (struct sigaction *) (0));
-	sigaction (SIGQUIT, & sa, (struct sigaction *) (0));
-	sigaction (SIGTSTP, & sa, (struct sigaction *) (0));
-	sigaction (SIGINT, & sa, (struct sigaction *) (0));
-	sigaction (SIGHUP, & sa, (struct sigaction *) (0));
+	sigaction (SIGTERM, & sa, (struct sigaction *)(0));
+	sigaction (SIGQUIT, & sa, (struct sigaction *)(0));
+	sigaction (SIGTSTP, & sa, (struct sigaction *)(0));
+	sigaction (SIGINT, & sa, (struct sigaction *)(0));
+	sigaction (SIGHUP, & sa, (struct sigaction *)(0));
 	while (count-- > 0)
 	{
-		memset (digest, 0, sizeof(digest));
-		if (_anyset(flags, KEY_ADVANCE) && strincr(secret, length, MIN, MAX))
+		memset (digest, 0, sizeof (digest));
+		if (_anyset (flags, KEY_ADVANCE) && strincr (secret, length, MIN, MAX))
 		{
 			error (1, errno, "Can't increment secret");
 		}
 		SHA256Reset (& sha256);
 		SHA256Write (& sha256, secret, length);
 		SHA256Fetch (& sha256, digest);
-		if (_anyset(flags, KEY_VERBOSE))
+		if (_anyset (flags, KEY_VERBOSE))
 		{
 			SHA256Print (digest, secret);
 		}
 		else 
 		{
-			SHA256Print (digest, (char *) (0));
+			SHA256Print (digest, (char *)(0));
 		}
 	}
 	return;
@@ -147,10 +147,10 @@ static void function(void * secret, size_t length, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"f:n:oqv",
 		"keyfile",
@@ -160,14 +160,14 @@ int main(int argc, char const * argv[])
 		"o\tuse old keyfile value",
 		"q\tquiet mode",
 		"v\tverbose mode",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	char const * file = SEEDFILE;
-	byte secret[65];
+	byte secret [65];
 	signed fd;
 	flag_t flags = KEY_ADVANCE;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -175,7 +175,7 @@ int main(int argc, char const * argv[])
 			file = optarg;
 			break;
 		case 'n':
-			count = uintspec(optarg, 0, UINT_MAX);
+			count = uintspec (optarg, 0, UINT_MAX);
 			break;
 		case 'o':
 			_clrbits (flags, KEY_ADVANCE);
@@ -196,32 +196,32 @@ int main(int argc, char const * argv[])
 	{
 		error (1, ENOTSUP, ERROR_TOOMANY);
 	}
-	memset (secret, 0, sizeof(secret));
-	if ((fd = open(file, O_BINARY | O_CREAT | O_RDWR, (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH))) == - 1)
+	memset (secret, 0, sizeof (secret));
+	if ((fd = open (file, O_BINARY | O_CREAT | O_RDWR, (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH))) == - 1)
 	{
 		error (1, errno, "%s", file);
 	}
-	if (read(fd, secret, sizeof(secret) - 1) == - 1)
+	if (read (fd, secret, sizeof (secret) - 1) == - 1)
 	{
 		error (1, errno, "%s", file);
 	}
-	for (c = 0; (size_t) (c) < sizeof(secret) - 1; c++)
+	for (c = 0; (size_t)(c) < sizeof (secret) - 1; c++)
 	{
-		if (secret[c] < MIN)
+		if (secret [c] < MIN)
 		{
 			secret [c] = MIN;
 		}
-		if (secret[c] > MAX)
+		if (secret [c] > MAX)
 		{
 			secret [c] = MAX;
 		}
 	}
-	function (secret, sizeof(secret) - 1, flags);
-	if (lseek(fd, 0, SEEK_SET))
+	function (secret, sizeof (secret) - 1, flags);
+	if (lseek (fd, 0, SEEK_SET))
 	{
 		error (1, errno, "%s", file);
 	}
-	if (write(fd, secret, sizeof(secret) - 1) == - 1)
+	if (write (fd, secret, sizeof (secret) - 1) == - 1)
 	{
 		error (1, errno, "%s", file);
 	}

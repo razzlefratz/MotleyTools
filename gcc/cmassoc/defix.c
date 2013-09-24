@@ -54,10 +54,10 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"c:f:imops",
 		PUTOPTV_S_DIVINE,
@@ -69,7 +69,7 @@ int main(int argc, char const * argv[])
 		"o\tseparator is optional",
 		"p\textract prefix",
 		"s\textract suffix",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	char const * format = "%s";
 	char character = '.';
@@ -80,7 +80,7 @@ int main(int argc, char const * argv[])
 	char * prefix;
 	char * suffix;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -88,7 +88,7 @@ int main(int argc, char const * argv[])
 			character = * optarg;
 			break;
 		case 'f':
-			format = struesc((char *)(optarg));
+			format = struesc ((char *) (optarg));
 			break;
 		case 'i':
 			initial = true;
@@ -113,8 +113,8 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	while ((argc) && (* argv))
 	{
-		string = (char *)(* argv);
-		for (prefix = suffix = string; * prefix != (char)(0); prefix++)
+		string = (char *) (* argv);
+		for (prefix = suffix = string; * prefix != (char) (0); prefix++)
 		{
 			if (* prefix == character)
 			{
@@ -127,10 +127,10 @@ int main(int argc, char const * argv[])
 		}
 		if (* suffix == character)
 		{
-			* suffix++ = (char)(0);
+			* suffix++ = (char) (0);
 			prefix = string;
 		}
-		else if(optional)
+		else if (optional)
 		{
 			suffix = prefix;
 			prefix = string;

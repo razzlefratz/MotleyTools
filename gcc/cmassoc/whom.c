@@ -102,28 +102,28 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function(LIST * list, regexp * regex, flag_t flags)
+static void function (LIST * list, regexp * regex, flag_t flags)
 
 {
 	char const * string;
-	if (_anyset(flags, WHOM_B_USR))
+	if (_anyset (flags, WHOM_B_USR))
 	{
 		struct passwd * passwd;
-		while ((passwd = getpwent()))
+		while ((passwd = getpwent ()))
 		{
-			string = regexspan(regex, passwd->pw_name);
+			string = regexspan (regex, passwd->pw_name);
 			if ((string) && (! * string))
 			{
 				listinsert (list, passwd->pw_name);
 			}
 		}
 	}
-	if (_anyset(flags, WHOM_B_GRP))
+	if (_anyset (flags, WHOM_B_GRP))
 	{
 		struct group * group;
-		while ((group = getgrent()))
+		while ((group = getgrent ()))
 		{
-			string = regexspan(regex, group->gr_name);
+			string = regexspan (regex, group->gr_name);
 			if ((string) && (! * string))
 			{
 				listinsert (list, group->gr_name);
@@ -143,17 +143,17 @@ static void function(LIST * list, regexp * regex, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	extern const unsigned char ct_unescape[];
-	static char const * optv[] = 
+	extern const unsigned char ct_unescape [];
+	static char const * optv [] = 
 	{
 		"c:e:gHnw:uRT",
 		PUTOPTV_S_DIVINE,
 		"print user/group names in alphabetcial order in columns",
-		"c n\tcolumn count is (n) [" LITERAL(COUNT) "]",
-		"w n\tscreen width is (n) [" LITERAL(WIDTH) "]",
+		"c n\tcolumn count is (n) [" LITERAL (COUNT) "]",
+		"w n\tscreen width is (n) [" LITERAL (WIDTH) "]",
 		"e s\texpression is s [.+]",
 		"g\tlist groupnames",
 		"H\tregular expression help",
@@ -161,25 +161,25 @@ int main(int argc, char const * argv[])
 		"n\tnumber list items",
 		"R\tregular expression help",
 		"T\tescape sequence rules",
-		(char *)(0)
+		(char *) (0)
 	};
 	LIST list;
-	regexp * regex = (regexp *)(0);
+	regexp * regex = (regexp *) (0);
 	char const * expression = ".+";
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	size_t count = COUNT;
 	size_t width = WIDTH;
 	bool index = false;
 	int c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'w':
-			width = uintspec(optarg, 1, 132);
+			width = uintspec (optarg, 1, 132);
 			break;
 		case 'c':
-			count = uintspec(optarg, 1, 16);
+			count = uintspec (optarg, 1, 16);
 			break;
 		case 'g':
 			_setbits (flags, WHOM_B_GRP);
@@ -208,21 +208,21 @@ int main(int argc, char const * argv[])
 	}
 	argc -= optind;
 	argv += optind;
-	if (_anyset(flags, (WHOM_B_SHW)))
+	if (_anyset (flags, (WHOM_B_SHW)))
 	{
-		regex = regexmake(expression);
+		regex = regexmake (expression);
 		regexshow (regex);
 		return (0);
 	}
-	if (_allclr(flags, (WHOM_B_USR | WHOM_B_GRP)))
+	if (_allclr (flags, (WHOM_B_USR | WHOM_B_GRP)))
 	{
 		_setbits (flags, (WHOM_B_USR | WHOM_B_GRP));
 	}
 	setpwent ();
 	listcreate (& list, _LISTSIZE);
-	regex = regexmake(expression);
+	regex = regexmake (expression);
 	function (& list, regex, flags);
-	regex = regexfree(regex);
+	regex = regexfree (regex);
 	listcolumn (& list, stdout, width, count, index);
 	listdelete (& list);
 	endpwent ();

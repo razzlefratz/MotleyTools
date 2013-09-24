@@ -106,53 +106,53 @@ unsigned lineno = 0;
  *
  *--------------------------------------------------------------------*/
 
-void function(signed c, flag_t flags)
+void function (signed c, flag_t flags)
 
 {
 	while (c != EOF)
 	{
-		if (isalpha(c))
+		if (isalpha (c))
 		{
-			if (_anyset(flags, CASE_B_UPPER))
+			if (_anyset (flags, CASE_B_UPPER))
 			{
 				do 
 				{
-					c = keep(toupper(c));
+					c = keep (toupper (c));
 				}
-				while (isalpha(c));
+				while (isalpha (c));
 				continue;
 			}
-			if (_anyset(flags, CASE_B_LOWER))
+			if (_anyset (flags, CASE_B_LOWER))
 			{
 				do 
 				{
-					c = keep(tolower(c));
+					c = keep (tolower (c));
 				}
-				while (isalpha(c));
+				while (isalpha (c));
 				continue;
 			}
-			if (_anyset(flags, CASE_B_TITLE))
+			if (_anyset (flags, CASE_B_TITLE))
 			{
-				c = toupper(c);
+				c = toupper (c);
 			}
 			do 
 			{
-				c = keep(c);
+				c = keep (c);
 			}
-			while (isalnum(c));
+			while (isalnum (c));
 			continue;
 		}
-		if ((c == '\"') && _anyset(flags, CASE_B_QUOTE))
+		if ((c == '\"') && _anyset (flags, CASE_B_QUOTE))
 		{
-			c = literal(c);
+			c = literal (c);
 			continue;
 		}
-		if ((c == '\'') && _anyset(flags, CASE_B_APOST))
+		if ((c == '\'') && _anyset (flags, CASE_B_APOST))
 		{
-			c = literal(c);
+			c = literal (c);
 			continue;
 		}
-		c = escaped(c);
+		c = escaped (c);
 	}
 	return;
 }
@@ -168,10 +168,10 @@ void function(signed c, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	char const * optv[] = 
+	char const * optv [] = 
 	{
 		"luxtds",
 		PUTOPTV_S_FILTER,
@@ -181,11 +181,11 @@ int main(int argc, char const * argv[])
 		"t\tconvert text to title case ",
 		"d\texclude double quoted (\") text",
 		"s\texclude single quoted (\') text",
-		(char const *) (0)
+		(char const *)(0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -215,13 +215,13 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	if (! argc)
 	{
-		function (getc(stdin), flags);
+		function (getc (stdin), flags);
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
-			function (getc(stdin), flags);
+			function (getc (stdin), flags);
 		}
 		argv++;
 		argc--;

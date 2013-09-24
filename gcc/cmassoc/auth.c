@@ -57,8 +57,8 @@ struct _record_
 
 {
 	struct _record_ * next;
-	char * vector[VECTOR_SIZE];
-	char buffer[BUFFER_SIZE];
+	char * vector [VECTOR_SIZE];
+	char buffer [BUFFER_SIZE];
 	size_t count;
 };
 
@@ -69,7 +69,7 @@ struct _column_
 	char * string;
 };
 
-struct _column_ rootuser[] = 
+struct _column_ rootuser [] = 
 
 {
 	{
@@ -86,7 +86,7 @@ struct _column_ rootuser[] =
 	}
 };
 
-struct _column_ rootlist[] = 
+struct _column_ rootlist [] = 
 
 {
 	{
@@ -127,7 +127,7 @@ struct _column_ rootlist[] =
  *
  *--------------------------------------------------------------------*/
 
-void function(struct _column_ columns[], struct _column_ outputs[], flag_t flags)
+void function (struct _column_ columns [], struct _column_ outputs [], flag_t flags)
 
 {
 	struct _column_ * column;
@@ -139,21 +139,21 @@ void function(struct _column_ columns[], struct _column_ outputs[], flag_t flags
 	one.next = & two;
 	two.next = & one;
 	record = & two;
-	for (string = record->buffer; fgets(string, BUFFER_SIZE, stdin) != (char *) (0); string = record->buffer)
+	for (string = record->buffer; fgets (string, BUFFER_SIZE, stdin) != (char *)(0); string = record->buffer)
 	{
 		vector = record->vector;
-		for (* vector++ = string; (* string != (char) (0)) && ((string - record->buffer) < (BUFFER_SIZE - 1)); string++)
+		for (* vector++ = string; (* string != (char)(0)) && ((string - record->buffer) < (BUFFER_SIZE - 1)); string++)
 		{
-			if (isspace(* string) && ((vector - record->vector) < (VECTOR_SIZE - 1)))
+			if (isspace (* string) && ((vector - record->vector) < (VECTOR_SIZE - 1)))
 			{
 				* vector++ = string +  1;
-				* string = (char) (0);
+				* string = (char)(0);
 			}
 		}
-		* vector = (char *) (0);
+		* vector = (char *)(0);
 		for (column = columns; column->number != - 1; column++)
 		{
-			if (strcmp(record->vector[column->number], column->string))
+			if (strcmp (record->vector [column->number], column->string))
 			{
 				break;
 			}
@@ -162,7 +162,7 @@ void function(struct _column_ columns[], struct _column_ outputs[], flag_t flags
 		{
 			for (column = outputs; column->number != - 1; column++)
 			{
-				printf ("%4lu %s:%s\n", (long unsigned) (column->number), column->string, record->vector[column->number]);
+				printf ("%4lu %s:%s\n", (long unsigned)(column->number), column->string, record->vector [column->number]);
 			}
 			printf ("\n");
 		}
@@ -175,21 +175,21 @@ void function(struct _column_ columns[], struct _column_ outputs[], flag_t flags
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"",
 		PUTOPTV_S_FUNNEL,
 		"print auth.log statistics",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	struct _column_ * columns = rootuser;
 	struct _column_ * outputs = rootlist;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -205,7 +205,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			function (columns, outputs, flags);
 		}

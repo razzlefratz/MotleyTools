@@ -67,35 +67,35 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned function(char const * oldname, char const * newname)
+unsigned function (char const * oldname, char const * newname)
 
 {
 	unsigned count = 0;
-	signed c = getc(stdin);
+	signed c = getc (stdin);
 	while (c != EOF)
 	{
-		if (isspace(c))
+		if (isspace (c))
 		{
 			do 
 			{
 				putc (c, stdout);
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (isspace(c));
+			while (isspace (c));
 			continue;
 		}
-		if (isalpha(c) || (c == '_'))
+		if (isalpha (c) || (c == '_'))
 		{
-			char string[255];
+			char string [255];
 			char * sp = string;
 			do 
 			{
-				* sp++ = (char) (c);
-				c = getc(stdin);
+				* sp++ = (char)(c);
+				c = getc (stdin);
 			}
-			while (isalnum(c) || (c == '_'));
-			* sp = (char) (0);
-			if (! strcmp(string, oldname))
+			while (isalnum (c) || (c == '_'));
+			* sp = (char)(0);
+			if (! strcmp (string, oldname))
 			{
 				count++;
 				fputs (newname, stdout);
@@ -104,94 +104,94 @@ unsigned function(char const * oldname, char const * newname)
 			fputs (string, stdout);
 			continue;
 		}
-		if (isdigit(c))
+		if (isdigit (c))
 		{
 			do 
 			{
 				putc (c, stdout);
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (isdigit(c) || (c == '.'));
+			while (isdigit (c) || (c == '.'));
 			if ((c == 'x') || (c == 'X'))
 			{
 				do 
 				{
 					putc (c, stdout);
-					c = getc(stdin);
+					c = getc (stdin);
 				}
-				while (isxdigit(c));
+				while (isxdigit (c));
 			}
 			if ((c == 'e') || (c == 'E'))
 			{
 				putc (c, stdout);
-				c = getc(stdin);
+				c = getc (stdin);
 				if ((c == '+') || (c == '-'))
 				{
 					putc (c, stdout);
-					c = getc(stdin);
+					c = getc (stdin);
 				}
-				while (isdigit(c))
+				while (isdigit (c))
 				{
 					putc (c, stdout);
-					c = getc(stdin);
+					c = getc (stdin);
 				}
 			}
 			continue;
 		}
-		if (isquote(c))
+		if (isquote (c))
 		{
 			signed o;
 			putc (c, stdout);
-			o = getc(stdin);
-			while (nomatch(o, c))
+			o = getc (stdin);
+			while (nomatch (o, c))
 			{
-				if ((char) (o) == '\\')
+				if ((char)(o) == '\\')
 				{
 					putc (o, stdout);
-					o = getc(stdin);
+					o = getc (stdin);
 				}
 				putc (o, stdout);
-				o = getc(stdin);
+				o = getc (stdin);
 			}
 			putc (c, stdout);
-			c = getc(stdin);
+			c = getc (stdin);
 			continue;
 		}
 		if (c == '/')
 		{
 			putc (c, stdout);
-			c = getc(stdin);
+			c = getc (stdin);
 			if (c == '/')
 			{
-				while (nobreak(c))
+				while (nobreak (c))
 				{
 					putc (c, stdout);
-					c = getc(stdin);
+					c = getc (stdin);
 				}
 				putc ('\n', stdout);
-				c = getc(stdin);
+				c = getc (stdin);
 				continue;
 			}
 			if (c == '*')
 			{
-				while (nomatch(c, '/'))
+				while (nomatch (c, '/'))
 				{
-					while (nomatch(c, '*'))
+					while (nomatch (c, '*'))
 					{
 						putc (c, stdout);
-						c = getc(stdin);
+						c = getc (stdin);
 					}
 					putc (c, stdout);
-					c = getc(stdin);
+					c = getc (stdin);
 				}
 				putc ('/', stdout);
-				c = getc(stdin);
+				c = getc (stdin);
 				continue;
 			}
 			continue;
 		}
 		putc (c, stdout);
-		c = getc(stdin);
+		c = getc (stdin);
 	}
 	return (count);
 }
@@ -209,10 +209,10 @@ unsigned function(char const * oldname, char const * newname)
  *   
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"co:n:",
 		PUTOPTV_S_FILTER,
@@ -220,14 +220,14 @@ int main(int argc, char const * argv[])
 		"c\treport changes",
 		"o s\told token is s",
 		"n s\tnew token is s",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	char const * oldname = "";
 	char const * newname = "";
 	char const * sp;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -250,7 +250,7 @@ int main(int argc, char const * argv[])
 	}
 	for (sp = oldname; * sp; sp++)
 	{
-		if (! isalnum(* sp) && (* sp != '_'))
+		if (! isalnum (* sp) && (* sp != '_'))
 		{
 			error (1, EINVAL, "%s is not a variable or constant name", oldname);
 		}
@@ -265,7 +265,7 @@ int main(int argc, char const * argv[])
 	}
 	for (sp = newname; * sp; sp++)
 	{
-		if (! isalnum(* sp) && (* sp != '_'))
+		if (! isalnum (* sp) && (* sp != '_'))
 		{
 			error (1, EINVAL, "%s is not a variable or constant name", newname);
 		}
@@ -278,9 +278,9 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	if (! argc)
 	{
-		if ((c = function(oldname, newname)))
+		if ((c = function (oldname, newname)))
 		{
-			if (_anyset(flags, CEDIT_COUNT))
+			if (_anyset (flags, CEDIT_COUNT))
 			{
 				fprintf (stderr, "stdin %d\n", c);
 			}
@@ -288,11 +288,11 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
-			if ((c = function(oldname, newname)))
+			if ((c = function (oldname, newname)))
 			{
-				if (_anyset(flags, CEDIT_COUNT))
+				if (_anyset (flags, CEDIT_COUNT))
 				{
 					fprintf (stderr, "%s %d\n", * argv, c);
 				}

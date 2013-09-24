@@ -52,10 +52,10 @@
  *   programs;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"dmnst:v",
 		PUTOPTV_S_FUNNEL,
@@ -64,16 +64,16 @@ int main(int argc, char const * argv[])
 		"m\tprint markup",
 		"n\tuse numbers instead of names",
 		"s\tprint switch statement",
-		"t s\ttable name is (c) [" LITERAL(LISTNAME) "]",
+		"t s\ttable name is (c) [" LITERAL (LISTNAME) "]",
 		"v\tprint variable declaration",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	char const * name = LISTNAME;
-	struct _type_ list[LISTSIZE];
+	struct _type_ list [LISTSIZE];
 	size_t size = 0;
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -107,14 +107,14 @@ int main(int argc, char const * argv[])
 	}
 	if (! argc)
 	{
-		size = typeload(list, LISTSIZE);
+		size = typeload (list, LISTSIZE);
 		typesave (list, size, name, flags);
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
-			size = typeload(list, LISTSIZE);
+			size = typeload (list, LISTSIZE);
 			typesave (list, size, name, flags);
 		}
 		argc--;

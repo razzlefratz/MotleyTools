@@ -63,13 +63,13 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function(flag_t flags)
+static void function (flag_t flags)
 
 {
-	char buffer[100];
-	while (getIPv4(buffer, sizeof(buffer), stdin))
+	char buffer [100];
+	while (getIPv4 (buffer, sizeof (buffer), stdin))
 	{
-		write (STDOUT_FILENO, buffer, strlen(buffer));
+		write (STDOUT_FILENO, buffer, strlen (buffer));
 		write (STDOUT_FILENO, "\n", 1);
 	}
 	return;
@@ -79,19 +79,19 @@ static void function(flag_t flags)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"d",
 		PUTOPTV_S_FUNNEL,
 		"read stdin and write IPv4 addresses to stdout",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	flag_t flags = 0;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -110,7 +110,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			function (flags);
 		}

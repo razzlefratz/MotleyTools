@@ -113,7 +113,7 @@
 
 extern LINK * nodelist;
 extern TREE * nodetree;
-static TREE * pathtree = (TREE *)(0);
+static TREE * pathtree = (TREE *) (0);
 
 /*====================================================================*
  *
@@ -127,16 +127,16 @@ static TREE * pathtree = (TREE *)(0);
  *
  *--------------------------------------------------------------------*/
 
-static void relate(char const * one, char const * two, flag_t flags)
+static void relate (char const * one, char const * two, flag_t flags)
 
 {
-	if (_anyset(flags, DEP_B_INVERT))
+	if (_anyset (flags, DEP_B_INVERT))
 	{
-		pathtree = ordernode(pathtree, two, one, strcmp);
+		pathtree = ordernode (pathtree, two, one, strcmp);
 	}
 	else 
 	{
-		pathtree = ordernode(pathtree, one, two, strcmp);
+		pathtree = ordernode (pathtree, one, two, strcmp);
 	}
 	return;
 }
@@ -175,47 +175,47 @@ static void relate(char const * one, char const * two, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-void function(char const * pathname, char * buffer, size_t length, flag_t flags)
+void function (char const * pathname, char * buffer, size_t length, flag_t flags)
 
 {
 	FILE * ifp;
 	SCAN scan;
 	FIND find;
 	size_t line;
-	if ((ifp = efopen(pathname, "rb")))
+	if ((ifp = efopen (pathname, "rb")))
 	{
 		strcpy (find.fullname, pathname);
 		partpath (find.fullname, find.pathname, find.filename);
 		partfile (find.filename, find.basename, find.extender);
 		scaninput (& scan, buffer, length);
-		for (line = 0; fgetline(buffer, length, ifp) != - 1; line++)
+		for (line = 0; fgetline (buffer, length, ifp) != - 1; line++)
 		{
 			scanstart (& scan);
 			nexttoken (& scan);
-			if (! havetoken(& scan, "#"))
+			if (! havetoken (& scan, "#"))
 			{
 				continue;
 			}
-			if (! havetoken(& scan, "include"))
+			if (! havetoken (& scan, "include"))
 			{
 				continue;
 			}
-			if (havetoken(& scan, "<"))
+			if (havetoken (& scan, "<"))
 			{
-				if (_anyset(flags, DEP_B_SYSTEM))
+				if (_anyset (flags, DEP_B_SYSTEM))
 				{
 					scanuntil (& scan, ">");
-					makepath (find.fullname, "/usr/include", tokentext(& scan));
+					makepath (find.fullname, "/usr/include", tokentext (& scan));
 					relate (pathname, find.fullname, flags);
 				}
 				continue;
 			}
-			if (havetoken(& scan, "\""))
+			if (havetoken (& scan, "\""))
 			{
-				if (_anyset(flags, DEP_B_CUSTOM))
+				if (_anyset (flags, DEP_B_CUSTOM))
 				{
 					scanuntil (& scan, "\"");
-					makepath (find.fullname, find.pathname, tokentext(& scan));
+					makepath (find.fullname, find.pathname, tokentext (& scan));
 					relate (pathname, find.fullname, flags);
 				}
 				continue;
@@ -241,10 +241,10 @@ void function(char const * pathname, char * buffer, size_t length, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"csnf",
 		PUTOPTV_S_FUNNEL,
@@ -253,13 +253,13 @@ int main(int argc, char const * argv[])
 		"s\tsystem files",
 		"n\tneed summary ",
 		"f\tfeed summary ",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	char buffer[TEXTLINE_MAX];
+	char buffer [TEXTLINE_MAX];
 	size_t length = TEXTLINE_MAX;
 	flag_t flags = DEP_B_SYSTEM;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -291,8 +291,8 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		makepath (buffer, getenv("PWD"), * argv);
-		nodetree = storenode(nodetree, (TREE *)(0), buffer, (void *)(0), strcmp);
+		makepath (buffer, getenv ("PWD"), * argv);
+		nodetree = storenode (nodetree, (TREE *) (0), buffer, (void *) (0), strcmp);
 		argc--;
 		argv++;
 	}
@@ -306,7 +306,7 @@ int main(int argc, char const * argv[])
 		}
 		while (nodeitem != nodelist);
 	}
-	if (_anyset(flags, DEP_B_REPORT))
+	if (_anyset (flags, DEP_B_REPORT))
 	{
 		structure (pathtree);
 	}

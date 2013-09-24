@@ -87,32 +87,32 @@
  *
  *--------------------------------------------------------------------*/
 
-static void func(unsigned column, signed cc, flag_t flags)
+static void func (unsigned column, signed cc, flag_t flags)
 
 {
 	unsigned col = 0;
 	signed pc = 0;
 	signed nc;
-	while ((nc = getc(stdin)) != EOF)
+	while ((nc = getc (stdin)) != EOF)
 	{
 		if (nc == '\n')
 		{
-			pc = putc(nc, stdout);
+			pc = putc (nc, stdout);
 			col = 0;
 		}
-		else if(pc == cc)
+		else if (pc == cc)
 		{
 			putc (nc, stdout);
 			col++;
 		}
-		else if(nc == ',')
+		else if (nc == ',')
 		{
-			pc = putc(nc, stdout);
+			pc = putc (nc, stdout);
 			col++;
-			pc = putc(' ', stdout);
+			pc = putc (' ', stdout);
 			col++;
 		}
-		else if(isquote(nc))
+		else if (isquote (nc))
 		{
 			putc (nc, stdout);
 			col++;
@@ -121,7 +121,7 @@ static void func(unsigned column, signed cc, flag_t flags)
 				pc = 0;
 			}
 		}
-		else if(nc == cc)
+		else if (nc == cc)
 		{
 			if (col > 0)
 			{
@@ -131,30 +131,30 @@ static void func(unsigned column, signed cc, flag_t flags)
 					col++;
 				}
 			}
-			pc = putc(nc, stdout);
+			pc = putc (nc, stdout);
 			col++;
 		}
-		else if(isblank(nc))
+		else if (isblank (nc))
 		{
 			if (pc != ' ')
 			{
-				pc = putc(' ', stdout);
+				pc = putc (' ', stdout);
 				col++;
 			}
 		}
-		else if(pc == ' ')
+		else if (pc == ' ')
 		{
-			while (tabcol(col) == false)
+			while (tabcol (col) == false)
 			{
 				putc (SP, stdout);
 				col++;
 			}
-			pc = putc(_anyset(flags, AFM_B_UPPER)? chrupr(nc): nc, stdout);
+			pc = putc (_anyset (flags, AFM_B_UPPER)? chrupr (nc): nc, stdout);
 			col++;
 		}
 		else 
 		{
-			pc = putc(_anyset(flags, AFM_B_UPPER)? chrupr(nc): nc, stdout);
+			pc = putc (_anyset (flags, AFM_B_UPPER)? chrupr (nc): nc, stdout);
 			col++;
 		}
 	}
@@ -172,27 +172,27 @@ static void func(unsigned column, signed cc, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"a:c:ut:",
 		PUTOPTV_S_FILTER,
 		"formats assembly language source files",
-		"a n\talign comments to column (n) [" LITERAL(COMMENT_COL) "]",
-		"c c\tcomment character is (c) [" LITERAL(COMMENT_CHR) "]",
+		"a n\talign comments to column (n) [" LITERAL (COMMENT_COL) "]",
+		"c c\tcomment character is (c) [" LITERAL (COMMENT_CHR) "]",
 		"u\tconvert opcodes to upper case",
 		"t n.m\ttabspec is (n.m) ",
-		(char const *) (0)
+		(char const *)(0)
 	};
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	unsigned column = COMMENT_COL;
 	unsigned character = COMMENT_CHR;
 	signed c;
 	tabset (10, 0);
 	tabset (16, 1);
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -203,7 +203,7 @@ int main(int argc, char const * argv[])
 			character = * optarg;
 			break;
 		case 'a':
-			column = uintspec(optarg, 0, SHRT_MAX);
+			column = uintspec (optarg, 0, SHRT_MAX);
 			break;
 		case 't':
 			tabspec (optarg);
@@ -220,7 +220,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
 			func (column, character, flags);
 		}

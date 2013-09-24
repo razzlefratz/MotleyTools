@@ -57,46 +57,46 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function(char const * file, unsigned width, flag_t flags)
+static void function (char const * file, unsigned width, flag_t flags)
 
 {
-	char number[width +  1];
+	char number [width +  1];
 	unsigned prior = 0;
 	unsigned value = 0;
 	unsigned count = 0;
 	unsigned line = 1;
-	signed c = getc(stdin);
+	signed c = getc (stdin);
 	while (c != EOF)
 	{
-		while (isspace(c))
+		while (isspace (c))
 		{
 			if (c == '\n')
 			{
 				line++;
 			}
-			c = getc(stdin);
+			c = getc (stdin);
 			continue;
 		}
 		if ((c == '#') || (c == ';'))
 		{
 			do 
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (nobreak(c));
+			while (nobreak (c));
 			continue;
 		}
-		if (! isdigit(c))
+		if (! isdigit (c))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 			continue;
 		}
 		value = 0;
-		while (isdigit(c))
+		while (isdigit (c))
 		{
 			value *= 10;
 			value += c - '0';
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		if (value < prior)
 		{
@@ -106,15 +106,15 @@ static void function(char const * file, unsigned width, flag_t flags)
 		{
 			unsigned digit = width;
 			unsigned delta = value - prior;
-			number [digit] = (char) (0);
+			number [digit] = (char)(0);
 			while (digit)
 			{
-				number [-- digit] = DIGITS_DEC[delta % 10];
+				number [-- digit] = DIGITS_DEC [delta % 10];
 				delta /= 10;
 			}
 			while (digit < width)
 			{
-				putc (number[digit++], stdout);
+				putc (number [digit++], stdout);
 			}
 			putc ('\n', stdout);
 		}
@@ -135,26 +135,26 @@ static void function(char const * file, unsigned width, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"w",
 		PUTOPTV_S_FUNNEL,
 		"print difference between consecutive unsigned decimal integers",
-		"w n\twidth in digits is (n) [" LITERAL(DIGITS) "]",
-		(char const *) (0)
+		"w n\twidth in digits is (n) [" LITERAL (DIGITS) "]",
+		(char const *)(0)
 	};
 	unsigned width = DIGITS;
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'w':
-			width = (unsigned) (uintspec(optarg, 1, 16));
+			width = (unsigned)(uintspec (optarg, 1, 16));
 		default: 
 			break;
 		}
@@ -167,7 +167,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			function (* argv, width, flags);
 		}

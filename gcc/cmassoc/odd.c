@@ -68,11 +68,11 @@
  *
  *--------------------------------------------------------------------*/
 
-static void report(char const * filename, off_t offset)
+static void report (char const * filename, off_t offset)
 
 {
 	struct stat statinfo;
-	if (stat(filename, & statinfo) == - 1)
+	if (stat (filename, & statinfo) == - 1)
 	{
 		error (1, errno, "can't stat %s", filename);
 	}
@@ -101,11 +101,11 @@ static void report(char const * filename, off_t offset)
  *
  *--------------------------------------------------------------------*/
 
-static void dump(int fd, char const * symbol, off_t offset, byte const * buffer, signed length)
+static void dump (int fd, char const * symbol, off_t offset, byte const * buffer, signed length)
 
 {
 	static unsigned object = 0;
-	char memory[_ADDRSIZE +  1];
+	char memory [_ADDRSIZE +  1];
 	char c;
 	if (! object++)
 	{
@@ -115,7 +115,7 @@ static void dump(int fd, char const * symbol, off_t offset, byte const * buffer,
 		}
 		putc ('\n', stdout);
 	}
-	printf ("%s %u %s\n", hexoffset(memory, sizeof(memory), offset), length, symbol);
+	printf ("%s %u %s\n", hexoffset (memory, sizeof (memory), offset), length, symbol);
 	hexview (buffer, offset, length, stdout);
 	for (c = 0; c < _ADDRSIZE +  65; c++)
 	{
@@ -133,14 +133,14 @@ static void dump(int fd, char const * symbol, off_t offset, byte const * buffer,
  *
  *--------------------------------------------------------------------*/
 
-static void efsu(int fd, char const * symbol, off_t offset, byte const * buffer, signed length)
+static void efsu (int fd, char const * symbol, off_t offset, byte const * buffer, signed length)
 
 {
 	signed column = 0;
 	printf ("# %s\n", symbol);
 	while (column < length)
 	{
-		printf ("%02X", buffer[column++]);
+		printf ("%02X", buffer [column++]);
 		putc (column % 16? ' ': '\n', stdout);
 	}
 	if (column % 16)
@@ -163,33 +163,33 @@ static void efsu(int fd, char const * symbol, off_t offset, byte const * buffer,
  *
  *--------------------------------------------------------------------*/
 
-static void function(char const * filename, void output(int, char const *, off_t, byte const *, signed), flag_t flags)
+static void function (char const * filename, void output (int, char const *, off_t, byte const *, signed), flag_t flags)
 
 {
 	off_t offset = 0;
 	signed length = 0;
 	signed lineno = 0;
-	char symbol[_NAMESIZE];
+	char symbol [_NAMESIZE];
 	char * sp;
 	file_t fd;
 	signed c;
-	if ((fd = open(filename, O_BINARY | O_RDONLY)) == - 1)
+	if ((fd = open (filename, O_BINARY | O_RDONLY)) == - 1)
 	{
 		error (1, errno, "can't open %s", filename);
 	}
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
 		if ((c == '#') || (c == ';'))
 		{
 			do 
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (nobreak(c));
+			while (nobreak (c));
 			lineno++;
 			continue;
 		}
-		if (isspace(c))
+		if (isspace (c))
 		{
 			if (c == '\n')
 			{
@@ -201,73 +201,73 @@ static void function(char const * filename, void output(int, char const *, off_t
 		{
 			do 
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (isblank(c));
+			while (isblank (c));
 		}
 		length = 0;
-		while (isdigit(c))
+		while (isdigit (c))
 		{
 			length *= 10;
 			length += c - '0';
-			c = getc(stdin);
+			c = getc (stdin);
 		}
-		while (isblank(c))
+		while (isblank (c))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		sp = symbol;
-		if (isalpha(c) || (c == '_'))
+		if (isalpha (c) || (c == '_'))
 		{
 			do 
 			{
-				* sp++ = (char) (c);
-				c = getc(stdin);
+				* sp++ = (char)(c);
+				c = getc (stdin);
 			}
-			while (isident(c));
+			while (isident (c));
 		}
-		while (isblank(c))
+		while (isblank (c))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		if (c == '[')
 		{
-			* sp++ = (char) (c);
-			c = getc(stdin);
-			while (isblank(c))
+			* sp++ = (char)(c);
+			c = getc (stdin);
+			while (isblank (c))
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (isdigit(c))
+			while (isdigit (c))
 			{
-				* sp++ = (char) (c);
-				c = getc(stdin);
+				* sp++ = (char)(c);
+				c = getc (stdin);
 			}
-			while (isblank(c))
+			while (isblank (c))
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			* sp = (char) (0);
+			* sp = (char)(0);
 			if (c != ']')
 			{
 				error (1, EINVAL, "Have '%s' without ']' on line %d", symbol, lineno);
 			}
-			* sp++ = (char) (c);
-			c = getc(stdin);
+			* sp++ = (char)(c);
+			c = getc (stdin);
 		}
-		* sp = (char) (0);
-		while (isblank(c))
+		* sp = (char)(0);
+		while (isblank (c))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
-		while (nobreak(c))
+		while (nobreak (c))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		if (length)
 		{
-			byte buffer[length];
-			if (read(fd, buffer, length) == length)
+			byte buffer [length];
+			if (read (fd, buffer, length) == length)
 			{
 				output (fd, symbol, offset, buffer, length);
 			}
@@ -275,7 +275,7 @@ static void function(char const * filename, void output(int, char const *, off_t
 		offset += length;
 		lineno++;
 	}
-	if (_allclr(flags, ODD_SILENCE))
+	if (_allclr (flags, ODD_SILENCE))
 	{
 		report (filename, offset);
 	}
@@ -294,10 +294,10 @@ static void function(char const * filename, void output(int, char const *, off_t
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"def:qv",
 		"file [file] [...]",
@@ -307,12 +307,12 @@ int main(int argc, char const * argv[])
 		"f f\tobject definition file",
 		"q\tquiet mode",
 		"v\tverbose mode",
-		(char const *) (0)
+		(char const *)(0)
 	};
-	void (* output)(int, char const *, off_t, byte const *, signed) = dump;
-	flag_t flags = (flag_t) (0);
+	void (* output) (int, char const *, off_t, byte const *, signed) = dump;
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -323,7 +323,7 @@ int main(int argc, char const * argv[])
 			output = efsu;
 			break;
 		case 'f':
-			if (! freopen(optarg, "rb", stdin))
+			if (! freopen (optarg, "rb", stdin))
 			{
 				error (1, errno, "%s", optarg);
 			}

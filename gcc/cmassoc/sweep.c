@@ -67,22 +67,22 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function(char const * thisfile, char const * thatfile, char const * command, flag_t flags)
+static void function (char const * thisfile, char const * thatfile, char const * command, flag_t flags)
 
 {
-	if (_anyset(flags, SWEEP_B_COMMAND))
+	if (_anyset (flags, SWEEP_B_COMMAND))
 	{
 		printf ("%s %s %s\n", command, thisfile, thatfile);
 	}
-	else if(_allclr(flags, SWEEP_B_REMOVE))
+	else if (_allclr (flags, SWEEP_B_REMOVE))
 	{
 		printf ("%s also in %s\n", thisfile, thatfile);
 	}
-	else if(remove(thisfile))
+	else if (remove (thisfile))
 	{
 		error (0, 0, "can't remove %s", thisfile);
 	}
-	else if(_anyset(flags, SWEEP_B_VERBOSE))
+	else if (_anyset (flags, SWEEP_B_VERBOSE))
 	{
 		error (0, 0, "removed %s", thisfile);
 	}
@@ -99,7 +99,7 @@ static void function(char const * thisfile, char const * thatfile, char const * 
  *
  *--------------------------------------------------------------------*/
 
-static void findfile(char * thispath, char * thatpath, char const * command, flag_t flags)
+static void findfile (char * thispath, char * thatpath, char const * command, flag_t flags)
 
 {
 	DIR * dir;
@@ -108,7 +108,7 @@ static void findfile(char * thispath, char * thatpath, char const * command, fla
 	char * thatfile = thatpath;
 	struct stat this;
 	struct stat that;
-	if ((dir = opendir(thispath)))
+	if ((dir = opendir (thispath)))
 	{
 		while (* thisfile)
 		{
@@ -120,21 +120,21 @@ static void findfile(char * thispath, char * thatpath, char const * command, fla
 		}
 		* thisfile++ = PATH_C_EXTENDER;
 		* thatfile++ = PATH_C_EXTENDER;
-		while ((dirent = readdir(dir)))
+		while ((dirent = readdir (dir)))
 		{
 			strcpy (thisfile, dirent->d_name);
 			strcpy (thatfile, dirent->d_name);
-			if (stat(thatpath, & that))
+			if (stat (thatpath, & that))
 			{
 				error (0, 0, "can't stat %s", thatpath);
 				continue;
 			}
-			if (stat(thispath, & this))
+			if (stat (thispath, & this))
 			{
 				error (0, 0, "can't stat %s", thispath);
 				continue;
 			}
-			if (S_ISDIR(this.st_mode) && S_ISDIR(that.st_mode))
+			if (S_ISDIR (this.st_mode) && S_ISDIR (that.st_mode))
 			{
 				char * filename = dirent->d_name;
 				if (* filename == '.')
@@ -145,23 +145,23 @@ static void findfile(char * thispath, char * thatpath, char const * command, fla
 				{
 					filename++;
 				}
-				if (* filename == (char) (0))
+				if (* filename == (char)(0))
 				{
 					continue;
 				}
-				if (_anyset(flags, SWEEP_B_RECURSE))
+				if (_anyset (flags, SWEEP_B_RECURSE))
 				{
 					findfile (thispath, thatpath, command, flags);
 				}
 				function (thispath, thatpath, command, flags);
 				continue;
 			}
-			if (S_ISREG(this.st_mode) && S_ISREG(that.st_mode))
+			if (S_ISREG (this.st_mode) && S_ISREG (that.st_mode))
 			{
 				function (thispath, thatpath, command, flags);
 				continue;
 			}
-			if (S_ISLNK(this.st_mode) && S_ISLNK(that.st_mode))
+			if (S_ISLNK (this.st_mode) && S_ISLNK (that.st_mode))
 			{
 				function (thispath, thatpath, command, flags);
 				continue;
@@ -169,19 +169,19 @@ static void findfile(char * thispath, char * thatpath, char const * command, fla
 
 #if 0
 
-			if (S_ISBLK(this.st_mode) && S_ISBLK(that.st_mode))
+			if (S_ISBLK (this.st_mode) && S_ISBLK (that.st_mode))
 			{
 				continue;
 			}
-			if (S_ISCHR(this.st_mode) && S_ISCHR(that.st_mode))
+			if (S_ISCHR (this.st_mode) && S_ISCHR (that.st_mode))
 			{
 				continue;
 			}
-			if (S_ISFIFO(this.st_mode) && S_ISFIFO(that.st_mode))
+			if (S_ISFIFO (this.st_mode) && S_ISFIFO (that.st_mode))
 			{
 				continue;
 			}
-			if (S_ISSOCK(this.st_mode) && S_ISBLK(that.st_mode))
+			if (S_ISSOCK (this.st_mode) && S_ISBLK (that.st_mode))
 			{
 				continue;
 			}
@@ -189,8 +189,8 @@ static void findfile(char * thispath, char * thatpath, char const * command, fla
 #endif
 
 		}
-		* -- thisfile = (char)(0);
-		* -- thatfile = (char)(0);
+		* -- thisfile = (char) (0);
+		* -- thatfile = (char) (0);
 		closedir (dir);
 	}
 	return;
@@ -200,10 +200,10 @@ static void findfile(char * thispath, char * thatpath, char const * command, fla
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"c:drxvC",
 		"target-path source-path [source-path] ... [> stdout]",
@@ -213,14 +213,14 @@ int main(int argc, char const * argv[])
 		"r\trecursive comparison",
 		"x\tremove files",
 		"v\tverbose messages",
-		(char const *) (0)
+		(char const *)(0)
 	};
-	char thispath[FILENAME_MAX +  1];
-	char thatpath[FILENAME_MAX +  1];
+	char thispath [FILENAME_MAX +  1];
+	char thatpath [FILENAME_MAX +  1];
 	char const * command = SWEEP_S_COMMAND;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{

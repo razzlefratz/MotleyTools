@@ -61,10 +61,10 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"qvw:",
 		"file base [type item] [type item] [...]\n\n\t  where type is 'byte'|'word'|'long'|'huge'|'data'|'zero'|'fill'|'skip'",
@@ -72,7 +72,7 @@ int main(int argc, char const * argv[])
 		"q\tquiet moedit",
 		"v[v]\tverbose moedit",
 		"w n\twindow is n bytes [32]",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	file file;
 	byte * memory;
@@ -80,10 +80,10 @@ int main(int argc, char const * argv[])
 	unsigned offset = 0;
 	unsigned origin = 0;
 	unsigned window = 32;
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
 	opterr = 1;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -91,14 +91,14 @@ int main(int argc, char const * argv[])
 			_setbits (flags, ODE_SILENCE);
 			break;
 		case 'v':
-			if (_anyset(flags, ODE_VERBOSE))
+			if (_anyset (flags, ODE_VERBOSE))
 			{
 				_setbits (flags, ODE_HEADERS);
 			}
 			_setbits (flags, ODE_VERBOSE);
 			break;
 		case 'w':
-			window = (unsigned) (uintspec(optarg, 0, UINT_MAX));
+			window = (unsigned)(uintspec (optarg, 0, UINT_MAX));
 			_setbits (flags, ODE_VERBOSE);
 			break;
 		default: 
@@ -112,23 +112,23 @@ int main(int argc, char const * argv[])
 		error (1, ECANCELED, "No file.");
 	}
 	file.name = * argv;
-	if ((file.file = open(file.name, O_BINARY | O_RDONLY)) == - 1)
+	if ((file.file = open (file.name, O_BINARY | O_RDONLY)) == - 1)
 	{
 		error (1, errno, "%s", file.name);
 	}
-	if ((signed) (extent = lseek(file.file, 0, SEEK_END)) == - 1)
+	if ((signed)(extent = lseek (file.file, 0, SEEK_END)) == - 1)
 	{
 		error (1, errno, "%s", file.name);
 	}
-	if ((memory = malloc(extent)) == 0)
+	if ((memory = malloc (extent)) == 0)
 	{
 		error (1, errno, "Need %u bytes", extent);
 	}
-	if (lseek(file.file, 0, SEEK_SET))
+	if (lseek (file.file, 0, SEEK_SET))
 	{
 		error (1, errno, "%s", file.name);
 	}
-	if (read(file.file, memory, extent) != (signed) (extent))
+	if (read (file.file, memory, extent) != (signed)(extent))
 	{
 		error (1, errno, "%s", file.name);
 	}
@@ -139,7 +139,7 @@ int main(int argc, char const * argv[])
 	{
 		error (1, ECANCELED, "No offset");
 	}
-	origin = offset = (unsigned) (basespec(* argv, 16, sizeof(offset)));
+	origin = offset = (unsigned)(basespec (* argv, 16, sizeof (offset)));
 	if (offset > extent)
 	{
 		error (1, ECANCELED, "Offset %X exceeds extent %X", offset, extent);
@@ -152,7 +152,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc > 1) && (* argv))
 	{
-		offset += memencode(memory +  offset, extent - offset, argv[0], argv[1]);
+		offset += memencode (memory +  offset, extent - offset, argv [0], argv [1]);
 		argc -= 2;
 		argv += 2;
 	}
@@ -160,18 +160,18 @@ int main(int argc, char const * argv[])
 	{
 		error (1, ECANCELED, "%s needs a value", * argv);
 	}
-	if ((file.file = open(file.name, O_BINARY | O_TRUNC | O_RDWR)) == - 1)
+	if ((file.file = open (file.name, O_BINARY | O_TRUNC | O_RDWR)) == - 1)
 	{
 		error (1, errno, "%s", file.name);
 	}
-	if (write(file.file, memory, extent) < (signed) (extent))
+	if (write (file.file, memory, extent) < (signed)(extent))
 	{
 		error (1, errno, "%s", file.name);
 	}
 	close (file.file);
-	if (_anyset(flags, ODE_VERBOSE))
+	if (_anyset (flags, ODE_VERBOSE))
 	{
-		if (_anyset(flags, ODE_HEADERS))
+		if (_anyset (flags, ODE_HEADERS))
 		{
 			printf (HEXDUMP_HEADER);
 		}

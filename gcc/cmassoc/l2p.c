@@ -62,60 +62,60 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function(flag_t flags)
+static void function (flag_t flags)
 
 {
 	unsigned lineno = 1;
-	char symbol[_NAMESIZE];
-	char string[_LINESIZE];
+	char symbol [_NAMESIZE];
+	char string [_LINESIZE];
 	char * sp;
 	signed c;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
-		while (isblank(c))
+		while (isblank (c))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		sp = symbol;
-		if (isident(c))
+		if (isident (c))
 		{
 			do 
 			{
 				* sp++ = c;
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (isident(c) || (c == '-') || (c == '.'));
+			while (isident (c) || (c == '-') || (c == '.'));
 		}
-		* sp = (char) (0);
-		while (isblank(c))
+		* sp = (char)(0);
+		while (isblank (c))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		if (c == ':')
 		{
 			do 
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (isblank(c));
+			while (isblank (c));
 			do 
 			{
 				sp = string;
-				if (isident(c))
+				if (isident (c))
 				{
 					do 
 					{
 						* sp++ = c;
-						c = getc(stdin);
+						c = getc (stdin);
 					}
-					while (isident(c) || (c == '-') || (c == '.'));
+					while (isident (c) || (c == '-') || (c == '.'));
 				}
-				* sp = (char) (0);
-				while (isblank(c))
+				* sp = (char)(0);
+				while (isblank (c))
 				{
-					c = getc(stdin);
+					c = getc (stdin);
 				}
-				if (_anyset(flags, L2P_REVERSE))
+				if (_anyset (flags, L2P_REVERSE))
 				{
 					printf ("%s:%s;\n", string, symbol);
 				}
@@ -128,7 +128,7 @@ static void function(flag_t flags)
 		}
 		while ((c != ';') && (c != '\n') && (c != EOF))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		lineno++;
 	}
@@ -147,10 +147,10 @@ static void function(flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"qvx",
 		"file [file] [...]",
@@ -158,11 +158,11 @@ int main(int argc, char const * argv[])
 		"q\tquiet mode",
 		"v\tverbose mode",
 		"x\texchange order",
-		(char const *) (0)
+		(char const *)(0)
 	};
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -187,7 +187,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (! freopen(* argv, "rb", stdin))
+		if (! freopen (* argv, "rb", stdin))
 		{
 			error (1, errno, "%s", * argv);
 		}

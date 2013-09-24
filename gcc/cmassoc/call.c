@@ -66,7 +66,7 @@ unsigned lineno = 0;
  *   program variables;
  *--------------------------------------------------------------------*/
 
-static char const * reserved[] = 
+static char const * reserved [] = 
 
 {
 	"auto",
@@ -117,65 +117,65 @@ static char const * reserved[] =
  *
  *--------------------------------------------------------------------*/
 
-static void function(flag_t flags)
+static void function (flag_t flags)
 
 {
 	static unsigned level = 0;
-	char module[_NAMESIZE];
-	char string[_NAMESIZE];
-	signed c = getc(stdin);
+	char module [_NAMESIZE];
+	char string [_NAMESIZE];
+	signed c = getc (stdin);
 	while (c != EOF)
 	{
-		while (isspace(c))
+		while (isspace (c))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		if (c == '#')
 		{
 			do 
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 				if (c == '\\')
 				{
-					c = getc(stdin);
-					c = getc(stdin);
+					c = getc (stdin);
+					c = getc (stdin);
 				}
 			}
-			while (nobreak(c));
+			while (nobreak (c));
 			continue;
 		}
 		if ((c == '{') || (c == '(') || (c == '['))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 			level++;
 			continue;
 		}
 		if ((c == '}') || (c == ')') || (c == ']'))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 			level--;
 			continue;
 		}
 		if (c == '/')
 		{
-			c = nocomment(c);
+			c = nocomment (c);
 			continue;
 		}
-		if (isquote(c))
+		if (isquote (c))
 		{
-			c = noliteral(c);
+			c = noliteral (c);
 			continue;
 		}
-		if (isalpha(c) || (c == '_'))
+		if (isalpha (c) || (c == '_'))
 		{
 			char * sp = string;
 			do 
 			{
-				* sp++ = (char) (c);
-				c = getc(stdin);
+				* sp++ = (char)(c);
+				c = getc (stdin);
 			}
-			while (isalnum(c) || (c == '_'));
-			* sp = (char) (0);
+			while (isalnum (c) || (c == '_'));
+			* sp = (char)(0);
 
 #if 0
 
@@ -183,21 +183,21 @@ static void function(flag_t flags)
 
 #endif
 
-			if (svindex(string, reserved, SIZEOF(reserved), strcmp) < SIZEOF(reserved))
+			if (svindex (string, reserved, SIZEOF (reserved), strcmp) < SIZEOF (reserved))
 			{
 				continue;
 			}
-			while (isspace(c))
+			while (isspace (c))
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
 			if (c == '(')
 			{
 				if (! level)
 				{
-					memcpy (module, string, sizeof(module));
+					memcpy (module, string, sizeof (module));
 				}
-				else if(_anyset(flags, CALL_B_INVERT))
+				else if (_anyset (flags, CALL_B_INVERT))
 				{
 					printf ("%s:%s;\n", string, module);
 				}
@@ -208,36 +208,36 @@ static void function(flag_t flags)
 			}
 			continue;
 		}
-		if (isdigit(c))
+		if (isdigit (c))
 		{
 			do 
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (isdigit(c) || (c == '.'));
+			while (isdigit (c) || (c == '.'));
 			if ((c == 'x') || (c == 'X'))
 			{
 				do 
 				{
-					c = getc(stdin);
+					c = getc (stdin);
 				}
-				while (isxdigit(c));
+				while (isxdigit (c));
 			}
 			if ((c == 'e') || (c == 'E'))
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 				if ((c == '+') || (c == '-'))
 				{
-					c = getc(stdin);
+					c = getc (stdin);
 				}
-				while (isdigit(c))
+				while (isdigit (c))
 				{
-					c = getc(stdin);
+					c = getc (stdin);
 				}
 			}
 			continue;
 		}
-		c = getc(stdin);
+		c = getc (stdin);
 	}
 	return;
 }
@@ -252,20 +252,20 @@ static void function(flag_t flags)
  *   
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"x",
 		PUTOPTV_S_FUNNEL,
 		"print C language functional dependencies",
 		"x\texchange objects",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -284,7 +284,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			function (flags);
 		}

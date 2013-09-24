@@ -63,18 +63,18 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function(signed fields, unsigned length)
+static void function (signed fields, unsigned length)
 
 {
-	char buffer[length];
-	char const * vector[fields];
+	char buffer [length];
+	char const * vector [fields];
 	signed limit;
-	while ((limit = getfields(vector, fields, buffer, length)))
+	while ((limit = getfields (vector, fields, buffer, length)))
 	{
 		signed count;
 		for (count = 0; count < limit; count++)
 		{
-			printf ("field [%d] = [%s]\n", count, vector[count]);
+			printf ("field [%d] = [%s]\n", count, vector [count]);
 		}
 		printf ("\n");
 	}
@@ -92,30 +92,30 @@ static void function(signed fields, unsigned length)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"b:f:",
 		PUTOPTV_S_FILTER,
 		"generic field enumerator",
-		"b n\tbuffer size is (n) [" LITERAL(OFLD_BUFFER) "]",
-		"f n\tfield count is (n) [" LITERAL(OFLD_FIELDS) "]",
-		(char const *) (0)
+		"b n\tbuffer size is (n) [" LITERAL (OFLD_BUFFER) "]",
+		"f n\tfield count is (n) [" LITERAL (OFLD_FIELDS) "]",
+		(char const *)(0)
 	};
 	signed fields = OFLD_FIELDS;
 	size_t length = OFLD_BUFFER;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'b':
-			length = uintspec(optarg, 0, UINT_MAX);
+			length = uintspec (optarg, 0, UINT_MAX);
 			break;
 		case 'f':
-			fields = uintspec(optarg, 0, 512);
+			fields = uintspec (optarg, 0, 512);
 			break;
 		default: 
 			break;
@@ -129,7 +129,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			function (fields, length);
 		}

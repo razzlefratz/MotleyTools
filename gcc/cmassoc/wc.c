@@ -92,7 +92,7 @@ wc;
  *
  *--------------------------------------------------------------------*/
 
-void show(struct wc * total, flag_t flags)
+void show (struct wc * total, flag_t flags)
 
 {
 	if (flags & WC_B_NLINE)
@@ -136,7 +136,7 @@ void show(struct wc * total, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-void function(char const * pathname, char table[], struct wc * total, flag_t flags)
+void function (char const * pathname, char table [], struct wc * total, flag_t flags)
 
 {
 	struct wc local;
@@ -147,14 +147,14 @@ void function(char const * pathname, char table[], struct wc * total, flag_t fla
 	local._word = 0;
 	local._char = 0;
 	local._byte = 0;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
 		if (c == '\n')
 		{
 			word = false;
 			local._line++;
 		}
-		else if(table[(unsigned)(c)])
+		else if (table [(unsigned) (c)])
 		{
 			if (word == false)
 			{
@@ -187,10 +187,10 @@ void function(char const * pathname, char table[], struct wc * total, flag_t fla
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"W:lwcbt",
 		PUTOPTV_S_FUNNEL,
@@ -201,7 +201,7 @@ int main(int argc, char const * argv[])
 		"c\tdisplay char count",
 		"b\tdisplay byte count",
 		"t\tdisplay totals",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	struct wc total = 
 	{
@@ -211,21 +211,21 @@ int main(int argc, char const * argv[])
 		0,
 		"total"
 	};
-	static char words[UCHAR_MAX +  1];
-	static char table[UCHAR_MAX +  1];
-	flag_t flags = (flag_t)(0);
+	static char words [UCHAR_MAX +  1];
+	static char table [UCHAR_MAX +  1];
+	flag_t flags = (flag_t) (0);
 	signed c;
 	total._name = "total";
-	memset (table, 0, sizeof(table));
-	charset (CHRLIB_WORDSET, (char)(0), words, sizeof(words));
+	memset (table, 0, sizeof (table));
+	charset (CHRLIB_WORDSET, (char) (0), words, sizeof (words));
 	chrdef (table, words);
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'W':
-			memset (table, 0, sizeof(table));
-			charset (optarg, (char)(0), words, sizeof(words));
+			memset (table, 0, sizeof (table));
+			charset (optarg, (char) (0), words, sizeof (words));
 			chrdef (table, words);
 			break;
 		case 'l':
@@ -247,7 +247,7 @@ int main(int argc, char const * argv[])
 			break;
 		}
 	}
-	if (_allclr(flags, WC_B_NLINE | WC_B_NWORD | WC_B_NCHAR | WC_B_NBYTE))
+	if (_allclr (flags, WC_B_NLINE | WC_B_NWORD | WC_B_NCHAR | WC_B_NBYTE))
 	{
 		_setbits (flags, WC_B_NLINE | WC_B_NWORD | WC_B_NCHAR | WC_B_NBYTE);
 	}
@@ -259,7 +259,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			function (* argv, table, & total, flags);
 		}

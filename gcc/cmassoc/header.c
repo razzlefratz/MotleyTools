@@ -59,11 +59,11 @@
  *
  *--------------------------------------------------------------------*/
 
-void function(signed count, signed width)
+void function (signed count, signed width)
 
 {
 	signed column = 0;
-	signed c = getc(stdin);
+	signed c = getc (stdin);
 	while ((count) && (c != EOF))
 	{
 		if (c == '\n')
@@ -76,7 +76,7 @@ void function(signed count, signed width)
 			putc (c, stdout);
 			column++;
 		}
-		c = getc(stdin);
+		c = getc (stdin);
 	}
 	return;
 }
@@ -92,17 +92,17 @@ void function(signed count, signed width)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"l:w:",
 		PUTOPTV_S_FUNNEL,
 		"copy one or more file headers to stdout",
-		"l n\tdisplay line count is (n) [" LITERAL(VT_LINES) "]",
-		"w n\tdisplay line width is (n) [" LITERAL(VT_LIMIT) "]",
-		(char const *) (0)
+		"l n\tdisplay line count is (n) [" LITERAL (VT_LINES) "]",
+		"w n\tdisplay line width is (n) [" LITERAL (VT_LIMIT) "]",
+		(char const *)(0)
 	};
 	unsigned lines = VT_LINES;
 	unsigned width = VT_LIMIT;
@@ -111,15 +111,15 @@ int main(int argc, char const * argv[])
 	lines--;
 	lines--;
 	width--;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'l':
-			lines = uintspec(optarg, 1, SHRT_MAX);
+			lines = uintspec (optarg, 1, SHRT_MAX);
 			break;
 		case 'w':
-			width = uintspec(optarg, 1, SHRT_MAX);
+			width = uintspec (optarg, 1, SHRT_MAX);
 			break;
 		default: 
 			break;
@@ -133,7 +133,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			function (lines, width);
 		}

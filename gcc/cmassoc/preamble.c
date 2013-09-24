@@ -69,21 +69,21 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function(signed prefix, signed suffix, signed length)
+static void function (signed prefix, signed suffix, signed length)
 
 {
-	byte buffer[length];
+	byte buffer [length];
 	lseek (prefix, 0, SEEK_SET);
 	lseek (suffix, 0, SEEK_SET);
-	while ((length = read(prefix, buffer, sizeof(buffer))) > 0)
+	while ((length = read (prefix, buffer, sizeof (buffer))) > 0)
 	{
 		write (STDOUT_FILENO, buffer, length);
 	}
-	while ((length = read(STDIN_FILENO, buffer, sizeof(buffer))) > 0)
+	while ((length = read (STDIN_FILENO, buffer, sizeof (buffer))) > 0)
 	{
 		write (STDOUT_FILENO, buffer, length);
 	}
-	while ((length = read(suffix, buffer, sizeof(buffer))) > 0)
+	while ((length = read (suffix, buffer, sizeof (buffer))) > 0)
 	{
 		write (STDOUT_FILENO, buffer, length);
 	}
@@ -101,10 +101,10 @@ static void function(signed prefix, signed suffix, signed length)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"p:qs:v",
 		PUTOPTV_S_FILTER,
@@ -113,25 +113,25 @@ int main(int argc, char const * argv[])
 		"q\tquiet mode",
 		"s s\tsuffix file is (s)",
 		"v\tverbose mode",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed length = 1024;
 	signed prefix = - 1;
 	signed suffix = - 1;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'h':
-			if ((prefix = open(optarg, O_RDONLY)) == - 1)
+			if ((prefix = open (optarg, O_RDONLY)) == - 1)
 			{
 				error (1, errno, "%s", optarg);
 			}
 			break;
 		case 'f':
-			if ((suffix = open(optarg, O_RDONLY)) == - 1)
+			if ((suffix = open (optarg, O_RDONLY)) == - 1)
 			{
 				error (1, errno, "%s", optarg);
 			}
@@ -152,7 +152,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
 			function (prefix, suffix, length);
 		}

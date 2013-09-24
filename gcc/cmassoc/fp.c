@@ -69,23 +69,23 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"qv",
 		PUTOPTV_S_FUNNEL,
 		"file finger-printer",
 		"q\tsuppress routine messages",
 		"v\tprint additions messages",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	byte buffer[BUFFERSIZE];
-	byte digest[DIGESTSIZE];
-	flag_t flags = (flag_t) (0);
+	byte buffer [BUFFERSIZE];
+	byte digest [DIGESTSIZE];
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -103,17 +103,17 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	if (! argc)
 	{
-		SHA256Ident (STDIN_FILENO, buffer, sizeof(buffer), digest);
-		hexout (digest, sizeof(digest), '\0', '\0', stdout);
+		SHA256Ident (STDIN_FILENO, buffer, sizeof (buffer), digest);
+		hexout (digest, sizeof (digest), '\0', '\0', stdout);
 		printf ("\n");
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
-			SHA256Ident (STDIN_FILENO, buffer, sizeof(buffer), digest);
-			hexout (digest, sizeof(digest), '\0', '\0', stdout);
-			if (_anyset(flags, FP_B_VERBOSE))
+			SHA256Ident (STDIN_FILENO, buffer, sizeof (buffer), digest);
+			hexout (digest, sizeof (digest), '\0', '\0', stdout);
+			if (_anyset (flags, FP_B_VERBOSE))
 			{
 				printf (" %s", * argv);
 			}

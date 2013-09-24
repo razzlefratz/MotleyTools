@@ -64,12 +64,12 @@
  *
  *--------------------------------------------------------------------*/
 
-void function(char const * prefix, char const * suffix, flag_t flags)
+void function (char const * prefix, char const * suffix, flag_t flags)
 
 {
 	signed c;
 	signed o = '\n';
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
 		if (o == '\n')
 		{
@@ -79,7 +79,7 @@ void function(char const * prefix, char const * suffix, flag_t flags)
 		{
 			fputs (suffix, stdout);
 		}
-		o = putc(c, stdout);
+		o = putc (c, stdout);
 	}
 	return;
 }
@@ -88,31 +88,31 @@ void function(char const * prefix, char const * suffix, flag_t flags)
  *  main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"p:s:",
 		PUTOPTV_S_FILTER,
 		"prepend/append text to each line of a text file",
 		"p s\tprefix is s",
 		"s s\tsuffix is s",
-		(char const *) (0)
+		(char const *)(0)
 	};
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	char * prefix = "";
 	char * suffix = "";
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'p':
-			prefix = struesc((char *)(optarg));
+			prefix = struesc ((char *) (optarg));
 			break;
 		case 's':
-			suffix = struesc((char *)(optarg));
+			suffix = struesc ((char *) (optarg));
 			break;
 		default: 
 			break;
@@ -126,7 +126,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
 			function (prefix, suffix, flags);
 		}

@@ -71,12 +71,12 @@ unsigned lineno = 0;
  *
  *--------------------------------------------------------------------*/
 
-signed comment(signed c)
+signed comment (signed c)
 
 {
 	if (c != EOF)
 	{
-		c = keep(c);
+		c = keep (c);
 	}
 	if (c == '/')
 	{
@@ -85,7 +85,7 @@ signed comment(signed c)
 		{
 			do 
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
 			while (c == '/');
 			if ((c != '\n') && (c != EOF))
@@ -95,13 +95,13 @@ signed comment(signed c)
 				putc ('*', stdout);
 				do 
 				{
-					c = keep(c);
+					c = keep (c);
 				}
 				while ((c != '\n') && (c != EOF));
 			}
 			do 
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
 			while (c == '\n');
 		}
@@ -119,17 +119,17 @@ signed comment(signed c)
 		{
 			while ((c != '*') && (c != EOF))
 			{
-				c = keep(c);
+				c = keep (c);
 			}
-			c = keep(c);
+			c = keep (c);
 			while (c == '*')
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
 		}
 		if (c != EOF)
 		{
-			c = keep(c);
+			c = keep (c);
 		}
 		return (c);
 	}
@@ -150,54 +150,54 @@ signed comment(signed c)
  *
  *--------------------------------------------------------------------*/
 
-void function(signed c, flag_t flags)
+void function (signed c, flag_t flags)
 
 {
 	while (c != EOF)
 	{
-		if (isspace(c))
+		if (isspace (c))
 		{
 			do 
 			{
-				c = keep(c);
+				c = keep (c);
 			}
-			while (isspace(c));
+			while (isspace (c));
 			continue;
 		}
-		if (isalpha(c))
+		if (isalpha (c))
 		{
 			do 
 			{
-				c = keep(c);
+				c = keep (c);
 			}
-			while (isalnum(c) || (c == '_'));
+			while (isalnum (c) || (c == '_'));
 			continue;
 		}
-		if (isdigit(c))
+		if (isdigit (c))
 		{
 			do 
 			{
-				c = keep(c);
+				c = keep (c);
 			}
-			while (isdigit(c) || (c == '.'));
+			while (isdigit (c) || (c == '.'));
 			continue;
 		}
 		if (c == '#')
 		{
-			c = fortran(c);
+			c = fortran (c);
 			continue;
 		}
 		if (c == '/')
 		{
-			c = comment(c);
+			c = comment (c);
 			continue;
 		}
-		if (isquote(c))
+		if (isquote (c))
 		{
-			c = literal(c);
+			c = literal (c);
 			continue;
 		}
-		c = keep(c);
+		c = keep (c);
 	}
 	return;
 }
@@ -213,19 +213,19 @@ void function(signed c, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"",
 		PUTOPTV_S_FILTER,
 		"convert C++ comments to C comments",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -237,14 +237,14 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	if (! argc)
 	{
-		c = getc(stdin);
+		c = getc (stdin);
 		function (c, flags);
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 			function (c, flags);
 		}
 		argc--;

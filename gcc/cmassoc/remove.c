@@ -114,20 +114,20 @@
  *
  *--------------------------------------------------------------------*/
 
-void function(char const * filename, regexp * list[], size_t size, char buffer[], size_t length, flag_t flags)
+void function (char const * filename, regexp * list [], size_t size, char buffer [], size_t length, flag_t flags)
 
 {
 	unsigned line;
 	unsigned removed = 0;
-	for (line = 1; fgetline(buffer, length, stdin) != - 1; line++)
+	for (line = 1; fgetline (buffer, length, stdin) != - 1; line++)
 	{
 		size_t item;
 		for (item = 0; item < size; item++)
 		{
-			char const * cp = regexspan(list[item], buffer);
+			char const * cp = regexspan (list [item], buffer);
 			if (cp)
 			{
-				if (* cp == (char)(0))
+				if (* cp == (char) (0))
 				{
 					break;
 				}
@@ -160,11 +160,11 @@ void function(char const * filename, regexp * list[], size_t size, char buffer[]
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	extern const unsigned char ct_unescape[];
-	static char const * optv[] = 
+	extern const unsigned char ct_unescape [];
+	static char const * optv [] = 
 	{
 		"e:fHl:nRTv",
 		PUTOPTV_S_FILTER,
@@ -177,21 +177,21 @@ int main(int argc, char const * argv[])
 		"R\tregular expression rules",
 		"T\tescape sequence rules",
 		"v\texclude matching lines",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	regexp * remove[_LISTSIZE] = 
+	regexp * remove [_LISTSIZE] = 
 	{
-		(regexp *)(0)
+		(regexp *) (0)
 	};
-	char buffer[TEXTLINE_MAX] = 
+	char buffer [TEXTLINE_MAX] = 
 	{
-		(char)(0)
+		(char) (0)
 	};
 	size_t size = 0;
 	size_t item = 0;
 	flag_t flags = REMOVE_B_RECORD;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -206,16 +206,16 @@ int main(int argc, char const * argv[])
 			_clrbits (flags, REMOVE_B_RECORD);
 			break;
 		case 'l':
-			strcpy (buffer, struesc((char *) (optarg)));
-			remove [size++] = regexmake(buffer);
-			remove [size] = (regexp *)(0);
+			strcpy (buffer, struesc ((char *)(optarg)));
+			remove [size++] = regexmake (buffer);
+			remove [size] = (regexp *) (0);
 			break;
 		case 'e':
 			strcpy (buffer, REGEX_S_SPAN);
-			strcat (buffer, struesc((char *) (optarg)));
+			strcat (buffer, struesc ((char *)(optarg)));
 			strcat (buffer, REGEX_S_SPAN);
-			remove [size++] = regexmake(buffer);
-			remove [size] = (regexp *)(0);
+			remove [size++] = regexmake (buffer);
+			remove [size] = (regexp *) (0);
 			break;
 		case 'v':
 			_setbits (flags, REMOVE_B_INVERT);
@@ -245,19 +245,19 @@ int main(int argc, char const * argv[])
 	{
 		for (item = 0; item < size; item++)
 		{
-			regexshow (remove[item]);
+			regexshow (remove [item]);
 		}
 		exit (0);
 	}
 	if (! argc)
 	{
-		function ("stdin", remove, size, buffer, sizeof(buffer), flags);
+		function ("stdin", remove, size, buffer, sizeof (buffer), flags);
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
-			function (* argv, remove, size, buffer, sizeof(buffer), flags);
+			function (* argv, remove, size, buffer, sizeof (buffer), flags);
 		}
 		argc--;
 		argv++;

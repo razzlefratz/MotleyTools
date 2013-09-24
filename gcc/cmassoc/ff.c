@@ -76,8 +76,8 @@
  *   fundtions; 
  *--------------------------------------------------------------------*/
 
-static void findfile(FIND * find, flag_t flags);
-static void testfile(FIND * find, flag_t flags);
+static void findfile (FIND * find, flag_t flags);
+static void testfile (FIND * find, flag_t flags);
 
 /*====================================================================*
  *
@@ -93,15 +93,15 @@ static void testfile(FIND * find, flag_t flags);
  *
  *--------------------------------------------------------------------*/
 
-static void showfile(FIND * find, flag_t flags)
+static void showfile (FIND * find, flag_t flags)
 
 {
-	if (match(find->filename, find->wildcard))
+	if (match (find->filename, find->wildcard))
 	{
 		if (find->flagword & (FIND_B_DATETIME))
 		{
-			char datetime[LOGTIME_LEN];
-			strftime (datetime, sizeof(datetime), LOGTIME, localtime(& find->statinfo.st_mtime));
+			char datetime [LOGTIME_LEN];
+			strftime (datetime, sizeof (datetime), LOGTIME, localtime (& find->statinfo.st_mtime));
 			printf ("%s ", datetime);
 		}
 		if (find->flagword & (FIND_B_FILESIZE))
@@ -145,15 +145,15 @@ static void showfile(FIND * find, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void testfile(FIND * find, flag_t flags)
+static void testfile (FIND * find, flag_t flags)
 
 {
-	if (lstat(find->fullname, & find->statinfo))
+	if (lstat (find->fullname, & find->statinfo))
 	{
 		error (0, errno, "%s", find->fullname);
 		return;
 	}
-	if (S_ISDIR(find->statinfo.st_mode))
+	if (S_ISDIR (find->statinfo.st_mode))
 	{
 		char const * filename = find->filename;
 		if (* filename == '.')
@@ -164,31 +164,31 @@ static void testfile(FIND * find, flag_t flags)
 		{
 			filename++;
 		}
-		if (* filename == (char)(0))
+		if (* filename == (char) (0))
 		{
 			return;
 		}
-		if (_anyset(find->flagword, FIND_B_DIR))
+		if (_anyset (find->flagword, FIND_B_DIR))
 		{
 			showfile (find, flags);
 		}
-		if (_anyset(find->flagword, FIND_B_RECURSE))
+		if (_anyset (find->flagword, FIND_B_RECURSE))
 		{
 			findfile (find, flags);
 		}
 		return;
 	}
-	if (S_ISLNK(find->statinfo.st_mode))
+	if (S_ISLNK (find->statinfo.st_mode))
 	{
-		if (_anyset(find->flagword, FIND_B_LNK))
+		if (_anyset (find->flagword, FIND_B_LNK))
 		{
 			showfile (find, flags);
 		}
 		return;
 	}
-	if (S_ISREG(find->statinfo.st_mode))
+	if (S_ISREG (find->statinfo.st_mode))
 	{
-		if (_anyset(find->flagword, FIND_B_REG))
+		if (_anyset (find->flagword, FIND_B_REG))
 		{
 			showfile (find, flags);
 		}
@@ -207,27 +207,27 @@ static void testfile(FIND * find, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void findfile(FIND * find, flag_t flags)
+static void findfile (FIND * find, flag_t flags)
 
 {
 	DIR * dir;
 	char * filename = find->fullname;
-	if ((dir = opendir(filename)))
+	if ((dir = opendir (filename)))
 	{
 		struct dirent * dirent;
-		while (* filename != (char) (0))
+		while (* filename != (char)(0))
 		{
 			filename++;
 		}
 		* filename = PATH_C_EXTENDER;
-		while ((dirent = readdir(dir)))
+		while ((dirent = readdir (dir)))
 		{
 			strcpy (filename +  1, dirent->d_name);
 			partpath (find->fullname, find->pathname, find->filename);
 			partfile (find->filename, find->basename, find->extender);
 			testfile (find, flags);
 		}
-		* filename = (char)(0);
+		* filename = (char) (0);
 		closedir (dir);
 		return;
 	}
@@ -239,11 +239,11 @@ static void findfile(FIND * find, flag_t flags)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
 	extern FIND find;
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"defoprstE:PSBLIK",
 		PUTOPTV_S_SEARCH,
@@ -261,16 +261,16 @@ int main(int argc, char const * argv[])
 		"B\tsearch binary folders",
 		"L\tsearch library folders",
 		"I\tsearch include folders",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	char * string = "";
-	char const ** folders = (char const **)(0);
-	char const ** folder = (char const **)(0);
+	char const ** folders = (char const **) (0);
+	char const ** folder = (char const **) (0);
 	size_t count = 0;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	time (& find.filetime);
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -282,7 +282,7 @@ int main(int argc, char const * argv[])
 			_setbits (find.flagword, FIND_B_FILENAME);
 			break;
 		case 'o':
-			find.filetime -= uintspec(optarg, 1, DAYS_IN_YEAR) * SECONDS_IN_DAY;
+			find.filetime -= uintspec (optarg, 1, DAYS_IN_YEAR) * SECONDS_IN_DAY;
 			find.filetime -= find.filetime % SECONDS_IN_DAY;
 			find.filetime += SECONDS_IN_DAY;
 			break;
@@ -303,25 +303,25 @@ int main(int argc, char const * argv[])
 			_setbits (find.flagword, FIND_B_DATETIME);
 			break;
 		case 'E':
-			if ((string = getenv(optarg)))
+			if ((string = getenv (optarg)))
 			{
 				error (0, EINVAL, "symbol ${%s} is not defined", optarg);
 			}
 			break;
 		case 'P':
-			string = getenv("PATH");
+			string = getenv ("PATH");
 			break;
 		case 'S':
-			string = strdup(PATH_SYSDIRS);
+			string = strdup (PATH_SYSDIRS);
 			break;
 		case 'B':
-			string = strdup(PATH_BINDIRS);
+			string = strdup (PATH_BINDIRS);
 			break;
 		case 'L':
-			string = strdup(PATH_LIBDIRS);
+			string = strdup (PATH_LIBDIRS);
 			break;
 		case 'I':
-			string = strdup(PATH_INCDIRS);
+			string = strdup (PATH_INCDIRS);
 			break;
 		default: 
 			break;
@@ -329,19 +329,19 @@ int main(int argc, char const * argv[])
 	}
 	argc -= optind;
 	argv += optind;
-	if (_anyset(flags, FIND_B_TESTRUN))
+	if (_anyset (flags, FIND_B_TESTRUN))
 	{
 		printf ("%s\n", string);
 		exit (0);
 	}
-	if (_allclr(find.flagword, (FIND_B_DIR | FIND_B_LNK | FIND_B_REG)))
+	if (_allclr (find.flagword, (FIND_B_DIR | FIND_B_LNK | FIND_B_REG)))
 	{
 		_setbits (find.flagword, (FIND_B_DIR | FIND_B_LNK | FIND_B_REG));
 	}
 	if ((string) && (* string))
 	{
-		count = 2 +  chrcount(string, PATH_C_SEPARATOR);
-		folders = (char const **)(emalloc(count * sizeof(char const *)));
+		count = 2 +  chrcount (string, PATH_C_SEPARATOR);
+		folders = (char const **) (emalloc (count * sizeof (char const *)));
 		strsplit (folders, count, string, PATH_C_SEPARATOR);
 	}
 	while ((argc) && (* argv))
@@ -351,7 +351,7 @@ int main(int argc, char const * argv[])
 		{
 			for (folder = folders; * folder; folder++)
 			{
-				if (! strcmp(* folder, "~"))
+				if (! strcmp (* folder, "~"))
 				{
 					continue;
 				}

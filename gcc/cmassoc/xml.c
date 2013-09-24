@@ -68,7 +68,7 @@
  *
  *--------------------------------------------------------------------*/
 
-void csstree(struct node const * node)
+void csstree (struct node const * node)
 
 {
 	if (node)
@@ -77,7 +77,7 @@ void csstree(struct node const * node)
 	}
 	while ((node) && (node->type == NODE_ATTR))
 	{
-		if (! strcmp(node->text, "class"))
+		if (! strcmp (node->text, "class"))
 		{
 			printf ("%s.%s { }\n", node->above->text, node->below->text);
 		}
@@ -99,10 +99,10 @@ void csstree(struct node const * node)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"cdst",
 		PUTOPTV_S_FUNNEL,
@@ -111,12 +111,12 @@ int main(int argc, char const * argv[])
 		"d\tprint document as text",
 		"s\tprint document as stream",
 		"t\tprint document as tree",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	struct node node;
-	void (* xmldump)(struct node const *) = xmlindent;
+	void (* xmldump) (struct node const *) = xmlindent;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{

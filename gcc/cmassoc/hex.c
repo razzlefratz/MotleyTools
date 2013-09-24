@@ -66,11 +66,11 @@
  *
  *--------------------------------------------------------------------*/
 
-void encode(flag_t flags)
+void encode (flag_t flags)
 
 {
 	signed c;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
 
 #if 0
@@ -79,14 +79,14 @@ void encode(flag_t flags)
 
 #else
 
-		if (! isgraph(c)) 
+		if (! isgraph (c)) 
 
 #endif
 
 		{
 			putc ('%', stdout);
-			putc (DIGITS_HEX[(c >> 4) & 0x0F], stdout);
-			putc (DIGITS_HEX[(c >> 0) & 0x0F], stdout);
+			putc (DIGITS_HEX [(c >> 4) & 0x0F], stdout);
+			putc (DIGITS_HEX [(c >> 0) & 0x0F], stdout);
 		}
 		else 
 		{
@@ -109,40 +109,40 @@ void encode(flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-void decode(flag_t flags)
+void decode (flag_t flags)
 
 {
 	signed c;
 	signed upper;
 	signed lower;
 	unsigned value;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
 		if (c != '%')
 		{
 			putc (c, stdout);
 			continue;
 		}
-		if ((upper = getc(stdin)) == EOF)
+		if ((upper = getc (stdin)) == EOF)
 		{
 			putc (c, stdout);
 			continue;
 		}
-		value = todigit(upper);
+		value = todigit (upper);
 		if (errno)
 		{
 			putc (c, stdout);
 			putc (upper, stdout);
 			continue;
 		}
-		if ((lower = getc(stdin)) == EOF)
+		if ((lower = getc (stdin)) == EOF)
 		{
 			putc (c, stdout);
 			putc (upper, stdout);
 			putc (lower, stdout);
 			continue;
 		}
-		value = (value << 4) +  todigit(lower);
+		value = (value << 4) +  todigit (lower);
 		if (errno)
 		{
 			putc (c, stdout);
@@ -159,7 +159,7 @@ void decode(flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-void function(flag_t flags)
+void function (flag_t flags)
 
 {
 	signed c;
@@ -172,7 +172,7 @@ void function(flag_t flags)
 		decode (flags);
 		break;
 	default: 
-		while ((c = getc(stdin)) != EOF)
+		while ((c = getc (stdin)) != EOF)
 		{
 			putc (c, stdout);
 		}
@@ -188,21 +188,21 @@ void function(flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"deh",
 		PUTOPTV_S_FUNNEL,
 		"encode or decode text files in IETF hexidecimal octet format",
 		"d\tdecode files ",
 		"e\tencode files ",
-		(char const *) (0)
+		(char const *)(0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -226,7 +226,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			function (flags);
 		}

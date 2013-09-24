@@ -53,30 +53,30 @@
  *
  *--------------------------------------------------------------------*/
 
-void function(signed c)
+void function (signed c)
 
 {
 	while (c != EOF)
 	{
-		if (isupper(c) || (c == '_'))
+		if (isupper (c) || (c == '_'))
 		{
-			char symbol[1024];
+			char symbol [1024];
 			char * sp = symbol;
-			while (isupper(c) || (c == '_'))
+			while (isupper (c) || (c == '_'))
 			{
-				if (sp < (symbol +  sizeof(symbol) - 1))
+				if (sp < (symbol +  sizeof (symbol) - 1))
 				{
 					* sp++ = c;
 				}
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			* sp = (char)(0);
+			* sp = (char) (0);
 			if ((sp - symbol) > 2)
 			{
 				printf ("\t@echo %s=${%s}\n", symbol, symbol);
 			}
 		}
-		c = getc(stdin);
+		c = getc (stdin);
 	}
 	return;
 }
@@ -91,18 +91,18 @@ void function(signed c)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	char const * optv[] = 
+	char const * optv [] = 
 	{
 		"",
 		PUTOPTV_S_FILTER,
 		"symbol outpt utility",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -114,13 +114,13 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	if (! argc)
 	{
-		function (getc(stdin));
+		function (getc (stdin));
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
-			function (getc(stdin));
+			function (getc (stdin));
 		}
 		argc--;
 		argv++;

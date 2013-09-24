@@ -67,14 +67,14 @@
  *
  *--------------------------------------------------------------------*/
 
-void print(signed indent, NODE * node, flag_t flags)
+void print (signed indent, NODE * node, flag_t flags)
 
 {
-	if (_anyset(flags, ORDER_B_ORDER))
+	if (_anyset (flags, ORDER_B_ORDER))
 	{
 		printf ("%03d ", node->index);
 	}
-	if (_anyset(flags, ORDER_B_LEVEL))
+	if (_anyset (flags, ORDER_B_LEVEL))
 	{
 		printf ("%03d ", node->level);
 	}
@@ -100,7 +100,7 @@ void print(signed indent, NODE * node, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void traverse(NODE * node, flag_t flags)
+static void traverse (NODE * node, flag_t flags)
 
 {
 	extern NODES nodes;
@@ -117,7 +117,7 @@ static void traverse(NODE * node, flag_t flags)
 	node->index = 1;
 	for (index = 0; index < edges.count; index++)
 	{
-		EDGE * edge = edges.table[index];
+		EDGE * edge = edges.table [index];
 		if (edge->source != node)
 		{
 			continue;
@@ -131,7 +131,7 @@ static void traverse(NODE * node, flag_t flags)
 	nodes.order++;
 	node->level++;
 	node->index = nodes.order;
-	if (_anyset(flags, ORDER_B_SYMBOL))
+	if (_anyset (flags, ORDER_B_SYMBOL))
 	{
 		print (0, node, flags);
 	}
@@ -151,14 +151,14 @@ static void traverse(NODE * node, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void organize(NODE * node, flag_t flags)
+static void organize (NODE * node, flag_t flags)
 
 {
 	extern EDGES edges;
 	static signed margin = 0;
 	NODE * temp;
 	size_t index;
-	if (_anyset(flags, ORDER_B_STRUCT))
+	if (_anyset (flags, ORDER_B_STRUCT))
 	{
 		print (margin, node, flags);
 	}
@@ -183,7 +183,7 @@ static void organize(NODE * node, flag_t flags)
 	margin++;
 	for (index = 0; index < edges.count; index++)
 	{
-		EDGE * edge = edges.table[index];
+		EDGE * edge = edges.table [index];
 		if (edge->target == node)
 		{
 			organize (edge->source, flags);
@@ -191,7 +191,7 @@ static void organize(NODE * node, flag_t flags)
 	}
 	margin--;
 	nodes.node = node->node;
-	node->node = (NODE *) (0);
+	node->node = (NODE *)(0);
 	return;
 }
 
@@ -207,19 +207,19 @@ static void organize(NODE * node, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void discover(flag_t flags)
+static void discover (flag_t flags)
 
 {
 	extern NODES nodes;
 	size_t index;
 	for (index = 0; index < nodes.count; index++)
 	{
-		NODE * node = nodes.table[index];
+		NODE * node = nodes.table [index];
 		traverse (node, flags);
 	}
 	for (index = 0; index < nodes.count; index++)
 	{
-		NODE * node = nodes.table[index];
+		NODE * node = nodes.table [index];
 		if (node->level == 1)
 		{
 			organize (node, flags);
@@ -238,10 +238,10 @@ static void discover(flag_t flags)
  *   
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"loptx",
 		PUTOPTV_S_DIVINE,
@@ -251,11 +251,11 @@ int main(int argc, char const * argv[])
 		"p\tprint names",
 		"t\tprint nodes",
 		"x\texchange order",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -289,7 +289,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			populate (flags & ORDER_B_INVERT);
 		}

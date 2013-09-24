@@ -58,7 +58,7 @@
  *
  *--------------------------------------------------------------------*/
 
-static void stylesheet(unsigned margin)
+static void stylesheet (unsigned margin)
 
 {
 	indent (margin++, "<style type='text/css'>");
@@ -86,10 +86,10 @@ static void stylesheet(unsigned margin)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"cdmn:svx",
 		PUTOPTV_S_FUNNEL,
@@ -101,14 +101,14 @@ int main(int argc, char const * argv[])
 		"s\tprint switch statement",
 		"v\tprint variable declaration",
 		"x\tuse numbers instead of names",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	char const * name = LISTNAME;
-	struct _type_ list[LISTSIZE];
+	struct _type_ list [LISTSIZE];
 	size_t size = 0;
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -145,14 +145,14 @@ int main(int argc, char const * argv[])
 	}
 	if (! argc)
 	{
-		size = typeload(list, LISTSIZE);
+		size = typeload (list, LISTSIZE);
 		typesave (list, size, name, flags);
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
-			size = typeload(list, LISTSIZE);
+			size = typeload (list, LISTSIZE);
 			typesave (list, size, name, flags);
 		}
 		argc--;

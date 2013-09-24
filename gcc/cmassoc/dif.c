@@ -72,28 +72,28 @@
  *
  *--------------------------------------------------------------------*/
 
-void * next(size_t line, LINK * ip, FILE * fp)
+void * next (size_t line, LINK * ip, FILE * fp)
 
 {
-	register signed c = (char)(0);
-	char string[TEXTLINE_MAX];
+	register signed c = (char) (0);
+	char string [TEXTLINE_MAX];
 	char * sp = string;
 	char * cp = string;
-	for (c = getc(fp); (c != EOF) && (c != '\n'); c = getc(fp))
+	for (c = getc (fp); (c != EOF) && (c != '\n'); c = getc (fp))
 	{
-		if ((size_t) (cp - string) < (sizeof(string) - 1))
+		if ((size_t)(cp - string) < (sizeof (string) - 1))
 		{
-			* cp++ = (char)(c);
+			* cp++ = (char) (c);
 		}
 		if ((c != ' ') && (c != '\t'))
 		{
 			sp = cp;
 		}
 	}
-	* sp = (char)(0);
-	ip->name = (void *)(strdup(string));
-	ip->data = (void *)(line);
-	return ((c != EOF)? (void *)(ip->name): (void *)(0));
+	* sp = (char) (0);
+	ip->name = (void *) (strdup (string));
+	ip->data = (void *) (line);
+	return ((c != EOF)? (void *) (ip->name): (void *) (0));
 }
 
 /*====================================================================*
@@ -110,42 +110,42 @@ void * next(size_t line, LINK * ip, FILE * fp)
  *
  *--------------------------------------------------------------------*/
 
-LINK * find(LINK * list, LINK * item, int comp(char const *, char const *))
+LINK * find (LINK * list, LINK * item, int comp (char const *, char const *))
 
 {
 	LINK * temp;
-	if (list == (LINK *)(0))
+	if (list == (LINK *) (0))
 	{
-		return ((LINK *)(0));
+		return ((LINK *) (0));
 	}
-	if (item == (LINK *)(0))
+	if (item == (LINK *) (0))
 	{
-		return ((LINK *)(0));
+		return ((LINK *) (0));
 	}
-	if (item->name == (void *)(0))
+	if (item->name == (void *) (0))
 	{
-		return ((LINK *)(0));
+		return ((LINK *) (0));
 	}
-	if (* (char *)(item->name) == (char)(0))
+	if (* (char *) (item->name) == (char) (0))
 	{
-		return ((LINK *)(0));
+		return ((LINK *) (0));
 	}
 	for (temp = list->next; temp != list; temp = temp->next)
 	{
-		if (temp->name == (void *)(0))
+		if (temp->name == (void *) (0))
 		{
 			continue;
 		}
-		if (* (char *)(temp->name) == (char)(0))
+		if (* (char *) (temp->name) == (char) (0))
 		{
 			continue;
 		}
-		if (comp(temp->name, item->name) == 0)
+		if (comp (temp->name, item->name) == 0)
 		{
 			return (temp);
 		}
 	}
-	return ((LINK *)(0));
+	return ((LINK *) (0));
 }
 
 /*====================================================================*
@@ -168,11 +168,11 @@ LINK * find(LINK * list, LINK * item, int comp(char const *, char const *))
  *
  *--------------------------------------------------------------------*/
 
-void show(LINK * op, LINK * np, int width, flag_t flag)
+void show (LINK * op, LINK * np, int width, flag_t flag)
 
 {
 	LINK * tp;
-	if (_anyset(flag, _SHOWBREAK))
+	if (_anyset (flag, _SHOWBREAK))
 	{
 		if ((op != op->next) || (np != np->next))
 		{
@@ -183,8 +183,8 @@ void show(LINK * op, LINK * np, int width, flag_t flag)
 	}
 	while (op != op->next)
 	{
-		tp = queue(op, op->next);
-		printf (SCAN, (long unsigned)(tp->data), width, width, (char *)(tp->name));
+		tp = queue (op, op->next);
+		printf (SCAN, (long unsigned) (tp->data), width, width, (char *) (tp->name));
 		printf (LINE, width, width, "");
 		printf ("\n");
 		free (tp->name);
@@ -192,17 +192,17 @@ void show(LINK * op, LINK * np, int width, flag_t flag)
 	}
 	while (np != np->next)
 	{
-		tp = queue(np, np->next);
+		tp = queue (np, np->next);
 		printf (LINE, width, width, "");
-		printf (SCAN, (long unsigned)(tp->data), width, width, (char *)(tp->name));
+		printf (SCAN, (long unsigned) (tp->data), width, width, (char *) (tp->name));
 		printf ("\n");
 		free (tp->name);
 		free (tp);
 	}
-	if (_anyset(flag, _SHOWALL))
+	if (_anyset (flag, _SHOWALL))
 	{
-		printf (SCAN, (long unsigned)(op->data), width, width, (char *)(op->name));
-		printf (SCAN, (long unsigned)(np->data), width, width, (char *)(np->name));
+		printf (SCAN, (long unsigned) (op->data), width, width, (char *) (op->name));
+		printf (SCAN, (long unsigned) (np->data), width, width, (char *) (np->name));
 		printf ("\n");
 	}
 	strcpy (op->name, "");
@@ -220,7 +220,7 @@ void show(LINK * op, LINK * np, int width, flag_t flag)
  *
  *--------------------------------------------------------------------*/
 
-void function(size_t width, flag_t flag, FILE * ofp, FILE * nfp)
+void function (size_t width, flag_t flag, FILE * ofp, FILE * nfp)
 
 {
 	LINK * op,
@@ -229,41 +229,41 @@ void function(size_t width, flag_t flag, FILE * ofp, FILE * nfp)
 	* ntp;
 	unsigned match;
 	unsigned count;
-	op = makeitem((LINK *)(0), (LINK *)(0));
-	np = makeitem((LINK *)(0), (LINK *)(0));
-	for (match = count = 1; next(count, op, ofp) != next(count, np, nfp); count++)
+	op = makeitem ((LINK *) (0), (LINK *) (0));
+	np = makeitem ((LINK *) (0), (LINK *) (0));
+	for (match = count = 1; next (count, op, ofp) != next (count, np, nfp); count++)
 	{
-		if (* (char *) (op->name) == (char) (0))
+		if (* (char *)(op->name) == (char)(0))
 		{
 			continue;
 		}
-		if (* (char *) (np->name) == (char) (0))
+		if (* (char *)(np->name) == (char)(0))
 		{
 			continue;
 		}
-		if (strcmp(op->name, np->name) == 0)
+		if (strcmp (op->name, np->name) == 0)
 		{
 			show (op, np, width, flag);
 			continue;
 		}
-		if ((otp = find(op, np, strcmp)) != (void *)(0))
+		if ((otp = find (op, np, strcmp)) != (void *) (0))
 		{
-			otp = queue(op, otp);
+			otp = queue (op, otp);
 			show (otp, np, width, flag);
-			op = queue(op, otp);
+			op = queue (op, otp);
 			match++;
 			continue;
 		}
-		if ((ntp = find(np, op, strcmp)) != (void *)(0))
+		if ((ntp = find (np, op, strcmp)) != (void *) (0))
 		{
-			ntp = queue(np, ntp);
+			ntp = queue (np, ntp);
 			show (op, ntp, width, flag);
-			np = queue(np, ntp);
+			np = queue (np, ntp);
 			match++;
 			continue;
 		}
-		op = queue(op, makeitem((void *)(0), (void *)(0)));
-		np = queue(np, makeitem((void *)(0), (void *)(0)));
+		op = queue (op, makeitem ((void *) (0), (void *) (0)));
+		np = queue (np, makeitem ((void *) (0), (void *) (0)));
 	}
 	show (op, np, width, flag);
 	if (! match)
@@ -284,10 +284,10 @@ void function(size_t width, flag_t flag, FILE * ofp, FILE * nfp)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"w:abh",
 		"file1 file2",
@@ -295,14 +295,14 @@ int main(int argc, char const * argv[])
 		"a\tshow all lines",
 		"b\tshow line breaks",
 		"w n\tscreen width is n characters",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	FILE * ofp,
 	* nfp;
 	size_t width = _WIDTH;
 	flag_t flag = NONE;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -313,7 +313,7 @@ int main(int argc, char const * argv[])
 			_setbits (flag, _SHOWBREAK);
 			break;
 		case 'w':
-			width = uintspec(optarg, 0, _WIDTH);
+			width = uintspec (optarg, 0, _WIDTH);
 			break;
 		case 'h':
 			putoptv (optv);
@@ -326,8 +326,8 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	if (argc == 2)
 	{
-		ofp = efopen(* argv++, "rb");
-		nfp = efopen(* argv++, "rb");
+		ofp = efopen (* argv++, "rb");
+		nfp = efopen (* argv++, "rb");
 		function (width >> 1, flag, ofp, nfp);
 	}
 	exit (0);

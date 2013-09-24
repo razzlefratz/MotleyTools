@@ -66,7 +66,7 @@
  *
  *--------------------------------------------------------------------*/
 
-signed header(signed margin, char const * string)
+signed header (signed margin, char const * string)
 
 {
 	indent (margin, "<?xml version='%s' encoding='%s'?>", XML_VERSION, XML_CHARSET);
@@ -106,7 +106,7 @@ signed header(signed margin, char const * string)
  *
  *--------------------------------------------------------------------*/
 
-signed footer(signed margin, char const * string)
+signed footer (signed margin, char const * string)
 
 {
 	indent (margin--, "</body>");
@@ -128,64 +128,64 @@ signed footer(signed margin, char const * string)
  *
  *--------------------------------------------------------------------*/
 
-static void function(char const * string, size_t column, flag_t flags)
+static void function (char const * string, size_t column, flag_t flags)
 
 {
 	unsigned margin = 2;
 	unsigned row;
 	unsigned col;
 	signed c;
-	char field[_LINESIZE];
+	char field [_LINESIZE];
 	char * cp;
 	char * sp;
-	if (_anyset(flags, CSV2HTML_PAGE))
+	if (_anyset (flags, CSV2HTML_PAGE))
 	{
-		margin = header(0, string);
+		margin = header (0, string);
 	}
 	indent (margin++, "<h1>");
 	indent (margin, "%s", string);
 	indent (margin--, "</h1>");
 	indent (margin++, "<table class='box'>");
-	for (row = 0; (c = getc(stdin)) != EOF; row++)
+	for (row = 0; (c = getc (stdin)) != EOF; row++)
 	{
-		while (isspace(c))
+		while (isspace (c))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		if (c == '#')
 		{
 			do 
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (nobreak(c));
+			while (nobreak (c));
 			continue;
 		}
 		indent (margin++, "<tr>");
-		for (col = 0; nobreak(c); col++)
+		for (col = 0; nobreak (c); col++)
 		{
 			sp = cp = field;
-			while (nobreak(c))
+			while (nobreak (c))
 			{
 				if (c == ';')
 				{
-					c = getc(stdin);
+					c = getc (stdin);
 					break;
 				}
 				if (c == '\\')
 				{
-					c = getc(stdin);
+					c = getc (stdin);
 					if (c != EOF)
 					{
-						* cp++ = (char) (c);
-						c = getc(stdin);
+						* cp++ = (char)(c);
+						c = getc (stdin);
 						sp = cp;
 					}
 					continue;
 				}
 				if (c == '\\')
 				{
-					c = getc(stdin);
+					c = getc (stdin);
 				}
 				if ((c < 0x20) || (c > 0x7E))
 				{
@@ -198,16 +198,16 @@ static void function(char const * string, size_t column, flag_t flags)
 					* cp++ = 'r';
 					* cp++ = '/';
 					* cp++ = '>';
-					c = getc(stdin);
+					c = getc (stdin);
 				}
-				* cp++ = (char) (c);
+				* cp++ = (char)(c);
 				if (c != ' ')
 				{
 					sp = cp;
 				}
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			* sp = (char)(0);
+			* sp = (char) (0);
 			if (sp == field)
 			{
 				strcpy (field, "&nbsp;");
@@ -224,9 +224,9 @@ static void function(char const * string, size_t column, flag_t flags)
 				indent (margin, "%s", field);
 				indent (margin--, "</td>");
 			}
-			while (isblank(c))
+			while (isblank (c))
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
 		}
 		while (col++ < column)
@@ -247,9 +247,9 @@ static void function(char const * string, size_t column, flag_t flags)
 		indent (margin--, "</tr>");
 	}
 	indent (margin--, "</table>");
-	if (_anyset(flags, CSV2HTML_PAGE))
+	if (_anyset (flags, CSV2HTML_PAGE))
 	{
-		margin = footer(margin, string);
+		margin = footer (margin, string);
 	}
 	return;
 }
@@ -265,10 +265,10 @@ static void function(char const * string, size_t column, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"n:ps:t",
 		PUTOPTV_S_FUNNEL,
@@ -277,23 +277,23 @@ int main(int argc, char const * argv[])
 		"p\tprint HTML page with header",
 		"s s\tpage title string",
 		"t\tprint HTML table only",
-		(char const *) (0)
+		(char const *)(0)
 	};
-	char const * string = (char *) (0);
-	char * field = (char *) (0);
+	char const * string = (char *)(0);
+	char * field = (char *)(0);
 	unsigned length = 1024;
 	unsigned column = 0;
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'l':
-			column = uintspec(optarg, 1, USHRT_MAX);
+			column = uintspec (optarg, 1, USHRT_MAX);
 			break;
 		case 'n':
-			column = uintspec(optarg, 1, UCHAR_MAX);
+			column = uintspec (optarg, 1, UCHAR_MAX);
 			break;
 		case 'p':
 			_setbits (flags, CSV2HTML_PAGE);
@@ -310,7 +310,7 @@ int main(int argc, char const * argv[])
 	}
 	argc -= optind;
 	argv += optind;
-	if (! (field = malloc(length)))
+	if (! (field = malloc (length)))
 	{
 		error (1, errno, "Can't allocate %u bytes", length);
 	}
@@ -324,11 +324,11 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			if (! string)
 			{
-				string = filepart(* argv);
+				string = filepart (* argv);
 			}
 			function (string, column, flags);
 		}

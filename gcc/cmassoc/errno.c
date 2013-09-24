@@ -121,13 +121,13 @@
 #include <stdio.h>
 #include <string.h>
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
 	int error;
 	for (error = 0; error < 255; error++)
 	{
-		printf ("%03d %s\n", error, strerror(error));
+		printf ("%03d %s\n", error, strerror (error));
 	}
 	return (0);
 }

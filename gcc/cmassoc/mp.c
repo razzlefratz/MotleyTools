@@ -82,10 +82,10 @@
  *
  *--------------------------------------------------------------------*/
 
-static void example()
+static void example ()
 
 {
-	char const * subjects[] = 
+	char const * subjects [] = 
 	{
 		"NAME",
 		"SYNTAX",
@@ -104,7 +104,7 @@ static void example()
 		"AUTHORS",
 		"CREDITS",
 		"SEE ALSO",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	char const ** subject = subjects;
 	printf (".TH program 1 package");
@@ -125,7 +125,7 @@ static void example()
  * 
  *--------------------------------------------------------------------*/
 
-static void configure(char const * section, char const * project, char const * package, char const * release)
+static void configure (char const * section, char const * project, char const * package, char const * release)
 
 {
 	printf ("[%s]\n", section);
@@ -167,94 +167,94 @@ static void configure(char const * section, char const * project, char const * p
  * 
  *--------------------------------------------------------------------*/
 
-static void function(char const * program, char const * project, char const * package, char const * release, flag_t flags)
+static void function (char const * program, char const * project, char const * package, char const * release, flag_t flags)
 
 {
-	signed c = getc(stdin);
+	signed c = getc (stdin);
 	while (c != EOF)
 	{
 		while ((c == '\r') || (c == '\n'))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		if (c == '.')
 		{
-			char symbol[SYMBOLSIZE];
+			char symbol [SYMBOLSIZE];
 			char * sp = symbol;
 			do 
 			{
 				* sp++ = c;
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (isalpha(c));
-			* sp = (char)(0);
-			if (! strcmp(symbol, ".TH"))
+			while (isalpha (c));
+			* sp = (char) (0);
+			if (! strcmp (symbol, ".TH"))
 			{
-				while (nobreak(c))
+				while (nobreak (c))
 				{
-					c = getc(stdin);
+					c = getc (stdin);
 				}
-				sp += snprintf(sp, sizeof(symbol) +  sp - symbol, " %s", program);
-				sp += snprintf(sp, sizeof(symbol) +  sp - symbol, " \"%s\"", release);
-				sp += snprintf(sp, sizeof(symbol) +  sp - symbol, " \"%s\"", package);
-				sp += snprintf(sp, sizeof(symbol) +  sp - symbol, " \"%s\"", project);
+				sp += snprintf (sp, sizeof (symbol) +  sp - symbol, " %s", program);
+				sp += snprintf (sp, sizeof (symbol) +  sp - symbol, " \"%s\"", release);
+				sp += snprintf (sp, sizeof (symbol) +  sp - symbol, " \"%s\"", package);
+				sp += snprintf (sp, sizeof (symbol) +  sp - symbol, " \"%s\"", project);
 			}
-			else if(! strcmp(symbol, ".SH"))
+			else if (! strcmp (symbol, ".SH"))
 			{
 				putc ('\n', stdout);
 			}
-			else if(! strcmp(symbol, ".SS"))
+			else if (! strcmp (symbol, ".SS"))
 			{
 				putc ('\n', stdout);
 			}
-			else if(! strcmp(symbol, ".TP"))
+			else if (! strcmp (symbol, ".TP"))
 			{
 				putc ('\n', stdout);
 			}
-			else if(! strcmp(symbol, ".HP"))
+			else if (! strcmp (symbol, ".HP"))
 			{
 				putc ('\n', stdout);
 			}
-			else if(! strcmp(symbol, ".IP"))
+			else if (! strcmp (symbol, ".IP"))
 			{
 				putc ('\n', stdout);
 			}
-			else if(! strcmp(symbol, ".PP"))
+			else if (! strcmp (symbol, ".PP"))
 			{
 				putc ('\n', stdout);
 			}
-			else if(! strcmp(symbol, ".P"))
+			else if (! strcmp (symbol, ".P"))
 			{
 				putc ('\n', stdout);
 			}
 			fputs (symbol, stdout);
 		}
-		while (nobreak(c))
+		while (nobreak (c))
 		{
-			if (isquote(c))
+			if (isquote (c))
 			{
-				c = literal(c);
+				c = literal (c);
 				continue;
 			}
 			if (c == '.')
 			{
-				c = keep(c);
+				c = keep (c);
 				if (c == '.')
 				{
 					do 
 					{
-						c = keep(c);
+						c = keep (c);
 					}
 					while (c == '.');
 					continue;
 				}
-				if (isblank(c))
+				if (isblank (c))
 				{
 					do 
 					{
-						c = getc(stdin);
+						c = getc (stdin);
 					}
-					while (isblank(c));
+					while (isblank (c));
 					putc ('\n', stdout);
 					continue;
 				}
@@ -265,20 +265,20 @@ static void function(char const * program, char const * project, char const * pa
 
 			if (c == '\\')
 			{
-				c = keep(c);
+				c = keep (c);
 				if (c == 'v')
 				{
 					c = 'f';
 				}
-				c = keep(c);
+				c = keep (c);
 				continue;
 
 #endif
 
 			}
-			c = keep(c);
+			c = keep (c);
 		}
-		c = keep(c);
+		c = keep (c);
 	}
 	putc ('\n', stdout);
 	return;
@@ -295,22 +295,22 @@ static void function(char const * program, char const * project, char const * pa
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"mop:s:",
 		"tidy Linux manpage",
 		PUTOPTV_S_FILTER,
 		"m\tprint example manpage on stdout",
 		"o\tprint default profile on stdout",
-		"p f\tprofile is (s) [" LITERAL(MP_PROFILE) "]",
-		"s s\tsection is (s) [" LITERAL(MP_SECTION) "]",
-		(char const *)(0)
+		"p f\tprofile is (s) [" LITERAL (MP_PROFILE) "]",
+		"s s\tsection is (s) [" LITERAL (MP_SECTION) "]",
+		(char const *) (0)
 	};
-	char buffer[16];
-	time_t now = time((time_t *) (0));;
+	char buffer [16];
+	time_t now = time ((time_t *)(0));;
 	char const * profile = MP_PROFILE;
 	char const * section = MP_SECTION;
 	char const * program = MP_PROGRAM;
@@ -318,10 +318,10 @@ int main(int argc, char const * argv[])
 	char const * package = MP_PACKAGE;
 	char const * release = buffer;
 	char * sp;
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
-	strftime (buffer, sizeof(buffer), MP_PUBLISH, localtime(& now));
-	while (~ (c = getoptv(argc, argv, optv)))
+	strftime (buffer, sizeof (buffer), MP_PUBLISH, localtime (& now));
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -343,19 +343,19 @@ int main(int argc, char const * argv[])
 	}
 	argc -= optind;
 	argv += optind;
-	project = profilestring(profile, section, "project", project);
-	package = profilestring(profile, section, "package", package);
-	release = profilestring(profile, section, "release", release);
+	project = profilestring (profile, section, "project", project);
+	package = profilestring (profile, section, "package", package);
+	release = profilestring (profile, section, "release", release);
 	if ((! argc) || (! * argv))
 	{
 		function ("unamed 7", project, package, release, flags);
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
 			program = * argv;
-			for (sp = (char *) (* argv); * sp; ++ sp)
+			for (sp = (char *)(* argv); * sp; ++ sp)
 			{
 				if (* sp == PATH_C_EXTENDER)
 				{

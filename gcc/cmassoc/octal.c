@@ -68,11 +68,11 @@
  *
  *--------------------------------------------------------------------*/
 
-void encode(flag_t flags)
+void encode (flag_t flags)
 
 {
 	int c;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
 
 #ifdef NEEDED
@@ -81,15 +81,15 @@ void encode(flag_t flags)
 
 #else
 
-		if (! isgraph(c)) 
+		if (! isgraph (c)) 
 
 #endif
 
 		{
 			putc ('\\', stdout);
-			putc (DIGITS_OCT[(c >> 6) & 0x03], stdout);
-			putc (DIGITS_OCT[(c >> 3) & 0x07], stdout);
-			putc (DIGITS_OCT[(c >> 0) & 0x07], stdout);
+			putc (DIGITS_OCT [(c >> 6) & 0x03], stdout);
+			putc (DIGITS_OCT [(c >> 3) & 0x07], stdout);
+			putc (DIGITS_OCT [(c >> 0) & 0x07], stdout);
 		}
 		else 
 		{
@@ -112,7 +112,7 @@ void encode(flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-void decode(flag_t flags)
+void decode (flag_t flags)
 
 {
 	int c1,
@@ -122,39 +122,39 @@ void decode(flag_t flags)
 	o2,
 	o3;
 	int c;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
 		if (c != '\\')
 		{
 			putc (c, stdout);
 		}
-		else if((c1 = getc(stdin)) == EOF)
+		else if ((c1 = getc (stdin)) == EOF)
 		{
 			putc (c, stdout);
 		}
-		else if((o1 = chrindex(DIGITS_OCT, c1)) > 0x03)
-		{
-			putc (c, stdout);
-			putc (c1, stdout);
-		}
-		else if((c2 = getc(stdin)) == EOF)
+		else if ((o1 = chrindex (DIGITS_OCT, c1)) > 0x03)
 		{
 			putc (c, stdout);
 			putc (c1, stdout);
 		}
-		else if((o2 = chrindex(DIGITS_OCT, c1)) > 0x07)
+		else if ((c2 = getc (stdin)) == EOF)
 		{
 			putc (c, stdout);
 			putc (c1, stdout);
-			putc (c2, stdout);
 		}
-		else if((c3 = getc(stdin)) == EOF)
+		else if ((o2 = chrindex (DIGITS_OCT, c1)) > 0x07)
 		{
 			putc (c, stdout);
 			putc (c1, stdout);
 			putc (c2, stdout);
 		}
-		else if((o3 = chrindex(DIGITS_OCT, c3)) > 0x07)
+		else if ((c3 = getc (stdin)) == EOF)
+		{
+			putc (c, stdout);
+			putc (c1, stdout);
+			putc (c2, stdout);
+		}
+		else if ((o3 = chrindex (DIGITS_OCT, c3)) > 0x07)
 		{
 			putc (c, stdout);
 			putc (c1, stdout);
@@ -174,10 +174,10 @@ void decode(flag_t flags)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"de",
 		PUTOPTV_S_FUNNEL,
@@ -186,9 +186,9 @@ int main(int argc, char const * argv[])
 		"e\tencode files ",
 		NULL
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -208,7 +208,7 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			switch (flags & (OCT_B_ENCODE | OCT_B_DECODE))
 			{
@@ -219,7 +219,7 @@ int main(int argc, char const * argv[])
 				decode (flags);
 				break;
 			default: 
-				while ((c = getc(stdin)) != EOF)
+				while ((c = getc (stdin)) != EOF)
 				{
 					putc (c, stdout);
 				}

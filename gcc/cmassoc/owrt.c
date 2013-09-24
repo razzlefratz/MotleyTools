@@ -82,7 +82,7 @@
  *
  *--------------------------------------------------------------------*/
 
-static void define_handler(char const * handler, char const * package)
+static void define_handler (char const * handler, char const * package)
 
 {
 	printf ("# ===\n# define package program handler;\n# ---\n\n");
@@ -118,30 +118,30 @@ static void define_handler(char const * handler, char const * package)
  *
  *--------------------------------------------------------------------*/
 
-static void invoke_handler(signed count, size_t length, flag_t flags)
+static void invoke_handler (signed count, size_t length, flag_t flags)
 
 {
-	char const * fields[count];
-	char buffer[length];
+	char const * fields [count];
+	char buffer [length];
 	printf ("# ===\n# call package program handler;\n# ---\n\n");
-	while (getfields(fields, count, buffer, length))
+	while (getfields (fields, count, buffer, length))
 	{
-		if (_anyset(flags, OWRT_ONELINE))
+		if (_anyset (flags, OWRT_ONELINE))
 		{
-			printf ("$(eval $(call %s \\\n", fields[OWRT_HANDLER]);
-			printf ("\t,%s \\\n", fields[OWRT_LIBRARY]);
-			printf ("\t,%s \\\n", fields[OWRT_PROGRAM]);
-			printf ("\t,'%s' \\\n", fields[OWRT_TITLE]);
-			printf ("\t,'%s' \\\n", fields[OWRT_SUMMARY]);
+			printf ("$(eval $(call %s \\\n", fields [OWRT_HANDLER]);
+			printf ("\t,%s \\\n", fields [OWRT_LIBRARY]);
+			printf ("\t,%s \\\n", fields [OWRT_PROGRAM]);
+			printf ("\t,'%s' \\\n", fields [OWRT_TITLE]);
+			printf ("\t,'%s' \\\n", fields [OWRT_SUMMARY]);
 			printf ("))\n");
 		}
 		else 
 		{
-			printf ("$(eval $(call %s", fields[OWRT_HANDLER]);
-			printf (",%s", fields[OWRT_LIBRARY]);
-			printf (",%s", fields[OWRT_PROGRAM]);
-			printf (",'%s'", fields[OWRT_TITLE]);
-			printf (",'%s'", fields[OWRT_SUMMARY]);
+			printf ("$(eval $(call %s", fields [OWRT_HANDLER]);
+			printf (",%s", fields [OWRT_LIBRARY]);
+			printf (",%s", fields [OWRT_PROGRAM]);
+			printf (",'%s'", fields [OWRT_TITLE]);
+			printf (",'%s'", fields [OWRT_SUMMARY]);
 			printf ("))\n");
 		}
 	}
@@ -156,18 +156,18 @@ static void invoke_handler(signed count, size_t length, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void enumerate(signed fields, size_t length)
+static void enumerate (signed fields, size_t length)
 
 {
-	char const * vector[fields];
-	char buffer[length];
+	char const * vector [fields];
+	char buffer [length];
 	signed count;
-	while ((count = getfields(vector, fields, buffer, length)))
+	while ((count = getfields (vector, fields, buffer, length)))
 	{
 		signed index;
 		for (index = 0; index < count; index++)
 		{
-			printf ("field[%d]=[%s]\n", index, vector[index]);
+			printf ("field[%d]=[%s]\n", index, vector [index]);
 		}
 		printf ("\n");
 	}
@@ -185,30 +185,30 @@ static void enumerate(signed fields, size_t length)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"ceh:p:qv",
 		PUTOPTV_S_FUNNEL,
 		"OpenWRT Makefile Tool",
 		"c\tcontinuation line output",
 		"e\tenumerate fields",
-		"h s\thandler name is (s) [" LITERAL(OWRT_NAME_HANDLER) "]",
-		"p s\tpackage name is (s) [" LITERAL(OWRT_NAME_PACKAGE) "]",
+		"h s\thandler name is (s) [" LITERAL (OWRT_NAME_HANDLER) "]",
+		"p s\tpackage name is (s) [" LITERAL (OWRT_NAME_PACKAGE) "]",
 		"q\tsuppress routine messages",
 		"v\tenable verbose messages",
-		(char const *) (0)
+		(char const *)(0)
 	};
 	char const * handler = OWRT_NAME_HANDLER;
 	char const * package = OWRT_NAME_PACKAGE;
 	signed vectorsize = OWRT_SIZE_VECTOR;
 	signed buffersize = OWRT_SIZE_BUFFER;
-	void (* function)() = invoke_handler;
-	flag_t flags = (flag_t) (0);
+	void (* function) () = invoke_handler;
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -242,7 +242,7 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
 			function (vectorsize, buffersize, flags);
 		}

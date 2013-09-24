@@ -58,8 +58,8 @@
  *   program functions;         
  *--------------------------------------------------------------------*/
 
-static void findfile(FIND * find, flag_t flags);
-static void testfile(FIND * find, flag_t flags);
+static void findfile (FIND * find, flag_t flags);
+static void testfile (FIND * find, flag_t flags);
 
 /*====================================================================*
  *
@@ -74,25 +74,25 @@ static void testfile(FIND * find, flag_t flags);
  *
  *--------------------------------------------------------------------*/
 
-static void function(struct _find_ * find, flag_t flags)
+static void function (struct _find_ * find, flag_t flags)
 
 {
-	if (! match(find->filename, find->wildcard))
+	if (! match (find->filename, find->wildcard))
 	{
 		return;
 	}
 	if (find->statinfo.st_mtime < find->filetime)
 	{
-		if (remove(find->fullname) == - 1)
+		if (remove (find->fullname) == - 1)
 		{
-			if (_anyset(flags, FIND_B_ERRORS))
+			if (_anyset (flags, FIND_B_ERRORS))
 			{
 				error (0, errno, "cannot remove %s", find->fullname);
 			}
 		}
 		else 
 		{
-			if (_anyset(flags, FIND_B_EVENTS))
+			if (_anyset (flags, FIND_B_EVENTS))
 			{
 				error (0, 0, "%s", find->fullname);
 			}
@@ -111,15 +111,15 @@ static void function(struct _find_ * find, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void testfile(FIND * find, flag_t flags)
+static void testfile (FIND * find, flag_t flags)
 
 {
-	if (lstat(find->fullname, & find->statinfo))
+	if (lstat (find->fullname, & find->statinfo))
 	{
 		error (0, errno, "%s", find->fullname);
 		return;
 	}
-	if (S_ISDIR(find->statinfo.st_mode))
+	if (S_ISDIR (find->statinfo.st_mode))
 	{
 		char const * filename = find->filename;
 		if (* filename == '.')
@@ -130,31 +130,31 @@ static void testfile(FIND * find, flag_t flags)
 		{
 			filename++;
 		}
-		if (* filename == (char)(0))
+		if (* filename == (char) (0))
 		{
 			return;
 		}
-		if (_anyset(find->flagword, FIND_B_RECURSE))
+		if (_anyset (find->flagword, FIND_B_RECURSE))
 		{
 			findfile (find, flags);
 		}
-		if (_anyset(find->flagword, FIND_B_DIR))
+		if (_anyset (find->flagword, FIND_B_DIR))
 		{
 			function (find, flags);
 		}
 		return;
 	}
-	if (S_ISLNK(find->statinfo.st_mode))
+	if (S_ISLNK (find->statinfo.st_mode))
 	{
-		if (_anyset(find->flagword, FIND_B_LNK))
+		if (_anyset (find->flagword, FIND_B_LNK))
 		{
 			function (find, flags);
 		}
 		return;
 	}
-	if (S_ISREG(find->statinfo.st_mode))
+	if (S_ISREG (find->statinfo.st_mode))
 	{
-		if (_anyset(find->flagword, FIND_B_REG))
+		if (_anyset (find->flagword, FIND_B_REG))
 		{
 			function (find, flags);
 		}
@@ -173,12 +173,12 @@ static void testfile(FIND * find, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void findfile(FIND * find, flag_t flags)
+static void findfile (FIND * find, flag_t flags)
 
 {
 	DIR * dir;
 	char * filename = find->fullname;
-	if ((dir = opendir(filename)))
+	if ((dir = opendir (filename)))
 	{
 		struct dirent * dirent;
 		while (* filename)
@@ -186,14 +186,14 @@ static void findfile(FIND * find, flag_t flags)
 			filename++;
 		}
 		* filename = PATH_C_EXTENDER;
-		while ((dirent = readdir(dir)))
+		while ((dirent = readdir (dir)))
 		{
 			strcpy (filename +  1, dirent->d_name);
 			partpath (find->fullname, find->pathname, find->filename);
 			partfile (find->filename, find->basename, find->extender);
 			testfile (find, flags);
 		}
-		* filename = (char)(0);
+		* filename = (char) (0);
 		closedir (dir);
 		return;
 	}
@@ -205,11 +205,11 @@ static void findfile(FIND * find, flag_t flags)
  *   main program;
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
 	extern FIND find;
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"o:qrv",
 		PUTOPTV_S_SEARCH,
@@ -218,17 +218,17 @@ int main(int argc, char const * argv[])
 		"q\tquiet (don't report failures)",
 		"r\trecursive search",
 		"v\tverbose (report successes)",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
 	time (& find.filetime);
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'o':
-			find.filetime -= uintspec(optarg, 1, DAYS_IN_YEAR) * SECONDS_IN_DAY;
+			find.filetime -= uintspec (optarg, 1, DAYS_IN_YEAR) * SECONDS_IN_DAY;
 			find.filetime -= find.filetime % SECONDS_IN_DAY;
 			find.filetime += SECONDS_IN_DAY;
 			break;
@@ -247,7 +247,7 @@ int main(int argc, char const * argv[])
 	}
 	argc -= optind;
 	argv += optind;
-	if (_allclr(find.flagword, (FIND_B_LNK | FIND_B_REG)))
+	if (_allclr (find.flagword, (FIND_B_LNK | FIND_B_REG)))
 	{
 		_setbits (find.flagword, (FIND_B_LNK | FIND_B_REG));
 	}

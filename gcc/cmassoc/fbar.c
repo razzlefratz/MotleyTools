@@ -80,10 +80,10 @@
  *
  *--------------------------------------------------------------------*/
 
-void function(char start, char space, size_t width, size_t length, flag_t flags)
+void function (char start, char space, size_t width, size_t length, flag_t flags)
 
 {
-	char buffer[length];
+	char buffer [length];
 	size_t column = 0;
 	width++;
 	width++;
@@ -91,19 +91,19 @@ void function(char start, char space, size_t width, size_t length, flag_t flags)
 	{
 		width = length;
 	}
-	for (column = 0; ~ (length = fgetline(buffer, sizeof(buffer), stdin)); column = 0)
+	for (column = 0; ~ (length = fgetline (buffer, sizeof (buffer), stdin)); column = 0)
 	{
-		if (buffer[column++] != start)
+		if (buffer [column++] != start)
 		{
 			fputline (buffer, length, stdout);
 			continue;
 		}
-		if (buffer[column++] != space)
+		if (buffer [column++] != space)
 		{
 			fputline (buffer, length, stdout);
 			continue;
 		}
-		if (buffer[column] == CUPPER)
+		if (buffer [column] == CUPPER)
 		{
 			while (column < width)
 			{
@@ -113,7 +113,7 @@ void function(char start, char space, size_t width, size_t length, flag_t flags)
 			fputline (buffer, column, stdout);
 			continue;
 		}
-		if (buffer[column] == CLOWER)
+		if (buffer [column] == CLOWER)
 		{
 			while (column < width)
 			{
@@ -140,37 +140,37 @@ void function(char start, char space, size_t width, size_t length, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"c:w:x",
 		PUTOPTV_S_FILTER,
 		"extend FORTRAN style comment bars",
-		"c c\tcomments start with character c [" LITERAL(FBAR_START) "]",
-		"w n\tbar width is (n) [" LITERAL(FBAR_WIDTH) "]",
+		"c c\tcomments start with character c [" LITERAL (FBAR_START) "]",
+		"w n\tbar width is (n) [" LITERAL (FBAR_WIDTH) "]",
 		"x\tmake file executable",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	size_t length = _LINESIZE;
 	size_t width = FBAR_WIDTH;
 	char start = FBAR_START;
 	char space = FBAR_SPACE;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'c':
-			start = (char)(* optarg);
+			start = (char) (* optarg);
 			break;
 		case 'x':
 			_setbits (flags, FBAR_EXECUTE);
 			break;
 		case 'w':
-			width = uintspec(optarg, 0, length);
+			width = uintspec (optarg, 0, length);
 			break;
 		default: 
 			break;
@@ -184,12 +184,12 @@ int main(int argc, char const * argv[])
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
 			function (start, space, width, length, flags);
-			if (_anyset(flags, FBAR_EXECUTE))
+			if (_anyset (flags, FBAR_EXECUTE))
 			{
-				if (chmod(* argv, 0755))
+				if (chmod (* argv, 0755))
 				{
 					error (0, errno, "can't chmod %s", * argv);
 				}

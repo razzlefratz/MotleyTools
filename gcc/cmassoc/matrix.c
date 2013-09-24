@@ -83,7 +83,7 @@ typedef struct column
 column;
 static unsigned line = 1;
 static unsigned cols = 0;
-static char string[_NAMESIZE] = "";
+static char string [_NAMESIZE] = "";
 static char const * style = "matrix";
 static char const * style_posted = "posted";
 static char const * style_empty = "empty";
@@ -102,60 +102,60 @@ static char const * label_match = MATCH;
  *
  *--------------------------------------------------------------------*/
 
-static signed gettoken(char * string)
+static signed gettoken (char * string)
 
 {
 	extern unsigned line;
 	signed c;
 	do 
 	{
-		c = getc(stdin);
+		c = getc (stdin);
 		if (c == '\n')
 		{
 			line++;
 		}
 	}
-	while (isspace(c));
-	if (isalpha(c) || (c == '_'))
+	while (isspace (c));
+	if (isalpha (c) || (c == '_'))
 	{
 		do 
 		{
 			* string++ = c;
-			c = getc(stdin);
+			c = getc (stdin);
 		}
-		while (isalnum(c) || (c == '.') || (c == ':') || (c == '_') || (c == '-'));
+		while (isalnum (c) || (c == '.') || (c == ':') || (c == '_') || (c == '-'));
 		ungetc (c, stdin);
 		c = 'A';
 	}
-	else if(isdigit(c))
+	else if (isdigit (c))
 	{
 		do 
 		{
 			* string++ = c;
-			c = getc(stdin);
+			c = getc (stdin);
 		}
-		while (isdigit(c) || (c == '.'));
+		while (isdigit (c) || (c == '.'));
 		ungetc (c, stdin);
 		c = '0';
 	}
-	else if(isquote(c))
+	else if (isquote (c))
 	{
-		char o = getc(stdin);;
+		char o = getc (stdin);;
 		while ((o != c) && (c != EOF))
 		{
 			if (o == '\\')
 			{
-				o = getc(stdin);
+				o = getc (stdin);
 			}
 			* string++ = o;
-			o = getc(stdin);
+			o = getc (stdin);
 		}
 	}
 	else 
 	{
 		* string++ = c;
 	}
-	* string++ = (char)(0);
+	* string++ = (char) (0);
 	return (c);
 }
 
@@ -171,24 +171,24 @@ static signed gettoken(char * string)
  *
  *--------------------------------------------------------------------*/
 
-static void headers(struct column * column)
+static void headers (struct column * column)
 
 {
 	extern char const * style_empty;
 	extern char const * label_empty;
-	extern char string[];
-	if (~ gettoken(string))
+	extern char string [];
+	if (~ gettoken (string))
 	{
-		column->next = (struct column *)(0);
-		column->name = strdup(string);
+		column->next = (struct column *) (0);
+		column->name = strdup (string);
 		column->label = label_empty;
 		column->style = style_empty;
-		for (cols = 0; ~ gettoken(string) && (* string != ';'); cols++)
+		for (cols = 0; ~ gettoken (string) && (* string != ';'); cols++)
 		{
-			column->next = (struct column *) (malloc(sizeof(struct column)));
+			column->next = (struct column *)(malloc (sizeof (struct column)));
 			column = column->next;
-			column->next = (struct column *)(0);
-			column->name = strdup(string);
+			column->next = (struct column *) (0);
+			column->name = strdup (string);
 			column->label = label_empty;
 			column->style = style_empty;
 		}
@@ -209,23 +209,23 @@ static void headers(struct column * column)
  *
  *--------------------------------------------------------------------*/
 
-static void columns(struct column * column)
+static void columns (struct column * column)
 
 {
 	extern char const * style_match;
 	extern char const * style_empty;
 	extern char const * label_match;
 	extern char const * label_empty;
-	extern char string[];
-	if (~ gettoken(string))
+	extern char string [];
+	if (~ gettoken (string))
 	{
 		strcpy (column->name, string);
-		while (~ gettoken(string) && (* string != ';'))
+		while (~ gettoken (string) && (* string != ';'))
 		{
 			struct column * object;
 			for (object = column->next; object; object = object->next)
 			{
-				if (! strcmp(object->name, string))
+				if (! strcmp (object->name, string))
 				{
 					object->style = style_match;
 					object->label = * label_match? label_match: object->name;
@@ -253,7 +253,7 @@ static void columns(struct column * column)
  *
  *--------------------------------------------------------------------*/
 
-static void finish(struct column * column)
+static void finish (struct column * column)
 
 {
 	column->style = 0;
@@ -263,7 +263,7 @@ static void finish(struct column * column)
 	{
 		struct column * object = column->next;
 		column->next = object->next;
-		object->next = (struct column *) (0);
+		object->next = (struct column *)(0);
 		object->style = 0;
 		object->label = 0;
 		free (object->name);
@@ -284,7 +284,7 @@ static void finish(struct column * column)
  *
  *--------------------------------------------------------------------*/
 
-static unsigned stylesheet(unsigned margin)
+static unsigned stylesheet (unsigned margin)
 
 {
 	indent (margin, "table { table-layout: fixed; background: transparent; border: solid 1pt black; border-collapse: separate; border-spacing: 1px; font: normal 10pt verdana; }");
@@ -308,14 +308,14 @@ static unsigned stylesheet(unsigned margin)
  *
  *--------------------------------------------------------------------*/
 
-static unsigned posted(unsigned margin)
+static unsigned posted (unsigned margin)
 
 {
-	time_t now = time(& now);
-	static char datetime[LOGTIME_LEN];
-	strftime (datetime, sizeof(datetime), LOGTIME, localtime(& now));
+	time_t now = time (& now);
+	static char datetime [LOGTIME_LEN];
+	strftime (datetime, sizeof (datetime), LOGTIME, localtime (& now));
 	indent (margin++, "<div class='%s'>", style_posted);
-	indent (margin, "Posted %s on %s by %s", datetime, hostname(), username(getuid()));
+	indent (margin, "Posted %s on %s by %s", datetime, hostname (), username (getuid ()));
 	indent (margin--, "</div>");
 	return (margin);
 }
@@ -332,7 +332,7 @@ static unsigned posted(unsigned margin)
  *
  *--------------------------------------------------------------------*/
 
-static unsigned table1(unsigned margin, char const * string, struct column * column)
+static unsigned table1 (unsigned margin, char const * string, struct column * column)
 
 {
 	extern unsigned line;
@@ -354,7 +354,7 @@ static unsigned table1(unsigned margin, char const * string, struct column * col
 		indent (margin--, "</th>");
 	}
 	indent (margin--, "</tr>");
-	for (columns(column); ! feof(stdin); columns(column))
+	for (columns (column); ! feof (stdin); columns (column))
 	{
 		indent (margin++, "<tr class='%s'>", style);
 		indent (margin++, "<td class='%s'>", style);
@@ -388,7 +388,7 @@ static unsigned table1(unsigned margin, char const * string, struct column * col
  *
  *--------------------------------------------------------------------*/
 
-static unsigned table2(unsigned margin, char const * string, struct column * column)
+static unsigned table2 (unsigned margin, char const * string, struct column * column)
 
 {
 	extern unsigned line;
@@ -422,7 +422,7 @@ static unsigned table2(unsigned margin, char const * string, struct column * col
 	indent (margin--, "</row>");
 	indent (margin--, "</thead>");
 	indent (margin++, "<tbody>");
-	for (columns(column); ! feof(stdin); columns(column))
+	for (columns (column); ! feof (stdin); columns (column))
 	{
 		indent (margin++, "<row>");
 		indent (margin++, "<entry>");
@@ -456,35 +456,35 @@ static unsigned table2(unsigned margin, char const * string, struct column * col
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"de:hl:m:st:",
 		PUTOPTV_S_FUNNEL,
 		"print sparse matrix table",
 		"d\tprint DOCBOOK table on stdout",
-		"e s\tempty label is (s) [" LITERAL(EMPTY) "]",
+		"e s\tempty label is (s) [" LITERAL (EMPTY) "]",
 		"h\tprint HTML table on stdout",
-		"l n\tindent level is (n) [" LITERAL(LEVEL) "]",
-		"m s\tmatch label is (s) [" LITERAL(MATCH) "]",
+		"l n\tindent level is (n) [" LITERAL (LEVEL) "]",
+		"m s\tmatch label is (s) [" LITERAL (MATCH) "]",
 		"s\tprint CSS2 stylesheet on stdout",
-		"t s\ttitle is (s) [" LITERAL(TITLE) "]",
-		(char const *) (0)
+		"t s\ttitle is (s) [" LITERAL (TITLE) "]",
+		(char const *)(0)
 	};
-	unsigned (* table)(unsigned, char const *, struct column *) = table1;
+	unsigned (* table) (unsigned, char const *, struct column *) = table1;
 	unsigned margin = LEVEL;
 	char const * header = TITLE;
 	struct column column = 
 	{
-		(struct column *)(0),
-		(char const *) (0),
-		(char const *) (0),
-		(char *) (0)
+		(struct column *) (0),
+		(char const *)(0),
+		(char const *)(0),
+		(char *)(0)
 	};
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -498,7 +498,7 @@ int main(int argc, char const * argv[])
 			table = table1;
 			break;
 		case 'l':
-			margin = (unsigned) (uintspec(optarg, 0, 16));
+			margin = (unsigned)(uintspec (optarg, 0, 16));
 			break;
 		case 'm':
 			label_match = optarg;
@@ -517,13 +517,13 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	if (! argc)
 	{
-		margin = table(margin, header, & column);
+		margin = table (margin, header, & column);
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
-			margin = table(margin, header, & column);
+			margin = table (margin, header, & column);
 		}
 		argc--;
 		argv++;

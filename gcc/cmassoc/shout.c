@@ -56,11 +56,11 @@
  *   
  *--------------------------------------------------------------------*/
 
-int main(int argc, const char * argv[])
+int main (int argc, const char * argv [])
 
 {
 	extern const char * program_name;
-	static const char * optv[] = 
+	static const char * optv [] = 
 	{
 		"bcnrt",
 		"message [message] [...] or [< stdin]",
@@ -70,22 +70,22 @@ int main(int argc, const char * argv[])
 		"c\tdisplay broadcast terminal count",
 		"t\tdisplay broadcast terminal names",
 		"r\tbroadcast on remote terminals only",
-		(const char *)(0)
+		(const char *) (0)
 	};
 	flag_t flags = BROADCAST_B_BANNER;
-	char message[BROADCAST_MAXCHARS] = "";
+	char message [BROADCAST_MAXCHARS] = "";
 	size_t nlines = 0;
 	size_t nchars = 0;
 	signed c;
 	optind = 1;
 	opterr = 1;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'n':
 			_clrbits (flags, BROADCAST_B_BANNER);
-			if (getuid())
+			if (getuid ())
 			{
 				error (1, EPERM, "can't suppress the broadcast banner");
 			}
@@ -109,39 +109,39 @@ int main(int argc, const char * argv[])
 	argc -= optind;
 	argv += optind;
 	openlog (program_name, 0, LOG_USER | LOG_INFO);
-	if (geteuid())
+	if (geteuid ())
 	{
-		syslog_error (LOG_NOTICE, EPERM, "user %s tried to broadcast", getlogin());
+		syslog_error (LOG_NOTICE, EPERM, "user %s tried to broadcast", getlogin ());
 		error (1, EPERM, NOTROOT);
 	}
 	if (! argc)
 	{
-		if ((nchars = read(STDIN_FILENO, message, sizeof(message) - 1)) != - 1)
+		if ((nchars = read (STDIN_FILENO, message, sizeof (message) - 1)) != - 1)
 		{
-			message [nchars] = (char) (0);
+			message [nchars] = (char)(0);
 		}
 	}
 	while ((argc) && (* argv))
 	{
-		if (_anyset(flags, BROADCAST_B_BULLET))
+		if (_anyset (flags, BROADCAST_B_BULLET))
 		{
 			message [nchars++] = ' ';
 			message [nchars++] = '-';
 			message [nchars++] = ' ';
 		}
-		nchars += snprintf(message +  nchars, BROADCAST_MAXCHARS - nchars, "%s\n", * argv);
+		nchars += snprintf (message +  nchars, BROADCAST_MAXCHARS - nchars, "%s\n", * argv);
 		argc--;
 		argv++;
 	}
-	for (nchars = 0; (message[nchars] != (char)(0)) && (nchars < BROADCAST_MAXCHARS) && (nlines < BROADCAST_MAXLINES); nchars++)
+	for (nchars = 0; (message [nchars] != (char) (0)) && (nchars < BROADCAST_MAXCHARS) && (nlines < BROADCAST_MAXLINES); nchars++)
 	{
-		if (message[nchars] == '\n')
+		if (message [nchars] == '\n')
 		{
 			nlines++;
 		}
 	}
-	message [nchars] = (char) (0);
-	syslog (LOG_SYSLOG | LOG_INFO, "user %s broadcast %d line(s) total %d char(s)", getlogin(), nlines, nchars);
+	message [nchars] = (char)(0);
+	syslog (LOG_SYSLOG | LOG_INFO, "user %s broadcast %d line(s) total %d char(s)", getlogin (), nlines, nchars);
 	unsetenv ("TZ");
 	broadcast (message, flags);
 	closelog ();

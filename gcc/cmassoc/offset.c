@@ -85,8 +85,8 @@ static unsigned lineno = 0;
 static unsigned origin = 0;
 static unsigned offset = 0;
 static unsigned length = 0;
-static char * symbol = (char *) (0);
-static char * string = (char *) (0);
+static char * symbol = (char *)(0);
+static char * string = (char *)(0);
 static signed c;
 
 /*====================================================================*
@@ -120,7 +120,7 @@ static signed c;
  *
  *--------------------------------------------------------------------*/
 
-static unsigned object()
+static unsigned object ()
 
 {
 	extern signed c;
@@ -136,80 +136,80 @@ static unsigned object()
 	{
 		do 
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
-		while (isblank(c));
+		while (isblank (c));
 	}
 	while (c == '0')
 	{
-		c = getc(stdin);
+		c = getc (stdin);
 		count++;
 	}
-	while (isdigit(c))
+	while (isdigit (c))
 	{
 		length *= 10;
 		length += c - '0';
-		c = getc(stdin);
+		c = getc (stdin);
 	}
-	while (isblank(c))
+	while (isblank (c))
 	{
-		c = getc(stdin);
+		c = getc (stdin);
 	}
 	sp = symbol;
-	if (isalpha(c) || (c == '_'))
+	if (isalpha (c) || (c == '_'))
 	{
 		do 
 		{
-			* sp++ = (char) (c);
-			c = getc(stdin);
+			* sp++ = (char)(c);
+			c = getc (stdin);
 		}
-		while (isalnum(c) || (c == '_') || (c == '-') || (c == '.') || (c == ':'));
+		while (isalnum (c) || (c == '_') || (c == '-') || (c == '.') || (c == ':'));
 	}
-	while (isblank(c))
+	while (isblank (c))
 	{
-		c = getc(stdin);
+		c = getc (stdin);
 	}
 	if (c == '[')
 	{
-		* sp++ = (char) (c);
-		c = getc(stdin);
-		while (isblank(c))
+		* sp++ = (char)(c);
+		c = getc (stdin);
+		while (isblank (c))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
-		while (isdigit(c))
+		while (isdigit (c))
 		{
-			* sp++ = (char) (c);
-			c = getc(stdin);
+			* sp++ = (char)(c);
+			c = getc (stdin);
 		}
-		while (isblank(c))
+		while (isblank (c))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
-		* sp = (char) (0);
+		* sp = (char)(0);
 		if (c != ']')
 		{
 			error (1, EINVAL, "Have '%s' but need ']' on line %d", symbol, lineno);
 		}
-		* sp++ = (char) (c);
-		c = getc(stdin);
+		* sp++ = (char)(c);
+		c = getc (stdin);
 	}
-	* sp = (char) (0);
-	while (isblank(c))
+	* sp = (char)(0);
+	while (isblank (c))
 	{
-		c = getc(stdin);
+		c = getc (stdin);
 	}
 	sp = cp = string;
-	while (nobreak(c))
+	while (nobreak (c))
 	{
-		* cp++ = (char) (c);
-		if (! isspace(c))
+		* cp++ = (char)(c);
+		if (! isspace (c))
 		{
 			sp = cp;
 		}
-		c = getc(stdin);
+		c = getc (stdin);
 	}
-	* sp = (char) (0);
+	* sp = (char)(0);
 	return (count);
 }
 
@@ -239,7 +239,7 @@ static unsigned object()
  *
  *--------------------------------------------------------------------*/
 
-static unsigned stylesheet(unsigned margin)
+static unsigned stylesheet (unsigned margin)
 
 {
 	indent (margin, "table { table-layout: fixed; background: transparent; border: solid 1pt black; border-collapse: separate; border-spacing: 1px; font: normal 10pt verdana; }");
@@ -270,11 +270,11 @@ static unsigned stylesheet(unsigned margin)
  *
  *--------------------------------------------------------------------*/
 
-static void html(char const * colors[], unsigned count, flag_t flags)
+static void html (char const * colors [], unsigned count, flag_t flags)
 
 {
-	time_t now = time(& now);
-	static char datetime[LOGTIME_LEN];
+	time_t now = time (& now);
+	static char datetime [LOGTIME_LEN];
 	extern unsigned lineno;
 	extern unsigned margin;
 	extern unsigned offset;
@@ -282,27 +282,27 @@ static void html(char const * colors[], unsigned count, flag_t flags)
 	extern char * symbol;
 	extern char * string;
 	extern signed c;
-	strftime (datetime, sizeof(datetime), LOGTIME, localtime(& now));
+	strftime (datetime, sizeof (datetime), LOGTIME, localtime (& now));
 	lineno = 1;
 	offset = 0;
 	length = 0;
-	if (_anyset(flags, OFFSET_PAGE))
+	if (_anyset (flags, OFFSET_PAGE))
 	{
 		indent (margin++, "<html>");
 		indent (margin++, "<title>");
 		indent (margin--, "</title>");
 		indent (margin++, "<head>");
 		indent (margin++, "<style>");
-		margin = stylesheet(margin);
+		margin = stylesheet (margin);
 		indent (margin--, "</style>");
 		indent (margin--, "</head>");
 		indent (margin++, "<body>");
 		indent (0, "<!-- BEGIN CONTENT -->");
 	}
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
 		unsigned index;
-		if (isspace(c))
+		if (isspace (c))
 		{
 			if (c == '\n')
 			{
@@ -314,13 +314,13 @@ static void html(char const * colors[], unsigned count, flag_t flags)
 		{
 			do 
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (nobreak(c));
+			while (nobreak (c));
 			lineno++;
 			continue;
 		}
-		index = object() % count;
+		index = object () % count;
 		if (! length)
 		{
 			if (offset)
@@ -371,16 +371,16 @@ static void html(char const * colors[], unsigned count, flag_t flags)
 				indent (margin--, "</tr>");
 			}
 			indent (margin++, "<tr class='%s'>", style);
-			indent (margin++, "<td class='%s' style='background: %s;'>", style_offset, colors[index]);
+			indent (margin++, "<td class='%s' style='background: %s;'>", style_offset, colors [index]);
 			indent (margin, "%08X", offset);
 			indent (margin--, "</td>");
-			indent (margin++, "<td class='%s' style='background: %s;'>", style_length, colors[index]);
+			indent (margin++, "<td class='%s' style='background: %s;'>", style_length, colors [index]);
 			indent (margin, "%6d", length);
 			indent (margin--, "</td>");
-			indent (margin++, "<td class='%s' style='background: %s;'>", style_symbol, colors[index]);
+			indent (margin++, "<td class='%s' style='background: %s;'>", style_symbol, colors [index]);
 			indent (margin, "%s", * symbol? symbol: "&nbsp;");
 			indent (margin--, "</td>");
-			indent (margin++, "<td class='%s' style='background: %s;'>", style_string, colors[index]);
+			indent (margin++, "<td class='%s' style='background: %s;'>", style_string, colors [index]);
 			indent (margin, "%s", * string? string: "&nbsp;");
 			indent (margin--, "</td>");
 			indent (margin--, "</tr>");
@@ -393,10 +393,10 @@ static void html(char const * colors[], unsigned count, flag_t flags)
 		indent (margin--, "</table>");
 	}
 	indent (margin++, "<div class='%s'>", style_posted);
-	indent (margin, "Posted %s on %s by %s", datetime, hostname(), username(getuid()));
+	indent (margin, "Posted %s on %s by %s", datetime, hostname (), username (getuid ()));
 	indent (margin--, "</div>");
 	indent (0, "<!-- END CONTENT -->");
-	if (_anyset(flags, OFFSET_PAGE))
+	if (_anyset (flags, OFFSET_PAGE))
 	{
 		indent (margin--, "</body>");
 		indent (margin--, "</html>");
@@ -415,7 +415,7 @@ static void html(char const * colors[], unsigned count, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void text(flag_t flags)
+static void text (flag_t flags)
 
 {
 	extern unsigned lineno;
@@ -431,9 +431,9 @@ static void text(flag_t flags)
 	origin = 0;
 	offset = 0;
 	length = 0;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
-		if (isspace(c))
+		if (isspace (c))
 		{
 			if (c == '\n')
 			{
@@ -445,16 +445,16 @@ static void text(flag_t flags)
 		{
 			do 
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (nobreak(c));
+			while (nobreak (c));
 			lineno++;
 			continue;
 		}
 		object ();
 		if (length)
 		{
-			unsigned output = printf(" %08X %10d %s", offset, length, symbol);
+			unsigned output = printf (" %08X %10d %s", offset, length, symbol);
 			while (output++ < column)
 			{
 				putc (' ', stdout);
@@ -496,7 +496,7 @@ static void text(flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void efsu(flag_t flags)
+static void efsu (flag_t flags)
 
 {
 	extern unsigned lineno;
@@ -512,9 +512,9 @@ static void efsu(flag_t flags)
 	origin = 0;
 	offset = 0;
 	length = 0;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
-		if (isspace(c))
+		if (isspace (c))
 		{
 			if (c == '\n')
 			{
@@ -526,9 +526,9 @@ static void efsu(flag_t flags)
 		{
 			do 
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (nobreak(c));
+			while (nobreak (c));
 			lineno++;
 			continue;
 		}
@@ -565,7 +565,7 @@ static void efsu(flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void tabs(flag_t flags)
+static void tabs (flag_t flags)
 
 {
 	extern unsigned lineno;
@@ -578,9 +578,9 @@ static void tabs(flag_t flags)
 	lineno = 1;
 	offset = 0;
 	length = 0;
-	while ((c = getc(stdin)) != EOF)
+	while ((c = getc (stdin)) != EOF)
 	{
-		if (isspace(c))
+		if (isspace (c))
 		{
 			if (c == '\n')
 			{
@@ -592,9 +592,9 @@ static void tabs(flag_t flags)
 		{
 			do 
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (nobreak(c));
+			while (nobreak (c));
 			lineno++;
 			continue;
 		}
@@ -625,31 +625,31 @@ static void tabs(flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void fold(flag_t flags)
+static void fold (flag_t flags)
 
 {
 	unsigned offset = 0;
 	unsigned extent = 0;
 	unsigned length = 0;
-	signed c = getc(stdin);
+	signed c = getc (stdin);
 	while (c != EOF)
 	{
-		while (isspace(c))
+		while (isspace (c))
 		{
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		if (c == '+')
 		{
 			do 
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (isblank(c));
-			while (isdigit(c))
+			while (isblank (c));
+			while (isdigit (c))
 			{
 				length *= 10;
 				length += c - '0';
-				c = getc(stdin);
+				c = getc (stdin);
 			}
 			if (extent)
 			{
@@ -657,27 +657,27 @@ static void fold(flag_t flags)
 				extent = 0;
 			}
 			printf ("%4d", length);
-			while (nobreak(c))
+			while (nobreak (c))
 			{
 				putc (c, stdout);
-				c = getc(stdin);
+				c = getc (stdin);
 			}
 			putc ('\n', stdout);
 			offset += length;
 			length = 0;
 			continue;
 		}
-		if (isdigit(c))
+		if (isdigit (c))
 		{
-			while (isdigit(c))
+			while (isdigit (c))
 			{
 				length *= 10;
 				length += c - '0';
-				c = getc(stdin);
+				c = getc (stdin);
 			}
 			if (! length)
 			{
-				if (_anyset(flags, OFFSET_HOLE))
+				if (_anyset (flags, OFFSET_HOLE))
 				{
 					if (extent)
 					{
@@ -689,28 +689,28 @@ static void fold(flag_t flags)
 						putc ('\n', stdout);
 					}
 					printf ("%4d", length);
-					while (nobreak(c))
+					while (nobreak (c))
 					{
 						putc (c, stdout);
-						c = getc(stdin);
+						c = getc (stdin);
 					}
 					putc ('\n', stdout);
 					continue;
 				}
 			}
-			while (nobreak(c))
+			while (nobreak (c))
 			{
-				c = getc(stdin);
+				c = getc (stdin);
 			}
 			extent += length;
 			offset += length;
 			length = 0;
 			continue;
 		}
-		while (nobreak(c))
+		while (nobreak (c))
 		{
 			putc (c, stdout);
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 	}
 	if (extent)
@@ -734,39 +734,39 @@ static void fold(flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void zero(flag_t flags)
+static void zero (flag_t flags)
 
 {
-	signed c = getc(stdin);
+	signed c = getc (stdin);
 	while (c != EOF)
 	{
-		while (isspace(c))
+		while (isspace (c))
 		{
 			putc (c, stdout);
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 		if ((c == '+') || (c == '-'))
 		{
 			do 
 			{
 				putc (c, stdout);
-				c = getc(stdin);
+				c = getc (stdin);
 			}
-			while (isblank(c));
+			while (isblank (c));
 		}
 		while (c == '0')
 		{
-			c = getc(stdin);
-			if (! isdigit(c))
+			c = getc (stdin);
+			if (! isdigit (c))
 			{
 				putc ('0', stdout);
 				break;
 			}
 		}
-		while (nobreak(c))
+		while (nobreak (c))
 		{
 			putc (c, stdout);
-			c = getc(stdin);
+			c = getc (stdin);
 		}
 	}
 	return;
@@ -783,26 +783,26 @@ static void zero(flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void function(char const * colors[], unsigned count, flag_t flags)
+static void function (char const * colors [], unsigned count, flag_t flags)
 
 {
-	if (_anyset(flags, (OFFSET_HTML | OFFSET_PAGE)))
+	if (_anyset (flags, (OFFSET_HTML | OFFSET_PAGE)))
 	{
 		html (colors, count, flags);
 	}
-	else if(_anyset(flags, (OFFSET_TEXT)))
+	else if (_anyset (flags, (OFFSET_TEXT)))
 	{
 		tabs (flags);
 	}
-	else if(_anyset(flags, (OFFSET_EFSU)))
+	else if (_anyset (flags, (OFFSET_EFSU)))
 	{
 		efsu (flags);
 	}
-	else if(_anyset(flags, (OFFSET_FOLD)))
+	else if (_anyset (flags, (OFFSET_FOLD)))
 	{
 		fold (flags);
 	}
-	else if(_anyset(flags, (OFFSET_ZERO)))
+	else if (_anyset (flags, (OFFSET_ZERO)))
 	{
 		zero (flags);
 	}
@@ -824,30 +824,30 @@ static void function(char const * colors[], unsigned count, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
 	extern unsigned margin;
 	extern unsigned column;
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"bc:ehl:prstxz",
 		PUTOPTV_S_FUNNEL,
 		"print offset table",
 		"b\tprint docbook format",
-		"c n\talign descriptions to column (n) [" LITERAL(COLUMN) "]",
+		"c n\talign descriptions to column (n) [" LITERAL (COLUMN) "]",
 		"e\tprint efsu format",
 		"h\tprint HTML table on stdout",
-		"l n\tindent level is (n) [" LITERAL(MARGIN) "]",
+		"l n\tindent level is (n) [" LITERAL (MARGIN) "]",
 		"p\tprint HTML page on stdout",
 		"r\treset at headings",
 		"s\tprint CSS2 stylesheet on stdout",
 		"t\tprint text with TAB seperated columns",
 		"x\thide unmarked objects",
 		"z\tremove leading zeros",
-		(char const *) (0)
+		(char const *)(0)
 	};
-	char const * colors[] = 
+	char const * colors [] = 
 	{
 		"#FFFFFF",
 		"#FFFF00",
@@ -855,9 +855,9 @@ int main(int argc, char const * argv[])
 		"#00FF00",
 		"#FF00FF"
 	};
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -865,7 +865,7 @@ int main(int argc, char const * argv[])
 			_setbits (flags, OFFSET_BOOK);
 			break;
 		case 'c':
-			column = uintspec(optarg, 0, UCHAR_MAX);
+			column = uintspec (optarg, 0, UCHAR_MAX);
 			break;
 		case 'e':
 			_setbits (flags, OFFSET_EFSU);
@@ -877,7 +877,7 @@ int main(int argc, char const * argv[])
 			_setbits (flags, OFFSET_PAGE);
 			break;
 		case 'l':
-			margin = (unsigned)(uintspec(optarg, 0, 16));
+			margin = (unsigned) (uintspec (optarg, 0, 16));
 			break;
 		case 'r':
 			_setbits (flags, OFFSET_HOLE);
@@ -900,17 +900,17 @@ int main(int argc, char const * argv[])
 	}
 	argc -= optind;
 	argv += optind;
-	symbol = emalloc(SYMBOLSIZE);
-	string = emalloc(STRINGSIZE);
+	symbol = emalloc (SYMBOLSIZE);
+	string = emalloc (STRINGSIZE);
 	if (! argc)
 	{
-		function (colors, sizeof(colors) / sizeof(const char *), flags);
+		function (colors, sizeof (colors) / sizeof (const char *), flags);
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen(* argv, "rb", stdin))
+		if (efreopen (* argv, "rb", stdin))
 		{
-			function (colors, SIZEOF(colors), flags);
+			function (colors, SIZEOF (colors), flags);
 		}
 		argc--;
 		argv++;

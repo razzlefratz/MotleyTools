@@ -66,25 +66,25 @@
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"qv",
 		"phrase [phrase] [...]",
 		"SHA256 key generator",
 		"q\tquiet mode",
 		"v\tverbose mode",
-		(char const *)(0)
+		(char const *) (0)
 	};
 	struct sha256 sha256;
-	byte digest[SHA256_DIGEST_LENGTH];
+	byte digest [SHA256_DIGEST_LENGTH];
 	char const * phrase;
 	char const * sp;
-	flag_t flags = (flag_t) (0);
+	flag_t flags = (flag_t)(0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -108,7 +108,7 @@ int main(int argc, char const * argv[])
 	while ((argc) && (* argv))
 	{
 		sp = phrase = * argv;
-		while (isprint(* sp))
+		while (isprint (* sp))
 		{
 			sp++;
 		}
@@ -119,9 +119,9 @@ int main(int argc, char const * argv[])
 		SHA256Reset (& sha256);
 		SHA256Write (& sha256, phrase, sp - phrase);
 		SHA256Fetch (& sha256, digest);
-		if (_allclr(flags, KEY_VERBOSE))
+		if (_allclr (flags, KEY_VERBOSE))
 		{
-			phrase = (char const *) (0);
+			phrase = (char const *)(0);
 		}
 		SHA256Print (digest, phrase);
 		argc--;

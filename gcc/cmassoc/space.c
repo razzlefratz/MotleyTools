@@ -89,27 +89,27 @@
  *
  *--------------------------------------------------------------------*/
 
-static signed grab(signed c)
+static signed grab (signed c)
 
 {
-	return (getc(stdin));
+	return (getc (stdin));
 }
 
-static signed join(signed c)
+static signed join (signed c)
 
 {
-	return (span(getc(stdin), '\\', '\n'));
+	return (span (getc (stdin), '\\', '\n'));
 }
 
-static signed pack(signed c, signed o, signed(* edit) (signed))
+static signed pack (signed c, signed o, signed (* edit)(signed))
 
 {
 	do 
 	{
-		c = edit(c);
+		c = edit (c);
 	}
-	while (isblank(c));
-	if (nobreak(c))
+	while (isblank (c));
+	if (nobreak (c))
 	{
 		if (o)
 		{
@@ -119,45 +119,45 @@ static signed pack(signed c, signed o, signed(* edit) (signed))
 	return (c);
 }
 
-signed function(signed c, signed o, signed e)
+signed function (signed c, signed o, signed e)
 
 {
 	while (c != EOF)
 	{
-		signed (* func)(signed) = join;
-		if (isblank(c))
+		signed (* func) (signed) = join;
+		if (isblank (c))
 		{
 			func = grab;
-			c = pack(c, o, func);
+			c = pack (c, o, func);
 		}
-		while (nobreak(c))
+		while (nobreak (c))
 		{
 			if (c == '#')
 			{
 				do 
 				{
-					c = keep(c);
+					c = keep (c);
 				}
-				while (nobreak(c));
+				while (nobreak (c));
 				continue;
 			}
-			if (isquote(c))
+			if (isquote (c))
 			{
-				c = literal(c);
+				c = literal (c);
 				continue;
 			}
-			if (isblank(c))
+			if (isblank (c))
 			{
-				c = pack(c, ' ', func);
+				c = pack (c, ' ', func);
 				continue;
 			}
-			c = keep(c);
+			c = keep (c);
 		}
 		if (e)
 		{
 			putc (e, stdout);
 		}
-		c = keep(c);
+		c = keep (c);
 	}
 	return (c);
 }
@@ -173,36 +173,36 @@ signed function(signed c, signed o, signed e)
  *
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"c:e:nst",
 		PUTOPTV_S_FILTER,
 		"white space minimizer",
-		"c c\tindent character is (c) [" LITERAL(SPACE_NEWLINE) "]",
-		"e c\treturn character is (c) [" LITERAL(SPACE_ENDLINE) "]",
+		"c c\tindent character is (c) [" LITERAL (SPACE_NEWLINE) "]",
+		"e c\treturn character is (c) [" LITERAL (SPACE_ENDLINE) "]",
 		"n\tindent character is nothing",
-		"s\tindent character is space [" LITERAL(CLANG_SP) "]",
-		"t\tindent character is tab [" LITERAL(CLANG_HT) "]",
-		(char *)(0)
+		"s\tindent character is space [" LITERAL (CLANG_SP) "]",
+		"t\tindent character is tab [" LITERAL (CLANG_HT) "]",
+		(char *) (0)
 	};
 	char newline = SPACE_NEWLINE;
 	char endline = SPACE_ENDLINE;
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'c':
-			newline = * struesc((char *)(optarg));
+			newline = * struesc ((char *) (optarg));
 			break;
 		case 'e':
-			endline = * struesc((char *)(optarg));
+			endline = * struesc ((char *) (optarg));
 			break;
 		case 'n':
-			newline = (char)(0);
+			newline = (char) (0);
 			break;
 		case 's':
 			newline = CLANG_SP;
@@ -218,13 +218,13 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	if (! argc)
 	{
-		function (getc(stdin), newline, endline);
+		function (getc (stdin), newline, endline);
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen(* argv))
+		if (vfopen (* argv))
 		{
-			function (getc(stdin), newline, endline);
+			function (getc (stdin), newline, endline);
 		}
 		argc--;
 		argv++;

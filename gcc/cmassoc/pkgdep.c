@@ -93,8 +93,8 @@
  *   program functions;   
  *--------------------------------------------------------------------*/
 
-static void findfile(FIND * find, flag_t flags);
-static void testfile(FIND * find, flag_t flags);
+static void findfile (FIND * find, flag_t flags);
+static void testfile (FIND * find, flag_t flags);
 
 /*====================================================================*
  *
@@ -109,18 +109,18 @@ static void testfile(FIND * find, flag_t flags);
  *
  *--------------------------------------------------------------------*/
 
-static char * noversion(char package[])
+static char * noversion (char package [])
 
 {
 	char * version;
-	for (version = package; * package != (char)(0); ++ package)
+	for (version = package; * package != (char) (0); ++ package)
 	{
 		if (* package == '-')
 		{
 			version = package;
 			continue;
 		}
-		if (isupper(* package))
+		if (isupper (* package))
 		{
 			* package = * package + ('a' - 'A');
 			continue;
@@ -128,7 +128,7 @@ static char * noversion(char package[])
 	}
 	if (* version == '-')
 	{
-		* version = (char)(0);
+		* version = (char) (0);
 		version++;
 	}
 	return (version);
@@ -146,7 +146,7 @@ static char * noversion(char package[])
  *
  *--------------------------------------------------------------------*/
 
-static void extract(SCAN * scan, char buffer[], size_t length)
+static void extract (SCAN * scan, char buffer [], size_t length)
 
 {
 	scanuntil (scan, gcsSpace ".,;");
@@ -168,49 +168,49 @@ static void extract(SCAN * scan, char buffer[], size_t length)
  *
  *--------------------------------------------------------------------*/
 
-static void function(FIND * find, flag_t flags)
+static void function (FIND * find, flag_t flags)
 
 {
-	if (! match(find->filename, find->wildcard))
+	if (! match (find->filename, find->wildcard))
 	{
 		return;
 	}
-	if (efreopen(find->fullname, "rb", stdin))
+	if (efreopen (find->fullname, "rb", stdin))
 	{
 		SCAN scan;
-		char package[FILENAME_MAX];
-		char scratch[FILENAME_MAX];
-		char buffer[TEXTLINE_MAX];
+		char package [FILENAME_MAX];
+		char scratch [FILENAME_MAX];
+		char buffer [TEXTLINE_MAX];
 		size_t line;
-		scaninput (& scan, buffer, sizeof(buffer));
-		for (line = 0; fgetline(buffer, sizeof(buffer), stdin) != - 1; line++)
+		scaninput (& scan, buffer, sizeof (buffer));
+		for (line = 0; fgetline (buffer, sizeof (buffer), stdin) != - 1; line++)
 		{
 			scanwhile (& scan, gcsASCIIAlpha ".");
 			scanbreak (& scan, ":");
-			if (havetoken(& scan, "Name:"))
+			if (havetoken (& scan, "Name:"))
 			{
 				scanuntil (& scan, gcsBreak);
-				extract (& scan, package, sizeof(package));
+				extract (& scan, package, sizeof (package));
 			}
-			else if(havetoken(& scan, "Requires:"))
+			else if (havetoken (& scan, "Requires:"))
 			{
-				while (tokensize(& scan))
+				while (tokensize (& scan))
 				{
-					if (isclass(& scan, "A"))
+					if (isclass (& scan, "A"))
 					{
-						extract (& scan, scratch, sizeof(scratch));
+						extract (& scan, scratch, sizeof (scratch));
 						printf ("\"%s\",\"%s\"\n", package, scratch);
 					}
 					nexttoken (& scan);
 				}
 			}
-			else if(havetoken(& scan, "Requires.private:"))
+			else if (havetoken (& scan, "Requires.private:"))
 			{
-				while (tokensize(& scan))
+				while (tokensize (& scan))
 				{
-					if (isclass(& scan, "A"))
+					if (isclass (& scan, "A"))
 					{
-						extract (& scan, scratch, sizeof(scratch));
+						extract (& scan, scratch, sizeof (scratch));
 						printf ("\"%s\",\"%s\"\n", package, scratch);
 					}
 					nexttoken (& scan);
@@ -235,30 +235,30 @@ static void function(FIND * find, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void findfile(FIND * find, flag_t flags)
+static void findfile (FIND * find, flag_t flags)
 
 {
 	struct dirent * dirent;
 	char * filename = find->fullname;
-	DIR * dir = opendir(filename);
-	if (dir == (DIR *)(0))
+	DIR * dir = opendir (filename);
+	if (dir == (DIR *) (0))
 	{
 		testfile (find, flags);
 		return;
 	}
-	while (* filename != (char) (0))
+	while (* filename != (char)(0))
 	{
 		filename++;
 	}
 	* filename = PATH_C_EXTENDER;
-	while ((dirent = readdir(dir)) != (struct dirent *)(0))
+	while ((dirent = readdir (dir)) != (struct dirent *) (0))
 	{
 		strcpy (filename +  1, dirent->d_name);
 		partpath (find->fullname, find->pathname, find->filename);
 		partfile (find->filename, find->basename, find->extender);
 		testfile (find, flags);
 	}
-	* filename = (char)(0);
+	* filename = (char) (0);
 	closedir (dir);
 	return;
 }
@@ -273,15 +273,15 @@ static void findfile(FIND * find, flag_t flags)
  *
  *--------------------------------------------------------------------*/
 
-static void testfile(FIND * find, flag_t flags)
+static void testfile (FIND * find, flag_t flags)
 
 {
-	if (lstat(find->fullname, & find->statinfo))
+	if (lstat (find->fullname, & find->statinfo))
 	{
 		error (0, errno, "%s", find->fullname);
 		return;
 	}
-	if (S_ISDIR(find->statinfo.st_mode))
+	if (S_ISDIR (find->statinfo.st_mode))
 	{
 		char const * filename = find->filename;
 		if (* filename == '.')
@@ -292,7 +292,7 @@ static void testfile(FIND * find, flag_t flags)
 		{
 			filename++;
 		}
-		if (* filename == (char)(0))
+		if (* filename == (char) (0))
 		{
 			return;
 		}
@@ -302,12 +302,12 @@ static void testfile(FIND * find, flag_t flags)
 		}
 		return;
 	}
-	if (S_ISREG(find->statinfo.st_mode))
+	if (S_ISREG (find->statinfo.st_mode))
 	{
 		function (find, flags);
 		return;
 	}
-	if (S_ISLNK(find->statinfo.st_mode))
+	if (S_ISLNK (find->statinfo.st_mode))
 	{
 		function (find, flags);
 		return;
@@ -325,24 +325,24 @@ static void testfile(FIND * find, flag_t flags)
  *   
  *--------------------------------------------------------------------*/
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
 	extern FIND find;
-	static char const * optv[] = 
+	static char const * optv [] = 
 	{
 		"rb",
 		PUTOPTV_S_DIVINE,
 		"convert pkgconfig dependency information to CSV dependency format",
 		"r\trecursive search",
-		(char const *)(0)
+		(char const *) (0)
 	};
-	char const * paths[MAX_PATHS];
-	char * buffer = (char *)(0);
+	char const * paths [MAX_PATHS];
+	char * buffer = (char *) (0);
 	size_t index;
-	flag_t flags = (flag_t)(0);
+	flag_t flags = (flag_t) (0);
 	signed c;
-	while (~ (c = getoptv(argc, argv, optv)))
+	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
@@ -357,16 +357,16 @@ int main(int argc, char const * argv[])
 	argv += optind;
 	if (! argc)
 	{
-		buffer = strdup(getenv("PKG_CONFIG_PATH"));
+		buffer = strdup (getenv ("PKG_CONFIG_PATH"));
 		strsplit (paths, MAX_PATHS, buffer, PATH_C_SEPARATOR);
-		for (index = 0; paths[index] != (char const *)(0); index++)
+		for (index = 0; paths [index] != (char const *) (0); index++)
 		{
-			strcpy (find.fullname, paths[index]);
+			strcpy (find.fullname, paths [index]);
 			strcpy (find.wildcard, "*.pc");
-			find.pathname[0] = (char)(0);
-			find.filename[0] = (char)(0);
-			find.basename[0] = (char)(0);
-			find.extender[0] = (char)(0);
+			find.pathname [0] = (char) (0);
+			find.filename [0] = (char) (0);
+			find.basename [0] = (char) (0);
+			find.extender [0] = (char) (0);
 			findfile (& find, flags);
 		}
 	}
@@ -374,10 +374,10 @@ int main(int argc, char const * argv[])
 	{
 		strcpy (find.fullname, * argv);
 		strcpy (find.wildcard, "*.pc");
-		find.pathname[0] = (char)(0);
-		find.filename[0] = (char)(0);
-		find.basename[0] = (char)(0);
-		find.extender[0] = (char)(0);
+		find.pathname [0] = (char) (0);
+		find.filename [0] = (char) (0);
+		find.basename [0] = (char) (0);
+		find.extender [0] = (char) (0);
 		findfile (& find, flags);
 		argc--;
 		argv++;
