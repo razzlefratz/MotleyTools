@@ -601,7 +601,7 @@ signed osource::operate (signed c)
 		c = osource::find (c);
 		std::cout.put (' ');
 	}
-	else if ((c == '!') || (c == '='))
+	else if (c == '=')
 	{
 		c = osource::keep (c);
 		if (c == '=')
@@ -610,25 +610,22 @@ signed osource::operate (signed c)
 		}
 		c = osource::find (c);
 
-#if 0
+#if 1
 
 /*
- *	treat "-1" as one token;
+ *   special case: no space after '=' when followed by '{';
  */
 
-		if (c == '-')
+		if (c == '{')
 		{
-			if (std::cin.peek () == '1')
-			{
-				c = osource::keep (c);
-			}
+			return (c);
 		}
 
 #endif
 
 		std::cout.put (' ');
 	}
-	else if ((c == '^') || (c == '%') || (c == '~'))
+	else if ((c == '!') || (c == '^') || (c == '%') || (c == '~'))
 	{
 		c = osource::keep (c);
 		if (c == '=')
