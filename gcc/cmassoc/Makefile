@@ -35,11 +35,6 @@ TOOLS+=mvpkg octal pkgdep pkgopt qc rexp rmpkg chkbld chperm checkmode dif ff-bl
 PAGES+=mvpkg.1 octal.1 pkgdep.1 pkgopt.1 qc.1 rexp.1 rmpkg.1 chkbld.1 chperm.1 checkmode.1 dif.1 ff-bld.1 ff-elf.1 setmode.1 undash.1 
 endif
 
-ifeq ($(KR),yes)
-TOOLS+=mycat mytr mywc 
-PAGES+=tr.1 
-endif
-
 OTHER=auth cat checkmode chkbld chperm clear define dif dump ff-bld ff-elf long main mvpkg octal pkg pkgdep pkgopt qc rexp rmpkg setmode tr undash wc
 
 # ====================================================================
