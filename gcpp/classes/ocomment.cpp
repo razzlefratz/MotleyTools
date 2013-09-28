@@ -28,9 +28,9 @@
 #include "../classes/oascii.hpp"
 
 /*====================================================================*
- *   
+ *
  *   size_t width (void) const;
- *   
+ *
  *   get and set the comment bar width;
  *
  *--------------------------------------------------------------------*/
@@ -53,11 +53,11 @@ ocomment & ocomment::width (size_t width)
 #endif
 
 /*====================================================================*
- *   
+ *
  *   unsigned char cupper (void) const;
- *   
+ *
  *   get and set the upper bar character;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 #if oCOMMENT_EXTENDBAR
@@ -78,11 +78,11 @@ ocomment & ocomment::cupper (unsigned char upper)
 #endif
 
 /*====================================================================*
- *   
+ *
  *   unsigned char clower (void) const;
- *   
+ *
  *   get and set the lower bar character;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 #if oCOMMENT_EXTENDBAR
@@ -103,11 +103,11 @@ ocomment & ocomment::clower (unsigned char lower)
 #endif
 
 /*====================================================================*
- *   
+ *
  *   char const * preface (void) const;
- *   
+ *
  *   get and set the preface comment string;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 #if oCOMMENT_EXTENDBAR
@@ -130,11 +130,11 @@ ocomment & ocomment::preface (char const * preface)
 #endif
 
 /*====================================================================*
- *   
+ *
  *   char const * package (void) const;
- *   
+ *
  *   get and set the package comment string;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 #if oCOMMENT_EXTENDBAR
@@ -157,11 +157,11 @@ ocomment & ocomment::package (char const * package)
 #endif
 
 /*====================================================================*
- *   
+ *
  *   char const * release (void) const;
- *   
+ *
  *   get and set the release comment string;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 #if oCOMMENT_EXTENDBAR
@@ -184,11 +184,11 @@ ocomment & ocomment::release (char const * release)
 #endif
 
 /*====================================================================*
- *   
+ *
  *   char const * license (void) const;
- *   
+ *
  *   get and set the license comment string;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 #if oCOMMENT_EXTENDBAR
@@ -211,11 +211,11 @@ ocomment & ocomment::license (char const * license)
 #endif
 
 /*====================================================================*
- *   
+ *
  *   char const * special (void) const;
- *   
+ *
  *   get and set the special comment string;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 #if oCOMMENT_EXTENDBAR
@@ -241,8 +241,8 @@ ocomment & ocomment::special (char const * special)
  *
  *   ocomment & ocomment::preamble (void);
  *
- *   insert an empty preamble comment block; 
- *   
+ *   insert an empty preamble comment block;
+ *
  *--------------------------------------------------------------------*/
 
 ocomment & ocomment::preamble (void)
@@ -270,8 +270,8 @@ ocomment & ocomment::preamble (void)
  *
  *   signed ocomment::preamble (signed c)
  *
- *   insert an empty preamble comment block; 
- *   
+ *   insert an empty preamble comment block;
+ *
  *--------------------------------------------------------------------*/
 
 signed ocomment::preamble (signed c)
@@ -308,7 +308,7 @@ signed ocomment::preamble (signed c)
  *
  *   signed comment (signed c) const;
  *
- *   read and write comment blocks; 
+ *   read and write comment blocks;
  *
  *--------------------------------------------------------------------*/
 
@@ -331,17 +331,17 @@ signed ocomment::comment (signed c)
 }
 
 /*====================================================================*
- *   
+ *
  *   signed cplus (signed c);
- *   
- *   format C++ style comments and return the character after; 
+ *
+ *   format C++ style comments and return the character after;
  *
  *   read and discard excess leading slashes and empty comment lines;
- *   
+ *
  *   under normal conditions, output two slashes then read and write
  *   characters until newline or EOF; discard the newline;
  *
- *   if oCOMMENT_B_TRIPLE is set then convert C++ comment to a multi-line 
+ *   if oCOMMENT_B_TRIPLE is set then convert C++ comment to a multi-line
  *   C-style comment;
  *
  *--------------------------------------------------------------------*/
@@ -408,11 +408,11 @@ signed ocomment::cplus (signed c)
 }
 
 /*====================================================================*
- *   
+ *
  *   signed clang (signed c);
- *   
+ *
  *   format ANSI C style comments and return the character after;
- *   
+ *
  *   this method has two standard forms as follows interlaced with
  *   specific formatting function blocks; the second form is more
  *   reliable and veratile;
@@ -433,11 +433,11 @@ signed ocomment::cplus (signed c)
  *   and
  *
  *      putc ('/', stdout);
- *      do { 
+ *      do {
  *         	ungetc (c, stdin);
- *         	do { 
- *            		c = getc(stdin); 
- *            		putc (c,stdout); 
+ *         	do {
+ *            		c = getc(stdin);
+ *            		putc (c,stdout);
  *         	} while ((c != '*') && (c != EOF));
  *         	c = getc (stdin);
  *      } while ((c != '/') && (c != EOF));
@@ -457,28 +457,14 @@ signed ocomment::clang (signed c)
 
 /*
  *   if the character after as asterisk is UPPER or LOWER then collect the entire string
- *   and keep track of the length; if the string ends in asterisk then replace place it with 
+ *   and keep track of the length; if the string ends in asterisk then replace place it with
  *   another of fixed length using the same character; otherwise, replace it with another of
- *   the same length using the same character;  
+ *   the same length using the same character;
  */
 
 		if ((c == this->mupper) || (c == this->mlower))
 		{
-			signed width = 0;
-			signed start = c;
-			while (c == start)
-			{
-				c = std::cin.get ();
-				width++;
-			}
-			if (c == '*')
-			{
-				width = this->mwidth;
-			}
-			while (width-- > 0)
-			{
-				* this->minsert++ = (char) (start);
-			}
+			c = ocomment::breaker (c);
 		}
 
 #if oCOMMENT_CUSTOMIZE
@@ -515,21 +501,15 @@ signed ocomment::clang (signed c)
 #if oCOMMENT_PADMARGIN
 
 /*
- *   if the next character is newline then flush the buffer and reset sp to the start; write the 
- *   newline and one space then find the first non-blank character on the next comment line; if 
+ *   if the next character is newline then flush the buffer and reset sp to the start; write the
+ *   newline and one space then find the first non-blank character on the next comment line; if
  *   that character is not asterisk then write an asterisk and one or more spaces; increment the
- *   line counter for later; 
+ *   line counter for later;
  */
 
 			while (c == '\n')
 			{
-				this->mcount++;
-				this->moutput = this->mbuffer;
-				while (this->moutput < this->minsert)
-				{
-					std::cout.put (* this->moutput++);
-				}
-				this->minsert = this->mbuffer;
+				ocomment::content ();
 				std::cout.put (c);
 				std::cout.put (' ');
 				do 
@@ -555,6 +535,10 @@ signed ocomment::clang (signed c)
 
 #if 1
 
+/*
+ *	reduce strings of asterisks to one asterisk;
+ */
+
 		if (ocomment::anyset (oCOMMENT_B_SHORT))
 		{
 			while (c == '*')
@@ -573,12 +557,7 @@ signed ocomment::clang (signed c)
 		std::cout.put (' ');
 		this->minsert--;
 	}
-	this->moutput = this->mbuffer;
-	while (this->moutput < this->minsert)
-	{
-		std::cout.put (* this->moutput++);
-	}
-	this->minsert = this->mbuffer;
+	ocomment::content ();
 	if (ocomment::anyset (oCOMMENT_B_TRIPLE) && ! this->mcount)
 	{
 		std::cout.put ('\n');
@@ -592,14 +571,46 @@ signed ocomment::clang (signed c)
 }
 
 /*====================================================================*
- *   
+ *
+ *   signed breaker (signed c);
+ *
+ *
+ *--------------------------------------------------------------------*/
+
+#if oCOMMENT_EXTENDBAR
+
+signed ocomment::breaker (signed c)
+
+{
+	signed width = 0;
+	signed start = c;
+	while (c == start)
+	{
+		c = std::cin.get ();
+		width++;
+	}
+	if (c == '*')
+	{
+		width = this->mwidth;
+	}
+	while (width-- > 0)
+	{
+		* this->minsert++ = (char) (start);
+	}
+	return (c);
+}
+
+#endif
+
+/*====================================================================*
+ *
  *   signed message (unsigned char c, char const * string);
- *   
+ *
  *   replace comment line with new one;
  *
  *   copy c then string to buffer; read and discard characters from
- *   stdin until newline or EOF is read; return read character; 
- *   
+ *   stdin until newline or EOF is read; return read character;
+ *
  *--------------------------------------------------------------------*/
 
 #if oCOMMENT_EXTENDBAR
@@ -639,6 +650,37 @@ signed ocomment::message (signed c, char const * string)
 
 #endif
 #endif
+
+/*====================================================================*
+ *
+ *   ocomment::content (void);
+ *
+ *   print buffer after removing trailing white space;
+ *
+ *--------------------------------------------------------------------*/
+
+ocomment & ocomment::content (void)
+
+{
+	this->mcount++;
+	this->moutput = this->mbuffer;
+	while (this->minsert > this->moutput)
+	{
+		this->minsert--;
+		if (oascii::isspace (* this->minsert))
+		{
+			continue;
+		}
+		this->minsert++;
+		break;
+	}
+	while (this->moutput < this->minsert)
+	{
+		std::cout.put (* this->moutput++);
+	}
+	this->minsert = this->mbuffer;
+	return (* this);
+}
 
 /*====================================================================*
  *

@@ -32,7 +32,7 @@
 #define oGETOPTV_C_SUMMARY ('?')
 
 /*====================================================================*
- *   object declaration; 
+ *   object declaration;
  *--------------------------------------------------------------------*/
 
 class __declspec (dllexport) ogetoptv: private oputoptv, private oversion

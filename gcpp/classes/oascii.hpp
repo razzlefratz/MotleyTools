@@ -3,7 +3,7 @@
  *   oascii.hpp - oascii class declaration;
  *
  *   character classification and conversion; this is a customxed
- *   and customizable implementation of the standard ctype macros 
+ *   and customizable implementation of the standard ctype macros
  *   and library functions;
  *
  *.  Motley Tools by Charles Maier

@@ -32,7 +32,7 @@
 ocprocwords::ocprocwords ()
 
 {
-	static char const * table [] = 
+	static char const * table [] =
 	{
 		"define",
 		"elif",
@@ -49,7 +49,7 @@ ocprocwords::ocprocwords ()
 		(char const *) (0)
 	};
 	okeywords::mtitle = "cprocwords";
-	okeywords::mcount = sizeof (table) / sizeof (table [0]) - 1;
+	okeywords::mcount = sizeof (table) / sizeof (table [0]) -1;
 	okeywords::mtable = table;
 	okeywords::mcheck ();
 	return;

@@ -3,7 +3,7 @@
  *   oflagword.cpp - oflagword class definition;
  *
  *   bitmapped flagword manager; this class can be inherited by other
- *   classes that need a flagword; 
+ *   classes that need a flagword;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -123,9 +123,9 @@ oflagword & oflagword::clearbits (unsigned mask)
 }
 
 /*====================================================================*
- * 
+ *
  *   bool anyset (unsigned mask) const;
- * 
+ *
  *--------------------------------------------------------------------*/
 
 bool oflagword::anyset (unsigned mask) const
@@ -135,9 +135,9 @@ bool oflagword::anyset (unsigned mask) const
 }
 
 /*====================================================================*
- * 
+ *
  *   bool allset (unsigned mask) const;
- * 
+ *
  *--------------------------------------------------------------------*/
 
 bool oflagword::allset (unsigned mask) const
@@ -147,9 +147,9 @@ bool oflagword::allset (unsigned mask) const
 }
 
 /*====================================================================*
- * 
+ *
  *   bool anyclear (unsigned mask) const;
- * 
+ *
  *--------------------------------------------------------------------*/
 
 bool oflagword::anyclear (unsigned mask) const
@@ -159,9 +159,9 @@ bool oflagword::anyclear (unsigned mask) const
 }
 
 /*====================================================================*
- * 
+ *
  *   bool allclear (unsigned make) const;
- * 
+ *
  *--------------------------------------------------------------------*/
 
 bool oflagword::allclear (unsigned mask) const

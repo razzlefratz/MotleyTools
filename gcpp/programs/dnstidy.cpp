@@ -68,8 +68,8 @@ static osource tidy;
  *   void function (oflagword * flags);
  *
  *   read from stdin and write to stdout; indent C style text based
- *   only on '{', ';' and '}' characters; leave '#' comments alone; 
- *   this program is suitable for css stylesheets, awk programs and  
+ *   only on '{', ';' and '}' characters; leave '#' comments alone;
+ *   this program is suitable for css stylesheets, awk programs and
  *   bind name.conf files;
  *
  *.  Motley Tools by Charles Maier
@@ -150,7 +150,7 @@ void function (oflagword * flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"m:o:st",
 		oPUTOPTV_S_FILTER,

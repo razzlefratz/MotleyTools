@@ -23,10 +23,10 @@
 /*====================================================================*
  *
  *   oHTMLEmptyElements ();
- *   
+ *
  *   constructor for oHTMLEmptyElements class; replace the base class table with
  *   this one;
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -36,7 +36,7 @@
 oHTMLEmptyElements::oHTMLEmptyElements ()
 
 {
-	static char const * table [] = 
+	static char const * table [] =
 	{
 		"AREA",
 		"BASE",
@@ -67,7 +67,7 @@ oHTMLEmptyElements::oHTMLEmptyElements ()
 		(char const *) (0)
 	};
 	okeywords::mtitle = "HTMLEmpty";
-	okeywords::mcount = SIZEOF (table) - 1;
+	okeywords::mcount = SIZEOF (table) -1;
 	okeywords::mtable = table;
 	okeywords::mcheck ();
 	return;

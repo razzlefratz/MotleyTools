@@ -29,7 +29,7 @@
  *   class variables;
  *--------------------------------------------------------------------*/
 
-char const * opackage::extenders [oPACKAGE_EXTENDERS_MAX +  1] = 
+char const * opackage::extenders [oPACKAGE_EXTENDERS_MAX +  1] =
 
 {
 	".tar",
@@ -66,7 +66,7 @@ char const * opackage::archive () const
  *   char const *package () const;
  *
  *   return release substring; the release is the filename less the
- *   trailer; 
+ *   trailer;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -141,8 +141,8 @@ char const * opackage::trailer () const
  *
  *   opackage & operator= (char const *filespec);
  *
- *   separate filespec into pathname and filename constituents then separate 
- *   filename into basename and extender constituents; 
+ *   separate filespec into pathname and filename constituents then separate
+ *   filename into basename and extender constituents;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -161,8 +161,8 @@ opackage & opackage::operator = (char const * filespec)
  *
  *   opackage & filespec (char const *filespec);
  *
- *   separate filespec into pathname and filename constituents then separate 
- *   filename into basename and extender constituents; 
+ *   separate filespec into pathname and filename constituents then separate
+ *   filename into basename and extender constituents;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

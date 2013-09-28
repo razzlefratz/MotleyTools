@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   oif.hpp - interface for the oif class  
+ *   oif.hpp - interface for the oif class
  *
  *   host interface information;
  *

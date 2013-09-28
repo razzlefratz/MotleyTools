@@ -53,7 +53,7 @@ char const * oelement::title () const
 
 /*====================================================================*
  *
- *   oelement & print () 
+ *   oelement & print ()
  *
  *   print element end tag on stdout;
  *

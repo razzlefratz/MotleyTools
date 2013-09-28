@@ -12,13 +12,13 @@
 #define oPUTOPT_HEADER
 
 /*====================================================================*
- *   custom header files; 
+ *   custom header files;
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
 
 /*====================================================================*
- *   string vector indexes; 
+ *   string vector indexes;
  *--------------------------------------------------------------------*/
 
 #define oPUTOPT_I_OPTIONS 0
@@ -27,7 +27,7 @@
 #define oPUTOPT_I_DETAILS 3
 
 /*====================================================================*
- *   standard strings; 
+ *   standard strings;
  *--------------------------------------------------------------------*/
 
 #define oPUTOPT_S_FILTER "[file [file [...]] or [< stdin][> stdout]"

@@ -13,7 +13,7 @@
 /*====================================================================*
  *
  *   signed statement (signed c) const;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed oenclose::statement (signed c) const
@@ -42,7 +42,7 @@ signed oenclose::statement (signed c) const
 /*====================================================================*
  *
  *   signed condition (signed c) const;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed oenclose::condition (signed c)
@@ -68,7 +68,7 @@ signed oenclose::condition (signed c)
 /*====================================================================*
  *
  *   signed expression (signed c) constant;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed oenclose::expression (signed c)
@@ -109,7 +109,7 @@ signed oenclose::program (signed c, signed e) const
 /*====================================================================*
  *
  *   int inner_program (int c, int e) const;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed program1 (int c, int e)

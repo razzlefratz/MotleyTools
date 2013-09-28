@@ -181,7 +181,7 @@ oif & oif::GetEthernetAddress (void * memory)
  *
  *   oif & GetInternetAddress (void * memory);
  *
- *   copy the stored internet address to external memory; this is a 
+ *   copy the stored internet address to external memory; this is a
  *   binary copy operation; return the object instance reference;
  *
  *--------------------------------------------------------------------*/
@@ -217,11 +217,11 @@ oif & oif::Print (void)
  *
  *   oif & SetIndex (unsigned index);
  *
- *   change the interface index; automatically update the name and 
+ *   change the interface index; automatically update the name and
  *   text strings plus the hardware and internet addresses and their
  *   strings;
  *
- *   Microsoft claims to support function if_indextoname with Vista 
+ *   Microsoft claims to support function if_indextoname with Vista
  *   and beyond; pcap_indextoname is a temporary solution;
  *
  *--------------------------------------------------------------------*/
@@ -250,11 +250,11 @@ oif & oif::SetIndex (unsigned index)
  *
  *   oif & oif::SetName (char const * name);
  *
- *   change the interface name string; automatically update the index 
- *   and text string plus the hardware and internet addresses and their 
+ *   change the interface name string; automatically update the index
+ *   and text string plus the hardware and internet addresses and their
  *   strings; return the object instance reference;
  *
- *   Microsoft claims to support function if_nametoindex with Vista 
+ *   Microsoft claims to support function if_nametoindex with Vista
  *   and beyond; pcap_nametoindex is a temporary solution;
  *
  *--------------------------------------------------------------------*/
@@ -285,7 +285,7 @@ oif & oif::SetName (char const * name)
  *
  *   replace interface text string and return the object instance
  *   reference; this string may change whenever the index or name
- *   are changed but changing the text string does not affect the 
+ *   are changed but changing the text string does not affect the
  *   other properties;
  *
  *--------------------------------------------------------------------*/
@@ -301,9 +301,9 @@ oif & oif::SetText (char const * text)
  *
  *   oif & SetHardwareAddress (void const * memory);
  *
- *   copy the hardware address from external memory and return the 
+ *   copy the hardware address from external memory and return the
  *   object instance referenc;
- *   
+ *
  *   format the hardware and internet address strings now to avoid
  *   decoding them each time they are displayed;
  *
@@ -321,9 +321,9 @@ oif & oif::SetHardwareAddress (void const * memory)
  *
  *   oif & SetEthernetAddress (void const * memory);
  *
- *   copy the hardware address from external memory and return the 
+ *   copy the hardware address from external memory and return the
  *   object instance referenc;
- *   
+ *
  *   format the hardware and internet address strings now to avoid
  *   decoding them each time they are displayed;
  *
@@ -343,7 +343,7 @@ oif & oif::SetEthernetAddress (void const * memory)
  *
  *   copy the internet address from external memory and return the
  *   object instance reference;
- *   
+ *
  *   format the hardware and internet address strings now to avoid
  *   decoding them each time they are displayed;
  *
@@ -363,7 +363,7 @@ oif & oif::SetInternetAddress (void const * memory)
  *
  *   update hardware and internet addresses after the index and name
  *   are known; this is a rat's nest but that's life so deal with it!
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oif & oif::lookup ()
@@ -380,14 +380,14 @@ oif & oif::lookup ()
 		oerror::error (1, errno, "Can't open socket: %s", this->mname);
 	}
 	std::memcpy (ifreq.ifr_name, this->mname, sizeof (ifreq.ifr_name));
-	if (ioctl (fd, SIOCGIFHWADDR, & ifreq) == - 1)
+	if (ioctl (fd, SIOCGIFHWADDR, & ifreq) == -1)
 	{
 		oerror::error (1, errno, "Can't fetch hardware address: %s", this->mname);
 		close (fd);
 		return (* this);
 	}
 	std::memcpy (this->mhwaddr, ifreq.ifr_ifru.ifru_hwaddr.sa_data, sizeof (this->mhwaddr));
-	if (ioctl (fd, SIOCGIFADDR, & ifreq) == - 1)
+	if (ioctl (fd, SIOCGIFADDR, & ifreq) == -1)
 	{
 		oerror::error (1, errno, "Can't fetch ethernet address: %s", this->mname);
 		close (fd);
@@ -417,7 +417,7 @@ oif & oif::lookup ()
  *
  *   oif & oif::format ();
  *
- *   format hardware and internet address strings; this is a private 
+ *   format hardware and internet address strings; this is a private
  *   method that should be called whenever either address changes;
  *
  *--------------------------------------------------------------------*/
@@ -447,7 +447,7 @@ void oif::osx_gethwaddr ()
 
 	struct ifaddrs * ifaddrs;
 	struct ifaddrs * ifaddr;
-	if (getifaddrs (& ifaddrs) == - 1)
+	if (getifaddrs (& ifaddrs) == -1)
 	{
 		oerror::error (1, errno, "No interfaces available");
 	}
@@ -489,7 +489,7 @@ void oif::osx_gethwaddr ()
  *   in non-pcap environments; Microsoft will support this function
  *   on Vista and future systems;
  *
- *   see The Open Group Base Specifications Issue 6 IEEE Std 1003.1, 
+ *   see The Open Group Base Specifications Issue 6 IEEE Std 1003.1,
  *   2004 Edition for a description of this method;
  *
  *--------------------------------------------------------------------*/
@@ -503,7 +503,7 @@ unsigned oif::pcap_nametoindex (char const * name) const
 	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *) (0);
 	pcap_if_t * device;
-	if (pcap_findalldevs (& devices, buffer) != - 1)
+	if (pcap_findalldevs (& devices, buffer) != -1)
 	{
 		unsigned index = 1;
 		for (device = devices; device; device = device->next)
@@ -529,11 +529,11 @@ unsigned oif::pcap_nametoindex (char const * name) const
  *
  *   char * pcap_indextoname (unsigned ifindex, char * ifname) const;
  *
- *   WinPcap version of POSIX if_indextoname function; return error 
+ *   WinPcap version of POSIX if_indextoname function; return error
  *   in non-pcap enviroements; Microsoft will support this function
  *   on Vista and future systems;
  *
- *   see The Open Group Base Specifications Issue 6 IEEE Std 1003.1, 
+ *   see The Open Group Base Specifications Issue 6 IEEE Std 1003.1,
  *   2004 Edition for a description of this method;
  *
  *--------------------------------------------------------------------*/
@@ -547,7 +547,7 @@ char * oif::pcap_indextoname (unsigned ifindex, char * ifname) const
 	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *) (0);
 	pcap_if_t * device;
-	if ((ifindex--) && (pcap_findalldevs (& devices, buffer) != - 1))
+	if ((ifindex--) && (pcap_findalldevs (& devices, buffer) != -1))
 	{
 		for (device = devices; device; device = device->next)
 		{
@@ -625,7 +625,7 @@ void oif::pcap_getipaddr ()
 	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *) (0);
 	pcap_if_t * device;
-	if (pcap_findalldevs (& devices, buffer) == - 1)
+	if (pcap_findalldevs (& devices, buffer) == -1)
 	{
 		oerror::error (1, errno, "Can't enumerate interfaces");
 	}
@@ -653,7 +653,7 @@ void oif::pcap_getipaddr ()
 
 /*====================================================================*
  *
- *   oif () 
+ *   oif ()
  *
  *--------------------------------------------------------------------*/
 
@@ -671,7 +671,7 @@ oif::oif ()
 
 /*====================================================================*
  *
- *   ~oif () 
+ *   ~oif ()
  *
  *--------------------------------------------------------------------*/
 

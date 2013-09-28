@@ -51,7 +51,7 @@ char const * omakefile::compiler () const
  *   omakefile & compiler (char const * string);
  *
  *   assign a nes string to the mcompiler member only if the new string
- *   differs from the old string; 
+ *   differs from the old string;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -95,7 +95,7 @@ char const * omakefile::sourcedir () const
  *
  *   omakefile & sourcedir (char const * string);
  *
- *   replace the library property string if different from the old one; 
+ *   replace the library property string if different from the old one;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -132,7 +132,7 @@ char const * omakefile::targetdir () const
  *
  *   omakefile & targetdir (char const * string);
  *
- *   replace the library property string if different from the old one; 
+ *   replace the library property string if different from the old one;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -151,7 +151,7 @@ omakefile & omakefile::targetdir (char const * string)
  *
  *   omakefile & projectfile (char const * pathname);
  *
- *   open a file containing a list of target filenames; include 
+ *   open a file containing a list of target filenames; include
  *   each target in the project target list if not already present;
  *
  *.  Motley Tools by Charles Maier
@@ -189,7 +189,7 @@ omakefile & omakefile::projectfile (char const * pathname)
  *
  *   omakefile & includefile(char const *pathname);
  *
- *   add the pathname argument to the project target list if not 
+ *   add the pathname argument to the project target list if not
  *   already present;
  *
  *.  Motley Tools by Charles Maier

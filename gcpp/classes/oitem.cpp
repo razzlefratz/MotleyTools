@@ -41,8 +41,8 @@ char const * oitem::name () const
  *
  *   oitem & name(char const *string);
  *
- *   assign a new string to mname only when the new string is 
- *   different from the old string; 
+ *   assign a new string to mname only when the new string is
+ *   different from the old string;
  *
  *--------------------------------------------------------------------*/
 
@@ -71,8 +71,8 @@ char const * oitem::text () const
  *
  *   oitem & text(char const * text);
  *
- *   assign a new string to mtext only when the new string is 
- *   different from the old string; 
+ *   assign a new string to mtext only when the new string is
+ *   different from the old string;
  *
  *--------------------------------------------------------------------*/
 
@@ -158,8 +158,8 @@ oitem & oitem::clear ()
 /*====================================================================*
  *
  *   oitem (char const *name, char const *text, void const *data);
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 oitem::oitem (char const * name, char const * text, void const * data)
@@ -175,8 +175,8 @@ oitem::oitem (char const * name, char const * text, void const * data)
 /*====================================================================*
  *
  *   oitem (char const *name, char const *text);
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 oitem::oitem (char const * name, char const * text)
@@ -192,8 +192,8 @@ oitem::oitem (char const * name, char const * text)
 /*====================================================================*
  *
  *   oitem (char const *name, void const *data);
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 oitem::oitem (char const * name, void const * data)
@@ -209,8 +209,8 @@ oitem::oitem (char const * name, void const * data)
 /*====================================================================*
  *
  *   oitem (char const *name);
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 oitem::oitem (char const * name)
@@ -226,8 +226,8 @@ oitem::oitem (char const * name)
 /*====================================================================*
  *
  *   oitem ();
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 oitem::oitem ()
@@ -241,10 +241,10 @@ oitem::oitem ()
 }
 
 /*====================================================================*
- *   
+ *
  *   ~oitem ();
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 oitem::~ oitem ()

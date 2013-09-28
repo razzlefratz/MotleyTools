@@ -8,7 +8,7 @@
 int main ()
 
 {
-	static char * list [] = 
+	static char * list [] =
 	{
 		"abc",
 		"ABC",

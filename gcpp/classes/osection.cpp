@@ -29,7 +29,7 @@
  *
  *   osection & width (size_t width)
  *
- *   
+ *
  *--------------------------------------------------------------------*/
 
 osection & osection::width (size_t width)
@@ -49,7 +49,7 @@ osection & osection::width (size_t width)
 
 /*====================================================================*
  *
- *   osection & title (char const *title) 
+ *   osection & title (char const *title)
  *
  *
  *

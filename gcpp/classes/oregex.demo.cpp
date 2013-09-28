@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   ofilespec.demo.cpp 
+ *   ofilespec.demo.cpp
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -38,7 +38,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * usage [] = 
+	static char const * usage [] =
 	{
 		"h",
 		"expression [expression] ...",
@@ -50,7 +50,7 @@ int main (int argc, char const * argv [])
 	oputopt putopt;
 	oregex * regex;
 	signed c;
-	while ((c = getopt.getopt (argc, argv, usage [PUTOPT_I_OPTIONS])) != - 1)
+	while ((c = getopt.getopt (argc, argv, usage [PUTOPT_I_OPTIONS])) != -1)
 	{
 		switch (c)
 		{

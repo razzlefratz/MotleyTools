@@ -2,7 +2,7 @@
  *
  *   oi18nAttributes.cpp - implementation of oi18nAttributes class;
  *
- *   this object implements the w3c i18n core markup attributes; 
+ *   this object implements the w3c i18n core markup attributes;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -41,7 +41,7 @@ oi18nAttributes & oi18nAttributes::write ()
 /*====================================================================*
  *
  *   oi18nAttributes ();
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oi18nAttributes::oi18nAttributes ()
@@ -55,7 +55,7 @@ oi18nAttributes::oi18nAttributes ()
 /*====================================================================*
  *
  *   ~oi18nAttributes ();
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oi18nAttributes::~ oi18nAttributes ()

@@ -220,9 +220,9 @@ otree * ooutline::insert (long index, unsigned order, char const * symbol)
 
 /*====================================================================*
  *
- *   ooutline & clear () 
- *   
- *   
+ *   ooutline & clear ()
+ *
+ *
  *--------------------------------------------------------------------*/
 
 ooutline & ooutline::clear ()
@@ -235,8 +235,8 @@ ooutline & ooutline::clear ()
 /*====================================================================*
  *
  *   ooutline (char const *symbol);
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 ooutline::ooutline (char const * symbol)
@@ -247,9 +247,9 @@ ooutline::ooutline (char const * symbol)
 
 /*====================================================================*
  *
- *   ~ooutline (); 
- *   
- *   
+ *   ~ooutline ();
+ *
+ *
  *--------------------------------------------------------------------*/
 
 ooutline::~ ooutline ()

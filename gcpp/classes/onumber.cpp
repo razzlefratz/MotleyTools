@@ -4,7 +4,7 @@
  *
  *   convert common specification strings to numeric values; these
  *   methods are designed for command line argument parsing an may
- *   not return on conversion failure; 
+ *   not return on conversion failure;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -35,7 +35,7 @@
  *   huge_t uintspec (char const *number, huge_t minimum, huge_t maximum) const;
  *
  *   convert a numeric string to an unsigned integer; confirm that
- *   the result does not exceed the specified range; report errors 
+ *   the result does not exceed the specified range; report errors
  *   and terminate the program on error;
  *
  *.  Motley Tools by Charles Maier
@@ -89,8 +89,8 @@ huge_t onumber::uintspec (char const * string, huge_t minimum, huge_t maximum)
  *   convert a character string to an equivalent unsigned integer and
  *   return the result; terminate the program on failure;
  *
- *   the base argument is the number base to be used for conversion; 
- *   base 0 permits the number base to be determined by the string 
+ *   the base argument is the number base to be used for conversion;
+ *   base 0 permits the number base to be determined by the string
  *   string prefix; 0b, 0d or 0x for binary, deciaml or hex;
  *
  *   the size argument is the maximum number of bits permitted in the
@@ -173,11 +173,11 @@ huge_t onumber::basespec (char const * string, unsigned base, unsigned size)
  *
  *   size_t ipv4spec (char const * string, void   * memory) const;
  *
- *   encode a 4-byte memory region with the equivalent of an IPv4 
- *   dotted decimal string; all field delimiters must be present 
+ *   encode a 4-byte memory region with the equivalent of an IPv4
+ *   dotted decimal string; all field delimiters must be present
  *   but individual fields may be empty or have leading zeros;
  *
- *      0.0.0.0		 0x00, 0x00, 0x00, 0x00   
+ *      0.0.0.0		 0x00, 0x00, 0x00, 0x00
  *      127...1		 0x7F, 0x00, 0x00, 0x01
  *      192.168.099.000  0xC0, 0xA8, 0x63, 0x00
  *
@@ -243,7 +243,7 @@ size_t onumber::ipv4spec (char const * string, void * memory)
  *
  *   size_t ipv6spec (char const * string, void   * memory) const;
  *
- *   encode a 16-byte memory region with the binary equivalent of an 
+ *   encode a 16-byte memory region with the binary equivalent of an
  *   ipv6 address string; ipv6 addresses are defined as 8 16-bit hex
  *   numbers separated with colons; two consecutive colons represent
  *   one or more 0000 fields;
@@ -328,13 +328,13 @@ size_t onumber::ipv6spec (char const * string, void * memory)
  *   void * ipv4encode (char const * string, void * memory)
  *
  *   encode external memory with the binary equivalent of an IPv4
- *   dotted-decimal string and return the address of the next 
+ *   dotted-decimal string and return the address of the next
  *   unencoded memory byte;
  *
- *   all field delimiters must be present but individual fields may 
+ *   all field delimiters must be present but individual fields may
  *   be empty or have any number of leading zeros;
  *
- *      0.0.0.0		 0x00, 0x00, 0x00, 0x00   
+ *      0.0.0.0		 0x00, 0x00, 0x00, 0x00
  *      127...1		 0x7F, 0x00, 0x00, 0x01
  *      192.168.099.000  0xC0, 0xA8, 0x63, 0x00
  *
@@ -400,7 +400,7 @@ void * onumber::ipv4encode (char const * string, void * memory)
  *
  *   size_t ipv6encode (char const * string, void   * memory);
  *
- *   encode a 16-byte memory region with the binary equivalent of an 
+ *   encode a 16-byte memory region with the binary equivalent of an
  *   ipv6 address string; ipv6 addresses are defined as 8 16-bit hex
  *   numbers separated with colons; two consecutive colons represent
  *   one or more 0000 fields;
@@ -503,13 +503,13 @@ signed onumber::todigit (signed c)
 	{
 		return (c - 'a' +  10);
 	}
-	return (- 1);
+	return (-1);
 }
 
 /*====================================================================*
  *
  *   onumber::onumber ();
- *   
+ *
  *--------------------------------------------------------------------*/
 
 onumber::onumber ()

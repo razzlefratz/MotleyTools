@@ -27,8 +27,8 @@ char const ohexencode::mdigit [] = "0123456789ABCDEF";
  *
  *   char * octet (char *string, char const c);
  *
- *   encode string with the two digit hexidecimal representation of 
- *   the character argument and terminate with NUL;  
+ *   encode string with the two digit hexidecimal representation of
+ *   the character argument and terminate with NUL;
  *
  *--------------------------------------------------------------------*/
 
@@ -77,7 +77,7 @@ char * ohexencode::iso (char * string, char const c)
  *
  *   char * html (char *string, char const c);
  *
- *   encode the string argument with the two digit hexidecimal representation 
+ *   encode the string argument with the two digit hexidecimal representation
  *   of the character argument; prefix encoding with "&#x"; suffix encoding
  *   the ";";
  *

@@ -33,7 +33,7 @@
 #include "../../gcc/files/find.h"
 
 /*====================================================================*
- *   private objects; 
+ *   private objects;
  *--------------------------------------------------------------------*/
 
 struct stat mstatinfo;
@@ -42,7 +42,7 @@ struct stat mstatinfo;
  *
  *   bool isdotdir (char const * filename);
  *
- *   return true if filename is a dotted directory; treat NULL,  
+ *   return true if filename is a dotted directory; treat NULL,
  *   NIL,  "." and ".." as dotted directory names;
  *
  *.  Motley Tools by Charles Maier
@@ -73,8 +73,8 @@ bool opathspec::isdotdir (char const * filename)
  *
  *   bool exists (char const * filename);
  *
- *   return true of the filename exists; the basename portion can 
- *   have wildcard characters but the pathname portion many not; 
+ *   return true of the filename exists; the basename portion can
+ *   have wildcard characters but the pathname portion many not;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -153,7 +153,7 @@ bool opathspec::infolder (char pathname [], char const * wildcard, bool recurse)
  *   bool invector (char fullname[], char const * pathname[], char const * filename);
  *
  *   return true if filename is present in any folder listed in
- *   NULL terminated vector pathname; otherwise, return false; use 
+ *   NULL terminated vector pathname; otherwise, return false; use
  *   fullname as a scratch buffer;
  *
  *.  Motley Tools by Charles Maier
@@ -199,7 +199,7 @@ bool opathspec::invector (char fullname [], char const * pathname [], char const
  *   bool invector (char fullname[], char const * pathname[], char const * filename);
  *
  *   return true if filename is present in any folder listed in
- *   NULL teminated vector pathname; otherwise, return false; 
+ *   NULL teminated vector pathname; otherwise, return false;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -245,8 +245,8 @@ bool opathspec::invector (char fullname [], char const * pathname [], char const
  *
  *   bool instring (char *fullname[], char const * pathname, char const * filename);
  *
- *   return true if the named file is present in one of the folders listed 
- *   in the NUL terminated path string; 
+ *   return true if the named file is present in one of the folders listed
+ *   in the NUL terminated path string;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -300,8 +300,8 @@ bool opathspec::instring (char fullname [], char const * pathname, char const * 
  *
  *   bool instring (char *fullname[], char const * pathname, char const * filename);
  *
- *   return true if the named file is present in one of the folders listed 
- *   in the NUL terminated path string; 
+ *   return true if the named file is present in one of the folders listed
+ *   in the NUL terminated path string;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -357,7 +357,7 @@ bool opathspec::instring (char fullname [], char const * pathname, char const * 
  *
  *   char const * dirname (char const * filespec);
  *
- *   return directory portion of filespec; 
+ *   return directory portion of filespec;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -389,7 +389,7 @@ char const * opathspec::dirname (char const * filespec)
  *
  *   char const * basename (char const * filespec);
  *
- *   return filename portion of filespec; 
+ *   return filename portion of filespec;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -592,21 +592,21 @@ void opathspec::fullpath (char fullname [], char const * filespec)
  *   void makepath (char fullname[], char const * pathname, char const * filename);
  *
  *   split the pathname string and filename string into constituent;
- *   weed through the stack and write a clean pathname string in the 
+ *   weed through the stack and write a clean pathname string in the
  *   fullname buffer;
  *
  *   pathname is split into constituents then filename is split into
  *   constituents and appended to those from pathname; when filename
- *   filename starts with slash; then its constituents replace those 
- *   those from pathname; the result is a vector of strings "", ".", 
+ *   filename starts with slash; then its constituents replace those
+ *   those from pathname; the result is a vector of strings "", ".",
  *   ".." and real filenames;
  *
  *   we preserve leading "" strings then collect remaining strings except
- *   for "", "." and ".." strings; each "" and "." is discarded and ".." 
+ *   for "", "." and ".." strings; each "" and "." is discarded and ".."
  *   discarded after decrementing the accumulation counter; the resulting
  *   string vector is copied to the baseline string argument with slashes
  *   to separate each strings;
- *  
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -652,7 +652,7 @@ void opathspec::makepath (char fullname [], char const * pathname, char const * 
  *
  *   split the pathname string into constituent filenames and push themn
  *   on the filename stack; clear the stack before start if the pathname
- *   starts with slash. 
+ *   starts with slash.
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -697,7 +697,7 @@ void opathspec::splitpath (char filespec [])
  *
  *   split the pathname string into constituent filenames and push themn
  *   on the filename stack; clear the stack before start if the pathname
- *   starts with slash. 
+ *   starts with slash.
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -742,7 +742,7 @@ void opathspec::mergepath ()
 /*====================================================================*
  *
  *   opathspec ();
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -763,7 +763,7 @@ opathspec::opathspec ()
 /*====================================================================*
  *
  *   ~opathspec ()
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License

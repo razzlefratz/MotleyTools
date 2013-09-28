@@ -46,7 +46,7 @@
 #endif
 
 /*====================================================================*
- *   
+ *
  *--------------------------------------------------------------------*/
 
 ofileopen fileopen;
@@ -58,7 +58,7 @@ ofileopen fileopen;
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"",
 		PUTOPTV_S_FILTER,
@@ -69,7 +69,7 @@ int main (int argc, char const * argv [])
 	oputoptv putopt;
 	flag_t flags = (flag_t) (0);
 	signed c;
-	while ((c = getopt.getoptv (argc, argv, optv)) != - 1)
+	while ((c = getopt.getoptv (argc, argv, optv)) != -1)
 	{
 		switch ((char) (c))
 		{

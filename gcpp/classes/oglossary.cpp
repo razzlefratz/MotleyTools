@@ -79,7 +79,7 @@ size_t oglossary::count () const
 }
 
 /*====================================================================*
- * 
+ *
  *   char const *oglossary::symbol();
  *
  *

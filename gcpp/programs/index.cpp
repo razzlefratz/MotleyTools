@@ -66,7 +66,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"c:s:St:",
 		oPUTOPTV_S_FUNNEL,

@@ -29,7 +29,7 @@
  *
  *   ochrtable & ochrtable::toupper();
  *
- *   refresh upper case letters and replace lower case letters with 
+ *   refresh upper case letters and replace lower case letters with
  *   upper case letters;
  *
  *--------------------------------------------------------------------*/
@@ -46,7 +46,7 @@ ochrtable & ochrtable::toupper ()
  *
  *   ochrtable & ochrtable::tolower();
  *
- *   refresh lower case letters and replace upper case letters with 
+ *   refresh lower case letters and replace upper case letters with
  *   lower case letters;
  *
  *--------------------------------------------------------------------*/
@@ -63,8 +63,8 @@ ochrtable & ochrtable::tolower ()
  *
  *   ochrtable & ochrtable::charset(char const *charset1, char const *charset2);
  *
- *   replace characters from charset1 with corresponding characters 
- *   from charset2; if no corresponding character exists in charset2 
+ *   replace characters from charset1 with corresponding characters
+ *   from charset2; if no corresponding character exists in charset2
  *   then replace with NUL;
  *
  *--------------------------------------------------------------------*/

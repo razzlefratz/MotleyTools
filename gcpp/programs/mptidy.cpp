@@ -59,10 +59,10 @@
 #define MPTIDY_S_RELEASE __DATE__
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv []);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
  *:  Copyright 2001-2006 by Charles Maier Associates;
  *;  Licensed under the Internet Software Consortium License
@@ -72,7 +72,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"mop:s:",
 		oPUTOPTV_S_FILTER,

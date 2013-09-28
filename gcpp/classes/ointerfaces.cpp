@@ -2,25 +2,25 @@
  *
  *   ointerfaces.cpp - ointerfaces class definition;
  *
- *   host interface enumerator;  
+ *   host interface enumerator;
  *
- *   This software and documentation is the property of Intellon 
- *   Corporation, Ocala, Florida. It is provided 'as is' without 
- *   expressed or implied warranty of any kind to anyone for any 
- *   reason. Intellon assumes no responsibility or liability for 
- *   errors or omissions in the software or documentation and 
- *   reserves the right to make changes without notification. 
- *   
- *   Intellon customers may modify and distribute the software 
- *   without obligation to Intellon. Since use of this software 
- *   is optional, users shall bear sole responsibility and 
- *   liability for any consequences of it's use. 
+ *   This software and documentation is the property of Intellon
+ *   Corporation, Ocala, Florida. It is provided 'as is' without
+ *   expressed or implied warranty of any kind to anyone for any
+ *   reason. Intellon assumes no responsibility or liability for
+ *   errors or omissions in the software or documentation and
+ *   reserves the right to make changes without notification.
+ *
+ *   Intellon customers may modify and distribute the software
+ *   without obligation to Intellon. Since use of this software
+ *   is optional, users shall bear sole responsibility and
+ *   liability for any consequences of it's use.
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
  *
- *   Contributor(s): 
+ *   Contributor(s):
  *	    Charles Maier <charles.maier@intellon.com>
  *
  *--------------------------------------------------------------------*/
@@ -141,13 +141,13 @@ ointerfaces & ointerfaces::SelectFirst (void)
 ointerfaces & ointerfaces::SelectFinal (void)
 
 {
-	this->mindex = this->mcount - 1;
+	this->mindex = this->mcount -1;
 	return (* this);
 }
 
 /*====================================================================*
  *
- *   ointerfaces & SelectPrev (void) 
+ *   ointerfaces & SelectPrev (void)
  *
  *   select the prev interface unless the current interface is the
  *   first interface; same as operator --;
@@ -166,10 +166,10 @@ ointerfaces & ointerfaces::SelectPrev (void)
 
 /*====================================================================*
  *
- *   ointerfaces & SelectNext (void) 
+ *   ointerfaces & SelectNext (void)
  *
  *   select the next interface unless the current interface is the
- *   final interface; same as operator ++; 
+ *   final interface; same as operator ++;
  *
  *--------------------------------------------------------------------*/
 
@@ -204,7 +204,7 @@ ointerfaces & ointerfaces::Select (unsigned index)
 
 /*====================================================================*
  *
- *   ointerface & operator = (unsigned index) 
+ *   ointerface & operator = (unsigned index)
  *
  *   select an interface; this has the same effect as calling the
  *   (   select method with argument index.
@@ -219,7 +219,7 @@ ointerfaces & ointerfaces::operator = (unsigned index)
 
 /*====================================================================*
  *
- *   ointerface & operator [] (unsigned index) 
+ *   ointerface & operator [] (unsigned index)
  *
  *   select an interface then return an instance of it; this has the
  *   same effect as calling the select method with argument index then
@@ -238,7 +238,7 @@ ointerface & ointerfaces::operator [] (unsigned index)
  *   ointerface & Selected (void) const
  *
  *   return the selected interface; this is the same as the Interface
- *   property; 
+ *   property;
  *
  *--------------------------------------------------------------------*/
 
@@ -253,7 +253,7 @@ ointerface & ointerfaces::Selected (void) const
  *   ointerface & Interface (void) const
  *
  *   return the selected interface; this is the same as the Selected
- *   property; 
+ *   property;
  *
  *--------------------------------------------------------------------*/
 
@@ -288,7 +288,7 @@ ointerfaces & ointerfaces::Enumerate (void)
 
 /*====================================================================*
  *
- *   ointerfaces () 
+ *   ointerfaces ()
  *
  *   detect host interfaces and constuct a collection of ointerface
  *   objects; omit devices with hardware address 00:00:00:00:00:00;
@@ -309,7 +309,7 @@ ointerfaces::ointerfaces ()
 	pcap_if_t * device;
 	this->mindex = 0;
 	this->mcount = 0;
-	if (pcap_findalldevs (& devices, buffer) != - 1)
+	if (pcap_findalldevs (& devices, buffer) != -1)
 	{
 		for (device = devices; device; device = device->next)
 		{
@@ -356,7 +356,7 @@ ointerfaces::ointerfaces ()
 
 /*====================================================================*
  *
- *   ~ointerfaces () 
+ *   ~ointerfaces ()
  *
  *   delete the table after deleting all entries;
  *

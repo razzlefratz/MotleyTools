@@ -286,7 +286,7 @@ osorter & osorter::store (char const * string)
 		}
 		for (this->mindex = this->mcount++; this->mindex > this->mlower; -- this->mindex)
 		{
-			this->mtable [this->mindex] = this->mtable [this->mindex - 1];
+			this->mtable [this->mindex] = this->mtable [this->mindex -1];
 		}
 		this->mtable [this->mindex] = new char [strlen (string) +  1];
 		strcpy ((char *) (this->mtable [this->mindex]), string);
@@ -303,7 +303,7 @@ osorter & osorter::store (char const * string)
  *
  *   list.h
  *
- *   split a copy of the string argument into substrings at each occurance 
+ *   split a copy of the string argument into substrings at each occurance
  *   of character c; add each substring to the list using listappend();
  *
  *.  Motley Tools by Charles Maier

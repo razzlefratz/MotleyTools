@@ -26,7 +26,7 @@
 #include "../../gcc/date/date.h"
 
 /*====================================================================*
- *   class constants; 
+ *   class constants;
  *--------------------------------------------------------------------*/
 
 #define HEADERSIZE 3 * DAYS_IN_WEEK 
@@ -35,7 +35,7 @@
  *   class variables;
  *--------------------------------------------------------------------*/
 
-char const * ocalendar::mdays [DAYS_IN_WEEK] = 
+char const * ocalendar::mdays [DAYS_IN_WEEK] =
 
 {
 	" S",
@@ -47,7 +47,7 @@ char const * ocalendar::mdays [DAYS_IN_WEEK] =
 	" S"
 };
 
-char const * ocalendar::mdate1 [DATES_IN_MONTH +  1] = 
+char const * ocalendar::mdate1 [DATES_IN_MONTH +  1] =
 
 {
 	"&nbsp",
@@ -84,7 +84,7 @@ char const * ocalendar::mdate1 [DATES_IN_MONTH +  1] =
 	"31"
 };
 
-char const * ocalendar::mdate2 [DATES_IN_MONTH +  1] = 
+char const * ocalendar::mdate2 [DATES_IN_MONTH +  1] =
 
 {
 	"&nbsp;",
@@ -305,7 +305,7 @@ ocalendar & ocalendar::print (unsigned index)
  *
  *   ocalendar ()
  *
- *   generate calendar covering jan thru dec of current year; 
+ *   generate calendar covering jan thru dec of current year;
  *
  *
  *--------------------------------------------------------------------*/
@@ -326,7 +326,7 @@ ocalendar::ocalendar ()
  *
  *   ocalendar (unsigned year)
  *
- *   generate calendar covering jan thru dec of given year; 
+ *   generate calendar covering jan thru dec of given year;
  *
  *
  *--------------------------------------------------------------------*/

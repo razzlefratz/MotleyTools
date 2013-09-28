@@ -2,11 +2,11 @@
  *
  *   osorter.hpp - interface for the osorter class.
  *
- *   This object maintains an ordered and unique list of character strings. Strings 
+ *   This object maintains an ordered and unique list of character strings. Strings
  *   assume proper order as their are added. Duplicates are automatically rejected.
  *   Additional memory is automatically allocated on list overflow. Insertion time
  *   increases as the list grows but retrieval time increases at a much slower rate.
- * 
+ *
  *   Strings are added with the insert() method which returns true when a string is
  *   actually inserted. Duplicates are quickly detected and rejected.
  *

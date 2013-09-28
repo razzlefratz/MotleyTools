@@ -4,7 +4,7 @@
  *
  *   convert common specification strings to numeric values; these
  *   methods are designed for command line argument parsing an may
- *   not return on conversion failure; 
+ *   not return on conversion failure;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

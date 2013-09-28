@@ -63,7 +63,7 @@ char const * osession::username () const
 }
 
 /*====================================================================*
- * 
+ *
  *   size_t osession::strfwhat (char buffer[], size_t length, char const * event);
  *
  *   return an event statement as a constant string; event statements are
@@ -115,7 +115,7 @@ size_t osession::strfdate (char buffer [], size_t length, time_t event)
 }
 
 /*====================================================================*
- * 
+ *
  *   char const * strfwhen (char buffer[], size_t length, time_t event);
  *
  *   return a when string as a constant string;
@@ -151,10 +151,10 @@ size_t osession::strfwhen (char buffer [], size_t length, time_t event)
 }
 
 /*====================================================================*
- * 
+ *
  *   char const * strfwhom (char buffer[], size_t length);
  *
- *   return a show string as a constant string; 
+ *   return a show string as a constant string;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

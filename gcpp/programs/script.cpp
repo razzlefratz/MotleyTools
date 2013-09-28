@@ -58,10 +58,10 @@
 #define SECTION_NAME "default"     
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv []);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
  *:  Copyright 2001-2006 by Charles Maier Associates;
  *;  Licensed under the Internet Software Consortium License
@@ -71,7 +71,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"",
 		oPUTOPTV_S_FILTER,

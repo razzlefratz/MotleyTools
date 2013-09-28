@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   syslog2.cpp -  
+ *   syslog2.cpp -
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -90,7 +90,7 @@ static void mysyslogtest (unsigned priority)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"b:ef:i:np:t",
 		"[message]",
@@ -170,7 +170,7 @@ int main (int argc, char const * argv [])
 		char const * sp = * getopt.argv ();
 		while (* sp)
 		{
-			if ((unsigned) (bp - message) < (sizeof (message) - 1))
+			if ((unsigned) (bp - message) < (sizeof (message) -1))
 			{
 				* bp++ = * sp++;
 			}

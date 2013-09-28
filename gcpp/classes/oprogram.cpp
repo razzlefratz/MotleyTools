@@ -35,7 +35,7 @@
  *
  *   read from stdin and write to stdout; indent C style text based
  *   on '{', ';' and '}' characters; leave '#' comments alone; this
- *   program is suitable for css functions, awk programs and bind 
+ *   program is suitable for css functions, awk programs and bind
  *   name.conf files;
  *
  *--------------------------------------------------------------------*/

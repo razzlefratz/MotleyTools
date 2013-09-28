@@ -12,7 +12,7 @@
 #define oVERSION_HEADER
 
 /*====================================================================*
- *   custom header files; 
+ *   custom header files;
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"

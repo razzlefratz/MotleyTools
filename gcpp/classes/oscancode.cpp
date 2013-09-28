@@ -3,8 +3,8 @@
  *   oscancode.cpp - implementation of oscancode class.
  *
  *   the oscancode class is a C Language specific descendent of the
- *   oscantext class; it detects and classifies C languge operators 
- *   and keywords; 
+ *   oscantext class; it detects and classifies C languge operators
+ *   and keywords;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -28,7 +28,7 @@
 #include "../classes/oscancode.hpp"
 
 /*====================================================================*
- *   class variables; 
+ *   class variables;
  *--------------------------------------------------------------------*/
 
 ocprocwords oscancode::cprocword;
@@ -113,7 +113,7 @@ oscancode & oscancode::scantoken ()
 #if 0
 
 /*
- * do no treat processor statements as individual tokens; let the 
+ * do no treat processor statements as individual tokens; let the
  * application handle them;
  */
 

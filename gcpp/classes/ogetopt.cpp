@@ -99,7 +99,7 @@ char const * program_name = PACKAGE;
  *   signed opterr () const;
  *
  *   return the value of error message flag, opterr; posix defines
- *   opterr as int but boolean would be more appropriate;  
+ *   opterr as int but boolean would be more appropriate;
  *
  *--------------------------------------------------------------------*/
 
@@ -114,7 +114,7 @@ signed ogetopt::opterr () const
  *   ogetopt & opterr (signed opterr);
  *
  *   set the value of the error message flag, opterr; opterr can also
- *   be set during construction;  
+ *   be set during construction;
  *
  *--------------------------------------------------------------------*/
 
@@ -129,7 +129,7 @@ ogetopt & ogetopt::opterr (signed opterr)
  *
  *   signed optind () const;
  *
- *   return the index of the next argv[] string; this index defines the 
+ *   return the index of the next argv[] string; this index defines the
  *   start address for the remainder of argument vector argv[];
  *
  *--------------------------------------------------------------------*/
@@ -189,7 +189,7 @@ char const * ogetopt::optarg () const
  *
  *   return the number of arguments left in argv; it is computed by
  *   subtracting member mpotind from member margc; it can eliminate
- *   the need for the customary "argc-=optind" statement;  
+ *   the need for the customary "argc-=optind" statement;
  *
  *--------------------------------------------------------------------*/
 
@@ -235,7 +235,7 @@ char * ogetopt::args ()
  *   signed operator++(signed);
  *
  *   return the value of member moptind and increment optind if less
- *   than margc; this is not a posix feature; it is an extension; 
+ *   than margc; this is not a posix feature; it is an extension;
  *
  *--------------------------------------------------------------------*/
 
@@ -305,7 +305,7 @@ signed ogetopt::getopt (int argc, char const * argv [], char const * options)
 							this->moptarg = this->margv [this->mcount];
 							for (this->mindex = this->mcount++; this->mindex > this->moptind; -- this->mindex)
 							{
-								this->margv [this->mindex] = this->margv [this->mindex - 1];
+								this->margv [this->mindex] = this->margv [this->mindex -1];
 							}
 							this->margv [this->moptind++] = this->moptarg;
 							return (this->moptopt);
@@ -336,7 +336,7 @@ signed ogetopt::getopt (int argc, char const * argv [], char const * options)
 			{
 				for (this->mindex = this->mcount; this->mindex > this->moptind; -- this->mindex)
 				{
-					this->margv [this->mindex] = this->margv [this->mindex - 1];
+					this->margv [this->mindex] = this->margv [this->mindex -1];
 				}
 				this->margv [this->moptind++] = this->mstring++;
 				if (* this->mstring == oGETOPT_C_OPTIONS)
@@ -356,7 +356,7 @@ signed ogetopt::getopt (int argc, char const * argv [], char const * options)
 	}
 	this->moptarg = (char *) (0);
 	this->moptopt = (char) (0);
-	return (- 1);
+	return (-1);
 }
 
 /*====================================================================*

@@ -8,7 +8,7 @@
  *   white space;
  *
  *   additions to this class MUST be independent of language keywords
- *   and constructs; 
+ *   and constructs;
  *
  *   this class is used by programs ctidy, phptidy, csstidy, dnstidy,
  *   and cfm;
@@ -74,14 +74,14 @@ signed oscript::_content (signed c, signed o, signed e) const
  *
  *   signed content (signed c, signed e) const;
  *
- *   write (c) then read and write characters until (e); write (e) 
+ *   write (c) then read and write characters until (e); write (e)
  *   then return the next character;
  *
  *   this method is used to scan text having distinct start and end
  *   characters but no special constructs within; some examples are
  *   shell sript comments and C++ comments;
  *
- *   for example content ('#', '\n') collects an entire shell script 
+ *   for example content ('#', '\n') collects an entire shell script
  *   comment and return the first character on the next line;
  *
  *   this method preserves start and end characters and all internal
@@ -105,7 +105,7 @@ signed oscript::content (signed c, signed e) const
  *   inspect (c) the write and read characters until (e); return (e)
  *   or EOF to the caller;
  *
- *   this method unconditionally writes text up to, but excluding, a 
+ *   this method unconditionally writes text up to, but excluding, a
  *   specific terminating character such as a newline or semicolon;
  *(
  *   it can be used to detect the inside character of a terminating
@@ -124,9 +124,9 @@ signed oscript::_content (signed c, signed e) const
 }
 
 /*====================================================================*
- *   
+ *
  *   signed context (signed c, char const * charset) const;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed oscript::context (signed c, char const * charset) const
@@ -194,16 +194,16 @@ signed oscript::_context (signed c, signed e) const
 }
 
 /*====================================================================*
- *   
+ *
  *   signed context (signed c) const;
- *   
- *   read stdin and write stdout; write initiator (c) then read and 
+ *
+ *   read stdin and write stdout; write initiator (c) then read and
  *   write trailing characters upto and including any terminator in
- *   string; 
+ *   string;
  *
  *   ignore terminators in character or string literals or enclosed
  *   by nested "(...)", "[...]" or "{...}" groups;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed oscript::context (signed c) const
@@ -245,13 +245,13 @@ signed oscript::context (signed c) const
  *   signed oscript::command (signed c) const;
  *   signed oscript::command (signed c, signed e) const;
  *
- *   write (c) then read and write characters until (e); write (e) 
+ *   write (c) then read and write characters until (e); write (e)
  *   then return the next character;
  *
- *   ignore escaped terminators and terminators inside literals and 
- *   comments; 
+ *   ignore escaped terminators and terminators inside literals and
+ *   comments;
  *
- *   this methods is suitable for C language style macro processor 
+ *   this methods is suitable for C language style macro processor
  *   commands that contain literals and support continuation lines;
  *
  *--------------------------------------------------------------------*/
@@ -295,9 +295,9 @@ signed oscript::_command (signed c, signed e) const
 /*====================================================================*
  *
  *   signed oscript::literal (signed c) const;
- *   
- *   output (c) then read and write characters upto the next (c); 
- *   output (c) and return the next character; ignore escaped 
+ *
+ *   output (c) then read and write characters upto the next (c);
+ *   output (c) and return the next character; ignore escaped
  *   instances of (e);
  *
  *--------------------------------------------------------------------*/
@@ -312,7 +312,7 @@ signed oscript::literal (signed c) const
 /*====================================================================*
  *
  *   signed oscript::literal (signed c, signed e) const;
- *   
+ *
  *   read and write characters up to (e); output (e) and return the
  *   next character; ignore escaped instances of (e);
  *
@@ -330,7 +330,7 @@ signed oscript::literal (signed c, signed e) const
 /*====================================================================*
  *
  *   signed oscript::_literal (signed c, signed e) const;
- *   
+ *
  *   read and write characters up to (e); return (e); ignore escaped
  *   instances of (e);
  *
@@ -401,7 +401,7 @@ signed oscript::comment (signed c) const
 /*====================================================================*
  *
  *   signed _comment (signed c) const ;
- *   
+ *
  *
  *--------------------------------------------------------------------*/
 
@@ -469,13 +469,13 @@ signed oscript::numeric (signed c) const
 /*====================================================================*
  *
  *   signed oscript::escaped (signed c) const;
- * 
+ *
  *   write (c) and read the next character; repeat once if (c) is
  *   the escape meta character;
- *   
+ *
  *   this method is used to ignore special characters such as quotes
- *   and newlines within literals; 
- *   
+ *   and newlines within literals;
+ *
  *--------------------------------------------------------------------*/
 
 signed oscript::escaped (signed c) const
@@ -490,12 +490,12 @@ signed oscript::escaped (signed c) const
 }
 
 /*====================================================================*
- *   
+ *
  *   signed feed (signed c) const;
  *
  *   inspect (c); write (c) then read and return the next character
  *   if (c) is not NUL or EOF;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed oscript::feed (signed c) const
@@ -510,12 +510,12 @@ signed oscript::feed (signed c) const
 }
 
 /*====================================================================*
- *   
+ *
  *   signed find (signed c) const;
  *
- *   inspect (c); read and discard white space characters; return 
+ *   inspect (c); read and discard white space characters; return
  *   the next non-space input character;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed oscript::find (signed c) const

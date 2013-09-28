@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   relate.cpp - organize dependency information; 
+ *   relate.cpp - organize dependency information;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -40,7 +40,7 @@
 #endif
 
 /*====================================================================*
- *   
+ *
  *--------------------------------------------------------------------*/
 
 #define RELATE_B_REPORT (1 << 0)
@@ -62,7 +62,7 @@ static odepend depend;
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"nf",
 		oPUTOPTV_S_FUNNEL,

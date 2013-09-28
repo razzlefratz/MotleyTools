@@ -30,8 +30,8 @@
 /*====================================================================*
  *
  *   char const * title () const;
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 char const * opage::title () const
@@ -43,8 +43,8 @@ char const * opage::title () const
 /*====================================================================*
  *
  *   opage & title (char const * title);
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 opage & opage::title (char const * title)
@@ -62,8 +62,8 @@ opage & opage::title (char const * title)
 /*====================================================================*
  *
  *   unsigned rows () const;
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 unsigned opage::rows () const
@@ -75,8 +75,8 @@ unsigned opage::rows () const
 /*====================================================================*
  *
  *   opage & rows (unsigned rows)
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 opage & opage::rows (unsigned rows)
@@ -89,8 +89,8 @@ opage & opage::rows (unsigned rows)
 /*====================================================================*
  *
  *   unsigned cols () const;
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 unsigned opage::cols () const
@@ -102,8 +102,8 @@ unsigned opage::cols () const
 /*====================================================================*
  *
  *   opage & cols (unsigned cols)
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 opage & opage::cols (unsigned cols)
@@ -116,8 +116,8 @@ opage & opage::cols (unsigned cols)
 /*====================================================================*
  *
  *   unsigned tabs () const;
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 unsigned opage::tabs () const
@@ -129,8 +129,8 @@ unsigned opage::tabs () const
 /*====================================================================*
  *
  *   opage & tabs (unsigned tabs)
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 opage & opage::tabs (unsigned tabs)
@@ -142,7 +142,7 @@ opage & opage::tabs (unsigned tabs)
 
 /*====================================================================*
  *
- *   int put (int c); 
+ *   int put (int c);
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -153,7 +153,7 @@ opage & opage::tabs (unsigned tabs)
 int opage::put (int c)
 
 {
-	char header [1024] = 
+	char header [1024] =
 	{
 		0
 	};

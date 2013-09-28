@@ -2,7 +2,7 @@
  *
  *   oSHA256.cpp - oSHA256 class definition;
  *
- *   implement 256-bit encryption according to FIPS180-2 sec 5.3.2 by 
+ *   implement 256-bit encryption according to FIPS180-2 sec 5.3.2 by
  *   encoding variable-length input into fixed-length, 32 byte digest;
  *
  *.  Motley Tools by Charles Maier
@@ -53,10 +53,10 @@ unsigned oSHA256::DigestLength = 32;
  *   oSHA256 & Write (void const * memory, size_t length);
  *
  *   write a variable-length data block to the SHA256 digest; behave
- *   like function write() but return no value and never fail; 
+ *   like function write() but return no value and never fail;
  *
- *   Read standard FIPS180-2 sec 5.3.2 for an explanation;     
- *   
+ *   Read standard FIPS180-2 sec 5.3.2 for an explanation;
+ *
  *--------------------------------------------------------------------*/
 
 oSHA256 & oSHA256::Write (void const * memory, size_t extent)
@@ -99,10 +99,10 @@ oSHA256 & oSHA256::Write (void const * memory, size_t extent)
  *
  *   oSHA256 & Block (byte const buffer []);
  *
- *   merge a 64 byte data block into an SHA256 digest; 
- *   
- *   Read standard FIPS180-2 sec 5.3.2 for an explanation;     
- *   
+ *   merge a 64 byte data block into an SHA256 digest;
+ *
+ *   Read standard FIPS180-2 sec 5.3.2 for an explanation;
+ *
  *--------------------------------------------------------------------*/
 
 #define SHR(word,bits) ((word & 0xFFFFFFFF) >> bits)
@@ -111,7 +111,7 @@ oSHA256 & oSHA256::Write (void const * memory, size_t extent)
 oSHA256 & oSHA256::Block (byte const buffer [])
 
 {
-	static const uint32_t K [oSHA256_BUFFER_LENGTH] = 
+	static const uint32_t K [oSHA256_BUFFER_LENGTH] =
 	{
 		0x428A2F98,
 		0x71374491,
@@ -188,9 +188,9 @@ oSHA256 & oSHA256::Block (byte const buffer [])
 	}
 	while (word < oSHA256_BUFFER_LENGTH)
 	{
-		uint32_t s0 = ROTR (W [word - 15], 7) ^ ROTR (W [word - 15], 18) ^ SHR (W [word - 15], 3);
+		uint32_t s0 = ROTR (W [word -15], 7) ^ ROTR (W [word -15], 18) ^ SHR (W [word -15], 3);
 		uint32_t s1 = ROTR (W [word - 2], 17) ^ ROTR (W [word - 2], 19) ^ SHR (W [word - 2], 10);
-		W [word] = W [word - 16] +  s0 +  W [word - 7] +  s1;
+		W [word] = W [word -16] +  s0 +  W [word - 7] +  s1;
 		word++;
 	}
 	for (word = 0; word < oSHA256_HASH_SIZE; word++)
@@ -205,9 +205,9 @@ oSHA256 & oSHA256::Block (byte const buffer [])
 		uint32_t s3 = ROTR (H [4], 6) ^ ROTR (H [4], 11) ^ ROTR (H [4], 25);
 		uint32_t ch = (H [4] & H [5]) ^ ((~ H [4]) & H [6]);
 		uint32_t t1 = H [7] +  s3 +  ch +  K [pass] +  W [pass];
-		for (word = oSHA256_DIGEST_LENGTH - 1; word > 0; word--)
+		for (word = oSHA256_DIGEST_LENGTH -1; word > 0; word--)
 		{
-			H [word] = H [word - 1];
+			H [word] = H [word -1];
 		}
 		H [0] = t1 +  t2;
 		H [4] += t1;
@@ -229,9 +229,9 @@ oSHA256 & oSHA256::Block (byte const buffer [])
  *
  *   to start a digest, use the Reset method; to write data to
  *   the digest use the Write method;
- *   
- *   Read standard FIPS180-2 sec 5.3.2 for an explanation;     
- *   
+ *
+ *   Read standard FIPS180-2 sec 5.3.2 for an explanation;
+ *
  *--------------------------------------------------------------------*/
 
 oSHA256 & oSHA256::Fetch (byte digest [])
@@ -257,7 +257,7 @@ oSHA256 & oSHA256::Fetch (byte digest [])
 
 /*====================================================================*
  *
- *   oSHA256 & Reset () 
+ *   oSHA256 & Reset ()
  *
  *
  *--------------------------------------------------------------------*/
@@ -282,7 +282,7 @@ oSHA256 & oSHA256::Reset (void)
 
 /*====================================================================*
  *
- *   oSHA256 () 
+ *   oSHA256 ()
  *
  *
  *--------------------------------------------------------------------*/
@@ -300,9 +300,9 @@ oSHA256::oSHA256 ()
 
 /*====================================================================*
  *
- *   void ~osha256 () 
- *   
- *   
+ *   void ~osha256 ()
+ *
+ *
  *--------------------------------------------------------------------*/
 
 oSHA256::~ oSHA256 ()

@@ -29,7 +29,7 @@
  *   bool match(char const * literal, char const * pattern);
  *
  *   return true if the literal string argument matches the pattern string
- *   argument; the specific characters used as mask and wildcard are given 
+ *   argument; the specific characters used as mask and wildcard are given
  *   the charset string argument; the first is the mask; the second is the
  *   wildcard;
  *
@@ -127,9 +127,9 @@ bool owildcard::match (char const * literal, char const * pattern)
 /*====================================================================*
  *
  *   owildcard ();
- *   
+ *
  *   initialize mask and wildcard characters with default values;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 owildcard::owildcard ()

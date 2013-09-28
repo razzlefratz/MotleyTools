@@ -27,7 +27,7 @@
 #include "../../gcc/files/files.h"
 
 /*====================================================================*
- *   class variables;    
+ *   class variables;
  *--------------------------------------------------------------------*/
 
 ofilespec ofilespec::scratch;
@@ -81,8 +81,8 @@ ofilespec & ofilespec::makepath ()
  *
  *   ofilespec & operator= (char const *filespec);
  *
- *   separate filespec into pathname and filename constituents then separate 
- *   filename into basename and extender constituents; 
+ *   separate filespec into pathname and filename constituents then separate
+ *   filename into basename and extender constituents;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -101,8 +101,8 @@ ofilespec & ofilespec::operator = (char const * filespec)
  *
  *   ofilespec & filespec (char const *filespec);
  *
- *   separate filespec into pathname and filename constituents then separate 
- *   filename into basename and extender constituents; 
+ *   separate filespec into pathname and filename constituents then separate
+ *   filename into basename and extender constituents;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -127,7 +127,7 @@ ofilespec & ofilespec::filespec (char const * filespec)
  *
  *   char const *fullname() const;
  *
- *   return the fullname composite as a constant string; 
+ *   return the fullname composite as a constant string;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -145,7 +145,7 @@ char const * ofilespec::fullname () const
  *
  *   char const *pathname() const;
  *
- *   return the pathname constituent as a constant string; 
+ *   return the pathname constituent as a constant string;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -229,7 +229,7 @@ ofilespec & ofilespec::filename (char const * filespec)
  *
  *   char const *basename() const;
  *
- *   return the basename constituent as a constant string; 
+ *   return the basename constituent as a constant string;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -266,7 +266,7 @@ ofilespec & ofilespec::basename (char const * filespec)
  *
  *   char const *extender() const;
  *
- *   return the extender constituent as a constant string; 
+ *   return the extender constituent as a constant string;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -303,11 +303,11 @@ ofilespec & ofilespec::extender (char const * filespec)
  *
  *   char const *longname() const;
  *
- *   return the longname as a constant string; the longname is the fullname 
+ *   return the longname as a constant string; the longname is the fullname
  *   less the file extender; for example:
  *
- *   fullname =  "/home/share/src/gcc/files/fopen.c"  
- *   longname =  "/home/share/src/gcc/files/fopen"  
+ *   fullname =  "/home/share/src/gcc/files/fopen.c"
+ *   longname =  "/home/share/src/gcc/files/fopen"
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -331,10 +331,10 @@ char const * ofilespec::longname () const
  *
  *   char const *tempname (char const *filename);
  *
- *   return the fullname with an alternate basename but do not change the 
- *   basename property; if the basename argument is void then return the 
- *   pathname; otherwise, append a path extender and the basename argument 
- *   to the pathname; 
+ *   return the fullname with an alternate basename but do not change the
+ *   basename property; if the basename argument is void then return the
+ *   pathname; otherwise, append a path extender and the basename argument
+ *   to the pathname;
  *
  *   pathname = "/home/share/src"
  *   tempfilename(NULL) --> "/home/share/src"
@@ -364,9 +364,9 @@ char const * ofilespec::tempname (char const * filespec)
  *
  *   char const *likename(char const *extender);
  *
- *   return the fullname with an alternate file extentsion but do not change 
- *   the extender property; if the extender argument is void then return the 
- *   longname; otherwise, append a file extender and the extender argument to 
+ *   return the fullname with an alternate file extentsion but do not change
+ *   the extender property; if the extender argument is void then return the
+ *   longname; otherwise, append a file extender and the extender argument to
  *   the longname;
  *
  *.  Motley Tools by Charles Maier
@@ -416,8 +416,8 @@ char const * ofilespec::savename (char const * filespec)
  *
  *   char const *savename (unsigned number, unsigned length);
  *
- *   return a sequence name as a constant string; a sequence name is the 
- *   fullname plus an additional numeric file extender; 
+ *   return a sequence name as a constant string; a sequence name is the
+ *   fullname plus an additional numeric file extender;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   oPageLinkElement - HTML ANCHOR object; 
+ *   oPageLinkElement - HTML ANCHOR object;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -64,9 +64,9 @@ oPageLinkElement & oPageLinkElement::link (char const * text, char const * path)
 
 /*====================================================================*
  *
- *   char const * write () 
+ *   char const * write ()
  *
- *   format a page link element and return a pointer to it; page 
+ *   format a page link element and return a pointer to it; page
  *   links are anchor elements enclosed in brackets ('[',']');
  *
  *--------------------------------------------------------------------*/
@@ -85,8 +85,8 @@ oPageLinkElement & oPageLinkElement::write ()
 /*====================================================================*
  *
  *   oPageLinkElement (char const *string);
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 oPageLinkElement::oPageLinkElement (char const * name)
@@ -99,8 +99,8 @@ oPageLinkElement::oPageLinkElement (char const * name)
 /*====================================================================*
  *
  *   oPageLinkElement ();
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 oPageLinkElement::oPageLinkElement ()
@@ -113,8 +113,8 @@ oPageLinkElement::oPageLinkElement ()
 /*====================================================================*
  *
  *   ~oPageLinkElement ();
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 oPageLinkElement::~ oPageLinkElement ()

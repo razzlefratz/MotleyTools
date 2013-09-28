@@ -77,10 +77,10 @@ omacro & omacro::revert (char const * symbol)
  *
  *   arrive here once the caller has detected a macro definition; by
  *   convention, we are sitting on the keyword "define" but it could
- *   be any word or token; we merely discard it and move on; 
+ *   be any word or token; we merely discard it and move on;
  *
  *   parse a macro definition string and store it in a generic form
- *   where "$(0)" represents the macro name and "$(1)", "$(2)", and 
+ *   where "$(0)" represents the macro name and "$(1)", "$(2)", and
  *   so on, represent the macro arguments;
  *
  *   for example:
@@ -88,7 +88,7 @@ omacro & omacro::revert (char const * symbol)
  *   define abc(x,y,z) abc(z,y,x)
  *
  *   is stored as
- *  
+ *
  *   abc --> $(0)($(3),$(2),$(1))
  *
  *.  Motley Tools by Charles Maier
@@ -273,8 +273,8 @@ omacro & omacro::append (char const * string)
  *
  *   char const * argument (unsigned number) const;
  *
- *   return a string representation for the numbered macro argument; 
- *   the generic form is "$(number)" but the actual "$", "(" and ")" 
+ *   return a string representation for the numbered macro argument;
+ *   the generic form is "$(number)" but the actual "$", "(" and ")"
  *   symbols may be user defined;
  *
  *.  Motley Tools by Charles Maier
@@ -325,7 +325,7 @@ omacro & omacro::enumerate (char const * title)
  *
  *   omacro & clear();
  *
- *   empty the function and argument tables and the string buffer; 
+ *   empty the function and argument tables and the string buffer;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

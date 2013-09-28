@@ -4,23 +4,23 @@
  *
  *   raw Ethernet packet I/O channel managment;
  *
- *   This software and documentation is the property of Intellon 
- *   Corporation, Ocala, Florida. It is provided 'as is' without 
- *   expressed or implied warranty of any kind to anyone for any 
- *   reason. Intellon assumes no responsibility or liability for 
- *   errors or omissions in the software or documentation and 
- *   reserves the right to make changes without notification. 
- *   
- *   Intellon customers may modify and distribute the software 
- *   without obligation to Intellon. Since use of this software 
- *   is optional, users shall bear sole responsibility and 
- *   liability for any consequences of it's use. 
+ *   This software and documentation is the property of Intellon
+ *   Corporation, Ocala, Florida. It is provided 'as is' without
+ *   expressed or implied warranty of any kind to anyone for any
+ *   reason. Intellon assumes no responsibility or liability for
+ *   errors or omissions in the software or documentation and
+ *   reserves the right to make changes without notification.
+ *
+ *   Intellon customers may modify and distribute the software
+ *   without obligation to Intellon. Since use of this software
+ *   is optional, users shall bear sole responsibility and
+ *   liability for any consequences of it's use.
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
  *
- *   Contributor(s): 
+ *   Contributor(s):
  *	    Charles Maier <charles.maier@intellon.com>
  *
  *--------------------------------------------------------------------*/
@@ -95,7 +95,7 @@ signed ochannel::Descriptor () const
  *
  *   unsigned Timer () const;
  *
- *   return the channel timeout; 
+ *   return the channel timeout;
  *
  *--------------------------------------------------------------------*/
 
@@ -109,7 +109,7 @@ unsigned ochannel::Timer () const
  *
  *   ochannel & SetTimer (unsigned timer)
  *
- *   set the channel timeout in milliseconds;  
+ *   set the channel timeout in milliseconds;
  *
  *--------------------------------------------------------------------*/
 
@@ -122,7 +122,7 @@ ochannel & ochannel::SetTimer (unsigned timer)
 
 /*====================================================================*
  *
- *   ochannel & Open (ointerface & interface) 
+ *   ochannel & Open (ointerface & interface)
  *
  *--------------------------------------------------------------------*/
 
@@ -142,7 +142,7 @@ ochannel & ochannel::Open (char const * device)
 
 /*====================================================================*
  *
- *   ochannel & Open () 
+ *   ochannel & Open ()
  *
  *--------------------------------------------------------------------*/
 
@@ -153,7 +153,7 @@ ochannel & ochannel::Open ()
 #if defined (__linux__) 
 
 	struct ifreq ifreq;
-	struct sockaddr_ll sockaddr_ll = 
+	struct sockaddr_ll sockaddr_ll =
 	{
 		PF_PACKET,
 		0x0000,
@@ -174,24 +174,24 @@ ochannel & ochannel::Open ()
 	};
 	std::memset (& ifreq, 0, sizeof (ifreq));
 	std::memcpy (ifreq.ifr_name, ointerface::Name (), sizeof (ifreq.ifr_name));
-	if ((this->mfd = socket (sockaddr_ll.sll_family, SOCK_RAW, oethernet::Protocol ())) == - 1)
+	if ((this->mfd = socket (sockaddr_ll.sll_family, SOCK_RAW, oethernet::Protocol ())) == -1)
 	{
 		oerror::error (1, errno, "%s", ointerface::Name ());
 	}
-	if (bind (this->mfd, (struct sockaddr *) (& sockaddr_ll), sizeof (sockaddr_ll)) == - 1)
+	if (bind (this->mfd, (struct sockaddr *) (& sockaddr_ll), sizeof (sockaddr_ll)) == -1)
 	{
 		oerror::error (1, errno, "Can't bind socket to %s", ifreq.ifr_name);
 	}
 
 #if 1
 
-	if (ioctl (this->mfd, SIOCGIFFLAGS, & ifreq) == - 1)
+	if (ioctl (this->mfd, SIOCGIFFLAGS, & ifreq) == -1)
 	{
 		oerror::error (1, errno, "%s", ifreq.ifr_name);
 	}
 	ifreq.ifr_flags |= (IFF_UP | IFF_BROADCAST | IFF_MULTICAST);
 	ifreq.ifr_flags &= ~ IFF_ALLMULTI;
-	if (ioctl (this->mfd, SIOCSIFFLAGS, & ifreq) == - 1)
+	if (ioctl (this->mfd, SIOCSIFFLAGS, & ifreq) == -1)
 	{
 		oerror::error (1, errno, "%s", ifreq.ifr_name);
 	}
@@ -201,12 +201,12 @@ ochannel & ochannel::Open ()
 #elif defined (__APPLE__)
 
 	struct ifreq ifreq;
-	struct timeval timer = 
+	struct timeval timer =
 	{
 		0,
 		0
 	};
-	static struct bpf_insn bpf_insn [] = 
+	static struct bpf_insn bpf_insn [] =
 	{
 		{
 			BPF_LD +  BPF_H +  BPF_ABS,
@@ -313,36 +313,36 @@ ochannel & ochannel::Open ()
 	for (count = 0; count < 100; count++)
 	{
 		std::snprintf (filename, sizeof (filename), oCHANNEL_BPFDEVICE, count);
-		if ((this->mfd = ::open (filename, O_RDWR)) != - 1)
+		if ((this->mfd = ::open (filename, O_RDWR)) != -1)
 		{
 			break;
 		}
 	}
-	if (this->mfd == - 1)
+	if (this->mfd == -1)
 	{
 		oerror::error (1, ECANCELED, "No bpf counts available");
 	}
 	std::memcpy (ifreq.ifr_name, this->mname, sizeof (ifreq.ifr_name));
-	if (ioctl (this->mfd, BIOCSETIF, & ifreq) == - 1)
+	if (ioctl (this->mfd, BIOCSETIF, & ifreq) == -1)
 	{
 		oerror::error (1, errno, "%s", ifreq.ifr_name);
 	}
-	if (ioctl (this->mfd, BIOCGBLEN, & this->bpf_length) == - 1)
+	if (ioctl (this->mfd, BIOCGBLEN, & this->bpf_length) == -1)
 	{
 		oerror::error (1, errno, "Can't determine buffer length");
 	}
 	state = true;
-	if (ioctl (this->mfd, BIOCIMMEDIATE, & state) == - 1)
+	if (ioctl (this->mfd, BIOCIMMEDIATE, & state) == -1)
 	{
 		oerror::error (1, errno, "Can't activate immediate mode");
 	}
 	state = false;
-	if (ioctl (this->mfd, BIOCSSEESENT, & state) == - 1)
+	if (ioctl (this->mfd, BIOCSSEESENT, & state) == -1)
 	{
 		oerror::error (1, errno, "Can't hide outgoing frames");
 	}
 	timer.tv_usec = this->mtimer * 1000;
-	if (ioctl (this->mfd, BIOCSRTIMEOUT, & timer) == - 1)
+	if (ioctl (this->mfd, BIOCSRTIMEOUT, & timer) == -1)
 	{
 		oerror::error (1, errno, "Can't set timeout");
 	}
@@ -354,7 +354,7 @@ ochannel & ochannel::Open ()
 	bpf_insn [13].k = hostaddr [5];
 	bpf_program.bf_len = sizeof (bpf_program) / sizeof (struct bpf_insn);
 	bpf_program.bf_insns = bpf_insn;
-	if (ioctl (this->mfd, BIOCSETF, & bpf_program) == - 1)
+	if (ioctl (this->mfd, BIOCSETF, & bpf_program) == -1)
 	{
 		oerror::error (1, errno, "Can't use filter program");
 	}
@@ -363,7 +363,7 @@ ochannel & ochannel::Open ()
 
 	struct ifreq ifreq;
 	std::memset (& ifreq, 0, sizeof (ifreq));
-	if ((this->mfd = std::socket (sockaddr->sdl_family, SOCK_RAW, oethernet::Protocol ())) == - 1)
+	if ((this->mfd = std::socket (sockaddr->sdl_family, SOCK_RAW, oethernet::Protocol ())) == -1)
 	{
 		oerror::error (1, errno, "%s", ointerface::Name ());
 	}
@@ -371,24 +371,24 @@ ochannel & ochannel::Open ()
 
 #if 0
 
-	if (ioctl (this->mfd, SIOCGIFINDEX, & ifreq) == - 1)
+	if (ioctl (this->mfd, SIOCGIFINDEX, & ifreq) == -1)
 	{
 		oerror::error (1, errno, "%s", ifreq.ifr_name);
 	}
 	sockaddr->sdl_ifindex = ifreq.ifr_ifindex;
-	if (ioctl (this->mfd, OSIOCGIFADDR, & ifreq) == - 1)
+	if (ioctl (this->mfd, OSIOCGIFADDR, & ifreq) == -1)
 	{
 		oerror::error (1, errno, "%s", ifreq.ifr_name);
 	}
 	std::memcpy (sockaddr->sdl_data, ifreq.ifr_ifru.ifru_addr.sa_data, sizeof (sockaddr->sdl_data));
-	if (std::bind (this->mfd, (struct sockaddr *) (sockaddr), sizeof (struct sockaddr_dl)) == - 1)
+	if (std::bind (this->mfd, (struct sockaddr *) (sockaddr), sizeof (struct sockaddr_dl)) == -1)
 	{
 		oerror::error (1, errno, "Can't bind socket to %s", interface);
 	}
 
 #endif
 
-	if (ioctl (this->mfd, SIOCGIFFLAGS, & ifreq) == - 1)
+	if (ioctl (this->mfd, SIOCGIFFLAGS, & ifreq) == -1)
 	{
 		oerror::error (1, errno, "Can't read state of %s", ifreq.ifr_name);
 	}
@@ -398,7 +398,7 @@ ochannel & ochannel::Open ()
 		ifreq.ifr_flags |= IFF_BROADCAST;
 		ifreq.ifr_flags |= IFF_MULTICAST;
 		ifreq.ifr_flags &= ~ IFF_ALLMULTI;
-		if (ioctl (this->mfd, SIOCSIFFLAGS, & ifreq) == - 1)
+		if (ioctl (this->mfd, SIOCSIFFLAGS, & ifreq) == -1)
 		{
 			oerror::error (1, errno, "Can't save state of %s", ifreq.ifr_name);
 		}
@@ -472,7 +472,7 @@ signed ochannel::SendPacket (void const * memory, signed extent)
 
 	if (pcap_sendpacket (this->msocket, (const u_char *) (memory), extent))
 	{
-		extent = - 1;
+		extent = -1;
 	}
 
 #else
@@ -494,7 +494,7 @@ signed ochannel::SendPacket (void const * memory, signed extent)
  *   do not affect performance;
  *
  *   on winpcap/libpcap, this method does not return until the timeout
- *   expires; consequenty, long timeout values do affect performance; 
+ *   expires; consequenty, long timeout values do affect performance;
  *
  *--------------------------------------------------------------------*/
 
@@ -504,7 +504,7 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 
 #if defined (__linux__) 
 
-	struct pollfd pollfd = 
+	struct pollfd pollfd =
 	{
 		this->mfd,
 		POLLIN,
@@ -515,15 +515,15 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 	if (status < 0)
 	{
 		oerror::error (0, errno, "poll");
-		return (- 1);
+		return (-1);
 	}
 	if (status > 0)
 	{
 		extent = ::recvfrom (this->mfd, memory, extent, 0, (struct sockaddr *) (0), (socklen_t *) (0));
-		if (extent == - 1)
+		if (extent == -1)
 		{
 			oerror::error (0, errno, "recvfrom");
-			return (- 1);
+			return (-1);
 		}
 		if (this->anyset (oCHANNEL_FLAG_VERBOSE))
 		{
@@ -542,7 +542,7 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 	if (extent < 0)
 	{
 		oerror::error (0, errno, "bpf");
-		return (- 1);
+		return (-1);
 	}
 	if (extent > 0)
 	{
@@ -557,7 +557,7 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 
 #elif defined (__OpenBSD__) 
 
-	struct::pollfd pollfd = 
+	struct::pollfd pollfd =
 	{
 		this->mfd,
 		POLLIN,
@@ -568,15 +568,15 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 	if (status < 0)
 	{
 		oerror::error (0, errno, "poll");
-		return (- 1);
+		return (-1);
 	}
 	if (status > 0)
 	{
 		extent = ::recvfrom (this->mfd, memory, extent, 0, (struct sockaddr *) (0), (socklen_t *) (0));
-		if (extent == - 1)
+		if (extent == -1)
 		{
 			oerror::error (0, errno, "recvfrom");
-			return (- 1);
+			return (-1);
 		}
 		if (this->anyset (oCHANNEL_FLAG_VERBOSE))
 		{
@@ -597,7 +597,7 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 		if (status < 0)
 		{
 			oerror::error (0, errno, "pcap_next_ex");
-			return (- 1);
+			return (-1);
 		}
 		if (status > 0)
 		{
@@ -617,7 +617,7 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 
 	struct pcap_pkthdr * header;
 	const uint8_t * data;
-	struct pollfd pollfd = 
+	struct pollfd pollfd =
 	{
 		this->mfd,
 		POLLIN,
@@ -628,7 +628,7 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 	if (status < 0)
 	{
 		oerror::error (0, errno, "poll");
-		return (- 1);
+		return (-1);
 	}
 	if (status > 0)
 	{
@@ -636,7 +636,7 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 		if (status != 1)
 		{
 			oerror::error (0, errno, "pcap_next_ext");
-			return (- 1);
+			return (-1);
 		}
 		std::memcpy (memory, data, header->caplen);
 		extent = header->caplen;
@@ -693,7 +693,7 @@ ochannel & ochannel::Print ()
 
 /*====================================================================*
  *
- *   ochannel () 
+ *   ochannel ()
  *
  *--------------------------------------------------------------------*/
 
@@ -710,7 +710,7 @@ ochannel::ochannel ()
 
 /*====================================================================*
  *
- *   ~ochannel () 
+ *   ~ochannel ()
  *
  *--------------------------------------------------------------------*/
 

@@ -107,10 +107,10 @@ oitem * oheap::item ()
  * Do not use table[0] because this algorithm depends on the
  * oheap root being a positive odd integer, specifically 1.
  *
- * I have taken a liberty with this algorithm. Normally one 
+ * I have taken a liberty with this algorithm. Normally one
  * does a list[start] = list[count--] and temp = list[start];
  * Instead we use list[count] as temp which alters the bound
- * testing because count is now 1 greater than normal. Check 
+ * testing because count is now 1 greater than normal. Check
  * this against the book if in doubt.
  */
 

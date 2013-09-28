@@ -29,7 +29,7 @@
  *
  *   char const *title() const;
  *
- *   return the month name as a constant string; 
+ *   return the month name as a constant string;
  *
  *--------------------------------------------------------------------*/
 
@@ -43,7 +43,7 @@ char const * omonth::title () const
  *
  *   unsigned year () const;
  *
- *   return the adjusted calendar year; 
+ *   return the adjusted calendar year;
  *
  *--------------------------------------------------------------------*/
 
@@ -85,7 +85,7 @@ unsigned omonth::weekday () const
  *
  *   unsigned lastday () const;
  *
- *   return the last day of the month; 
+ *   return the last day of the month;
  *
  *--------------------------------------------------------------------*/
 
@@ -99,8 +99,8 @@ unsigned omonth::lastday () const
  *
  *   unsigned date (unsigned week, unsigned weekday) const;
  *
- *   return the integer date for the given weekday in the given week 
- *   in this month; 
+ *   return the integer date for the given weekday in the given week
+ *   in this month;
  *
  *--------------------------------------------------------------------*/
 
@@ -114,7 +114,7 @@ unsigned omonth::date (unsigned week, unsigned weekday) const
  *
  *   unsigned date (unsigned block) const;
  *
- *   return the integer date of the given block on this calendar page; 
+ *   return the integer date of the given block on this calendar page;
  *
  *--------------------------------------------------------------------*/
 
@@ -125,7 +125,7 @@ unsigned omonth::date (unsigned block) const
 	{
 		return (0);
 	}
-	block -= this->mstart - 1;
+	block -= this->mstart -1;
 	if (block > this->mlimit)
 	{
 		return (0);
@@ -188,7 +188,7 @@ omonth::omonth (unsigned year, signed month)
  *
  *   omonth (unsigned year);
  *
- *   use current year and given month; 
+ *   use current year and given month;
  *
  *
  *--------------------------------------------------------------------*/
@@ -212,7 +212,7 @@ omonth::omonth (signed month)
  *
  *   omonth ();
  *
- *   use current year and month; 
+ *   use current year and month;
  *
  *--------------------------------------------------------------------*/
 

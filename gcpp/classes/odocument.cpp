@@ -26,7 +26,7 @@
 #include "../classes/odocument.hpp"
 
 /*====================================================================*
- * 
+ *
  *   char const *odocument::title() const;
  *
  *   return the page title as a string constant;
@@ -40,8 +40,8 @@ char const * odocument::title () const
 }
 
 /*====================================================================*
- * 
- *   odocument & odocument::title(char const *title) 
+ *
+ *   odocument & odocument::title(char const *title)
  *
  *   replace the current title with the string argument if they differ;
  *

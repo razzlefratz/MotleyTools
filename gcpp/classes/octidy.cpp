@@ -27,7 +27,7 @@
 #include "../classes/octidy.hpp"
 
 /*====================================================================*
- *   class variables;        
+ *   class variables;
  *--------------------------------------------------------------------*/
 
 ocexitwords octidy::exitwords;
@@ -36,7 +36,7 @@ ocexitwords octidy::exitwords;
  *
  *   signed program (signed c);
  *
- *   format a source code file; 
+ *   format a source code file;
  *
  *--------------------------------------------------------------------*/
 
@@ -216,7 +216,7 @@ signed octidy::atheros (signed c)
  *
  *   signed charlie (signed c);
  *
- *   this method is similar method program() but annotates comments 
+ *   this method is similar method program() but annotates comments
  *   and inserts include guards; essentially, this is charlie's own
  *   private formatter;
  *
@@ -308,7 +308,7 @@ signed octidy::charlie (signed c)
 
 /*====================================================================*
  *
- *   signed statement (signed c); 
+ *   signed statement (signed c);
  *
  *--------------------------------------------------------------------*/
 
@@ -320,7 +320,7 @@ signed octidy::statement (signed c)
 	char * sp = string;
 	while (oascii::isalnum (c) || (c == '_'))
 	{
-		if ((sp - string) <= (signed) (sizeof (string) - 1))
+		if ((sp - string) <= (signed) (sizeof (string) -1))
 		{
 			* sp++ = c;
 		}
@@ -361,7 +361,7 @@ signed octidy::statement (signed c)
 	}
 	else if (! std::strcmp (string, "case"))
 	{
-		oindent::print (this->mlevel - 1, 0, string);
+		oindent::print (this->mlevel -1, 0, string);
 		std::cout.put (' ');
 		c = octidy::context (c, ":");
 	}
@@ -376,7 +376,7 @@ signed octidy::statement (signed c)
 		}
 		else 
 		{
-			oindent::print (this->mlevel - 1, 0, string);
+			oindent::print (this->mlevel -1, 0, string);
 			c = osource::keep (c);
 			c = osource::find (c);
 			std::cout.put (' ');
@@ -393,7 +393,7 @@ signed octidy::statement (signed c)
 
 /*====================================================================*
  *
- *   signed context (signed c, char const * charset) const; 
+ *   signed context (signed c, char const * charset) const;
  *
  *--------------------------------------------------------------------*/
 
@@ -436,7 +436,7 @@ signed octidy::_context (signed c, signed o, signed e) const
 
 /*====================================================================*
  *
- *   signed context (signed c, signed e) const; 
+ *   signed context (signed c, signed e) const;
  *
  *--------------------------------------------------------------------*/
 
@@ -462,7 +462,7 @@ signed octidy::_context (signed c, signed e) const
 
 /*====================================================================*
  *
- *   signed context (signed  c) const; 
+ *   signed context (signed  c) const;
  *
  *--------------------------------------------------------------------*/
 

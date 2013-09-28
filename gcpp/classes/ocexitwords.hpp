@@ -2,7 +2,7 @@
  *
  *   ocexitwords.hpp - declaration of ocexitword class;
  *
- *   this class implements the symbol table containg C language macro 
+ *   this class implements the symbol table containg C language macro
  *   processor strings;
  *
  *.  Motley Tools by Charles Maier

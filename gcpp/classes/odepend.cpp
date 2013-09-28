@@ -126,7 +126,7 @@ odepend & odepend::connect (char const * one, char const * two)
  *
  *   odepend * store (char const * nodename);
  *
- *   store nodename in this dependency tree, if missing; return the 
+ *   store nodename in this dependency tree, if missing; return the
  *   new or existing node address;
  *
  *.  Motley Tools by Charles Maier
@@ -169,7 +169,7 @@ odepend * odepend::store (char const * nodename)
  *
  *   odepend & odepend::fetch(char const *nodename);
  *
- *   return the address of the named node if present or (odepend *)(0) if 
+ *   return the address of the named node if present or (odepend *)(0) if
  *   missing; this function is rarely used but provided for completeness;
  *
  *.  Motley Tools by Charles Maier
@@ -204,7 +204,7 @@ odepend * odepend::fetch (char const * nodename)
  *
  *   odepend & enumerate();
  *
- *   print nodenames in alphabetical order, one name per line; 
+ *   print nodenames in alphabetical order, one name per line;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -231,8 +231,8 @@ odepend & odepend::enumerate ()
  *
  *   odepend & structure();
  *
- *   print major nodenames in alphabetical order, one name per line, 
- *   with minor nodenames indented below each major nodename; 
+ *   print major nodenames in alphabetical order, one name per line,
+ *   with minor nodenames indented below each major nodename;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -264,7 +264,7 @@ odepend & odepend::structure ()
  *
  *   odepend & component();
  *
- *   print minor node names in alphabetical order, one name per line, 
+ *   print minor node names in alphabetical order, one name per line,
  *   indented by horizontal tab;
  *
  *.  Motley Tools by Charles Maier
@@ -292,7 +292,7 @@ odepend & odepend::component ()
  *
  *   odepend & targets ();
  *
- *   print major nodenames in alphabetical order, one name per line, 
+ *   print major nodenames in alphabetical order, one name per line,
  *   followed by minor nodenames in alphabetical  order;
  *
  *.  Motley Tools by Charles Maier
@@ -350,7 +350,7 @@ odepend & odepend::sources ()
 }
 
 /*====================================================================*
- * 
+ *
  *   odepend (char const * string);
  *
  *
@@ -374,7 +374,7 @@ odepend::odepend (char const * string)
 }
 
 /*====================================================================*
- * 
+ *
  *   odepend();
  *
  *
@@ -397,7 +397,7 @@ odepend::odepend ()
 }
 
 /*====================================================================*
- * 
+ *
  *   ~odepend();
  *
  *

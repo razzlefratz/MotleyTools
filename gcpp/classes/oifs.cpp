@@ -2,7 +2,7 @@
  *
  *   oifs.cpp - oifs class definition;
  *
- *   host interface enumerator;  
+ *   host interface enumerator;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -120,13 +120,13 @@ oifs & oifs::SelectFirst (void)
 oifs & oifs::SelectFinal (void)
 
 {
-	this->mindex = this->mcount - 1;
+	this->mindex = this->mcount -1;
 	return (* this);
 }
 
 /*====================================================================*
  *
- *   oifs & SelectPrev (void) 
+ *   oifs & SelectPrev (void)
  *
  *   select the prev interface unless the current interface is the
  *   first interface; same as operator --;
@@ -145,10 +145,10 @@ oifs & oifs::SelectPrev (void)
 
 /*====================================================================*
  *
- *   oifs & SelectNext (void) 
+ *   oifs & SelectNext (void)
  *
  *   select the next interface unless the current interface is the
- *   final interface; same as operator ++; 
+ *   final interface; same as operator ++;
  *
  *--------------------------------------------------------------------*/
 
@@ -183,9 +183,9 @@ oifs & oifs::Select (unsigned index)
 
 /*====================================================================*
  *
- *   oif & Selected (unsigned index) 
+ *   oif & Selected (unsigned index)
  *
- *   return the selected interface; 
+ *   return the selected interface;
  *
  *--------------------------------------------------------------------*/
 
@@ -217,7 +217,7 @@ oifs & oifs::Enumerate (void)
 
 /*====================================================================*
  *
- *   oif & operator [] (unsigned index) 
+ *   oif & operator [] (unsigned index)
  *
  *   select an interface then return an instance of it;
  *
@@ -231,7 +231,7 @@ oif & oifs::operator [] (unsigned index)
 
 /*====================================================================*
  *
- *   oifs & operator ++ (signed) 
+ *   oifs & operator ++ (signed)
  *
  *   select the next interface unless the current interface is the
  *   final interface; same as method SelectNext;
@@ -246,10 +246,10 @@ oifs & oifs::operator ++ (signed)
 
 /*====================================================================*
  *
- *   oifs & operator -- (signed) 
+ *   oifs & operator -- (signed)
  *
  *   select the prev interface unless the current interface is the
- *   first interface; same as method SelectPrev; 
+ *   first interface; same as method SelectPrev;
  *
  *--------------------------------------------------------------------*/
 
@@ -261,7 +261,7 @@ oifs & oifs::operator -- (signed)
 
 /*====================================================================*
  *
- *   oifs () 
+ *   oifs ()
  *
  *   construct a collection oif objects each representing one
  *   host Ethernet interface;
@@ -307,7 +307,7 @@ oifs::oifs ()
 	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *) (0);
 	pcap_if_t * device;
-	if (pcap_findalldevs (& devices, buffer) == - 1)
+	if (pcap_findalldevs (& devices, buffer) == -1)
 	{
 		oerror::error (1, errno, "Can't enumerate interfaces");
 	}
@@ -334,7 +334,7 @@ oifs::oifs ()
 
 /*====================================================================*
  *
- *   ~oifs () 
+ *   ~oifs ()
  *
  *--------------------------------------------------------------------*/
 

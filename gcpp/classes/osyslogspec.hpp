@@ -35,7 +35,7 @@
 #define	LOG_MARK	LOG_MAKEPRI(LOG_NFACILITIES, 0)  /* mark "facility" */
 
 /*====================================================================*
- * 
+ *
  *--------------------------------------------------------------------*/
 
 class __declspec (dllexport) osyslogspec

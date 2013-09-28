@@ -1,7 +1,7 @@
 /*====================================================================*
  *
  *   oHTMLElementNames.hpp - declaration of oHTMLElementNames class;
- * 
+ *
  *   this object offers compact and fast detection, lookup and retrieval
  *   for HTML element names;
  *
@@ -15,7 +15,7 @@
 #define oHTMLELEMENTS_HEADER
 
 /*====================================================================*
- *   custom header files;  
+ *   custom header files;
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
@@ -126,7 +126,7 @@
 #define HTML_O_NULL                      98
 
 /*====================================================================*
- *   class declaration; 
+ *   class declaration;
  *--------------------------------------------------------------------*/
 
 class __declspec (dllexport) oHTMLElementNames: public okeywords

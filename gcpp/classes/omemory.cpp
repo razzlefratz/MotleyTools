@@ -43,7 +43,7 @@ char omemory::chr_nonprint = '.';
  *
  *   void endian (void * memory, size_t extent);
  *
- *   reverse the order of bytes within a multi-byte memory region; 
+ *   reverse the order of bytes within a multi-byte memory region;
  *   return no value;
  *
  *.  Motley Tools by Charles Maier
@@ -70,8 +70,8 @@ void omemory::endian (void * memory, size_t extent)
  *
  *   void swap (void * memory1, void * memory2, size_t extent);
  *
- *   exchange the contents of one memory region with that of another; 
- *   return no value; 
+ *   exchange the contents of one memory region with that of another;
+ *   return no value;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -98,8 +98,8 @@ void omemory::swap (void * memory1, void * memory2, size_t extent)
  *   void memtext (char const * string, char buffer [], size_t length);
  *
  *   copy a NUL terminated string to a fixed-length buffer ensuring
- *   that the buffered string is terminated; truncate and terminate 
- *   the buffered string on overflow; pad the buffer to length with 
+ *   that the buffered string is terminated; truncate and terminate
+ *   the buffered string on overflow; pad the buffer to length with
  *   NUL on underflow;
  *
  *.  Motley Tools by Charles Maier
@@ -132,7 +132,7 @@ void omemory::memtext (char const * string, char buffer [], size_t length)
  *   encode external memory with the contents of some source and
  *   return the address of the next unencoded memory byte;
  *
- *   use this method to pack a buffer with data stored in various 
+ *   use this method to pack a buffer with data stored in various
  *   locations;
  *
  *.  Motley Tools by Charles Maier
@@ -155,7 +155,7 @@ void * omemory::encode (void * memory, void const * source, size_t extent)
  *   decode external memory into the contents of some source; return
  *   the address of the next undecoded memory byte;
  *
- *   use this method to unpack a buffer into data stored in various 
+ *   use this method to unpack a buffer into data stored in various
  *   locations;
  *
  *.  Motley Tools by Charles Maier
@@ -175,10 +175,10 @@ void const * omemory::decode (void const * memory, void * target, size_t extent)
  *
  *   uint16_t checksum16 (void const * memory, size_t extent, uint16_t checksum);
  *
- *   compute the 16 bit checksum of a memory region; region extent 
+ *   compute the 16 bit checksum of a memory region; region extent
  *   is specified in bytes but truncated to a multiple of 2 bytes;
- *   the checksum is the one's complement of the XOR of all 16 bit 
- *   words in the adjusted region; 
+ *   the checksum is the one's complement of the XOR of all 16 bit
+ *   words in the adjusted region;
  *
  *   passing a checksum of 0 returns the computed checksum; passing
  *   a computed checksum returns 0 only if the checksum is correct;
@@ -206,10 +206,10 @@ uint16_t omemory::checksum16 (void const * memory, register size_t extent, regis
  *
  *   uint32_t checksum32 (void const * memory, size_t extent, uint32_t checksum);
  *
- *   compute the 32 bit checksum of a memory region; region extent 
+ *   compute the 32 bit checksum of a memory region; region extent
  *   is specified in bytes but truncated to a multiple of 4 bytes;
- *   the checksum is the one's complement of the XOR of all 32 bit 
- *   words in the adjusted region; 
+ *   the checksum is the one's complement of the XOR of all 32 bit
+ *   words in the adjusted region;
  *
  *   passing a checksum of 0 returns the computed checksum; passing
  *   a computed checksum returns 0 only if the checksum is correct;
@@ -237,7 +237,7 @@ uint32_t omemory::checksum32 (void const * memory, register size_t extent, regis
  *
  *   signed memincr (void * memory, size_t extent);
  *
- *   increment a multi-byte memory region; start at 0x00 and reset 
+ *   increment a multi-byte memory region; start at 0x00 and reset
  *   at 0xFF; return -1 once all bytes are 0xFF;
  *
  *   for example,
@@ -262,7 +262,7 @@ signed omemory::memincr (void * memory, register size_t extent)
 			return (0);
 		}
 	}
-	return (- 1);
+	return (-1);
 }
 
 /*====================================================================*
@@ -290,14 +290,14 @@ signed omemory::strincr (void * memory, register size_t extent, register byte mi
 		}
 		offset [extent] = minimum;
 	}
-	return (- 1);
+	return (-1);
 }
 
 /*====================================================================*
  *
  *   signed memdecr (void * memory, size_t extent);
  *
- *   decrement a multi-byte memory region; start at 0xff and reset 
+ *   decrement a multi-byte memory region; start at 0xff and reset
  *   at 0x00; return -1 once all bytes are 0x00;
  *
  *   for example:
@@ -322,7 +322,7 @@ signed omemory::memdecr (void * memory, register size_t extent)
 			return (0);
 		}
 	}
-	return (- 1);
+	return (-1);
 }
 
 /*====================================================================*
@@ -350,20 +350,20 @@ signed omemory::strdecr (void * memory, register size_t extent, register byte mi
 		}
 		offset [extent] = maximum;
 	}
-	return (- 1);
+	return (-1);
 }
 
 /*====================================================================*
  *
  *   size_t binencode (void * memory, size_t extent, char const * string);
  *
- *   encode a binary string into a byte array; return the number of 
+ *   encode a binary string into a byte array; return the number of
  *   bytes encoded on success or -1 on error; permit an optional
  *   hyphen between successive octets;
  *
  *   string must contain an even multiple of 8 binary digits; bytes
  *   are fixed width fields; leading zeros are required or an error
- *   will occur; 
+ *   will occur;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -490,9 +490,9 @@ size_t omemory::decencode (void * memory, size_t extent, char const * string)
  *
  *   size_t hexencode (void * memory, size_t extent, char const * string);
  *
- *   encode a NUL terminated hexadecimal string into a fixed length 
- *   memory region; return the number of bytes encoded or 0 on error; 
- *   an error will occur of the entire region cannot be encoded or 
+ *   encode a NUL terminated hexadecimal string into a fixed length
+ *   memory region; return the number of bytes encoded or 0 on error;
+ *   an error will occur of the entire region cannot be encoded or
  *   the entire string cannot be converted due to illegal characters
  *   or excessive digits;
  *
@@ -554,7 +554,7 @@ size_t omemory::hexencode (void * memory, register size_t extent, register char 
  *
  *   size_t bindecode (void const * memory, size_t extent, char buffer [], size_t length);
  *
- *   decode a memory region as a string of binary digits; 
+ *   decode a memory region as a string of binary digits;
  *
  *   allow 9 characters per byte when allocating the buffer;
  *
@@ -596,7 +596,7 @@ size_t omemory::bindecode (void const * memory, register size_t extent, char buf
  *   allow three string characters for each memory byte; this means
  *   that the buffer must have at least three characters or nothing
  *   will be decoded; the maximum number of bytes is the lesser of
- *   chars/3 and bytes;; 
+ *   chars/3 and bytes;;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -628,13 +628,13 @@ size_t omemory::decdecode (void const * memory, register size_t extent, char buf
  *
  *   size_t hexdecode (void const * memory, size_t extent,   char buffer [], size_t length);
  *
- *   decode a memory region as a string of hex octets separated with 
+ *   decode a memory region as a string of hex octets separated with
  *   a colon;
  *
  *   allow three string characters for each memory byte; this means
  *   that the buffer must hold at least three characters or nothing
  *   will be decoded; the maximum number of bytes is the lesser of
- *   chars/3 and bytes; 
+ *   chars/3 and bytes;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -737,7 +737,7 @@ void omemory::hexdump (void const * memory, size_t offset, size_t extent, std::o
 
 /*====================================================================*
  *
- *   void hexview (void const * memory, size_t offset, size_t extent, std::ostream * stream)  
+ *   void hexview (void const * memory, size_t offset, size_t extent, std::ostream * stream)
  *
  *   print a memory region in dump format showing byte offsets, hex
  *   byte values and ASCII byte values;
@@ -815,7 +815,7 @@ void omemory::hexview (void const * memory, size_t offset, size_t extent, std::o
  *
  *   allow nine string characters for each memory byte; this means
  *   that the buffer must hold at least nine characters or nothing
- *   will be decoded; 
+ *   will be decoded;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -834,12 +834,12 @@ char * omemory::binstring (char buffer [], size_t length, void const * memory, s
  *
  *   char * decstring (  char buffer [], size_t length, void const * memory, size_t extent);
  *
- *   decode a memory region into a decimal character buffer and 
+ *   decode a memory region into a decimal character buffer and
  *   return the buffer address;
  *
  *   allow four string characters for each memory byte; this means
  *   that the buffer must hold at least four characters or nothing
- *   will be decoded; 
+ *   will be decoded;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -858,12 +858,12 @@ char * omemory::decstring (char buffer [], size_t length, void const * memory, s
  *
  *   char * hexstring (  char buffer [], size_t length, void const * memory, size_t extent);
  *
- *   decode a memory region into a hexadecimal character buffer and 
+ *   decode a memory region into a hexadecimal character buffer and
  *   return the buffer address;
  *
  *   allow three string characters for each memory byte; this means
  *   that the buffer must hold at least three characters or nothing
- *   will be decoded; 
+ *   will be decoded;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -882,8 +882,8 @@ char * omemory::hexstring (char buffer [], size_t length, void const * memory, s
  *
  *   void binout (void const * memory, size_t extent, signed c, std::ostream * stream);
  *
- *   print a memory region as a series of binary octets separated by 
- *   character c which is normally BIN_EXTENDER defined in number.h; 
+ *   print a memory region as a series of binary octets separated by
+ *   character c which is normally BIN_EXTENDER defined in number.h;
  *
  *   for example, binout (memory, 6, '-', stdout) would print
  *
@@ -919,9 +919,9 @@ void omemory::binout (void const * memory, size_t extent, signed c, std::ostream
  *
  *   void decout (void const * memory, size_t extent, signed c, std::ostream * stream);
  *
- *   print a memory region as a series of decimal octets separated  
- *   by character c which is normally DEC_EXTENDER as defined in 
- *   number.h; 
+ *   print a memory region as a series of decimal octets separated
+ *   by character c which is normally DEC_EXTENDER as defined in
+ *   number.h;
  *
  *   for example, decout (memory, 4, '.', stdout) would print
  *
@@ -958,7 +958,7 @@ void omemory::decout (void const * memory, size_t extent, signed c, std::ostream
  *
  *   void hexout (void const * memory, size_t extent, signed c, std::ostream * stream);
  *
- *   print  a memory region as a series of hexadecimal octets seperated 
+ *   print  a memory region as a series of hexadecimal octets seperated
  *   by character c which is normally HEX_EXTENDER defined in number.h;
  *
  *   for example, hexout (memory, 6, ':', stdout) would print:
@@ -990,15 +990,15 @@ void omemory::hexout (void const * memory, size_t extent, signed c, std::ostream
 
 /*====================================================================*
  *
- *   size_t hexin ( void * memory, size_t extent, std::istream * stream) 
+ *   size_t hexin ( void * memory, size_t extent, std::istream * stream)
  *
- *   read a file and convert hexadecimal octets to binary bytes then 
- *   store them in consecutive memory locations up to a given length; 
+ *   read a file and convert hexadecimal octets to binary bytes then
+ *   store them in consecutive memory locations up to a given length;
  *   return the actual number of bytes stored;
  *
- *   digits may be consecutive or separated by white space consisting 
+ *   digits may be consecutive or separated by white space consisting
  *   of spaces, tabs, linefeeds, carriage returns, formfeeds or other
- *   characters such as punctuation; C-style or script-style comments 
+ *   characters such as punctuation; C-style or script-style comments
  *   are treated as white space;
  *
  *.  Motley Tools by Charles Maier
@@ -1086,7 +1086,7 @@ size_t omemory::hexin (void * memory, size_t extent, std::istream * stream)
 
 #endif
 
-		return ((size_t) (- 1));
+		return ((size_t) (-1));
 	}
 	if (digits & 1)
 	{
@@ -1097,7 +1097,7 @@ size_t omemory::hexin (void * memory, size_t extent, std::istream * stream)
 
 #endif
 
-		return ((size_t) (- 1));
+		return ((size_t) (-1));
 	}
 	return (offset - origin);
 }
@@ -1131,9 +1131,9 @@ char * omemory::serial (register char buffer [], register size_t length, registe
  *
  *   char * serial (char buffer [], size_t length, unsigned value, unsigned radix, unsigned c);
  *
- *   convert an unsigned integer to a NUL terminated numeric string 
+ *   convert an unsigned integer to a NUL terminated numeric string
  *   of fixed length in the specified radix; return the string start
- *   address; 
+ *   address;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -1159,8 +1159,8 @@ char * omemory::serial (register char buffer [], register size_t length, registe
 /*====================================================================*
  *
  *   omemory::omemory ();
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License

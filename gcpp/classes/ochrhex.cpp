@@ -18,7 +18,7 @@
 #include "../classes/ochrhex.hpp"
 
 /*====================================================================*
- *   
+ *
  *--------------------------------------------------------------------*/
 
 char const * ochrhex::digits = "0123456789ABCDEF";
@@ -46,9 +46,9 @@ char * ochrhex::tohex (char * string, unsigned c)
 }
 
 /*====================================================================*
- *   
+ *
  *   char * toietf (char * string, unsigned c);
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -64,9 +64,9 @@ char * ochrhex::toietf (char * string, unsigned c)
 }
 
 /*====================================================================*
- *   
+ *
  *   char * toiso (char * string, unsigned c);
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -83,9 +83,9 @@ char * ochrhex::toiso (char * string, unsigned c)
 }
 
 /*====================================================================*
- *   
+ *
  *   char * tohtml (char * string, unsigned c);
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -103,9 +103,9 @@ char * ochrhex::tohtml (char * string, unsigned c)
 }
 
 /*====================================================================*
- *   
+ *
  *   char * toconst (char * string, unsigned c);
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -122,9 +122,9 @@ char * ochrhex::toconst (char * string, unsigned c)
 }
 
 /*====================================================================*
- *   
+ *
  *   ochrhex ();
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -138,9 +138,9 @@ ochrhex::ochrhex ()
 }
 
 /*====================================================================*
- *   
+ *
  *   ~ochrhex ();
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License

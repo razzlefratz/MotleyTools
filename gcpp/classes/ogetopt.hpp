@@ -28,7 +28,7 @@
 #define oGETOPT_C_VERSION ('!')
 
 /*====================================================================*
- *   object declaration; 
+ *   object declaration;
  *--------------------------------------------------------------------*/
 
 class __declspec (dllexport) ogetopt

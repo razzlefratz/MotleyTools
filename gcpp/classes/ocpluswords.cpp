@@ -19,7 +19,7 @@
 #include "../classes/otypes.hpp"
 
 /*====================================================================*
- * 
+ *
  *   ocpluswords ();
  *
  *.  Motley Tools by Charles Maier
@@ -31,7 +31,7 @@
 ocpluswords::ocpluswords ()
 
 {
-	static char const * table [] = 
+	static char const * table [] =
 	{
 		"__based",
 		"__cdecl",
@@ -117,14 +117,14 @@ ocpluswords::ocpluswords ()
 		(char const *) (0)
 	};
 	okeywords::mtitle = "cpluswords";
-	okeywords::mcount = SIZEOF (table) - 1;
+	okeywords::mcount = SIZEOF (table) -1;
 	okeywords::mtable = table;
 	okeywords::mcheck ();
 	return;
 }
 
 /*====================================================================*
- * 
+ *
  *   ~ ocpluswords ();
  *
  *.  Motley Tools by Charles Maier

@@ -46,7 +46,7 @@
  *
  *--------------------------------------------------------------------*/
 
-const unsigned char ochrlwr::table [UCHAR_MAX +  1] = 
+const unsigned char ochrlwr::table [UCHAR_MAX +  1] =
 
 {
 	0,
@@ -311,7 +311,7 @@ const unsigned char ochrlwr::table [UCHAR_MAX +  1] =
  *
  *   ochrlwr()
  *
- *   set base translation table to lowercase character table; 
+ *   set base translation table to lowercase character table;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   oMetaElement - HTML SPAN object; 
+ *   oMetaElement - HTML SPAN object;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -48,7 +48,7 @@ char const * oMetaElement::ElementName () const
  *   oMetaElement & Contents (char const * name, char const * type);
  *
  *   return an empty html tag; this is the start tag with internal slash
- *   to indicate an empty block of text; 
+ *   to indicate an empty block of text;
  *
  *--------------------------------------------------------------------*/
 
@@ -65,7 +65,7 @@ oMetaElement & oMetaElement::Contents (char const * name, char const * type)
  *   char const *EmptyTag();
  *
  *   return an empty html tag; this is the start tag with internal slash
- *   to indicate an empty block of text; 
+ *   to indicate an empty block of text;
  *
  *--------------------------------------------------------------------*/
 
@@ -94,7 +94,7 @@ oMetaElement & oMetaElement::EmptyTag (unsigned level, unsigned space)
 /*====================================================================*
  *
  *   oMetaElement ();
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oMetaElement::oMetaElement ()
@@ -110,7 +110,7 @@ oMetaElement::oMetaElement ()
 /*====================================================================*
  *
  *   ~oMetaElement ();
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oMetaElement::~ oMetaElement ()

@@ -4,23 +4,23 @@
  *
  *   host interface information;
  *
- *   This software and documentation is the property of Intellon 
- *   Corporation, Ocala, Florida. It is provided 'as is' without 
- *   expressed or implied warranty of any kind to anyone for any 
- *   reason. Intellon assumes no responsibility or liability for 
- *   errors or omissions in the software or documentation and 
- *   reserves the right to make changes without notification. 
- *   
- *   Intellon customers may modify and distribute the software 
- *   without obligation to Intellon. Since use of this software 
- *   is optional, users shall bear sole responsibility and 
- *   liability for any consequences of it's use. 
+ *   This software and documentation is the property of Intellon
+ *   Corporation, Ocala, Florida. It is provided 'as is' without
+ *   expressed or implied warranty of any kind to anyone for any
+ *   reason. Intellon assumes no responsibility or liability for
+ *   errors or omissions in the software or documentation and
+ *   reserves the right to make changes without notification.
+ *
+ *   Intellon customers may modify and distribute the software
+ *   without obligation to Intellon. Since use of this software
+ *   is optional, users shall bear sole responsibility and
+ *   liability for any consequences of it's use.
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
  *
- *   Contributor(s): 
+ *   Contributor(s):
  *	    Charles Maier <charles.maier@intellon.com>
  *
  *--------------------------------------------------------------------*/
@@ -200,7 +200,7 @@ ointerface & ointerface::ExportHardwareAddress (void * memory)
  *
  *   ointerface & ExportInternetAddress (void * memory);
  *
- *   copy the stored internet address to external memory; this is a 
+ *   copy the stored internet address to external memory; this is a
  *   binary copy operation; return the object instance reference;
  *
  *--------------------------------------------------------------------*/
@@ -218,7 +218,7 @@ ointerface & ointerface::ExportInternetAddress (void * memory)
  *
  *   replace interface text string and return the object instance
  *   reference; this string may change whenever the index or name
- *   are changed but changing the text string does not affect the 
+ *   are changed but changing the text string does not affect the
  *   other properties;
  *
  *--------------------------------------------------------------------*/
@@ -279,12 +279,12 @@ bool ointerface::Disabled () const
  *
  *   ointerface & ointerface::lookup ();
  *
- *   lookup hardware and internet addresses once the interface index 
- *   and name are known; 
+ *   lookup hardware and internet addresses once the interface index
+ *   and name are known;
  *
  *   two methods are provided for Linux; the first one encountered by
  *   the compiler will be used; some Linux systems may not support the
- *   getifaddrs function or may not implement it consistently; 
+ *   getifaddrs function or may not implement it consistently;
  *
  *--------------------------------------------------------------------*/
 
@@ -299,15 +299,15 @@ ointerface & ointerface::lookup ()
  */
 
 	int fd;
-	if ((fd = socket (AF_INET, SOCK_DGRAM, 0)) != - 1)
+	if ((fd = socket (AF_INET, SOCK_DGRAM, 0)) != -1)
 	{
 		struct ifreq ifreq;
 		std::memcpy (ifreq.ifr_name, this->mifname, sizeof (ifreq.ifr_name));
-		if (ioctl (fd, SIOCGIFHWADDR, & ifreq) != - 1)
+		if (ioctl (fd, SIOCGIFHWADDR, & ifreq) != -1)
 		{
 			std::memcpy (this->mhwaddr, ifreq.ifr_ifru.ifru_hwaddr.sa_data, sizeof (this->mhwaddr));
 		}
-		if (ioctl (fd, SIOCGIFADDR, & ifreq) != - 1)
+		if (ioctl (fd, SIOCGIFADDR, & ifreq) != -1)
 		{
 			struct sockaddr_in * sockaddr_in = (struct sockaddr_in *) (& ifreq.ifr_ifru.ifru_addr);
 			std::memcpy (this->mipaddr, & sockaddr_in->sin_addr.s_addr, sizeof (this->mipaddr));
@@ -318,7 +318,7 @@ ointerface & ointerface::lookup ()
 #elif defined (__linux__) || defined (__APPLE__) || defined (__OpenBSD__) 
 
 	struct ifaddrs * ifaddrs;
-	if (getifaddrs (& ifaddrs) != - 1)
+	if (getifaddrs (& ifaddrs) != -1)
 	{
 		struct ifaddrs * ifaddr;
 		for (ifaddr = ifaddrs; ifaddr; ifaddr = ifaddr->ifa_next)
@@ -380,16 +380,16 @@ ointerface & ointerface::lookup ()
 }
 
 /*====================================================================*
- *   
+ *
  *   unsigned pcap_nametoindex (char const * name) const;
  *
  *   WinPcap version of POSIX if_nametoindex function; return error
  *   in non-pcap environments; this method is a temporary solution;
  *
- *   Microsoft plans to support the if_nametoindex function on Vista 
+ *   Microsoft plans to support the if_nametoindex function on Vista
  *   and future releases;
  *
- *   see The Open Group Base Specifications Issue 6 IEEE Std 1003.1, 
+ *   see The Open Group Base Specifications Issue 6 IEEE Std 1003.1,
  *   2004 Edition for a description of this method;
  *
  *--------------------------------------------------------------------*/
@@ -403,7 +403,7 @@ unsigned ointerface::pcap_nametoindex (char const * name) const
 	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *) (0);
 	pcap_if_t * device;
-	if (pcap_findalldevs (& devices, buffer) != - 1)
+	if (pcap_findalldevs (& devices, buffer) != -1)
 	{
 		unsigned index = 1;
 		for (device = devices; device; device = device->next)
@@ -429,13 +429,13 @@ unsigned ointerface::pcap_nametoindex (char const * name) const
  *
  *   char * pcap_indextoname (unsigned ifindex, char * ifname) const;
  *
- *   WinPcap version of POSIX if_indextoname function; return error 
+ *   WinPcap version of POSIX if_indextoname function; return error
  *   in non-pcap enviroements; this method is a temporary solution;
  *
- *   Microsoft plans to support the if_indextoname function on Vista 
+ *   Microsoft plans to support the if_indextoname function on Vista
  *   and future releases;
  *
- *   see The Open Group Base Specifications Issue 6 IEEE Std 1003.1, 
+ *   see The Open Group Base Specifications Issue 6 IEEE Std 1003.1,
  *   2004 Edition for a description of this method;
  *
  *--------------------------------------------------------------------*/
@@ -449,7 +449,7 @@ char * ointerface::pcap_indextoname (unsigned ifindex, char * ifname) const
 	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *) (0);
 	pcap_if_t * device;
-	if ((ifindex--) && (pcap_findalldevs (& devices, buffer) != - 1))
+	if ((ifindex--) && (pcap_findalldevs (& devices, buffer) != -1))
 	{
 		for (device = devices; device; device = device->next)
 		{
@@ -530,7 +530,7 @@ void ointerface::pcap_getipaddr ()
 	char buffer [PCAP_ERRBUF_SIZE];
 	pcap_if_t * devices = (pcap_if_t *) (0);
 	pcap_if_t * device;
-	if (pcap_findalldevs (& devices, buffer) == - 1)
+	if (pcap_findalldevs (& devices, buffer) == -1)
 	{
 		oerror::error (1, errno, "Can't enumerate interfaces");
 	}
@@ -559,7 +559,7 @@ void ointerface::pcap_getipaddr ()
 
 /*====================================================================*
  *
- *   ointerface (unsigned ifindex) 
+ *   ointerface (unsigned ifindex)
  *
  *   instantiate this instance with a given ifindex;
  *
@@ -596,7 +596,7 @@ ointerface::ointerface (unsigned ifindex)
 
 /*====================================================================*
  *
- *   ointerface (char const * ifname) 
+ *   ointerface (char const * ifname)
  *
  *   instantiate this instance with a given ifname;
  *
@@ -633,7 +633,7 @@ ointerface::ointerface (char const * ifname)
 
 /*====================================================================*
  *
- *   ~ointerface () 
+ *   ~ointerface ()
  *
  *--------------------------------------------------------------------*/
 

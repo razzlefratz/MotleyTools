@@ -24,11 +24,11 @@
 #include "../classes/ocode.hpp"
 
 /*====================================================================*
- *   class variables;          
+ *   class variables;
  *--------------------------------------------------------------------*/
 
 const unsigned ocode::count = 0;
-const struct _code_ ocode::table [] = 
+const struct _code_ ocode::table [] =
 
 {
 	{

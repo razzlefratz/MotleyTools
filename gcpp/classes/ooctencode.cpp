@@ -18,7 +18,7 @@
 #include "../classes/ooctencode.hpp"
 
 /*====================================================================*
- *   constant definitions and declarations; 
+ *   constant definitions and declarations;
  *--------------------------------------------------------------------*/
 
 char const ooctencode::mdigit [] = "01234567";
@@ -27,7 +27,7 @@ char const ooctencode::mdigit [] = "01234567";
  *
  *   char * ooctencode::numeric(char *string,  const unsigned c);
  *
- *   encode the string argument with the three digit octal representation 
+ *   encode the string argument with the three digit octal representation
  *   of the character argument; terminate encoding with NUL;
  *
  *--------------------------------------------------------------------*/
@@ -46,7 +46,7 @@ char * ooctencode::numeric (char * string, const unsigned c)
  *
  *   char * ooctencode::literal(char *string,  const unsigned c)
  *
- *   encode the string argument with the three digit octal representation of 
+ *   encode the string argument with the three digit octal representation of
  *   the character argument; prefix encoding with an escape character;
  *
  *--------------------------------------------------------------------*/

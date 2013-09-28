@@ -28,11 +28,11 @@
 #include "../classes/omptidy.hpp"
 
 /*====================================================================*
- *   
+ *
  *   char const * program (void) const;
- *   
+ *
  *   get and set the program comment string;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 char const * omptidy::program (void) const
@@ -49,11 +49,11 @@ omptidy & omptidy::program (char const * program)
 }
 
 /*====================================================================*
- *   
+ *
  *   char const * project (void) const;
- *   
+ *
  *   get and set the project comment string;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 char const * omptidy::project (void) const
@@ -70,11 +70,11 @@ omptidy & omptidy::project (char const * project)
 }
 
 /*====================================================================*
- *   
+ *
  *   char const * package (void) const;
- *   
+ *
  *   get and set the package comment string;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 char const * omptidy::package (void) const
@@ -91,11 +91,11 @@ omptidy & omptidy::package (char const * package)
 }
 
 /*====================================================================*
- *   
+ *
  *   char const * release (void) const;
- *   
+ *
  *   get and set the release comment string;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 char const * omptidy::release (void) const
@@ -281,7 +281,7 @@ signed omptidy::tidy (signed c)
 omptidy & omptidy::example (void)
 
 {
-	char const * subjects [] = 
+	char const * subjects [] =
 	{
 		"NAME",
 		"SYNTAX",

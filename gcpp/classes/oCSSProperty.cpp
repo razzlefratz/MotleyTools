@@ -22,14 +22,14 @@
 /*====================================================================*
  *
  *   oCSSProperty ();
- *   
+ *
  *
  *--------------------------------------------------------------------*/
 
 oCSSProperty::oCSSProperty ()
 
 {
-	static char const * table [] = 
+	static char const * table [] =
 	{
 		"azimuth",
 		"background",
@@ -156,7 +156,7 @@ oCSSProperty::oCSSProperty ()
 		(char const *) (0)
 	};
 	okeywords::mtitle = "CSSProperty";
-	okeywords::mcount = sizeof (table) / sizeof (char const *) - 1;
+	okeywords::mcount = sizeof (table) / sizeof (char const *) -1;
 	okeywords::mtable = table;
 	okeywords::mcheck ();
 	return;

@@ -27,7 +27,7 @@
 #include "../classes/ostring.hpp"
 
 /*====================================================================*
- *   data initialization; 
+ *   data initialization;
  *--------------------------------------------------------------------*/
 
 ochrlwr ostring::chrlwr;
@@ -98,9 +98,9 @@ ostring & ostring::string (char const * string)
  *
  *   char const * first (size_t count);
  *
- *   return the first count characters of the current string as a 
+ *   return the first count characters of the current string as a
  *   string constant;
- * 
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -126,7 +126,7 @@ char const * ostring::first (size_t count)
  *   char const * final (size_t count);
  *
  *   return the final (right most) count characters as a string constant;
- * 
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -151,7 +151,7 @@ char const * ostring::final (size_t count)
  *
  *   char const * operator << (size_t count);
  *
- *   shift the current string count characters to the left; 
+ *   shift the current string count characters to the left;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -177,7 +177,7 @@ char const * ostring::operator << (size_t count)
  *
  *   char const * operator >> (size_t count);
  *
- *   shift the string count characters to the right; 
+ *   shift the string count characters to the right;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -396,8 +396,8 @@ bool ostring::incharset (char const * charset) const
 /*====================================================================*
  *
  *   ostring & read (char const * filename);
- * 
- *   read an entire input stream into the input buffer; 
+ *
+ *   read an entire input stream into the input buffer;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -425,7 +425,7 @@ ostring & ostring::read (char const * filename)
  *
  *   ostring & read ();
  *
- *   read the standard input stream into the input buffer; 
+ *   read the standard input stream into the input buffer;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -451,7 +451,7 @@ ostring & ostring::read ()
  *
  *   ostring & read (ifstream *stream);
  *
- *   read an entire input stream into the input buffer; 
+ *   read an entire input stream into the input buffer;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -520,7 +520,7 @@ ostring & ostring::trim (char const * charset)
 
 {
 	char * first = this->mstring;
-	char * final = this->mstring +  this->mlength - 1;
+	char * final = this->mstring +  this->mlength -1;
 	while ((first < final) && (std::strchr (charset, * first)))
 	{
 		first++;
@@ -544,10 +544,10 @@ ostring & ostring::trim (char const * charset)
  *   ostring & enclose (char const * example);
  *
  *   enclose the current string with the first and final characters from
- *   the example string argument; 
- * 
- *   for example, wrap ("[]") or wrap ("[...]") encloses the current string 
- *   in brackets and wrap ("|") or wrap ("||") encloses it in vertical bars; 
+ *   the example string argument;
+ *
+ *   for example, wrap ("[]") or wrap ("[...]") encloses the current string
+ *   in brackets and wrap ("|") or wrap ("||") encloses it in vertical bars;
  *   also, wrap ("/", wrap ("*")) creates a C language comment string;
  *
  *.  Motley Tools by Charles Maier
@@ -566,7 +566,7 @@ ostring & ostring::enclose (char const * example)
 		this->mstring = new char [this->mlength +  3];
 		this->mstring [0] = example [0];
 		std::strcpy (& this->mstring [1], buffer);
-		this->mstring [++ this->mlength] = example [length - 1];
+		this->mstring [++ this->mlength] = example [length -1];
 		this->mstring [++ this->mlength] = (char) (0);
 		delete [] buffer;
 	}
@@ -625,7 +625,7 @@ ostring & ostring::suffix (char const * string)
  *
  *   ostring & reduce (char const * charset);
  *
- *   replace stings of characters from the charset string argument with 
+ *   replace stings of characters from the charset string argument with
  *   the first character of the charset string argument;
  *
  *.  Motley Tools by Charles Maier
@@ -656,7 +656,7 @@ ostring & ostring::reduce (char const * charset)
  *
  *   ostring & select (char const * charset);
  *
- *   remove characters from the current string if they are not from the 
+ *   remove characters from the current string if they are not from the
  *   charset string argument;
  *
  *.  Motley Tools by Charles Maier
@@ -688,7 +688,7 @@ ostring & ostring::select (char const * charset)
  *
  *   ostring & remove (char const * charset);
  *
- *   remove characters from the current string if they are from the 
+ *   remove characters from the current string if they are from the
  *   charset string argument;
  *
  *.  Motley Tools by Charles Maier
@@ -758,8 +758,8 @@ ostring & ostring::toupper ()
  *
  *   ostring & clear ();
  *
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -805,7 +805,7 @@ signed ostring::compare (register char const * string1, register char const * st
 	}
 	if (! string1)
 	{
-		return (- 1);
+		return (-1);
 	}
 	if (! string2)
 	{
@@ -820,7 +820,7 @@ signed ostring::compare (register char const * string1, register char const * st
 		string1++;
 		string2++;
 	}
-	return (ct [(unsigned) (* string1)] < ct [(unsigned) (* string2)]? - 1: +  1);
+	return (ct [(unsigned) (* string1)] < ct [(unsigned) (* string2)]? -1: +  1);
 }
 
 /*====================================================================*

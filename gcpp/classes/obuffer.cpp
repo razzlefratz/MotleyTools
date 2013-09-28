@@ -27,9 +27,9 @@
 #include "../classes/obuffer.hpp"
 
 /*====================================================================*
- *   
+ *
  *   char const * offset() const
- *   
+ *
  *   return the string used to indent buffer on output;
  *
  *.  Motley Tools by Charles Maier
@@ -45,12 +45,12 @@ char const * obuffer::offset () const
 }
 
 /*====================================================================*
- *   
+ *
  *   obuffer & offset (char const *offset);
- *   
+ *
  *   define the string used to indent buffer on output;
  *
- *   this string often contains one tab or several spaces; 
+ *   this string often contains one tab or several spaces;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -68,9 +68,9 @@ obuffer & obuffer::offset (char const * offset)
 }
 
 /*====================================================================*
- *   
+ *
  *   char const * record () const
- *   
+ *
  *   return the string used to terminate buffer on output;
  *
  *.  Motley Tools by Charles Maier
@@ -86,9 +86,9 @@ char const * obuffer::record () const
 }
 
 /*====================================================================*
- *   
+ *
  *   obuffer & record (char const *record);
- *   
+ *
  *   define the string used to terminate buffer on output;
  *
  *   this string often contains one linefeed or semicolon;
@@ -110,9 +110,9 @@ obuffer & obuffer::record (char const * record)
 
 /*====================================================================*
  *
- *   obuffer & append (signed c); 
+ *   obuffer & append (signed c);
  *
- *   append character c to buffer and return the character value; 
+ *   append character c to buffer and return the character value;
  *   return but do not append EOF;
  *
  *   print a message and terminate the program on buffer overflow;
@@ -148,14 +148,14 @@ obuffer & obuffer::append (signed c)
 /*====================================================================*
  *
  *   obuffer & append (char const *string);
- * 
+ *
  *   append a string to the text buffer and return the string address;
  *   return (char const *)(0) on failure;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
- *   
+ *
  *--------------------------------------------------------------------*/
 
 obuffer & obuffer::append (char const * string)
@@ -171,7 +171,7 @@ obuffer & obuffer::append (char const * string)
 /*====================================================================*
  *
  *   obuffer & level (signed level);
- *   
+ *
  *   write text buffer to stdout preceded by the specified number of
  *   offset strings;
  *
@@ -195,9 +195,9 @@ obuffer & obuffer::level (signed level)
 /*====================================================================*
  *
  *   obuffer & space (signed space);
- *   
+ *
  *   write text buffer to stdout followed by the specified number of
- *   record strings; 
+ *   record strings;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -219,8 +219,8 @@ obuffer & obuffer::space (signed space)
 /*====================================================================*
  *
  *   obuffer & flush ();
- *   
- *   write text buffer to stdout;  
+ *
+ *   write text buffer to stdout;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

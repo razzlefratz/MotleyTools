@@ -25,12 +25,12 @@
 #include "../classes/oindent.hpp"
 
 /*====================================================================*
- *   
+ *
  *   oindent & space (signed space);
- *   
+ *
  *   set the line spacing; the line spacing determines how many times
- *   the record string is printed at the end of each line; 
- *   
+ *   the record string is printed at the end of each line;
+ *
  *--------------------------------------------------------------------*/
 
 oindent & oindent::space (signed space)
@@ -41,12 +41,12 @@ oindent & oindent::space (signed space)
 }
 
 /*====================================================================*
- *   
+ *
  *   signed space (signed space) const;
- *   
+ *
  *   set the line spacing; the line spacing determines how many times
- *   the record string is printed at the end of each line; 
- *   
+ *   the record string is printed at the end of each line;
+ *
  *--------------------------------------------------------------------*/
 
 signed oindent::space (void) const
@@ -56,12 +56,12 @@ signed oindent::space (void) const
 }
 
 /*====================================================================*
- *   
+ *
  *   oindent & level (signed level);
  *
  *   set the indent level; the indent level determines the number of
  *   time the indent string is printed at the start of each new line;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oindent & oindent::level (signed level)
@@ -72,12 +72,12 @@ oindent & oindent::level (signed level)
 }
 
 /*====================================================================*
- *   
+ *
  *   signed level (signed level) const;
  *
  *   get the indent level; the indent level determines the number of
  *   time the indent string is printed at the start of each new line;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed oindent::level (void) const
@@ -87,7 +87,7 @@ signed oindent::level (void) const
 }
 
 /*====================================================================*
- *   
+ *
  *   oindent & increment ();
  *
  *--------------------------------------------------------------------*/
@@ -100,7 +100,7 @@ oindent & oindent::increment ()
 }
 
 /*====================================================================*
- *   
+ *
  *   oindent & decrement ();
  *
  *--------------------------------------------------------------------*/
@@ -119,7 +119,7 @@ oindent & oindent::decrement ()
  *
  *   oindent & margin (char const *string);
  *
- *   set the margin string; the margin string is output at the start 
+ *   set the margin string; the margin string is output at the start
  *   of each line before the repeating indent string;
  *
  *--------------------------------------------------------------------*/
@@ -140,7 +140,7 @@ oindent & oindent::margin (char const * string)
  *
  *   char const * margin (void) const;
  *
- *   get the margin string; the margin string is output at the start 
+ *   get the margin string; the margin string is output at the start
  *   of each line before the repeating indent string;
  *
  *--------------------------------------------------------------------*/
@@ -156,7 +156,7 @@ char const * oindent::margin (void) const
  *   oindent & offset (char const * string);
  *
  *   set the indent string; the indent string may be output at the
- *   start of each line after the margin string; 
+ *   start of each line after the margin string;
  *
  *--------------------------------------------------------------------*/
 
@@ -177,7 +177,7 @@ oindent & oindent::offset (char const * string)
  *   char const * offset (void) const;
  *
  *   get the indent string; the indent string may be output at the
- *   start of each line after the margin string; 
+ *   start of each line after the margin string;
  *
  *--------------------------------------------------------------------*/
 
@@ -191,7 +191,7 @@ char const * oindent::offset (void) const
  *
  *   oindent & finish (char const *string);
  *
- *   set the finish string; the finish string is output at the end 
+ *   set the finish string; the finish string is output at the end
  *   of each line before the repeating record string;
  *
  *--------------------------------------------------------------------*/
@@ -212,7 +212,7 @@ oindent & oindent::finish (char const * string)
  *
  *   char const * finish (void) const;
  *
- *   get the finish string; the finish string is output at the end 
+ *   get the finish string; the finish string is output at the end
  *   of each line before the repeating record string;
  *
  *--------------------------------------------------------------------*/
@@ -228,7 +228,7 @@ char const * oindent::finish (void) const
  *   oindent & record (char const *string);
  *
  *   set the record string; the record string may be output at the
- *   end of each line after the finish string; 
+ *   end of each line after the finish string;
  *
  *--------------------------------------------------------------------*/
 
@@ -249,7 +249,7 @@ oindent & oindent::record (char const * string)
  *   char const * record (void) const;
  *
  *   get the record string; the record string may be output at the
- *   end of each line after the finish string; 
+ *   end of each line after the finish string;
  *
  *--------------------------------------------------------------------*/
 
@@ -260,13 +260,13 @@ char const * oindent::record (void) const
 }
 
 /*====================================================================*
- *   
- *   oindent & endline (void) 
- *   oindent & endline (signed space) 
+ *
+ *   oindent & endline (void)
+ *   oindent & endline (signed space)
  *   oindent & endline (char const * finish, char const * record, signed space);
- *   
+ *
  *   output the finish string followed by count record strings;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oindent & oindent::endline (void)
@@ -291,13 +291,13 @@ oindent & oindent::endline (char const * finish, char const * record, signed spa
 }
 
 /*====================================================================*
- *   
+ *
  *   oindent & newline (void)
- *   oindent & newline (signed level) 
+ *   oindent & newline (signed level)
  *   oindent & newline (char const * margin, char const * indent, signed level)
- *   
+ *
  *   output the margin string followed by level offset strings;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oindent & oindent::newline (void)
@@ -337,12 +337,12 @@ oindent & oindent::print (signed level, signed space, char const * string)
 }
 
 /*====================================================================*
- *   
+ *
  *   void print (char const *prefix, char const *suffix, signed count);
  *
  *   print a prefix string followed by count suffix strings; this is
  *   the lowest level indent method;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 void oindent::print (char const * prefix, char const * suffix, signed count)
@@ -354,7 +354,7 @@ void oindent::print (char const * prefix, char const * suffix, signed count)
 
 /*====================================================================*
  *
- *   oindent (void) 
+ *   oindent (void)
  *
  *
  *--------------------------------------------------------------------*/
@@ -379,7 +379,7 @@ oindent::oindent (void)
 
 /*====================================================================*
  *
- *   oindent (void) 
+ *   oindent (void)
  *
  *
  *--------------------------------------------------------------------*/

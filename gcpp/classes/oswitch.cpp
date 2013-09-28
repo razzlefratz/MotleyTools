@@ -24,10 +24,10 @@
 #include "../classes/oswitch.hpp"
 
 /*====================================================================*
- *   class variables;     
+ *   class variables;
  *--------------------------------------------------------------------*/
 
-char const * oswitch::mstate [] = 
+char const * oswitch::mstate [] =
 
 {
 	"0",
@@ -83,8 +83,8 @@ bool oswitch::state (char const * string, bool state)
 
 /*====================================================================*
  *
- *   oswitch() 
- *   
+ *   oswitch()
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -99,8 +99,8 @@ oswitch::oswitch ()
 
 /*====================================================================*
  *
- *   ~oswitch() 
- *   
+ *   ~oswitch()
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License

@@ -127,7 +127,7 @@ oformat & oformat::indent (unsigned column)
  *   oformat & oformat::offset(unsigned column);
  *
  *   define the text offset; the text offset cannot exceed the text length;
- *   the offset reset to the text indent after the buffer is flushed; 
+ *   the offset reset to the text indent after the buffer is flushed;
  *
  *--------------------------------------------------------------------*/
 
@@ -153,7 +153,7 @@ oformat & oformat::offset (unsigned column)
  *   oformat & oformat::table(unsigned offset);
  *
  *   this function advances the tempory indent to the next column that is
- *   an even multiple of the specified count; 
+ *   an even multiple of the specified count;
  *
  *--------------------------------------------------------------------*/
 
@@ -179,14 +179,14 @@ oformat & oformat::shift (unsigned count)
  *
  *   oformat & space(unsigned count);
  *
- *   remove trailing spaces then append the specified number of spaces; 
+ *   remove trailing spaces then append the specified number of spaces;
  *
  *--------------------------------------------------------------------*/
 
 oformat & oformat::space (unsigned count)
 
 {
-	while ((this->mcolumn > this->moffset) && (this->mbuffer [this->mcolumn - 1] == SP))
+	while ((this->mcolumn > this->moffset) && (this->mbuffer [this->mcolumn -1] == SP))
 	{
 		this->mcolumn--;
 	}

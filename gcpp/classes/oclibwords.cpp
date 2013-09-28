@@ -3,7 +3,7 @@
  *   oclibwords.cpp - definition of oclibwords class.
  *
  *   symbol table containing standard C library function names;
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -33,7 +33,7 @@
 oclibwords::oclibwords ()
 
 {
-	static char const * table [] = 
+	static char const * table [] =
 	{
 		"CHAR_BIT",
 		"CHAR_MAX",
@@ -208,7 +208,7 @@ oclibwords::oclibwords ()
 		(char const *) (0)
 	};
 	okeywords::mtitle = "clibwords";
-	okeywords::mcount = SIZEOF (table) - 1;
+	okeywords::mcount = SIZEOF (table) -1;
 	okeywords::mtable = table;
 	okeywords::mcheck ();
 	return;

@@ -30,7 +30,7 @@
 oHTMLAttributeNames::oHTMLAttributeNames ()
 
 {
-	static char const * table [] = 
+	static char const * table [] =
 	{
 		"abbr",
 		"accept",
@@ -155,7 +155,7 @@ oHTMLAttributeNames::oHTMLAttributeNames ()
 		(char const *) (0)
 	};
 	okeywords::mtitle = "HTMLAttribute";
-	okeywords::mcount = SIZEOF (table) - 1;
+	okeywords::mcount = SIZEOF (table) -1;
 	okeywords::mtable = table;
 	okeywords::mcheck ();
 	return;

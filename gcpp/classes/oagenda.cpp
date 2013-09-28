@@ -71,7 +71,7 @@ char const * oagenda::title () const
  *
  *   oagenda & oagenda::insert(char const *event);
  *
- *   insert the event string into the queue at the proper position 
+ *   insert the event string into the queue at the proper position
  *   based the event string value;
  *
  *--------------------------------------------------------------------*/
@@ -87,8 +87,8 @@ oagenda & oagenda::insert (char const * event)
  *
  *   oagenda & oagenda::insert(char const *event, char const *title);
  *
- *   insert the event and title into the heap at the proper position 
- *   based on the event string value; 
+ *   insert the event and title into the heap at the proper position
+ *   based on the event string value;
  *
  *--------------------------------------------------------------------*/
 
@@ -103,7 +103,7 @@ oagenda & oagenda::insert (char const * event, char const * title)
  *
  *   char const *oagenda::remove();
  *
- *   discard the current event; reorder the event queue; 
+ *   discard the current event; reorder the event queue;
  *
  *--------------------------------------------------------------------*/
 
@@ -131,8 +131,8 @@ oagenda & oagenda::clear ()
 
 /*====================================================================*
  *
- *   oagenda (signed order (char const *, char const *)) 
- *   
+ *   oagenda (signed order (char const *, char const *))
+ *
  *--------------------------------------------------------------------*/
 
 oagenda::oagenda (signed order (char const *, char const *))
@@ -144,8 +144,8 @@ oagenda::oagenda (signed order (char const *, char const *))
 
 /*====================================================================*
  *
- *   oagenda () 
- *   
+ *   oagenda ()
+ *
  *--------------------------------------------------------------------*/
 
 oagenda::oagenda ()
@@ -157,8 +157,8 @@ oagenda::oagenda ()
 
 /*====================================================================*
  *
- *   ~oagenda () 
- *   
+ *   ~oagenda ()
+ *
  *--------------------------------------------------------------------*/
 
 oagenda::~ oagenda ()

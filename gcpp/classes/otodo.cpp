@@ -61,7 +61,7 @@ otodo & otodo::title (char const * string)
  *   size_t otodo::index() const;
  *
  *   return the current list index; the list index is read only and may
- *   change after each list operation; 
+ *   change after each list operation;
  *
  *--------------------------------------------------------------------*/
 
@@ -90,7 +90,7 @@ size_t otodo::start () const
  *
  *   size_t otodo::count() const;
  *
- *   returns the number of items in the list; 
+ *   returns the number of items in the list;
  *
  *--------------------------------------------------------------------*/
 
@@ -105,7 +105,7 @@ size_t otodo::count () const
  *   size_t otodo::block() const;
  *
  *   the number of elements that will be added to the list when it next
- *   expands; 
+ *   expands;
  *
  *   this value increases after each expansion in a fibanocci progression;
  *
@@ -122,7 +122,7 @@ size_t otodo::block () const
  *   size_t otodo::limit() const;
  *
  *   the number of elements current available in the list; the list will
- *   automatically expand if the count exceeds the limit; 
+ *   automatically expand if the count exceeds the limit;
  *
  *   this value increases after each expansion in a fibanocci progression;
  *
@@ -153,7 +153,7 @@ oitem * otodo::item () const
  *
  *   oitem *otodo::items(size_t index) const;
  *
- *   return the object stored at the specified table position; return a 
+ *   return the object stored at the specified table position; return a
  *   null object pointer for invalid table positions;
  *
  *--------------------------------------------------------------------*/
@@ -169,7 +169,7 @@ oitem * otodo::items (size_t index) const
  *   bool otodo::defined(char const *string);
  *
  *   return true if the list contains an object having the same name as
- *   as the string argument; 
+ *   as the string argument;
  *
  *--------------------------------------------------------------------*/
 
@@ -183,8 +183,8 @@ bool otodo::defined (char const * string)
  *
  *   size_t otodo::indexof(char const *string);
  *
- *   return the index if the first object having the same name as the 
- *   string argument; return a value from mstart to mcount where mcount 
+ *   return the index if the first object having the same name as the
+ *   string argument; return a value from mstart to mcount where mcount
  *   means no such object found;
  *
  *--------------------------------------------------------------------*/
@@ -199,8 +199,8 @@ size_t otodo::indexof (char const * string)
  *
  *   size_t otodo::select(char const *string);
  *
- *   return the index if the first object having the same name as the 
- *   string argument; return a value from mstart to mcount where mcount 
+ *   return the index if the first object having the same name as the
+ *   string argument; return a value from mstart to mcount where mcount
  *   means no such object found;
  *
  *--------------------------------------------------------------------*/
@@ -220,7 +220,7 @@ otodo & otodo::select (char const * string)
 
 /*====================================================================*
  *
- *   oitem *otodo::item(char const *symbol) 
+ *   oitem *otodo::item(char const *symbol)
  *
  *
  *--------------------------------------------------------------------*/
@@ -291,7 +291,7 @@ otodo & otodo::appenditem (oitem * item)
  *
  *   otodo &otodo::removeitem(oitem *item);
  *
- *   remove the last item in mtable[]; return the object address; 
+ *   remove the last item in mtable[]; return the object address;
  *
  *--------------------------------------------------------------------*/
 
@@ -321,9 +321,9 @@ otodo & otodo::orderlist ()
 	{
 		size_t index = this->mindex;
 		oitem * entry = this->mtable [index];
-		while ((index > this->mstart) && std::strcmp (entry->name (), this->mtable [index - 1] ->name ()) > 0)
+		while ((index > this->mstart) && std::strcmp (entry->name (), this->mtable [index -1] ->name ()) > 0)
 		{
-			this->mtable [index] = this->mtable [index - 1];
+			this->mtable [index] = this->mtable [index -1];
 			index--;
 		}
 		this->mtable [index] = entry;

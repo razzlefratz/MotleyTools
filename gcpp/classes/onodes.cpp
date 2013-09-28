@@ -107,7 +107,7 @@ onodes & onodes::operator++ ()
  *
  *   onode * operator[] (signed index) const;
  *
- *   return the onode pointer stored at the given mtable[] position; 
+ *   return the onode pointer stored at the given mtable[] position;
  *   return a void pointer if mtable[] is empty;
  *
  *--------------------------------------------------------------------*/
@@ -122,7 +122,7 @@ onode * onodes::operator [] (size_t index) const
  *
  *   onode * onodes::node (size_t index) const
  *
- *   return the onode pointer stored at the given mtable[] position; 
+ *   return the onode pointer stored at the given mtable[] position;
  *   return a void pointer if mtable[] is empty;
  *
  *--------------------------------------------------------------------*/
@@ -137,7 +137,7 @@ onode * onodes::node (size_t index) const
  *
  *   onode * node () const;
  *
- *   return the onode pointer stored at the given mtable[] position; 
+ *   return the onode pointer stored at the given mtable[] position;
  *   return a void pointer if mtable[] is empty;
  *
  *--------------------------------------------------------------------*/

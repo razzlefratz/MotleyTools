@@ -2,9 +2,9 @@
  *
  *   olist.cpp - implementation of the olist class.
  *
- *   this object imlements an ordered list engine for oitem objects; it 
+ *   this object imlements an ordered list engine for oitem objects; it
  *   is used by oroster, ocatalog and oglossary object classes to store,
- *   select and fetch information; 
+ *   select and fetch information;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -66,7 +66,7 @@ olist & olist::title (char const * title)
  *
  *   unsigned count () const;
  *
- *   returns the number of items in the list; 
+ *   returns the number of items in the list;
  *
  *--------------------------------------------------------------------*/
 
@@ -109,8 +109,8 @@ unsigned olist::upper () const
  *
  *   oitem * item () const;
  *
- *   return the oitem pointer stored at the current list position; 
- *   return a void pointer if the current list position is mcount; 
+ *   return the oitem pointer stored at the current list position;
+ *   return a void pointer if the current list position is mcount;
  *
  *--------------------------------------------------------------------*/
 
@@ -124,7 +124,7 @@ oitem * olist::item () const
  *
  *   oitem * items (unsigned index) const;
  *
- *   return the oitem pointer stored at the specified list position; 
+ *   return the oitem pointer stored at the specified list position;
  *   return a void pointer if the specified list position is mcount;
  *
  *--------------------------------------------------------------------*/
@@ -139,7 +139,7 @@ oitem * olist::items (unsigned index) const
  *
  *   oitem * cycle (signed index) const;
  *
- *   return the oitem pointer stored at a relative list position; 
+ *   return the oitem pointer stored at a relative list position;
  *   return a void pointer if the list is empty;
  *
  *--------------------------------------------------------------------*/
@@ -183,8 +183,8 @@ oitem * olist::operator [] (signed index) const
  *
  *   bool defined (char const * symbol);
  *
- *   return true if mtable[] contains an object having the same name  
- *   as the symbol argument; 
+ *   return true if mtable[] contains an object having the same name
+ *   as the symbol argument;
  *
  *--------------------------------------------------------------------*/
 
@@ -198,8 +198,8 @@ bool olist::defined (char const * symbol)
  *
  *   bool defined (char const * symbol, char const * string);
  *
- *   return true if mtable[] contains an object having the same name 
- *   as the symbol argument and the same text as the string argument; 
+ *   return true if mtable[] contains an object having the same name
+ *   as the symbol argument and the same text as the string argument;
  *
  *--------------------------------------------------------------------*/
 
@@ -213,8 +213,8 @@ bool olist::defined (char const * symbol, char const * string)
  *
  *   unsigned indexof (char const * symbol);
  *
- *   return the index of an object having the same name as the symbol 
- *   argument; return an index from mstart to mcount where mcount means 
+ *   return the index of an object having the same name as the symbol
+ *   argument; return an index from mstart to mcount where mcount means
  *   no such object found;
  *
  *--------------------------------------------------------------------*/
@@ -229,8 +229,8 @@ unsigned olist::indexof (char const * symbol)
  *
  *   unsigned indexof (char const * symbol, char const * string);
  *
- *   return the index if an object having the same name as the symbol 
- *   argument and the same text as the string argument; return an index 
+ *   return the index if an object having the same name as the symbol
+ *   argument and the same text as the string argument; return an index
  *   from mstart to mcount where mcount means no such object found;
  *
  *--------------------------------------------------------------------*/
@@ -243,7 +243,7 @@ unsigned olist::indexof (char const * symbol, char const * string)
 
 /*====================================================================*
  *
- *   oitem * item (char const * symbol) 
+ *   oitem * item (char const * symbol)
  *
  *
  *--------------------------------------------------------------------*/
@@ -271,9 +271,9 @@ oitem * olist::item (char const * symbol, char const * string)
  *
  *   olist & select (char const * symbol);
  *
- *   align mindex to an mtable[] entry having the same name as the 
- *   symbol argument; set mindex to mcount if no matching entry is 
- *   found; 
+ *   align mindex to an mtable[] entry having the same name as the
+ *   symbol argument; set mindex to mcount if no matching entry is
+ *   found;
  *
  *--------------------------------------------------------------------*/
 
@@ -306,9 +306,9 @@ olist & olist::select (char const * symbol)
  *
  *   unsigned select (char const * symbol, char const * string);
  *
- *   align mindex to an mtable[] entry having the same name as the 
+ *   align mindex to an mtable[] entry having the same name as the
  *   symbol argument and the same text as the string argument; set
- *   mindex to mcount if no matching entry is found; 
+ *   mindex to mcount if no matching entry is found;
  *
  *--------------------------------------------------------------------*/
 
@@ -353,13 +353,13 @@ olist & olist::select (char const * symbol, char const * string)
  *
  *   olist & insertitem (moitem * item);
  *
- *   store a new item in mtable provided mlower is not less that 
+ *   store a new item in mtable provided mlower is not less that
  *   mupper;
  *
- *   mlower and mupper are used by the fetch method to locate an 
- *   item in mtable; if they cross then the item is missing; 
- *   otherwise, the item is present and should not be inserted 
- *   again; this is a simple check that can be defeated when 
+ *   mlower and mupper are used by the fetch method to locate an
+ *   item in mtable; if they cross then the item is missing;
+ *   otherwise, the item is present and should not be inserted
+ *   again; this is a simple check that can be defeated when
  *   needed;
  *
  *--------------------------------------------------------------------*/
@@ -383,7 +383,7 @@ olist & olist::insertitem (oitem * item)
 		}
 		for (this->mindex = this->mcount++; this->mindex > this->mlower; this->mindex--)
 		{
-			this->mtable [this->mindex] = this->mtable [this->mindex - 1];
+			this->mtable [this->mindex] = this->mtable [this->mindex -1];
 		}
 		this->mtable [this->mindex] = item;
 		this->mlower = this->mstart;
@@ -427,7 +427,7 @@ olist & olist::bound (char const * symbol)
 	if (this->defined (symbol))
 	{
 		this->mlower = this->mupper = this->mindex;
-		while ((this->mlower > this->mstart) && ((this->morder) (this->mtable [this->mindex] ->name (), this->mtable [this->mlower - 1] ->name ()) == 0))
+		while ((this->mlower > this->mstart) && ((this->morder) (this->mtable [this->mindex] ->name (), this->mtable [this->mlower -1] ->name ()) == 0))
 		{
 			this->mlower--;
 		}
@@ -443,8 +443,8 @@ olist & olist::bound (char const * symbol)
  *
  *   olist & clear ();
  *
- *   erase member mtaBle and reset counters; preserve members mtitle and 
- *   morder; 
+ *   erase member mtaBle and reset counters; preserve members mtitle and
+ *   morder;
  *
  *--------------------------------------------------------------------*/
 
@@ -488,7 +488,7 @@ olist::olist (signed order (char const *, char const *))
 /*====================================================================*
  *
  *   olist ();
- *   
+ *
  *--------------------------------------------------------------------*/
 
 olist::olist ()
@@ -510,8 +510,8 @@ olist::olist ()
 
 /*====================================================================*
  *
- *   ~olist () 
- *   
+ *   ~olist ()
+ *
  *--------------------------------------------------------------------*/
 
 olist::~ olist ()

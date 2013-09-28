@@ -29,7 +29,7 @@
 #include "../classes/ofileopen.hpp"
 
 /*====================================================================*
- *   class variables;    
+ *   class variables;
  *--------------------------------------------------------------------*/
 
 struct stat ofileopen::statinfo;
@@ -40,7 +40,7 @@ std::ofstream ofileopen::target;
  *
  *   unsigned versions (void) const;
  *
- *   return the maximum number of versions supported; 
+ *   return the maximum number of versions supported;
  *
  *--------------------------------------------------------------------*/
 
@@ -84,8 +84,8 @@ bool ofileopen::opensave (char const * filespec, char const * extender)
  *
  *   bool openedit (char const *filespec);
  *
- *   open the named file as stdout; create backup file having numeric 
- *   file extension; 
+ *   open the named file as stdout; create backup file having numeric
+ *   file extension;
  *
  *--------------------------------------------------------------------*/
 
@@ -165,10 +165,10 @@ bool ofileopen::permit (char const * filespec) const
 }
 
 /*====================================================================*
- *   
+ *
  *   bool filter (char const * filespec, char const * savespec);
  *
- *   
+ *
  *
  *--------------------------------------------------------------------*/
 
@@ -209,10 +209,10 @@ bool ofileopen::filter (char const * filespec, char const * savespec)
 }
 
 /*====================================================================*
- *   
+ *
  *   ofileopen & close (void);
  *
- *   close source and target file streams; 
+ *   close source and target file streams;
  *
  *--------------------------------------------------------------------*/
 
@@ -231,10 +231,10 @@ ofileopen & ofileopen::close (void)
 }
 
 /*====================================================================*
- *   
+ *
  *   ofileopen (unsigned limit);
  *
- *   initialize version limit and compute numeric field width; 
+ *   initialize version limit and compute numeric field width;
  *
  *--------------------------------------------------------------------*/
 
@@ -253,10 +253,10 @@ ofileopen::ofileopen (unsigned limit)
 }
 
 /*====================================================================*
- *   
+ *
  *   ofileopen (void);
  *
- *   initialize version limit and extension field width; 
+ *   initialize version limit and extension field width;
  *
  *--------------------------------------------------------------------*/
 
@@ -270,7 +270,7 @@ ofileopen::ofileopen (void)
 }
 
 /*====================================================================*
- *   
+ *
  *   ~ ofileopen (void);
  *
  *   Nothing to do;

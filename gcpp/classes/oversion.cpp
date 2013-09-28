@@ -241,7 +241,7 @@ oversion::oversion ()
 }
 
 /*====================================================================*
- *   
+ *
  *   ~oversion ();
  *
  *.  Motley Tools by Charles Maier

@@ -28,9 +28,9 @@
  *
  *   char const *oregex::select(char const *string) const;
  *
- *   search the string argument for the first and longest substring 
- *   that satisfies this regular expression; return a pointer to the 
- *   start of that substring; all text preceding this address is the 
+ *   search the string argument for the first and longest substring
+ *   that satisfies this regular expression; return a pointer to the
+ *   start of that substring; all text preceding this address is the
  *   pattern prefix;
  *
  *--------------------------------------------------------------------*/
@@ -56,9 +56,9 @@ char const * oregex::select (char const * string) const
  *
  *   char const *oregex::span(char const *string) const;
  *
- *   return a pointer to the character following the first and 
- *   longest prefix of the string argument that satisfies this 
- *   regular espression; all text from this address to the end 
+ *   return a pointer to the character following the first and
+ *   longest prefix of the string argument that satisfies this
+ *   regular espression; all text from this address to the end
  *   of the string is the pattern suffix;
  *
  *--------------------------------------------------------------------*/
@@ -477,7 +477,7 @@ oregex::oregex (char const * string)
 
 /*====================================================================*
  *
- *   ~oregex () 
+ *   ~oregex ()
  *
  *
  *

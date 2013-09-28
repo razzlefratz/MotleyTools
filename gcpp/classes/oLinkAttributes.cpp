@@ -40,7 +40,7 @@ oLinkAttributes & oLinkAttributes::write ()
 /*====================================================================*
  *
  *   oLinkAttributes ();
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oLinkAttributes::oLinkAttributes ()
@@ -60,7 +60,7 @@ oLinkAttributes::oLinkAttributes ()
 /*====================================================================*
  *
  *   ~oLinkAttributes ();
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oLinkAttributes::~ oLinkAttributes ()

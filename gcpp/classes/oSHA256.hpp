@@ -2,7 +2,7 @@
  *
  *   oSHA256.hpp - oSHA256 class declaration;
  *
- *   implement 256-bit encryption according to FIPS180-2 sec 5.3.2 by 
+ *   implement 256-bit encryption according to FIPS180-2 sec 5.3.2 by
  *   encoding variable-length input into fixed-length, 32 byte digest;
  *
  *.  Motley Tools by Charles Maier
@@ -36,7 +36,7 @@
 #define oSHA256_DIGEST_LENGTH 256/8
 
 /*====================================================================*
- *   class datatypes;  
+ *   class datatypes;
  *--------------------------------------------------------------------*/
 
 typedef unsigned char byte;

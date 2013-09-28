@@ -4,8 +4,8 @@
  *
  *   escape character translation table; each entry represents a character
  *   and contains either it's own character value or that of another where
- *   the other is the intended one; for example, '\b' means a backspace so 
- *   the location for 'b' contains 8 which is the code for backspace; 
+ *   the other is the intended one; for example, '\b' means a backspace so
+ *   the location for 'b' contains 8 which is the code for backspace;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -55,7 +55,7 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned char oescape::mtable [UCHAR_MAX +  1] = 
+unsigned char oescape::mtable [UCHAR_MAX +  1] =
 
 {
 	0,
@@ -338,7 +338,7 @@ unsigned oescape::define (signed c, signed e)
  *
  *   unsigned oescape::unescaped (signed c) const;
  *
- *   return the equivalent an ascii character of an escape character 
+ *   return the equivalent an ascii character of an escape character
  *   or itself, if no equivalent is defined;
  *
  *.  Motley Tools by Charles Maier
@@ -357,7 +357,7 @@ unsigned oescape::unescape (signed c)
  *
  *   char * unescape (char *string) const;
  *
- *   scan a string for character escape sequences of the form '\ddd', 
+ *   scan a string for character escape sequences of the form '\ddd',
  *   '\c' and '^c'; replace each with an ASCII character value; return
  *   the string argument as the function value;
  *
@@ -512,8 +512,8 @@ char * oescape::unescape (register char * string)
 /*====================================================================*
  *
  *   oescape ();
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -529,8 +529,8 @@ oescape::oescape ()
 /*====================================================================*
  *
  *   ~oescape ();
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License

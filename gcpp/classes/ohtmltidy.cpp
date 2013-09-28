@@ -27,16 +27,16 @@
 #include "../classes/oascii.hpp"
 
 /*====================================================================*
- *   class variables;        
+ *   class variables;
  *--------------------------------------------------------------------*/
 
 oHTMLEmptyElements ohtmltidy::htmlempty;
 
 /*====================================================================*
- *   
+ *
  *   char const * element () const;
- *   char const * attribute () const 
- *   char const * value () const 
+ *   char const * attribute () const
+ *   char const * value () const
  *
  *--------------------------------------------------------------------*/
 
@@ -141,7 +141,7 @@ signed ohtmltidy::page (signed c)
  *
  *   read and write an entire <?xml ... ?> segment including opening
  *   and closing brackets;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed ohtmltidy::xml (signed c) const
@@ -170,7 +170,7 @@ signed ohtmltidy::php (signed c) const
 /*====================================================================*
  *
  *   signed asp (signed c) const
- *   
+ *
  *   read and write entire <% ... %> asp segment including opening
  *   and closing brackets;
  *
@@ -294,9 +294,9 @@ signed ohtmltidy::sgml (signed c)
 /*====================================================================*
  *
  *   signed xhtml (signed c);
- *   
+ *
  *   [/] element [ attribute [ = value ]] [ attribute [ = value]] [/]
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed ohtmltidy::xhtml (signed c)
@@ -425,9 +425,9 @@ signed ohtmltidy::comment (signed c) const
 /*====================================================================*
  *
  *   signed cdata (signed c) const;
- *   
+ *
  *   read and write cdata;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed ohtmltidy::cdata (signed c) const
@@ -455,8 +455,8 @@ signed ohtmltidy::cdata (signed c) const
 
 /*====================================================================*
  *
- *   signed enquote (signed c, signed e) 
- *   
+ *   signed enquote (signed c, signed e)
+ *
  *--------------------------------------------------------------------*/
 
 signed ohtmltidy::enquote (signed c, signed e)
@@ -476,8 +476,8 @@ signed ohtmltidy::enquote (signed c, signed e)
 
 /*====================================================================*
  *
- *   signed dequote (signed c, signed e) 
- *   
+ *   signed dequote (signed c, signed e)
+ *
  *--------------------------------------------------------------------*/
 
 signed ohtmltidy::dequote (signed c, signed e)
@@ -498,7 +498,7 @@ signed ohtmltidy::dequote (signed c, signed e)
 /*====================================================================*
  *
  *   signed nmtoken (signed c)
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed ohtmltidy::nmtoken (signed c)
@@ -518,7 +518,7 @@ signed ohtmltidy::nmtoken (signed c)
 /*====================================================================*
  *
  *   signed unknown (signed c);
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed ohtmltidy::unknown (signed c)
@@ -536,7 +536,7 @@ signed ohtmltidy::unknown (signed c)
 
 /*====================================================================*
  *
- *   ohtmltidy & print () 
+ *   ohtmltidy & print ()
  *
  *--------------------------------------------------------------------*/
 

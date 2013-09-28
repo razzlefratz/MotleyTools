@@ -29,13 +29,13 @@
 #include "../classes/odiscard.hpp"
 
 /*====================================================================*
- *   
+ *
  *   signed context (signed c, char const * charset) const;
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed odiscard::context (signed c, char const * charset) const
@@ -53,10 +53,10 @@ signed odiscard::context (signed c, char const * charset) const
  *   signed context (signed c, signed o, signed e) const;
  *
  *   discard context terminated by an inverted pair occuring at the
- *   same nested level as character (c);  
+ *   same nested level as character (c);
  *
  *   examples: {*.  Motley Tools by Charles Maier
- * 
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -91,7 +91,7 @@ signed odiscard::_context (signed c, signed o, signed e) const
  *   nested level as character (c);
  *
  *   examples: (...) [...] {...}
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -118,7 +118,7 @@ signed odiscard::_context (signed c, signed e) const
 }
 
 /*====================================================================*
- *   
+ *
  *   signed context (signed c) const;
  *
  *   discard current character (c) and return the next character at
@@ -128,7 +128,7 @@ signed odiscard::_context (signed c, signed e) const
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed odiscard::context (signed c) const
@@ -196,10 +196,10 @@ signed odiscard::comment (signed c) const
  *
  *   signed odiscard::content (signed c, signed o, signed e) const;
  *
- *   discard content terminated by an inverted pair;  
+ *   discard content terminated by an inverted pair;
  *
  *   examples: {*.  Motley Tools by Charles Maier
- * 
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -229,7 +229,7 @@ signed odiscard::_content (signed c, signed o, signed e) const
 /*====================================================================*
  *
  *   signed odiscard::content (signed c, signed e) const;
- *   
+ *
  *   discard content; content can contain anything but nothing is
  *   special; comments, literals and escaped characters have no
  *   significance;
@@ -264,7 +264,7 @@ signed odiscard::_content (signed c, signed e) const
  *   signed odiscard::command (signed c) const;
  *   signed odiscard::command (signed c, signed e) const;
  *
- *   discard processor directives; directives can contain comments, 
+ *   discard processor directives; directives can contain comments,
  *   literals and escaped characters;
  *
  *.  Motley Tools by Charles Maier
@@ -319,8 +319,8 @@ signed odiscard::_command (signed c, signed e) const
  *   discard literal strings; literals can contain anything except
  *   terminator (e) but escaped terminators are ignored;
  *
- *   examples: "..." '...' &...; #...\n 
- *   
+ *   examples: "..." '...' &...; #...\n
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -362,7 +362,7 @@ signed odiscard::_literal (signed c, signed e) const
  *   the escaped character, if appropriate;
  *
  *   examples: "\n" "\t" "\\"
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License

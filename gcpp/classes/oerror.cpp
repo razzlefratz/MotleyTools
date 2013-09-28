@@ -33,7 +33,7 @@
 #include "../classes/oerror.hpp"
 
 /*====================================================================*
- *   program variables; 
+ *   program variables;
  *--------------------------------------------------------------------*/
 
 extern char const * program_name;
@@ -43,7 +43,7 @@ extern char const * program_name;
  *   void oerror::print (char const *format, ...);
  *
  *   print error messages using a variable argument list; prefix all
- *   messages with the program_name string; suffix all messages with 
+ *   messages with the program_name string; suffix all messages with
  *   the text returned by strerror(error);
  *
  *--------------------------------------------------------------------*/
@@ -184,7 +184,7 @@ void oerror::error (int status, char const * string, char const * format, ...)
  *   print error messages using a variable argument list; prefix all
  *   messages with the program_name string; suffix messages with the
  *   text returned by strerror(error) if error is not 0; exit with
- *   code if code is not 0; include filename and lineno; 
+ *   code if code is not 0; include filename and lineno;
  *
  *   included for compatibility with the GNU C library;
  *
@@ -221,10 +221,10 @@ void oerror::error_at_line (int status, errno_t number, char const * file, unsig
 }
 
 /*====================================================================*
- *   
+ *
  *   oerror (void);
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 oerror::oerror (void)
@@ -250,9 +250,9 @@ oerror::oerror (void)
 }
 
 /*====================================================================*
- *   
+ *
  *   ~ oerror (void);
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oerror::~ oerror (void)

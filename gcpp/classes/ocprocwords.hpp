@@ -2,7 +2,7 @@
  *
  *   ocprocwords.hpp - declaration of ocprocwords class;
  *
- *   this class implements the symbol table containg C language macro 
+ *   this class implements the symbol table containg C language macro
  *   processor strings;
  *
  *.  Motley Tools by Charles Maier
@@ -22,7 +22,7 @@
 #include "../classes/okeywords.hpp"
 
 /*====================================================================*
- *   table offsets;    
+ *   table offsets;
  *--------------------------------------------------------------------*/
 
 #define oCPROCWORD_O_DEFINE                    0

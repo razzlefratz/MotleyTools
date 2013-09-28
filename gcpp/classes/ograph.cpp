@@ -45,8 +45,8 @@ char const * ograph::name ()
  *
  *   ograph & name (char const * name);
  *
- *   assign a new string as the name only if the new string differs 
- *   from the old string; 
+ *   assign a new string as the name only if the new string differs
+ *   from the old string;
  *
  *--------------------------------------------------------------------*/
 
@@ -152,7 +152,7 @@ ograph & ograph::populate (char colon, char comma)
 }
 
 /*====================================================================*
- *   
+ *
  *   void discover (void);
  *
  *   search the node table and traverse each node to discover all
@@ -182,12 +182,12 @@ ograph & ograph::discover (void)
 }
 
 /*====================================================================*
- *   
+ *
  *   ograph & traverse (onode *node);
  *
- *   perform a depth-first search of the edge table starting from 
- *   the specified node; set the enter count before and the leave 
- *   count after the node is searched; ignore visited nodes; 
+ *   perform a depth-first search of the edge table starting from
+ *   the specified node; set the enter count before and the leave
+ *   count after the node is searched; ignore visited nodes;
  *
  *--------------------------------------------------------------------*/
 
@@ -205,8 +205,8 @@ ograph & ograph::traverse (onode * node)
 #endif
 
 /*
- * if this node is present in the open node stack then it is currently 
- * being analysed and forms a circular reference; 
+ * if this node is present in the open node stack then it is currently
+ * being analysed and forms a circular reference;
  */
 
 	for (onode * temp = this->mnode; temp; temp = temp->node ())
@@ -222,7 +222,7 @@ ograph & ograph::traverse (onode * node)
 	}
 
 /*
- * if the level or order are non-zero then this node has already been 
+ * if the level or order are non-zero then this node has already been
  * traversed through another relationship; no need to traverse again;
  */
 
@@ -273,11 +273,11 @@ ograph & ograph::traverse (onode * node)
 }
 
 /*====================================================================*
- * 
+ *
  *   ograph & trace(onode * temp, onode *node);
  *
  *   print circular reference chain by dumping the open node stack
- *   maintained by method traverse(); 
+ *   maintained by method traverse();
  *
  *--------------------------------------------------------------------*/
 
@@ -293,10 +293,10 @@ ograph & ograph::trace (onode * node, onode * stop)
 }
 
 /*====================================================================*
- * 
+ *
  *   ograph & clear (void);
  *
- *   clear this node and subordinate names; 
+ *   clear this node and subordinate names;
  *
  *--------------------------------------------------------------------*/
 
@@ -314,7 +314,7 @@ ograph & ograph::clear (void)
 }
 
 /*====================================================================*
- * 
+ *
  *   ograph (void)
  *
  *
@@ -334,7 +334,7 @@ ograph::ograph (void)
 }
 
 /*====================================================================*
- * 
+ *
  *   ~ograph (void)
  *
  *

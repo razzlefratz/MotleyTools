@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   oSpanElement - HTML SPAN object; 
+ *   oSpanElement - HTML SPAN object;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -45,7 +45,7 @@ char const * oSpanElement::ElementName () const
 
 /*====================================================================*
  *
- *   oSpanElement & StartTag () 
+ *   oSpanElement & StartTag ()
  *
  *   print element start tag on stdout;
  *
@@ -69,7 +69,7 @@ oSpanElement & oSpanElement::StartTag ()
 
 /*====================================================================*
  *
- *   oSpanElement & EmptyTag () 
+ *   oSpanElement & EmptyTag ()
  *
  *   print element empty tag on stdout;
  *
@@ -94,7 +94,7 @@ oSpanElement & oSpanElement::EmptyTag ()
 
 /*====================================================================*
  *
- *   oSpanElement & EndTag () 
+ *   oSpanElement & EndTag ()
  *
  *   print element end tag on stdout;
  *

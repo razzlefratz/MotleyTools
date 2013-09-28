@@ -28,7 +28,7 @@ oindex odate::mindex;
  *   class variables;
  *--------------------------------------------------------------------*/
 
-char const * odate::months [MONTHS_IN_YEAR +  1] = 
+char const * odate::months [MONTHS_IN_YEAR +  1] =
 
 {
 	"January",
@@ -46,7 +46,7 @@ char const * odate::months [MONTHS_IN_YEAR +  1] =
 	(char const *) (0)
 };
 
-char const * odate::weekdays [DAYS_IN_WEEK +  1] = 
+char const * odate::weekdays [DAYS_IN_WEEK +  1] =
 
 {
 	"Sunday",
@@ -63,7 +63,7 @@ char const * odate::weekdays [DAYS_IN_WEEK +  1] =
  *
  *   char const * monthname (unsigned month);
  *
- *   return the name of the month; 
+ *   return the name of the month;
  *
  *--------------------------------------------------------------------*/
 
@@ -78,7 +78,7 @@ char const * odate::monthname (signed month)
  *
  *   char const * weekdayname (unsigned weekday);
  *
- *   return the name of the weekday; 
+ *   return the name of the weekday;
  *
  *--------------------------------------------------------------------*/
 
@@ -112,7 +112,7 @@ bool odate::isleap (unsigned year)
  *
  *   return the weekday for a given date as integer 0 thru 6; the
  *   month and date are specified as zero based integers; this is
- *   done to support values in struct tm as defined in time.h; 
+ *   done to support values in struct tm as defined in time.h;
  *
  *   the function value can be the index into the string vector
  *   sv_wkday[] to retrieve the weekday name string;
@@ -142,7 +142,7 @@ unsigned odate::dayofweek (unsigned year, signed month, signed day)
 	}
 	century = year / 100;
 	year = year % 100;
-	day += (26 * month - 1) / 10 +  5 * year / 4 +  century / 4 - 2 * century +  1;
+	day += (26 * month -1) / 10 +  5 * year / 4 +  century / 4 - 2 * century +  1;
 	return (odate::mindex.qmod (day, DAYS_IN_WEEK));
 }
 
@@ -157,7 +157,7 @@ unsigned odate::dayofweek (unsigned year, signed month, signed day)
 unsigned odate::dayofyear (unsigned year, signed month, signed day)
 
 {
-	static const signed days [MONTHS_IN_YEAR] = 
+	static const signed days [MONTHS_IN_YEAR] =
 	{
 		0,
 		31,
@@ -199,7 +199,7 @@ unsigned odate::dayofyear (unsigned year, signed month, signed day)
 unsigned odate::endofmonth (unsigned year, signed month)
 
 {
-	static const unsigned days [MONTHS_IN_YEAR] = 
+	static const unsigned days [MONTHS_IN_YEAR] =
 	{
 		31,
 		28,

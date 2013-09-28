@@ -2,7 +2,7 @@
  *
  *   oAttribute.hpp - oAttribute class declaration;
  *
- *   this object implements a generic markup language attribute 
+ *   this object implements a generic markup language attribute
  *   having a name and a text property; the name property is read
  *   only but the text property is read and write;
  *

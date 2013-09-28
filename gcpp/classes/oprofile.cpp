@@ -284,7 +284,7 @@ oprofile & oprofile::newtext ()
  *
  *   perform a case insensitive compare of string with the input and
  *   ignore embedded and trailing blank space;
- * 
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -336,7 +336,7 @@ oprofile & oprofile::newchar ()
  *   oprofile & newline();
  *
  *   discard the rest of the line by reading and discarding characters
- *   until a newline or EOF detected; 
+ *   until a newline or EOF detected;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -357,10 +357,10 @@ oprofile & oprofile::newline ()
 
 /*====================================================================*
  *
- *   oprofile() 
- *   
+ *   oprofile()
+ *
  *   initialize object with default buffer;
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -379,9 +379,9 @@ oprofile::oprofile ()
 
 /*====================================================================*
  *
- *   ~oprofile() 
- *   
- *   
+ *   ~oprofile()
+ *
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License

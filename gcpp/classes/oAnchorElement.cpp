@@ -23,7 +23,7 @@
 #include "../classes/oAnchorElement.hpp"
 
 /*====================================================================*
- *   static data definitions; 
+ *   static data definitions;
  *--------------------------------------------------------------------*/
 
 char const * oAnchorElement::mscope = "";
@@ -45,7 +45,7 @@ char const * oAnchorElement::ElementName () const
 
 /*====================================================================*
  *
- *   char const * StartTag() 
+ *   char const * StartTag()
  *
  *   print element start tag with any attributes on stdout;
  *
@@ -120,8 +120,8 @@ oAnchorElement & oAnchorElement::EndTag ()
 /*====================================================================*
  *
  *   oAnchorElement ();
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 oAnchorElement::oAnchorElement ()
@@ -133,8 +133,8 @@ oAnchorElement::oAnchorElement ()
 /*====================================================================*
  *
  *   ~oAnchorElement ();
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 oAnchorElement::~ oAnchorElement ()

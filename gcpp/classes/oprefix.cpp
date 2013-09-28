@@ -27,7 +27,7 @@
 /*====================================================================*
  *
  *   oprefix * lookup (char const *symbol);
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -58,8 +58,8 @@ oprefix * oprefix::lookup (char const * symbol)
 
 /*====================================================================*
  *
- *   char const *assume (char const *symbol) const 
- *   
+ *   char const *assume (char const *symbol) const
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -113,8 +113,8 @@ char const * oprefix::assume (char const * symbol) const
 
 /*====================================================================*
  *
- *   char const *revise (char const *symbol) const 
- *   
+ *   char const *revise (char const *symbol) const
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -171,8 +171,8 @@ char const * oprefix::revise (char const * symbol) const
 
 /*====================================================================*
  *
- *   char const * prefix (char const *symbol) const 
- *   
+ *   char const * prefix (char const *symbol) const
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -218,8 +218,8 @@ char const * oprefix::prefix (char const * symbol) const
 
 /*====================================================================*
  *
- *   char const *suffix (char const *symbol) const 
- *   
+ *   char const *suffix (char const *symbol) const
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -261,8 +261,8 @@ char const * oprefix::suffix (char const * symbol) const
 
 /*====================================================================*
  *
- *   oprefix & define (char const *symbol, char const *string) 
- *   
+ *   oprefix & define (char const *symbol, char const *string)
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -314,7 +314,7 @@ oprefix & oprefix::define (char const * symbol, char const * string)
 /*====================================================================*
  *
  *   oprefix & report (char *buffer, size_t length);
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -350,7 +350,7 @@ oprefix & oprefix::report (char * buffer, size_t length)
 /*====================================================================*
  *
  *   oprefix (const unsigned c);
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -372,8 +372,8 @@ oprefix::oprefix (const unsigned c)
 /*====================================================================*
  *
  *   oprefix ();
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 oprefix::oprefix ()
@@ -391,8 +391,8 @@ oprefix::oprefix ()
 /*====================================================================*
  *
  *   ~oprefix ();
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 oprefix::~ oprefix ()

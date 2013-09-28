@@ -3,7 +3,7 @@
  *   oheap.hpp - interface for the oheap class.
  *
  *   this object implements a head using sequential storage; it is used
- *   t   by the oagenda object class; 
+ *   t   by the oagenda object class;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

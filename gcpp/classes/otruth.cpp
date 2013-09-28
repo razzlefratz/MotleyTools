@@ -28,7 +28,7 @@
  *--------------------------------------------------------------------*/
 
 const size_t otruth::count = 8;
-const struct _code_ otruth::table [] = 
+const struct _code_ otruth::table [] =
 
 {
 	{

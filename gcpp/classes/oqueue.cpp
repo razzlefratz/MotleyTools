@@ -2,7 +2,7 @@
  *
  *   oqueue.cpp - implementation of the oqueue class.
  *
- *   this object implements a dequeue; objects may be added or removed 
+ *   this object implements a dequeue; objects may be added or removed
  *   from either end; A LIFO or stack can be implemented by adding and
  *   removing from one end only. A FIRO or queue can be implemented by
  *   adding to one end and removing from the other end only.
@@ -14,17 +14,17 @@
  *   oqueue->unwind() removes the final item and returns it.
  *
  *   the dequeue is implemented as a bidirectional circular linked list;
- *   an empty dequeue is one item linked to itself in both directions; 
+ *   an empty dequeue is one item linked to itself in both directions;
  *   an empty dequeue is detected either by oqueue == oqueue->first()
  *   or oqueue == oqueue->final(); otherwise, members present.
  *
  *   oqueue->IsEmpty() performs this test and returns true or false;
  *
- *   when a new item is added, a oqueue object is created that points  
+ *   when a new item is added, a oqueue object is created that points
  *   to it and that object is inserted or appended by swapping pointers
  *   the first and final dequeue objects are always at hand for access;
  *
- *   as a design decision, looking at the first or final object deletes 
+ *   as a design decision, looking at the first or final object deletes
  *   it from the dequeue. For example, a stack can be implemented by:
  *
  *   oqueue *list = new oqueue();    ... make list head.
@@ -62,10 +62,10 @@
  *
  *   unsigned oqueue::count() const;
  *
- *   return the number of oqueue objects this dequeue; the number is 
+ *   return the number of oqueue objects this dequeue; the number is
  *   one less than the actual number because empty dequeues have one
- *   member that points to itself in both directions and is not part 
- *   of the dequeue; 
+ *   member that points to itself in both directions and is not part
+ *   of the dequeue;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -110,7 +110,7 @@ bool oqueue::empty () const
  *
  *   void * oqueue::data () const;
  *
- *   return a pointer to the object stored in this oqueue instance;  
+ *   return a pointer to the object stored in this oqueue instance;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -128,7 +128,7 @@ void * oqueue::data () const
  *
  *   oqueue *oqueue::head () const;
  *
- *   return a pointer to the next oqueue object in the dequeue; 
+ *   return a pointer to the next oqueue object in the dequeue;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -254,9 +254,9 @@ oqueue & oqueue::unwind ()
  *
  *   oqueue &attach (oqueue *queue);
  *
- *   Exchange (ie; swap or switch) the prior and after pointers of 
- *   two oqueue objects. This simple operation may be used to split 
- *   one oqueue into two separate queues or merge two queues into 
+ *   Exchange (ie; swap or switch) the prior and after pointers of
+ *   two oqueue objects. This simple operation may be used to split
+ *   one oqueue into two separate queues or merge two queues into
  *   one.
  *
  *.  Motley Tools by Charles Maier

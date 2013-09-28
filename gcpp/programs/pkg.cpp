@@ -33,7 +33,7 @@
 #endif
 
 /*====================================================================*
- *   program constants;  
+ *   program constants;
  *--------------------------------------------------------------------*/
 
 #define PKG_B_ARCHIVE (1 << 0)
@@ -43,7 +43,7 @@
 #define PKG_B_TRAILER (1 << 4)
 
 /*====================================================================*
- *   program variables;  
+ *   program variables;
  *--------------------------------------------------------------------*/
 
 opackage package;
@@ -90,7 +90,7 @@ static void function (char const * string, oflagword * flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"apkrex:",
 		oPUTOPTV_S_DIVINE,

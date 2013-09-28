@@ -2,9 +2,9 @@
  *
  *   otodo.hpp - interface for the otodo class;
  *
- *   this object imlements an ordered list engine for oitem objects; it 
+ *   this object imlements an ordered list engine for oitem objects; it
  *   is used by oroster, ocatalog and oglossary object classes to store,
- *   select and fetch information; 
+ *   select and fetch information;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

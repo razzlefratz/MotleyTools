@@ -42,8 +42,8 @@ onode * onode::node () const
  *
  *   onode & node (onode * node);
  *
- *   assign a new string to the mnode member only when the new string is 
- *   different from the old string; 
+ *   assign a new string to the mnode member only when the new string is
+ *   different from the old string;
  *
  *--------------------------------------------------------------------*/
 
@@ -72,8 +72,8 @@ char const * onode::name () const
  *
  *   onode & name (char const * name);
  *
- *   assign a new string to the mname member only when the new string is 
- *   different from the old string; 
+ *   assign a new string to the mname member only when the new string is
+ *   different from the old string;
  *
  *--------------------------------------------------------------------*/
 
@@ -102,8 +102,8 @@ char const * onode::text () const
  *
  *   onode & text (char const * text);
  *
- *   assign a new string to the mtext member only when the new string is 
- *   different from the old string; 
+ *   assign a new string to the mtext member only when the new string is
+ *   different from the old string;
  *
  *--------------------------------------------------------------------*/
 
@@ -132,7 +132,7 @@ void * onode::data () const
  *
  *   onode & data (void const *data);
  *
- *   assign a new value to the mdata pointer property; 
+ *   assign a new value to the mdata pointer property;
  *
  *--------------------------------------------------------------------*/
 
@@ -272,7 +272,7 @@ onode & onode::clear ()
  *
  *   onode (char const *name)
  *
- *   
+ *
  *--------------------------------------------------------------------*/
 
 onode::onode (char const * name)
@@ -293,7 +293,7 @@ onode::onode (char const * name)
  *
  *   onode ()
  *
- *   
+ *
  *--------------------------------------------------------------------*/
 
 onode::onode ()
@@ -314,7 +314,7 @@ onode::onode ()
  *
  *   ~onode ()
  *
- *   
+ *
  *--------------------------------------------------------------------*/
 
 onode::~ onode ()

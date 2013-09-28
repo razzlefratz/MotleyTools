@@ -27,13 +27,13 @@
 #include "../classes/owebpage.hpp"
 
 /*====================================================================*
- *   data initialization; 
+ *   data initialization;
  *--------------------------------------------------------------------*/
 
 osession session;
 
 /*====================================================================*
- * 
+ *
  *   char const * title (void) const;
  *
  *   return the page title as a constant string;
@@ -47,8 +47,8 @@ char const * owebpage::title (void) const
 }
 
 /*====================================================================*
- * 
- *   owebpage & title (char const * title) 
+ *
+ *   owebpage & title (char const * title)
  *
  *   replace current title with another if they differ;
  *
@@ -62,7 +62,7 @@ owebpage & owebpage::title (char const * title)
 }
 
 /*====================================================================*
- * 
+ *
  *   char const * stylesheet (void) const;
  *
  *   return the stylesheet url as a constant character string;
@@ -76,7 +76,7 @@ char const * owebpage::stylesheet (void) const
 }
 
 /*====================================================================*
- * 
+ *
  *   owebpage & stylesheet (char const * stylesheet);
  *
  *   replace the current stylesheet url with another if they differ;
@@ -93,7 +93,7 @@ owebpage & owebpage::stylesheet (char const * stylesheet)
 /*====================================================================*
  *
  *   void css2 (void);
- *   
+ *
  *   print a compatible CSS stylesheet on stdout so that element and
  *   property names match HTML output;
  *
@@ -117,7 +117,7 @@ owebpage & owebpage::css2 (void)
 }
 
 /*====================================================================*
- * 
+ *
  *   owebpage & PageHeader (void);
  *
  *
@@ -146,7 +146,7 @@ owebpage & owebpage::PageHeader (void)
 }
 
 /*====================================================================*
- *   
+ *
  *   owebpage & BodyHeader (void);
  *
  *   print the page header;
@@ -162,7 +162,7 @@ owebpage & owebpage::BodyHeader (void)
 }
 
 /*====================================================================*
- *   
+ *
  *   owebpage & LinkHeader (void);
  *
  *   print the upper link division containing PREV, HOME and NEXT links;
@@ -187,7 +187,7 @@ owebpage & owebpage::LinkHeader (void)
 }
 
 /*====================================================================*
- *   
+ *
  *   owebpage & MarkStart (void);
  *
  *   print a content prefix tag;
@@ -202,7 +202,7 @@ owebpage & owebpage::MarkStart (void)
 }
 
 /*====================================================================*
- *   
+ *
  *   owebpage & MarkEnd (void);
  *
  *   print a content suffix tag;
@@ -217,7 +217,7 @@ owebpage & owebpage::MarkEnd (void)
 }
 
 /*====================================================================*
- *   
+ *
  *   owebpage & LinkFooter (void);
  *
  *   print the lower link division containing PREV, HOME and NEXT links;
@@ -242,11 +242,11 @@ owebpage & owebpage::LinkFooter (void)
 }
 
 /*====================================================================*
- *   
+ *
  *   owebpage & BodyFooter (void);
  *
  *   print the page footer; the footer identifies the source and data of
- *   publication plus other information; 
+ *   publication plus other information;
  *
  *--------------------------------------------------------------------*/
 
@@ -283,8 +283,8 @@ owebpage & owebpage::PageFooter (void)
 /*====================================================================*
  *
  *   owebpage ();
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 owebpage::owebpage (void)
@@ -302,8 +302,8 @@ owebpage::owebpage (void)
 /*====================================================================*
  *
  *   ~owebpage (void);
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 owebpage::~ owebpage (void)

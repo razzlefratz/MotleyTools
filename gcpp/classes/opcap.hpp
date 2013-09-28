@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   opcap.hpp - interface for the opcap class  
+ *   opcap.hpp - interface for the opcap class
  *
  *   host interface information;
  *

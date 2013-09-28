@@ -2,27 +2,27 @@
  *
  *   oethernet.cpp - oethernet class definition;
  *
- *   implement a standard Ethernet header consisting of peer address, 
- *   host address and ethertype; provide methods to encode and decode 
+ *   implement a standard Ethernet header consisting of peer address,
+ *   host address and ethertype; provide methods to encode and decode
  *   external memory;
  *
- *   This software and documentation is the property of Intellon 
- *   Corporation, Ocala, Florida. It is provided 'as is' without 
- *   expressed or implied warranty of any kind to anyone for any 
- *   reason. Intellon assumes no responsibility or liability for 
- *   errors or omissions in the software or documentation and 
- *   reserves the right to make changes without notification. 
- *   
- *   Intellon customers may modify and distribute the software 
- *   without obligation to Intellon. Since use of this software 
- *   is optional, users shall bear sole responsibility and 
- *   liability for any consequences of it's use. 
+ *   This software and documentation is the property of Intellon
+ *   Corporation, Ocala, Florida. It is provided 'as is' without
+ *   expressed or implied warranty of any kind to anyone for any
+ *   reason. Intellon assumes no responsibility or liability for
+ *   errors or omissions in the software or documentation and
+ *   reserves the right to make changes without notification.
+ *
+ *   Intellon customers may modify and distribute the software
+ *   without obligation to Intellon. Since use of this software
+ *   is optional, users shall bear sole responsibility and
+ *   liability for any consequences of it's use.
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
  *
- *   Contributor(s): 
+ *   Contributor(s):
  *	    Charles Maier <charles.maier@intellon.com>
  *
  *--------------------------------------------------------------------*/
@@ -55,7 +55,7 @@
  *   class constants;
  *--------------------------------------------------------------------*/
 
-byte const oethernet::BroadcastAddress [ETHER_ADDR_LEN] = 
+byte const oethernet::BroadcastAddress [ETHER_ADDR_LEN] =
 
 {
 	0xFF,
@@ -67,9 +67,9 @@ byte const oethernet::BroadcastAddress [ETHER_ADDR_LEN] =
 };
 
 /*====================================================================*
- *   
+ *
  *   size_t HeaderLength (void) const;
- *   
+ *
  *   return the length of an encoded Ethernet header in bytes;
  *
  *--------------------------------------------------------------------*/
@@ -81,12 +81,12 @@ size_t oethernet::HeaderLength (void) const
 }
 
 /*====================================================================*
- *   
+ *
  *   void * ExportHeader (void * memory) const;
  *
- *   encode external memory with an Ethernet header and return the 
+ *   encode external memory with an Ethernet header and return the
  *   address of the next unencoded memory byte;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 void * oethernet::ExportHeader (void * memory) const
@@ -99,12 +99,12 @@ void * oethernet::ExportHeader (void * memory) const
 }
 
 /*====================================================================*
- *   
+ *
  *   void const * ImportHeader (void * memory);
  *
  *   decode external memory containing an Ethernet header and return
  *   the address of the next undecoded memory byte;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 void const * oethernet::ImportHeader (void const * memory)
@@ -117,7 +117,7 @@ void const * oethernet::ImportHeader (void const * memory)
 }
 
 /*====================================================================*
- *   
+ *
  *   void * ExportPeerAddress (void * memory) const;
  *
  *   encode external memory with the peer hardware address and return
@@ -133,9 +133,9 @@ void * oethernet::ExportPeerAddress (void * memory) const
 }
 
 /*====================================================================*
- *   
+ *
  *   void * ExportHostAddress (void * memory) const;
- *   
+ *
  *   encode external memory with the host hardware address and return
  *   the address of the next unencoded memory byte;
  *
@@ -165,12 +165,12 @@ void * oethernet::ExportProtocol (void * memory) const
 }
 
 /*====================================================================*
- *   
+ *
  *   void const * ImportPeerAddress (void const * memory);
  *
  *   decode external memory containing the peer hardware address and
  *   return the address of the next undecoded byte;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 void const * oethernet::ImportPeerAddress (void const * memory)
@@ -181,12 +181,12 @@ void const * oethernet::ImportPeerAddress (void const * memory)
 }
 
 /*====================================================================*
- *   
+ *
  *   void const * ImportHostAddress (void const * memory);
- *   
+ *
  *   decode external memory containing the host hardware address and
  *   return the address of the next undecoded byte;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 void const * oethernet::ImportHostAddress (void const * memory)
@@ -197,12 +197,12 @@ void const * oethernet::ImportHostAddress (void const * memory)
 }
 
 /*====================================================================*
- *   
+ *
  *   void const * ImportProtocol (void const * memory);
- *   
+ *
  *   decode external memory containing the Ethernet protocol and
  *   return the address of the next undecoded byte;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 void const * oethernet::ImportProtocol (void const * memory)
@@ -213,11 +213,11 @@ void const * oethernet::ImportProtocol (void const * memory)
 }
 
 /*====================================================================*
- *   
+ *
  *   byte const * PeerAddress (void) const;
  *
  *   return the binary peer address location;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 byte const * oethernet::PeerAddress (void) const
@@ -227,11 +227,11 @@ byte const * oethernet::PeerAddress (void) const
 }
 
 /*====================================================================*
- *   
+ *
  *   byte const * HostAddress (void) const;
  *
  *   return the binary host address location;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 byte const * oethernet::HostAddress (void) const
@@ -246,8 +246,8 @@ byte const * oethernet::HostAddress (void) const
  *
  *   return the Ethernet protocol as an integer in host byte order;
  *
- *   the Ethernet protocol is stored internally in network byte order 
- *   so that it can be encoded/decoded and imported/exported directly 
+ *   the Ethernet protocol is stored internally in network byte order
+ *   so that it can be encoded/decoded and imported/exported directly
  *   without modification;
  *
  *--------------------------------------------------------------------*/
@@ -259,14 +259,14 @@ uint16_t oethernet::Protocol (void) const
 }
 
 /*====================================================================*
- *   
+ *
  *   oethernet & SetProtocol (uint16_t protocol);
- *   
- *   accept a new Ethernet protocol specified as an integer in host 
- *   byte order; 
- *   
- *   the Ethernet protocol is stored internally in network byte order 
- *   so that it may be encoded/decoded and imported/exported directly 
+ *
+ *   accept a new Ethernet protocol specified as an integer in host
+ *   byte order;
+ *
+ *   the Ethernet protocol is stored internally in network byte order
+ *   so that it may be encoded/decoded and imported/exported directly
  *   without modification;
  *
  *--------------------------------------------------------------------*/
@@ -279,11 +279,11 @@ oethernet & oethernet::SetProtocol (uint16_t protocol)
 }
 
 /*====================================================================*
- *   
+ *
  *   char const * PeerAddressString (void) const;
  *
  *   return the peer address string location;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 char const * oethernet::PeerAddressString (void) const
@@ -295,11 +295,11 @@ char const * oethernet::PeerAddressString (void) const
 }
 
 /*====================================================================*
- *   
+ *
  *   char const * HostAddressString (void) const;
- *   
+ *
  *   return the host address string location;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 char const * oethernet::HostAddressString (void) const
@@ -311,11 +311,11 @@ char const * oethernet::HostAddressString (void) const
 }
 
 /*====================================================================*
- *   
+ *
  *   char const * ProtocolString (void) const;
- *   
+ *
  *   return the protocol string location;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 char const * oethernet::ProtocolString (void) const
@@ -349,7 +349,7 @@ oethernet & oethernet::Print ()
  *   oethernet (uint16_t protocol);
  *
  *   clear peer and host hardware addresses; set protocol to default
- *   in network byte order; 
+ *   in network byte order;
  *
  *--------------------------------------------------------------------*/
 

@@ -46,7 +46,7 @@ bool oscantext::end () const
  *   oscantext & copy (char const * string);
  *
  *   copy string into the input buffer; reset pointer, counters and objects;
- *  
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -72,8 +72,8 @@ oscantext & oscantext::copy (char const * string)
 /*====================================================================*
  *
  *   oscantext & read (char const * filename);
- * 
- *   read an entire input stream into the input buffer; 
+ *
+ *   read an entire input stream into the input buffer;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -101,7 +101,7 @@ oscantext & oscantext::read (char const * filename)
  *
  *   oscantext & read (ifstream * stream);
  *
- *   read an entire input stream into the input buffer; 
+ *   read an entire input stream into the input buffer;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -124,7 +124,7 @@ oscantext & oscantext::read (std::ifstream * stream)
  *
  *   oscantext & read ();
  *
- *   read the standard input stream into the input buffer; 
+ *   read the standard input stream into the input buffer;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -147,7 +147,7 @@ oscantext & oscantext::read ()
  *
  *   bool isempty () const;
  *
- *   return true if the input buffer is exhausted; 
+ *   return true if the input buffer is exhausted;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -185,7 +185,7 @@ char oscantext::character () const
  *
  *   return true if the token string matches the literal string argument;
  *   this function is essentially strncmp () coded inline for speed;
- * 
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -231,7 +231,7 @@ size_t oscantext::tokensize () const
  *   return the buffer address; enlarge the buffer to accomodate
  *   longer tokens, as needed; this speeds access to the current
  *   token because the internal token buffer is reused, avoiding
- *   the overhead of repeated reallocation; 
+ *   the overhead of repeated reallocation;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -278,7 +278,7 @@ char const * oscantext::savetoken ()
  *
  *   oscantext & readtoken (char buffer[], size_t length);
  *
- *   copy the current token into a user supplied buffer and return 
+ *   copy the current token into a user supplied buffer and return
  *   the object address; truncate the token, if needed;
  *
  *.  Motley Tools by Charles Maier
@@ -378,7 +378,7 @@ bool oscantext::isalnum () const
  *
  *   bool isident () const;
  *
- *   return true if the token is an identifier ("[A-Za-z0-9$_]");             
+ *   return true if the token is an identifier ("[A-Za-z0-9$_]");
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -486,7 +486,7 @@ bool oscantext::isclass (unsigned c) const
  *
  *   return true if the class character is a member of the character set
  *   string argument; this function is essentially strchr () coded inline
- *   for speed; 
+ *   for speed;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -508,10 +508,10 @@ bool oscantext::isclass (char const * charset) const
  *
  *   oscantext & flush ();
  *
- *   flush the current token string by advancing the start pointer 
- *   to the break pointer and counting characters as we go; 
+ *   flush the current token string by advancing the start pointer
+ *   to the break pointer and counting characters as we go;
  *
- *   clear the token string and the class character in preparation 
+ *   clear the token string and the class character in preparation
  *   for the next scan;
  *
  *.  Motley Tools by Charles Maier
@@ -559,7 +559,7 @@ oscantext & oscantext::scanmatch ()
  *
  *   oscantext &scanbreak ();
  *
- *   collect the break character unless the input is exhausted; 
+ *   collect the break character unless the input is exhausted;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -745,7 +745,7 @@ oscantext & oscantext::scanident ()
  *
  *   oscantext & scanwhile ();
  *
- *   collect characters that match the token start character; return 
+ *   collect characters that match the token start character; return
  *   the object address;
  *
  *.  Motley Tools by Charles Maier
@@ -861,7 +861,7 @@ oscantext & oscantext::scanuntil ()
  *
  *   oscantext & scanuntil (unsigned c);
  *
- *   collect characters that do not match character c; return the 
+ *   collect characters that do not match character c; return the
  *   object address;
  *
  *.  Motley Tools by Charles Maier
@@ -955,7 +955,7 @@ oscantext & oscantext::scanquote ()
  *
  *   oscantext & scanquote (unsigned c);
  *
- *   collect characters that do not match character c and escaped 
+ *   collect characters that do not match character c and escaped
  *   characters that do; return the object address;
  *
  *.  Motley Tools by Charles Maier
@@ -981,7 +981,7 @@ oscantext & oscantext::scanquote (unsigned c)
  *
  *   oscantext & scanquote (char const * charset);
  *
- *   collect characters that are not in charset and escaped 
+ *   collect characters that are not in charset and escaped
  *   escaped characters that are; return the object address;
  *
  *.  Motley Tools by Charles Maier
@@ -1008,7 +1008,7 @@ oscantext & oscantext::scanquote (char const * charset)
  *   oscantext & scanblock ();
  *
  *   scan characters until an inverted pair is detected; the pair
- *   must oppose (occur in the opposite order as) the first two 
+ *   must oppose (occur in the opposite order as) the first two
  *   token characters;
  *
  *.  Motley Tools by Charles Maier
@@ -1038,7 +1038,7 @@ oscantext & oscantext::scanblock ()
  *   must occur in the same order as the first two literal characters;
  *
  *   this method collects text between inverted delimiter pairs like:
- *   
+ *
  *   "{* ... *}" or "-- ... --"
  *
  *.  Motley Tools by Charles Maier
@@ -1104,7 +1104,7 @@ oscantext & oscantext::scangroup (unsigned c)
 }
 
 /*====================================================================*
- *   
+ *
  *   oscantext &oscantext::scantoken ();
  *
  *   collect the next space, alphanumeric or numeric token from the input
@@ -1209,8 +1209,8 @@ oscantext & oscantext::translate (char const * oldtoken, char const * newtoken)
  *   bool ismatch () const;
  *
  *   return true if the current character matches the first token
- *   character; this provides a generic means of detecting literal  
- *   string terminators, double-character sequences and so on; 
+ *   character; this provides a generic means of detecting literal
+ *   string terminators, double-character sequences and so on;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -1244,9 +1244,9 @@ bool oscantext::isbreak (unsigned c) const
  *
  *   bool isbreak (char const * charset) const;
  *
- *   return true if the break character is in charset; 
+ *   return true if the break character is in charset;
  *
- *   this function is essentially strchr () coded inline for speed; 
+ *   this function is essentially strchr () coded inline for speed;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -1328,9 +1328,9 @@ bool oscantext::havebreak (unsigned c)
  *
  *   bool havebreak (char const * charset);
  *
- *   keep the current character if is is a member of the character 
- *   set string argument and return true; otherwise, do nothing and 
- *   return false; 
+ *   keep the current character if is is a member of the character
+ *   set string argument and return true; otherwise, do nothing and
+ *   return false;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -1354,7 +1354,7 @@ bool oscantext::havebreak (char const * charset)
  *   bool havebreak (bool type (unsigned));
  *
  *   keep the current character if it is of the specified type and
- *   return true; otherwise, do nothing and return false; 
+ *   return true; otherwise, do nothing and return false;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -1395,8 +1395,8 @@ char oscantext::tokentype () const
  *
  *   oscantext & class (char c);
  *
- *   set the class character value; the scantoken method resets this 
- *   character but an application can change it to anything it likes; 
+ *   set the class character value; the scantoken method resets this
+ *   character but an application can change it to anything it likes;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -1475,7 +1475,7 @@ bool oscantext::haveclass (char const * charset)
  *   else if (scanner.have token ("private"))
  *   {
  *   }
- *   else ... 
+ *   else ...
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -1498,7 +1498,7 @@ bool oscantext::havetoken (char const * literal)
  *
  *   oscantext & nexttoken ();
  *
- *   unconditionally collect the next non-blank token; 
+ *   unconditionally collect the next non-blank token;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -1520,7 +1520,7 @@ oscantext & oscantext::nexttoken ()
  *   oscantext & cleanse ();
  *
  *   normalize the input buffer by replacing control characters with
- *   ascii spaces; 
+ *   ascii spaces;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -1551,7 +1551,7 @@ oscantext & oscantext::cleanse ()
  *   oscantext & trimtoken ();
  *
  *   move start and break pointers to discard leading and trailing
- *   space from the token string before inspecting or retrieving a 
+ *   space from the token string before inspecting or retrieving a
  *   token;
  *
  *   char *string = scanner.scanuntil (";").trim ().toketext ();
@@ -1570,7 +1570,7 @@ oscantext & oscantext::trimtoken ()
 		this->count (* this->mstart);
 		this->mstart++;
 	}
-	while ((this->mstart < this->mbreak) && oascii::isspace (* (this->mbreak - 1)))
+	while ((this->mstart < this->mbreak) && oascii::isspace (* (this->mbreak -1)))
 	{
 		this->mbreak--;
 	}
@@ -1600,7 +1600,7 @@ oscantext & oscantext::trimtoken (char const * charset)
 	{
 		this->count (* this->mstart++);
 	}
-	while ((this->mbreak > this->mstart) && ! std::strchr (charset, * (this->mbreak - 1)))
+	while ((this->mbreak > this->mstart) && ! std::strchr (charset, * (this->mbreak -1)))
 	{
 		this->mbreak--;
 	}
@@ -1611,7 +1611,7 @@ oscantext & oscantext::trimtoken (char const * charset)
  *
  *   oscantext &uppercase ();
  *
- *   convert token string to lower case; this method may be called 
+ *   convert token string to lower case; this method may be called
  *   either before or after retrieving token text;
  *
  *.  Motley Tools by Charles Maier
@@ -1631,7 +1631,7 @@ oscantext & oscantext::uppercase ()
  *
  *   oscantext &lowercase ();
  *
- *   convert token string to lower case; this method may be called 
+ *   convert token string to lower case; this method may be called
  *   either before or after retrieving token text;
  *
  *.  Motley Tools by Charles Maier
@@ -1729,10 +1729,10 @@ oscantext & oscantext::print (std::ofstream * stream)
  *
  *   oscantext & unget ();
  *
- *   return the current token to the input buffer, allowing rescan 
+ *   return the current token to the input buffer, allowing rescan
  *   if the current scan is unsatisfactory;
  *
- *   clear the token string and the class character in preparation 
+ *   clear the token string and the class character in preparation
  *   for the next scan;
  *
  *.  Motley Tools by Charles Maier
@@ -1757,7 +1757,7 @@ oscantext & oscantext::unget ()
  *   return one character to the input buffer, making it the current
  *   character;
  *
- *   clear the token string and the class character in preparation 
+ *   clear the token string and the class character in preparation
  *   for the next scan;
  *
  *.  Motley Tools by Charles Maier
@@ -1786,7 +1786,7 @@ oscantext & oscantext::unget (char c)
  *   return a string to the imput buffer, causing it to be scanned
  *   next;
  *
- *   clear the token string and the class character in preparation 
+ *   clear the token string and the class character in preparation
  *   for the next scan;
  *
  *.  Motley Tools by Charles Maier
@@ -1881,8 +1881,8 @@ oscantext & oscantext::enumerate ()
  *
  *   oscantext & reset ();
  *
- *   delete input and token buffers and allocate new ones according 
- *   to length; 
+ *   delete input and token buffers and allocate new ones according
+ *   to length;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -1955,7 +1955,7 @@ oscantext::oscantext ()
 /*====================================================================*
  *
  *   oscantext (ifstream * stream);
- * 
+ *
  *   open the named file and read contents into the input buffer;
  *
  *.  Motley Tools by Charles Maier

@@ -27,9 +27,9 @@
 /*====================================================================*
  *
  *   oinclude & state (void) const;
- *   
+ *
  *   return the tri-state switch value as -1, 0 or 1;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed oinclude::state (void) const
@@ -41,9 +41,9 @@ signed oinclude::state (void) const
 /*====================================================================*
  *
  *   signed state(signed state);
- *   
+ *
  *   set the tri-state switch value to -1, 0 or 1;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oinclude & oinclude::state (signed state)
@@ -55,7 +55,7 @@ oinclude & oinclude::state (signed state)
 	}
 	if (state < 0)
 	{
-		state = - 1;
+		state = -1;
 	}
 	this->mstate = state;
 	return (* this);
@@ -64,10 +64,10 @@ oinclude & oinclude::state (signed state)
 /*====================================================================*
  *
  *   oinclude & filename (char const * string);
- *   
+ *
  *   set include guard title to the basename portion of the filename
- *   string; 
- *   
+ *   string;
+ *
  *--------------------------------------------------------------------*/
 
 oinclude & oinclude::filename (char const * string)
@@ -154,9 +154,9 @@ oinclude & oinclude::label (char const * label)
  *
  *   oinclude & cheader (void);
  *
- *   insert an include guard plus one blank line if tri-state switch 
+ *   insert an include guard plus one blank line if tri-state switch
  *   mstate is positive then toggle the switch;
- *  
+ *
  *--------------------------------------------------------------------*/
 
 oinclude & oinclude::header (void)

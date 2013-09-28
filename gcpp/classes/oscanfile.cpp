@@ -411,7 +411,7 @@ oscanfile & oscanfile::scanbreak (unsigned c)
  *   oscanfile & oscanbreak (char const *charset);
  *
  *   append the break character to the token buffer is present in
- *   charset; 
+ *   charset;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -500,7 +500,7 @@ oscanfile & oscanfile::scanwhile (unsigned c)
  *   oscanfile & scanwhile (char const *charset);
  *
  *   append break characters to the token buffer while they match
- *   are present in charset; 
+ *   are present in charset;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -523,7 +523,7 @@ oscanfile & oscanfile::scanwhile (char const * charset)
  *   oscanfile & scanspace ();
  *
  *   append break characters to the token buffer while they are
- *   white space charactes; 
+ *   white space charactes;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -1145,7 +1145,7 @@ oscanfile & oscanfile::trimtoken (char const * charset)
 	{
 		first++;
 	}
-	while ((final > first) && strchr (charset, this->mtoken [final - 1]))
+	while ((final > first) && strchr (charset, this->mtoken [final -1]))
 	{
 		final--;
 	}
@@ -1176,7 +1176,7 @@ oscanfile & oscanfile::trimtoken ()
 	{
 		first++;
 	}
-	while ((final > first) && oascii::isspace (this->mtoken [final - 1]))
+	while ((final > first) && oascii::isspace (this->mtoken [final -1]))
 	{
 		final--;
 	}

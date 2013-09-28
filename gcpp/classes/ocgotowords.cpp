@@ -33,7 +33,7 @@
 ocgotowords::ocgotowords ()
 
 {
-	static char const * table [] = 
+	static char const * table [] =
 	{
 		"default",
 		"private",
@@ -42,7 +42,7 @@ ocgotowords::ocgotowords ()
 		(char const *) (0)
 	};
 	okeywords::mtitle = "cgotowords";
-	okeywords::mcount = SIZEOF (table) - 1;
+	okeywords::mcount = SIZEOF (table) -1;
 	okeywords::mtable = table;
 	okeywords::mcheck ();
 	return;

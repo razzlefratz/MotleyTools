@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   chtml.cpp - print C language source file as html page; 
+ *   chtml.cpp - print C language source file as html page;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -77,7 +77,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"s:S",
 		oPUTOPTV_S_FUNNEL,

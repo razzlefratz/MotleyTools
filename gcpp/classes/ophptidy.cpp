@@ -31,7 +31,7 @@
  *
  *   signed ophptidy::page (signed c);
  *
- *   search for PHP source; ignore asp source; 
+ *   search for PHP source; ignore asp source;
  *
  *--------------------------------------------------------------------*/
 
@@ -208,7 +208,7 @@ signed ophptidy::program (signed c)
 /*====================================================================*
  *
  *   signed ophptidy::statement (signed c);
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed ophptidy::statement (signed c)
@@ -233,12 +233,12 @@ signed ophptidy::statement (signed c)
 	}
 	else if (! std::strcmp (string, "case"))
 	{
-		oindent::print (this->mlevel - 1, 0, string);
+		oindent::print (this->mlevel -1, 0, string);
 		c = ophptidy::context (c, ':');
 	}
 	else if (c == ':')
 	{
-		oindent::print (this->mlevel - 1, 0, string);
+		oindent::print (this->mlevel -1, 0, string);
 		c = osource::keep (c);
 		c = osource::find (c);
 		std::cout.put (' ');
@@ -254,13 +254,13 @@ signed ophptidy::statement (signed c)
 
 /*====================================================================*
  *
- *   signed context (signed o, char const * charset) const; 
+ *   signed context (signed o, char const * charset) const;
  *
  *   read stdin and buffer characters until one of the chracters in
  *   charset is read; return that character as the function value;
  *
  *   this function essentially collects an entire statement in the
- *   buffer; it is similar to other context methods but checks for 
+ *   buffer; it is similar to other context methods but checks for
  *   multiple terminators instead of one and returns the terminator
  *   instead of the following character;
  *
@@ -304,10 +304,10 @@ signed ophptidy::_context (signed c, signed o, signed e) const
 
 /*====================================================================*
  *
- *   signed context (signed c, signed e) const; 
+ *   signed context (signed c, signed e) const;
  *
  *   read and buffer nested expressions and literals until character
- *   (e) is encountered; buffer (e) and return the next character; 
+ *   (e) is encountered; buffer (e) and return the next character;
  *
  *--------------------------------------------------------------------*/
 
@@ -333,7 +333,7 @@ signed ophptidy::_context (signed c, signed e) const
 
 /*====================================================================*
  *
- *   signed context (signed  c) const; 
+ *   signed context (signed  c) const;
  *
  *--------------------------------------------------------------------*/
 

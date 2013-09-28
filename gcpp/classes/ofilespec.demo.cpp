@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   ofilespec.demo.cpp 
+ *   ofilespec.demo.cpp
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -41,7 +41,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"",
 		"filespec [filespec] ...",
@@ -52,7 +52,7 @@ int main (int argc, char const * argv [])
 	ogetoptv getopt (1);
 	oputoptv putopt;
 	signed c;
-	while ((c = getopt.getoptv (argc, argv, optv)) != - 1)
+	while ((c = getopt.getoptv (argc, argv, optv)) != -1)
 	{
 		switch (c)
 		{

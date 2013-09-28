@@ -44,7 +44,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * usage [] = 
+	static char const * usage [] =
 	{
 		"oformat.demo",
 		"h",
@@ -56,7 +56,7 @@ int main (int argc, char const * argv [])
 	ogetopt options (1);
 	oformat format;
 	signed c;
-	while ((c = options.getopt (argc, argv, usage [PUTOPT_I_OPTIONS])) != - 1)
+	while ((c = options.getopt (argc, argv, usage [PUTOPT_I_OPTIONS])) != -1)
 	{
 		switch (c)
 		{

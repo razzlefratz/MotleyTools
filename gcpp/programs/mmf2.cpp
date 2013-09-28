@@ -52,7 +52,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"c:f:ulp",
 		oPUTOPTV_S_FUNNEL,

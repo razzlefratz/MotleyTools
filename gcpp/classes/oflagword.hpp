@@ -3,7 +3,7 @@
  *   oflagword.hpp - interface for the oflagword class;
  *
  *   bitmapped flagword manager; this class can be inherited by other
- *   classes that need a flagword; 
+ *   classes that need a flagword;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

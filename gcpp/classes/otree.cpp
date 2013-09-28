@@ -26,7 +26,7 @@
 #include "../../gcc/strlib/strlib.h"
 
 /*====================================================================*
- * 
+ *
  *   char const * nodename () const;
  *
  *   return the node nodename as a string constant;
@@ -44,7 +44,7 @@ char const * otree::nodename () const
 }
 
 /*====================================================================*
- * 
+ *
  *   char const * nodetext () const;
  *
  *   return the node string as a string constant;
@@ -62,7 +62,7 @@ char const * otree::nodetext () const
 }
 
 /*====================================================================*
- * 
+ *
  *   otree & nodetext (char const * nodetext);
  *
  *.  Motley Tools by Charles Maier
@@ -84,7 +84,7 @@ otree & otree::nodetext (char const * nodetext)
 }
 
 /*====================================================================*
- * 
+ *
  *   void *nodedata () const;
  *
  *.  Motley Tools by Charles Maier
@@ -100,7 +100,7 @@ void * otree::nodedata () const
 }
 
 /*====================================================================*
- * 
+ *
  *   otree & nodedata (void *object);
  *
  *.  Motley Tools by Charles Maier
@@ -117,7 +117,7 @@ otree & otree::nodedata (void * nodedata)
 }
 
 /*====================================================================*
- * 
+ *
  *   long index () const;
  *
  *.  Motley Tools by Charles Maier
@@ -133,7 +133,7 @@ long otree::index () const
 }
 
 /*====================================================================*
- * 
+ *
  *   otree & index (long index);
  *
  *.  Motley Tools by Charles Maier
@@ -150,7 +150,7 @@ otree & otree::index (long index)
 }
 
 /*====================================================================*
- * 
+ *
  *   long count () const;
  *
  *.  Motley Tools by Charles Maier
@@ -166,7 +166,7 @@ long otree::count () const
 }
 
 /*====================================================================*
- * 
+ *
  *   otree & count (long count);
  *
  *.  Motley Tools by Charles Maier
@@ -183,7 +183,7 @@ otree & otree::count (long count)
 }
 
 /*====================================================================*
- * 
+ *
  *   long level () const;
  *
  *.  Motley Tools by Charles Maier
@@ -199,7 +199,7 @@ long otree::level () const
 }
 
 /*====================================================================*
- * 
+ *
  *   otree & level (long level);
  *
  *.  Motley Tools by Charles Maier
@@ -216,7 +216,7 @@ otree & otree::level (long level)
 }
 
 /*====================================================================*
- * 
+ *
  *   long first () const;
  *
  *.  Motley Tools by Charles Maier
@@ -232,7 +232,7 @@ long otree::first () const
 }
 
 /*====================================================================*
- * 
+ *
  *   long final () const;
  *
  *.  Motley Tools by Charles Maier
@@ -380,7 +380,7 @@ otree & otree::nodebelow (otree * node)
 }
 
 /*====================================================================*
- * 
+ *
  *   char *strings (long index) const;
  *
  *.  Motley Tools by Charles Maier
@@ -397,7 +397,7 @@ char * otree::strings (long index) const
 }
 
 /*====================================================================*
- * 
+ *
  *   void *objects (long index) const;
  *
  *
@@ -415,7 +415,7 @@ void * otree::objects (long index) const
 }
 
 /*====================================================================*
- * 
+ *
  *   otree * root () const;
  *
  *   return the tree root node;
@@ -436,7 +436,7 @@ otree * otree::root () const
 }
 
 /*====================================================================*
- * 
+ *
  *   otree * home () const;
  *
  *   return the home node; the home node is branch parent;
@@ -459,7 +459,7 @@ otree * otree::home () const
 }
 
 /*====================================================================*
- * 
+ *
  *   otree * head () const;
  *
  *
@@ -481,7 +481,7 @@ otree * otree::head () const
 }
 
 /*====================================================================*
- * 
+ *
  *   otree * tail () const;
  *
  *
@@ -503,7 +503,7 @@ otree * otree::tail () const
 }
 
 /*====================================================================*
- * 
+ *
  *   otree * nodes (long index) const;
  *
  *
@@ -547,7 +547,7 @@ otree * otree::nodes (long index) const
 }
 
 /*====================================================================*
- * 
+ *
  *   otree * insertabove (char const * nodename);
  *
  *
@@ -572,7 +572,7 @@ otree * otree::insertabove (char const * nodename)
 }
 
 /*====================================================================*
- * 
+ *
  *   otree * insertprior (char const * nodename);
  *
  *
@@ -602,7 +602,7 @@ otree * otree::insertprior (char const * nodename)
 }
 
 /*====================================================================*
- * 
+ *
  *   otree * insertafter (char const * nodename);
  *
  *
@@ -628,7 +628,7 @@ otree * otree::insertafter (char const * nodename)
 }
 
 /*====================================================================*
- * 
+ *
  *   otree * insertbelow (char const * nodename);
  *
  *
@@ -653,7 +653,7 @@ otree * otree::insertbelow (char const * nodename)
 }
 
 /*====================================================================*
- * 
+ *
  *   otree * appendprior (char const * nodename);
  *
  *
@@ -670,7 +670,7 @@ otree * otree::appendprior (char const * nodename)
 }
 
 /*====================================================================*
- * 
+ *
  *   otree * appendafter (char const * nodename);
  *
  *
@@ -687,7 +687,7 @@ otree * otree::appendafter (char const * nodename)
 }
 
 /*====================================================================*
- * 
+ *
  *   otree *appendbelow (char const * nodename);
  *
  *
@@ -721,7 +721,7 @@ otree * otree::appendbelow (char const * nodename)
 }
 
 /*====================================================================*
- * 
+ *
  *   otree * createafter (char const * string, void const * object, const int order);
  *
  *
@@ -785,7 +785,7 @@ otree * otree::createafter (char const * nodename, const int order)
 }
 
 /*====================================================================*
- * 
+ *
  *   otree * createbelow (char const * nodename, const int order);
  *
  *
@@ -813,7 +813,7 @@ otree * otree::createbelow (char const * nodename, const int order)
 }
 
 /*====================================================================*
- * 
+ *
  *   otree & connect ();
  *
  *
@@ -840,7 +840,7 @@ otree & otree::connect ()
 }
 
 /*====================================================================*
- * 
+ *
  *   long reorder (long index, long level);
  *
  *.  Motley Tools by Charles Maier
@@ -869,7 +869,7 @@ long otree::reorder (long index, long level)
 }
 
 /*====================================================================*
- * 
+ *
  *   otree  & outline () const
  *
  *
@@ -903,7 +903,7 @@ otree & otree::outline ()
 }
 
 /*====================================================================*
- * 
+ *
  *   otree * findnext (char const * nodename) const;
  *
  *
@@ -926,7 +926,7 @@ otree * otree::findnext (char const * nodename) const
 }
 
 /*====================================================================*
- * 
+ *
  *   otree *findprev (char const * nodename) const;
  *
  *
@@ -949,7 +949,7 @@ otree * otree::findprev (char const * nodename) const
 }
 
 /*====================================================================*
- * 
+ *
  *   char * otree::pathname (char buffer [], size_t length, char extender);
  *
  *
@@ -987,7 +987,7 @@ char * otree::pathname (char buffer [], size_t length, char extender)
 }
 
 /*====================================================================*
- * 
+ *
  *   otree * createpath (char const * pathname, char extender);
  *
  *.  Motley Tools by Charles Maier
@@ -1034,7 +1034,7 @@ otree * otree::createpath (char const * pathname, char extender)
 }
 
 /*====================================================================*
- * 
+ *
  *   otree * selectpath (char const * pathname, char extender);
  *
  *.  Motley Tools by Charles Maier
@@ -1064,7 +1064,7 @@ otree * otree::selectpath (char const * pathname, char extender)
 }
 
 /*====================================================================*
- * 
+ *
  *   otree (char const * nodename, void const * nodedata);
  *
  *.  Motley Tools by Charles Maier
@@ -1089,7 +1089,7 @@ otree::otree (char const * nodename, void const * nodedata)
 }
 
 /*====================================================================*
- * 
+ *
  *   otree (char const * nodename, size_t length);
  *
  *.  Motley Tools by Charles Maier
@@ -1115,7 +1115,7 @@ otree::otree (char const nodename [], size_t length)
 }
 
 /*====================================================================*
- * 
+ *
  *   otree (char const * nodename);
  *
  *.  Motley Tools by Charles Maier
@@ -1140,7 +1140,7 @@ otree::otree (char const * nodename)
 }
 
 /*====================================================================*
- * 
+ *
  *   otree ();
  *
  *.  Motley Tools by Charles Maier

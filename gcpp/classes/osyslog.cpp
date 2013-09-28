@@ -52,12 +52,12 @@
 #define SYSLOG_STRERROR_MAX 128
 
 /*====================================================================*
- *   
+ *
  *   osyslog & identity (unsigned identity);
- *   
- *   set the ientity string for this instance only if the new string 
+ *
+ *   set the ientity string for this instance only if the new string
  *   differs from the current string;
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -77,12 +77,12 @@ osyslog & osyslog::identity (char const * identity)
 }
 
 /*====================================================================*
- *   
+ *
  *   char const * identity() const;
- *   
+ *
  *   return the current identity string for this instance;
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -96,14 +96,14 @@ char const * osyslog::identity () const
 }
 
 /*====================================================================*
- *   
+ *
  *   osyslog & facility (facility_t facility);
- *   
+ *
  *   set the facility code for this instance; facility codes occupy
  *   bits 3 through 9; bits 0 through 2 are automatically cleared;
  *   facility codes defined in syslog.h are shifted to the correct
  *   position;
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -118,11 +118,11 @@ osyslog & osyslog::facility (facility_t facility)
 }
 
 /*====================================================================*
- *   
+ *
  *   facility_t facility() const;
- *   
+ *
  *   return the facility code for this instance;
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -136,12 +136,12 @@ facility_t osyslog::facility () const
 }
 
 /*====================================================================*
- *   
+ *
  *   osyslog & options (flag_t options);
- *   
+ *
  *   set the option flag for this instance; options are bitmapped and
  *   defined in syslog.h;
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -156,11 +156,11 @@ osyslog & osyslog::options (flag_t options)
 }
 
 /*====================================================================*
- *   
+ *
  *   flag_t options() const;
- *   
+ *
  *   return the option flag for this instance;
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -177,7 +177,7 @@ flag_t osyslog::options () const
  *
  *   void syslogerr (priority_t priority, errno_t errornum, char const *format, ...);
  *
- *   print user defined and system defined error message using the 
+ *   print user defined and system defined error message using the
  *   syslogd service;
  *
  *.  Motley Tools by Charles Maier
@@ -235,11 +235,11 @@ void osyslog::syslogerr_at_line (priority_t priority, errno_t errornum, char con
 }
 
 /*====================================================================*
- *   
+ *
  *   void syslog (priority_t priority, char const *format, ...);
- *   
+ *
  *   print user formatted message to appropriate system log files;
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -257,15 +257,15 @@ void osyslog::syslog (priority_t priority, char const * format, ...)
 }
 
 /*====================================================================*
- *   
+ *
  *   void vsyslog (priority_t priority, char const *format, va_list arglist);
- *   
+ *
  *   print user formatted message to approprite system log files;
- *   reject messages having any non-priority and non-facility bits 
+ *   reject messages having any non-priority and non-facility bits
  *   set; reject messages suppressed by the severity mask
  *
  *   if no facility is specified then use the default facility;
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -306,7 +306,7 @@ void osyslog::vsyslog (priority_t priority, char const * format, va_list arglist
 	{
 		std::cerr.write (buffer +  prefix, length - prefix);
 	}
-	if (write (this->mfile, buffer, length) == - 1)
+	if (write (this->mfile, buffer, length) == -1)
 	{
 		if (this->moptions & SYSLOG_CONSOLE)
 		{
@@ -325,8 +325,8 @@ void osyslog::vsyslog (priority_t priority, char const * format, va_list arglist
 /*====================================================================*
  *
  *   osyslog();
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -343,11 +343,11 @@ osyslog::osyslog ()
 	this->moptions = 0;
 	this->msocket.sa_family = AF_UNIX;
 	std::strncpy (this->msocket.sa_data, _PATH_LOG, sizeof (this->msocket.sa_data));
-	if ((this->mfile = socket (AF_UNIX, SOCK_DGRAM, 0)) == - 1)
+	if ((this->mfile = socket (AF_UNIX, SOCK_DGRAM, 0)) == -1)
 	{
 		oerror::error (1, errno, "can't open udp socket");
 	}
-	if (connect (this->mfile, & this->msocket, sizeof (this->msocket)) == - 1)
+	if (connect (this->mfile, & this->msocket, sizeof (this->msocket)) == -1)
 	{
 		oerror::error (1, errno, "can't connect to %s", this->msocket.sa_data);
 	}
@@ -357,8 +357,8 @@ osyslog::osyslog ()
 /*====================================================================*
  *
  *   ~osyslog();
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License

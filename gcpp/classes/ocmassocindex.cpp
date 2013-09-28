@@ -31,7 +31,7 @@
 #include "../classes/ocmassocindex.hpp"
 
 /*====================================================================*
- *   program constants;  
+ *   program constants;
  *--------------------------------------------------------------------*/
 
 #define NEWLINE "\r\n"
@@ -101,8 +101,8 @@ ocmassocindex & ocmassocindex::index2 (struct _topic_ topics [], unsigned count)
 /*====================================================================*
  *
  *   ocmassocindex ();
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 ocmassocindex::ocmassocindex ()
@@ -120,8 +120,8 @@ ocmassocindex::ocmassocindex ()
 /*====================================================================*
  *
  *   ~ocmassocindex ();
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 ocmassocindex::~ ocmassocindex ()

@@ -41,7 +41,7 @@
 #include "../classes/oerror.hpp"
 
 /*====================================================================*
- *   data initialization; 
+ *   data initialization;
  *--------------------------------------------------------------------*/
 
 ofilespec ochtml::filespec;
@@ -49,7 +49,7 @@ ofilespec ochtml::filespec;
 /*====================================================================*
  *
  *   void css2 (void);
- *   
+ *
  *   print a compatible CSS stylesheet on stdout so that element and
  *   property names match HTML output;
  *
@@ -85,7 +85,7 @@ ochtml & ochtml::css2 (void)
  *
  *   ochtml & html (char const *filename);
  *
- *   open the named c language source file, read the contents and write 
+ *   open the named c language source file, read the contents and write
  *   an html page to stdout; the page displays the original file having
  *   comments, keywords, constants, variables and operators highlighed in
  *   various colors for visual effect; selected constants, variable and

@@ -30,7 +30,7 @@
 /*====================================================================*
  *
  *   signed statement (signed c);
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -65,7 +65,7 @@ signed ocblock::statement (signed c)
 /*====================================================================*
  *
  *   signed condition (signed c);
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -95,7 +95,7 @@ signed ocblock::condition (signed c)
 /*====================================================================*
  *
  *  signed program (signed c, signed e);
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License

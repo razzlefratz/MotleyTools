@@ -35,7 +35,7 @@
  *   variable definitions;
  *--------------------------------------------------------------------*/
 
-const struct _code_ osyslogspec::facilities [] = 
+const struct _code_ osyslogspec::facilities [] =
 
 {
 	{
@@ -127,12 +127,12 @@ const struct _code_ osyslogspec::facilities [] =
 		"local7"
 	},
 	{
-		(- 1),
+		(-1),
 		(char const *) (0)
 	}
 };
 
-const struct _code_ osyslogspec::severities [] = 
+const struct _code_ osyslogspec::severities [] =
 
 {
 	{
@@ -188,7 +188,7 @@ const struct _code_ osyslogspec::severities [] =
 		"*"
 	},
 	{
-		(- 1),
+		(-1),
 		(char const *) (0),
 	}
 };
@@ -198,7 +198,7 @@ const struct _code_ osyslogspec::severities [] =
  *   int osyslogspec::encode (char const *string);
  *
  *   convert string in form <facility>.<severity> to syslog flagword
- *   format where the lower bits are the severity and the upper bits 
+ *   format where the lower bits are the severity and the upper bits
  *   are the facility;
  *
  *.  Motley Tools by Charles Maier
@@ -221,17 +221,17 @@ int osyslogspec::encode (char const * string) const
 			string++;
 			break;
 		}
-		if ((sp - buffer) < (int) (sizeof (buffer) - 1))
+		if ((sp - buffer) < (int) (sizeof (buffer) -1))
 		{
 			* sp++ = * string;
 		}
 	}
 	* sp = (char) (0);
-	if ((facility = lookup (buffer, osyslogspec::facilities)) == (facility_t) (- 1))
+	if ((facility = lookup (buffer, osyslogspec::facilities)) == (facility_t) (-1))
 	{
 		oerror::error (1, 0, "%s: illegal facility name", buffer);
 	}
-	if ((severity = lookup (string, osyslogspec::severities)) == (severity_t) (- 1))
+	if ((severity = lookup (string, osyslogspec::severities)) == (severity_t) (-1))
 	{
 		oerror::error (1, 0, "%s: illegal severity name", string);
 	}
@@ -242,7 +242,7 @@ int osyslogspec::encode (char const * string) const
  *
  *   char *osyslogspec::decode(int flagword) const
  *
- *   convert flagword to user friendly decimal <facility>.<severity> 
+ *   convert flagword to user friendly decimal <facility>.<severity>
  *   string format;
  *
  *.  Motley Tools by Charles Maier
@@ -279,8 +279,8 @@ char const * osyslogspec::decode (int flagword) const
  *
  *   int lookup (char const *string, const struct _code_ table[]);
  *
- *   convert string to an integer; if string is numeric then attempt 
- *   integer conversion; failing that attempt table lookup; 
+ *   convert string to an integer; if string is numeric then attempt
+ *   integer conversion; failing that attempt table lookup;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -310,9 +310,9 @@ int osyslogspec::lookup (char const * string, const struct _code_ table []) cons
 }
 
 /*====================================================================*
- *   
+ *
  *   osyslogspec();
- *   
+ *
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -327,9 +327,9 @@ osyslogspec::osyslogspec ()
 }
 
 /*====================================================================*
- *   
+ *
  *   ~osyslogspec();
- *   
+ *
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

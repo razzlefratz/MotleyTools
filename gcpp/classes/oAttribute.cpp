@@ -13,7 +13,7 @@
  *
  *   ...$abc:timeofday $def:123-456-798 ...
  *
- *   in this example, the space is replace by a dollar, the equals 
+ *   in this example, the space is replace by a dollar, the equals
  *   by a colon, the quotes are omitted and a semicolon follows;
  *
  *   ..., abc=def, ghi=123, ...
@@ -121,7 +121,7 @@ oAttribute & oAttribute::value (unsigned number)
 
 /*====================================================================*
  *
- *   oAttribute & value (unsigned number, unsigned digits) 
+ *   oAttribute & value (unsigned number, unsigned digits)
  *
  *   replace the attribute value (value) string with an integer; the
  *   string length is fixed and will be padded/truncated as needed;
@@ -171,7 +171,7 @@ oAttribute & oAttribute::write ()
 /*====================================================================*
  *
  *   oAttribute (char const * label, char const * value);
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oAttribute::oAttribute (char const * label, char const * value)
@@ -185,7 +185,7 @@ oAttribute::oAttribute (char const * label, char const * value)
 /*====================================================================*
  *
  *   oAttribute (char const * label);
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oAttribute::oAttribute (char const * label)
@@ -199,8 +199,8 @@ oAttribute::oAttribute (char const * label)
 /*====================================================================*
  *
  *   ~oAttribute ();
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 oAttribute::~ oAttribute ()

@@ -48,7 +48,7 @@
 #define oWEBPAGE_LINK_NEXT_PAGE "index.html"
 
 /*====================================================================*
- * 
+ *
  *--------------------------------------------------------------------*/
 
 class __declspec (dllexport) owebpage: public oindent, private otext

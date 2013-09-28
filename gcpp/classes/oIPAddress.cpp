@@ -1,21 +1,21 @@
 /*====================================================================*
  *
- *   oIPAddress.cpp - IP address conversion functions; 
+ *   oIPAddress.cpp - IP address conversion functions;
  *
  *   convert numeric IP address to normal or padded string format; normal
  *   format has four octet fields having one to three digits each; padded
  *   format has four octet fields having three digits each; normal format
  *   strings do not sort properly but padded format strings do;
  *
- *   when sorting normal IP addresses 100.0.0.0 precedes 4.0.0.0; however, 
- *   we can convert the addresses to 100.000.000.000 and 004.000.000.000         
+ *   when sorting normal IP addresses 100.0.0.0 precedes 4.0.0.0; however,
+ *   we can convert the addresses to 100.000.000.000 and 004.000.000.000
  *   so they sort as expected, like so:
- *    
+ *
  *   address = ip.padded(ip.number(address));
- *   
- *   convert IP address strings to unsigned integers; address strings can 
- *   be in normal msd-to-lsd format or in inaddr-arpa format, which is in 
- *   reverse order; 
+ *
+ *   convert IP address strings to unsigned integers; address strings can
+ *   be in normal msd-to-lsd format or in inaddr-arpa format, which is in
+ *   reverse order;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -50,8 +50,8 @@ unsigned oIPAddress::width;
  *
  *   char const *oIPAddress::string (unsigned number);
  *
- *   convert an IPV4 unsigned integer address to an equivalent dotted  
- *   dotted decimal string; 
+ *   convert an IPV4 unsigned integer address to an equivalent dotted
+ *   dotted decimal string;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -85,8 +85,8 @@ char const * oIPAddress::string (unsigned number)
  *
  *   char const *oIPAddress::padded (unsigned number);
  *
- *   convert an IPV4 unsigned integer address to an equivalent dotted  
- *   dotted decimal string; 
+ *   convert an IPV4 unsigned integer address to an equivalent dotted
+ *   dotted decimal string;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -120,7 +120,7 @@ char const * oIPAddress::padded (unsigned number)
  *
  *   unsigned oIPAddress::number (char const *string);
  *
- *   convert an IPV4 dotted decimal string address to an unsigned    
+ *   convert an IPV4 dotted decimal string address to an unsigned
  *   integer;
  *
  *.  Motley Tools by Charles Maier
@@ -161,8 +161,8 @@ unsigned oIPAddress::number (char const * string)
  *
  *   unsigned oIPAddress::inaddr (char const *string);
  *
- *   convert an IPV4 dotted decimal in-addr.arpa string address to 
- *   an unsigned integer; in-addr.arpa octets are in reverse order; 
+ *   convert an IPV4 dotted decimal in-addr.arpa string address to
+ *   an unsigned integer; in-addr.arpa octets are in reverse order;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

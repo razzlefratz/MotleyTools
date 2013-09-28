@@ -35,7 +35,7 @@ oCoreAttributes & oCoreAttributes::write ()
 /*====================================================================*
  *
  *   oCoreAttributes ();
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oCoreAttributes::oCoreAttributes ()
@@ -51,8 +51,8 @@ oCoreAttributes::oCoreAttributes ()
 /*====================================================================*
  *
  *   ~oCoreAttributes ();
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 oCoreAttributes::~ oCoreAttributes ()

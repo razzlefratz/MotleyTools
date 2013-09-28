@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   oscript.hpp - oscript class declaration;     
+ *   oscript.hpp - oscript class declaration;
  *
  *   the oscript class implements a range of test scanning primatives
  *   used to format C, C++, PHP, HTML, XML and other forms of source
@@ -8,7 +8,7 @@
  *   white space;
  *
  *   additions to this class MUST be independent of language keywords
- *   and constructs; 
+ *   and constructs;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

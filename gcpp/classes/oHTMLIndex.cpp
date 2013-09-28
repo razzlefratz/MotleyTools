@@ -40,7 +40,7 @@ olist mlist;
 /*====================================================================*
  *
  *   void css2 (void);
- *   
+ *
  *   print a compatible CSS stylesheet on stdout so that element and
  *   property names match the HTML output;
  *
@@ -113,7 +113,7 @@ oHTMLIndex & oHTMLIndex::collect (char const * pathname, char const * filename)
  *
  *   oHTMLIndex & publish (unsigned count);
  *
- *   open a C Language source file, read the contents and write an HTML 
+ *   open a C Language source file, read the contents and write an HTML
  *   page to stdout; the page displays the original source having
  *   comments, keywords, constants, variables and operators highlighed in
  *   various colors for visual effect; selected constants, variable and
@@ -125,7 +125,7 @@ oHTMLIndex & oHTMLIndex::publish (unsigned count)
 
 {
 	unsigned index = 0;
-	unsigned limit = count = (oHTMLIndex::mlist.count () +  (count - 1)) / count;
+	unsigned limit = count = (oHTMLIndex::mlist.count () +  (count -1)) / count;
 	oHTMLIndex::PageHeader ();
 	oHTMLIndex::LinkHeader ();
 	oHTMLIndex::print (this->mlevel++, this->mspace, "<h1>");
@@ -172,7 +172,7 @@ oHTMLIndex & oHTMLIndex::publish (unsigned count)
 /*====================================================================*
  *
  *   oHTMLIndex (void);
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oHTMLIndex::oHTMLIndex (void)
@@ -187,7 +187,7 @@ oHTMLIndex::oHTMLIndex (void)
 /*====================================================================*
  *
  *   ~oHTMLIndex (void);
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oHTMLIndex::~ oHTMLIndex (void)

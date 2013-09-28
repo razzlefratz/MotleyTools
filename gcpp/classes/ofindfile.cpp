@@ -31,17 +31,17 @@
 #include "../../gcc/files/files.h"
 
 /*====================================================================*
- *   
+ *
  *   FILE *fopen1(char const *file, char const *mode);
  *
- *   try to open the named file using fopen(); if it does not open 
+ *   try to open the named file using fopen(); if it does not open
  *   then try each parent folder in turn; return a file pointer on
  *   success; return (FILE *)(0) on failure;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
- *   
+ *
  *--------------------------------------------------------------------*/
 
 FILE * ofindfile::fopen1 (char const * file, char const * mode)
@@ -61,13 +61,13 @@ FILE * ofindfile::fopen1 (char const * file, char const * mode)
 	}
 	while (((fp = fopen (pathname, mode)) == (FILE *) (0)) && (node-- > 1))
 	{
-		strcpy (this->mstack [node - 1], this->mstack [node]);
+		strcpy (this->mstack [node -1], this->mstack [node]);
 	}
 	return (fp);
 }
 
 /*====================================================================*
- *   
+ *
  *   FILE *ofindfile::fopen2 (char const *file, char const *mode, char const *pathstring);
  *
  *
@@ -82,7 +82,7 @@ FILE * ofindfile::fopen2 (char const * file, char const * mode, char const * pat
 
 {
 	FILE * fp = (FILE *) (0);
-	char temp [FILENAME_MAX] = 
+	char temp [FILENAME_MAX] =
 	{
 		(char) (0)
 	};
@@ -124,7 +124,7 @@ FILE * ofindfile::fopen2 (char const * file, char const * mode, char const * pat
 }
 
 /*====================================================================*
- *   
+ *
  *   ofindfile ();
  *
  *
@@ -146,7 +146,7 @@ ofindfile::ofindfile ()
 }
 
 /*====================================================================*
- *   
+ *
  *   ~ofindfile ();
  *
  *

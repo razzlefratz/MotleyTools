@@ -100,7 +100,7 @@ char const * program_name = PACKAGE;
  *
  *   signed opterr () const;
  *
- *   return the error message flag state; 
+ *   return the error message flag state;
  *
  *--------------------------------------------------------------------*/
 
@@ -114,7 +114,7 @@ signed ogetoptv::opterr () const
  *
  *   ogetoptv & opterr (signed opterr);
  *
- *   set the error message flag state; 
+ *   set the error message flag state;
  *
  *--------------------------------------------------------------------*/
 
@@ -129,7 +129,7 @@ ogetoptv & ogetoptv::opterr (signed opterr)
  *
  *   signed optmin () const;
  *
- *   return the minimum argument flag state; 
+ *   return the minimum argument flag state;
  *
  *--------------------------------------------------------------------*/
 
@@ -158,7 +158,7 @@ ogetoptv & ogetoptv::optmin (signed optmin)
  *
  *   signed optind () const;
  *
- *   return the index of the next argv[] string; this index defines the 
+ *   return the index of the next argv[] string; this index defines the
  *   start address for the remainder of argument vector argv[];
  *
  *--------------------------------------------------------------------*/
@@ -218,7 +218,7 @@ char const * ogetoptv::optarg () const
  *
  *   return the number of arguments left in argv; it is computed by
  *   subtracting member mpotind from member margc; it can eliminate
- *   the need for the customary "argc-=optind" statement;  
+ *   the need for the customary "argc-=optind" statement;
  *
  *--------------------------------------------------------------------*/
 
@@ -246,7 +246,7 @@ char const ** ogetoptv::argv () const
  *
  *   char const * args () const;
  *
- *   return option argument string address; 
+ *   return option argument string address;
  *
  *--------------------------------------------------------------------*/
 
@@ -261,7 +261,7 @@ char const * ogetoptv::args ()
  *   signed operator++ (signed);
  *
  *   return the value of member moptind and increment optind if less
- *   than margc; this is not a posix feature; it is an extension; 
+ *   than margc; this is not a posix feature; it is an extension;
  *
  *--------------------------------------------------------------------*/
 
@@ -337,7 +337,7 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 							this->moptarg = argv [this->mcount];
 							for (this->mindex = this->mcount++; this->mindex > this->moptind; -- this->mindex)
 							{
-								argv [this->mindex] = argv [this->mindex - 1];
+								argv [this->mindex] = argv [this->mindex -1];
 							}
 							argv [this->moptind++] = this->moptarg;
 							return (this->moptopt);
@@ -370,7 +370,7 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 			{
 				for (this->mindex = this->mcount; this->mindex > this->moptind; -- this->mindex)
 				{
-					this->margv [this->mindex] = this->margv [this->mindex - 1];
+					this->margv [this->mindex] = this->margv [this->mindex -1];
 				}
 				this->margv [this->moptind++] = this->mstring++;
 				if (* this->mstring == oGETOPTV_C_OPTIONS)
@@ -379,7 +379,7 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 					{
 						this->moptarg = (char *) (0);
 						this->moptopt = (char) (0);
-						return (- 1);
+						return (-1);
 					}
 					if (! std::strcmp (this->mstring, "version"))
 					{
@@ -414,7 +414,7 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 	}
 	this->moptarg = (char *) (0);
 	this->moptopt = (char) (0);
-	return (- 1);
+	return (-1);
 }
 
 /*====================================================================*

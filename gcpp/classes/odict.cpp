@@ -1,17 +1,17 @@
 /*====================================================================*
  *
  *   odict.cpp - implementation of the odict class.
- *   
+ *
  *   this object implements a symbol table that supports scoped
  *   definitions using the define() and revert() methods;
  *
- *   the symbol table is implemented as a binary tree where each 
- *   node maintains a stack of definition strings; the stacks are 
- *   implemented using circular linked list where the tail points 
- *   to the stack top; the symbol name is stored in the list tail 
+ *   the symbol table is implemented as a binary tree where each
+ *   node maintains a stack of definition strings; the stacks are
+ *   implemented using circular linked list where the tail points
+ *   to the stack top; the symbol name is stored in the list tail
  *   which then points to the most recent definition, which could
  *   be the symbol name; a symbol is undefined when it is its own
- *   definition; 
+ *   definition;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -23,14 +23,14 @@
 #define oDICTIONARY_SOURCE
 
 /*====================================================================*
- *   system header files; 
+ *   system header files;
  *--------------------------------------------------------------------*/
 
 #include <cstring>
 #include <iostream>
 
 /*====================================================================*
- *   custom header files; 
+ *   custom header files;
  *--------------------------------------------------------------------*/
 
 #include "../classes/odict.hpp"
@@ -92,7 +92,7 @@ odict & odict::define (char const * symbol, char const * string)
 }
 
 /*====================================================================*
- *  
+ *
  *   bool defined (char const *symbol) const;
  *
  *   return true if symbol is present and has a current definition;
@@ -110,11 +110,11 @@ bool odict::defined (char const * symbol) const
 }
 
 /*====================================================================*
- *  
+ *
  *   char const *lookup (char const *symbol) const;
  *
  *   return the symbol definition (if one exists) or (char *)(0) if
- *   symbol is undefined; 
+ *   symbol is undefined;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -134,7 +134,7 @@ char const * odict::lookup (char const * symbol) const
 }
 
 /*====================================================================*
- *  
+ *
  *   char const *expand (char const *symbol) const;
  *
  *   return the symbol definition (if one exists) or symbol (itself)
@@ -210,7 +210,7 @@ odict & odict::clear ()
  *
  *   odict * node (char const *symbol);
  *
- *   find symbol in the tree using an inorder search; return the 
+ *   find symbol in the tree using an inorder search; return the
  *   node address or NULL if missing;
  *
  *.  Motley Tools by Charles Maier
@@ -284,7 +284,7 @@ signed odict::comp (register char const * string1, register char const * string2
 	}
 	if (string1 == (char *) (0))
 	{
-		return (- 1);
+		return (-1);
 	}
 	if (string2 == (char *) (0))
 	{
@@ -304,9 +304,9 @@ signed odict::comp (register char const * string1, register char const * string2
 	}
 	if (toupper (* string1) != toupper (* string2))
 	{
-		return (toupper (* string1) < toupper (* string2)? - 1: +  1);
+		return (toupper (* string1) < toupper (* string2)? -1: +  1);
 	}
-	return (* string1 > * string2? - 1: +  1);
+	return (* string1 > * string2? -1: +  1);
 }
 
 /*====================================================================*
@@ -314,7 +314,7 @@ signed odict::comp (register char const * string1, register char const * string2
  *  void  odict(char const *symbol);
  *
  *   initialize this symbol with an empty symbol name and definition
- *   string; 
+ *   string;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -338,7 +338,7 @@ odict::odict (char const * symbol)
  *
  *   void odict(char const *symbol, char const *string);
  *
- *   initialize this symbol with the given symbol name and string 
+ *   initialize this symbol with the given symbol name and string
  *   definition;
  *
  *.  Motley Tools by Charles Maier
@@ -364,7 +364,7 @@ odict::odict (char const * symbol, char const * string)
  *   void ~odict()
  *
  *   delete all definitions in the symbol definition queue; delete
- *   the queue; delete any prior and after symbols; 
+ *   the queue; delete any prior and after symbols;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

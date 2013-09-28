@@ -23,7 +23,7 @@
 /*====================================================================*
  *
  *   oclangwords ();
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -33,7 +33,7 @@
 oclangwords::oclangwords ()
 
 {
-	static char const * table [] = 
+	static char const * table [] =
 	{
 		"auto",
 		"break",
@@ -72,7 +72,7 @@ oclangwords::oclangwords ()
 		(char const *) (0)
 	};
 	okeywords::mtitle = "clangwords";
-	okeywords::mcount = SIZEOF (table) - 1;
+	okeywords::mcount = SIZEOF (table) -1;
 	okeywords::mtable = table;
 	okeywords::mcheck ();
 	return;

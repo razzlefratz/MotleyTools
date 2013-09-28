@@ -90,7 +90,7 @@ ofileset & ofileset::field (unsigned field)
  *   char const *makepath ();
  *
  *   construct the fullname for pathname, filename, index and extender
- *   constituents; 
+ *   constituents;
  *
  *--------------------------------------------------------------------*/
 
@@ -140,7 +140,7 @@ char const * ofileset::fullpath (bool increment)
  *
  *   ofileset & filespec (char const *filespec);
  *
- *   assign a new filespec to this object instance; 
+ *   assign a new filespec to this object instance;
  *
  *--------------------------------------------------------------------*/
 
@@ -161,7 +161,7 @@ ofileset & ofileset::filespec (char const * filespec)
  *
  *   char const *pathname () const;
  *
- *   return the pathname constituent as a constant string; 
+ *   return the pathname constituent as a constant string;
  *
  *--------------------------------------------------------------------*/
 
@@ -223,7 +223,7 @@ ofileset & ofileset::filename (char const * filespec)
  *
  *   char const *basename () const;
  *
- *   return the filename constituent as a constant string; 
+ *   return the filename constituent as a constant string;
  *
  *--------------------------------------------------------------------*/
 

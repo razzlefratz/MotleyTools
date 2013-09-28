@@ -3,8 +3,8 @@
  *   ocode.hpp - declaration of ocode class;
  *
  *   this object implements a generic means of storing information by
- *   name and classification; it is used by the olist, oheap, oroster, 
- *   oglossary and ocatalog oject classes; 
+ *   name and classification; it is used by the olist, oheap, oroster,
+ *   oglossary and ocatalog oject classes;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

@@ -2,7 +2,7 @@
  *
  *   oHTMLAttributeNames.hpp - declaration of oHTMLAttributeNames class.
  *
- *   this object implements the detection, lookup and retrieval of HTML 
+ *   this object implements the detection, lookup and retrieval of HTML
  *   attribute names;
  *
  *.  Motley Tools by Charles Maier

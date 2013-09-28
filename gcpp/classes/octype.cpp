@@ -43,7 +43,7 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-const unsigned short octype::mtable [UCHAR_MAX +  1] = 
+const unsigned short octype::mtable [UCHAR_MAX +  1] =
 
 {
 
@@ -1100,7 +1100,7 @@ bool octype::iscntrl (signed c)
 
 /*====================================================================*
  *
- *   bool isupper (signed c); 
+ *   bool isupper (signed c);
  *
  *
  *--------------------------------------------------------------------*/

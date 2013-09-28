@@ -1,17 +1,17 @@
 /*====================================================================*
  *
  *   osymbol.cpp - implementation of the osymbol class.
- *   
+ *
  *   this object implements a symbol table that supports scoped
  *   definitions using the define() and revert() methods;
  *
- *   the symbol table is implemented as a binary tree where each 
- *   node maintains a stack of definition strings; the stacks are 
- *   implemented using circular linked list where the tail points 
- *   to the stack top; the symbol name is stored in the list tail 
+ *   the symbol table is implemented as a binary tree where each
+ *   node maintains a stack of definition strings; the stacks are
+ *   implemented using circular linked list where the tail points
+ *   to the stack top; the symbol name is stored in the list tail
  *   which then points to the most recent definition, which could
  *   be the symbol name; a symbol is undefined when it is its own
- *   definition; 
+ *   definition;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -23,14 +23,14 @@
 #define oSYMBOL_SOURCE
 
 /*====================================================================*
- *   system header files; 
+ *   system header files;
  *--------------------------------------------------------------------*/
 
 #include <cstring>
 #include <iostream>
 
 /*====================================================================*
- *   custom header files; 
+ *   custom header files;
  *--------------------------------------------------------------------*/
 
 #include "../classes/osymbol.hpp"
@@ -80,7 +80,7 @@ osymbol & osymbol::define (char const * symbol, char const * string)
 }
 
 /*====================================================================*
- *  
+ *
  *   bool defined (char const *symbol) const;
  *
  *   return true if symbol is present and currently defined;
@@ -103,10 +103,10 @@ bool osymbol::defined (char const * symbol) const
 }
 
 /*====================================================================*
- *  
+ *
  *   char const *lookup (char const *symbol) const;
  *
- *   return the current symbol definition, if one exists, or NULL 
+ *   return the current symbol definition, if one exists, or NULL
  *   if undefined;
  *
  *.  Motley Tools by Charles Maier
@@ -127,7 +127,7 @@ char const * osymbol::lookup (char const * symbol) const
 }
 
 /*====================================================================*
- *  
+ *
  *   char const *expand (char const *symbol) const;
  *
  *   return the symbol definition (if one exists) or symbol (itself)
@@ -292,7 +292,7 @@ osymbol & osymbol::clear ()
  *  void  osymbol (char const * symbol);
  *
  *   initialize this symbol with an empty symbol name and definition
- *   string; 
+ *   string;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -313,7 +313,7 @@ osymbol::osymbol (char const * symbol)
  *
  *   void osymbol (char const * symbol, char const * string);
  *
- *   initialize this symbol with the given symbol name and string 
+ *   initialize this symbol with the given symbol name and string
  *   definition;
  *
  *.  Motley Tools by Charles Maier

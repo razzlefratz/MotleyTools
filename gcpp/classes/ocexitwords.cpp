@@ -33,7 +33,7 @@
 ocexitwords::ocexitwords ()
 
 {
-	static char const * table [] = 
+	static char const * table [] =
 	{
 		"_Exit",
 		"_exit",
@@ -43,7 +43,7 @@ ocexitwords::ocexitwords ()
 		(char const *) (0)
 	};
 	okeywords::mtitle = "cexitwords";
-	okeywords::mcount = SIZEOF (table) - 1;
+	okeywords::mcount = SIZEOF (table) -1;
 	okeywords::mtable = table;
 	okeywords::mcheck ();
 	return;

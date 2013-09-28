@@ -27,7 +27,7 @@
  *
  *   char const *prefix () const;
  *
- *   return the prefix as a constant string; 
+ *   return the prefix as a constant string;
  *
  *--------------------------------------------------------------------*/
 
@@ -41,7 +41,7 @@ char const * ocontext::prefix () const
  *
  *   ocontext & prefix (char buffer[], size_t length) const;
  *
- *   copy the prefix string to an external fixed length buffer; 
+ *   copy the prefix string to an external fixed length buffer;
  *
  *--------------------------------------------------------------------*/
 
@@ -70,7 +70,7 @@ char const * ocontext::suffix () const
  *
  *   ocontext & suffix (char buffer[], size_t length) const;
  *
- *   copy the suffix string to an external fixed length buffer; 
+ *   copy the suffix string to an external fixed length buffer;
  *
  *--------------------------------------------------------------------*/
 
@@ -88,7 +88,7 @@ ocontext & ocontext::suffix (char buffer [], size_t length)
  *   member of charset; point mprefix to the first part and msuffix to
  *   the second part of the split string; if the delimiter is required
  *   but missing, point msuffix to the first part and mprefix to the
- *   second part, instead; 
+ *   second part, instead;
  *
  *--------------------------------------------------------------------*/
 
@@ -126,7 +126,7 @@ ocontext & ocontext::split (char const * string, char c, bool initial, bool opti
  *
  *   ocontext & copy (char const *string, char buffer[], size_t length) const;
  *
- *   copy a null terminated string to a fixed length buffer; 
+ *   copy a null terminated string to a fixed length buffer;
  *
  *--------------------------------------------------------------------*/
 

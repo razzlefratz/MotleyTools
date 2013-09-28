@@ -32,10 +32,10 @@
 char const oMACAddress::digit [] = "0123456789ABCDEF";
 
 /*====================================================================*
- *   
+ *
  *   errno_t error () const;
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 errno_t oMACAddress::error () const
@@ -45,10 +45,10 @@ errno_t oMACAddress::error () const
 }
 
 /*====================================================================*
- *   
+ *
  *   unsigned char const * number () const
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 unsigned char const * oMACAddress::number () const
@@ -58,10 +58,10 @@ unsigned char const * oMACAddress::number () const
 }
 
 /*====================================================================*
- *   
+ *
  *   char const * string () const
- *   
- *   
+ *
+ *
  *--------------------------------------------------------------------*/
 
 unsigned char const * oMACAddress::string () const
@@ -73,7 +73,7 @@ unsigned char const * oMACAddress::string () const
 /*====================================================================*
  *
  *   void spec (unsigned char number [], size_t octets, char const * string);
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oMACAddress & oMACAddress::spec (char const * string)
@@ -96,7 +96,7 @@ oMACAddress & oMACAddress::spec (char const * string)
 
 /*====================================================================*
  *
- *   oMACAddress & encode (char const *string) 
+ *   oMACAddress & encode (char const *string)
  *
  *   convert a hexadecimal MAC address string to the equivalent six
  *   octet value; return 0 on success or non-zero on failure;
@@ -118,7 +118,7 @@ oMACAddress & oMACAddress::encode (char const * string)
 			this->merror = oMACADDRESS_TOOSHORT;
 			return (* this);
 		}
-		if (upper == (sizeof (oMACAddress::digit) - 1))
+		if (upper == (sizeof (oMACAddress::digit) -1))
 		{
 			this->merror = oMACADDRESS_ILLEGAL;
 			return (* this);
@@ -129,7 +129,7 @@ oMACAddress & oMACAddress::encode (char const * string)
 			this->merror = oMACADDRESS_TOOSHORT;
 			return (* this);
 		}
-		if (lower == (sizeof (oMACAddress::digit) - 1))
+		if (lower == (sizeof (oMACAddress::digit) -1))
 		{
 			this->merror = oMACADDRESS_ILLEGAL;
 			return (* this);
@@ -153,7 +153,7 @@ oMACAddress & oMACAddress::encode (char const * string)
  *   char const * MACDecode (const unsigned char number[], size_t octets, char *string);
  *
  *   decode numeric MAC address as hexadecimal string; MAC addresses
- *   are 6 octets but the number of octets is variable; 
+ *   are 6 octets but the number of octets is variable;
  *
  *--------------------------------------------------------------------*/
 
@@ -179,7 +179,7 @@ oMACAddress & oMACAddress::decode (const unsigned char number [])
  *
  *   oMACAddress()
  *
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oMACAddress::oMACAddress ()
@@ -194,10 +194,10 @@ oMACAddress::oMACAddress ()
 }
 
 /*====================================================================*
- *   
+ *
  *   ~oMACAddress()
  *
- *   
+ *
  *--------------------------------------------------------------------*/
 
 oMACAddress::~ oMACAddress ()

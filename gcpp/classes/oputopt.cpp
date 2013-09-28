@@ -86,7 +86,7 @@ oputopt & oputopt::chkopt (char const * optv [], char const * options)
  *   print usage vector on stderr; this presents the user with a help
  *   summary; program_name is defined in ogetopt::getopt() but it could be
  *   defined in main or another component; getopt.h is included above
- *   for GETOPT_C_OPTIONS which is normally '-' but could be anything; 
+ *   for GETOPT_C_OPTIONS which is normally '-' but could be anything;
  *
  *--------------------------------------------------------------------*/
 
@@ -104,7 +104,7 @@ oputopt & oputopt::putopt (char const * usage [], signed exitcode)
  *   print usage vector on stderr; this presents the user with a help
  *   summary; program_name is defined in ogetopt::getopt() but it could be
  *   defined in main or another component; getopt.h is included above
- *   for GETOPT_C_OPTIONS which is normally '-' but could be anything; 
+ *   for GETOPT_C_OPTIONS which is normally '-' but could be anything;
  *
  *--------------------------------------------------------------------*/
 

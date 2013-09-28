@@ -8,7 +8,7 @@
  *   white space;
  *
  *   additions to this class MUST be independent of language keywords
- *   and constructs; 
+ *   and constructs;
  *
  *   this class is used by programs ctidy, phptidy, csstidy, dnstidy,
  *   and cfm;
@@ -74,14 +74,14 @@ signed osource::_content (signed c, signed o, signed e)
  *
  *   signed content (signed c, signed e);
  *
- *   write (c) then read and write characters until (e); write (e) 
+ *   write (c) then read and write characters until (e); write (e)
  *   then return the next character;
  *
  *   this method is used to scan text having distinct start and end
  *   characters but no special constructs within; some examples are
  *   shell sript comments and C++ comments;
  *
- *   for example content ('#', '\n') collects an entire shell script 
+ *   for example content ('#', '\n') collects an entire shell script
  *   comment and return the first character on the next line;
  *
  *   this method preserves start and end characters and all internal
@@ -105,7 +105,7 @@ signed osource::content (signed c, signed e)
  *   inspect (c) the write and read characters until (e); return (e)
  *   or EOF to the caller;
  *
- *   this method unconditionally writes text up to, but excluding, a 
+ *   this method unconditionally writes text up to, but excluding, a
  *   specific terminating character such as a newline or semicolon;
  *(
  *   it can be used to detect the inside character of a terminating
@@ -124,9 +124,9 @@ signed osource::_content (signed c, signed e)
 }
 
 /*====================================================================*
- *   
+ *
  *   signed context (signed c, char const * charset);
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed osource::context (signed c, char const * charset)
@@ -194,16 +194,16 @@ signed osource::_context (signed c, signed e)
 }
 
 /*====================================================================*
- *   
+ *
  *   signed context (signed c);
- *   
- *   read stdin and write stdout; write initiator (c) then read and 
+ *
+ *   read stdin and write stdout; write initiator (c) then read and
  *   write trailing characters upto and including any terminator in
- *   string; 
+ *   string;
  *
  *   ignore terminators in character or string literals or enclosed
  *   by nested "(...)", "[...]" or "{...}" groups;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed osource::context (signed c)
@@ -245,13 +245,13 @@ signed osource::context (signed c)
  *   signed osource::command (signed c);
  *   signed osource::command (signed c, signed e);
  *
- *   write (c) then read and write characters until (e); write (e) 
+ *   write (c) then read and write characters until (e); write (e)
  *   then return the next character;
  *
- *   ignore escaped terminators and terminators inside literals and 
- *   comments; 
+ *   ignore escaped terminators and terminators inside literals and
+ *   comments;
  *
- *   this methods is suitable for C language style macro processor 
+ *   this methods is suitable for C language style macro processor
  *   commands that contain literals and support continuation lines;
  *
  *--------------------------------------------------------------------*/
@@ -299,9 +299,9 @@ signed osource::_command (signed c, signed e)
 /*====================================================================*
  *
  *   signed osource::literal (signed c);
- *   
- *   output (c) then read and write characters upto the next (c); 
- *   output (c) and return the next character; ignore escaped 
+ *
+ *   output (c) then read and write characters upto the next (c);
+ *   output (c) and return the next character; ignore escaped
  *   instances of (e);
  *
  *--------------------------------------------------------------------*/
@@ -316,7 +316,7 @@ signed osource::literal (signed c)
 /*====================================================================*
  *
  *   signed osource::literal (signed c, signed e);
- *   
+ *
  *   read and write characters up to (e); output (e) and return the
  *   next character; ignore escaped instances of (e);
  *
@@ -334,7 +334,7 @@ signed osource::literal (signed c, signed e)
 /*====================================================================*
  *
  *   signed osource::_literal (signed c, signed e);
- *   
+ *
  *   read and write characters up to (e); return (e); ignore escaped
  *   instances of (e);
  *
@@ -409,7 +409,7 @@ signed osource::comment (signed c)
 /*====================================================================*
  *
  *   signed _comment (signed c) ;
- *   
+ *
  *
  *--------------------------------------------------------------------*/
 
@@ -477,7 +477,7 @@ signed osource::numeric (signed c)
 /*====================================================================*
  *
  *   signed terminate (signed c);
- *   
+ *
  *
  *--------------------------------------------------------------------*/
 
@@ -786,13 +786,13 @@ signed osource::operate (signed c)
 /*====================================================================*
  *
  *   signed osource::escaped (signed c);
- * 
+ *
  *   write (c) and read the next character; repeat once if (c) is
  *   the escape meta character;
- *   
+ *
  *   this method is used to ignore special characters such as quotes
- *   and newlines within literals; 
- *   
+ *   and newlines within literals;
+ *
  *--------------------------------------------------------------------*/
 
 signed osource::escaped (signed c)
@@ -824,12 +824,12 @@ signed osource::consume (signed c)
 }
 
 /*====================================================================*
- *   
+ *
  *   signed peek (signed c);
  *
  *   discard (c); return next character from stdin; discard escaped
  *   newline chracters;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed osource::peek (signed c)
@@ -841,12 +841,12 @@ signed osource::peek (signed c)
 }
 
 /*====================================================================*
- *   
+ *
  *   signed span (signed c);
  *
- *   inspect (c) to detect and remove continuation line escape 
+ *   inspect (c) to detect and remove continuation line escape
  *   sequences;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed osource::span (signed c)
@@ -866,11 +866,11 @@ signed osource::span (signed c)
 }
 
 /*====================================================================*
- *   
+ *
  *   signed find (signed c);
  *
  *   discard (c); return the next non-space input character;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed osource::find (signed c)
@@ -884,11 +884,11 @@ signed osource::find (signed c)
 }
 
 /*====================================================================*
- *   
+ *
  *   signed keep (signed c, signed o, signed e);
  *
  *   read and keep a specific character pair;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed osource::keep (signed c, signed o, signed e)
@@ -908,12 +908,12 @@ signed osource::keep (signed c, signed o, signed e)
 }
 
 /*====================================================================*
- *   
+ *
  *   signed keep (signed c);
  *
- *   write (c) to stdout unless it is NUL or EOF; return the next 
+ *   write (c) to stdout unless it is NUL or EOF; return the next
  *   character from stdin;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed osource::keep (signed c)
@@ -928,11 +928,11 @@ signed osource::keep (signed c)
 }
 
 /*====================================================================*
- *   
+ *
  *   signed span (signed c, signed o, signed e);
  *
  *   read and keep a specific character pair;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed osource::skip (signed c, signed o, signed e)
@@ -952,11 +952,11 @@ signed osource::skip (signed c, signed o, signed e)
 }
 
 /*====================================================================*
- *   
+ *
  *   signed skip (signed c);
  *
  *   discard (c); return next character from stdin;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 signed osource::skip (signed c)

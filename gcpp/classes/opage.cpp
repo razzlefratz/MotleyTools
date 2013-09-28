@@ -30,9 +30,9 @@
 /*====================================================================*
  *
  *   char const * title () const;
- *   
+ *
  *   return current title string;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 char const * opage::title () const
@@ -44,9 +44,9 @@ char const * opage::title () const
 /*====================================================================*
  *
  *   opage & title (char const * title);
- *   
+ *
  *   set new title string if different from current title string;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 opage & opage::title (char const * title)
@@ -59,9 +59,9 @@ opage & opage::title (char const * title)
 /*====================================================================*
  *
  *   unsigned rows () const;
- *   
+ *
  *   return maximum row count;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 unsigned opage::rows () const
@@ -73,9 +73,9 @@ unsigned opage::rows () const
 /*====================================================================*
  *
  *   opage & rows (unsigned rows)
- *   
+ *
  *   set maximum row count;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 opage & opage::rows (unsigned rows)
@@ -88,9 +88,9 @@ opage & opage::rows (unsigned rows)
 /*====================================================================*
  *
  *   unsigned cols () const;
- *   
+ *
  *   return maximum column count;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 unsigned opage::cols () const
@@ -102,9 +102,9 @@ unsigned opage::cols () const
 /*====================================================================*
  *
  *   opage & cols (unsigned cols)
- *   
+ *
  *   set maximum column count;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 opage & opage::cols (unsigned cols)
@@ -117,9 +117,9 @@ opage & opage::cols (unsigned cols)
 /*====================================================================*
  *
  *   unsigned tabs () const;
- *   
+ *
  *   return current tab offset;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 unsigned opage::tabs () const
@@ -131,9 +131,9 @@ unsigned opage::tabs () const
 /*====================================================================*
  *
  *   opage & tabs (unsigned tabs)
- *   
+ *
  *   set tab offset;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 opage & opage::tabs (unsigned tabs)
@@ -244,8 +244,8 @@ opage & opage::put (char const * string)
  *
  *   void opage::header ();
  *
- *   print page header on stdout; the footer does not affect current 
- *   row or column counters; one blank line separates text from the 
+ *   print page header on stdout; the footer does not affect current
+ *   row or column counters; one blank line separates text from the
  *   footer;
  *
  *--------------------------------------------------------------------*/
@@ -276,9 +276,9 @@ opage & opage::header ()
 /*====================================================================*
  *
  *   void footer (struct _page_ * page);
- * 
- *   print page footer on stdout; the footer does not affect current 
- *   row or column counters; one blank line separates text from the 
+ *
+ *   print page footer on stdout; the footer does not affect current
+ *   row or column counters; one blank line separates text from the
  *   footer;
  *
  *.  Motley Tools by Charles Maier

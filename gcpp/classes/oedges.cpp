@@ -79,8 +79,8 @@ size_t oedges::index () const
  *
  *   oedge * operator [] (size_t index) const;
  *
- *   return the oedge pointer at the given mtable [] position or void 
- *   if index is out of range; 
+ *   return the oedge pointer at the given mtable [] position or void
+ *   if index is out of range;
  *
  *--------------------------------------------------------------------*/
 
@@ -94,8 +94,8 @@ oedge * oedges::operator [] (size_t index) const
  *
  *   oedge * edge (size_t index) const
  *
- *   return the oedge pointer at the given mtable position or void 
- *   if index is out of range; 
+ *   return the oedge pointer at the given mtable position or void
+ *   if index is out of range;
  *
  *--------------------------------------------------------------------*/
 
@@ -109,8 +109,8 @@ oedge * oedges::edge (size_t index) const
  *
  *   oedge * edge () const
  *
- *   return the oedge pointer at the given mtable position or void 
- *   if index is out of range; 
+ *   return the oedge pointer at the given mtable position or void
+ *   if index is out of range;
  *
  *--------------------------------------------------------------------*/
 
@@ -124,7 +124,7 @@ oedge * oedges::edge () const
  *
  *   oedge * add (onode *sourcenode, onode *targetnode);
  *
- *   create a new edge, if missing, and return the edge address; 
+ *   create a new edge, if missing, and return the edge address;
  *
  *--------------------------------------------------------------------*/
 

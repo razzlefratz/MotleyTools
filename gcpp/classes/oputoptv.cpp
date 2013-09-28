@@ -85,10 +85,10 @@ oputoptv & oputoptv::chkoptv (char const * optv [])
  *
  *   print optv on stderr; this presents the user with a help summary;
  *
- *   program_name is defined in ogetopt::getoptv() but it could be 
- *   defined in main or another component; ogetoptv.hpp is included 
- *   above for GETOPTV_C_OPTIONS which is normally '-' but could be 
- *   anything; 
+ *   program_name is defined in ogetopt::getoptv() but it could be
+ *   defined in main or another component; ogetoptv.hpp is included
+ *   above for GETOPTV_C_OPTIONS which is normally '-' but could be
+ *   anything;
  *
  *--------------------------------------------------------------------*/
 
@@ -117,7 +117,7 @@ oputoptv & oputoptv::putoptv (char const * optv [])
  *   print optv vector on stderr; this presents the user with a help
  *   summary; program_name is defined in ogetoptv::getoptv() but it could be
  *   defined in main or another component; getoptv.h is included above
- *   for GETOPTV_C_OPTIONS which is normally '-' but could be anything; 
+ *   for GETOPTV_C_OPTIONS which is normally '-' but could be anything;
  *
  *--------------------------------------------------------------------*/
 

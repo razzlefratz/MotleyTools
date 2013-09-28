@@ -83,12 +83,12 @@ signed pack (signed c, signed newline, signed (get) (signed))
  *
  *   void function (signed c, signed newline, signed endline);
  *
- *   read stdin and write stdout; replace leading spaces and tabs 
- *   with character o unless it is NUL; replace embedded spaces and 
+ *   read stdin and write stdout; replace leading spaces and tabs
+ *   with character o unless it is NUL; replace embedded spaces and
  *   tabs with one space; discard trailing spaces and tabs; replace
  *   newline with character e unless it is NUL;
  *
- *   write literal strings, enclosed in quotes or apostrophes, as 
+ *   write literal strings, enclosed in quotes or apostrophes, as
  *   as read; ignore escaped newlines for lines that start in first
  *   column;
  *
@@ -144,7 +144,7 @@ signed function (signed c, signed newline, signed endline)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"c:r:",
 		oPUTOPTV_S_FILTER,

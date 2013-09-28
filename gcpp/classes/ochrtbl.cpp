@@ -92,7 +92,7 @@ signed ochrtbl::compare (char const * string1, char const * string2) const
 	}
 	if (! string1)
 	{
-		return (- 1);
+		return (-1);
 	}
 	if (! string2)
 	{
@@ -107,13 +107,13 @@ signed ochrtbl::compare (char const * string1, char const * string2) const
 		string1++;
 		string2++;
 	}
-	return (this->mtable [(unsigned) (* string1)] < this->mtable [(unsigned) (* string2)]? - 1: 1);
+	return (this->mtable [(unsigned) (* string1)] < this->mtable [(unsigned) (* string2)]? -1: 1);
 }
 
 /*====================================================================*
  *
  *   ochrtbl::ochrtbl ();
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
@@ -130,7 +130,7 @@ ochrtbl::ochrtbl ()
 /*====================================================================*
  *
  *   ochrtbl::~ochrtbl ();
- *   
+ *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License

@@ -29,16 +29,16 @@
 #include "../classes/otypes.hpp"
 
 /*====================================================================*
- *   class variables;    
+ *   class variables;
  *--------------------------------------------------------------------*/
 
-char const * okeywords::table [] = 
+char const * okeywords::table [] =
 
 {
 	(char const *) (0)
 };
 
-const unsigned okeywords::words = SIZEOF (okeywords::table) - 1;
+const unsigned okeywords::words = SIZEOF (okeywords::table) -1;
 
 /*====================================================================*
  *
@@ -140,7 +140,7 @@ size_t okeywords::longest () const
 
 /*====================================================================*
  *
- *   okeywords & enumerate (); 
+ *   okeywords & enumerate ();
  *
  *   print a C Language source code table definition on stdout;
  *
@@ -196,7 +196,7 @@ okeywords & okeywords::enumerate ()
  *
  *   okeywords & enumerate (char const *prefix, char const *suffix);
  *
- *   print keywords, with prefix and suffix strings, on stdout; 
+ *   print keywords, with prefix and suffix strings, on stdout;
  *
  *--------------------------------------------------------------------*/
 
@@ -218,8 +218,8 @@ okeywords & okeywords::enumerate (char const * prefix, char const * suffix)
  *   print keywords on stdout as a series of vertical columns where
  *   words are listed vertically in alphabetical order;
  *
- *   compute column width from vector string lengths; compute number 
- *   of columns from screen and column widths;  
+ *   compute column width from vector string lengths; compute number
+ *   of columns from screen and column widths;
  *
  *--------------------------------------------------------------------*/
 
@@ -240,7 +240,7 @@ okeywords & okeywords::enumerate (size_t columns)
 	if (width++ < columns)
 	{
 		count = columns / width;
-		block = (this->mcount +  count - 1) / count;
+		block = (this->mcount +  count -1) / count;
 		width = columns / count;
 		std::cout.put ('\n');
 		for (size_t row = 0; row < block; row++)
@@ -272,10 +272,10 @@ okeywords & okeywords::enumerate (size_t columns)
 
 /*====================================================================*
  *
- *   okeywords & mcheck (); 
+ *   okeywords & mcheck ();
  *
- *   count keywords and confirm they are in order; report any error 
- *   and exit program on failure; this ensures that a binary search 
+ *   count keywords and confirm they are in order; report any error
+ *   and exit program on failure; this ensures that a binary search
  *   will not fail to find words;
  *
  *--------------------------------------------------------------------*/
@@ -295,9 +295,9 @@ okeywords & okeywords::mcheck ()
 	}
 	for (count = 1; count < this->mcount; count++)
 	{
-		if (std::strcmp (this->mtable [count - 1], this->mtable [count]) > 0)
+		if (std::strcmp (this->mtable [count -1], this->mtable [count]) > 0)
 		{
-			std::cerr << this->mtitle << ": Keyword \"" << this->mtable [count - 1] << "\" is out of order." << std::endl;
+			std::cerr << this->mtitle << ": Keyword \"" << this->mtable [count -1] << "\" is out of order." << std::endl;
 			std::exit (1);
 		}
 	}

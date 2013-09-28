@@ -30,7 +30,7 @@
  *   data initialization;
  *--------------------------------------------------------------------*/
 
-char const * oISOGlyph::mtable [UCHAR_MAX +  1] = 
+char const * oISOGlyph::mtable [UCHAR_MAX +  1] =
 
 {
 	"#x00",
@@ -295,8 +295,8 @@ char const * oISOGlyph::mtable [UCHAR_MAX +  1] =
  *
  *   char const string (signed c) const;
  *
- *   return the ISO glyph string for the ASCII character argument; 
- *   for example, 'A' returns "A", '<' returns "&lt;" and '\t' 
+ *   return the ISO glyph string for the ASCII character argument;
+ *   for example, 'A' returns "A", '<' returns "&lt;" and '\t'
  *   returns "&0x09;";
  *
  *--------------------------------------------------------------------*/

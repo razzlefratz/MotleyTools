@@ -61,7 +61,7 @@
  *   private variables;
  *--------------------------------------------------------------------*/
 
-char const * oascii::cbits [] = 
+char const * oascii::cbits [] =
 
 {
 	"cntrl",
@@ -87,7 +87,7 @@ char const * oascii::cbits [] =
 	"fract"
 };
 
-const unsigned oascii::ctype [UCHAR_MAX +  1] = 
+const unsigned oascii::ctype [UCHAR_MAX +  1] =
 
 {
 
@@ -1166,7 +1166,7 @@ bool oascii::iscntrl (signed c)
 
 /*====================================================================*
  *
- *   bool isupper (signed c); 
+ *   bool isupper (signed c);
  *
  *--------------------------------------------------------------------*/
 
@@ -1509,7 +1509,7 @@ bool oascii::ismatch (signed c, signed o)
 bool oascii::isbreak (signed c)
 
 {
-	return ((c == '\0') || (c == '\n') || (c == - 1));
+	return ((c == '\0') || (c == '\n') || (c == -1));
 }
 
 /*====================================================================*
@@ -1521,7 +1521,7 @@ bool oascii::isbreak (signed c)
 bool oascii::isbreak (signed c, signed o)
 
 {
-	return ((c == o) || (c == '\0') || (c == '\n') || (c == - 1));
+	return ((c == o) || (c == '\0') || (c == '\n') || (c == -1));
 }
 
 /*====================================================================*
@@ -1533,7 +1533,7 @@ bool oascii::isbreak (signed c, signed o)
 bool oascii::nobreak (signed c)
 
 {
-	return ((c != '\0') && (c != '\n') && (c != - 1));
+	return ((c != '\0') && (c != '\n') && (c != -1));
 }
 
 /*====================================================================*
@@ -1545,7 +1545,7 @@ bool oascii::nobreak (signed c)
 bool oascii::nobreak (signed c, signed o)
 
 {
-	return ((c != o) && (c != '\0') && (c != '\n') && (c != - 1));
+	return ((c != o) && (c != '\0') && (c != '\n') && (c != -1));
 }
 
 /*====================================================================*
@@ -1631,14 +1631,14 @@ signed oascii::todigit (signed c)
 	{
 		return (c - 'a' +  10);
 	}
-	return (- 1);
+	return (-1);
 }
 
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
 
-char const * oascii::cname [] = 
+char const * oascii::cname [] =
 
 {
 	"nul",
@@ -1930,7 +1930,7 @@ void oascii::enumerate () const
  *
  *   print character classification matrix on stdout where output is
  *   suitable for input to program matrix; wrap characters in quotes
- *   so that program matrix will detect and handle escape sequences; 
+ *   so that program matrix will detect and handle escape sequences;
  *   replace selected characters with ISO glpyh names for HTML use;
  *
  *--------------------------------------------------------------------*/

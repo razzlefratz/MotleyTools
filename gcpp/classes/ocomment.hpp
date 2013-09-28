@@ -20,7 +20,7 @@
 #include "../classes/otext.hpp"
 
 /*====================================================================*
- *   compiler controls; 
+ *   compiler controls;
  *--------------------------------------------------------------------*/
 
 #define oCOMMENT_PADMARGIN 1
@@ -28,7 +28,7 @@
 #define oCOMMENT_CUSTOMIZE 1
 
 /*====================================================================*
- *   constants; 
+ *   constants;
  *--------------------------------------------------------------------*/
 
 #define oCOMMENT_LENGTH 4096
@@ -117,6 +117,8 @@ private:
 #if oCOMMENT_CUSTOMIZE
 
 	signed message (signed c, char const * string);
+	signed breaker (signed c);
+	ocomment & content (void);
 	char * mpreface;
 	char * mpackage;
 	char * mrelease;

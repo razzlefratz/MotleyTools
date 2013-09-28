@@ -50,7 +50,7 @@
 #endif
 
 /*====================================================================*
- *   
+ *
  *--------------------------------------------------------------------*/
 
 #define DEPEND_B_CUSTOM (1 << 0)
@@ -67,7 +67,7 @@ static opathspec pathspec;
 static ofilespec filespec;
 static oscantext scantext;
 static odepend sources ("project");
-static char const * folders [] = 
+static char const * folders [] =
 
 {
 	"/usr/include",
@@ -183,7 +183,7 @@ static void function (char const * target, size_t length, oflagword * flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"csmnfI",
 		oPUTOPTV_S_FUNNEL,

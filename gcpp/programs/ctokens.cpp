@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   ctokens.cpp - output c language source file as a token list; 
+ *   ctokens.cpp - output c language source file as a token list;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -58,7 +58,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"e",
 		oPUTOPTV_S_FUNNEL,

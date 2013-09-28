@@ -12,13 +12,13 @@
 #define oPUTOPTV_HEADER
 
 /*====================================================================*
- *   custom header files; 
+ *   custom header files;
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
 
 /*====================================================================*
- *   string vector indexes; 
+ *   string vector indexes;
  *--------------------------------------------------------------------*/
 
 #define oPUTOPTV_I_OPTIONS 0
@@ -27,7 +27,7 @@
 #define oPUTOPTV_I_DETAILS 3
 
 /*====================================================================*
- *   standard strings; 
+ *   standard strings;
  *--------------------------------------------------------------------*/
 
 #define oPUTOPTV_S_DEVICE "[device] [device] [...] [> stdout]"

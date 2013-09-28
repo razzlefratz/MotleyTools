@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   ocontext.demo.cpp 
+ *   ocontext.demo.cpp
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -39,7 +39,7 @@
 static ocontext context;
 
 /*====================================================================*
- *   
+ *
  *   static void show(char const *literal, char const *charset, bool mode);
  *
  *--------------------------------------------------------------------*/
@@ -63,7 +63,7 @@ static void show (char const * literal, unsigned c, bool mode)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"p:s:h",
 		PUTOPTV_S_FILTER,
@@ -78,7 +78,7 @@ int main (int argc, char const * argv [])
 	static char prefix = '/';
 	static char suffix = '.';
 	signed c;
-	while ((c = getopt.getoptv (argc, argv, optv)) != - 1)
+	while ((c = getopt.getoptv (argc, argv, optv)) != -1)
 	{
 		switch ((char) (c))
 		{

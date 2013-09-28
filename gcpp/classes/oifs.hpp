@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   oifs.hpp - interface for the oifs class  
+ *   oifs.hpp - interface for the oifs class
  *
  *   host interface enumerator;
  *
