@@ -510,8 +510,8 @@ signed ocomment::clang (signed c)
 			while (c == '\n')
 			{
 				ocomment::content ();
-				std::cout.put (c);
-				std::cout.put (' ');
+				* this->minsert++ = '\n';
+				* this->minsert++ = ' ';
 				do 
 				{
 					c = std::cin.get ();
@@ -662,6 +662,7 @@ signed ocomment::message (signed c, char const * string)
 ocomment & ocomment::content (void)
 
 {
+	static unsigned count = 0;
 	this->mcount++;
 	this->moutput = this->mbuffer;
 	while (this->minsert > this->moutput)
@@ -674,10 +675,18 @@ ocomment & ocomment::content (void)
 		this->minsert++;
 		break;
 	}
-	while (this->moutput < this->minsert)
+	if (std::memcmp (this->mbuffer, "\n *", this->minsert - this->moutput))
+	{
+		count = 0;
+	}
+	else
+	{
+		count ++;
+	}
+	if (count < 2)  while (this->moutput < this->minsert)
 	{
 		std::cout.put (* this->moutput++);
-	}
+	} 
 	this->minsert = this->mbuffer;
 	return (* this);
 }
