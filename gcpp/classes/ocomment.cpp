@@ -35,8 +35,6 @@
  *
  *--------------------------------------------------------------------*/
 
-#if oCOMMENT_EXTENDBAR
-
 size_t ocomment::width (void) const
 
 {
@@ -50,8 +48,6 @@ ocomment & ocomment::width (size_t width)
 	return (* this);
 }
 
-#endif
-
 /*====================================================================*
  *
  *   unsigned char cupper (void) const;
@@ -59,8 +55,6 @@ ocomment & ocomment::width (size_t width)
  *   get and set the upper bar character;
  *
  *--------------------------------------------------------------------*/
-
-#if oCOMMENT_EXTENDBAR
 
 unsigned char ocomment::cupper (void) const
 
@@ -75,8 +69,6 @@ ocomment & ocomment::cupper (unsigned char upper)
 	return (* this);
 }
 
-#endif
-
 /*====================================================================*
  *
  *   unsigned char clower (void) const;
@@ -84,8 +76,6 @@ ocomment & ocomment::cupper (unsigned char upper)
  *   get and set the lower bar character;
  *
  *--------------------------------------------------------------------*/
-
-#if oCOMMENT_EXTENDBAR
 
 unsigned char ocomment::clower (void) const
 
@@ -100,8 +90,6 @@ ocomment & ocomment::clower (unsigned char lower)
 	return (* this);
 }
 
-#endif
-
 /*====================================================================*
  *
  *   char const * preface (void) const;
@@ -110,7 +98,6 @@ ocomment & ocomment::clower (unsigned char lower)
  *
  *--------------------------------------------------------------------*/
 
-#if oCOMMENT_EXTENDBAR
 #if oCOMMENT_CUSTOMIZE
 
 char const * ocomment::preface (void) const
@@ -127,7 +114,6 @@ ocomment & ocomment::preface (char const * preface)
 }
 
 #endif
-#endif
 
 /*====================================================================*
  *
@@ -137,7 +123,6 @@ ocomment & ocomment::preface (char const * preface)
  *
  *--------------------------------------------------------------------*/
 
-#if oCOMMENT_EXTENDBAR
 #if oCOMMENT_CUSTOMIZE
 
 char const * ocomment::package (void) const
@@ -154,7 +139,6 @@ ocomment & ocomment::package (char const * package)
 }
 
 #endif
-#endif
 
 /*====================================================================*
  *
@@ -164,7 +148,6 @@ ocomment & ocomment::package (char const * package)
  *
  *--------------------------------------------------------------------*/
 
-#if oCOMMENT_EXTENDBAR
 #if oCOMMENT_CUSTOMIZE
 
 char const * ocomment::release (void) const
@@ -181,7 +164,6 @@ ocomment & ocomment::release (char const * release)
 }
 
 #endif
-#endif
 
 /*====================================================================*
  *
@@ -191,7 +173,6 @@ ocomment & ocomment::release (char const * release)
  *
  *--------------------------------------------------------------------*/
 
-#if oCOMMENT_EXTENDBAR
 #if oCOMMENT_CUSTOMIZE
 
 char const * ocomment::license (void) const
@@ -208,7 +189,6 @@ ocomment & ocomment::license (char const * license)
 }
 
 #endif
-#endif
 
 /*====================================================================*
  *
@@ -218,7 +198,6 @@ ocomment & ocomment::license (char const * license)
  *
  *--------------------------------------------------------------------*/
 
-#if oCOMMENT_EXTENDBAR
 #if oCOMMENT_CUSTOMIZE
 
 char const * ocomment::special (void) const
@@ -234,7 +213,6 @@ ocomment & ocomment::special (char const * special)
 	return (* this);
 }
 
-#endif
 #endif
 
 /*====================================================================*
@@ -452,16 +430,6 @@ signed ocomment::clang (signed c)
 	std::cout.put ('/');
 	while ((c != '/') && (c != EOF))
 	{
-
-#if oCOMMENT_EXTENDBAR
-
-/*
- *   if the character after as asterisk is UPPER or LOWER then collect the entire string
- *   and keep track of the length; if the string ends in asterisk then replace place it with
- *   another of fixed length using the same character; otherwise, replace it with another of
- *   the same length using the same character;
- */
-
 		if ((c == this->mupper) || (c == this->mlower))
 		{
 			c = ocomment::breaker (c);
@@ -490,7 +458,6 @@ signed ocomment::clang (signed c)
 			c = ocomment::message (c, this->mlicense);
 		}
 
-#endif
 #endif
 
 		std::cin.putback (c);
@@ -574,10 +541,7 @@ signed ocomment::clang (signed c)
  *
  *   signed breaker (signed c);
  *
- *
  *--------------------------------------------------------------------*/
-
-#if oCOMMENT_EXTENDBAR
 
 signed ocomment::breaker (signed c)
 
@@ -600,8 +564,6 @@ signed ocomment::breaker (signed c)
 	return (c);
 }
 
-#endif
-
 /*====================================================================*
  *
  *   signed message (unsigned char c, char const * string);
@@ -613,7 +575,6 @@ signed ocomment::breaker (signed c)
  *
  *--------------------------------------------------------------------*/
 
-#if oCOMMENT_EXTENDBAR
 #if oCOMMENT_CUSTOMIZE
 
 signed ocomment::message (signed c, char const * string)
@@ -649,7 +610,6 @@ signed ocomment::message (signed c, char const * string)
 }
 
 #endif
-#endif
 
 /*====================================================================*
  *
@@ -679,14 +639,14 @@ ocomment & ocomment::content (void)
 	{
 		count = 0;
 	}
-	else
+	else 
 	{
-		count ++;
+		count++;
 	}
-	if (count < 2)  while (this->moutput < this->minsert)
+	if (count < 2) while (this->moutput < this->minsert)
 	{
 		std::cout.put (* this->moutput++);
-	} 
+	}
 	this->minsert = this->mbuffer;
 	return (* this);
 }
@@ -704,9 +664,6 @@ ocomment::ocomment (size_t length)
 	this->minsert = this->mbuffer;
 	this->mlength = length;
 	this->mcount = 0;
-
-#if oCOMMENT_EXTENDBAR
-
 	this->mupper = oCOMMENT_C_UPPER;
 	this->mlower = oCOMMENT_C_LOWER;
 	this->mwidth = oCOMMENT_WIDTH;
@@ -720,7 +677,6 @@ ocomment::ocomment (size_t length)
 	this->mlicense = new char [1];
 	this->mlicense [0] = (char) (0);
 
-#endif
 #endif
 
 	return;
@@ -739,9 +695,6 @@ ocomment::ocomment (void)
 	this->mbuffer = new char [this->mlength];
 	this->minsert = this->mbuffer;
 	this->mcount = 0;
-
-#if oCOMMENT_EXTENDBAR
-
 	this->mupper = oCOMMENT_C_UPPER;
 	this->mlower = oCOMMENT_C_LOWER;
 	this->mwidth = oCOMMENT_WIDTH;
@@ -760,7 +713,6 @@ ocomment::ocomment (void)
 	this->mspecial [0] = (char) (0);
 
 #endif
-#endif
 
 	return;
 }
@@ -775,7 +727,6 @@ ocomment::~ ocomment (void)
 
 {
 
-#if oCOMMENT_EXTENDBAR
 #if oCOMMENT_CUSTOMIZE
 
 	delete [] this->mpreface;
@@ -784,7 +735,6 @@ ocomment::~ ocomment (void)
 	delete [] this->mlicense;
 	delete [] this->mspecial;
 
-#endif
 #endif
 
 	delete [] this->mbuffer;
