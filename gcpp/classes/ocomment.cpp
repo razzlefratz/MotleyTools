@@ -375,7 +375,7 @@ signed ocomment::cplus (signed c)
  *   specific formatting function blocks; the second form is more
  *   reliable and veratile;
  *
- * putc ('/', stdout);
+ *      putc ('/', stdout);
  *      while ((c != '/') && (c != EOF))
  *      {
  *           while ((c != '*') && (c != EOF))
@@ -415,20 +415,34 @@ signed ocomment::clang (signed c)
 			std::cout.put (c);
 			if (c == '\n')
 			{
+				char buffer [1024];
+				char * sp = buffer;
 				std::cout.put (' ');
-#if 1
 				do { c = std::cin.get (); } while (oascii::isblank (c));
-#else
-				do { c = std::cin.get (); } while (oascii::isspace (c));
-#endif
 				if (c != '*')
 				{
+					unsigned space = 3;
 					std::cout.put ('*');
-					std::cout.put (' ');
-					std::cout.put (' ');
-					std::cout.put (' ');
-					c = ocomment::content (c);
+					while (oascii::nobreak (c))
+					{
+						if (oascii::isblank (c))
+						{
+							space++;
+						}
+						else 
+						{
+							while (space)
+							{
+								*sp++ = ' ';
+								space--;
+							}
+							*sp++ = (char)(c);
+						}
+						c = std::cin.get ();
+					}
 				}
+				*sp = '\0';
+				std::cout << buffer;
 				continue;
 			}
 			c = std::cin.get ();
@@ -439,11 +453,7 @@ signed ocomment::clang (signed c)
 			c = std::cin.get ();
 		}
 		while (c == '*');
-		if (oascii::isblank (c))
-		{
-			c = ocomment::content (c);
-		}
-		else if ((c == this->mupper) || (c == this->mlower))
+		if ((c == this->mupper) || (c == this->mlower))
 		{
 			c = ocomment::breaker (c, '*');
 		}
@@ -492,7 +502,7 @@ signed ocomment::clang (signed c)
  *
  *   signed content (void);
  *
- *   print comment line; preserve inter-word spacing but remove 
+ *   print comment line; preserve inter-word spacing but remove
  *   trailing space;
  *
  *--------------------------------------------------------------------*/
@@ -501,6 +511,7 @@ signed ocomment::content (signed c)
 
 {
 	unsigned space = 0;
+	std::cout.put ('[');
 	while (oascii::nobreak (c))
 	{
 		if (oascii::isblank (c))
@@ -518,15 +529,16 @@ signed ocomment::content (signed c)
 		}
 		c = std::cin.get ();
 	}
+	std::cout.put (']');
 	return (c);
 }
 
-/*=*
+/*====================================================================*
  *
  *   ocomment & content (void)
  *
  *
- *-*/
+ *--------------------------------------------------------------------*/
 
 ocomment & ocomment::content (void)
 
@@ -544,7 +556,7 @@ ocomment & ocomment::content (void)
 		this->minsert++;
 		break;
 	}
-	if (std::memcmp (this->mbuffer, "\n *", this->minsert - this->moutput))
+	if (std::memcmp (this->mbuffer, " *   ", this->minsert - this->moutput))
 	{
 		count = 0;
 	}
@@ -552,9 +564,12 @@ ocomment & ocomment::content (void)
 	{
 		count++;
 	}
-	if (count < 2) while (this->moutput < this->minsert)
+	if (count < 2)
 	{
-		std::cout.put (* this->moutput++);
+		 while (this->moutput < this->minsert)
+		{
+			std::cout.put (* this->moutput++);
+		}
 	}
 	this->minsert = this->mbuffer;
 	return (* this);
@@ -639,6 +654,12 @@ signed ocomment::message (signed c, char const * string)
 ocomment::ocomment (size_t length)
 
 {
+	this->mpackage = new char [1];
+	this->mpackage [0] = (char) (0);
+	this->mrelease = new char [1];
+	this->mrelease [0] = (char) (0);
+	this->mlicense = new char [1];
+	this->mlicense [0] = (char) (0);
 	this->mbuffer = new char [length];
 	this->minsert = this->mbuffer;
 	this->mlength = length;
@@ -646,12 +667,6 @@ ocomment::ocomment (size_t length)
 	this->mupper = oCOMMENT_C_UPPER;
 	this->mlower = oCOMMENT_C_LOWER;
 	this->mwidth = oCOMMENT_WIDTH;
-	this->mpackage = new char [1];
-	this->mpackage [0] = (char) (0);
-	this->mrelease = new char [1];
-	this->mrelease [0] = (char) (0);
-	this->mlicense = new char [1];
-	this->mlicense [0] = (char) (0);
 	return;
 }
 
