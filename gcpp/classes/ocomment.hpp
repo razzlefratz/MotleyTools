@@ -24,8 +24,6 @@
  *--------------------------------------------------------------------*/
 
 #define oCOMMENT_PADMARGIN 1
-#define oCOMMENT_EXTENDBAR 1
-#define oCOMMENT_CUSTOMIZE 1
 
 /*====================================================================*
  *   constants;
@@ -85,9 +83,6 @@ public:
 	signed clang (signed c);
 	signed preamble (signed c);
 	ocomment & preamble (void);
-
-#if oCOMMENT_EXTENDBAR
-
 	unsigned char cupper (void) const;
 	unsigned char clower (void) const;
 	size_t width (void) const;
@@ -95,9 +90,6 @@ public:
 	ocomment & clower (unsigned char c);
 	ocomment & width (size_t width);
 
-#endif
-
-#if oCOMMENT_CUSTOMIZE
 
 	char const * preface (void) const;
 	char const * package (void) const;
@@ -110,14 +102,13 @@ public:
 	ocomment & license (char const * license);
 	ocomment & special (char const * special);
 
-#endif
 
 private: 
 
-#if oCOMMENT_CUSTOMIZE
 
 	signed message (signed c, char const * string);
-	signed breaker (signed c);
+	signed breaker (signed c, signed e);
+	signed content (signed c);
 	ocomment & content (void);
 	char * mpreface;
 	char * mpackage;
@@ -125,16 +116,9 @@ private:
 	char * mlicense;
 	char * mspecial;
 
-#endif
-
-#if oCOMMENT_EXTENDBAR
-
 	unsigned char mupper;
 	unsigned char mlower;
 	size_t mwidth;
-
-#endif
-
 	char * mbuffer;
 	char * minsert;
 	char * moutput;
