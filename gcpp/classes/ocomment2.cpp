@@ -453,9 +453,39 @@ signed ocomment::clang (signed c)
 	c = std::cin.get ();
 	while ((c != '/') && (c != EOF))
 	{
-		while ((c != '*') && (c != EOF));
-		{
 
+#if oCOMMENT_PADMARGIN
+
+/*
+ *   if the next character is newline then flush the buffer and reset sp to the start; write the
+ *   newline and one space then find the first non-blank character on the next comment line; if
+ *   that character is not asterisk then write an asterisk and one or more spaces; increment the
+ *   line counter for later;
+ */
+
+		while (c == '\n')
+		{
+			ocomment::content ();
+			* this->minsert++ = '\n';
+			* this->minsert++ = ' ';
+			do 
+			{
+				c = std::cin.get ();
+			}
+			while (oascii::isblank (c));
+			if (c != '*')
+			{
+				* this->minsert++ = '*';
+				* this->minsert++ = ' ';
+				* this->minsert++ = ' ';
+				* this->minsert++ = ' ';
+			}
+		}
+
+#endif
+
+		while ((c != '*') && (c != EOF))
+		{
 #if oCOMMENT_EXTENDBAR
 
 /*
@@ -496,60 +526,12 @@ signed ocomment::clang (signed c)
 #endif
 #endif
 
-#if oCOMMENT_PADMARGIN
-
-/*
- *   if the next character is newline then flush the buffer and reset sp to the start; write the
- *   newline and one space then find the first non-blank character on the next comment line; if
- *   that character is not asterisk then write an asterisk and one or more spaces; increment the
- *   line counter for later;
- */
-
-			else while (c == '\n')
-			{
-				ocomment::content ();
-				* this->minsert++ = '\n';
-				* this->minsert++ = ' ';
-				do 
-				{
-					c = std::cin.get ();
-				}
-				while (oascii::isblank (c));
-				if (c != '*')
-				{
-					* this->minsert++ = '*';
-					* this->minsert++ = ' ';
-					* this->minsert++ = ' ';
-					* this->minsert++ = ' ';
-				}
-			}
-
-#endif
-
 			* this->minsert++ = c;
 			c = std::cin.get ();
 		}
 
-#if 1
-
-		do { c = std::cin.get (); } while (c == '*');
-
-#else
-
-/*
- *	reduce strings of asterisks to one asterisk;
- */
-
+	  	std::cout.put (c);
 		c = std::cin.get ();
-		if (ocomment::anyset (oCOMMENT_B_SHORT))
-		{
-			while (c == '*')
-			{
-				c = std::cin.get ();
-			}
-		}
-
-#endif
 
 	}
 	if (ocomment::anyset (oCOMMENT_B_TRIPLE) && ! this->mcount)
