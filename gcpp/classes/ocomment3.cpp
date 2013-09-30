@@ -29,19 +29,19 @@
 
 /*====================================================================*
  *
- *   unsigned width (void) const;
+ *   size_t width (void) const;
  *
  *   get and set the comment bar width;
  *
  *--------------------------------------------------------------------*/
 
-unsigned ocomment::width (void) const
+size_t ocomment::width (void) const
 
 {
 	return (this->mwidth);
 }
 
-ocomment & ocomment::width (unsigned width)
+ocomment & ocomment::width (size_t width)
 
 {
 	this->mwidth = width;
@@ -581,7 +581,7 @@ signed ocomment::message (signed c, char const * string) const
 	while (oascii::nobreak (c));
 	if (ocomment::allclear (oCOMMENT_B_DISCARD))
 	{
-		std::cout.put (ocomment::anyset (oCOMMENT_B_PERMANENT)? ' ': o);
+		std::cout.put (ocomment::anyset (oCOMMENT_B_PERMANENT)? ' ':o);
 		std::cout.put (' ');
 		std::cout.put (' ');
 		std::cout << string;
@@ -591,11 +591,11 @@ signed ocomment::message (signed c, char const * string) const
 
 /*====================================================================*
  *
- *   ocomment (unsigned length)
+ *   ocomment (size_t length)
  *
  *--------------------------------------------------------------------*/
 
-ocomment::ocomment (unsigned length)
+ocomment::ocomment (size_t length)
 
 {
 	this->mpreface = new char [1];
