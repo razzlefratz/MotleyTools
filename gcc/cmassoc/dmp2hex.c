@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   dump2hex.c - convert hex dump to hex file;
+ *   dmp2hex.c - convert hex dump to hex file;
  *
  *   copy one or more files to stdout; if no files are specified
  *   then copy stdin to stdout;
@@ -42,7 +42,10 @@
 
 /*====================================================================*
  *
- *   void function ();
+ *   void function (size_t prior, size_t after);
+ *
+ *   discard text prior to column prior and after column after on
+ *   each line of a text file;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -50,29 +53,34 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function ()
+void function (size_t prior, size_t after)
 
 {
-	char c;
-	while ((c = getc (stdin)) != EOF)
+	signed c;
+	size_t column = 0;
+	for (column++; (c = getc (stdin)) != EOF; column++)
 	{
-		if (isxdigit (c))
+		if (c == '\n')
 		{
-			while (isxdigit (c))
+			putc (c, stdout);
+			column = 0;
+			continue;
+		}
+		if (prior < after)
+		{
+			if ((column < prior) || (column > after))
 			{
-				c = getc (stdin);
-			}
-			while (isblank (c) || isxdigit (c))
-			{
-				putc (c, stdout);
-				c = getc (stdin);
+				continue;
 			}
 		}
-		while (nobreak (c))
+		if (prior > after)
 		{
-			c = getc (stdin);
+			if ((column < prior) && (column > after))
+			{
+				continue;
+			}
 		}
-		putc ('\n', stdout);
+		putc (c, stdout);
 	}
 	return;
 }
@@ -93,16 +101,23 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"",
+		"t",
 		PUTOPTV_S_FUNNEL,
-		"hex dump to hex file converter",
+		"convert hex dump to hex file",
+		"t\tconvert toolkit hex dump",
 		(char const *) (0)
 	};
+	size_t prior = 10;
+	size_t after = 56;
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
+		case 't':
+			prior = 10;
+			after = 56; 
+			break;
 		default: 
 			break;
 		}
@@ -111,7 +126,7 @@ int main (int argc, char const * argv [])
 	argv += optind;
 	if (! argc)
 	{
-		function ();
+		function (prior, after);
 	}
 	while ((argc) && (* argv))
 	{
@@ -119,10 +134,9 @@ int main (int argc, char const * argv [])
 		{
 			error (1, errno, "%s", * argv);
 		}
-		function ();
+		function (prior, after);
 		argc--;
 		argv++;
 	}
 	return (0);
 }
-

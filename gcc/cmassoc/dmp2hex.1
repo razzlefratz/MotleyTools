@@ -18,6 +18,8 @@ dmp2hex - hex dump to hex file converter
 
 .SH DESCRIPTION
 Read one or more hexadecimal dump files and output a hexadecimal file having memory offsets and ASCII display removed.
+Input files are not modified.
+Use program \fBtrim\fR to modify the input files.
 
 .SH OPTIONS
 Long options are not supported.
@@ -58,7 +60,8 @@ None.
 .BR bin2hex ( 1 ),
 .BR hex2bin ( 1 ),
 .BR hexcmp ( 1 ),
-.BR hexdmp ( 1 )
+.BR hexdmp ( 1 ),
+.BR trim ( 1 )
 
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>

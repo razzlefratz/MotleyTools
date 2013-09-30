@@ -46,10 +46,19 @@
 #endif
 
 /*====================================================================*
+ *   program constants;
+ *--------------------------------------------------------------------*/
+
+#define TRIM_PRIOR 0
+#define TRIM_AFTER 0
+#define TRIM_INDEX 10
+#define TRIM_ASCII 56
+
+/*====================================================================*
  *
- *   void function (size_t lower, size_t upper, flag_t flags);
+ *   void function (size_t prior, size_t after);
  *
- *   discard text prior to column lower and after column upper on
+ *   discard text prior to column prior and after column after on
  *   each line of a text file;
  *
  *.  Motley Tools by Charles Maier;
@@ -58,12 +67,12 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (size_t lower, size_t upper, flag_t flags)
+void function (size_t prior, size_t after)
 
 {
-	size_t column;
 	signed c;
-	for (column = 1; (c = getc (stdin)) != EOF; column++)
+	size_t column = 0;
+	for (column++; (c = getc (stdin)) != EOF; column++)
 	{
 		if (c == '\n')
 		{
@@ -71,16 +80,16 @@ void function (size_t lower, size_t upper, flag_t flags)
 			column = 0;
 			continue;
 		}
-		if (lower < upper)
+		if (prior < after)
 		{
-			if ((column < lower) || (column > upper))
+			if ((column < prior) || (column > after))
 			{
 				continue;
 			}
 		}
-		if (lower > upper)
+		if (prior > after)
 		{
-			if ((column < lower) && (column > upper))
+			if ((column < prior) && (column > after))
 			{
 				continue;
 			}
@@ -106,26 +115,30 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"a:b:",
+		"a:b:x",
 		PUTOPTV_S_FILTER,
 		"discard character columns",
-		"a n\tafter column (n)",
-		"b n\tbefore column (n)",
+		"a n\tafter column (n) [" LITERAL (TRIM_PRIOR) "]",
+		"b n\tbefore column (n) [" LITERAL (TRIM_AFTER) "]",
+		"x\ttrim hex dump (-b" LITERAL (TRIM_INDEX) " -a" LITERAL (TRIM_ASCII) ")",
 		(char const *) (0)
 	};
-	flag_t flags = (flag_t) (0);
-	unsigned lower = 0;
-	unsigned upper = 0;
+	unsigned prior = TRIM_PRIOR;
+	unsigned after = TRIM_AFTER;
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'a':
-			upper = uintspec (optarg, 0, USHRT_MAX);
+			after = uintspec (optarg, 0, USHRT_MAX);
 			break;
 		case 'b':
-			lower = uintspec (optarg, 0, USHRT_MAX);
+			prior = uintspec (optarg, 0, USHRT_MAX);
+			break;
+		case 'x':
+			prior = TRIM_INDEX;
+			after = TRIM_ASCII;
 			break;
 		default: 
 			break;
@@ -135,13 +148,13 @@ int main (int argc, char const * argv [])
 	argv += optind;
 	if (! argc)
 	{
-		function (lower, upper, flags);
+		function (prior, after);
 	}
 	while ((argc) && (* argv))
 	{
 		if (vfopen (* argv))
 		{
-			function (lower, upper, flags);
+			function (prior, after);
 		}
 		argc--;
 		argv++;
