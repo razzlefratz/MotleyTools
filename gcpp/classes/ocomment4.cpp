@@ -29,19 +29,19 @@
 
 /*====================================================================*
  *
- *   unsigned width (void) const;
+ *   size_t width (void) const;
  *
  *   get and set the comment bar width;
  *
  *--------------------------------------------------------------------*/
 
-unsigned ocomment::width (void) const
+size_t ocomment::width (void) const
 
 {
 	return (this->mwidth);
 }
 
-ocomment & ocomment::width (unsigned width)
+ocomment & ocomment::width (size_t width)
 
 {
 	this->mwidth = width;
@@ -406,6 +406,7 @@ signed ocomment::cplus (signed c)
 signed ocomment::clang (signed c)
 
 {
+	this->mcount = 0;
 	std::cout.put ('/');
 	while ((c != '/') && (c != EOF))
 	{
@@ -414,13 +415,34 @@ signed ocomment::clang (signed c)
 			std::cout.put (c);
 			if (c == '\n')
 			{
+				char buffer [1024];
+				char * sp = buffer;
 				std::cout.put (' ');
 				do { c = std::cin.get (); } while (oascii::isblank (c));
 				if (c != '*')
 				{
+					unsigned space = 3;
 					std::cout.put ('*');
-					c = ocomment::content (c, 3);
+					while (oascii::nobreak (c))
+					{
+						if (oascii::isblank (c))
+						{
+							space++;
+						}
+						else 
+						{
+							while (space)
+							{
+								*sp++ = ' ';
+								space--;
+							}
+							*sp++ = (char)(c);
+						}
+						c = std::cin.get ();
+					}
 				}
+				*sp = '\0';
+				std::cout << buffer;
 				continue;
 			}
 			c = std::cin.get ();
@@ -456,14 +478,6 @@ signed ocomment::clang (signed c)
 			c = ocomment::message (c, this->mlicense);
 		}
 	}
-
-#if 0
-
-/*
- *	the only comments that make it to here are one-line comments;
- *	this implementation does not deal with the conversions;
- */
-
 	if (ocomment::anyset (oCOMMENT_B_TRIPLE) && ! this->mcount)
 	{
 		std::cout.put ('*');
@@ -478,9 +492,6 @@ signed ocomment::clang (signed c)
 		std::cout.put (' ');
 		std::cout.put ('*');
 	}
-
-#endif
-
 	std::cout.put ('/');
 	std::cout.put ('\n');
 	c = std::cin.get ();
@@ -489,11 +500,88 @@ signed ocomment::clang (signed c)
 
 /*====================================================================*
  *
- *   signed breaker (signed c, signed e) const;
+ *   signed content (void);
+ *
+ *   print comment line; preserve inter-word spacing but remove
+ *   trailing space;
  *
  *--------------------------------------------------------------------*/
 
-signed ocomment::breaker (signed c, signed e) const
+signed ocomment::content (signed c)
+
+{
+	unsigned space = 0;
+	std::cout.put ('[');
+	while (oascii::nobreak (c))
+	{
+		if (oascii::isblank (c))
+		{
+			space++;
+		}
+		else 
+		{
+			while (space)
+			{
+				std::cout.put (' ');
+				space--;
+			}
+			std::cout.put (c);
+		}
+		c = std::cin.get ();
+	}
+	std::cout.put (']');
+	return (c);
+}
+
+/*====================================================================*
+ *
+ *   ocomment & content (void)
+ *
+ *
+ *--------------------------------------------------------------------*/
+
+ocomment & ocomment::content (void)
+
+{
+	static unsigned count = 0;
+	this->mcount++;
+	this->moutput = this->mbuffer;
+	while (this->minsert > this->moutput)
+	{
+		this->minsert--;
+		if (oascii::isspace (* this->minsert))
+		{
+			continue;
+		}
+		this->minsert++;
+		break;
+	}
+	if (std::memcmp (this->mbuffer, " *   ", this->minsert - this->moutput))
+	{
+		count = 0;
+	}
+	else 
+	{
+		count++;
+	}
+	if (count < 2)
+	{
+		 while (this->moutput < this->minsert)
+		{
+			std::cout.put (* this->moutput++);
+		}
+	}
+	this->minsert = this->mbuffer;
+	return (* this);
+}
+
+/*====================================================================*
+ *
+ *   signed breaker (signed c);
+ *
+ *--------------------------------------------------------------------*/
+
+signed ocomment::breaker (signed c, signed e)
 
 {
 	signed width = 0;
@@ -516,94 +604,66 @@ signed ocomment::breaker (signed c, signed e) const
 
 /*====================================================================*
  *
- *   signed content (signed c, unsigned column) const;
- *
- *   print comment line; preserve intervening word spacing; remove 
- *   tailing white space;
- *
- *--------------------------------------------------------------------*/
-
-signed ocomment::content (signed c, unsigned column) const
-
-{
-	unsigned offset = 0;
-	while (oascii::nobreak (c))
-	{
-		if (c == ' ')
-		{
-			column++;
-		}
-		else if (c == '\t')
-		{
-			column -= column % 8;
-			column += 8;
-		}
-		else 
-		{
-			while (offset < column)
-			{
-				std::cout.put (' ');
-				offset++;
-			}
-			std::cout.put (c);
-			column++;
-			offset++;
-		}
-		c = std::cin.get ();
-	}
-	return (c);
-}
-
-/*====================================================================*
- *
- *   signed message (unsigned char c, char const * string) const;
+ *   signed message (unsigned char c, char const * string);
  *
  *   replace comment line with new one;
  *
- *   read and discard comment line; replace it with another starting 
- *   with appropriate start character; omit the start character when
- *   permanence is requested;
+ *   copy c then string to buffer; read and discard characters from
+ *   stdin until newline or EOF is read; return read character;
  *
  *--------------------------------------------------------------------*/
 
-signed ocomment::message (signed c, char const * string) const
+signed ocomment::message (signed c, char const * string)
 
 {
-	signed o = c;
-	do 
+	if (ocomment::anyset (oCOMMENT_B_DISCARD))
+	{
+		do 
+		{
+			c = std::cin.get ();
+		}
+		while (oascii::isblank (c));
+		while (c == * string++)
+		{
+			c = std::cin.get ();
+		};
+	}
+	else 
+	{
+		* this->minsert++ = ocomment::anyset (oCOMMENT_B_PERMANENT)? ' ': c;
+		* this->minsert++ = ' ';
+		* this->minsert++ = ' ';
+		while (* string)
+		{
+			* this->minsert++ = * string++;
+		}
+	}
+	while (oascii::nobreak (c))
 	{
 		c = std::cin.get ();
-	}
-	while (oascii::nobreak (c));
-	if (ocomment::allclear (oCOMMENT_B_DISCARD))
-	{
-		std::cout.put (ocomment::anyset (oCOMMENT_B_PERMANENT)? ' ':o);
-		std::cout.put (' ');
-		std::cout.put (' ');
-		std::cout << string;
 	}
 	return (c);
 }
 
 /*====================================================================*
  *
- *   ocomment (unsigned length)
+ *   ocomment (size_t length)
  *
  *--------------------------------------------------------------------*/
 
-ocomment::ocomment (unsigned length)
+ocomment::ocomment (size_t length)
 
 {
-	this->mpreface = new char [1];
-	this->mpreface [0] = (char) (0);
 	this->mpackage = new char [1];
 	this->mpackage [0] = (char) (0);
 	this->mrelease = new char [1];
 	this->mrelease [0] = (char) (0);
 	this->mlicense = new char [1];
 	this->mlicense [0] = (char) (0);
-	this->mspecial = new char [1];
-	this->mspecial [0] = (char) (0);
+	this->mbuffer = new char [length];
+	this->minsert = this->mbuffer;
+	this->mlength = length;
+	this->mcount = 0;
 	this->mupper = oCOMMENT_C_UPPER;
 	this->mlower = oCOMMENT_C_LOWER;
 	this->mwidth = oCOMMENT_WIDTH;
@@ -619,6 +679,13 @@ ocomment::ocomment (unsigned length)
 ocomment::ocomment (void)
 
 {
+	this->mlength = oCOMMENT_LENGTH;
+	this->mbuffer = new char [this->mlength];
+	this->minsert = this->mbuffer;
+	this->mcount = 0;
+	this->mupper = oCOMMENT_C_UPPER;
+	this->mlower = oCOMMENT_C_LOWER;
+	this->mwidth = oCOMMENT_WIDTH;
 	this->mpreface = new char [1];
 	this->mpreface [0] = (char) (0);
 	this->mpackage = new char [1];
@@ -629,9 +696,6 @@ ocomment::ocomment (void)
 	this->mlicense [0] = (char) (0);
 	this->mspecial = new char [1];
 	this->mspecial [0] = (char) (0);
-	this->mupper = oCOMMENT_C_UPPER;
-	this->mlower = oCOMMENT_C_LOWER;
-	this->mwidth = oCOMMENT_WIDTH;
 	return;
 }
 
@@ -649,6 +713,7 @@ ocomment::~ ocomment (void)
 	delete [] this->mrelease;
 	delete [] this->mlicense;
 	delete [] this->mspecial;
+	delete [] this->mbuffer;
 	return;
 }
 
