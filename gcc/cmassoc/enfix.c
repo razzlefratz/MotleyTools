@@ -55,7 +55,7 @@
  *
  *   void function (char * prefix, char * suffix, flag_t flags)
  *
- *   read from stdin and write to stdout; append the prefix and suffix 
+ *   read from stdin and write to stdout; append the prefix and suffix
  *   string to each output line; ignore NULL prefix or suffix strings;
  *
  *.  Motley Tools by Charles Maier;
@@ -91,7 +91,7 @@ void function (char const * prefix, char const * suffix, flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"p:s:",
 		PUTOPTV_S_FILTER,

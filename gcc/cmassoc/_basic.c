@@ -2,7 +2,7 @@
  *
  *   basic.c - basic program template;
  *
- *   copy one or more files to stdout; if no files are specified 
+ *   copy one or more files to stdout; if no files are specified
  *   then copy stdin to stdout;
  *
  *.  Motley Tools by Charles Maier;
@@ -62,7 +62,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"qv",
 		PUTOPTV_S_FUNNEL,

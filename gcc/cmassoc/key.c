@@ -72,12 +72,12 @@
 static unsigned count = 1;
 
 /*====================================================================*
- *   
+ *
  *   void stop (signo_t signal);
- *   
- *   terminate the program; we want to ensure an organized program 
+ *
+ *   terminate the program; we want to ensure an organized program
  *   exit such that the current pass phrase is saved;
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -92,9 +92,9 @@ static void stop (signo_t signal)
 }
 
 /*====================================================================*
- *   
+ *
  *   void function (void * secret, size_t length, flag_t flags);
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -150,7 +150,7 @@ static void function (void * secret, size_t length, flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"f:n:oqv",
 		"keyfile",
@@ -197,15 +197,15 @@ int main (int argc, char const * argv [])
 		error (1, ENOTSUP, ERROR_TOOMANY);
 	}
 	memset (secret, 0, sizeof (secret));
-	if ((fd = open (file, O_BINARY | O_CREAT | O_RDWR, (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH))) == - 1)
+	if ((fd = open (file, O_BINARY | O_CREAT | O_RDWR, (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH))) == -1)
 	{
 		error (1, errno, "%s", file);
 	}
-	if (read (fd, secret, sizeof (secret) - 1) == - 1)
+	if (read (fd, secret, sizeof (secret) -1) == -1)
 	{
 		error (1, errno, "%s", file);
 	}
-	for (c = 0; (size_t) (c) < sizeof (secret) - 1; c++)
+	for (c = 0; (size_t) (c) < sizeof (secret) -1; c++)
 	{
 		if (secret [c] < MIN)
 		{
@@ -216,12 +216,12 @@ int main (int argc, char const * argv [])
 			secret [c] = MAX;
 		}
 	}
-	function (secret, sizeof (secret) - 1, flags);
+	function (secret, sizeof (secret) -1, flags);
 	if (lseek (fd, 0, SEEK_SET))
 	{
 		error (1, errno, "%s", file);
 	}
-	if (write (fd, secret, sizeof (secret) - 1) == - 1)
+	if (write (fd, secret, sizeof (secret) -1) == -1)
 	{
 		error (1, errno, "%s", file);
 	}

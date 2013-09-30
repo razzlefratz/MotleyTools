@@ -2,8 +2,8 @@
  *
  *   sv.c - string vector declaration generator;
  *
- *   read a text file of names, one name per line; write a c language 
- *   data declaration that initializes a vector with the names; write 
+ *   read a text file of names, one name per line; write a c language
+ *   data declaration that initializes a vector with the names; write
  *   a #define statement for each name; write a switch statement with
  *   a case statement for each list item;
  *
@@ -75,7 +75,7 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-static char * sv_prolog [] = 
+static char * sv_prolog [] =
 
 {
 	"/*================* ",
@@ -93,7 +93,7 @@ static char * sv_prolog [] =
 
 static char buffer [TEXTLINE_MAX +  1];
 static signed length;
-static char * title [2] = 
+static char * title [2] =
 
 {
 	"symbol",
@@ -105,7 +105,7 @@ static signed field = 0;
 static signed count = 0;
 
 /*====================================================================*
- *   
+ *
  *   void function1 (flag_t flags);
  *
  *
@@ -123,7 +123,7 @@ void function1 (flag_t flags)
 	indent (margin, " *   program constants;");
 	indent (margin, " *---*/");
 	indent (margin, "#ifndef %s", title [1]);
-	for (count = 0; fgetline (buffer, sizeof (buffer), stdin) != - 1; count++)
+	for (count = 0; fgetline (buffer, sizeof (buffer), stdin) != -1; count++)
 	{
 		strselect (strupr (buffer), SV_S_RESTRICT);
 		if (* buffer == (char) (0))
@@ -139,7 +139,7 @@ void function1 (flag_t flags)
 }
 
 /*====================================================================*
- *   
+ *
  *   void function3 (flag_t flags);
  *
  *
@@ -164,7 +164,7 @@ void function2 (flag_t flags)
 	indent (margin, "char const * sv_%s [] =", title [0]);
 	indent (margin, "#endif");
 	indent (margin++, "{");
-	for (count = 0; (length = fgetline (buffer, sizeof (buffer), stdin)) != - 1; ++ count)
+	for (count = 0; (length = fgetline (buffer, sizeof (buffer), stdin)) != -1; ++ count)
 	{
 		indent (margin, "\"%s\",", buffer);
 	}
@@ -175,7 +175,7 @@ void function2 (flag_t flags)
 }
 
 /*====================================================================*
- *   
+ *
  *   void function3 (flag_t flags);
  *
  *
@@ -195,7 +195,7 @@ void function3 (flag_t flags)
 	indent (margin++, "#ifdef %s", title [1]);
 	indent (margin, "switch(count)");
 	indent (margin++, "{");
-	for (count = 0; fgetline (buffer, sizeof (buffer), stdin) != - 1; ++ count)
+	for (count = 0; fgetline (buffer, sizeof (buffer), stdin) != -1; ++ count)
 	{
 		strselect (strupr (buffer), SV_S_RESTRICT);
 		indent (margin++, "case %s_O_%s:", title [1], buffer);
@@ -210,7 +210,7 @@ void function3 (flag_t flags)
 }
 
 /*====================================================================*
- *   
+ *
  *   void function (flag_t flags);
  *
  *
@@ -250,7 +250,7 @@ void function (flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"t:dvs",
 		PUTOPTV_S_FILTER,
@@ -294,7 +294,7 @@ int main (int argc, char const * argv [])
 		_setbits (flags, (SV_B_DEFINE | SV_B_VECTOR | SV_B_SWITCH));
 	}
 	width &= STRING_MAX;
-	field = width - strlen (title [0]) - DIGITS_MAX - 1;
+	field = width - strlen (title [0]) - DIGITS_MAX -1;
 	if (field > width)
 	{
 		field = width;

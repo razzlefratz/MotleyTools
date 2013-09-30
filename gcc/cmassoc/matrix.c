@@ -1,6 +1,6 @@
 /*====================================================================r
  *
- *   matrix.c - 
+ *   matrix.c -
  *
  *
  *.  Motley Tools by Charles Maier;
@@ -448,8 +448,8 @@ static unsigned table2 (unsigned margin, char const * string, struct column * co
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -459,7 +459,7 @@ static unsigned table2 (unsigned margin, char const * string, struct column * co
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"de:hl:m:st:",
 		PUTOPTV_S_FUNNEL,
@@ -476,7 +476,7 @@ int main (int argc, char const * argv [])
 	unsigned (* table) (unsigned, char const *, struct column *) = table1;
 	unsigned margin = LEVEL;
 	char const * header = TITLE;
-	struct column column = 
+	struct column column =
 	{
 		(struct column *) (0),
 		(char const *) (0),

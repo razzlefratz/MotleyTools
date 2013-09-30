@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   typelist.c 
+ *   typelist.c
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -32,10 +32,10 @@
 #include "../tools/getoptv.c"
 #include "../tools/putoptv.c"
 #include "../tools/version.c"
-#include "../tools/efreopen.c"
-#include "../tools/todigit.c" 
-#include "../tools/typeload.c" 
-#include "../tools/typesave.c" 
+#include "../tools/efreopen.c
+#include "../tools/todigit.c"
+#include "../tools/typeload.c"
+#include "../tools/typesave.c"
 #include "../tools/error.c" 
 #include "../tools/print.c" 
 #include "../tools/indent.c" 
@@ -55,7 +55,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"dmnst:v",
 		PUTOPTV_S_FUNNEL,

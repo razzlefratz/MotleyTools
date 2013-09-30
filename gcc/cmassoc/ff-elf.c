@@ -99,9 +99,9 @@ static void testfile (FIND * find, flag_t flags);
  *
  *   void showfile (FIND *find, flag_t flags);
  *
- *   determine if the find basename matches the find wildcard; if so 
- *   the print the find.fullname, pathname or basename depending on 
- *   the flags; optionally, prefix each print line with the file date; 
+ *   determine if the find basename matches the find wildcard; if so
+ *   the print the find.fullname, pathname or basename depending on
+ *   the flags; optionally, prefix each print line with the file date;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -141,9 +141,9 @@ static void showfile (FIND * find, flag_t flags)
  *
  *   void function (FIND *find, flag_t flags);
  *
- *   determine if the find basename matches the find wildcard; if so 
- *   the print the find.fullname, pathname or basename depending on 
- *   the flags; optionally, prefix each print line with the file date; 
+ *   determine if the find basename matches the find wildcard; if so
+ *   the print the find.fullname, pathname or basename depending on
+ *   the flags; optionally, prefix each print line with the file date;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -161,9 +161,9 @@ static void function (FIND * find, flag_t flags)
 	{
 		if ((length = read (fd, signature, sizeof (signature))) > 0)
 		{
-			if (! memcmp (signature, ELF, sizeof (ELF) - 1))
+			if (! memcmp (signature, ELF, sizeof (ELF) -1))
 			{
-				signature [sizeof (ELF) - 1] = (char) (0);
+				signature [sizeof (ELF) -1] = (char) (0);
 				if (_anyset (flags, FF_B_ELF))
 				{
 
@@ -177,9 +177,9 @@ static void function (FIND * find, flag_t flags)
 					showfile (find, flags);
 				}
 			}
-			else if (! memcmp (signature, ARCH, sizeof (ARCH) - 1))
+			else if (! memcmp (signature, ARCH, sizeof (ARCH) -1))
 			{
-				signature [sizeof (ARCH) - 1] = (char) (0);
+				signature [sizeof (ARCH) -1] = (char) (0);
 				if (_anyset (flags, FF_B_ARCH))
 				{
 
@@ -193,9 +193,9 @@ static void function (FIND * find, flag_t flags)
 					showfile (find, flags);
 				}
 			}
-			else if (! memcmp (signature, SCRIPT, sizeof (SCRIPT) - 1))
+			else if (! memcmp (signature, SCRIPT, sizeof (SCRIPT) -1))
 			{
-				signature [sizeof (SCRIPT) - 1] = (char) (0);
+				signature [sizeof (SCRIPT) -1] = (char) (0);
 				if (_anyset (flags, FF_B_SH))
 				{
 
@@ -329,7 +329,7 @@ int main (int argc, char const * argv [])
 
 {
 	extern FIND find;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"aefprstE:PSBLIK",
 		PUTOPTV_S_SEARCH,

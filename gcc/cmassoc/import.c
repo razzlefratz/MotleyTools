@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   import.c - import files; 
+ *   import.c - import files;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -64,7 +64,7 @@
 #define IMPORT_SILENCE (1 << 1)
 
 /*====================================================================*
- *   program functions;         
+ *   program functions;
  *--------------------------------------------------------------------*/
 
 static void findfile (FIND * find, FIND * home, flag_t flags);
@@ -74,7 +74,7 @@ static void testfile (FIND * find, FIND * home, flag_t flags);
  *
  *   void function (struct _find_ *find, flag_t flags);
  *
- *   display and/or remove a file or link based on criteria in struct 
+ *   display and/or remove a file or link based on criteria in struct
  *   search, including the pathname, wildcard and flagword;
  *
  *.  Motley Tools by Charles Maier;
@@ -94,12 +94,12 @@ static void function (struct _find_ * find, struct _find_ * home, flag_t flags)
 	}
 	strcpy (home->filename, find->filename);
 	makepath (home->fullname, home->pathname, home->filename);
-	if ((find->fd = open (find->fullname, O_RDONLY)) == - 1)
+	if ((find->fd = open (find->fullname, O_RDONLY)) == -1)
 	{
 		error (0, errno, FILE_CANTOPEN, find->fullname);
 		return;
 	}
-	if ((home->fd = open (home->fullname, O_CREAT | O_WRONLY, find->statinfo.st_mode)) == - 1)
+	if ((home->fd = open (home->fullname, O_CREAT | O_WRONLY, find->statinfo.st_mode)) == -1)
 	{
 		error (0, errno, FILE_CANTOPEN, home->fullname);
 		close (find->fd);
@@ -230,7 +230,7 @@ int main (int argc, char const * argv [])
 
 {
 	extern FIND find;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"o:qrv",
 		"folder findspec [findspec] [...]",

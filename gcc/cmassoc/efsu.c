@@ -4,7 +4,7 @@
  *
  *   convert hexadecimal text files to ethernet frames and transmit
  *   them over the network; basically, it is a 'send your own frame'
- *   utility; 
+ *   utility;
  *
  *   the program works like cat, sending file after file to a given
  *   interface; as each file is read, all hexadecimal octets in the
@@ -79,10 +79,10 @@
 #define EFSU_COUNT 1
 
 /*====================================================================*
- *   
+ *
  *   void function (struct channel * channel, void * memory, ssize_t extent);
  *
- *   read Ethernet frame descriptions from stdin and transmit them 
+ *   read Ethernet frame descriptions from stdin and transmit them
  *   as raw ethernet frames; wait for a response if CHANNEL_LISTEN
  *   flagword bit is set;
  *
@@ -125,7 +125,7 @@ static void function (struct channel * channel, void * memory, ssize_t extent)
 }
 
 /*====================================================================*
- *   
+ *
  *   void iterate (int argc, char const * argv [], void * memory, ssize_t extent, unsigned pause);
  *
  *
@@ -161,7 +161,7 @@ static void iterate (int argc, char const * argv [], struct channel * channel, u
 }
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv []);
  *
  *
@@ -175,7 +175,7 @@ int main (int argc, char const * argv [])
 
 {
 	extern struct channel channel;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"d:hi:l:p:t:vw:",
 		PUTOPTV_S_FUNNEL,

@@ -2,7 +2,7 @@
  *
  *   hexdmp.c - hexadecimal stream dump utility;
  *
- *   print one or more files on stdout in hexadecimal format; if no 
+ *   print one or more files on stdout in hexadecimal format; if no
  *   files are specified on the command line then read from stdin;
  *
  *.  Motley Tools by Charles Maier;
@@ -121,7 +121,7 @@ static void function ()
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"",
 		PUTOPTV_S_FUNNEL,

@@ -107,7 +107,7 @@ int main (int argc, char const * argv [])
 
 {
 	extern FIND find;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"e:p:x",
 		PUTOPTV_S_FILTER,

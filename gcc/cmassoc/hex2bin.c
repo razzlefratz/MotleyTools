@@ -2,7 +2,7 @@
  *
  *   hex2bin.c - hexadecimal to binary file concatenate;
  *
- *   copy one or more files to stdout; if no files are specified 
+ *   copy one or more files to stdout; if no files are specified
  *   then copy stdin to stdout;
  *
  *.  Motley Tools by Charles Maier;
@@ -125,7 +125,7 @@ static void function (char const * filename)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"",
 		PUTOPTV_S_FUNNEL,

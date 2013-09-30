@@ -90,7 +90,7 @@
 #define MAX_FILES 10
 
 /*====================================================================*
- *   program functions;   
+ *   program functions;
  *--------------------------------------------------------------------*/
 
 static void findfile (FIND * find, flag_t flags);
@@ -159,7 +159,7 @@ static void extract (SCAN * scan, char buffer [], size_t length)
  *
  *   static void function (FIND * find, flag_t flags);
  *
- *   read a linux package description file and string and write 
+ *   read a linux package description file and string and write
  *   dependencies to stdout;
  *
  *.  Motley Tools by Charles Maier;
@@ -183,7 +183,7 @@ static void function (FIND * find, flag_t flags)
 		char buffer [TEXTLINE_MAX];
 		size_t line;
 		scaninput (& scan, buffer, sizeof (buffer));
-		for (line = 0; fgetline (buffer, sizeof (buffer), stdin) != - 1; line++)
+		for (line = 0; fgetline (buffer, sizeof (buffer), stdin) != -1; line++)
 		{
 			scanwhile (& scan, gcsASCIIAlpha ".");
 			scanbreak (& scan, ":");
@@ -265,7 +265,7 @@ static void findfile (FIND * find, flag_t flags)
 
 /*====================================================================*
  *
- *   void testfile (FIND *find, flag_t flags); 
+ *   void testfile (FIND *find, flag_t flags);
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -318,18 +318,18 @@ static void testfile (FIND * find, flag_t flags)
 /*====================================================================*
  *
  *   int main (int argc, char const * argv[]);
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 int main (int argc, char const * argv [])
 
 {
 	extern FIND find;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"rb",
 		PUTOPTV_S_DIVINE,

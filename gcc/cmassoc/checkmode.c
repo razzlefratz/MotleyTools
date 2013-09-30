@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   faudit.c - audit file states against snapshot file; 
+ *   faudit.c - audit file states against snapshot file;
  *
  *   copy one or more files to stdout; if no files are specified then copy
  *   stdin to stdout;
@@ -47,7 +47,7 @@
 #endif
 
 /*====================================================================*
- *   
+ *
  *--------------------------------------------------------------------*/
 
 #define CODE 0
@@ -59,7 +59,7 @@
 #define NAME 6
 
 /*====================================================================*
- *   
+ *
  *   static void faudit (char *vector[]);
  *
  *.  Motley Tools by Charles Maier;
@@ -124,7 +124,7 @@ int faudit (char * filestate [])
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"",
 		PUTOPTV_S_FUNNEL,

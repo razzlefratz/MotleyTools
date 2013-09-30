@@ -72,7 +72,7 @@ static void report (char const * filename, off_t offset)
 
 {
 	struct stat statinfo;
-	if (stat (filename, & statinfo) == - 1)
+	if (stat (filename, & statinfo) == -1)
 	{
 		error (1, errno, "can't stat %s", filename);
 	}
@@ -151,12 +151,12 @@ static void efsu (int fd, char const * symbol, off_t offset, byte const * buffer
 }
 
 /*====================================================================*
- *   
+ *
  *   void function (char const * filename, void output (int, off_t, char const *, byte const *, signed), flag_t flags);
  *
- *   read offset description file and output binary objects in dump 
+ *   read offset description file and output binary objects in dump
  *   or efsu format;
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -173,7 +173,7 @@ static void function (char const * filename, void output (int, char const *, off
 	char * sp;
 	file_t fd;
 	signed c;
-	if ((fd = open (filename, O_BINARY | O_RDONLY)) == - 1)
+	if ((fd = open (filename, O_BINARY | O_RDONLY)) == -1)
 	{
 		error (1, errno, "can't open %s", filename);
 	}
@@ -284,10 +284,10 @@ static void function (char const * filename, void output (int, char const *, off
 }
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv []);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -297,7 +297,7 @@ static void function (char const * filename, void output (int, char const *, off
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"def:qv",
 		"file [file] [...]",

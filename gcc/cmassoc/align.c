@@ -74,7 +74,7 @@
  *
  *   void function (unsigned minimum, unsigned maximum, unsigned column, char cc);
  *
- *   align the first occurance of character cc, found inside the column 
+ *   align the first occurance of character cc, found inside the column
  *   range bounded by minmum and maximum, to a specific column.
  *
  *.  Motley Tools by Charles Maier;
@@ -141,7 +141,7 @@ void function (unsigned minimum, unsigned maximum, unsigned column, char cc)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"a:b:c:t:",
 		PUTOPTV_S_FILTER,
@@ -153,7 +153,7 @@ int main (int argc, char const * argv [])
 		(char const *) (0)
 	};
 	unsigned minimum = 0;
-	unsigned maximum = - 1;
+	unsigned maximum = -1;
 	unsigned character = 0;
 	unsigned column = 0;
 	signed c;

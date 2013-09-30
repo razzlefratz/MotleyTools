@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   ethcat.c - 
+ *   ethcat.c -
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -70,7 +70,7 @@
  *   signed function (struct channel * channel, signed fd);
  *
  *   copy fd to channel as a series of IEEE 802.3 Ethernet frames;
- *   struct ethernet_frame is defined in ether/ether.h; 
+ *   struct ethernet_frame is defined in ether/ether.h;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -117,7 +117,7 @@ int main (int argc, char const * argv [])
 
 {
 	extern struct channel channel;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"d:i:qt:v",
 		PUTOPTV_S_FUNNEL,

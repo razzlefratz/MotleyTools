@@ -1,11 +1,11 @@
 /*====================================================================*
  *
- *   chk-bld.c - 
+ *   chk-bld.c -
  *
  *   search bash build script file for "pkg=" environment string
  *   definitions; search specfied folder for the file; this only
  *   applies to our own build scripts;
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -76,7 +76,7 @@
  *
  *   static void func(char const *pathname, char const *filename, flag_t flags);
  *
- *   read a CMLinux package description file and string and write 
+ *   read a CMLinux package description file and string and write
  *   dependencies to stdout;
  *
  *.  Motley Tools by Charles Maier;
@@ -106,7 +106,7 @@ static void func (char const * filename, char * pathname, char * extender [], fl
 		for (filename = pathname; * filename != (char) (0); filename++);
 		* filename++ = PATH_C_EXTENDER;
 		scaninput (& scan, buffer, sizeof (buffer));
-		for (line = 0; fgetline (buffer, sizeof (buffer), stdin) != - 1; line++)
+		for (line = 0; fgetline (buffer, sizeof (buffer), stdin) != -1; line++)
 		{
 			scantoken (& scan);
 			if (havetoken (& scan, "pkg"))
@@ -150,7 +150,7 @@ static void func (char const * filename, char * pathname, char * extender [], fl
 /*====================================================================*
  *
  *   int main (int argc, char const * argv[])
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -159,7 +159,7 @@ static void func (char const * filename, char * pathname, char * extender [], fl
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"d:mp",
 		PUTOPTV_S_FILTER,
@@ -170,7 +170,7 @@ int main (int argc, char const * argv [])
 		(char const *) (0)
 	};
 	char pathname [FILENAME_MAX] = PKG_S_SOURCEDIR;
-	char * extender [100] = 
+	char * extender [100] =
 	{
 		".tar.gz",
 		".tar.bz2",

@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   sbrief.c - remove comments, minimize space and concatenate 
+ *   sbrief.c - remove comments, minimize space and concatenate
  *   continuation lines;
  *
  *.  Motley Tools by Charles Maier;
@@ -153,7 +153,7 @@ static void function (signed comment, signed escape (signed))
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"c:m",
 		PUTOPTV_S_FILTER,

@@ -197,22 +197,22 @@ unsigned function (char const * oldname, char const * newname)
 }
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv[]);
- *   
+ *
  *   take one old and one new variable name as command arguments and
  *   call the edit function to replace the old with the new;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"co:n:",
 		PUTOPTV_S_FILTER,

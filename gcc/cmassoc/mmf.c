@@ -127,7 +127,7 @@
  *   program constants;
  *--------------------------------------------------------------------*/
 
-static char const * headerfiles [] = 
+static char const * headerfiles [] =
 
 {
 	"*.h",
@@ -135,7 +135,7 @@ static char const * headerfiles [] =
 	(char const *) (0)
 };
 
-static char const * sourcefiles [] = 
+static char const * sourcefiles [] =
 
 {
 	"*.c",
@@ -208,7 +208,7 @@ static void compile (char * target, char const * source)
 {
 	LIST list;
 	LIST name;
-	char const * paths [] = 
+	char const * paths [] =
 	{
 		"",
 		(char const *) (0)
@@ -250,7 +250,7 @@ static void include (char * target, char const * source)
 {
 	LIST list;
 	LIST name;
-	char const * paths [] = 
+	char const * paths [] =
 	{
 		"",
 		(char const *) (0)
@@ -291,7 +291,7 @@ void program_binary (char * target, char const * source, char const * ignore [],
 {
 	LIST list;
 	LIST name;
-	char const * paths [] = 
+	char const * paths [] =
 	{
 		"",
 		(char const *) (0)
@@ -340,7 +340,7 @@ void program_object (char * target, char const * source, char const * ignore [],
 {
 	LIST list;
 	LIST name;
-	char const * paths [] = 
+	char const * paths [] =
 	{
 		"",
 		(char const *) (0)
@@ -386,7 +386,7 @@ void content (char * target, char const * source)
 
 {
 	LIST list;
-	char const * paths [] = 
+	char const * paths [] =
 	{
 		"",
 		(char const *) (0)
@@ -415,7 +415,7 @@ void content (char * target, char const * source)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"c:ef:imop",
 		"source-file [source-file] ...",
@@ -432,19 +432,19 @@ int main (int argc, char const * argv [])
 	time_t now = time ((time_t *) (0));
 	char string [TEXTLINE_MAX << 1];
 	char target [FILENAME_MAX] = "";
-	char topbar [BARWIDTH_MAX +  1] = 
+	char topbar [BARWIDTH_MAX +  1] =
 	{
 		0
 	};
-	char botbar [BARWIDTH_MAX +  1] = 
+	char botbar [BARWIDTH_MAX +  1] =
 	{
 		0
 	};
 	LIST targets;
 	LIST sources;
 	signed c;
-	memset (topbar, '=', sizeof (topbar) - 1);
-	memset (botbar, '-', sizeof (botbar) - 1);
+	memset (topbar, '=', sizeof (topbar) -1);
+	memset (botbar, '-', sizeof (botbar) -1);
 	listcreate (& targets, _LISTSIZE);
 	listcreate (& sources, _LISTSIZE);
 	while (~ (c = getoptv (argc, argv, optv)))

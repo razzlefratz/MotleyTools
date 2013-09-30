@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   mvpkg.c - clean parallel directory structure; 
+ *   mvpkg.c - clean parallel directory structure;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -193,7 +193,7 @@ static void findfile (char thispathname [], char thatpathname [], flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"cvh",
 		"sourcepath targetpath [targetpath] ... [> stdout]",

@@ -52,11 +52,11 @@
  *
  *   void function (flag_t flag);
  *
- *   read from stdin and write to stdout; replace ht characters with 
- *   spaces; use tabset() to define tabstops and tabcol() to lookup 
+ *   read from stdin and write to stdout; replace ht characters with
+ *   spaces; use tabset() to define tabstops and tabcol() to lookup
  *   them up;
  *
- *   this is a modified version of the entab program from 'Software 
+ *   this is a modified version of the entab program from 'Software
  *   Tools' by Kernighan and Plaugher;
  *
  *.  Motley Tools by Charles Maier;
@@ -121,7 +121,7 @@ void function (flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"t:",
 		PUTOPTV_S_FILTER,

@@ -2,7 +2,7 @@
  *
  *   tls.c - directory hierarchy display;
  *
- *   print a directory hierarchy on stdout using simple ascii text; 
+ *   print a directory hierarchy on stdout using simple ascii text;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -53,7 +53,7 @@
  *
  *   void function (char const * path, char * file, signed depth);
  *
- *   list directory structure on stdout; 
+ *   list directory structure on stdout;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -136,7 +136,7 @@ void function (char const * path, char * file, unsigned depth)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"n:",
 		"path [path] [...] [> stdout]",

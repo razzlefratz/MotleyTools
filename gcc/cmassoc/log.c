@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   log.c - multiple file log utility 
+ *   log.c - multiple file log utility
  *
  *   read from stdin and write to stdout and to each named file; this
  *   program is similar to tee which is essentially cat in reverse;
@@ -41,7 +41,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"a",
 		"[file] [file] [> stdout]",

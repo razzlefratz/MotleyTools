@@ -2,7 +2,7 @@
  *
  *   ipsort.c -
  *
- *   read stdin and write stdout; print an collateed slist of dotted   
+ *   read stdin and write stdout; print an collateed slist of dotted
  *   decimal IPv4 addresses with optional counts;
  *
  *.  Motley Tools by Charles Maier;
@@ -60,13 +60,13 @@
 #endif
 
 /*====================================================================*
- *   program constants;  
+ *   program constants;
  *--------------------------------------------------------------------*/
 
 #define IPSORT_COUNT (1 << 0)
 
 /*====================================================================*
- *   program variables;  
+ *   program variables;
  *--------------------------------------------------------------------*/
 
 char const * rootnode = "%d.";
@@ -171,7 +171,7 @@ int main (int argc, char const * argv [])
 {
 	extern char const * rootnode;
 	extern char const * leafnode;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"an",
 		"ipaddr [ipaddr] [...]",

@@ -114,7 +114,7 @@ int main (int argc, char * argv [])
 {
 	LIST files;
 	char filename [FILENAME_MAX];
-	char const * paths [_LISTSIZE] = 
+	char const * paths [_LISTSIZE] =
 	{
 		getenv ("PWD"),
 		(char const *) (0)
@@ -124,8 +124,8 @@ int main (int argc, char * argv [])
 #if CTAR_SEARCH
 
 /*
- * search argv for additional -Ipath and -I path argments, similar to 
- * gcc compiler options; since we are not using getoptv() to parse the 
+ * search argv for additional -Ipath and -I path argments, similar to
+ * gcc compiler options; since we are not using getoptv() to parse the
  * command line, we scan argv[] and strip out these extra arguments;
  */
 

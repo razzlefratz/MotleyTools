@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   catalog.c - 
+ *   catalog.c -
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -192,7 +192,7 @@ void htmlindex (struct page * page, char const * stylesheet, unsigned group, fla
 	{
 		count++;
 	}
-	count = (count +  group - 1) / group;
+	count = (count +  group -1) / group;
 	indent (margin++, "<td>");
 	indent (margin++, "<ol start='1'>");
 	for (page = page->next; page != page->home; page = page->next)
@@ -226,7 +226,7 @@ void htmlindex (struct page * page, char const * stylesheet, unsigned group, fla
  *
  *   traverse a page list and write a page to stdout; a page contains
  *   the original input file enclosed in an html <pre>...</pre> block
- *   with upper and lower navigation links; 
+ *   with upper and lower navigation links;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -319,7 +319,7 @@ void htmltopic (struct page * page, char const * stylesheet, flag_t flags)
  *
  *   void function (struct page * page, char const * stylesheet, unsigned group, flag_t flags);
  *
- *   traverse a page list and produce a set of linked html pages plus 
+ *   traverse a page list and produce a set of linked html pages plus
  *   an index;
  *
  *.  Motley Tools by Charles Maier;
@@ -370,7 +370,7 @@ void function (struct page * page, char const * stylesheet, unsigned group, flag
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"c:dgin:p:s:",
 		PUTOPTV_S_FILTER,

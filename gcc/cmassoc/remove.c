@@ -88,7 +88,7 @@
  *   void function (char const * filename, regexp *remove[], size_t length, flag_t flags)
  *
  *   copy lines from stdin to stdout; exclude lines that match any
- *   of several regular expression; 
+ *   of several regular expression;
  *
  *      #define REMOVE_B_HEADER  0x0001  (show file name)
  *      #define REMOVE_B_NUMBER  0x0002  (show file line)
@@ -119,7 +119,7 @@ void function (char const * filename, regexp * list [], size_t size, char buffer
 {
 	unsigned line;
 	unsigned removed = 0;
-	for (line = 1; fgetline (buffer, length, stdin) != - 1; line++)
+	for (line = 1; fgetline (buffer, length, stdin) != -1; line++)
 	{
 		size_t item;
 		for (item = 0; item < size; item++)
@@ -164,7 +164,7 @@ int main (int argc, char const * argv [])
 
 {
 	extern const unsigned char ct_unescape [];
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"e:fHl:nRTv",
 		PUTOPTV_S_FILTER,
@@ -179,11 +179,11 @@ int main (int argc, char const * argv [])
 		"v\texclude matching lines",
 		(char const *) (0)
 	};
-	regexp * remove [_LISTSIZE] = 
+	regexp * remove [_LISTSIZE] =
 	{
 		(regexp *) (0)
 	};
-	char buffer [TEXTLINE_MAX] = 
+	char buffer [TEXTLINE_MAX] =
 	{
 		(char) (0)
 	};

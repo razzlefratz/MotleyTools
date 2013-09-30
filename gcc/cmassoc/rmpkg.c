@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   rmpkg.c - remove prior versions of software packages by name; 
+ *   rmpkg.c - remove prior versions of software packages by name;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -67,7 +67,7 @@
 #endif
 
 /*====================================================================*
- *   program functions; 
+ *   program functions;
  *--------------------------------------------------------------------*/
 
 static void findfile (FIND * find, LIST * list, flag_t flags);
@@ -106,13 +106,13 @@ static void function1 (char const * filename, flag_t flags)
  *
  *   void function (LIST *list, flag_t flags);
  *
- *   point to filename in list for later use, copy that string to a 
+ *   point to filename in list for later use, copy that string to a
  *   working buffer for splitting and create a string vector containing longname and separate extensions;
  *
  * compare next and last string vectors element by element until mismatch; mismatch at the first
  * element means a different package; mismatch at other elements means a version difference; we
  * remove the lowest of any two mismatched versions then move on; in principle, files never have
- * the same name so equality checks have been omitted; 
+ * the same name so equality checks have been omitted;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -265,7 +265,7 @@ int main (int argc, char const * argv [])
 
 {
 	extern FIND find;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"crv",
 		PUTOPTV_S_SEARCH,

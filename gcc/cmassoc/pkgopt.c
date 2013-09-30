@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   pkgopt.c - extract package configuration options from stdin; 
+ *   pkgopt.c - extract package configuration options from stdin;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -125,7 +125,7 @@ void func (flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"",
 		PUTOPTV_S_FUNNEL,

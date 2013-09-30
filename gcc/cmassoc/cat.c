@@ -2,7 +2,7 @@
  *
  *   cat.c - file concatenate program;
  *
- *   copy one or more files to stdout; if no files are specified 
+ *   copy one or more files to stdout; if no files are specified
  *   then copy stdin to stdout;
  *
  *.  Motley Tools by Charles Maier;
@@ -60,7 +60,7 @@ static signed function (signed extent)
 	{
 		if (write (STDOUT_FILENO, memory, extent) < extent)
 		{
-			return (- 1);
+			return (-1);
 		}
 	}
 	return (0);
@@ -80,7 +80,7 @@ static signed function (signed extent)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"b:u",
 		PUTOPTV_S_FUNNEL,

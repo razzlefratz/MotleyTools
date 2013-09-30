@@ -2,7 +2,7 @@
  *
  *   bin2hex.c - binary to hexadecimal file concatenate;
  *
- *   print one or more files on stdout in hexadecimal format; if no 
+ *   print one or more files on stdout in hexadecimal format; if no
  *   files are specified on the command line then read from stdin;
  *
  *.  Motley Tools by Charles Maier;
@@ -90,7 +90,7 @@ static void function (size_t column)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"w:",
 		PUTOPTV_S_FUNNEL,

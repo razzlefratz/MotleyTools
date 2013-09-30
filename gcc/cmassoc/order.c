@@ -47,7 +47,7 @@
 #endif
 
 /*====================================================================*
- *   program constants;  
+ *   program constants;
  *--------------------------------------------------------------------*/
 
 #define ORDER_B_INVERT (1 << 0)
@@ -87,12 +87,12 @@ void print (signed indent, NODE * node, flag_t flags)
 }
 
 /*====================================================================*
- *   
+ *
  *   void traverse (NODE * node, flags_t flags);
  *
  *   traverse nodes using depth first search; increment order and
  *   level postorder; print nodes postorder as an inventory; test
- *   for circular reference preorder and terminate program; 
+ *   for circular reference preorder and terminate program;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -139,7 +139,7 @@ static void traverse (NODE * node, flag_t flags)
 }
 
 /*====================================================================*
- *   
+ *
  *   void organize (NODE * node, flags_t flags);
  *
  *   traverse nodes using depth first search; print nodes preorder
@@ -196,7 +196,7 @@ static void organize (NODE * node, flag_t flags)
 }
 
 /*====================================================================*
- *   
+ *
  *   void discover (flag_t flags);
  *
  *   walk the node list and traverse neighboring nodes;
@@ -231,17 +231,17 @@ static void discover (flag_t flags)
 /*====================================================================*
  *
  *   int main (int argc, char const * argv[]);
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"loptx",
 		PUTOPTV_S_DIVINE,

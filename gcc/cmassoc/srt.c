@@ -63,8 +63,8 @@ static signed order = 1;
  *
  *   signed comp(char const * one, char const * two);
  *
- *   compare two heap members; return -1, 0 or 1 to indicate that 
- *   the first string precedes, matches or follows the second; this 
+ *   compare two heap members; return -1, 0 or 1 to indicate that
+ *   the first string precedes, matches or follows the second; this
  *   function is passed to heap primatives enheap() and reheap();
  *
  *.  Motley Tools by Charles Maier;
@@ -110,7 +110,7 @@ size_t loadheap (char * heap [], size_t heapsize, size_t linesize, FILE * ifp)
  *
  *   size_t saveheap (char * heap [], size_t heapsize, FILE * ofp);
  *
- *   write heap to stdout; 
+ *   write heap to stdout;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -134,14 +134,14 @@ size_t saveheap (char * heap [], size_t heapsize, FILE * ofp)
  *
  *   void function (size_t heapsize, size_t linesize);
  *
- *   allocate a heap of specified size with lines of specified length; 
- *   load heap from stdin and save to stdout until stdin is exhausted; 
+ *   allocate a heap of specified size with lines of specified length;
+ *   load heap from stdin and save to stdout until stdin is exhausted;
  *
- *   this implementation sorts the input stream in blocks of heapsize; 
+ *   this implementation sorts the input stream in blocks of heapsize;
  *   heapsize should equal or exceed the number of input lines to sort
- *   an entire file; 
+ *   an entire file;
  *
- *   this implementation alerts users when the file line count exceeds 
+ *   this implementation alerts users when the file line count exceeds
  *   the heapsize;
  *
  *.  Motley Tools by Charles Maier;
@@ -184,7 +184,7 @@ int main (int argc, char const * argv [])
 
 {
 	extern signed order;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"b:dl:",
 		PUTOPTV_S_FILTER,
@@ -202,7 +202,7 @@ int main (int argc, char const * argv [])
 		switch (c)
 		{
 		case 'd':
-			order = - 1;
+			order = -1;
 			break;
 		case 'b':
 			heapsize = uintspec (optarg, 1, UINT_MAX);

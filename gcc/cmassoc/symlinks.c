@@ -50,7 +50,7 @@
 #endif
 
 /*====================================================================*
- *   program constants; 
+ *   program constants;
  *--------------------------------------------------------------------*/
 
 #define LINK_B_ACTIVE (1 << 0)
@@ -59,7 +59,7 @@
 #define LINK_B_REMOVE (1 << 3)
 
 /*====================================================================*
- *   program functions; 
+ *   program functions;
  *--------------------------------------------------------------------*/
 
 static void testfile (FIND * find, flag_t flags);
@@ -140,7 +140,7 @@ static void findfile (FIND * find, flag_t flags)
 
 /*====================================================================*
  *
- *   void testfile (FIND *find, flag_t flags); 
+ *   void testfile (FIND *find, flag_t flags);
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -214,7 +214,7 @@ int main (int argc, char const * argv [])
 
 {
 	extern FIND find;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"abcxrv",
 		PUTOPTV_S_SEARCH,

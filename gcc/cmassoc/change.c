@@ -96,8 +96,8 @@
  *
  *   void func (char const *filename, EDIT *edit, flag_t flags);
  *
- *   read from stdin and write to stdout; remove text matching the 
- *   regular expression and insert fixed text; report filenames and 
+ *   read from stdin and write to stdout; remove text matching the
+ *   regular expression and insert fixed text; report filenames and
  *   replacement counts;
  *
  *.  Motley Tools by Charles Maier;
@@ -123,7 +123,7 @@ void function (char const * filename, const regexp * remove, char const * insert
 	{
 		return;
 	}
-	while ((signed) (actual = fgetline (buffer, length, stdin)) != - 1)
+	while ((signed) (actual = fgetline (buffer, length, stdin)) != -1)
 	{
 		char const * sp;
 		for (sp = buffer; * sp; ++ sp)
@@ -132,7 +132,7 @@ void function (char const * filename, const regexp * remove, char const * insert
 			if ((cp = regexspan (remove, sp)))
 			{
 				fputs (insert, stdout);
-				sp = cp - 1;
+				sp = cp -1;
 				changes++;
 			}
 			else 
@@ -140,7 +140,7 @@ void function (char const * filename, const regexp * remove, char const * insert
 				fputc (* sp, stdout);
 			}
 		}
-		if (actual != (length - 1))
+		if (actual != (length -1))
 		{
 			fputc ('\n', stdout);
 		}
@@ -160,22 +160,22 @@ void function (char const * filename, const regexp * remove, char const * insert
 }
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv[]);
- *   
+ *
  *   the use of ".*(s).*" here is opposite of that neede by search;
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 int main (int argc, char const * argv [])
 
 {
 	extern const unsigned char ct_unescape [];
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"e:l:t:fcHRT",
 		PUTOPTV_S_FILTER,
@@ -192,7 +192,7 @@ int main (int argc, char const * argv [])
 	};
 	regexp * remove = (regexp *) (0);
 	char const * insert = (char const *) (0);
-	char buffer [TEXTLINE_MAX] = 
+	char buffer [TEXTLINE_MAX] =
 	{
 		(char) (0)
 	};

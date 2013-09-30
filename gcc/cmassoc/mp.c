@@ -85,7 +85,7 @@
 static void example ()
 
 {
-	char const * subjects [] = 
+	char const * subjects [] =
 	{
 		"NAME",
 		"SYNTAX",
@@ -117,12 +117,12 @@ static void example ()
 
 /*====================================================================*
  *
- *   void configure (char const * section, char const * project, char const * package, char const * release) 
+ *   void configure (char const * section, char const * project, char const * package, char const * release)
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
- * 
+ *
  *--------------------------------------------------------------------*/
 
 static void configure (char const * section, char const * project, char const * package, char const * release)
@@ -140,7 +140,7 @@ static void configure (char const * section, char const * project, char const * 
  *   void function (char const * program, char const * project, char const * package, char const * release, flag_t flags);
  *
  *
- *   by convention, man pages are placed in /usr/share/man/man(n) 
+ *   by convention, man pages are placed in /usr/share/man/man(n)
  *   where (n) is one of the following topics. Consequently, name
  *   your manpage as <topic>.<n> where <n> is the folder number;
  *
@@ -164,7 +164,7 @@ static void configure (char const * section, char const * project, char const * 
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
- * 
+ *
  *--------------------------------------------------------------------*/
 
 static void function (char const * program, char const * project, char const * package, char const * release, flag_t flags)
@@ -298,7 +298,7 @@ static void function (char const * program, char const * project, char const * p
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"mop:s:",
 		"tidy Linux manpage",

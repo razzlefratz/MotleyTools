@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   cbrief.c - remove C Language comments; 
+ *   cbrief.c - remove C Language comments;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -196,7 +196,7 @@ static void include (void)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"bv",
 		PUTOPTV_S_FILTER,

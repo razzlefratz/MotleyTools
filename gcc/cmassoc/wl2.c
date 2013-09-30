@@ -64,7 +64,7 @@ void function (signed c)
 			char * sp = symbol;
 			while (isupper (c) || (c == '_'))
 			{
-				if (sp < (symbol +  sizeof (symbol) - 1))
+				if (sp < (symbol +  sizeof (symbol) -1))
 				{
 					* sp++ = c;
 				}
@@ -94,7 +94,7 @@ void function (signed c)
 int main (int argc, char const * argv [])
 
 {
-	char const * optv [] = 
+	char const * optv [] =
 	{
 		"",
 		PUTOPTV_S_FILTER,

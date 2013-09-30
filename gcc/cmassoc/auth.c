@@ -69,7 +69,7 @@ struct _column_
 	char * string;
 };
 
-struct _column_ rootuser [] = 
+struct _column_ rootuser [] =
 
 {
 	{
@@ -81,12 +81,12 @@ struct _column_ rootuser [] =
 		"root"
 	},
 	{
-		- 1,
+		-1,
 		""
 	}
 };
 
-struct _column_ rootlist [] = 
+struct _column_ rootlist [] =
 
 {
 	{
@@ -102,7 +102,7 @@ struct _column_ rootlist [] =
 		"host"
 	},
 	{
-		- 1,
+		-1,
 		""
 	}
 };
@@ -117,9 +117,9 @@ struct _column_ rootlist [] =
  *   replace occurances of [/@...@] and [ @...@/] comments with standard
  *   length bars;
  *
- *   delete empty lines at the start of the file; append one empty line to the 
+ *   delete empty lines at the start of the file; append one empty line to the
  *   end of the file if missing; remove redundant empty lines elsewhere; insert
- *   an empty line before and after cmassoc comment blocks; 
+ *   an empty line before and after cmassoc comment blocks;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -142,25 +142,25 @@ void function (struct _column_ columns [], struct _column_ outputs [], flag_t fl
 	for (string = record->buffer; fgets (string, BUFFER_SIZE, stdin) != (char *) (0); string = record->buffer)
 	{
 		vector = record->vector;
-		for (* vector++ = string; (* string != (char) (0)) && ((string - record->buffer) < (BUFFER_SIZE - 1)); string++)
+		for (* vector++ = string; (* string != (char) (0)) && ((string - record->buffer) < (BUFFER_SIZE -1)); string++)
 		{
-			if (isspace (* string) && ((vector - record->vector) < (VECTOR_SIZE - 1)))
+			if (isspace (* string) && ((vector - record->vector) < (VECTOR_SIZE -1)))
 			{
 				* vector++ = string +  1;
 				* string = (char) (0);
 			}
 		}
 		* vector = (char *) (0);
-		for (column = columns; column->number != - 1; column++)
+		for (column = columns; column->number != -1; column++)
 		{
 			if (strcmp (record->vector [column->number], column->string))
 			{
 				break;
 			}
 		}
-		if (column->number == - 1)
+		if (column->number == -1)
 		{
-			for (column = outputs; column->number != - 1; column++)
+			for (column = outputs; column->number != -1; column++)
 			{
 				printf ("%4lu %s:%s\n", (long unsigned) (column->number), column->string, record->vector [column->number]);
 			}
@@ -178,7 +178,7 @@ void function (struct _column_ columns [], struct _column_ outputs [], flag_t fl
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"",
 		PUTOPTV_S_FUNNEL,

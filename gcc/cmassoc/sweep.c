@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   sweep.c - clean parallel directory structure; 
+ *   sweep.c - clean parallel directory structure;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -47,7 +47,7 @@
 #endif
 
 /*====================================================================*
- *   program constants;  
+ *   program constants;
  *--------------------------------------------------------------------*/
 
 #define SWEEP_S_COMMAND "install -m 0755 -o root -g root"
@@ -203,7 +203,7 @@ static void findfile (char * thispath, char * thatpath, char const * command, fl
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"c:drxvC",
 		"target-path source-path [source-path] ... [> stdout]",

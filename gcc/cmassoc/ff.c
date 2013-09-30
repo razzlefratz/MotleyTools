@@ -73,7 +73,7 @@
 #endif
 
 /*====================================================================*
- *   fundtions; 
+ *   fundtions;
  *--------------------------------------------------------------------*/
 
 static void findfile (FIND * find, flag_t flags);
@@ -83,9 +83,9 @@ static void testfile (FIND * find, flag_t flags);
  *
  *   void showfile (FIND *find, flag_t flags);
  *
- *   determine if the find basename matches the find wildcard; if so 
- *   the print the find.fullname, pathname or basename depending on 
- *   the flags; optionally, prefix each print line with the file date; 
+ *   determine if the find basename matches the find wildcard; if so
+ *   the print the find.fullname, pathname or basename depending on
+ *   the flags; optionally, prefix each print line with the file date;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -137,8 +137,8 @@ static void showfile (FIND * find, flag_t flags)
 /*====================================================================*
  *
  *   void testfile (FIND * find, flag_t flags);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -243,7 +243,7 @@ int main (int argc, char const * argv [])
 
 {
 	extern FIND find;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"defoprstE:PSBLIK",
 		PUTOPTV_S_SEARCH,

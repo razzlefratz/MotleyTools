@@ -43,7 +43,7 @@
 #endif
 
 /*====================================================================*
- *  program constants; 
+ *  program constants;
  *--------------------------------------------------------------------*/
 
 #define DEP_B_INVERT  (1 << 0)
@@ -145,7 +145,7 @@ static void populate (flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"nf",
 		PUTOPTV_S_FUNNEL,

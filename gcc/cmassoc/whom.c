@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   whom.c - list usernames and/or groupnames in aphabetical; 
+ *   whom.c - list usernames and/or groupnames in aphabetical;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -78,7 +78,7 @@
 #endif
 
 /*====================================================================*
- *   program constants; 
+ *   program constants;
  *--------------------------------------------------------------------*/
 
 #define WHOM_B_USR (1 << 0)
@@ -95,7 +95,7 @@
  *   search pwent and grent for usernames and groupnames that match
  *   the regular expression in regex; add matching names to a list;
  *   print the list in multi-column format when done;
- *  
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -134,9 +134,9 @@ static void function (LIST * list, regexp * regex, flag_t flags)
 }
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv[]);
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -147,7 +147,7 @@ int main (int argc, char const * argv [])
 
 {
 	extern const unsigned char ct_unescape [];
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"c:e:gHnw:uRT",
 		PUTOPTV_S_DIVINE,

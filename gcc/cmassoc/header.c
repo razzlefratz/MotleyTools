@@ -50,7 +50,7 @@
  *
  *   void function (signed count, signed width);
  *
- *   read stdin and write stdout; print the first count input lines 
+ *   read stdin and write stdout; print the first count input lines
  *   and truncate output lines to width columns;
  *
  *.  Motley Tools by Charles Maier;
@@ -95,7 +95,7 @@ void function (signed count, signed width)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"l:w:",
 		PUTOPTV_S_FUNNEL,

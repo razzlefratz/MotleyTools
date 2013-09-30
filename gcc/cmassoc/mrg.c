@@ -2,12 +2,12 @@
  *
  *   mrg.c - merge sort program;
  *
- *   this implementations uses a heap to merge two or more files 
- *   into one; it will merge one file into one but that is a pointless 
+ *   this implementations uses a heap to merge two or more files
+ *   into one; it will merge one file into one but that is a pointless
  *   operation;
  *
- *   we are limited by the number of files that can be opened at one 
- *   time; this means that the heap can't exceed FOPEN_MAX files; 
+ *   we are limited by the number of files that can be opened at one
+ *   time; this means that the heap can't exceed FOPEN_MAX files;
  *   this problem can be overcome by repeated merging;
  *
  *   heap elements maintain a file pointer and a text buffer; as files are
@@ -110,8 +110,8 @@ static signed comp (const LINE * one, const LINE * two)
  *
  *   LINE * makeitem (FILE * stream, char const * name, size_t linesize);
  *
- *   create a LINE structure for the named file; read the first line 
- *   of text from that file; return the structure address on success 
+ *   create a LINE structure for the named file; read the first line
+ *   of text from that file; return the structure address on success
  *   or NULL on recoverable failure;
  *
  *.  Motley Tools by Charles Maier;
@@ -216,7 +216,7 @@ int main (int argc, char const * argv [])
 
 {
 	extern signed order;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"dl:",
 		PUTOPTV_S_FUNNEL,
@@ -236,7 +236,7 @@ int main (int argc, char const * argv [])
 		switch (c)
 		{
 		case 'd':
-			order = - 1;
+			order = -1;
 			break;
 		case 'l':
 			linesize = uintspec (optarg, 1, SHRT_MAX);

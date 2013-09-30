@@ -2,7 +2,7 @@
  *
  *   pad.c - file pad program;
  *
- *   copy one or more files to stdout; if no files are specified 
+ *   copy one or more files to stdout; if no files are specified
  *   then copy stdin to stdout;
  *
  *.  Motley Tools by Charles Maier;
@@ -93,7 +93,7 @@ static signed function (signed blocksize)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"b:u",
 		PUTOPTV_S_FUNNEL,

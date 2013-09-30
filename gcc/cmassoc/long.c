@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   ll.c - convert escaped newlines to long lines; 
+ *   ll.c - convert escaped newlines to long lines;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -57,7 +57,7 @@
  *   void func (flag_t flags, FILE * ifp, FILE * ofp);
  *
  *   read from ifp and write to ofp; remove escaped newlines to form
- *   one long line from consecutive continuation lines; 
+ *   one long line from consecutive continuation lines;
  *
  *--------------------------------------------------------------------*/
 
@@ -94,7 +94,7 @@ signed noescape (signed c)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"",
 		PUTOPTV_S_FILTER,

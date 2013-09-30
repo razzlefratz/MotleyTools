@@ -81,7 +81,7 @@ void * next (size_t line, LINK * ip, FILE * fp)
 	char * cp = string;
 	for (c = getc (fp); (c != EOF) && (c != '\n'); c = getc (fp))
 	{
-		if ((size_t) (cp - string) < (sizeof (string) - 1))
+		if ((size_t) (cp - string) < (sizeof (string) -1))
 		{
 			* cp++ = (char) (c);
 		}
@@ -287,7 +287,7 @@ void function (size_t width, flag_t flag, FILE * ofp, FILE * nfp)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"w:abh",
 		"file1 file2",

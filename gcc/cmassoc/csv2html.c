@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   csv2html.c - 
+ *   csv2html.c -
  *
  *   Read a .csv file and write a .html file;
  *
@@ -57,9 +57,9 @@
 #define STYLE "box"
 
 /*====================================================================*
- *   
+ *
  *   signed header (signed margin, char const * string);
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -97,9 +97,9 @@ signed header (signed margin, char const * string)
 }
 
 /*====================================================================*
- *   
+ *
  *   signed footer (signed margin, char const * string);
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -115,13 +115,13 @@ signed footer (signed margin, char const * string)
 }
 
 /*====================================================================*
- *   
+ *
  *   void function (char const * string, size_t column, flag_t flags);
- *   
+ *
  *   fields are separated by comma; prefix embedded commas with one
  *   backslash; empty fields are output as "&nbsp;"; an extra comma
  *   should be appeded to lines where the last field is empty;
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -255,10 +255,10 @@ static void function (char const * string, size_t column, flag_t flags)
 }
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv []);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -268,7 +268,7 @@ static void function (char const * string, size_t column, flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"n:ps:t",
 		PUTOPTV_S_FUNNEL,

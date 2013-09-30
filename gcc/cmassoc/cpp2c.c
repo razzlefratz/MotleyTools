@@ -60,11 +60,11 @@ unsigned lineno = 0;
 
 /*====================================================================*
  *
- *   signed comment (signed c) 
+ *   signed comment (signed c)
  *
- *   read stdin and write stdout; process a C language comment block; 
+ *   read stdin and write stdout; process a C language comment block;
  *   return the character that follows the comment;
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -142,7 +142,7 @@ signed comment (signed c)
  *
  *   read stdin and write stdout; intercept and process C Language
  *   style comments that start with double slash or appear between
- *   inverted slash/asterisk character pairs;  
+ *   inverted slash/asterisk character pairs;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -216,7 +216,7 @@ void function (signed c, flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"",
 		PUTOPTV_S_FILTER,

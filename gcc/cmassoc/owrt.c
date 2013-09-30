@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   owrt.c - 
+ *   owrt.c -
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -73,10 +73,10 @@
  *
  *   print a GNU make variable definition on stdout; the definition
  *   expands to OpenWRT steps needed to add one program to the menu
- *   coniguration; 
+ *   coniguration;
  *
  *   $(1) is the package folder where the compiled program exists;
- *   $(2) is the program name; 
+ *   $(2) is the program name;
  *   $(3) is the program title or short decription;
  *   $(4) is the program description;
  *
@@ -188,7 +188,7 @@ static void enumerate (signed fields, size_t length)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"ceh:p:qv",
 		PUTOPTV_S_FUNNEL,

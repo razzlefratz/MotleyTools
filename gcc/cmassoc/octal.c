@@ -177,7 +177,7 @@ void decode (flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"de",
 		PUTOPTV_S_FUNNEL,

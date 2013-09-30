@@ -155,7 +155,7 @@ int main (int argc, char const * argv [])
 
 {
 	extern FIND find;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"d:f:rv",
 		PUTOPTV_S_SEARCH,

@@ -3,7 +3,7 @@
  *   graph.c - print a histogram;
  *
  *   read x and y integer pairs from stdin or from one or more named
- *   files and print a histogram on stdout; each file prints a new 
+ *   files and print a histogram on stdout; each file prints a new
  *   histogram; input consists of two integers per line seperated by
  *   whitespace; negative values are converted to zero;
  *
@@ -47,7 +47,7 @@
 #endif
 
 /*====================================================================*
- *   program constants; 
+ *   program constants;
  *--------------------------------------------------------------------*/
 
 #define GRAPH_TITLE "Distribution"
@@ -56,7 +56,7 @@
 #define GRAPH_INVERT (1 << 0)
 
 /*====================================================================*
- *   program variables; 
+ *   program variables;
  *--------------------------------------------------------------------*/
 
 typedef struct graph
@@ -75,9 +75,9 @@ GRAPH;
 
 /*====================================================================*
  *
- *   void display (signed x [], signed y [], signed count, struct graph * graph) 
+ *   void display (signed x [], signed y [], signed count, struct graph * graph)
  *
- *   display datasets x and y as a histogram; level and scale dataset 
+ *   display datasets x and y as a histogram; level and scale dataset
  *   y;
  *
  *.  Motley Tools by Charles Maier;
@@ -141,14 +141,14 @@ static void arrange (signed x [], signed y [], signed count)
 	{
 		for (lower = upper; lower > 0; lower--)
 		{
-			if (x [lower] < x [lower - 1])
+			if (x [lower] < x [lower -1])
 			{
 				value = x [lower];
-				x [lower] = x [lower - 1];
-				x [lower - 1] = value;
+				x [lower] = x [lower -1];
+				x [lower -1] = value;
 				value = y [lower];
-				y [lower] = y [lower - 1];
-				y [lower - 1] = value;
+				y [lower] = y [lower -1];
+				y [lower -1] = value;
 			}
 		}
 	}
@@ -199,7 +199,7 @@ static void collect (char const * filename, signed limit, struct graph * graph, 
 		if (c == '-')
 		{
 			c = getc (stdin);
-			sign = - 1;
+			sign = -1;
 		}
 		else if (c == '+')
 		{
@@ -229,7 +229,7 @@ static void collect (char const * filename, signed limit, struct graph * graph, 
 		if (c == '-')
 		{
 			c = getc (stdin);
-			sign = - 1;
+			sign = -1;
 		}
 		else if (c == '+')
 		{
@@ -296,7 +296,7 @@ static void collect (char const * filename, signed limit, struct graph * graph, 
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"c:o:s:t:x",
 		PUTOPTV_S_FUNNEL,
@@ -308,7 +308,7 @@ int main (int argc, char const * argv [])
 		"x\texchange x and y values",
 		(char const *) (0)
 	};
-	struct graph graph = 
+	struct graph graph =
 	{
 		GRAPH_TITLE,
 		0,

@@ -175,7 +175,7 @@ static void func (unsigned column, signed cc, flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"a:c:ut:",
 		PUTOPTV_S_FILTER,

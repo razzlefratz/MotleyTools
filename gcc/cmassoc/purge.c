@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   purge.c - purge directory structure; 
+ *   purge.c - purge directory structure;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -55,7 +55,7 @@
 #endif
 
 /*====================================================================*
- *   program functions;         
+ *   program functions;
  *--------------------------------------------------------------------*/
 
 static void findfile (FIND * find, flag_t flags);
@@ -65,7 +65,7 @@ static void testfile (FIND * find, flag_t flags);
  *
  *   void function (struct _find_ * find, flag_t flags);
  *
- *   display and/or remove a file or link based on criteria in struct 
+ *   display and/or remove a file or link based on criteria in struct
  *   search, including the pathname, wildcard and flagword;
  *
  *.  Motley Tools by Charles Maier;
@@ -83,7 +83,7 @@ static void function (struct _find_ * find, flag_t flags)
 	}
 	if (find->statinfo.st_mtime < find->filetime)
 	{
-		if (remove (find->fullname) == - 1)
+		if (remove (find->fullname) == -1)
 		{
 			if (_anyset (flags, FIND_B_ERRORS))
 			{
@@ -209,7 +209,7 @@ int main (int argc, char const * argv [])
 
 {
 	extern FIND find;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"o:qrv",
 		PUTOPTV_S_SEARCH,

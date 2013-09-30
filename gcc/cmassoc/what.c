@@ -92,7 +92,7 @@ static void function (LIST * list)
 	DIR * dir;
 	struct dirent * dirent;
 	char pathname [FILENAME_MAX +  1] = PROCROOT;
-	char * filename = pathname +  sizeof (PROCROOT) - 1;
+	char * filename = pathname +  sizeof (PROCROOT) -1;
 	if ((dir = opendir (pathname))) while ((dirent = readdir (dir)))
 	{
 		char * string;
@@ -102,11 +102,11 @@ static void function (LIST * list)
 			signed fd;
 			strcpy (filename, dirent->d_name);
 			strcat (filename, STATFILE);
-			if ((fd = open (pathname, O_RDONLY)) != - 1)
+			if ((fd = open (pathname, O_RDONLY)) != -1)
 			{
 				char buffer [PROCSTAT_MAX];
 				char * vector [PROCSTAT_CNT];
-				signed length = read (fd, buffer, sizeof (buffer) - 1);
+				signed length = read (fd, buffer, sizeof (buffer) -1);
 				buffer [length] = (char) (0);
 				close (fd);
 				strsplit ((char const **) (vector), PROCSTAT_CNT, buffer, ' ');
@@ -131,15 +131,15 @@ static void function (LIST * list)
 }
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv []);
- *   
+ *
  *--------------------------------------------------------------------*/
 
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"c:nw:",
 		PUTOPTV_S_DIVINE,

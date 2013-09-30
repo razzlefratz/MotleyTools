@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   shout.c - send broadcast message to all users; 
+ *   shout.c - send broadcast message to all users;
  *
  *.  Released 2005 by Charles Maier Associates Ltd for private use;
  *:  Licensed under GNU General Public License version 2 and later;
@@ -51,16 +51,16 @@
 #endif
 
 /*====================================================================*
- *   
+ *
  *   int main(int argc, char **argv);
- *   
+ *
  *--------------------------------------------------------------------*/
 
 int main (int argc, const char * argv [])
 
 {
 	extern const char * program_name;
-	static const char * optv [] = 
+	static const char * optv [] =
 	{
 		"bcnrt",
 		"message [message] [...] or [< stdin]",
@@ -116,7 +116,7 @@ int main (int argc, const char * argv [])
 	}
 	if (! argc)
 	{
-		if ((nchars = read (STDIN_FILENO, message, sizeof (message) - 1)) != - 1)
+		if ((nchars = read (STDIN_FILENO, message, sizeof (message) -1)) != -1)
 		{
 			message [nchars] = (char) (0);
 		}

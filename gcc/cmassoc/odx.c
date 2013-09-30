@@ -51,10 +51,10 @@
 #define ODX_SILENCE  (1 << 1)
 
 /*====================================================================*
- *   
+ *
  *   void function (file const * file, char const * schema, off_t extent, flag_t flags);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -206,10 +206,10 @@ static void function (file const * file, char const * schema, off_t extent, flag
 }
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv []);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -219,7 +219,7 @@ static void function (file const * file, char const * schema, off_t extent, flag
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"f:s:x",
 		"file [file] [...]",
@@ -229,7 +229,7 @@ int main (int argc, char const * argv [])
 		(char const *) (0)
 	};
 	char const * schema = DATA_SCHEMA;
-	file file = 
+	file file =
 	{
 		STDIN_FILENO,
 		"stdin"
@@ -272,7 +272,7 @@ int main (int argc, char const * argv [])
 	{
 		struct stat statinfo;
 		stat (* argv, & statinfo);
-		if ((file.file = open (file.name = * argv, O_BINARY | O_RDONLY)) == - 1)
+		if ((file.file = open (file.name = * argv, O_BINARY | O_RDONLY)) == -1)
 		{
 			error (0, errno, "%s", file.name);
 		}

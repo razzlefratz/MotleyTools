@@ -62,8 +62,8 @@
  *
  *   base64 encode a binary file;
  *
- *   read stdin and write stdout; read up to three bytes at a time 
- *   and write four characters; pad output with '=' to make output 
+ *   read stdin and write stdout; read up to three bytes at a time
+ *   and write four characters; pad output with '=' to make output
  *   an even multiple of four bytes to support decoding; line wrap
  *   at width when width is non-zero;
  *
@@ -127,9 +127,9 @@ static void encode (size_t width, flag_t flags)
  *
  *   void decode (flag_t flags)
  *
- *   read stdin and write stdout; read up to four base64 characters 
+ *   read stdin and write stdout; read up to four base64 characters
  *   at once and write up to three bytes; character '=' is padding;
- *   ignore newlines; 
+ *   ignore newlines;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -227,7 +227,7 @@ static void decode (flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	char const * optv [] = 
+	char const * optv [] =
 	{
 		"deqrw:v",
 		PUTOPTV_S_FILTER,

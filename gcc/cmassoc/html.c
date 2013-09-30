@@ -171,7 +171,7 @@ static unsigned footer (unsigned margin)
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -184,7 +184,7 @@ int main (int argc, char const * argv [])
 	extern char const * subject;
 	extern char const * contact;
 	extern char const * cssfile;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"op:s:",
 		PUTOPTV_S_FUNNEL,

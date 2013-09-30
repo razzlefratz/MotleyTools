@@ -190,7 +190,7 @@ void function (char const * pathname, char table [], struct wc * total, flag_t f
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"W:lwcbt",
 		PUTOPTV_S_FUNNEL,
@@ -203,7 +203,7 @@ int main (int argc, char const * argv [])
 		"t\tdisplay totals",
 		(char const *) (0)
 	};
-	struct wc total = 
+	struct wc total =
 	{
 		0,
 		0,

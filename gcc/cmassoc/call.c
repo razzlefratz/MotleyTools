@@ -66,7 +66,7 @@ unsigned lineno = 0;
  *   program variables;
  *--------------------------------------------------------------------*/
 
-static char const * reserved [] = 
+static char const * reserved [] =
 
 {
 	"auto",
@@ -243,19 +243,19 @@ static void function (flag_t flags)
 }
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv[]);
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"x",
 		PUTOPTV_S_FUNNEL,

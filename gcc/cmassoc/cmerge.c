@@ -114,7 +114,7 @@ static char const * preamble = "/*==============================================
  *   local files where specified; append included files to list;
  *
  *   list is the include file inventory; it is used to detect and
- *   avoid duplicate file inclusion and, thus, recursive inclusion; 
+ *   avoid duplicate file inclusion and, thus, recursive inclusion;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -168,7 +168,7 @@ void function (FIND * find, LIST * list, size_t length)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"",
 		PUTOPTV_S_FUNNEL,

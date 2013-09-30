@@ -2,14 +2,14 @@
  *
  *   dep.c - output C Language include file dependency list;
  *
- *   specify one or more target files on the command line; each target 
- *   is opened and searched for include files; each of those files is 
- *   opened and searched and so on; the resulting list is printed to 
+ *   specify one or more target files on the command line; each target
+ *   is opened and searched for include files; each of those files is
+ *   opened and searched and so on; the resulting list is printed to
  *   stdout;
  *
- *   the program distinguishes between system include files enclosed 
- *   in brackets <...> and custom include files enclosed in quotes 
- *   "..." and will search either or both types; 
+ *   the program distinguishes between system include files enclosed
+ *   in brackets <...> and custom include files enclosed in quotes
+ *   "..." and will search either or both types;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -99,7 +99,7 @@
 #endif
 
 /*====================================================================*
- *  program constants; 
+ *  program constants;
  *--------------------------------------------------------------------*/
 
 #define DEP_B_INVERT (1 << 0)
@@ -154,8 +154,8 @@ static void relate (char const * one, char const * two, flag_t flags)
  *   lists because 1) they sort as they grow, 2) speed lookup and 3) need
  *   no data movement; we maintain two trees: one for parent-to-child and
  *   another for child-to-parent relationships; all names, whether parent
- *   or child, are stored only once, in a third tree, and the other trees 
- *   merely point to the strings stored there; this seems convoluted but 
+ *   or child, are stored only once, in a third tree, and the other trees
+ *   merely point to the strings stored there; this seems convoluted but
  *   storage is minimized and speed is maximized;
  *
  *   an in-order search of the third tree gives an alphabeical list of all
@@ -164,7 +164,7 @@ static void relate (char const * one, char const * two, flag_t flags)
  *   then-parent relationships;
  *
  *   the needtree tree holds target filenames and the source files included
- *   by each one; the feedtree tree holds source filenames and the target 
+ *   by each one; the feedtree tree holds source filenames and the target
  *   files that include each one; the nodetree tree stores the master copy
  *   of all filenames, whether target or source, since there are often so
  *   many duplicates; functions that maintain these trees are in tree.c;
@@ -188,7 +188,7 @@ void function (char const * pathname, char * buffer, size_t length, flag_t flags
 		partpath (find.fullname, find.pathname, find.filename);
 		partfile (find.filename, find.basename, find.extender);
 		scaninput (& scan, buffer, length);
-		for (line = 0; fgetline (buffer, length, ifp) != - 1; line++)
+		for (line = 0; fgetline (buffer, length, ifp) != -1; line++)
 		{
 			scanstart (& scan);
 			nexttoken (& scan);
@@ -244,7 +244,7 @@ void function (char const * pathname, char * buffer, size_t length, flag_t flags
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"csnf",
 		PUTOPTV_S_FUNNEL,

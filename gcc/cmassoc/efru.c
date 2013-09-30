@@ -1,7 +1,7 @@
 /*====================================================================*
  *
  *   efru.c - 802.2 Ethernet Frame Data Capture
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -76,9 +76,9 @@
 #define ETHDEVICE "ETH"
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char * argv[]);
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -90,7 +90,7 @@ int main (int argc, char const * argv [])
 {
 	extern struct channel channel;
 	struct ethernet_frame frame;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"i:qt:v",
 		PUTOPTV_S_DIVINE,
@@ -108,7 +108,7 @@ int main (int argc, char const * argv [])
 		channel.ifname = strdup (getenv (ETHDEVICE));
 	}
 	channel.type = ETH_P_802_2;
-	channel.timer = - 1;
+	channel.timer = -1;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)

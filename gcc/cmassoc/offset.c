@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   offset.c - print offset table;  
+ *   offset.c - print offset table;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -90,7 +90,7 @@ static char * string = (char *) (0);
 static signed c;
 
 /*====================================================================*
- *   
+ *
  *   unsigned object ();
  *
  *   scan and parse an object definition;
@@ -98,11 +98,11 @@ static signed c;
  *   <definition> := <offset> <symbol> <string>
  *
  *   <symbol> := <alpha> | '_'
- *   <symbol> := <symbol> <alpha> 
- *   <symbol> := <symbol> '-' 
- *   <symbol> := <symbol> '_' 
- *   <symbol> := <symbol> '.' 
- *   <symbol> := <symbol> ':' 
+ *   <symbol> := <symbol> <alpha>
+ *   <symbol> := <symbol> '-'
+ *   <symbol> := <symbol> '_'
+ *   <symbol> := <symbol> '.'
+ *   <symbol> := <symbol> ':'
  *   <symbol> := <symbol> '[' <number> ']'
  *
  *   <string> := <alpha> | <digit> | <punct>
@@ -110,7 +110,7 @@ static signed c;
  *   <string> := <string> <digit>
  *   <string> := <string> <punct>
  *   <string> := <string> <blank>
- *   
+ *
  *   <number> := <digit>
  *   <number> := <number> <digit>
  *
@@ -216,23 +216,23 @@ static unsigned object ()
 /*====================================================================*
  *
  *   unsigned stylesheet (unsigned margin);
- *   
- *   print css stylesheet on stdout; this ensures that element class 
+ *
+ *   print css stylesheet on stdout; this ensures that element class
  *   names agree;
- *   
- *   table.offset { border: solid 1pt black; border-spacing: 1px; background: white; } 
+ *
+ *   table.offset { border: solid 1pt black; border-spacing: 1px; background: white; }
  *   th.offset, td.offset { border: solid 1pt silver; text-align: right; width: 080px; }
  *   th.length, td.length { border: solid 1pt silver; text-align: right; width: 080px; }
  *   th.symbol, td.symbol { border: solid 1pt silver; text-align: right; width: 300px; }
  *   th.string, td.string { border: solid 1pt silver; }
- *   
- *   table.data { border: solid 1pt black; border-spacing: 1px; background: white; } 
+ *
+ *   table.data { border: solid 1pt black; border-spacing: 1px; background: white; }
  *   th.base, td.base { border: solid 1pt silver; text-align: right; width: 080px; }
  *   th.size, td.size { border: solid 1pt silver; text-align: right; width: 080px; }
  *   th.name, td.name { border: solid 1pt silver; text-align: right; width: 300px; }
  *   th.text, td.text { border: solid 1pt silver; }
  *   div.posted { text-align: center; margin: 10px; }
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -258,12 +258,12 @@ static unsigned stylesheet (unsigned margin)
 }
 
 /*====================================================================*
- *   
+ *
  *   void html (char const * colors [], unsigned count, flag_t flags);
  *
  *   print object definitions in HTML format with headings and color
  *   coded backgrounds;
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -405,10 +405,10 @@ static void html (char const * colors [], unsigned count, flag_t flags)
 }
 
 /*====================================================================*
- *   
+ *
  *   void text (flag_t flags);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -486,10 +486,10 @@ static void text (flag_t flags)
 }
 
 /*====================================================================*
- *   
+ *
  *   void efsu (flag_t flags);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -555,10 +555,10 @@ static void efsu (flag_t flags)
 }
 
 /*====================================================================*
- *   
+ *
  *   void tabs (flag_t flags);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -614,11 +614,11 @@ static void tabs (flag_t flags)
 }
 
 /*====================================================================*
- *   
+ *
  *   void fold (flag_t flags);
- *   
+ *
  *   fold unmarked objects into single reserved objects;
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -722,12 +722,12 @@ static void fold (flag_t flags)
 }
 
 /*====================================================================*
- *   
+ *
  *   void zero (flag_t flags);
- *   
+ *
  *   read object description file and remove leading 0's from length
  *   specifications to remove color coding;
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -814,10 +814,10 @@ static void function (char const * colors [], unsigned count, flag_t flags)
 }
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv []);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -829,7 +829,7 @@ int main (int argc, char const * argv [])
 {
 	extern unsigned margin;
 	extern unsigned column;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"bc:ehl:prstxz",
 		PUTOPTV_S_FUNNEL,
@@ -847,7 +847,7 @@ int main (int argc, char const * argv [])
 		"z\tremove leading zeros",
 		(char const *) (0)
 	};
-	char const * colors [] = 
+	char const * colors [] =
 	{
 		"#FFFFFF",
 		"#FFFF00",

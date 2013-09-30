@@ -52,15 +52,15 @@
  *
  *   void function (flag_t flags)
  *
- *   read from stdin and write to stdout; convert carriage return 
- *   and line feed characters to UNIX, MAC or WINDOWS conventions; 
+ *   read from stdin and write to stdout; convert carriage return
+ *   and line feed characters to UNIX, MAC or WINDOWS conventions;
  *
- *   UNIX uses a line feed, MAC uses a carriage return and WINDOWS 
+ *   UNIX uses a line feed, MAC uses a carriage return and WINDOWS
  *   uses both to terminate text lines in a file;
  *
  *   this function treats one cr or lf and cr/lf or lf/cr pairs as
- *   the line end; all occurances of any combination are replaced 
- *   
+ *   the line end; all occurances of any combination are replaced
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -124,7 +124,7 @@ static void function (flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"asuw",
 		PUTOPTV_S_FILTER,

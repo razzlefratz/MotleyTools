@@ -138,7 +138,7 @@ void function (flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"acgoxb",
 		PUTOPTV_S_FUNNEL,

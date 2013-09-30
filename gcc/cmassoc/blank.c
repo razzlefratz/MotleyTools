@@ -52,7 +52,7 @@
  *
  *   void func (const unsigned limit, flag_t flags)
  *
- *   read from stdin and write to stdout; remove trailing spaces from 
+ *   read from stdin and write to stdout; remove trailing spaces from
  *   output lines; limit sequences of blank lines;
  *
  *   length is the actual length of the current line without trailing
@@ -146,7 +146,7 @@ static void function (const unsigned limit, flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"n:",
 		PUTOPTV_S_FILTER,

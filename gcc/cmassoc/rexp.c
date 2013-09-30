@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   rexp.c - regular expression test and demo program; 
+ *   rexp.c - regular expression test and demo program;
  *
  *   parse argv[1] as a regular expression and compare any remaining
  *   arguments to it; display a description and report match results;
@@ -64,7 +64,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"e:",
 		"literal [literal] [...]",

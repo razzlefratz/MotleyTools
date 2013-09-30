@@ -63,7 +63,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"m:y:",
 		PUTOPTV_S_DIVINE,
@@ -118,11 +118,11 @@ int main (int argc, char const * argv [])
 
 	for (block = 0; block < MONTHS_IN_QUARTER; block++)
 	{
-		index = annum * 12 +  month +  block - 1;
+		index = annum * 12 +  month +  block -1;
 		annums [block] = index / MONTHS_IN_YEAR;
 		months [block] = index % MONTHS_IN_YEAR;
 		first = dayofwk (annums [block], months [block], 0);
-		final = endofmo (annums [block], months [block]) +  first - 1;
+		final = endofmo (annums [block], months [block]) +  first -1;
 		for (index = 0; index < SQUARES_IN_MONTH; index++)
 		{
 			if ((index < first) || (index > final))

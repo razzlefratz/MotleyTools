@@ -2,7 +2,7 @@
  *
  *   cblock.c - C/C++ Language blocker;
  *
- *   
+ *
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -77,7 +77,7 @@ static signed program (signed c, signed e);
  *
  *   conditionally print an empty preamble comment block; return
  *   character c unchanged;
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -117,7 +117,7 @@ static signed preamble (signed c)
 /*====================================================================*
  *
  *   signed statement (signed c);
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -152,7 +152,7 @@ static signed statement (signed c)
 /*====================================================================*
  *
  *   signed condition (signed c);
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -184,7 +184,7 @@ static signed condition (signed c)
 /*====================================================================*
  *
  *   signed program (signed c, signed e);
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -290,19 +290,19 @@ static signed program (signed c, signed e)
 }
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv[]);
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"p",
 		PUTOPTV_S_FILTER,

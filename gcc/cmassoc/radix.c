@@ -41,7 +41,7 @@
 #endif
 
 /*====================================================================*
- *   program constants;   
+ *   program constants;
  *--------------------------------------------------------------------*/
 
 #define DIGITS_MAX 36
@@ -59,7 +59,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"f:t:h",
 		"[options] number [number] [...]",

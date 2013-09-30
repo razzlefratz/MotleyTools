@@ -53,8 +53,8 @@
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -64,7 +64,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"qvw:",
 		"file base [type item] [type item] [...]\n\n\t  where type is 'byte'|'word'|'long'|'huge'|'data'|'zero'|'fill'|'skip'",
@@ -112,11 +112,11 @@ int main (int argc, char const * argv [])
 		error (1, ECANCELED, "No file.");
 	}
 	file.name = * argv;
-	if ((file.file = open (file.name, O_BINARY | O_RDONLY)) == - 1)
+	if ((file.file = open (file.name, O_BINARY | O_RDONLY)) == -1)
 	{
 		error (1, errno, "%s", file.name);
 	}
-	if ((signed) (extent = lseek (file.file, 0, SEEK_END)) == - 1)
+	if ((signed) (extent = lseek (file.file, 0, SEEK_END)) == -1)
 	{
 		error (1, errno, "%s", file.name);
 	}
@@ -160,7 +160,7 @@ int main (int argc, char const * argv [])
 	{
 		error (1, ECANCELED, "%s needs a value", * argv);
 	}
-	if ((file.file = open (file.name, O_BINARY | O_TRUNC | O_RDWR)) == - 1)
+	if ((file.file = open (file.name, O_BINARY | O_TRUNC | O_RDWR)) == -1)
 	{
 		error (1, errno, "%s", file.name);
 	}

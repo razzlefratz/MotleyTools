@@ -75,7 +75,7 @@ static void function (char const string [], char const * extenders [], flag_t fl
 		char version [FILENAME_MAX];
 		char trailer [FILENAME_MAX];
 	}
-	file = 
+	file =
 	{
 		"",
 		"",
@@ -158,7 +158,7 @@ static void function (char const string [], char const * extenders [], flag_t fl
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"pvex:",
 		PUTOPTV_S_DIVINE,
@@ -170,7 +170,7 @@ int main (int argc, char const * argv [])
 		(char const *) (0)
 	};
 	char const ** extender;
-	char const * extenders [100] = 
+	char const * extenders [100] =
 	{
 		".tar",
 		".tgz",
@@ -211,7 +211,7 @@ int main (int argc, char const * argv [])
 	{
 		char pathname [TEXTLINE_MAX];
 		signed length;
-		while ((length = fgetline (pathname, sizeof (pathname), stdin)) != - 1)
+		while ((length = fgetline (pathname, sizeof (pathname), stdin)) != -1)
 		{
 			while (isspace (pathname [-- length]))
 			{

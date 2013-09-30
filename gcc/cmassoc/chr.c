@@ -56,7 +56,7 @@
 
 /*====================================================================*
  *
- *   void function (flag_t flags) 
+ *   void function (flag_t flags)
  *
  *   display() counts the occurances of each character found in the input
  *   file and displays a tabulated distribution to the output file;
@@ -118,7 +118,7 @@ void function (flag_t flags)
 	{
 		format = " %6d %-3s";
 	}
-	rows = (max - min +  col - 1) / (col);
+	rows = (max - min +  col -1) / (col);
 	printf ("\n");
 	for (row = 0; row < rows; row++)
 	{
@@ -146,7 +146,7 @@ void function (flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"adlouxt",
 		PUTOPTV_S_DIVINE,

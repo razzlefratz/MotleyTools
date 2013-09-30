@@ -1,11 +1,11 @@
 /*====================================================================*
  *
  *   void xmlnumber (volatile byte buffer [], size_t extent);
- *   
+ *
  *   xmlnumber is a decimal integer string of variable extent; the
  *   value cannot exceed length bytes and offset is incremented by
  *   length bytes;
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;

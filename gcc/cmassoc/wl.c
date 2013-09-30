@@ -2,13 +2,13 @@
  *
  *   wl.c - word list utility program;
  *
- *   output words read from the input stream, one per line; by 
- *   default, a word is any consecutive string of letters, digits, 
- *   underscore (_) or dollar_sign ($); 
+ *   output words read from the input stream, one per line; by
+ *   default, a word is any consecutive string of letters, digits,
+ *   underscore (_) or dollar_sign ($);
  *
  *   $ wl [-w charset] [-lu] [file1 file2 ...] [>listfile]
  *
- *   this is, of course, a modified version of the wordlist program 
+ *   this is, of course, a modified version of the wordlist program
  *   found in 'Software Tools' by Kernighan and Plauger;
  *
  *.  Motley Tools by Charles Maier;
@@ -125,7 +125,7 @@ void function (char const ctable [], flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"fw:lu",
 		PUTOPTV_S_FUNNEL,

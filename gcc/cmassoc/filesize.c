@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   filesize.c - 
+ *   filesize.c -
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -65,7 +65,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"c:d:s:",
 		"file [file] [...]",

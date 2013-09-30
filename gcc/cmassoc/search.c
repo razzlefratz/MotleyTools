@@ -1,8 +1,8 @@
 /*====================================================================*
  *
- *   search.c -	select (or delete) records by pattern;
+ *   search.c - select (or delete) records by pattern;
  *
- *   this program is similar to	the UNIX grep utility;
+ *   this program is similar to the UNIX grep utility;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -122,27 +122,27 @@ static void findfile (FIND * find, EDIT * edit, flag_t flags);
 
 /*====================================================================*
  *
- *   void editfile (FIND * find, EDIT *	edit, flag_t flags);
+ *   void editfile (FIND * find, EDIT * edit, flag_t flags);
  *
  *   selectively copy lines from stdin to stdout based on
  *   the regular expressions list and bits set within the mode flags.
  *
- *	#define	SEARCH_B_HEADER	 0x0001	 (show file name)
- *	#define	SEARCH_B_NUMBER	 0x0002	 (show file line)
- *	#define	SEARCH_B_RECORD	 0x0004
- *	#define	SEARCH_B_INVERT	 0x0008	 (delete matching lines)
+ * #define SEARCH_B_HEADER  0x0001  (show file name)
+ * #define SEARCH_B_NUMBER  0x0002  (show file line)
+ * #define SEARCH_B_RECORD  0x0004
+ * #define SEARCH_B_INVERT  0x0008  (delete matching lines)
  *
- *   if	bit field SEARCH_B_HEADER is set, the input filename is	output to
- *   separate record groups; otherwise,	records	appear as a continuous
+ *   if bit field SEARCH_B_HEADER is set, the input filename is output to
+ *   separate record groups; otherwise, records appear as a continuous
  *   list of lines;
  *
- *   if	bit field SEARCH_B_NUMBER is set, output lines are numbered by file
+ *   if bit field SEARCH_B_NUMBER is set, output lines are numbered by file
  *   position; otherwise, numbers are not displayed.
  *
- *   if	bit field SEARCH_B_RECORD is set, the qualifying lines are output as
+ *   if bit field SEARCH_B_RECORD is set, the qualifying lines are output as
  *   records; this is the default but output can be suppressed;
  *
- *   if	bit field SEARCH_B_INVERT is set, input	lines that do not match	any
+ *   if bit field SEARCH_B_INVERT is set, input lines that do not match any
  *   list item are output; otherwise, lines match any list are output;
  *
  *.  Motley Tools by Charles Maier;
@@ -157,7 +157,7 @@ static void editfile (FIND * find, EDIT * edit, flag_t flags)
 	size_t line;
 	size_t item;
 	size_t once = 0;
-	for (line = 1; fgetline (edit->buffer, edit->length, stdin) != - 1; line++)
+	for (line = 1; fgetline (edit->buffer, edit->length, stdin) != -1; line++)
 	{
 		for (item = 0; item < edit->size; item++)
 		{
@@ -214,7 +214,7 @@ static void editfile (FIND * find, EDIT * edit, flag_t flags)
 
 /*====================================================================*
  *
- *   void openfile (FIND * find, EDIT *	edit, flag_t flags);
+ *   void openfile (FIND * find, EDIT * edit, flag_t flags);
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -238,7 +238,7 @@ static void openfile (FIND * find, EDIT * edit, flag_t flags)
 
 /*====================================================================*
  *
- *   void testfile (FIND * find, EDIT *	edit, flag_t flags);
+ *   void testfile (FIND * find, EDIT * edit, flag_t flags);
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -293,7 +293,7 @@ static void testfile (FIND * find, EDIT * edit, flag_t flags)
 
 /*====================================================================*
  *
- *   void findfile (FIND * find, EDIT *	edit, flag_t flags);
+ *   void findfile (FIND * find, EDIT * edit, flag_t flags);
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -330,15 +330,15 @@ static void findfile (FIND * find, EDIT * edit, flag_t flags)
 }
 
 /*====================================================================*
- *   
- *    int main (int argc, const	char * argv[]);
- *   
- *    th use of	".*(s).* here is opposite of that needed by search;
+ *
+ *    int main (int argc, const char * argv[]);
+ *
+ *    th use of ".*(s).* here is opposite of that needed by search;
  *
  *.  Motley Tools by Charles Maier;
  *;  Licensed under the Internet Software Consortium License;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
- *   
+ *
  *--------------------------------------------------------------------*/
 
 int main (int argc, char const * argv [])
@@ -346,7 +346,7 @@ int main (int argc, char const * argv [])
 {
 	extern const unsigned char ct_unescape [];
 	extern FIND find;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"e:fHl:nrRtTv",
 		PUTOPTV_S_FUNNEL,
@@ -363,7 +363,7 @@ int main (int argc, char const * argv [])
 		"v\tinvert selection",
 		(char const *) (0)
 	};
-	EDIT edit = 
+	EDIT edit =
 	{
 		{
 			(regexp *) (0)

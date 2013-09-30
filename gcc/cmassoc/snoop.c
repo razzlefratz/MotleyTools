@@ -1,6 +1,9 @@
 /*====================================================================*
  *
- *   np.c - new paragraph
+ *   basic.c - basic program template;
+ *
+ *   copy one or more files to stdout; if no files are specified
+ *   then copy stdin to stdout;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -15,9 +18,9 @@
  *--------------------------------------------------------------------*/
 
 #include <stdio.h>
-#include <ctype.h>
-#include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <limits.h>
 
 /*====================================================================*
  *   custom header files;
@@ -33,85 +36,36 @@
 #include "../tools/getoptv.c"
 #include "../tools/putoptv.c"
 #include "../tools/version.c"
+#include "../tools/efreopen.c"
 #include "../tools/error.c"
-#endif
-
-#ifndef MAKEFILE
-#include "../files/vfopen.c"
-#include "../files/splitpath.c"
-#include "../files/mergepath.c"
-#include "../files/makepath.c"
 #endif
 
 /*====================================================================*
  *   program constants;
  *--------------------------------------------------------------------*/
 
-#define NP_VERBOSE (1 << 0)
-#define NP_SILENCE (1 << 1)
+#define BASIC_VERBOSE (1 << 0)
+#define BASIC_SILENCE (1 << 1)
+#define BASIC_BAILOUT (1 << 2)
 
-/*====================================================================*
- *
- *   void function (char const * prefix, char const * string);
- *
- *
- *.  Motley Tools by Charles Maier;
- *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
- *;  Licensed under the Internet Software Consortium License;
- *
- *--------------------------------------------------------------------*/
-
-static void function (char const * prefix, char const * string)
+static void function (char const * filename)
 
 {
-	char const * pp;
-	char const * sp;
-	signed c;
-	while ((c = getc (stdin)) != EOF)
+	unsigned line = 0;
+	signed c = 0;
+	signed o = 0;
+	while (c != EOF)
 	{
-		for (pp = prefix; c == * pp; pp++)
+		c = getc (stdin);
+		if (c == '\n')
 		{
-			c = getc (stdin);
-		}
-		if (* pp)
-		{
-			sp = prefix;
-			while (sp < pp)
+			line++;
+			if (o == ' ')
 			{
-				putc (* sp++, stdout);
-			}
-			while (nobreak (c))
-			{
-				putc (c, stdout);
-				c = getc (stdin);
+				printf ("%s (%d)\n", filename, line);
 			}
 		}
-		else 
-		{
-			sp = string;
-			while (* sp)
-			{
-				putc (* sp++, stdout);
-
-#if 1
-
-				if (* sp == '\\')
-				{
-					sp++;
-				}
-
-#endif
-
-			}
-			while (nobreak (c))
-			{
-				c = getc (stdin);
-			}
-		}
-		if (c != EOF)
-		{
-			putc (c, stdout);
-		}
+		o = c;
 	}
 	return;
 }
@@ -132,25 +86,24 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"p:s:",
-		PUTOPTV_S_FILTER,
-		"new paragraph",
-		"p s\tparagraph prefix",
-		"s s\tparagraph string",
+		"qv",
+		PUTOPTV_S_FUNNEL,
+		"basic C language program",
+		"q\tsuppress routine messages",
+		"v\tenable verbose messages",
 		(char const *) (0)
 	};
-	char const * prefix = "";
-	char const * string = "";
+	flag_t flags = (flag_t) (0);
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
-		case 'p':
-			prefix = optarg;
+		case 'q':
+			_setbits (flags, BASIC_SILENCE);
 			break;
-		case 's':
-			string = optarg;
+		case 'v':
+			_setbits (flags, BASIC_VERBOSE);
 			break;
 		default: 
 			break;
@@ -158,23 +111,15 @@ int main (int argc, char const * argv [])
 	}
 	argc -= optind;
 	argv += optind;
-	if (! prefix || ! * prefix)
-	{
-		error (1, ECANCELED, "paragraph prefix is empty");
-	}
-	if (! string || ! * string)
-	{
-		error (1, ECANCELED, "paragraph string is empty");
-	}
 	if (! argc)
 	{
-		function (prefix, string);
+		function ("stdin");
 	}
 	while ((argc) && (* argv))
 	{
-		if (vfopen (* argv))
+		if (efreopen (* argv, "rb", stdin))
 		{
-			function (prefix, string);
+			function (* argv);
 		}
 		argc--;
 		argv++;

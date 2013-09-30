@@ -1,13 +1,13 @@
 /*====================================================================*
  *
- *   fp.c - file fingerprint; 
+ *   fp.c - file fingerprint;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
  *
  *   Contributor(s):
- *	Charles Maier <cmaier@cmassoc.net>
+ * Charles Maier <cmaier@cmassoc.net>
  *
  *--------------------------------------------------------------------*/
 
@@ -60,9 +60,9 @@
 #define FP_B_NEWLINE (1 << 2)
 
 /*====================================================================*
- *   
- *   int main (int argc, char const * argv []) 
- *   
+ *
+ *   int main (int argc, char const * argv [])
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -72,7 +72,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"qv",
 		PUTOPTV_S_FUNNEL,

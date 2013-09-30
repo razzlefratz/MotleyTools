@@ -46,7 +46,7 @@
 #endif
 
 /*====================================================================*
- *   program constants;  
+ *   program constants;
  *--------------------------------------------------------------------*/
 
 #define KEY_VERBOSE (1 << 0)
@@ -56,23 +56,23 @@
 #define PHRASE_MAX 64
 
 /*====================================================================*
- *   
+ *
  *   void function (flag_t flags);
- *   
- *   read phrases from stdin, compute their digest and print both 
+ *
+ *   read phrases from stdin, compute their digest and print both
  *   on stdout; ignore illegal pass phrases;
  *
- *   a pass phrase consists of consecutive ASCII characters in the 
- *   range 0x20 through 0x7F; other characters delimit the phrase; 
- *   phrases less than HPAVKEY_PHRASE_MIN characters or more than 
+ *   a pass phrase consists of consecutive ASCII characters in the
+ *   range 0x20 through 0x7F; other characters delimit the phrase;
+ *   phrases less than HPAVKEY_PHRASE_MIN characters or more than
  *   HPAVKEY_PHRASE_MAX characters are also illegal;
  *
  *   effectively, each text line is a candidate phrase where spaces
  *   are legal and significant; tabs characters are illegal and act
- *   as line breaks; 
+ *   as line breaks;
  *
  *   detected errors are reported along with the input line number;
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -101,7 +101,7 @@ void function (flag_t flags)
 		sp = phrase;
 		while (isprint (c))
 		{
-			if ((size_t) (sp - phrase) < (sizeof (phrase) - 1))
+			if ((size_t) (sp - phrase) < (sizeof (phrase) -1))
 			{
 				* sp++ = (char) (c);
 			}
@@ -150,7 +150,7 @@ void function (flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"qv",
 		"password [password] [...]",

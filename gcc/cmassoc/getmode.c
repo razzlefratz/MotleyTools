@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   getmode.c - print file name, type, mode, owner and group on stdout; 
+ *   getmode.c - print file name, type, mode, owner and group on stdout;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -205,7 +205,7 @@ static void findfile (FIND * find, flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"rBCDFLRS",
 		PUTOPTV_S_FUNNEL,

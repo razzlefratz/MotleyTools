@@ -40,7 +40,7 @@
 #include <ctype.h>
 
 /*====================================================================*
- *   custom header files; 
+ *   custom header files;
  *--------------------------------------------------------------------*/
 
 #include "../tools/cmassoc.h"
@@ -49,7 +49,7 @@
 #include "../linux/syslog.h"
 
 /*====================================================================*
- *   custom source files; 
+ *   custom source files;
  *--------------------------------------------------------------------*/
 
 #ifndef MAKEFILE
@@ -71,7 +71,7 @@
 #endif
 
 /*====================================================================*
- *   program constants;   
+ *   program constants;
  *--------------------------------------------------------------------*/
 
 #ifndef PATH_RUNJOBS
@@ -83,7 +83,7 @@
 #endif
 
 /*====================================================================*
- *   program functions;   
+ *   program functions;
  *--------------------------------------------------------------------*/
 
 static void findfile (FIND * script, FIND * shell, flag_t flags);
@@ -93,8 +93,8 @@ static void testfile (FIND * script, FIND * shell, flag_t flags);
  *
  *   signed runscript (FIND * script, FIND * shell, flag_t flags)
  *
- *   run a script file using a given shell; check script access 
- *   permissions and internal header before spawning the shell; 
+ *   run a script file using a given shell; check script access
+ *   permissions and internal header before spawning the shell;
  *   test mode inhibits execution; verbose mode reports outcome;
  *
  *   scripts must start with the header "#!/path/shell"; this shell
@@ -127,13 +127,13 @@ static signed runscript (FIND * script, FIND * shell, flag_t flags)
 		}
 		return (0);
 	}
-	if ((fd = open (script->fullname, O_RDONLY)) == - 1)
+	if ((fd = open (script->fullname, O_RDONLY)) == -1)
 	{
 		if ((flags & (FIND_B_VERBOSE)) != 0)
 		{
 			syslog_error (LOG_ERR, errno, "%s", script->fullname);
 		}
-		return (- 1);
+		return (-1);
 	}
 	if ((read (fd, sp, 2) != 2) || (* sp++ != '#') || (* sp++ != '!'))
 	{
@@ -144,7 +144,7 @@ static signed runscript (FIND * script, FIND * shell, flag_t flags)
 		close (fd);
 		return (0);
 	}
-	for (sp = buffer; sp < (buffer +  sizeof (buffer) - 1); sp++)
+	for (sp = buffer; sp < (buffer +  sizeof (buffer) -1); sp++)
 	{
 		if ((read (fd, sp, 1) != 1) || isspace (* sp) || iscntrl (* sp))
 		{
@@ -159,7 +159,7 @@ static signed runscript (FIND * script, FIND * shell, flag_t flags)
 		{
 			syslog_error (LOG_ERR, errno, "%s", script->fullname);
 		}
-		return (- 1);
+		return (-1);
 	}
 	if (access (buffer, X_OK) != 0)
 	{
@@ -167,7 +167,7 @@ static signed runscript (FIND * script, FIND * shell, flag_t flags)
 		{
 			syslog_error (LOG_ERR, errno, "%s", script->fullname);
 		}
-		return (- 1);
+		return (-1);
 	}
 	if (script->statinfo.st_ino != shell->statinfo.st_ino)
 	{
@@ -175,7 +175,7 @@ static signed runscript (FIND * script, FIND * shell, flag_t flags)
 		{
 			syslog (LOG_DEBUG, "Can't execute %s: Wrong command interpreter", script->fullname);
 		}
-		return (- 1);
+		return (-1);
 	}
 	if (_anyset (flags, FIND_B_TESTRUN))
 	{
@@ -234,9 +234,9 @@ static signed runscript (FIND * script, FIND * shell, flag_t flags)
  *   void testfile (FIND *script, FIND *shell, flag_t flags);
  *
  *   search a folder and check each file; optionaly recurse through
- *   subfolders or traverse symbolic links or exit on first error; 
+ *   subfolders or traverse symbolic links or exit on first error;
  *
- *   FIND is defined files.h; it contains buffers to store filename 
+ *   FIND is defined files.h; it contains buffers to store filename
  *   components, a flagword and a stat structure;
  *
  *   this is a standard module structure used throughout the motley
@@ -313,9 +313,9 @@ static void testfile (FIND * script, FIND * shell, flag_t flags)
  *   void findfile (FIND *script, FIND *shell, flag_t flags);
  *
  *   search a folder and check each file; optionaly recurse through
- *   subfolders or traverse symbolic links or exit on first error; 
+ *   subfolders or traverse symbolic links or exit on first error;
  *
- *   FIND is defined files.h; it contains buffers to store filename 
+ *   FIND is defined files.h; it contains buffers to store filename
  *   components, a flagword and a stat structure;
  *
  *   this is a standard module structure used throughout the motley
@@ -357,7 +357,7 @@ static void findfile (FIND * script, FIND * shell, flag_t flags)
 }
 
 /*====================================================================*
- *  
+ *
  *   int main (int argc, char const * argv[]);
  *
  *.  Motley Tools by Charles Maier;
@@ -370,7 +370,7 @@ int main (int argc, char const * argv [])
 
 {
 	extern char const * program_name;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"a:elpqrs:Stu:v",
 		PUTOPTV_S_SEARCH,
@@ -388,7 +388,7 @@ int main (int argc, char const * argv [])
 		"v\tdisplay verbose messages",
 		(char const *) (0)
 	};
-	FIND shell = 
+	FIND shell =
 	{
 		{
 			0,
@@ -404,7 +404,7 @@ int main (int argc, char const * argv [])
 		FILE_S_WILDCARD,
 		(flag_t) (0)
 	};
-	FIND script = 
+	FIND script =
 	{
 		{
 			0,
@@ -430,7 +430,7 @@ int main (int argc, char const * argv [])
 		switch (c)
 		{
 		case 'a':
-			if (argc < ARGVSIZE - 1)
+			if (argc < ARGVSIZE -1)
 			{
 				argv [argc++] = optarg;
 				argv [argc] = (char *) (0);

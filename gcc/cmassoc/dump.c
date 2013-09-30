@@ -203,7 +203,7 @@ void func (int radix, flag_t flag, FILE * ifp, FILE * ofp)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"wbodx",
 		PUTOPTV_S_FUNNEL,

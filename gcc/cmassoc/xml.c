@@ -58,7 +58,7 @@
  *
  *   void csstree (struct node const * node);
  *
- *   search node for "style" attributes and print a template css 
+ *   search node for "style" attributes and print a template css
  *   statement for each; use the form "element.class { }" so that
  *   properties can be added as needed;
  *
@@ -90,9 +90,9 @@ void csstree (struct node const * node)
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
- *   
- *   
- *   
+ *
+ *
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -102,7 +102,7 @@ void csstree (struct node const * node)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"cdst",
 		PUTOPTV_S_FUNNEL,

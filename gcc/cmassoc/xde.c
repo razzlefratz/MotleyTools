@@ -80,7 +80,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"qvsx",
 		"datafile xmlfile [xmlfile] [...]",
@@ -124,11 +124,11 @@ int main (int argc, char const * argv [])
 		error (1, ECANCELED, "No data file given");
 	}
 	filename = * argv;
-	if ((fd = open (filename, O_BINARY | O_RDONLY)) == - 1)
+	if ((fd = open (filename, O_BINARY | O_RDONLY)) == -1)
 	{
 		error (1, errno, FILE_CANTOPEN, filename);
 	}
-	if ((length = lseek (fd, 0, SEEK_END)) == - 1)
+	if ((length = lseek (fd, 0, SEEK_END)) == -1)
 	{
 		error (1, errno, FILE_CANTSIZE, filename);
 	}
@@ -159,7 +159,7 @@ int main (int argc, char const * argv [])
 	{
 		hexdump (buffer, 0, length, stdout);
 	}
-	if ((fd = open (filename, O_BINARY | O_WRONLY)) == - 1)
+	if ((fd = open (filename, O_BINARY | O_WRONLY)) == -1)
 	{
 		error (1, errno, FILE_CANTOPEN, filename);
 	}

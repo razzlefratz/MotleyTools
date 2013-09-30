@@ -21,14 +21,14 @@
 #include <string.h>
 
 /*====================================================================*
- *   custom header files; 
+ *   custom header files;
  *--------------------------------------------------------------------*/
 
 #include "../tools/cmassoc.h"
 #include "../chrlib/chrlib.h"
 
 /*====================================================================*
- *   custom source files; 
+ *   custom source files;
  *--------------------------------------------------------------------*/
 
 #ifndef MAKEFILE
@@ -90,7 +90,7 @@ void function (char const ctable [], flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"f:t:",
 		PUTOPTV_S_FILTER,

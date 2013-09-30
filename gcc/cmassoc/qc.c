@@ -1,8 +1,8 @@
 /*============================================================================== 
  *
- *   qc.c - c program quick check utility 
+ *   qc.c - c program quick check utility
  *
- *   open c language source files and look for their include files;  
+ *   open c language source files and look for their include files;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -95,14 +95,14 @@
  *
  *   void report (char const *filename, flag_t flags);
  *
- *   open the named source file and verify that 1) the file is not 
- *   empty and 2) all include files exist; 
+ *   open the named source file and verify that 1) the file is not
+ *   empty and 2) all include files exist;
  *
- *   filename contains the file specification; filename points to 
+ *   filename contains the file specification; filename points to
  *   the filename substring within that specification;
  *
- *   we scan one source line at a time with functions that read and 
- *   maintain a scanning structure defined in scan.h; 
+ *   we scan one source line at a time with functions that read and
+ *   maintain a scanning structure defined in scan.h;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -134,7 +134,7 @@ void function (char const * filename, char const * pathlist [], flag_t flags)
 			partpath (open.fullname, open.pathname, open.basename);
 			partfile (open.basename, open.filename, open.extender);
 			scaninput (& scan, buffer, sizeof (buffer));
-			for (line = 1; fgetline (buffer, TEXTLINE_MAX, fp) != - 1; line++)
+			for (line = 1; fgetline (buffer, TEXTLINE_MAX, fp) != -1; line++)
 			{
 				nexttoken (& scan);
 				if (havetoken (& scan, "#"))
@@ -207,7 +207,7 @@ void function (char const * filename, char const * pathlist [], flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"cisv",
 		PUTOPTV_S_FUNNEL,
@@ -218,7 +218,7 @@ int main (int argc, char const * argv [])
 		"v\tverbose messages",
 		(char const *) (0)
 	};
-	static char const * pathlist [] = 
+	static char const * pathlist [] =
 	{
 		"/usr/include",
 		"/usr/local/include",

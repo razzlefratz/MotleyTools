@@ -68,7 +68,7 @@
  *
  *   read stdin and write stdout; copy targetfile tokens to stdout;
  *   intercept processor include directives and include local files
- *   where specified; 
+ *   where specified;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -270,10 +270,10 @@ void function (char * fullpath, char const * vector [])
 }
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv[]);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -283,7 +283,7 @@ void function (char * fullpath, char const * vector [])
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"",
 		PUTOPTV_S_FILTER,

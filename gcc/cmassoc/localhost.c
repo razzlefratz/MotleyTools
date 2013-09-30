@@ -49,7 +49,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"d:h:l",
 		PUTOPTV_S_DIVINE,

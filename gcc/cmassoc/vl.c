@@ -157,7 +157,7 @@ static void function (size_t length, flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	char const * optv [] = 
+	char const * optv [] =
 	{
 		"cl:pw",
 		PUTOPTV_S_FILTER,

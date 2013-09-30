@@ -49,7 +49,7 @@
 #define HEXCMP_VERBOSE (1 << 1)
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv []);
  *
  *.  Motley Tools by Charles Maier;
@@ -61,7 +61,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"qv",
 		"file file",
@@ -104,13 +104,13 @@ int main (int argc, char const * argv [])
 	{
 		error (1, ENOTSUP, "Too many files to compare");
 	}
-	if ((fd1 = open (* argv, O_BINARY | O_RDONLY)) == - 1)
+	if ((fd1 = open (* argv, O_BINARY | O_RDONLY)) == -1)
 	{
 		error (1, errno, FILE_CANTOPEN, * argv);
 	}
 	argc--;
 	argv++;
-	if ((fd2 = open (* argv, O_BINARY | O_RDONLY)) == - 1)
+	if ((fd2 = open (* argv, O_BINARY | O_RDONLY)) == -1)
 	{
 		error (1, errno, FILE_CANTOPEN, * argv);
 	}

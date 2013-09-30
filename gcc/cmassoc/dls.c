@@ -2,7 +2,7 @@
  *
  *   dls.c - directory hierarchy display;
  *
- *   print a directory hierarchy on stdout using simple ascii text; 
+ *   print a directory hierarchy on stdout using simple ascii text;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -157,7 +157,7 @@ void function (char const * path, char * file, size_t width, size_t count, bool 
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"c:dflnw:",
 		"path [path] [...] [> stdout]",

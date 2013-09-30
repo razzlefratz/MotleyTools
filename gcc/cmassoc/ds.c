@@ -55,11 +55,11 @@
 #define REGISTRY "registry.txt"
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv []);
- *   
+ *
  *   digital dactyloscope;
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -69,7 +69,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"f:",
 		"file [file] [...]",
@@ -95,7 +95,7 @@ int main (int argc, char const * argv [])
 	}
 	argc -= optind;
 	argv += optind;
-	if ((fd = open (registry, O_BINARY | O_RDONLY)) == - 1)
+	if ((fd = open (registry, O_BINARY | O_RDONLY)) == -1)
 	{
 		error (1, errno, FILE_CANTOPEN, registry);
 	}

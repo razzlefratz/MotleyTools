@@ -2,8 +2,8 @@
  *
  *   trim.c - discard character columns;
  *
- *   discard a range of columns from each line of a text file; 
- *   characters occuring before one column and/or after another 
+ *   discard a range of columns from each line of a text file;
+ *   characters occuring before one column and/or after another
  *   are discarded;
  *
  *.  Motley Tools by Charles Maier;
@@ -92,7 +92,7 @@ void function (size_t lower, size_t upper, flag_t flags)
 
 /*====================================================================*
  *
- *   int main (int argc, char const * argv []) 
+ *   int main (int argc, char const * argv [])
  *
  *
  *.  Motley Tools by Charles Maier;
@@ -104,7 +104,7 @@ void function (size_t lower, size_t upper, flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"a:b:",
 		PUTOPTV_S_FILTER,

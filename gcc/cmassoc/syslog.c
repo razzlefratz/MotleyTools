@@ -111,11 +111,11 @@ static file_t myopenlog (char const * socketname, int sockettype)
 		error (1, ENAMETOOLONG, "can't open socket %s", socketname);
 	}
 	strcpy (sockaddr_un.sun_path, socketname);
-	if ((fd = socket (AF_UNIX, sockettype, 0)) == - 1)
+	if ((fd = socket (AF_UNIX, sockettype, 0)) == -1)
 	{
 		error (1, errno, "can't open socket %s", sockaddr_un.sun_path);
 	}
-	if (connect (fd, (struct sockaddr *) (& sockaddr_un), sizeof (sockaddr_un)) == - 1)
+	if (connect (fd, (struct sockaddr *) (& sockaddr_un), sizeof (sockaddr_un)) == -1)
 	{
 		error (1, errno, "can't connect to socket %s", sockaddr_un.sun_path);
 	}
@@ -142,7 +142,7 @@ static void mysyslog (file_t fd, int options, int priority, char const * identit
 	char buffer [TEXTLINE_MAX];
 	time_t now = time (& now);
 	size_t length = 0;
-	if (fd != - 1)
+	if (fd != -1)
 	{
 		length = snprintf (buffer +  length, sizeof (buffer) - length, "<%d>", priority);
 		length = strftime (buffer +  length, sizeof (buffer) - length, LOGTIME, localtime (& now));
@@ -170,11 +170,11 @@ static void mysyslog (file_t fd, int options, int priority, char const * identit
 }
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv[]);
  *
- *   reads input and write to system log facility; 
- *   
+ *   reads input and write to system log facility;
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -184,7 +184,7 @@ static void mysyslog (file_t fd, int options, int priority, char const * identit
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"b:def:i:p:ns:t",
 		"[message]",
@@ -207,7 +207,7 @@ int main (int argc, char const * argv [])
 	int priority = SYSLOG_USER | SYSLOG_INFO;
 	code_t sockettype = SOCK_STREAM;
 	flag_t options = (flag_t) (0);
-	file_t fd = (file_t) (- 1);
+	file_t fd = (file_t) (-1);
 	int c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
@@ -270,7 +270,7 @@ int main (int argc, char const * argv [])
 		{
 			if (nobreak (c))
 			{
-				if ((bp - message) < (sizeof (message) - 1))
+				if ((bp - message) < (sizeof (message) -1))
 				{
 					* bp++ = c;
 				}
@@ -297,7 +297,7 @@ int main (int argc, char const * argv [])
 			char const * string;
 			for (string = * argv; * string; string++)
 			{
-				if ((bp - message) < (sizeof (message) - 1))
+				if ((bp - message) < (sizeof (message) -1))
 				{
 					* bp++ = * string;
 				}

@@ -121,7 +121,7 @@ void function (signed count, signed width)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"l:w:",
 		PUTOPTV_S_FILTER,

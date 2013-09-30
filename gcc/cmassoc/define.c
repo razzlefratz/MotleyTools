@@ -48,10 +48,10 @@
 /*====================================================================*
  *
  *   void stylesheet ();
- *   
- *   print css stylesheet on stdout; this ensures that element class 
+ *
+ *   print css stylesheet on stdout; this ensures that element class
  *   names agree;
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -89,7 +89,7 @@ static void stylesheet (unsigned margin)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"cdmn:svx",
 		PUTOPTV_S_FUNNEL,

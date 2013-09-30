@@ -56,10 +56,10 @@
 #define MUNGE_S_DISCARD ""
 
 /*====================================================================*
- *   
+ *
  *   static void function (char const * pathname, char const * prefix, char const * discard, char const * replace, flag_t flags);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -142,7 +142,7 @@ static void function (char const * pathname, char const * prefix, char const * d
 int main (int argc, char const * argv [])
 
 {
-	char const * optv [] = 
+	char const * optv [] =
 	{
 		"d:lp:uvx:",
 		PUTOPTV_S_FILTER,

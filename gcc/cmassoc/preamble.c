@@ -60,8 +60,8 @@
  *
  *   void function (signed prefix, signed suffix, signed length);
  *
- *   rewind prefix and suffix; read prefix and write to stdout; read stdin 
- *   and write to stdout; read suffix and write to stdout; 
+ *   rewind prefix and suffix; read prefix and write to stdout; read stdin
+ *   and write to stdout; read suffix and write to stdout;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -104,7 +104,7 @@ static void function (signed prefix, signed suffix, signed length)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"p:qs:v",
 		PUTOPTV_S_FILTER,
@@ -117,21 +117,21 @@ int main (int argc, char const * argv [])
 	};
 	flag_t flags = (flag_t) (0);
 	signed length = 1024;
-	signed prefix = - 1;
-	signed suffix = - 1;
+	signed prefix = -1;
+	signed suffix = -1;
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'h':
-			if ((prefix = open (optarg, O_RDONLY)) == - 1)
+			if ((prefix = open (optarg, O_RDONLY)) == -1)
 			{
 				error (1, errno, "%s", optarg);
 			}
 			break;
 		case 'f':
-			if ((suffix = open (optarg, O_RDONLY)) == - 1)
+			if ((suffix = open (optarg, O_RDONLY)) == -1)
 			{
 				error (1, errno, "%s", optarg);
 			}

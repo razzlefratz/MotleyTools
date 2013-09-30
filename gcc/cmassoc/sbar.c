@@ -143,7 +143,7 @@ void function (signed start, signed space, size_t length, flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"c:mw:x",
 		PUTOPTV_S_FILTER,

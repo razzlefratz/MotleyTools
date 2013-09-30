@@ -53,7 +53,7 @@
 #endif
 
 /*====================================================================*
- *   program variables; 
+ *   program variables;
  *--------------------------------------------------------------------*/
 
 static unsigned files = 0;
@@ -198,7 +198,7 @@ int main (int argc, char const * argv [])
 
 {
 	extern FIND find;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"rb",
 		"findspec [> stdout]",

@@ -8,7 +8,7 @@
  *
  *   Contributor(s):
  *      Nathan Houghton <nathan@brainwerk.org>
- *	Charles Maier <cmaier@cmassoc.net>
+ * Charles Maier <cmaier@cmassoc.net>
  *
  *--------------------------------------------------------------------*/
 
@@ -59,13 +59,13 @@
 #define ODC_SILENCE (1 << 1)
 
 /*====================================================================*
- *   
+ *
  *   void function (char const * filename [], flag_t flags);
- *   
+ *
  *   read definition file to determine the size of next object;
  *   read next object from each binary file and compare; report
  *   differences;
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -87,7 +87,7 @@ void function (char const * filename [], flag_t flags)
 	signed c;
 	for (c = 0; c < 2; c++)
 	{
-		if ((file [c] = open (filename [c], O_BINARY | O_RDONLY)) == - 1)
+		if ((file [c] = open (filename [c], O_BINARY | O_RDONLY)) == -1)
 		{
 			error (1, errno, "%s", filename [c]);
 		}
@@ -238,7 +238,7 @@ void function (char const * filename [], flag_t flags)
 		unsigned extent [2];
 		for (c = 0; c < 2; c++)
 		{
-			if ((signed) (extent [c] = lseek (file [c], 0, SEEK_END)) == - 1)
+			if ((signed) (extent [c] = lseek (file [c], 0, SEEK_END)) == -1)
 			{
 				error (1, errno, FILE_CANTSIZE, filename [c]);
 			}
@@ -266,10 +266,10 @@ void function (char const * filename [], flag_t flags)
 }
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv []);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -279,7 +279,7 @@ void function (char const * filename [], flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"f:qv",
 		"file file",

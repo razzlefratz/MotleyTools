@@ -71,11 +71,11 @@ static void function (int argc, const char * argv [], size_t decode (void const 
 	byte * memory;
 	byte * origin;
 	file.name = * argv;
-	if ((file.file = open (file.name, O_BINARY | O_RDONLY)) == - 1)
+	if ((file.file = open (file.name, O_BINARY | O_RDONLY)) == -1)
 	{
 		error (1, errno, "Can't open %s", file.name);
 	}
-	if ((extent = lseek (file.file, 0, SEEK_END)) == - 1)
+	if ((extent = lseek (file.file, 0, SEEK_END)) == -1)
 	{
 		error (1, errno, "Can't size %s", file.name);
 	}
@@ -131,7 +131,7 @@ static void function (int argc, const char * argv [], size_t decode (void const 
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -141,7 +141,7 @@ static void function (int argc, const char * argv [], size_t decode (void const 
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"qvn",
 		"file offset type [size]\n\n" \

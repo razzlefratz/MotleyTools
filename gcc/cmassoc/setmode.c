@@ -59,7 +59,7 @@
 #define FSTAT_INSTR 5
 
 /*====================================================================*
- *   
+ *
  *   static void checkmode (char *vector[]);
  *
  *.  Motley Tools by Charles Maier;
@@ -116,7 +116,7 @@ void checkmode (char * vector [])
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"",
 		PUTOPTV_S_FUNNEL,

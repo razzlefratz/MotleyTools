@@ -1,8 +1,8 @@
 /*====================================================================*
  *
- *   iplist.c - 
+ *   iplist.c -
  *
- *   read from stdin and write to stdout; print only dotted decimal 
+ *   read from stdin and write to stdout; print only dotted decimal
  *   IPv4 address strings;
  *
  *.  Motley Tools by Charles Maier;
@@ -82,7 +82,7 @@ static void function (flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"d",
 		PUTOPTV_S_FUNNEL,

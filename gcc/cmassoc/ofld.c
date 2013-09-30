@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   ofld.c - 
+ *   ofld.c -
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -95,7 +95,7 @@ static void function (signed fields, unsigned length)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"b:f:",
 		PUTOPTV_S_FILTER,

@@ -57,8 +57,8 @@
  *
  *   static bool ignore (struct nic * nic);
  *
- *   return true if the interface ethernet address is either all 
- *   zeros or all ones, indicating the interface is either disabled 
+ *   return true if the interface ethernet address is either all
+ *   zeros or all ones, indicating the interface is either disabled
  *   or not in use;
  *
  *--------------------------------------------------------------------*/
@@ -93,7 +93,7 @@ static bool disabled (struct nic * nic)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"",
 		PUTOPTV_S_DIVINE,

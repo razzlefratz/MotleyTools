@@ -65,10 +65,10 @@
 #define IFD_RIGHT4 "--|  " Y " "
 
 /*====================================================================*
- *   
+ *
  *   void function (size_t width, flag_t flags);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -191,10 +191,10 @@ static void function (unsigned step, unsigned dir, unsigned width, flag_t flags)
 }
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv []);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -204,7 +204,7 @@ static void function (unsigned step, unsigned dir, unsigned width, flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"aln:rw:",
 		PUTOPTV_S_FUNNEL,

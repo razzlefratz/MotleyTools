@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   main.c - 
+ *   main.c -
  *
  *
  *.  Motley Tools by Charles Maier;
@@ -36,7 +36,7 @@
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -46,7 +46,7 @@
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"",
 		PUTOPTV_S_FUNNEL,

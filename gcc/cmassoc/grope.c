@@ -130,18 +130,18 @@ static void testfile (FIND * find, EDIT * edit, flag_t flags);
  *      #define GROPE_B_RECORD  0x0001
  *      #define GROPE_B_INVERT  0x0008  (delete matching lines)
  *
- *   if bit field GROPE_B_HEADER is set, the input filename is output 
- *   at the start of each record group; otherwise, records appear as 
+ *   if bit field GROPE_B_HEADER is set, the input filename is output
+ *   at the start of each record group; otherwise, records appear as
  *   a continuous list of lines;
  *
- *   if bit field GROPE_B_NUMBER is set, output lines are numbered by 
+ *   if bit field GROPE_B_NUMBER is set, output lines are numbered by
  *   file position; otherwise, numbers are not displayed.
  *
- *   if bit field GROPE_B_RECORD is set, qualifying lines are output 
+ *   if bit field GROPE_B_RECORD is set, qualifying lines are output
  *   as records; this is the default but output can be suppressed;
  *
- *   if bit field GROPE_B_INVERT is set, input lines that do not match 
- *   any list item are output; otherwise, lines match any list are 
+ *   if bit field GROPE_B_INVERT is set, input lines that do not match
+ *   any list item are output; otherwise, lines match any list are
  *   output;
  *
  *.  Motley Tools by Charles Maier;
@@ -156,7 +156,7 @@ static void editfile (FIND * find, EDIT * edit, flag_t flags)
 	size_t line = 0;
 	size_t item = 0;
 	size_t once = 0;
-	for (line = 1; fgetline (edit->buffer, edit->length, stdin) != - 1; line++)
+	for (line = 1; fgetline (edit->buffer, edit->length, stdin) != -1; line++)
 	{
 		for (item = 0; item < edit->size; item++)
 		{
@@ -300,7 +300,7 @@ static void testfile (FIND * find, EDIT * edit, flag_t flags)
  *   void findfile (FIND * find, EDIT * edit, flag_t flags);
  *
  *   if find is a folder then search it; otherwise, test it;
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -344,7 +344,7 @@ int main (int argc, char const * argv [])
 {
 	extern const unsigned char ct_unescape [];
 	extern FIND find;
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"w:e:fnHrRT",
 		PUTOPTV_S_FUNNEL,
@@ -359,7 +359,7 @@ int main (int argc, char const * argv [])
 		"T\tescape sequence rules",
 		(char const *) (0)
 	};
-	EDIT edit = 
+	EDIT edit =
 	{
 		{
 			(regexp *) (0)

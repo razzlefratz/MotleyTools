@@ -81,9 +81,9 @@ unsigned lineno = 0;
  *
  *   void function(signed c, flag_t flags)
  *
- *   This function performs lower-to-upper or upper-to-lower case 
- *   character code conversion on a file; literal text enclosed in 
- *   apostrophes or quotes is not converted when certain flagword 
+ *   This function performs lower-to-upper or upper-to-lower case
+ *   character code conversion on a file; literal text enclosed in
+ *   apostrophes or quotes is not converted when certain flagword
  *   bits are set:
  *
  *      CASE_B_UPPER :== convert to upper case;
@@ -171,7 +171,7 @@ void function (signed c, flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	char const * optv [] = 
+	char const * optv [] =
 	{
 		"luxtds",
 		PUTOPTV_S_FILTER,

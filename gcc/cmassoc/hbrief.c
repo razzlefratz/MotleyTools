@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   hbrief.c - remove HTLM attributes; 
+ *   hbrief.c - remove HTLM attributes;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -78,8 +78,8 @@ static signed pcdata (signed c);
 
 /*====================================================================*
  *
- *   signed nocomment (signed c) 
- *   
+ *   signed nocomment (signed c)
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -113,8 +113,8 @@ static signed _nocomment (signed c)
 
 /*====================================================================*
  *
- *   signed markup (signed c) 
- *   
+ *   signed markup (signed c)
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -184,7 +184,7 @@ static signed markup (signed c)
 
 /*====================================================================*
  *
- *   signed pcdata (signed c) 
+ *   signed pcdata (signed c)
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -208,7 +208,7 @@ static signed pcdata (signed c)
 
 /*====================================================================*
  *
- *   int element (signed c) 
+ *   int element (signed c)
  *
  *   remove attributes from markup element, leaving a minimal tag;
  *
@@ -253,7 +253,7 @@ static signed element (signed c)
 
 /*====================================================================*
  *
- *   signed document (signed c) 
+ *   signed document (signed c)
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -285,7 +285,7 @@ static signed document (signed c)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"am",
 		PUTOPTV_S_FILTER,

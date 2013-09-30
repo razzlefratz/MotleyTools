@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   errno.c - print system error message text on stdout 
+ *   errno.c - print system error message text on stdout
  *
  *   this program is a simple debugging tool that displays the argument
  *   vector argv[] on stdout for inspection.

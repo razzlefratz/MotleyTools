@@ -8,7 +8,7 @@
  *
  *   Contributor(s):
  *      Nathan Houghton <nathan@brainwerk.org>
- *	Charles Maier <cmaier@cmassoc.net>
+ * Charles Maier <cmaier@cmassoc.net>
  *
  *--------------------------------------------------------------------*/
 
@@ -77,7 +77,7 @@ static void report (char const * filename [], off_t offset [])
 	for (file = 0; file < SIZEOF (extent); file++)
 	{
 		struct stat statinfo;
-		if (stat (filename [file], & statinfo) == - 1)
+		if (stat (filename [file], & statinfo) == -1)
 		{
 			error (1, errno, FILE_CANTSIZE, filename [file]);
 		}
@@ -103,13 +103,13 @@ static void report (char const * filename [], off_t offset [])
 }
 
 /*====================================================================*
- *   
+ *
  *   void function (char const * filename [], flag_t flags);
- *   
+ *
  *   read definition file to determine the size of next object;
  *   read next object from each binary file and compare; report
  *   differences;
- *   
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -134,7 +134,7 @@ void function (char const * filename [], flag_t flags)
 	memset (origin, 0, sizeof (origin));
 	for (file = 0; file < SIZEOF (fd); file++)
 	{
-		if ((fd [file] = open (filename [file], O_BINARY | O_RDONLY)) == - 1)
+		if ((fd [file] = open (filename [file], O_BINARY | O_RDONLY)) == -1)
 		{
 			error (1, errno, "%s", filename [file]);
 		}
@@ -301,10 +301,10 @@ void function (char const * filename [], flag_t flags)
 }
 
 /*====================================================================*
- *   
+ *
  *   int main (int argc, char const * argv []);
- *   
- *   
+ *
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -314,7 +314,7 @@ void function (char const * filename [], flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"f:qv",
 		"file file",

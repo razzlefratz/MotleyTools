@@ -56,8 +56,8 @@
  *
  *   void encode(flag_t flag, FILE *ifp, FILE *ofp)
  *
- *   read stdin and write stdout; replace ascii control characters 
- *   and spaces and all non-ascii characters with ascii hexidecimal 
+ *   read stdin and write stdout; replace ascii control characters
+ *   and spaces and all non-ascii characters with ascii hexidecimal
  *   octet notation in the form "%nn";
  *
  *.  Motley Tools by Charles Maier;
@@ -100,7 +100,7 @@ void encode (flag_t flags)
  *
  *   void decode(flag_t flags)
  *
- *   read stdin and write stdout; replace ascii hexidecimal octets, 
+ *   read stdin and write stdout; replace ascii hexidecimal octets,
  *   in the form "%nn", with the equivalent ascii character code;
  *
  *.  Motley Tools by Charles Maier;
@@ -191,7 +191,7 @@ void function (flag_t flags)
 int main (int argc, char const * argv [])
 
 {
-	static char const * optv [] = 
+	static char const * optv [] =
 	{
 		"deh",
 		PUTOPTV_S_FUNNEL,
