@@ -75,7 +75,7 @@ class __declspec (dllexport) ocomment: private otext, public oflagword
 
 {
 public: 
-	ocomment (size_t length);
+	ocomment (unsigned length);
 	ocomment (void);
 	virtual ~ ocomment (void);
 	signed comment (signed c);
@@ -85,12 +85,12 @@ public:
 	ocomment & preamble (void);
 	unsigned char cupper (void) const;
 	unsigned char clower (void) const;
-	size_t width (void) const;
+	unsigned width (void) const;
+	unsigned space (void) const;
 	ocomment & cupper (unsigned char c);
 	ocomment & clower (unsigned char c);
-	ocomment & width (size_t width);
-
-
+	ocomment & width (unsigned width);
+	ocomment & space (unsigned space);
 	char const * preface (void) const;
 	char const * package (void) const;
 	char const * release (void) const;
@@ -101,29 +101,18 @@ public:
 	ocomment & release (char const * release);
 	ocomment & license (char const * license);
 	ocomment & special (char const * special);
-
-
 private: 
-
-
-	signed message (signed c, char const * string);
-	signed breaker (signed c, signed e);
-	signed content (signed c);
-	ocomment & content (void);
+	signed breaker (signed c, signed e) const;
+	signed content (signed c, unsigned column) const;
+	signed message (signed c, char const * string) const;
 	char * mpreface;
 	char * mpackage;
 	char * mrelease;
 	char * mlicense;
 	char * mspecial;
-
 	unsigned char mupper;
 	unsigned char mlower;
-	size_t mwidth;
-	char * mbuffer;
-	char * minsert;
-	char * moutput;
-	size_t mlength;
-	size_t mcount;
+	unsigned mwidth;
 };
 
 /*====================================================================*

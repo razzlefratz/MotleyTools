@@ -421,22 +421,30 @@ signed ocomment::clang (signed c)
 				do { c = std::cin.get (); } while (oascii::isblank (c));
 				if (c != '*')
 				{
-					unsigned space = 3;
+					unsigned column = 3;
+					unsigned offset = 0;
 					std::cout.put ('*');
 					while (oascii::nobreak (c))
 					{
-						if (oascii::isblank (c))
+						if (c == ' ')
 						{
-							space++;
+							column++;
+						}
+						else if (c == '\t')
+						{
+							column -= column%8;
+							column += 8;
 						}
 						else 
 						{
-							while (space)
+							while (offset < column)
 							{
 								*sp++ = ' ';
-								space--;
+								offset--;
 							}
 							*sp++ = (char)(c);
+							column++;
+							offset++;
 						}
 						c = std::cin.get ();
 					}
