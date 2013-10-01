@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   hex2bin.c - convert hex files to binary file;
+ *   hex2bin.c - convert hex files to one binary file;
  *
  *   copy one or more files to stdout; if no files are specified
  *   then copy stdin to stdout;
@@ -56,7 +56,7 @@
  *   void function (char const * source, size_t prior, size_t after);
  *
  *   discard text prior to column prior and after column after on
- *   each line of a text file;
+ *   each line of a text file; convert remaining text to binary;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -122,12 +122,12 @@ static void function (char const * source, size_t prior, size_t after)
 		}
 		else 
 		{
-			error (1, ENOTSUP, "Illegal hex digit '%c' (0x%02X) on line %d column %d", byte, byte, line, column);
+			error (1, ENOTSUP, "Unexpected character '%c' (0x%02X) on line %d column %d of %s", byte, byte, line, column, source);
 		}
 	}
 	if (digit & 1)
 	{
-		error (1, ENOTSUP, "%s has odd digit count (%d)", source, digit);
+		error (1, ENOTSUP, "File %s has odd digit count (%d)", source, digit);
 	}
 	return;
 }
