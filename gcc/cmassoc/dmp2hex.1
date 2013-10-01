@@ -54,7 +54,50 @@ Input files are not modified.
 One output stream is written.
 
 .SH EXAMPLES
-None.
+The following file is an example of a hex dump file.
+The left section is the memory offset.
+The center section is the hexadecimal display of memory data.
+The right portion is the ASCII display of memory data.
+.PP
+   # cat abc.hex
+   00000000 00 B0 52 00 00 01 34 15 9E 21 74 B6 88 E1 00 00 ..R...4..!t.....
+   00000010 A0 00 B0 52 00 00 00 00 00 00 00 00 00 00 00 00 ...R............
+   00000020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+   00000030 00 00 00 00 00 00 00 00 00 00 00 00             ............    
+.PP
+We use \fBdmp2hex\fR to discard the left and right potions and print the center on stdout.
+.PP
+   # dmp2hex abc.hex
+   00 B0 52 00 00 01 34 15 9E 21 74 B6 88 E1 00 00
+   A0 00 B0 52 00 00 00 00 00 00 00 00 00 00 00 00
+   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+   00 00 00 00 00 00 00 00 00 00 00 00
+.PP
+In the next example, \fBdmp2hex\fR reads hex dump file \fBabc.hex\fR three times and produces one output stream.
+The input file is not modified.
+The output is suitable for input to program \fBhex2bin\fR.
+.PP
+   # dmp2hex abc.hex abc.hex abc.hex
+   00 B0 52 00 00 01 34 15 9E 21 74 B6 88 E1 00 00
+   A0 00 B0 52 00 00 00 00 00 00 00 00 00 00 00 00
+   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+   00 00 00 00 00 00 00 00 00 00 00 00            
+
+   00 B0 52 00 00 01 34 15 9E 21 74 B6 88 E1 00 00
+   A0 00 B0 52 00 00 00 00 00 00 00 00 00 00 00 00
+   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+   00 00 00 00 00 00 00 00 00 00 00 00            
+
+   00 B0 52 00 00 01 34 15 9E 21 74 B6 88 E1 00 00
+   A0 00 B0 52 00 00 00 00 00 00 00 00 00 00 00 00
+   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+   00 00 00 00 00 00 00 00 00 00 00 00            
+
+.PP
+The next example converts hex dum files \fBabc.hex\fR and \fBdef.hex\fR to for conversion to raw binary.
+This can be used to produce raw binary from one or more hexdump files.
+.PP
+   # dmp2hex abc.hex def.hex | hex2bin > abc.bin
 
 .SH SEE ALSO
 .BR bin2hex ( 1 ),
