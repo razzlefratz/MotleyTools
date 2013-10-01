@@ -38,7 +38,16 @@
 #include "../tools/putoptv.c"
 #include "../tools/version.c"
 #include "../tools/error.c"
+#include "../tools/uintspec.c"
+#include "../tools/todigit.c"
 #endif
+
+/*====================================================================*
+ *   program constants;
+ *--------------------------------------------------------------------*/
+
+#define TRIM_PRIOR 10
+#define TRIM_AFTER 56
 
 /*====================================================================*
  *
@@ -101,22 +110,30 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"t",
+		"a:b:t",
 		PUTOPTV_S_FUNNEL,
 		"convert hex dump to hex file",
+		"a n\tafter column (n) [" LITERAL (TRIM_PRIOR) "]",
+		"b n\tbefore column (n) [" LITERAL (TRIM_AFTER) "]",
 		"t\tconvert toolkit hex dump",
 		(char const *) (0)
 	};
-	size_t prior = 10;
-	size_t after = 56;
+	size_t prior = TRIM_PRIOR;
+	size_t after = TRIM_AFTER;
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
+		case 'a':
+			after = (size_t)(uintspec (optarg, 0, 512)); 
+			break;
+		case 'b':
+			prior = (size_t)(uintspec (optarg, 0, 512)); 
+			break;
 		case 't':
-			prior = 10;
-			after = 56; 
+			prior = TRIM_PRIOR;
+			after = TRIM_AFTER; 
 			break;
 		default: 
 			break;

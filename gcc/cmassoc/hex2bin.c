@@ -42,7 +42,7 @@
 
 /*====================================================================*
  *
- *   void function (char const * filename);
+ *   void function (char const * source);
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -50,7 +50,7 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function (char const * filename)
+static void function (char const * source)
 
 {
 	byte byte;
@@ -106,7 +106,7 @@ static void function (char const * filename)
 	}
 	if (digit & 1)
 	{
-		error (1, ENOTSUP, "Odd digit count (%d) from %s", digit, filename);
+		error (1, ENOTSUP, "Odd digit count (%d) from %s", digit, source);
 	}
 	return;
 }
