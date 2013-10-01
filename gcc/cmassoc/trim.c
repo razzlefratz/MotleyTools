@@ -115,12 +115,12 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"a:b:x",
+		"a:b:d",
 		PUTOPTV_S_FILTER,
 		"discard character columns",
 		"a n\tafter column (n) [" LITERAL (TRIM_PRIOR) "]",
 		"b n\tbefore column (n) [" LITERAL (TRIM_AFTER) "]",
-		"x\ttrim hex dump (-b" LITERAL (TRIM_INDEX) " -a" LITERAL (TRIM_ASCII) ")",
+		"d\ttrim standard hex dump file (-b" LITERAL (TRIM_INDEX) " -a" LITERAL (TRIM_ASCII) ")",
 		(char const *) (0)
 	};
 	unsigned prior = TRIM_PRIOR;
@@ -136,7 +136,7 @@ int main (int argc, char const * argv [])
 		case 'b':
 			prior = uintspec (optarg, 0, USHRT_MAX);
 			break;
-		case 'x':
+		case 'd':
 			prior = TRIM_INDEX;
 			after = TRIM_ASCII;
 			break;
