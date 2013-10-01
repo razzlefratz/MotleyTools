@@ -139,10 +139,10 @@ void function (struct _column_ columns [], struct _column_ outputs [], flag_t fl
 	one.next = & two;
 	two.next = & one;
 	record = & two;
-	for (string = record->buffer; fgets (string, BUFFER_SIZE, stdin) != (char *) (0); string = record->buffer)
+	for (string = record->buffer; fgets (string, BUFFER_SIZE, stdin); string = record->buffer)
 	{
 		vector = record->vector;
-		for (* vector++ = string; (* string != (char) (0)) && ((string - record->buffer) < (BUFFER_SIZE -1)); string++)
+		for (* vector++ = string; (* string) && ((string - record->buffer) < (BUFFER_SIZE -1)); string++)
 		{
 			if (isspace (* string) && ((vector - record->vector) < (VECTOR_SIZE -1)))
 			{
@@ -151,16 +151,16 @@ void function (struct _column_ columns [], struct _column_ outputs [], flag_t fl
 			}
 		}
 		* vector = (char *) (0);
-		for (column = columns; column->number != -1; column++)
+		for (column = columns; ~ column->number; column++)
 		{
 			if (strcmp (record->vector [column->number], column->string))
 			{
 				break;
 			}
 		}
-		if (column->number == -1)
+		if (! ~ column->number)
 		{
-			for (column = outputs; column->number != -1; column++)
+			for (column = outputs; ~ column->number; column++)
 			{
 				printf ("%4lu %s:%s\n", (long unsigned) (column->number), column->string, record->vector [column->number]);
 			}

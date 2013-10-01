@@ -102,7 +102,7 @@ delta: delta.o efreopen.o error.o error_on_line.o getoptv.o putoptv.o todigit.o 
 detab: detab.o emalloc.o error.o getoptv.o makepath.o match.o mergepath.o putoptv.o splitpath.o tabs.o tabspec.o version.o vfopen.o
 dif: dif.o efopen.o efreopen.o emalloc.o error.o getoptv.o makeitem.o putoptv.o queue.o todigit.o uintspec.o version.o
 dls: dls.o console.o emalloc.o erealloc.o getviewport.o listcolumn.o listcreate.o listdelete.o listdetect.o listexpand.o listinsert.o todigit.o uintspec.o
-dmp2hex: dmp2hex.o error.o getoptv.o putoptv.o version.o
+dmp2hex: dmp2hex.o error.o getoptv.o putoptv.o uintspec.o version.o todigit.o
 ds: ds.o SHA256Block.o SHA256Fetch.o SHA256Ident.o SHA256Match.o SHA256Reset.o SHA256Write.o console.o efreopen.o
 dump: dump.o console.o
 efru: efru.o basespec.o channel.o closechannel.o error.o getoptv.o hexdecode.o hexdump.o hexstring.o openchannel.o putoptv.o readpacket.o sendpacket.o todigit.o uintspec.o version.o

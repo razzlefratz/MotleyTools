@@ -32,7 +32,7 @@
 #include "../tools/getoptv.c"
 #include "../tools/putoptv.c"
 #include "../tools/version.c"
-#include "../tools/efreopen.c
+#include "../tools/efreopen.c"
 #include "../tools/todigit.c"
 #include "../tools/typeload.c"
 #include "../tools/typesave.c"

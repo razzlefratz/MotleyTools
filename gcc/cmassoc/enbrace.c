@@ -48,8 +48,9 @@
 
 #ifndef MAKEFILE
 #include "../tidy/fortran.c"
+#include "../tidy/comment.c"
 #include "../tidy/escaped.c"
-#include "../tidy/keep.c.c"
+#include "../tidy/keep.c"
 #endif 
 
 /*====================================================================*
