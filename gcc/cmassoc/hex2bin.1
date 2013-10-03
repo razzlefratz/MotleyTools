@@ -17,8 +17,8 @@ hex2bin - hexadecimal to binary concatenate
 .RI [> stdout ]
 
 .SH DESCRIPTION
-Read one or more hexadecimal octet streams and output one binary stream.
-Use program \fBbin2hex\fR to reverse the process.
+Read one or more hexadecimal octet streams and write one binary stream to stdout.
+Use program \fBbin2hex\fR to reverse the process, ... sort of.
 
 .SH OPTIONS
 Long options are not supported.
@@ -33,6 +33,12 @@ The default column is UINT_MAX, defined in limits.h.
 -\fBb\fI column\fR
 Discard text occuring before this column.
 The default column is 0.
+
+.TP
+.RB - d
+Read a standard hex dump file and discard the offset and ASCII portions.
+Convert the dentral data portion to binary.
+This option is equivalent to \fB-b10\fR and \fB-a56\fR.
 
 .TP
 .RB - q
@@ -63,13 +69,51 @@ Input files are not modified.
 One output stream is written.
 
 .SH EXAMPLES
-None.
-
+The following example displays hexadecimal file \fBabc.hex\fR on stdout for inspection.
+It contains hexadecimal octets and we want to convert it binary for whatever reason.
+.PP
+   # cat abc.hex
+   cf fa ed fe 07 00 00 01 03 00 00 00 01 00 00 00
+   03 00 00 00 f0 01 00 00 00 20 00 00 00 00 00 00
+   19 00 00 00 88 01 00 00 00 00 00 00 00 00 00 00
+   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+   40 0f 00 00 00 00 00 00 10 02 
+.PP
+The next example converts this hex file to binary file \fBabc.bin\fR.
+The output is writtent to a file to avoid locking up the console.
+.PP
+   # hex2bin abc.hex > abc.bin
+.PP
+The next example reads hex files, \fBabc.hex\fR and \fBdef.hex\fR, and writes them to binary file \fBdef.bin\fR.
+This creates one continuous binary file from the two hex input files.
+.PP
+   # hex2bin abc.hex def.hex > def.bin.
+.PP
+The next example displays hex dump file \fBabc.dmp\fR on the console for inspection.
+We want to remove the memory offset and ASCII display before converting the data to binary.
+.PP
+   # cat abc.dmp
+   00000000 00 B0 52 00 00 01 34 15 9E 21 74 B6 88 E1 00 00 ..R...4..!t.....
+   00000010 A0 00 B0 52 00 00 00 00 00 00 00 00 00 00 00 00 ...R............
+   00000020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+   00000030 00 00 00 00 00 00 00 00 00 00 00 00             ............    
+.PP
+The next example discards text before column 10 and after column 56 before attempting convertion.
+.PP
+   # hex2bin -b 10 -a 56
+.pp
+The previous command makes the input file looked like this before converting anything to binary.
+This can be used to extract Ethernet frames from Wireshark dumps, for example.
+.PP
+   00 B0 52 00 00 01 34 15 9E 21 74 B6 88 E1 00 00
+   A0 00 B0 52 00 00 00 00 00 00 00 00 00 00 00 00
+   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+   00 00 00 00 00 00 00 00 00 00 00 00
 .SH SEE ALSO
 .BR bin2hex ( 1 ),
-.BR dmp2hex ( 1 ),
 .BR hexcmp ( 1 ),
-.BR hexdmp ( 1 )
+.BR hexdmp ( 1 ),
+.BR trim ( 1 )
 
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>
