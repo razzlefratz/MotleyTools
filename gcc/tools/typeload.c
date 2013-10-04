@@ -29,6 +29,7 @@
 #include "../tools/number.h"
 #include "../tools/error.h"
 #include "../tools/sizes.h"
+#include "../tools/chars.h"
 
 /*====================================================================*
  *   functions;
