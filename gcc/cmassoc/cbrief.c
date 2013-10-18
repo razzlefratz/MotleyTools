@@ -44,10 +44,11 @@
 #include "../tidy/comment.c"
 #include "../tidy/literal.c"
 #include "../tidy/escaped.c"
+#include "../tidy/keep.c"
 #include "../tidy/nocomment.c"
 #include "../tidy/noliteral.c"
 #include "../tidy/noescaped.c"
-#include "../tidy/keep.c"
+#include "../tidy/nokeep.c"
 #endif
 
 /*====================================================================*
@@ -115,7 +116,7 @@ static void include (void)
 			c = noliteral (c);
 			continue;
 		}
-		c = getc (stdin);
+		c = nokeep (c);
 	}
 	return;
 }

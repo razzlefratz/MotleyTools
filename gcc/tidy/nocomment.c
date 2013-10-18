@@ -33,11 +33,10 @@ signed nocomment (signed c)
 	c = getc (stdin);
 	if (c == '/') 
 	{
-		do 
+		while ((c != '\n') && (c != EOF))
 		{
 			c = getc (stdin);
 		}
-		while ((c != '\n') && (c != EOF));
 		return (c);
 	}
 	if (c == '*') 
