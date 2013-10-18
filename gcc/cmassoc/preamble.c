@@ -60,8 +60,8 @@
  *
  *   void function (signed prefix, signed suffix, signed length);
  *
- *   rewind prefix and suffix; read prefix and write to stdout; read stdin
- *   and write to stdout; read suffix and write to stdout;
+ *   rewind prefix and suffix files; read prefix and write to stdout; 
+ *   read stdin and write to stdout; read suffix and write to stdout;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;

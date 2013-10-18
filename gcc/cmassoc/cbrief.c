@@ -40,6 +40,16 @@
 #include "../files/mergepath.c"
 #endif
 
+#ifndef MAKEFILE
+#include "../tidy/comment.c"
+#include "../tidy/literal.c"
+#include "../tidy/escaped.c"
+#include "../tidy/nocomment.c"
+#include "../tidy/noliteral.c"
+#include "../tidy/noescaped.c"
+#include "../tidy/keep.c"
+#endif
+
 /*====================================================================*
  *
  *   void exclude (void);
@@ -62,51 +72,15 @@ static void exclude (void)
 	{
 		if (c == '/')
 		{
-			c = getc (stdin);
-			if (c == '/')
-			{
-				while ((c != '\n') && (c != EOF))
-				{
-					c = getc (stdin);
-				}
-				continue;
-			}
-			if (c == '*')
-			{
-				while ((c != '/') && (c != EOF))
-				{
-					while ((c != '*') && (c != EOF))
-					{
-						c = getc (stdin);
-					}
-					c = getc (stdin);
-				}
-				c = getc (stdin);
-				continue;
-			}
-			putc ('/', stdout);
+			c = nocomment (c);
 			continue;
 		}
 		if (isquote (c))
 		{
-			signed quote = c;
-			putc (c, stdout);
-			c = getc (stdin);
-			while ((c != quote) && (c != EOF))
-			{
-				if (c == '\\')
-				{
-					putc (c, stdout);
-					c = getc (stdin);
-				}
-				putc (c, stdout);
-				c = getc (stdin);
-			}
-			putc (c, stdout);
-			c = getc (stdin);
+			c = literal (c);
+			continue;
 		}
-		putc (c, stdout);
-		c = getc (stdin);
+		c = keep (c);
 	}
 	return;
 }
@@ -133,49 +107,12 @@ static void include (void)
 	{
 		if (c == '/')
 		{
-			c = getc (stdin);
-			if (c == '/')
-			{
-				putc ('/', stdout);
-				while ((c != '\n') && (c != EOF))
-				{
-					putc (c, stdout);
-					c = getc (stdin);
-				}
-				continue;
-			}
-			if (c == '*')
-			{
-				putc ('/', stdout);
-				while ((c != '/') && (c != EOF))
-				{
-					while ((c != '*') && (c != EOF))
-					{
-						putc (c, stdout);
-						c = getc (stdin);
-					}
-					putc (c, stdout);
-					c = getc (stdin);
-				}
-				putc (c, stdout);
-				c = getc (stdin);
-				putc ('\n', stdout);
-				continue;
-			}
+			c = comment (c);
+			continue;
 		}
 		if (isquote (c))
 		{
-			signed quote = c;
-			c = getc (stdin);
-			while ((c != quote) && (c != EOF))
-			{
-				if (c == '\\')
-				{
-					c = getc (stdin);
-				}
-				c = getc (stdin);
-			}
-			c = getc (stdin);
+			c = noliteral (c);
 			continue;
 		}
 		c = getc (stdin);
