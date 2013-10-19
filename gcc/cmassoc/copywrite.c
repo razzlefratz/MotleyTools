@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   copyright.c - copyright replacement; 
+ *   copywrite.c - copyright replacement; 
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -80,21 +80,25 @@ static signed preamble (void * memory, size_t extent, FILE * fp)
 	if (c == '/')
 	{
 		char * sp = (char *) (memory);
-		* sp++ = c; c = getc (fp);
+		* sp++ = c;
+		c = getc (fp);
 		while ((c != '/') && (c != EOF))
 		{
 			while ((c != '*') && (c != EOF))
 			{
-				* sp++ = c; c = getc (fp);
+				* sp++ = c;
+				c = getc (fp);
 			}
 			if (c != EOF)
 			{
-				* sp++ = c; c = getc (fp);
+				* sp++ = c;
+				c = getc (fp);
 			}
 		}
 		if (c != EOF)
 		{
-			* sp++ = c; c = getc (fp);
+			* sp++ = c;
+			c = getc (fp);
 		}
 	}
 	return (c);
@@ -102,7 +106,7 @@ static signed preamble (void * memory, size_t extent, FILE * fp)
 
 /*====================================================================*
  *
- *   void function (char const * old, char const * new);
+ *   void function (char const * remove, char const * insert, char buffer [], size_t length);
  *
  *
  *.  Motley Tools by Charles Maier;
@@ -111,24 +115,27 @@ static signed preamble (void * memory, size_t extent, FILE * fp)
  *
  *--------------------------------------------------------------------*/
 
-static void function (char * current, char const * old, char const * new, size_t length)
+static signed function (char const * remove, char const * insert, char buffer [], size_t length)
 
 {
-	signed c = preamble (current, length, stdin);
-	if (strncmp (current, old, length))
+	signed status;
+	signed c = preamble (buffer, length, stdin);
+	if (strncmp (remove, buffer, length))
 	{
-		fputs (current, stdout);
+		fputs (buffer, stdout);
+		status = 0;
 	}
-	else
+	else 
 	{
-		fputs (new, stdout);
+		fputs (insert, stdout);
+		status = 1;
 	}
 	while (c != EOF)
 	{
 		putc (c, stdout);
 		c = getc (stdin);
 	}
-	return;
+	return (status);
 }
 
 /*====================================================================*
@@ -156,9 +163,9 @@ int main (int argc, char const * argv [])
 	};
 	FILE * fp;
 	size_t length = STRINGSIZE;
-	char * current = (char *) (0);
-	char * old = (char *) (0);
-	char * new = (char *) (0);
+	char * buffer = "";
+	char * remove = "";
+	char * insert = "";
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
@@ -167,16 +174,16 @@ int main (int argc, char const * argv [])
 		case 'o':
 			if ((fp = fopen (optarg, "rb")))
 			{
-				old = emalloc (STRINGSIZE);
-				preamble (old, STRINGSIZE, fp);
+				remove = emalloc (length);
+				preamble (remove, length, fp);
 				fclose (fp);
 			}
 			break;
 		case 'n':
 			if ((fp = fopen (optarg, "rb")))
 			{
-				new = emalloc (STRINGSIZE);
-				preamble (new, STRINGSIZE, fp);
+				insert = emalloc (length);
+				preamble (insert, length, fp);
 				fclose (fp);
 			}
 			break;
@@ -186,24 +193,27 @@ int main (int argc, char const * argv [])
 	}
 	argc -= optind;
 	argv += optind;
-	if (! old || ! * old)
+	if (! * remove)
 	{
 		error (1, ECANCELED, "old preamble is empty");
 	}
-	if (! new || ! * new)
+	if (! * insert)
 	{
 		error (1, ECANCELED, "new preamble is empty");
 	}
-	current = emalloc (STRINGSIZE);
+	buffer = emalloc (length);
 	if (! argc)
 	{
-		function (current, old, new, length);
+		function (remove, insert, buffer, length);
 	}
 	while ((argc) && (* argv))
 	{
 		if (vfopen (* argv))
 		{
-			function (current, old, new, length);
+			if (function (remove, insert, buffer, length))
+			{
+				error (0, 0, "%s", *argv);
+			}
 		}
 		argc--;
 		argv++;
