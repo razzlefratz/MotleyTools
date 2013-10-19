@@ -25,8 +25,9 @@
 #include "../tidy/endline.c"
 #include "../tidy/newline.c"
 #include "../tidy/span.c"
-#include "../tidy/keep.c"
+#include "../tidy/skip.c"
 #include "../tidy/find.c"
-#include "../tidy/grab.c"
+#include "../tidy/keep.c"
+#include "../tidy/peek.c"
 #endif
 

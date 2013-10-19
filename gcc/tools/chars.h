@@ -11,14 +11,14 @@
 #ifndef CHARS_HEADER
 #define CHARS_HEADER
 
-#include <ctype.h>
-
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
 
 #ifndef isblank
+#ifndef __GNUC__
 #define isblank(c) (((char)(c) == ' ') || ((char)(c) == '\t'))
+#endif
 #endif
 
 #ifndef nobreak
