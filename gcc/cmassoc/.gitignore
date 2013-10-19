@@ -20,6 +20,7 @@ change
 chr
 cinc
 cmerge
+copywrite
 cpp2c
 crlf
 csv2html
@@ -28,7 +29,6 @@ defix
 delta
 detab
 dls
-dmp2hex
 dump
 ds
 efru
@@ -115,15 +115,9 @@ unique
 vl
 vu
 wl
+wl2
 xde
 xml
-localhost
-quiet
-runjobs
-shout
-syslog
-what
-whom
 auth
 cat
 checkmode
@@ -149,4 +143,3 @@ setmode
 tr
 undash
 wc
-wl2
