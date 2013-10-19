@@ -79,24 +79,41 @@ static signed preamble (void * memory, size_t extent, FILE * fp)
 	}
 	if (c == '/')
 	{
+		char * bp = (char *) (memory) +  extent;
 		char * sp = (char *) (memory);
+		if (sp >= bp)
+		{
+			error (1, EOVERFLOW, "preamble over %d bytes", extent);
+		}
 		* sp++ = c;
 		c = getc (fp);
 		while ((c != '/') && (c != EOF))
 		{
 			while ((c != '*') && (c != EOF))
 			{
+				if (sp >= bp)
+				{
+					error (1, EOVERFLOW, "preamble over %d bytes", extent);
+				}
 				* sp++ = c;
 				c = getc (fp);
 			}
 			if (c != EOF)
 			{
+				if (sp >= bp)
+				{
+					error (1, EOVERFLOW, "preamble over %d bytes", extent);
+				}
 				* sp++ = c;
 				c = getc (fp);
 			}
 		}
 		if (c != EOF)
 		{
+			if (sp >= bp)
+			{
+				error (1, EOVERFLOW, "preamble over %d bytes", extent);
+			}
 			* sp++ = c;
 			c = getc (fp);
 		}
@@ -162,7 +179,7 @@ int main (int argc, char const * argv [])
 		(char const *) (0)
 	};
 	FILE * fp;
-	size_t length = STRINGSIZE;
+	size_t length = LINESIZE_MAX;
 	char * buffer = "";
 	char * remove = "";
 	char * insert = "";
@@ -212,7 +229,7 @@ int main (int argc, char const * argv [])
 		{
 			if (function (remove, insert, buffer, length))
 			{
-				error (0, 0, "%s", *argv);
+				error (0, 0, "%s", * argv);
 			}
 		}
 		argc--;
