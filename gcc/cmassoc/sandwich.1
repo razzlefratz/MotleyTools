@@ -1,0 +1,71 @@
+.TH sandwich 1 "August 2013" "cmassoc-tools-1.9.1" "Motley Tools"
+
+.SH NAME
+sandwich - prepend and/or append text to files
+
+.SH SYNOPSIS
+.BR sandwich
+.RI [ options ]
+.IR file
+.RI [ file ] 
+[...]
+
+.PP
+.BR sandwich
+.RI [ options ]
+.RI [< stdin ] 
+.RI [> stdout ]
+
+.SH DESCRIPTION
+Prepend and/or append text to files where the text is stored in a prefix and a suffix file.
+Either the prefix file or suffix file or both may be omitted but omitting both files is pointless.
+This program can be used to insert a standard preamble, such a a copyright notice, at the start or the end of multiple files.
+
+.SH OPTIONS
+Long options are not supported.
+All options are single letters.
+
+.TP
+-\fBp \fIfilename\fR
+Name of the prefix, or header, file.
+This text is prepended to each file specified on the command line.
+No text is prepended when this option is omitted.
+
+.TP
+-\fBs \fIfilename\fR
+Name of the suffix, or footer, file.
+This text is appended to each file specified on the command line.
+iNo text is appended when this option is omitted.
+
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout.
+This option takes precedence over previous command line options.
+
+.TP
+.RB - ! ,-- version
+Print program version information on stdout.
+This option takes precedence over previous command line options.
+
+.SH ARGUMENTS
+
+.TP
+.IR file
+The name of a text file.
+This file is replaced and a numbered backup is created.
+Use program \fBrex\fR to recover a prior version.
+
+.SH EXAMPLES
+The following example prepends the contents of file \fBprefix.txt\fR and appends the contents of file \fBsuffix.txt\fR to all C language source and header files in the current folder.
+
+.PP
+   # sandwich -p prefix.txt -s suffix.txt *.c *.h
+
+.SH SEE ALSO
+.BR enfix ( 1 ),
+.BR preamble ( 1 ),
+.BR rex ( 1 )
+
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+
