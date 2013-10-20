@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   preamble.c - prepend/append text to files;
+ *   copywrite.c - copyright replacement; 
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -11,25 +11,19 @@
 #define _GETOPT_H
 
 /*====================================================================*
- *   system prefix files;
+ *   system header files;
  *--------------------------------------------------------------------*/
 
 #include <stdio.h>
-#include <unistd.h>
-#include <sys/stat.h>
-#include <stdlib.h>
+#include <ctype.h>
 #include <string.h>
-#include <errno.h>
-#include <time.h>
+#include <stdlib.h>
 
 /*====================================================================*
- *   custom prefix files;
+ *   custom header files;
  *--------------------------------------------------------------------*/
 
 #include "../tools/cmassoc.h"
-#include "../clang/clang.h"
-#include "../linux/linux.h"
-#include "../files/files.h"
 
 /*====================================================================*
  *   custom source files;
@@ -39,29 +33,34 @@
 #include "../tools/getoptv.c"
 #include "../tools/putoptv.c"
 #include "../tools/version.c"
+#include "../tools/emalloc.c"
 #include "../tools/error.c"
 #endif
 
 #ifndef MAKEFILE
 #include "../files/vfopen.c"
-#include "../files/makepath.c"
-#include "../files/mergepath.c"
 #include "../files/splitpath.c"
+#include "../files/mergepath.c"
+#include "../files/makepath.c"
+#endif
+
+#ifndef MAKEFILE
+#include "../tidy/keep.c"
+#include "../tidy/peek.c"
 #endif
 
 /*====================================================================*
  *   program constants;
  *--------------------------------------------------------------------*/
 
-#define PREAMBLE_VERBOSE (1 << 0)
-#define PREAMBLE_SILENCE (1 << 1)
+#define NP_VERBOSE (1 << 0)
+#define NP_SILENCE (1 << 1)
 
 /*====================================================================*
  *
- *   void function (signed prefix, signed suffix, signed length);
+ *   signed preamble (void * memory, size_t extent, FILE * fp);
  *
- *   rewind prefix and suffix files; read prefix and write to stdout; 
- *   read stdin and write to stdout; read suffix and write to stdout;
+ *   read first comment block into memory;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -69,25 +68,91 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function (signed prefix, signed suffix, signed length)
+static signed preamble (void * memory, size_t extent, FILE * fp)
 
 {
-	byte buffer [length];
-	lseek (prefix, 0, SEEK_SET);
-	lseek (suffix, 0, SEEK_SET);
-	while ((length = read (prefix, buffer, sizeof (buffer))) > 0)
+	signed c = getc (fp);
+	memset (memory, 0, extent);
+	while (isspace (c))
 	{
-		write (STDOUT_FILENO, buffer, length);
+		c = getc (fp);
 	}
-	while ((length = read (STDIN_FILENO, buffer, sizeof (buffer))) > 0)
+	if (c == '/')
 	{
-		write (STDOUT_FILENO, buffer, length);
+		char * bp = (char *) (memory) +  extent;
+		char * sp = (char *) (memory);
+		if (sp >= bp)
+		{
+			error (1, EOVERFLOW, "preamble over %d bytes", extent);
+		}
+		* sp++ = c;
+		c = getc (fp);
+		while ((c != '/') && (c != EOF))
+		{
+			while ((c != '*') && (c != EOF))
+			{
+				if (sp >= bp)
+				{
+					error (1, EOVERFLOW, "preamble over %d bytes", extent);
+				}
+				* sp++ = c;
+				c = getc (fp);
+			}
+			if (c != EOF)
+			{
+				if (sp >= bp)
+				{
+					error (1, EOVERFLOW, "preamble over %d bytes", extent);
+				}
+				* sp++ = c;
+				c = getc (fp);
+			}
+		}
+		if (c != EOF)
+		{
+			if (sp >= bp)
+			{
+				error (1, EOVERFLOW, "preamble over %d bytes", extent);
+			}
+			* sp++ = c;
+			c = getc (fp);
+		}
 	}
-	while ((length = read (suffix, buffer, sizeof (buffer))) > 0)
+	return (c);
+}
+
+/*====================================================================*
+ *
+ *   void function (char const * remove, char const * insert, char buffer [], size_t length);
+ *
+ *
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+static signed function (char const * remove, char const * insert, char buffer [], size_t length)
+
+{
+	signed status;
+	signed c = preamble (buffer, length, stdin);
+	if (strncmp (remove, buffer, length))
 	{
-		write (STDOUT_FILENO, buffer, length);
+		fputs (buffer, stdout);
+		status = 0;
 	}
-	return;
+	else 
+	{
+		fputs (insert, stdout);
+		status = 1;
+	}
+	while (c != EOF)
+	{
+		putc (c, stdout);
+		c = getc (stdin);
+	}
+	return (status);
 }
 
 /*====================================================================*
@@ -106,55 +171,66 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"p:qs:v",
+		"o:n:",
 		PUTOPTV_S_FILTER,
-		"prepend/append prefix/suffix to multiple files",
-		"p s\tprefix file is (s)",
-		"q\tquiet mode",
-		"s s\tsuffix file is (s)",
-		"v\tverbose mode",
+		"replace module preamble",
+		"o s\told preamble file",
+		"n s\tnew preamble file",
 		(char const *) (0)
 	};
-	flag_t flags = (flag_t) (0);
-	signed length = 1024;
-	signed prefix = -1;
-	signed suffix = -1;
+	FILE * fp;
+	size_t length = LINESIZE_MAX;
+	char * buffer = "";
+	char * remove = "";
+	char * insert = "";
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
-		case 'h':
-			if ((prefix = open (optarg, O_RDONLY)) == -1)
+		case 'o':
+			if ((fp = fopen (optarg, "rb")))
 			{
-				error (1, errno, "%s", optarg);
+				remove = emalloc (length);
+				preamble (remove, length, fp);
+				fclose (fp);
 			}
 			break;
-		case 'f':
-			if ((suffix = open (optarg, O_RDONLY)) == -1)
+		case 'n':
+			if ((fp = fopen (optarg, "rb")))
 			{
-				error (1, errno, "%s", optarg);
+				insert = emalloc (length);
+				preamble (insert, length, fp);
+				fclose (fp);
 			}
 			break;
-		case 'q':
-			_setbits (flags, PREAMBLE_SILENCE);
-			break;
-		case 'v':
-			_setbits (flags, PREAMBLE_VERBOSE);
+		default: 
 			break;
 		}
 	}
 	argc -= optind;
 	argv += optind;
+	if (! * remove)
+	{
+		error (1, ECANCELED, "old preamble is empty");
+	}
+	if (! * insert)
+	{
+		error (1, ECANCELED, "new preamble is empty");
+	}
+	buffer = emalloc (length);
 	if (! argc)
 	{
-		function (prefix, suffix, length);
+		function (remove, insert, buffer, length);
 	}
 	while ((argc) && (* argv))
 	{
 		if (vfopen (* argv))
 		{
-			function (prefix, suffix, length);
+			if (function (remove, insert, buffer, length))
+			{
+				error (0, 0, "%s", * argv);
+			}
 		}
 		argc--;
 		argv++;

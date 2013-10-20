@@ -116,7 +116,7 @@ paginate.o: paginate.c cmassoc.h page.h
 pkg.o: pkg.c cmassoc.h strlib.h
 pkgdep.o: pkgdep.c charset.h cmassoc.h files.h scan.h strlib.h
 pkgopt.o: pkgopt.c cmassoc.h files.h
-preamble.o: preamble.c clang.h cmassoc.h files.h linux.h
+sandwich.o: sandwich.c clang.h cmassoc.h files.h linux.h
 purge.o: purge.c cmassoc.h date.h files.h
 qc.o: qc.c cmassoc.h files.h list.h scan.h
 quiet.o: quiet.c cmassoc.h

@@ -1,40 +1,48 @@
 .TH preamble 1 "August 2013" "cmassoc-tools-1.9.1" "Motley Tools"
 
 .SH NAME
-preamble - prepend/append text to files
+preamble - replace one C Language preamble with another
 
 .SH SYNOPSIS
 .BR preamble
 .RI [ options ]
 .IR file
 .RI [ file ] 
-[...]
+.RI [ ... ]
 
 .PP
 .BR preamble
 .RI [ options ]
-.RI [< stdin ] 
-.RI [> stdout ]
+.RI [< file ]
+.RI [> file ]
 
 .SH DESCRIPTION
-Prepend and/or append text to files where the text is stored in a prefix and a suffix file.
-Either the prefix or the suffix file or both may be omitted but omitting both files would be pointless.
+
+.PP
+Replace one C Language preamble with another. 
+The old preamble must match that found in an input file.
 
 .SH OPTIONS
 Long options are not supported.
 All options are single letters.
 
 .TP
--\fBp \fIfilename\fR
-Name of the prefix file.
-This text is prepended to each file specified on the command line.
-No text is prepended when this option is omitted.
+.RB - c
+Print filename only when the preamble is changed.
 
 .TP
--\fBs \fIfilename\fR
-Name of the suffix file.
-This text is appended to each file specified on the command line.
-iNo text is appended when this option is omitted.
+-\fBo\fI filename\fR
+A file that contains the old preamble.
+The old preamble is the first ANSI C Language comment block in this file.
+White space that precedes, and text that follows, the preamble is ignored.
+Any source file preamble matching this one will be replaced with the new preamble.
+
+.TP
+-\fBn\fI filename\fR
+A file that contains the new preamble.
+The new preamble is the first ANSI C Language comment block in this file.
+White space that precedes, and text that follows, the preamble is ignored.
+Any source file preamble matching the old preamble will be replaced with this one.
 
 .TP
 .RB - ? ,-- help
@@ -50,19 +58,20 @@ This option takes precedence over previous command line options.
 
 .TP
 .IR file
-The name of a text file.
+The name of an ANSI C Language source file.
 This file is replaced and a numbered backup is created.
 Use program \fBrex\fR to recover a prior version.
 
 .SH EXAMPLES
-The following example prepends the contents of file \fBprefix.txt\fR and appends the contents of file \fBsuffix.txt\fR to all C language source and header files in the current folder.
+The following example optionally replaces the preamble in all C Language source and header files in the current folder.
+The old preamble is read from file \fBold.c\fR.
+The new preamble is read from file \fBnew.c\fR.
 
 .PP
-   # preamble -p prefix.txt -s suffix.txt *.c *.h
-
+   # preamble -o old.c -n new.c *.c *.h
 .SH SEE ALSO
-.BR enfix ( 1 ),
-.BR rex ( 1 )
+.BR cbrief ( 1 ),
+.BR sandwich ( 1 )
 
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>
