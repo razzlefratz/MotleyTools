@@ -18,6 +18,8 @@
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
+#include <limits.h>
+#include <sys/stat.h>
 
 /*====================================================================*
  *   custom header files;
@@ -33,6 +35,7 @@
 #include "../tools/getoptv.c"
 #include "../tools/putoptv.c"
 #include "../tools/version.c"
+#include "../tools/uintspec.c"
 #include "../tools/emalloc.c"
 #include "../tools/error.c"
 #endif
@@ -171,15 +174,17 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"o:n:",
+		"l:n:o:",
 		PUTOPTV_S_FILTER,
 		"replace module preamble",
-		"o s\told preamble file",
+		"l n\tpreamble buffer size is (n) bytes [" LITERAL (STRINGSIZE) "]",
 		"n s\tnew preamble file",
+		"o s\told preamble file",
 		(char const *) (0)
 	};
 	FILE * fp;
-	size_t length = LINESIZE_MAX;
+	struct stat statinfo;
+	size_t length = STRINGSIZE;
 	char * buffer = "";
 	char * remove = "";
 	char * insert = "";
@@ -191,18 +196,23 @@ int main (int argc, char const * argv [])
 		case 'o':
 			if ((fp = fopen (optarg, "rb")))
 			{
-				remove = emalloc (length);
-				preamble (remove, length, fp);
+				stat (optarg, &statinfo);
+				remove = emalloc (statinfo.st_size + 1);
+				preamble (remove, statinfo.st_size, fp);
 				fclose (fp);
 			}
 			break;
 		case 'n':
 			if ((fp = fopen (optarg, "rb")))
 			{
-				insert = emalloc (length);
-				preamble (insert, length, fp);
+				stat (optarg, &statinfo);
+				insert = emalloc (statinfo.st_size + 1);
+				preamble (insert, statinfo.st_size, fp);
 				fclose (fp);
 			}
+			break;
+		case 'l':
+			length = (size_t)(uintspec (optarg, STRINGSIZE, USHRT_MAX));
 			break;
 		default: 
 			break;

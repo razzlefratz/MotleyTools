@@ -23,7 +23,7 @@ VFOPEN=vfopen.o ${MAKEPATH}
 
 TOOLS=afm align argv argvesc b64 bang bin2hex blank calend call envp ether case catalog cblock cbrief cdep cedit change chr cinc cmerge preamble cpp2c crlf csv2html ctar defix delta detab dls dump ds efru efsu enbrace enfix englyph entab errno fbar ff filesize footer fp go grab graph grope hbrief header hex hex2bin hexcmp hexdmp html ifd import iplist ipsort key l2p lp2824 lam log long loop matrix mmf mp mrg munge rex nics np ocomp odc odd ode odump odx oedit offset ofld order owrt pad paginate sandwich purge radix relate remove sbar sbrief search shakey shakeys sign single sizeof space srt stamp sv sweep symlinks timer typelist tls trim try ts unique vl vu wl wl2 xde xml 
 
-PAGES=toolkit.1 afm.1 align.1 argv.1 b64.1 bang.1 bin2hex.1 blank.1 calend.1 call.1 case.1 catalog.1 cblock.1 cbrief.1 cdep.1 cedit.1 change.1 chr.1 cinc.1 cmerge.1 crlf.1 csv2html.1 ctar.1 defix.1 delta.1 detab.1 dls.1 ds.1 efsu.1 enbrace.1 enfix.1 englyph.1 entab.1 envp.1 fbar.1 ff.1 filesize.1 footer.1 fp.1 grab.1 graph.1 grope.1 hbrief.1 header.1 hex.1 hex2bin.1 hexcmp.1 hexdmp.1 html.1 ifd.1 import.1 key.1 l2p.1 lam.1 log.1 loop.1 matrix.1 mp.1 mrg.1 munge.1 nics.1 np.1 ocomp.1 odc.1 odd.1 ode.1 odump.1 odx.1 oedit.1 offset.1 order.1 sandwich.1 relate.1 remove.1 rex.1 sbrief.1 search.1 shakey.1 shakeys.1 single.1 sizeof.1 space.1 srt.1 stamp.1 sweep.1 sv.1 symlinks.1 timer.1 typelist.1 tls.1 trim.1 try.1 unique.1 vl.1 vu.1 wl.1 xde.1 xml.1
+PAGES=toolkit.1 afm.1 align.1 argv.1 b64.1 bang.1 bin2hex.1 blank.1 calend.1 call.1 case.1 catalog.1 cblock.1 cbrief.1 cdep.1 cedit.1 change.1 chr.1 cinc.1 cmerge.1 crlf.1 csv2html.1 ctar.1 defix.1 delta.1 detab.1 dls.1 ds.1 efsu.1 enbrace.1 enfix.1 englyph.1 entab.1 envp.1 fbar.1 ff.1 filesize.1 footer.1 fp.1 grab.1 graph.1 grope.1 hbrief.1 header.1 hex.1 hex2bin.1 hexcmp.1 hexdmp.1 html.1 ifd.1 import.1 key.1 l2p.1 lam.1 log.1 loop.1 matrix.1 mp.1 mrg.1 munge.1 nics.1 np.1 ocomp.1 odc.1 odd.1 ode.1 odump.1 odx.1 oedit.1 offset.1 order.1 preamble.1 relate.1 remove.1 rex.1 sandwich.1 sbrief.1 search.1 shakey.1 shakeys.1 single.1 sizeof.1 space.1 srt.1 stamp.1 sweep.1 sv.1 symlinks.1 timer.1 typelist.1 tls.1 trim.1 try.1 unique.1 vl.1 vu.1 wl.1 xde.1 xml.1
 
 ifeq (${system},Linux)
 TOOLS+=localhost quiet runjobs shout syslog what whom
@@ -92,7 +92,7 @@ chr: chr.o efreopen.o error.o getoptv.o putoptv.o sv_ascii.o version.o
 cinc: cinc.o efopen.o error.o getoptv.o makepath.o mergepath.o putoptv.o splitpath.o version.o
 clear: clear.o console.o
 cmerge: cmerge.o efopen.o emalloc.o erealloc.o error.o getoptv.o getusername.o havebreak.o havetoken.o isbreak.o istoken.o listappend.o listcreate.o listdelete.o listexpand.o listrubout.o makefind.o makepath.o mergepath.o nextbreak.o nexttoken.o partfile.o partpath.o putoptv.o scanalnum.o scandigit.o scanflush.o scaninput.o scanspace.o scanstart.o scantoken.o scanuntil.o splitpath.o tokentext.o version.o
-preamble: preamble.o emalloc.o error.o getoptv.o makepath.o mergepath.o putoptv.o splitpath.o version.o vfopen.o
+preamble: preamble.o emalloc.o error.o getoptv.o makepath.o mergepath.o putoptv.o splitpath.o version.o vfopen.o uintspec.o todigit.o
 cpp2c: cpp2c.o error.o escaped.o fortran.o getoptv.o keep.o literal.o makepath.o mergepath.o putoptv.o splitpath.o version.o vfopen.o
 crlf: crlf.o console.o makepath.o mergepath.o splitpath.o vfopen.o
 csv2html: csv2html.o console.o efreopen.o filepart.o indent.o todigit.o uintspec.o
