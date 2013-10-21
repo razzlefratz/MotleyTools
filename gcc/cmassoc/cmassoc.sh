@@ -38,6 +38,7 @@ gcc -Wall -Wextra -Wno-unused-parameter -o delta delta.c
 gcc -Wall -Wextra -Wno-unused-parameter -o detab detab.c
 gcc -Wall -Wextra -Wno-unused-parameter -o dif dif.c
 gcc -Wall -Wextra -Wno-unused-parameter -o dls dls.c
+gcc -Wall -Wextra -Wno-unused-parameter -o dmp2hex dmp2hex.c
 gcc -Wall -Wextra -Wno-unused-parameter -o ds ds.c
 gcc -Wall -Wextra -Wno-unused-parameter -o dump dump.c
 # gcc -Wall -Wextra -Wno-unused-parameter -o efsu efsu.c

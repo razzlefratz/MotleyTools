@@ -166,5 +166,3 @@ wl.o: wl.c chrlib.h cmassoc.h
 xde.o: xde.c cmassoc.h nodes.h
 xml.o: xml.c cmassoc.h nodes.h
 
-
-
