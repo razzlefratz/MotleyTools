@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   grab.c - byte stream grabber
+ *   dmp2hex.c - convert hex dump file to plain hex file;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -15,18 +15,16 @@
  *--------------------------------------------------------------------*/
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <limits.h>
+#include <ctype.h>
 
 /*====================================================================*
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../tools/getoptv.h"
-#include "../tools/putoptv.h"
-#include "../tools/version.h"
-#include "../tools/number.h"
-#include "../tools/error.h"
-#include "../tools/flags.h"
-#include "../files/files.h"
+#include "../tools/cmassoc.h"
 
 /*====================================================================*
  *   custom source files;
@@ -36,24 +34,23 @@
 #include "../tools/getoptv.c"
 #include "../tools/putoptv.c"
 #include "../tools/version.c"
-#include "../tools/basespec.c"
+#include "../tools/uintspec.c"
 #include "../tools/todigit.c"
 #include "../tools/error.c"
-#include "../tools/efreopen.c"
 #endif
 
 /*====================================================================*
- *   constants;
+ *   program constants;
  *--------------------------------------------------------------------*/
 
-#define GRAB_VERBOSE (1 << 0)
-#define GRAB_SILENCE (1 << 1)
-#define GRAB_NEWLINE (1 << 2)
+#define WIDTH 48
 
 /*====================================================================*
  *
- *   void function (size_t offset, size_t length, flag_t flags);
+ *   void function (char const * source, size_t prior, size_t after);
  *
+ *   discard text prior to column prior and after column after on
+ *   each line of a text file; convert remaining text to binary;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -61,36 +58,49 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (size_t offset, size_t length, flag_t flags)
+static signed function (signed c, unsigned width)
 
 {
-	signed c;
-	while (offset--)
+	while (c != EOF)
 	{
-		if ((c = getc (stdin)) == EOF)
+		unsigned count;
+		while (isblank (c))
 		{
-			error (1, errno, "Can't read file");
+			c = getc (stdin);
+		}
+		while (isxdigit (c))
+		{
+			c = getc (stdin);
+		}
+		while (isblank (c))
+		{
+			c = getc (stdin);
+		}
+		if (nobreak (c))
+		{
+			for (count = 0; count < width; count++)
+			{
+				putc (c, stdout);
+				c = getc (stdin);
+			}
+		}
+		while (nobreak (c))
+		{
+			c = getc (stdin);
+		}
+		if (c != EOF)
+		{
+			putc (c, stdout);
+			c = getc (stdin);
 		}
 	}
-	while (length--)
-	{
-		if ((c = getc (stdin)) == EOF)
-		{
-			error (1, errno, "Can't read file");
-		}
-		putc (DIGITS_HEX [(c >> 4) & 0x0f], stdout);
-		putc (DIGITS_HEX [(c >> 0) & 0x0f], stdout);
-	}
-	if (_anyset (flags, GRAB_NEWLINE))
-	{
-		putc ('\n', stdout);
-	}
-	return;
+	return (c);
 }
 
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
+ *
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -103,38 +113,20 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"l:no:qv",
-		PUTOPTV_S_FILTER,
-		"byte stream grabber",
-		"l n\tlength to read in bytes",
-		"n\tappend newline on output",
-		"o x\toffset to read in bytes",
-		"q\tquiet mode",
-		"v\tverbose mode",
+		"w:",
+		PUTOPTV_S_FUNNEL,
+		"convert hex dump files to hex file",
+		"w n\twidth is (n) characters [" LITERAL (WIDTH) "]",
 		(char const *) (0)
 	};
-	size_t offset = 0;
-	size_t length = 0;
-	flag_t flags = (flag_t) (0);
+	unsigned width = WIDTH;
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
-		case 'l':
-			length = (size_t) (basespec (optarg, 10, sizeof (size_t)));
-			break;
-		case 'o':
-			offset = (size_t) (basespec (optarg, 16, sizeof (size_t)));
-			break;
-		case 'n':
-			_setbits (flags, GRAB_NEWLINE);
-			break;
-		case 'q':
-			_setbits (flags, GRAB_SILENCE);
-			break;
-		case 'v':
-			_setbits (flags, GRAB_VERBOSE);
+		case 'w':
+			width = (unsigned) (uintspec(optarg, 2, 256));
 			break;
 		default: 
 			break;
@@ -144,14 +136,15 @@ int main (int argc, char const * argv [])
 	argv += optind;
 	if (! argc)
 	{
-		function (offset, length, flags);
+		function (getc (stdin), width);
 	}
 	while ((argc) && (* argv))
 	{
-		if (efreopen (* argv, "rb", stdin))
+		if (! freopen (* argv, "rb", stdin))
 		{
-			function (offset, length, flags);
+			error (1, errno, "%s", * argv);
 		}
+		function (getc (stdin), width);
 		argc--;
 		argv++;
 	}

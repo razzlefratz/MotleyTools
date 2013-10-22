@@ -1,0 +1,78 @@
+.TH dmp2hex 1 "August 2013" "cmassoc-tools-1.9.1" "Motley Tools"
+
+.SH NAME
+dmp2hex - trim a standard hex dump file
+
+.SH SYNOPSIS
+.BR dmp2hex
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+
+.PP
+.BR dmp2hex
+.RI [ options ]
+.RI [< file ]
+.RI [> file ]
+
+.SH DESCRIPTION
+
+.PP
+Trim a standard hex dump file by removing the memory offsets on the left and the ASCII display on the right.
+
+.SH OPTIONS
+Long options are not supported.
+All options are single letters.
+
+.TP
+-\fBw\fI width\fR
+The width of the center section in characters.
+The width includes whitespace and hexadecimal digits.
+The default is \fB48\fR which is 3 * 16.
+
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout.
+This option takes precedence over previous command line options.
+
+.TP
+.RB - ! ,-- version
+Print program version information on stdout.
+This option takes precedence over previous command line options.
+
+.SH ARGUMENTS
+
+.TP
+.IR file
+The name of an assembly language source file.
+This file is replaced and a numbered backup is created.
+Use program \fBrex\fR to recover a prior version.
+
+.SH EXAMPLES
+
+.PP
+The following example shows file \fBhex.dmp\fR before and after. 
+.PP
+   # cat hex.dmp
+   00000000 00 B0 52 00 00 01 00 1B 21 9C AD 68 88 E1 00 00 ..R.....!..h....
+   00000010 A0 00 B0 52 00 00 00 00 00 00 00 00 00 00 00 00 ...R............
+   00000020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+   00000030 00 00 00 00 00 00 00 00 00 00 00 00             ............    
+   # dmp2hex hex.dmp
+   # cat hex.dmp
+   00 B0 52 00 00 01 00 1B 21 9C AD 68 88 E1 00 00
+   A0 00 B0 52 00 00 00 00 00 00 00 00 00 00 00 00
+   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+   00 00 00 00 00 00 00 00 00 00 00 00            
+
+.SH SEE ALSO
+.BR blank ( 1 ),
+.BR crlf ( 1 ),
+.BR hex2bin ( 1 ),
+.BR lam ( 1 ),
+.BR space ( 1 )
+
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+

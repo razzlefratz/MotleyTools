@@ -38,12 +38,6 @@ Discard text occuring before this column.
 The default column is 0.
 
 .TP
-.RB - d
-Trim a standard hex dump file by removing the offset and ASCII columns.
-This option is the same as \fB-a10\fR and \fB-b56\fR.
-It is similar to program \fBdmp2hex\fR but modifies the original file.
-
-.TP
 .RB - ? ,-- help
 Print program help summary on stdout.
 This option takes precedence over previous command line options.
@@ -92,21 +86,6 @@ Observe that columns 9 through 14 are now missing from each line.
    123456785
    12345678567890
    12345678
-.PP
-The next example show file \fBhex.dmp\fR before and after trimming with option \fB-x\fR. 
-Observe that we merely discard characters before column 10 and after column 56.
-.PP
-   # cat hex.dmp
-   00000000 00 B0 52 00 00 01 00 1B 21 9C AD 68 88 E1 00 00 ..R.....!..h....
-   00000010 A0 00 B0 52 00 00 00 00 00 00 00 00 00 00 00 00 ...R............
-   00000020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
-   00000030 00 00 00 00 00 00 00 00 00 00 00 00             ............    
-   # trim -x hex.dmp
-   # cat hex.dmp
-   00 B0 52 00 00 01 00 1B 21 9C AD 68 88 E1 00 00
-   A0 00 B0 52 00 00 00 00 00 00 00 00 00 00 00 00
-   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-   00 00 00 00 00 00 00 00 00 00 00 00            
 
 .SH SEE ALSO
 .BR blank ( 1 ),

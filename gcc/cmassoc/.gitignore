@@ -29,6 +29,7 @@ defix
 delta
 detab
 dls
+dmp2hex
 dump
 ds
 efru
@@ -62,6 +63,7 @@ key
 l2p
 lp2824
 lam
+localhost
 log
 long
 loop
@@ -88,6 +90,7 @@ pad
 paginate
 preamble
 purge
+quiet
 radix
 relate
 remove
@@ -139,7 +142,13 @@ pkgopt
 qc
 rexp
 rmpkg
+runjobs
+sandwich
 setmode
+shout
+syslog
 tr
 undash
 wc
+what
+whom
