@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   copywrite.c - copyright replacement; 
+ *   preamble - replace one preamble with another;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -173,7 +173,7 @@ int main (int argc, char const * argv [])
 	{
 		"o:n:",
 		PUTOPTV_S_FILTER,
-		"replace module preamble",
+		"replace one preamble with another",
 		"o s\told preamble file",
 		"n s\tnew preamble file",
 		(char const *) (0)
