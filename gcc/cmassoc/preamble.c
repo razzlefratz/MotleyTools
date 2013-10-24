@@ -220,14 +220,6 @@ int main (int argc, char const * argv [])
 	}
 	argc -= optind;
 	argv += optind;
-	if (! * remove)
-	{
-		error (1, ECANCELED, "old preamble is empty");
-	}
-	if (! * insert)
-	{
-		error (1, ECANCELED, "new preamble is empty");
-	}
 	buffer = emalloc (length);
 	if (! argc)
 	{
