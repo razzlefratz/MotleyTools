@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   copywrite.c - copyright replacement; 
+ *   preamble - replace one preamble with another;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -86,7 +86,7 @@ static signed preamble (void * memory, size_t extent, FILE * fp)
 		char * sp = (char *) (memory);
 		if (sp >= bp)
 		{
-			error (1, EOVERFLOW, "preamble over %d bytes", extent);
+			error (1, EOVERFLOW, "preamble over " SIZE_T_SPEC " bytes", extent);
 		}
 		* sp++ = c;
 		c = getc (fp);
@@ -96,7 +96,7 @@ static signed preamble (void * memory, size_t extent, FILE * fp)
 			{
 				if (sp >= bp)
 				{
-					error (1, EOVERFLOW, "preamble over %d bytes", extent);
+					error (1, EOVERFLOW, "preamble over " SIZE_T_SPEC " bytes", extent);
 				}
 				* sp++ = c;
 				c = getc (fp);
@@ -105,7 +105,7 @@ static signed preamble (void * memory, size_t extent, FILE * fp)
 			{
 				if (sp >= bp)
 				{
-					error (1, EOVERFLOW, "preamble over %d bytes", extent);
+					error (1, EOVERFLOW, "preamble over " SIZE_T_SPEC " bytes", extent);
 				}
 				* sp++ = c;
 				c = getc (fp);
@@ -115,7 +115,7 @@ static signed preamble (void * memory, size_t extent, FILE * fp)
 		{
 			if (sp >= bp)
 			{
-				error (1, EOVERFLOW, "preamble over %d bytes", extent);
+				error (1, EOVERFLOW, "preamble over " SIZE_T_SPEC " bytes", extent);
 			}
 			* sp++ = c;
 			c = getc (fp);
@@ -210,7 +210,7 @@ int main (int argc, char const * argv [])
 	{
 		"il:n:o:",
 		PUTOPTV_S_FILTER,
-		"replace module preamble",
+		"replace one preamble with another",
 		"l n\tpreamble buffer size is (n) bytes [" LITERAL (STRINGSIZE) "]",
 		"n s\tnew preamble file",
 		"o s\told preamble file",
