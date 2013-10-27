@@ -126,7 +126,7 @@ static signed preamble (void * memory, size_t extent, FILE * fp)
 
 /*====================================================================*
  *
- *   void function (char const * remove, char const * insert, char buffer [], size_t length);
+ *   signed replace (char const * remove, char const * insert, char buffer [], size_t length);
  *
  *
  *.  Motley Tools by Charles Maier;
@@ -135,7 +135,7 @@ static signed preamble (void * memory, size_t extent, FILE * fp)
  *
  *--------------------------------------------------------------------*/
 
-static signed function (char const * remove, char const * insert, char buffer [], size_t length)
+static signed replace (char const * remove, char const * insert, char buffer [], size_t length)
 
 {
 	signed status;
@@ -149,6 +149,40 @@ static signed function (char const * remove, char const * insert, char buffer []
 	{
 		fputs (insert, stdout);
 		status = 1;
+	}
+	while (c != EOF)
+	{
+		putc (c, stdout);
+		c = getc (stdin);
+	}
+	return (status);
+}
+
+/*====================================================================*
+ *
+ *   signed inspect (char const * remove, char const * insert, char buffer [], size_t length);
+ *
+ *
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+static signed inspect (char const * remove, char const * insert, char buffer [], size_t length)
+
+{
+	signed status;
+	signed c = preamble (buffer, length, stdin);
+	if (strncmp (remove, buffer, length))
+	{
+		fputs (buffer, stdout);
+		status = 1;
+	}
+	else 
+	{
+		fputs (buffer, stdout);
+		status = 0;
 	}
 	while (c != EOF)
 	{
@@ -174,7 +208,7 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"l:n:o:",
+		"il:n:o:",
 		PUTOPTV_S_FILTER,
 		"replace module preamble",
 		"l n\tpreamble buffer size is (n) bytes [" LITERAL (STRINGSIZE) "]",
@@ -184,15 +218,19 @@ int main (int argc, char const * argv [])
 	};
 	FILE * fp;
 	struct stat statinfo;
+	signed (* func) (char const *, char const *, char *, size_t)  = replace; 
 	size_t length = STRINGSIZE;
-	char * buffer = "";
-	char * remove = "";
-	char * insert = "";
+	char * buffer = NIL;
+	char * remove = NIL;
+	char * insert = NIL;
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
+		case 'i':
+			func = inspect;
+			break;
 		case 'o':
 			if ((fp = fopen (optarg, "rb")))
 			{
@@ -223,13 +261,13 @@ int main (int argc, char const * argv [])
 	buffer = emalloc (length);
 	if (! argc)
 	{
-		function (remove, insert, buffer, length);
+		func (remove, insert, buffer, length);
 	}
 	while ((argc) && (* argv))
 	{
 		if (vfopen (* argv))
 		{
-			if (function (remove, insert, buffer, length))
+			if (func (remove, insert, buffer, length))
 			{
 				error (0, 0, "%s", * argv);
 			}
