@@ -160,6 +160,30 @@ static signed replace (char const * remove, char const * insert, char buffer [],
 
 /*====================================================================*
  *
+ *   signed wedge (char const * remove, char const * insert, char buffer [], size_t length);
+ *
+ *
+ *.  Motley Tools by Charles Maier;
+ *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
+ *;  Licensed under the Internet Software Consortium License;
+ *
+ *--------------------------------------------------------------------*/
+
+static signed wedge (char const * remove, char const * insert, char buffer [], size_t length)
+
+{
+	signed c = getc (stdin);
+	fputs (insert, stdout);
+	while (c != EOF)
+	{
+		putc (c, stdout);
+		c = getc (stdin);
+	}
+	return (1);
+}
+
+/*====================================================================*
+ *
  *   signed inspect (char const * remove, char const * insert, char buffer [], size_t length);
  *
  *
@@ -176,14 +200,13 @@ static signed inspect (char const * remove, char const * insert, char buffer [],
 	signed c = preamble (buffer, length, stdin);
 	if (strncmp (remove, buffer, length))
 	{
-		fputs (buffer, stdout);
 		status = 1;
 	}
 	else 
 	{
-		fputs (buffer, stdout);
 		status = 0;
 	}
+	fputs (buffer, stdout);
 	while (c != EOF)
 	{
 		putc (c, stdout);
@@ -208,7 +231,7 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"il:n:o:",
+		"il:n:o:w",
 		PUTOPTV_S_FILTER,
 		"replace one preamble with another",
 		"l n\tpreamble buffer size is (n) bytes [" LITERAL (STRINGSIZE) "]",
@@ -230,6 +253,9 @@ int main (int argc, char const * argv [])
 		{
 		case 'i':
 			func = inspect;
+			break;
+		case 'w':
+			func = wedge;
 			break;
 		case 'o':
 			if ((fp = fopen (optarg, "rb")))
