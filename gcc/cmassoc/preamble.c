@@ -184,7 +184,7 @@ static signed wedge (char const * remove, char const * insert, char buffer [], s
 
 /*====================================================================*
  *
- *   signed inspect (char const * remove, char const * insert, char buffer [], size_t length);
+ *   signed present (char const * remove, char const * insert, char buffer [], size_t length);
  *
  *
  *.  Motley Tools by Charles Maier;
@@ -193,7 +193,7 @@ static signed wedge (char const * remove, char const * insert, char buffer [], s
  *
  *--------------------------------------------------------------------*/
 
-static signed inspect (char const * remove, char const * insert, char buffer [], size_t length)
+static signed present (char const * remove, char const * insert, char buffer [], size_t length)
 
 {
 	signed status;
@@ -231,12 +231,13 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"il:n:o:w",
+		"l:n:o:pw",
 		PUTOPTV_S_FILTER,
 		"replace one preamble with another",
 		"l n\tpreamble buffer size is (n) bytes [" LITERAL (STRINGSIZE) "]",
 		"n s\tnew preamble file",
 		"o s\told preamble file",
+		"p\tpreamble is present",
 		(char const *) (0)
 	};
 	FILE * fp;
@@ -251,20 +252,8 @@ int main (int argc, char const * argv [])
 	{
 		switch (c)
 		{
-		case 'i':
-			func = inspect;
-			break;
-		case 'w':
-			func = wedge;
-			break;
-		case 'o':
-			if ((fp = fopen (optarg, "rb")))
-			{
-				stat (optarg, &statinfo);
-				remove = emalloc (statinfo.st_size + 1);
-				preamble (remove, statinfo.st_size, fp);
-				fclose (fp);
-			}
+		case 'l':
+			length = (size_t)(uintspec (optarg, STRINGSIZE, USHRT_MAX));
 			break;
 		case 'n':
 			if ((fp = fopen (optarg, "rb")))
@@ -275,8 +264,20 @@ int main (int argc, char const * argv [])
 				fclose (fp);
 			}
 			break;
-		case 'l':
-			length = (size_t)(uintspec (optarg, STRINGSIZE, USHRT_MAX));
+		case 'o':
+			if ((fp = fopen (optarg, "rb")))
+			{
+				stat (optarg, &statinfo);
+				remove = emalloc (statinfo.st_size + 1);
+				preamble (remove, statinfo.st_size, fp);
+				fclose (fp);
+			}
+			break;
+		case 'p':
+			func = present;
+			break;
+		case 'w':
+			func = wedge;
 			break;
 		default: 
 			break;
