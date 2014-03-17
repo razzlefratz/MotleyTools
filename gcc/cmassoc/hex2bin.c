@@ -70,8 +70,8 @@ static void function (char const * source, size_t prior, size_t after)
 	unsigned char byte;
 	unsigned column = 0;
 	unsigned line = 1;
-	unsigned value;
-	unsigned digit;
+	unsigned digit = 0;
+	unsigned value = 0;
 	for (column++; read (STDIN_FILENO, & byte, sizeof (byte)) > 0; column++)
 	{
 		if (isspace (byte))
@@ -150,7 +150,7 @@ int main (int argc, char const * argv [])
 	{
 		"a:b:d",
 		PUTOPTV_S_FUNNEL,
-		"convert hex files to binary file",
+		"convert hex files to single binary file",
 		"a n\tafter column (n) [" LITERAL (HEX2BIN_PRIOR) "]",
 		"b n\tbefore column (n) [" LITERAL (HEX2BIN_AFTER) "]",
 		"d\tconvert hex dump file (-b" LITERAL (DMP2BIN_PRIOR) " -a" LITERAL (DMP2BIN_AFTER) ")",
