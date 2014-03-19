@@ -81,14 +81,17 @@ static void function (char const * source, size_t prior, size_t after)
 				column = 0;
 				line++;
 			}
+			continue;
 		}
-		else if ((prior < after) && ((column < prior) || (column > after)))
+		if ((prior < after) && ((column < prior) || (column > after)))
 		{
+			continue;
 		}
-		else if ((prior > after) && ((column < prior) && (column > after)))
+		if ((prior > after) && ((column < prior) && (column > after)))
 		{
+			continue;
 		}
-		else if ((byte >= '0') && (byte <= '9'))
+		if ((byte >= '0') && (byte <= '9'))
 		{
 			value *= 16;
 			value += byte - '0';
@@ -97,8 +100,9 @@ static void function (char const * source, size_t prior, size_t after)
 				write (STDOUT_FILENO, & value, sizeof (char));
 				value = 0;
 			}
+			continue;
 		}
-		else if ((byte >= 'A') && (byte <= 'F'))
+		if ((byte >= 'A') && (byte <= 'F'))
 		{
 			value *= 16;
 			value += 10;
@@ -108,8 +112,9 @@ static void function (char const * source, size_t prior, size_t after)
 				write (STDOUT_FILENO, & value, sizeof (char));
 				value = 0;
 			}
+			continue;
 		}
-		else if ((byte >= 'a') && (byte <= 'f'))
+		if ((byte >= 'a') && (byte <= 'f'))
 		{
 			value *= 16;
 			value += 10;
@@ -119,11 +124,9 @@ static void function (char const * source, size_t prior, size_t after)
 				write (STDOUT_FILENO, & value, sizeof (char));
 				value = 0;
 			}
+			continue;
 		}
-		else 
-		{
-			error (1, ENOTSUP, "Unexpected character '%c' (0x%02X) on line %d column %d of %s", byte, byte, line, column, source);
-		}
+		error (1, ENOTSUP, "Unexpected character '%c' (0x%02X) on line %d column %d of %s", byte, byte, line, column, source);
 	}
 	if (digit & 1)
 	{
