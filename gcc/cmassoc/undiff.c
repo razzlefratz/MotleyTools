@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   fbar.c - extend FORTRAN comment bars;
+ *   undiff.c - remove merge conflicts;
  *
  *   detect special comment lines and replace them with new ones;
  *   adjust line spacing outside functions and surrounding certain
@@ -60,9 +60,9 @@
  *   program constants;
  *--------------------------------------------------------------------*/
 
-#define REMOVE "<<<<<<<"
-#define SWITCH "======="
-#define INSERT ">>>>>>>"
+#define UNDIFF_REMOVE "<<<<<<<"
+#define UNDIFF_SWITCH "======="
+#define UNDIFF_INSERT ">>>>>>>"
 
 /*====================================================================*
  *
@@ -80,16 +80,16 @@ void function (size_t length, flag_t flags)
 	char buffer [length];
 	while (~ (length = fgetline (buffer, sizeof (buffer), stdin)))
 	{
-		if (! memcmp (buffer, REMOVE, sizeof (REMOVE) - 1))
+		if (! memcmp (buffer, UNDIFF_REMOVE, sizeof (UNDIFF_REMOVE) - 1))
 		{
 			continue;
 		}
-		if (! memcmp (buffer, SWITCH, sizeof (SWITCH) - 1))
+		if (! memcmp (buffer, UNDIFF_SWITCH, sizeof (UNDIFF_SWITCH) - 1))
 		{
 			fgetline (buffer, sizeof (buffer), stdin);
 			continue;
 		}
-		if (! memcmp (buffer, INSERT, sizeof (INSERT) - 1))
+		if (! memcmp (buffer, UNDIFF_INSERT, sizeof (UNDIFF_INSERT) - 1))
 		{
 			continue;
 		}
@@ -101,7 +101,6 @@ void function (size_t length, flag_t flags)
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
- *
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
