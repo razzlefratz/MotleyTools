@@ -211,7 +211,7 @@ int main (int argc, char const * argv [])
 	{
 		char pathname [TEXTLINE_MAX];
 		signed length;
-		while ((length = fgetline (pathname, sizeof (pathname), stdin)) != -1)
+		while (~ (length = fgetline (pathname, sizeof (pathname), stdin)))
 		{
 			while (isspace (pathname [-- length]))
 			{

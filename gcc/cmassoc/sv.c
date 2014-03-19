@@ -123,7 +123,7 @@ void function1 (flag_t flags)
 	indent (margin, " *   program constants;");
 	indent (margin, " *---*/");
 	indent (margin, "#ifndef %s", title [1]);
-	for (count = 0; fgetline (buffer, sizeof (buffer), stdin) != -1; count++)
+	for (count = 0; ~ fgetline (buffer, sizeof (buffer), stdin); count++)
 	{
 		strselect (strupr (buffer), SV_S_RESTRICT);
 		if (* buffer == (char) (0))
@@ -164,7 +164,7 @@ void function2 (flag_t flags)
 	indent (margin, "char const * sv_%s [] =", title [0]);
 	indent (margin, "#endif");
 	indent (margin++, "{");
-	for (count = 0; (length = fgetline (buffer, sizeof (buffer), stdin)) != -1; ++ count)
+	for (count = 0; ~ (length = fgetline (buffer, sizeof (buffer), stdin)); ++ count)
 	{
 		indent (margin, "\"%s\",", buffer);
 	}
@@ -195,7 +195,7 @@ void function3 (flag_t flags)
 	indent (margin++, "#ifdef %s", title [1]);
 	indent (margin, "switch(count)");
 	indent (margin++, "{");
-	for (count = 0; fgetline (buffer, sizeof (buffer), stdin) != -1; ++ count)
+	for (count = 0; ~ fgetline (buffer, sizeof (buffer), stdin); ++ count)
 	{
 		strselect (strupr (buffer), SV_S_RESTRICT);
 		indent (margin++, "case %s_O_%s:", title [1], buffer);

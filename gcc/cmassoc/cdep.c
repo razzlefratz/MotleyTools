@@ -188,7 +188,7 @@ void function (char const * pathname, char * buffer, size_t length, flag_t flags
 		partpath (find.fullname, find.pathname, find.filename);
 		partfile (find.filename, find.basename, find.extender);
 		scaninput (& scan, buffer, length);
-		for (line = 0; fgetline (buffer, length, ifp) != -1; line++)
+		for (line = 0; ~ fgetline (buffer, length, ifp); line++)
 		{
 			scanstart (& scan);
 			nexttoken (& scan);

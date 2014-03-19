@@ -119,7 +119,7 @@ void function (char const * filename, regexp * list [], size_t size, char buffer
 {
 	unsigned line;
 	unsigned removed = 0;
-	for (line = 1; fgetline (buffer, length, stdin) != -1; line++)
+	for (line = 1; ~ fgetline (buffer, length, stdin); line++)
 	{
 		size_t item;
 		for (item = 0; item < size; item++)

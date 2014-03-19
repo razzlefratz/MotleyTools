@@ -134,7 +134,7 @@ void function (char const * filename, char const * pathlist [], flag_t flags)
 			partpath (open.fullname, open.pathname, open.basename);
 			partfile (open.basename, open.filename, open.extender);
 			scaninput (& scan, buffer, sizeof (buffer));
-			for (line = 1; fgetline (buffer, TEXTLINE_MAX, fp) != -1; line++)
+			for (line = 1; ~ fgetline (buffer, TEXTLINE_MAX, fp); line++)
 			{
 				nexttoken (& scan);
 				if (havetoken (& scan, "#"))

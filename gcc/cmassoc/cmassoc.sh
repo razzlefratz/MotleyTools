@@ -121,6 +121,7 @@ gcc -Wall -Wextra -Wno-unused-parameter -o trim trim.c
 gcc -Wall -Wextra -Wno-unused-parameter -o try try.c
 gcc -Wall -Wextra -Wno-unused-parameter -o typelist typelist.c
 gcc -Wall -Wextra -Wno-unused-parameter -o undash undash.c
+gcc -Wall -Wextra -Wno-unused-parameter -o undiff undiff.c
 gcc -Wall -Wextra -Wno-unused-parameter -o unique unique.c
 gcc -Wall -Wextra -Wno-unused-parameter -o vl vl.c
 gcc -Wall -Wextra -Wno-unused-parameter -o vu vu.c

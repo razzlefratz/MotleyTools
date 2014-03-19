@@ -123,7 +123,7 @@ void function (char const * filename, const regexp * remove, char const * insert
 	{
 		return;
 	}
-	while ((signed) (actual = fgetline (buffer, length, stdin)) != -1)
+	while (~ (actual = fgetline (buffer, length, stdin)))
 	{
 		char const * sp;
 		for (sp = buffer; * sp; ++ sp)

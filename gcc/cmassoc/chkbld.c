@@ -106,7 +106,7 @@ static void func (char const * filename, char * pathname, char * extender [], fl
 		for (filename = pathname; * filename != (char) (0); filename++);
 		* filename++ = PATH_C_EXTENDER;
 		scaninput (& scan, buffer, sizeof (buffer));
-		for (line = 0; fgetline (buffer, sizeof (buffer), stdin) != -1; line++)
+		for (line = 0; ~ fgetline (buffer, sizeof (buffer), stdin); line++)
 		{
 			scantoken (& scan);
 			if (havetoken (& scan, "pkg"))

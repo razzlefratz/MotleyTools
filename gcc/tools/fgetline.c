@@ -4,8 +4,8 @@
  *
  *   tools.h
  *
- *   read characters from the input stream into buffer until a newline is
- *   read or the file ends; terminate the buffer with NUL and return the
+ *   read characters from the input stream into buffer until a newline 
+ *   is read or the file ends; NUL terminate the buffer and return the
  *   resulting line length or -1 on EOF;
  *
  *.  Motley Tools by Charles Maier
@@ -29,7 +29,7 @@ signed fgetline(register char * buffer, size_t length, FILE * fp)
 
 #ifdef CMASSOC_SAFEMODE
 
-	if (buffer == (char *) (0))
+	if (!buffer)
 	{
 		return (- 1);
 	}

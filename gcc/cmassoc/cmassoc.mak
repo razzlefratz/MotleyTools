@@ -155,6 +155,7 @@ ts.o: ts.c
 ttcp.o: ttcp.c
 typelist.o: typelist.c cmassoc.h symbol.h
 undash.o: undash.c cmassoc.h files.h
+undiff.o: undiff.c clang.h cmassoc.h files.h linux.h
 unique.o: unique.c cmassoc.h
 vl.o: vl.c ascii.h charset.h cmassoc.h files.h
 vr.o: vr.c ascii.h charset.h cmassoc.h files.h
@@ -165,4 +166,6 @@ whom.o: whom.c chrlib.h cmassoc.h linux.h list.h regex.h
 wl.o: wl.c chrlib.h cmassoc.h
 xde.o: xde.c cmassoc.h nodes.h
 xml.o: xml.c cmassoc.h nodes.h
+
+
 

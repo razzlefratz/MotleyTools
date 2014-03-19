@@ -106,7 +106,7 @@ unsigned lineno = 0;
  *
  *--------------------------------------------------------------------*/
 
-void function (signed c, flag_t flags)
+static void function (signed c, flag_t flags)
 
 {
 	while (c != EOF)

@@ -156,7 +156,7 @@ static void editfile (FIND * find, EDIT * edit, flag_t flags)
 	size_t line = 0;
 	size_t item = 0;
 	size_t once = 0;
-	for (line = 1; fgetline (edit->buffer, edit->length, stdin) != -1; line++)
+	for (line = 1; ~ fgetline (edit->buffer, edit->length, stdin); line++)
 	{
 		for (item = 0; item < edit->size; item++)
 		{
