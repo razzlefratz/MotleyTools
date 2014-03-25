@@ -56,6 +56,8 @@
 
 #define STYLE "box"
 
+#define CSV2HTML_COMMA ";,"
+
 /*====================================================================*
  *
  *   signed header (signed margin, char const * string);
@@ -83,8 +85,8 @@ signed header (signed margin, char const * string)
 	indent (margin, "<link rel='stylesheet' href='%s' type='%s'/>", CSS_STYLESHEET, CSS_CONTENT);
 	indent (margin++, "<style type='text/css'>");
 	indent (margin, "table { table-layout: fixed; background: transparent; border-collapse: separate; border-spacing: 1pt; font: normal 10pt verdana; }");
-	indent (margin, "th { background: inherit; padding: 2px 10px; text-align: center; vertical-align: middle; }");
-	indent (margin, "td { background: inherit; padding: 2px 10px; text-align: left; vertical-align: top; }");
+	indent (margin, "th { background: aqua; padding: 2px 10px; text-align: left; vertical-align: middle; }");
+	indent (margin, "td { background: none; padding: 2px 10px; text-align: left; vertical-align: top; }");
 	indent (margin--, "</style>");
 	indent (margin++, "<style type='text/css'>");
 	indent (margin, "table.box { border: solid 1pt black; }");
@@ -116,7 +118,7 @@ signed footer (signed margin, char const * string)
 
 /*====================================================================*
  *
- *   void function (char const * string, size_t column, flag_t flags);
+ *   void function (char const * string, char const * comma, size_t column, flag_t flags);
  *
  *   fields are separated by comma; prefix embedded commas with one
  *   backslash; empty fields are output as "&nbsp;"; an extra comma
@@ -128,7 +130,7 @@ signed footer (signed margin, char const * string)
  *
  *--------------------------------------------------------------------*/
 
-static void function (char const * string, size_t column, flag_t flags)
+static void function (char const * string, char const * comma, size_t column, flag_t flags)
 
 {
 	unsigned margin = 2;
@@ -167,7 +169,7 @@ static void function (char const * string, size_t column, flag_t flags)
 			sp = cp = field;
 			while (nobreak (c))
 			{
-				if (c == ';')
+				if (c == comma [0])
 				{
 					c = getc (stdin);
 					break;
@@ -191,7 +193,7 @@ static void function (char const * string, size_t column, flag_t flags)
 				{
 					c = ' ';
 				}
-				if (c == ',')
+				if (c == comma [1])
 				{
 					* cp++ = '<';
 					* cp++ = 'b';
@@ -270,9 +272,10 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"n:ps:t",
+		"c:n:ps:t",
 		PUTOPTV_S_FUNNEL,
 		"convert .csv data to .html file",
+		"c s\tcomma characters [" LITERAL (CSV2HTML_COMMA) "]",
 		"n n\tminimum number of columns",
 		"p\tprint HTML page with header",
 		"s s\tpage title string",
@@ -280,8 +283,7 @@ int main (int argc, char const * argv [])
 		(char const *) (0)
 	};
 	char const * string = (char *) (0);
-	char * field = (char *) (0);
-	unsigned length = 1024;
+	char const * comma = CSV2HTML_COMMA;
 	unsigned column = 0;
 	flag_t flags = (flag_t) (0);
 	signed c;
@@ -289,6 +291,9 @@ int main (int argc, char const * argv [])
 	{
 		switch (c)
 		{
+		case 'c':
+			comma = optarg;
+			break;
 		case 'l':
 			column = uintspec (optarg, 1, USHRT_MAX);
 			break;
@@ -310,17 +315,13 @@ int main (int argc, char const * argv [])
 	}
 	argc -= optind;
 	argv += optind;
-	if (! (field = malloc (length)))
-	{
-		error (1, errno, "Can't allocate %u bytes", length);
-	}
 	if (! argc)
 	{
 		if (! string)
 		{
 			string = "untitled";
 		}
-		function (string, column, flags);
+		function (string, comma, column, flags);
 	}
 	while ((argc) && (* argv))
 	{
@@ -330,7 +331,7 @@ int main (int argc, char const * argv [])
 			{
 				string = filepart (* argv);
 			}
-			function (string, column, flags);
+			function (string, comma, column, flags);
 		}
 		argc--;
 		argv++;
