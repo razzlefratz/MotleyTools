@@ -1,10 +1,6 @@
 /*====================================================================*
  *
- *   undiff.c - remove merge conflicts;
- *
- *   detect special comment lines and replace them with new ones;
- *   adjust line spacing outside functions and surrounding certain
- *   comment blocks; update information in certain comment blocks;
+ *   undiff.c - keep old or new merge conflicts;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -60,13 +56,15 @@
  *   program constants;
  *--------------------------------------------------------------------*/
 
+#define UNDIFF_MASTER (1 << 0)
+
 #define UNDIFF_REMOVE "<<<<<<<"
 #define UNDIFF_SWITCH "======="
 #define UNDIFF_INSERT ">>>>>>>"
 
 /*====================================================================*
  *
- *   void func (size_t length, flag_t flags);
+ *   static void function (size_t length, flag_t flags);
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -74,23 +72,50 @@
  *
  *--------------------------------------------------------------------*/
 
-void function (size_t length, flag_t flags)
+static void function (size_t length, flag_t flags)
 
 {
 	char buffer [length];
 	while (~ (length = fgetline (buffer, sizeof (buffer), stdin)))
 	{
-		if (! memcmp (buffer, UNDIFF_REMOVE, sizeof (UNDIFF_REMOVE) - 1))
+		if (! memcmp (buffer, UNDIFF_REMOVE, sizeof (UNDIFF_REMOVE) -1))
 		{
-			continue;
-		}
-		if (! memcmp (buffer, UNDIFF_SWITCH, sizeof (UNDIFF_SWITCH) - 1))
-		{
-			fgetline (buffer, sizeof (buffer), stdin);
-			continue;
-		}
-		if (! memcmp (buffer, UNDIFF_INSERT, sizeof (UNDIFF_INSERT) - 1))
-		{
+			if (_anyset (flags, UNDIFF_MASTER))
+			{
+				while (~ (length = fgetline (buffer, sizeof (buffer), stdin)))
+				{
+					if (! memcmp (buffer, UNDIFF_SWITCH, sizeof (UNDIFF_SWITCH) -1))
+					{
+						break;
+					}
+				}
+				while (~ (length = fgetline (buffer, sizeof (buffer), stdin)))
+				{
+					if (! memcmp (buffer, UNDIFF_INSERT, sizeof (UNDIFF_INSERT) -1))
+					{
+						break;
+					}
+					fputline (buffer, length, stdout);
+				}
+			}
+			else 
+			{
+				while (~ (length = fgetline (buffer, sizeof (buffer), stdin)))
+				{
+					if (! memcmp (buffer, UNDIFF_SWITCH, sizeof (UNDIFF_SWITCH) -1))
+					{
+						break;
+					}
+					fputline (buffer, length, stdout);
+				}
+				while (~ (length = fgetline (buffer, sizeof (buffer), stdin)))
+				{
+					if (! memcmp (buffer, UNDIFF_INSERT, sizeof (UNDIFF_INSERT) -1))
+					{
+						break;
+					}
+				}
+			}
 			continue;
 		}
 		fputline (buffer, length, stdout);
@@ -113,9 +138,11 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"",
+		"on",
 		PUTOPTV_S_FILTER,
 		"remove merge conflicts",
+		"o\tkeep old text",
+		"n\tkeep new text",
 		(char const *) (0)
 	};
 	flag_t flags = (flag_t) (0);
@@ -125,6 +152,12 @@ int main (int argc, char const * argv [])
 	{
 		switch (c)
 		{
+		case 'o':
+			_clrbits (flags, UNDIFF_MASTER);
+			break;
+		case 'n':
+			_setbits (flags, UNDIFF_MASTER);
+			break;
 		default: 
 			break;
 		}
