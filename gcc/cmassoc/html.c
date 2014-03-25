@@ -116,6 +116,9 @@ static unsigned header (unsigned margin)
 	indent (margin, "<meta name='robots' content='%s'/>", HTML_ROBOTS);
 	indent (margin, "<link rel='stylesheet' href='%s' type='%s'/>", cssfile, CSS_CONTENT);
 	indent (margin++, "<style type='text/css'>");
+	indent (margin++, "table { table-layout: fixed; background: transparent; border: solid 1pt black; border-collapse: separate; border-spacing: 1px; font: normal 10pt verdana; }");
+	indent (margin++, "th { background: inherit; border: solid 1pt silver; background: aqua;  padding: 2px 10px; text-align: left; vertical-align: middle; }");
+	indent (margin++, "td { background: inherit; border: solid 1pt silver; background: white; padding: 2px 10px; text-align: left; vertical-align: top; }");
 	indent (margin--, "</style>");
 	indent (margin--, "</head>");
 	indent (margin++, "<body class='%s'>", "standard");
