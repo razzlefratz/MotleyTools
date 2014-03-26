@@ -78,20 +78,20 @@ static void function (size_t length, flag_t flags)
 	char buffer [length];
 	while (~ (length = fgetline (buffer, sizeof (buffer), stdin)))
 	{
-		if (! memcmp (buffer, UNDIFF_REMOVE, sizeof (UNDIFF_REMOVE) -1))
+		if (! memcmp (buffer, UNDIFF_REMOVE, STRLEN (UNDIFF_REMOVE)))
 		{
 			if (_anyset (flags, UNDIFF_MASTER))
 			{
 				while (~ (length = fgetline (buffer, sizeof (buffer), stdin)))
 				{
-					if (! memcmp (buffer, UNDIFF_SWITCH, sizeof (UNDIFF_SWITCH) -1))
+					if (! memcmp (buffer, UNDIFF_SWITCH, STRLEN (UNDIFF_SWITCH)))
 					{
 						break;
 					}
 				}
 				while (~ (length = fgetline (buffer, sizeof (buffer), stdin)))
 				{
-					if (! memcmp (buffer, UNDIFF_INSERT, sizeof (UNDIFF_INSERT) -1))
+					if (! memcmp (buffer, UNDIFF_INSERT, STRLEN (UNDIFF_INSERT)))
 					{
 						break;
 					}
@@ -102,7 +102,7 @@ static void function (size_t length, flag_t flags)
 			{
 				while (~ (length = fgetline (buffer, sizeof (buffer), stdin)))
 				{
-					if (! memcmp (buffer, UNDIFF_SWITCH, sizeof (UNDIFF_SWITCH) -1))
+					if (! memcmp (buffer, UNDIFF_SWITCH, STRLEN (UNDIFF_SWITCH)))
 					{
 						break;
 					}
@@ -110,7 +110,7 @@ static void function (size_t length, flag_t flags)
 				}
 				while (~ (length = fgetline (buffer, sizeof (buffer), stdin)))
 				{
-					if (! memcmp (buffer, UNDIFF_INSERT, sizeof (UNDIFF_INSERT) -1))
+					if (! memcmp (buffer, UNDIFF_INSERT, STRLEN (UNDIFF_INSERT)))
 					{
 						break;
 					}
