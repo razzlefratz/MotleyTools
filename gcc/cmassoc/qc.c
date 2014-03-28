@@ -68,6 +68,7 @@
 #include "../scan/scandigit.c"
 #include "../scan/scaninput.c"
 #include "../scan/scanreset.c"
+#include "../scan/scanstart.c"
 #include "../scan/scanuntil.c"
 #include "../scan/scanbreak.c"
 #include "../scan/scantoken.c"
@@ -90,6 +91,7 @@
 #define QCFLAG_CUSTOM (1 << 1)
 #define QCFLAG_REPORT (1 << 2)
 #define QCFLAG_EVENTS (1 << 3)
+#define QCFLAG_SOURCE (1 << 4)
 
 /*====================================================================*
  *
@@ -117,8 +119,8 @@ void function (char const * filename, char const * pathlist [], flag_t flags)
 	LIST list;
 	FIND open;
 	SCAN scan;
-	char buffer [TEXTLINE_MAX];
-	long line;
+	char source [TEXTLINE_MAX];
+	unsigned line;
 	struct stat stat;
 	listcreate (& list, _LISTSIZE);
 	listappend (& list, filename);
@@ -133,9 +135,13 @@ void function (char const * filename, char const * pathlist [], flag_t flags)
 			strcpy (open.fullname, list.table [list.index]);
 			partpath (open.fullname, open.pathname, open.basename);
 			partfile (open.basename, open.filename, open.extender);
-			scaninput (& scan, buffer, sizeof (buffer));
-			for (line = 1; ~ fgetline (buffer, TEXTLINE_MAX, fp); line++)
+			scaninput (& scan, source, sizeof (source));
+			for (line = 1; ~ fgetline (source, sizeof (source), fp); line++)
 			{
+				if (_anyset (flags, QCFLAG_SOURCE))
+				{
+					error (0, 0, "%s", source);
+				}
 				nexttoken (& scan);
 				if (havetoken (& scan, "#"))
 				{
@@ -179,7 +185,7 @@ void function (char const * filename, char const * pathlist [], flag_t flags)
 						}
 					}
 				}
-				scanreset (& scan);
+				scanstart (& scan);
 			}
 			fclose (fp);
 			if (line == 1)
