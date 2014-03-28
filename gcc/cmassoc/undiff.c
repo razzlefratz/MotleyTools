@@ -15,20 +15,15 @@
  *--------------------------------------------------------------------*/
 
 #include <stdio.h>
-#include <sys/stat.h>
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-#include <time.h>
 
 /*====================================================================*
  *   custom header files;
  *--------------------------------------------------------------------*/
 
 #include "../tools/cmassoc.h"
-#include "../files/files.h"
-#include "../clang/clang.h"
-#include "../linux/linux.h"
 
 /*====================================================================*
  *   custom source files;
@@ -56,7 +51,7 @@
  *   program constants;
  *--------------------------------------------------------------------*/
 
-#define UNDIFF_MASTER (1 << 0)
+#define UNDIFF_ORIGINAL (1 << 0)
 
 #define UNDIFF_REMOVE "<<<<<<<"
 #define UNDIFF_SWITCH "======="
@@ -80,7 +75,7 @@ static void function (size_t length, flag_t flags)
 	{
 		if (! memcmp (buffer, UNDIFF_REMOVE, STRLEN (UNDIFF_REMOVE)))
 		{
-			if (_anyset (flags, UNDIFF_MASTER))
+			if (_anyset (flags, UNDIFF_ORIGINAL))
 			{
 				while (~ (length = fgetline (buffer, sizeof (buffer), stdin)))
 				{
@@ -153,10 +148,10 @@ int main (int argc, char const * argv [])
 		switch (c)
 		{
 		case 'o':
-			_clrbits (flags, UNDIFF_MASTER);
+			_clrbits (flags, UNDIFF_ORIGINAL);
 			break;
 		case 'n':
-			_setbits (flags, UNDIFF_MASTER);
+			_setbits (flags, UNDIFF_ORIGINAL);
 			break;
 		default: 
 			break;

@@ -1,0 +1,133 @@
+.TH undiff 1 "August 2013" "cmassoc-tools-1.9.1" "Motley Tools"
+
+.SH NAME
+undiff - preserve old or new change conflicts 
+
+.SH SYNOPSIS
+.BR undiff
+.RI [ options ]
+.IR file
+.RI [ file ] 
+.RI [ ... ]
+
+.PP
+.BR undiff
+.RI [ options ]
+.RI [< file ]
+.RI [> file ]
+
+.SH DESCRIPTION
+
+.PP
+Search a C/C++ language file looking for git-style merge conflicts.
+Preserve old (original) text and discard new (changed) text or vice verse.
+
+.PP
+This program is useful when a git pull or merge results in a large number of merge conflicts.
+It avoids the tedium of inspecting and editing individual conflicts in turn.
+
+.SH OPTIONS
+Long options are not supported.
+All options are single letters.
+
+.TP
+.RB - o
+Preserve old (original) text and discard new (changed) text throughout the file.
+This behavior is the opposite of option \fB-n\fR and is the program default behavior.
+
+.TP
+.RB - n
+Preserve new (changed) text and discard old (original) text throughout the file.
+This behavior is the opposite of option \fB-o\fR.
+
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout.
+This option takes precedence over previous command line options.
+
+.TP
+.RB - ! ,-- version
+Print program version information on stdout.
+This option takes precedence over previous command line options.
+
+.SH ARGUMENTS
+
+.TP
+.IR file
+The name of an C or C++ Language source file.
+This file is replaced and a numbered backup is created.
+Use program \fBrex\fR to recover a prior version.
+
+.SH EXAMPLES
+The following file (\fBmyfile.c\fR) contains an example git merge conflict.
+The old (original) text is preceded with a line that starts with "\fB<<<<<<< \fR".
+The new (changed) text is followed by a line that starts with "\fB>>>>>>> \fR".
+The old and new text is separated by a line that starts with "\fB======= \fR".
+.PP
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   <<<<<<< XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+   This is original text to be removed.
+   One upon a time a goose drank wine and a monkey split tobacco 
+   on a street car line. The streetcar broke. The monkey choked 
+   and they all went to heaven in a little red boat.
+   ======= XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+   This is change text to be inserted.
+   My little horse must think it queer 
+   to stop without a farmhouse near.
+   >>>>>>> XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+.PP
+This next example reads \fBmyfile.c\fR and discards new text because that is the default program behavior.
+This behavior is the same as option \fB-o\fR which preserves old (or original) text and discards new (changed) text.
+Observe that preserving old text means discarding new text and vice verse.
+.PP
+   # undiff < myfile.c
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   This is original text to be removed.
+   One upon a time a goose drank wine and a monkey split tobacco 
+   on a street car line. The streetcar broke. The monkey choked 
+   and they all went to heaven in a little red boat.
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+.PP
+This next example reads \fBmyfile.c\fR and preserves new text because option \fB-n\fR is specified on the command line.
+This behavior is the opposite of option \fB-o\fR which preserves old (original) text and discards new (changed) text.
+Observe that preserving new text means discarding old text and vice verse.
+.PP
+   # undiff -n < myfile.c
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   This is change text to be inserted.
+   My little horse must think it queer 
+   to stop without a farmhouse near.
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+.SH SEE ALSO
+.BR call ( 1 ),
+.BR cblock ( 1 ),
+.BR cbrief ( 1 ),
+.BR cedit ( 1 ),
+.BR cfm ( 1 ),
+.BR cinc ( 1 ),
+.BR cmerge ( 1 ),
+.BR ctar ( 1 ),
+.BR hbrief ( 1 )
+
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+
