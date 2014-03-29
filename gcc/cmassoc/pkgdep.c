@@ -57,7 +57,7 @@
 
 #ifndef MAKEFILE
 #include "../scan/scaninput.c"
-#include "../scan/scanreset.c"
+#include "../scan/scanstart.c"
 #include "../scan/scanuntil.c"
 #include "../scan/scanwhile.c"
 #include "../scan/scanbreak.c"
@@ -216,7 +216,7 @@ static void function (FIND * find, flag_t flags)
 					nexttoken (& scan);
 				}
 			}
-			scanreset (& scan);
+			scanstart (& scan);
 		}
 	}
 	return;

@@ -86,7 +86,7 @@ cdep: cdep.o depend.o efopen.o emalloc.o erealloc.o error.o fgetline.o find.o fu
 cedit: cedit.o error.o getoptv.o makepath.o mergepath.o putoptv.o splitpath.o version.o vfopen.o
 change: change.o charset.o chrindex.o chruesc.o chruescmap.o emalloc.o error.o fgetline.o getoptv.o makefind.o makepath.o match.o mergepath.o partfile.o partpath.o putoptv.o regexcomp.o regexfree.o regexhelp.o regexmake.o regexshow.o regexspan.o splitpath.o struesc.o sv_ascii.o todigit.o version.o vfopen.o
 checkmode: checkmode.o atoin.o efopen.o error.o getoptv.o putoptv.o version.o
-chkbld: chkbld.o efreopen.o emalloc.o error.o fgetline.o getoptv.o havebreak.o havetoken.o isbreak.o istoken.o nextbreak.o nexttoken.o putoptv.o scanalnum.o scandigit.o scanflush.o scaninput.o scanreset.o scanspace.o scantoken.o scanuntil.o tokentext.o version.o
+chkbld: chkbld.o efreopen.o emalloc.o error.o fgetline.o getoptv.o havebreak.o havetoken.o isbreak.o istoken.o nextbreak.o nexttoken.o putoptv.o scanalnum.o scandigit.o scanflush.o scaninput.o scanstart.o scanspace.o scantoken.o scanuntil.o tokentext.o version.o
 chperm: chperm.o error.o find.o getoptv.o makefind.o makepath.o match.o mergepath.o modespec.o partfile.o partpath.o putoptv.o splitpath.o version.o
 chr: chr.o efreopen.o error.o getoptv.o putoptv.o sv_ascii.o version.o
 cinc: cinc.o efopen.o error.o getoptv.o makepath.o mergepath.o putoptv.o splitpath.o version.o
@@ -96,7 +96,7 @@ preamble: preamble.o emalloc.o error.o getoptv.o makepath.o mergepath.o putoptv.
 cpp2c: cpp2c.o error.o escaped.o fortran.o getoptv.o keep.o literal.o makepath.o mergepath.o putoptv.o splitpath.o version.o vfopen.o
 crlf: crlf.o console.o makepath.o mergepath.o splitpath.o vfopen.o
 csv2html: csv2html.o console.o efreopen.o filepart.o indent.o todigit.o uintspec.o
-ctar: ctar.o ccollect.o cinclude.o emalloc.o erealloc.o error.o error_on_line.o fgetline.o havebreak.o havetoken.o isbreak.o istoken.o listappend.o listcreate.o listexpand.o makepath.o mergepath.o nextbreak.o nexttoken.o partfile.o partpath.o scanalnum.o scanbreak.o scandigit.o scanflush.o scaninput.o scanreset.o scanspace.o scanstart.o scantoken.o scanuntil.o splitpath.o tokentext.o
+ctar: ctar.o ccollect.o cinclude.o emalloc.o erealloc.o error.o error_on_line.o fgetline.o havebreak.o havetoken.o isbreak.o istoken.o listappend.o listcreate.o listexpand.o makepath.o mergepath.o nextbreak.o nexttoken.o partfile.o partpath.o scanalnum.o scanbreak.o scandigit.o scanflush.o scaninput.o scanstart.o scanspace.o scanstart.o scantoken.o scanuntil.o splitpath.o tokentext.o
 define: define.o console.o efreopen.o indent.o todigit.o typeload.o typesave.o
 defix: defix.o chruesc.o console.o struesc.o todigit.o
 delta: delta.o efreopen.o error.o error_on_line.o getoptv.o putoptv.o todigit.o uintspec.o version.o
@@ -174,11 +174,11 @@ owrt: owrt.o efreopen.o error.o getfields.o getoptv.o putoptv.o version.o
 pad: pad.o efreopen.o error.o getoptv.o putoptv.o todigit.o uintspec.o version.o
 paginate: paginate.o console.o efreopen.o filepart.o page.o todigit.o uintspec.o
 pkg: pkg.o chruesc.o error.o fgetline.o getoptv.o putoptv.o struesc.o todigit.o version.o
-pkgdep: pkgdep.o copytoken.o efreopen.o emalloc.o error.o fgetline.o find.o getoptv.o havebreak.o havetoken.o isbreak.o isclass.o istoken.o match.o nextbreak.o nexttoken.o partfile.o partpath.o putoptv.o scanalnum.o scanbreak.o scandigit.o scanflush.o scaninput.o scanreset.o scanspace.o scantoken.o scanuntil.o scanwhile.o strsplit.o tokensize.o tokentext.o version.o
+pkgdep: pkgdep.o copytoken.o efreopen.o emalloc.o error.o fgetline.o find.o getoptv.o havebreak.o havetoken.o isbreak.o isclass.o istoken.o match.o nextbreak.o nexttoken.o partfile.o partpath.o putoptv.o scanalnum.o scanbreak.o scandigit.o scanflush.o scaninput.o scanstart.o scanspace.o scantoken.o scanuntil.o scanwhile.o strsplit.o tokensize.o tokentext.o version.o
 pkgopt: pkgopt.o efreopen.o error.o getoptv.o putoptv.o version.o
 sandwich: sandwich.o error.o getoptv.o makepath.o mergepath.o putoptv.o splitpath.o version.o vfopen.o
 purge: purge.o error.o find.o getoptv.o makefind.o makepath.o match.o mergepath.o partfile.o partpath.o putoptv.o splitpath.o todigit.o uintspec.o version.o
-qc: qc.o efopen.o emalloc.o erealloc.o error.o fgetline.o fullpath.o getoptv.o havebreak.o havetoken.o isbreak.o istoken.o listappend.o listcreate.o listdelete.o listexpand.o makepath.o mergepath.o nextbreak.o nexttoken.o partfile.o partpath.o putoptv.o scanalnum.o scanbreak.o scandigit.o scanflush.o scaninput.o scanreset.o scanspace.o scantoken.o scanuntil.o splitpath.o tokentext.o version.o
+qc: qc.o efopen.o emalloc.o erealloc.o error.o fgetline.o fullpath.o getoptv.o havebreak.o havetoken.o isbreak.o istoken.o listappend.o listcreate.o listdelete.o listexpand.o makepath.o mergepath.o nextbreak.o nexttoken.o partfile.o partpath.o putoptv.o scanalnum.o scanbreak.o scandigit.o scanflush.o scaninput.o scanstart.o scanspace.o scantoken.o scanuntil.o splitpath.o tokentext.o version.o
 quiet: quiet.o error.o getoptv.o putoptv.o version.o
 radix: radix.o error.o getoptv.o putoptv.o todigit.o uintspec.o version.o
 relate: relate.o depend.o efreopen.o emalloc.o error.o getoptv.o putoptv.o version.o

@@ -48,7 +48,7 @@
 
 #ifndef MAKEFILE
 #include "../scan/scaninput.c"
-#include "../scan/scanreset.c"
+#include "../scan/scanstart.c"
 #include "../scan/scantoken.c"
 #include "../scan/scanuntil.c"
 #include "../scan/scanspace.c"
@@ -141,7 +141,7 @@ static void func (char const * filename, char * pathname, char * extender [], fl
 					}
 				}
 			}
-			scanreset (& scan);
+			scanstart (& scan);
 		}
 	}
 	return;

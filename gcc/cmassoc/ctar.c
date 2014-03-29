@@ -64,7 +64,6 @@
 
 #ifndef MAKEFILE
 #include "../scan/scaninput.c"
-#include "../scan/scanreset.c"
 #include "../scan/scanstart.c"
 #include "../scan/scanuntil.c"
 #include "../scan/scanbreak.c"
