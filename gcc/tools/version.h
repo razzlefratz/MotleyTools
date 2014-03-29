@@ -19,7 +19,7 @@
 #define COMPANY "Charles Maier"
 #define PROJECT "Motley Toolkit"
 #define PACKAGE "motley-tools"
-#define VERSION "1.9.2"
+#define VERSION "1.9.3"
 #define RELEASE __TIME__ " " __DATE__
 #define CONTACT "cmaier@cmassoc.net"
 #define LICENSE "ISC License"
