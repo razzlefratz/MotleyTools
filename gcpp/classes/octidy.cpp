@@ -74,12 +74,16 @@ signed octidy::program (signed c)
 		}
 		if (c == '{')
 		{
+#if 1
 			if (! this->mlevel)
 			{
 				oindent::endline (1);
 			}
 			oindent::endline (1);
 			oindent::newline ();
+#else
+			std::cout.put (' ');
+#endif
 			c = osource::keep (c);
 			oindent::increment ();
 			oindent::space (2);
@@ -163,15 +167,19 @@ signed octidy::atheros (signed c)
 		}
 		if (c == '{')
 		{
+#if 0
 			if (! this->mlevel)
 			{
-				oindent::endline (2);
-				oindent::newline ();
+				oindent::endline (1);
 			}
+			oindent::endline (1);
+			oindent::newline ();
+#else
 			std::cout.put (' ');
+#endif
 			c = osource::keep (c);
 			oindent::increment ();
-			oindent::space (1);
+			oindent::space (2);
 			continue;
 		}
 		if (c == '}')

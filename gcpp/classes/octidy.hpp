@@ -32,9 +32,9 @@ class __declspec (dllexport) octidy: private osource, public oindent, public oin
 public: 
 	octidy (void);
 	virtual ~ octidy (void);
+	signed program (signed c);
 	signed charlie (signed c);
 	signed atheros (signed c);
-	signed program (signed c);
 	signed statement (signed c);
 	signed context (signed c, char const * charset) const;
 	signed context (signed c, signed o, signed e) const;
