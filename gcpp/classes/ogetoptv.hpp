@@ -55,7 +55,6 @@ public:
 	ogetoptv & opterr (const signed);
 	ogetoptv & optmin (const signed);
 private: 
-	char const * moption;
 	char const * mstring;
 	char const * moptarg;
 	char const ** margv;
