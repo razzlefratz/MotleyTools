@@ -106,17 +106,7 @@ static void showfile (FIND * find, flag_t flags)
 		}
 		if (find->flagword & (FIND_B_FILESIZE))
 		{
-
-#ifdef __APPLE__
-
-			printf ("%12llu ", find->statinfo.st_size);
-
-#else
-
-			printf ("%12lu ", find->statinfo.st_size);
-
-#endif
-
+			printf ("%12" OFF_T_SPEC " ", find->statinfo.st_size);
 		}
 		switch (find->flagword & (FIND_B_PATHNAME | FIND_B_FILENAME))
 		{

@@ -35,7 +35,7 @@
  *   myobject1 = list->first();    ... pop myobject2 from stack
  *   myobject2 = list->first();    ... pop myobject1 from stack
  *
- *   if (oqueue->IsEmpty()) { ...}   ... dequeue is empty
+ *   if (oqueue->empty()) { ...}   ... dequeue is empty
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
