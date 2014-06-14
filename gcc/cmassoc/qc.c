@@ -163,7 +163,7 @@ void function (char const * filename, char const * pathlist [], flag_t flags)
 								}
 								if (pathlist [index] == (char const *) (0))
 								{
-									error (0, 0, "%s:%ld system file %s is missing.", open.basename, line, open.fullname);
+									error (0, 0, "%s:%u system file %s is missing.", open.basename, line, open.fullname);
 								}
 							}
 							scanbreak (& scan, ">");
@@ -177,7 +177,7 @@ void function (char const * filename, char const * pathlist [], flag_t flags)
 								listappend (& list, open.fullname);
 								if (lstat (open.fullname, & stat) != 0)
 								{
-									error (0, 0, "%s:%ld custom file %s is missing.", open.basename, line, tokentext (& scan));
+									error (0, 0, "%s:%u custom file %s is missing.", open.basename, line, tokentext (& scan));
 								}
 							}
 							scanbreak (& scan, "\"");
@@ -189,7 +189,7 @@ void function (char const * filename, char const * pathlist [], flag_t flags)
 			fclose (fp);
 			if (line == 1)
 			{
-				error (0, 0, "%s:%ld file is empty.", open.basename, line);
+				error (0, 0, "%s:%u file is empty.", open.basename, line);
 			}
 		}
 	}
