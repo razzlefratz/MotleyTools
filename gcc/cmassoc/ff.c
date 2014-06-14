@@ -107,9 +107,9 @@ static void showfile (FIND * find, flag_t flags)
 		if (find->flagword & (FIND_B_FILESIZE))
 		{
 
-#if defined (WIN32)
+#if defined (__APPLE__)
 
-			printf ("%1264u ", find->statinfo.st_size);
+			printf ("%12llu ", find->statinfo.st_size);
 
 #else
 
