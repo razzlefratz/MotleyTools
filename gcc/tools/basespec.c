@@ -32,7 +32,6 @@ unsigned long basespec(char const * string, unsigned base, unsigned size)
 	unsigned long value = 0;
 	unsigned long limit = 0;
 	unsigned digit = 0;
-	signed factor = 1;
 	limit = ~ limit;
 	if (size < sizeof(limit))
 	{
@@ -65,7 +64,6 @@ unsigned long basespec(char const * string, unsigned base, unsigned size)
 	}
 	else if(* number == '-')
 	{
-		factor = - 1;
 		number++;
 	}
 	if (* number == '0')
