@@ -81,7 +81,7 @@ static void testfile (FIND * find, flag_t flags);
 
 /*====================================================================*
  *
- *   void showfile (FIND *find, flag_t flags);
+ *   void showfile (FIND * find, flag_t flags);
  *
  *   determine if the find basename matches the find wildcard; if so
  *   the print the find.fullname, pathname or basename depending on
@@ -199,7 +199,7 @@ static void testfile (FIND * find, flag_t flags)
 
 /*====================================================================*
  *
- *   void findfile (FIND *find, flag_t flags);
+ *   void findfile (FIND * find, flag_t flags);
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
