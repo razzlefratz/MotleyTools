@@ -106,7 +106,17 @@ static void showfile (FIND * find, flag_t flags)
 		}
 		if (find->flagword & (FIND_B_FILESIZE))
 		{
-			printf ("%12" OFF_T_SPEC " ", find->statinfo.st_size);
+
+#if defined (WIN32)
+
+			printf ("%1264u ", find->statinfo.st_size);
+
+#else
+
+			printf ("%12lu ", find->statinfo.st_size);
+
+#endif
+
 		}
 		switch (find->flagword & (FIND_B_PATHNAME | FIND_B_FILENAME))
 		{
