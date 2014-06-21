@@ -414,22 +414,12 @@ signed ocomment::clang (signed c)
 			std::cout.put (c);
 			if (c == '\n')
 			{
-				std::cout.put (' ');
-				do 
-				{
-					c = std::cin.get ();
-				}
-				while (oascii::isblank (c));
-				if (c != '*')
-				{
-					std::cout.put ('*');
-					c = ocomment::content (c, 3);
-				}
+				c = ocomment::content (c, 1);
 				continue;
 			}
 			c = std::cin.get ();
 		}
-		std::cout.put (c);
+		std::cout.put ('*');
 		do 
 		{
 			c = std::cin.get ();
@@ -460,31 +450,6 @@ signed ocomment::clang (signed c)
 			c = ocomment::message (c, this->mlicense);
 		}
 	}
-
-#if 0
-
-/*
- *	the only comments that make it to here are one-line comments;
- *	this implementation does not deal with the conversions;
- */
-
-	if (ocomment::anyset (oCOMMENT_B_TRIPLE) && ! this->mcount)
-	{
-		std::cout.put ('*');
-		std::cout.put ('\n');
-		std::cout.put (' ');
-		this->minsert--;
-	}
-	ocomment::content ();
-	if (ocomment::anyset (oCOMMENT_B_TRIPLE) && ! this->mcount)
-	{
-		std::cout.put ('\n');
-		std::cout.put (' ');
-		std::cout.put ('*');
-	}
-
-#endif
-
 	std::cout.put ('/');
 	std::cout.put ('\n');
 	c = std::cin.get ();
@@ -530,30 +495,47 @@ signed ocomment::breaker (signed c, signed e) const
 signed ocomment::content (signed c, unsigned column) const
 
 {
-	unsigned offset = 0;
-	while (oascii::nobreak (c))
+	std::cout.put (' ');
+	do { c = std::cin.get (); } while (oascii::isblank (c));
+	if (c != '*')
 	{
-		if (c == ' ')
+		unsigned offset = 0;
+		std::cout.put ('*');
+		while (oascii::nobreak (c))
 		{
-			column++;
-		}
-		else if (c == '\t')
-		{
-			column -= column % 8;
-			column += 8;
-		}
-		else 
-		{
-			while (offset < column)
+			if (c == '*')
 			{
-				std::cout.put (' ');
+				signed o = std::cin.get ();
+				std::cin.putback (o);
+				if (o == '/')
+				{
+					std::cout.put ('\n');
+					std::cout.put (' ');
+					break;
+				}
+			}
+			else if (c == ' ')
+			{
+				column++;
+			}
+			else if (c == '\t')
+			{
+				column -= column % 8;
+				column += 8;
+			}
+			else 
+			{
+				while (offset < column)
+				{
+					std::cout.put (' ');
+					offset++;
+				}
+				std::cout.put (c);
+				column++;
 				offset++;
 			}
-			std::cout.put (c);
-			column++;
-			offset++;
+			c = std::cin.get ();
 		}
-		c = std::cin.get ();
 	}
 	return (c);
 }
