@@ -414,7 +414,7 @@ signed ocomment::clang (signed c)
 			std::cout.put (c);
 			if (c == '\n')
 			{
-				c = ocomment::content (c, 1);
+				c = ocomment::content (c, 3);
 				continue;
 			}
 			c = std::cin.get ();
