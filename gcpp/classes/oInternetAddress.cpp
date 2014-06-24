@@ -25,7 +25,7 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "oInternetAddress.h"
+#include "oInternetAddress.hpp"
 
 /*====================================================================*
  *   class constants;

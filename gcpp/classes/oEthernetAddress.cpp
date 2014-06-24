@@ -25,7 +25,7 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "oEthernetAddress.h"
+#include "oEthernetAddress.hpp"
 
 /*====================================================================*
  *   class constants;
@@ -35,16 +35,16 @@ const unsigned oEthernetAddress::length = 6;
 
 /*====================================================================*
  *
- *   oEthernetAddress & set (byte byte):
+ *   oEthernetAddress & set (byte octet):
  *
  *   set all bytes in the current address to the same value;
  *
  *--------------------------------------------------------------------*/
 
-oEthernetAddress & oEthernetAddress::set (byte byte)
+oEthernetAddress & oEthernetAddress::set (byte octet)
 
 {
-	memset (this->maddress, byte, oEthernetAddress::length);
+	std::memset (this->maddress, octet, oEthernetAddress::length);
 	return (* this);
 }
 
@@ -79,7 +79,7 @@ oEthernetAddress & oEthernetAddress::set (byte byte5, byte byte4, byte byte3, by
 oEthernetAddress & oEthernetAddress::copy (const byte * address)
 
 {
-	memcpy (this->maddress, address, sizeof (this->maddress));
+	std::memcpy (this->maddress, address, sizeof (this->maddress));
 	return (* this);
 }
 
@@ -115,10 +115,10 @@ const char * oEthernetAddress::string ()
 	unsigned octet = 0;
 	while (octet < oEthernetAddress::length)
 	{
-		byte value = this->maddress [value];
+		byte value = this->maddress [octet];
 		* bp++ = digits [(value >> 4) & 0x0F];
 		* bp++ = digits [(value >> 0) & 0x0F];
-		if (octet++ < oEthernetAddress::length)
+		if (++octet < oEthernetAddress::length)
 		{
 			* bp++ = ':';
 		}
@@ -137,7 +137,7 @@ oEthernetAddress::oEthernetAddress ()
 
 {
 	this->maddress = new byte [oEthernetAddress::length];
-	memset (this->maddress, 0, oEthernetAddress::length);
+	std::memset (this->maddress, 0, oEthernetAddress::length);
 	return;
 }
 
