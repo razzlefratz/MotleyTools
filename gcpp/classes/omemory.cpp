@@ -117,7 +117,7 @@ void omemory::memtext (char const * string, char buffer [], size_t length)
 		{
 			if ((* buffer++ = * string) != 0)
 			{
-				* string++;
+				string++;
 			}
 		}
 		* buffer = (char) (0);
