@@ -26,7 +26,7 @@ scripts:
 manuals:
 #	install -m 0444 -o ${OWNER} -g ${GROUP} ${PAGES} ${MAN}
 library: 
-	install -m 2755 -o ${OWNER} -g ${GROUP} -d ${BIN}
+#	install -m 2755 -o ${OWNER} -g ${GROUP} -d ${BIN}
 install: compile library
 #	install -m 0755 -o ${OWNER} -g ${GROUP} ${TOOLS} ${BIN}
 compare:
