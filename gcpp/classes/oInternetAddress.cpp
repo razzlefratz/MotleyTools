@@ -22,6 +22,12 @@
 #define oINTERNETADDRESS_SOURCE
 
 /*====================================================================*
+ *   system header files;
+ *--------------------------------------------------------------------*/
+
+#include <cstring>
+
+/*====================================================================*
  *   custom header files;
  *--------------------------------------------------------------------*/
 
@@ -44,7 +50,7 @@ const unsigned oInternetAddress::length = 4;
 oInternetAddress & oInternetAddress::set (byte byte)
 
 {
-	memset (this->maddress, byte, oInternetAddress::length);
+	std::memset (this->maddress, byte, oInternetAddress::length);
 	return (* this);
 }
 
@@ -139,7 +145,7 @@ oInternetAddress::oInternetAddress ()
 
 {
 	this->maddress = new byte [oInternetAddress::length];
-	memset (this->maddress, 0, oInternetAddress::length);
+	std::memset (this->maddress, 0, oInternetAddress::length);
 	return;
 }
 

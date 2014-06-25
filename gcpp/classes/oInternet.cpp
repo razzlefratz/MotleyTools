@@ -25,16 +25,14 @@
  *   system header files;
  *--------------------------------------------------------------------*/
 
-#include <Arduino.h>
-
 /*====================================================================*
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "ethernet.h"
-#include "oInternet.h"
-#include "ipaddress.h"
-#include "memory.h"
+#include "oEthernet.hpp"
+#include "oInternet.hpp"
+#include "oInternetAddress.hpp"
+#include "omemory.hpp"
 
 /*====================================================================*
  *  define class variables;
@@ -94,7 +92,7 @@ const unsigned oInternet::header_length = sizeof (struct oInternet_header);
 bool oInternet::onsubnet (const byte * address1, const byte * address2, const byte * netmask)
 
 {
-	unsigned octet = ipaddress::length;
+	unsigned octet = oInternetAddress::length;
         while (octet--)
 	{
 		if ((address1 [octet] & netmask [octet]) != (address2 [octet] & netmask [octet]))

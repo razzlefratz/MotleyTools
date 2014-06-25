@@ -25,13 +25,13 @@
  *  system header files;
  *--------------------------------------------------------------------*/
 
-#include <Arduino.h>
+#include <stdint.h>
 
 /*====================================================================*
  *  custom header files;
  *--------------------------------------------------------------------*/
 
-#include "hwaddress.h"
+#include "oEthernetAddress.hpp"
 
 /*====================================================================*
  *  define class macros;
@@ -85,8 +85,8 @@ public:
 	static void PrintHeader (void * memory, unsigned extent);
 	static char const * ProtocolName (uint16_t protocol);
 	static const unsigned header_length;
-        hwaddress broadcast;
-	hwaddress address;
+        oEthernetAddress broadcast;
+	oEthernetAddress address;
 private:
 };
 

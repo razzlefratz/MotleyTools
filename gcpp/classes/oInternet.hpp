@@ -25,13 +25,11 @@
  *  system header files;
  *--------------------------------------------------------------------*/
 
-#include <Arduino.h>
-
 /*====================================================================*
  *  custom header files;
  *--------------------------------------------------------------------*/
 
-#include "ipaddress.h"
+#include "oInternetAddress.hpp"
 
 /*====================================================================*
  *  declare class data types;
@@ -77,10 +75,10 @@ public:
 	static void PrintPacket (void * memory, unsigned extent) ;
 	static void PrintHeader (void * memory, unsigned extent);
 	static char const * ProtocolName (byte protocol);
-	ipaddress broadcast;
-        ipaddress address;
-	ipaddress netmask;
-	ipaddress gateway;
+	oInternetAddress broadcast;
+        oInternetAddress address;
+	oInternetAddress netmask;
+	oInternetAddress gateway;
 private: 
 };
 
