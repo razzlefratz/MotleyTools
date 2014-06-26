@@ -25,16 +25,16 @@
  *   system header fileds;
  *--------------------------------------------------------------------*/
 
-#include <cstdio>
+#include <cstring>
 
 /*====================================================================*
  *   custome header files;
  *--------------------------------------------------------------------*/
 
-#include "oARPTable.hpp"
+#include "../classes/oARPTable.hpp"
 #include "../classes/oEthernetAddress.hpp"
 #include "../classes/oInternetAddress.hpp"
-#include "memory.h"
+#include "../classes/omemory.hpp"
 
 /*====================================================================*
  *   class constants;
@@ -373,17 +373,17 @@ void ARP::out (void)
  */
 
 			std::memset (ethernet_header->oda, 0xff, sizeof (ethernet_header->oda));
-			std::memcpy (ethernet_header->osa, ethernet.address.get (), sizeof (ethernet_header->osa));
+			std::memcpy (ethernet_header->osa, ethernet.get (), sizeof (ethernet_header->osa));
 			ethernet_header->protocol = htons (ETHERTYPE_ARP);
 			std::memset (arp_header->target_hwaddr, 0x00, sizeof (arp_header->target_hwaddr));
-			std::memcpy (arp_header->source_hwaddr, ethernet.address.get (), sizeof (arp_header->source_hwaddr));
+			std::memcpy (arp_header->source_hwaddr, ethernet.get (), sizeof (arp_header->source_hwaddr));
 			std::memcpy (arp_header->target_ipaddr, ipaddr, sizeof (arp_header->target_ipaddr));
-			std::memcpy (arp_header->source_ipaddr, internet.address.get (), sizeof (arp_header->source_ipaddr));
+			std::memcpy (arp_header->source_ipaddr, internet.get (), sizeof (arp_header->source_ipaddr));
 			arp_header->opcode = htons (ARP_REQUEST);
 			arp_header->hardware_type = htons (ARP_HWTYPE_ETH);
 			arp_header->protocol_type = htons (ETHERTYPE_IP);
-			arp_header->hwaddrlen = ethernet.address.length;
-			arp_header->ipaddrlen = internet.address.length;
+			arp_header->hwaddrlen = ethernet.length;
+			arp_header->ipaddrlen = internet.length;
 
 // uip_appdata = & uip_buf [UIP_TCPIP_HLEN + UIP_LLH_LEN];
 
@@ -395,7 +395,7 @@ void ARP::out (void)
 
 		std::memcpy (ethernet_header->oda, arpentry->ethernet_address, sizeof (ethernet_header->oda));
 	}
-	std::memcpy (ethernet_header->osa, ethernet.address.get (), sizeof (ethernet_header->osa));
+	std::memcpy (ethernet_header->osa, ethernet.get (), sizeof (ethernet_header->osa));
 	ethernet_header->protocol = htons (ETHERTYPE_IP);
 	uip_len += sizeof (struct ethernet_header);
 	return;
@@ -417,10 +417,10 @@ static void PrintARPHeader (void * header, unsigned extent)
 	std::cerr << "hardware address length " << arp_header->hwaddrlen << std::endl;
 	std::cerr << "protocol address length " << arp_header->ipaddrlen << std::endl;
 	std::cerr << "opcode" << ntohs (arp_header->opcode) << std::endl;
-	std::cerr << "sender hardware address " << ethernet.address.get (arp_header->source_hwaddr).string () << std::endl;
-	std::cerr << "sender protocol address " << internet.address.get (arp_header->source_ipaddr).string () << std::endl; 
-	std::cerr << "target hardware address " << ethernet.address.get (arp_header->target_hwaddr).string () << std::endl;
-	std::cerr << "target protocol address " << internet.address.get (arp_header->target_ipaddr).string () << std::endl;
+	std::cerr << "sender hardware address " << ethernet.copy (arp_header->source_hwaddr).string () << std::endl;
+	std::cerr << "sender protocol address " << internet.copy (arp_header->source_ipaddr).string () << std::endl; 
+	std::cerr << "target hardware address " << ethernet.copy (arp_header->target_hwaddr).string () << std::endl;
+	std::cerr << "target protocol address " << internet.copy (arp_header->target_ipaddr).string () << std::endl;
 	return;
 }
 

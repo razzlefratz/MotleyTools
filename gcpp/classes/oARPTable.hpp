@@ -31,7 +31,9 @@
  *  custom header files;
  *--------------------------------------------------------------------*/
 
-#include "ethernet.h"
+#include "../classes/oEthernet.hpp"
+#include "../classes/oInternet.hpp"
+#include "../../gcc/tools/types.h"
 
 /*====================================================================*
  *  declare class data types;
