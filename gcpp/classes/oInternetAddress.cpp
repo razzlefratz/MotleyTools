@@ -105,8 +105,8 @@ const byte * oInternetAddress::get () const
  *
  *   const char * string ();
  *
- *   convert current internet address to a static character string
- *   and return a constant pointer to it;
+ *   convert current internet address to a static character string;
+ *   return a constant pointer to it;
  *
  *--------------------------------------------------------------------*/
 

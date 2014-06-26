@@ -107,7 +107,7 @@ const byte * oEthernetAddress::get () const
  *
  *   const char * string ();
  *
- *   convert the current address to a static character string and 
+ *   convert current ethernet address to a static character string; 
  *   return a constant pointer to it;
  *
  *--------------------------------------------------------------------*/
