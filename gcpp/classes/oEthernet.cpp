@@ -274,7 +274,7 @@ protocols [] =
  *   public constants;
  *--------------------------------------------------------------------*/
 
-const unsigned oEthernet::header_length = sizeof (struct oEthernet_header);
+const unsigned oEthernet::header_length = sizeof (struct ethernet_header);
 
 /*====================================================================*
  *

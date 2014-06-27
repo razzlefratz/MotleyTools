@@ -76,8 +76,8 @@ public:
         void ipin (void);
 	void in (void);
 	void out ();
-	void update (byte * internet_address, byte * ethernet_address);
 	void timer ();
+	void update (const byte * internet_address, const byte * ethernet_address);
 	static void PrintARPPacket (void * memory, unsigned extent);
 	static void PrintARPHeader (void * memory, unsigned extent);
 private:

@@ -29,7 +29,7 @@
 # g++ -Wall -c osyslog.cpp
 # g++ -Wall -c otruth.cpp
 # g++ -Wall -c otruth.demo.cpp
-g++ -Wall -c oAttribute.cpp
+g++ -Wall -c oARPTable.cpp
 g++ -Wall -c oEthernet.cpp
 g++ -Wall -c oEthernetAddress.cpp
 g++ -Wall -c oHTMLAttributeNames.cpp
@@ -73,7 +73,11 @@ g++ -Wall -c oedge.cpp
 g++ -Wall -c oedges.cpp
 g++ -Wall -c oerror.cpp
 g++ -Wall -c oescape.cpp
-g++ -Wall -c oethernet.cpp
+g++ -Wall -c oEthernetHeader.cpp
+g++ -Wall -c oEthernetAddress.cpp
+g++ -Wall -c oEthernet.cpp
+g++ -Wall -c oInternetAddress.cpp
+g++ -Wall -c oInternet.cpp
 g++ -Wall -c ofileopen.cpp
 g++ -Wall -c ofileset.cpp
 g++ -Wall -c ofilespec.cpp

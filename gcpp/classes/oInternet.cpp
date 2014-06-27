@@ -79,7 +79,7 @@ protocols [] =
  *   public constants;
  *--------------------------------------------------------------------*/
 
-const unsigned oInternet::header_length = sizeof (struct oInternet_header);
+const unsigned oInternet::header_length = sizeof (struct internet_header);
 
 /*====================================================================*
  *

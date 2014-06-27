@@ -32,8 +32,8 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/oARPTable.hpp"
-#include "../classes/oEthernetAddress.hpp"
-#include "../classes/oInternetAddress.hpp"
+#include "../classes/oEthernet.hpp"
+#include "../classes/oInternet.hpp"
 #include "../classes/omemory.hpp"
 
 /*====================================================================*
@@ -49,8 +49,8 @@
  *   class variables;
  *--------------------------------------------------------------------*/
 
-extern oInternetAddress internet;
-extern oEthernetAddress ethernet;
+extern oInternet internet;
+extern oEthernet ethernet;
 extern uint16_t uip_len;
 extern uint8_t uip_buf [];
 static unsigned arptimer = 0;
@@ -91,6 +91,8 @@ bool ARP::empty (void * memory, unsigned extent)
 
 /*====================================================================*
  *
+ *   void timer (void)
+ *
  *   Periodic ARP processing function.
  *
  *   This function performs periodic timer processing in the ARP module
@@ -117,11 +119,11 @@ void ARP::timer (void)
 
 /*====================================================================*
  *
- *   void ARP::update (byte internet_address *, byte ethernet_address *);
+ *   void update (byte * internet_address, byte * ethernet_address);
  *
  *--------------------------------------------------------------------*/
 
-void ARP::update (byte * internet_address, byte * ethernet_address)
+void ARP::update (const byte * internet_address, const byte * ethernet_address)
 
 {
 	for (arpindex = 0; arpindex < SIZEOF (arptable); ++ arpindex)
@@ -161,7 +163,7 @@ void ARP::update (byte * internet_address, byte * ethernet_address)
 			}
 		}
 		arpentry = & arptable [oldest];
-		Serial.println ("Delete old ARP table entry.");
+		std::cerr << "Delete old ARP table entry." << std::endl;
 	}
 	std::memcpy (arpentry->internet_address, internet_address, sizeof (arpentry->ethernet_address));
 	std::memcpy (arpentry->ethernet_address, ethernet_address, sizeof (arpentry->internet_address));
@@ -169,9 +171,10 @@ void ARP::update (byte * internet_address, byte * ethernet_address)
 	return;
 }
 
-/*--------------------------------------------------------------------*/
+/*--------------------------------------------------------------------*
 
-/*
+ *   void ARP::ipin (void)
+ *
  * ARP processing for incoming IP packets
  *
  * This function should be called by the device driver when an IP
@@ -182,13 +185,10 @@ void ARP::update (byte * internet_address, byte * ethernet_address)
  * This function expects an IP packet with a prepended Ethernet header
  * in the uip_buf[] buffer, and the length of the packet in the global
  * variable uip_len.
- */
-
-/* Only insert/update an entry if the source IP address of the
+ *
+ * Only insert/update an entry if the source IP address of the
  * incoming IP packet comes from a host on the local network.
- */
-
-/*--------------------------------------------------------------------*/
+ *--------------------------------------------------------------------*/
 
 void ARP::ipin (void)
 
@@ -199,7 +199,7 @@ void ARP::ipin (void)
 	struct internet_header * internet_header = (struct internet_header *) (& internet_packet->internet_header);
 	if (internet.onsubnet (internet_header->source_address, internet.address.get (), internet.netmask.get ()))
 	{
-		ARP::update (internet_header->source_address, ethernet_header->osa);
+		ARP::update (internet_header->source_address, ethernet_header->source_address);
 	}
 	return;
 }
@@ -238,7 +238,7 @@ void ARP::in (void)
 	struct arp_header * arp_header = (struct arp_header *) (& arp_packet->arp_header);
 	if (uip_len < sizeof (* arp_packet))
 	{
-		Serial.println ("ARP packet too short");
+		std::cerr << "ARP packet too short" << std::endl;
 		uip_len = 0;
 		return;
 	}
@@ -246,27 +246,16 @@ void ARP::in (void)
 	switch (arp_header->opcode)
 	{
 	case htons (ARP_REQUEST):
-		Serial.println ("ARP_REQUEST");
-
-/* ARP request. If it asked for our address, we send out a
- * reply.
- */
-
+		std::cerr << "ARP_REQUEST" << std::endl;
 		if (! std::memcmp (arp_header->target_ipaddr, internet.address.get (), sizeof (arp_header->target_ipaddr)))
 		{
-			Serial.println ("Register host");
-
-/* First, we register the one who made the request in our ARP
- * table, since it is likely that we will do more communication
- * with this host in the future.
- */
-
+			std::cerr << "Register host" << std::endl;
 			ARP::update (arp_header->source_ipaddr, arp_header->source_hwaddr);
 			arp_header->opcode = htons (2);
 			std::memcpy (arp_header->target_hwaddr, arp_header->source_hwaddr, sizeof (arp_header->source_hwaddr));
 			std::memcpy (arp_header->source_hwaddr, uip_ethaddr, sizeof (arp_header->source_hwaddr));
-			std::memcpy (ethernet_header->osa, uip_ethaddr, sizeof (ethernet_header->osa));
-			std::memcpy (ethernet_header->oda, arp_header->target_hwaddr, sizeof (ethernet_header->oda));
+			std::memcpy (ethernet_header->source_address, uip_ethaddr, sizeof (ethernet_header->source_address));
+			std::memcpy (ethernet_header->target_address, arp_header->target_hwaddr, sizeof (ethernet_header->target_address));
 			std::memcpy (arp_header->target_ipaddr, arp_header->source_ipaddr, sizeof (arp_header->target_ipaddr));
 			std::memcpy (arp_header->source_ipaddr, uip_hostaddr, sizeof (arp_header->source_ipaddr));
 			ethernet_header->protocol = htons (ETHERTYPE_ARP);
@@ -274,7 +263,7 @@ void ARP::in (void)
 		}
 		break;
 	case htons (ARP_REPLY):
-		Serial.println ("ARP_REPLY");
+		std::cerr << "ARP_REPLY" << std::endl;
 
 /* ARP reply. We insert or update the ARP table if it was meant
  * for us.
@@ -286,7 +275,7 @@ void ARP::in (void)
 		}
 		break;
 	default: 
-		Serial.println ("ARP_ERROR");
+		std::cerr << "ARP_ERROR" << std::endl;
 		break;
 	}
 	return;
@@ -332,72 +321,47 @@ void ARP::out (void)
 	struct internet_packet * internet_packet = (struct internet_packet *) (& uip_buf);
 	struct internet_header * internet_header = (struct internet_header *) (& internet_packet->internet_header);
 	struct ethernet_header * ethernet_header = (struct ethernet_header *) (& uip_buf);
-
-/* Find the destination IP address in the ARP table and construct
- * the Ethernet header. If the destination IP addres isn't on the
- * local network, we use the default router's IP address instead.
- *
- * If not ARP table entry is found, we overwrite the original IP
- * packet with an ARP request for the IP address.
- */
-
-/* First check if destination is a local broadcast. */
-
-	if (! std::memcmp (& internet_header->target_address, internet.broadcast.get (), sizeof (internet_header->target_address)))
+	if (! std::memcmp (internet_header->target_address, internet.broadcast.get (), sizeof (internet_header->target_address)))
 	{
-		std::memcpy (ethernet_header->oda, ethernet.broadcast.get (), sizeof (ethernet_header->oda));
+		std::memcpy (ethernet_header->target_address, ethernet.broadcast.get (), sizeof (ethernet_header->target_address));
+		std::memcpy (ethernet_header->source_address, ethernet.address.get (), sizeof (ethernet_header->source_address));
+		ethernet_header->protocol = htons (ETHERTYPE_IP);
+		uip_len += sizeof (struct ethernet_header);
+		return;
+	}
+	if (internet.onsubnet (internet_header->target_address, internet.address.get (), internet.netmask.get ()))
+	{
+		std::memcpy (ipaddr, internet_header->target_address, sizeof (ipaddr));
 	}
 	else 
 	{
-		if (internet.onsubnet ((byte *) (& internet_header->target_address), internet.address.get (), internet.netmask.get ()))
+		std::memcpy (ipaddr, internet.gateway.get (), sizeof (ipaddr));
+	}
+	for (arpindex = 0; arpindex < SIZEOF (arptable); ++ arpindex)
+	{
+		arpentry = & arptable [arpindex];
+		if (!std::memcmp (arpentry->internet_address, ipaddr, sizeof (arpentry->internet_address)))
 		{
-			std::memcpy (ipaddr, & internet_header->target_address, sizeof (ipaddr));
-		}
-		else 
-		{
-			std::memcpy (ipaddr, internet.gateway.get (), sizeof (ipaddr));
-		}
-		for (arpindex = 0; arpindex < SIZEOF (arptable); ++ arpindex)
-		{
-			arpentry = & arptable [arpindex];
-			if (! std::memcmp (arpentry->internet_address, ipaddr, sizeof (arpentry->internet_address)))
-			{
-				break;
-			}
-		}
-		if (arpindex == SIZEOF (arptable))
-		{
-
-/* The destination address was not in our ARP table, so we
- * overwrite the IP packet with an ARP request.
- */
-
-			std::memset (ethernet_header->oda, 0xff, sizeof (ethernet_header->oda));
-			std::memcpy (ethernet_header->osa, ethernet.get (), sizeof (ethernet_header->osa));
-			ethernet_header->protocol = htons (ETHERTYPE_ARP);
-			std::memset (arp_header->target_hwaddr, 0x00, sizeof (arp_header->target_hwaddr));
-			std::memcpy (arp_header->source_hwaddr, ethernet.get (), sizeof (arp_header->source_hwaddr));
-			std::memcpy (arp_header->target_ipaddr, ipaddr, sizeof (arp_header->target_ipaddr));
-			std::memcpy (arp_header->source_ipaddr, internet.get (), sizeof (arp_header->source_ipaddr));
-			arp_header->opcode = htons (ARP_REQUEST);
-			arp_header->hardware_type = htons (ARP_HWTYPE_ETH);
-			arp_header->protocol_type = htons (ETHERTYPE_IP);
-			arp_header->hwaddrlen = ethernet.length;
-			arp_header->ipaddrlen = internet.length;
-
-// uip_appdata = & uip_buf [UIP_TCPIP_HLEN + UIP_LLH_LEN];
-
-			uip_len = sizeof (struct arp_packet);
+			std::memcpy (ethernet_header->target_address, arpentry->ethernet_address, sizeof (ethernet_header->target_address));
+			std::memcpy (ethernet_header->source_address, ethernet.address.get (), sizeof (ethernet_header->source_address));
+			ethernet_header->protocol = htons (ETHERTYPE_IP);
+			uip_len += sizeof (struct ethernet_header);
 			return;
 		}
-
-/* Build an ethernet header. */
-
-		std::memcpy (ethernet_header->oda, arpentry->ethernet_address, sizeof (ethernet_header->oda));
 	}
-	std::memcpy (ethernet_header->osa, ethernet.get (), sizeof (ethernet_header->osa));
-	ethernet_header->protocol = htons (ETHERTYPE_IP);
-	uip_len += sizeof (struct ethernet_header);
+	std::memcpy (ethernet_header->target_address, ethernet.broadcast.get (), sizeof (ethernet_header->target_address));
+	std::memcpy (ethernet_header->source_address, ethernet.address.get (), sizeof (ethernet_header->source_address));
+	ethernet_header->protocol = htons (ETHERTYPE_ARP);
+	std::memset (arp_header->target_hwaddr, 0x00, sizeof (arp_header->target_hwaddr));
+	std::memcpy (arp_header->source_hwaddr, ethernet.address.get (), sizeof (arp_header->source_hwaddr));
+	std::memcpy (arp_header->target_ipaddr, ipaddr, sizeof (arp_header->target_ipaddr));
+	std::memcpy (arp_header->source_ipaddr, internet.address.get (), sizeof (arp_header->source_ipaddr));
+	arp_header->opcode = htons (ARP_REQUEST);
+	arp_header->hardware_type = htons (ARP_HWTYPE_ETH);
+	arp_header->protocol_type = htons (ETHERTYPE_IP);
+	arp_header->hwaddrlen = ethernet.address.length;
+	arp_header->ipaddrlen = internet.address.length;
+	uip_len = sizeof (struct arp_packet);
 	return;
 }
 
@@ -417,10 +381,10 @@ static void PrintARPHeader (void * header, unsigned extent)
 	std::cerr << "hardware address length " << arp_header->hwaddrlen << std::endl;
 	std::cerr << "protocol address length " << arp_header->ipaddrlen << std::endl;
 	std::cerr << "opcode" << ntohs (arp_header->opcode) << std::endl;
-	std::cerr << "sender hardware address " << ethernet.copy (arp_header->source_hwaddr).string () << std::endl;
-	std::cerr << "sender protocol address " << internet.copy (arp_header->source_ipaddr).string () << std::endl; 
-	std::cerr << "target hardware address " << ethernet.copy (arp_header->target_hwaddr).string () << std::endl;
-	std::cerr << "target protocol address " << internet.copy (arp_header->target_ipaddr).string () << std::endl;
+	std::cerr << "sender hardware address " << ethernet.address.copy (arp_header->source_hwaddr).string () << std::endl;
+	std::cerr << "sender protocol address " << internet.address.copy (arp_header->source_ipaddr).string () << std::endl; 
+	std::cerr << "target hardware address " << ethernet.address.copy (arp_header->target_hwaddr).string () << std::endl;
+	std::cerr << "target protocol address " << internet.address.copy (arp_header->target_ipaddr).string () << std::endl;
 	return;
 }
 

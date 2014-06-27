@@ -35,7 +35,7 @@
  *  declare class data types;
  *--------------------------------------------------------------------*/
 
-typedef struct oInternet_header
+typedef struct internet_header
 
 {
 	byte version;
@@ -50,15 +50,15 @@ typedef struct oInternet_header
 	byte source_address [4];
 }
 
-oInternet_header;
-typedef struct oInternet_packet
+internet_header;
+typedef struct internet_packet
 
 {
-	struct oInternet_header oInternet_header;
+	struct internet_header internet_header;
 	byte body [1476];
 }
 
-oInternet_packet;
+internet_packet;
 
 /*====================================================================*
  *  declare class interface;

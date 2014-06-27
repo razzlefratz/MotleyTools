@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   oethernet.cpp - oethernet class definition;
+ *   oEthernetHeader.cpp - oEthernetHeader class definition;
  *
  *   implement a standard Ethernet header consisting of peer address,
  *   host address and ethertype; provide methods to encode and decode
@@ -48,14 +48,14 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/oethernet.hpp"
+#include "../classes/oEthernetHeader.hpp"
 #include "../classes/omemory.hpp"
 
 /*====================================================================*
  *   class constants;
  *--------------------------------------------------------------------*/
 
-byte const oethernet::BroadcastAddress [ETHER_ADDR_LEN] =
+byte const oEthernetHeader::BroadcastAddress [ETHER_ADDR_LEN] =
 
 {
 	0xFF,
@@ -74,7 +74,7 @@ byte const oethernet::BroadcastAddress [ETHER_ADDR_LEN] =
  *
  *--------------------------------------------------------------------*/
 
-size_t oethernet::HeaderLength (void) const
+size_t oEthernetHeader::HeaderLength (void) const
 
 {
 	return (sizeof (this->mpeeraddr) +  sizeof (this->mhostaddr) +  sizeof (this->mprotocol));
@@ -82,50 +82,50 @@ size_t oethernet::HeaderLength (void) const
 
 /*====================================================================*
  *
- *   void * ExportHeader (void * memory) const;
+ *   void * getHeader (void * memory) const;
  *
  *   encode external memory with an Ethernet header and return the
  *   address of the next unencoded memory byte;
  *
  *--------------------------------------------------------------------*/
 
-void * oethernet::ExportHeader (void * memory) const
+void * oEthernetHeader::getHeader (void * memory) const
 
 {
-	memory = oethernet::ExportPeerAddress (memory);
-	memory = oethernet::ExportHostAddress (memory);
-	memory = oethernet::ExportProtocol (memory);
+	memory = oEthernetHeader::getTargetAddress (memory);
+	memory = oEthernetHeader::getSourceAddress (memory);
+	memory = oEthernetHeader::getProtocol (memory);
 	return (memory);
 }
 
 /*====================================================================*
  *
- *   void const * ImportHeader (void * memory);
+ *   void const * SetHeader (void * memory);
  *
  *   decode external memory containing an Ethernet header and return
  *   the address of the next undecoded memory byte;
  *
  *--------------------------------------------------------------------*/
 
-void const * oethernet::ImportHeader (void const * memory)
+void const * oEthernetHeader::SetHeader (void const * memory)
 
 {
-	memory = oethernet::ImportPeerAddress (memory);
-	memory = oethernet::ImportHostAddress (memory);
-	memory = oethernet::ImportProtocol (memory);
+	memory = oEthernetHeader::SetTargetAddress (memory);
+	memory = oEthernetHeader::SetSourceAddress (memory);
+	memory = oEthernetHeader::SetProtocol (memory);
 	return (memory);
 }
 
 /*====================================================================*
  *
- *   void * ExportPeerAddress (void * memory) const;
+ *   void * getTargetAddress (void * memory) const;
  *
  *   encode external memory with the peer hardware address and return
  *   the address of the next unencoded memory byte;
  *
  *--------------------------------------------------------------------*/
 
-void * oethernet::ExportPeerAddress (void * memory) const
+void * oEthernetHeader::getTargetAddress (void * memory) const
 
 {
 	memory = omemory::encode (memory, this->mpeeraddr, sizeof (this->mpeeraddr));
@@ -134,14 +134,14 @@ void * oethernet::ExportPeerAddress (void * memory) const
 
 /*====================================================================*
  *
- *   void * ExportHostAddress (void * memory) const;
+ *   void * getSourceAddress (void * memory) const;
  *
  *   encode external memory with the host hardware address and return
  *   the address of the next unencoded memory byte;
  *
  *--------------------------------------------------------------------*/
 
-void * oethernet::ExportHostAddress (void * memory) const
+void * oEthernetHeader::getSourceAddress (void * memory) const
 
 {
 	memory = omemory::encode (memory, this->mhostaddr, sizeof (this->mhostaddr));
@@ -150,14 +150,14 @@ void * oethernet::ExportHostAddress (void * memory) const
 
 /*====================================================================*
  *
- *   void * oethernet::ExportProtocol (void * memory) const;
+ *   void * oEthernetHeader::getProtocol (void * memory) const;
  *
  *   encode external memory with the Ethernet protocol and return
  *   the address of the next unencoded memory byte;
  *
  *--------------------------------------------------------------------*/
 
-void * oethernet::ExportProtocol (void * memory) const
+void * oEthernetHeader::getProtocol (void * memory) const
 
 {
 	memory = omemory::encode (memory, & this->mprotocol, sizeof (this->mprotocol));
@@ -166,14 +166,14 @@ void * oethernet::ExportProtocol (void * memory) const
 
 /*====================================================================*
  *
- *   void const * ImportPeerAddress (void const * memory);
+ *   void const * SetTargetAddress (void const * memory);
  *
  *   decode external memory containing the peer hardware address and
  *   return the address of the next undecoded byte;
  *
  *--------------------------------------------------------------------*/
 
-void const * oethernet::ImportPeerAddress (void const * memory)
+void const * oEthernetHeader::SetTargetAddress (void const * memory)
 
 {
 	memory = omemory::decode (memory, this->mpeeraddr, sizeof (this->mpeeraddr));
@@ -182,14 +182,14 @@ void const * oethernet::ImportPeerAddress (void const * memory)
 
 /*====================================================================*
  *
- *   void const * ImportHostAddress (void const * memory);
+ *   void const * SetSourceAddress (void const * memory);
  *
  *   decode external memory containing the host hardware address and
  *   return the address of the next undecoded byte;
  *
  *--------------------------------------------------------------------*/
 
-void const * oethernet::ImportHostAddress (void const * memory)
+void const * oEthernetHeader::SetSourceAddress (void const * memory)
 
 {
 	memory = omemory::decode (memory, this->mhostaddr, sizeof (this->mhostaddr));
@@ -198,14 +198,14 @@ void const * oethernet::ImportHostAddress (void const * memory)
 
 /*====================================================================*
  *
- *   void const * ImportProtocol (void const * memory);
+ *   void const * SetProtocol (void const * memory);
  *
  *   decode external memory containing the Ethernet protocol and
  *   return the address of the next undecoded byte;
  *
  *--------------------------------------------------------------------*/
 
-void const * oethernet::ImportProtocol (void const * memory)
+void const * oEthernetHeader::SetProtocol (void const * memory)
 
 {
 	memory = omemory::decode (memory, & this->mprotocol, sizeof (this->mprotocol));
@@ -214,13 +214,13 @@ void const * oethernet::ImportProtocol (void const * memory)
 
 /*====================================================================*
  *
- *   byte const * PeerAddress (void) const;
+ *   byte const * TargetAddress (void) const;
  *
  *   return the binary peer address location;
  *
  *--------------------------------------------------------------------*/
 
-byte const * oethernet::PeerAddress (void) const
+byte const * oEthernetHeader::TargetAddress (void) const
 
 {
 	return (this->mpeeraddr);
@@ -228,13 +228,13 @@ byte const * oethernet::PeerAddress (void) const
 
 /*====================================================================*
  *
- *   byte const * HostAddress (void) const;
+ *   byte const * SourceAddress (void) const;
  *
  *   return the binary host address location;
  *
  *--------------------------------------------------------------------*/
 
-byte const * oethernet::HostAddress (void) const
+byte const * oEthernetHeader::SourceAddress (void) const
 
 {
 	return (this->mhostaddr);
@@ -242,7 +242,7 @@ byte const * oethernet::HostAddress (void) const
 
 /*====================================================================*
  *
- *   uint16_t oethernet::Protocol (void) const;
+ *   uint16_t oEthernetHeader::Protocol (void) const;
  *
  *   return the Ethernet protocol as an integer in host byte order;
  *
@@ -252,7 +252,7 @@ byte const * oethernet::HostAddress (void) const
  *
  *--------------------------------------------------------------------*/
 
-uint16_t oethernet::Protocol (void) const
+uint16_t oEthernetHeader::Protocol (void) const
 
 {
 	return (ntohs (this->mprotocol));
@@ -260,7 +260,7 @@ uint16_t oethernet::Protocol (void) const
 
 /*====================================================================*
  *
- *   oethernet & SetProtocol (uint16_t protocol);
+ *   oEthernetHeader & SetProtocol (uint16_t protocol);
  *
  *   accept a new Ethernet protocol specified as an integer in host
  *   byte order;
@@ -271,7 +271,7 @@ uint16_t oethernet::Protocol (void) const
  *
  *--------------------------------------------------------------------*/
 
-oethernet & oethernet::SetProtocol (uint16_t protocol)
+oEthernetHeader & oEthernetHeader::SetProtocol (uint16_t protocol)
 
 {
 	this->mprotocol = htons (protocol);
@@ -280,13 +280,13 @@ oethernet & oethernet::SetProtocol (uint16_t protocol)
 
 /*====================================================================*
  *
- *   char const * PeerAddressString (void) const;
+ *   char const * TargetAddressString (void) const;
  *
  *   return the peer address string location;
  *
  *--------------------------------------------------------------------*/
 
-char const * oethernet::PeerAddressString (void) const
+char const * oEthernetHeader::TargetAddressString (void) const
 
 {
 	static char buffer [sizeof (this->mpeeraddr) * 3];
@@ -296,13 +296,13 @@ char const * oethernet::PeerAddressString (void) const
 
 /*====================================================================*
  *
- *   char const * HostAddressString (void) const;
+ *   char const * SourceAddressString (void) const;
  *
  *   return the host address string location;
  *
  *--------------------------------------------------------------------*/
 
-char const * oethernet::HostAddressString (void) const
+char const * oEthernetHeader::SourceAddressString (void) const
 
 {
 	static char buffer [sizeof (this->mhostaddr) * 3];
@@ -318,7 +318,7 @@ char const * oethernet::HostAddressString (void) const
  *
  *--------------------------------------------------------------------*/
 
-char const * oethernet::ProtocolString (void) const
+char const * oEthernetHeader::ProtocolString (void) const
 
 {
 	static char buffer [sizeof (this->mprotocol) * 3];
@@ -328,32 +328,32 @@ char const * oethernet::ProtocolString (void) const
 
 /*====================================================================*
  *
- *   oethernet & Print ();
+ *   oEthernetHeader & Print ();
  *
  *   print peer address, host address and ethertype on stdout in hex
  *   format; return the object instance address;
  *
  *--------------------------------------------------------------------*/
 
-oethernet & oethernet::Print ()
+oEthernetHeader & oEthernetHeader::Print ()
 
 {
-	std::cerr << oethernet::PeerAddressString () << " ";
-	std::cerr << oethernet::HostAddressString () << " ";
-	std::cerr << oethernet::ProtocolString () << std::endl;
+	std::cerr << oEthernetHeader::TargetAddressString () << " ";
+	std::cerr << oEthernetHeader::SourceAddressString () << " ";
+	std::cerr << oEthernetHeader::ProtocolString () << std::endl;
 	return (* this);
 }
 
 /*====================================================================*
  *
- *   oethernet (uint16_t protocol);
+ *   oEthernetHeader (uint16_t protocol);
  *
  *   clear peer and host hardware addresses; set protocol to default
  *   in network byte order;
  *
  *--------------------------------------------------------------------*/
 
-oethernet::oethernet (uint16_t protocol)
+oEthernetHeader::oEthernetHeader (uint16_t protocol)
 
 {
 	std::memset (this->mpeeraddr, 0, sizeof (this->mpeeraddr));
@@ -364,14 +364,14 @@ oethernet::oethernet (uint16_t protocol)
 
 /*====================================================================*
  *
- *   oethernet (void);
+ *   oEthernetHeader (void);
  *
  *   clear peer and host hardware addresses; set protocol to default
  *   value in network byte order;
  *
  *--------------------------------------------------------------------*/
 
-oethernet::oethernet (void)
+oEthernetHeader::oEthernetHeader (void)
 
 {
 	std::memset (this->mpeeraddr, 0, sizeof (this->mpeeraddr));
@@ -382,11 +382,11 @@ oethernet::oethernet (void)
 
 /*====================================================================*
  *
- *   ~oethernet (void);
+ *   ~oEthernetHeader (void);
  *
  *--------------------------------------------------------------------*/
 
-oethernet::~ oethernet (void)
+oEthernetHeader::~ oEthernetHeader (void)
 
 {
 	return;

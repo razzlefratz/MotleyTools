@@ -53,23 +53,23 @@
  *  declare class data types;
  *--------------------------------------------------------------------*/
 
-typedef struct oEthernet_header
+typedef struct ethernet_header
 
 {
-	byte oda [6];
-	byte osa [6];
+	byte target_address [6];
+	byte source_address [6];
 	uint16_t protocol;
 }
 
-oEthernet_header;
-typedef struct oEthernet_frame
+ethernet_header;
+typedef struct ethernet_frame
 
 {
-	struct oEthernet_header header;
+	struct ethernet_header header;
 	byte body [1500];
 }
 
-oEthernet_frame;
+ethernet_frame;
 
 /*====================================================================*
  *  declare class interface;

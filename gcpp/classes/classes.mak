@@ -91,7 +91,7 @@ oenclose.hpp: ocollect.hpp stdafx.hpp
 oerror.hpp: stdafx.hpp types.h
 oescape.hpp: oascii.hpp stdafx.hpp
 oescape.o: oescape.cpp chrlib.h oescape.hpp
-oethernet.hpp: stdafx.hpp
+oEthernetHeader.hpp: stdafx.hpp
 ofileopen.hpp: oerror.hpp ofilespec.hpp stdafx.hpp
 ofileopen.o: ofileopen.cpp ofileopen.hpp files.h
 ofileset.hpp: ocontext.hpp otext.hpp stdafx.hpp

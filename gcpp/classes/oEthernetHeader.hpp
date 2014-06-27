@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   oethernet.hpp - oethernet class definitions and declaration;
+ *   oEthernetHeader.hpp - oEthernetHeader class definitions and declaration;
  *
  *   implement a standard Ethernet header consisting of peer address,
  *   host address and ethertype; provide methods to encode and decode
@@ -53,30 +53,30 @@ typedef unsigned char byte;
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) oethernet
+class __declspec (dllexport) oEthernetHeader
 
 {
 public: 
-	oethernet (void);
-	oethernet (uint16_t protocol);
-	virtual ~ oethernet (void);
+	oEthernetHeader (void);
+	oEthernetHeader (uint16_t protocol);
+	virtual ~ oEthernetHeader (void);
 	size_t HeaderLength (void) const;
-	byte const * HostAddress (void) const;
-	byte const * PeerAddress (void) const;
+	byte const * SourceAddress (void) const;
+	byte const * TargetAddress (void) const;
 	uint16_t Protocol (void) const;
-	void * ExportHeader (void * memory) const;
-	void * ExportPeerAddress (void * memory) const;
-	void * ExportHostAddress (void * memory) const;
-	void * ExportProtocol (void * memory) const;
-	void const * ImportHeader (void const * memory);
-	void const * ImportPeerAddress (void const * memory);
-	void const * ImportHostAddress (void const * memory);
-	void const * ImportProtocol (void const * memory);
-	char const * HostAddressString (void) const;
-	char const * PeerAddressString (void) const;
+	void * getHeader (void * memory) const;
+	void * getTargetAddress (void * memory) const;
+	void * getSourceAddress (void * memory) const;
+	void * getProtocol (void * memory) const;
+	void const * SetHeader (void const * memory);
+	void const * SetTargetAddress (void const * memory);
+	void const * SetSourceAddress (void const * memory);
+	void const * SetProtocol (void const * memory);
+	char const * SourceAddressString (void) const;
+	char const * TargetAddressString (void) const;
 	char const * ProtocolString (void) const;
-	oethernet & SetProtocol (uint16_t);
-	oethernet & Print ();
+	oEthernetHeader & SetProtocol (uint16_t);
+	oEthernetHeader & Print ();
 	static byte const BroadcastAddress [ETHER_ADDR_LEN];
 private: 
 	byte mpeeraddr [ETHER_ADDR_LEN];
