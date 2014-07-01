@@ -40,13 +40,13 @@ class oInternetAddress
 {
 public: 
 	oInternetAddress ();
-	virtual ~ oInternetAddress ();
+	~ oInternetAddress ();
+	static const unsigned length;
 	oInternetAddress & set (byte);
 	oInternetAddress & set (byte, byte, byte, byte);
-	oInternetAddress & copy (const byte *);
-	const byte * get () const;
+	oInternetAddress & set (const byte *);
+	const byte * binary () const;
         const char * string ();
-	static const unsigned length;
 private: 
 	byte * maddress;
 };

@@ -40,13 +40,13 @@ class oEthernetAddress
 {
 public: 
 	oEthernetAddress ();
-	virtual ~ oEthernetAddress ();
+	~ oEthernetAddress ();
+	static const unsigned length;
 	oEthernetAddress & set (byte);
 	oEthernetAddress & set (byte, byte, byte, byte, byte, byte);
-	oEthernetAddress & copy (const byte *);
-	const byte * get () const;
+	oEthernetAddress & set (const byte *);
+	const byte * binary () const;
         const char * string ();
-	static const unsigned length;
 private: 
 	byte * maddress;
 };

@@ -74,28 +74,28 @@ oInternetAddress & oInternetAddress::set (byte byte3, byte byte2, byte byte1, by
 
 /*====================================================================*
  *
- *   oInternetAddress & copy (const byte * address)
+ *   oInternetAddress & set (const byte * memory)
  *
  *   copy the current address from another location;
  *
  *--------------------------------------------------------------------*/
 
-oInternetAddress & oInternetAddress::copy (const byte * address)
+oInternetAddress & oInternetAddress::set (const byte * memory)
 
 {
-	memcpy (this->maddress, address, sizeof (this->maddress));
+	memcpy (this->maddress, memory, sizeof (this->maddress));
 	return (* this);
 }
 
 /*====================================================================*
  *
- *   const byte * get () const;
+ *   const byte * binary () const;
  *
- *   return the memory location of the current oInternetAddress address;
+ *   return the memory location of the current internet address;
  *
  *--------------------------------------------------------------------*/
 
-const byte * oInternetAddress::get () const
+const byte * oInternetAddress::binary () const
 
 {
 	return ((const byte *) (this->maddress));

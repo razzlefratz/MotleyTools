@@ -76,28 +76,28 @@ oEthernetAddress & oEthernetAddress::set (byte byte5, byte byte4, byte byte3, by
 
 /*====================================================================*
  *
- *   oEthernetAddress & copy (const byte * address)
+ *   oEthernetAddress & set (const byte * memory)
  *
  *   copy the current address from another location;
  *
  *--------------------------------------------------------------------*/
 
-oEthernetAddress & oEthernetAddress::copy (const byte * address)
+oEthernetAddress & oEthernetAddress::set (const byte * memory)
 
 {
-	std::memcpy (this->maddress, address, sizeof (this->maddress));
+	std::memcpy (this->maddress, memory, sizeof (this->maddress));
 	return (* this);
 }
 
 /*====================================================================*
  *
- *   const byte * get () const;
+ *   const byte * binary () const;
  *
- *   return the memory location of the current oEthernetAddress address;
+ *   return the memory location of the current ethernet address;
  *
  *--------------------------------------------------------------------*/
 
-const byte * oEthernetAddress::get () const
+const byte * oEthernetAddress::binary () const
 
 {
 	return ((const byte *) (this->maddress));
