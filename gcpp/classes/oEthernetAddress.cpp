@@ -85,7 +85,7 @@ oEthernetAddress & oEthernetAddress::set (byte byte5, byte byte4, byte byte3, by
 oEthernetAddress & oEthernetAddress::set (const byte * memory)
 
 {
-	std::memcpy (this->maddress, memory, sizeof (this->maddress));
+	std::memcpy (this->maddress, memory, oEthernetAddress::length);
 	return (* this);
 }
 

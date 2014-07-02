@@ -83,7 +83,7 @@ oInternetAddress & oInternetAddress::set (byte byte3, byte byte2, byte byte1, by
 oInternetAddress & oInternetAddress::set (const byte * memory)
 
 {
-	memcpy (this->maddress, memory, sizeof (this->maddress));
+	memcpy (this->maddress, memory, oInternetAddress::length);
 	return (* this);
 }
 
