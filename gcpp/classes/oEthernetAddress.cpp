@@ -121,10 +121,10 @@ const char * oEthernetAddress::string ()
 	unsigned octet = 0;
 	while (octet < oEthernetAddress::length)
 	{
-		byte value = this->maddress [octet];
+		byte value = this->maddress [octet++];
 		* bp++ = digits [(value >> 4) & 0x0F];
 		* bp++ = digits [(value >> 0) & 0x0F];
-		if (++octet < oEthernetAddress::length)
+		if (octet < oEthernetAddress::length)
 		{
 			* bp++ = ':';
 		}
