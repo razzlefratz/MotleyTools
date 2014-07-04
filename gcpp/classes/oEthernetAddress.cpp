@@ -68,7 +68,7 @@ oEthernetAddress & oEthernetAddress::set (byte byte5, byte byte4, byte byte3, by
 	this->maddress [0] = byte5;
 	this->maddress [1] = byte4;
 	this->maddress [2] = byte3;
-	this->maddress [3] = byte3;
+	this->maddress [3] = byte2;
 	this->maddress [4] = byte1;
 	this->maddress [5] = byte0;
 	return (* this);
