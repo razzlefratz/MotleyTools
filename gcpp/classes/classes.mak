@@ -34,7 +34,7 @@ ocatalog.o: ocatalog.cpp ocatalog.hpp
 ocblock.hpp: ocollect.hpp stdafx.hpp
 ocgotowords.hpp: okeywords.hpp stdafx.hpp
 ocgotowords.o: ocgotowords.cpp ocgotowords.hpp okeyword.hpp stdafx.hpp
-ochannel.hpp: oethernet.hpp oflagword.hpp ointerface.hpp stdafx.hpp
+oconnetc.hpp: oethernet.hpp oflagword.hpp ointerface.hpp stdafx.hpp
 ochrclass.o: ochrclass.cpp ochrclass.hpp
 ochrhex.hpp: stdafx.hpp
 ochrhex.o: ochrhex.cpp ochrhex.hpp

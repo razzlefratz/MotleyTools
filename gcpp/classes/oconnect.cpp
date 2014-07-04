@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   ochannel.cpp - ochannel class definition;
+ *   oconnect.cpp - oconnect class definition;
  *
  *   raw Ethernet packet I/O channel managment;
  *
@@ -10,8 +10,8 @@
  *
  *--------------------------------------------------------------------*/
 
-#ifndef oCHANNEL_SOURCE
-#define oCHANNEL_SOURCE
+#ifndef oCONNECT_SOURCE
+#define oCONNECT_SOURCE
 
 /*====================================================================*
  *   system header files;
@@ -58,7 +58,7 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/ochannel.hpp"
+#include "../classes/oconnect.hpp"
 #include "../classes/omemory.hpp"
 #include "../classes/oerror.hpp"
 
@@ -70,7 +70,7 @@
  *
  *--------------------------------------------------------------------*/
 
-signed ochannel::Descriptor () const
+signed oconnect::Descriptor () const
 
 {
 	return (this->mfd);
@@ -84,7 +84,7 @@ signed ochannel::Descriptor () const
  *
  *--------------------------------------------------------------------*/
 
-unsigned ochannel::Timer () const
+unsigned oconnect::Timer () const
 
 {
 	return (this->mtimer);
@@ -92,13 +92,13 @@ unsigned ochannel::Timer () const
 
 /*====================================================================*
  *
- *   ochannel & SetTimer (unsigned timer)
+ *   oconnect & SetTimer (unsigned timer)
  *
  *   set the channel timeout in milliseconds;
  *
  *--------------------------------------------------------------------*/
 
-ochannel & ochannel::SetTimer (unsigned timer)
+oconnect & oconnect::SetTimer (unsigned timer)
 
 {
 	this->mtimer = timer;
@@ -107,31 +107,31 @@ ochannel & ochannel::SetTimer (unsigned timer)
 
 /*====================================================================*
  *
- *   ochannel & Open (ointerface & interface)
+ *   oconnect & Open (ointerface & interface)
  *
  *--------------------------------------------------------------------*/
 
-ochannel & ochannel::Open (unsigned index)
+oconnect & oconnect::Open (unsigned index)
 
 {
 	ointerface::SetIndex (index);
-	return (ochannel::Open ());
+	return (oconnect::Open ());
 }
 
-ochannel & ochannel::Open (char const * device)
+oconnect & oconnect::Open (char const * device)
 
 {
 	ointerface::SetName (device);
-	return (ochannel::Open ());
+	return (oconnect::Open ());
 }
 
 /*====================================================================*
  *
- *   ochannel & Open ()
+ *   oconnect & Open ()
  *
  *--------------------------------------------------------------------*/
 
-ochannel & ochannel::Open ()
+oconnect & oconnect::Open ()
 
 {
 
@@ -203,7 +203,7 @@ ochannel & ochannel::Open ()
 			BPF_JMP +  BPF_JEQ +  BPF_K,
 			0,
 			13,
-			ntohs (oCHANNEL_ETHERTYPE)
+			ntohs (oCONNECT_ETHERTYPE)
 		},
 		{
 			BPF_LD +  BPF_B +  BPF_ABS,
@@ -291,13 +291,13 @@ ochannel & ochannel::Open ()
 		}
 	};
 	struct bpf_program bpf_program;
-	char filename [sizeof (oCHANNEL_BPFDEVICE)];
+	char filename [sizeof (oCONNECT_BPFDEVICE)];
 	const uint8_t * hostaddr = ointerface::HostAddress ();
 	unsigned count;
 	unsigned state;
 	for (count = 0; count < 100; count++)
 	{
-		std::snprintf (filename, sizeof (filename), oCHANNEL_BPFDEVICE, count);
+		std::snprintf (filename, sizeof (filename), oCONNECT_BPFDEVICE, count);
 		if ((this->mfd = ::open (filename, O_RDWR)) != -1)
 		{
 			break;
@@ -433,10 +433,10 @@ ochannel & ochannel::Open ()
  *
  *--------------------------------------------------------------------*/
 
-signed ochannel::SendPacket (void const * memory, signed extent)
+signed oconnect::SendPacket (void const * memory, signed extent)
 
 {
-	if (this->anyset (oCHANNEL_FLAG_VERBOSE))
+	if (this->anyset (oCONNECT_FLAG_VERBOSE))
 	{
 		omemory::hexdump (memory, 0, extent, & std::cout);
 	}
@@ -483,7 +483,7 @@ signed ochannel::SendPacket (void const * memory, signed extent)
  *
  *--------------------------------------------------------------------*/
 
-signed ochannel::ReadPacket (void * memory, signed extent)
+signed oconnect::ReadPacket (void * memory, signed extent)
 
 {
 
@@ -510,7 +510,7 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 			oerror::error (0, errno, "recvfrom");
 			return (-1);
 		}
-		if (this->anyset (oCHANNEL_FLAG_VERBOSE))
+		if (this->anyset (oCONNECT_FLAG_VERBOSE))
 		{
 			omemory::hexdump (memory, 0, extent, & std::cout);
 		}
@@ -533,7 +533,7 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 	{
 		extent = bpf_packet->bh_caplen;
 		std::memcpy (memory, buffer +  bpf_packet->bh_hdrlen, bpf_packet->bh_caplen);
-		if (this->anyset (oCHANNEL_FLAG_VERBOSE))
+		if (this->anyset (oCONNECT_FLAG_VERBOSE))
 		{
 			omemory::hexdump (memory, 0, extent, & std::cout);
 		}
@@ -563,7 +563,7 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 			oerror::error (0, errno, "recvfrom");
 			return (-1);
 		}
-		if (this->anyset (oCHANNEL_FLAG_VERBOSE))
+		if (this->anyset (oCONNECT_FLAG_VERBOSE))
 		{
 			omemory::hexdump (memory, 0, extent, & std::cout);
 		}
@@ -588,13 +588,13 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 		{
 			std::memcpy (memory, data, header->caplen);
 			extent = header->caplen;
-			if (this->anyset (oCHANNEL_FLAG_VERBOSE))
+			if (this->anyset (oCONNECT_FLAG_VERBOSE))
 			{
 				omemory::hexdump (memory, 0, extent, & std::cout);
 			}
 			return (extent);
 		}
-		elapsed += oCHANNEL_TIMEOUT;
+		elapsed += oCONNECT_TIMEOUT;
 	}
 	while (elapsed < this->mtimer);
 
@@ -625,7 +625,7 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 		}
 		std::memcpy (memory, data, header->caplen);
 		extent = header->caplen;
-		if (this->anyset (oCHANNEL_FLAG_VERBOSE))
+		if (this->anyset (oCONNECT_FLAG_VERBOSE))
 		{
 			omemory::hexdump (memory, 0, extent, & std::cout);
 		}
@@ -641,11 +641,11 @@ signed ochannel::ReadPacket (void * memory, signed extent)
 
 /*====================================================================*
  *
- *   ochannel & Close () ;
+ *   oconnect & Close () ;
  *
  *--------------------------------------------------------------------*/
 
-ochannel & ochannel::Close ()
+oconnect & oconnect::Close ()
 
 {
 
@@ -664,11 +664,11 @@ ochannel & ochannel::Close ()
 
 /*====================================================================*
  *
- *   ochannel & Print();
+ *   oconnect & Print();
  *
  *--------------------------------------------------------------------*/
 
-ochannel & ochannel::Print ()
+oconnect & oconnect::Print ()
 
 {
 	ointerface::Print ();
@@ -678,31 +678,31 @@ ochannel & ochannel::Print ()
 
 /*====================================================================*
  *
- *   ochannel ()
+ *   oconnect ()
  *
  *--------------------------------------------------------------------*/
 
-ochannel::ochannel ()
+oconnect::oconnect ()
 
 {
 	oEthernetAddress ethernet;
 	oethernet::SetPeerAddress (ethernet.peer.binary ());
 	oethernet::SetHostAddress (ethernet.host.binary ());
 	oethernet::SetProtocol (ethernet.protocol());
-	this->mtimer = oCHANNEL_TIMEOUT;
+	this->mtimer = oCONNECT_TIMEOUT;
 	return;
 }
 
 /*====================================================================*
  *
- *   ~ochannel ()
+ *   ~oconnect ()
  *
  *--------------------------------------------------------------------*/
 
-ochannel::~ ochannel ()
+oconnect::~ oconnect ()
 
 {
-	ochannel::Close ();
+	oconnect::Close ();
 	return;
 }
 

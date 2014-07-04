@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   ochannel.hpp - interface for the ochannel class
+ *   oconnect.hpp - interface for the oconnect class
  *
  *   raw Ethernet packet I/O channel managment;
  *
@@ -10,8 +10,8 @@
  *
  *--------------------------------------------------------------------*/
 
-#ifndef oCHANNEL_HEADER
-#define oCHANNEL_HEADER
+#ifndef oCONNECT_HEADER
+#define oCONNECT_HEADER
 
 /*====================================================================*
  *  system header files;
@@ -48,45 +48,45 @@
  *   class constants;
  *--------------------------------------------------------------------*/
 
-#define oCHANNEL_FLAG_VERBOSE (1 << 0)
-#define oCHANNEL_FLAG_SILENCE (1 << 1)
-#define oCHANNEL_FLAG_WARNING (1 << 2)
-#define oCHANNEL_FLAG_SUCCESS (1 << 3)
-#define oCHANNEL_FLAG_FAILURE (1 << 4)
-#define oCHANNEL_FLAG_UPDATE_TARGET (1 << 5)
-#define oCHANNEL_FLAG_UPDATE_SOURCE (1 << 6)
-#define oCHANNEL_FLAG_LISTEN (1 << 7)
+#define oCONNECT_FLAG_VERBOSE (1 << 0)
+#define oCONNECT_FLAG_SILENCE (1 << 1)
+#define oCONNECT_FLAG_WARNING (1 << 2)
+#define oCONNECT_FLAG_SUCCESS (1 << 3)
+#define oCONNECT_FLAG_FAILURE (1 << 4)
+#define oCONNECT_FLAG_UPDATE_TARGET (1 << 5)
+#define oCONNECT_FLAG_UPDATE_SOURCE (1 << 6)
+#define oCONNECT_FLAG_LISTEN (1 << 7)
 
-#define oCHANNEL_ETHERTYPE 0x88E1
-#define oCHANNEL_BPFDEVICE "/dev/bpf%d"
-#define oCHANNEL_TIMEOUT 100
-#define oCHANNEL_BAILOUT 0
-#define oCHANNEL_OPTIONS 0
+#define oCONNECT_ETHERTYPE 0x88E1
+#define oCONNECT_BPFDEVICE "/dev/bpf%d"
+#define oCONNECT_TIMEOUT 100
+#define oCONNECT_BAILOUT 0
+#define oCONNECT_OPTIONS 0
 
-#define oCHANNEL_CANTREAD "Read timeout or network error"
-#define oCHANNEL_CANTSEND "Send timeout or network error"
+#define oCONNECT_CANTREAD "Read timeout or network error"
+#define oCONNECT_CANTSEND "Send timeout or network error"
 
 /*====================================================================*
  *   class declaration;
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ochannel: public oflagword, public ointerface, public oethernet
+class __declspec (dllexport) oconnect: public oflagword, public ointerface, public oethernet
 
 {
 public: 
-	ochannel ();
-	ochannel (char const * name);
-	virtual ~ ochannel ();
+	oconnect ();
+	oconnect (char const * name);
+	virtual ~ oconnect ();
 	signed Descriptor () const;
 	unsigned Timer () const;
-	ochannel & SetTimer (unsigned);
-	ochannel & Open ();
-	ochannel & Open (unsigned);
-	ochannel & Open (char const *);
+	oconnect & SetTimer (unsigned);
+	oconnect & Open ();
+	oconnect & Open (unsigned);
+	oconnect & Open (char const *);
 	signed SendPacket (void const * memory, signed extent);
 	signed ReadPacket (void * memory, signed extent);
-	ochannel & Close ();
-	ochannel & Print ();
+	oconnect & Close ();
+	oconnect & Print ();
 private: 
 	signed mfd;
 	unsigned mtimer;
