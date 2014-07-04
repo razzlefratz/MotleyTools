@@ -73,15 +73,15 @@ class ARP
 public: 
 	ARP ();
 	~ ARP ();
-        void ipin (void);
-	void in (void);
-	void out ();
 	void timer ();
+	unsigned in (const void * memory, unsigned extent);
+	unsigned out (const void * memory, unsigned extent);
+	void ipin (const void * memory, unsigned extent);
 	void update (const byte * internet_address, const byte * ethernet_address);
-	static void PrintARPPacket (void * memory, unsigned extent);
-	static void PrintARPHeader (void * memory, unsigned extent);
-private:
-      bool empty (void * memory, unsigned extent);
+	static void PrintARPPacket (const void * memory, unsigned extent);
+	static void PrintARPHeader (const void * memory, unsigned extent);
+private: 
+	bool empty (const void * memory, unsigned extent);
 };
 
 /*====================================================================*
