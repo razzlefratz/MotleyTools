@@ -41,6 +41,29 @@ char omemory::chr_nonprint = '.';
 
 /*====================================================================*
  *
+ *   boot only (const void * memory, size_t extent, byte value);
+ *
+ *   return true of the specified memory region contains only one 
+ *   byte value;
+ *
+ *--------------------------------------------------------------------*/
+
+bool omemory::only (const void * memory, size_t extent, byte value)
+
+{
+	byte * offset = (byte *) (memory);
+	while (extent--)
+	{
+		if (* offset++ != value)
+		{
+			return (false);
+		}
+	}
+	return (true);
+}
+
+/*====================================================================*
+ *
  *   void endian (void * memory, size_t extent);
  *
  *   reverse the order of bytes within a multi-byte memory region;
