@@ -42,7 +42,6 @@
 #include "../classes/stdafx.hpp"
 #include "../classes/oflagword.hpp"
 #include "../classes/ointerface.hpp"
-#include "../classes/oethernet.hpp"
 
 /*====================================================================*
  *   class constants;

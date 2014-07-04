@@ -59,6 +59,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/oconnect.hpp"
+#include "../classes/oethernet.hpp"
 #include "../classes/omemory.hpp"
 #include "../classes/oerror.hpp"
 
@@ -686,9 +687,9 @@ oconnect::oconnect ()
 
 {
 	oEthernetAddress ethernet;
-	oethernet::SetPeerAddress (ethernet.peer.binary ());
-	oethernet::SetHostAddress (ethernet.host.binary ());
-	oethernet::SetProtocol (ethernet.protocol());
+	oEthernetHeader::SetPeerAddress (ethernet.peer.binary ());
+	oEthernetHeader::SetHostAddress (ethernet.host.binary ());
+	oEthernetHeader::SetProtocol (ethernet.protocol());
 	this->mtimer = oCONNECT_TIMEOUT;
 	return;
 }
