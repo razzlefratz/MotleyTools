@@ -4,24 +4,9 @@
  *
  *   raw Ethernet packet I/O channel managment;
  *
- *   This software and documentation is the property of Intellon
- *   Corporation, Ocala, Florida. It is provided 'as is' without
- *   expressed or implied warranty of any kind to anyone for any
- *   reason. Intellon assumes no responsibility or liability for
- *   errors or omissions in the software or documentation and
- *   reserves the right to make changes without notification.
- *
- *   Intellon customers may modify and distribute the software
- *   without obligation to Intellon. Since use of this software
- *   is optional, users shall bear sole responsibility and
- *   liability for any consequences of it's use.
- *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
  *;  Licensed under the Internet Software Consortium License
- *
- *   Contributor(s):
- *	    Charles Maier <charles.maier@intellon.com>
  *
  *--------------------------------------------------------------------*/
 
@@ -700,10 +685,10 @@ ochannel & ochannel::Print ()
 ochannel::ochannel ()
 
 {
-	ointellon intellon;
-	oethernet::SetPeerAddress (intellon.PeerAddress ());
-	oethernet::SetHostAddress (intellon.HostAddress ());
-	oethernet::SetProtocol (intellon.Protocol ());
+	oEthernetAddress ethernet;
+	oethernet::SetPeerAddress (ethernet.peer.binary ());
+	oethernet::SetHostAddress (ethernet.host.binary ());
+	oethernet::SetProtocol (ethernet.protocol());
 	this->mtimer = oCHANNEL_TIMEOUT;
 	return;
 }
