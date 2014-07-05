@@ -411,20 +411,16 @@ signed ocomment::clang (signed c)
 	{
 		while ((c != '*') && (c != EOF))
 		{
-			std::cout.put (c);
 			if (c == '\n')
 			{
 				c = ocomment::content (c, 3);
 				continue;
 			}
+			std::cout.put (c);
 			c = std::cin.get ();
 		}
+		while (c == '*') { c = std::cin.get (); }
 		std::cout.put ('*');
-		do 
-		{
-			c = std::cin.get ();
-		}
-		while (c == '*');
 		if ((c == this->mupper) || (c == this->mlower))
 		{
 			c = ocomment::breaker (c, '*');
@@ -458,33 +454,6 @@ signed ocomment::clang (signed c)
 
 /*====================================================================*
  *
- *   signed breaker (signed c, signed e) const;
- *
- *--------------------------------------------------------------------*/
-
-signed ocomment::breaker (signed c, signed e) const
-
-{
-	signed width = 0;
-	signed start = c;
-	while (c == start)
-	{
-		c = std::cin.get ();
-		width++;
-	}
-	if (c == e)
-	{
-		width = this->mwidth;
-	}
-	while (width-- > 0)
-	{
-		std::cout.put (start);
-	}
-	return (c);
-}
-
-/*====================================================================*
- *
  *   signed content (signed c, unsigned column) const;
  *
  *   print comment line; preserve intervening word spacing; remove 
@@ -495,8 +464,13 @@ signed ocomment::breaker (signed c, signed e) const
 signed ocomment::content (signed c, unsigned column) const
 
 {
+	std::cout.put (c);
 	std::cout.put (' ');
-	do { c = std::cin.get (); } while (oascii::isblank (c));
+	do 
+	{
+		c = std::cin.get ();
+	}
+	while (oascii::isblank (c));
 	if (c != '*')
 	{
 		unsigned offset = 0;
@@ -505,16 +479,12 @@ signed ocomment::content (signed c, unsigned column) const
 		{
 			if (c == '*')
 			{
-				signed o = std::cin.get ();
-				std::cin.putback (o);
-				if (o == '/')
+				if (std::cin.peek () == '/')
 				{
-					std::cout.put ('\n');
-					std::cout.put (' ');
-					break;
+					return (c);
 				}
 			}
-			else if (c == ' ')
+			if (c == ' ')
 			{
 				column++;
 			}
@@ -536,6 +506,33 @@ signed ocomment::content (signed c, unsigned column) const
 			}
 			c = std::cin.get ();
 		}
+	}
+	return (c);
+}
+
+/*====================================================================*
+ *
+ *   signed breaker (signed c, signed e) const;
+ *
+ *--------------------------------------------------------------------*/
+
+signed ocomment::breaker (signed c, signed e) const
+
+{
+	signed width = 0;
+	signed start = c;
+	while (c == start)
+	{
+		c = std::cin.get ();
+		width++;
+	}
+	if (c == e)
+	{
+		width = this->mwidth;
+	}
+	while (width-- > 0)
+	{
+		std::cout.put (start);
 	}
 	return (c);
 }
