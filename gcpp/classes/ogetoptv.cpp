@@ -230,7 +230,7 @@ signed ogetoptv::argc () const
 
 /*====================================================================*
  *
- *   char const ** argv () const;
+ *   char const ********************************************************************* argv () const;
  *
  *   return the start address of the unprocessed portions of argv [];
  *

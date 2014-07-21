@@ -689,7 +689,7 @@ oconnect::oconnect ()
 	oEthernetAddress ethernet;
 	oEthernetHeader::SetPeerAddress (ethernet.peer.binary ());
 	oEthernetHeader::SetHostAddress (ethernet.host.binary ());
-	oEthernetHeader::SetProtocol (ethernet.protocol());
+	oEthernetHeader::SetProtocol (ethernet.protocol ());
 	this->mtimer = oCONNECT_TIMEOUT;
 	return;
 }

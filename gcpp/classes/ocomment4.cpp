@@ -418,7 +418,11 @@ signed ocomment::clang (signed c)
 				char buffer [1024];
 				char * sp = buffer;
 				std::cout.put (' ');
-				do { c = std::cin.get (); } while (oascii::isblank (c));
+				do 
+				{
+					c = std::cin.get ();
+				}
+				while (oascii::isblank (c));
 				if (c != '*')
 				{
 					unsigned space = 3;
@@ -433,15 +437,15 @@ signed ocomment::clang (signed c)
 						{
 							while (space)
 							{
-								*sp++ = ' ';
+								* sp++ = ' ';
 								space--;
 							}
-							*sp++ = (char)(c);
+							* sp++ = (char) (c);
 						}
 						c = std::cin.get ();
 					}
 				}
-				*sp = '\0';
+				* sp = '\0';
 				std::cout << buffer;
 				continue;
 			}
@@ -566,7 +570,7 @@ ocomment & ocomment::content (void)
 	}
 	if (count < 2)
 	{
-		 while (this->moutput < this->minsert)
+		while (this->moutput < this->minsert)
 		{
 			std::cout.put (* this->moutput++);
 		}

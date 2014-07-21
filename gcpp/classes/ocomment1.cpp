@@ -532,7 +532,11 @@ signed ocomment::clang (signed c)
 
 #if 1
 
-		do { c = std::cin.get (); } while (c == '*');
+		do 
+		{
+			c = std::cin.get ();
+		}
+		while (c == '*');
 
 #else
 

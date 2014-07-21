@@ -486,6 +486,7 @@ signed ocomment::clang (signed c)
 
 		while ((c != '*') && (c != EOF))
 		{
+
 #if oCOMMENT_EXTENDBAR
 
 /*
@@ -529,10 +530,8 @@ signed ocomment::clang (signed c)
 			* this->minsert++ = c;
 			c = std::cin.get ();
 		}
-
-	  	std::cout.put (c);
+		std::cout.put (c);
 		c = std::cin.get ();
-
 	}
 	if (ocomment::anyset (oCOMMENT_B_TRIPLE) && ! this->mcount)
 	{

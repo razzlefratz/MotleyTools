@@ -39,7 +39,7 @@ typedef struct internet_header
 
 {
 	byte version;
-        byte tos;
+	byte tos;
 	uint16_t total_length;
 	uint16_t identification;
 	uint16_t frag_offset;
@@ -72,11 +72,11 @@ public:
 	~ oInternet ();
 	bool onsubnet (const byte * address1, const byte * address2, const byte * netmask);
 	static const unsigned header_length;
-	static void PrintPacket (void * memory, unsigned extent) ;
+	static void PrintPacket (void * memory, unsigned extent);
 	static void PrintHeader (void * memory, unsigned extent);
 	static char const * ProtocolName (byte protocol);
 	oInternetAddress broadcast;
-        oInternetAddress address;
+	oInternetAddress address;
 	oInternetAddress netmask;
 	oInternetAddress gateway;
 private: 

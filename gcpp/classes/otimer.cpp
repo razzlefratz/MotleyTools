@@ -72,7 +72,7 @@ unsigned otimer::since ()
 
 {
 	gettimeofday (this->mclock, NULL);
-	this->msince = (this->mclock->tv_sec - this->mstart->tv_sec) * 1000 ;
+	this->msince = (this->mclock->tv_sec - this->mstart->tv_sec) * 1000;
 	this->msince += (this->mclock->tv_usec - this->mstart->tv_usec) / 1000;
 	return (this->msince);
 }
@@ -91,7 +91,7 @@ bool otimer::expired ()
 
 {
 	gettimeofday (this->mclock, NULL);
-	this->msince = (this->mclock->tv_sec - this->mstart->tv_sec) * 1000 ;
+	this->msince = (this->mclock->tv_sec - this->mstart->tv_sec) * 1000;
 	this->msince += (this->mclock->tv_usec - this->mstart->tv_usec) / 1000;
 	return (this->msince > this->mtimer);
 }

@@ -581,7 +581,7 @@ signed ocomment::message (signed c, char const * string) const
 	while (oascii::nobreak (c));
 	if (ocomment::allclear (oCOMMENT_B_DISCARD))
 	{
-		std::cout.put (ocomment::anyset (oCOMMENT_B_PERMANENT)? ' ':o);
+		std::cout.put (ocomment::anyset (oCOMMENT_B_PERMANENT)? ' ': o);
 		std::cout.put (' ');
 		std::cout.put (' ');
 		std::cout << string;

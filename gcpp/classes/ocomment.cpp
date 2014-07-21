@@ -356,7 +356,11 @@ signed ocomment::clang (signed c)
 		c = std::cin.get ();
 		if ((c == '*') && ocomment::anyset (oCOMMENT_B_NOSTARS))
 		{
-			do { c = std::cin.get (); } while (c == '*');
+			do 
+			{
+				c = std::cin.get ();
+			}
+			while (c == '*');
 		}
 		if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER) || (c == '*'))
 		{

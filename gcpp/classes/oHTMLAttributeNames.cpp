@@ -1,15 +1,9 @@
 /*==========================================================================/
- *
- *   oHTMLAttributeNames.cpp - definition of oHTMLAttributeNames class.
- *
- *   this object implements the detection, lookup and retrieval of HTML
- *   attribute names;
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
- *--------------------------------------------------------------------*/
+
+* * oHTMLAttributeNames.cpp - definition of oHTMLAttributeNames class. * * this object implements the detection,
+lookup and retrieval of HTML * attribute names;
+* * . Motley Tools by Charles Maier *: Published 1982 - 2005 by Charles Maier for personal use *;
+Licensed under the Internet Software Consortium License * * -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- * / 
 
 #ifndef oHTMLATTRIBUTUTES_SOURCE
 #define oHTMLATTRIBUTUTES_SOURCE

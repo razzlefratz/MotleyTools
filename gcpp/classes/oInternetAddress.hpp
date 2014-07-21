@@ -46,7 +46,7 @@ public:
 	oInternetAddress & set (byte, byte, byte, byte);
 	oInternetAddress & set (const byte *);
 	const byte * binary () const;
-        const char * string ();
+	const char * string ();
 private: 
 	byte * maddress;
 };

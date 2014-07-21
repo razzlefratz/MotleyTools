@@ -46,7 +46,7 @@ public:
 	oEthernetAddress & set (byte, byte, byte, byte, byte, byte);
 	oEthernetAddress & set (const byte *);
 	const byte * binary () const;
-        const char * string ();
+	const char * string ();
 private: 
 	byte * maddress;
 };
@@ -56,4 +56,6 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 

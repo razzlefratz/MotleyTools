@@ -93,7 +93,7 @@ bool oInternet::onsubnet (const byte * address1, const byte * address2, const by
 
 {
 	unsigned octet = oInternetAddress::length;
-        while (octet--)
+	while (octet--)
 	{
 		if ((address1 [octet] & netmask [octet]) != (address2 [octet] & netmask [octet]))
 		{

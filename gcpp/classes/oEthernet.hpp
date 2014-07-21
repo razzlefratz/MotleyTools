@@ -85,9 +85,9 @@ public:
 	static void PrintHeader (void * memory, unsigned extent);
 	static char const * ProtocolName (uint16_t protocol);
 	static const unsigned header_length;
-        oEthernetAddress broadcast;
+	oEthernetAddress broadcast;
 	oEthernetAddress address;
-private:
+private: 
 };
 
 /*====================================================================*

@@ -37,8 +37,14 @@
 ochrtable & ochrtable::toupper ()
 
 {
-	for (c = 'A'; c <= 'Z'; c++) { ochrtable::mtable [c] = (char) (c); }
-	for (c = 'a'; c <= 'z'; c++) { ochrtable::mtable [c] = (char) (c - ('a' - 'A')); }
+	for (c = 'A'; c <= 'Z'; c++)
+	{
+		ochrtable::mtable [c] = (char) (c);
+	}
+	for (c = 'a'; c <= 'z'; c++)
+	{
+		ochrtable::mtable [c] = (char) (c - ('a' - 'A'));
+	}
 	return (* this);
 }
 
@@ -54,8 +60,14 @@ ochrtable & ochrtable::toupper ()
 ochrtable & ochrtable::tolower ()
 
 {
-	for (c = 'A'; c <= 'Z'; c++) { ochrtable::mtable [c] = (char) (c +  ('a' - 'A')); }
-	for (c = 'a'; c <= 'z'; c++) { ochrtable::mtable [c] = (char) (c); }
+	for (c = 'A'; c <= 'Z'; c++)
+	{
+		ochrtable::mtable [c] = (char) (c +  ('a' - 'A'));
+	}
+	for (c = 'a'; c <= 'z'; c++)
+	{
+		ochrtable::mtable [c] = (char) (c);
+	}
 	return (* this);
 }
 
