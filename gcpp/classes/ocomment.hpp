@@ -40,33 +40,25 @@
 #define oCOMMENT_B_COMMENT (1 << 4)
 #define oCOMMENT_B_DISCARD (1 << 5)
 #define oCOMMENT_B_PERMANENT (1 << 6)
-#define oCOMMENT_B_PREFACE (1 << 7)
-#define oCOMMENT_B_PACKAGE (1 << 8)
-#define oCOMMENT_B_RELEASE (1 << 9)
+#define oCOMMENT_B_PACKAGE (1 << 7)
+#define oCOMMENT_B_RELEASE (1 << 8)
+#define oCOMMENT_B_PUBLISH (1 << 9)
 #define oCOMMENT_B_LICENSE (1 << 10)
-#define oCOMMENT_B_SPECIAL (1 << 11)
 
-#define oCOMMENT_C_UPPER ('=')
-#define oCOMMENT_C_LOWER ('-')
-
-#define oCOMMENT_C_PREFACE '~'
 #define oCOMMENT_C_PACKAGE '.'
 #define oCOMMENT_C_RELEASE ':'
-#define oCOMMENT_C_LICENSE ';'
-#define oCOMMENT_C_SPECIAL '!'
+#define oCOMMENT_C_PUBLISH ';'
+#define oCOMMENT_C_LICENSE '~'
 
-#define oCOMMENT_S_PREFACE "preface"
-#define oCOMMENT_S_PROJECT "project"
 #define oCOMMENT_S_PACKAGE "package"
 #define oCOMMENT_S_RELEASE "release"
+#define oCOMMENT_S_PUBLISH "publish"
 #define oCOMMENT_S_LICENSE "license"
-#define oCOMMENT_S_SPECIAL "special"
 
-#define oCOMMENT_T_PREFACE "Permission to use, copy, modify, and/or distribute this software\n *   for any purpose with or without fee is hereby granted, provided\n *   that the above copyright notice and this permission notice appear\n *   in all copies.\n *\n *   THE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL\n *   WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED\n *   WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL\n *   THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR\n *   CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM\n *   LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,\n *   NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN\n *   CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE."
-#define oCOMMENT_T_PACKAGE "Motley Tools by Charles Maier <cmaier@cmassoc.net>."
-#define oCOMMENT_T_RELEASE "Copyright (c) 2001-2006 by Charles Maier."
-#define oCOMMENT_T_LICENSE "Published under the Internet Software Consortium (ISC) License."
-#define oCOMMENT_T_SPECIAL ""
+#define oCOMMENT_T_PACKAGE "Motley Tools by Charles Maier <cmaier@cmassoc.net>"
+#define oCOMMENT_T_RELEASE "Copyright (c) 2001-2006 by Charles Maier"
+#define oCOMMENT_T_PUBLISH "Published under the Internet Software Consortium (ISC) License"
+#define oCOMMENT_T_LICENSE "Permission to use, copy, modify, and/or distribute this software\n *   for any purpose with or without fee is hereby granted, provided\n *   that the above copyright notice and this permission notice appear\n *   in all copies.\n *\n *   THE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL\n *   WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED\n *   WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL\n *   THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR\n *   CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM\n *   LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,\n *   NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN\n *   CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE."
 
 /*====================================================================*
  *   interface declaration
@@ -92,27 +84,22 @@ public:
 	ocomment & clower (unsigned char c);
 	ocomment & width (unsigned width);
 	ocomment & space (unsigned space);
-	char const * preface (void) const;
+	char const * license (void) const;
 	char const * package (void) const;
 	char const * release (void) const;
-	char const * license (void) const;
-	char const * special (void) const;
-	ocomment & preface (char const * preface);
+	char const * publish (void) const;
 	ocomment & package (char const * package);
 	ocomment & release (char const * release);
+	ocomment & publish (char const * publish);
 	ocomment & license (char const * license);
-	ocomment & special (char const * special);
 private: 
-	signed breaker (signed c, signed e) const;
+	signed breaker (signed c) const;
 	signed content (signed c, unsigned column) const;
 	signed message (signed c, char const * string) const;
-	char * mpreface;
 	char * mpackage;
 	char * mrelease;
+	char * mpublish;
 	char * mlicense;
-	char * mspecial;
-	unsigned char mupper;
-	unsigned char mlower;
 	unsigned mwidth;
 };
 

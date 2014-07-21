@@ -50,69 +50,6 @@ ocomment & ocomment::width (unsigned width)
 
 /*====================================================================*
  *
- *   unsigned char cupper (void) const;
- *
- *   get and set the upper bar character;
- *
- *--------------------------------------------------------------------*/
-
-unsigned char ocomment::cupper (void) const
-
-{
-	return (this->mupper);
-}
-
-ocomment & ocomment::cupper (unsigned char upper)
-
-{
-	this->mupper = upper;
-	return (* this);
-}
-
-/*====================================================================*
- *
- *   unsigned char clower (void) const;
- *
- *   get and set the lower bar character;
- *
- *--------------------------------------------------------------------*/
-
-unsigned char ocomment::clower (void) const
-
-{
-	return (this->mlower);
-}
-
-ocomment & ocomment::clower (unsigned char lower)
-
-{
-	this->mlower = lower;
-	return (* this);
-}
-
-/*====================================================================*
- *
- *   char const * preface (void) const;
- *
- *   get and set the preface comment string;
- *
- *--------------------------------------------------------------------*/
-
-char const * ocomment::preface (void) const
-
-{
-	return (this->mpreface);
-}
-
-ocomment & ocomment::preface (char const * preface)
-
-{
-	this->mpreface = otext::replace (this->mpreface, preface);
-	return (* this);
-}
-
-/*====================================================================*
- *
  *   char const * package (void) const;
  *
  *   get and set the package comment string;
@@ -155,6 +92,27 @@ ocomment & ocomment::release (char const * release)
 
 /*====================================================================*
  *
+ *   char const * publish (void) const;
+ *
+ *   get and set the publish comment string;
+ *
+ *--------------------------------------------------------------------*/
+
+char const * ocomment::publish (void) const
+
+{
+	return (this->mpublish);
+}
+
+ocomment & ocomment::publish (char const * publish)
+
+{
+	this->mpublish = otext::replace (this->mpublish, publish);
+	return (* this);
+}
+
+/*====================================================================*
+ *
  *   char const * license (void) const;
  *
  *   get and set the license comment string;
@@ -171,27 +129,6 @@ ocomment & ocomment::license (char const * license)
 
 {
 	this->mlicense = otext::replace (this->mlicense, license);
-	return (* this);
-}
-
-/*====================================================================*
- *
- *   char const * special (void) const;
- *
- *   get and set the special comment string;
- *
- *--------------------------------------------------------------------*/
-
-char const * ocomment::special (void) const
-
-{
-	return (this->mspecial);
-}
-
-ocomment & ocomment::special (char const * special)
-
-{
-	this->mspecial = otext::replace (this->mspecial, special);
 	return (* this);
 }
 
@@ -420,28 +357,14 @@ signed ocomment::clang (signed c)
 			c = std::cin.get ();
 		}
 		std::cout.put ('*');
-		if (ocomment::anyset (oCOMMENT_B_NOSTARS))
+		c = std::cin.get ();
+		if ((c == '*') && ocomment::anyset (oCOMMENT_B_NOSTARS))
 		{
-			while (c == '*')
-			{
-				c = std::cin.get ();
-			}
+			do { c = std::cin.get (); } while (c == '*');
 		}
-		else
+		if ((c == '=') || (c == '-') || (c == '*'))
 		{
-			c = std::cin.get ();
-		}
-		if ((c == this->mupper) || (c == this->mlower) || (c == '*'))
-		{
-			c = ocomment::breaker (c, '*');
-		}
-		else if (ocomment::anyset (oCOMMENT_B_PREFACE) && (c == oCOMMENT_C_PREFACE))
-		{
-			c = ocomment::message (c, this->mpreface);
-		}
-		else if (ocomment::anyset (oCOMMENT_B_SPECIAL) && (c == oCOMMENT_C_SPECIAL))
-		{
-			c = ocomment::message (c, this->mspecial);
+			c = ocomment::breaker (c);
 		}
 		else if (ocomment::anyset (oCOMMENT_B_PACKAGE) && (c == oCOMMENT_C_PACKAGE))
 		{
@@ -450,6 +373,10 @@ signed ocomment::clang (signed c)
 		else if (ocomment::anyset (oCOMMENT_B_RELEASE) && (c == oCOMMENT_C_RELEASE))
 		{
 			c = ocomment::message (c, this->mrelease);
+		}
+		else if (ocomment::anyset (oCOMMENT_B_PUBLISH) && (c == oCOMMENT_C_PUBLISH))
+		{
+			c = ocomment::message (c, this->mpublish);
 		}
 		else if (ocomment::anyset (oCOMMENT_B_LICENSE) && (c == oCOMMENT_C_LICENSE))
 		{
@@ -522,13 +449,13 @@ signed ocomment::content (signed c, unsigned column) const
 
 /*====================================================================*
  *
- *   signed breaker (signed c, signed e) const;
+ *   signed breaker (signed c) const;
  *
  *   for comment bars to fixed length if present;
  *
  *--------------------------------------------------------------------*/
 
-signed ocomment::breaker (signed c, signed e) const
+signed ocomment::breaker (signed c) const
 
 {
 	signed width = 0;
@@ -538,7 +465,7 @@ signed ocomment::breaker (signed c, signed e) const
 		c = std::cin.get ();
 		width++;
 	}
-	if ((c == e) || (e == start))
+	if ((c == '*') || (start == '*'))
 	{
 		width = this->mwidth;
 	}
@@ -589,18 +516,14 @@ signed ocomment::message (signed c, char const * string) const
 ocomment::ocomment (unsigned length)
 
 {
-	this->mpreface = new char [1];
-	this->mpreface [0] = (char) (0);
+	this->mlicense = new char [1];
+	this->mlicense [0] = (char) (0);
 	this->mpackage = new char [1];
 	this->mpackage [0] = (char) (0);
 	this->mrelease = new char [1];
 	this->mrelease [0] = (char) (0);
-	this->mlicense = new char [1];
-	this->mlicense [0] = (char) (0);
-	this->mspecial = new char [1];
-	this->mspecial [0] = (char) (0);
-	this->mupper = oCOMMENT_C_UPPER;
-	this->mlower = oCOMMENT_C_LOWER;
+	this->mpublish = new char [1];
+	this->mpublish [0] = (char) (0);
 	this->mwidth = oCOMMENT_WIDTH;
 	return;
 }
@@ -614,18 +537,14 @@ ocomment::ocomment (unsigned length)
 ocomment::ocomment (void)
 
 {
-	this->mpreface = new char [1];
-	this->mpreface [0] = (char) (0);
+	this->mlicense = new char [1];
+	this->mlicense [0] = (char) (0);
 	this->mpackage = new char [1];
 	this->mpackage [0] = (char) (0);
 	this->mrelease = new char [1];
 	this->mrelease [0] = (char) (0);
-	this->mlicense = new char [1];
-	this->mlicense [0] = (char) (0);
-	this->mspecial = new char [1];
-	this->mspecial [0] = (char) (0);
-	this->mupper = oCOMMENT_C_UPPER;
-	this->mlower = oCOMMENT_C_LOWER;
+	this->mpublish = new char [1];
+	this->mpublish [0] = (char) (0);
 	this->mwidth = oCOMMENT_WIDTH;
 	return;
 }
@@ -639,12 +558,10 @@ ocomment::ocomment (void)
 ocomment::~ ocomment (void)
 
 {
-	delete [] this->mpreface;
+	delete [] this->mlicense;
 	delete [] this->mpackage;
 	delete [] this->mrelease;
-	delete [] this->mlicense;
-	delete [] this->mspecial;
-	return;
+	delete [] this->mpublish;
 }
 
 /*====================================================================*

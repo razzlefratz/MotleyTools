@@ -79,7 +79,7 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"*34AbCf:g:hklLmopPrstw:x",
+		"*34AbCf:g:hklmoprstw:x",
 		oPUTOPTV_S_FILTER,
 		"format C/C++ source code with preamble annotations",
 		"*\tdiscard asterisk strings",
@@ -92,12 +92,11 @@ int main (int argc, char const * argv [])
 		"g s\tuse profile section (s) [" LITERAL (SECTION_NAME) "]",
 		"h\tinsert header include guard",
 		"k\tmake comments permanent",
-		"l\tupdate " LITERAL (oCOMMENT_S_LICENSE) " comment [" LITERAL (oCOMMENT_C_LICENSE) "]",
-		"L\tupdate " LITERAL (oCOMMENT_S_SPECIAL) " comment [" LITERAL (oCOMMENT_C_SPECIAL) "]",
+		"l\tupdate " LITERAL (oCOMMENT_S_PUBLISH) " comment [" LITERAL (oCOMMENT_C_PUBLISH) "]",
+		"L\tupdate " LITERAL (oCOMMENT_S_LICENSE) " comment [" LITERAL (oCOMMENT_C_LICENSE) "]",
 		"m\tconvert single-line comments to multi-line comments",
 		"o\toutput profile to stdout",
 		"p\tupdate " LITERAL (oCOMMENT_S_PACKAGE) " comment [" LITERAL (oCOMMENT_C_PACKAGE) "]",
-		"P\tupdate " LITERAL (oCOMMENT_S_PREFACE) " comment [" LITERAL (oCOMMENT_C_PREFACE) "]",
 		"r\tupdate " LITERAL (oCOMMENT_S_RELEASE) " comment [" LITERAL (oCOMMENT_C_RELEASE) "]",
 		"s\tinsert source include guard",
 		"t\tindent is 1 tab",
@@ -148,27 +147,23 @@ int main (int argc, char const * argv [])
 			object.setbits (oCOMMENT_B_PERMANENT);
 			break;
 		case 'l':
-			object.setbits (oCOMMENT_B_LICENSE);
+			object.setbits (oCOMMENT_B_PUBLISH);
 			break;
 		case 'L':
-			object.setbits (oCOMMENT_B_SPECIAL);
+			object.setbits (oCOMMENT_B_LICENSE);
 			break;
 		case 'm':
 			object.setbits (oCOMMENT_B_TRIPLE);
 			break;
 		case 'o':
 			config.write (SECTION_NAME);
-			config.write (oCOMMENT_S_PREFACE, oCOMMENT_T_PREFACE);
 			config.write (oCOMMENT_S_PACKAGE, oCOMMENT_T_PACKAGE);
 			config.write (oCOMMENT_S_RELEASE, oCOMMENT_T_RELEASE);
+			config.write (oCOMMENT_S_PUBLISH, oCOMMENT_T_PUBLISH);
 			config.write (oCOMMENT_S_LICENSE, oCOMMENT_T_LICENSE);
-			config.write (oCOMMENT_S_SPECIAL, oCOMMENT_T_SPECIAL);
 			exit (0);
 		case 'p':
 			object.setbits (oCOMMENT_B_PACKAGE);
-			break;
-		case 'P':
-			object.setbits (oCOMMENT_B_PREFACE);
 			break;
 		case 'r':
 			object.setbits (oCOMMENT_B_RELEASE);
@@ -189,11 +184,10 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	object.preface (config.string (profile, section, oCOMMENT_S_PREFACE, oCOMMENT_T_PREFACE));
 	object.package (config.string (profile, section, oCOMMENT_S_PACKAGE, oCOMMENT_T_PACKAGE));
 	object.release (config.string (profile, section, oCOMMENT_S_RELEASE, oCOMMENT_T_RELEASE));
+	object.publish (config.string (profile, section, oCOMMENT_S_PUBLISH, oCOMMENT_T_PUBLISH));
 	object.license (config.string (profile, section, oCOMMENT_S_LICENSE, oCOMMENT_T_LICENSE));
-	object.special (config.string (profile, section, oCOMMENT_S_SPECIAL, oCOMMENT_T_SPECIAL));
 	if (! getopt.argc ())
 	{
 		(object.* method) (std::cin.get ());
