@@ -419,9 +419,19 @@ signed ocomment::clang (signed c)
 			std::cout.put (c);
 			c = std::cin.get ();
 		}
-		while (c == '*') { c = std::cin.get (); }
 		std::cout.put ('*');
-		if ((c == this->mupper) || (c == this->mlower))
+		if (ocomment::anyset (oCOMMENT_B_NOSTARS))
+		{
+			while (c == '*')
+			{
+				c = std::cin.get ();
+			}
+		}
+		else
+		{
+			c = std::cin.get ();
+		}
+		if ((c == this->mupper) || (c == this->mlower) || (c == '*'))
 		{
 			c = ocomment::breaker (c, '*');
 		}
@@ -514,6 +524,8 @@ signed ocomment::content (signed c, unsigned column) const
  *
  *   signed breaker (signed c, signed e) const;
  *
+ *   for comment bars to fixed length if present;
+ *
  *--------------------------------------------------------------------*/
 
 signed ocomment::breaker (signed c, signed e) const
@@ -526,7 +538,7 @@ signed ocomment::breaker (signed c, signed e) const
 		c = std::cin.get ();
 		width++;
 	}
-	if (c == e)
+	if ((c == e) || (e == start))
 	{
 		width = this->mwidth;
 	}
