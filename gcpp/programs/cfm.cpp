@@ -79,7 +79,7 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"*34AbCf:g:hklmoprstw:x",
+		"*34AbCf:g:hkLlmoprstw:x",
 		oPUTOPTV_S_FILTER,
 		"format C/C++ source code with preamble annotations",
 		"*\tdiscard asterisk strings",
@@ -144,7 +144,7 @@ int main (int argc, char const * argv [])
 			object.label ("HEADER").state (1);
 			break;
 		case 'k':
-			object.setbits (oCOMMENT_B_PERMANENT);
+			object.setbits (oCOMMENT_B_FOREVER);
 			break;
 		case 'l':
 			object.setbits (oCOMMENT_B_PUBLISH);
