@@ -50,6 +50,27 @@ ocomment & ocomment::width (unsigned width)
 
 /*====================================================================*
  *
+ *   unsigned align (void) const;
+ *
+ *   get and set the comment space;
+ *
+ *--------------------------------------------------------------------*/
+
+unsigned ocomment::align (void) const
+
+{
+	return (this->malign);
+}
+
+ocomment & ocomment::align (unsigned space)
+
+{
+	this->malign = space;
+	return (* this);
+}
+
+/*====================================================================*
+ *
  *   char const * package (void) const;
  *
  *   get and set the package comment string;
@@ -344,13 +365,7 @@ signed ocomment::clang (signed c)
 	{
 		while ((c != '*') && (c != EOF))
 		{
-			if (c == '\n')
-			{
-				c = ocomment::content (c, oCOMMENT_INDENT);
-				continue;
-			}
-			std::cout.put (c);
-			c = std::cin.get ();
+			c = ocomment::content (c);
 		}
 		std::cout.put ('*');
 		c = std::cin.get ();
@@ -391,55 +406,63 @@ signed ocomment::clang (signed c)
 
 /*====================================================================*
  *
- *   signed content (signed c, unsigned column) const;
+ *   signed content (signed c) const;
  *
  *   print comment line; preserve intervening word spacing; remove 
  *   tailing white space;
  *
  *--------------------------------------------------------------------*/
 
-signed ocomment::content (signed c, unsigned column) const
+signed ocomment::content (signed c) const
 
 {
 	std::cout.put (c);
-	std::cout.put (' ');
-	do 
+	if (c == '\n')
 	{
-		c = std::cin.get ();
-	}
-	while (oascii::isblank (c));
-	if (c != '*')
-	{
-		unsigned offset = 0;
-		std::cout.put ('*');
-		while (oascii::nobreak (c))
+		std::cout.put (' ');
+		do 
 		{
-			if ((c == '*') && (std::cin.peek () == '/')) 
-			{
-				break;
-			}
-			else if (c == ' ')
-			{
-				column++;
-			}
-			else if (c == '\t')
-			{
-				column -= column % 8;
-				column += 8;
-			}
-			else 
-			{
-				while (offset < column)
-				{
-					std::cout.put (' ');
-					offset++;
-				}
-				std::cout.put (c);
-				column++;
-				offset++;
-			}
 			c = std::cin.get ();
 		}
+		while (oascii::isblank (c));
+		if (c != '*')
+		{
+			unsigned column = this->malign;
+			unsigned offset = 0;
+			std::cout.put ('*');
+			while (oascii::nobreak (c))
+			{
+				if ((c == '*') && (std::cin.peek () == '/'))
+				{
+					break;
+				}
+				else if (c == ' ')
+				{
+					column++;
+				}
+				else if (c == '\t')
+				{
+					column -= column % 8;
+					column += 8;
+				}
+				else 
+				{
+					while (offset < column)
+					{
+						std::cout.put (' ');
+						offset++;
+					}
+					std::cout.put (c);
+					column++;
+					offset++;
+				}
+				c = std::cin.get ();
+			}
+		}
+	}
+	else 
+	{
+		c = std::cin.get ();
 	}
 	return (c);
 }
@@ -506,27 +529,6 @@ signed ocomment::message (signed c, char const * string) const
 
 /*====================================================================*
  *
- *   ocomment (unsigned length)
- *
- *--------------------------------------------------------------------*/
-
-ocomment::ocomment (unsigned length)
-
-{
-	this->mlicense = new char [1];
-	this->mlicense [0] = (char) (0);
-	this->mpackage = new char [1];
-	this->mpackage [0] = (char) (0);
-	this->mrelease = new char [1];
-	this->mrelease [0] = (char) (0);
-	this->mpublish = new char [1];
-	this->mpublish [0] = (char) (0);
-	this->mwidth = oCOMMENT_WIDTH;
-	return;
-}
-
-/*====================================================================*
- *
  *   ocomment (void)
  *
  *--------------------------------------------------------------------*/
@@ -534,14 +536,15 @@ ocomment::ocomment (unsigned length)
 ocomment::ocomment (void)
 
 {
-	this->mlicense = new char [1];
-	this->mlicense [0] = (char) (0);
 	this->mpackage = new char [1];
 	this->mpackage [0] = (char) (0);
 	this->mrelease = new char [1];
 	this->mrelease [0] = (char) (0);
 	this->mpublish = new char [1];
 	this->mpublish [0] = (char) (0);
+	this->mlicense = new char [1];
+	this->mlicense [0] = (char) (0);
+	this->malign = oCOMMENT_SPACE;
 	this->mwidth = oCOMMENT_WIDTH;
 	return;
 }
@@ -555,10 +558,10 @@ ocomment::ocomment (void)
 ocomment::~ ocomment (void)
 
 {
-	delete [] this->mlicense;
 	delete [] this->mpackage;
 	delete [] this->mrelease;
 	delete [] this->mpublish;
+	delete [] this->mlicense;
 }
 
 /*====================================================================*

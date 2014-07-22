@@ -20,18 +20,12 @@
 #include "../classes/otext.hpp"
 
 /*====================================================================*
- *   compiler controls;
- *--------------------------------------------------------------------*/
-
-#define oCOMMENT_PADMARGIN 1
-
-/*====================================================================*
  *   constants;
  *--------------------------------------------------------------------*/
 
-#define oCOMMENT_INDENT 3
 #define oCOMMENT_LENGTH 4096
 #define oCOMMENT_WIDTH 68 
+#define oCOMMENT_SPACE 3
 
 #define oCOMMENT_B_DEFAULT (0)
 #define oCOMMENT_B_NOSTARS (1 << 0)
@@ -71,7 +65,6 @@ class __declspec (dllexport) ocomment: private otext, public oflagword
 
 {
 public: 
-	ocomment (unsigned length);
 	ocomment (void);
 	virtual ~ ocomment (void);
 	signed comment (signed c);
@@ -79,31 +72,28 @@ public:
 	signed clang (signed c);
 	signed preamble (signed c);
 	ocomment & preamble (void);
-	unsigned char cupper (void) const;
-	unsigned char clower (void) const;
 	unsigned width (void) const;
-	unsigned space (void) const;
-	ocomment & cupper (unsigned char c);
-	ocomment & clower (unsigned char c);
+	unsigned align (void) const;
 	ocomment & width (unsigned width);
-	ocomment & space (unsigned space);
-	char const * license (void) const;
+	ocomment & align (unsigned space);
 	char const * package (void) const;
 	char const * release (void) const;
 	char const * publish (void) const;
+	char const * license (void) const;
 	ocomment & package (char const * package);
 	ocomment & release (char const * release);
 	ocomment & publish (char const * publish);
 	ocomment & license (char const * license);
 private: 
 	signed breaker (signed c) const;
-	signed content (signed c, unsigned column) const;
+	signed content (signed c) const;
 	signed message (signed c, char const * string) const;
 	char * mpackage;
 	char * mrelease;
 	char * mpublish;
 	char * mlicense;
 	unsigned mwidth;
+	unsigned malign;
 };
 
 /*====================================================================*
@@ -111,6 +101,4 @@ private:
  *--------------------------------------------------------------------*/
 
 #endif
-
-
 

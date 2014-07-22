@@ -79,7 +79,7 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"*34AbCf:g:hkLlmoprstw:x",
+		"*34AbCf:g:hi:kLlmoprstw:x",
 		oPUTOPTV_S_FILTER,
 		"format C/C++ source code with preamble annotations",
 		"*\tsquash asterisk strings",
@@ -91,6 +91,7 @@ int main (int argc, char const * argv [])
 		"f s\tuse profile (s) [" LITERAL (PROFILE_NAME) "]",
 		"g s\tuse profile section (s) [" LITERAL (SECTION_NAME) "]",
 		"h\tinsert header include guard",
+		"i n\tindent is (n) columns [" LITERAL (oCOMMENT_SPACE) "]",
 		"k\tmake comments permanent",
 		"l\tupdate " LITERAL (oCOMMENT_S_PUBLISH) " comment [" LITERAL (oCOMMENT_C_PUBLISH) "]",
 		"L\tupdate " LITERAL (oCOMMENT_S_LICENSE) " comment [" LITERAL (oCOMMENT_C_LICENSE) "]",
@@ -100,7 +101,7 @@ int main (int argc, char const * argv [])
 		"r\tupdate " LITERAL (oCOMMENT_S_RELEASE) " comment [" LITERAL (oCOMMENT_C_RELEASE) "]",
 		"s\tinsert source include guard",
 		"t\tindent is 1 tab",
-		"w n\tbar width is (n)",
+		"w n\tbar width is (n) columns [" LITERAL (oCOMMENT_WIDTH) "]",
 		"x\terase markers",
 		(char const *) (0)
 	};
@@ -143,6 +144,9 @@ int main (int argc, char const * argv [])
 		case 'h':
 			object.label ("HEADER").state (1);
 			break;
+		case 'i':
+			object.align (std::atoi (getopt.args ()));
+			break;
 		case 'k':
 			object.setbits (oCOMMENT_B_FOREVER);
 			break;
@@ -175,7 +179,7 @@ int main (int argc, char const * argv [])
 			object.offset ("\t");
 			break;
 		case 'w':
-			object.width (atoi (getopt.args ()));
+			object.width (std::atoi (getopt.args ()));
 			break;
 		case 'x':
 			object.setbits (oCOMMENT_B_DISCARD);
