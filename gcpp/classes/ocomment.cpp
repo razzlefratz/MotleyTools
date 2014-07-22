@@ -346,7 +346,7 @@ signed ocomment::clang (signed c)
 		{
 			if (c == '\n')
 			{
-				c = ocomment::content (c, 3);
+				c = ocomment::content (c, oCOMMENT_INDENT);
 				continue;
 			}
 			std::cout.put (c);
@@ -414,14 +414,11 @@ signed ocomment::content (signed c, unsigned column) const
 		std::cout.put ('*');
 		while (oascii::nobreak (c))
 		{
-			if (c == '*')
+			if ((c == '*') && (std::cin.peek () == '/')) 
 			{
-				if (std::cin.peek () == '/')
-				{
-					return (c);
-				}
+				break;
 			}
-			if (c == ' ')
+			else if (c == ' ')
 			{
 				column++;
 			}

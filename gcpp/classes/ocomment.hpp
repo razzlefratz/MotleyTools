@@ -29,6 +29,7 @@
  *   constants;
  *--------------------------------------------------------------------*/
 
+#define oCOMMENT_INDENT 3
 #define oCOMMENT_LENGTH 4096
 #define oCOMMENT_WIDTH 68 
 
