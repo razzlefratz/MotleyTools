@@ -519,9 +519,16 @@ signed ocomment::message (signed c, char const * string) const
 	while (oascii::nobreak (c));
 	if (ocomment::allclear (oCOMMENT_B_DISCARD))
 	{
-		std::cout.put (ocomment::anyset (oCOMMENT_B_FOREVER)? ' ': start);
-		std::cout.put (' ');
-		std::cout.put (' ');
+		unsigned align = this->malign;
+		if ((align) && ocomment::allclear (oCOMMENT_B_FOREVER))
+		{
+			std::cout.put (start);
+			align--;
+		}
+		while (align--)
+		{
+			std::cout.put (' ');
+		}
 		std::cout << string;
 	}
 	return (c);
