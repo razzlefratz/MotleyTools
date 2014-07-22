@@ -82,7 +82,7 @@ int main (int argc, char const * argv [])
 		"*34AbCf:g:hkLlmoprstw:x",
 		oPUTOPTV_S_FILTER,
 		"format C/C++ source code with preamble annotations",
-		"*\tdiscard asterisk strings",
+		"*\tsquash asterisk strings",
 		"3\tindent is 3 blanks",
 		"4\tindent is 4 blanks",
 		"A\tatheros standard format",
