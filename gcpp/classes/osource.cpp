@@ -826,32 +826,7 @@ signed osource::peek (signed c)
 
 {
 	c = osource::skip (c);
-	c = osource::span (c);
-	return (c);
-}
-
-/*====================================================================*
- *
- *   signed span (signed c);
- *
- *   inspect (c) to detect and remove continuation line escape
- *   sequences;
- *
- *--------------------------------------------------------------------*/
-
-signed osource::span (signed c)
-
-{
-	while (c == '\\')
-	{
-		if (std::cin.peek () == '\n')
-		{
-			c = std::cin.get ();
-			c = std::cin.get ();
-			continue;
-		}
-		break;
-	}
+	c = osource::skip (c, '\\', '\n');
 	return (c);
 }
 
@@ -919,9 +894,13 @@ signed osource::keep (signed c)
 
 /*====================================================================*
  *
- *   signed span (signed c, signed o, signed e);
+ *   signed skip (signed c, signed o, signed e);
  *
+<<<<<<< HEAD
  *   read and skip through a specific character pair;
+=======
+ *   skip a specific character pair;
+>>>>>>> e3d6cebcd1795917bd05e288f74bbdd1f96af980
  *
  *--------------------------------------------------------------------*/
 
@@ -932,8 +911,8 @@ signed osource::skip (signed c, signed o, signed e)
 	{
 		if (std::cin.peek () == e)
 		{
-			c = std::cin.get ();
-			c = std::cin.get ();
+			c = osource::skip (c);
+			c = osource::skip (c);
 			continue;
 		}
 		break;
@@ -945,7 +924,7 @@ signed osource::skip (signed c, signed o, signed e)
  *
  *   signed skip (signed c);
  *
- *   discard (c); return next character from stdin;
+ *   discard c; return next character from stdin;
  *
  *--------------------------------------------------------------------*/
 
