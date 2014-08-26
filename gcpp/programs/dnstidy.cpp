@@ -86,7 +86,7 @@ void function (oflagword * flags)
 	signed c = std::cin.get ();
 	while (c != EOF)
 	{
-		if (isspace (c))
+		if (oascii::isspace (c))
 		{
 			c = std::cin.get ();
 			continue;
@@ -123,7 +123,12 @@ void function (oflagword * flags)
 			indent.endline (1);
 			indent.newline (-- level);
 			c = tidy.keep (c);
-			if (c != ';')
+			c = tidy.find (c);
+			if (c == ';')
+			{
+				c = tidy.keep (c);
+			}
+			else
 			{
 				std::cout.put (';');
 			}
