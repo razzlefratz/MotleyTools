@@ -543,17 +543,7 @@ signed osource::operate (signed c)
 	if (oascii::isspace (c))
 	{
 		c = osource::find (c);
-
-#if 1
-
 		if (c == '{') 
-
-#else
-
-		if (oascii::isbegin (c)) 
-
-#endif
-
 		{
 			return (c);
 		}
@@ -887,7 +877,7 @@ signed osource::find (signed c)
  *
  *   signed keep (signed c, signed o, signed e);
  *
- *   read and keep a specific character pair;
+ *   read and keep through a specific character pair;
  *
  *--------------------------------------------------------------------*/
 
@@ -931,7 +921,7 @@ signed osource::keep (signed c)
  *
  *   signed span (signed c, signed o, signed e);
  *
- *   read and keep a specific character pair;
+ *   read and skip through a specific character pair;
  *
  *--------------------------------------------------------------------*/
 
