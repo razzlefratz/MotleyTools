@@ -122,16 +122,11 @@ void function (oflagword * flags)
 		{
 			indent.endline (1);
 			indent.newline (-- level);
+			do {
 			c = tidy.keep (c);
 			c = tidy.find (c);
-			if (c == ';')
-			{
-				c = tidy.keep (c);
 			}
-			else
-			{
-				std::cout.put (';');
-			}
+			while ((c == ',') || (c == ';'));
 			if (! level)
 			{
 				indent.endline (1);
