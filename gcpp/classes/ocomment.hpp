@@ -40,6 +40,7 @@
 #define oCOMMENT_B_PUBLISH (1 << 9)
 #define oCOMMENT_B_LICENSE (1 << 10)
 
+#define oCOMMENT_C_BURST '*'
 #define oCOMMENT_C_UPPER '='
 #define oCOMMENT_C_LOWER '-'
 #define oCOMMENT_C_PACKAGE '.'

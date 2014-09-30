@@ -369,7 +369,9 @@ signed ocomment::clang (signed c)
 		}
 		std::cout.put ('*');
 		c = std::cin.get ();
-		if ((c == '*') && ocomment::anyset (oCOMMENT_B_NOSTARS))
+		if (c == '*') 
+		{
+			if (ocomment::anyset (oCOMMENT_B_NOSTARS))
 		{
 			do 
 			{
@@ -377,7 +379,8 @@ signed ocomment::clang (signed c)
 			}
 			while (c == '*');
 		}
-		if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER) || (c == oCOMMENT_C_BURST))
+		}
+		if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER) || (c == '*'))
 		{
 			c = ocomment::breaker (c);
 		}
@@ -430,10 +433,6 @@ signed ocomment::content (signed c) const
 			unsigned column = this->malign;
 			unsigned offset = 0;
 			std::cout.put ('*');
-			if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER))
-			{
-				c = ocomment::breaker (c);
-			}
 			while (oascii::nobreak (c))
 			{
 				if ((c == '*') && (std::cin.peek () == '/'))
@@ -475,7 +474,7 @@ signed ocomment::content (signed c) const
  *
  *   signed breaker (signed c) const;
  *
- *   force comment bars to fixed length if present;
+ *   for comment bars to fixed length if present;
  *
  *--------------------------------------------------------------------*/
 
@@ -489,7 +488,7 @@ signed ocomment::breaker (signed c) const
 		c = std::cin.get ();
 		width++;
 	}
-	if ((start == oCOMMENT_C_BURST) || (c == oCOMMENT_C_BURST) || (c == '\n'))
+	if ((c == '*') || (start == '*'))
 	{
 		width = this->mwidth;
 	}
