@@ -23,26 +23,39 @@ STRIP=$(CROSS)strip
 TOUCH=${CROSS}touch
 
 # ====================================================================
+# folders;
+# --------------------------------------------------------------------
+
+ROOTFS=
+BIN=${ROOTFS}/usr/local/bin/cmassoc
+MAN=${ROOTFS}/usr/share/man/man1
+DOC=${ROOTFS}/home/www/cmassoc/tools
+WWW=${ROOTFS}/home/www
+FTP=${ROOTFS}/home/ftp
+
+# ====================================================================
+# ownership;
+# --------------------------------------------------------------------
+
+OWNER=0
+GROUP=0
+
+# ====================================================================
+# file permissions;
+# --------------------------------------------------------------------
+
+DIR_PERM=6755
+MAN_PERM=0444
+BIN_PERM=0555
+SUID_PERM=4555
+WWW_PERM=0666
+RUN_PERM=0755
+SRC_PERM=0644
+
+# ====================================================================
 # targets;
 # --------------------------------------------------------------------
 
 .SUFFIXES: .o .c .h .cpp .hpp
 .PHONY: all compile library scripts manuals install uninstall clean fresh
-
-# ====================================================================
-# folders;
-# --------------------------------------------------------------------
-
-BIN=${DESTDIR}/usr/local/bin/cmassoc
-MAN=${DESTDIR}/usr/share/man/man1
-DOC=${DESTDIR}/home/www/cmassoc/tools
-WWW=${DESTDIR}/home/www
-FTP=${DESTDIR}/home/ftp
-
-# ====================================================================
-# permissions;
-# --------------------------------------------------------------------
-
-OWNER=0
-GROUP=0
 

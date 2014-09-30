@@ -24,7 +24,7 @@ scripts:
 manuals:
 library:
 install: 
-	@if [ -d /etc/profile.d ]; then install -m 0775 -o root -g root motley-tools.sh /etc/profile.d; fi;
+	@if [ -d /etc/profile.d ]; then install -m ${BIN_PERM} -o ${OWNER} -g ${GROUP} motley-tools.sh /etc/profile.d; fi;
 uninstall:
 	@if [ -d /etc/profile.d ]; then rm -fr /etc/profile.d/motley-tools.sh; fi;
 fresh: clean compile

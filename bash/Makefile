@@ -28,10 +28,10 @@ all compile:
 library:
 	install -m 0755 -o ${OWNER} -g ${GROUP} -d ${BIN}
 scripts: library
-	install -m 0555 -o ${OWNER} -g ${GROUP} ${ADMIN} ${ROOTONLY} ~
+	install -m ${BIN_PERM} -o ${OWNER} -g ${GROUP} ${ADMIN} ${ROOTONLY} ~
 manuals:
 install: scripts
-	if [ -d /etc/profile.d ]; then install -m 775 -o root -g root motley-tools.sh /etc/profile.d; fi
+	if [ -d /etc/profile.d ]; then install -m ${BIN_PERM} -o ${OWNER} -g ${GROUP} motley-tools.sh /etc/profile.d; fi
 uninstall:
 	rm -fv ${BIN}/*.sh
 	cd ~; rm -fv ${ADMIN} ${BUILD} ${ROOTONLY}
