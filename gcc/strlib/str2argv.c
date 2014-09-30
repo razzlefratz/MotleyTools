@@ -21,7 +21,7 @@ size_t str2argv (char string [], char const * vector [], size_t length)
 {
 	char const ** vp = vector;
 	char * sp = string;
-	for (*vp = sp; (*sp) && ((vp - vector) < length); ++sp) 
+	for (*vp = sp; (*sp) && ((vp - vector) < (signed)(length)); ++sp) 
 	{
 		if (isquote (*sp)) 
 		{

@@ -33,7 +33,7 @@ unsigned menulength (MENU * menu, signed length)
 	{
 		count = menulength (menu->after, length);
 	}
-	return (length);
+	return (count);
 }
 
 
