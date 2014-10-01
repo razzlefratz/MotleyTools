@@ -33,15 +33,15 @@ manuals:
 	manuals
 scripts:
 library:
-	su root -c "install -m 0755 -o ${OWNER} -g ${GROUP} -d ${DOC}"
+	install -m ${DIR_PERM} -o ${OWNER} -g ${GROUP} -d ${DOC}
 install: library compile 
-	su root -c "if [ -d ${DOC} ]; then install -m 0664 -o ${OWNER} -g ${GROUP} *.html *.css *.png ${DOC}; fi"
+	if [ -d ${DOC} ]; then install -m 0664 -o ${OWNER} -g ${GROUP} *.html *.css *.png ${DOC}; fi
 uninstall:
-	su root -c "rm -f ${DOC}/*.c.html ${DOC}/*.h.html ${DOC}/*.7.html"
+	rm -f ${DOC}/*.c.html ${DOC}/*.h.html ${DOC}/*.7.html
 setup:
-	su root -c "install ${STYLES} ${DOCBOOK}"
+	install ${STYLES} ${DOCBOOK}
 clean:
-	chmod 0755 ${PAGES} ${STYLES}
+	chmod ${RUN_PERM} ${PAGES} ${STYLES}
 	rm -f ${TRASH} ${BOOKS}
 fresh: clean compile
 

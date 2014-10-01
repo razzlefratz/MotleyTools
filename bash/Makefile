@@ -23,17 +23,17 @@ TRASH=*~ *[.][0-9][0-9][0-9] t t.*
 # targets;
 # --------------------------------------------------------------------
 
-.PHONY: all compile library scripts manuals install uninstall clean fresh
-all compile:
+all:
+compile:
 library:
-	install -m 0755 -o ${OWNER} -g ${GROUP} -d ${BIN}
+	install -m ${DIR_PERM} -o ${OWNER} -g ${GROUP} -d ${BIN}
 scripts: library
-	install -m ${BIN_PERM} -o ${OWNER} -g ${GROUP} ${ADMIN} ${ROOTONLY} ~
+	install -m ${RUN_PERM} -o ${OWNER} -g ${GROUP} ${ADMIN} ${ROOTONLY} ~
 manuals:
 install: scripts
 	if [ -d /etc/profile.d ]; then install -m ${BIN_PERM} -o ${OWNER} -g ${GROUP} motley-tools.sh /etc/profile.d; fi
 uninstall:
-	rm -fv ${BIN}/*.sh
+	rm -fv ${BIN}/*.sh 
 	cd ~; rm -fv ${ADMIN} ${BUILD} ${ROOTONLY}
 fresh:
 check:

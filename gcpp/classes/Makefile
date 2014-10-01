@@ -24,11 +24,11 @@ all: compile install compare
 compile: 
 scripts:
 manuals:
-#	install -m 0444 -o ${OWNER} -g ${GROUP} ${PAGES} ${MAN}
+#	install -m ${MAN_PERM} -o ${OWNER} -g ${GROUP} ${PAGES} ${MAN}
 library: 
-#	install -m 2755 -o ${OWNER} -g ${GROUP} -d ${BIN}
+#	install -m ${DIR_PERM} -o ${OWNER} -g ${GROUP} -d ${BIN}
 install: compile library
-#	install -m 0755 -o ${OWNER} -g ${GROUP} ${TOOLS} ${BIN}
+#	install -m ${BIN_PERM} -o ${OWNER} -g ${GROUP} ${TOOLS} ${BIN}
 compare:
 uninstall:
 	cd ${BIN}; rm -fv ${TOOLS}
@@ -36,6 +36,8 @@ uninstall:
 fresh: clean compile
 clean:
 	rm -f ${GLOBAL} ${TOOLS} ${TRASH}
+	chmod ${RUN_PERM} Makefile *.mak *.sh 
+	chmod ${SRC_PERM} *.cpp *.hpp *.txt 
 check:
 	${SH} classes.sh
 ignore:

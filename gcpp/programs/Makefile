@@ -33,19 +33,19 @@ endif
 all compile: ${TOOLS}
 scripts:
 manuals:
-	install -m 0444 -o ${OWNER} -g ${GROUP} ${PAGES} ${MAN}
+	install -m ${MAN_PERM} -o ${OWNER} -g ${GROUP} ${PAGES} ${MAN}
 library:
-	install -m 6755 -o ${OWNER} -g ${GROUP} -d ${BIN}
+	install -m ${BIN_PERM} -o ${OWNER} -g ${GROUP} -d ${BIN}
 install: compile
-	install -m 0555 -o ${OWNER} -g ${GROUP} ${TOOLS} ${BIN}
+	install -m ${BIN_PERM} -o ${OWNER} -g ${GROUP} ${TOOLS} ${BIN}
 uninstall:
 	cd ${BIN}; rm -fv ${TOOLS}
 	cd ${MAN}; rm -fv ${PAGES}
 fresh: clean compile
 clean:
 	rm -f ${TOOLS} ${TRASH}
-	chmod 0644 *.cpp *.txt *.1
-	chmod 0755 Makefile *.sh 
+	chmod ${RUN_PERM} Makefile *.mak *.sh 
+	chmod ${SRC_PERM} *.cpp *.txt *.1
 check:
 	${SH} programs.sh
 ignore:

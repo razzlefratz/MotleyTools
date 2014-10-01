@@ -44,7 +44,7 @@ uninstall:
 fresh: clean compile
 clean:
 	rm -f ${TRASH} ${DAEMONS}
-	chmod 0755 Makefile *.sh
+	chmod 0755 Makefile *.mak *.sh
 	chmod 0644 *.c *.h
 check:
 	${SH} sysklogd.sh

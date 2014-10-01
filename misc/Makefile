@@ -13,13 +13,14 @@ include ../make.def
 # --------------------------------------------------------------------
 
 FILES = CERTIFICATE LICENSE
-TRASH = *.[0-9][0-9][0-9]
+TRASH = *.txt *.[0-9][0-9][0-9] 
 
 # ====================================================================
 # targets;
 # --------------------------------------------------------------------
 
-all compile:
+all:
+compile:
 scripts:
 manuals:
 library:
@@ -30,9 +31,8 @@ uninstall:
 fresh: clean compile
 clean:
 	rm -f ${TRASH} 
-	chmod 0755 Makefile *.sh
-	chmod 0644 ${FILES} 
-	chmod 0644 *.txt 
+	chmod ${RUN_PERM} Makefile *.sh
+	chmod ${SRC_PERM} ${FILES} 
 check:
 	${SH} misc.sh
 ignore:
