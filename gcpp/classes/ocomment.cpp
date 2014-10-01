@@ -369,15 +369,7 @@ signed ocomment::clang (signed c)
 		}
 		std::cout.put ('*');
 		c = std::cin.get ();
-		if ((c == '*') && ocomment::anyset (oCOMMENT_B_NOSTARS))
-		{
-			do 
-			{
-				c = std::cin.get ();
-			}
-			while (c == '*');
-		}
-		if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER) || (c == oCOMMENT_C_BURST))
+		if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER) || (c == '*'))
 		{
 			c = ocomment::breaker (c);
 		}
@@ -489,13 +481,17 @@ signed ocomment::breaker (signed c) const
 		c = std::cin.get ();
 		width++;
 	}
-	if ((start == oCOMMENT_C_BURST) || (c == oCOMMENT_C_BURST) || (c == '\n'))
+	if ((start == '*') || (c == '*') || (c == '\n'))
 	{
 		width = this->mwidth;
 	}
 	while (width-- > 0)
 	{
 		std::cout.put (start);
+	}
+	if ((start == '*') || (c == '\n'))
+	{
+		std::cout.put ('*');
 	}
 	return (c);
 }

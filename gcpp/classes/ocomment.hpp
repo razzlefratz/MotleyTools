@@ -28,19 +28,17 @@
 #define oCOMMENT_SPACE 3
 
 #define oCOMMENT_B_DEFAULT (0)
-#define oCOMMENT_B_NOSTARS (1 << 0)
-#define oCOMMENT_B_DOUBLE  (1 << 1)
-#define oCOMMENT_B_TRIPLE  (1 << 2)
-#define oCOMMENT_B_SHORT   (1 << 3)
-#define oCOMMENT_B_COMMENT (1 << 4)
-#define oCOMMENT_B_FOREVER (1 << 5)
-#define oCOMMENT_B_DISCARD (1 << 6)
-#define oCOMMENT_B_PACKAGE (1 << 7)
-#define oCOMMENT_B_RELEASE (1 << 8)
-#define oCOMMENT_B_PUBLISH (1 << 9)
-#define oCOMMENT_B_LICENSE (1 << 10)
+#define oCOMMENT_B_DOUBLE  (1 << 0)
+#define oCOMMENT_B_TRIPLE  (1 << 1)
+#define oCOMMENT_B_SHORT   (1 << 2)
+#define oCOMMENT_B_COMMENT (1 << 3)
+#define oCOMMENT_B_FOREVER (1 << 4)
+#define oCOMMENT_B_DISCARD (1 << 5)
+#define oCOMMENT_B_PACKAGE (1 << 6)
+#define oCOMMENT_B_RELEASE (1 << 7)
+#define oCOMMENT_B_PUBLISH (1 << 8)
+#define oCOMMENT_B_LICENSE (1 << 9)
 
-#define oCOMMENT_C_BURST '*'
 #define oCOMMENT_C_UPPER '='
 #define oCOMMENT_C_LOWER '-'
 #define oCOMMENT_C_PACKAGE '.'

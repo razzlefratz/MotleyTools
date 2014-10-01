@@ -82,7 +82,6 @@ int main (int argc, char const * argv [])
 		"*34AbCf:g:hi:kLlmoprstw:x",
 		oPUTOPTV_S_FILTER,
 		"format C/C++ source code with preamble annotations",
-		"*\tsquash asterisk strings",
 		"3\tindent is 3 blanks",
 		"4\tindent is 4 blanks",
 		"A\tatheros standard format",
@@ -117,9 +116,6 @@ int main (int argc, char const * argv [])
 	{
 		switch (c)
 		{
-		case '*':
-			object.setbits (oCOMMENT_B_NOSTARS);
-			break;
 		case '3':
 			object.offset ("   ");
 			break;
