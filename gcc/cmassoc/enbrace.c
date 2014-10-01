@@ -57,6 +57,9 @@
  *
  *   signed wrap (signed c, char const * braces);
  *
+ *   read stdin one character at a time; call this function once a
+ *   '$' is detected; 
+ *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -66,9 +69,11 @@
 signed wrap (signed c, char const * braces)
 
 {
+	unsigned count = 0;
 	while (c == '$')
 	{
 		c = keep (c);
+		count++;
 	}
 	if (isalnum (c) || (c == '_'))
 	{
@@ -127,10 +132,15 @@ signed wrap (signed c, char const * braces)
 	else if (ispunct (c))
 	{
 		putc (* braces++, stdout);
-		putc (c, stdout);
-		c = getc (stdin);
+		c = keep (c);
 		putc (* braces--, stdout);
-		return (c);
+	}
+	else if (iscntrl (c))
+	{
+		while (count--)
+		{
+			putc (c, stdout);
+		}
 	}
 	return (c);
 }

@@ -17,11 +17,11 @@ enbrace - enclose script symbols in braces
 .RI [> file ]
 
 .SH DESCRIPTION
-Search one or more text files for symbolic references starting with "\fB$\fR" and enclose those references them in paired braces, unless they are already enclosed.
+Search one or more text files for symbolic references that start with "\fB$\fR" and enclose them in paired braces, if they are not already enclosed.
 For example, symbolic reference "\fB$PWD\fR" will become "\fB${PWD}\fR" on the first pass but will not change on subsequent passes.
 
 .PP
-The use of braces to enclose symbolic constants makes global search-and-replace operations easy and, in some cases, makes scripts easier to read.
+The use of braces to enclose symbolic constants makes global search-and-replace operations easy and, in many cases, makes scripts easier to read.
 
 .SH OPTIONS
 
@@ -47,7 +47,18 @@ Use program \fBrex\fR to recover a prior version.
 None.
 
 .SH SEE ALSO
+.BR afm ( 1 ),
+.BR blank ( 1 ),
+.BR cbrief ( 1 ),
+.BR cedit ( 1 ),
+.BR crlf ( 1 ),
+.BR detab ( 1 ),
+.BR enfix ( 1 ),
+.BR entab ( 1 ),
 .BR rex ( 1 )
+.BR sbrief ( 1 ),
+.BR space ( 1 ),
+.BR trim ( 1 )
 
 .SH CREDITS
  Charles Maier <cmaier@cmassoc.net>
