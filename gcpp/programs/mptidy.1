@@ -7,7 +7,8 @@ mptidy - Linux man page tidy program
 .BR mptidy
 .RI [ options ]
 .IR file
-.RI [ file ] .RI [ ... ]
+.RI [ file ] 
+.RI [ ... ]
 
 .PP
 .BR mptidy
@@ -18,9 +19,9 @@ mptidy - Linux man page tidy program
 .SH DESCRIPTION
 
 .PP
-Update linux man page header and format man page text.
-The man page header is the first line and starts with command ".TH".
-The remainder of the line consists of the program name, man section and three title strings.
+Update file header with configuration strings and format file body such that each statement and sentence starts on a new line.
+The header is the first line and starts with the command ".TH".
+The remainder of thath line consists of the program name, man section and three title strings.
 The file basename becomes the program name.
 The file extension becomes the man section and should be one digit [0-9].
 The three titles are read from a named profile, the default profile or internal program constants.
