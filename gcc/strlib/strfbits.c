@@ -1,15 +1,16 @@
 /*====================================================================*
  *
- *   size_t strfbits (char buffer[], size_t length, char const *vector[], char const *operator, unsigned flagword);
+ *   size_t strfbits (char buffer[], size_t length, char const * vector[], char const * operator, unsigned flagword);
  *
  *   basic.h
  *
  *   format buffer with an enumerated list of the bits in a flagword; 
- *   each flagword bit position corresponds to a string in string[]
- *   and operator is the string separating formatted string;
+ *   each flagword bit position corresponds to a string in vector []
+ *   and operator is the string used to separate each string in the 
+ *   enumeration list;
  *
- *   enumeration continues until all bits are enumerated or string
- *   are exhausted or the buffer fills;
+ *   enumeration continues until all flagword bits are enumerated or 
+ *   vector is exhausted or buffer is full;
  *
  *   for example, the following formats buffer with the literal string
  *   "one, three, five, six" since those bits are set in flagword;
