@@ -87,17 +87,17 @@ int main (int argc, char const * argv [])
 	ofileopen fileopen;
 	opathspec pathspec;
 	oprofile config;
-	omptidy object;
+	omptidy source;
 	char const * profile = PROFILE_NAME;
 	char const * section = SECTION_NAME;
-	signed (omptidy::* method) (signed) = & omptidy::tidy;
+	signed (omptidy::* format) (signed) = & omptidy::tidy;
 	signed c;
 	while (~ (c = getopt.getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'm':
-			object.example ();
+			source.example ();
 			std::exit (0);
 		case 'o':
 			config.write (SECTION_NAME);
@@ -116,20 +116,20 @@ int main (int argc, char const * argv [])
 			break;
 		}
 	}
-	object.project (config.string (profile, section, oMPTIDY_S_PROJECT, MPTIDY_S_PROJECT));
-	object.package (config.string (profile, section, oMPTIDY_S_PACKAGE, MPTIDY_S_PACKAGE));
-	object.program (config.string (profile, section, oMPTIDY_S_PROGRAM, MPTIDY_S_PROGRAM));
-	object.release (config.string (profile, section, oMPTIDY_S_RELEASE, MPTIDY_S_RELEASE));
+	source.project (config.string (profile, section, oMPTIDY_S_PROJECT, MPTIDY_S_PROJECT));
+	source.package (config.string (profile, section, oMPTIDY_S_PACKAGE, MPTIDY_S_PACKAGE));
+	source.program (config.string (profile, section, oMPTIDY_S_PROGRAM, MPTIDY_S_PROGRAM));
+	source.release (config.string (profile, section, oMPTIDY_S_RELEASE, MPTIDY_S_RELEASE));
 	if (! getopt.argc ())
 	{
-		(object.* method) (std::cin.get ());
+		(source.* format) (std::cin.get ());
 	}
 	while (getopt.argc () && * getopt.argv ())
 	{
 		if (fileopen.openedit (* getopt.argv ()))
 		{
-			object.filename (* getopt.argv ());
-			(object.* method) (std::cin.get ());
+			source.filename (* getopt.argv ());
+			(source.* format) (std::cin.get ());
 			fileopen.close ();
 		}
 		getopt++;

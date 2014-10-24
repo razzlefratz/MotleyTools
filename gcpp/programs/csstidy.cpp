@@ -75,30 +75,30 @@ int main (int argc, char const * argv [])
 	oescape escape;
 	opathspec pathspec;
 	ofileopen fileopen;
-	oprogram object;
-	signed (oprogram::* method) (signed) = & oprogram::css2;
+	oprogram source;
+	signed (oprogram::* format) (signed) = & oprogram::css2;
 	signed c;
 	while (~ (c = getopt.getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case 'c':
-			object.margin ("");
-			object.offset ("");
-			object.finish ("");
-			object.record ("");
+			source.margin ("");
+			source.offset ("");
+			source.finish ("");
+			source.record ("");
 			break;
 		case 'm':
-			object.margin (escape.unescape ((char *) (getopt.args ())));
+			source.margin (escape.unescape ((char *) (getopt.args ())));
 			break;
 		case 'o':
-			object.offset (escape.unescape ((char *) (getopt.args ())));
+			source.offset (escape.unescape ((char *) (getopt.args ())));
 			break;
 		case 's':
-			object.offset ("   ");
+			source.offset ("   ");
 			break;
 		case 't':
-			object.offset ("\t");
+			source.offset ("\t");
 			break;
 		default: 
 			break;
@@ -106,13 +106,13 @@ int main (int argc, char const * argv [])
 	}
 	if (! getopt.argc ())
 	{
-		(object.* method) (std::cin.get ());
+		(source.* format) (std::cin.get ());
 	}
 	while (getopt.argc () && * getopt.argv ())
 	{
 		if (fileopen.openedit (* getopt.argv ()))
 		{
-			(object.* method) (std::cin.get ());
+			(source.* format) (std::cin.get ());
 			fileopen.close ();
 		}
 		getopt++;

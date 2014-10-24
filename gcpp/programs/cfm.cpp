@@ -109,27 +109,27 @@ int main (int argc, char const * argv [])
 	ogetoptv getopt;
 	ofileopen fileopen;
 	oprofile config;
-	octidy object;
-	signed (octidy::* method) (signed) = & octidy::charlie;
+	octidy source;
+	signed (octidy::* format) (signed) = & octidy::charlie;
 	signed c;
 	while (~ (c = getopt.getoptv (argc, argv, optv)))
 	{
 		switch (c)
 		{
 		case '3':
-			object.offset ("   ");
+			source.offset ("   ");
 			break;
 		case '4':
-			object.offset ("    ");
+			source.offset ("    ");
 			break;
 		case 'A':
-			method = & octidy::atheros;
+			format = & octidy::atheros;
 			break;
 		case 'b':
-			object.setbits (oCOMMENT_B_COMMENT);
+			source.setbits (oCOMMENT_B_COMMENT);
 			break;
 		case 'C':
-			object.setbits (oCOMMENT_B_DOUBLE);
+			source.setbits (oCOMMENT_B_DOUBLE);
 			break;
 		case 'f':
 			profile = getopt.args ();
@@ -138,22 +138,22 @@ int main (int argc, char const * argv [])
 			section = getopt.args ();
 			break;
 		case 'h':
-			object.label ("HEADER").state (1);
+			source.label ("HEADER").state (1);
 			break;
 		case 'i':
-			object.align (std::atoi (getopt.args ()));
+			source.align (std::atoi (getopt.args ()));
 			break;
 		case 'k':
-			object.setbits (oCOMMENT_B_FOREVER);
+			source.setbits (oCOMMENT_B_FOREVER);
 			break;
 		case 'l':
-			object.setbits (oCOMMENT_B_PUBLISH);
+			source.setbits (oCOMMENT_B_PUBLISH);
 			break;
 		case 'L':
-			object.setbits (oCOMMENT_B_LICENSE);
+			source.setbits (oCOMMENT_B_LICENSE);
 			break;
 		case 'm':
-			object.setbits (oCOMMENT_B_TRIPLE);
+			source.setbits (oCOMMENT_B_TRIPLE);
 			break;
 		case 'o':
 			config.write (SECTION_NAME);
@@ -163,41 +163,41 @@ int main (int argc, char const * argv [])
 			config.write (oCOMMENT_S_LICENSE, oCOMMENT_T_LICENSE);
 			exit (0);
 		case 'p':
-			object.setbits (oCOMMENT_B_PACKAGE);
+			source.setbits (oCOMMENT_B_PACKAGE);
 			break;
 		case 'r':
-			object.setbits (oCOMMENT_B_RELEASE);
+			source.setbits (oCOMMENT_B_RELEASE);
 			break;
 		case 's':
-			object.label ("SOURCE").state (1);
+			source.label ("SOURCE").state (1);
 			break;
 		case 't':
-			object.offset ("\t");
+			source.offset ("\t");
 			break;
 		case 'w':
-			object.width (std::atoi (getopt.args ()));
+			source.width (std::atoi (getopt.args ()));
 			break;
 		case 'x':
-			object.setbits (oCOMMENT_B_DISCARD);
+			source.setbits (oCOMMENT_B_DISCARD);
 			break;
 		default: 
 			break;
 		}
 	}
-	object.package (config.string (profile, section, oCOMMENT_S_PACKAGE, oCOMMENT_T_PACKAGE));
-	object.release (config.string (profile, section, oCOMMENT_S_RELEASE, oCOMMENT_T_RELEASE));
-	object.publish (config.string (profile, section, oCOMMENT_S_PUBLISH, oCOMMENT_T_PUBLISH));
-	object.license (config.string (profile, section, oCOMMENT_S_LICENSE, oCOMMENT_T_LICENSE));
+	source.package (config.string (profile, section, oCOMMENT_S_PACKAGE, oCOMMENT_T_PACKAGE));
+	source.release (config.string (profile, section, oCOMMENT_S_RELEASE, oCOMMENT_T_RELEASE));
+	source.publish (config.string (profile, section, oCOMMENT_S_PUBLISH, oCOMMENT_T_PUBLISH));
+	source.license (config.string (profile, section, oCOMMENT_S_LICENSE, oCOMMENT_T_LICENSE));
 	if (! getopt.argc ())
 	{
-		(object.* method) (std::cin.get ());
+		(source.* format) (std::cin.get ());
 	}
 	while (getopt.argc () && * getopt.argv ())
 	{
 		if (fileopen.openedit (* getopt.argv ()))
 		{
-			object.filename (* getopt.argv ());
-			(object.* method) (std::cin.get ());
+			source.filename (* getopt.argv ());
+			(source.* format) (std::cin.get ());
 			fileopen.close ();
 		}
 		getopt++;
