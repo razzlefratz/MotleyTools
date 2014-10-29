@@ -31,7 +31,7 @@
  *
  *   unsigned width (void) const;
  *
- *   get and set the comment bar width;
+ *   get and set comment bar width, excluding endpoints;
  *
  *--------------------------------------------------------------------*/
 
