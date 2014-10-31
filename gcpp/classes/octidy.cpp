@@ -66,6 +66,7 @@ signed octidy::program (signed c)
 			do 
 			{
 				c = osource::comment (c);
+				c = osource::find (c);
 			}
 			while (c == '/');
 			oindent::endline (1);
@@ -165,6 +166,7 @@ signed octidy::atheros (signed c)
 			do 
 			{
 				c = osource::comment (c);
+				c = osource::find (c);
 			}
 			while (c == '/');
 			oindent::endline (1);
@@ -270,6 +272,7 @@ signed octidy::charlie (signed c)
 			do 
 			{
 				c = ocomment::comment (c);
+				c = osource::find (c);
 			}
 			while (c == '/');
 			oindent::space (1);
@@ -302,6 +305,9 @@ signed octidy::charlie (signed c)
 			if (! this->mlevel)
 			{
 				oindent::endline (2);
+			}
+			if (! this->mlevel)
+			{
 				c = ocomment::preamble (c);
 			}
 			oindent::space (2);

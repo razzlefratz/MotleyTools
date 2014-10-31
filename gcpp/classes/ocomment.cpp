@@ -315,7 +315,6 @@ signed ocomment::cplus (signed c)
 			std::cout.put (c);
 		}
 	}
-	c = std::cin.get ();
 	return (c);
 }
 
