@@ -1,3 +1,4 @@
+
 /*====================================================================*
  *
  *   ff.c - find file utility;
@@ -73,7 +74,15 @@
 #endif
 
 /*====================================================================*
- *   fundtions;
+ *   program constants;
+ *--------------------------------------------------------------------*/
+
+#define FF_TIMER 1
+#define FF_OLDER 0
+#define FF_NEWER 1
+
+/*====================================================================*
+ *   functions;
  *--------------------------------------------------------------------*/
 
 static void findfile (FIND * find, flag_t flags);
@@ -133,6 +142,8 @@ static void showfile (FIND * find, flag_t flags)
 	}
 	return;
 }
+
+
 
 /*====================================================================*
  *
@@ -197,6 +208,8 @@ static void testfile (FIND * find, flag_t flags)
 	return;
 }
 
+
+
 /*====================================================================*
  *
  *   void findfile (FIND * find, flag_t flags);
@@ -235,6 +248,8 @@ static void findfile (FIND * find, flag_t flags)
 	return;
 }
 
+
+
 /*====================================================================*
  *   main program;
  *--------------------------------------------------------------------*/
@@ -245,13 +260,30 @@ int main (int argc, char const * argv [])
 	extern FIND find;
 	static char const * optv [] =
 	{
-		"defoprstE:PSBLIK",
+
+#if FF_TIMER
+
+		"defn:o:prstE:PSBLIK",
+
+#else
+
+		"defprstE:PSBLIK",
+
+#endif
+
 		PUTOPTV_S_SEARCH,
 		"search folders and/or standard paths for files",
 		"d\tprint date and time",
 		"e\tprint search pathstring",
 		"f\tprint filenames only",
-		"o n\tif over (n) days old [0]",
+
+#if FF_TIMER
+
+		"n n\tif newer than (n) days [" LITERAL (FF_NEWER) "]",
+		"o n\tif older than (n) days [" LITERAL (FF_OLDER) "]",
+
+#endif
+
 		"p\tprint pathnames only",
 		"r\trecursive search",
 		"s\tprint file size",
@@ -274,33 +306,14 @@ int main (int argc, char const * argv [])
 	{
 		switch (c)
 		{
-		case 'e':
-			_setbits (flags, FIND_B_TESTRUN);
-			break;
-		case 'f':
-			_clrbits (find.flagword, FIND_B_PATHNAME);
-			_setbits (find.flagword, FIND_B_FILENAME);
-			break;
-		case 'o':
-			find.filetime -= uintspec (optarg, 1, DAYS_IN_YEAR) * SECONDS_IN_DAY;
-			find.filetime -= find.filetime % SECONDS_IN_DAY;
-			find.filetime += SECONDS_IN_DAY;
-			break;
-		case 'p':
-			_setbits (find.flagword, FIND_B_PATHNAME);
-			_clrbits (find.flagword, FIND_B_FILENAME);
-			break;
-		case 'r':
-			_setbits (find.flagword, FIND_B_RECURSE);
-			break;
-		case 's':
-			_setbits (find.flagword, FIND_B_FILESIZE);
-			break;
-		case 't':
-			_setbits (find.flagword, FIND_B_TRAVERSE);
+		case 'B':
+			string = strdup (PATH_BINDIRS);
 			break;
 		case 'd':
 			_setbits (find.flagword, FIND_B_DATETIME);
+			break;
+		case 'e':
+			_setbits (flags, FIND_B_TESTRUN);
 			break;
 		case 'E':
 			if ((string = getenv (optarg)))
@@ -308,20 +321,50 @@ int main (int argc, char const * argv [])
 				error (0, EINVAL, "symbol ${%s} is not defined", optarg);
 			}
 			break;
-		case 'P':
-			string = getenv ("PATH");
+		case 'f':
+			_clrbits (find.flagword, FIND_B_PATHNAME);
+			_setbits (find.flagword, FIND_B_FILENAME);
 			break;
-		case 'S':
-			string = strdup (PATH_SYSDIRS);
-			break;
-		case 'B':
-			string = strdup (PATH_BINDIRS);
+		case 'I':
+			string = strdup (PATH_INCDIRS);
 			break;
 		case 'L':
 			string = strdup (PATH_LIBDIRS);
 			break;
-		case 'I':
-			string = strdup (PATH_INCDIRS);
+
+#if FF_TIMER
+
+		case 'n':
+			find.filetime -= uintspec (optarg, 1, DAYS_IN_YEAR) * SECONDS_IN_DAY;
+			find.filetime -= find.filetime % SECONDS_IN_DAY;
+			find.filetime += SECONDS_IN_DAY;
+			break;
+		case 'o':
+			find.filetime -= uintspec (optarg, 1, DAYS_IN_YEAR) * SECONDS_IN_DAY;
+			find.filetime -= find.filetime % SECONDS_IN_DAY;
+			find.filetime += SECONDS_IN_DAY;
+			break;
+
+#endif
+
+		case 'p':
+			_setbits (find.flagword, FIND_B_PATHNAME);
+			_clrbits (find.flagword, FIND_B_FILENAME);
+			break;
+		case 'P':
+			string = getenv ("PATH");
+			break;
+		case 'r':
+			_setbits (find.flagword, FIND_B_RECURSE);
+			break;
+		case 's':
+			_setbits (find.flagword, FIND_B_FILESIZE);
+			break;
+		case 'S':
+			string = strdup (PATH_SYSDIRS);
+			break;
+		case 't':
+			_setbits (find.flagword, FIND_B_TRAVERSE);
 			break;
 		default: 
 			break;
@@ -370,4 +413,6 @@ int main (int argc, char const * argv [])
 	}
 	exit (0);
 }
+
+
 
