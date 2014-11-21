@@ -22,14 +22,16 @@ install -m 0755 -o root -g root -d ${CVSROOT} ${BLDROOT} ${P4ROOT}
 
 apt-get update
 apt-get remove openoffice.org-impress openoffice.org-writer openoffice.org-calc openoffice-base gnome-games
-apt-get install codeblocks bluefish
-apt-get install xmlto docbook docbook-xml docbook-dsssl docbook-xsl dblatex xsltproc
-apt-get install vsftpd apache2 mysql-server-5.0 php5-mysql 
-apt-get install openssh-server samba rsync irssi
-apt-get install gcc g++ cvs nvi bvi 
-apt-get install wireshark tshark bridge-utils
-apt-get install vlc
 apt-get install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev
+apt-get install codeblocks bluefish
+apt-get install docbook docbook-xml docbook-dsssl docbook-xsl dblatex xsltproc xmlto
+apt-get install vsftpd apache2 mysql-server-5.0 php5-mysql 
+apt-get install openssh-server samba rsync 
+apt-get install irssi
+apt-get install gcc g++ git cvs nvi bvi cgit
+apt-get install wireshark tshark 
+apt-get install bridge-utils
+apt-get install vlc
 
 # ====================================================================
 #
