@@ -10,6 +10,7 @@
 	<!ENTITY memory SYSTEM "omemory.xml">
 	<!ENTITY number SYSTEM "onumber.xml">
 	<!ENTITY sha256 SYSTEM "oSHA256.xml">
+	<!ENTITY tools SYSTEM "tools.xml">
 ]>
 <book lang='en'>
 	<bookinfo>
@@ -57,4 +58,5 @@
 	&number;
 	&memory;
 	&sha256;
+	&tools;
 	</book>
