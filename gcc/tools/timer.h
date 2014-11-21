@@ -42,7 +42,7 @@
  *--------------------------------------------------------------------*/
 
 #define MILLISECONDS(start,timer) ((((timer).tv_sec - (start).tv_sec) * 1000) + ((timer).tv_usec - (start).tv_usec) / 1000)
-#define SECONDS(start,timer) (MILLISECONDS(start,timer) / 1000)
+#define SECONDS(start,timer) ((MILLISECONDS(start,timer) + 500) / 1000)
 
 /*====================================================================*
  *   end definitions and declarations;
