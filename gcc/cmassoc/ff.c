@@ -1,3 +1,4 @@
+
 /*====================================================================*
  *
  *   ff.c - find file utility;
@@ -142,6 +143,8 @@ static void showfile (FIND * find, flag_t flags)
 	return;
 }
 
+
+
 /*====================================================================*
  *
  *   void testfile (FIND * find, flag_t flags);
@@ -205,6 +208,8 @@ static void testfile (FIND * find, flag_t flags)
 	return;
 }
 
+
+
 /*====================================================================*
  *
  *   void findfile (FIND * find, flag_t flags);
@@ -242,6 +247,8 @@ static void findfile (FIND * find, flag_t flags)
 	testfile (find, flags);
 	return;
 }
+
+
 
 /*====================================================================*
  *   main program;
@@ -406,4 +413,6 @@ int main (int argc, char const * argv [])
 	}
 	exit (0);
 }
+
+
 
