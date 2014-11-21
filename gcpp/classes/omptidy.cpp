@@ -115,6 +115,8 @@ omptidy & omptidy::release (char const * release)
  *
  *   omptidy & filename (char const * filename);
  *
+ *   set man page filename;
+ *
  *--------------------------------------------------------------------*/
 
 omptidy & omptidy::filename (char const * filename)
