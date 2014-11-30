@@ -227,18 +227,37 @@ signed ocomment::preamble (signed c)
 signed ocomment::comment (signed c)
 
 {
-	c = std::cin.get ();
-	if (c == '/')
+	while (c == '/')
 	{
-		c = ocomment::cplus (c);
-		return (c);
+		c = std::cin.get ();
+		if (c == '/')
+		{
+			c = ocomment::cplus (c);
+			do { c = std::cin.get (); } while (oascii::isspace (c));
+			continue;
+		}
+		if (c == '*')
+		{
+			c = ocomment::clang (c);
+			do { c = std::cin.get (); } while (oascii::isspace (c));
+#if 1
+/*
+ *	insert blank line between adjacent C Language comment blocks but remove
+ *	blank lines between adjacent C++ comment blocks, as above;
+ */
+			if (c == '/')
+			{
+				if (std::cin.peek () == '*')
+				{
+					std::cout.put ('\n');
+				}
+			}
+#endif
+			continue;
+		}
+		std::cout.put ('/');
+		break;
 	}
-	if (c == '*')
-	{
-		c = ocomment::clang (c);
-		return (c);
-	}
-	std::cout.put ('/');
 	return (c);
 }
 
@@ -389,9 +408,11 @@ signed ocomment::clang (signed c)
 			c = ocomment::message (c, this->mlicense);
 		}
 	}
-	std::cout.put ('/');
+	if (c != EOF)
+	{
+		std::cout.put ('/');
+	}
 	std::cout.put ('\n');
-	c = std::cin.get ();
 	return (c);
 }
 

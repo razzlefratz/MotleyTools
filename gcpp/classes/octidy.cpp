@@ -63,12 +63,7 @@ signed octidy::program (signed c)
 		if (c == '/')
 		{
 			oindent::endline ();
-			do 
-			{
-				c = osource::comment (c);
-				c = osource::find (c);
-			}
-			while (c == '/');
+			c = osource::comment (c);
 			oindent::endline (1);
 			oindent::space (1);
 			continue;
@@ -159,12 +154,7 @@ signed octidy::atheros (signed c)
 		if (c == '/')
 		{
 			oindent::endline ();
-			do 
-			{
-				c = osource::comment (c);
-				c = osource::find (c);
-			}
-			while (c == '/');
+			c = osource::comment (c);
 			oindent::endline (1);
 			oindent::space (1);
 			continue;
@@ -260,12 +250,7 @@ signed octidy::charlie (signed c)
 		if (c == '/')
 		{
 			oindent::endline ();
-			do 
-			{
-				c = ocomment::comment (c);
-				c = osource::find (c);
-			}
-			while (c == '/');
+			c = ocomment::comment (c);
 			oindent::space (1);
 			continue;
 		}
