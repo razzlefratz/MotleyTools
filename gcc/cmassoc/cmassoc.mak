@@ -96,6 +96,7 @@ mmf.o: mmf.c clang.h cmassoc.h files.h list.h strlib.h
 mp.o: mp.c chars.h console.h error.h files.h profile.h sizes.h tidy.h
 mp2.o: mp2.c chars.h console.h error.h files.h profile.h sizes.h tidy.h
 mrg.o: mrg.c cmassoc.h sort.h
+mti.o: mti.c version.h
 munge.o: munge.c cmassoc.h files.h
 mvpkg.o: mvpkg.c cmassoc.h files.h strlib.h
 nics.o: nics.c error.h ether.h getoptv.h memory.h putoptv.h types.h version.h
@@ -116,7 +117,6 @@ paginate.o: paginate.c cmassoc.h page.h
 pkg.o: pkg.c cmassoc.h strlib.h
 pkgdep.o: pkgdep.c charset.h cmassoc.h files.h scan.h strlib.h
 pkgopt.o: pkgopt.c cmassoc.h files.h
-sandwich.o: sandwich.c clang.h cmassoc.h files.h linux.h
 purge.o: purge.c cmassoc.h date.h files.h
 qc.o: qc.c cmassoc.h files.h list.h scan.h
 quiet.o: quiet.c cmassoc.h
@@ -127,6 +127,7 @@ rex.o: rex.c cmassoc.h
 rexp.o: rexp.c chrlib.h cmassoc.h regex.h
 rmpkg.o: rmpkg.c cmassoc.h list.h strlib.h
 runjobs.o: runjobs.c cmassoc.h files.h linux.h syslog.h
+sandwich.o: sandwich.c clang.h cmassoc.h files.h linux.h
 sbar.o: sbar.c chrlib.h clang.h cmassoc.h linux.h
 sbrief.o: sbrief.c cmassoc.h files.h
 search.o: search.c chrlib.h cmassoc.h files.h regex.h strlib.h

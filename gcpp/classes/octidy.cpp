@@ -231,7 +231,6 @@ signed octidy::charlie (signed c)
 {
 	oindent::level (0);
 	oindent::space (0);
-	c = ocomment::preamble (c);
 	while (c != EOF)
 	{
 		c = osource::find (c);
@@ -249,6 +248,10 @@ signed octidy::charlie (signed c)
 		}
 		if (c == '/')
 		{
+			if (! this->mlevel)
+			{
+				c = ocomment::preamble (c);
+			}
 			oindent::endline ();
 			c = ocomment::comment (c);
 			oindent::space (1);
