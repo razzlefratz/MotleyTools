@@ -69,7 +69,6 @@ public:
 	signed comment (signed c);
 	signed cplus (signed c);
 	signed clang (signed c);
-	signed preamble (signed c);
 	ocomment & preamble (void);
 	unsigned width (void) const;
 	unsigned align (void) const;

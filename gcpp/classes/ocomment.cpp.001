@@ -195,29 +195,18 @@ signed ocomment::comment (signed c)
 		if (c == '/')
 		{
 			c = ocomment::cplus (c);
-			do 
-			{
-				c = std::cin.get ();
-			}
-			while (oascii::isspace (c));
+			do { c = std::cin.get (); } while (oascii::isspace (c));
 			continue;
 		}
 		if (c == '*')
 		{
 			c = ocomment::clang (c);
-			do 
-			{
-				c = std::cin.get ();
-			}
-			while (oascii::isspace (c));
-
+			do { c = std::cin.get (); } while (oascii::isspace (c));
 #if 1
-
 /*
  *	insert blank line between adjacent C Language comment blocks but remove
  *	blank lines between adjacent C++ comment blocks, as above;
  */
-
 			if (c == '/')
 			{
 				if (std::cin.peek () == '*')
@@ -226,7 +215,6 @@ signed ocomment::comment (signed c)
 				}
 			}
 #endif
-
 			continue;
 		}
 		std::cout.put ('/');
@@ -280,33 +268,32 @@ signed ocomment::cplus (signed c)
 		std::cout.put ('*');
 		std::cout.put ('/');
 	}
-	else 
+	else
+{
+	bool space = false;
+	std::cout.put ('/');
+	std::cout.put ('/');
+	while (oascii::nobreak (c))
 	{
-		bool space = false;
-		std::cout.put ('/');
-		std::cout.put ('/');
-		while (oascii::nobreak (c))
+		if (oascii::isblank (c))
 		{
-			if (oascii::isblank (c))
-			{
-				c = std::cin.get ();
-				space = true;
-				continue;
-			}
-			if (space)
-			{
-				std::cout.put (' ');
-				space = false;
-				continue;
-			}
-			std::cout.put (c);
 			c = std::cin.get ();
+			space = true;
+			continue;
 		}
-		if (c != EOF)
+		if (space)
 		{
-			std::cout.put (c);
+			std::cout.put (' ');
+			space = false;
+			continue;
 		}
+		std::cout.put (c);
+		c = std::cin.get ();
 	}
+	if (c != EOF)
+	{
+		std::cout.put (c);
+	}}
 	return (c);
 }
 
