@@ -64,7 +64,6 @@ signed octidy::program (signed c)
 		{
 			oindent::endline ();
 			c = osource::comment (c);
-			oindent::endline (1);
 			oindent::space (1);
 			continue;
 		}
@@ -155,7 +154,6 @@ signed octidy::atheros (signed c)
 		{
 			oindent::endline ();
 			c = osource::comment (c);
-			oindent::endline (1);
 			oindent::space (1);
 			continue;
 		}
@@ -248,10 +246,6 @@ signed octidy::charlie (signed c)
 		}
 		if (c == '/')
 		{
-			if (! this->mlevel)
-			{
-				c = ocomment::preamble (c);
-			}
 			oindent::endline ();
 			c = ocomment::comment (c);
 			oindent::space (1);
@@ -266,10 +260,6 @@ signed octidy::charlie (signed c)
 			oindent::endline (1);
 			oindent::newline ();
 			c = osource::keep (c);
-			if (! this->mlevel)
-			{
-				c = ocomment::preamble (c);
-			}
 			oindent::increment ();
 			oindent::space (2);
 			continue;
