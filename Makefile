@@ -12,7 +12,7 @@ CONTROL := /home/ftp/linux/system/src/custom
 PACKAGE	:= $(basename ${PWD})
 EXCLUDE := --exclude=.git 
 FOLDERS := awk bash gcc gcpp misc php python docbook 
-FOLDERS := gcc gcpp misc 
+FOLDERS := bash gcc gcpp misc 
 
 # ===================================================================
 # pseudo targets;
