@@ -126,6 +126,7 @@ int main (int argc, char const * argv [])
 			format = & octidy::atheros;
 			break;
 		case 'b':
+			oerror::error (1, ENOSYS, "Option -b.");
 			source.setbits (oCOMMENT_B_COMMENT);
 			break;
 		case 'C':

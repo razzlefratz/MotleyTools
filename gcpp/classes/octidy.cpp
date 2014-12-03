@@ -123,7 +123,6 @@ signed octidy::program (signed c)
 	oinclude::footer ();
 	return (c);
 }
-
 /*====================================================================*
  *
  *   signed atheros (signed c);
@@ -213,7 +212,6 @@ signed octidy::atheros (signed c)
 	oinclude::footer ();
 	return (c);
 }
-
 /*====================================================================*
  *
  *   signed charlie (signed c);
@@ -275,10 +273,6 @@ signed octidy::charlie (signed c)
 				c = osource::find (c);
 			}
 			while ((c == ',') || (c == ';'));
-			if (! this->mlevel)
-			{
-				oindent::endline (1);
-			}
 			oindent::space (1);
 			continue;
 		}
@@ -297,7 +291,6 @@ signed octidy::charlie (signed c)
 	oinclude::footer ();
 	return (c);
 }
-
 /*====================================================================*
  *
  *   signed statement (signed c);
@@ -382,7 +375,6 @@ signed octidy::statement (signed c)
 	}
 	return (c);
 }
-
 /*====================================================================*
  *
  *   signed context (signed c, char const * charset) const;
@@ -398,7 +390,6 @@ signed octidy::context (signed c, char const * charset) const
 	}
 	return (c);
 }
-
 /*====================================================================*
  *
  *   signed context (signed c, signed o, signed e) const;
@@ -414,7 +405,6 @@ signed octidy::context (signed c, signed o, signed e) const
 	c = osource::keep (c);
 	return (c);
 }
-
 signed octidy::_context (signed c, signed o, signed e) const
 
 {
@@ -425,7 +415,6 @@ signed octidy::_context (signed c, signed o, signed e) const
 	}
 	return (c);
 }
-
 /*====================================================================*
  *
  *   signed context (signed c, signed e) const;
@@ -441,7 +430,6 @@ signed octidy::context (signed c, signed e) const
 	c = osource::keep (c);
 	return (c);
 }
-
 signed octidy::_context (signed c, signed e) const
 
 {
@@ -451,7 +439,6 @@ signed octidy::_context (signed c, signed e) const
 	}
 	return (c);
 }
-
 /*====================================================================*
  *
  *   signed context (signed  c) const;
@@ -493,7 +480,6 @@ signed octidy::context (signed c) const
 	}
 	return (c);
 }
-
 /*====================================================================*
  *
  *   octidy (void)
@@ -505,7 +491,6 @@ octidy::octidy (void)
 {
 	return;
 }
-
 /*====================================================================*
  *
  *   ~ octidy (void)
@@ -517,7 +502,6 @@ octidy::~ octidy (void)
 {
 	return;
 }
-
 /*====================================================================*
  *   end definition
  *--------------------------------------------------------------------*/
