@@ -12,7 +12,7 @@ gcc -Wall -Wextra -Wno-unused-parameter -c cinclude.c
 gcc -Wall -Wextra -Wno-unused-parameter -c clang.c
 gcc -Wall -Wextra -Wno-unused-parameter -c coper.c
 gcc -Wall -Wextra -Wno-unused-parameter -c cword.c
-gcc -Wall -Wextra -Wno-unused-parameter -c tl.c
+# gcc -Wall -Wextra -Wno-unused-parameter -c tl.c
 
 # ====================================================================
 #
