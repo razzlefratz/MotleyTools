@@ -332,7 +332,7 @@ int main (int argc, char const * argv [])
 			section = optarg;
 			break;
 		case 'm':
-			example (release);
+			example ();
 			return (0);
 		case 'o':
 			configure (section, project, package, release);
