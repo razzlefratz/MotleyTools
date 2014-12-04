@@ -14,6 +14,7 @@
  *   system header files;
  *--------------------------------------------------------------------*/
 
+#include <cerrno>
 #include <cstdlib>
 #include <iostream>
 
