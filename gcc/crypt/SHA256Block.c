@@ -98,7 +98,7 @@ void SHA256Block (struct sha256 * sha256, void const * memory)
 	};
 	unsigned pass;
 	unsigned word;
-	uint32_t H [sizeof (sha256->state)/sizeof (uint32_t)];
+	uint32_t H [SIZEOF (sha256->state)];
 	uint32_t W [sizeof (sha256->block)];
 	uint8_t * buffer = (uint8_t *)(memory);
 	for (word = 0; word < 16; word++) 
@@ -109,13 +109,14 @@ void SHA256Block (struct sha256 * sha256, void const * memory)
 		W [word] |= (uint32_t)(*buffer++) << 8;
 		W [word] |= (uint32_t)(*buffer++) << 0;;
 	}
-	for (word = word; word < sizeof (sha256->block); word++) 
+	while (word < sizeof (sha256->block)) 
 	{
 		uint32_t s0 = ROTR (W [word-15], 7) ^ ROTR (W [word-15], 18) ^ SHR (W [word-15], 3);
 		uint32_t s1 = ROTR (W [word- 2], 17) ^ ROTR (W [word- 2], 19) ^ SHR (W [word- 2], 10);
 		W [word] = W [word - 16] + s0 + W [word - 7] + s1;
+		word++;
 	}
-	for (word = 0; word < (sizeof (sha256->state) / sizeof (uint32_t)); word++) 
+	for (word = 0; word < SIZEOF (sha256->state); word++) 
 	{
 		H [word] = sha256->state [word];
 	}
@@ -127,14 +128,14 @@ void SHA256Block (struct sha256 * sha256, void const * memory)
 		uint32_t s3 = ROTR (H [4], 6) ^ ROTR (H [4], 11) ^ ROTR (H [4], 25);
 		uint32_t ch = (H [4] & H [5]) ^ ((~ H [4]) & H [6]);
 		uint32_t t1 = H [7] + s3 + ch + K [pass] + W [pass];
-		for (word = (sizeof (sha256->state) / sizeof (uint32_t)) - 1; word > 0; word--) 
+		for (word = SIZEOF (sha256->state) - 1; word > 0; word--) 
 		{
 			H [word] = H [word-1];
 		}
 		H [0] = t1 + t2;
 		H [4] += t1;
 	}
-	for (word = 0; word < (sizeof (sha256->state) / sizeof (uint32_t)); word++) 
+	for (word = 0; word < SIZEOF (sha256->state); word++) 
 	{
 		sha256->state [word] += H [word];
 	}
