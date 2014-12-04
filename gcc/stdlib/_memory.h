@@ -28,7 +28,7 @@
  *   memory allocation function prototypes;
  *--------------------------------------------------------------------*/
 
-void *_calloc (size_t count, size_t itemsize);
+void *_calloc (unsigned count, size_t itemsize);
 void *_malloc (size_t itemsize);
 void *_realloc (void *pp, size_t itemsize);
 void _free (void *pp);
@@ -38,12 +38,12 @@ void _cfree (void *pp);
  *   memory manipulation function prototypes;
  *--------------------------------------------------------------------*/
 
-void *memset (void *target, const int c, size_t count);
-void *memcpy (void *target, void const *source, size_t count);
-void *_memccpy (void *target, void const *source, const int c, unsigned int count);
-int _memicmp (void const *target, void const *source, size_t count);
-int memcmp (void const *target, void const *source, size_t count);
-char *memchr (char const *buffer, const int c, size_t count);
+void * _memset (void * memory, const int c, unsigned long count);
+void * _memchr (void * memory, const int c, unsigned long count);
+void * _memcpy  (void * target, const void * source, unsigned long count);
+void * _memccpy (void * target, const void * source, const int c, unsigned long count);
+int _memicmp (const void * target, const void * source, unsigned long count);
+int _memcmp (const void * target, const void * source, unsigned long count);
 
 /*====================================================================*
  *   end definitions;

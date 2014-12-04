@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   int _memcmp(void const *target, void const *source, size_t count)
+ *   signed _memcmp (const void * target, const void * source, unsigned long count);
  *
  *   _string.h
  *   _memory.h
@@ -19,15 +19,17 @@
 
 #include "../stdlib/_memory.h"
 
-int _memcmp (register char const *target, register char const *source, register size_t count) 
+signed _memcmp (register const void * target, register const void * source, register unsigned long count)
 
 {
-	if (source) if (target) 
+	if (source) if (target)
 	{
-		while ((count > 0) && (*target == *source)) target++,
-		source++,
-		count--;
+		while ((count) && (* (char *) (target) == * (char *) (source))) 
+		{
+			target++;
+			source++;
+			count--;
+		}
 	}
-	return ((count > 0)? (int)(*target - *source):(0));
+	return ((count)? (signed) (* (char *) (target) - * (char *) (source)): (0));
 }
-

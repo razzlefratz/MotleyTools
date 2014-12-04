@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   void *_memcpy(void *target, void const *source, size_t count);
+ *   void * _memcpy (void * target, const void * source, unsigned long count)
  *
  *   _string.h
  *   _memory.h
@@ -17,17 +17,12 @@
 
 #include "../stdlib/_memory.h"
 
-void *_memcpy (register char *target, register char const *source, register size_t count) 
+void * _memcpy (register void * target, register const void * source, register unsigned long count)
 
 {
-	if (target) if (source) 
+	if (target) if (source) while (count--)
 	{
-		register size_t index;
-		for (index = 0; index < count; index++) 
-		{
-			target [index] = source [index];
-		}
+		* (char *) (target) ++ = * (char *) (source) ++;
 	}
-	return ((void *)(target));
+	return (target);
 }
-

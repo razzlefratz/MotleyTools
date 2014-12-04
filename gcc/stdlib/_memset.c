@@ -1,12 +1,12 @@
 /*====================================================================*
  *
- *   void *_memset(char *buffer, const int c, size_t count);
+ *   void * _memset (void * memory, const int c, unsigned long extent);
  *
  *   _string.h
  *   _memory.h
  *
- *   place character c in the first count character positions of a buffer
- *   and return the buffer address;
+ *   place character c in the first count character positions of memory
+ *   and return the memory address;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -16,10 +16,10 @@
 
 #include "../stdlib/_memory.h"
 
-void *_memset (register char *buffer, register const int c, size_t count) 
+void * _memset (register void * memory, register const int c, unsigned long extent) 
 
 {
-	if (buffer) while (count > 0) buffer [count--] = (unsigned char)(c);
-	return (buffer);
+	if (memory) while (extent--) ((unsigned char *)(memory)) [extent] = (unsigned char)(c);
+	return (memory);
 }
 

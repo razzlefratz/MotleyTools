@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   char *_memchr(char const *buffer, const int c, size_t count)
+ *   void * _memchr (void * memory, const int c, unsigned long count)
  *
  *   _string.h
  *   _memory.h
@@ -16,10 +16,16 @@
 
 #include "../stdlib/_memory.h"
 
-char *_memchr (register char *buffer, register const int c, register size_t count) 
+void * _memchr (register void * memory, register const int c, register unsigned long count)
 
 {
-	if (buffer) while ((count-- > 0) && (*buffer != c)) buffer++;
-	return (buffer);
+	if (memory) while (count--)
+	{
+		if (* (char *) (memory) == c)
+		{
+			break;
+		}
+		(char *) (memory) ++;
+	}
+	return (memory);
 }
-
