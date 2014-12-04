@@ -182,7 +182,9 @@ ocomment & ocomment::preamble (void)
  *
  *   signed comment (signed c) const;
  *
- *   read and write comment blocks;
+ *   read and write comment blocks; blank lines are removed between
+ *   adjacent C++ comment blocks; a blank line is inserted between
+ *   adjacent C comment blocks;
  *
  *--------------------------------------------------------------------*/
 
@@ -239,7 +241,8 @@ signed ocomment::comment (signed c)
  *
  *   signed cplus (signed c);
  *
- *   format C++ style comments and return the character after;
+ *   format C++ comment and return the character after; the comment
+ *   includes starting slashes and trailing linefeed;
  *
  *   read and discard strings of leading slashes;
  *
