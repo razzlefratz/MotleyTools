@@ -22,9 +22,15 @@
 struct _find_ find = 
 
 {
+#if defined (__APPLE__)
 	{
 		
 	},
+#else
+	{
+	0	
+	},
+#endif
 	"",
 	FILE_S_EXTENDER,
 	FILE_S_EXTENDER,
