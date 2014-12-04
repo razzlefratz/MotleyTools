@@ -41,7 +41,7 @@ clean:
 	chmod 0755 Makefile *.mak *.sh
 	chmod 0644 *.c *.h
 check:
-	${SH} scan.sh
+	${SH} ./scan.sh
 ignore:
 	echo ${TOOLS} | tr " " "\n" > .gitignore
 

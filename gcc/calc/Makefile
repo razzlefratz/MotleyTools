@@ -39,7 +39,7 @@ clean:
 	chmod 0755 Makefile *.mak *.sh
 	chmod 0644 *.c *.h
 check:
-	${SH} calc.sh
+	${SH} ./calc.sh
 ignore:
 	echo ${TOOLS} | tr " " "\n" > .gitignore
 

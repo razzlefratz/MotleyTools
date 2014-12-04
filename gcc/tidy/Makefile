@@ -39,7 +39,7 @@ clean:
 	chmod 0755 Makefile *.mak *.sh
 	chmod 0644 *.c *.h
 check:
-	${SH} tidy.sh
+	${SH} ./tidy.sh
 ignore:
 	echo ${TOOLS} | tr " " "\n" > .gitignore
 

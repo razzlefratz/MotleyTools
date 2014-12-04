@@ -50,7 +50,7 @@ clean:
 	chmod 0755 Makefile *.mak *.sh
 	chmod 0644 *.c *.h
 check:
-	${SH} recycle.sh
+	${SH} ./recycle.sh
 ignore:
 	echo ${TOOLS} | tr " " "\n" > .gitignore
 

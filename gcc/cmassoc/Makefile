@@ -58,7 +58,7 @@ clean:
 	chmod 0755 Makefile *.mak *.sh
 	chmod 0644 *.c 
 check:
-	${SH} cmassoc.sh
+	${SH} ./cmassoc.sh
 ignore:
 	echo ${TOOLS} ${OTHER} | tr " " "\n" > .gitignore
 

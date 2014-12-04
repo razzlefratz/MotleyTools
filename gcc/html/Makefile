@@ -38,7 +38,7 @@ clean:
 	chmod 0755 Makefile *.mak *.sh
 	chmod 0644 *.c *.h
 check:
-	${SH} html.sh
+	${SH} ./html.sh
 ignore:
 	echo ${TOOLS} | tr " " "\n" > .gitignore
 

@@ -41,7 +41,7 @@ clean:
 	chmod 0755 Makefile *.mak *.sh
 	chmod 0644 *.c *.h
 check:
-	${SH} menu.sh
+	${SH} ./menu.sh
 ignore:
 	echo ${TOOLS} | tr " " "\n" > .gitignore
 

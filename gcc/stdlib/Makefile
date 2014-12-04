@@ -39,7 +39,7 @@ clean:
 	chmod 0755 Makefile *.mak *.sh
 	chmod 0644 *.c *.h
 check:
-	${SH} stdlib.sh
+	${SH} ./stdlib.sh
 ignore:
 	echo ${TOOLS} | tr " " "\n" > .gitignore
 

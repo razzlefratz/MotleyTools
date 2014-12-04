@@ -40,7 +40,7 @@ clean:
 	chmod 0755 Makefile *.mak *.sh
 	chmod 0644 *.c *.h
 check:
-	${SH} include.sh
+	${SH} ../include.sh
 ignore:
 	echo ${TOOLS} | tr " " "\n" > .gitignore
 
