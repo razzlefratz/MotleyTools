@@ -401,6 +401,8 @@ signed osource::comment (signed c)
 			c = osource::keep (c);
 		}
 		c = osource::keep (c);
+		c = osource::find (c);
+		std::cout.put ('\n');
 		return (c);
 	}
 	return (c);
