@@ -347,7 +347,7 @@ signed ophptidy::context (signed c) const
 		c = osource::keep (o);
 		if (o == '\n')
 		{
-			oindent::print (oindent::margin (), oindent::offset (), oindent::level ());
+			oindent::print (oindent::margin (), oindent::indent (), oindent::level ());
 		}
 		c = osource::find (c);
 	}

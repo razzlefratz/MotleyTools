@@ -452,7 +452,7 @@ signed octidy::context (signed c) const
 		c = osource::find (c);
 		if (o == '\n')
 		{
-			oindent::print (oindent::margin (), oindent::offset (), oindent::level ());
+			oindent::print (oindent::margin (), oindent::indent (), oindent::level ());
 		}
 	}
 	else if (c == '(')

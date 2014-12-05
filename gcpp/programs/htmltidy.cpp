@@ -65,9 +65,9 @@ int main (int argc, char const * argv [])
 		"format html/xhtml/xml source files",
 		"c\tcompact source",
 		"m s\tmargin string is (s) [" LITERAL (oINDENT_MARGIN) "]",
-		"o s\toffset string is (s) [" LITERAL (oINDENT_OFFSET) "]",
-		"s\toffset string is 3 spaces",
-		"t\toffset string is 1 tab",
+		"o s\tindent string is (s) [" LITERAL (oINDENT_INDENT) "]",
+		"s\tindent string is 3 spaces",
+		"t\tindent string is 1 tab",
 		(char const *) (0)
 	};
 	ogetoptv getopt;
@@ -83,7 +83,7 @@ int main (int argc, char const * argv [])
 		{
 		case 'c':
 			source.margin ("");
-			source.offset ("");
+			source.indent ("");
 			source.finish ("");
 			source.record ("");
 			break;
@@ -91,13 +91,13 @@ int main (int argc, char const * argv [])
 			source.margin (escape.unescape ((char *) (getopt.args ())));
 			break;
 		case 'o':
-			source.offset (escape.unescape ((char *) (getopt.args ())));
+			source.indent (escape.unescape ((char *) (getopt.args ())));
 			break;
 		case 's':
-			source.offset ("   ");
+			source.indent ("   ");
 			break;
 		case 't':
-			source.offset ("\t");
+			source.indent ("\t");
 			break;
 		default: 
 			break;

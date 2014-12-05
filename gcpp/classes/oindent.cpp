@@ -153,38 +153,38 @@ char const * oindent::margin (void) const
 
 /*====================================================================*
  *
- *   oindent & offset (char const * string);
+ *   oindent & indent (char const * string);
  *
  *   set the indent string; the indent string may be output at the
  *   start of each line after the margin string;
  *
  *--------------------------------------------------------------------*/
 
-oindent & oindent::offset (char const * string)
+oindent & oindent::indent (char const * string)
 
 {
-	if (std::strcmp (string, this->moffset))
+	if (std::strcmp (string, this->mindent))
 	{
-		delete [] moffset;
-		this->moffset = new char [strlen (string) +  1];
-		std::strcpy (this->moffset, string);
+		delete [] mindent;
+		this->mindent = new char [strlen (string) +  1];
+		std::strcpy (this->mindent, string);
 	}
 	return (* this);
 }
 
 /*====================================================================*
  *
- *   char const * offset (void) const;
+ *   char const * indent (void) const;
  *
  *   get the indent string; the indent string may be output at the
  *   start of each line after the margin string;
  *
  *--------------------------------------------------------------------*/
 
-char const * oindent::offset (void) const
+char const * oindent::indent (void) const
 
 {
-	return ((char const *) (this->moffset));
+	return ((char const *) (this->mindent));
 }
 
 /*====================================================================*
@@ -296,28 +296,28 @@ oindent & oindent::endline (char const * finish, char const * record, signed spa
  *   oindent & newline (signed level)
  *   oindent & newline (char const * margin, char const * indent, signed level)
  *
- *   output the margin string followed by level offset strings;
+ *   output the margin string followed by level indent strings;
  *
  *--------------------------------------------------------------------*/
 
 oindent & oindent::newline (void)
 
 {
-	oindent::print (this->mmargin, this->moffset, this->mlevel);
+	oindent::print (this->mmargin, this->mindent, this->mlevel);
 	return (* this);
 }
 
 oindent & oindent::newline (signed level)
 
 {
-	oindent::print (this->mmargin, this->moffset, level);
+	oindent::print (this->mmargin, this->mindent, level);
 	return (* this);
 }
 
-oindent & oindent::newline (char const * margin, char const * offset, signed level)
+oindent & oindent::newline (char const * margin, char const * indent, signed level)
 
 {
-	oindent::print (margin, offset, level);
+	oindent::print (margin, indent, level);
 	return (* this);
 }
 
@@ -330,7 +330,7 @@ oindent & oindent::newline (char const * margin, char const * offset, signed lev
 oindent & oindent::print (signed level, signed space, char const * string)
 
 {
-	oindent::print (this->mmargin, this->moffset, level);
+	oindent::print (this->mmargin, this->mindent, level);
 	std::cout << string;
 	oindent::print (this->mfinish, this->mrecord, space);
 	return (* this);
@@ -364,9 +364,9 @@ oindent::oindent (void)
 {
 	this->mmargin = new char [1];
 	this->mmargin [0] = '\0';
-	this->moffset = new char [2];
-	this->moffset [0] = '\t';
-	this->moffset [1] = '\0';
+	this->mindent = new char [2];
+	this->mindent [0] = '\t';
+	this->mindent [1] = '\0';
 	this->mfinish = new char [1];
 	this->mfinish [0] = '\0';
 	this->mrecord = new char [2];
@@ -388,7 +388,7 @@ oindent::~ oindent (void)
 
 {
 	delete [] this->mmargin;
-	delete [] this->moffset;
+	delete [] this->mindent;
 	delete [] this->mfinish;
 	delete [] this->mrecord;
 	return;
