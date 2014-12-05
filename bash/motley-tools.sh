@@ -11,8 +11,8 @@ TOOLS=/usr/local/bin/cmassoc
 # --------------------------------------------------------------------
 if [ -d ${TOOLS} ]; then
 	export PATH=${PATH}:${TOOLS}:~:.
-	if [ -x ${TOOLS}/mti ]; then
-		${TOOLS}/mti
+	if [ -x ${TOOLS}/mtk ]; then
+		${TOOLS}/mtk
 	else
 		echo "Motley Tools are installed!"
 		fi
