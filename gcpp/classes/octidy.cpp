@@ -34,6 +34,86 @@ ocexitwords octidy::exitwords;
 
 /*====================================================================*
  *
+ *   signed charlie (signed c);
+ *
+ *   this method is similar method program() but annotates comments
+ *   and inserts include guards; essentially, this is charlie's own
+ *   private formatter;
+ *
+ *--------------------------------------------------------------------*/
+
+signed octidy::charlie (signed c)
+
+{
+	oindent::level (0);
+	oindent::space (0);
+	while (c != EOF)
+	{
+		c = osource::find (c);
+		if (c == '#')
+		{
+			oindent::endline ();
+			oinclude::header ();
+			do 
+			{
+				c = osource::command (c);
+			}
+			while (c == '#');
+			oindent::space (1);
+			continue;
+		}
+		if (c == '/')
+		{
+			oindent::endline ();
+			c = ocomment::comment (c);
+			oindent::space (1);
+			continue;
+		}
+		if (c == '{')
+		{
+			if (! this->mlevel)
+			{
+				oindent::endline (1);
+			}
+			oindent::endline (1);
+			oindent::newline ();
+			c = osource::keep (c);
+			oindent::increment ();
+			oindent::space (2);
+			continue;
+		}
+		if (c == '}')
+		{
+			oindent::decrement ();
+			oindent::endline (1);
+			oindent::newline ();
+			do 
+			{
+				c = osource::keep (c);
+				c = osource::find (c);
+			}
+			while ((c == ',') || (c == ';'));
+			oindent::space (2);
+			continue;
+		}
+		if ((c == ',') || (c == ';') || (c == ':'))
+		{
+			c = osource::keep (c);
+			c = osource::find (c);
+			oindent::space (2);
+			continue;
+		}
+		oindent::endline (1);
+		c = octidy::statement (c);
+		oindent::space (2);
+	}
+	oindent::endline ();
+	oinclude::footer ();
+	return (c);
+}
+
+/*====================================================================*
+ *
  *   signed program (signed c);
  *
  *   format a source code file;
@@ -123,6 +203,7 @@ signed octidy::program (signed c)
 	oinclude::footer ();
 	return (c);
 }
+
 /*====================================================================*
  *
  *   signed atheros (signed c);
@@ -208,88 +289,15 @@ signed octidy::atheros (signed c)
 	oinclude::footer ();
 	return (c);
 }
-/*====================================================================*
- *
- *   signed charlie (signed c);
- *
- *   this method is similar method program() but annotates comments
- *   and inserts include guards; essentially, this is charlie's own
- *   private formatter;
- *
- *--------------------------------------------------------------------*/
 
-signed octidy::charlie (signed c)
-
-{
-	oindent::level (0);
-	oindent::space (0);
-	while (c != EOF)
-	{
-		c = osource::find (c);
-		if (c == '#')
-		{
-			oindent::endline ();
-			oinclude::header ();
-			do 
-			{
-				c = osource::command (c);
-			}
-			while (c == '#');
-			oindent::space (1);
-			continue;
-		}
-		if (c == '/')
-		{
-			oindent::endline ();
-			c = ocomment::comment (c);
-			oindent::space (1);
-			continue;
-		}
-		if (c == '{')
-		{
-			if (! this->mlevel)
-			{
-				oindent::endline (1);
-			}
-			oindent::endline (1);
-			oindent::newline ();
-			c = osource::keep (c);
-			oindent::increment ();
-			oindent::space (2);
-			continue;
-		}
-		if (c == '}')
-		{
-			oindent::decrement ();
-			oindent::endline (1);
-			oindent::newline ();
-			do 
-			{
-				c = osource::keep (c);
-				c = osource::find (c);
-			}
-			while ((c == ',') || (c == ';'));
-			oindent::space (2);
-			continue;
-		}
-		if ((c == ',') || (c == ';') || (c == ':'))
-		{
-			c = osource::keep (c);
-			c = osource::find (c);
-			oindent::space (2);
-			continue;
-		}
-		oindent::endline (1);
-		c = octidy::statement (c);
-		oindent::space (2);
-	}
-	oindent::endline ();
-	oinclude::footer ();
-	return (c);
-}
 /*====================================================================*
  *
  *   signed statement (signed c);
+ *
+ *   scan and format one statement (or clause) meaning everything up
+ *   to the next comma, semicolon, colon, brace or hash; make special
+ *   proovisions for label statements such as case, default, public,
+ *   private, protected and so forth;
  *
  *--------------------------------------------------------------------*/
 
@@ -371,6 +379,7 @@ signed octidy::statement (signed c)
 	}
 	return (c);
 }
+
 /*====================================================================*
  *
  *   signed context (signed c, char const * charset) const;
@@ -386,6 +395,7 @@ signed octidy::context (signed c, char const * charset) const
 	}
 	return (c);
 }
+
 /*====================================================================*
  *
  *   signed context (signed c, signed o, signed e) const;
@@ -411,6 +421,7 @@ signed octidy::_context (signed c, signed o, signed e) const
 	}
 	return (c);
 }
+
 /*====================================================================*
  *
  *   signed context (signed c, signed e) const;
@@ -435,6 +446,7 @@ signed octidy::_context (signed c, signed e) const
 	}
 	return (c);
 }
+
 /*====================================================================*
  *
  *   signed context (signed  c) const;
@@ -476,6 +488,7 @@ signed octidy::context (signed c) const
 	}
 	return (c);
 }
+
 /*====================================================================*
  *
  *   octidy (void)
@@ -487,6 +500,7 @@ octidy::octidy (void)
 {
 	return;
 }
+
 /*====================================================================*
  *
  *   ~ octidy (void)
@@ -498,6 +512,7 @@ octidy::~ octidy (void)
 {
 	return;
 }
+
 /*====================================================================*
  *   end definition
  *--------------------------------------------------------------------*/
