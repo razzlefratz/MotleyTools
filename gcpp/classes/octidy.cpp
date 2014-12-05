@@ -322,7 +322,7 @@ signed octidy::statement (signed c)
 	{
 		oindent::print (this->mlevel, 0, string);
 		std::cout.put (' ');
-		c = octidy::context (c, "{");
+		c = octidy::context (c, "{;}");
 	}
 	else if (octidy::exitwords.defined (string))
 	{
