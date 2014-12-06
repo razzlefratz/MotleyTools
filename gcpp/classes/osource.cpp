@@ -802,6 +802,9 @@ signed osource::escaped (signed c)
  *
  *   signed consume (signed c);
  *
+ *   read and write string of characters; return next character from
+ *   stdin;
+ *
  *--------------------------------------------------------------------*/
 
 signed osource::consume (signed c)
@@ -836,7 +839,7 @@ signed osource::peek (signed c)
  *
  *   signed find (signed c);
  *
- *   discard (c); return the next non-space input character;
+ *   return the next visible character from stdin;
  *
  *--------------------------------------------------------------------*/
 
@@ -854,7 +857,7 @@ signed osource::find (signed c)
  *
  *   signed keep (signed c, signed o, signed e);
  *
- *   read and keep through a specific character pair;
+ *   keep character pair and return next character from stdin;
  *
  *--------------------------------------------------------------------*/
 
@@ -878,8 +881,8 @@ signed osource::keep (signed c, signed o, signed e)
  *
  *   signed keep (signed c);
  *
- *   write (c) to stdout unless it is NUL or EOF; return the next
- *   character from stdin;
+ *   keep character unless it is NUL or EOF; return next character 
+ *   from stdin;
  *
  *--------------------------------------------------------------------*/
 
@@ -898,11 +901,7 @@ signed osource::keep (signed c)
  *
  *   signed skip (signed c, signed o, signed e);
  *
-<<<<<<< HEAD
- *   read and skip through a specific character pair;
-=======
- *   skip a specific character pair;
->>>>>>> e3d6cebcd1795917bd05e288f74bbdd1f96af980
+ *   discard character pair and return next character from stdin;
  *
  *--------------------------------------------------------------------*/
 
@@ -926,7 +925,7 @@ signed osource::skip (signed c, signed o, signed e)
  *
  *   signed skip (signed c);
  *
- *   discard c; return next character from stdin;
+ *   discard single character and return next character from stdin;
  *
  *--------------------------------------------------------------------*/
 
