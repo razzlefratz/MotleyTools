@@ -30,8 +30,8 @@ library:
 scripts: compile
 	install -m 0755 -o ${OWNER} -g ${GROUP} ${ETC}/syslogd ${ETC}/klogd ${DIR}
 manuals:
-	install -m 0644 -o ${OWNER} -g ${GROUP} ${MANUAL5} ${MAN}/man5
-	install -m 0644 -o ${OWNER} -g ${GROUP} ${MANUAL8} ${MAN}/man8
+	install -m 0644 -o ${OWNER} -g ${GROUP} ${MANUAL5} ${MAN}/../man5
+	install -m 0644 -o ${OWNER} -g ${GROUP} ${MANUAL8} ${MAN}/../man8
 install1: all compile library
 	install -m 0755 -o ${OWNER} -g ${GROUP} ${DAEMONS} ${SYS}
 	install -m 0755 -o ${OWNER} -g ${GROUP} syslog.conf /etc
