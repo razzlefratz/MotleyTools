@@ -93,7 +93,11 @@ signed octidy::charlie (signed c)
 				c = osource::find (c);
 			}
 			while ((c == ',') || (c == ';'));
-			oindent::space (2);
+			if (! this->mlevel)
+			{
+				oindent::endline (1);
+			}
+			oindent::space (1);
 			continue;
 		}
 		if ((c == ',') || (c == ';') || (c == ':'))
@@ -185,7 +189,7 @@ signed octidy::program (signed c)
 			{
 				oindent::endline (1);
 			}
-			oindent::space (2);
+			oindent::space (1);
 			continue;
 		}
 		if ((c == ',') || (c == ';') || (c == ':'))
@@ -271,6 +275,10 @@ signed octidy::atheros (signed c)
 				c = osource::find (c);
 			}
 			while ((c == ',') || (c == ';'));
+			if (! this->mlevel)
+			{
+				oindent::endline (1);
+			}
 			oindent::space (2);
 			continue;
 		}
@@ -278,7 +286,8 @@ signed octidy::atheros (signed c)
 		{
 			c = osource::keep (c);
 			c = osource::find (c);
-			oindent::space (2);
+			oindent::endline (1);
+			oindent::space (1);
 			continue;
 		}
 		oindent::endline (1);
