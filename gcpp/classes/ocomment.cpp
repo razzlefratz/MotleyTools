@@ -182,9 +182,8 @@ ocomment & ocomment::preamble (void)
  *
  *   signed comment (signed c) const;
  *
- *   read and write comment blocks; blank lines are removed between
- *   adjacent C++ comment blocks; a blank line is inserted between
- *   adjacent C comment blocks;
+ *   read and write comment blocks; remove blank lines between C++ 
+ *   comments but insert a blank line between C comment;
  *
  *--------------------------------------------------------------------*/
 
@@ -193,8 +192,7 @@ signed ocomment::comment (signed c)
 {
 	while (c == '/')
 	{
-		c = std::cin.get ();
-		if (c == '/')
+		if (std::cin.peek () == '/')
 		{
 			c = ocomment::cplus (c);
 			do 
@@ -204,7 +202,7 @@ signed ocomment::comment (signed c)
 			while (oascii::isspace (c));
 			continue;
 		}
-		if (c == '*')
+		if (std::cin.peek () == '*')
 		{
 			c = ocomment::clang (c);
 			do 
@@ -212,8 +210,6 @@ signed ocomment::comment (signed c)
 				c = std::cin.get ();
 			}
 			while (oascii::isspace (c));
-
-#if 1
 
 /*
  *	insert blank line between adjacent C Language comment blocks but remove
@@ -227,11 +223,8 @@ signed ocomment::comment (signed c)
 					std::cout.put ('\n');
 				}
 			}
-#endif
-
 			continue;
 		}
-		std::cout.put ('/');
 		break;
 	}
 	return (c);
@@ -354,7 +347,8 @@ signed ocomment::cplus (signed c)
 signed ocomment::clang (signed c)
 
 {
-	std::cout.put ('/');
+	std::cout.put (c);
+	c = std::cin.get ();
 	while ((c != '/') && (c != EOF))
 	{
 		while ((c != '*') && (c != EOF))
