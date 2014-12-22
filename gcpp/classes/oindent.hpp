@@ -55,7 +55,7 @@ public:
 	oindent & endline (char const * finish, char const * record, signed space);
 	oindent & newline ();
 	oindent & newline (signed level);
-	oindent & newline (char const * margin, char const * offset, signed level);
+	oindent & newline (char const * margin, char const * indent, signed level);
 	oindent & print (void);
 	oindent & print (char const * string);
 	oindent & print (signed level, signed space, char const * string);

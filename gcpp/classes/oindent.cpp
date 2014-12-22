@@ -189,7 +189,7 @@ char const * oindent::indent (void) const
 
 /*====================================================================*
  *
- *   oindent & finish (char const *string);
+ *   oindent & finish (char const * string);
  *
  *   set the finish string; the finish string is output at the end
  *   of each line before the repeating record string;
@@ -225,7 +225,7 @@ char const * oindent::finish (void) const
 
 /*====================================================================*
  *
- *   oindent & record (char const *string);
+ *   oindent & record (char const * string);
  *
  *   set the record string; the record string may be output at the
  *   end of each line after the finish string;
