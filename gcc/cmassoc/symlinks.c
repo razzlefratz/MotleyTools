@@ -121,7 +121,7 @@ static void findfile (FIND * find, flag_t flags)
 		testfile (find, flags);
 		return;
 	}
-	while (* filename != (char) (0))
+	while (* filename)
 	{
 		filename++;
 	}

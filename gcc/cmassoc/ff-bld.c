@@ -129,9 +129,9 @@ static void findfile (FIND * find, flag_t flags)
 		return;
 	}
 	strcpy (find->pathname, find->fullname);
-	for (filename = find->fullname; * filename != (char) (0); filename++);
+	for (filename = find->fullname; * filename; filename++);
 	* filename = PATH_C_EXTENDER;
-	while ((dirent = readdir (dir)) != (struct dirent *) (0))
+	while ((dirent = readdir (dir)))
 	{
 		strcpy (filename +  1, dirent->d_name);
 		partpath (find->fullname, find->pathname, find->filename);

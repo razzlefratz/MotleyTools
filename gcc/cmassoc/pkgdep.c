@@ -246,12 +246,12 @@ static void findfile (FIND * find, flag_t flags)
 		testfile (find, flags);
 		return;
 	}
-	while (* filename != (char) (0))
+	while (* filename)
 	{
 		filename++;
 	}
 	* filename = PATH_C_EXTENDER;
-	while ((dirent = readdir (dir)) != (struct dirent *) (0))
+	while ((dirent = readdir (dir)))
 	{
 		strcpy (filename +  1, dirent->d_name);
 		partpath (find->fullname, find->pathname, find->filename);

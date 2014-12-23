@@ -207,7 +207,7 @@ static void findfile (FIND * find, FIND * home, flag_t flags)
 			filename++;
 		}
 		* filename = PATH_C_EXTENDER;
-		while ((dirent = readdir (dir)) != (struct dirent *) (0))
+		while ((dirent = readdir (dir)))
 		{
 			strcpy (filename +  1, dirent->d_name);
 			partpath (find->fullname, find->pathname, find->filename);

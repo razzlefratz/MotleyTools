@@ -103,7 +103,7 @@ static void func (char const * filename, char * pathname, char * extender [], fl
 		char buffer [TEXTLINE_MAX];
 		unsigned line;
 		char * filename;
-		for (filename = pathname; * filename != (char) (0); filename++);
+		for (filename = pathname; * filename; filename++);
 		* filename++ = PATH_C_EXTENDER;
 		scaninput (& scan, buffer, sizeof (buffer));
 		for (line = 0; ~ fgetline (buffer, sizeof (buffer), stdin); line++)

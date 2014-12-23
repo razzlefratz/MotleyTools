@@ -136,7 +136,7 @@ static void findfile (char thispathname [], char thatpathname [], flag_t flags)
 	}
 	for (thisfilename = thispathname; * thisfilename != (char) (0); thisfilename++);
 	* thisfilename = PATH_C_EXTENDER;
-	while ((thisdirent = readdir (thisdir)) != (struct dirent *) (0))
+	while ((thisdirent = readdir (thisdir)))
 	{
 		strcpy (thisfilename +  1, thisdirent->d_name);
 		if (lstat (thispathname, & thisstatinfo))
@@ -152,7 +152,7 @@ static void findfile (char thispathname [], char thatpathname [], flag_t flags)
 			}
 			for (thatfilename = thatpathname; * thatfilename != (char) (0); thatfilename++);
 			* thatfilename = PATH_C_EXTENDER;
-			while ((thatdirent = readdir (thatdir)) != (struct dirent *) (0))
+			while ((thatdirent = readdir (thatdir)))
 			{
 				strcpy (thatfilename +  1, thatdirent->d_name);
 				if (lstat (thatpathname, & thatstatinfo))
