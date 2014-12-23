@@ -102,6 +102,7 @@ signed octidy::charlie (signed c)
 			{
 				oindent::space (2);
 			}
+			oindent::space (2);
 			continue;
 		}
 		if ((c == ',') || (c == ';') || (c == ':'))
@@ -188,6 +189,7 @@ signed octidy::program (signed c)
 			{
 				oindent::space (2);
 			}
+			oindent::space (2);
 			continue;
 		}
 		if ((c == ',') || (c == ';') || (c == ':'))
