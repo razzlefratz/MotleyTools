@@ -104,9 +104,9 @@ typedef struct _edit_
 
 {
 	regexp * list [_LISTSIZE];
-	size_t size;
+	unsigned size;
 	char buffer [TEXTLINE_MAX];
-	size_t length;
+	unsigned length;
 }
 
 EDIT;
@@ -154,9 +154,9 @@ static void findfile (FIND * find, EDIT * edit, flag_t flags);
 static void editfile (FIND * find, EDIT * edit, flag_t flags)
 
 {
-	size_t line;
-	size_t item;
-	size_t once = 0;
+	unsigned line;
+	unsigned item;
+	unsigned once = 0;
 	for (line = 1; ~ fgetline (edit->buffer, edit->length, stdin); line++)
 	{
 		for (item = 0; item < edit->size; item++)
@@ -368,7 +368,7 @@ int main (int argc, char const * argv [])
 		{
 			(regexp *) (0)
 		},
-		(size_t) (0),
+		(unsigned) (0),
 		"",
 		sizeof (edit.buffer)
 	};
