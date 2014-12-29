@@ -684,6 +684,7 @@ signed osource::operate (signed c)
 			c = osource::keep (c);
 			c = osource::find (c);
 		}
+		c = osource::find (c);
 		std::cout.put (' ');
 	}
 	else if (c == '-')
@@ -725,6 +726,7 @@ signed osource::operate (signed c)
 				return (c);
 			}
 		}
+		c = osource::find (c);
 		std::cout.put (' ');
 	}
 	else if (c == '*')
@@ -743,6 +745,7 @@ signed osource::operate (signed c)
 		{
 			return (c);
 		}
+		c = osource::find (c);
 		std::cout.put (' ');
 	}
 	else if (c == '/')
@@ -762,11 +765,8 @@ signed osource::operate (signed c)
 		{
 			c = osource::content (c, c, '/');
 		}
-		else 
-		{
-			c = osource::find (c);
-			std::cout.put (' ');
-		}
+		c = osource::find (c);
+		std::cout.put (' ');
 	}
 	else 
 	{
