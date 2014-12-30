@@ -225,6 +225,8 @@ signed ocomment::comment (signed c)
 			}
 			continue;
 		}
+		std::cout.put (c);
+		c = std::cin.get ();
 		break;
 	}
 	return (c);
@@ -234,8 +236,9 @@ signed ocomment::comment (signed c)
  *
  *   signed cplus (signed c);
  *
- *   format C++ comment and return the character after; the comment
- *   includes starting slashes and trailing linefeed;
+ *   format C++ comment and return the character immediately after 
+ *   comment; the comment includes starting slashes and terminating 
+ *   newline;
  *
  *   read and discard strings of leading slashes;
  *
@@ -310,7 +313,12 @@ signed ocomment::cplus (signed c)
  *
  *   signed clang (signed c);
  *
- *   format ANSI C style comments and return the character after;
+ *   format ANSI C style comments and return the character after the
+ *   comment; the comment includes the opening and closing inverted 
+ *   pair slash-asterisk and the intervening text;                  
+ *
+ *   this implementation appends one newline immediately after the 
+ *   comment; 
  *
  *   this method has two standard forms as follows interlaced with
  *   specific formatting function blocks; the second form is more
