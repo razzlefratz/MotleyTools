@@ -142,7 +142,7 @@ signed octidy::program (signed c)
 			oinclude::header ();
 			do 
 			{
-				c = osource::command (c, '\n');
+				c = osource::command (c);
 			}
 			while (c == '#');
 			oindent::space (1);
