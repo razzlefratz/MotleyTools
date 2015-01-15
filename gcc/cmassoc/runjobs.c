@@ -402,7 +402,11 @@ int main (int argc, char const * argv [])
 		"",
 		"",
 		FILE_S_WILDCARD,
-		(flag_t) (0)
+		(flag_t) (0),
+		(mode_t) (0),
+		(time_t) (0),
+		(size_t) (0),
+		(file_t) (0)
 	};
 	FIND script =
 	{
@@ -418,7 +422,11 @@ int main (int argc, char const * argv [])
 		"",
 		"",
 		FILE_S_WILDCARD,
-		(flag_t) (0)
+		(flag_t) (0),
+		(mode_t) (0),
+		(time_t) (0),
+		(size_t) (0),
+		(file_t) (0)
 	};
 	flag_t flags = (flag_t) (0);
 	signed c;
@@ -430,7 +438,7 @@ int main (int argc, char const * argv [])
 		switch (c)
 		{
 		case 'a':
-			if (argc < ARGVSIZE -1)
+			if (argc < (ARGVSIZE - 1))
 			{
 				argv [argc++] = optarg;
 				argv [argc] = (char *) (0);

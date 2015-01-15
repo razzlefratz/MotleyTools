@@ -27,7 +27,7 @@
 #include "../files/files.h"
 #include "../linux/linux.h"
 
-char *export [ENVPSIZE] = 
+char * export [ENVPSIZE] =
 
 {
 	"HOME=/",
@@ -36,28 +36,28 @@ char *export [ENVPSIZE] =
 	(char *) (0),
 };
 
-signed spawn (signed nostderr, char *program, ...) 
+signed spawn (signed nostderr, char * program, ...)
 
 {
-	extern char **environ;
+	extern char ** environ;
 	int count;
-	for (count = 0; count < 10; count++) 
+	for (count = 0; count < 10; count++)
 	{
 		pid_t pid = fork ();
-		if (pid < (pid_t) (0)) 
+		if (pid < (pid_t) (0))
 		{
 			error (0, errno, "Can't fork %s", program);
 			sleep (1);
 		}
-		if (pid > (pid_t) (0)) 
+		if (pid > (pid_t) (0))
 		{
 			int status;
 			pid_t cpid;
-			while ((cpid = wait (&status)) != pid) 
+			while ((cpid = wait (& status)) != pid)
 			{
-				if (cpid == -1) 
+				if (cpid == -1)
 				{
-					if (errno == ECHILD) 
+					if (errno == ECHILD)
 					{
 						return (-1);
 					}
@@ -65,12 +65,12 @@ signed spawn (signed nostderr, char *program, ...)
 			}
 			return (WEXITSTATUS (status));
 		}
-		if (pid == (pid_t) (0)) 
+		if (pid == (pid_t) (0))
 		{
 			va_list arglist;
-			char *argv [ARGVSIZE];
+			char * argv [ARGVSIZE];
 			int argc = 0;
-			if (nostderr) 
+			if (nostderr)
 			{
 				fclose (stderr);
 			}
@@ -78,23 +78,24 @@ signed spawn (signed nostderr, char *program, ...)
 			environ = export;
 			argv [argc++] = program;
 			va_start (arglist, program);
-			while ((argc < ARGVSIZE-1) && (arglist != (void *)(0))) 
+			while ((argc < (ARGVSIZE -1)) && (arglist != (void *) (0)))
 			{
 				argv [argc++] = va_arg (arglist, char *);
 			}
 			va_end (arglist);
-			if (arglist != (void*)(0)) 
+			if (arglist != (void *) (0))
 			{
 				error (1, E2BIG, "Won't exec %s", program);
 			}
 			argv [argc] = (char *) (0);
-			execvp (*argv, argv);
+			execvp (* argv, argv);
 			error (1, errno, "Can't exec %s", program);
 		}
 	}
 	return (-1);
 }
 
-
 #endif
+
+
 
