@@ -74,8 +74,8 @@ int main (int argc, const char * argv [])
 	};
 	flag_t flags = BROADCAST_B_BANNER;
 	char message [BROADCAST_MAXCHARS] = "";
-	size_t nlines = 0;
-	size_t nchars = 0;
+	ssize_t nlines = 0;
+	ssize_t nchars = 0;
 	signed c;
 	optind = 1;
 	opterr = 1;
@@ -116,7 +116,7 @@ int main (int argc, const char * argv [])
 	}
 	if (! argc)
 	{
-		if ((nchars = read (STDIN_FILENO, message, sizeof (message) -1)) != -1)
+		if ((nchars = read (STDIN_FILENO, message, sizeof (message) - 1)) != -1)
 		{
 			message [nchars] = (char) (0);
 		}
