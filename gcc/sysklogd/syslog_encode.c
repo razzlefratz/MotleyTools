@@ -43,7 +43,7 @@ int syslog_encode (char const * string)
 			string++; 
 			break; 
 		} 
-		if ((sp - buffer) < (sizeof (buffer) - 1)) 
+		if ((unsigned) (sp - buffer) < STRLEN (buffer)) 
 		{ 
 			* sp++ = * string; 
 		} 
