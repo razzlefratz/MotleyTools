@@ -1,10 +1,10 @@
 /*====================================================================*
  *
- *   bool plain(char const * pathname);
+ *   bool plain (char const * pathname);
  *
  *   return true if the filename portion of pathname is plain; plain 
  *   filenames consist of letters, digits, underscores and hyphens; 
- *   punctuation and file extensions are not allowed; 
+ *   punctuation and file extensions are not permitted; 
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
