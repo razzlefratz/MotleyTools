@@ -158,8 +158,8 @@ void vsyslog (int priority, char const *format, va_list arglist)
 {
 	char buffer [TEXTLINE_MAX];
 	time_t now = time (&now);
-	size_t prefix = 0;
-	size_t length = 0;
+	ssize_t prefix = 0;
+	ssize_t length = 0;
 	if (priority & ~(SYSLOG_FACILITY_MASK | SYSLOG_SEVERITY_MASK)) 
 	{
 		return;
