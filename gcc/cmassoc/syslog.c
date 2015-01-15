@@ -141,7 +141,7 @@ static void mysyslog (file_t fd, int options, int priority, char const * identit
 {
 	char buffer [TEXTLINE_MAX];
 	time_t now = time (& now);
-	size_t length = 0;
+	ssize_t length = 0;
 	if (fd != -1)
 	{
 		length = snprintf (buffer +  length, sizeof (buffer) - length, "<%d>", priority);
@@ -270,7 +270,7 @@ int main (int argc, char const * argv [])
 		{
 			if (nobreak (c))
 			{
-				if ((bp - message) < (sizeof (message) -1))
+				if ((unsigned) (bp - message) < STRLEN (message))
 				{
 					* bp++ = c;
 				}
@@ -297,7 +297,7 @@ int main (int argc, char const * argv [])
 			char const * string;
 			for (string = * argv; * string; string++)
 			{
-				if ((bp - message) < (sizeof (message) -1))
+				if ((unsigned) (bp - message) < STRLEN (message))
 				{
 					* bp++ = * string;
 				}
