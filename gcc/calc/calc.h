@@ -20,6 +20,12 @@
 #include <stdint.h>
 
 /*====================================================================*
+ *   variables;
+ *--------------------------------------------------------------------*/
+
+typedef unsigned long rand_t;
+
+/*====================================================================*
  *   comparison, sign and truncation macros and functions;
  *--------------------------------------------------------------------*/
 
@@ -75,8 +81,8 @@ long lcm (long n, long m);
 
 #define _lcm(n,y) ((x)*(y))/gcd((x),(y)));
 
-void _srand (uint32_t seed);
-uint32_t _rand ();
+void _srand (rand_t seed);
+rand_t _rand ();
 
 /*====================================================================*
  *   full/partial factoral macros and functions;
