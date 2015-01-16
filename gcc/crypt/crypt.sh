@@ -13,6 +13,7 @@ gcc -Wall -Wextra -Wno-unused-parameter -c SHA256Write.c
 gcc -Wall -Wextra -Wno-unused-parameter -c SHA256Print.c
 gcc -Wall -Wextra -Wno-unused-parameter -c SHA256Ident.c
 gcc -Wall -Wextra -Wno-unused-parameter -c SHA256Match.c
+gcc -Wall -Wextra -Wno-unused-parameter -c passwords.c
 # gcc -Wall -Wextra -Wno-unused-parameter -c MD5.c
 # gcc -Wall -Wextra -Wno-unused-parameter -c MD5Reset.c
 # gcc -Wall -Wextra -Wno-unused-parameter -c MD5Write.c

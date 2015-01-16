@@ -23,6 +23,7 @@
  *--------------------------------------------------------------------*/
 
 void fingerprint (int fd, byte digest []);
+void passwords (unsigned seed, unsigned start, unsigned count, unsigned limit, unsigned block, char space);
 
 /*====================================================================*
  *   

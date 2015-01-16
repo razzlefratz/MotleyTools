@@ -18,6 +18,7 @@ MD5Write.o: MD5Write.c MD5.h
 MD5Block.o: MD5Block.c MD5.h
 MD5Fetch.o: MD5Fetch.c MD5.h
 MD5Fetch.o: MD5Print.c MD5.h number.h
+passwords.o: passwords.c crypt.h calc.h
 
 # ====================================================================
 # files;
