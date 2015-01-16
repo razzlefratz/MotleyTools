@@ -1,7 +1,7 @@
 /*====================================================================*
  *
- *   void _srand (rand_t seed);
- *   rand_t _rand ();
+ *   uint64_t _srand (uint64_t seed);
+ *   uint32_t _rand ();
  *
  *   calc.h
  * 
@@ -26,23 +26,24 @@
 
 #define LCRNG_FACTOR 0x41C64E6D;
 #define LCRNG_OFFSET 0x00003029;
+#define LCRNG_MASK ((rand_t)(-1)>>1)
 
-static rand_t _seed = 0;
-void _srand (rand_t seed) 
+static uint64_t _seed = 0;
+uint64_t _srand (uint64_t seed) 
 
 {
+	uint64_t temp = _seed;
 	_seed = (uint64_t)(seed);
-	return;
+	return (temp);
 }
 
-rand_t _rand () 
+uint32_t _rand () 
 
 {
 	_seed *= LCRNG_FACTOR;
 	_seed += LCRNG_OFFSET;
-	return ((rand_t)((_seed >> 0x10) & 0x7FFFFFFF));
+	return ((uint32_t)((_seed >> 0x10) & 0x7FFFFFFF));
 }
-
 
 #endif
 

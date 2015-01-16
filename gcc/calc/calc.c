@@ -21,6 +21,7 @@
 #include "iscale.c"
 #include "isgn.c"
 #include "lcm.c"
+#include "lcrng.c"
 #include "nblock.c"
 #include "pfact.c"
 #include "pmod.c"
