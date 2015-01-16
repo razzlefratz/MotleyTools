@@ -5,7 +5,10 @@
  *
  *   calc.h
  * 
- *   a 32-bit linear congruential random number generator;
+ *   a 32-bit linear congruential random number generator; constants
+ *   used here are well known and publically available; using my own
+ *   generator ensures consistancy across platforms, libraries and 
+ *   programs;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
