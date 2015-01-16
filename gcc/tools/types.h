@@ -90,6 +90,8 @@ typedef signed file_t;
 typedef signed sock_t;
 typedef signed code_t;
 typedef signed bool_t;
+typedef unsigned char byte_t
+typedef unsigned char char_t
 typedef unsigned type_t;
 typedef unsigned char byte_t;
 typedef unsigned flag_t;
