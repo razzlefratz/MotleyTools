@@ -368,22 +368,27 @@ signed ocomment::clang (signed c)
 		if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER) || (c == oCOMMENT_C_BURST))
 		{
 			c = ocomment::breaker (c);
+			continue;
 		}
-		else if ((c == oCOMMENT_C_PACKAGE) && ocomment::anyset (oCOMMENT_B_PACKAGE))
+		if ((c == oCOMMENT_C_PACKAGE) && ocomment::anyset (oCOMMENT_B_PACKAGE))
 		{
 			c = ocomment::message (c, this->mpackage);
+			continue;
 		}
-		else if ((c == oCOMMENT_C_RELEASE) && ocomment::anyset (oCOMMENT_B_RELEASE))
+		if ((c == oCOMMENT_C_RELEASE) && ocomment::anyset (oCOMMENT_B_RELEASE))
 		{
 			c = ocomment::message (c, this->mrelease);
+			continue;
 		}
-		else if ((c == oCOMMENT_C_PUBLISH) && ocomment::anyset (oCOMMENT_B_PUBLISH))
+		if ((c == oCOMMENT_C_PUBLISH) && ocomment::anyset (oCOMMENT_B_PUBLISH))
 		{
 			c = ocomment::message (c, this->mpublish);
+			continue;
 		}
-		else if ((c == oCOMMENT_C_LICENSE) && ocomment::anyset (oCOMMENT_B_LICENSE))
+		if ((c == oCOMMENT_C_LICENSE) && ocomment::anyset (oCOMMENT_B_LICENSE))
 		{
 			c = ocomment::message (c, this->mlicense);
+			continue;
 		}
 	}
 	if (c != EOF)
@@ -465,7 +470,7 @@ signed ocomment::content (signed c) const
  *
  *   signed breaker (signed c) const;
  *
- *   force comment bars to fixed length if present;
+ *   force comment bars to fixed length when present;
  *
  *--------------------------------------------------------------------*/
 
