@@ -391,10 +391,7 @@ signed ocomment::clang (signed c)
 			continue;
 		}
 	}
-	if (c != EOF)
-	{
-		std::cout.put (oCOMMENT_C_SLASH);
-	}
+	std::cout.put (oCOMMENT_C_SLASH);
 	std::cout.put ('\n');
 	return (c);
 }
@@ -484,7 +481,7 @@ signed ocomment::breaker (signed c) const
 		c = std::cin.get ();
 		width++;
 	}
-	if ((start == oCOMMENT_C_BURST) || (c == oCOMMENT_C_BURST) || (c == '\n'))
+	if ((start == oCOMMENT_C_BURST) || (c == oCOMMENT_C_BURST) || oascii::isbreak (c))
 	{
 		width = this->mwidth;
 	}
@@ -492,7 +489,7 @@ signed ocomment::breaker (signed c) const
 	{
 		std::cout.put (start);
 	}
-	if ((start == oCOMMENT_C_BURST) || (c == '\n'))
+	if ((start == oCOMMENT_C_BURST) || oascii::isbreak (c))
 	{
 		std::cout.put (oCOMMENT_C_BURST);
 	}
