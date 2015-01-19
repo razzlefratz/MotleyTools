@@ -39,6 +39,8 @@
 #define oCOMMENT_B_PUBLISH (1 << 8)
 #define oCOMMENT_B_LICENSE (1 << 9)
 
+#define oCOMMENT_C_SLASH '/'
+#define oCOMMENT_C_BURST '*'
 #define oCOMMENT_C_UPPER '='
 #define oCOMMENT_C_LOWER '-'
 #define oCOMMENT_C_PACKAGE '.'
