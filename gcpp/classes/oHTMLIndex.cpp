@@ -125,7 +125,7 @@ oHTMLIndex & oHTMLIndex::publish (unsigned count)
 
 {
 	unsigned index = 0;
-	unsigned limit = count = (oHTMLIndex::mlist.count () +  (count -1)) / count;
+	unsigned limit = count = (oHTMLIndex::mlist.count () + (count -1)) / count;
 	oHTMLIndex::PageHeader ();
 	oHTMLIndex::LinkHeader ();
 	oHTMLIndex::print (this->mlevel++, this->mspace, "<h1>");
@@ -137,7 +137,7 @@ oHTMLIndex & oHTMLIndex::publish (unsigned count)
 	{
 		oHTMLIndex::print (this->mlevel++, this->mspace, "<td class='" oHTMLINDEX_CLASS "'>");
 		oHTMLIndex::newline (this->mlevel++);
-		std::cout << "<ol start='" << index +  1 << "'>";
+		std::cout << "<ol start='" << index + 1 << "'>";
 		oHTMLIndex::endline (1);
 		while (index < limit)
 		{

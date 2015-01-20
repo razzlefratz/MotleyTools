@@ -253,11 +253,11 @@ char const * omacro::expand (char const * string)
 omacro & omacro::append (char const * string)
 
 {
-	if (this->mextent +  std::strlen (string) > this->mlength)
+	if (this->mextent + std::strlen (string) > this->mlength)
 	{
 		char * scratch = this->mbuffer;
-		this->mlength = this->mextent +  std::strlen (string);
-		this->mbuffer = new char [this->mlength +  1];
+		this->mlength = this->mextent + std::strlen (string);
+		this->mbuffer = new char [this->mlength + 1];
 		std::strcpy (this->mbuffer, scratch);
 		delete [] scratch;
 	}
@@ -287,14 +287,14 @@ char const * omacro::argument (unsigned number) const
 
 {
 	static char buffer [oMACRO_SYMBOL_LENGTH];
-	char * string = buffer +  sizeof (buffer);
+	char * string = buffer + sizeof (buffer);
 	* -- string = (char) (0);
 	* -- string = omacro::msuffix;
 	do 
 	{
-		* -- string = '0' +  (char) (number % 10);
+		* -- string = '0' + (char) (number % 10);
 	}
-	while (number /= 10);
+	while (number /=  10);
 	* -- string = omacro::mprefix;
 	* -- string = omacro::msymbol;
 	return ((char const *) (string));
@@ -360,7 +360,7 @@ omacro::omacro ()
 	this->margument = new osymbol ("");
 	this->mlength = oMACRO_STRING_LENGTH;
 	this->mextent = 0;
-	this->mbuffer = new char [this->mlength +  1];
+	this->mbuffer = new char [this->mlength + 1];
 	this->mbuffer [0] = (char) (0);
 	return;
 }

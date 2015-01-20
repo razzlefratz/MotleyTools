@@ -201,7 +201,7 @@ signed ogetopt::argc () const
 
 /*====================================================================*
  *
- *   char const ********************************************************************* argv () const;
+ *   char const ********************************************************************** argv () const;
  *
  *   return the start address of the unprocessed portions of argv [];
  *
@@ -210,7 +210,7 @@ signed ogetopt::argc () const
 char const ** ogetopt::argv () const
 
 {
-	return (this->margv +  this->moptind);
+	return (this->margv + this->moptind);
 }
 
 /*====================================================================*
@@ -225,7 +225,7 @@ char * ogetopt::args ()
 
 {
 	delete [] this->margs;
-	this->margs = new char [strlen (this->moptarg) +  1];
+	this->margs = new char [strlen (this->moptarg) + 1];
 	std::strcpy (this->margs, this->moptarg);
 	return (this->margs);
 }
@@ -264,7 +264,7 @@ signed ogetopt::getopt (int argc, char const * argv [], char const * options)
 		{
 			if ((* this->mstring == '/') || (* this->mstring == '\\'))
 			{
-				program_name = this->mstring +  1;
+				program_name = this->mstring + 1;
 			}
 		}
 		this->mstring = (char *) (0);

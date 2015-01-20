@@ -130,7 +130,7 @@ oindent & oindent::margin (char const * string)
 	if (std::strcmp (string, this->mmargin))
 	{
 		delete [] mmargin;
-		this->mmargin = new char [strlen (string) +  1];
+		this->mmargin = new char [strlen (string) + 1];
 		std::strcpy (this->mmargin, string);
 	}
 	return (* this);
@@ -166,7 +166,7 @@ oindent & oindent::indent (char const * string)
 	if (std::strcmp (string, this->mindent))
 	{
 		delete [] mindent;
-		this->mindent = new char [strlen (string) +  1];
+		this->mindent = new char [strlen (string) + 1];
 		std::strcpy (this->mindent, string);
 	}
 	return (* this);
@@ -202,7 +202,7 @@ oindent & oindent::finish (char const * string)
 	if (std::strcmp (string, this->mfinish))
 	{
 		delete [] mfinish;
-		this->mfinish = new char [strlen (string) +  1];
+		this->mfinish = new char [strlen (string) + 1];
 		std::strcpy (this->mfinish, string);
 	}
 	return (* this);
@@ -238,7 +238,7 @@ oindent & oindent::record (char const * string)
 	if (std::strcmp (string, this->mrecord))
 	{
 		delete [] mrecord;
-		this->mrecord = new char [strlen (string) +  1];
+		this->mrecord = new char [strlen (string) + 1];
 		std::strcpy (this->mrecord, string);
 	}
 	return (* this);

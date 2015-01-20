@@ -181,7 +181,7 @@ bool osorter::remove (char const * string)
 	{
 		for (this->mcount--; this->mindex < this->mcount; this->mindex++)
 		{
-			this->mtable [this->mindex] = this->mtable [this->mindex +  1];
+			this->mtable [this->mindex] = this->mtable [this->mindex + 1];
 		}
 		this->mtable [this->mindex] = (char *) (0);
 		return (true);
@@ -243,7 +243,7 @@ unsigned int osorter::indexof (char const * string)
 	this->mupper = this->mcount;
 	while (this->mlower < this->mupper)
 	{
-		this->mindex = (this->mlower +  this->mupper) >> 1;
+		this->mindex = (this->mlower + this->mupper) >> 1;
 		signed order = (this->morder) (string, this->mtable [this->mindex]);
 		if (order < 0)
 		{
@@ -252,7 +252,7 @@ unsigned int osorter::indexof (char const * string)
 		}
 		if (order > 0)
 		{
-			this->mlower = this->mindex +  1;
+			this->mlower = this->mindex + 1;
 			continue;
 		}
 		return (this->mindex);
@@ -275,12 +275,12 @@ osorter & osorter::store (char const * string)
 		if (this->mcount >= this->mlimit)
 		{
 			char const ** otable = this->mtable;
-			this->mtable = new char const * [this->mlimit +  this->mblock];
+			this->mtable = new char const * [this->mlimit + this->mblock];
 			for (this->mindex = this->mstart; this->mindex < this->mlimit; this->mindex++)
 			{
 				this->mtable [this->mindex] = otable [this->mindex];
 			}
-			this->mlimit = this->mlimit +  this->mblock;
+			this->mlimit = this->mlimit + this->mblock;
 			this->mblock = this->mlimit - this->mblock;
 			delete [] otable;
 		}
@@ -288,7 +288,7 @@ osorter & osorter::store (char const * string)
 		{
 			this->mtable [this->mindex] = this->mtable [this->mindex -1];
 		}
-		this->mtable [this->mindex] = new char [strlen (string) +  1];
+		this->mtable [this->mindex] = new char [strlen (string) + 1];
 		strcpy ((char *) (this->mtable [this->mindex]), string);
 		this->mtable [this->mcount] = (char *) (0);
 		this->mlower = this->mstart;
@@ -324,7 +324,7 @@ osorter & osorter::define (char string [], unsigned char c)
 			{
 				* sp = (char) (0);
 				this->store (string);
-				string = sp +  1;
+				string = sp + 1;
 			}
 		}
 		if (sp > string)

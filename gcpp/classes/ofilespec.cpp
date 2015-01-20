@@ -428,10 +428,10 @@ char const * ofilespec::savename (char const * filespec)
 char const * ofilespec::savename (unsigned number, unsigned length)
 
 {
-	char digits [length +  1];
-	for (digits [length] = (char) (0); length > 0; number /= 10)
+	char digits [length + 1];
+	for (digits [length] = (char) (0); length > 0; number /=  10)
 	{
-		digits [-- length] = (char) ('0' +  (number % 10));
+		digits [-- length] = (char) ('0' + (number % 10));
 	}
 	this->makepath ();
 	std::strcat (this->mfullname, FILE_S_EXTENDER);
@@ -482,11 +482,11 @@ ofilespec & ofilespec::peek ()
 ofilespec::ofilespec ()
 
 {
-	this->mfullname = new char [FILENAME_MAX +  1];
-	this->mpathname = new char [FILENAME_MAX +  1];
-	this->mfilename = new char [FILENAME_MAX +  1];
-	this->mbasename = new char [FILENAME_MAX +  1];
-	this->mextender = new char [FILENAME_MAX +  1];
+	this->mfullname = new char [FILENAME_MAX + 1];
+	this->mpathname = new char [FILENAME_MAX + 1];
+	this->mfilename = new char [FILENAME_MAX + 1];
+	this->mbasename = new char [FILENAME_MAX + 1];
+	this->mextender = new char [FILENAME_MAX + 1];
 	return;
 }
 
@@ -504,11 +504,11 @@ ofilespec::ofilespec ()
 ofilespec::ofilespec (char const * filespec)
 
 {
-	this->mfullname = new char [FILENAME_MAX +  1];
-	this->mpathname = new char [FILENAME_MAX +  1];
-	this->mfilename = new char [FILENAME_MAX +  1];
-	this->mbasename = new char [FILENAME_MAX +  1];
-	this->mextender = new char [FILENAME_MAX +  1];
+	this->mfullname = new char [FILENAME_MAX + 1];
+	this->mpathname = new char [FILENAME_MAX + 1];
+	this->mfilename = new char [FILENAME_MAX + 1];
+	this->mbasename = new char [FILENAME_MAX + 1];
+	this->mextender = new char [FILENAME_MAX + 1];
 	this->filespec (filespec);
 	return;
 }

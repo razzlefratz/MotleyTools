@@ -171,7 +171,7 @@ ograph & ograph::discover (void)
 	this->mwidth = 0;
 	while (this->mcount > 0)
 	{
-		this->mcount /= 10;
+		this->mcount /=  10;
 		this->mwidth++;
 	}
 	while (this->mcount < this->mnodes->count ())
@@ -268,7 +268,7 @@ ograph & ograph::traverse (onode * node)
 		std::cout << "\t";
 	}
 	std::cout << node->name () << std::endl;
-	node->level (node->level () +  1);
+	node->level (node->level () + 1);
 	return (* this);
 }
 

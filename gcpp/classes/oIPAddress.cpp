@@ -74,9 +74,9 @@ char const * oIPAddress::string (unsigned number)
 		oIPAddress::value = oIPAddress::bitmap.field [octet];
 		do 
 		{
-			oIPAddress::buffer [-- oIPAddress::digit] = oIPAddress::digits [0] +  (char) (oIPAddress::value % 10);
+			oIPAddress::buffer [-- oIPAddress::digit] = oIPAddress::digits [0] + (char) (oIPAddress::value % 10);
 		}
-		while (oIPAddress::value /= 10);
+		while (oIPAddress::value /=  10);
 	}
 	return (& oIPAddress::buffer [oIPAddress::digit]);
 }
@@ -109,8 +109,8 @@ char const * oIPAddress::padded (unsigned number)
 		oIPAddress::value = oIPAddress::bitmap.field [oIPAddress::octet];
 		for (oIPAddress::width = 0; oIPAddress::width < 3; oIPAddress::width++)
 		{
-			oIPAddress::buffer [-- oIPAddress::digit] = oIPAddress::digits [0] +  (char) (oIPAddress::value % 10);
-			oIPAddress::value /= 10;
+			oIPAddress::buffer [-- oIPAddress::digit] = oIPAddress::digits [0] + (char) (oIPAddress::value % 10);
+			oIPAddress::value /=  10;
 		}
 	}
 	return (& oIPAddress::buffer [oIPAddress::digit]);

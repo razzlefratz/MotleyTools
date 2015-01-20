@@ -107,7 +107,7 @@ unsigned omonth::lastday () const
 unsigned omonth::date (unsigned week, unsigned weekday) const
 
 {
-	return (this->date (week * DAYS_IN_WEEK +  weekday));
+	return (this->date (week * DAYS_IN_WEEK + weekday));
 }
 
 /*====================================================================*
@@ -144,11 +144,11 @@ void omonth::encode (char buffer [], size_t length)
 
 {
 	buffer [-- length] = (char) (0);
-	for (unsigned number = this->mannum; length > 0; number /= 10)
+	for (unsigned number = this->mannum; length > 0; number /=  10)
 	{
 		if (number > 0)
 		{
-			buffer [-- length] = '0' +  number % 10;
+			buffer [-- length] = '0' + number % 10;
 		}
 		else 
 		{
@@ -175,7 +175,7 @@ omonth::omonth (unsigned year, signed month)
 
 {
 	odate date;
-	this->mmonth = year * MONTHS_IN_YEAR +  month;
+	this->mmonth = year * MONTHS_IN_YEAR + month;
 	this->mannum = this->mmonth / MONTHS_IN_YEAR;
 	this->mmonth = this->mmonth % MONTHS_IN_YEAR;
 	this->mtitle = date.monthname (this->mmonth);
@@ -199,7 +199,7 @@ omonth::omonth (signed month)
 	odate date;
 	time_t now = time ((time_t *) (0));
 	struct tm * tm = localtime (& now);
-	this->mmonth = 22800 +  tm->tm_year * MONTHS_IN_YEAR +  month;
+	this->mmonth = 22800 + tm->tm_year * MONTHS_IN_YEAR + month;
 	this->mannum = month / MONTHS_IN_YEAR;
 	this->mmonth = month % MONTHS_IN_YEAR;
 	this->mtitle = date.monthname (this->mmonth);
@@ -222,7 +222,7 @@ omonth::omonth ()
 	odate date;
 	time_t now = time ((time_t *) (0));
 	struct tm * tm = localtime (& now);
-	this->mmonth = 22800 +  tm->tm_year * MONTHS_IN_YEAR +  tm->tm_mon;
+	this->mmonth = 22800 + tm->tm_year * MONTHS_IN_YEAR + tm->tm_mon;
 	this->mannum = this->mmonth / MONTHS_IN_YEAR;
 	this->mmonth = this->mmonth % MONTHS_IN_YEAR;
 	this->mtitle = date.monthname (this->mmonth);

@@ -78,7 +78,7 @@ signed ocode::value (char const * label, signed value) const
 	size_t upper = this->mcount;
 	while (lower < upper)
 	{
-		size_t index = (lower +  upper) >> 1;
+		size_t index = (lower + upper) >> 1;
 		signed order = std::strcmp (label, this->mtable [index].name);
 		if (order < 0)
 		{
@@ -87,7 +87,7 @@ signed ocode::value (char const * label, signed value) const
 		}
 		if (order > 0)
 		{
-			index = lower +  1;
+			index = lower + 1;
 			continue;
 		}
 		value = this->mtable [index].code;

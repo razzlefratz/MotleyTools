@@ -247,7 +247,7 @@ ofileopen::ofileopen (unsigned limit)
 	while (limit > 0)
 	{
 		this->mdigit++;
-		limit /= 10;
+		limit /=  10;
 	}
 	return;
 }

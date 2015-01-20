@@ -167,7 +167,7 @@ oformat & oformat::table (unsigned count)
 oformat & oformat::shift (unsigned count)
 
 {
-	this->moffset = this->moffset +  count;
+	this->moffset = this->moffset + count;
 	if (this->moffset > this->mlength)
 	{
 		this->moffset = this->mlength;
@@ -212,7 +212,7 @@ oformat & oformat::print (char const * string)
 
 {
 	this->align ();
-	if (this->mcolumn +  std::strlen (string) >= this->mlength)
+	if (this->mcolumn + std::strlen (string) >= this->mlength)
 	{
 		this->space (0);
 		this->flush (0);

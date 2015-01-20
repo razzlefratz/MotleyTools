@@ -36,7 +36,7 @@ unsigned oindex::qmod (signed domain, signed range)
 	}
 	if (range > 0)
 	{
-		return ((domain < 0)? (domain +  range): (domain));
+		return ((domain < 0)? (domain + range): (domain));
 	}
 	return (0);
 }
@@ -60,7 +60,7 @@ unsigned oindex::pmod (signed domain, signed range)
 	}
 	if (range > 0)
 	{
-		return ((domain > 0)? (domain): (domain +  range));
+		return ((domain > 0)? (domain): (domain + range));
 	}
 	return (0);
 }

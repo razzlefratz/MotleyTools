@@ -121,7 +121,7 @@ opassword & opassword::print (unsigned salt)
 	this->mindex = 0;
 	while (this->mindex < this->mcount)
 	{
-		unsigned c = (char) (std::rand () % (SCHAR_MAX +  1));
+		unsigned c = (char) (std::rand () % (SCHAR_MAX + 1));
 		if ((this->mindex) && (this->mgroup) && ! (this->mindex % this->mgroup))
 		{
 			std::cout << this->mbreak;
@@ -147,7 +147,7 @@ opassword::opassword (unsigned seed)
 	this->mindex = 0;
 	while (this->mindex < UCHAR_MAX)
 	{
-		char c = (char) (std::rand () % (SCHAR_MAX +  1));
+		char c = (char) (std::rand () % (SCHAR_MAX + 1));
 		if (std::isupper (c))
 		{
 			mcharset [this->mindex++] = c;

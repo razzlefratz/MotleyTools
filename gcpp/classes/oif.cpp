@@ -583,7 +583,7 @@ void oif::pcap_gethwaddr ()
 #if defined (WINPCAP)
 
 	LPADAPTER adapter = PacketOpenAdapter ((PCHAR) (this->mname));
-	PPACKET_OID_DATA data = (PPACKET_OID_DATA) (std::malloc (ETHER_ADDR_LEN +  sizeof (PACKET_OID_DATA)));
+	PPACKET_OID_DATA data = (PPACKET_OID_DATA) (std::malloc (ETHER_ADDR_LEN + sizeof (PACKET_OID_DATA)));
 	if (! data)
 	{
 		oerror::error (1, 0, "Can't allocate packet: %s", this->mname);

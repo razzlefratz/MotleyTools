@@ -51,7 +51,7 @@ otodo & otodo::title (char const * string)
 
 {
 	delete [] this->mtitle;
-	this->mtitle = new char [std::strlen (string) +  1];
+	this->mtitle = new char [std::strlen (string) + 1];
 	std::strcpy (this->mtitle, string);
 	return (* this);
 }
@@ -246,12 +246,12 @@ otodo & otodo::insertitem (oitem * item)
 	if (this->mcount >= this->mlimit)
 	{
 		oitem ** otable = this->mtable;
-		this->mtable = new oitem * [this->mlimit +  this->mblock];
+		this->mtable = new oitem * [this->mlimit + this->mblock];
 		for (this->mindex = this->mstart; this->mindex < this->mlimit; this->mindex++)
 		{
 			this->mtable [this->mindex] = otable [this->mindex];
 		}
-		this->mlimit = this->mlimit +  this->mblock;
+		this->mlimit = this->mlimit + this->mblock;
 		this->mblock = this->mlimit - this->mblock;
 		delete [] otable;
 	}
@@ -274,12 +274,12 @@ otodo & otodo::appenditem (oitem * item)
 	if (this->mcount >= this->mlimit)
 	{
 		oitem ** otable = this->mtable;
-		this->mtable = new oitem * [this->mlimit +  this->mblock];
+		this->mtable = new oitem * [this->mlimit + this->mblock];
 		for (this->mindex = this->mstart; this->mindex < this->mlimit; this->mindex++)
 		{
 			this->mtable [this->mindex] = otable [this->mindex];
 		}
-		this->mlimit = this->mlimit +  this->mblock;
+		this->mlimit = this->mlimit + this->mblock;
 		this->mblock = this->mlimit - this->mblock;
 		delete [] otable;
 	}

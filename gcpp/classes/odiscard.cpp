@@ -406,7 +406,7 @@ signed odiscard::find (signed c) const
  *
  *   signed feed (signed c) const;
  *
- *   read and discard whitespace; start with current character (c);
+ *   discard current character; return next character;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use

@@ -47,7 +47,7 @@ char const * ocalendar::mdays [DAYS_IN_WEEK] =
 	" S"
 };
 
-char const * ocalendar::mdate1 [DATES_IN_MONTH +  1] =
+char const * ocalendar::mdate1 [DATES_IN_MONTH + 1] =
 
 {
 	"&nbsp",
@@ -84,7 +84,7 @@ char const * ocalendar::mdate1 [DATES_IN_MONTH +  1] =
 	"31"
 };
 
-char const * ocalendar::mdate2 [DATES_IN_MONTH +  1] =
+char const * ocalendar::mdate2 [DATES_IN_MONTH + 1] =
 
 {
 	"&nbsp;",
@@ -194,7 +194,7 @@ ocalendar & ocalendar::annum (unsigned level, unsigned space)
 		for (unsigned col = 0; col < MONTHS_IN_QUARTER; col++)
 		{
 			mindent.print (level++, 1, "<td class='annum'>");
-			ocalendar::month (level, space, row * MONTHS_IN_QUARTER +  col);
+			ocalendar::month (level, space, row * MONTHS_IN_QUARTER + col);
 			mindent.print (level--, 1, "</td>");
 		}
 		mindent.print (level--, 1, "</tr>");

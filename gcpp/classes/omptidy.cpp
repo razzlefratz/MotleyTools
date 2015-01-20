@@ -127,7 +127,7 @@ omptidy & omptidy::filename (char const * filename)
 	{
 		if ((* filename == '\\') || (* filename == '/'))
 		{
-			basename = filename +  1;
+			basename = filename + 1;
 		}
 	}
 	this->mprogram = otext::replace (this->mprogram, basename);

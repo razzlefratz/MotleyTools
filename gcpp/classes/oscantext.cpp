@@ -242,11 +242,11 @@ size_t oscantext::tokensize () const
 char const * oscantext::tokentext ()
 
 {
-	if (this->mbreak > this->mstart +  this->mwidth)
+	if (this->mbreak > this->mstart + this->mwidth)
 	{
 		delete [] this->mtoken;
 		this->mwidth = this->mbreak - this->mstart;
-		this->mtoken = new char [this->mwidth +  1];
+		this->mtoken = new char [this->mwidth + 1];
 		this->mtoken [0] = (char) (0);
 	}
 	this->readtoken (this->mtoken, this->mwidth);
@@ -269,8 +269,8 @@ char const * oscantext::tokentext ()
 char const * oscantext::savetoken ()
 
 {
-	this->mindex = new char [this->mbreak - this->mstart +  1];
-	this->readtoken (this->mindex, this->mbreak - this->mstart +  1);
+	this->mindex = new char [this->mbreak - this->mstart + 1];
+	this->readtoken (this->mindex, this->mbreak - this->mstart + 1);
 	return ((char const *) (this->mindex));
 }
 
@@ -1894,14 +1894,14 @@ oscantext & oscantext::reset (off_t length)
 
 {
 	delete [] this->minput;
-	this->minput = new char [this->munget +  length +  1];
-	this->mstart = this->minput +  this->munget;
-	this->mlimit = this->mstart +  length;
+	this->minput = new char [this->munget + length + 1];
+	this->mstart = this->minput + this->munget;
+	this->mlimit = this->mstart + length;
 	this->mbreak = this->mstart;
 	this->mstart [0] = (char) (0);
 	this->mlimit [0] = (char) (0);
 	delete [] this->mtoken;
-	this->mtoken = new char [this->mwidth +  1];
+	this->mtoken = new char [this->mwidth + 1];
 	this->mtoken [0] = (char) (0);
 	this->mclass = (char) (0);
 	return (* this);
@@ -1940,12 +1940,12 @@ oscantext::oscantext ()
 
 {
 	this->munget = oSCANTEXT_UNGET_LENGTH;
-	this->minput = new char [this->munget +  1];
-	this->mstart = this->minput +  this->munget;
+	this->minput = new char [this->munget + 1];
+	this->mstart = this->minput + this->munget;
 	this->mlimit = this->mstart;
 	this->mbreak = this->mstart;
 	this->mwidth = oSCANTEXT_TOKEN_LENGTH;
-	this->mtoken = new char [this->mwidth +  1];
+	this->mtoken = new char [this->mwidth + 1];
 	this->mtoken [0] = (char) (0);
 	this->mclass = (char) (0);
 	this->reset ((off_t) (0));
@@ -1968,12 +1968,12 @@ oscantext::oscantext (std::ifstream * stream)
 
 {
 	this->munget = oSCANTEXT_UNGET_LENGTH;
-	this->minput = new char [this->munget +  1];
-	this->mstart = this->minput +  this->munget;
+	this->minput = new char [this->munget + 1];
+	this->mstart = this->minput + this->munget;
 	this->mlimit = this->mstart;
 	this->mbreak = this->mstart;
 	this->mwidth = oSCANTEXT_TOKEN_LENGTH;
-	this->mtoken = new char [this->mwidth +  1];
+	this->mtoken = new char [this->mwidth + 1];
 	this->mtoken [0] = (char) (0);
 	this->mclass = (char) (0);
 	this->read (stream);
@@ -1994,12 +1994,12 @@ oscantext::oscantext (char const * string)
 
 {
 	this->munget = oSCANTEXT_UNGET_LENGTH;
-	this->minput = new char [this->munget +  1];
-	this->mstart = this->minput +  this->munget;
+	this->minput = new char [this->munget + 1];
+	this->mstart = this->minput + this->munget;
 	this->mlimit = this->mstart;
 	this->mbreak = this->mstart;
 	this->mwidth = oSCANTEXT_TOKEN_LENGTH;
-	this->mtoken = new char [this->mwidth +  1];
+	this->mtoken = new char [this->mwidth + 1];
 	this->mtoken [0] = (char) (0);
 	this->mclass = (char) (0);
 	this->copy (string);

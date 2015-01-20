@@ -367,7 +367,7 @@ odepend::odepend (char const * string)
 	this->mprior = (odepend *) (0);
 	this->mafter = (odepend *) (0);
 	this->mbelow = (odepend *) (0);
-	this->mstring = new char [strlen (string) +  1];
+	this->mstring = new char [strlen (string) + 1];
 	std::strcpy (this->mstring, string);
 	odepend::queue.append ((void *) (this->mstring));
 	return;

@@ -33,12 +33,11 @@
 #define TABLE_ALLPRI    0xFF /* Value to indicate all priorities in f_pmask */
 #define TABLE_NOPRI     0x00
 #define	LOG_MARK	LOG_MAKEPRI(LOG_NFACILITIES, 0)  /* mark "facility" */
-
 /*====================================================================*
  *
  *--------------------------------------------------------------------*/
-
 class __declspec (dllexport) osyslogspec
+
 
 {
 public: 

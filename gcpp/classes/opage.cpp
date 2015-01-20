@@ -296,7 +296,7 @@ opage & opage::footer ()
 	if (length < offset)
 	{
 		offset -= length;
-		offset /= 2;
+		offset /=  2;
 	}
 	else 
 	{
@@ -331,7 +331,7 @@ opage & opage::footer ()
 opage::opage (char const * title)
 
 {
-	this->mtitle = new char [std::strlen (title) +  1];
+	this->mtitle = new char [std::strlen (title) + 1];
 	std::strcpy (this->mtitle, title);
 	this->mrows = oPAGE_ROWS;
 	this->mcols = oPAGE_COLS;

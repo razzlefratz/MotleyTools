@@ -43,7 +43,7 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-const unsigned short octype::mtable [UCHAR_MAX +  1] =
+const unsigned short octype::mtable [UCHAR_MAX + 1] =
 
 {
 
@@ -1246,7 +1246,7 @@ signed octype::tolower (signed c)
 {
 	if (octype::isupper (c))
 	{
-		return (c +  ('a' - 'A'));
+		return (c + ('a' - 'A'));
 	}
 	return (c);
 }

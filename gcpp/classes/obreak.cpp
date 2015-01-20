@@ -56,8 +56,8 @@ obreak & obreak::print (char const * string)
 obreak::obreak (size_t length)
 
 {
-	this->mupper = new char [length +  1];
-	this->mlower = new char [length +  1];
+	this->mupper = new char [length + 1];
+	this->mlower = new char [length + 1];
 	for (size_t column = 0; column < length; column++)
 	{
 		this->mupper [column] = '=';

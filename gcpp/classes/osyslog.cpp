@@ -70,7 +70,7 @@ osyslog & osyslog::identity (char const * identity)
 	if (std::strcmp (this->midentity, identity))
 	{
 		delete [] this->midentity;
-		this->midentity = new char [std::strlen (identity) +  1];
+		this->midentity = new char [std::strlen (identity) + 1];
 		std::strcpy (this->midentity, identity);
 	}
 	return (* this);
@@ -193,7 +193,7 @@ void osyslog::syslogerr (priority_t priority, errno_t errnum, char const * forma
 	va_start (arglist, format);
 	if (errnum != (errno_t) (0))
 	{
-		char buffer [strlen (format) +  SYSLOG_STRERROR_MAX];
+		char buffer [strlen (format) + SYSLOG_STRERROR_MAX];
 		std::snprintf (buffer, sizeof (buffer), "%s: %s", format, std::strerror (errnum));
 		osyslog::vsyslog (priority, buffer, arglist);
 	}
@@ -222,7 +222,7 @@ void osyslog::syslogerr_at_line (priority_t priority, errno_t errornum, char con
 	va_start (arglist, format);
 	if (filename != (char const *) (0))
 	{
-		char buffer [strlen (format) +  SYSLOG_STRERROR_MAX];
+		char buffer [strlen (format) + SYSLOG_STRERROR_MAX];
 		std::snprintf (buffer, sizeof (buffer), "%s: (%zu) ", filename, lineno);
 		osyslog::vsyslog (priority, buffer, arglist);
 	}
@@ -291,20 +291,20 @@ void osyslog::vsyslog (priority_t priority, char const * format, va_list arglist
 	{
 		priority |= this->mfacility;
 	}
-	length = prefix = snprintf (buffer +  length, sizeof (buffer) - length, "<%d>", priority);
+	length = prefix = snprintf (buffer + length, sizeof (buffer) - length, "<%d>", priority);
 	if (this->midentity != (char *) (0))
 	{
-		length += snprintf (buffer +  length, sizeof (buffer) - length, "%s: ", this->midentity);
+		length += snprintf (buffer + length, sizeof (buffer) - length, "%s: ", this->midentity);
 	}
 	if (this->moptions & SYSLOG_PROCESS)
 	{
-		length += snprintf (buffer +  length, sizeof (buffer) - length, "[%d] ", getpid ());
+		length += snprintf (buffer + length, sizeof (buffer) - length, "[%d] ", getpid ());
 	}
-	length += vsnprintf (buffer +  length, sizeof (buffer) - length, format, arglist);
-	length += snprintf (buffer +  length, sizeof (buffer) - length, "\n");
+	length += vsnprintf (buffer + length, sizeof (buffer) - length, format, arglist);
+	length += snprintf (buffer + length, sizeof (buffer) - length, "\n");
 	if (this->moptions & SYSLOG_PERROR)
 	{
-		std::cerr.write (buffer +  prefix, length - prefix);
+		std::cerr.write (buffer + prefix, length - prefix);
 	}
 	if (write (this->mfile, buffer, length) == -1)
 	{
@@ -314,7 +314,7 @@ void osyslog::vsyslog (priority_t priority, char const * format, va_list arglist
 			console.open (_PATH_CONSOLE, std::ofstream::out);
 			if (console.good ())
 			{
-				console.write (buffer +  prefix, length - prefix);
+				console.write (buffer + prefix, length - prefix);
 			}
 			console.close ();
 		}

@@ -75,7 +75,7 @@ oSHA256 & oSHA256::Write (void const * memory, size_t extent)
 		}
 		if ((left) && (extent >= fill))
 		{
-			std::memcpy (this->mblock +  left, buffer, (uint16_t) (fill));
+			std::memcpy (this->mblock + left, buffer, (uint16_t) (fill));
 			this->Block (this->mblock);
 			extent -= fill;
 			buffer += fill;
@@ -89,7 +89,7 @@ oSHA256 & oSHA256::Write (void const * memory, size_t extent)
 		}
 		if (extent)
 		{
-			std::memcpy (this->mblock +  left, buffer, (uint16_t) (extent));
+			std::memcpy (this->mblock + left, buffer, (uint16_t) (extent));
 		}
 	}
 	return (* this);
@@ -190,7 +190,7 @@ oSHA256 & oSHA256::Block (byte const buffer [])
 	{
 		uint32_t s0 = ROTR (W [word -15], 7) ^ ROTR (W [word -15], 18) ^ SHR (W [word -15], 3);
 		uint32_t s1 = ROTR (W [word - 2], 17) ^ ROTR (W [word - 2], 19) ^ SHR (W [word - 2], 10);
-		W [word] = W [word -16] +  s0 +  W [word - 7] +  s1;
+		W [word] = W [word -16] + s0 + W [word - 7] + s1;
 		word++;
 	}
 	for (word = 0; word < oSHA256_HASH_SIZE; word++)
@@ -201,15 +201,15 @@ oSHA256 & oSHA256::Block (byte const buffer [])
 	{
 		uint32_t s2 = ROTR (H [0], 2) ^ ROTR (H [0], 13) ^ ROTR (H [0], 22);
 		uint32_t maj = (H [0] & H [1]) ^ (H [0] & H [2]) ^ (H [1] & H [2]);
-		uint32_t t2 = s2 +  maj;
+		uint32_t t2 = s2 + maj;
 		uint32_t s3 = ROTR (H [4], 6) ^ ROTR (H [4], 11) ^ ROTR (H [4], 25);
 		uint32_t ch = (H [4] & H [5]) ^ ((~ H [4]) & H [6]);
-		uint32_t t1 = H [7] +  s3 +  ch +  K [pass] +  W [pass];
+		uint32_t t1 = H [7] + s3 + ch + K [pass] + W [pass];
 		for (word = oSHA256_DIGEST_LENGTH -1; word > 0; word--)
 		{
 			H [word] = H [word -1];
 		}
-		H [0] = t1 +  t2;
+		H [0] = t1 + t2;
 		H [4] += t1;
 	}
 	for (word = 0; word < oSHA256_DIGEST_LENGTH; word++)

@@ -144,7 +144,7 @@ oedges & oedges::add (onode * sourcenode, onode * targetnode)
 	if (this->mcount > this->mlimit)
 	{
 		oedge ** ntable = this->mtable;
-		this->mlimit = this->mlimit +  this->mblock;
+		this->mlimit = this->mlimit + this->mblock;
 		this->mblock = this->mlimit - this->mblock;
 		this->mtable = new oedge * [this->mlimit];
 		for (this->mindex = 0; this->mindex < this->mcount; this->mindex++)

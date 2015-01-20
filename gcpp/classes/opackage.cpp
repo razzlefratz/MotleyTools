@@ -29,7 +29,7 @@
  *   class variables;
  *--------------------------------------------------------------------*/
 
-char const * opackage::extenders [oPACKAGE_EXTENDERS_MAX +  1] =
+char const * opackage::extenders [oPACKAGE_EXTENDERS_MAX + 1] =
 
 {
 	".tar",
@@ -180,9 +180,9 @@ opackage & opackage::filespec (char const * string)
 	{
 		if (* string == '/')
 		{
-			package = string +  1;
-			release = string +  1;
-			trailer = string +  1;
+			package = string + 1;
+			release = string + 1;
+			trailer = string + 1;
 			continue;
 		}
 		if (* string == '-')
@@ -262,7 +262,7 @@ char * opackage::extract (char string [], char const * start, char const * limit
 
 {
 	delete [] string;
-	string = new char [limit - start +  1];
+	string = new char [limit - start + 1];
 	std::memcpy (string, start, limit - start);
 	string [limit - start] = (char) (0);
 	return (string);

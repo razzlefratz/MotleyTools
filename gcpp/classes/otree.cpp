@@ -77,7 +77,7 @@ otree & otree::nodetext (char const * nodetext)
 	if (std::strcmp (this->mstring, nodetext))
 	{
 		delete [] this->mstring;
-		this->mstring = new char [std::strlen (nodetext) +  1];
+		this->mstring = new char [std::strlen (nodetext) + 1];
 		std::strcpy (this->mstring, nodetext);
 	}
 	return (* this);
@@ -860,7 +860,7 @@ long otree::reorder (long index, long level)
 		node->mcount = index;
 		if (node->mbelow)
 		{
-			node->mindex = this->mbelow->reorder (index, level +  1);
+			node->mindex = this->mbelow->reorder (index, level + 1);
 		}
 		node->mcount = index - node->mcount;
 		node = node->mafter;
@@ -1076,7 +1076,7 @@ otree * otree::selectpath (char const * pathname, char extender)
 otree::otree (char const * nodename, void const * nodedata)
 
 {
-	this->msymbol = new char [std::strlen (nodename) +  1];
+	this->msymbol = new char [std::strlen (nodename) + 1];
 	std::strcpy (this->msymbol, nodename);
 	this->msymbol = new char [1];
 	this->mstring [0] = (char) (0);
@@ -1101,7 +1101,7 @@ otree::otree (char const * nodename, void const * nodedata)
 otree::otree (char const nodename [], size_t length)
 
 {
-	this->msymbol = new char [length +  1];
+	this->msymbol = new char [length + 1];
 	std::strncpy (this->msymbol, nodename, length);
 	this->msymbol [length] = (char) (0);
 	this->mstring = new char [1];
@@ -1127,7 +1127,7 @@ otree::otree (char const nodename [], size_t length)
 otree::otree (char const * nodename)
 
 {
-	this->msymbol = new char [std::strlen (nodename) +  1];
+	this->msymbol = new char [std::strlen (nodename) + 1];
 	std::strcpy (this->msymbol, nodename);
 	this->mstring = new char [1];
 	this->mstring [0] = (char) (0);

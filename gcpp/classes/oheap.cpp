@@ -52,7 +52,7 @@ oheap & oheap::title (char const * string)
 	if (std::strcmp (string, this->mtitle))
 	{
 		delete [] this->mtitle;
-		this->mtitle = new char [strlen (string) +  1];
+		this->mtitle = new char [strlen (string) + 1];
 		strcpy (this->mtitle, string);
 	}
 	return (* this);
@@ -118,11 +118,11 @@ oitem * oheap::item ()
 	this->mlower = this->mstart;
 	while ((this->mupper = (this->mlower << 1)) < this->mcount)
 	{
-		if ((* this->morder) (this->mtable [this->mupper] ->name (), this->mtable [this->mupper +  1] ->name ()) > 0)
+		if ((* this->morder) (this->mtable [this->mupper] ->name (), this->mtable [this->mupper + 1] ->name ()) > 0)
 		{
 			this->mupper++;
 		}
-		if ((* this->morder) (this->mtable [this->mcount] ->name (), this->mtable [this->mupper +  0] ->name ()) <= 0)
+		if ((* this->morder) (this->mtable [this->mcount] ->name (), this->mtable [this->mupper + 0] ->name ()) <= 0)
 		{
 			break;
 		}
@@ -147,7 +147,7 @@ oheap & oheap::insertitem (oitem * item)
 	if (++ mcount > mlimit)
 	{
 		oitem ** table = this->mtable;
-		this->mlimit = this->mlimit +  this->mblock;
+		this->mlimit = this->mlimit + this->mblock;
 		this->mblock = this->mlimit - this->mblock;
 		this->mtable = new oitem * [this->mlimit];
 		for (size_t index = 0; index < this->mlimit; ++ index)

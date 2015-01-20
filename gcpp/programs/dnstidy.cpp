@@ -122,9 +122,10 @@ void function (oflagword * flags)
 		{
 			indent.endline (1);
 			indent.newline (-- level);
-			do {
-			c = tidy.keep (c);
-			c = tidy.find (c);
+			do 
+			{
+				c = tidy.keep (c);
+				c = tidy.find (c);
 			}
 			while ((c == ',') || (c == ';'));
 			if (! level)

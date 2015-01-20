@@ -62,7 +62,7 @@ obuffer & obuffer::offset (char const * offset)
 
 {
 	delete [] this->moffset;
-	this->moffset = new char [std::strlen (offset) +  1];
+	this->moffset = new char [std::strlen (offset) + 1];
 	std::strcpy (this->moffset, offset);
 	return (* this);
 }
@@ -103,7 +103,7 @@ obuffer & obuffer::record (char const * record)
 
 {
 	delete [] this->mfinish;
-	this->mfinish = new char [std::strlen (record) +  1];
+	this->mfinish = new char [std::strlen (record) + 1];
 	std::strcpy (this->mfinish, record);
 	return (* this);
 }
@@ -133,7 +133,7 @@ obuffer & obuffer::append (signed c)
 			char * buffer = this->mbuffer;
 			while (this->mlength >= this->mtotal)
 			{
-				this->mtotal = this->mtotal +  this->mblock;
+				this->mtotal = this->mtotal + this->mblock;
 				this->mblock = this->mtotal - this->mblock;
 			}
 			this->mbuffer = new char [this->mtotal];

@@ -428,7 +428,7 @@ ochtml::ochtml (char const * stylesheet)
 
 {
 	owebpage::stylesheet (stylesheet);
-	this->murl = new char [FILENAME_MAX +  1];
+	this->murl = new char [FILENAME_MAX + 1];
 	this->murl [0] = (char) (0);
 	this->mindex = 1;
 	return;
@@ -444,7 +444,7 @@ ochtml::ochtml ()
 
 {
 	owebpage::stylesheet (oCHTML_PAGE_STYLESHEET);
-	this->murl = new char [FILENAME_MAX +  1];
+	this->murl = new char [FILENAME_MAX + 1];
 	this->murl [0] = (char) (0);
 	this->mindex = 1;
 	return;

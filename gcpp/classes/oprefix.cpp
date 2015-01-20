@@ -131,7 +131,7 @@ char const * oprefix::revise (char const * symbol) const
 		std::cout << "[" << * symbol << "]<[" << this->msymbol << "]" << std::endl;
 		if (this->mprior)
 		{
-			temp = this->mprior->revise (symbol +  0);
+			temp = this->mprior->revise (symbol + 0);
 		}
 		else 
 		{
@@ -143,7 +143,7 @@ char const * oprefix::revise (char const * symbol) const
 		std::cout << "[" << * symbol << "]>[" << this->msymbol << "]" << std::endl;
 		if (this->mafter)
 		{
-			temp = this->mafter->revise (symbol +  0);
+			temp = this->mafter->revise (symbol + 0);
 		}
 		else 
 		{
@@ -155,7 +155,7 @@ char const * oprefix::revise (char const * symbol) const
 		std::cout << "[" << * symbol << "]=[" << this->msymbol << "]" << std::endl;
 		if (this->mequal)
 		{
-			temp = this->mequal->revise (symbol +  1);
+			temp = this->mequal->revise (symbol + 1);
 		}
 		else 
 		{
@@ -193,7 +193,7 @@ char const * oprefix::prefix (char const * symbol) const
 			{
 				return (string);
 			}
-			char * buffer = new char [symbol - sp +  1];
+			char * buffer = new char [symbol - sp + 1];
 			strncpy (buffer, sp, symbol - sp);
 			buffer [symbol - sp] = (char) (0);
 			return (buffer);
@@ -303,7 +303,7 @@ oprefix & oprefix::define (char const * symbol, char const * string)
 		else 
 		{
 			delete prefix->mstring;
-			prefix->mstring = new char [strlen (string) +  1];
+			prefix->mstring = new char [strlen (string) + 1];
 			strcpy (prefix->mstring, string);
 			break;
 		}

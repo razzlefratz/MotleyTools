@@ -334,7 +334,7 @@ othread & othread::clear ()
 char * othread::copy (char const * string)
 
 {
-	char * buffer = new char [strlen (string) +  1];
+	char * buffer = new char [strlen (string) + 1];
 	strcpy (buffer, string);
 	return (buffer);
 }

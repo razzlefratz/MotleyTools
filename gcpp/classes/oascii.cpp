@@ -87,7 +87,7 @@ char const * oascii::cbits [] =
 	"fract"
 };
 
-const unsigned oascii::ctype [UCHAR_MAX +  1] =
+const unsigned oascii::ctype [UCHAR_MAX + 1] =
 
 {
 
@@ -1603,7 +1603,7 @@ signed oascii::tolower (signed c)
 {
 	if (oascii::isupper (c))
 	{
-		return (c +  ('a' - 'A'));
+		return (c + ('a' - 'A'));
 	}
 	return (c);
 }
@@ -1625,11 +1625,11 @@ signed oascii::todigit (signed c)
 	}
 	if ((c >= 'A') && (c <= 'Z'))
 	{
-		return (c - 'A' +  10);
+		return (c - 'A' + 10);
 	}
 	if ((c >= 'a') && (c <= 'z'))
 	{
-		return (c - 'a' +  10);
+		return (c - 'a' + 10);
 	}
 	return (-1);
 }

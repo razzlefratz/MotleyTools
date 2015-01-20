@@ -545,7 +545,7 @@ signed osource::operate (signed c)
 	if (oascii::isspace (c))
 	{
 		c = osource::find (c);
-		if (c == '{') 
+		if (c == '{')
 		{
 			return (c);
 		}
@@ -830,8 +830,8 @@ signed osource::consume (signed c)
 signed osource::peek (signed c)
 
 {
-	c = osource::skip (c);
-	c = osource::skip (c, '\\', '\n');
+	c = osource::feed (c);
+	c = osource::feed (c, '\\', '\n');
 	return (c);
 }
 
@@ -857,7 +857,7 @@ signed osource::find (signed c)
  *
  *   signed keep (signed c, signed o, signed e);
  *
- *   keep character pair and return next character from stdin;
+ *   keep current character pair; return next character from stdin;
  *
  *--------------------------------------------------------------------*/
 
@@ -889,7 +889,7 @@ signed osource::keep (signed c, signed o, signed e)
 signed osource::keep (signed c)
 
 {
-	if ((c != NUL) && (c != EOF))
+	if ((c) && ~ (c))
 	{
 		std::cout.put (c);
 	}
@@ -899,21 +899,21 @@ signed osource::keep (signed c)
 
 /*====================================================================*
  *
- *   signed skip (signed c, signed o, signed e);
+ *   signed feed (signed c, signed o, signed e);
  *
  *   discard character pair and return next character from stdin;
  *
  *--------------------------------------------------------------------*/
 
-signed osource::skip (signed c, signed o, signed e)
+signed osource::feed (signed c, signed o, signed e)
 
 {
 	while (c == o)
 	{
 		if (std::cin.peek () == e)
 		{
-			c = osource::skip (c);
-			c = osource::skip (c);
+			c = osource::feed (c);
+			c = osource::feed (c);
 			continue;
 		}
 		break;
@@ -923,13 +923,13 @@ signed osource::skip (signed c, signed o, signed e)
 
 /*====================================================================*
  *
- *   signed skip (signed c);
+ *   signed feed (signed c);
  *
  *   discard single character and return next character from stdin;
  *
  *--------------------------------------------------------------------*/
 
-signed osource::skip (signed c)
+signed osource::feed (signed c)
 
 {
 	c = std::cin.get ();

@@ -232,7 +232,7 @@ int main (int argc, char const * argv [])
 	}
 	while ((getopt.argc ()) && (* getopt.argv ()))
 	{
-		char filename [FILENAME_MAX +  1];
+		char filename [FILENAME_MAX + 1];
 		pathspec.fullpath (filename, * getopt.argv ());
 		odepend::nodes.store (filename);
 		getopt++;

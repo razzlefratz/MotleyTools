@@ -33,12 +33,12 @@ int main ()
 	cout << std::endl;
 	for (int n = 0; list [n]; ++ n, ++ n)
 	{
-		cout << list [n] << " " << list [n +  1] << " " << p->compare (list [n], list [n +  1]) << std::endl;
+		cout << list [n] << " " << list [n + 1] << " " << p->compare (list [n], list [n + 1]) << std::endl;
 	}
 	cout << std::endl;
 	for (int n = 0; list [n]; ++ n, ++ n)
 	{
-		cout << list [n] << " " << list [n +  1] << " " << q->compare (list [n], list [n +  1]) << std::endl;
+		cout << list [n] << " " << list [n + 1] << " " << q->compare (list [n], list [n + 1]) << std::endl;
 	}
 	cout << std::endl;
 	return (0);

@@ -330,9 +330,9 @@ omakefile::omakefile ()
 	this->mccflags = otext::save ("-Wall -D_GNU_SOURCE");
 	this->mldflags = otext::save ("");
 	this->mlength = 0x0400;
-	this->mbuffer = new char [this->mlength +  1];
+	this->mbuffer = new char [this->mlength + 1];
 	this->mbuffer [0] = (char) (0);
-	this->moutput = new char [this->mlength +  1];
+	this->moutput = new char [this->mlength + 1];
 	this->moutput [0] = (char) (0);
 	this->width (oSECTION_BARWIDTH);
 	return;

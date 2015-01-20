@@ -30,7 +30,7 @@
  *   data initialization;
  *--------------------------------------------------------------------*/
 
-char const * oISOGlyph::mtable [UCHAR_MAX +  1] =
+char const * oISOGlyph::mtable [UCHAR_MAX + 1] =
 
 {
 	"#x00",

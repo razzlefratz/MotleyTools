@@ -107,12 +107,12 @@ oAttribute & oAttribute::value (unsigned number)
 
 {
 	char string [32];
-	char * sp = string +  sizeof (string);
+	char * sp = string + sizeof (string);
 	* -- sp = (char) (0);
 	do 
 	{
-		* -- sp = '0' +  number % 10;
-		number /= 10;
+		* -- sp = '0' + number % 10;
+		number /=  10;
 	}
 	while ((sp > string) && (number));
 	this->mvalue = otext::replace (this->mvalue, sp);
@@ -131,13 +131,13 @@ oAttribute & oAttribute::value (unsigned number)
 oAttribute & oAttribute::value (unsigned number, unsigned digits)
 
 {
-	char string [digits +  1];
-	char * sp = string +  sizeof (string);
+	char string [digits + 1];
+	char * sp = string + sizeof (string);
 	* -- sp = (char) (0);
 	do 
 	{
-		* -- sp = '0' +  number % 10;
-		number /= 10;
+		* -- sp = '0' + number % 10;
+		number /=  10;
 	}
 	while ((sp > string) || (number));
 	this->mvalue = otext::replace (this->mvalue, sp);

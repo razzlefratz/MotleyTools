@@ -51,7 +51,7 @@ oinclude & oinclude::state (signed state)
 {
 	if (state > 0)
 	{
-		state = +  1;
+		state = + 1;
 	}
 	if (state < 0)
 	{
@@ -80,7 +80,7 @@ oinclude & oinclude::filename (char const * string)
 	{
 		if ((* string == '/') || (* string == '\\'))
 		{
-			cp = string +  1;
+			cp = string + 1;
 		}
 	}
 	while ((* cp) && (* cp != '.'))

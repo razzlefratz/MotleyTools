@@ -96,7 +96,7 @@ ocontext & ocontext::split (char const * string, char c, bool initial, bool opti
 
 {
 	delete [] this->mstring;
-	this->mstring = new char [std::strlen (string) +  1];
+	this->mstring = new char [std::strlen (string) + 1];
 	std::strcpy (this->mstring, string);
 	for (this->mprefix = this->msuffix = this->mstring; * this->mprefix != (char) (0); this->mprefix++)
 	{

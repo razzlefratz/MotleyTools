@@ -37,7 +37,7 @@ void * okeep::store (char const * string, void * object)
 {
 	if (this->mstring == (char *) (0))
 	{
-		this->mstring = new char [strlen (string) +  1];
+		this->mstring = new char [strlen (string) + 1];
 		std::strcpy (this->mstring, string);
 	}
 	int order = std::strcmp (string, mstring);

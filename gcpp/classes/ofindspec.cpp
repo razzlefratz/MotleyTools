@@ -400,10 +400,10 @@ char const * ofindspec::addextender (char const * extender)
 char const * ofindspec::serial (unsigned number, unsigned length)
 
 {
-	char digits [length +  1];
-	for (digits [length] = (char) (0); length > 0; number /= 10)
+	char digits [length + 1];
+	for (digits [length] = (char) (0); length > 0; number /=  10)
 	{
-		digits [-- length] = (char) ('0' +  (number % 10));
+		digits [-- length] = (char) ('0' + (number % 10));
 	}
 	this->fullname ();
 	std::strncat (this->mtempname, FILE_S_EXTENDER, FILENAME_MAX);
@@ -453,17 +453,17 @@ ofindspec::ofindspec (char const * filespec)
 
 {
 	this->mfindmode = 0;
-	this->mtempname = new char [FILENAME_MAX +  1];
+	this->mtempname = new char [FILENAME_MAX + 1];
 	this->mtempname [0] = (char) (0);
-	this->mpathname = new char [FILENAME_MAX +  1];
+	this->mpathname = new char [FILENAME_MAX + 1];
 	this->mpathname [0] = (char) (0);
-	this->mfilename = new char [FILENAME_MAX +  1];
+	this->mfilename = new char [FILENAME_MAX + 1];
 	this->mfilename [0] = (char) (0);
-	this->mwildcard = new char [FILENAME_MAX +  1];
+	this->mwildcard = new char [FILENAME_MAX + 1];
 	this->mwildcard [0] = (char) (0);
-	this->mbasename = new char [FILENAME_MAX +  1];
+	this->mbasename = new char [FILENAME_MAX + 1];
 	this->mbasename [0] = (char) (0);
-	this->mextender = new char [FILENAME_MAX +  1];
+	this->mextender = new char [FILENAME_MAX + 1];
 	this->mextender [0] = (char) (0);
 	this->fullname (filespec);
 	return;
@@ -483,17 +483,17 @@ ofindspec::ofindspec ()
 
 {
 	this->mfindmode = 0;
-	this->mtempname = new char [FILENAME_MAX +  1];
+	this->mtempname = new char [FILENAME_MAX + 1];
 	this->mtempname [0] = (char) (0);
-	this->mpathname = new char [FILENAME_MAX +  1];
+	this->mpathname = new char [FILENAME_MAX + 1];
 	this->mpathname [0] = (char) (0);
-	this->mfilename = new char [FILENAME_MAX +  1];
+	this->mfilename = new char [FILENAME_MAX + 1];
 	this->mfilename [0] = (char) (0);
-	this->mwildcard = new char [FILENAME_MAX +  1];
+	this->mwildcard = new char [FILENAME_MAX + 1];
 	this->mwildcard [0] = (char) (0);
-	this->mbasename = new char [FILENAME_MAX +  1];
+	this->mbasename = new char [FILENAME_MAX + 1];
 	this->mbasename [0] = (char) (0);
-	this->mextender = new char [FILENAME_MAX +  1];
+	this->mextender = new char [FILENAME_MAX + 1];
 	this->mextender [0] = (char) (0);
 	return;
 }

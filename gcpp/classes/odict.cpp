@@ -84,7 +84,7 @@ odict & odict::define (char const * symbol, char const * string)
 			continue;
 		}
 		delete [] node->mstring;
-		node->mstring = new char [strlen (string) +  1];
+		node->mstring = new char [strlen (string) + 1];
 		std::strcpy (node->mstring, string);
 		break;
 	}
@@ -288,7 +288,7 @@ signed odict::comp (register char const * string1, register char const * string2
 	}
 	if (string2 == (char *) (0))
 	{
-		return (+  1);
+		return (+ 1);
 	}
 
 #endif
@@ -304,9 +304,9 @@ signed odict::comp (register char const * string1, register char const * string2
 	}
 	if (toupper (* string1) != toupper (* string2))
 	{
-		return (toupper (* string1) < toupper (* string2)? -1: +  1);
+		return (toupper (* string1) < toupper (* string2)? -1: + 1);
 	}
-	return (* string1 > * string2? -1: +  1);
+	return (* string1 > * string2? -1: + 1);
 }
 
 /*====================================================================*
@@ -325,7 +325,7 @@ signed odict::comp (register char const * string1, register char const * string2
 odict::odict (char const * symbol)
 
 {
-	this->msymbol = new char [strlen (symbol) +  1];
+	this->msymbol = new char [strlen (symbol) + 1];
 	std::strcpy (this->msymbol, symbol);
 	this->mstring = new char [1];
 	this->mstring [0] = (char) (0);
@@ -350,9 +350,9 @@ odict::odict (char const * symbol)
 odict::odict (char const * symbol, char const * string)
 
 {
-	this->msymbol = new char [strlen (symbol) +  1];
+	this->msymbol = new char [strlen (symbol) + 1];
 	std::strcpy (this->msymbol, symbol);
-	this->mstring = new char [strlen (string) +  1];
+	this->mstring = new char [strlen (string) + 1];
 	std::strcpy (this->mstring, string);
 	this->mprior = (odict *) (0);
 	this->mafter = (odict *) (0);

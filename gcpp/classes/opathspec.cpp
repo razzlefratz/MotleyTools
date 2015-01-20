@@ -110,7 +110,7 @@ bool opathspec::infolder (char pathname [], char const * wildcard, bool recurse)
 		* filename = PATH_C_EXTENDER;
 		while ((dirent = readdir (dir)) != (struct dirent *) (0))
 		{
-			std::strcpy (filename +  1, dirent->d_name);
+			std::strcpy (filename + 1, dirent->d_name);
 			if (lstat (pathname, & this->mstatinfo))
 			{
 				oerror::error (0, errno, pathname);
@@ -134,7 +134,7 @@ bool opathspec::infolder (char pathname [], char const * wildcard, bool recurse)
 			}
 			if (S_ISREG (this->mstatinfo.st_mode))
 			{
-				if (opathspec::match (filename +  1, wildcard))
+				if (opathspec::match (filename + 1, wildcard))
 				{
 					closedir (dir);
 					return (true);
@@ -683,7 +683,7 @@ void opathspec::splitpath (char filespec [])
 		{
 			if (this->mcount < this->mlimit)
 			{
-				this->mstack [this->mcount++] = filespec +  1;
+				this->mstack [this->mcount++] = filespec + 1;
 			}
 			* filespec = (char) (0);
 		}

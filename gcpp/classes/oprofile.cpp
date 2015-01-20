@@ -258,7 +258,7 @@ oprofile & oprofile::newtext ()
 		}
 		if (this->mappend == this->mlength)
 		{
-			this->mlength = this->mlength +  this->mrecord;
+			this->mlength = this->mlength + this->mrecord;
 			this->mrecord = this->mlength - this->mrecord;
 			this->mbuffer = this->mstring;
 			this->mstring = new char [this->mlength];

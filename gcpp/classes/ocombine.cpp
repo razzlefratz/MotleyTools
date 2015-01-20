@@ -189,7 +189,7 @@ ocontext & ocontext::split (char const * string, char const * charset, bool firs
 
 {
 	delete [] this->mstring;
-	this->mstring = new char [strlen (string) +  1];
+	this->mstring = new char [strlen (string) + 1];
 	strcpy (this->mstring, string);
 	this->mprefix = this->mstring;
 	this->msuffix = (char *) (0);
@@ -230,7 +230,7 @@ ocontext & ocontext::merge (char const * prefix, char const * middle, char const
 	length += std::strlen (middle);
 	length += std::strlen (suffix);
 	delete [] this->mstring;
-	this->mprefix = this->msuffix = this->mstring = new char [length +  1];;
+	this->mprefix = this->msuffix = this->mstring = new char [length + 1];;
 	if ((prefix == (char const *) (0)) || (* prefix == (char) (0)))
 	{
 		while (* suffix != (char) (0))
@@ -243,7 +243,7 @@ ocontext & ocontext::merge (char const * prefix, char const * middle, char const
 	}
 	if ((suffix == (char const *) (0)) || (* suffix == (char) (0)))
 	{
-		this->mprefix = this->msuffix = this->mstring = new char [strlen (prefix) +  1];;
+		this->mprefix = this->msuffix = this->mstring = new char [strlen (prefix) + 1];;
 		while (* prefix != (char) (0))
 		{
 			* this->msuffix++ = * prefix++;

@@ -106,7 +106,7 @@ signed function (signed c, signed newline, signed endline)
 		signed (* get) (signed) = & osource::peek;
 		if (oascii::isblank (c))
 		{
-			get = & osource::skip;
+			get = & osource::feed;
 			c = pack (c, newline, get);
 		}
 		while (oascii::nobreak (c))

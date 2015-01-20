@@ -230,7 +230,7 @@ signed ogetoptv::argc () const
 
 /*====================================================================*
  *
- *   char const ********************************************************************* argv () const;
+ *   char const ********************************************************************** argv () const;
  *
  *   return the start address of the unprocessed portions of argv [];
  *
@@ -239,7 +239,7 @@ signed ogetoptv::argc () const
 char const ** ogetoptv::argv () const
 
 {
-	return (this->margv +  this->moptind);
+	return (this->margv + this->moptind);
 }
 
 /*====================================================================*
@@ -290,7 +290,7 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 		{
 			if ((* this->mstring == '/') || (* this->mstring == '\\'))
 			{
-				program_name = this->mstring +  1;
+				program_name = this->mstring + 1;
 			}
 		}
 		this->mstring = (char *) (0);

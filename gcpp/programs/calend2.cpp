@@ -59,7 +59,7 @@ int main (int argc, char const * argv [])
 	ocalendar * calendar;
 	time_t now = time ((time_t *) (0));
 	struct tm * tm = localtime (& now);
-	unsigned year = 1900 +  tm->tm_year;
+	unsigned year = 1900 + tm->tm_year;
 	signed month = tm->tm_mon;
 	signed c;
 	while (~ (c = getopt.getoptv (argc, argv, optv)))

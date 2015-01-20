@@ -79,7 +79,7 @@ void omemory::endian (void * memory, size_t extent)
 
 {
 	register byte * byte1 = (byte *) (memory);
-	register byte * byte2 = (byte *) (memory) +  extent;
+	register byte * byte2 = (byte *) (memory) + extent;
 	while (byte1 < byte2)
 	{
 		register byte byte = * byte1;
@@ -168,7 +168,7 @@ void * omemory::encode (void * memory, void const * source, size_t extent)
 
 {
 	std::memcpy (memory, source, extent);
-	return ((byte *) (memory) +  extent);
+	return ((byte *) (memory) + extent);
 }
 
 /*====================================================================*
@@ -191,7 +191,7 @@ void const * omemory::decode (void const * memory, void * target, size_t extent)
 
 {
 	std::memcpy (target, memory, extent);
-	return ((byte *) (memory) +  extent);
+	return ((byte *) (memory) + extent);
 }
 
 /*====================================================================*
@@ -592,7 +592,7 @@ size_t omemory::bindecode (void const * memory, register size_t extent, char buf
 {
 	register char * string = (char *) (buffer);
 	register byte * offset = (byte *) (memory);
-	if ((length /= 9))
+	if ((length /=  9))
 	{
 		while ((length-- > 0) && (extent-- > 0))
 		{
@@ -632,7 +632,7 @@ size_t omemory::decdecode (void const * memory, register size_t extent, char buf
 {
 	register char * string = (char *) (buffer);
 	register byte * offset = (byte *) (memory);
-	if ((length /= 4))
+	if ((length /=  4))
 	{
 		while ((length--) && (extent--))
 		{
@@ -670,7 +670,7 @@ size_t omemory::hexdecode (void const * memory, register size_t extent, char buf
 {
 	register char * string = (char *) (buffer);
 	register byte * offset = (byte *) (memory);
-	if ((length /= 3))
+	if ((length /=  3))
 	{
 		while ((length--) && (extent--))
 		{
@@ -704,12 +704,12 @@ void omemory::hexdump (void const * memory, size_t offset, size_t extent, std::o
 
 {
 	register byte * origin = (byte *) (memory);
-	unsigned field = sizeof (extent) +  sizeof (extent);
+	unsigned field = sizeof (extent) + sizeof (extent);
 	unsigned block = 0x10;
 	size_t lower = block * (offset / block);
-	size_t upper = block +  lower;
+	size_t upper = block + lower;
 	size_t index = 0;
-	char buffer [sizeof (extent) +  sizeof (extent) +  0x48];
+	char buffer [sizeof (extent) + sizeof (extent) + 0x48];
 	char * output;
 	while (lower < extent)
 	{
@@ -775,14 +775,14 @@ void omemory::hexview (void const * memory, size_t offset, size_t extent, std::o
 
 {
 	register byte * origin = (byte *) (memory);
-	unsigned field = sizeof (extent) +  sizeof (extent);
+	unsigned field = sizeof (extent) + sizeof (extent);
 	unsigned block = 0x10;
 	size_t lower = block * (offset / block);
-	size_t upper = block +  lower;
+	size_t upper = block + lower;
 	size_t index = 0;
-	char buffer [sizeof (extent) +  sizeof (extent) +  0x48];
+	char buffer [sizeof (extent) + sizeof (extent) + 0x48];
 	char * output;
-	while (lower < offset +  extent)
+	while (lower < offset + extent)
 	{
 		output = omemory::serial (buffer, (size_t) (field), (unsigned) (index), 0x10);
 		* output++ = ' ';
@@ -793,7 +793,7 @@ void omemory::hexview (void const * memory, size_t offset, size_t extent, std::o
 				* output++ = ' ';
 				* output++ = ' ';
 			}
-			else if (index < offset +  extent)
+			else if (index < offset + extent)
 			{
 				* output++ = omemory::digits [(origin [index - offset] >> 4) & 0x0F];
 				* output++ = omemory::digits [(origin [index - offset] >> 0) & 0x0F];
@@ -811,7 +811,7 @@ void omemory::hexview (void const * memory, size_t offset, size_t extent, std::o
 			{
 				* output++ = ' ';
 			}
-			else if (index < offset +  extent)
+			else if (index < offset + extent)
 			{
 				unsigned c = origin [index - offset];
 				* output++ = oascii::isprint (c)? (char) (c): omemory::chr_nonprint;
@@ -966,7 +966,7 @@ void omemory::decout (void const * memory, size_t extent, signed c, std::ostream
 		while (order)
 		{
 			stream->put (omemory::digits [(* offset / order) % 10]);
-			order /= 10;
+			order /=  10;
 		}
 		if ((extent) && oascii::isprint (c))
 		{
@@ -1145,9 +1145,9 @@ char * omemory::serial (register char buffer [], register size_t length, registe
 	while (offset--)
 	{
 		buffer [offset] = omemory::digits [value % radix];
-		value /= radix;
+		value /=  radix;
 	}
-	return (buffer +  length);
+	return (buffer + length);
 }
 
 /*====================================================================*
@@ -1174,7 +1174,7 @@ char * omemory::serial (register char buffer [], register size_t length, registe
 	while (length--)
 	{
 		buffer [length] = omemory::digits [value % radix];
-		value /= radix;
+		value /=  radix;
 	}
 	return (buffer);
 }

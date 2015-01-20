@@ -110,8 +110,8 @@ ofileset & ofileset::makepath ()
 	string [field] = (char) (0);
 	while (field > 0)
 	{
-		string [-- field] = '0' +  index % 10;
-		index /= 10;
+		string [-- field] = '0' + index % 10;
+		index /=  10;
 	}
 	std::strcat (this->mfullname, FILE_S_EXTENDER);
 	std::strcat (this->mfullname, this->mextender);
@@ -292,7 +292,7 @@ ofileset & ofileset::extender (char const * filespec)
 ofileset::ofileset (char const * filespec)
 
 {
-	this->mfullname = new char [FILENAME_MAX +  1];
+	this->mfullname = new char [FILENAME_MAX + 1];
 	std::strcpy (this->mfullname, filespec);
 	this->mcontext->split (this->mfullname, PATH_C_EXTENDER, false, false);
 	this->mpathname = otext::replace (this->mpathname, this->mcontext->prefix ());
@@ -317,7 +317,7 @@ ofileset::ofileset ()
 
 {
 	this->mcontext = new ocontext;
-	this->mfullname = new char [FILENAME_MAX +  1];
+	this->mfullname = new char [FILENAME_MAX + 1];
 	std::strcpy (this->mfullname, "temp.txt");
 	this->mcontext->split (this->mfullname, PATH_C_EXTENDER, false, true);
 	this->mpathname = otext::replace (this->mpathname, this->mcontext->prefix ());

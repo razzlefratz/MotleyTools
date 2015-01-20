@@ -98,7 +98,7 @@ size_t okeywords::indexof (char const * string) const
 	size_t upper = this->mcount;
 	while (lower < upper)
 	{
-		size_t index = (lower +  upper) >> 1;
+		size_t index = (lower + upper) >> 1;
 		signed order = std::strcmp (string, this->mtable [index]);
 		if (order < 0)
 		{
@@ -107,7 +107,7 @@ size_t okeywords::indexof (char const * string) const
 		}
 		if (order > 0)
 		{
-			lower = index +  1;
+			lower = index + 1;
 			continue;
 		}
 		return (index);
@@ -240,7 +240,7 @@ okeywords & okeywords::enumerate (size_t columns)
 	if (width++ < columns)
 	{
 		count = columns / width;
-		block = (this->mcount +  count -1) / count;
+		block = (this->mcount + count -1) / count;
 		width = columns / count;
 		std::cout.put ('\n');
 		for (size_t row = 0; row < block; row++)

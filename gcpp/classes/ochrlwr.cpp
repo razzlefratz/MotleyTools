@@ -46,7 +46,7 @@
  *
  *--------------------------------------------------------------------*/
 
-const unsigned char ochrlwr::table [UCHAR_MAX +  1] =
+const unsigned char ochrlwr::table [UCHAR_MAX + 1] =
 
 {
 	0,

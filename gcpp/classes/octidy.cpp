@@ -98,7 +98,7 @@ signed octidy::charlie (signed c)
 				oindent::endline (1);
 				oindent::space (1);
 			}
-			else
+			else 
 			{
 				oindent::space (2);
 			}
@@ -184,7 +184,7 @@ signed octidy::program (signed c)
 				oindent::endline (1);
 				oindent::space (1);
 			}
-			else
+			else 
 			{
 				oindent::space (2);
 			}
@@ -263,7 +263,7 @@ signed octidy::atheros (signed c)
 				oindent::endline (1);
 				oindent::space (1);
 			}
-			else
+			else 
 			{
 				oindent::space (2);
 			}
@@ -406,6 +406,7 @@ signed octidy::context (signed c, signed o, signed e) const
 	c = osource::keep (c);
 	return (c);
 }
+
 signed octidy::_context (signed c, signed o, signed e) const
 
 {
@@ -432,6 +433,7 @@ signed octidy::context (signed c, signed e) const
 	c = osource::keep (c);
 	return (c);
 }
+
 signed octidy::_context (signed c, signed e) const
 
 {

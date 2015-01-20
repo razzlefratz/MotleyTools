@@ -35,8 +35,8 @@
 osection & osection::width (size_t width)
 
 {
-	this->mupper = new char [width +  1];
-	this->mlower = new char [width +  1];
+	this->mupper = new char [width + 1];
+	this->mlower = new char [width + 1];
 	this->mupper [width] = (char) (0);
 	this->mlower [width] = (char) (0);
 	while (width-- > 0)

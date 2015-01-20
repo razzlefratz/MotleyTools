@@ -51,7 +51,7 @@ char * otext::replace (char * memory, char const * string)
 char * otext::save (char const * string)
 
 {
-	char * memory = new char [std::strlen (string) +  1];
+	char * memory = new char [std::strlen (string) + 1];
 	std::strcpy (memory, string);
 	return (memory);
 }

@@ -28,7 +28,7 @@ oindex odate::mindex;
  *   class variables;
  *--------------------------------------------------------------------*/
 
-char const * odate::months [MONTHS_IN_YEAR +  1] =
+char const * odate::months [MONTHS_IN_YEAR + 1] =
 
 {
 	"January",
@@ -46,7 +46,7 @@ char const * odate::months [MONTHS_IN_YEAR +  1] =
 	(char const *) (0)
 };
 
-char const * odate::weekdays [DAYS_IN_WEEK +  1] =
+char const * odate::weekdays [DAYS_IN_WEEK + 1] =
 
 {
 	"Sunday",
@@ -142,7 +142,7 @@ unsigned odate::dayofweek (unsigned year, signed month, signed day)
 	}
 	century = year / 100;
 	year = year % 100;
-	day += (26 * month -1) / 10 +  5 * year / 4 +  century / 4 - 2 * century +  1;
+	day += (26 * month -1) / 10 + 5 * year / 4 + century / 4 - 2 * century + 1;
 	return (odate::mindex.qmod (day, DAYS_IN_WEEK));
 }
 

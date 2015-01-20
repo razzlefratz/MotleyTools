@@ -193,7 +193,7 @@ size_t onumber::ipv4spec (char const * string, void * memory)
 	char const * number = string;
 	byte * origin = (byte *) (memory);
 	byte * offset = (byte *) (memory);
-	byte * extent = offset +  IPv4_SIZE;
+	byte * extent = offset + IPv4_SIZE;
 	unsigned radix = DEC_RADIX;
 	unsigned digit = 0;
 	while ((* number) && (offset < extent))
@@ -212,7 +212,7 @@ size_t onumber::ipv4spec (char const * string, void * memory)
 			value += digit;
 			if (value >> 8)
 			{
-				oerror::error (1, ERANGE, "IPv4 '%s' octet %d exceeds 8 bits", string, ((offset - origin) >> 1) +  1);
+				oerror::error (1, ERANGE, "IPv4 '%s' octet %d exceeds 8 bits", string, ((offset - origin) >> 1) + 1);
 			}
 			number++;
 		}
@@ -260,8 +260,8 @@ size_t onumber::ipv6spec (char const * string, void * memory)
 	char const * number = string;
 	byte * origin = (byte *) (memory);
 	byte * offset = (byte *) (memory);
-	byte * extent = offset +  IPv6_SIZE;
-	byte * marker = offset +  IPv6_SIZE;
+	byte * extent = offset + IPv6_SIZE;
+	byte * marker = offset + IPv6_SIZE;
 	unsigned radix = HEX_RADIX;
 	unsigned digit = 0;
 	while ((* number) && (offset < extent))
@@ -284,7 +284,7 @@ size_t onumber::ipv6spec (char const * string, void * memory)
 			value += digit;
 			if (value >> 16)
 			{
-				oerror::error (1, ERANGE, "IPv6 '%s' field %d exceeds 16 bits", string, ((offset - origin) >> 1) +  1);
+				oerror::error (1, ERANGE, "IPv6 '%s' field %d exceeds 16 bits", string, ((offset - origin) >> 1) + 1);
 			}
 			number++;
 		}
@@ -350,7 +350,7 @@ void * onumber::ipv4encode (char const * string, void * memory)
 	char const * number = string;
 	byte * origin = (byte *) (memory);
 	byte * offset = (byte *) (memory);
-	byte * extent = offset +  IPv4_SIZE;
+	byte * extent = offset + IPv4_SIZE;
 	unsigned radix = DEC_RADIX;
 	unsigned digit = 0;
 	while ((* number) && (offset < extent))
@@ -369,7 +369,7 @@ void * onumber::ipv4encode (char const * string, void * memory)
 			value += digit;
 			if (value >> 8)
 			{
-				oerror::error (1, ERANGE, "IPv4 '%s' octet %d exceeds 8 bits", string, ((offset - origin) >> 1) +  1);
+				oerror::error (1, ERANGE, "IPv4 '%s' octet %d exceeds 8 bits", string, ((offset - origin) >> 1) + 1);
 			}
 			number++;
 		}
@@ -417,8 +417,8 @@ void * onumber::ipv6encode (char const * string, void * memory)
 	char const * number = string;
 	byte * origin = (byte *) (memory);
 	byte * offset = (byte *) (memory);
-	byte * extent = offset +  IPv6_SIZE;
-	byte * marker = offset +  IPv6_SIZE;
+	byte * extent = offset + IPv6_SIZE;
+	byte * marker = offset + IPv6_SIZE;
 	unsigned radix = HEX_RADIX;
 	unsigned digit = 0;
 	while ((* number) && (offset < extent))
@@ -441,7 +441,7 @@ void * onumber::ipv6encode (char const * string, void * memory)
 			value += digit;
 			if (value >> 16)
 			{
-				oerror::error (1, ERANGE, "IPv6 '%s' field %d exceeds 16 bits", string, ((offset - origin) >> 1) +  1);
+				oerror::error (1, ERANGE, "IPv6 '%s' field %d exceeds 16 bits", string, ((offset - origin) >> 1) + 1);
 			}
 			number++;
 		}
@@ -497,11 +497,11 @@ signed onumber::todigit (signed c)
 	}
 	if ((c >= 'A') && (c <= 'Z'))
 	{
-		return (c - 'A' +  10);
+		return (c - 'A' + 10);
 	}
 	if ((c >= 'a') && (c <= 'z'))
 	{
-		return (c - 'a' +  10);
+		return (c - 'a' + 10);
 	}
 	return (-1);
 }

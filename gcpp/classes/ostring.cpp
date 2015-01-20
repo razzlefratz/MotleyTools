@@ -88,7 +88,7 @@ ostring & ostring::string (char const * string)
 	{
 		delete [] this->mstring;
 		this->mlength = std::strlen (string);
-		this->mstring = new char [this->mlength +  1];
+		this->mstring = new char [this->mlength + 1];
 		std::strcpy (this->mstring, string);
 	}
 	return (* this);
@@ -115,7 +115,7 @@ char const * ostring::first (size_t count)
 	{
 		count = this->mlength;
 	}
-	this->mbuffer = new char [count +  1];
+	this->mbuffer = new char [count + 1];
 	std::strncpy (this->mbuffer, this->mstring, count);
 	this->mbuffer [count] = (char) (0);
 	return (this->mbuffer);
@@ -141,8 +141,8 @@ char const * ostring::final (size_t count)
 	{
 		count = this->mlength;
 	}
-	this->mbuffer = new char [this->mlength - count +  1];
-	std::strncpy (this->mbuffer, this->mstring +  this->mlength - count, count);
+	this->mbuffer = new char [this->mlength - count + 1];
+	std::strncpy (this->mbuffer, this->mstring + this->mlength - count, count);
 	this->mbuffer [count] = (char) (0);
 	return (this->mbuffer);
 }
@@ -167,8 +167,8 @@ char const * ostring::operator << (size_t count)
 		count = this->mlength;
 	}
 	delete [] this->mbuffer;
-	this->mbuffer = new char [this->mlength - count +  1];
-	std::strncpy (this->mbuffer, this->mstring +  count, this->mlength - count);
+	this->mbuffer = new char [this->mlength - count + 1];
+	std::strncpy (this->mbuffer, this->mstring + count, this->mlength - count);
 	this->mbuffer [this->mlength - count] = (char) (0);
 	return (this->mbuffer);
 }
@@ -193,7 +193,7 @@ char const * ostring::operator >> (size_t count)
 		count = this->mlength;
 	}
 	delete [] this->mbuffer;
-	this->mbuffer = new char [this->mlength - count +  1];
+	this->mbuffer = new char [this->mlength - count + 1];
 	std::strncpy (this->mbuffer, this->mstring, this->mlength - count);
 	this->mbuffer [this->mlength - count] = (char) (0);
 	return (this->mbuffer);
@@ -440,7 +440,7 @@ ostring & ostring::read ()
 	off_t length = std::cin.tellg ();
 	std::cin.seekg (0, std::ios::beg);
 	delete [] this->mstring;
-	this->mstring = new char [length +  1];
+	this->mstring = new char [length + 1];
 	std::cin.read (this->mstring, length);
 	this->mstring [length] = (char) (0);
 	this->mlength = length;
@@ -466,7 +466,7 @@ ostring & ostring::read (std::ifstream * stream)
 	off_t length = stream->tellg ();
 	stream->seekg (0, std::ios::beg);
 	delete [] this->mstring;
-	this->mstring = new char [length +  1];
+	this->mstring = new char [length + 1];
 	stream->read (this->mstring, length);
 	this->mstring [length] = (char) (0);
 	this->mlength = length;
@@ -498,8 +498,8 @@ char const * ostring::field (size_t start, size_t count)
 		count = this->mlength - start;
 	}
 	delete [] this->mbuffer;
-	this->mbuffer = new char [count +  1];
-	std::strncpy (this->mbuffer, this->mstring +  start, count);
+	this->mbuffer = new char [count + 1];
+	std::strncpy (this->mbuffer, this->mstring + start, count);
 	this->mbuffer [count] = (char) (0);
 	return (this->mbuffer);
 }
@@ -520,7 +520,7 @@ ostring & ostring::trim (char const * charset)
 
 {
 	char * first = this->mstring;
-	char * final = this->mstring +  this->mlength -1;
+	char * final = this->mstring + this->mlength -1;
 	while ((first < final) && (std::strchr (charset, * first)))
 	{
 		first++;
@@ -563,7 +563,7 @@ ostring & ostring::enclose (char const * example)
 	{
 		size_t length = std::strlen (example);
 		char * buffer = this->mstring;
-		this->mstring = new char [this->mlength +  3];
+		this->mstring = new char [this->mlength + 3];
 		this->mstring [0] = example [0];
 		std::strcpy (& this->mstring [1], buffer);
 		this->mstring [++ this->mlength] = example [length -1];
@@ -590,7 +590,7 @@ ostring & ostring::prefix (char const * string)
 {
 	char * buffer = this->mstring;
 	this->mlength += std::strlen (string);
-	this->mstring = new char [this->mlength +  1];
+	this->mstring = new char [this->mlength + 1];
 	std::strcpy (this->mstring, string);
 	std::strcat (this->mstring, buffer);
 	delete [] buffer;
@@ -614,7 +614,7 @@ ostring & ostring::suffix (char const * string)
 {
 	char * buffer = this->mstring;
 	this->mlength += std::strlen (string);
-	this->mstring = new char [this->mlength +  1];
+	this->mstring = new char [this->mlength + 1];
 	std::strcpy (this->mstring, buffer);
 	std::strcat (this->mstring, string);
 	delete [] buffer;
@@ -809,7 +809,7 @@ signed ostring::compare (register char const * string1, register char const * st
 	}
 	if (! string2)
 	{
-		return (+  1);
+		return (+ 1);
 	}
 	while (ct [(unsigned) (* string1)] == ct [(unsigned) (* string2)])
 	{
@@ -820,7 +820,7 @@ signed ostring::compare (register char const * string1, register char const * st
 		string1++;
 		string2++;
 	}
-	return (ct [(unsigned) (* string1)] < ct [(unsigned) (* string2)]? -1: +  1);
+	return (ct [(unsigned) (* string1)] < ct [(unsigned) (* string2)]? -1: + 1);
 }
 
 /*====================================================================*
@@ -848,8 +848,8 @@ ostring::ostring (char const * string, size_t start, size_t count)
 		count = limit - start;
 	}
 	this->mlength = count;
-	this->mstring = new char [this->mlength +  1];
-	std::strncpy (this->mstring, string +  start, count);
+	this->mstring = new char [this->mlength + 1];
+	std::strncpy (this->mstring, string + start, count);
 	this->mstring [this->mlength] = (char) (0);
 }
 
@@ -871,7 +871,7 @@ ostring::ostring (char const * string)
 	this->mbuffer = new char [1];
 	this->mbuffer [0] = (char) (0);
 	this->mlength = std::strlen (string);
-	this->mstring = new char [this->mlength +  1];
+	this->mstring = new char [this->mlength + 1];
 	std::strcpy (this->mstring, string);
 }
 

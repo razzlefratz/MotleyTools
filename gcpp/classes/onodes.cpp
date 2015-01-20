@@ -169,7 +169,7 @@ onodes & onodes::add (char const * nodename)
 	if (this->mcount >= this->mlimit)
 	{
 		onode ** ntable = this->mtable;
-		this->mlimit = this->mlimit +  this->mblock;
+		this->mlimit = this->mlimit + this->mblock;
 		this->mblock = this->mlimit - this->mblock;
 		this->mtable = new onode * [this->mlimit];
 		for (this->mindex = 0; this->mindex < this->mcount; this->mindex++)

@@ -360,9 +360,9 @@ oscanfile & oscanfile::scanbreak ()
 	if (this->mcount >= this->mlimit)
 	{
 		char * otoken = this->mtoken;
-		this->mlimit = this->mlimit +  this->mblock;
+		this->mlimit = this->mlimit + this->mblock;
 		this->mblock = this->mlimit - this->mblock;
-		this->mtoken = new char [this->mlimit +  1];
+		this->mtoken = new char [this->mlimit + 1];
 		for (this->mindex = 0; mindex < this->mcount; this->mindex++)
 		{
 			this->mtoken [this->mindex] = otoken [this->mindex];
@@ -1016,7 +1016,7 @@ bool oscanfile::havetoken (char const * literal)
 char const * oscanfile::copytoken () const
 
 {
-	char * string = new char [this->mcount +  1];
+	char * string = new char [this->mcount + 1];
 	std::strncpy (string, this->mtoken, this->mcount);
 	return ((char const *) (string));
 }
@@ -1141,7 +1141,7 @@ oscanfile & oscanfile::trimtoken (char const * charset)
 {
 	unsigned int first = 0;
 	unsigned int final = this->mcount;
-	while ((first < final) && strchr (charset, this->mtoken [first +  0]))
+	while ((first < final) && strchr (charset, this->mtoken [first + 0]))
 	{
 		first++;
 	}
@@ -1172,7 +1172,7 @@ oscanfile & oscanfile::trimtoken ()
 {
 	unsigned int first = 0;
 	unsigned int final = this->mcount;
-	while ((first < final) && oascii::isspace (this->mtoken [first +  0]))
+	while ((first < final) && oascii::isspace (this->mtoken [first + 0]))
 	{
 		first++;
 	}
@@ -1340,8 +1340,8 @@ oscanfile & oscanfile::unget (char const * string)
 	if (strlen (string) > this->ulimit - this->ucount)
 	{
 		char * ounbuf = this->munget;
-		this->ulimit = this->ucount +  std::strlen (string);
-		this->munget = new char [this->ulimit +  1];
+		this->ulimit = this->ucount + std::strlen (string);
+		this->munget = new char [this->ulimit + 1];
 		for (unsigned int index = 0; index < this->ucount; ++ index)
 		{
 			this->munget [index] = ounbuf [index];
@@ -1392,12 +1392,12 @@ oscanfile::oscanfile ()
 {
 	this->mbreak = std::cin.get ();
 	this->mclass = (char) (0);
-	this->mtoken = new char [_MAXTOKEN +  1];
+	this->mtoken = new char [_MAXTOKEN + 1];
 	this->mtoken [0] = (char) (0);
 	this->mblock = _MAXTOKEN;
 	this->mlimit = _MAXTOKEN;
 	this->mcount = 0;
-	this->munget = new char [_MAXUNGET +  1];
+	this->munget = new char [_MAXUNGET + 1];
 	this->munget [0] = (char) (0);
 	this->ulimit = _MAXUNGET;
 	this->ucount = 0;

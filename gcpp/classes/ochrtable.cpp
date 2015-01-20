@@ -62,7 +62,7 @@ ochrtable & ochrtable::tolower ()
 {
 	for (c = 'A'; c <= 'Z'; c++)
 	{
-		ochrtable::mtable [c] = (char) (c +  ('a' - 'A'));
+		ochrtable::mtable [c] = (char) (c + ('a' - 'A'));
 	}
 	for (c = 'a'; c <= 'z'; c++)
 	{
@@ -109,7 +109,7 @@ ochrtable & ochrtable::mreset ()
 
 {
 	unsigned value = 0;
-	while (value < (UCHAR_MAX +  1))
+	while (value < (UCHAR_MAX + 1))
 	{
 		ochrtable::mtable [value] = (unsigned char) (value);
 		value++;
@@ -126,7 +126,7 @@ ochrtable & ochrtable::mreset ()
 ochrtable::ochrtable ()
 
 {
-	ochrtable::mtable = new unsigned char [UCHAR_MAX +  1];
+	ochrtable::mtable = new unsigned char [UCHAR_MAX + 1];
 	ochrtable::mreset ();
 	ochrtbl::mtable = ochrtable::mtable;
 	return;

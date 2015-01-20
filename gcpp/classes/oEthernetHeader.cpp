@@ -62,7 +62,7 @@ byte const oEthernetHeader::BroadcastAddress [ETHER_ADDR_LEN] =
 size_t oEthernetHeader::HeaderLength (void) const
 
 {
-	return (sizeof (this->mpeeraddr) +  sizeof (this->mhostaddr) +  sizeof (this->mprotocol));
+	return (sizeof (this->mpeeraddr) + sizeof (this->mhostaddr) + sizeof (this->mprotocol));
 }
 
 /*====================================================================*

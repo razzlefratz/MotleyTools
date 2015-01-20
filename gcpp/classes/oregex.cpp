@@ -42,7 +42,7 @@ char const * oregex::select (char const * string) const
 	{
 		if (size_t length = this->length (string))
 		{
-			char * buffer = new char [length +  1];
+			char * buffer = new char [length + 1];
 			strncpy (buffer, string, length);
 			buffer [length] = (char) (0);
 			return (buffer);
@@ -66,8 +66,8 @@ char const * oregex::select (char const * string) const
 char const * oregex::span (char const * literal) const
 
 {
-	char const * minimum = literal +  this->mminimum;
-	char const * maximum = literal +  this->mmaximum;
+	char const * minimum = literal + this->mminimum;
+	char const * maximum = literal + this->mmaximum;
 	char const * sp = (char *) (0);
 	if (! literal)
 	{
@@ -233,7 +233,7 @@ char const * oregex::charset (char const * string, char const close, char buffer
 
 		if ((* buffer == '[') && (* string == ':'))
 		{
-			char * symbol = buffer +  1;
+			char * symbol = buffer + 1;
 			while ((* string) && (* string != ']'))
 			{
 				while ((* string) && (* string != ':'))
@@ -295,7 +295,7 @@ char const * oregex::charset (char const * string, char const close, char buffer
 			}
 			if (! std::strcmp (buffer, "[:blank:]"))
 			{
-				for (c = 0; c < (UCHAR_MAX +  1); c++)
+				for (c = 0; c < (UCHAR_MAX + 1); c++)
 				{
 					if (oascii::isblank (c) && (length > 0))
 					{
@@ -307,7 +307,7 @@ char const * oregex::charset (char const * string, char const close, char buffer
 			}
 			if (! std::strcmp (buffer, "[:space:]"))
 			{
-				for (c = 0; c < (UCHAR_MAX +  1); c++)
+				for (c = 0; c < (UCHAR_MAX + 1); c++)
 				{
 					if (oascii::isspace (c) && (length > 0))
 					{
@@ -319,7 +319,7 @@ char const * oregex::charset (char const * string, char const close, char buffer
 			}
 			if (! std::strcmp (buffer, "[:cntrl:]"))
 			{
-				for (c = 0; c < (UCHAR_MAX +  1); c++)
+				for (c = 0; c < (UCHAR_MAX + 1); c++)
 				{
 					if (oascii::iscntrl (c) && (length > 0))
 					{
@@ -331,7 +331,7 @@ char const * oregex::charset (char const * string, char const close, char buffer
 			}
 			if (! std::strcmp (buffer, "[:punct:]"))
 			{
-				for (c = 0; c < (UCHAR_MAX +  1); c++)
+				for (c = 0; c < (UCHAR_MAX + 1); c++)
 				{
 					if (oascii::ispunct (c) && (length > 0))
 					{
@@ -343,7 +343,7 @@ char const * oregex::charset (char const * string, char const close, char buffer
 			}
 			if (! std::strcmp (buffer, "[:print:]"))
 			{
-				for (c = 0; c < (UCHAR_MAX +  1); c++)
+				for (c = 0; c < (UCHAR_MAX + 1); c++)
 				{
 					if (oascii::isprint (c) && (length > 0))
 					{
@@ -355,7 +355,7 @@ char const * oregex::charset (char const * string, char const close, char buffer
 			}
 			if (! std::strcmp (buffer, "[:graph:]"))
 			{
-				for (c = 0; c < (UCHAR_MAX +  1); c++)
+				for (c = 0; c < (UCHAR_MAX + 1); c++)
 				{
 					if (oascii::isgraph (c) && (length > 0))
 					{
@@ -420,7 +420,7 @@ oregex::oregex (char const * string)
 		break;
 	case REGEX_C_SRT:
 		delete [] this->mcharset;
-		this->mcharset = new char [UCHAR_MAX +  1];
+		this->mcharset = new char [UCHAR_MAX + 1];
 		if (* ++ string == REGEX_C_NOT)
 		{
 			this->mexclude = true;

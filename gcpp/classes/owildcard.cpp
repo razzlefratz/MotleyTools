@@ -113,7 +113,7 @@ bool owildcard::match (char const * literal, char const * pattern)
 		if (* pattern == this->allchar)
 		{
 			cliteral = ++ literal;
-			cpattern = pattern +  1;
+			cpattern = pattern + 1;
 			continue;
 		}
 		break;

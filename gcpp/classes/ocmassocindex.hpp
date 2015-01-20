@@ -28,7 +28,7 @@ TOPIC;
  *7
  *--------------------------------------------------------------------*/
 
-class __declspec (dllexport) ocmassocindex: private otext; 
+class __declspec (dllexport) ocmassocindex: private otext;
 
 {
 public: 

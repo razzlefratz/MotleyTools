@@ -195,97 +195,97 @@ oconnect & oconnect::Open ()
 	static struct bpf_insn bpf_insn [] =
 	{
 		{
-			BPF_LD +  BPF_H +  BPF_ABS,
+			BPF_LD + BPF_H + BPF_ABS,
 			0,
 			0,
 			12
 		},
 		{
-			BPF_JMP +  BPF_JEQ +  BPF_K,
+			BPF_JMP + BPF_JEQ + BPF_K,
 			0,
 			13,
 			ntohs (oCONNECT_ETHERTYPE)
 		},
 		{
-			BPF_LD +  BPF_B +  BPF_ABS,
+			BPF_LD + BPF_B + BPF_ABS,
 			0,
 			0,
 			0
 		},
 		{
-			BPF_JMP +  BPF_JEQ +  BPF_K,
+			BPF_JMP + BPF_JEQ + BPF_K,
 			0,
 			11,
 			0
 		},
 		{
-			BPF_LD +  BPF_B +  BPF_ABS,
+			BPF_LD + BPF_B + BPF_ABS,
 			0,
 			0,
 			1
 		},
 		{
-			BPF_JMP +  BPF_JEQ +  BPF_K,
+			BPF_JMP + BPF_JEQ + BPF_K,
 			0,
 			9,
 			0
 		},
 		{
-			BPF_LD +  BPF_B +  BPF_ABS,
+			BPF_LD + BPF_B + BPF_ABS,
 			0,
 			0,
 			2
 		},
 		{
-			BPF_JMP +  BPF_JEQ +  BPF_K,
+			BPF_JMP + BPF_JEQ + BPF_K,
 			0,
 			7,
 			0
 		},
 		{
-			BPF_LD +  BPF_B +  BPF_ABS,
+			BPF_LD + BPF_B + BPF_ABS,
 			0,
 			0,
 			3
 		},
 		{
-			BPF_JMP +  BPF_JEQ +  BPF_K,
+			BPF_JMP + BPF_JEQ + BPF_K,
 			0,
 			5,
 			0
 		},
 		{
-			BPF_LD +  BPF_B +  BPF_ABS,
+			BPF_LD + BPF_B + BPF_ABS,
 			0,
 			0,
 			4
 		},
 		{
-			BPF_JMP +  BPF_JEQ +  BPF_K,
+			BPF_JMP + BPF_JEQ + BPF_K,
 			0,
 			3,
 			0
 		},
 		{
-			BPF_LD +  BPF_B +  BPF_ABS,
+			BPF_LD + BPF_B + BPF_ABS,
 			0,
 			0,
 			5
 		},
 		{
-			BPF_JMP +  BPF_JEQ +  BPF_K,
+			BPF_JMP + BPF_JEQ + BPF_K,
 			0,
 			1,
 			0
 		},
 		{
-			BPF_RET +  BPF_K,
+			BPF_RET + BPF_K,
 			0,
 			0,
 			4096
 		},
 		{
-			BPF_RET +  BPF_K,
+			BPF_RET + BPF_K,
 			0,
 			0,
 			0
@@ -533,7 +533,7 @@ signed oconnect::ReadPacket (void * memory, signed extent)
 	if (extent > 0)
 	{
 		extent = bpf_packet->bh_caplen;
-		std::memcpy (memory, buffer +  bpf_packet->bh_hdrlen, bpf_packet->bh_caplen);
+		std::memcpy (memory, buffer + bpf_packet->bh_hdrlen, bpf_packet->bh_caplen);
 		if (this->anyset (oCONNECT_FLAG_VERBOSE))
 		{
 			omemory::hexdump (memory, 0, extent, & std::cout);

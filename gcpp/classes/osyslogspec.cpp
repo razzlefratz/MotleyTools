@@ -256,7 +256,7 @@ char const * osyslogspec::decode (int flagword) const
 {
 	const struct _code_ * facility;
 	const struct _code_ * severity;
-	static char buffer [SYSLOG_FACILITY_MAX +  SYSLOG_SEVERITY_MAX];
+	static char buffer [SYSLOG_FACILITY_MAX + SYSLOG_SEVERITY_MAX];
 	for (facility = osyslogspec::facilities; facility->name != (char *) (0); facility++)
 	{
 		if (facility->code & flagword)
@@ -294,7 +294,7 @@ int osyslogspec::lookup (char const * string, const struct _code_ table []) cons
 	const struct _code_ * index;
 	char const * sp;
 	int code = 0;
-	for (sp = string; isdigit (* sp); code = (code * 10) +  (* sp++ - '0'));
+	for (sp = string; isdigit (* sp); code = (code * 10) + (* sp++ - '0'));
 	if (* sp == (char) (0))
 	{
 		return (code);

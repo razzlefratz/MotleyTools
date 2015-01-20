@@ -114,7 +114,7 @@ const char * oInternetAddress::string ()
 
 {
 	static char buffer [oInternetAddress::length * 4];
-	char * character = buffer +  sizeof (buffer);
+	char * character = buffer + sizeof (buffer);
 	unsigned octet = oInternetAddress::length;
 	* -- character = (char) (0);
 	while (octet--)
@@ -122,9 +122,9 @@ const char * oInternetAddress::string ()
 		byte value = this->maddress [octet];
 		do 
 		{
-			* -- character = '0' +  (value % 10);
+			* -- character = '0' + (value % 10);
 		}
-		while (value /= 10);
+		while (value /=  10);
 		if (octet)
 		{
 			* -- character = '.';

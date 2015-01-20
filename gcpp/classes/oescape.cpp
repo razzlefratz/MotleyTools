@@ -55,7 +55,7 @@
  *
  *--------------------------------------------------------------------*/
 
-unsigned char oescape::mtable [UCHAR_MAX +  1] =
+unsigned char oescape::mtable [UCHAR_MAX + 1] =
 
 {
 	0,
@@ -392,11 +392,11 @@ char * oescape::unescape (register char * string)
 				* sp = 0;
 				if (oascii::isxdigit (* cp))
 				{
-					* sp = (* sp << 4) +  oascii::todigit (* cp++);
+					* sp = (* sp << 4) + oascii::todigit (* cp++);
 				}
 				if (oascii::isxdigit (* cp))
 				{
-					* sp = (* sp << 4) +  oascii::todigit (* cp++);
+					* sp = (* sp << 4) + oascii::todigit (* cp++);
 				}
 				continue;
 			}
