@@ -101,7 +101,7 @@ int main (int argc, char const * argv [])
 	}
 	while ((getopt.argc ()) && (* getopt.argv ()))
 	{
-		std::cout << profile.string (* getopt.argv (), section, element, content) << "\n";
+		std::cout << profile.string (* getopt.argv (), section, element, content) << std::endl;
 		getopt++;
 	}
 	std::exit (0);
