@@ -91,7 +91,7 @@ int main (int argc, char const * argv [])
 		"f s\tuse profile (s) [" LITERAL (PROFILE_NAME) "]",
 		"g s\tuse profile section (s) [" LITERAL (SECTION_NAME) "]",
 		"h\tinsert header include guard",
-		"i n\tindent is (n) columns [" LITERAL (oCOMMENT_SPACE) "]",
+		"i n\tcomments start in column (n) [" LITERAL (oCOMMENT_INDENT) "]",
 		"k\tmake comments permanent",
 		"l\tupdate " LITERAL (oCOMMENT_S_PUBLISH) " comment [" LITERAL (oCOMMENT_C_PUBLISH) "]",
 		"L\tupdate " LITERAL (oCOMMENT_S_LICENSE) " comment [" LITERAL (oCOMMENT_C_LICENSE) "]",
@@ -101,7 +101,7 @@ int main (int argc, char const * argv [])
 		"r\tupdate " LITERAL (oCOMMENT_S_RELEASE) " comment [" LITERAL (oCOMMENT_C_RELEASE) "]",
 		"s\tinsert source include guard",
 		"t\tindent is 1 tab",
-		"w n\tbar width is (n) columns [" LITERAL (oCOMMENT_WIDTH) "]",
+		"w n\tbar width is (n) columns [" LITERAL (oCOMMENT_LENGTH) "]",
 		"x\terase markers",
 		(char const *) (0)
 	};

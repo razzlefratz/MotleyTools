@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   ocomment.cpp - definition of ocomment class.
+ *   ocomment.cpp - definition of ocomment class
  *
  *.  Motley Tools by Charles Maier <cmaier@cmassoc.net>;
  *:  Copyright 2001-2006 by Charles Maier Associates;
@@ -59,13 +59,13 @@ ocomment & ocomment::width (unsigned width)
 unsigned ocomment::align (void) const
 
 {
-	return (this->malign);
+	return (this->mstart);
 }
 
 ocomment & ocomment::align (unsigned space)
 
 {
-	this->malign = space;
+	this->mstart = space;
 	return (* this);
 }
 
@@ -361,35 +361,11 @@ signed ocomment::clang (signed c)
 	{
 		while ((c != oCOMMENT_C_BURST) && (c != EOF))
 		{
-			c = ocomment::content (c);
+			c = ocomment::regular (c);
 		}
 		std::cout.put (oCOMMENT_C_BURST);
 		c = std::cin.get ();
-		if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER) || (c == oCOMMENT_C_BURST))
-		{
-			c = ocomment::breaker (c);
-			continue;
-		}
-		if ((c == oCOMMENT_C_PACKAGE) && ocomment::anyset (oCOMMENT_B_PACKAGE))
-		{
-			c = ocomment::message (c, this->mpackage);
-			continue;
-		}
-		if ((c == oCOMMENT_C_RELEASE) && ocomment::anyset (oCOMMENT_B_RELEASE))
-		{
-			c = ocomment::message (c, this->mrelease);
-			continue;
-		}
-		if ((c == oCOMMENT_C_PUBLISH) && ocomment::anyset (oCOMMENT_B_PUBLISH))
-		{
-			c = ocomment::message (c, this->mpublish);
-			continue;
-		}
-		if ((c == oCOMMENT_C_LICENSE) && ocomment::anyset (oCOMMENT_B_LICENSE))
-		{
-			c = ocomment::message (c, this->mlicense);
-			continue;
-		}
+		c = ocomment::special (c);
 	}
 	std::cout.put (oCOMMENT_C_SLASH);
 	std::cout.put ('\n');
@@ -398,14 +374,14 @@ signed ocomment::clang (signed c)
 
 /*====================================================================*
  *
- *   signed content (signed c) const;
+ *   signed regular (signed c) const;
  *
  *   print comment line; preserve intervening word spacing; remove 
  *   tailing white space;
  *
  *--------------------------------------------------------------------*/
 
-signed ocomment::content (signed c) const
+signed ocomment::regular (signed c) const
 
 {
 	std::cout.put (c);
@@ -419,7 +395,7 @@ signed ocomment::content (signed c) const
 		while (oascii::isblank (c));
 		if (c != oCOMMENT_C_BURST)
 		{
-			unsigned column = this->malign;
+			unsigned column = this->mstart;
 			unsigned offset = 0;
 			std::cout.put (oCOMMENT_C_BURST);
 			if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER) || (c == oCOMMENT_C_BURST))
@@ -465,9 +441,44 @@ signed ocomment::content (signed c) const
 
 /*====================================================================*
  *
+ *   signed special (signed c) const;
+ *
+ *   detect, and optionally replace, special comment lines;
+ *
+ *--------------------------------------------------------------------*/
+
+signed ocomment::special (signed c) const
+
+{
+	if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER) || (c == oCOMMENT_C_BURST))
+	{
+		c = ocomment::breaker (c);
+	}
+	else if ((c == oCOMMENT_C_PACKAGE) && ocomment::anyset (oCOMMENT_B_PACKAGE))
+	{
+		c = ocomment::message (c, this->mpackage);
+	}
+	else if ((c == oCOMMENT_C_RELEASE) && ocomment::anyset (oCOMMENT_B_RELEASE))
+	{
+		c = ocomment::message (c, this->mrelease);
+	}
+	else if ((c == oCOMMENT_C_PUBLISH) && ocomment::anyset (oCOMMENT_B_PUBLISH))
+	{
+		c = ocomment::message (c, this->mpublish);
+	}
+	else if ((c == oCOMMENT_C_LICENSE) && ocomment::anyset (oCOMMENT_B_LICENSE))
+	{
+		c = ocomment::message (c, this->mlicense);
+	}
+	return (c);
+}
+
+/*====================================================================*
+ *
  *   signed breaker (signed c) const;
  *
- *   force comment bars to fixed length when present;
+ *   force comment bars to fixed width, when present, by consuming, 
+ *   discarding and rewriting the existing comment bar;
  *
  *--------------------------------------------------------------------*/
 
@@ -500,7 +511,7 @@ signed ocomment::breaker (signed c) const
  *
  *   signed message (unsigned char c, char const * string) const;
  *
- *   replace comment line with new one;
+ *   replace special comments with a new one;
  *
  *   read and discard comment line; replace it with another starting 
  *   with appropriate start character; omit the start character when
@@ -519,7 +530,7 @@ signed ocomment::message (signed c, char const * string) const
 	while (oascii::nobreak (c));
 	if (ocomment::allclear (oCOMMENT_B_DISCARD))
 	{
-		unsigned align = this->malign;
+		unsigned align = this->mstart;
 		if ((align) && ocomment::allclear (oCOMMENT_B_FOREVER))
 		{
 			std::cout.put (start);
@@ -551,7 +562,7 @@ ocomment::ocomment (void)
 	this->mpublish [0] = (char) (0);
 	this->mlicense = new char [1];
 	this->mlicense [0] = (char) (0);
-	this->malign = oCOMMENT_SPACE;
+	this->mstart = oCOMMENT_START;
 	this->mwidth = oCOMMENT_WIDTH;
 	return;
 }

@@ -23,9 +23,8 @@
  *   constants;
  *--------------------------------------------------------------------*/
 
-#define oCOMMENT_LENGTH 4096
+#define oCOMMENT_START 3
 #define oCOMMENT_WIDTH 68 
-#define oCOMMENT_SPACE 3
 
 #define oCOMMENT_B_DEFAULT (0)
 #define oCOMMENT_B_DOUBLE  (1 << 0)
@@ -85,15 +84,16 @@ public:
 	ocomment & publish (char const * publish);
 	ocomment & license (char const * license);
 private: 
+	signed regular (signed c) const;
+	signed special (signed c) const;
 	signed breaker (signed c) const;
-	signed content (signed c) const;
 	signed message (signed c, char const * string) const;
 	char * mpackage;
 	char * mrelease;
 	char * mpublish;
 	char * mlicense;
+	unsigned mstart;
 	unsigned mwidth;
-	unsigned malign;
 };
 
 /*====================================================================*
