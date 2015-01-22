@@ -54,9 +54,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:f:ulp",
-		oPUTOPTV_S_FUNNEL,
 		"write an auto-execute makefile from source files named on the command line",
+		oPUTOPTV_S_FUNNEL,
+		"c:f:ulp",
 		"c s\tcompiler command is s",
 		"f s\tread targets from file s ",
 		"u\ttargets are utilities ",

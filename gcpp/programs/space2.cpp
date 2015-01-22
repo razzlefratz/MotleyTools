@@ -146,9 +146,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:r:",
-		oPUTOPTV_S_FILTER,
 		"minimize white space",
+		oPUTOPTV_S_FILTER,
+		"c:r:",
 		(char const *) (0)
 	};
 	ogetoptv getopt;

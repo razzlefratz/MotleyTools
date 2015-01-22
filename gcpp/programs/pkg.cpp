@@ -92,9 +92,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"apkrex:",
-		oPUTOPTV_S_DIVINE,
 		"extract and output package name components",
+		oPUTOPTV_S_DIVINE,
+		"apkrex:",
 		"a\tprint archive name",
 		"k\tprint package name",
 		"p\tprint product name",

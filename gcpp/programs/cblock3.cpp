@@ -96,9 +96,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"",
-		oPUTOPTV_S_FUNNEL,
 		"C Language Block Manger",
+		oPUTOPTV_S_FUNNEL,
+		"",
 		(char const *) (0)
 	};
 	ofileopen fileopen;

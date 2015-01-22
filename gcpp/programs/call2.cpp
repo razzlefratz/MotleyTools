@@ -220,9 +220,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"x",
-		oPUTOPTV_S_FUNNEL,
 		"print C language call dependencies",
+		oPUTOPTV_S_FUNNEL,
+		"x",
 		"x\tinvert relationships",
 		(char const *) (0)
 	};

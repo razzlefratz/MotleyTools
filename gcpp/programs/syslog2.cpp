@@ -92,9 +92,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"b:ef:i:np:t",
-		"[message]",
 		"write a message to the system logging facility",
+		"[message]",
+		"b:ef:i:np:t",
 		"b s\tidentity is basename of s",
 		"e\tlog to stderr",
 		"f s\tmessage file is s",

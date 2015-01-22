@@ -48,9 +48,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"m:y:",
-		oPUTOPTV_S_FILTER,
 		"print html calendar on stdout",
+		oPUTOPTV_S_FILTER,
+		"m:y:",
 		"m n\tmonth is (n)",
 		"y n\tyear is (n)",
 		(char const *) (0)

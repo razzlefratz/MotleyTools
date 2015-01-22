@@ -56,9 +56,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"s:e:d:",
-		oPUTOPTV_S_FUNNEL,
 		"demonstrate oprofile object class",
+		oPUTOPTV_S_FUNNEL,
+		"s:e:d:",
 		"s s\tsection name is (s) [" SECTION "]",
 		"e s\telement name is (s) [" ELEMENT "]",
 		"d s\tdefault text is (s) [" DEFAULT "]",

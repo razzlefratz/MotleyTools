@@ -18,15 +18,6 @@
 #include "../classes/stdafx.hpp"
 
 /*====================================================================*
- *   string vector indexes;
- *--------------------------------------------------------------------*/
-
-#define oPUTOPTV_I_OPTIONS 0
-#define oPUTOPTV_I_COMMAND 1
-#define oPUTOPTV_I_PROGRAM 2
-#define oPUTOPTV_I_DETAILS 3
-
-/*====================================================================*
  *   standard strings;
  *--------------------------------------------------------------------*/
 

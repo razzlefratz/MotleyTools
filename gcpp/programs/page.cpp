@@ -44,9 +44,9 @@ int main (int argc, char const * argv [], char const * envp [])
 {
 	static char const * optv [] =
 	{
-		"",
-		oPUTOPTV_S_FUNNEL,
 		"paginate files",
+		oPUTOPTV_S_FUNNEL,
+		"",
 		(char const *) (0)
 	};
 	ogetoptv getopt;

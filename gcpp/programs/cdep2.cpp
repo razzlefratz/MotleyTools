@@ -185,9 +185,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"csmnfI",
-		oPUTOPTV_S_FUNNEL,
 		"list supporting c language include files on stdout",
+		oPUTOPTV_S_FUNNEL,
+		"csmnfI",
 		"c\tcustom include files",
 		"s\tsystem include files",
 		"m\tmakefile template",

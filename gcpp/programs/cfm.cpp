@@ -80,9 +80,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"34AbCf:g:hi:kLlmoprstw:x",
-		oPUTOPTV_S_FILTER,
 		"format C/C++ source code with preamble annotations",
+		oPUTOPTV_S_FILTER,
+		"34AbCf:g:hi:kLlmoprstw:x",
 		"3\tindent is 3 blanks",
 		"4\tindent is 4 blanks",
 		"A\tatheros standard format",

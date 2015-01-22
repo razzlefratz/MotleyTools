@@ -74,9 +74,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"mop:s:",
-		oPUTOPTV_S_FILTER,
 		"format C/C++ source code with preamble annotations",
+		oPUTOPTV_S_FILTER,
+		"mop:s:",
 		"m\tprint example manpage on stdout",
 		"o\tprint default profile on stdout",
 		"p s\tprofile is (s) [" LITERAL (PROFILE_NAME) "]",

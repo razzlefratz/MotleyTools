@@ -73,9 +73,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"",
-		oPUTOPTV_S_FILTER,
 		"format script files",
+		oPUTOPTV_S_FILTER,
+		"",
 		"f s\tuse profile (s) [" LITERAL (PROFILE_NAME) "]",
 		"g s\tuse profile section (s) [" LITERAL (SECTION_NAME) "]",
 		(char const *) (0)

@@ -52,9 +52,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:f:iomps",
-		oPUTOPTV_S_DIVINE,
 		"extract and format prefix or suffix from string arguments",
+		oPUTOPTV_S_DIVINE,
+		"c:f:iomps",
 		"c c\tcomponent separator is (c) [" LITERAL (CBREAK) "]",
 		"f s\tformat string is (s) [" LITERAL (FORMAT) "]",
 		"i\tbreak on initial separator",

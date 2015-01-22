@@ -60,9 +60,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"cm:o:st",
-		oPUTOPTV_S_FILTER,
 		"format html/xhtml/xml source files",
+		oPUTOPTV_S_FILTER,
+		"cm:o:st",
 		"c\tcompact source",
 		"m s\tmargin string is (s) [" LITERAL (oINDENT_MARGIN) "]",
 		"o s\tindent string is (s) [" LITERAL (oINDENT_INDENT) "]",

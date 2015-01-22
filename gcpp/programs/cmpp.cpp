@@ -282,9 +282,9 @@ int main (int argc, char const * argv [], char const * envp [])
 {
 	static char const * optv [] =
 	{
-		"c:dev",
-		oPUTOPTV_S_FUNNEL,
 		"copy files to stdout and expand macro definitions",
+		oPUTOPTV_S_FUNNEL,
+		"c:dev",
 		"c c\tdirective prefix is (c) ['" CMPP_S_COMMAND "']",
 		"d\tprint definitions on stderr",
 		"e\tprint expansions on stderr",

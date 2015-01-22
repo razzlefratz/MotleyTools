@@ -66,9 +66,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"p",
-		oPUTOPTV_S_FILTER,
 		"C/C++ source code blocker",
+		oPUTOPTV_S_FILTER,
+		"p",
 		(char const *) (0)
 	};
 	ogetoptv getopt;

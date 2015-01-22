@@ -60,9 +60,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"e",
-		oPUTOPTV_S_FUNNEL,
 		"print C/C++ language tokens on stdout",
+		oPUTOPTV_S_FUNNEL,
+		"e",
 		"e\telaborate on tokens with typenames",
 		(char const *) (0)
 	};

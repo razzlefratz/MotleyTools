@@ -64,9 +64,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"nf",
-		oPUTOPTV_S_FUNNEL,
 		"organize dependency information",
+		oPUTOPTV_S_FUNNEL,
+		"nf",
 		"n\tneed summary ",
 		"f\tfeed summary ",
 		(char const *) (0)

@@ -230,7 +230,7 @@ signed ogetoptv::argc () const
 
 /*====================================================================*
  *
- *   char const ********************************************************************** argv () const;
+ *   char const ** argv () const;
  *
  *   return the start address of the unprocessed portions of argv [];
  *
@@ -310,7 +310,7 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 			{
 				this->moptopt = * this->mstring++;
 				this->moptarg = (char *) (0);
-				for (char const * option = optv [oPUTOPTV_I_OPTIONS]; * option; option++)
+				for (char const * option = optv [2]; * option; option++)
 				{
 					if (this->moptopt == oGETOPTV_C_OPERAND)
 					{
@@ -347,7 +347,7 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 							std::cerr << program_name << ": option '" << (char) (this->moptopt) << "' has no operand" << std::endl;
 							std::exit (this->mopterr);
 						}
-						if (* optv [oPUTOPTV_I_OPTIONS] == oGETOPTV_C_OPERAND)
+						if (* optv [2] == oGETOPTV_C_OPERAND)
 						{
 							return (oGETOPTV_C_OPERAND);
 						}

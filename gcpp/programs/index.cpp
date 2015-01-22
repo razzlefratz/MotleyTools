@@ -68,9 +68,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:s:St:",
-		oPUTOPTV_S_FUNNEL,
 		"produce html file index",
+		oPUTOPTV_S_FUNNEL,
+		"c:s:St:",
 		"c n\tdisplay (n) columns [" LITERAL (INDEX_COLUMNS) "]",
 		"s s\tuse CSS2 stylesheet (s)",
 		"S\tprint CSS2 stylesheet on stdout",

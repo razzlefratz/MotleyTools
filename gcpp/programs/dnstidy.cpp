@@ -153,9 +153,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"m:o:st",
-		oPUTOPTV_S_FILTER,
 		"format dns configuration files",
+		oPUTOPTV_S_FILTER,
+		"m:o:st",
 		"m s\tmargin string is (s) [" LITERAL (MARGIN) "]",
 		"o s\toffset string is (s) [" LITERAL (OFFSET) "]",
 		"s\toffset string is 3 spaces",

@@ -79,9 +79,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"s:S",
+		"C to HTML file formatter having absolutely no features !",
 		oPUTOPTV_S_FUNNEL,
-		"c to html file formatter having absolutely no features !",
+		"s:S",
 		"s s\tuse CSS2 stylesheet (s) [" LITERAL (STYLESHEET) "]",
 		"S\tprint CSS2 stylesheet on stdout",
 		(char const *) (0)

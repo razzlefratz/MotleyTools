@@ -70,9 +70,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"loxst",
 		oPUTOPTV_S_FUNNEL,
 		"topological sort program",
+		"loxst",
 		"l\tprint level",
 		"o\tprint order",
 		"s\tprint symbol",
