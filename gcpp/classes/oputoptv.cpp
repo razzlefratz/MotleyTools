@@ -28,11 +28,19 @@
 
 /*====================================================================*
  *
- *   oputoptv & chkoptv (char const * optv[]);
+ *   oputoptv & chkoptv (char const * optv []);
+ *
+ *   display option vector from main program; this implementation
+ *   takes full advantage of pointer pre and post incrementing;
+ *
+ *   optv [0] is program description;
+ *   optv [1] is command description;
+ *   optv [2] is options list;
+ *   optv [3 ... n] are action descriptions;
  *
  *--------------------------------------------------------------------*/
 
-oputoptv & oputoptv::chkoptv (char const ** optv)
+oputoptv & oputoptv::chkoptv (char const * optv [])
 
 {
 	extern char const * program_name;
@@ -57,7 +65,7 @@ oputoptv & oputoptv::chkoptv (char const ** optv)
 		{
 			continue;
 		}
-		std::cerr << program_name << ": option '" << * option << "' has no action text" << std::endl;
+		std::cerr << program_name << ": option '" << * option << "' has no description" << std::endl;
 	}
 	for (action = optv--; * action; action++)
 	{
@@ -76,14 +84,14 @@ oputoptv & oputoptv::chkoptv (char const ** optv)
 		{
 			continue;
 		}
-		std::cerr << program_name << ": action text \"" << * action << "\" has no option" << std::endl;
+		std::cerr << program_name << ": description \"" << * action << "\" has no option" << std::endl;
 	}
 	return (* this);
 }
 
 /*====================================================================*
  *
- *   oputoptv & oputoptv (char const * optv[]);
+ *   oputoptv & oputoptv (char const * optv []);
  *
  *   print optv on stderr; this presents the user with a help summary;
  *
@@ -94,7 +102,7 @@ oputoptv & oputoptv::chkoptv (char const ** optv)
  *
  *--------------------------------------------------------------------*/
 
-oputoptv & oputoptv::putoptv (char const ** optv)
+oputoptv & oputoptv::putoptv (char const * optv [])
 
 {
 	extern char const * program_name;

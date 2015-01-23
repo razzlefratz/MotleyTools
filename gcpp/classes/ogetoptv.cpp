@@ -282,6 +282,8 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 
 {
 	extern char const * program_name;
+	char const ** action;
+	char const * option;
 	if ((this->moptind == 0) || (this->moptind == 1))
 	{
 		this->margc = argc;
@@ -310,7 +312,57 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 			{
 				this->moptopt = * this->mstring++;
 				this->moptarg = (char *) (0);
-				for (char const * option = optv [2]; * option; option++)
+				optv++;
+				optv++;
+
+#if 1
+
+/*
+ *   This block is eseentially oputoptv::putopt();
+ */
+
+				for (option = * optv++; * option; option++)
+				{
+					if (* option == ':')
+					{
+						continue;
+					}
+					for (action = optv; * action; action++)
+					{
+						if (* option == ** action)
+						{
+							break;
+						}
+					}
+					if (* action)
+					{
+						continue;
+					}
+					std::cerr << program_name << ": option '" << * option << "' has no description" << std::endl;
+				}
+				for (action = optv--; * action; action++)
+				{
+					for (option = * optv; * option; option++)
+					{
+						if (* option == ':')
+						{
+							continue;
+						}
+						if (* option == ** action)
+						{
+							break;
+						}
+					}
+					if (* option)
+					{
+						continue;
+					}
+					std::cerr << program_name << ": description \"" << * action << "\" has no option" << std::endl;
+				}
+
+#endif
+
+				for (option = * optv; * option; option++)
 				{
 					if (this->moptopt == oGETOPTV_C_OPERAND)
 					{
@@ -347,13 +399,15 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 							std::cerr << program_name << ": option '" << (char) (this->moptopt) << "' has no operand" << std::endl;
 							std::exit (this->mopterr);
 						}
-						if (* optv [2] == oGETOPTV_C_OPERAND)
+						if (** optv == oGETOPTV_C_OPERAND)
 						{
 							return (oGETOPTV_C_OPERAND);
 						}
 						return (oGETOPTV_C_ILLEGAL);
 					}
 				}
+				optv--;
+				optv--;
 				if (this->mopterr)
 				{
 					std::cerr << program_name << ": option '" << (char) (this->moptopt) << "' has no meaning" << std::endl;

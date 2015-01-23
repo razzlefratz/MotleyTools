@@ -112,12 +112,18 @@ signed optmin = 0;
 signed getoptv (int argc, char const * argv [], char const * optv [])
 
 {
-	static char const * string;
+	static char const ** action;
 	static char const * option;
+	static char const * string;
 	static signed count;
 	signed index = 0;
 
 #ifdef GETOPTV_TRACE
+
+/*
+ *   display argument vector on stdout;
+ */
+
 #define SPACE "   "
 #define ARROW "-->"
 
@@ -130,6 +136,8 @@ signed getoptv (int argc, char const * argv [], char const * optv [])
 
 #endif
 
+	optv++;
+	optv++;
 	if ((optind == 0) || (optind == 1))
 	{
 		for (program_name = string = * argv; * string; string++)
@@ -143,44 +151,50 @@ signed getoptv (int argc, char const * argv [], char const * optv [])
 
 #ifdef GETOPTV_DEBUG
 
-		for (option = * optv; * option; option++)
+/*
+ *   confirm that each option has a description and each description has an option; this
+ *   requirement is optional because the description are only present for people to see;
+ *   they have no effect;
+ */
+
+		for (option = * optv++; * option; option++)
 		{
 			if (* option == ':')
 			{
 				continue;
 			}
-			for (count = PUTOPTV_I_DETAILS; optv [count]; count++)
+			for (action = optv; * action; action++)
 			{
-				if (* option == * optv [count])
+				if (* option == ** action)
 				{
 					break;
 				}
 			}
-			if (optv [count])
+			if * action)
 			{
 				continue;
 			}
 
-#ifdef __GNUC__
+#ifndef __GNUC__
 
-			error (0, 0, "option '%c' has no description", * option);
+			fprintf (stderr, "%s: option '%c' has no description\n", program_name, * option);
 
 #else
 
-			fprintf (stderr, "%s: option '%c' has no description\n", program_name, * option);
+			error (0, 0, "option '%c' has no description", * option);
 
 #endif
 
 		}
-		for (count = 2; optv [count]; count++)
+		for (action = optv--; * action; action++)
 		{
-			for (option = optv [3]; * option; option++)
+			for (option = * optv; * option; option++)
 			{
 				if (* option == ':')
 				{
 					continue;
 				}
-				if (* option == * optv [count])
+				if (* option == ** action)
 				{
 					break;
 				}
@@ -190,13 +204,13 @@ signed getoptv (int argc, char const * argv [], char const * optv [])
 				continue;
 			}
 
-#ifdef __GNUC__
+#ifndef __GNUC__
 
-			error (0, 0, "description \"%s\" has no option", optv [count]);
+			fprintf (stderr, "%s: description \"%s\" has no option\n", program_name, optv [count]);
 
 #else
 
-			fprintf (stderr, "%s: description \"%s\" has no option\n", program_name, optv [count]);
+			error (0, 0, "description \"%s\" has no option", optv [count]);
 
 #endif
 
@@ -236,13 +250,13 @@ signed getoptv (int argc, char const * argv [], char const * optv [])
 						{
 							option++;
 
-#if __GNUC__
+#ifndef __GNUC__
 
-							error (0, 0, "option '%c' is deprecated", optopt);
+							fprintf (stderr, "%s: option '%c' is deprecated", program_name, optopt);
 
 #else
 
-							fprintf (stderr, "%s: option '%c' is deprecated", program_name, optopt);
+							error (0, 0, "option '%c' is deprecated", optopt);
 
 #endif
 
@@ -271,14 +285,14 @@ signed getoptv (int argc, char const * argv [], char const * optv [])
 						if (opterr)
 						{
 
-#ifdef __GNUC__
-
-							error (1, 0, "option '%c' has no operand", optopt);
-
-#else
+#ifndef __GNUC__
 
 							fprintf (stderr, "%s: option '%c' has no operand\n", program_name, optopt);
 							exit (1);
+
+#else
+
+							error (1, 0, "option '%c' has no operand", optopt);
 
 #endif
 
@@ -293,14 +307,14 @@ signed getoptv (int argc, char const * argv [], char const * optv [])
 				if (opterr)
 				{
 
-#ifdef __GNUC__
-
-					error (1, 0, "option '%c' has no meaning", optopt);
-
-#else
+#ifndef __GNUC__
 
 					fprintf (stderr, "%s: option '%c' has no meaning\n", program_name, optopt);
 					exit (1);
+
+#else
+
+					error (1, 0, "option '%c' has no meaning", optopt);
 
 #endif
 

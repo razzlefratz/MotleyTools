@@ -25,7 +25,6 @@ void chkoptv (char const ** optv)
 	extern char const * program_name;
 	char const ** action;
 	char const * option;
-	signed index;
 	optv++;
 	optv++;
 	for (option = * optv++; * option; option++)
@@ -45,7 +44,7 @@ void chkoptv (char const ** optv)
 		{
 			continue;
 		}
-		fprintf (stderr, "%s: option '%c' is no action text.\n", program_name, * option);
+		fprintf (stderr, "%s: option '%c' is no descriptiom.\n", program_name, * option);
 	}
 	for (action = optv--; * action; action++)
 	{
@@ -64,7 +63,7 @@ void chkoptv (char const ** optv)
 		{
 			continue;
 		}
-		fprintf (stderr, "%s: action text \"%s\" has no option.\n", program_name, * action);
+		fprintf (stderr, "%s: description \"%s\" has no option.\n", program_name, * action);
 	}
 	return;
 }
