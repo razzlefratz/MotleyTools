@@ -143,11 +143,11 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"qvn",
+		"Data Extractor",
 		"file offset type [size]\n\n" \
 		"\t  standard-length types are 'byte'|'word'|'long'|'hfid'|'mac'|'key'\n" \
 		"\t  variable-length types are 'data'|'text'",
-		"PIB Data Extractor",
+		"nqv",
 		"n\tappend newline",
 		"q\tquiet mode",
 		"v\tverbose mode",

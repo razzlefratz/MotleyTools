@@ -143,9 +143,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"a:b:c:t:",
-		PUTOPTV_S_FILTER,
 		"align character to column",
+		PUTOPTV_S_FILTER,
+		"a:b:c:t:",
 		"a n\tafter column (n)",
 		"b n\tbefore column (n)",
 		"c c\talignment character (c)",

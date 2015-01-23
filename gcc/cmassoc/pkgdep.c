@@ -331,9 +331,9 @@ int main (int argc, char const * argv [])
 	extern FIND find;
 	static char const * optv [] =
 	{
-		"rb",
-		PUTOPTV_S_DIVINE,
 		"convert pkgconfig dependency information to CSV dependency format",
+		PUTOPTV_S_DIVINE,
+		"rb",
 		"r\trecursive search",
 		(char const *) (0)
 	};

@@ -104,9 +104,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"cdst",
-		PUTOPTV_S_FUNNEL,
 		"enumerate html/xhtml/xml document fragments",
+		PUTOPTV_S_FUNNEL,
+		"cdst",
 		"c\tprint CSS stylesheet on stdout",
 		"d\tprint document as text",
 		"s\tprint document as stream",

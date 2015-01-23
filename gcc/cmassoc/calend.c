@@ -65,9 +65,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"m:y:",
-		PUTOPTV_S_DIVINE,
 		"print three-month calendar on stdout",
+		PUTOPTV_S_DIVINE,
+		"m:y:",
 		"y n\tyear is (n) or +(n) or -(n)",
 		"m n\tmonth is (n) or +(n) or -(n)",
 		(char const *) (0)

@@ -149,9 +149,9 @@ int main (int argc, char const * argv [])
 	extern const unsigned char ct_unescape [];
 	static char const * optv [] =
 	{
-		"c:e:gHnw:uRT",
-		PUTOPTV_S_DIVINE,
 		"print user/group names in alphabetcial order in columns",
+		PUTOPTV_S_DIVINE,
+		"c:e:gHnw:uRT",
 		"c n\tcolumn count is (n) [" LITERAL (COUNT) "]",
 		"w n\tscreen width is (n) [" LITERAL (WIDTH) "]",
 		"e s\texpression is s [.+]",

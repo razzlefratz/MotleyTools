@@ -372,9 +372,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:dgin:p:s:",
-		PUTOPTV_S_FILTER,
 		"produce a set of linked html pages with index page",
+		PUTOPTV_S_FILTER,
+		"c:dgin:p:s:",
 		"c n\tindex column count is n [" LITERAL (CATALOG_COLUMN) "]",
 		"d\tdelete source files after conversion",
 		"g\treplace selected punctuation with IETF/HTML/ISO glyphs",

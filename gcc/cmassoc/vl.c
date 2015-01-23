@@ -159,9 +159,9 @@ int main (int argc, char const * argv [])
 {
 	char const * optv [] =
 	{
-		"cl:pw",
-		PUTOPTV_S_FILTER,
 		"convert lines to fixed or variable length",
+		PUTOPTV_S_FILTER,
+		"cl:pw",
 		"c\tcount truncated lines",
 		"l n\tmaximum line length is (n)",
 		"p\tpad short lines with spaces",

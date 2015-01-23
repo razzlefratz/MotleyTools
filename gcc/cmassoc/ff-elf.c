@@ -331,9 +331,9 @@ int main (int argc, char const * argv [])
 	extern FIND find;
 	static char const * optv [] =
 	{
-		"aefprstE:PSBLIK",
-		PUTOPTV_S_SEARCH,
 		"search folders and/or standard paths for files",
+		PUTOPTV_S_SEARCH,
+		"aefprstE:PSBLIK",
 		"s\tshell scripts",
 		"e\telf binary files",
 		"f\toutput filename only",

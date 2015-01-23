@@ -461,9 +461,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"de:hl:m:st:",
-		PUTOPTV_S_FUNNEL,
 		"print sparse matrix table",
+		PUTOPTV_S_FUNNEL,
+		"de:hl:m:st:",
 		"d\tprint DOCBOOK table on stdout",
 		"e s\tempty label is (s) [" LITERAL (EMPTY) "]",
 		"h\tprint HTML table on stdout",

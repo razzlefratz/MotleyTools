@@ -119,9 +119,9 @@ int main (int argc, char const * argv [])
 	extern struct channel channel;
 	static char const * optv [] =
 	{
-		"d:i:qt:v",
-		PUTOPTV_S_FUNNEL,
 		"copy one or more files to a serial device",
+		PUTOPTV_S_FUNNEL,
+		"d:i:qt:v",
 		"d x\tdestination address is (x) [00:B0:52:00:00:01]",
 		"i s\tuse host interface (s) [" LITERAL (CHANNEL_ETHDEVICE) "]",
 		"t n\tread timeout is (n) milliseconds [" LITERAL (CHANNEL_TIMEOUT) "]",

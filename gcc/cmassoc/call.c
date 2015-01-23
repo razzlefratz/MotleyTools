@@ -257,9 +257,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"x",
-		PUTOPTV_S_FUNNEL,
 		"print C language functional dependencies",
+		PUTOPTV_S_FUNNEL,
+		"x",
 		"x\texchange objects",
 		(char const *) (0)
 	};

@@ -144,9 +144,9 @@ int main (int argc, char const * argv [])
 {
 	char const * optv [] =
 	{
-		"d:lp:uvx:",
+		"filename mangler",
 		PUTOPTV_S_FILTER,
-		"mangle filenames to satisfy your perverse wishes",
+		"d:lp:uvx:",
 		"d s\tdiscard characters in (s) [" LITERAL (MUNGE_S_DISCARD) "]",
 		"l\tconvert letters to lower case ",
 		"p s\tdiscard prefix (s) [" LITERAL (MUNGE_S_PREFIX) "]",

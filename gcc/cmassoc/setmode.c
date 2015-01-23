@@ -118,9 +118,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"",
-		PUTOPTV_S_FUNNEL,
 		"set file modes from snapshot file",
+		PUTOPTV_S_FUNNEL,
+		"",
 		(char const *) (0)
 	};
 	FILE * fp;

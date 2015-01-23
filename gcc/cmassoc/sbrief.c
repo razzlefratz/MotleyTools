@@ -155,9 +155,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:m",
-		PUTOPTV_S_FILTER,
 		"remove comments, concatenate continuation lines and condense space",
+		PUTOPTV_S_FILTER,
+		"c:m",
 		"c c\tcomment character is (c) [" LITERAL (SBRIEF_C_COMMENT) "]",
 		"m\tmerge continuation lines",
 		(char const *) (0)

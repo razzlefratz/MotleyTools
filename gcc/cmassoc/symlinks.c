@@ -216,9 +216,9 @@ int main (int argc, char const * argv [])
 	extern FIND find;
 	static char const * optv [] =
 	{
-		"abcxrv",
-		PUTOPTV_S_SEARCH,
 		"search folders and subfolders for symbolic links",
+		PUTOPTV_S_SEARCH,
+		"abcxrv",
 		"a\tselect active links",
 		"b\tselect broken links",
 		"c\tprint 'ln' commands",

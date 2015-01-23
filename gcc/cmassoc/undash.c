@@ -149,9 +149,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"h",
-		PUTOPTV_S_FILTER,
 		"break double-dashed arguments out onto individual lines;",
+		PUTOPTV_S_FILTER,
+		"h",
 		(char *) (0)
 	};
 	flag_t flags = (flag_t) (0);

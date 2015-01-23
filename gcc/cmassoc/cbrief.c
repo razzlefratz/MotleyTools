@@ -136,9 +136,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"bv",
-		PUTOPTV_S_FILTER,
 		"strip C/C++ comments from code",
+		PUTOPTV_S_FILTER,
+		"bv",
 		"b\tdiscard comments and keep code",
 		"v\tdiscard code and keep comments",
 		(char const *) (0)

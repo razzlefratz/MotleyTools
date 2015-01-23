@@ -195,9 +195,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"cvh",
-		"sourcepath targetpath [targetpath] ... [> stdout]",
 		"move like packages from current folder to a target folder.",
+		"sourcepath targetpath [targetpath] ... [> stdout]",
+		"cvh",
 		"c\treport but do not remove anything",
 		"v\tverbose messages",
 		(char const *) (0)

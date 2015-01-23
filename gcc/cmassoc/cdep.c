@@ -246,9 +246,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"csnf",
-		PUTOPTV_S_FUNNEL,
 		"list supporting c language include files on stdout",
+		PUTOPTV_S_FUNNEL,
+		"csnf",
 		"c\tcustom files",
 		"s\tsystem files",
 		"n\tneed summary ",

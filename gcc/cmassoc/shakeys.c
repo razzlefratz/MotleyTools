@@ -152,9 +152,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"qv",
-		"password [password] [...]",
 		"SHA256 key generator",
+		"password [password] [...]",
+		"qv",
 		"q\tquiet mode",
 		"v\tverbose mode",
 		(char const *) (0)

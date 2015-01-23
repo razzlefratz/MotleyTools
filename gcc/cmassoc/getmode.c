@@ -207,9 +207,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"rBCDFLRS",
-		PUTOPTV_S_FUNNEL,
 		"print file name, type, mode, owner and group on stdout",
+		PUTOPTV_S_FUNNEL,
+		"rBCDFLRS",
 		"r\trecursive search",
 		(char const *) (0)
 	};

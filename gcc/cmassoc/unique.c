@@ -162,9 +162,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"cdr:u",
-		PUTOPTV_S_FUNNEL,
 		"output unique lines",
+		PUTOPTV_S_FUNNEL,
+		"cdr:u",
 		"c\tcount occurances",
 		"d\toutput only duplicate lines",
 		"r n\tmaximum line length is (n) bytes [" LITERAL (_LINESIZE) "]",

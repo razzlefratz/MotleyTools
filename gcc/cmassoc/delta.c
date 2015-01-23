@@ -140,9 +140,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"w",
-		PUTOPTV_S_FUNNEL,
 		"print difference between consecutive unsigned decimal integers",
+		PUTOPTV_S_FUNNEL,
+		"w",
 		"w n\twidth in digits is (n) [" LITERAL (DIGITS) "]",
 		(char const *) (0)
 	};

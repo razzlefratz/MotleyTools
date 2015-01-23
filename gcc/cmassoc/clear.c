@@ -54,9 +54,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"tmb",
-		PUTOPTV_S_FUNNEL,
 		"clear screen and position cursor",
+		PUTOPTV_S_FUNNEL,
+		"tmb",
 		"t\ttop of screen",
 		"m\tmiddle of screen",
 		"b\tbottom of screen",

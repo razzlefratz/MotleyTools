@@ -299,9 +299,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"def:qv",
-		"file [file] [...]",
 		"object driven dump",
+		"file [file] [...]",
+		"def:qv",
 		"d\toutput in dump format",
 		"e\toutput in efsu format",
 		"f f\tobject definition file",

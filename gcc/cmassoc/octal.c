@@ -179,9 +179,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"de",
-		PUTOPTV_S_FUNNEL,
 		"encode or decode text files using ANSI octal trigraph format",
+		PUTOPTV_S_FUNNEL,
+		"de",
 		"d\tdecode files ",
 		"e\tencode files ",
 		NULL

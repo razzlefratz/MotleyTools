@@ -211,9 +211,9 @@ int main (int argc, char const * argv [])
 	extern FIND find;
 	static char const * optv [] =
 	{
-		"o:qrv",
-		PUTOPTV_S_SEARCH,
 		"remove selected files and links from finds and subfinds",
+		PUTOPTV_S_SEARCH,
+		"o:qrv",
 		"o n\tif over (n) days old [0]",
 		"q\tquiet (don't report failures)",
 		"r\trecursive search",

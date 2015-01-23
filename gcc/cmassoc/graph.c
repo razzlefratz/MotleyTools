@@ -298,9 +298,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:o:s:t:x",
-		PUTOPTV_S_FUNNEL,
 		"print a histogram",
+		PUTOPTV_S_FUNNEL,
+		"c:o:s:t:x",
 		"c n\tmaximum data points",
 		"o n\tshift data [+|-]",
 		"s n\tscale data",

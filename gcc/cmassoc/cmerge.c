@@ -170,9 +170,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"",
-		PUTOPTV_S_FUNNEL,
 		"include all C language support files",
+		PUTOPTV_S_FUNNEL,
+		"",
 		(char const *) (0)
 	};
 	LIST list;

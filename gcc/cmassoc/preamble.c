@@ -231,9 +231,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"l:n:o:pw",
-		PUTOPTV_S_FILTER,
 		"replace one preamble with another",
+		PUTOPTV_S_FILTER,
+		"l:n:o:pw",
 		"l n\tpreamble buffer size is (n) bytes [" LITERAL (STRINGSIZE) "]",
 		"n s\tnew preamble file",
 		"o s\told preamble file",

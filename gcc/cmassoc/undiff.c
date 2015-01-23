@@ -133,9 +133,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"on",
-		PUTOPTV_S_FILTER,
 		"remove merge conflicts",
+		PUTOPTV_S_FILTER,
+		"on",
 		"o\tkeep old text",
 		"n\tkeep new text",
 		(char const *) (0)

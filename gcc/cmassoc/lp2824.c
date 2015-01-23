@@ -98,9 +98,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"e",
-		"text [text] [...]",
 		"Zebra LP 2824 Label Printer",
+		"text [text] [...]",
+		"e",
 		"e\tprint example label on console",
 		(char const *) (0)
 	};

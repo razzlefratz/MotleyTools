@@ -200,9 +200,9 @@ int main (int argc, char const * argv [])
 	extern FIND find;
 	static char const * optv [] =
 	{
-		"rb",
-		"findspec [> stdout]",
 		"print build file confirmation script",
+		"findspec [> stdout]",
+		"rb",
 		"r\tresursive search",
 		(char const *) (0)
 	};

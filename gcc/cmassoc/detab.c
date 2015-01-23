@@ -123,9 +123,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"t:",
-		PUTOPTV_S_FILTER,
 		"replace horizontal tabs with equivalent number of spaces",
+		PUTOPTV_S_FILTER,
+		"t:",
 		"t n.m\tset tabs in column (n) and intervals (m) ",
 		(char const *) (0)
 	};

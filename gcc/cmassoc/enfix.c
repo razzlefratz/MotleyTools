@@ -93,9 +93,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"p:s:",
-		PUTOPTV_S_FILTER,
 		"prepend/append text to each line of a text file",
+		PUTOPTV_S_FILTER,
+		"p:s:",
 		"p s\tprefix is s",
 		"s s\tsuffix is s",
 		(char const *) (0)

@@ -95,9 +95,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"b:u",
-		PUTOPTV_S_FUNNEL,
 		"copy one or more files to stdout",
+		PUTOPTV_S_FUNNEL,
+		"b:u",
 		"b n\tblock size is (n) bytes [" LITERAL (BLOCKSIZE) "]",
 		"u\tunbuffered copy",
 		(char const *) (0)

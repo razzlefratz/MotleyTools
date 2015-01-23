@@ -48,9 +48,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"o:n:v",
-		"file [file] [...]",
 		"replace file extension",
+		"file [file] [...]",
+		"o:n:v",
 		"o s\told file extension is (s)",
 		"n s\tnew file extension is (s)",
 		"v\tverbose messages ",

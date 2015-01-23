@@ -109,9 +109,9 @@ int main (int argc, char const * argv [])
 	extern FIND find;
 	static char const * optv [] =
 	{
-		"e:p:x",
+		"insert bang path header in shell scripts",
 		PUTOPTV_S_FILTER,
-		"insert shell bang path header",
+		"e:p:x",
 		"e s\tpathname defined by environement variable s",
 		"p s\tpathname string is s",
 		"x\tmake file executable",

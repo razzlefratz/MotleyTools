@@ -91,9 +91,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"cdmn:svx",
-		PUTOPTV_S_FUNNEL,
 		"generate C source code for a type table",
+		PUTOPTV_S_FUNNEL,
+		"cdmn:svx",
 		"c\tprint css stylesheet for xhtml",
 		"d\tprint preprocessor definitions",
 		"m\tprint xhtml markup",

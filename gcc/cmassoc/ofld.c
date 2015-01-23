@@ -97,9 +97,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"b:f:",
-		PUTOPTV_S_FILTER,
 		"generic field enumerator",
+		PUTOPTV_S_FILTER,
+		"b:f:",
 		"b n\tbuffer size is (n) [" LITERAL (OFLD_BUFFER) "]",
 		"f n\tfield count is (n) [" LITERAL (OFLD_FIELDS) "]",
 		(char const *) (0)

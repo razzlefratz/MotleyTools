@@ -84,9 +84,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"d",
-		PUTOPTV_S_FUNNEL,
 		"read stdin and write IPv4 addresses to stdout",
+		PUTOPTV_S_FUNNEL,
+		"d",
 		(char const *) (0)
 	};
 	flag_t flags = 0;

@@ -56,9 +56,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:",
-		"command [command] [...]",
 		"Log and execute command sequences",
+		"command [command] [...]",
+		"c:",
 		"c s\tcomment text",
 		(char const *) (0)
 	};

@@ -68,9 +68,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"el:w:",
-		"command [command] [...]",
 		"command sequence repeater",
+		"command [command] [...]",
+		"el:w:",
 		"e\tdirect stderr to stdout",
 		"l n\tloop (n) times [" LITERAL (COUNT) "]",
 		"w n\twait (n) seconds [" LITERAL (PAUSE) "]",

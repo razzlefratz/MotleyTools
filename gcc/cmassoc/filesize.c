@@ -67,9 +67,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:d:s:",
-		"file [file] [...]",
 		"display files sizes",
+		"file [file] [...]",
+		"c:d:s:",
 		"d n\tdisplay (n) digits [" LITERAL (DIGIT) "]",
 		"s n\tscale size by (n) [" LITERAL (SCALE) "]",
 		"c n\tdisplay (n) characters [" LITERAL (SCALE) "]",

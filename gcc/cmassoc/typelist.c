@@ -57,9 +57,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"dmnst:v",
-		PUTOPTV_S_FUNNEL,
 		"generate C source code for a type table",
+		PUTOPTV_S_FUNNEL,
+		"dmnst:v",
 		"d\tprint preprocessor definitions",
 		"m\tprint markup",
 		"n\tuse numbers instead of names",

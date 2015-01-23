@@ -59,9 +59,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:f:imops",
-		PUTOPTV_S_DIVINE,
 		"extract prefix or suffix part of delimited argument",
+		PUTOPTV_S_DIVINE,
+		"c:f:imops",
 		"c c\tcomponent separator is c ['.']",
 		"f s\tformat string is s [\"%s\"]",
 		"i\tbreak on initial separator",

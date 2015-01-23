@@ -232,9 +232,9 @@ int main (int argc, char const * argv [])
 	extern FIND find;
 	static char const * optv [] =
 	{
-		"o:qrv",
-		"folder findspec [findspec] [...]",
 		"copy remote files to local folder",
+		"folder findspec [findspec] [...]",
+		"o:qrv",
 		"q\tquiet (don't report failures)",
 		"r\trecursive search",
 		"v\tverbose (report successes)",

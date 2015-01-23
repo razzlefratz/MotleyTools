@@ -148,9 +148,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"n:",
-		PUTOPTV_S_FILTER,
 		"minimize blank lines and eliminate trailing spaces",
+		PUTOPTV_S_FILTER,
+		"n:",
 		"n n\treduce consecutive blank lines to (n) lines [" LITERAL (BLANK_COUNT) "]",
 		(char const *) (0)
 	};

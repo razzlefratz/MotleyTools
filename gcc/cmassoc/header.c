@@ -97,9 +97,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"l:w:",
-		PUTOPTV_S_FUNNEL,
 		"copy one or more file headers to stdout",
+		PUTOPTV_S_FUNNEL,
+		"l:w:",
 		"l n\tdisplay line count is (n) [" LITERAL (VT_LINES) "]",
 		"w n\tdisplay line width is (n) [" LITERAL (VT_LIMIT) "]",
 		(char const *) (0)

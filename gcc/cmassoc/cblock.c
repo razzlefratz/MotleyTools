@@ -304,9 +304,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"p",
-		PUTOPTV_S_FILTER,
 		"C/C++ language blocker",
+		PUTOPTV_S_FILTER,
+		"p",
 		"p\tinsert empty function preambles",
 		(char const *) (0)
 	};

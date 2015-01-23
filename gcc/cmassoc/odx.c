@@ -221,9 +221,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"f:s:x",
-		"file [file] [...]",
 		"object driven XML dump utility",
+		"file [file] [...]",
+		"f:s:x",
 		"f f\tobject definition file",
 		"x\tprint an XML schema on stdout",
 		(char const *) (0)

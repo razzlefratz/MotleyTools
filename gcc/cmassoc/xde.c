@@ -82,9 +82,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"qvsx",
-		"datafile xmlfile [xmlfile] [...]",
 		"data XML editor",
+		"datafile xmlfile [xmlfile] [...]",
+		"qvsx",
 		"o\tprint schema",
 		"q\tquiet mode",
 		"v\tverbose mode",

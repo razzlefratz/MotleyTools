@@ -152,9 +152,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"qvx",
-		"file [file] [...]",
 		"list-to-pair conversion",
+		"file [file] [...]",
+		"qvx",
 		"q\tquiet mode",
 		"v\tverbose mode",
 		"x\texchange order",

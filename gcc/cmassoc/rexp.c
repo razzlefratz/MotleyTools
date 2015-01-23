@@ -66,9 +66,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"e:",
-		"literal [literal] [...]",
 		"compare example strings to a regular expression and report each outcome",
+		"literal [literal] [...]",
+		"e:",
 		"e\tthe regular expression",
 		(char const *) (0)
 	};

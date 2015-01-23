@@ -92,9 +92,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"f:t:",
-		PUTOPTV_S_FILTER,
 		"translate characters",
+		PUTOPTV_S_FILTER,
+		"f:t:",
 		"f s\tfrom charset is (s) [\"\"]",
 		"t s\tto charset is (s) [\"\"]",
 		NULL

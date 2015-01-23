@@ -186,9 +186,9 @@ int main (int argc, char const * argv [])
 	extern signed order;
 	static char const * optv [] =
 	{
-		"b:dl:",
-		PUTOPTV_S_FILTER,
 		"sort files",
+		PUTOPTV_S_FILTER,
+		"b:dl:",
 		"b n\tmaximum sort block is (n) lines [0x1000]",
 		"d\tarrange output in descending order",
 		"l n\tmaximum line length is (n) bytes [0x0400]",

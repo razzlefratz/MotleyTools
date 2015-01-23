@@ -151,9 +151,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"a:b:d",
-		PUTOPTV_S_FUNNEL,
 		"convert hex files to single binary file",
+		PUTOPTV_S_FUNNEL,
+		"a:b:d",
 		"a n\tafter column (n) [" LITERAL (HEX2BIN_PRIOR) "]",
 		"b n\tbefore column (n) [" LITERAL (HEX2BIN_AFTER) "]",
 		"d\tconvert hex dump file (-b" LITERAL (DMP2BIN_PRIOR) " -a" LITERAL (DMP2BIN_AFTER) ")",

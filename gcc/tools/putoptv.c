@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   void putoptv (char const * optv []);
+ *   void putoptv (char const * optv [];
  *
  *   putoptv.h
  *
@@ -22,18 +22,17 @@
 #include "../tools/getoptv.h"
 #include "../tools/putoptv.h"
 
-void putoptv(char const * optv[])
+void putoptv (char const ** optv)
 
 {
 	extern char const * program_name;
-	signed index;
 	printf ("\n");
-	printf (" program: %s\n\n", optv[PUTOPTV_I_PROGRAM]);
-	printf (" command: %s [options] %s\n\n", program_name, optv[PUTOPTV_I_COMMAND]);
-	printf (" options: [%s%c%c]\n\n", optv[PUTOPTV_I_OPTIONS], GETOPTV_C_VERSION, GETOPTV_C_SUMMARY);
-	for (index = PUTOPTV_I_DETAILS; optv[index]; index++)
+	printf (" program: %s\n\n", * optv++);
+	printf (" command: %s [options] %s\n\n", program_name, * optv++);
+	printf (" options: [%s%c%c]\n\n", * optv++, GETOPTV_C_VERSION, GETOPTV_C_SUMMARY);
+	while (* optv)
 	{
-		printf (" %c%s\n", GETOPTV_C_OPTION, optv[index]);
+		printf (" %c%s\n", GETOPTV_C_OPTION, * optv++);
 	}
 	printf (" %c%c\tversion information\n", GETOPTV_C_OPTION, GETOPTV_C_VERSION);
 	printf (" %c%c\thelp summary\n", GETOPTV_C_OPTION, GETOPTV_C_SUMMARY);

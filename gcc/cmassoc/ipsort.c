@@ -173,9 +173,9 @@ int main (int argc, char const * argv [])
 	extern char const * leafnode;
 	static char const * optv [] =
 	{
-		"an",
-		"ipaddr [ipaddr] [...]",
 		"copy one or more files to stdout",
+		"ipaddr [ipaddr] [...]",
+		"an",
 		"a\talign octet fields",
 		"n\tprint occurances",
 		(char const *) (0)

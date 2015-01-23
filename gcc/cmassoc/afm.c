@@ -177,9 +177,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"a:c:ut:",
-		PUTOPTV_S_FILTER,
 		"formats assembly language source files",
+		PUTOPTV_S_FILTER,
+		"a:c:ut:",
 		"a n\talign comments to column (n) [" LITERAL (COMMENT_COL) "]",
 		"c c\tcomment character is (c) [" LITERAL (COMMENT_CHR) "]",
 		"u\tconvert opcodes to upper case",

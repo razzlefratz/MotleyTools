@@ -348,9 +348,9 @@ int main (int argc, char const * argv [])
 	extern FIND find;
 	static char const * optv [] =
 	{
-		"e:fHl:nrRtTv",
-		PUTOPTV_S_FUNNEL,
 		"output lines matching any of several regular expressions",
+		PUTOPTV_S_FUNNEL,
+		"e:fHl:nrRtTv",
 		"e e\texpression (e) can be anywhere on line as in \".*{e}.*\"",
 		"f\tprint filenames only",
 		"H\treview expression expansion",

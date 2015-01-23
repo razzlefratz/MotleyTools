@@ -80,9 +80,9 @@ int main (int argc, char const * argv [])
 	extern struct _page_ page;
 	static char const * optv [] =
 	{
-		"l:w:t:",
+		"file paginator",
 		PUTOPTV_S_FUNNEL,
-		"paginate text files",
+		"l:w:t:",
 		"l n\tpage length is (n)",
 		"w n\tpage width is (n)",
 		"t s\ttitle is (s)",

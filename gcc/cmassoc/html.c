@@ -189,9 +189,9 @@ int main (int argc, char const * argv [])
 	extern char const * cssfile;
 	static char const * optv [] =
 	{
-		"op:s:",
-		PUTOPTV_S_FUNNEL,
 		"print HTML page template",
+		PUTOPTV_S_FUNNEL,
+		"op:s:",
 		"o\tprint default profile on stdout",
 		"p f\tuse profile (s) [" HTML_PROFILE "]",
 		"s s\tuse profile section (s) [" HTML_SECTION "]",

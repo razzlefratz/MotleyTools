@@ -160,9 +160,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"pvex:",
-		PUTOPTV_S_DIVINE,
 		"isolate and segment package name string",
+		PUTOPTV_S_DIVINE,
+		"pvex:",
 		"p\tprint package name",
 		"v\tprint version number",
 		"e\tprint file extension",

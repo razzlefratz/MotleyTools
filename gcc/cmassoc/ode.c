@@ -66,9 +66,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"qvw:",
-		"file base [type item] [type item] [...]\n\n\t  where type is 'byte'|'word'|'long'|'huge'|'data'|'zero'|'fill'|'skip'",
 		"object driven editor",
+		"file base [type item] [type item] [...]\n\n\t  where type is 'byte'|'word'|'long'|'huge'|'data'|'zero'|'fill'|'skip'",
+		"qvw:",
 		"q\tquiet mode",
 		"v[v]\tverbose mode",
 		"w n\twindow is n bytes [32]",

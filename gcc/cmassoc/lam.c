@@ -50,9 +50,9 @@ int main (int argc, char const * argv [])
 {
 	char const * optv [] =
 	{
-		"f:nq:stv",
-		PUTOPTV_S_FUNNEL,
 		"laminate files",
+		PUTOPTV_S_FUNNEL,
+		"f:nq:stv",
 		"f c\tseparate fields with (c)",
 		"n\tseparate with newlines",
 		"q c\tenclose fields in (c)",

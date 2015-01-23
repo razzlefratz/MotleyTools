@@ -206,9 +206,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"aln:rw:",
-		PUTOPTV_S_FUNNEL,
 		"interface diagram generator",
+		PUTOPTV_S_FUNNEL,
+		"aln:rw:",
 		"a\talternate steps left/right",
 		"l\tstart direction is left",
 		"r\tstart direction is right",

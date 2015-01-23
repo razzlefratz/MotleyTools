@@ -218,9 +218,9 @@ int main (int argc, char const * argv [])
 	extern signed order;
 	static char const * optv [] =
 	{
-		"dl:",
-		PUTOPTV_S_FUNNEL,
 		"merge sorted files into one",
+		PUTOPTV_S_FUNNEL,
+		"dl:",
 		"d\tinput files are in descending order",
 		"l n\tmaximum line length is (n) bytes [0x0400]",
 		(char const *) (0)

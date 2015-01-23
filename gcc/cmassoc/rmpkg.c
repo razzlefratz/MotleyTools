@@ -267,9 +267,9 @@ int main (int argc, char const * argv [])
 	extern FIND find;
 	static char const * optv [] =
 	{
-		"crv",
-		PUTOPTV_S_SEARCH,
 		"remove old versions of software packages based on filename;",
+		PUTOPTV_S_SEARCH,
+		"crv",
 		"c\tcheck but do not remove",
 		"r\trecursive search",
 		"v\tverbose messages",

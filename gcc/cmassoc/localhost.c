@@ -51,9 +51,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"d:h:l",
-		PUTOPTV_S_DIVINE,
 		"manage system hostname and domainname",
+		PUTOPTV_S_DIVINE,
+		"d:h:l",
 		"d s\tset domainname to (s)",
 		"h s\tset hostname to (s)",
 		"l\tcreate link " HOSTNAME2 "-->" HOSTNAME1,

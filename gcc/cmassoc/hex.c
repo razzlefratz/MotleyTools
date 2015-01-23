@@ -193,9 +193,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"deh",
-		PUTOPTV_S_FUNNEL,
 		"encode or decode text files in IETF hexidecimal octet format",
+		PUTOPTV_S_FUNNEL,
+		"deh",
 		"d\tdecode files ",
 		"e\tencode files ",
 		(char const *) (0)

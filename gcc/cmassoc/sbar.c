@@ -145,9 +145,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:mw:x",
-		PUTOPTV_S_FILTER,
 		"extend script style comment bars",
+		PUTOPTV_S_FILTER,
+		"c:mw:x",
 		"c c\tcomments start with character (c) [" LITERAL (FBAR_START) "]",
 		"m\tshift comments to left margin",
 		"w n\tmake bars n characters wide [" LITERAL (FBAR_WIDTH) "]",

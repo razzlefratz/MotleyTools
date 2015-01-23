@@ -138,9 +138,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"n:",
-		"path [path] [...] [> stdout]",
 		"print folder hierarchy on stdout",
+		"path [path] [...] [> stdout]",
+		"n:",
 		"n n\tshow n levels [" LITERAL (DEPTH) "]",
 		(char const *) (0)
 	};

@@ -92,9 +92,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"w:",
-		PUTOPTV_S_FUNNEL,
 		"binary to hexadecimal file concatenate",
+		PUTOPTV_S_FUNNEL,
+		"w:",
 		"w n\tcolumn wrap is (n) octets [" LITERAL (BIN2HEX_COLUMN) "]",
 		(char const *) (0)
 	};

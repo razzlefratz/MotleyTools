@@ -346,9 +346,9 @@ int main (int argc, char const * argv [])
 	extern FIND find;
 	static char const * optv [] =
 	{
-		"w:e:fnHrRT",
-		PUTOPTV_S_FUNNEL,
 		"extract and print regular expression substrings",
+		PUTOPTV_S_FUNNEL,
+		"w:e:fnHrRT",
 		"w n\tmaximum line width is n [1024] ",
 		"e s\texpression (s) anywhere on line \".*(s).*\"",
 		"f\tdisplay filename only",

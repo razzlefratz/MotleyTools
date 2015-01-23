@@ -214,9 +214,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"cisv",
-		PUTOPTV_S_FUNNEL,
 		"check c language source and header files for missing include files;",
+		PUTOPTV_S_FUNNEL,
+		"cisv",
 		"c\tcustom files ",
 		"i\toutput an inventory ",
 		"s\tsystem files ",

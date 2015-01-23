@@ -62,9 +62,9 @@ int main (int argc, const char * argv [])
 	extern const char * program_name;
 	static const char * optv [] =
 	{
-		"bcnrt",
-		"message [message] [...] or [< stdin]",
 		"broadcast a message on all terminals",
+		"message [message] [...] or [< stdin]",
+		"bcnrt",
 		"b\tprint each argument as one bullet point",
 		"n\tdiscard broadcast preamble for root only",
 		"c\tdisplay broadcast terminal count",

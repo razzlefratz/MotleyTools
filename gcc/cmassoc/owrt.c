@@ -190,9 +190,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"ceh:p:qv",
-		PUTOPTV_S_FUNNEL,
 		"OpenWRT Makefile Tool",
+		PUTOPTV_S_FUNNEL,
+		"ceh:p:qv",
 		"c\tcontinuation line output",
 		"e\tenumerate fields",
 		"h s\thandler name is (s) [" LITERAL (OWRT_NAME_HANDLER) "]",

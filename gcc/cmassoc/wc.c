@@ -192,9 +192,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"W:lwcbt",
-		PUTOPTV_S_FUNNEL,
 		"counts the lines, words, chars and bytes in a text file",
+		PUTOPTV_S_FUNNEL,
+		"W:lwcbt",
 		"W s\tcharset is (s) [" CHRLIB_WORDSET "]",
 		"l\tdisplay line count",
 		"w\tdisplay word count",

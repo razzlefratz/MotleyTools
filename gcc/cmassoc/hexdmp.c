@@ -123,9 +123,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"",
-		PUTOPTV_S_FUNNEL,
 		"hexadecimal stream dump utility",
+		PUTOPTV_S_FUNNEL,
+		"",
 		(char const *) (0)
 	};
 	signed c;

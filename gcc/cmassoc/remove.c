@@ -166,9 +166,9 @@ int main (int argc, char const * argv [])
 	extern const unsigned char ct_unescape [];
 	static char const * optv [] =
 	{
-		"e:fHl:nRTv",
-		PUTOPTV_S_FILTER,
 		"remove lines that match any of several regular expressions",
+		PUTOPTV_S_FILTER,
+		"e:fHl:nRTv",
 		"e e\texpression (e) anywhere on line as in \".*{e}.*\"",
 		"f\tdisplay filename only",
 		"H\tview expression expansion",

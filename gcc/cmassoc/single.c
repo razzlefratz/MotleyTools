@@ -169,9 +169,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"cdpr:u",
-		PUTOPTV_S_FUNNEL,
 		"output single lines",
+		PUTOPTV_S_FUNNEL,
+		"cdpr:u",
 		"c\tcount occurances",
 		"d\toutput duplicate lines",
 		"p\tignore consecutive C preprocessor directives",

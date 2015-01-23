@@ -145,9 +145,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:w:x",
-		PUTOPTV_S_FILTER,
 		"extend FORTRAN style comment bars",
+		PUTOPTV_S_FILTER,
+		"c:w:x",
 		"c c\tcomments start with character c [" LITERAL (FBAR_START) "]",
 		"w n\tbar width is (n) [" LITERAL (FBAR_WIDTH) "]",
 		"x\tmake file executable",

@@ -74,9 +74,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"qv",
-		PUTOPTV_S_FUNNEL,
 		"file finger-printer",
+		PUTOPTV_S_FUNNEL,
+		"qv",
 		"q\tsuppress routine messages",
 		"v\tprint additions messages",
 		(char const *) (0)

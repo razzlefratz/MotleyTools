@@ -92,9 +92,9 @@ int main (int argc, char const * argv [])
 	struct ethernet_frame frame;
 	static char const * optv [] =
 	{
-		"i:qt:v",
-		PUTOPTV_S_DIVINE,
 		"802.3 Ethernet Frame Data Streamer",
+		PUTOPTV_S_DIVINE,
+		"i:qt:v",
 		"e x\tethertype is (x) [" LITERAL (ETH_P_802_2) "]",
 		"i n\tuse host interface n [" LITERAL (CHANNEL_ETHDEVICE) "]",
 		"q\tsuppress normal output",

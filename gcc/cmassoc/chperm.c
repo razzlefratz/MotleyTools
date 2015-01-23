@@ -157,9 +157,9 @@ int main (int argc, char const * argv [])
 	extern FIND find;
 	static char const * optv [] =
 	{
-		"d:f:rv",
-		PUTOPTV_S_SEARCH,
 		"set folder and file permissions",
+		PUTOPTV_S_SEARCH,
+		"d:f:rv",
 		"d m\tdirectory permission is m [0755]",
 		"f m\tfile permission is m [0664]",
 		"r\trecursive search",

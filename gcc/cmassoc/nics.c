@@ -95,9 +95,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"",
-		PUTOPTV_S_DIVINE,
 		"Ethernet Interface Enumerator",
+		PUTOPTV_S_DIVINE,
+		"",
 		(char const *) (0)
 	};
 	char string [ETHER_ADDR_LEN * 3];

@@ -126,9 +126,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"asuw",
-		PUTOPTV_S_FILTER,
 		"change text line termination",
+		PUTOPTV_S_FILTER,
+		"asuw",
 		"a\tto Apple computer format [" "'\\r'" "]",
 		"s\tto stream format (no line breaks)",
 		"u\tto standard Unix format [" "'\\n'" "]",

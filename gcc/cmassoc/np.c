@@ -132,9 +132,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"p:s:",
-		PUTOPTV_S_FILTER,
 		"new paragraph",
+		PUTOPTV_S_FILTER,
+		"p:s:",
 		"p s\tparagraph prefix",
 		"s s\tparagraph string",
 		(char const *) (0)

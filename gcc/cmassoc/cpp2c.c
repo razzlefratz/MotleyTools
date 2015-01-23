@@ -218,9 +218,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"",
-		PUTOPTV_S_FILTER,
 		"convert C++ comments to C comments",
+		PUTOPTV_S_FILTER,
+		"",
 		(char const *) (0)
 	};
 	flag_t flags = (flag_t) (0);

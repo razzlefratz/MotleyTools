@@ -63,9 +63,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"qv",
-		"file file",
 		"compare two binary files byte by byte",
+		"file file",
+		"qv",
 		"q\tquiet mode",
 		"v\tverbose mode",
 		(char const *) (0)

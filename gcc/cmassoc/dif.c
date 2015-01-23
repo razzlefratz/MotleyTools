@@ -289,9 +289,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"w:abh",
-		"file1 file2",
 		"displays the differences between two text files",
+		"file1 file2",
+		"w:abh",
 		"a\tshow all lines",
 		"b\tshow line breaks",
 		"w n\tscreen width is n characters",

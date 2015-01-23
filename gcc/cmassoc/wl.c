@@ -127,9 +127,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"fw:lu",
-		PUTOPTV_S_FUNNEL,
 		"prints a list of words read from the input stream",
+		PUTOPTV_S_FUNNEL,
+		"fw:lu",
 		"f\toutput filenames",
 		"w s\tword consists of character set (s) [" CHRLIB_WORDSET "]",
 		"l\toutput words in lower case ",

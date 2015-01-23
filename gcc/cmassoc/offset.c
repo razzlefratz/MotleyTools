@@ -831,9 +831,9 @@ int main (int argc, char const * argv [])
 	extern unsigned column;
 	static char const * optv [] =
 	{
-		"bc:ehl:prstxz",
-		PUTOPTV_S_FUNNEL,
 		"print offset table",
+		PUTOPTV_S_FUNNEL,
+		"bc:ehl:prstxz",
 		"b\tprint docbook format",
 		"c n\talign descriptions to column (n) [" LITERAL (COLUMN) "]",
 		"e\tprint efsu format",

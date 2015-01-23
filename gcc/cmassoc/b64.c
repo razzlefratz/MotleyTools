@@ -229,9 +229,9 @@ int main (int argc, char const * argv [])
 {
 	char const * optv [] =
 	{
-		"deqrw:v",
-		PUTOPTV_S_FILTER,
 		"base64 encoder/decoder",
+		PUTOPTV_S_FILTER,
+		"deqrw:v",
 		"d\tdecode input",
 		"e\tencode input",
 		"q\tquiet mode",

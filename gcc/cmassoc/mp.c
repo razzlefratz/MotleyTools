@@ -300,9 +300,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"mop:s:",
 		"tidy Linux manpage",
 		PUTOPTV_S_FILTER,
+		"mop:s:",
 		"m\tprint example manpage on stdout",
 		"o\tprint default profile on stdout",
 		"p f\tprofile is (s) [" LITERAL (MP_PROFILE) "]",

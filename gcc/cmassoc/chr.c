@@ -148,9 +148,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"adlouxt",
-		PUTOPTV_S_DIVINE,
 		"tabulate character occurances in text file",
+		PUTOPTV_S_DIVINE,
+		"adlouxt",
 		"a\tfull ASCII character set",
 		"d\tprint decimal character codes",
 		"l\tlower ASCII character set only",

@@ -180,9 +180,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"",
-		PUTOPTV_S_FUNNEL,
 		"print auth.log statistics",
+		PUTOPTV_S_FUNNEL,
+		"",
 		(char const *) (0)
 	};
 	struct _column_ * columns = rootuser;

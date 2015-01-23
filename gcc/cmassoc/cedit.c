@@ -214,9 +214,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"co:n:",
-		PUTOPTV_S_FILTER,
 		"rename a C Language variable or constant",
+		PUTOPTV_S_FILTER,
+		"co:n:",
 		"c\treport changes",
 		"o s\told token is s",
 		"n s\tnew token is s",

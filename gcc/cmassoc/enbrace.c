@@ -208,9 +208,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"",
-		PUTOPTV_S_FILTER,
 		"wrap symbols in braces",
+		PUTOPTV_S_FILTER,
+		"",
 		(char *) (0)
 	};
 	char const * braces = "{}";

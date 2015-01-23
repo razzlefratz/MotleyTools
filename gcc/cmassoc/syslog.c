@@ -186,9 +186,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"b:def:i:p:ns:t",
-		"[message]",
 		"write a message to the system logging facility",
+		"[message]",
+		"b:def:i:p:ns:t",
 		"b s\tidentity is the basename of s ",
 		"e\techo messages on stderr",
 		"f s\tmessage filename",

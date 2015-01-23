@@ -61,9 +61,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"f:t:h",
-		"[options] number [number] [...]",
 		"convert one or more numbers from one radix (number base) to another",
+		"[options] number [number] [...]",
+		"f:t:h",
 		"f n\tfrom base n in range 2 to 36 ",
 		"t n\tto base n in range 2 to 36 ",
 		(char const *) (0)

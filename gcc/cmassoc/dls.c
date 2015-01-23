@@ -159,9 +159,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:dflnw:",
-		"path [path] [...] [> stdout]",
 		"list folders or links or standard files",
+		"path [path] [...] [> stdout]",
+		"c:dflnw:",
 		"c n\tcolumn count is (n) [" LITERAL (COUNT) "]",
 		"d\tlist directory files",
 		"f\tlist standard files",

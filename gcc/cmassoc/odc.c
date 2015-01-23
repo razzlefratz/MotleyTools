@@ -316,9 +316,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"f:qv",
-		"file file",
 		"object driven compare",
+		"file file",
+		"f:qv",
 		"f f\tobject definition file",
 		"q\tquiet mode",
 		"v\tverbose mode",

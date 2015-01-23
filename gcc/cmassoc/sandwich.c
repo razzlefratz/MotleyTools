@@ -106,9 +106,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"p:qs:v",
-		PUTOPTV_S_FILTER,
 		"prepend/append prefix/suffix to multiple files",
+		PUTOPTV_S_FILTER,
+		"p:qs:v",
 		"p s\tprefix file is (s)",
 		"q\tquiet mode",
 		"s s\tsuffix file is (s)",

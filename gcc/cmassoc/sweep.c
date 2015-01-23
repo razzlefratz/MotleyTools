@@ -205,9 +205,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:drxvC",
-		"target-path source-path [source-path] ... [> stdout]",
 		"remove files/folders from target-path that exist in any source-path.",
+		"target-path source-path [source-path] ... [> stdout]",
+		"c:drxvC",
 		"c s\tprint as system command s",
 		"d\tremove folders (use with care)",
 		"r\trecursive comparison",

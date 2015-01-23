@@ -96,9 +96,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"",
-		PUTOPTV_S_FILTER,
 		"convert escaped newlines to form long lines;",
+		PUTOPTV_S_FILTER,
+		"",
 		(char const *) (0)
 	};
 	signed (* function) (signed) = noescape;

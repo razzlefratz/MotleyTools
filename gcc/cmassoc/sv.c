@@ -252,9 +252,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"t:dvs",
-		PUTOPTV_S_FILTER,
 		"create c language string vector declaration and definitions from list",
+		PUTOPTV_S_FILTER,
+		"t:dvs",
 		"t s\tvector title is (s)",
 		"d\tgenerate define block",
 		"v\tgenerate vector table",

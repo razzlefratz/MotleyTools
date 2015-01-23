@@ -205,9 +205,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"wbodx",
-		PUTOPTV_S_FUNNEL,
 		"display file contents using various numeric formats ",
+		PUTOPTV_S_FUNNEL,
+		"wbodx",
 		"w\tdisplay by word",
 		"b\tdisplay in binary",
 		"o\tdisplay in octal",

@@ -177,9 +177,9 @@ int main (int argc, char const * argv [])
 	extern struct channel channel;
 	static char const * optv [] =
 	{
-		"d:hi:l:p:t:vw:",
-		PUTOPTV_S_FUNNEL,
 		"Ethernet Frame Send Utility",
+		PUTOPTV_S_FUNNEL,
+		"d:hi:l:p:t:vw:",
 		"d x\treplace destination address with (x)",
 		"h\treplace source address with host address",
 		"i s\tuse host interface (s) [" LITERAL (CHANNEL_ETHDEVICE) "]",

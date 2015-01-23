@@ -149,9 +149,9 @@ int main (int argc, char const * argv [])
 {
 	char const * optv [] =
 	{
-		"r:pwc",
-		PUTOPTV_S_FILTER,
 		"convert text file to fixed or variable length records",
+		PUTOPTV_S_FILTER,
+		"r:pwc",
 		"r n\tmaximum record length n ",
 		"p\tpad short records ",
 		"w\twrap long records ",

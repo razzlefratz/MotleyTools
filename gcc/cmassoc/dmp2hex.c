@@ -113,9 +113,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"w:",
-		PUTOPTV_S_FUNNEL,
 		"convert hex dump files to hex file",
+		PUTOPTV_S_FUNNEL,
+		"w:",
 		"w n\twidth is (n) characters [" LITERAL (WIDTH) "]",
 		(char const *) (0)
 	};

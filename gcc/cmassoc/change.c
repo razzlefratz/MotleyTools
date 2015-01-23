@@ -177,9 +177,9 @@ int main (int argc, char const * argv [])
 	extern const unsigned char ct_unescape [];
 	static char const * optv [] =
 	{
-		"e:l:t:fcHRT",
-		PUTOPTV_S_FILTER,
 		"replace text matching a regular expression with fixed text",
+		PUTOPTV_S_FILTER,
+		"e:l:t:fcHRT",
 		"e e\texpression (e) anywhere on line as in \".*{e}.*\"",
 		"l e\texpression (e) is complete line as in \"^{e}$\"",
 		"t s\treplacement text is (s)",

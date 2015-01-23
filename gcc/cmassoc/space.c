@@ -178,9 +178,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:e:nst",
-		PUTOPTV_S_FILTER,
 		"white space minimizer",
+		PUTOPTV_S_FILTER,
+		"c:e:nst",
 		"c c\tindent character is (c) [" LITERAL (SPACE_NEWLINE) "]",
 		"e c\treturn character is (c) [" LITERAL (SPACE_ENDLINE) "]",
 		"n\tindent character is nothing",

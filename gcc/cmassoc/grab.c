@@ -103,9 +103,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"l:no:qv",
-		PUTOPTV_S_FILTER,
 		"byte stream grabber",
+		PUTOPTV_S_FILTER,
+		"l:no:qv",
 		"l n\tlength to read in bytes",
 		"n\tappend newline on output",
 		"o x\toffset to read in bytes",

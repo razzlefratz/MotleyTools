@@ -113,9 +113,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"a:b:d",
-		PUTOPTV_S_FILTER,
 		"discard character columns",
+		PUTOPTV_S_FILTER,
+		"a:b:d",
 		"a n\tafter column (n) [" LITERAL (TRIM_PRIOR) "]",
 		"b n\tbefore column (n) [" LITERAL (TRIM_AFTER) "]",
 		(char const *) (0)

@@ -1009,5 +1009,3 @@ double read_timer (char * str, int len)
  *   exit (1);
  *   }
  *   
- *   ÿ/
-

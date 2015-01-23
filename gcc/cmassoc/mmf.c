@@ -417,9 +417,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:ef:imop",
-		"source-file [source-file] ...",
 		"create makefile for c source files",
+		"source-file [source-file] ...",
+		"c:ef:imop",
 		"e\ttargets are program binary files",
 		"f s\tread target files from file (s)",
 		"i\toutput is an inventory",

@@ -140,9 +140,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"acgoxb",
-		PUTOPTV_S_FUNNEL,
 		"display control characters in visible formats",
+		PUTOPTV_S_FUNNEL,
+		"acgoxb",
 		"a\tshow ASCII character names",
 		"c\tshow ANSI control codes",
 		"g\tshow ISO glyph codes",

@@ -141,9 +141,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:nw:",
-		PUTOPTV_S_DIVINE,
 		"print alphabetical list of processes on stdout",
+		PUTOPTV_S_DIVINE,
+		"c:nw:",
 		"c n\tcolumn count is (n) [" LITERAL (COUNT) "]",
 		"w n\tscreen width is (n) [" LITERAL (WIDTH) "]",
 		"n\tnumber each list items",

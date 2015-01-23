@@ -285,9 +285,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"",
-		PUTOPTV_S_FILTER,
 		"include all C language support files",
+		PUTOPTV_S_FILTER,
+		"",
 		(char const *) (0)
 	};
 	char pathname [FILENAME_MAX];

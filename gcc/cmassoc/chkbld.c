@@ -161,9 +161,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"d:mp",
-		PUTOPTV_S_FILTER,
 		"confirm existance of pkg= files",
+		PUTOPTV_S_FILTER,
+		"d:mp",
 		"m\tlist files that are missing",
 		"p\tlist files that are present",
 		"d s\tsource folder is s [" PKG_S_SOURCEDIR "]",

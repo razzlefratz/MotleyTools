@@ -272,9 +272,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:n:ps:t",
-		PUTOPTV_S_FUNNEL,
 		"convert .csv data to .html file",
+		PUTOPTV_S_FUNNEL,
+		"c:n:ps:t",
 		"c s\tcomma characters [" LITERAL (CSV2HTML_COMMA) "]",
 		"n n\tminimum number of columns",
 		"p\tprint HTML page with header",

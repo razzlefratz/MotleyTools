@@ -173,9 +173,9 @@ int main (int argc, char const * argv [])
 {
 	char const * optv [] =
 	{
-		"luxtds",
-		PUTOPTV_S_FILTER,
 		"converts files to upper or lower case",
+		PUTOPTV_S_FILTER,
+		"luxtds",
 		"l\tconvert text to lower case ",
 		"u\tconvert text to upper case ",
 		"t\tconvert text to title case ",

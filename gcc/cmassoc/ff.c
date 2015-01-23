@@ -260,6 +260,8 @@ int main (int argc, char const * argv [])
 	extern FIND find;
 	static char const * optv [] =
 	{
+		"search folders and/or standard paths for files",
+		PUTOPTV_S_SEARCH,
 
 #if FF_TIMER
 
@@ -271,8 +273,6 @@ int main (int argc, char const * argv [])
 
 #endif
 
-		PUTOPTV_S_SEARCH,
-		"search folders and/or standard paths for files",
 		"d\tprint date and time",
 		"e\tprint search pathstring",
 		"f\tprint filenames only",

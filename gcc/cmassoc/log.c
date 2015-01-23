@@ -43,9 +43,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"a",
-		"[file] [file] [> stdout]",
 		"write stdin to stdout plus named files",
+		"[file] [file] [> stdout]",
+		"a",
 		"a\tappend output to files",
 		(char const *) (0)
 	};

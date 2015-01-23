@@ -287,9 +287,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"am",
-		PUTOPTV_S_FILTER,
 		"remove markup from document",
+		PUTOPTV_S_FILTER,
+		"am",
 		"a\tremove attributes from markup",
 		"m\tremove markup from document",
 		(char const *) (0)

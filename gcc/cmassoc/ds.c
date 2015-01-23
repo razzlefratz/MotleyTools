@@ -71,9 +71,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"f:",
-		"file [file] [...]",
 		"digital dactyloscope",
+		"file [file] [...]",
+		"f:",
 		"f f\tfingerprint registry [" REGISTRY "]",
 		(char const *) (0)
 	};

@@ -243,9 +243,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"loptx",
-		PUTOPTV_S_DIVINE,
 		"topological sort program",
+		PUTOPTV_S_DIVINE,
+		"loptx",
 		"l\tprint level",
 		"o\tprint order",
 		"p\tprint names",

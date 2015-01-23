@@ -372,9 +372,9 @@ int main (int argc, char const * argv [])
 	extern char const * program_name;
 	static char const * optv [] =
 	{
-		"a:elpqrs:Stu:v",
-		PUTOPTV_S_SEARCH,
 		"execute named scripts",
+		PUTOPTV_S_SEARCH,
+		"a:elpqrs:Stu:v",
 		"a s\tpass argument s to all scripts",
 		"e\texit on first error",
 		"l\tfollow symbolic links",

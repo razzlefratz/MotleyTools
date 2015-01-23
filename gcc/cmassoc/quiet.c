@@ -58,9 +58,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"",
-		"[yes|no]",
 		"permit or restrict public access to your terminal",
+		"[yes|no]",
+		"",
 		(char const *) (0)
 	};
 	struct stat statinfo;

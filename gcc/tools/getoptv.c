@@ -104,12 +104,12 @@
 #include "../tools/error.h"
 
 char const * program_name = "program";
-char * optarg = (char *)(0);
-signed optopt = (char)(0);
+char * optarg = (char *) (0);
+signed optopt = (char) (0);
 signed optind = 1;
 signed opterr = 1;
 signed optmin = 0;
-signed getoptv(int argc, char const * argv[], char const * optv[])
+signed getoptv (int argc, char const * argv [], char const * optv [])
 
 {
 	static char const * string;
@@ -123,7 +123,7 @@ signed getoptv(int argc, char const * argv[], char const * optv[])
 
 	while (index < argc)
 	{
-		fprintf (stderr, "%sargv[%d]=[%s]\n", (index == optind)? ARROW: SPACE, index, argv[index]);
+		fprintf (stderr, "%sargv[%d]=[%s]\n", (index == optind)? ARROW: SPACE, index, argv [index]);
 		index++;
 	}
 	fprintf (stderr, "%sargv[index]=NULL\n\n", (index == optind)? ARROW: SPACE);
@@ -136,10 +136,10 @@ signed getoptv(int argc, char const * argv[], char const * optv[])
 		{
 			if ((* string == '/') || (* string == '\\'))
 			{
-				program_name = string +  1;
+				program_name = string + 1;
 			}
 		}
-		string = (char *)(0);
+		string = (char *) (0);
 
 #ifdef GETOPTV_DEBUG
 
@@ -149,14 +149,14 @@ signed getoptv(int argc, char const * argv[], char const * optv[])
 			{
 				continue;
 			}
-			for (count = PUTOPTV_I_DETAILS; optv[count]; count++)
+			for (count = PUTOPTV_I_DETAILS; optv [count]; count++)
 			{
-				if (* option == * optv[count])
+				if (* option == * optv [count])
 				{
 					break;
 				}
 			}
-			if (optv[count])
+			if (optv [count])
 			{
 				continue;
 			}
@@ -172,15 +172,15 @@ signed getoptv(int argc, char const * argv[], char const * optv[])
 #endif
 
 		}
-		for (count = PUTOPTV_I_DETAILS; optv[count]; count++)
+		for (count = 2; optv [count]; count++)
 		{
-			for (option = optv[PUTOPTV_I_OPTIONS]; * option; option++)
+			for (option = optv [3]; * option; option++)
 			{
 				if (* option == ':')
 				{
 					continue;
 				}
-				if (* option == * optv[count])
+				if (* option == * optv [count])
 				{
 					break;
 				}
@@ -192,11 +192,11 @@ signed getoptv(int argc, char const * argv[], char const * optv[])
 
 #ifdef __GNUC__
 
-			error (0, 0, "description \"%s\" has no option", optv[count]);
+			error (0, 0, "description \"%s\" has no option", optv [count]);
 
 #else
 
-			fprintf (stderr, "%s: description \"%s\" has no option\n", program_name, optv[count]);
+			fprintf (stderr, "%s: description \"%s\" has no option\n", program_name, optv [count]);
 
 #endif
 
@@ -217,7 +217,7 @@ signed getoptv(int argc, char const * argv[], char const * optv[])
 		{
 			if (* string)
 			{
-				optarg = (char *)(0);
+				optarg = (char *) (0);
 				optopt = * string++;
 				for (option = * optv; * option; option++)
 				{
@@ -254,16 +254,16 @@ signed getoptv(int argc, char const * argv[], char const * optv[])
 						}
 						if (* string)
 						{
-							optarg = (char *)(string);
-							string = (char *)(0);
+							optarg = (char *) (string);
+							string = (char *) (0);
 							return (optopt);
 						}
 						if (count < argc)
 						{
-							optarg = (char *)(argv[count]);
+							optarg = (char *) (argv [count]);
 							for (index = count++; index > optind; index--)
 							{
-								argv [index] = argv[index - 1];
+								argv [index] = argv [index -1];
 							}
 							argv [optind++] = optarg;
 							return (optopt);
@@ -309,17 +309,17 @@ signed getoptv(int argc, char const * argv[], char const * optv[])
 			}
 			else 
 			{
-				string = (char *)(0);
+				string = (char *) (0);
 			}
 		}
 		if (count < argc)
 		{
-			string = argv[count];
+			string = argv [count];
 			if (* string == GETOPTV_C_OPTION)
 			{
 				for (index = count; index > optind; index--)
 				{
-					argv [index] = argv[index - 1];
+					argv [index] = argv [index -1];
 				}
 				argv [optind++] = string++;
 				if (* string == GETOPTV_C_VERSION)
@@ -335,38 +335,40 @@ signed getoptv(int argc, char const * argv[], char const * optv[])
 				if (* string == GETOPTV_C_OPTION)
 				{
 					string++;
-					if (! strcmp(string, ""))
+					if (! strcmp (string, ""))
 					{
-						optarg = (char *)(0);
-						optopt = (char)(0);
-						return (- 1);
+						optarg = (char *) (0);
+						optopt = (char) (0);
+						return (-1);
 					}
-					if (! strcmp(string, "version"))
+					if (! strcmp (string, "version"))
 					{
 						version ();
 						exit (0);
 					}
-					if (! strcmp(string, "help"))
+					if (! strcmp (string, "help"))
 					{
 						putoptv (optv);
 						exit (0);
 					}
-					optarg = (char *)(string);
+					optarg = (char *) (string);
 					optopt = GETOPTV_C_OPTION;
-					return (- 1);
+					return (-1);
 				}
 			}
 			else 
 			{
-				string = (char *)(0);
+				string = (char *) (0);
 			}
 			count++;
 		}
 	}
-	optarg = (char *)(0);
-	optopt = (char)(0);
-	return (- 1);
+	optarg = (char *) (0);
+	optopt = (char) (0);
+	return (-1);
 }
 
 #endif
+
+
 

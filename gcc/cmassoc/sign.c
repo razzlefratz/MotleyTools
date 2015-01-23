@@ -51,9 +51,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"c:w:",
-		PUTOPTV_S_DIVINE,
 		"print a simple sign on stdout",
+		PUTOPTV_S_DIVINE,
+		"c:w:",
 		"c c\tfill character is c [\'c\']",
 		"w n\tpage width is n [78]",
 		(char const *) (0)

@@ -64,9 +64,9 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"qv",
-		PUTOPTV_S_FUNNEL,
 		"basic C language program",
+		PUTOPTV_S_FUNNEL,
+		"qv",
 		"q\tsuppress routine messages",
 		"v\tenable verbose messages",
 		(char const *) (0)
