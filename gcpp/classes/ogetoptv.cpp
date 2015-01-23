@@ -6,7 +6,7 @@
  *   no extensions; visit the posix webpage that specifies this function
  *   to learn more;
  *
- *   <http://www.opengroup.org/onlinepubs/007904975/functions/getoptv.html>
+ *   <http://www.opengroup.org/onlinepubs/007904975/functions/getopt.html>
  *
  *   we implemented this function to make console programs for windows and
  *   debian linux act the same; microsoft c++ would not compile the debian
@@ -230,7 +230,7 @@ signed ogetoptv::argc () const
 
 /*====================================================================*
  *
- *   char const ** argv () const;
+ *   char const ********************************************************************** argv () const;
  *
  *   return the start address of the unprocessed portions of argv [];
  *
@@ -304,6 +304,8 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 		}
 		this->mcount = this->moptind = 1;
 	}
+	optv++;
+	optv++;
 	while ((this->mcount < this->margc) || (this->mstring))
 	{
 		if (this->mstring)
@@ -312,8 +314,6 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 			{
 				this->moptopt = * this->mstring++;
 				this->moptarg = (char *) (0);
-				optv++;
-				optv++;
 
 #if 1
 
@@ -406,8 +406,6 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 						return (oGETOPTV_C_ILLEGAL);
 					}
 				}
-				optv--;
-				optv--;
 				if (this->mopterr)
 				{
 					std::cerr << program_name << ": option '" << (char) (this->moptopt) << "' has no meaning" << std::endl;
@@ -442,6 +440,8 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 					}
 					if (! std::strcmp (this->mstring, "help"))
 					{
+						optv--;
+						optv--;
 						oputoptv::putoptv (optv);
 						std::exit (0);
 					}
@@ -455,6 +455,8 @@ signed ogetoptv::getoptv (int argc, char const * argv [], char const * optv [])
 				}
 				if (* this->mstring == oGETOPTV_C_SUMMARY)
 				{
+					optv--;
+					optv--;
 					oputoptv::putoptv (optv);
 					std::exit (0);
 				}

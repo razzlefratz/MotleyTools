@@ -136,8 +136,6 @@ signed getoptv (int argc, char const * argv [], char const * optv [])
 
 #endif
 
-	optv++;
-	optv++;
 	if ((optind == 0) || (optind == 1))
 	{
 		for (program_name = string = * argv; * string; string++)
@@ -157,6 +155,8 @@ signed getoptv (int argc, char const * argv [], char const * optv [])
  *   they have no effect;
  */
 
+		optv++;
+		optv++;
 		for (option = * optv++; * option; option++)
 		{
 			if (* option == ':')
@@ -206,16 +206,17 @@ signed getoptv (int argc, char const * argv [], char const * optv [])
 
 #ifndef __GNUC__
 
-			fprintf (stderr, "%s: description \"%s\" has no option\n", program_name, optv [count]);
+			fprintf (stderr, "%s: description \"%s\" has no option\n", program_name, * action);
 
 #else
 
-			error (0, 0, "description \"%s\" has no option", optv [count]);
+			error (0, 0, "description \"%s\" has no option", * action);
 
 #endif
 
 		}
-
+		optv--;
+		optv--;
 #endif
 
 		if (argc == optmin)
@@ -233,6 +234,8 @@ signed getoptv (int argc, char const * argv [], char const * optv [])
 			{
 				optarg = (char *) (0);
 				optopt = * string++;
+				optv++;
+				optv++;
 				for (option = * optv; * option; option++)
 				{
 					if (optopt == GETOPTV_C_OPERAND)
@@ -304,6 +307,8 @@ signed getoptv (int argc, char const * argv [], char const * optv [])
 						return (GETOPTV_C_ILLEGAL);
 					}
 				}
+				optv--;
+				optv--;
 				if (opterr)
 				{
 
