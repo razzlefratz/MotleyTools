@@ -76,7 +76,7 @@ oputoptv & oputoptv::chkoptv (char const ** optv)
 		{
 			continue;
 		}
-		std::cerr << program_name << ": action text \"" << * action << "\" has no option" << std:endl;
+		std::cerr << program_name << ": action text \"" << * action << "\" has no option" << std::endl;
 	}
 	return (* this);
 }
