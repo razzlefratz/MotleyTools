@@ -111,8 +111,8 @@ otimer::otimer ()
 {
 	this->mstart = new struct timeval;
 	this->mclock = new struct timeval;
-	std::memset (this->mstart, 0, sizeof (this->mstart));
-	std::memset (this->mclock, 0, sizeof (this->mclock));
+	std::memset (this->mstart, 0, sizeof (struct timeval));
+	std::memset (this->mclock, 0, sizeof (struct timeval));
 	this->mtimer = 0;
 	return;
 }
