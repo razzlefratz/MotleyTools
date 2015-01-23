@@ -36,37 +36,38 @@ oputoptv & oputoptv::chkoptv (char const ** optv)
 
 {
 	extern char const * program_name;
-	char const ** string;
+	char const ** action;
 	char const * option;
-	signed index;
-	for (option = optv [2]; * option; option++)
+	optv++;
+	optv++;
+	for (option = * optv++; * option; option++)
 	{
 		if (* option == ':')
 		{
 			continue;
 		}
-		for (string = optv + 3; *string; string++)
+		for (action = optv; * action; action++)
 		{
-			if (* option == ** string)
+			if (* option == ** action)
 			{
 				break;
 			}
 		}
-		if (** string)
+		if (* action)
 		{
 			continue;
 		}
-		std::cerr << program_name << ": option '" << * option << "' has no string" << std::endl;
+		std::cerr << program_name << ": option '" << * option << "' has no action text" << std::endl;
 	}
-	for (string = optv + 3; *string; string++)
+	for (action = optv--; * action; action++)
 	{
-		for (option = optv [2]; * option; option++)
+		for (option = * optv; * option; option++)
 		{
 			if (* option == ':')
 			{
 				continue;
 			}
-			if (* option == ** string)
+			if (* option == ** action)
 			{
 				break;
 			}
@@ -75,7 +76,7 @@ oputoptv & oputoptv::chkoptv (char const ** optv)
 		{
 			continue;
 		}
-		std::cerr << program_name << ": string \"" << *string << "\" has no option" << std::endl;
+		std::cerr << program_name << ": action text \"" << * action << "\" has no option" << std:endl;
 	}
 	return (* this);
 }
