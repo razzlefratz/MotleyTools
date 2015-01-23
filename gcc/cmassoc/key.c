@@ -152,7 +152,7 @@ int main (int argc, char const * argv [])
 {
 	static char const * optv [] =
 	{
-		"generate random SHA256 keys",
+		"random SHA256 key generator",
 		"keyfile",
 		"f:n:oqv",
 		"f s\tuse seedfile (s) [" SEEDFILE "]",
