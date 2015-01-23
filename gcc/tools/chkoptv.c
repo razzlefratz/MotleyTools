@@ -19,40 +19,43 @@
 
 #include "../tools/putoptv.h"
 
-void chkoptv(char const * optv[])
+void chkoptv (char const ** optv)
 
 {
 	extern char const * program_name;
+	char const ** action;
 	char const * option;
 	signed index;
-	for (option = * optv; * option; option++)
+	optv++;
+	optv++;
+	for (option = * optv++; * option; option++)
 	{
 		if (* option == ':')
 		{
 			continue;
 		}
-		for (index = PUTOPTV_I_DETAILS; optv[index]; index++)
+		for (action = optv; * action; action++)
 		{
-			if (* option == * optv[index])
+			if (* option == ** action)
 			{
 				break;
 			}
 		}
-		if (optv[index])
+		if (* action)
 		{
 			continue;
 		}
-		fprintf (stderr, "%s: option '%c' is no string.\n", program_name, * option);
+		fprintf (stderr, "%s: option '%c' is no action text.\n", program_name, * option);
 	}
-	for (index = PUTOPTV_I_DETAILS; optv[index]; index++)
+	for (action = optv--; * action; action++)
 	{
-		for (option = optv[PUTOPTV_I_OPTIONS]; * option; option++)
+		for (option = * optv; * option; option++)
 		{
 			if (* option == ':')
 			{
 				continue;
 			}
-			if (* option == * optv[index])
+			if (* option == ** action)
 			{
 				break;
 			}
@@ -61,7 +64,7 @@ void chkoptv(char const * optv[])
 		{
 			continue;
 		}
-		fprintf (stderr, "%s: string \"%s\" has no option.\n", program_name, optv[index]);
+		fprintf (stderr, "%s: action text \"%s\" has no option.\n", program_name, * action);
 	}
 	return;
 }
