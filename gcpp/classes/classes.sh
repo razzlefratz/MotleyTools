@@ -29,7 +29,7 @@
 # g++ -Wall -c osyslog.cpp
 # g++ -Wall -c otruth.cpp
 # g++ -Wall -c otruth.demo.cpp
-g++ -Wall -c oARPTable.cpp
+# g++ -Wall -c oARPTable.cpp
 g++ -Wall -c oEthernet.cpp
 g++ -Wall -c oEthernetAddress.cpp
 g++ -Wall -c oHTMLAttributeNames.cpp
