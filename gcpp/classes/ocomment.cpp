@@ -399,6 +399,7 @@ signed ocomment::regular (signed c) const
 			unsigned offset = 0;
 			std::cout.put (oCOMMENT_C_BURST);
 			if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER) || (c == oCOMMENT_C_BURST))
+//			if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER))
 			{
 				c = ocomment::breaker (c);
 			}
@@ -450,7 +451,8 @@ signed ocomment::regular (signed c) const
 signed ocomment::special (signed c) const
 
 {
-	if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER) || (c == oCOMMENT_C_BURST))
+//	if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER) || (c == oCOMMENT_C_BURST))
+	if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER))
 	{
 		c = ocomment::breaker (c);
 	}
