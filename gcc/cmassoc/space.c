@@ -162,6 +162,37 @@ signed function (signed c, signed o, signed e)
 	return (c);
 }
 
+#if 0
+static signed trimm (signed c)
+{
+	unsigned column = 0;
+	unsigned length = 0;
+	while (c != EOF)
+	{
+		if (!isspace (c))
+		{
+			while (column < length) { putc (' ', stdout); column++; }
+			putc (c, stdout);
+			c = getc (stdin);
+			continue;
+		}
+		if (c == '\n')
+		{
+			column = 0;
+			length = 0;
+			putc (c, stdout);
+			c = getc (stdin);
+			continue;
+		}
+		putc (c, stdout);
+		c = getc (stdin);
+		length++;
+		
+	}
+	return (c);
+}
+#endif
+
 /*====================================================================*
  *
  *   int main (int argc, char const * argv []);
