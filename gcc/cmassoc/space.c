@@ -51,8 +51,8 @@
 #include "../tidy/literal.c"
 #include "../tidy/escaped.c"
 #include "../tidy/span.c"
-#include "../tidy/skip.c"
 #include "../tidy/keep.c"
+#include "../tidy/skip.c"
 #endif
 
 #ifndef MAKEFILE
@@ -72,7 +72,95 @@
 
 /*====================================================================*
  *
- *   void function (signed c, signed o, signed e);
+ *   signed trimm (signed c, unsigned tabstop);
+ *
+ *   replace inline tabs with spaces; discard trailing tabs and 
+ *   spaces;
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+static signed trimm (signed c, unsigned tabstop)
+
+{
+	unsigned column = 0;
+	unsigned length = 0;
+	while (c != EOF)
+	{
+		if (c == '\n')
+		{
+			column = 0;
+			length = 0;
+		}
+		if (c == ' ')
+		{
+			c = getc (stdin);
+			length++;
+			continue;
+		}
+		if (c == '\t')
+		{
+			c = getc (stdin);
+			length += tabstop - length % tabstop;
+			continue;
+		}
+		while (column++ < length)
+		{
+			putc (' ', stdout);
+		}
+		c = keep (c);
+		length++;
+	}
+	return (c);
+}
+
+static signed grab (signed c)
+
+{
+	return (getc (stdin));
+}
+
+static signed join (signed c)
+
+{
+	return (span (getc (stdin), '\\', '\n'));
+}
+
+/*====================================================================*
+ *
+ *   signed pack (signed c, signed space, signed (* edit) (signed));
+ *
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
+
+static signed pack (signed c, signed newline, signed (* edit) (signed))
+
+{
+	do 
+	{
+		c = edit (c);
+	}
+	while (isblank (c));
+	if (nobreak (c))
+	{
+		if (newline)
+		{
+			putc (newline, stdout);
+		}
+	}
+	return (c);
+}
+
+/*====================================================================*
+ *
+ *   signed compress (signed c, signed newline, signed endline);
  *
  *   read stdin and write stdout; replace leading spaces and tabs
  *   with character o unless it is NUL; replace embedded spaces and
@@ -89,46 +177,26 @@
  *
  *--------------------------------------------------------------------*/
 
-static signed grab (signed c)
+/*====================================================================*
+ *
+ *
+ *
+ *.  Motley Tools by Charles Maier
+ *:  Published 1982-2005 by Charles Maier for personal use
+ *;  Licensed under the Internet Software Consortium License
+ *
+ *--------------------------------------------------------------------*/
 
-{
-	return (getc (stdin));
-}
-
-static signed join (signed c)
-
-{
-	return (span (getc (stdin), '\\', '\n'));
-}
-
-static signed pack (signed c, signed o, signed (* edit) (signed))
-
-{
-	do 
-	{
-		c = edit (c);
-	}
-	while (isblank (c));
-	if (nobreak (c))
-	{
-		if (o)
-		{
-			putc (o, stdout);
-		}
-	}
-	return (c);
-}
-
-signed function (signed c, signed o, signed e)
+signed compress (signed c, signed newline, signed endline)
 
 {
 	while (c != EOF)
 	{
-		signed (* func) (signed) = join;
+		signed (* edit) (signed) = join;
 		if (isblank (c))
 		{
-			func = grab;
-			c = pack (c, o, func);
+			edit = grab;
+			c = pack (c, newline, edit);
 		}
 		while (nobreak (c))
 		{
@@ -148,50 +216,41 @@ signed function (signed c, signed o, signed e)
 			}
 			if (isblank (c))
 			{
-				c = pack (c, ' ', func);
+				c = pack (c, ' ', edit);
 				continue;
 			}
 			c = keep (c);
 		}
-		if (e)
+		if (endline)
 		{
-			putc (e, stdout);
+			putc (endline, stdout);
 		}
 		c = keep (c);
 	}
 	return (c);
 }
 
-#if 0
-static signed trimm (signed c)
+/*====================================================================*
+ *
+ *   void function (signed c, signed o, signed e, bool trim);
+ *
+ *
+ *
+ *--------------------------------------------------------------------*/
+
+void function (signed c, signed newline, signed endline, bool trim)
+
 {
-	unsigned column = 0;
-	unsigned length = 0;
-	while (c != EOF)
+	if (trim)
 	{
-		if (!isspace (c))
-		{
-			while (column < length) { putc (' ', stdout); column++; }
-			putc (c, stdout);
-			c = getc (stdin);
-			continue;
-		}
-		if (c == '\n')
-		{
-			column = 0;
-			length = 0;
-			putc (c, stdout);
-			c = getc (stdin);
-			continue;
-		}
-		putc (c, stdout);
-		c = getc (stdin);
-		length++;
-		
+		trimm (getc (stdin), 8);
 	}
-	return (c);
+	else 
+	{
+		compress (c, newline, endline);
+	}
+	return;
 }
-#endif
 
 /*====================================================================*
  *
@@ -211,16 +270,18 @@ int main (int argc, char const * argv [])
 	{
 		"white space minimizer",
 		PUTOPTV_S_FILTER,
-		"c:e:nst",
+		"c:e:nstx",
 		"c c\tindent character is (c) [" LITERAL (SPACE_NEWLINE) "]",
 		"e c\treturn character is (c) [" LITERAL (SPACE_ENDLINE) "]",
 		"n\tindent character is nothing",
 		"s\tindent character is space [" LITERAL (CLANG_SP) "]",
 		"t\tindent character is tab [" LITERAL (CLANG_HT) "]",
+		"x\treplace tabs with spaces; discard trailing spaces;",
 		(char *) (0)
 	};
 	char newline = SPACE_NEWLINE;
 	char endline = SPACE_ENDLINE;
+	bool trim = false;
 	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
@@ -241,6 +302,9 @@ int main (int argc, char const * argv [])
 		case 't':
 			newline = CLANG_HT;
 			break;
+		case 'x':
+			trim = true;
+			break;
 		default: 
 			break;
 		}
@@ -249,13 +313,13 @@ int main (int argc, char const * argv [])
 	argv += optind;
 	if (! argc)
 	{
-		function (getc (stdin), newline, endline);
+		function (getc (stdin), newline, endline, trim);
 	}
 	while ((argc) && (* argv))
 	{
 		if (vfopen (* argv))
 		{
-			function (getc (stdin), newline, endline);
+			function (getc (stdin), newline, endline, trim);
 		}
 		argc--;
 		argv++;
