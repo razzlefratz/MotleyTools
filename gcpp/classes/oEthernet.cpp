@@ -47,7 +47,7 @@ static struct
 	char const * name;
 }
 
-protocols [] =
+ethernet_protocols [] =
 
 {
 	{
@@ -222,7 +222,7 @@ protocols [] =
 	},
 	{
 		0x88F7,
-		"",
+		"ptp",
 		"Precision Time Protocol (IEEE 1588)"
 	},
 	{
@@ -247,7 +247,7 @@ protocols [] =
 	},
 	{
 		0x892F,
-		"",
+		"hsr",
 		"High-availability Seamless Redundancy (HSR)"
 	},
 	{
@@ -348,12 +348,12 @@ char const * oEthernet::ProtocolName (uint16_t protocol)
 
 {
 	size_t lower = 0;
-	size_t upper = SIZEOF (protocols);
+	size_t upper = SIZEOF (ethernet_protocols);
 	protocol = ntohs (protocol);
 	while (lower < upper)
 	{
-		size_t index = (lower + upper) >> 1;
-		signed order = protocol - protocols [index].number;
+		size_t index = (lower +  upper) >> 1;
+		signed order = protocol - ethernet_protocols [index].number;
 		if (order < 0)
 		{
 			upper = index - 0;
@@ -364,7 +364,7 @@ char const * oEthernet::ProtocolName (uint16_t protocol)
 			lower = index + 1;
 			continue;
 		}
-		return (protocols [index].name);
+		return (ethernet_protocols [index].name);
 	}
 	return ("unknown oEthernet protocol");
 }

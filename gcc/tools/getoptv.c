@@ -112,7 +112,6 @@ signed optmin = 0;
 signed getoptv (int argc, char const * argv [], char const * optv [])
 
 {
-	static char const ** action;
 	static char const * option;
 	static char const * string;
 	static signed count;
@@ -155,6 +154,7 @@ signed getoptv (int argc, char const * argv [], char const * optv [])
  *   they have no effect;
  */
 
+		char const ** action;
 		optv++;
 		optv++;
 		for (option = * optv++; * option; option++)

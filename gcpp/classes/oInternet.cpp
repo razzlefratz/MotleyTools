@@ -48,7 +48,7 @@ static struct
 	char const * name;
 }
 
-protocols [] =
+internet_protocols [] =
 
 {
 	{
@@ -157,11 +157,11 @@ char const * oInternet::ProtocolName (byte protocol)
 
 {
 	size_t lower = 0;
-	size_t upper = SIZEOF (protocols);
+	size_t upper = SIZEOF (internet_protocols);
 	while (lower < upper)
 	{
-		size_t index = (lower + upper) >> 1;
-		signed order = protocol - protocols [index].number;
+		size_t index = (lower +  upper) >> 1;
+		signed order = protocol - internet_protocols [index].number;
 		if (order < 0)
 		{
 			upper = index - 0;
@@ -172,9 +172,9 @@ char const * oInternet::ProtocolName (byte protocol)
 			lower = index + 1;
 			continue;
 		}
-		return (protocols [index].name);
+		return (internet_protocols [index].name);
 	}
-	return ("unknown inTERNET protocol");
+	return ("unknown internet protocol");
 }
 
 #endif
