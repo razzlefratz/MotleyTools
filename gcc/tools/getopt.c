@@ -124,7 +124,7 @@ signed getopt(int argc, char * argv[], char const * options)
 				char const * option;
 				optarg = (char *)(0);
 				optopt = * string++;
-				for (option = options; * option != (char)(0); option++)
+				for (option = options; * option; option++)
 				{
 					if (optopt == GETOPT_C_OPERAND)
 					{

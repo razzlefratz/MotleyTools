@@ -19,7 +19,7 @@
 
 #include "../tools/putoptv.h"
 
-void chkoptv (char const ** optv)
+void chkoptv (char const * optv [])
 
 {
 	extern char const * program_name;
@@ -44,7 +44,7 @@ void chkoptv (char const ** optv)
 		{
 			continue;
 		}
-		fprintf (stderr, "%s: option '%c' is no descriptiom.\n", program_name, * option);
+		fprintf (stderr, "%s: option '%c' has no descriptiom.\n", program_name, * option);
 	}
 	for (action = optv--; * action; action++)
 	{
