@@ -16,6 +16,7 @@
  *--------------------------------------------------------------------*/
 
 #include "../classes/stdafx.hpp"
+#include "../classes/otypes.hpp"
 
 /*====================================================================*
  *   class declaration;
@@ -31,6 +32,7 @@ public:
 	char * decode (char * string);
 private: 
 	static char const mdigit [];
+	unsigned index (char);
 	char * mbuffer;
 	size_t mlength;
 };

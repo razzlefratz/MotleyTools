@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   ocontext.cpp - implementation of the ocontext class.
+ *   ocombine.cpp - implementation of the ocombine class.
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -8,8 +8,8 @@
  *
  *--------------------------------------------------------------------*/
 
-#ifndef oCONTEXT_SOURCE
-#define oCONTEXT_SOURCE
+#ifndef oCOMBINE_SOURCE
+#define oCOMBINE_SOURCE
 
 /*====================================================================*
  *   system header files;
@@ -21,7 +21,7 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../classes/ocontext.hpp"
+#include "../classes/ocombine.hpp"
 
 /*====================================================================*
  *
@@ -31,7 +31,7 @@
  *
  *--------------------------------------------------------------------*/
 
-char const * ocontext::string () const
+char const * ocombine::string () const
 
 {
 	return (this->mstring);
@@ -45,7 +45,7 @@ char const * ocontext::string () const
  *
  *--------------------------------------------------------------------*/
 
-char const * ocontext::prefix () const
+char const * ocombine::prefix () const
 
 {
 	return (this->mprefix);
@@ -59,7 +59,7 @@ char const * ocontext::prefix () const
  *
  *--------------------------------------------------------------------*/
 
-char const * ocontext::suffix () const
+char const * ocombine::suffix () const
 
 {
 	return (this->msuffix);
@@ -67,13 +67,13 @@ char const * ocontext::suffix () const
 
 /*====================================================================*
  *
- *   ocontext & string (char buffer[], size_t length) const;
+ *   ocombine & string (char buffer[], size_t length) const;
  *
  *   copy the string to an external buffer;
  *
  *--------------------------------------------------------------------*/
 
-ocontext & ocontext::string (char buffer [], size_t length)
+ocombine & ocombine::string (char buffer [], size_t length)
 
 {
 
@@ -103,13 +103,13 @@ ocontext & ocontext::string (char buffer [], size_t length)
 
 /*====================================================================*
  *
- *   ocontext & prefix (char buffer[], size_t length) const;
+ *   ocombine & prefix (char buffer[], size_t length) const;
  *
  *   copy the prefix to an external buffer;
  *
  *--------------------------------------------------------------------*/
 
-ocontext & ocontext::prefix (char buffer [], size_t length)
+ocombine & ocombine::prefix (char buffer [], size_t length)
 
 {
 
@@ -139,13 +139,13 @@ ocontext & ocontext::prefix (char buffer [], size_t length)
 
 /*====================================================================*
  *
- *   ocontext & suffix (char buffer[], size_t length) const;
+ *   ocombine & suffix (char buffer[], size_t length) const;
  *
  *   copy the prefix to an external buffer;
  *
  *--------------------------------------------------------------------*/
 
-ocontext & ocontext::suffix (char buffer [], size_t length)
+ocombine & ocombine::suffix (char buffer [], size_t length)
 
 {
 
@@ -175,7 +175,7 @@ ocontext & ocontext::suffix (char buffer [], size_t length)
 
 /*====================================================================*
  *
- *   ocontext & split (char const *string, char const *charset, bool first, bool required);
+ *   ocombine & split (char const *string, char const *charset, bool first, bool required);
  *
  *   split the string argument at the first (or final) occurance of any
  *   member of charset; point mprefix to the first part and msuffix to
@@ -185,7 +185,7 @@ ocontext & ocontext::suffix (char buffer [], size_t length)
  *
  *--------------------------------------------------------------------*/
 
-ocontext & ocontext::split (char const * string, char const * charset, bool first, bool required)
+ocombine & ocombine::split (char const * string, char const * charset, bool first, bool required)
 
 {
 	delete [] this->mstring;
@@ -195,7 +195,7 @@ ocontext & ocontext::split (char const * string, char const * charset, bool firs
 	this->msuffix = (char *) (0);
 	while (* this->mprefix != (char) (0))
 	{
-		if (ocontext::member (charset, * this->mprefix))
+		if (ocombine::member (charset, * this->mprefix))
 		{
 			this->msuffix = this->mprefix;
 			if (first)
@@ -222,7 +222,7 @@ ocontext & ocontext::split (char const * string, char const * charset, bool firs
 	return (* this);
 }
 
-ocontext & ocontext::merge (char const * prefix, char const * middle, char const * suffix)
+ocombine & ocombine::merge (char const * prefix, char const * middle, char const * suffix)
 
 {
 	size_t length = 0;
@@ -277,7 +277,7 @@ ocontext & ocontext::merge (char const * prefix, char const * middle, char const
  *
  *--------------------------------------------------------------------*/
 
-bool ocontext::member (char const * string, char c)
+bool ocombine::member (char const * string, char c)
 
 {
 	while (* string != (char) (0))
@@ -297,7 +297,7 @@ bool ocontext::member (char const * string, char c)
  *
  *--------------------------------------------------------------------*/
 
-ocontext::ocontext ()
+ocombine::ocombine ()
 
 {
 	this->mstring = new char [1];
@@ -309,12 +309,12 @@ ocontext::ocontext ()
 
 /*====================================================================*
  *
- *   ~ ocontext ();
+ *   ~ ocombine ();
  *
  *
  *--------------------------------------------------------------------*/
 
-ocontext::~ ocontext ()
+ocombine::~ ocombine ()
 
 {
 	delete [] this->mstring;
