@@ -44,7 +44,7 @@ const struct _code_ otruth::table [] =
 		"false"
 	},
 	{
-		false.
+		false,
 		"no"
 	},
 	{
