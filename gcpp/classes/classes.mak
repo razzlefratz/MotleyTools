@@ -107,7 +107,6 @@ oflagword.o: oflagword.cpp oflagword.hpp
 oformat.hpp: stdafx.hpp
 ofunctions.hpp: okeywords.hpp stdafx.hpp
 ofunctions.o: ofunctions.cpp ofunctions.hpp okeyword.hpp stdafx.hpp
-ogetopt.hpp: stdafx.hpp
 ogetoptv.hpp: oputoptv.hpp oversion.hpp
 ogetoptv.o: ogetoptv.cpp ogetoptv.hpp oputoptv.hpp oversion.hpp
 oglossary.hpp: oitem.hpp olist.hpp
@@ -167,7 +166,6 @@ ophptidy.hpp: ocollect.hpp oindent.hpp stdafx.hpp
 oprefix.hpp: stdafx.hpp
 oprofile.hpp: oswitch.hpp stdafx.hpp
 oprogram.hpp: ocollect.hpp oindent.hpp stdafx.hpp
-oputopt.hpp: stdafx.hpp
 oputoptv.hpp: stdafx.hpp
 oqueue.hpp: stdafx.hpp
 oregex.hpp: oascii.hpp oescape.hpp stdafx.hpp

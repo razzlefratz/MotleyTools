@@ -86,7 +86,6 @@ g++ -Wall -c ofindspec.cpp
 g++ -Wall -c oflagword.cpp
 g++ -Wall -c oformat.cpp
 g++ -Wall -c ofunctions.cpp
-g++ -Wall -c ogetopt.cpp
 g++ -Wall -c ogetoptv.cpp
 g++ -Wall -c oglossary.cpp
 g++ -Wall -c ograph.cpp
@@ -117,7 +116,6 @@ g++ -Wall -c ophptidy.cpp
 g++ -Wall -c oprefix.cpp
 g++ -Wall -c oprofile.cpp
 g++ -Wall -c oprogram.cpp
-g++ -Wall -c oputopt.cpp
 g++ -Wall -c oputoptv.cpp
 g++ -Wall -c oqueue.cpp
 g++ -Wall -c oregex.cpp
