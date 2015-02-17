@@ -1,0 +1,103 @@
+.TH odd 1 "August 2013" "cmassoc-tools-1.9.1" "Motley Tools"
+
+.SH NAME
+odd - object driven dump 
+
+.SH SYNOPSIS
+.BR odd 
+.RI [ options ]
+.IR file 
+.RI [ file ]
+.RI [ ... ] 
+.RI [> stdout ]
+
+.PP
+.BR odd
+.RI [ options ]
+.RI [< stdin ]
+.RI [> stdout ]
+
+.SH DESCRIPTION
+Print an object driven dump on stdout.
+An object driven dump requires an object definition file that contains the size and name of each region (or object) in a binary file.
+Individual objects are presented as independent data dumps within a larger, overall data dump.
+
+.SH OPTIONS
+
+.TP
+-\fBf\fI definitions\fR
+The name of the object definition file that contains the size, name and description of objects within a binary file.
+The definition file is not modified.
+This option is required.
+There is no default file.
+
+.TP
+.RB - ? ,-- help
+Print program help summary on stdout.
+This option takes precedence over other options on the command line.
+
+.TP
+.RB - ! ,-- version
+Print program version information on stdout.
+This option takes precedence over other options on the command line.
+
+.SH ARGUMENTS
+
+.TP
+.IR file
+The name of a binary file.
+More than one file may be specified but each should conform to the object definition file or output will be incorrect.
+Input is read from stdin when no files are specified on the command line.
+
+.SH EXAMPLES
+The following is an example object definition file for an Ethernet frame.
+Frame fields, like \fBODA\fR, \fBOSA\fR and \fBETHTYPE\fR,  are defined by \fIlength\fR in order of their appears in the frame.
+Array subscripts following object names are optional but, if present, become part of the object name.
+Fields having no \fIlength\fR are headers and will be ignored.
+Comments and blank lines are also ignored.
+
+.PP
+   # ========================================
+   #
+   # ----------------------------------------
+   
+   0 header
+   
+   6 ODA[6] Own Destination Address
+   6 OSA[6] Own Source Address
+   2 ETHTYPE Ethertype or frame length
+   
+   # ========================================
+   #
+   # ----------------------------------------
+   
+   0 body
+   
+   1500 Payload[1500]
+   
+   # ========================================
+   #
+   # ----------------------------------------
+   
+   0 trailer
+   
+   4 CRC Cyclical Redundancy Check
+
+.PP
+The following command uses object definition file \fBether.txt\fR to identify and display member fields within binary file \fBabc.bin\fR in hexadecimal dump format.
+
+.PP
+   # odd -f ether.txt abc.bin
+
+.SH SEE ALSO
+.BR block ( 1 ),
+.BR grab ( 1 ),
+.BR odc ( 1 ),
+.BR ode ( 1 ),
+.BR odx ( 1 ),
+.BR offset ( 1 ),
+.BR xde ( 1 )
+
+.SH CREDITS
+ Charles Maier <cmaier@cmassoc.net>
+
