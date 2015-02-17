@@ -69,8 +69,8 @@ int main (int argc, char const * argv [])
 		"object driven editor",
 		"file base [type item] [type item] [...]\n\n\t  where type is 'byte'|'word'|'long'|'huge'|'data'|'zero'|'fill'|'skip'",
 		"qvw:",
-		"q\tquiet moedit",
-		"v[v]\tverbose moedit",
+		"q\tquiet mode",
+		"v[v]\tverbose mode",
 		"w n\twindow is n bytes [32]",
 		(char const *) (0)
 	};
