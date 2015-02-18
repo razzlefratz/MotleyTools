@@ -92,7 +92,7 @@
  *
  *--------------------------------------------------------------------*/
 
-static void function (struct channel * channel, void * memory, ssize_t extent)
+static void transmit (struct channel * channel, void * memory, ssize_t extent)
 
 {
 	struct ether_header * frame = (struct ether_header *) (memory);
@@ -126,8 +126,9 @@ static void function (struct channel * channel, void * memory, ssize_t extent)
 
 /*====================================================================*
  *
- *   void iterate (int argc, char const * argv [], void * memory, ssize_t extent, unsigned pause);
+ *   void iterate (int argc, char const * argv [], struct channel * channel, unsigned pause);
  *
+ *   transmit all files found on the command line, again if needed;
  *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
@@ -141,7 +142,7 @@ static void iterate (int argc, char const * argv [], struct channel * channel, u
 	byte buffer [ETHER_MAX_LEN];
 	if (! argc)
 	{
-		function (channel, buffer, sizeof (buffer));
+		transmit (channel, buffer, sizeof (buffer));
 	}
 	while ((argc) && (* argv))
 	{
@@ -149,7 +150,7 @@ static void iterate (int argc, char const * argv [], struct channel * channel, u
 		{
 			error (1, errno, "Can't open %s", * argv);
 		}
-		function (channel, buffer, sizeof (buffer));
+		transmit (channel, buffer, sizeof (buffer));
 		argc--;
 		argv++;
 		if ((argc) && (* argv))
