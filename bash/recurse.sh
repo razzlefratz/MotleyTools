@@ -1,16 +1,33 @@
 #!/bin/bash
-# Published 2006 by Charles Maier Associates Limited for internal use;
+# file: recurse.sh
 
 # ====================================================================
 #
 # --------------------------------------------------------------------
 
-for file in ${1}/*; do
-	if [ -d ${file} ]; then
-		echo "<h2>"${file}"</h2>"
-		${0} ${file}
-	else
-		echo "\t<li>"$(basename ${file})"</li>"
+HOST=${HOSTNAME}
+MODE=6775
+OWNER=${USER}
+GROUP=plc
+
+# ====================================================================
+#
+# --------------------------------------------------------------------
+
+if [ ${HOSTNAME} != ${HOST} ]; then
+	echo "This host is not ${HOST}."
+	exit 1
 	fi
+if [ -z ${1} ]; then
+	echo "Specify full path to folder."
+	exit 1
+	fi
+for file in ${1}/*; do
+	chown ${OWNER}:${GROUP} ${file}
+	if [ -d ${file} ]; then
+		echo ${file}
+		chmod ${MODE} ${file}
+		${0} ${file}
+		fi
 done
 
