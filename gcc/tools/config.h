@@ -2,12 +2,12 @@
  *
  *   config.h - configuration file definitions and declarations;
  *
- *   a configuration file contains named parts where each part may
- *   jave one or more named items where each has associated text;
+ *   configuration files contain named parts where each part may 
+ *   have one of more named items that have text definitions; 
  *
- *   the named file can be searched for the first occurance of 
- *   a named part then the first occurance of a named item; the
- *   associated text is returned, if preent;
+ *   the named file can be searched for the first occurance of a
+ *   named part then the first occurance of a named item; return
+ *   the associated text, if present;
  *
  *   [part1]
  *   item1=text

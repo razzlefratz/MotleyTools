@@ -3,10 +3,11 @@
  *   config.c - configuration file reader;
  *
  *   configuration files contain named parts where each part may 
- *   contain one of more named items that have text definitions; 
+ *   have one of more named items that have text definitions; 
  *
  *   the named file can be searched for the first occurance of a
- *   named part then the first occurance of a named item; 
+ *   named part then the first occurance of a named item; return
+ *   the associated text, if present; 
  *
  *   [part1]
  *   item1=text
@@ -42,7 +43,7 @@
  *   program variables;
  *--------------------------------------------------------------------*/
 
-static char buffer[1024] = "";
+static char buffer [1024] = "";
 static signed c;
 
 /*====================================================================*
@@ -58,25 +59,25 @@ static signed c;
  *
  *--------------------------------------------------------------------*/
 
-static bool compare(FILE * fp, char const * sp)
+static bool compare (FILE * fp, char const * sp)
 
 {
-	while (isblank(* sp))
+	while (isblank (* sp))
 	{
 		sp++;
 	}
-	while ((* sp) && (toupper(c) == toupper(* sp)) && nobreak(c))
+	while ((* sp) && (toupper (c) == toupper (* sp)) && nobreak (c))
 	{
 		do 
 		{
 			sp++;
 		}
-		while (isblank(* sp));
+		while (isblank (* sp));
 		do 
 		{
-			c = getc(fp);
+			c = getc (fp);
 		}
-		while (isblank(c));
+		while (isblank (c));
 	}
 	return (! * sp);
 }
@@ -90,16 +91,16 @@ static bool compare(FILE * fp, char const * sp)
  *
  *--------------------------------------------------------------------*/
 
-static void collect(FILE * fp)
+static void collect (FILE * fp)
 
 {
 	char * bp = buffer;
 	char * cp = buffer;
-	while ((c != ';') && nobreak(c))
+	while ((c != ';') && nobreak (c))
 	{
 		if (c == '\\')
 		{
-			c = getc(fp);
+			c = getc (fp);
 			if (c == 'n')
 			{
 				c = '\n';
@@ -109,15 +110,15 @@ static void collect(FILE * fp)
 				c = '\t';
 			}
 		}
-		if ((size_t) (cp - buffer) < (sizeof(buffer) - 1))
+		if ((size_t) (cp - buffer) < (sizeof (buffer) -1))
 		{
 			* cp++ = c;
 		}
-		if (! isspace(c))
+		if (! isspace (c))
 		{
 			bp = cp;
 		}
-		c = getc(fp);
+		c = getc (fp);
 	}
 	* bp = '\0';
 	return;
@@ -132,16 +133,16 @@ static void collect(FILE * fp)
  *
  *--------------------------------------------------------------------*/
 
-static void discard(FILE * fp)
+static void discard (FILE * fp)
 
 {
-	while (nobreak(c))
+	while (nobreak (c))
 	{
-		c = getc(fp);
+		c = getc (fp);
 	}
 	if (c != EOF)
 	{
-		c = getc(fp);
+		c = getc (fp);
 	}
 	return;
 }
@@ -157,7 +158,7 @@ static void discard(FILE * fp)
  *
  *--------------------------------------------------------------------*/
 
-char const * configstring(char const * file, char const * part, char const * item, char const * text)
+char const * configstring (char const * file, char const * part, char const * item, char const * text)
 
 {
 	FILE * fp;
@@ -165,13 +166,13 @@ char const * configstring(char const * file, char const * part, char const * ite
 	{
 		return (text);
 	}
-	if ((fp = fopen(file, "rb")))
+	if ((fp = fopen (file, "rb")))
 	{
-		for (c = getc(fp); c != EOF; discard(fp))
+		for (c = getc (fp); c != EOF; discard (fp))
 		{
-			while (isblank(c))
+			while (isblank (c))
 			{
-				c = getc(fp);
+				c = getc (fp);
 			}
 			if (c != '[')
 			{
@@ -179,10 +180,10 @@ char const * configstring(char const * file, char const * part, char const * ite
 			}
 			do 
 			{
-				c = getc(fp);
+				c = getc (fp);
 			}
-			while (isblank(c));
-			if (! compare(fp, part))
+			while (isblank (c));
+			if (! compare (fp, part))
 			{
 				continue;
 			}
@@ -190,17 +191,17 @@ char const * configstring(char const * file, char const * part, char const * ite
 			{
 				continue;
 			}
-			for (discard(fp); (c != '[') && (c != EOF); discard(fp))
+			for (discard (fp); (c != '[') && (c != EOF); discard (fp))
 			{
-				while (isblank(c))
+				while (isblank (c))
 				{
-					c = getc(fp);
+					c = getc (fp);
 				}
 				if (c == ';')
 				{
 					continue;
 				}
-				if (! compare(fp, item))
+				if (! compare (fp, item))
 				{
 					continue;
 				}
@@ -210,9 +211,9 @@ char const * configstring(char const * file, char const * part, char const * ite
 				}
 				do 
 				{
-					c = getc(fp);
+					c = getc (fp);
 				}
-				while (isblank(c));
+				while (isblank (c));
 				collect (fp);
 				text = buffer;
 				break;
@@ -238,11 +239,11 @@ char const * configstring(char const * file, char const * part, char const * ite
 
 #include <stdio.h>
 
-int main(int argc, char const * argv[])
+int main (int argc, char const * argv [])
 
 {
-	char const * text = configstring(argv[1], argv[2], argv[3], argv[4]);
-	printf ("file=[%s] part=[%s] item=[%s] text=[%s]\n", argv[1], argv[2], argv[3], text);
+	char const * text = configstring (argv [1], argv [2], argv [3], argv [4]);
+	printf ("file=[%s] part=[%s] item=[%s] text=[%s]\n", argv [1], argv [2], argv [3], text);
 	return (0);
 }
 
