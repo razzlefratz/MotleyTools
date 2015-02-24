@@ -103,7 +103,7 @@ static void _newline(FILE * fp)
 
 /*====================================================================*
  *
- *   bool compare (FILE * fp, char const *sp);
+ *   bool _compare (FILE * fp, char const *sp);
  *
  *   compare file characters to text characters until they differ 
  *   or until the text, line or file ends; a match occurs if the 
@@ -119,7 +119,7 @@ static void _newline(FILE * fp)
  *
  *--------------------------------------------------------------------*/
 
-static bool compare(FILE * fp, char const * sp)
+static bool _compare (FILE * fp, char const * sp)
 
 {
 	while (isblank(* sp))
@@ -161,11 +161,15 @@ static void _collect(FILE * fp)
 		if (c == '\\')
 		{
 			c = getc(fp);
-			if (c == 'n')
+			if (c == 'r')
+			{
+				c = '\r';
+			}
+			else if (c == 'n')
 			{
 				c = '\n';
 			}
-			if (c == 't')
+			else if (c == 't')
 			{
 				c = '\t';
 			}
@@ -233,7 +237,7 @@ char const * profilestring(char const * profile, char const * section, char cons
 				continue;
 			}
 			_newchar (fp);
-			if (! compare(fp, section))
+			if (! _compare(fp, section))
 			{
 				continue;
 			}
@@ -247,7 +251,7 @@ char const * profilestring(char const * profile, char const * section, char cons
 				{
 					continue;
 				}
-				if (! compare(fp, element))
+				if (! _compare(fp, element))
 				{
 					continue;
 				}
@@ -322,9 +326,9 @@ signed profilenumber(char const * profile, char const * section, char const * el
  *
  *   int main (int argc, char const * argv []);
  *
- *   demo/test program; arguments are profile, section, element and content in 
- *   that order; you can construct your own configuration profile and
- *   observe behaviour; 
+ *   demo/test program; arguments are profile, section, element and 
+ *   content in that order; you can construct your own configuration 
+ *   profile and observe behaviour; 
  *
  *--------------------------------------------------------------------*/
 
@@ -347,9 +351,9 @@ int main(int argc, char const * argv[])
  *
  *   int main (int argc, char const * argv []);
  *
- *   demo/test program; arguments are profile, section, element and content in 
- *   that order; you can construct your own configuration profile and
- *   observe behaviour; 
+ *   demo/test program; arguments are profile, section, element and 
+ *   content in that order; you can construct your own configuration 
+ *   profile and observe behaviour; 
  *
  *--------------------------------------------------------------------*/
 
