@@ -30,13 +30,26 @@ Long options are not supported.
 All options are single letters.
 
 .TP
-.BR - g
-Suitable for GNU makefiles.
-This option is the default.
+-\fBc \fIchar\fR
+Replace leading tabs and spaces with one space.
 
 .TP
-.BR - m
-Merge continuation lines.
+-\fBe \fIchar\fR
+Replace trailing leading tabs and spaces with one space.
+
+.TP
+.RB - n
+Discard leading tabs and spaces.
+This removes all indenting and forces text to the left margin.
+
+.TP
+.RB - s
+Replace leading tabs and spaces with one space.
+
+.TP
+.RB - t
+Replace leading tabs and spaces with one tab. 
+This option is suitable for GNU make files.
 
 .TP
 .RB - ? ,-- help

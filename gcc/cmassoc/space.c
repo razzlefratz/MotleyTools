@@ -271,11 +271,11 @@ int main (int argc, char const * argv [])
 		"white space minimizer",
 		PUTOPTV_S_FILTER,
 		"c:e:nstx",
-		"c c\tindent character is (c) [" LITERAL (SPACE_NEWLINE) "]",
-		"e c\treturn character is (c) [" LITERAL (SPACE_ENDLINE) "]",
-		"n\tindent character is nothing",
-		"s\tindent character is space [" LITERAL (CLANG_SP) "]",
-		"t\tindent character is tab [" LITERAL (CLANG_HT) "]",
+		"c c\tindent is one (c) [" LITERAL (SPACE_NEWLINE) "]",
+		"e c\treturn is one (c) [" LITERAL (SPACE_ENDLINE) "]",
+		"n\tindent is nothing",
+		"s\tindent is one space [" LITERAL (CLANG_SP) "]",
+		"t\tindent is one tab [" LITERAL (CLANG_HT) "]",
 		"x\treplace tabs with spaces; discard trailing spaces;",
 		(char *) (0)
 	};
