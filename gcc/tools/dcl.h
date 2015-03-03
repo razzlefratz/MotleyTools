@@ -28,6 +28,7 @@
 #define EQUAL '='
 #define QUOTE '\"'
 #define APOST '\''
+#define ERROR "Have '%c' but expected '%c'\n"
 
 /*====================================================================*
  *   functions;
