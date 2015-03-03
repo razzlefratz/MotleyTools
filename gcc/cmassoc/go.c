@@ -2,9 +2,6 @@
  *
  *   go.c -
  *
- *   copy one or more files to stdout; if no files are specified
- *   then copy stdin to stdout;
- *
  *.  Motley Tools by Charles Maier;
  *:  Copyright (c) 2001-2006 by Charles Maier Associates Limited;
  *;  Licensed under the Internet Software Consortium License;
@@ -87,7 +84,7 @@ int main (int argc, char const * argv [])
 		node = DCLLine ();
 		if ((c != ';') && (c != EOF))
 		{
-			error (1, 0, "Have '%c' but need ';'", c);
+			error (1, 0, ERROR, c, ';');
 		}
 		DCLTree (node);
 		DCLFree (node);
