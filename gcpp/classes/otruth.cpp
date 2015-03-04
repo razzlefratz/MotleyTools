@@ -32,40 +32,40 @@ const struct _code_ otruth::table [] =
 
 {
 	{
-		"0",
-		false
+		false,
+		"0"
 	},
 	{
-		"1",
-		true
+		true,
+		"1"
 	},
 	{
-		"false",
-		false
+		false,
+		"false"
 	},
 	{
-		"no",
-		false
+		false,
+		"no"
 	},
 	{
-		"off",
-		false
+		false,
+		"off"
 	},
 	{
-		"on",
-		true
+		true,
+		"on"
 	},
 	{
-		"true",
-		true
+		true,
+		"true"
 	},
 	{
-		"yes",
-		true
+		true,
+		"yes"
 	},
 	{
-		(char const *) (0),
-		0
+		0,
+		(char const *) (0)
 	}
 };
 

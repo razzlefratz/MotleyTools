@@ -71,7 +71,6 @@ gcc -Wall -Wextra -Wno-unused-parameter -c fvalue.c
 gcc -Wall -Wextra -Wno-unused-parameter -c gather.c
 gcc -Wall -Wextra -Wno-unused-parameter -c getch.c
 # gcc -Wall -Wextra -Wno-unused-parameter -c getopt.c
-# gcc -Wall -Wextra -Wno-unused-parameter -c getopt1.c
 gcc -Wall -Wextra -Wno-unused-parameter -c getargv.c
 gcc -Wall -Wextra -Wno-unused-parameter -c getfields.c
 gcc -Wall -Wextra -Wno-unused-parameter -c getoptv.c
@@ -118,7 +117,6 @@ gcc -Wall -Wextra -Wno-unused-parameter -c printn.c
 gcc -Wall -Wextra -Wno-unused-parameter -c printv.c
 gcc -Wall -Wextra -Wno-unused-parameter -c printx.c
 gcc -Wall -Wextra -Wno-unused-parameter -c profile.c
-# gcc -Wall -Wextra -Wno-unused-parameter -c putopt.c
 gcc -Wall -Wextra -Wno-unused-parameter -c putoptv.c
 gcc -Wall -Wextra -Wno-unused-parameter -c readtoken.c
 gcc -Wall -Wextra -Wno-unused-parameter -c regview.c

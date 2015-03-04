@@ -12,7 +12,7 @@
  *--------------------------------------------------------------------*/
 
 #ifndef oHTMLATTRIBUTES_HEADER
-#define oHTMlATTRIBUTES_HEADER
+#define oHTMLATTRIBUTES_HEADER
 
 /*====================================================================*
  *   custom header files;

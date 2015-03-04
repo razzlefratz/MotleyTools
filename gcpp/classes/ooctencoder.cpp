@@ -40,18 +40,18 @@ char * ooctencoder::decode (char * string)
 		{
 			if (* string == '\\')
 			{
-				unsigned m,
-				n,
-				o;
-				if ((m = chrindex (ooctencoder::mdigit, string [1])) > 0x0003)
+				unsigned m;
+				unsigned n;
+				unsigned o;
+				if ((m = ooctencoder::index (string [1])) > 0x0003)
 				{
 					continue;
 				}
-				if ((n = chrindex (ooctencoder::mdigit, string [2])) > 0x0007)
+				if ((n = ooctencoder::index (string [2])) > 0x0007)
 				{
 					continue;
 				}
-				if ((o = chrindex (ooctencoder::mdigit, string [3])) > 0x0007)
+				if ((o = ooctencoder::index (string [3])) > 0x0007)
 				{
 					continue;
 				}
@@ -63,6 +63,22 @@ char * ooctencoder::decode (char * string)
 		}
 	}
 	return (string);
+}
+
+/*====================================================================*
+ *
+ *   unsigned ooctencoder::index (char c);
+ *
+ *
+ *
+ *--------------------------------------------------------------------*/
+
+unsigned ooctencoder::index (char c)
+
+{
+	char const * sp;
+	for (sp = ooctencoder::mdigit; (*sp) && (*sp != c); sp++);
+	return ((unsigned) (sp - ooctencoder::mdigit));
 }
 
 /*====================================================================*

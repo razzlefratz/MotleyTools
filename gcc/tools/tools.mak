@@ -63,8 +63,6 @@ gather.o: gather.c memory.h
 getch.o: getch.c unget.h tools.h types.h sizes.h
 getclass.o: getclass.c tools.h types.h sizes.h
 getclass.demo.o: getclass.demo.c getclass.c tools.h types.h sizes.h
-getopt.o: getopt.c error.h getopt.h version.h types.h
-getopt1.o: getopt1.c
 getargv.o: getargv.c chars.h symbol.h
 getfields.o: getfields.c chars.h sizes.h symbol.h
 getoptv.o: getoptv.c getoptv.h putoptv.h version.h
@@ -110,7 +108,6 @@ printn.o: printn.c number.h tools.h types.h sizes.h
 printv.o: printv.c tools.h types.h sizes.h
 printx.o: printx.c number.h memory.h tools.h types.h sizes.h
 profile.o: profile.c tools.h chars.h number.h types.h sizes.h
-putopt.o: putopt.c getopt.h putopt.h
 putoptv.o: putoptv.c getoptv.h putoptv.h
 readtoken.o: readtoken.c tools.h types.h sizes.h
 reverse.o: reverse.c memory.h types.h

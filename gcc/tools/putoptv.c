@@ -5,7 +5,8 @@
  *   putoptv.h
  *
  *   print program information on stdout; informtion is stored as an
- *   ordered string vector; string indexes are defined in getopt.h;
+ *   ordered string vector; program_name is initialized by function
+ *   getoptv; character constants are defined in getoptv.h;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -22,7 +23,7 @@
 #include "../tools/getoptv.h"
 #include "../tools/putoptv.h"
 
-void putoptv (char const ** optv)
+void putoptv (char const * optv [])
 
 {
 	extern char const * program_name;

@@ -21,9 +21,9 @@ MAKEFIND=makefind.o partpath.o partfile.o find.o
 MAKEPATH=makepath.o splitpath.o mergepath.o
 VFOPEN=vfopen.o ${MAKEPATH}
 
-TOOLS=afm align argv argvesc b64 bang bin2hex blank calend call envp ether case catalog cblock cbrief cdep cedit change chr cinc cmerge preamble cpp2c crlf csv2html ctar defix delta detab dls dmp2hex dump ds efru efsu enbrace enfix englyph entab errno fbar ff filesize footer fp go grab graph grope hbrief header hex hex2bin hexcmp hexdmp html ifd import iplist ipsort key l2p lp2824 lam log long loop matrix mmf mp mrg mtk munge rex nics np ocomp odc odd ode odump odx oedit offset ofld order owrt pad paginate qc sandwich purge radix relate remove sbar sbrief search shakey shakeys sign single sizeof space srt stamp sv sweep symlinks timer typelist tls trim try ts undiff unique vl vu wl wl2 xde xml 
+TOOLS=afm align argv argvesc b64 bang bin2hex blank calend call envp ether case catalog cblock cbrief cdep cedit change chr cinc cmerge preamble cpp2c crlf csv2html ctar defix delta detab dls dmp2hex dump ds efru efsu enbrace enfix englyph entab errno fbar ff filesize footer fp go grab graph grope hbrief header hex hex2bin hexcmp hexdmp html ifd import iplist ipsort key l2p lp2824 lam log long loop matrix mmf mp mrg mtk munge rex nics np ocomp odump odx oedit offset ofld order owrt pad paginate qc sandwich purge radix relate remove sbar sbrief search shakey shakeys sign single sizeof space srt stamp sv sweep symlinks timer typelist tls trim try ts undiff unique vl vu wl wl2 xde xml 
 
-PAGES=toolkit.1 afm.1 align.1 argv.1 b64.1 bang.1 bin2hex.1 blank.1 calend.1 call.1 case.1 catalog.1 cblock.1 cbrief.1 cdep.1 cedit.1 change.1 chr.1 cinc.1 cmerge.1 crlf.1 csv2html.1 ctar.1 defix.1 delta.1 detab.1 dls.1 dmp2hex.1 ds.1 efsu.1 enbrace.1 enfix.1 englyph.1 entab.1 envp.1 fbar.1 ff.1 filesize.1 footer.1 fp.1 grab.1 graph.1 grope.1 hbrief.1 header.1 hex.1 hex2bin.1 hexcmp.1 hexdmp.1 html.1 ifd.1 import.1 key.1 l2p.1 lam.1 log.1 loop.1 matrix.1 mp.1 mrg.1 munge.1 nics.1 np.1 ocomp.1 odc.1 odd.1 ode.1 odump.1 odx.1 oedit.1 offset.1 order.1 preamble.1 relate.1 remove.1 rex.1 sandwich.1 sbrief.1 search.1 shakey.1 shakeys.1 single.1 sizeof.1 space.1 srt.1 stamp.1 sweep.1 sv.1 symlinks.1 timer.1 typelist.1 tls.1 trim.1 try.1 undiff.1 unique.1 vl.1 vu.1 wl.1 xde.1 xml.1
+PAGES=toolkit.1 afm.1 align.1 argv.1 b64.1 bang.1 bin2hex.1 blank.1 calend.1 call.1 case.1 catalog.1 cblock.1 cbrief.1 cdep.1 cedit.1 change.1 chr.1 cinc.1 cmerge.1 crlf.1 csv2html.1 ctar.1 defix.1 delta.1 detab.1 dls.1 dmp2hex.1 ds.1 efsu.1 enbrace.1 enfix.1 englyph.1 entab.1 envp.1 fbar.1 ff.1 filesize.1 footer.1 fp.1 grab.1 graph.1 grope.1 hbrief.1 header.1 hex.1 hex2bin.1 hexcmp.1 hexdmp.1 html.1 ifd.1 import.1 key.1 l2p.1 lam.1 log.1 loop.1 matrix.1 mp.1 mrg.1 munge.1 nics.1 np.1 ocomp.1 odump.1 odx.1 oedit.1 offset.1 order.1 preamble.1 relate.1 remove.1 rex.1 sandwich.1 sbrief.1 search.1 shakey.1 shakeys.1 single.1 sizeof.1 space.1 srt.1 stamp.1 sweep.1 sv.1 symlinks.1 timer.1 typelist.1 tls.1 trim.1 try.1 undiff.1 unique.1 vl.1 vu.1 wl.1 xde.1 xml.1
 
 ifeq (${system},Linux)
 TOOLS+=localhost quiet runjobs shout syslog what whom
@@ -161,10 +161,6 @@ nics: nics.o decdecode.o decstring.o error.o getoptv.o hexdecode.o hexstring.o h
 np: np.o error.o getoptv.o makepath.o mergepath.o putoptv.o splitpath.o version.o vfopen.o
 octal: octal.o chrindex.o efreopen.o error.o getoptv.o makepath.o mergepath.o putoptv.o splitpath.o version.o
 ocomp: ocomp.o error.o getoptv.o hexoffset.o hexview.o putoptv.o version.o
-odc: odc.o error.o getoptv.o hexoffset.o hexview.o putoptv.o version.o
-odd: odd.o error.o getoptv.o hexoffset.o hexview.o putoptv.o version.o
-ode: ode.o basespec.o console.o dataspec.o hexdump.o hexpeek.o memencode.o todigit.o uintspec.o
-ode2: ode2.o basespec.o dataspec.o error.o getoptv.o hexdump.o putoptv.o todigit.o uintspec.o version.o
 odump: odump.o error.o getoptv.o hexoffset.o hexview.o putoptv.o version.o
 odx: odx.o console.o indent.o xmlschema.o
 oedit: oedit.o basespec.o console.o dataspec.o hexdump.o hexpeek.o memencode.o todigit.o uintspec.o

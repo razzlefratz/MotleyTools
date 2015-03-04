@@ -40,8 +40,6 @@ protected:
 private: 
 	static const struct _code_ table [];
 	static const unsigned count;
-	char const * mlabel;
-	signed mvalue;
 };
 
 /*====================================================================*

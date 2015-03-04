@@ -49,33 +49,11 @@ private:
 	oitem ** mtable;
 	signed (* morder) (char const *, char const *);
 	unsigned mstart;
-
-/* table lower bound */
-
 	unsigned mblock;
-
-/* table block size  for reallocation */
-
 	unsigned mlimit;
-
-/* table upper bound */
-
-	unsigned mindex;
-
-/* table index */
-
 	unsigned mcount;
-
-/* table count */
-
 	unsigned mlower;
-
-/* binary search lower bound */
-
 	unsigned mupper;
-
-/* binary search upper bound */
-
 };
 
 /*====================================================================*

@@ -6,7 +6,6 @@
 # g++ -Wall -c oAttribute.demo.cpp
 # g++ -Wall -c ochrtbl.demo.cpp
 # g++ -Wall -c ocmassocindex.cpp
-# g++ -Wall -c ocombine.cpp
 # g++ -Wall -c ocontext.cpp
 # g++ -Wall -c ocontext.demo.cpp
 # g++ -Wall -c odict.demo.cpp
@@ -16,18 +15,13 @@
 # g++ -Wall -c oformat.demo.cpp
 # g++ -Wall -c oglossary.demo.cpp
 # g++ -Wall -c oheap.demo.cpp
-# g++ -Wall -c ohexencode.cpp
-# g++ -Wall -c ohexencoder.cpp
 # g++ -Wall -c olist.demo.cpp
-# g++ -Wall -c ooctencode.cpp
-# g++ -Wall -c ooctencoder.cpp
 # g++ -Wall -c opage1.cpp
 # g++ -Wall -c oprefix.demo.cpp
 # g++ -Wall -c oprofile.demo.cpp
 # g++ -Wall -c oregex.demo.cpp
 # g++ -Wall -c osuffix.demo.cpp
 # g++ -Wall -c osyslog.cpp
-# g++ -Wall -c otruth.cpp
 # g++ -Wall -c otruth.demo.cpp
 # g++ -Wall -c oARPTable.cpp
 g++ -Wall -c oEthernet.cpp
@@ -40,7 +34,7 @@ g++ -Wall -c oInternet.cpp
 g++ -Wall -c oInternetAddress.cpp
 g++ -Wall -c oSHA256.cpp
 g++ -Wall -c oagenda.cpp
-g++ -Wall -c oascii.cpp
+# g++ -Wall -c oascii.cpp
 g++ -Wall -c obreak.cpp
 g++ -Wall -c obuffer.cpp
 g++ -Wall -c ocalendar.cpp
@@ -58,6 +52,7 @@ g++ -Wall -c ochtml.cpp
 g++ -Wall -c oclangwords.cpp
 g++ -Wall -c oclibwords.cpp
 g++ -Wall -c ocode.cpp
+g++ -Wall -c ocombine.cpp
 g++ -Wall -c ocomment.cpp
 g++ -Wall -c oconstants.cpp
 g++ -Wall -c ocpluswords.cpp
@@ -86,11 +81,12 @@ g++ -Wall -c ofindspec.cpp
 g++ -Wall -c oflagword.cpp
 g++ -Wall -c oformat.cpp
 g++ -Wall -c ofunctions.cpp
-g++ -Wall -c ogetopt.cpp
 g++ -Wall -c ogetoptv.cpp
 g++ -Wall -c oglossary.cpp
 g++ -Wall -c ograph.cpp
 g++ -Wall -c oheap.cpp
+g++ -Wall -c ohexencode.cpp
+g++ -Wall -c ohexencoder.cpp
 g++ -Wall -c ohtmltidy.cpp
 g++ -Wall -c oinclude.cpp
 g++ -Wall -c oindent.cpp
@@ -108,6 +104,8 @@ g++ -Wall -c omonth.cpp
 g++ -Wall -c omptidy.cpp
 g++ -Wall -c onode.cpp
 g++ -Wall -c onodes.cpp
+g++ -Wall -c ooctencode.cpp
+g++ -Wall -c ooctencoder.cpp
 g++ -Wall -c ooutline.cpp
 g++ -Wall -c opackage.cpp
 g++ -Wall -c opage.cpp
@@ -117,7 +115,6 @@ g++ -Wall -c ophptidy.cpp
 g++ -Wall -c oprefix.cpp
 g++ -Wall -c oprofile.cpp
 g++ -Wall -c oprogram.cpp
-g++ -Wall -c oputopt.cpp
 g++ -Wall -c oputoptv.cpp
 g++ -Wall -c oqueue.cpp
 g++ -Wall -c oregex.cpp
@@ -142,5 +139,6 @@ g++ -Wall -c othread.cpp
 g++ -Wall -c otimer.cpp
 g++ -Wall -c otodo.cpp
 g++ -Wall -c otree.cpp
+g++ -Wall -c otruth.cpp
 g++ -Wall -c oversion.cpp
 g++ -Wall -c owildcard.cpp
