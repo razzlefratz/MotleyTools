@@ -27,7 +27,6 @@
 #include "../tools/dcl.h"
 #include "../tools/memory.h"
 #include "../tools/error.h"
-#include "../tree/tree.h"
 
 /*====================================================================*
  *   variables;
@@ -36,16 +35,15 @@
 static char * string = (char *) (0);
 
 // static signed c;
-
 /*====================================================================*
  *   functions;
  *--------------------------------------------------------------------*/
 
-static TREE * DCLName();
-static TREE * DCLText(char c);
-static TREE * DCLList(char c, TREE * func());
-static TREE * DCLItem();
-static TREE * DCLTerm();
+static TREE * DCLName ();
+static TREE * DCLText (char c);
+static TREE * DCLList (char c, TREE * func ());
+static TREE * DCLItem ();
+static TREE * DCLTerm ();
 
 /*====================================================================*
  *
@@ -62,24 +60,24 @@ static TREE * DCLTerm();
  *
  *--------------------------------------------------------------------*/
 
-static TREE * DCLName()
+static TREE * DCLName ()
 
 {
-	TREE * name = NEW(TREE);
-	while (isspace(* string))
+	TREE * name = NEW (TREE);
+	while (isspace (* string))
 	{
 		* string++ = (char) (0);
 	}
 	name->name = string;
-	name->one = (TREE *) (0);
-	name->two = (TREE *) (0);
-	if (isalnum(* string) || (* string == '_'))
+	name->next = (TREE *) (0);
+	name->list = (TREE *) (0);
+	if (isalnum (* string) || (* string == '_'))
 	{
 		do 
 		{
 			string++;
 		}
-		while (isalnum(* string) || (* string == '_'));
+		while (isalnum (* string) || (* string == '_'));
 	}
 	return (name);
 }
@@ -96,12 +94,12 @@ static TREE * DCLName()
  *
  *--------------------------------------------------------------------*/
 
-static TREE * DCLText(char c)
+static TREE * DCLText (char c)
 
 {
-	TREE * text = NEW(TREE);
-	text->one = (TREE *) (0);
-	text->two = (TREE *) (0);
+	TREE * text = NEW (TREE);
+	text->next = (TREE *) (0);
+	text->list = (TREE *) (0);
 	text->name = string;
 	while (* string != c)
 	{
@@ -132,22 +130,22 @@ static TREE * DCLText(char c)
  *
  *--------------------------------------------------------------------*/
 
-static TREE * DCLList(char c, TREE * func())
+static TREE * DCLList (char c, TREE * func ())
 
 {
-	TREE * list = func();
+	TREE * list = func ();
 	TREE * item = list;
 	while (* string)
 	{
-		while (isspace(* string))
+		while (isspace (* string))
 		{
 			* string++ = (char) (0);
 		}
 		if (* string == c)
 		{
 			* string++ = (char) (0);
-			item->one = func();
-			item = item->one;
+			item->next = func ();
+			item = item->next;
 			continue;
 		}
 		break;
@@ -172,18 +170,18 @@ static TREE * DCLList(char c, TREE * func())
  *
  *--------------------------------------------------------------------*/
 
-static TREE * DCLItem()
+static TREE * DCLItem ()
 
 {
 	TREE * item;
-	while (isspace(* string))
+	while (isspace (* string))
 	{
 		* string++ = (char) (0);
 	}
 	if (* string == '(')
 	{
 		* string++ = (char) (0);
-		item = DCLList(COMMA, DCLItem);
+		item = DCLList (',', DCLItem);
 		if (* string != ')')
 		{
 			error (1, 0, "Have '%s' but need ')'", string);
@@ -194,7 +192,7 @@ static TREE * DCLItem()
 	if (* string == '[')
 	{
 		* string++ = (char) (0);
-		item = DCLList(COLON, DCLItem);
+		item = DCLList (':', DCLItem);
 		if (* string != ']')
 		{
 			error (1, 0, "Have '%s' but need ']'", string);
@@ -205,7 +203,7 @@ static TREE * DCLItem()
 	if (* string == '{')
 	{
 		* string++ = (char) (0);
-		item = DCLList(BREAK, DCLItem);
+		item = DCLList (';', DCLItem);
 		if (* string != '}')
 		{
 			error (1, 0, "Have '%s' but need ')'", string);
@@ -213,19 +211,19 @@ static TREE * DCLItem()
 		* string++ = (char) (0);
 		return (item);
 	}
-	if (* string == QUOTE)
+	if (* string == '\"')
 	{
-		* string++ = (char)(0);
-		item = DCLText(QUOTE);
+		* string++ = (char) (0);
+		item = DCLText ('\"');
 		return (item);
 	}
-	if (* string == APOST)
+	if (* string == '\'')
 	{
-		* string++ = (char)(0);
-		item = DCLText(APOST);
+		* string++ = (char) (0);
+		item = DCLText ('\'');
 		return (item);
 	}
-	item = DCLTerm();
+	item = DCLTerm ();
 	return (item);
 }
 
@@ -244,18 +242,18 @@ static TREE * DCLItem()
  *
  *--------------------------------------------------------------------*/
 
-static TREE * DCLTerm()
+static TREE * DCLTerm ()
 
 {
-	TREE * term = DCLName();
-	while (isspace(* string))
+	TREE * term = DCLName ();
+	while (isspace (* string))
 	{
 		* string++ = (char) (0);
 	}
 	if (* string == '(')
 	{
 		* string++ = (char) (0);
-		term->two = DCLList(COMMA, DCLItem);
+		term->list = DCLList (',', DCLItem);
 		if (* string != ')')
 		{
 			error (1, 0, "Have '%s' but need ')'", string);
@@ -263,16 +261,16 @@ static TREE * DCLTerm()
 		* string++ = (char) (0);
 		return (term);
 	}
-	if (* string == EQUAL)
+	if (* string == '=')
 	{
 		* string++ = (char) (0);
-		term->two = DCLItem();
+		term->list = DCLItem ();
 		return (term);
 	}
-	if (* string == COLON)
+	if (* string == ':')
 	{
 		* string++ = (char) (0);
-		term->two = DCLItem();
+		term->list = DCLItem ();
 		return (term);
 	}
 	return (term);
@@ -292,27 +290,27 @@ static TREE * DCLTerm()
  *
  *--------------------------------------------------------------------*/
 
-TREE * DCLLine()
+TREE * DCLLine ()
 
 {
-	TREE * line = DCLTerm();
+	TREE * line = DCLTerm ();
 	TREE * term = line;
 	while (* string)
 	{
-		while (isspace(* string))
+		while (isspace (* string))
 		{
 			* string++ = (char) (0);
 		}
-		if (* string == SLASH)
+		if (* string == '/')
 		{
 			* string++ = (char) (0);
-			term->two = DCLList(SLASH, DCLTerm);
+			term->list = DCLList ('/', DCLTerm);
 			continue;
 		}
-		if (isalnum(* string))
+		if (isalnum (* string))
 		{
-			term->one = DCLTerm();
-			term = term->one;
+			term->next = DCLTerm ();
+			term = term->next;
 			continue;
 		}
 		break;
@@ -333,7 +331,7 @@ TREE * DCLLine()
  *
  *--------------------------------------------------------------------*/
 
-void DCLTree(TREE * node)
+void DCLTree (TREE * node)
 
 {
 	static unsigned level = 0;
@@ -351,8 +349,8 @@ void DCLTree(TREE * node)
 		fputs ((char *) (node->name), stdout);
 		putc (']', stdout);
 		putc ('\n', stdout);
-		DCLTree (node->two);
-		node = node->one;
+		DCLTree (node->list);
+		node = node->next;
 	}
 	level--;
 	return;
@@ -370,16 +368,16 @@ void DCLTree(TREE * node)
  *
  *--------------------------------------------------------------------*/
 
-void DCLFree(TREE * node)
+void DCLFree (TREE * node)
 
 {
 	while (node)
 	{
 		TREE * temp = node;
-		node = node->one;
-		DCLFree (temp->two);
-		temp->one = (TREE *)(0);
-		temp->two = (TREE *)(0);
+		node = node->next;
+		DCLFree (temp->list);
+		temp->next = (TREE *) (0);
+		temp->list = (TREE *) (0);
 		free (temp);
 	}
 	return;
@@ -402,14 +400,14 @@ void DCLFree(TREE * node)
 #include "../tools/emalloc.c"
 
 char const * program_name;
-int main(int argc, char * argv[])
+int main (int argc, char * argv [])
 
 {
 	TREE * node = (TREE *) (0);
 	program_name = * argv;
-	while ((c = getc(stdin)) != EOF)
+	while (~ (c = getc (stdin)))
 	{
-		node = DCLLine();
+		node = DCLLine ();
 		DCLTree (node);
 		DCLFree (node);
 	}
