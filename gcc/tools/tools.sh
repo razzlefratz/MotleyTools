@@ -28,6 +28,7 @@ gcc -Wall -Wextra -Wno-unused-parameter -c cgetc.c
 gcc -Wall -Wextra -Wno-unused-parameter -c checksum16.c
 gcc -Wall -Wextra -Wno-unused-parameter -c checksum32.c
 gcc -Wall -Wextra -Wno-unused-parameter -c clr32bitmap.c
+gcc -Wall -Wextra -Wno-unused-parameter -c cmd.c
 gcc -Wall -Wextra -Wno-unused-parameter -c codeload.c
 gcc -Wall -Wextra -Wno-unused-parameter -c codelist.c
 gcc -Wall -Wextra -Wno-unused-parameter -c codename.c

@@ -1,9 +1,6 @@
 /*====================================================================*
  *
- *   dcl.c -                                  
- *
- *   copy one or more files to stdout; if no files are specified 
- *   then copy stdin to stdout;
+ *   cmd.c -                                  
  *
  *.  Motley Tools by Charles Maier
  *:  Published 1982-2005 by Charles Maier for personal use
@@ -29,7 +26,8 @@
  *   custom header files;
  *--------------------------------------------------------------------*/
 
-#include "../GobiSampleCM/cmd.h"
+#include "../tools/cmd.h"
+#include "../tools/error.h"
 
 /*====================================================================*
  *   constants;
@@ -471,6 +469,7 @@ void CMDFree (TREE * list)
 
 #if 1
 #include <stdio.h>
+#include "../tools/error.c"
 
 char const * program_name = "";
 int main (int argc, char * argv [])

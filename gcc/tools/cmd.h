@@ -1,6 +1,6 @@
 /*====================================================================*
  *
- *   dcl.h - command definitions and declarations;
+ *   cmd.h - command definitions and declarations;
  *
  *.  Motley Tools by Charles Maier
  *:  Published 2005 by Charles Maier Associates for internal use;
@@ -33,7 +33,6 @@ TREE * CMDLine ();
 signed CMDRead ();
 void CMDTree (TREE *);
 void CMDFree (TREE *);
-void CMDInit ();
 
 /*====================================================================*
  *   
