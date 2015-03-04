@@ -33,10 +33,10 @@
  *   variables;
  *--------------------------------------------------------------------*/
 
-static char buffer [1024];
-static char * string = buffer;
 static char const * format = "Found '%c' when expecting '%c'\n";
 static char const * indent = "   ";
+static char buffer [1024];
+static char * string = buffer;
 static char c;
 
 /*====================================================================*
@@ -343,6 +343,10 @@ TREE * DCLLine ()
 		}
 		break;
 	}
+	if ((c != ';') && (c != EOF))
+	{
+		error (1, 0, format, c, ';');
+	}
 	return (line);
 }
 
@@ -424,13 +428,12 @@ char const * program_name;
 int main (int argc, char * argv [])
 
 {
-	extern char c;
 	extern char const * program_name;
-	TREE * node = (TREE *) (0);
-	program_name = * argv;
-	while ((c = getc (stdin)) != EOF)
+	char c;
+	program_name = basename (* argv);
+	while (~ (c = getc (stdin)))
 	{
-		node = DCLLine ();
+		TREE * node = DCLLine ();
 		DCLTree (node);
 		DCLFree (node);
 	}

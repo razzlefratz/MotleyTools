@@ -40,7 +40,7 @@ static const char * format = "Found '%c' but expected '%c'\n";
 static const char * indent = "   ";
 static char buffer [1024];
 static char * string = buffer;
-char c = '\n';
+static char c = '\n';
 
 /*====================================================================*
  *   functions;
@@ -68,8 +68,8 @@ static TREE * DCLTerm ();
 signed DCLRead ()
 
 {
-	extern char const * program_name;
 	extern char c;
+	extern char const * program_name;
 	if (isatty(STDIN_FILENO) && (c == '\n'))
 	{
 		write (STDIN_FILENO, program_name, strlen(program_name));
@@ -379,25 +379,11 @@ TREE * DCLLine ()
 		}
 		break;
 	}
+	if ((c != ';') && (c != EOF))
+	{
+		error (1, 0, format, c, ';');
+	}
 	return (line);
-}
-
-/*=*
- *
-void DCLInit ();
- *
- *
- *.  Motley Tools by Charles Maier
- *:  Published 1982-2005 by Charles Maier for personal use
- *;  Licensed under the Internet Software Consortium License
- *
- *-*/
-
-void DCLInit ()
-
-{
-	string = buffer;
-	return;
 }
 
 /*====================================================================*
@@ -451,6 +437,7 @@ void DCLFree (TREE * node)
 		node = node->next;
 		DCLFree (item->list);
 		memset (item, 0, sizeof (* item));
+		free (item->name);
 		free (item);
 	}
 	return;
@@ -467,17 +454,17 @@ void DCLFree (TREE * node)
  *
  *--------------------------------------------------------------------*/
 
-#if 0
+#if 1
 #include <stdio.h>
+
+#include "../tools/error.c"
 
 char const * program_name = "";
 
 int main (int argc, char * argv [])
 
 {
-	extern char c;
 	extern char const * program_name;
-	extern char const * format;
 	static char const * optv [] =
 	{
 		"example command line program",
@@ -485,7 +472,7 @@ int main (int argc, char * argv [])
 		"",
 		(char const *) (0)
 	};
-	TREE * node = (TREE *) (0);
+	char c;
 	program_name = basename (* argv);
 	optind = 1;
 	opterr = 1;
@@ -501,11 +488,7 @@ int main (int argc, char * argv [])
 	argv += optind;
 	while (~ (c = DCLRead ()))
 	{
-		node = DCLLine ();
-		if ((c != ';') && (c != EOF))
-		{
-			error (1, 0, format, c, ';');
-		}
+		TREE * node = DCLLine ();
 		DCLTree (node);
 		DCLFree (node);
 	}
