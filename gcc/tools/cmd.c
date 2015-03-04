@@ -30,17 +30,10 @@
 #include "../tools/error.h"
 
 /*====================================================================*
- *   constants;
- *--------------------------------------------------------------------*/
-
-#define CMD_FORMAT "%s: Found '%c' but expected '%c'.\n", __FUNCTION__
-#define CMD_INDENT "   "
-
-/*====================================================================*
  *   variables;
  *--------------------------------------------------------------------*/
 
-static char buffer [1024];
+static char buffer [2048];
 static char * string = buffer;
 static char c = '\n';
 
@@ -77,11 +70,15 @@ signed CMDRead ()
 		write (STDIN_FILENO, program_name, strlen (program_name));
 		write (STDIN_FILENO, ": ", 2);
 	}
-	if (read (STDIN_FILENO, & c, sizeof (c)) == sizeof (c))
+	if (read (STDIN_FILENO, & c, sizeof (c)) != sizeof (c))
 	{
-		return (c);
+		return (EOF);
 	}
-	return (EOF);
+	if (!isatty (STDIN_FILENO))
+	{
+		write (STDERR_FILENO, &c, sizeof (c));
+	}
+	return (c);
 }
 
 /*====================================================================*
@@ -122,7 +119,7 @@ TREE * CMDName ()
 			* string ++ = c;
 			c = CMDRead ();
 		}
-		while (isalnum (c) || (c == '_') || (c == '-'));
+		while (isalnum (c) || (c == '_') || (c == '-') || (c == '.'));
 		* string ++ = (char) (0);
 		return (node);
 	}
