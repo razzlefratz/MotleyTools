@@ -36,11 +36,11 @@
  *   variables;
  *--------------------------------------------------------------------*/
 
-static char buffer [1024];
-static char * string = buffer;
 static const char * format = "Found '%c' but expected '%c'\n";
 static const char * indent = "   ";
-static char c = (char) (0);
+static char buffer [1024];
+static char * string = buffer;
+char c = '\n';
 
 /*====================================================================*
  *   functions;
@@ -69,7 +69,7 @@ signed DCLRead ()
 
 {
 	extern char const * program_name;
-	static char c = '\n';
+	extern char c;
 	if (isatty(STDIN_FILENO) && (c == '\n'))
 	{
 		write (STDIN_FILENO, program_name, strlen(program_name));
@@ -78,10 +78,6 @@ signed DCLRead ()
 	if (read(STDIN_FILENO, & c, sizeof(c)) == sizeof(c))
 	{
 		return (c);
-	}
-	if (isatty(STDIN_FILENO))
-	{
-		write (STDIN_FILENO, & c, sizeof(c));
 	}
 	return (EOF);
 }

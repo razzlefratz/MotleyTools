@@ -28,7 +28,6 @@
 #include "../tools/dcl.h"
 #include "../linux/linux.h"
 #include "../strlib/strlib.h"
-#include "../tree/tree.h"
 
 /*====================================================================*
  *   custom source files;
@@ -78,7 +77,7 @@ int main (int argc, char const * argv [])
 	argc -= optind;
 	argv += optind;
 	printf ("stdin %s a tty\n", isatty (STDIN_FILENO)? "is": "is not");
-	while ((c = cgetc (STDIN_FILENO)) != EOF)
+	while (~ (c = DCLRead ()))
 	{
 		DCLInit ();
 		node = DCLLine ();
