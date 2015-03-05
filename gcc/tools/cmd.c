@@ -114,23 +114,25 @@ TREE * CMDName ()
 	}
 	if (isalpha (c) || (c == '_') || (c == '$'))
 	{
-		do 
-		{
-			* string ++ = c;
-			c = CMDRead ();
-		}
-		while (isalnum (c) || (c == '_') || (c == '-') || (c == '.'));
+		do { * string ++ = c; c = CMDRead (); } while (isalnum (c) || (c == '_') || (c == '-') || (c == '.'));
 		* string ++ = (char) (0);
 		return (node);
 	}
 	if (isdigit (c) || (c == '+') || (c == '-') || (c == '.'))
 	{
-		do 
+		if (c == '0')
 		{
 			* string ++ = c;
 			c = CMDRead ();
 		}
-		while (isdigit (c) || (c == '.') || (c == ':'));
+		if ((c == 'x') || (c == 'X'))
+		{
+			do { * string ++ = c; c = CMDRead (); } while (isxdigit (c));
+		}
+		else
+		{
+			do { * string ++ = c; c = CMDRead (); } while (isdigit (c) || (c == '.') || (c == ':'));
+		}
 		* string ++ = (char) (0);
 		return (node);
 	}
