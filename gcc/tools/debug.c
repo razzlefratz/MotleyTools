@@ -26,11 +26,11 @@
 
 #ifdef __GNUC__
 
-__attribute__ ((format(printf, 3, 4))) 
+__attribute__ ((format (printf, 3, 4)))
 
 #endif
 
-signed debug(signed status, char const * string, char const * format, ...)
+signed debug (signed status, char const * string, char const * format, ...)
 
 {
 	extern char const * program_name;
@@ -55,7 +55,7 @@ signed debug(signed status, char const * string, char const * format, ...)
 	{
 		exit (status);
 	}
-	return (- 1);
+	return (-1);
 }
 
 #endif
