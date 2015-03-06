@@ -57,7 +57,6 @@
 int main (int argc, char const * argv [])
 
 {
-	extern char c;
 	static char const * optv [] =
 	{
 		"",
@@ -65,7 +64,7 @@ int main (int argc, char const * argv [])
 		"example command line program",
 		(char const *) (0)
 	};
-	TREE * node = (TREE *) (0);
+	signed c;
 	while (~ (c = getoptv (argc, argv, optv)))
 	{
 		switch (c)
@@ -79,12 +78,7 @@ int main (int argc, char const * argv [])
 	printf ("stdin %s a tty\n", isatty (STDIN_FILENO)? "is": "is not");
 	while (~ (c = DCLRead ()))
 	{
-		DCLInit ();
-		node = DCLLine ();
-		if ((c != ';') && (c != EOF))
-		{
-			error (1, 0, ERROR, c, ';');
-		}
+		TREE * node = DCLLine ();
 		DCLTree (node);
 		DCLFree (node);
 	}

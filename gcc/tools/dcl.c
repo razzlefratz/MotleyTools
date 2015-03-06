@@ -454,7 +454,7 @@ void DCLFree (TREE * node)
  *
  *--------------------------------------------------------------------*/
 
-#if 1
+#if 0
 #include <stdio.h>
 
 #include "../tools/error.c"
