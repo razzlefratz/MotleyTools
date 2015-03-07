@@ -54,9 +54,13 @@
  *--------------------------------------------------------------------*/
 
 #if __TRACE__
-#define TRACE(format, args...) fprintf (stderr, "%s: %s (%d): " format "\n", __FILE__, __FUNC__, __LINE__, ##args);
+#define EVENT(format, args...) fprintf (stderr, "%s: Event %s (%d): " format "\n", __FILE__, __FUNC__, __LINE__, ##args);
+#define ENTER(format, args...) fprintf (stderr, "%s: Enter %s (%d): " format "\n", __FILE__, __FUNC__, __LINE__, ##args);
+#define LEAVE(format, args...) fprintf (stderr, "%s: Leave %s (%d): " format "\n", __FILE__, __FUNC__, __LINE__, ##args);
 #else
-#define TRACE(format, args...)
+#define EVENT(format, args...)
+#define ENTER(format, args...)
+#define LEAVE(format, args...)
 #endif
 
 /*====================================================================*
