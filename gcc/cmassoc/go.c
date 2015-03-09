@@ -19,6 +19,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <limits.h>
+#include <string.h>
 
 /*====================================================================*
  *   custom header files;
@@ -75,12 +76,25 @@ int main (int argc, char const * argv [])
 	}
 	argc -= optind;
 	argv += optind;
-	printf ("stdin %s a tty\n", isatty (STDIN_FILENO)? "is": "is not");
 	while (~ (c = DCLRead ()))
 	{
-		TREE * node = DCLLine ();
-		DCLTree (node);
-		DCLFree (node);
+		TREE * root = DCLLine ();
+		TREE * node = root;
+		while (node)
+		{
+			if (!strcmp (node->name, "quit"))
+			{
+				DCLFree (root);
+				return (0);
+			}
+			if (!strcmp (node->name, "exit"))
+			{
+				DCLFree (root);
+				return (0);
+			}
+			node = node->next;
+		}
+		DCLFree (root);
 	}
 	return (0);
 }
