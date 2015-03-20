@@ -6,15 +6,14 @@
 # --------------------------------------------------------------------
 
 KERNEL=$(uname -r)
-CVSROOT="cmaier@appslinux01.intellon.com:/home/cvs"
-BLDROOT="/home/cmaier/build"
-P4ROOT=/home/cmaier/build/Apps/Software
+OWNER=cmaier
+GROUP=qsdk
 
 # ====================================================================
 #
 # --------------------------------------------------------------------
 
-install -m 0755 -o root -g root -d ${CVSROOT} ${BLDROOT} ${P4ROOT}
+install -m 0755 -o ${OWNER} -g ${GROUP} -d ${BLDROOT}
 
 # ====================================================================
 #
@@ -22,16 +21,12 @@ install -m 0755 -o root -g root -d ${CVSROOT} ${BLDROOT} ${P4ROOT}
 
 apt-get update
 apt-get remove openoffice.org-impress openoffice.org-writer openoffice.org-calc openoffice-base gnome-games
+apt-get install gnome codeblocks bluefish vlc
 apt-get install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev
-apt-get install codeblocks bluefish
+apt-get install gcc g++ make git cgit nvi bvi rsync
 apt-get install docbook docbook-xml docbook-dsssl docbook-xsl dblatex xsltproc xmlto
-apt-get install vsftpd apache2 mysql-server-5.0 php5-mysql 
-apt-get install openssh-server samba rsync 
-apt-get install irssi
-apt-get install gcc g++ git cvs nvi bvi cgit
-apt-get install wireshark tshark 
-apt-get install bridge-utils
-apt-get install vlc
+apt-get install openssh-server vsftpd apache2 mysql-server-5.0 php5-mysql samba
+apt-get install wireshark tshark bridge-utils
 
 # ====================================================================
 #
@@ -51,13 +46,4 @@ if [ ]; then
 	apt-get install kernel-package libncurses5-dev fakeroot initrd-tools
 	ln -fs /usr/src/linux-headers-${KERNEL} /lib/modules/${KERNEL}/source
 fi
-
-# ====================================================================
-#
-# --------------------------------------------------------------------
-
-cat > /etc/environment << EOF
-PATH=${PATH}:/usr/local/bin/cmassoc:.
-CVSROOT="cmaier@appslunix01.intellon.com:/home/cvs"
-EOF
 
