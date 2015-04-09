@@ -80,10 +80,10 @@ public:
 	ocomment & publish (char const * publish);
 	ocomment & license (char const * license);
 private: 
-	void bar (signed c, signed count) const;
-	signed regular (signed c) const;
+	signed content (signed c) const;
 	signed special (signed c) const;
 	signed breaker (signed c) const;
+	signed section (signed c) const;
 	signed message (signed c, char const * string) const;
 	char * mpackage;
 	char * mrelease;
