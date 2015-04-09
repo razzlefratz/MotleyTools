@@ -164,7 +164,7 @@ ocomment & ocomment::license (char const * license)
 ocomment & ocomment::preamble (void)
 
 {
-	std::cout << "/*" << oCOMMENT_C_UPPER << "*" << std::endl;
+	std::cout << "/*" << '=' << "*" << std::endl;
 	std::cout << " *" << std::endl;
 	std::cout << " *" << std::endl;
 	std::cout << " *" << std::endl;
@@ -174,7 +174,7 @@ ocomment & ocomment::preamble (void)
 	std::cout << " *" << oCOMMENT_C_RELEASE << "   " << std::endl;
 	std::cout << " *" << oCOMMENT_C_PUBLISH << "   " << std::endl;
 	std::cout << " *" << std::endl;
-	std::cout << " *" << oCOMMENT_C_LOWER << "*/" << std::endl;
+	std::cout << " *" << '-' << "*/" << std::endl;
 	return (* this);
 }
 
@@ -190,9 +190,9 @@ ocomment & ocomment::preamble (void)
 signed ocomment::comment (signed c)
 
 {
-	while (c == oCOMMENT_C_SLASH)
+	while (c == '/')
 	{
-		if (std::cin.peek () == oCOMMENT_C_SLASH)
+		if (std::cin.peek () == '/')
 		{
 			c = ocomment::cplus (c);
 			do 
@@ -202,7 +202,7 @@ signed ocomment::comment (signed c)
 			while (oascii::isspace (c));
 			continue;
 		}
-		if (std::cin.peek () == oCOMMENT_C_BURST)
+		if (std::cin.peek () == '*')
 		{
 			c = ocomment::clang (c);
 			do 
@@ -216,9 +216,9 @@ signed ocomment::comment (signed c)
  *	blank lines between adjacent C++ comment blocks, as above;
  */
 
-			if (c == oCOMMENT_C_SLASH)
+			if (c == '/')
 			{
-				if (std::cin.peek () == oCOMMENT_C_BURST)
+				if (std::cin.peek () == '*')
 				{
 					std::cout.put ('\n');
 				}
@@ -252,19 +252,19 @@ signed ocomment::comment (signed c)
 signed ocomment::cplus (signed c)
 
 {
-	while (c == oCOMMENT_C_SLASH)
+	while (c == '/')
 	{
 		c = std::cin.get ();
 	}
 	if (ocomment::anyset (oCOMMENT_B_DOUBLE))
 	{
-		std::cout.put (oCOMMENT_C_SLASH);
-		std::cout.put (oCOMMENT_C_BURST);
+		std::cout.put ('/');
+		std::cout.put ('*');
 		if (ocomment::anyset (oCOMMENT_B_TRIPLE))
 		{
 			std::cout.put ('\n');
 			std::cout.put (' ');
-			std::cout.put (oCOMMENT_C_BURST);
+			std::cout.put ('*');
 		}
 		while (oascii::nobreak (c))
 		{
@@ -276,14 +276,14 @@ signed ocomment::cplus (signed c)
 			std::cout.put ('\n');
 		}
 		std::cout.put (' ');
-		std::cout.put (oCOMMENT_C_BURST);
-		std::cout.put (oCOMMENT_C_SLASH);
+		std::cout.put ('*');
+		std::cout.put ('/');
 	}
 	else 
 	{
 		bool space = false;
-		std::cout.put (oCOMMENT_C_SLASH);
-		std::cout.put (oCOMMENT_C_SLASH);
+		std::cout.put ('/');
+		std::cout.put ('/');
 		while (oascii::nobreak (c))
 		{
 			if (oascii::isblank (c))
@@ -324,10 +324,10 @@ signed ocomment::cplus (signed c)
  *   specific formatting function blocks; the second form is more
  *   reliable and veratile;
  *
- *      putc (oCOMMENT_C_SLASH, stdout);
- *      while ((c != oCOMMENT_C_SLASH) && (c != EOF))
+ *      putc ('/', stdout);
+ *      while ((c != '/') && (c != EOF))
  *      {
- *           while ((c != oCOMMENT_C_BURST) && (c != EOF))
+ *           while ((c != '*') && (c != EOF))
  *          {
  *              putc (c, stdout);
  *              c = getc (stdin);
@@ -335,20 +335,20 @@ signed ocomment::cplus (signed c)
  *          putc (c, stdout);
  *          c = getc (stdin);
  *      }
- *      putc (oCOMMENT_C_SLASH, stdout);
+ *      putc ('/', stdout);
  *
  *   and
  *
- *      putc (oCOMMENT_C_SLASH, stdout);
+ *      putc ('/', stdout);
  *      do {
  *          ungetc (c, stdin);
  *          do {
  *              c = getc(stdin);
  *              putc (c,stdout);
- *          } while ((c != oCOMMENT_C_BURST) && (c != EOF));
+ *          } while ((c != '*') && (c != EOF));
  *          c = getc (stdin);
- *      } while ((c != oCOMMENT_C_SLASH) && (c != EOF));
- *      putc (oCOMMENT_C_SLASH, stdout);
+ *      } while ((c != '/') && (c != EOF));
+ *      putc ('/', stdout);
  *
  *--------------------------------------------------------------------*/
 
@@ -357,17 +357,17 @@ signed ocomment::clang (signed c)
 {
 	std::cout.put (c);
 	c = std::cin.get ();
-	while ((c != oCOMMENT_C_SLASH) && (c != EOF))
+	while ((c != '/') && (c != EOF))
 	{
-		while ((c != oCOMMENT_C_BURST) && (c != EOF))
+		while ((c != '*') && (c != EOF))
 		{
 			c = ocomment::regular (c);
 		}
-		std::cout.put (oCOMMENT_C_BURST);
+		std::cout.put ('*');
 		c = std::cin.get ();
 		c = ocomment::special (c);
 	}
-	std::cout.put (oCOMMENT_C_SLASH);
+	std::cout.put ('/');
 	std::cout.put ('\n');
 	return (c);
 }
@@ -393,19 +393,21 @@ signed ocomment::regular (signed c) const
 			c = std::cin.get ();
 		}
 		while (oascii::isblank (c));
-		if (c != oCOMMENT_C_BURST)
+		if (c != '*')
 		{
 			unsigned column = this->mstart;
 			unsigned offset = 0;
-			std::cout.put (oCOMMENT_C_BURST);
-			if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER) || (c == oCOMMENT_C_BURST))
-//			if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER))
+			std::cout.put ('*');
+
+// if ((c == '=') || (c == '-'))
+
+			if ((c == '=') || (c == '-') || (c == '*'))
 			{
 				c = ocomment::breaker (c);
 			}
 			while (oascii::nobreak (c))
 			{
-				if ((c == oCOMMENT_C_BURST) && (std::cin.peek () == oCOMMENT_C_SLASH))
+				if ((c == '*') && (std::cin.peek () == '/'))
 				{
 					break;
 				}
@@ -451,8 +453,30 @@ signed ocomment::regular (signed c) const
 signed ocomment::special (signed c) const
 
 {
-//	if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER) || (c == oCOMMENT_C_BURST))
-	if ((c == oCOMMENT_C_UPPER) || (c == oCOMMENT_C_LOWER))
+	if (oascii::isquote (c))
+	{
+		ocomment::bar ('=', this->mwidth);
+		std::cout.put ('*');
+		std::cout.put ('\n');
+		std::cout.put (' ');
+		std::cout.put ('*');
+		std::cout.put (' ');
+		std::cout.put (' ');
+		std::cout.put (' ');
+		for (signed o = std::cin.get (); (o != c) && (o != EOF); o = std::cin.get ())
+		{
+			std::cout.put (o);
+		}
+		std::cout.put ('\n');
+		std::cout.put (' ');
+		std::cout.put ('*');
+		ocomment::bar ('-', this->mwidth);
+		c = std::cin.get ();
+	}
+
+//	else if ((c == '=') || (c == '-'))
+
+	else if ((c == '=') || (c == '-') || (c == '*'))
 	{
 		c = ocomment::breaker (c);
 	}
@@ -487,24 +511,21 @@ signed ocomment::special (signed c) const
 signed ocomment::breaker (signed c) const
 
 {
-	signed width = 0;
+	signed count = 0;
 	signed start = c;
 	while (c == start)
 	{
 		c = std::cin.get ();
-		width++;
+		count++;
 	}
-	if ((start == oCOMMENT_C_BURST) || (c == oCOMMENT_C_BURST) || oascii::isbreak (c))
+	if ((start == '*') || (c == '*') || oascii::isbreak (c))
 	{
-		width = this->mwidth;
+		count = this->mwidth;
 	}
-	while (width-- > 0)
+	ocomment::bar (start, count);
+	if ((start == '*') || oascii::isbreak (c))
 	{
-		std::cout.put (start);
-	}
-	if ((start == oCOMMENT_C_BURST) || oascii::isbreak (c))
-	{
-		std::cout.put (oCOMMENT_C_BURST);
+		std::cout.put ('*');
 	}
 	return (c);
 }
@@ -545,6 +566,24 @@ signed ocomment::message (signed c, char const * string) const
 		std::cout << string;
 	}
 	return (c);
+}
+
+/*====================================================================*
+ *
+ *   void bar (signed c, signed count);
+ *
+ *
+ *
+ *--------------------------------------------------------------------*/
+
+void ocomment::bar (signed c, signed count) const
+
+{
+	while (count-- > 0)
+	{
+		std::cout.put (c);
+	}
+	return;
 }
 
 /*====================================================================*

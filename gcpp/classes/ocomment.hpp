@@ -38,10 +38,6 @@
 #define oCOMMENT_B_PUBLISH (1 << 8)
 #define oCOMMENT_B_LICENSE (1 << 9)
 
-#define oCOMMENT_C_SLASH '/'
-#define oCOMMENT_C_BURST '*'
-#define oCOMMENT_C_UPPER '='
-#define oCOMMENT_C_LOWER '-'
 #define oCOMMENT_C_PACKAGE '.'
 #define oCOMMENT_C_RELEASE ':'
 #define oCOMMENT_C_PUBLISH ';'
@@ -84,6 +80,7 @@ public:
 	ocomment & publish (char const * publish);
 	ocomment & license (char const * license);
 private: 
+	void bar (signed c, signed count) const;
 	signed regular (signed c) const;
 	signed special (signed c) const;
 	signed breaker (signed c) const;
