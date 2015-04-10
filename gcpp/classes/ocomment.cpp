@@ -479,7 +479,7 @@ signed ocomment::special (signed c) const
 	}
 	else if ((c == '['))
 	{
-		c = ocomment::breaker (']');
+		c = ocomment::section (']');
 	}
 	else if (oascii::isquote (c))
 	{
@@ -544,12 +544,21 @@ signed ocomment::section (signed c) const
 	for (signed o = std::cin.get (); (o != c) && (o != EOF); o = std::cin.get ())
 	{
 		std::cout.put (o);
+		if (o == '\n')
+		{
+			std::cout.put (' ');
+			std::cout.put ('*');
+		}
 	}
 	std::cout.put ('\n');
 	std::cout.put (' ');
 	std::cout.put ('*');
 	for (unsigned count = this->mwidth; count--;  std::cout.put ('-'));
 	c = std::cin.get ();
+	if (c == EOF)
+	{
+		std::cout.put ('*');
+	}
 	return (c);
 }
 
