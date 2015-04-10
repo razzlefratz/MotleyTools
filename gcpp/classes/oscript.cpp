@@ -107,7 +107,7 @@ signed oscript::content (signed c, signed e) const
  *
  *   this method unconditionally writes text up to, but excluding, a
  *   specific terminating character such as a newline or semicolon;
- *(
+ *
  *   it can be used to detect the inside character of a terminating
  *   inverted pair;
  *
@@ -501,7 +501,7 @@ signed oscript::escaped (signed c) const
 signed oscript::feed (signed c) const
 
 {
-	if ((c != NUL) && (c != EOF))
+	if ((c) && (~ c))
 	{
 		std::cout.put (c);
 	}

@@ -352,7 +352,7 @@ char const * oEthernet::ProtocolName (uint16_t protocol)
 	protocol = ntohs (protocol);
 	while (lower < upper)
 	{
-		size_t index = (lower +  upper) >> 1;
+		size_t index = (lower + upper) >> 1;
 		signed order = protocol - ethernet_protocols [index].number;
 		if (order < 0)
 		{

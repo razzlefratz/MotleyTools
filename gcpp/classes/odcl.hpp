@@ -16,7 +16,7 @@
  *--------------------------------------------------------------------*/
 
 typedef signed errno_t;
-typedef struct tree 
+typedef struct tree
 
 {
 	struct tree * next;
@@ -30,12 +30,12 @@ TREE;
  *   functions;
  *--------------------------------------------------------------------*/
 
-
 class odcl
+
 {
-public:
+public: 
 	dcl ();
-	~dcl ();
+	~ dcl ();
 	TREE * line ();
 	TREE * name ();
 	TREE * text (char);
@@ -45,7 +45,7 @@ public:
 	void display (TREE *);
 	void discard (TREE *);
 	void init ();
-private:
+private: 
 	signed grab ();
 	void error (int, errno_t, char const *, ...);
 	static char buffer [];

@@ -77,7 +77,7 @@ unsigned ooctencoder::index (char c)
 
 {
 	char const * sp;
-	for (sp = ooctencoder::mdigit; (*sp) && (*sp != c); sp++);
+	for (sp = ooctencoder::mdigit; (* sp) && (* sp != c); sp++);
 	return ((unsigned) (sp - ooctencoder::mdigit));
 }
 

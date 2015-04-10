@@ -30,11 +30,9 @@
 #define oASCII_CR '\r' /* carriage return            */
 #define oASCII_LF '\n' /* line feed                  */
 #define oASCII_HT '\t' /* horizontal tab             */
-
 /*====================================================================*
  *   ASCII Character Constants;
  *--------------------------------------------------------------------*/
-
 #define NUL '\000'   /* NUL ; null, tape feed        */
 #define SOH '\001'   /* SOH ; start of heading       */
 #define STX '\002'   /* STX ; start of text          */

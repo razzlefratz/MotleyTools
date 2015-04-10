@@ -107,7 +107,7 @@ signed osource::content (signed c, signed e)
  *
  *   this method unconditionally writes text up to, but excluding, a
  *   specific terminating character such as a newline or semicolon;
- *(
+ * 
  *   it can be used to detect the inside character of a terminating
  *   inverted pair;
  *

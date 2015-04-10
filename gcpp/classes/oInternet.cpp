@@ -160,7 +160,7 @@ char const * oInternet::ProtocolName (byte protocol)
 	size_t upper = SIZEOF (internet_protocols);
 	while (lower < upper)
 	{
-		size_t index = (lower +  upper) >> 1;
+		size_t index = (lower + upper) >> 1;
 		signed order = protocol - internet_protocols [index].number;
 		if (order < 0)
 		{
