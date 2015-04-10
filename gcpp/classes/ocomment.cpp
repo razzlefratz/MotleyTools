@@ -363,6 +363,7 @@ signed ocomment::clang (signed c)
 		{
 			c = ocomment::content (c);
 		}
+		std::cout.put ('*');
 		if (c != EOF)
 		{
 			c = ocomment::special (c);
@@ -401,7 +402,7 @@ signed ocomment::content (signed c) const
 			std::cout.put ('*');
 			if ((c == '=') || (c == '-') || (c == '*'))
 			{
-				c = ocomment::breaker (c);
+				c = ocomment::divider (c);
 			}
 			while (oascii::nobreak (c))
 			{
@@ -451,11 +452,10 @@ signed ocomment::content (signed c) const
 signed ocomment::special (signed c) const
 
 {
-	std::cout.put ('*');
 	c = std::cin.get ();
 	if ((c == '=') || (c == '-') || (c == '*'))
 	{
-		c = ocomment::breaker (c);
+		c = ocomment::divider (c);
 	}
 	else if ((c == oCOMMENT_C_PACKAGE) && ocomment::anyset (oCOMMENT_B_PACKAGE))
 	{
@@ -481,23 +481,19 @@ signed ocomment::special (signed c) const
 	{
 		c = ocomment::section (']');
 	}
-	else if (oascii::isquote (c))
-	{
-		c = ocomment::section (c);
-	}
 	return (c);
 }
 
 /*====================================================================*
  *
- *   signed breaker (signed c) const;
+ *   signed divider (signed c) const;
  *
  *   force comment bars to fixed width, when present, by consuming, 
  *   discarding and rewriting the existing comment bar;
  *
  *--------------------------------------------------------------------*/
 
-signed ocomment::breaker (signed c) const
+signed ocomment::divider (signed c) const
 
 {
 	signed count = 0;
@@ -533,7 +529,7 @@ signed ocomment::breaker (signed c) const
 signed ocomment::section (signed c) const
 
 {
-	for (unsigned count = this->mwidth; count--;  std::cout.put ('='));
+	for (unsigned count = this->mwidth; count--; std::cout.put ('='));
 	std::cout.put ('*');
 	std::cout.put ('\n');
 	std::cout.put (' ');
@@ -553,7 +549,7 @@ signed ocomment::section (signed c) const
 	std::cout.put ('\n');
 	std::cout.put (' ');
 	std::cout.put ('*');
-	for (unsigned count = this->mwidth; count--;  std::cout.put ('-'));
+	for (unsigned count = this->mwidth; count--; std::cout.put ('-'));
 	c = std::cin.get ();
 	if (c == EOF)
 	{
