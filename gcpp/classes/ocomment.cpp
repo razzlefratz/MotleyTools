@@ -522,7 +522,7 @@ signed ocomment::divider (signed c) const
  *
  *   signed section (signed c);
  *
- *
+ *   expand one-line comment with test into a section header;
  *
  *--------------------------------------------------------------------*/
 
@@ -550,7 +550,10 @@ signed ocomment::section (signed c) const
 	std::cout.put (' ');
 	std::cout.put ('*');
 	for (unsigned count = this->mwidth; count--; std::cout.put ('-'));
-	c = std::cin.get ();
+	if (c != EOF)
+	{
+		c = std::cin.get ();
+	}
 	if (c == EOF)
 	{
 		std::cout.put ('*');
@@ -638,6 +641,4 @@ ocomment::~ ocomment (void)
  *--------------------------------------------------------------------*/
 
 #endif
-
-
 
