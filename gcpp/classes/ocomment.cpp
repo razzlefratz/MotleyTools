@@ -526,9 +526,10 @@ signed ocomment::divider (signed c) const
  *
  *--------------------------------------------------------------------*/
 
-signed ocomment::section (signed c) const
+signed ocomment::section (signed o, signed e) const
 
 {
+	static level = 0;
 	for (unsigned count = this->mwidth; count--; std::cout.put ('='));
 	std::cout.put ('*');
 	std::cout.put ('\n');
@@ -537,15 +538,26 @@ signed ocomment::section (signed c) const
 	std::cout.put (' ');
 	std::cout.put (' ');
 	std::cout.put (' ');
-	for (signed o = std::cin.get (); (o != c) && (o != EOF); o = std::cin.get ())
+	for (signed c = std::cin.get (); (level) && (c != EOF); c = std::cin.get ())
 	{
-		std::cout.put (o);
-		if (o == '\n')
+		std::cout.put (c);
+		if (c == o)
+		{
+			level++;
+			continue;
+		}
+		if (c == e)
+		{
+			level--;
+			continue;
+		}
+		if (c == '\n')
 		{
 			std::cout.put (' ');
 			std::cout.put ('*');
 		}
 	}
+	level = 0;
 	std::cout.put ('\n');
 	std::cout.put (' ');
 	std::cout.put ('*');
