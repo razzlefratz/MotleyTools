@@ -473,11 +473,11 @@ signed ocomment::special (signed c) const
 	{
 		c = ocomment::message (c, this->mlicense);
 	}
-	else if ((c == '('))
+	else if (c == '(')
 	{
 		c = ocomment::section (')');
 	}
-	else if ((c == '['))
+	else if (c == '[')
 	{
 		c = ocomment::section (']');
 	}
@@ -526,10 +526,10 @@ signed ocomment::divider (signed c) const
  *
  *--------------------------------------------------------------------*/
 
-signed ocomment::section (signed o, signed e) const
+signed ocomment::section (signed e) const
 
 {
-	static level = 0;
+	signed c;
 	for (unsigned count = this->mwidth; count--; std::cout.put ('='));
 	std::cout.put ('*');
 	std::cout.put ('\n');
@@ -538,31 +538,18 @@ signed ocomment::section (signed o, signed e) const
 	std::cout.put (' ');
 	std::cout.put (' ');
 	std::cout.put (' ');
-	for (signed c = std::cin.get (); (level) && (c != EOF); c = std::cin.get ())
+	for (c = std::cin.get (); (c != e) && (c != EOF); c = std::cin.get ())
 	{
 		std::cout.put (c);
-		if (c == o)
-		{
-			level++;
-			continue;
-		}
-		if (c == e)
-		{
-			level--;
-			continue;
-		}
-		if (c == '\n')
-		{
-			std::cout.put (' ');
-			std::cout.put ('*');
-		}
 	}
-	level = 0;
 	std::cout.put ('\n');
 	std::cout.put (' ');
 	std::cout.put ('*');
 	for (unsigned count = this->mwidth; count--; std::cout.put ('-'));
-	c = std::cin.get ();
+	if (c != EOF)
+	{
+		c = std::cin.get ();
+	}
 	if (c == EOF)
 	{
 		std::cout.put ('*');
