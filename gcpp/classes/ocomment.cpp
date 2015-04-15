@@ -364,11 +364,68 @@ signed ocomment::clang (signed c)
 		{
 			if (c == '\n')
 			{
-				c = ocomment::content (c);
-				continue;
+				std::cout.put ('\n');
+				std::cout.put (' ');
+				do 
+				{
+					c = std::cin.get ();
+				}
+				while (oascii::isblank (c));
+				if (c == '*')
+				{
+					continue;
+				}
+				else if ((c == '=') || (c == '-') || (c == '*'))
+				{
+					std::cout.put ('*');
+					c = ocomment::divider (c);
+				}
+				else
+				{
+					unsigned column = this->mstart;
+					unsigned offset = 0;
+					std::cout.put ('*');
+					while (oascii::nobreak (c))
+					{
+
+#if 0
+
+						if ((c == '*') && (std::cin.peek () == '/'))
+						{
+							break;
+						}
+
+#endif
+
+						if (c == ' ')
+						{
+							column++;
+						}
+						else if (c == '\t')
+						{
+							column -= column % 8;
+							column += 8;
+						}
+						else 
+						{
+							while (offset < column)
+							{
+								std::cout.put (' ');
+								offset++;
+							}
+							std::cout.put (c);
+							column++;
+							offset++;
+						}
+						c = std::cin.get ();
+					}
+				}
 			}
-			std::cout.put (c);
-			c = std::cin.get ();
+			else
+			{
+				std::cout.put (c);
+				c = std::cin.get ();
+			}
 		}
 		std::cout.put ('*');
 		c = std::cin.get ();
