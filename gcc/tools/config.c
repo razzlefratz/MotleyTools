@@ -2,6 +2,10 @@
  *
  *   config.c - configuration file reader;
  *
+ *   search a configuration file for defined parameter values, if 
+ *   present; return either the defined value or a default value;
+ *   values are returned as either text or integers;
+ *
  *   configuration files contain named parts where each part may 
  *   have one of more named items that have text definitions; 
  *
@@ -48,13 +52,13 @@ static signed c;
 
 /*====================================================================*
  *
- *   bool compare (FILE * fp, char const *sp);
+ *   bool compare (FILE * fp, char const * sp);
  *
  *   compare file and text characters until they differ or until end
  *   of text, line or file occurs; a match is declared when the text 
- *   ends before the line or file;
+ *   ends before, or at the same time as, the line or file;
  *
- *   spaces and tabs within the argument string or file string are
+ *   spaces and tabs within the file string or argument string are
  *   ignored such that "item1", " item1 " and "item 1" all match;
  *
  *--------------------------------------------------------------------*/
