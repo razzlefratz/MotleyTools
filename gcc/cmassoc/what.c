@@ -104,13 +104,13 @@ static void function (LIST * list)
 			strcat (filename, STATFILE);
 			if ((fd = open (pathname, O_RDONLY)) != -1)
 			{
+				static char * vector [PROCSTAT_CNT];
 				char buffer [PROCSTAT_MAX];
-				char * vector [PROCSTAT_CNT];
 				signed length = read (fd, buffer, sizeof (buffer) -1);
 				buffer [length] = (char) (0);
 				close (fd);
-				strsplit ((char const **) (vector), PROCSTAT_CNT, buffer, ' ');
-				for (string = vector [PROCSTAT_NAME]; * string != (char) (0); string++)
+				strsplit ((char const **) (vector), SIZEOF (vector), buffer, ' ');
+				for (string = vector [PROCSTAT_NAME]; * string; string++)
 				{
 					* string = * (string +  1);
 					if (* string == ')')
