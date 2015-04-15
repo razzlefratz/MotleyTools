@@ -238,7 +238,7 @@ signed ocomment::comment (signed c)
  *
  *   format C++ comment and return the character immediately after 
  *   comment; the comment includes starting slashes and terminating 
-w
+ *   w
  *   newline;
  *
  *   read and discard strings of leading slashes;
@@ -362,13 +362,16 @@ signed ocomment::clang (signed c)
 	{
 		while ((c != '*') && (c != EOF))
 		{
-			c = ocomment::content (c);
-		}
-		std::cout.put ('*');
-		if (c != EOF)
-		{
+			if (c == '\n')
+			{
+				c = ocomment::content (c);
+				continue;
+			}
+			std::cout.put (c);
 			c = std::cin.get ();
 		}
+		std::cout.put ('*');
+		c = std::cin.get ();
 		c = ocomment::special (c);
 	}
 	std::cout.put ('/');
@@ -389,60 +392,46 @@ signed ocomment::content (signed c) const
 
 {
 	std::cout.put (c);
-	if (c == '\n')
-	{
-		std::cout.put (' ');
-		do 
-		{
-			c = std::cin.get ();
-		}
-		while (oascii::isblank (c));
-		if (c != '*')
-		{
-			unsigned column = this->mstart;
-			unsigned offset = 0;
-			std::cout.put ('*');
-#if 0
-			if ((c == '=') || (c == '-') || (c == '*'))
-			{
-				c = ocomment::divider (c);
-			}
-#else
-			c = ocomment::special (c);
-#endif
-			while (oascii::nobreak (c))
-			{
-				if ((c == '*') && (std::cin.peek () == '/'))
-				{
-					break;
-				}
-				else if (c == ' ')
-				{
-					column++;
-				}
-				else if (c == '\t')
-				{
-					column -= column % 8;
-					column += 8;
-				}
-				else 
-				{
-					while (offset < column)
-					{
-						std::cout.put (' ');
-						offset++;
-					}
-					std::cout.put (c);
-					column++;
-					offset++;
-				}
-				c = std::cin.get ();
-			}
-		}
-	}
-	else 
+	std::cout.put (' ');
+	do 
 	{
 		c = std::cin.get ();
+	}
+	while (oascii::isblank (c));
+	if (c != '*')
+	{
+		unsigned column = this->mstart;
+		unsigned offset = 0;
+		std::cout.put ('*');
+		c = ocomment::special (c);
+		while (oascii::nobreak (c))
+		{
+			if ((c == '*') && (std::cin.peek () == '/'))
+			{
+				break;
+			}
+			else if (c == ' ')
+			{
+				column++;
+			}
+			else if (c == '\t')
+			{
+				column -= column % 8;
+				column += 8;
+			}
+			else 
+			{
+				while (offset < column)
+				{
+					std::cout.put (' ');
+					offset++;
+				}
+				std::cout.put (c);
+				column++;
+				offset++;
+			}
+			c = std::cin.get ();
+		}
 	}
 	return (c);
 }
@@ -642,4 +631,6 @@ ocomment::~ ocomment (void)
  *--------------------------------------------------------------------*/
 
 #endif
+
+
 
