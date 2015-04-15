@@ -238,7 +238,6 @@ signed ocomment::comment (signed c)
  *
  *   format C++ comment and return the character immediately after 
  *   comment; the comment includes starting slashes and terminating 
-w
  *   newline;
  *
  *   read and discard strings of leading slashes;
@@ -367,15 +366,112 @@ signed ocomment::clang (signed c)
 		std::cout.put ('*');
 		if (c != EOF)
 		{
-			c = std::cin.get ();
+			c = ocomment::special (c);
 		}
-		c = ocomment::special (c);
 	}
 	std::cout.put ('/');
 	std::cout.put ('\n');
 	return (c);
 }
 
+/*====================================================================*
+ *
+ *   signed clang1 (signed c);
+ *
+ *   format ANSI C style comments and return the character after the
+ *   comment; the comment includes the opening and closing inverted 
+ *   pair slash-asterisk and the intervening text;                  
+ *
+ *   this implementation appends one newline immediately after the 
+ *   comment; 
+ *
+ *   this method has two standard forms as follows interlaced with
+ *   specific formatting function blocks; the second form is more
+ *   reliable and veratile;
+ *
+ *      putc ('/', stdout);
+ *      while ((c != '/') && (c != EOF))
+ *      {
+ *           while ((c != '*') && (c != EOF))
+ *          {
+ *              putc (c, stdout);
+ *              c = getc (stdin);
+ *          }
+ *          putc (c, stdout);
+ *          c = getc (stdin);
+ *      }
+ *      putc ('/', stdout);
+ *
+ *   and
+ *
+ *      putc ('/', stdout);
+ *      do {
+ *          ungetc (c, stdin);
+ *          do {
+ *              c = getc(stdin);
+ *              putc (c,stdout);
+ *          } while ((c != '*') && (c != EOF));
+ *          c = getc (stdin);
+ *      } while ((c != '/') && (c != EOF));
+ *      putc ('/', stdout);
+ *
+ *--------------------------------------------------------------------*/
+
+signed ocomment::clang1 (signed c)
+
+{
+	unsigned column = this->mstart;
+	unsigned offset = 0;
+	std::cout.put (c);
+	c = std::cin.get ();
+	while ((c != '/') && (c != EOF))
+	{
+		while ((c != '*') && (c != EOF))
+		{
+			if (c == '\n')
+			{
+				std::cout.put ('\n');
+				std::cout.put (' ');
+				std::cout.put ('*');
+				do { c = std::cin.get (); } while (oascii::isblank (c));
+				column = this->mstart;
+				offset = 0;
+				if (c == '*')
+				{
+					c = std::cin.get ();
+				}
+				c = ocomment::special (c);
+				continue;
+			}
+			else if (c == ' ')
+			{
+				column++;
+			}
+			else if (c == '\t')
+			{
+				column -= column % 8;
+				column += 8;
+			}
+			else 
+			{
+				while (offset < column)
+				{
+					std::cout.put (' ');
+					offset++;
+				}
+				std::cout.put (c);
+				column++;
+				offset++;
+			}
+			c = std::cin.get ();
+		}
+		std::cout.put ('*');
+		c = std::cin.get ();
+	}
+	std::cout.put ('/');
+	std::cout.put ('\n');
+	return (c);
+}
 /*====================================================================*
  *
  *   signed content (signed c) const;
@@ -388,28 +484,22 @@ signed ocomment::clang (signed c)
 signed ocomment::content (signed c) const
 
 {
-	std::cout.put (c);
 	if (c == '\n')
 	{
+		std::cout.put ('\n');
 		std::cout.put (' ');
-		do 
+		std::cout.put ('*');
+		do { c = std::cin.get (); } while (oascii::isblank (c));
+		if (c == '*')
 		{
 			c = std::cin.get ();
 		}
-		while (oascii::isblank (c));
-		if (c != '*')
-		{
 			unsigned column = this->mstart;
 			unsigned offset = 0;
-			std::cout.put ('*');
-#if 0
 			if ((c == '=') || (c == '-') || (c == '*'))
 			{
 				c = ocomment::divider (c);
 			}
-#else
-			c = ocomment::special (c);
-#endif
 			while (oascii::nobreak (c))
 			{
 				if ((c == '*') && (std::cin.peek () == '/'))
@@ -438,10 +528,10 @@ signed ocomment::content (signed c) const
 				}
 				c = std::cin.get ();
 			}
-		}
 	}
 	else 
 	{
+		std::cout.put (c);
 		c = std::cin.get ();
 	}
 	return (c);
@@ -458,6 +548,7 @@ signed ocomment::content (signed c) const
 signed ocomment::special (signed c) const
 
 {
+	c = std::cin.get ();
 	if ((c == '=') || (c == '-') || (c == '*'))
 	{
 		c = ocomment::divider (c);
