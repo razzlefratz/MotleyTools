@@ -83,6 +83,8 @@ public:
 private: 
 	signed divider (signed c) const;
 	signed section (signed c) const;
+	signed content (signed c) const;
+	signed special (signed c) const;
 	signed message (signed c, char const * string) const;
 	char * mpackage;
 	char * mrelease;

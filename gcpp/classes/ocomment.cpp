@@ -365,94 +365,119 @@ signed ocomment::clang (signed c)
 			std::cout.put (c);
 			if (c == '\n')
 			{
-				std::cout.put (' ');
-				do 
-				{
-					c = std::cin.get ();
-				}
-				while (oascii::isblank (c));
-				if (c == '*')
-				{
-					continue;
-				}
-				else if ((c == '=') || (c == '-') || (c == '*'))
-				{
-					std::cout.put ('*');
-					c = ocomment::divider (c);
-				}
-				else 
-				{
-					unsigned column = this->mstart;
-					unsigned offset = 0;
-					std::cout.put ('*');
-					while (oascii::nobreak (c))
-					{
-						if ((c == '*') && (std::cin.peek () == '/'))
-						{
-							std::cout.put ('\n');
-							std::cout.put (' ');
-							break;
-						}
-						else if (c == ' ')
-						{
-							column++;
-						}
-						else if (c == '\t')
-						{
-							column -= column % 8;
-							column += 8;
-						}
-						else 
-						{
-							while (offset < column)
-							{
-								std::cout.put (' ');
-								offset++;
-							}
-							std::cout.put (c);
-							column++;
-							offset++;
-						}
-						c = std::cin.get ();
-					}
-				}
+				c = ocomment::content (c);
 				continue;
 			}
 			c = std::cin.get ();
 		}
 		std::cout.put ('*');
 		c = std::cin.get ();
-		if ((c == '=') || (c == '-') || (c == '*'))
-		{
-			c = ocomment::divider (c);
-		}
-		else if ((c == oCOMMENT_C_PACKAGE) && ocomment::anyset (oCOMMENT_B_PACKAGE))
-		{
-			c = ocomment::message (c, this->mpackage);
-		}
-		else if ((c == oCOMMENT_C_RELEASE) && ocomment::anyset (oCOMMENT_B_RELEASE))
-		{
-			c = ocomment::message (c, this->mrelease);
-		}
-		else if ((c == oCOMMENT_C_PUBLISH) && ocomment::anyset (oCOMMENT_B_PUBLISH))
-		{
-			c = ocomment::message (c, this->mpublish);
-		}
-		else if ((c == oCOMMENT_C_LICENSE) && ocomment::anyset (oCOMMENT_B_LICENSE))
-		{
-			c = ocomment::message (c, this->mlicense);
-		}
-		else if (c == '(')
-		{
-			c = ocomment::section (')');
-		}
-		else if (c == '[')
-		{
-			c = ocomment::section (']');
-		}
+		c = ocomment::special (c);
 	}
 	std::cout.put ('/');
 	std::cout.put ('\n');
+	return (c);
+}
+
+/*====================================================================*
+ *
+ *   signed content (signed c) const;
+ *
+ *
+ *--------------------------------------------------------------------*/
+
+signed ocomment::content (signed c) const
+
+{
+	unsigned column = this->mstart;
+	unsigned offset = 0;
+	std::cout.put (' ');
+	do 
+	{
+		c = std::cin.get ();
+	}
+	while (oascii::isblank (c));
+	if (c == '*')
+	{
+		return (c);
+	}
+	std::cout.put ('*');
+	if ((c == '=') || (c == '-') || (c == '*'))
+	{
+		c = ocomment::divider (c);
+		return (c);
+	}
+	while (oascii::nobreak (c))
+	{
+		if ((c == '*') && (std::cin.peek () == '/'))
+		{
+			std::cout.put ('\n');
+			std::cout.put (' ');
+			break;
+		}
+		if (c == ' ')
+		{
+			column++;
+		}
+		else if (c == '\t')
+		{
+			column -= column % 8;
+			column += 8;
+		}
+		else 
+		{
+			while (offset < column)
+			{
+				std::cout.put (' ');
+				offset++;
+			}
+			std::cout.put (c);
+			column++;
+			offset++;
+		}
+		c = std::cin.get ();
+	}
+	return (c);
+}
+
+/*====================================================================*
+ *
+ *   signed special (signed c) const;
+ *
+ *
+ *--------------------------------------------------------------------*/
+
+signed ocomment::special (signed c) const
+
+{
+	if ((c == '=') || (c == '-') || (c == '*'))
+	{
+		c = ocomment::divider (c);
+	}
+	else if ((c == oCOMMENT_C_PACKAGE) && ocomment::anyset (oCOMMENT_B_PACKAGE))
+	{
+		c = ocomment::message (c, this->mpackage);
+	}
+	else if ((c == oCOMMENT_C_RELEASE) && ocomment::anyset (oCOMMENT_B_RELEASE))
+	{
+		c = ocomment::message (c, this->mrelease);
+	}
+	else if ((c == oCOMMENT_C_PUBLISH) && ocomment::anyset (oCOMMENT_B_PUBLISH))
+	{
+		c = ocomment::message (c, this->mpublish);
+	}
+	else if ((c == oCOMMENT_C_LICENSE) && ocomment::anyset (oCOMMENT_B_LICENSE))
+	{
+		c = ocomment::message (c, this->mlicense);
+	}
+	else if (c == '(')
+	{
+		c = ocomment::section (')');
+	}
+	else if (c == '[')
+	{
+		c = ocomment::section (']');
+	}
 	return (c);
 }
 
