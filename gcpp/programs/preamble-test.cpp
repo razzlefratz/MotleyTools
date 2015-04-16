@@ -35,3 +35,10 @@
 
 
                     --*/
+
+/*
+ hello    world asdfsadfsadfsadf */
+
+
+/*=*
+ *-*/
