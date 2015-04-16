@@ -362,9 +362,9 @@ signed ocomment::clang (signed c)
 	{
 		while ((c != '*') && (c != EOF))
 		{
+			std::cout.put (c);
 			if (c == '\n')
 			{
-				std::cout.put ('\n');
 				std::cout.put (' ');
 				do 
 				{
@@ -380,24 +380,20 @@ signed ocomment::clang (signed c)
 					std::cout.put ('*');
 					c = ocomment::divider (c);
 				}
-				else
+				else 
 				{
 					unsigned column = this->mstart;
 					unsigned offset = 0;
 					std::cout.put ('*');
 					while (oascii::nobreak (c))
 					{
-
-#if 0
-
 						if ((c == '*') && (std::cin.peek () == '/'))
 						{
+							std::cout.put ('\n');
+							std::cout.put (' ');
 							break;
 						}
-
-#endif
-
-						if (c == ' ')
+						else if (c == ' ')
 						{
 							column++;
 						}
@@ -420,118 +416,43 @@ signed ocomment::clang (signed c)
 						c = std::cin.get ();
 					}
 				}
-			}
-			else
-			{
-				std::cout.put (c);
-				c = std::cin.get ();
-			}
-		}
-		std::cout.put ('*');
-		c = std::cin.get ();
-		c = ocomment::special (c);
-	}
-	std::cout.put ('/');
-	std::cout.put ('\n');
-	return (c);
-}
-
-/*====================================================================*
- *
- *   signed content (signed c) const;
- *
- *   print comment line; preserve intervening word spacing; remove 
- *   tailing white space;
- *
- *--------------------------------------------------------------------*/
-
-signed ocomment::content (signed c) const
-
-{
-	std::cout.put (c);
-	std::cout.put (' ');
-	do 
-	{
-		c = std::cin.get ();
-	}
-	while (oascii::isblank (c));
-	if (c != '*')
-	{
-		unsigned column = this->mstart;
-		unsigned offset = 0;
-		std::cout.put ('*');
-		c = ocomment::special (c);
-		while (oascii::nobreak (c))
-		{
-			if ((c == '*') && (std::cin.peek () == '/'))
-			{
-				break;
-			}
-			else if (c == ' ')
-			{
-				column++;
-			}
-			else if (c == '\t')
-			{
-				column -= column % 8;
-				column += 8;
-			}
-			else 
-			{
-				while (offset < column)
-				{
-					std::cout.put (' ');
-					offset++;
-				}
-				std::cout.put (c);
-				column++;
-				offset++;
+				continue;
 			}
 			c = std::cin.get ();
 		}
+		std::cout.put ('*');
+		c = std::cin.get ();
+		if ((c == '=') || (c == '-') || (c == '*'))
+		{
+			c = ocomment::divider (c);
+		}
+		else if ((c == oCOMMENT_C_PACKAGE) && ocomment::anyset (oCOMMENT_B_PACKAGE))
+		{
+			c = ocomment::message (c, this->mpackage);
+		}
+		else if ((c == oCOMMENT_C_RELEASE) && ocomment::anyset (oCOMMENT_B_RELEASE))
+		{
+			c = ocomment::message (c, this->mrelease);
+		}
+		else if ((c == oCOMMENT_C_PUBLISH) && ocomment::anyset (oCOMMENT_B_PUBLISH))
+		{
+			c = ocomment::message (c, this->mpublish);
+		}
+		else if ((c == oCOMMENT_C_LICENSE) && ocomment::anyset (oCOMMENT_B_LICENSE))
+		{
+			c = ocomment::message (c, this->mlicense);
+		}
+		else if (c == '(')
+		{
+			c = ocomment::section (')');
+		}
+		else if (c == '[')
+		{
+			c = ocomment::section (']');
+		}
 	}
-	return (c);
-}
-
-/*====================================================================*
- *
- *   signed special (signed c) const;
- *
- *   detect, and optionally replace, special comment lines;
- *
- *--------------------------------------------------------------------*/
-
-signed ocomment::special (signed c) const
-
-{
-	if ((c == '=') || (c == '-') || (c == '*'))
-	{
-		c = ocomment::divider (c);
-	}
-	else if ((c == oCOMMENT_C_PACKAGE) && ocomment::anyset (oCOMMENT_B_PACKAGE))
-	{
-		c = ocomment::message (c, this->mpackage);
-	}
-	else if ((c == oCOMMENT_C_RELEASE) && ocomment::anyset (oCOMMENT_B_RELEASE))
-	{
-		c = ocomment::message (c, this->mrelease);
-	}
-	else if ((c == oCOMMENT_C_PUBLISH) && ocomment::anyset (oCOMMENT_B_PUBLISH))
-	{
-		c = ocomment::message (c, this->mpublish);
-	}
-	else if ((c == oCOMMENT_C_LICENSE) && ocomment::anyset (oCOMMENT_B_LICENSE))
-	{
-		c = ocomment::message (c, this->mlicense);
-	}
-	else if (c == '(')
-	{
-		c = ocomment::section (')');
-	}
-	else if (c == '[')
-	{
-		c = ocomment::section (']');
-	}
+	std::cout.put ('/');
+	std::cout.put ('\n');
 	return (c);
 }
 
